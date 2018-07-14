@@ -1,0 +1,484 @@
+Masochist Mode boiii
+
+
+NEW FOR THIS BETA
+**********************************************************************************************
+-Twins now respawn at half HP
+-test prime dungeon mode again reeeeeeeeee
+-lowered post plantera mage skeletons rate
+-increased moon mini boss rate
+-no cultists in the sky, in fact nothing should be in the sky that shouldnt anymore
+
+-crawdad bubbles no longer go through blocks until post skele
+-reduced prime reduction slightly to 95, 90, 75, 50
+-reduced slime to king slime chance
+-reduced chance for sandstorm on sand slime hit
+
+-wraiths inflict living wasteland for 15 seconds
+-ghosts have an aura of cursed
+-crimson axe, cursed hammer, holy sword have auras of withered weapon
+-plantera and all attacks inflict infested (contact for the longest)
+-chaos elemental often inflicts unstable on contact AND has randomly applying aura of flipped for 3 seconds to any nearby players
+-flocko inflicts chilled and frostburn
+-goblin peons, pirate deckhands, and gray grunts have a chance of inflicting living wasteland in hard mode
+
+-zombies inflicts rotting
+-corruptor always inflicts weak for at least 2 minutes
+-mummys inflict webbed on contact and have auras of slow
+-derpling has an opposite aura of confusion and inflicts lethargic on contact
+-desert spirits inflict shadowflame and ichor depending on which biome they’re in
+-all mech boss contact inflicts clipped wings for 1 sec
+-moon lord leech inflicts mutant nibble
+-phantasmal ray inflicts flames of the universe
+-black recluse always inflicts venom and if you are webbed nearby one, they gain speed and you get the defenseless debuff //meme not work
+-basilisks are immune to knockback, inflict cripple, and spawn above ground desert nights
+-Angry trapper eats you below 180 HP
+
+-swamp thing inflicts ooze
+-Frankenstein's monster inflicts lightning rod
+-reaper and his scythes inflicts marked for death and living wasteland (30 sec on contact, 15 on scythe)
+-baby mothrons inflict squeaky toy
+-butcher inflicts berserked
+-the possessed inflicts hexed
+-dr man fly flasks inflicts a random debuff from oozed, confused, cursed flames, venom, living wasteland, purified, and defenceless and always stinky. Also he spawns several toxic flask projectiles when killed
+-pigrons inflicts squeaky toy
+-wolves and werewolves inflict feral bite
+-wandering eyes will upgrade into eye of cthulhu if they hit you
+-post-plantera physical skeletons (hell armored bones and cousins) all inflict bloodthirsty for 2 seconds on contact
+-giant tortoises inflict defenseless for 5 seconds
+-ice tortoises do the same plus a chance to freeze
+
+-purified now only kills buffs :ech:
+
+CULTIST
+-Ancient Doom does Marked for Death
+-Ancient Light does Purified
+-Touching a clone does Hexed
+-Lightning Orb – lightning rod
+-Lightning strike – electrified
+-Fireball – Onfire, broken armor, and berserked
+-Shadowball – shadowflame
+-Ice – frozen
+-he has a constant aura of clipped wings
+
+-headless horseman inflicts crippled 
+-moss hornets inflict infested for 5 seconds
+-paladins and its hammers inflict lethargic 
+-fishron inflicts mutant nibble for 10 seconds on contact
+-hellhounds inflict obstructed and withered weapon
+-all mimics inflict purified
+-rune wizard blasts inflict flames of the universe, contact does cursed, he has an aura of hexed that’s always active unless youre very close to him
+-nutcracker inflicts clipped wings
+-golem is immune to shadowflame, frostburn, and cursed flames
+-golem literally never stops regenerating ever (all parts)
+-ice golems spawn in non blizzards too
+-angry nimbuses spawn in the sky at any point
+
+
+
+
+
+
+
+- The Twins must be killed within 10 seconds of each other or the previously defeated one will respawn at full health (may need to be longer idk)
+- Fallen Stars can hurt you while falling
+-martian saucers lasers, (not deathray couldn’t get it to work ) goes through blocks
+- Skeletron Prime has 95% damage reduction with 4 arms
+90% with 3 arms
+75% with 2 arms
+50% with 1 arm (may change values)
+-when prime is supposed to be killed and isnt in dungeon guardian mode, health is set back to 100 and goes into dungeon guardian mode
+
+-Jungle Mimics in Underground Jungle HM
+-Ancient visions and Phantasm dragons spawn during moon lord fight
+-Betsy spawns in hell post Golem
+-Plantera spawns in underground jungle post Golem
+-Fishron spawn at ocean post Fishron
+-All pumpkin and frost moon spawns are post any mech
+-The mini bosses are post beating the moon itself
+-Scarecrows,  Headless Horseman, Pumpking  spawn surface night purity
+-Mourning Wood and Splinterling spawns in Corruption and Crimson night surface
+-Hellhounds spawn in the underworld and are lava immune
+-Poltergheist spawn anywhere in the cavern layer
+-Present mimics and Gingerbread men on surface hallow at night
+-Zombie Elves, Santa NK1, and Yetis Tundra Night Surface
+-Elf Archer and Elf Copters, everscream during the Day in the Tundra
+-nutcracker – underground tundra
+-Krampus and ice queen spawns in the cavern tundra
+-Goldfish and Blue Jellyfish may be replaced with sharks 
+-Harpys may be replaced by Red Devils instead of demons post any mech
+-Crimson and Corruption mimics may be replaced by the other one
+-Skeleton sniper, Tactical skeleton, Skeleton commando on surface night post-plantera
+-Ragged caster/Necromancer/Diabolists spawn anywhere underground post-plantera
+-Dungeon Slimes become mini paladins on death with half the defense and all the damage   :ech:
+-Rainbow slimes are bigger and explode into a handful of smaller rainbow slimes when killed also they can spawn when it isn’t raining on the hallow surface 
+-Armored Vikings totally spam you with ice sickles at close range
+-corites and srollers spawn in meteorite post golem 
+-crawltipedes, flow invaders, alien queens, nebula floaters as random sky spawns in hardmode
+
+
+
+NOT IMPLEMENTED
+**********************************************************************************************************
+
+vulture too fast feathers, shoot in air only
+northern light to soul
+spider no web if being hit
+
+
+Update wiki tbh with all new things and all chnaged things since initial release
+
+visual for boulder toss?
+-scale projectiles
+
+-all pirates steal some of your money on hit
+
+- The Destroyer cannot be damaged when probes are out
+- The Twins must be killed within five seconds of each other or the previously defeated one will respawn at full health
+- Skeletron Prime cannot be damaged until all his arms are kille
+
+More masomode changes
+-Retinazer phase 2 can fire a phantasmal deathray at low hp
+-Getting hit by a land shark or pigron post plantera can summon duke fishron
+-Solar fragments shot out by solar pillow go through blocks and slightly home in on players
+-Crawltipede can shoot a stream of fire from its tail
+-Storm diver shoots chlorophyte bullet
+
+Some Masochist mode ideas
+- Fallen Stars can hurt you while falling
+- Using the Nurse too much can cripple you, dealing damage and weakening you...and you must wait the debuff out
+- Falling from heights will give you Confusion and Dazed...even if you have a horseshoe. Only prevented by wings
+- The Eater of Worlds will insta-kill you if the head hits while you're under 150 hp
+- Skeletron's hands can grab you for a moment, dealing damage every second
+- The Evil Biome will now give the player Sadness, which is the opposite stats for Happiness
+- Pirahnas will hop out the top of water if you are directly above it
+- The WoF will occasionally lick you and pull you towards it throughout the fight
+- Going into space will suffocate yo
+- Going to hell normally will set you on fire
+- Paladin's Hammers will slightly home onto you
+- Every 10 seconds during the ML fight, he will inflict any debuff...modded or not
+- The twins spawn in phase two
+- Spazmatism will do EoC's special dash at half health and spit Cursed Flames while doing so
+- Retinazer's laser inflict On Fire and will home onto you
+- Prime's bombs can break tiles
+- Prime's skull will grant Broken Armor, Withered Armor, Confused, and Ichor
+- The Destroyer's Probes will keep spawning...even after all his lights are out
+- Plantera is already in phase two
+- Plantera's normal seeds inflict Poison and her Poison Seeds inflict Venom
+- Lunatic Cultist's dragon has a 10% chance to One Hit Kil
+
+- nailhead spikes stick to player and deal dot
+- baby star cells don’t count for pillar counter
+- Red Devils have a 5% chance to spawn post wof, drop nothing
+- moss hornets spawn in packs
+- crawltepides vore player when under 100 hp
+- gradual speed reduction depending on items carried
+- cursed flames and ichor have no time limit on ending, only end when in water or honey
+- plantera 5% chance to spawn from killing jungle mobs after it is killed
+
+-baby mothrons grow to even more adult mothrons over time
+-dr manflys flask inflict a wide variety of debuffs
+-lethargic is inflicted if you jump into honey
+-mechanical servants of cthulhu spawn during the twins fight
+-golems fists have an aoe attack after stretching out
+-duke fishron now shoots out razorblade typhoon spheres in phase 3
+-martian saucers deathray goes through blocks
+-sand elementals shoot sand balls when not casting ancient storms
+-eternia crystal takes twice as much damage
+
+masochist mode ideas:
+- Top hat squirrels dont pierce/reduced top hat squirrel damage by a ton
+- Phantasm Wyverns spawn during pillars and moon lord fight every 20-60 seconds
+- King Slime shoots Slimy Balls that go through walls occasionally
+
+-using rod of discord during chaos state also inflicts 5sec berserked and unstable
+-lava charm effect runs out faster
+-player starts drowning faster in water
+-all items are slower to use in water unless flippers, neptune's shell or similar movement effects
+-hoplite javelins are faster
+-more enemies can spawn in hordes like zombie, e.g. hoplites or red devils
+-demon sickles inflict shadowflame
+-prime saw shoots shadowflamethrower like world feeder's cursed flamethrower
+
+-wyverns spawn literally fucking anywhere until post Golem, then phantasmal dragons spawn instead
+-wyverns inflict purified, phantasmal dragons inflict flames of the universe
+
+-hallowed enemies inflict unstable generally, corruption does infested, crimson does rotting
+-enchanted sword family inflict defenseless, have way more knockback resist and don't take five years to attack again when hit
+-wraith family inflicts living wasteland 10sec
+
+-giant and ice tortoises stun and inflict broken armor
+-those upgraded man eaters can vore you at higher life, forgot their name lol
+
+-red devil trident velocity increases per tick
+
+-skelly prime limbs direct contact inflicts electrified, prime skull itself inflicts stunned
+-when prime is supposed to be killed and isnt in dungeon guardian mode, health is set back to 100 and goes into dungeon guardian mode
+-destroyer lasers clip wings for a few ticks (basically getting hit removes your remaining flight time)
+-destroyer literally never stops firing lasers at low health (10%?). if it's possible to make him treat all tiles including air as solid (he can dig through them), do that
+-destroyer can vore player at like below 300hp or some other fuck shit threshold, also his entire body inflicts lightning rod
+-retinazer phase 2 constantly spawns buffed servants of cthulhu that shoot lasers at the player, spaz phase 2 literally always shoots cursed flamethrower and spawns buffed servants that shoot cursed fireballs
+
+-plantera underflowing infested DOT curve meme, 4sec and 20sec in expert 
+-plantera phase 2 occasionally shoots a spiky ball and like a giant shotgun of spores at the player
+-literally everything in the plantera fight inflicts 4sec infested and then 20sec if already infested, repeating yet again because its REALLY IMPORTANT
+
+-Golem and all body parts literally never stop regenerating, regeneration goes completely insane if you stop attacking for 3 sec, direct contact inflicts 6sec marked for death, repeating because important
+-you know what let's just double the health of all of golem's parts by default while we're at it
+
+-psycho constantly becomes more transparent but becomes fully visible whenever hit (should take like two seconds to become full invis)
+-nailhead constantly sheds spikes
+-swamp thing inflicts ooze
+-Frankenstein's monster inflicts lightning rod and electrified
+-reaper inflicts 15sec marked for death and living wasteland
+-eyezor shoots a cursed flamethrower if you get too close
+-baby mothrons inflict squeaky toy
+-the possessed inflicts hexed
+-butcher inflicts berserked
+-dr man fly inflicts asocial and spawns a few toxic flask projectiles when killed
+
+-lihzahrds can shoot super darts, and explode violently into spiky balls when killed
+-flying snakes inflict clipped wings, lihzahrds inflict bloodthirsty and chance for 30sec marked for death on touch, lihzahrd darts inflict venom
+
+-pigron inflicts squeaky toy
+-wolves and werewolves inflict feral bite
+-wandering eyes will upgrade into eye of cthulhu if they hit you
+
+-baby slimes and slimelings will mature into mother and corrupt slimes if left alone for a certain amount of time (10sec?)
+-wingless slimers can regain their wings if left alone for 5 sec
+-rainbow slimes are bigger and explode violently into a handful of smaller rainbow slimes when killed (these slimes cant split again), also they can spawn when it isnt raining
+-dungeon slimes spawn mini paladins when killed post plantera
+
+-biome ghouls can spit projectiles (cursed flamethrower for corrupt, ichor sticker spit for crimson, uhhh smth for hallowed idk)
+-skeleton archers shoot venom arrows
+-sand shark family inflict bleeding and enrage against bleeding players
+
+-skeleton sniper fires a special high velocity crystal bullet that explodes into a metric fuckton of shards and inflicts defenseless and broken armor for a long time
+-tactical skeleton fires meteor shot that inflicts burning
+-skeleton commandos fire three rockets at once (extra rockets fired smth like 10 or 15 degrees off the original) that inflict dazed
+-ragged casters inflict unstable, necromancers inflict rotting, diabolists inflict fused
+-when hit, bone lee has a good chance to "dodge" the attack and teleport behind the player
+-post-plantera skeletons can spawn uncommonly in pure underground during pre-plantera hardmode but drop nothing until plantera is killed
+
+-brain scramblers inflict unstable and/or very short flipped
+-tesla turrets and gigazappers inflict lightning rod
+-scutlix and projectiles inflict squeaky toy
+-martian walkers sometimes inflict hexed
+-martian officer's shields retaliate to damage with laser bolts
+-martian saucer laser spam inflicts electrified, rockets inflict clipped wings and kneecapped, deathray inflicts 10sec marked for death
+
+-splinterlings constantly scatter mourning wood's lingering embers on the ground until killed
+-scarecrow inflicts squeaky toy
+-headless horseman inflicts hexed
+-hellhounds inflict bloodthirsty and berserked
+-mourning wood inflicts on fire, cursed flames, and ichor. the flying flaming wood projectiles get an extra update
+-pumpking rains greek fire on the player if they're directly below him and inflicts very long rotting on touch. is it possible to give him four arms?
+
+-elf copters shoot high velocity bullets that bleed
+-elf archers shoot bursts of cursed and ichor arrows (like tsunami or phangasm, take your pick)
+-flocko inflicts frostburn and chilled always
+-krampus makes you throw your held item and three random equipped accessory/vanity slots to the ground on direct contact
+-nutcracker instantly kills male characters ok no it inflicts clipped wings
+-gingerbread man and present mimic inflict squeaky toy
+-zombie elf inflicts rotting
+-ice queens spawn flockos constantly
+
+-parrots ignore tiles
+-pirate captains shoot rockets instead of bullets and the cannonball is a gigantic shotgun of cannonballs that spews them fucking everywhere. have fun
+-pirate crossbowers shoot ichor arrows
+-pirate deadeyes shoot cursed bullets
+-pirate deckhands will promote into pirate captains (that don't drop anything, ideally) on direct contact
+-all pirates steal some of your money on hit
+
+-ghost swarm
+
+-brain sucklers that latch on will promote into nebula floaters when you kill them
+-brain sucklers can shoot predictor's projectiles, but just one at a time
+-nebula floaters will fire another bolt at you for every mini-eye they have when killed, like flow invader
+-star cells will regenerate into a different random stardust enemy if number of star cells and mini star calls currently alive > 10
+-literally everything at stardust pillar will split into mini star cells when it dies unless it's already a mini star cell
+-drakanians throw their spears (daybreak) and become selenians when killed (make this not count towards breaking pillar shield if possible)
+-corites have meteor heads' burning aura
+-crawltipedes will vore you instantly below 300hp
+-spinning selenians gain basically infinite defense and kill projectiles that touch them
+-alien larvae grow up instantly
+-storm divers shoot vortex beater's homing grenades as well
+-alien queen shoots the same lightning as lightning portals, in addition to the distorted spit if possible. otherwise just make it fire a shotgun of spit and higher velocity
+
+-while moon lord is alive, spawn rate and cap are increased (to compensate for moon lord occupying a lot of spawn room) and all npc spawns are overriden with a table containing only the lunar pillar enemies, also all the lunar pillar enemies inflict the debuff that disables their weapon class for 5sec while moon lord is alive fucking have fun
+
+-all worm enemies in the game have 7% chance to inflict god eater for 7 seconds
+
+anomura fungus - spore debuff or someshit? attacking it makes spores poof out 
+
+eater of souls shoot vile spit and inflict rotting
+
+anything from goblin invasion has a chance to inflict living wasteland 
+
+corites spawning in meteorite post golem tbh
+and strollers because they are both part minerals
+
+-imps and lava slimes should appear when lava is on screen now
+
+-angler fish invisible with light, appears in ocean always bleed
+-angry trapper eats your ass
+arapaima 
+armored skele broken armor
+armored viking - shoots ice sicke
+basilisk - above ground, immune knockback, cripple
+black recluse - venom, web contact, rage when webbed, touch web get web
+blood feeder - increase stats, heals on damage 
+bone lee - spawns, hella knock back
+chaos elemental - unstable, confused
+clinger - 
+armored bones - all spawn, broken armor/defenseless
+evil mimic -  may be the other one
+mimic - spawns pre hm no loot
+corruptor - weak
+crimson axe, cursed hammer, holy sword - auras?
+mummys - webbed, ..
+derpling - wing clip, aura of lethargic?
+desert spirit - cursed, shadow flames
+
+-plantera spawns in underground jungle
+-let fishron spawn at ocean
+-golem replacing lihzahrd spawns
+-frost moon bosses in tundra?
+-let martian saucer replace harpies tbh
+-random wof spawns in hell, do it you wont
+-mech trio spawns underground during night
+-flying Dutchman and pirate captains in ocean
+-random betsy spawns in hell
+-additional high-probability roll for solar eclipses and blood moons every day/night
+-hugely increased chances of invasion events every morning
+-a solid chance for a pumpkin or frost moon event to start on its own every night
+-a chance for the four pillars to just spawn in every morning
+
+Jellyfish can have a chance to cause paralysis if zapped in water 
+Zombies can always open doors like in blood moons
+More Money Earned in masochist mode
+
+-white cultist archers as surface enemies at any time from game start
+-implement jungle mimics in hardmode
+-add ancient visions and phantasm dragons to every lunar pillar's spawn table
+
+-regular pumpkin moon enemies as night purity spawns in hm, regular frost moon enemies as tundra/underground tundra spawns in hm
+-weather-dependent enemies like ice golem, sand shark family, sand elementals spawning without their weather 
+
+-clowns during any night
+ 
+-wyverns literally anywhere, anytime, any point in progression
+-dark casters and fire imps anywhere underground in pre hm
+-skeleton sniper, tactical skeleton, skeleton commando on surface post-plantera
+-ragged caster/necromancer/diabolists spawn anywhere underground post-plantera
+-natural martian drones spawns on surface or smth because haha FUCK your npc town
+
+-crawltipedes, flow invaders, alien queens, nebula floaters as random space spawns in hardmode 
+
+Maso-mode: While being in the underworld, give it a chance to give you the debuff that kills you if you leave, for like 5 minutes
+The wof debuff
+
+-all moon lord attacks always inflict mutant nibble for 14 seconds (before doubling in expert), also flames of universe for 7sec and chance for 1sec unstable
+-mech trio inflict clipped wings for 2 ticks ;)
+
+-fishron inflicts mutant nibble for 10 seconds on contact, he and his sharkrons have physical damage rampup like regular sharks against players with mutant nibble. everything in fishron fight inflicts berserked and defenseless for 4 seconds
+-receiving ichor or cursed inferno in masomode deletes those debuffs and replaces them with flames of the universe for the same duration (meaning it actually becomes twice as long in expert :ech:)
+-post-plantera physical skeletons (hell armored bones and cousins) all inflict bloodthirsty for 2 seconds on contact
+-paladins and the post-plantera mages inflict lethargic with all attacks for 4 seconds
+
+-major pumpkin moon enemies inflict rotting for 5 seconds
+-plantera and all attacks inflict infested for 5 seconds
+-major frost moon enemies inflict squeaky toy for 2 seconds
+-cultist inflicts lightning rod for 10 seconds always with a chance of 5sec hexed or marked for death
+-crawltipedes also inflict stoned lel
+-goblin invasion enemies (in hardmode), pirate invasion, martian madness enemies have ~20% chance of inflicting living wasteland for 5 seconds, guaranteed for the minibosses and their attacks
+-eye/servants of cthulhu inflict kneecapped for 5 seconds
+
+-golem literally never stops regenerating ever, also physical contact with any of his parts inflicts 5sec marked for death
+
+-giant tortoises inflict defenseless for 5 seconds
+-moss hornets inflict infested for 5 seconds
+
+-tim, rune wizard, every mimic also inflict purified for 5 seconds
+-wraiths, ghosts, reapers inflict living wasteland for 5 seconds
+-betsy and all her attacks inflict berserked and defenseless for 4 seconds
+-old ones army enemies have a chance to inflict squeaky toy or hexed for 2 seconds
+-everything to do with stardust pillar inflicts asocial for 4 seconds, chance for 2sec purified
+-everything solar inflicts kneecapped for 4 seconds, chance for 2sec flipped
+-everything vortex inflicts clipped wings for 4 seconds, chance for 2sec distorted (including lightning from lightning rod)
+-everything nebula inflicts silenced for 4 seconds, chance for 2sec hexed
+-reduce lightning rod randomness a lil and make it account for the player's velocity when spawning the lightning portals
+
+spiky balls flme wheels do more dmg but can be killed
+
+certain enemy only damagable when hexed
+
+flesh eat life steal zombies
+bosses regen faster at lower hp slower at high
+
+-plantera spawns in underground jungle
+-let fishron spawn at ocean
+-golem replacing lihzahrd spawns
+-frost moon bosses in tundra?
+-let martian saucer replace harpies tbh
+-random wof spawns in hell, do it you wont
+-mech trio spawns underground during night
+-flying Dutchman and pirate captains in ocean
+-random betsy spawns in hell
+-tiny chance for dungeon guardians to spawn in dungeon
+-additional high-probability roll for solar eclipses and blood moons every day/night
+-hugely increased chances of invasion events every morning
+-a solid chance for a pumpkin or frost moon event to start on its own every night
+-a chance for the four pillars to just spawn in every morning
+
+-implement jungle mimics in hardmode
+-add ancient visions and phantasm dragons to every lunar pillar's spawn table
+-leeches as natural spawns in hell
+-regular pumpkin moon enemies as night purity spawns in hm, regular frost moon enemies as tundra/underground tundra spawns in hm
+-weather-dependent enemies like ice golem, sand shark family, sand elementals spawning without their weather
+-clowns during any night
+-medusas literally anywhere, anytime, any point in progression 
+-wyverns literally anywhere, anytime, any point in progression
+-dark casters and fire imps anywhere underground in pre hm
+-skeleton sniper, tactical skeleton, skeleton commando on surface post-plantera
+-ragged caster/necromancer/diabolists spawn anywhere underground post-plantera
+-demons replacing harpy spawns sometimes, then red devils in hm
+-natural martian drones spawns on surface or smth because haha FUCK your npc town
+-sharks replacing some goldfish and jellyfish spawns
+-very rare ichor stickers and clingers in their biomes pre hardmode
+-crawltipedes, flow invaders, alien queens, nebula floaters as random space spawns in hardmode 
+
+Even more masomode changes to make your life even worse:
+-Top Hat Squirrels become hostile during bloodmoons
+-Wraiths can fly without needing to be 3 blocks below
+-Wraiths have a very small chance to spawn PreHM
+-Mothron can shoot multiple fireballs while airborne
+-Martian Officer has two shields to pop in order to damage them
+-Fishing in the ocean has a very small chance to summon Duke Fishron (same chance as Reaver Shark)
+-Duke Fishron leaves ghostly apparitions in phase 3, lengthening its attack to around ~5 seconds
+-BoC's Creepers can shoot a small blood shot
+-Predictor fires more beams
+-Selenian reflects all projectiles regardless of form
+-Wall Creepers can inflict Venom
+-Vortexian releases 3 alien hornets when killed
+-Spiked Slimes's spikes slightly home in on players
+-Fire Imp, Dark Caster, Tim, and Goblin Sorcerer "panic" when attacked (they fire projectiles 3x as fast and can still shoot after getting damaged)
+
+-Flow Invader fires mini flow invaders in a spread even when it isn't dead
+-Martian Engineers create Tesla Turrets twice as often
+-Chaos Elementals can inflict Atrophied
+-Unicorns can inflict Stunned
+-Dune Splicers can fly and can very rarely spawn Pre-HM
+-Skeleton Archers and Armored Skeletons can spawn Pre-HM (They cannot drop loot, of course.)
+-Moon Lord spawns two True Eyes of Cthulhu instead of one when a hand is "killed"
+-Moon Lord fires a tracking, but slower Phantasmal Deathray when its core is revealed
+-Dungeon Spirit is immune to knockback and has more health
+-Paladins can throw hammers without having to not be currently attacked
+-Ragged Casters teleport when damaged
+
+Enemies attract dropped coins in maso
+
+the debuff gradually gets applied when you enter the cavern layer until you reach hell hevel, from -0% max health to -50%
+so if you're going down, you're gonna feel the heat
+
+Golem shoots out inferno fork projectiles, fists that stun, and an occasional  solid beam of descrution from his body once head is chopped off, which explodes with a shower of martian saucer scraps and lasers everywhere

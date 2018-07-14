@@ -1,0 +1,98 @@
+removed skeleton and travelloing mervhsnt spawns from pandoras box and made it only usable at night again
+-Infinity Relic down side changed, no longer reduces damage or regen, damages you when you attack instead
+-fixed bug with bone zone not dropping from treasure bag
+void sprite
+
+infinity relic doesnt work with life fruits
+void soul telport does not go on cooldown if it fails
+can no longer tele home all the time... smh
+void soul cell phone effects work while its in inventory
+
+removed lava immune from molten and recipe change
+explode on death
+
+//later
+add tooltips and new effects to upgrades
+lava immune now on obsidian enchantment
+
+
+NEW UPDATE - v .16.2
+-Fleshy Doll wont be consumed if there is already a WoF
+-nerfed Slime Slinging Slasher and Dicer damage
+-fixed dicer projectiles not damaging and wrong rarity
+-World Shaper Soul's Builder mode will now not consume walls
+
+Masomode
+-reduced Leech spawn rate
+-increased pillar debuff range
+-invincible NPCs don't regen
+-lowered Servant of Cthulhu 'ss Hexed debuff length
+
+NEW UPDATE - v .16.1
+
+Masomode Fixes 
+-fixed insane regen in multiplayer
+-segmented bosses now stop regenning when any part of them is hit (worms, WoF)
+-Slimed debuff has a timer now
+-reduce boss spawn chance if one is already alive
+-reduced EoC spawn rate in half
+-lowered BoC and EoW spawn in hard mode
+-lower spawn rate in prehardmode
+-slower crawdad bubbles
+-lower granite enemy stoned chance
+
+Other Fixes
+-Forgotten Claw can be used anytime now
+-fixed SoU having ninja gear effects when it shouldn't and not having throw split effect
+-SoU inflicts Flames of the Universe instead of a bunch of debuffs
+-removed recipe for Slime Kings Slasher
+
+This mod adds:
+
+Mutant NPC - sells boss summons as you kill them.
+Mutant Vanity Set - crafted from boss masks
+
+Current mods supported:
+	Thorium
+	Calamity
+	Sacred Tools
+	Pumpking's
+	Crystilium
+	Tremor
+	Ersion
+	Joost
+	BlueMagic
+	WaterBiome
+	Shrooms
+	Spirit
+
+LumberJack NPC - sells wood.
+	
+SUMMONS
+	Suspicious Skull - summons Skeletron without killing the Clothier
+	Fleshy doll- summons the wall of flesh only in the underworld
+	Death Bringer Fairy - summons all pre-hardmode bosses
+	Mechanical Amalgam - summons the 3 mechanical bosses
+	Plantera's Bulb - summons Plantera
+	Runic Power Cell - summons the Golem without an altar
+	Mutant Voodoo Doll - summons every vanilla boss
+	Last Seal - summons every boss including certain modded 
+
+SOULS (expert only end game accessories)
+	Conjurist's Soul
+	Gladiator's Soul
+	Arch Wizard's Soul
+	Sharpshooter's Soul
+	Olympian's Soul
+	Colossus Soul
+	Trawler's Soul
+	Flight Mastery Soul
+	Supersonic Soul
+	World Shaper Soul
+	All Souls combine into the Soul of the Universe (MOst OP accessory ever seen)
+
+WEAPONS
+	Void Bow
+	Boom Shuriken
+
+
