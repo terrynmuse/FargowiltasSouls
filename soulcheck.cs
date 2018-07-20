@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,7 +8,7 @@ using Terraria.UI;
 
 namespace FargowiltasSouls
 {
-    class Soulcheck : UIState
+    internal class Soulcheck : UIState
     {
         private UIPanel _checklistPanel;
         public static bool Visible = false;
@@ -30,13 +29,17 @@ namespace FargowiltasSouls
 
         private void CreateCheckbox(string name, Color color)
         {
-            ToggleDict.Add(name, true);
+            if (ToggleDict.Count != _buffs.Count)
+            {
+                ToggleDict.Add(name, true);
+            }
 
-            UiCheckbox temp = new UiCheckbox(name, "", color, _wtf);
-            temp.Left.Set(_left, 0f);
-            temp.Top.Set(_top, 0f);
-            temp.OnSelectedChanged += (o, e) => { ToggleDict[name] = !ToggleDict[name]; };
-            _checklistPanel.Append(temp);
+
+            UiCheckbox uibox = new UiCheckbox(name, "", color, _wtf);
+            uibox.Left.Set(_left, 0f);
+            uibox.Top.Set(_top, 0f);
+            uibox.OnSelectedChanged += (o, e) => { ToggleDict[name] = !ToggleDict[name]; };
+            _checklistPanel.Append(uibox);
 
             _top += 25f;
             if (!(_top >= 540)) return;

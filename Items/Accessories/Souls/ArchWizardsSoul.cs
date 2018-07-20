@@ -4,11 +4,12 @@ using static Terraria.ID.ItemID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
+    // ReSharper disable once UnusedMember.Global
     public class ArchWizardsSoul : ModItem
     {
         private readonly Mod _calamity = ModLoader.GetMod("CalamityMod");
         private readonly Mod _thorium = ModLoader.GetMod("ThoriumMod");
-        private Mod _bluemagic = ModLoader.GetMod("Bluemagic");
+        private readonly Mod _bluemagic = ModLoader.GetMod("Bluemagic");
 
         public override void SetStaticDefaults()
         {
@@ -42,7 +43,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             if (Fargowiltas.Instance.BlueMagicLoaded)
             {
-                blueMagnet(player);
+                BlueMagnet(player);
             }
             if (Fargowiltas.Instance.CalamityLoaded)
             {
@@ -50,12 +51,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             }
         }
 
-        public void Talisman(Player player)
+        private void Talisman(Player player)
         {
             player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).eTalisman = true;
         }
 
-        public void blueMagnet(Player player)
+        private void BlueMagnet(Player player)
         {
             player.GetModPlayer<Bluemagic.BluemagicPlayer>(_bluemagic).manaMagnet2 = true;
         }
