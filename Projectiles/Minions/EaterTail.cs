@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 
 namespace FargowiltasSouls.Projectiles.Minions
 {
@@ -33,10 +31,10 @@ namespace FargowiltasSouls.Projectiles.Minions
 		public override void AI()
 		{
 			//dust!
-			int DustID = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 173, projectile.velocity.X * 1.5f, projectile.velocity.Y * 2f, 100, default(Color), .5f);
-			Main.dust[DustID].noGravity = true;
-			int DustID3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 173, projectile.velocity.X * 1.5f, projectile.velocity.Y * 2f, 100, default(Color), .5f);
-			Main.dust[DustID3].noGravity = true;
+			int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 173, projectile.velocity.X * 1.5f, projectile.velocity.Y * 2f, 100, default(Color), .5f);
+			Main.dust[dustId].noGravity = true;
+			int dustId3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 173, projectile.velocity.X * 1.5f, projectile.velocity.Y * 2f, 100, default(Color), .5f);
+			Main.dust[dustId3].noGravity = true;
 			
 			
 			projectile.spriteDirection = projectile.direction;

@@ -1,18 +1,13 @@
-using System;
-using System.Diagnostics;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 using System.Linq;
-using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class BardSoul : ModItem
     {
-        string tooltip = null;
+        string _tooltip = null;
 
         public override void SetStaticDefaults()
         {
@@ -57,65 +52,69 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 Bard(player);
             }
         }
 
-        public void Bard(Player player)
+        private void Bard(Player player)
         {
             //general
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).symphonicDamage += 0.4f; //symphonic damage
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).symphonicCrit += 20;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).symphonicSpeed += .25f;
+
+            ThoriumMod.ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumMod.ThoriumPlayer>(_thorium);
+            
+            thoriumPlayer.symphonicDamage += 0.4f;
+            thoriumPlayer.symphonicCrit += 20;
+            thoriumPlayer.symphonicSpeed += .25f;
 
             //woofers
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferFrost = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferVenom = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferIchor = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferCursed = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferTerrarium = true;
+            thoriumPlayer.subwooferFrost = true;
+            thoriumPlayer.subwooferVenom = true;
+            thoriumPlayer.subwooferIchor = true;
+            thoriumPlayer.subwooferCursed = true;
+            thoriumPlayer.subwooferTerrarium = true;
 
             //type buffs
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).bardHomingBool = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).bardHomingBonus = 5f;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).bardMute2 = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).tuner2 = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).bardBounceBonus = 5;
+            thoriumPlayer.bardHomingBool = true;
+            thoriumPlayer.bardHomingBonus = 5f;
+            thoriumPlayer.bardMute2 = true;
+            thoriumPlayer.tuner2 = true;
+            thoriumPlayer.bardBounceBonus = 5;
         }
+
+        private readonly string[] _items = 
+        {
+            "VenomSubwoofer",
+            "FrostSubwoofer",
+            "CorruptSubwoofer",
+            "CrimsonSubwoofer",
+            "TerrariumSubwoofer",
+            "DigitalVibrationTuner",
+            "EpicMouthpiece",
+            "StraightMute",
+            "GuitarPickClaw",
+            "Triangle",
+            "Ocarina",
+            "Saxophone",
+            "RockstarsDoubleBassBlastGuitar"
+        };
+
+        private readonly Mod _thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void AddRecipes()
         {
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            ModRecipe recipe = new ModRecipe(mod);
+
+            foreach (string i in _items)
             {
-                ModRecipe recipe = new ModRecipe(mod);
-
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("VenomSubwoofer"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("FrostSubwoofer"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CorruptSubwoofer"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrimsonSubwoofer"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumSubwoofer"));
-
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DigitalVibrationTuner"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("EpicMouthpiece"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("StraightMute"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("GuitarPickClaw"));
-
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("Triangle"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("Ocarina"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("Saxophone"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("RockstarsDoubleBassBlastGuitar"));
-
-                //recipe.AddTile(null, "CrucibleCosmosSheet");
-                recipe.SetResult(this);
-                recipe.AddRecipe();
+                recipe.AddIngredient(_thorium.ItemType(i));
             }
-
-            else
-            {
-                return;
-            }
+            
+            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

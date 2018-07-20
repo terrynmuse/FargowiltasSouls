@@ -27,13 +27,13 @@ namespace FargowiltasSouls.Buffs.Masomode
             FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
 
             //weak DOT that grows exponentially stronger
-            if (p.firstInfection)
+            if (p.FirstInfection)
             {
-                p.maxInfestTime = player.buffTime[buffIndex];
-                p.firstInfection = false;
+                p.MaxInfestTime = player.buffTime[buffIndex];
+                p.FirstInfection = false;
             }
             
-            p.infested = true;
+            p.Infested = true;
         }
 
         public override bool ReApply(Player player, int time, int buffIndex)

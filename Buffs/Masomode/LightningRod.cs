@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
@@ -32,12 +31,12 @@ namespace FargowiltasSouls.Buffs.Masomode
 			tileCoordinates.X += Main.rand.Next(-25, 25);
 			tileCoordinates.Y -= 15 + Main.rand.Next(-5, 5);
 
-			for (int index = 0; index < 10 && !WorldGen.SolidTile((int) tileCoordinates.X, (int) tileCoordinates.Y) && tileCoordinates.Y > 10; ++index)
+			for (int index = 0; index < 10 && !WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) && tileCoordinates.Y > 10; ++index)
 			{
 				tileCoordinates.Y -= 1;
 			}
 
-			Projectile.NewProjectile((float) (tileCoordinates.X * 16 + 8), (float) (tileCoordinates.Y * 16 + 17), 0f, 0f, 578, 0, 1f, Main.myPlayer);
+			Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
 		}
 
 		public override void Update(Player player, ref int buffIndex)

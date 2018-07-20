@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -27,9 +23,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (Soulcheck.GetValue("Spore Explosion") == true)
+            if (Soulcheck.GetValue("Spore Explosion"))
             {
-                (player.GetModPlayer<FargoPlayer>(mod)).jungleEnchant = true;
+                player.GetModPlayer<FargoPlayer>(mod).JungleEnchant = true;
             }
             player.manaCost -= .1f;
         }

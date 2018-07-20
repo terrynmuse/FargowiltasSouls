@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -32,7 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.turtleEnchant = true;
+            modPlayer.TurtleEnchant = true;
 
             player.aggro += 50;
             player.thorns = 1f;
@@ -42,19 +38,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 if (Soulcheck.GetValue("Turtle Pet"))
                 {
-                    modPlayer.turtlePet = true;
+                    modPlayer.TurtlePet = true;
 
                     if (player.FindBuffIndex(42) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.Turtle] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Turtle, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Turtle, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.turtlePet = false;
+                    modPlayer.TurtlePet = false;
                 }
             }
         }

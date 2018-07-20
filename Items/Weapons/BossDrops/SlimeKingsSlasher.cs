@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,7 +7,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
 	public class SlimeKingsSlasher : ModItem
 	{
-		public int shoot = 0;
+		private int _shoot = 0;
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Slime King's Slasher");
@@ -36,12 +33,10 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockback)
 		{
-			shoot++;
-			if(shoot % 4 == 0)
-			{
-				Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockback, player.whoAmI);
-				shoot = 0;
-			}
+			_shoot++;
+			if (_shoot % 4 != 0) return false;
+			Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockback, player.whoAmI);
+			_shoot = 0;
 			return false; 
         }
 

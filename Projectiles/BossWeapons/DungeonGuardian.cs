@@ -1,6 +1,4 @@
-using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,22 +33,22 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 		{
 			projectile.rotation += 0.2f;
 
-				const int AISLOT_HOMING_COOLDOWN = 0;
-				const int HOMING_DELAY = 10;
-				const float DESIRED_FLY_SPEED_IN_PIXELS_PER_FRAME = 60;
-				const float AMOUNT_OF_FRAMES_TO_LERP_BY = 20; // minimum of 1, please keep in full numbers even though it's a float!
+				const int aislotHomingCooldown = 0;
+				const int homingDelay = 10;
+				const float desiredFlySpeedInPixelsPerFrame = 60;
+				const float amountOfFramesToLerpBy = 20; // minimum of 1, please keep in full numbers even though it's a float!
 	
-				projectile.ai[AISLOT_HOMING_COOLDOWN]++;
-				if(projectile.ai[AISLOT_HOMING_COOLDOWN] > HOMING_DELAY)
+				projectile.ai[aislotHomingCooldown]++;
+				if(projectile.ai[aislotHomingCooldown] > homingDelay)
 				{
-					projectile.ai[AISLOT_HOMING_COOLDOWN] = HOMING_DELAY; //cap this value 
+					projectile.ai[aislotHomingCooldown] = homingDelay; //cap this value 
 	
 					int foundTarget = HomeOnTarget();
 					if(foundTarget != -1)
 					{
 						NPC n = Main.npc[foundTarget];
-						Vector2 desiredVelocity = projectile.DirectionTo(n.Center) * DESIRED_FLY_SPEED_IN_PIXELS_PER_FRAME;
-						projectile.velocity = Vector2.Lerp(projectile.velocity, desiredVelocity, 1f / AMOUNT_OF_FRAMES_TO_LERP_BY);
+						Vector2 desiredVelocity = projectile.DirectionTo(n.Center) * desiredFlySpeedInPixelsPerFrame;
+						projectile.velocity = Vector2.Lerp(projectile.velocity, desiredVelocity, 1f / amountOfFramesToLerpBy);
 					}
 				}
 
@@ -59,17 +57,17 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 		
 		int HomeOnTarget()
         {
-            const bool HOMING_CAN_AIM_AT_WET_ENEMIES = true;
-            const float HOMING_MAXIMUM_RANGE_IN_PIXELS = 1000;
+            const bool homingCanAimAtWetEnemies = true;
+            const float homingMaximumRangeInPixels = 1000;
 
             int selectedTarget = -1;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 NPC n = Main.npc[i];
-                if(n.CanBeChasedBy(projectile, false) && (!n.wet || HOMING_CAN_AIM_AT_WET_ENEMIES))
+                if(n.CanBeChasedBy(projectile) && (!n.wet || homingCanAimAtWetEnemies))
                 {
                     float distance = projectile.Distance(n.Center);
-                    if(distance <= HOMING_MAXIMUM_RANGE_IN_PIXELS &&
+                    if(distance <= homingMaximumRangeInPixels &&
                         (
                         selectedTarget == -1 ||  //there is no selected target
                         projectile.Distance(Main.npc[selectedTarget].Center) > distance) //or we are closer to this target than the already selected target

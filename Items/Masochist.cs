@@ -1,10 +1,5 @@
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 
 namespace FargowiltasSouls.Items
 {
@@ -37,15 +32,15 @@ namespace FargowiltasSouls.Items
 
         public override bool UseItem(Player player)
         {
-            FargoWorld.masochistMode = !FargoWorld.masochistMode;
+            FargoWorld.MasochistMode = !FargoWorld.MasochistMode;
 
-            if (FargoWorld.masochistMode)
+            if (FargoWorld.MasochistMode)
             {
-                Main.NewText("Masochist Mode initiated!", 175, 75, 255);
+                Main.NewText("Masochist Mode initiated!", 175, 75);
             }
             else
             {
-                Main.NewText("Masochist Mode deactivated!", 175, 75, 255);
+                Main.NewText("Masochist Mode deactivated!", 175, 75);
             }
 
             Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);

@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {
@@ -11,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Sniper's Essence");
             Tooltip.SetDefault("'This is only the beginning..' \n18% increased ranged damage \n5% increased ranged critical chance \n5% chance to not consume ammo");
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 Tooltip.SetDefault("'This is only the beginning..' \n18% increased ranged damage \n5% increased ranged critical chance \n5% chance to not consume ammo /nIncreased armor penetration by 5");
             }
@@ -27,13 +26,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            (player.GetModPlayer<FargoPlayer>(mod)).miniRangedEffect = true;
+            player.GetModPlayer<FargoPlayer>(mod).MiniRangedEffect = true;
 
             player.rangedCrit += 5;
             player.rangedDamage += .18f;
 
             //shark tooth 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
                 player.armorPenetration = 5;
             }
@@ -43,9 +42,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             ModRecipe range1 = new ModRecipe(mod);
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //both
                     range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("JadeGauntlet"));
@@ -64,7 +63,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                     range1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Goobow"));
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just thorium
                     range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("JadeGauntlet"));
@@ -84,10 +83,10 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 }
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
 
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just calamity
                     range1.AddIngredient(ItemID.SharkToothNecklace);

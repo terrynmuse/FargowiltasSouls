@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 		public override void Update(Player player, ref int buffIndex)
         {
            //all item speed reduced to 50%
-		   player.GetModPlayer<FargoPlayer>(mod).lethargic = true;
+		   player.GetModPlayer<FargoPlayer>(mod).Lethargic = true;
         }
 	}
 }

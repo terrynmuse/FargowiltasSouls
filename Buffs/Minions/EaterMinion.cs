@@ -18,9 +18,9 @@ namespace FargowiltasSouls.Buffs.Minions
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			if (player.ownedProjectileCounts[mod.ProjectileType("EaterHead")] > 0)
 			{
-				modPlayer.eaterMinion = true;
+				modPlayer.EaterMinion = true;
 			}
-			if (!modPlayer.eaterMinion)
+			if (!modPlayer.EaterMinion)
 			{
 				player.DelBuff(buffIndex);
 				buffIndex--;

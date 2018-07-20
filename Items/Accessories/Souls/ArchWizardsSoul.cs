@@ -1,25 +1,19 @@
-using System;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.UI;
 using Terraria.ModLoader;
-using FargowiltasSouls.Items;
-using FargowiltasSouls.NPCs;
-using FargowiltasSouls.Projectiles;
-using System.Linq;
+using static Terraria.ID.ItemID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class ArchWizardsSoul : ModItem
     {
+        private readonly Mod _calamity = ModLoader.GetMod("CalamityMod");
+        private Mod _thorium;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Arch Wizard's Soul");
             Tooltip.SetDefault("'Arcane to the core' \n40% increased magic damage \n20% increased magic critical chance \nIncreases your maximum mana by 100 \nReduces mana usage by 33% \nIncreased pickup range for mana stars \nAutomatically use mana potions when needed");
-            if (Fargowiltas.instance.calamityLoaded)
+            if (Fargowiltas.Instance.CalamityLoaded)
             {
                 Tooltip.SetDefault("'Arcane to the core' \n40% increased magic damage \n20% increased magic critical chance \nIncreases your maximum mana by 100 \nReduces mana usage by 33% \nIncreased pickup range for mana stars \nAutomatically use mana potions when needed \nGrants the effects of the Ethereal Talisman");
             }
@@ -45,22 +39,22 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.manaMagnet = true;
             player.manaFlower = true;
 
-            if (Fargowiltas.instance.blueMagicLoaded)
+            if (Fargowiltas.Instance.BlueMagicLoaded)
             {
-                blueMagnet(player);
+                BlueMagnet(player);
             }
-            if (Fargowiltas.instance.calamityLoaded)
+            if (Fargowiltas.Instance.CalamityLoaded)
             {
                 Talisman(player);
             }
         }
 
-        public void Talisman(Player player)
+        private void Talisman(Player player)
         {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).eTalisman = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).eTalisman = true;
         }
 
-        public void blueMagnet(Player player)
+        private void BlueMagnet(Player player)
         {
             player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).manaMagnet2 = true;
         }
@@ -72,122 +66,88 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             magic2.AddIngredient(null, "ApprenticesEssence");
 
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                _thorium = ModLoader.GetMod("ThoriumMod");
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
-                    if (Fargowiltas.instance.blueMagicLoaded)
-                    {
-                        //all 3
-                        magic2.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CelestialSeal"));
-                    }
+                    magic2.AddIngredient(Fargowiltas.Instance.BlueMagicLoaded
+                        ? ModLoader.GetMod("Bluemagic").ItemType("CelestialSeal")
+                        : CelestialCuffs);
 
-                    else
-                    {
-                        //thorium and calamity
-                        magic2.AddIngredient(ItemID.CelestialCuffs);
-                    }
+                    magic2.AddIngredient(LastPrism);
 
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("EtherealTalisman"));
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SpectrelBlade"));
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerraStaff"));
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("CosmicRainbow"));
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumSageStaff"));
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Effervescence"));
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("AlphaRay"));
-                    magic2.AddIngredient(ItemID.LastPrism);
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AlmanacofDespair"));
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("T1000"));
+                    magic2.AddIngredient(_calamity.ItemType("EtherealTalisman"));
+                    magic2.AddIngredient(_calamity.ItemType("CosmicRainbow"));
+                    magic2.AddIngredient(_calamity.ItemType("Effervescence"));
+                    magic2.AddIngredient(_calamity.ItemType("T1000"));
+                    magic2.AddIngredient(_calamity.ItemType("AlphaRay"));
+                    
+                    magic2.AddIngredient(_thorium.ItemType("SpectrelBlade"));
+                    magic2.AddIngredient(_thorium.ItemType("TerraStaff"));
+                    magic2.AddIngredient(_thorium.ItemType("TerrariumSageStaff"));
+                    magic2.AddIngredient(_thorium.ItemType("AlmanacofDespair"));
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
-                    if (Fargowiltas.instance.blueMagicLoaded)
-                    {
-                        //blue and thorium
-                        magic2.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CelestialSeal"));
-                    }
+                    magic2.AddIngredient(Fargowiltas.Instance.BlueMagicLoaded
+                        ? ModLoader.GetMod("Bluemagic").ItemType("CelestialSeal")
+                        : CelestialCuffs);
 
-                    else
-                    {
-                        //just thorium
-                        magic2.AddIngredient(ItemID.CelestialCuffs);
-                    }
-
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("PrismaticSpray"));
-                    magic2.AddIngredient(ItemID.RainbowGun);
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SpectrelBlade"));
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerraStaff"));
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("OldGodGrasp"));
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("NuclearFury"));
-                    magic2.AddIngredient(ItemID.ApprenticeStaffT3);
-                    magic2.AddIngredient(ItemID.BatScepter);
-                    magic2.AddIngredient(ItemID.BlizzardStaff);
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumSageStaff"));
-                    magic2.AddIngredient(ItemID.LastPrism);
-                    magic2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AlmanacofDespair"));
+                    magic2.AddIngredient(_thorium.ItemType("PrismaticSpray"));
+                    magic2.AddIngredient(RainbowGun);
+                    magic2.AddIngredient(_thorium.ItemType("SpectrelBlade"));
+                    magic2.AddIngredient(_thorium.ItemType("TerraStaff"));
+                    magic2.AddIngredient(_thorium.ItemType("OldGodGrasp"));
+                    magic2.AddIngredient(_thorium.ItemType("NuclearFury"));
+                    magic2.AddIngredient(ApprenticeStaffT3);
+                    magic2.AddIngredient(BatScepter);
+                    magic2.AddIngredient(BlizzardStaff);
+                    magic2.AddIngredient(_thorium.ItemType("TerrariumSageStaff"));
+                    magic2.AddIngredient(LastPrism);
+                    magic2.AddIngredient(_thorium.ItemType("AlmanacofDespair"));
                 }
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
+                magic2.AddIngredient(ApprenticeStaffT3);
+                magic2.AddIngredient(BatScepter);
+                magic2.AddIngredient(BlizzardStaff);
+                magic2.AddIngredient(LastPrism);
+                magic2.AddIngredient(LastPrism);
 
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
-                    if (Fargowiltas.instance.blueMagicLoaded)
-                    {
-                        //calamity and blue
-                        magic2.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CelestialSeal"));
-                    }
+                    magic2.AddIngredient(Fargowiltas.Instance.BlueMagicLoaded
+                        ? ModLoader.GetMod("Bluemagic").ItemType("CelestialSeal")
+                        : CelestialCuffs);
 
-                    else
-                    {
-                        //just calamity
-                        magic2.AddIngredient(ItemID.CelestialCuffs);
-                    }
-
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("EtherealTalisman"));
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("InfernalRift"));
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("CosmicRainbow"));
-                    magic2.AddIngredient(ItemID.ApprenticeStaffT3);
-                    magic2.AddIngredient(ItemID.BatScepter);
-                    magic2.AddIngredient(ItemID.BlizzardStaff);
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Effervescence"));
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("AlphaRay"));
-                    magic2.AddIngredient(ItemID.LastPrism);
-                    magic2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("T1000"));
-                }
-
-                if (!Fargowiltas.instance.calamityLoaded)
+                    magic2.AddIngredient(_calamity.ItemType("EtherealTalisman"));
+                    magic2.AddIngredient(_calamity.ItemType("InfernalRift"));
+                    magic2.AddIngredient(_calamity.ItemType("CosmicRainbow"));
+                    magic2.AddIngredient(_calamity.ItemType("Effervescence"));
+                    magic2.AddIngredient(_calamity.ItemType("AlphaRay"));
+                    magic2.AddIngredient(_calamity.ItemType("T1000"));
+                } 
+                else
                 {
-                    if (Fargowiltas.instance.blueMagicLoaded)
-                    {
-                        //just blue
-                        magic2.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CelestialSeal"));
-                    }
+                    magic2.AddIngredient(Fargowiltas.Instance.BlueMagicLoaded
+                        ? ModLoader.GetMod("Bluemagic").ItemType("CelestialSeal")
+                        : CelestialCuffs);
 
-                    else
-                    {
-                        //no others
-                        magic2.AddIngredient(ItemID.CelestialCuffs);
-                    }
-
-                    magic2.AddIngredient(ItemID.MeteorStaff);
-                    magic2.AddIngredient(ItemID.CrystalStorm);
-                    magic2.AddIngredient(ItemID.MagicalHarp);
-                    magic2.AddIngredient(ItemID.NettleBurst);
-                    magic2.AddIngredient(ItemID.RainbowGun);
-                    magic2.AddIngredient(ItemID.InfernoFork);
-                    magic2.AddIngredient(ItemID.ApprenticeStaffT3);
-                    magic2.AddIngredient(ItemID.RazorbladeTyphoon);
-                    magic2.AddIngredient(ItemID.BatScepter);
-                    magic2.AddIngredient(ItemID.BlizzardStaff);
-                    magic2.AddIngredient(ItemID.LaserMachinegun);
-                    magic2.AddIngredient(ItemID.LastPrism);
+                    magic2.AddIngredient(MeteorStaff);
+                    magic2.AddIngredient(CrystalStorm);
+                    magic2.AddIngredient(MagicalHarp);
+                    magic2.AddIngredient(NettleBurst);
+                    magic2.AddIngredient(RainbowGun);
+                    magic2.AddIngredient(InfernoFork);
+                    magic2.AddIngredient(RazorbladeTyphoon);
+                    magic2.AddIngredient(LaserMachinegun);
                 }
             }
 
-            //magic2.AddTile(null, "CrucibleCosmosSheet");
             magic2.SetResult(this);
             magic2.AddRecipe();
         }

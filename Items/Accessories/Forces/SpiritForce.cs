@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
@@ -39,7 +35,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             //shadow
-            modPlayer.shadowEnchant = true;
+            modPlayer.ShadowEnchant = true;
 
             //necro
             //skeletons
@@ -101,9 +97,9 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             SpectreEnchant.EffectAdd(player, hideVisual, mod);*/
 
             //spooky
-            if (Soulcheck.GetValue("Spooky Scythes") == true)
+            if (Soulcheck.GetValue("Spooky Scythes"))
             {
-                modPlayer.spookyEnchant = true;
+                modPlayer.SpookyEnchant = true;
             }
 
             //pets
@@ -111,64 +107,64 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             {
                 if (Soulcheck.GetValue("Baby Eater Pet"))
                 {
-                    modPlayer.shadowPet = true;
+                    modPlayer.ShadowPet = true;
 
                     if (player.FindBuffIndex(45) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.BabyEater] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyEater, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyEater, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.shadowPet = false;
+                    modPlayer.ShadowPet = false;
                 }
 
                 if (Soulcheck.GetValue("Cursed Sapling Pet"))
                 {
-                    modPlayer.saplingPet = true;
+                    modPlayer.SaplingPet = true;
 
                     if (player.FindBuffIndex(85) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.CursedSapling] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CursedSapling, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CursedSapling, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.saplingPet = false;
+                    modPlayer.SaplingPet = false;
                 }
 
                 if (Soulcheck.GetValue("Wisp Pet"))
                 {
-                    modPlayer.spectrePet = true;
+                    modPlayer.SpectrePet = true;
 
                     if (player.FindBuffIndex(57) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.Wisp] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Wisp, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Wisp, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.spectrePet = false;
+                    modPlayer.SpectrePet = false;
                 }
 
                 //if(Soulcheck.GetValue("Baby Eater Pet"))
                 //{
-                modPlayer.shadowPet2 = true;
+                modPlayer.ShadowPet2 = true;
 
                 if (player.FindBuffIndex(19) == -1)
                 {
                     if (player.ownedProjectileCounts[ProjectileID.ShadowOrb] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ShadowOrb, 0, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ShadowOrb, 0, 2f, Main.myPlayer);
                     }
                 }
                 //}

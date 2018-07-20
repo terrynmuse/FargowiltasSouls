@@ -1,19 +1,18 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class UniverseSoul : ModItem
     {
-        public const int FireProjectiles = 3;
-        public const float FireAngleSpread = 120;
+        public const int FIRE_PROJECTILES = 3;
+        public const float FIRE_ANGLE_SPREAD = 120;
         public int FireCountdown = 0;
+        private Mod _calamity = ModLoader.GetMod("CalamityMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of the Universe");
@@ -64,7 +63,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.manaFlower = true;
 
             //warrior
-            if (Soulcheck.GetValue("Melee Speed") == true)
+            if (Soulcheck.GetValue("Melee Speed"))
             {
                 player.meleeSpeed += .35f;
             }
@@ -90,7 +89,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.thrownVelocity += 0.35f;
             player.thrownDamage += .66f;
             player.thrownCrit += 25;
-            (player.GetModPlayer<FargoPlayer>(mod)).throwSoul = true;
+            player.GetModPlayer<FargoPlayer>(mod).ThrowSoul = true;
 
             //buffs
             player.kbBuff = true;
@@ -99,9 +98,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
 
 
-            (player.GetModPlayer<FargoPlayer>(mod)).universeEffect = true;
+            player.GetModPlayer<FargoPlayer>(mod).UniverseEffect = true;
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //turn undead
                 player.aggro -= 50;
@@ -121,20 +120,20 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 Bard(player);
             }
 
-            if (Fargowiltas.instance.blueMagicLoaded)
+            if (Fargowiltas.Instance.BlueMagicLoaded)
             {
-                blueMagnet(player);
+                BlueMagnet(player);
             }
 
             //heart of elements and friends
-            if (Fargowiltas.instance.calamityLoaded)
+            if (Fargowiltas.Instance.CalamityLoaded)
             {
                 Talisman(player);
                 Gauntlet(player);
 
                 if (!hideVisual)
                 {
-                    Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, ((float)Main.DiscoR / 255f), ((float)Main.DiscoG / 255f), ((float)Main.DiscoB / 255f));
+                    Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, Main.DiscoR / 255f, Main.DiscoG / 255f, Main.DiscoB / 255f);
 
                     Waifus(player);
 
@@ -142,219 +141,222 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     {
                         int damage = 300;
                         float damageMult = 2.5f;
-                        if (player.FindBuffIndex(ModLoader.GetMod("CalamityMod").BuffType("BrimstoneWaifu")) == -1)
+                        if (player.FindBuffIndex(_calamity.BuffType("BrimstoneWaifu")) == -1)
                         {
-                            player.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("BrimstoneWaifu"), 3600, true);
+                            player.AddBuff(_calamity.BuffType("BrimstoneWaifu"), 3600);
                         }
-                        if (player.ownedProjectileCounts[ModLoader.GetMod("CalamityMod").ProjectileType("BigBustyRose")] < 1)
+                        if (player.ownedProjectileCounts[_calamity.ProjectileType("BigBustyRose")] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ModLoader.GetMod("CalamityMod").ProjectileType("BigBustyRose"), (int)((float)damage * damageMult), 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, _calamity.ProjectileType("BigBustyRose"), (int)(damage * damageMult), 2f, Main.myPlayer);
                         }
-                        if (player.FindBuffIndex(ModLoader.GetMod("CalamityMod").BuffType("SirenLure")) == -1)
+                        if (player.FindBuffIndex(_calamity.BuffType("SirenLure")) == -1)
                         {
-                            player.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("SirenLure"), 3600, true);
+                            player.AddBuff(_calamity.BuffType("SirenLure"), 3600);
                         }
-                        if (player.ownedProjectileCounts[ModLoader.GetMod("CalamityMod").ProjectileType("SirenLure")] < 1)
+                        if (player.ownedProjectileCounts[_calamity.ProjectileType("SirenLure")] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ModLoader.GetMod("CalamityMod").ProjectileType("SirenLure"), 0, 0f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, _calamity.ProjectileType("SirenLure"), 0, 0f, Main.myPlayer);
                         }
-                        if (player.FindBuffIndex(ModLoader.GetMod("CalamityMod").BuffType("DrewsSandyWaifu")) == -1)
+                        if (player.FindBuffIndex(_calamity.BuffType("DrewsSandyWaifu")) == -1)
                         {
-                            player.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("DrewsSandyWaifu"), 3600, true);
+                            player.AddBuff(_calamity.BuffType("DrewsSandyWaifu"), 3600);
                         }
-                        if (player.ownedProjectileCounts[ModLoader.GetMod("CalamityMod").ProjectileType("DrewsSandyWaifu")] < 1)
+                        if (player.ownedProjectileCounts[_calamity.ProjectileType("DrewsSandyWaifu")] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ModLoader.GetMod("CalamityMod").ProjectileType("DrewsSandyWaifu"), (int)((float)damage * damageMult * 1.5f), 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, _calamity.ProjectileType("DrewsSandyWaifu"), (int)(damage * damageMult * 1.5f), 2f, Main.myPlayer);
                         }
-                        if (player.FindBuffIndex(ModLoader.GetMod("CalamityMod").BuffType("SandyWaifu")) == -1)
+                        if (player.FindBuffIndex(_calamity.BuffType("SandyWaifu")) == -1)
                         {
-                            player.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("SandyWaifu"), 3600, true);
+                            player.AddBuff(_calamity.BuffType("SandyWaifu"), 3600);
                         }
-                        if (player.ownedProjectileCounts[ModLoader.GetMod("CalamityMod").ProjectileType("SandyWaifu")] < 1)
+                        if (player.ownedProjectileCounts[_calamity.ProjectileType("SandyWaifu")] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ModLoader.GetMod("CalamityMod").ProjectileType("SandyWaifu"), (int)((float)damage * damageMult * 1.5f), 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, _calamity.ProjectileType("SandyWaifu"), (int)(damage * damageMult * 1.5f), 2f, Main.myPlayer);
                         }
-                        if (player.FindBuffIndex(ModLoader.GetMod("CalamityMod").BuffType("CloudyWaifu")) == -1)
+                        if (player.FindBuffIndex(_calamity.BuffType("CloudyWaifu")) == -1)
                         {
-                            player.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("CloudyWaifu"), 3600, true);
+                            player.AddBuff(_calamity.BuffType("CloudyWaifu"), 3600);
                         }
-                        if (player.ownedProjectileCounts[ModLoader.GetMod("CalamityMod").ProjectileType("CloudyWaifu")] < 1)
+                        if (player.ownedProjectileCounts[_calamity.ProjectileType("CloudyWaifu")] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ModLoader.GetMod("CalamityMod").ProjectileType("CloudyWaifu"), (int)((float)damage * damageMult), 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, _calamity.ProjectileType("CloudyWaifu"), (int)(damage * damageMult), 2f, Main.myPlayer);
                         }
                     }
                 }
-                if (player.whoAmI == Main.myPlayer && player.velocity.Y == 0f && player.grappling[0] == -1)
+
+                if (player.whoAmI != Main.myPlayer || player.velocity.Y != 0f || player.grappling[0] != -1) return;
+                int num4 = (int)player.Center.X / 16;
+                int num5 = (int)(player.position.Y + player.height - 1f) / 16;
+                if (Main.tile[num4, num5] == null)
                 {
-                    int num4 = (int)player.Center.X / 16;
-                    int num5 = (int)(player.position.Y + (float)player.height - 1f) / 16;
-                    if (Main.tile[num4, num5] == null)
+                    Main.tile[num4, num5] = new Tile();
+                }
+
+                if (Main.tile[num4, num5].active() || Main.tile[num4, num5].liquid != 0 ||
+                    Main.tile[num4, num5 + 1] == null || !WorldGen.SolidTile(num4, num5 + 1)) return;
+                Main.tile[num4, num5].frameY = 0;
+                Main.tile[num4, num5].slope(0);
+                Main.tile[num4, num5].halfBrick(false);
+                if (Main.tile[num4, num5 + 1].type == 0)
+                {
+                    if (Main.rand.Next(1000) == 0)
                     {
-                        Main.tile[num4, num5] = new Tile();
+                        Main.tile[num4, num5].active(true);
+                        Main.tile[num4, num5].type = 227;
+                        Main.tile[num4, num5].frameX = (short)(34 * Main.rand.Next(1, 13));
+                        while (Main.tile[num4, num5].frameX == 144)
+                        {
+                            Main.tile[num4, num5].frameX = (short)(34 * Main.rand.Next(1, 13));
+                        }
                     }
-                    if (!Main.tile[num4, num5].active() && Main.tile[num4, num5].liquid == 0 && Main.tile[num4, num5 + 1] != null && WorldGen.SolidTile(num4, num5 + 1))
+                    if (Main.netMode == 1)
                     {
-                        Main.tile[num4, num5].frameY = 0;
-                        Main.tile[num4, num5].slope(0);
-                        Main.tile[num4, num5].halfBrick(false);
-                        if (Main.tile[num4, num5 + 1].type == 0)
+                        NetMessage.SendTileSquare(-1, num4, num5, 1);
+                    }
+                }
+                if (Main.tile[num4, num5 + 1].type == 2)
+                {
+                    if (Main.rand.Next(2) == 0)
+                    {
+                        Main.tile[num4, num5].active(true);
+                        Main.tile[num4, num5].type = 3;
+                        Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(6, 11));
+                        while (Main.tile[num4, num5].frameX == 144)
                         {
-                            if (Main.rand.Next(1000) == 0)
-                            {
-                                Main.tile[num4, num5].active(true);
-                                Main.tile[num4, num5].type = 227;
-                                Main.tile[num4, num5].frameX = (short)(34 * Main.rand.Next(1, 13));
-                                while (Main.tile[num4, num5].frameX == 144)
-                                {
-                                    Main.tile[num4, num5].frameX = (short)(34 * Main.rand.Next(1, 13));
-                                }
-                            }
-                            if (Main.netMode == 1)
-                            {
-                                NetMessage.SendTileSquare(-1, num4, num5, 1, TileChangeType.None);
-                            }
+                            Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(6, 11));
                         }
-                        if (Main.tile[num4, num5 + 1].type == 2)
+                    }
+                    else
+                    {
+                        Main.tile[num4, num5].active(true);
+                        Main.tile[num4, num5].type = 73;
+                        Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(6, 21));
+                        while (Main.tile[num4, num5].frameX == 144)
                         {
-                            if (Main.rand.Next(2) == 0)
-                            {
-                                Main.tile[num4, num5].active(true);
-                                Main.tile[num4, num5].type = 3;
-                                Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(6, 11));
-                                while (Main.tile[num4, num5].frameX == 144)
-                                {
-                                    Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(6, 11));
-                                }
-                            }
-                            else
-                            {
-                                Main.tile[num4, num5].active(true);
-                                Main.tile[num4, num5].type = 73;
-                                Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(6, 21));
-                                while (Main.tile[num4, num5].frameX == 144)
-                                {
-                                    Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(6, 21));
-                                }
-                            }
-                            if (Main.netMode == 1)
-                            {
-                                NetMessage.SendTileSquare(-1, num4, num5, 1, TileChangeType.None);
-                            }
+                            Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(6, 21));
                         }
-                        else if (Main.tile[num4, num5 + 1].type == 109)
+                    }
+                    if (Main.netMode == 1)
+                    {
+                        NetMessage.SendTileSquare(-1, num4, num5, 1);
+                    }
+                }
+                else if (Main.tile[num4, num5 + 1].type == 109)
+                {
+                    if (Main.rand.Next(2) == 0)
+                    {
+                        Main.tile[num4, num5].active(true);
+                        Main.tile[num4, num5].type = 110;
+                        Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(4, 7));
+                        while (Main.tile[num4, num5].frameX == 90)
                         {
-                            if (Main.rand.Next(2) == 0)
-                            {
-                                Main.tile[num4, num5].active(true);
-                                Main.tile[num4, num5].type = 110;
-                                Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(4, 7));
-                                while (Main.tile[num4, num5].frameX == 90)
-                                {
-                                    Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(4, 7));
-                                }
-                            }
-                            else
-                            {
-                                Main.tile[num4, num5].active(true);
-                                Main.tile[num4, num5].type = 113;
-                                Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(2, 8));
-                                while (Main.tile[num4, num5].frameX == 90)
-                                {
-                                    Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(2, 8));
-                                }
-                            }
-                            if (Main.netMode == 1)
-                            {
-                                NetMessage.SendTileSquare(-1, num4, num5, 1, TileChangeType.None);
-                            }
+                            Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(4, 7));
                         }
-                        else if (Main.tile[num4, num5 + 1].type == 60)
+                    }
+                    else
+                    {
+                        Main.tile[num4, num5].active(true);
+                        Main.tile[num4, num5].type = 113;
+                        Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(2, 8));
+                        while (Main.tile[num4, num5].frameX == 90)
                         {
-                            Main.tile[num4, num5].active(true);
-                            Main.tile[num4, num5].type = 74;
-                            Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(9, 17));
-                            if (Main.netMode == 1)
-                            {
-                                NetMessage.SendTileSquare(-1, num4, num5, 1, TileChangeType.None);
-                            }
+                            Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(2, 8));
                         }
+                    }
+                    if (Main.netMode == 1)
+                    {
+                        NetMessage.SendTileSquare(-1, num4, num5, 1);
+                    }
+                }
+                else if (Main.tile[num4, num5 + 1].type == 60)
+                {
+                    Main.tile[num4, num5].active(true);
+                    Main.tile[num4, num5].type = 74;
+                    Main.tile[num4, num5].frameX = (short)(18 * Main.rand.Next(9, 17));
+                    if (Main.netMode == 1)
+                    {
+                        NetMessage.SendTileSquare(-1, num4, num5, 1);
                     }
                 }
             }
         }
 
-        public void Healer(Player player)
+        private void Healer(Player player)
         {
             //general
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).radiantBoost += 0.66f; //radiant damage
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).radiantSpeed -= 0.25f; //radiant casting speed
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).healingSpeed += 0.25f; //healing spell casting speed
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).radiantCrit += 25;
+            ThoriumMod.ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod"));
+            
+            thoriumPlayer.radiantBoost += 0.66f; //radiant damage
+            thoriumPlayer.radiantSpeed -= 0.25f; //radiant casting speed
+            thoriumPlayer.healingSpeed += 0.25f; //healing spell casting speed
+            thoriumPlayer.radiantCrit += 25;
 
             //archdemon's curse
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).darkAura = true; //Dark intent purple coloring effect
+            thoriumPlayer.darkAura = true; //Dark intent purple coloring effect
 
             //support stash
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).quickBelt = true; //bonus movement from healing
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).apothLife = true; //drinking health potion recovers life
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).apothMana = true; //drinking health potion recovers mana
+            thoriumPlayer.quickBelt = true; //bonus movement from healing
+            thoriumPlayer.apothLife = true; //drinking health potion recovers life
+            thoriumPlayer.apothMana = true; //drinking health potion recovers mana
 
             //ascension statuette
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).ascension = true; //turn into healing thing on death
+            thoriumPlayer.ascension = true; //turn into healing thing on death
 
             //wynebg..........
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).Wynebgwrthucher = true; //heals on healing ally
+            thoriumPlayer.Wynebgwrthucher = true; //heals on healing ally
 
             //archangels heart
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).healBonus += 5; //Bonus healing
+            thoriumPlayer.healBonus += 5; //Bonus healing
 
             //saving grace
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).crossHeal = true; //bonus defense in heal
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).healBloom = true; //bonus life regen on heal
+            thoriumPlayer.crossHeal = true; //bonus defense in heal
+            thoriumPlayer.healBloom = true; //bonus life regen on heal
         }
 
-        public void Bard(Player player)
+        private void Bard(Player player)
         {
             //general
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).symphonicDamage += 0.66f; //symphonic damage
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).symphonicCrit += 25;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).symphonicSpeed += .25f;
+            ThoriumMod.ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod"));
+            
+            thoriumPlayer.symphonicDamage += 0.66f; //symphonic damage
+            thoriumPlayer.symphonicCrit += 25;
+            thoriumPlayer.symphonicSpeed += .25f;
 
             //woofers
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferFrost = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferVenom = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferIchor = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferCursed = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).subwooferTerrarium = true;
+            thoriumPlayer.subwooferFrost = true;
+            thoriumPlayer.subwooferVenom = true;
+            thoriumPlayer.subwooferIchor = true;
+            thoriumPlayer.subwooferCursed = true;
+            thoriumPlayer.subwooferTerrarium = true;
 
             //type buffs
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).bardHomingBool = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).bardHomingBonus = 5f;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).bardMute2 = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).tuner2 = true;
-            player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).bardBounceBonus = 5;
+            thoriumPlayer.bardHomingBool = true;
+            thoriumPlayer.bardHomingBonus = 5f;
+            thoriumPlayer.bardMute2 = true;
+            thoriumPlayer.tuner2 = true;
+            thoriumPlayer.bardBounceBonus = 5;
         }
 
-        public void Gauntlet(Player player)
+        private void Gauntlet(Player player)
         {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).eGauntlet = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).eGauntlet = true;
         }
 
-        public void Talisman(Player player)
+        private void Talisman(Player player)
         {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).eTalisman = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).eTalisman = true;
         }
 
-        public void Waifus(Player player)
+        private void Waifus(Player player)
         {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).brimstoneWaifu = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).sandBoobWaifu = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).sandWaifu = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).cloudWaifu = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).sirenWaifu = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).brimstoneWaifu = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).sandBoobWaifu = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).sandWaifu = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).cloudWaifu = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).sirenWaifu = true;
         }
 
-        public void blueMagnet(Player player)
+        private void BlueMagnet(Player player)
         {
             player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).manaMagnet2 = true;
         }
@@ -370,30 +372,30 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             recipe.AddIngredient(null, "ConjuristsSoul");
             recipe.AddIngredient(null, "OlympiansSoul");
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(null, "GuardianAngelsSoul");
                 recipe.AddIngredient(null, "BardSoul");
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TheRing"));
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalEyeMask"));
                 }
             }
 
-            if (Fargowiltas.instance.blueMagicLoaded)
+            if (Fargowiltas.Instance.BlueMagicLoaded)
             {
                 recipe.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("AvengerSeal"));
             }
 
-            if (Fargowiltas.instance.calamityLoaded)
+            if (Fargowiltas.Instance.CalamityLoaded)
             {
-                recipe.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("DraedonsExoblade"));
-                recipe.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("HeavenlyGale"));
-                recipe.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("VividClarity"));
-                recipe.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("CosmicImmaterializer"));
-                recipe.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Celestus"));
+                recipe.AddIngredient(_calamity.ItemType("DraedonsExoblade"));
+                recipe.AddIngredient(_calamity.ItemType("HeavenlyGale"));
+                recipe.AddIngredient(_calamity.ItemType("VividClarity"));
+                recipe.AddIngredient(_calamity.ItemType("CosmicImmaterializer"));
+                recipe.AddIngredient(_calamity.ItemType("Celestus"));
 
                 //recipe.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("VoidofExtinction"));
                 //recipe.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("PlagueHive"));

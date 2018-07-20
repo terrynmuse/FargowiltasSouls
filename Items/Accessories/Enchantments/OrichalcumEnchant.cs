@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -31,9 +27,9 @@ Chance for a fireball to spew from a hit enemy");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            if (Soulcheck.GetValue("Orichalcum Fireball") == true)
+            if (Soulcheck.GetValue("Orichalcum Fireball"))
             {
-                modPlayer.oriEnchant = true;
+                modPlayer.OriEnchant = true;
                 player.onHitPetal = true;
             }
             player.magicCrit += 10;

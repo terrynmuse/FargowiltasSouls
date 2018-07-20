@@ -1,10 +1,7 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
@@ -42,10 +39,10 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             player.minionDamage += .2f;
             player.thrownDamage += .2f;
 
-            modPlayer.meteorEnchant = true;
+            modPlayer.MeteorEnchant = true;
 
             //solar
-            if (Soulcheck.GetValue("Solar Shield") == true)
+            if (Soulcheck.GetValue("Solar Shield"))
             {
                 player.AddBuff(172, 5, false);
                 player.setSolar = true;
@@ -68,7 +65,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                         player.AddBuff(170 + player.solarShields, 5, false);
                         for (int num13 = 0; num13 < 16; num13++)
                         {
-                            Dust dust = Main.dust[Dust.NewDust(player.position, player.width, player.height, 6, 0f, 0f, 100, default(Color), 1f)];
+                            Dust dust = Main.dust[Dust.NewDust(player.position, player.width, player.height, 6, 0f, 0f, 100)];
                             dust.noGravity = true;
                             dust.scale = 1.7f;
                             dust.fadeIn = 0.5f;
@@ -88,8 +85,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                 for (int num15 = 0; num15 < player.solarShields; num15++)
                 {
                     player.solarShieldPos[num15] += player.solarShieldVel[num15];
-                    Vector2 value = ((float)player.miscCounter / 100f * 6.28318548f + (float)num15 * (6.28318548f / (float)player.solarShields)).ToRotationVector2() * 6f;
-                    value.X = (float)(player.direction * 20);
+                    Vector2 value = (player.miscCounter / 100f * 6.28318548f + num15 * (6.28318548f / player.solarShields)).ToRotationVector2() * 6f;
+                    value.X = player.direction * 20;
                     player.solarShieldVel[num15] = (value - player.solarShieldPos[num15]) * 0.2f;
                 }
                 if (player.dashDelay >= 0)
@@ -104,11 +101,11 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                 }
             }
             //vortex
-            modPlayer.vortexEnchant = true;
-            player.meleeCrit = FargoPlayer.vortexCrit;
-            player.rangedCrit = FargoPlayer.vortexCrit;
-            player.magicCrit = FargoPlayer.vortexCrit;
-            player.thrownCrit = FargoPlayer.vortexCrit;
+            modPlayer.VortexEnchant = true;
+            player.meleeCrit = FargoPlayer.VortexCrit;
+            player.rangedCrit = FargoPlayer.VortexCrit;
+            player.magicCrit = FargoPlayer.VortexCrit;
+            player.thrownCrit = FargoPlayer.VortexCrit;
 
             //nebula
             if (player.nebulaCD > 0)
@@ -118,19 +115,19 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             player.setNebula = true;
 
             //stardust
-            if (Soulcheck.GetValue("Stardust Guardian") == true)
+            if (Soulcheck.GetValue("Stardust Guardian"))
             {
-                modPlayer.stardustEnchant = true;
+                modPlayer.StardustEnchant = true;
                 player.setStardust = true;
                 if (player.whoAmI == Main.myPlayer)
                 {
                     if (player.FindBuffIndex(187) == -1)
                     {
-                        player.AddBuff(187, 3600, true);
+                        player.AddBuff(187, 3600);
                     }
                     if (player.ownedProjectileCounts[623] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, 623, 0, 0f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, 623, 0, 0f, Main.myPlayer);
                     }
                 }
             }

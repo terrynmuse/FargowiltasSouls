@@ -14,39 +14,39 @@ namespace FargowiltasSouls.Items
 				FargoPlayer p = (FargoPlayer)player.GetModPlayer(mod, "FargoPlayer");
 				if (item.ranged && item.damage > 0 && item.useTime > 5 && item.useAnimation > 5)
 				{
-					return 1f + p.firingSpeed;
+					return 1f + p.FiringSpeed;
 				}
 				if (item.magic && item.width != 25 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.castingSpeed;
+					return 1f + p.CastingSpeed;
 				}
-				if ((item.thrown && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1) || (item.ranged && item.width == 29 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1))
+				if (item.thrown && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1 || item.ranged && item.width == 29 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.throwingSpeed;
+					return 1f + p.ThrowingSpeed;
 				}
 				if (item.width == 27 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.radiantSpeed;
+					return 1f + p.RadiantSpeed;
 				}
 				if (item.width == 25 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.symphonicSpeed;
+					return 1f + p.SymphonicSpeed;
 				}
 				if (item.magic && item.damage < 1 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.healingSpeed;
+					return 1f + p.HealingSpeed;
 				}
 				if (item.axe >= 1 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.axeSpeed;
+					return 1f + p.AxeSpeed;
 				}
 				if (item.hammer >= 1 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.hammerSpeed;
+					return 1f + p.HammerSpeed;
 				}
 				if (item.pick >= 1 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.pickSpeed;
+					return 1f + p.PickSpeed;
 				}
 				return 1f;
 			}
@@ -56,39 +56,39 @@ namespace FargowiltasSouls.Items
 				FargoPlayer p = (FargoPlayer)player.GetModPlayer(mod, "FargoPlayer");
 				if (item.ranged && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.firingSpeed;
+					return 1f + p.FiringSpeed;
 				}
 				if (item.magic && item.width != 25 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.castingSpeed;
+					return 1f + p.CastingSpeed;
 				}
-				if ((item.thrown && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1) || (item.ranged && item.width == 29 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1))
+				if (item.thrown && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1 || item.ranged && item.width == 29 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.throwingSpeed;
+					return 1f + p.ThrowingSpeed;
 				}
 				if (item.width == 27 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.radiantSpeed;
+					return 1f + p.RadiantSpeed;
 				}
 				if (item.width == 25 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.symphonicSpeed;
+					return 1f + p.SymphonicSpeed;
 				}
 				if (item.magic && item.damage < 1 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.healingSpeed;
+					return 1f + p.HealingSpeed;
 				}
 				if (item.axe >= 1 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.axeSpeed;
+					return 1f + p.AxeSpeed;
 				}
 				if (item.hammer >= 1 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.hammerSpeed;
+					return 1f + p.HammerSpeed;
 				}
 				if (item.pick >= 1 && item.useTime > 1 && item.useAnimation > 1)
 				{
-					return 1f + p.pickSpeed;
+					return 1f + p.PickSpeed;
 				}
 				return 1f;
 			}
@@ -115,7 +115,7 @@ namespace FargowiltasSouls.Items
 		{
 			FargoPlayer p = (FargoPlayer)player.GetModPlayer(mod, "FargoPlayer");
 			//ignore money, hearts, mana stars
-			if(p.ironEnchant && item.type != 71 && item.type != 72 && item.type != 73 && item.type != 74 && item.type != 54 && item.type != 1734 && item.type != 1735 && item.type != 184)
+			if(p.IronEnchant && item.type != 71 && item.type != 72 && item.type != 73 && item.type != 74 && item.type != 54 && item.type != 1734 && item.type != 1735 && item.type != 184)
 			{
 				grabRange += 300;
 			}
@@ -125,7 +125,7 @@ namespace FargowiltasSouls.Items
 		{
             FargoPlayer modPlayer = (FargoPlayer)player.GetModPlayer(mod, "FargoPlayer");
 
-            if (modPlayer.jammed)
+            if (modPlayer.Jammed)
             {
                 type = ProjectileID.ConfettiGun;
             }
@@ -135,12 +135,12 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (p.infinity && item.createTile == -1 && item.type != ItemID.LifeFruit)
+            if (p.Infinity && item.createTile == -1 && item.type != ItemID.LifeFruit)
             {
                 return false;
             }
 
-            if (p.builderMode && (item.createTile != -1 || item.createWall != -1))
+            if (p.BuilderMode && (item.createTile != -1 || item.createWall != -1))
             {
                 return false;
             }
@@ -153,40 +153,40 @@ namespace FargowiltasSouls.Items
             {
                 switch (arg)
                 {
-                    case (ItemID.KingSlimeBossBag):
+                    case ItemID.KingSlimeBossBag:
                         player.QuickSpawnItem(mod.ItemType("SlimeKingsSlasher"));
                         break;
-                    case (ItemID.EyeOfCthulhuBossBag):
+                    case ItemID.EyeOfCthulhuBossBag:
                         player.QuickSpawnItem(mod.ItemType("EyeFlail"));
                         break;
-                    case (ItemID.EaterOfWorldsBossBag):
+                    case ItemID.EaterOfWorldsBossBag:
                         player.QuickSpawnItem(mod.ItemType("EaterStaff"));
                         break;
-                    case (ItemID.BrainOfCthulhuBossBag):
+                    case ItemID.BrainOfCthulhuBossBag:
                         player.QuickSpawnItem(mod.ItemType("BrainStaff"));
                         break;
-                    case (ItemID.SkeletronBossBag):
+                    case ItemID.SkeletronBossBag:
                         player.QuickSpawnItem(mod.ItemType("Bonezone"));
                         break;
-                    case (ItemID.QueenBeeBossBag):
+                    case ItemID.QueenBeeBossBag:
                         player.QuickSpawnItem(mod.ItemType("QueenStinger"));
                         break;
-                    case (ItemID.DestroyerBossBag):
+                    case ItemID.DestroyerBossBag:
                         player.QuickSpawnItem(mod.ItemType("Probe"));
                         break;
-                    case (ItemID.TwinsBossBag):
+                    case ItemID.TwinsBossBag:
                         player.QuickSpawnItem(mod.ItemType("TwinBoomerangs"));
                         break;
-                    case (ItemID.SkeletronPrimeBossBag):
+                    case ItemID.SkeletronPrimeBossBag:
                         player.QuickSpawnItem(mod.ItemType("PrimeStaff"));
                         break;
-                    case (ItemID.PlanteraBossBag):
+                    case ItemID.PlanteraBossBag:
                         player.QuickSpawnItem(mod.ItemType("Dicer"));
                         break;
-                    case (ItemID.GolemBossBag):
+                    case ItemID.GolemBossBag:
                         player.QuickSpawnItem(mod.ItemType("GolemStaff"));
                         break;
-                    case (ItemID.FishronBossBag):
+                    case ItemID.FishronBossBag:
                         player.QuickSpawnItem(mod.ItemType("FishStick"));
                         break;
                 }
@@ -198,12 +198,12 @@ namespace FargowiltasSouls.Items
             bool returnVal = true;
             FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (p.chloroEnchant && item.stack == 1 && (item.type == ItemID.Daybloom || item.type == ItemID.Blinkroot || item.type == ItemID.Deathweed || item.type == ItemID.Fireblossom || item.type == ItemID.Moonglow || item.type == ItemID.Shiverthorn || item.type == ItemID.Waterleaf || item.type == ItemID.Mushroom || item.type == ItemID.VileMushroom || item.type == ItemID.ViciousMushroom || item.type == ItemID.GlowingMushroom))
+            if (p.ChloroEnchant && item.stack == 1 && (item.type == ItemID.Daybloom || item.type == ItemID.Blinkroot || item.type == ItemID.Deathweed || item.type == ItemID.Fireblossom || item.type == ItemID.Moonglow || item.type == ItemID.Shiverthorn || item.type == ItemID.Waterleaf || item.type == ItemID.Mushroom || item.type == ItemID.VileMushroom || item.type == ItemID.ViciousMushroom || item.type == ItemID.GlowingMushroom))
             {
                 item.stack = 2;
             }
 
-            if(p.crimsonEnchant && item.type == ItemID.Heart)
+            if(p.CrimsonEnchant && item.type == ItemID.Heart)
             {
                 player.HealEffect(30);
                 player.statLife += 30;
@@ -211,7 +211,7 @@ namespace FargowiltasSouls.Items
                 return false;
             }
 
-            if (p.goldEnchant)
+            if (p.GoldEnchant)
             {
                 if (item.type == ItemID.CopperCoin)
                 {
@@ -221,15 +221,15 @@ namespace FargowiltasSouls.Items
 
                         do
                         {
-                            randX = (float)Main.rand.Next(-10, 10);
+                            randX = Main.rand.Next(-10, 10);
                         } while (randX <= 4f && randX >= -4f);
 
                         do
                         {
-                            randY = (float)Main.rand.Next(-10, 10);
+                            randY = Main.rand.Next(-10, 10);
                         } while (randY <= 4f && randY >= -4f);
 
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, randX, randY, ProjectileID.CopperCoin, 25, 2, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, randX, randY, ProjectileID.CopperCoin, 25, 2, Main.myPlayer);
                     }
 
                     returnVal = false;
@@ -243,15 +243,15 @@ namespace FargowiltasSouls.Items
 
                         do
                         {
-                            randX = (float)Main.rand.Next(-10, 10);
+                            randX = Main.rand.Next(-10, 10);
                         } while (randX <= 4f && randX >= -4f);
 
                         do
                         {
-                            randY = (float)Main.rand.Next(-10, 10);
+                            randY = Main.rand.Next(-10, 10);
                         } while (randY <= 4f && randY >= -4f);
 
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, randX, randY, ProjectileID.SilverCoin, 50, 2, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, randX, randY, ProjectileID.SilverCoin, 50, 2, Main.myPlayer);
                     }
 
                     returnVal = false;

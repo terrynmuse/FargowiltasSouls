@@ -30,7 +30,7 @@ Summons a pet Baby Hornet");
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            modPlayer.beeEnchant = true;
+            modPlayer.BeeEnchant = true;
 			player.strongBees = true;
 
             modPlayer.AddPet("Baby Hornet Pet", BuffID.BabyHornet, ProjectileID.BabyHornet);

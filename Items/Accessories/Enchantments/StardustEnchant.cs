@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -32,23 +28,23 @@ Double tap down to direct your guardian");
         {
 			player.maxMinions += 2;
 			player.minionDamage += 0.15f;
-			if(Soulcheck.GetValue("Stardust Guardian") == true)
+			if(Soulcheck.GetValue("Stardust Guardian"))
 			{
 			player.setStardust = true;
 			if (player.whoAmI == Main.myPlayer)
 			{
 				if (player.FindBuffIndex(187) == -1)
 				{
-					player.AddBuff(187, 3600, true);
+					player.AddBuff(187, 3600);
 				}
 				if (player.ownedProjectileCounts[623] < 1)
 				{
-					Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, 623, 0, 0f, Main.myPlayer, 0f, 0f);
+					Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, 623, 0, 0f, Main.myPlayer);
 				}
 			}
 			}
 			
-			(player.GetModPlayer<FargoPlayer>(mod)).stardustEnchant = true;
+			player.GetModPlayer<FargoPlayer>(mod).StardustEnchant = true;
         }
 		
 		public override void AddRecipes()

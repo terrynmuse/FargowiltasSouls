@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 		public override void Update(Player player, ref int buffIndex)
         {
            //-30 defense, no damage reduction, cross necklace and knockback prevention effects disabled
-		   player.GetModPlayer<FargoPlayer>(mod).defenseless = true;
+		   player.GetModPlayer<FargoPlayer>(mod).Defenseless = true;
         }
 	}
 }

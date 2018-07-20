@@ -1,11 +1,5 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.GameContent;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.Masomode
@@ -68,12 +62,12 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
 				if (distance.Length() <= 250)
 				{
-					int rotID = mod.BuffType("Rotting");
+					int rotId = mod.BuffType("Rotting");
 
-					if (target.buffImmune[rotID])
-						target.buffImmune[rotID] = false;
+					if (target.buffImmune[rotId])
+						target.buffImmune[rotId] = false;
 				
-					target.AddBuff(rotID, 2);
+					target.AddBuff(rotId, 2);
 				}
 			}
 

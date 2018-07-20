@@ -1,13 +1,9 @@
-using System.Collections.Generic;
+using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using System;
-using Microsoft.Xna.Framework.Graphics;
-using FargowiltasSouls;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -35,19 +31,19 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            modPlayer.terrariaSoul = true;
-            if (Soulcheck.GetValue("Spore Explosion") == true)
+            modPlayer.TerrariaSoul = true;
+            if (Soulcheck.GetValue("Spore Explosion"))
             {
-                modPlayer.jungleEnchant = true;
+                modPlayer.JungleEnchant = true;
             }
             //miner
             player.pickSpeed -= 0.3f;
-            if (Soulcheck.GetValue("Shine Buff") == true)
+            if (Soulcheck.GetValue("Shine Buff"))
             {
                 Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             }
             //cobalt
-            modPlayer.cobaltEnchant = true;
+            modPlayer.CobaltEnchant = true;
 
             //palladium
             player.onHitRegen = true;
@@ -55,22 +51,22 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             //mythril	
             if (Soulcheck.GetValue("Increase Use Speed"))
             {
-                modPlayer.firingSpeed += .5f;
-                modPlayer.castingSpeed += .5f;
-                modPlayer.throwingSpeed += .5f;
-                modPlayer.radiantSpeed += .5f;
-                modPlayer.symphonicSpeed += .5f;
-                modPlayer.healingSpeed += .5f;
-                modPlayer.axeSpeed += .5f;
-                modPlayer.hammerSpeed += .5f;
-                modPlayer.pickSpeed += .5f;
+                modPlayer.FiringSpeed += .5f;
+                modPlayer.CastingSpeed += .5f;
+                modPlayer.ThrowingSpeed += .5f;
+                modPlayer.RadiantSpeed += .5f;
+                modPlayer.SymphonicSpeed += .5f;
+                modPlayer.HealingSpeed += .5f;
+                modPlayer.AxeSpeed += .5f;
+                modPlayer.HammerSpeed += .5f;
+                modPlayer.PickSpeed += .5f;
             }
 
             //orichalcum
-            if (Soulcheck.GetValue("Orichalcum Fireball") == true)
+            if (Soulcheck.GetValue("Orichalcum Fireball"))
             {
                 player.onHitPetal = true;
-                modPlayer.oriEnchant = true;
+                modPlayer.OriEnchant = true;
             }
             //titanium
             player.onHitDodge = true;
@@ -86,7 +82,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             }
 
             //molten
-            if (Soulcheck.GetValue("Inferno Buff") == true)
+            if (Soulcheck.GetValue("Inferno Buff"))
             {
                 player.inferno = true;
                 Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
@@ -98,16 +94,16 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 {
                     for (int l = 0; l < 200; l++)
                     {
-                        NPC nPC = Main.npc[l];
-                        if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && !nPC.buffImmune[num] && Vector2.Distance(player.Center, nPC.Center) <= num2)
+                        NPC nPc = Main.npc[l];
+                        if (nPc.active && !nPc.friendly && nPc.damage > 0 && !nPc.dontTakeDamage && !nPc.buffImmune[num] && Vector2.Distance(player.Center, nPc.Center) <= num2)
                         {
-                            if (nPC.FindBuffIndex(num) == -1)
+                            if (nPc.FindBuffIndex(num) == -1)
                             {
-                                nPC.AddBuff(num, 120, false);
+                                nPc.AddBuff(num, 120);
                             }
                             if (flag)
                             {
-                                player.ApplyDamageToNPC(nPC, damage, 0f, 0, false);
+                                player.ApplyDamageToNPC(nPc, damage, 0f, 0, false);
                             }
                         }
                     }
@@ -116,24 +112,24 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.lavaImmune = true;
 
             //chloro
-            if (Soulcheck.GetValue("Leaf Crystal") == true)
+            if (Soulcheck.GetValue("Leaf Crystal"))
             {
-                modPlayer.chloroEnchant = true;
+                modPlayer.ChloroEnchant = true;
 
                 if (player.whoAmI == Main.myPlayer)
                 {
                     if (player.ownedProjectileCounts[mod.ProjectileType("Chlorofuck")] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, mod.ProjectileType("Chlorofuck"), 0, 0f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, mod.ProjectileType("Chlorofuck"), 0, 0f, Main.myPlayer);
                     }
                 }
             }
 
             //shroomite
-            if (Soulcheck.GetValue("Shroomite Stealth") == true)
+            if (Soulcheck.GetValue("Shroomite Stealth"))
             {
                 player.shroomiteStealth = true;
-                modPlayer.shroomEnchant = true;
+                modPlayer.ShroomEnchant = true;
             }
 
             //crimson
@@ -143,35 +139,35 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.strongBees = true;
             if (Soulcheck.GetValue("Bees on Hit"))
             {
-                modPlayer.beeEnchant = true;
+                modPlayer.BeeEnchant = true;
             }
-            modPlayer.spiderEnchant = true;
+            modPlayer.SpiderEnchant = true;
 
-            if (Soulcheck.GetValue("Spelunker Buff") == true)
+            if (Soulcheck.GetValue("Spelunker Buff"))
             {
                 player.findTreasure = true;
             }
-            if (Soulcheck.GetValue("Hunter Buff") == true)
+            if (Soulcheck.GetValue("Hunter Buff"))
             {
                 player.detectCreature = true;
             }
-            if (Soulcheck.GetValue("Dangersense Buff") == true)
+            if (Soulcheck.GetValue("Dangersense Buff"))
             {
                 player.dangerSense = true;
             }
 
             //beetle + turtle
-            modPlayer.turtleEnchant = true;
+            modPlayer.TurtleEnchant = true;
             player.aggro += 50;
             player.thorns = 1f;
             player.turtleThorns = true;
             player.statDefense = (int)(player.statDefense * 1.25);
-            if (Soulcheck.GetValue("Beetles") == true)
+            if (Soulcheck.GetValue("Beetles"))
             {
                 player.beetleDefense = true;
                 player.beetleCounter += 1f;
                 int num5 = 180;
-                if (player.beetleCounter >= (float)num5)
+                if (player.beetleCounter >= num5)
                 {
                     if (player.beetleOrbs > 0 && player.beetleOrbs < 3)
                     {
@@ -190,7 +186,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     }
                     else
                     {
-                        player.beetleCounter = (float)num5;
+                        player.beetleCounter = num5;
                     }
                 }
 
@@ -218,23 +214,23 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     for (int m = 0; m < player.beetleOrbs; m++)
                     {
                         player.beetlePos[m] += player.beetleVel[m];
-                        Vector2[] expr_6EC_cp_0 = player.beetleVel;
-                        int expr_6EC_cp_1 = m;
-                        expr_6EC_cp_0[expr_6EC_cp_1].X = expr_6EC_cp_0[expr_6EC_cp_1].X + (float)Main.rand.Next(-100, 101) * 0.005f;
-                        Vector2[] expr_71A_cp_0 = player.beetleVel;
-                        int expr_71A_cp_1 = m;
-                        expr_71A_cp_0[expr_71A_cp_1].Y = expr_71A_cp_0[expr_71A_cp_1].Y + (float)Main.rand.Next(-100, 101) * 0.005f;
+                        Vector2[] expr_6EcCp0 = player.beetleVel;
+                        int expr_6EcCp1 = m;
+                        expr_6EcCp0[expr_6EcCp1].X = expr_6EcCp0[expr_6EcCp1].X + Main.rand.Next(-100, 101) * 0.005f;
+                        Vector2[] expr71ACp0 = player.beetleVel;
+                        int expr71ACp1 = m;
+                        expr71ACp0[expr71ACp1].Y = expr71ACp0[expr71ACp1].Y + Main.rand.Next(-100, 101) * 0.005f;
                         float num6 = player.beetlePos[m].X;
                         float num7 = player.beetlePos[m].Y;
-                        float num8 = (float)Math.Sqrt((double)(num6 * num6 + num7 * num7));
+                        float num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
                         if (num8 > 100f)
                         {
                             num8 = 20f / num8;
                             num6 *= -num8;
                             num7 *= -num8;
                             int num9 = 10;
-                            player.beetleVel[m].X = (player.beetleVel[m].X * (float)(num9 - 1) + num6) / (float)num9;
-                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (float)(num9 - 1) + num7) / (float)num9;
+                            player.beetleVel[m].X = (player.beetleVel[m].X * (num9 - 1) + num6) / num9;
+                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (num9 - 1) + num7) / num9;
                         }
                         else if (num8 > 30f)
                         {
@@ -242,12 +238,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                             num6 *= -num8;
                             num7 *= -num8;
                             int num10 = 20;
-                            player.beetleVel[m].X = (player.beetleVel[m].X * (float)(num10 - 1) + num6) / (float)num10;
-                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (float)(num10 - 1) + num7) / (float)num10;
+                            player.beetleVel[m].X = (player.beetleVel[m].X * (num10 - 1) + num6) / num10;
+                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (num10 - 1) + num7) / num10;
                         }
                         num6 = player.beetleVel[m].X;
                         num7 = player.beetleVel[m].Y;
-                        num8 = (float)Math.Sqrt((double)(num6 * num6 + num7 * num7));
+                        num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
                         if (num8 > 2f)
                         {
                             player.beetleVel[m] *= 0.9f;
@@ -310,7 +306,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             //forbidden
             player.buffImmune[194] = true;
 
-            if (Soulcheck.GetValue("Forbidden Storm") == true)
+            if (Soulcheck.GetValue("Forbidden Storm"))
             {
                 player.setForbidden = true;
                 player.UpdateForbiddenSetLock();
@@ -321,32 +317,32 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.noKnockback = true;
 
             //shield and sword
-            if (Soulcheck.GetValue("Hallowed Shield") == true)
+            if (Soulcheck.GetValue("Hallowed Shield"))
             {
-                modPlayer.hallowEnchant = true;
+                modPlayer.HallowEnchant = true;
                 if (player.whoAmI == Main.myPlayer)
                 {
                     if (player.ownedProjectileCounts[mod.ProjectileType("HallowProj")] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, mod.ProjectileType("HallowProj"), 80/*dmg*/, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, mod.ProjectileType("HallowProj"), 80/*dmg*/, 2f, Main.myPlayer);
                     }
                 }
             }
             //spectre
-            modPlayer.spectreEnchant = true;
+            modPlayer.SpectreEnchant = true;
 
             player.ghostHeal = true;
             player.ghostHurt = true;
 
             //spooky
-            if (Soulcheck.GetValue("Spooky Scythes") == true)
+            if (Soulcheck.GetValue("Spooky Scythes"))
             {
-                modPlayer.spookyEnchant = true;
+                modPlayer.SpookyEnchant = true;
             }
-            modPlayer.meteorEnchant = true;
+            modPlayer.MeteorEnchant = true;
 
             //solar
-            if (Soulcheck.GetValue("Solar Shield") == true)
+            if (Soulcheck.GetValue("Solar Shield"))
             {
                 player.AddBuff(172, 5, false);
                 player.setSolar = true;
@@ -369,7 +365,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                         player.AddBuff(170 + player.solarShields, 5, false);
                         for (int num13 = 0; num13 < 16; num13++)
                         {
-                            Dust dust = Main.dust[Dust.NewDust(player.position, player.width, player.height, 6, 0f, 0f, 100, default(Color), 1f)];
+                            Dust dust = Main.dust[Dust.NewDust(player.position, player.width, player.height, 6, 0f, 0f, 100)];
                             dust.noGravity = true;
                             dust.scale = 1.7f;
                             dust.fadeIn = 0.5f;
@@ -389,8 +385,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 for (int num15 = 0; num15 < player.solarShields; num15++)
                 {
                     player.solarShieldPos[num15] += player.solarShieldVel[num15];
-                    Vector2 value = ((float)player.miscCounter / 100f * 6.28318548f + (float)num15 * (6.28318548f / (float)player.solarShields)).ToRotationVector2() * 6f;
-                    value.X = (float)(player.direction * 20);
+                    Vector2 value = (player.miscCounter / 100f * 6.28318548f + num15 * (6.28318548f / player.solarShields)).ToRotationVector2() * 6f;
+                    value.X = player.direction * 20;
                     player.solarShieldVel[num15] = (value - player.solarShieldPos[num15]) * 0.2f;
                 }
                 if (player.dashDelay >= 0)
@@ -405,10 +401,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 }
             }
             //vortex
-            player.meleeCrit = FargoPlayer.vortexCrit;
-            player.rangedCrit = FargoPlayer.vortexCrit;
-            player.magicCrit = FargoPlayer.vortexCrit;
-            player.thrownCrit = FargoPlayer.vortexCrit;
+            player.meleeCrit = FargoPlayer.VortexCrit;
+            player.rangedCrit = FargoPlayer.VortexCrit;
+            player.magicCrit = FargoPlayer.VortexCrit;
+            player.thrownCrit = FargoPlayer.VortexCrit;
 
             //nebula
             if (player.nebulaCD > 0)
@@ -418,19 +414,19 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.setNebula = true;
 
             //stardust
-            if (Soulcheck.GetValue("Stardust Guardian") == true)
+            if (Soulcheck.GetValue("Stardust Guardian"))
             {
-                modPlayer.stardustEnchant = true;
+                modPlayer.StardustEnchant = true;
                 player.setStardust = true;
                 if (player.whoAmI == Main.myPlayer)
                 {
                     if (player.FindBuffIndex(187) == -1)
                     {
-                        player.AddBuff(187, 3600, true);
+                        player.AddBuff(187, 3600);
                     }
                     if (player.ownedProjectileCounts[623] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, 623, 0, 0f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, 623, 0, 0f, Main.myPlayer);
                     }
                 }
             }
@@ -440,19 +436,19 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             {
                 if (Soulcheck.GetValue("Baby Face Monster Pet"))
                 {
-                    modPlayer.crimsonPet = true;
+                    modPlayer.CrimsonPet = true;
 
                     if (player.FindBuffIndex(154) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.BabyFaceMonster] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyFaceMonster, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyFaceMonster, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.crimsonPet = false;
+                    modPlayer.CrimsonPet = false;
                 }
             }
 
@@ -460,117 +456,117 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             {
                 if (Soulcheck.GetValue("Turtle Pet"))
                 {
-                    modPlayer.turtlePet = true;
+                    modPlayer.TurtlePet = true;
 
                     if (player.FindBuffIndex(42) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.Turtle] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Turtle, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Turtle, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.turtlePet = false;
+                    modPlayer.TurtlePet = false;
                 }
 
                 modPlayer.AddPet("Baby Hornet Pet", BuffID.BabyHornet, ProjectileID.BabyHornet);
 
                 if (Soulcheck.GetValue("Spider Pet"))
                 {
-                    modPlayer.spiderPet = true;
+                    modPlayer.SpiderPet = true;
 
                     if (player.FindBuffIndex(81) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.Spider] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Spider, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Spider, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.spiderPet = false;
+                    modPlayer.SpiderPet = false;
                 }
 
                 if (Soulcheck.GetValue("Baby Dino Pet"))
                 {
-                    modPlayer.dinoPet = true;
+                    modPlayer.DinoPet = true;
 
                     if (player.FindBuffIndex(61) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.BabyDino] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyDino, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyDino, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.dinoPet = false;
+                    modPlayer.DinoPet = false;
                 }
 
                 if (Soulcheck.GetValue("Baby Eater Pet"))
                 {
-                    modPlayer.shadowPet = true;
+                    modPlayer.ShadowPet = true;
 
                     if (player.FindBuffIndex(45) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.BabyEater] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyEater, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyEater, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.shadowPet = false;
+                    modPlayer.ShadowPet = false;
                 }
 
                 if (Soulcheck.GetValue("Cursed Sapling Pet"))
                 {
-                    modPlayer.saplingPet = true;
+                    modPlayer.SaplingPet = true;
 
                     if (player.FindBuffIndex(85) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.CursedSapling] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CursedSapling, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CursedSapling, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.saplingPet = false;
+                    modPlayer.SaplingPet = false;
                 }
 
                 if (Soulcheck.GetValue("Wisp Pet"))
                 {
-                    modPlayer.spectrePet = true;
+                    modPlayer.SpectrePet = true;
 
                     if (player.FindBuffIndex(57) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.Wisp] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Wisp, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Wisp, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.spectrePet = false;
+                    modPlayer.SpectrePet = false;
                 }
 
                 //if(Soulcheck.GetValue("Baby Eater Pet"))
                 //{
-                modPlayer.shadowPet2 = true;
+                modPlayer.ShadowPet2 = true;
 
                 if (player.FindBuffIndex(19) == -1)
                 {
                     if (player.ownedProjectileCounts[ProjectileID.ShadowOrb] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ShadowOrb, 0, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ShadowOrb, 0, 2f, Main.myPlayer);
                     }
                 }
                 //}
@@ -581,13 +577,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
                 //if(Soulcheck.GetValue("Baby Eater Pet"))
                 //{
-                modPlayer.crimsonPet2 = true;
+                modPlayer.CrimsonPet2 = true;
 
                 if (player.FindBuffIndex(155) == -1)
                 {
                     if (player.ownedProjectileCounts[ProjectileID.CrimsonHeart] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CrimsonHeart, 0, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CrimsonHeart, 0, 2f, Main.myPlayer);
                     }
                 }
                 //}
@@ -598,13 +594,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
                 //if(Soulcheck.GetValue("Baby Face Monster Pet"))
                 //{
-                modPlayer.lanternPet = true;
+                modPlayer.LanternPet = true;
 
                 if (player.FindBuffIndex(152) == -1)
                 {
                     if (player.ownedProjectileCounts[ProjectileID.MagicLantern] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MagicLantern, 0, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MagicLantern, 0, 2f, Main.myPlayer);
                     }
                 }
                 //}

@@ -1,10 +1,7 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -33,9 +30,9 @@ Nearby enemies are ignited");
             player.meleeDamage += .1f;
             //explode on death
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.moltenEnchant = true;
+            modPlayer.MoltenEnchant = true;
 
-            if (Soulcheck.GetValue("Inferno Buff") == true)
+            if (Soulcheck.GetValue("Inferno Buff"))
             {
                 player.inferno = true;
                 Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
@@ -47,16 +44,16 @@ Nearby enemies are ignited");
                 {
                     for (int l = 0; l < 200; l++)
                     {
-                        NPC nPC = Main.npc[l];
-                        if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && !nPC.buffImmune[num] && Vector2.Distance(player.Center, nPC.Center) <= num2)
+                        NPC nPc = Main.npc[l];
+                        if (nPc.active && !nPc.friendly && nPc.damage > 0 && !nPc.dontTakeDamage && !nPc.buffImmune[num] && Vector2.Distance(player.Center, nPc.Center) <= num2)
                         {
-                            if (nPC.FindBuffIndex(num) == -1)
+                            if (nPc.FindBuffIndex(num) == -1)
                             {
-                                nPC.AddBuff(num, 120, false);
+                                nPc.AddBuff(num, 120);
                             }
                             if (flag)
                             {
-                                player.ApplyDamageToNPC(nPC, damage, 0f, 0, false);
+                                player.ApplyDamageToNPC(nPc, damage, 0f, 0, false);
                             }
                         }
                     }

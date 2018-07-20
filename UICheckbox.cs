@@ -1,38 +1,35 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.ModLoader;
+using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
-using System;
-using Terraria.GameContent.UI.Chat;
-using Terraria;
-using FargowiltasSouls;
 
 namespace FargowiltasSouls
 {
     // TODO, tri-state checkbox.
-    class UICheckbox : UIText
+    class UiCheckbox : UIText
     {
-        public Color _color;
-        public Color olor;
-        static Texture2D checkboxTexture = Fargowiltas.instance.GetTexture("checkBox");
-        static Texture2D checkmarkTexture = Fargowiltas.instance.GetTexture("checkMark");
+        public Color Color;
+        public Color Olor;
+        static Texture2D _checkboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
+        static Texture2D _checkmarkTexture = Fargowiltas.Instance.GetTexture("checkMark");
         public event EventHandler OnSelectedChanged;
 
-        public float order = 0;
-        bool clickable = true;
-        string tooltip = "";
-        string test;
-        private bool selected = true;
+        public float Order = 0;
+        bool _clickable = true;
+        string _tooltip = "";
+        string _test;
+        private bool _selected = true;
 
         public bool Selected
         {
-            get { return selected; }
+            get { return _selected; }
             set
             {
-                if (value != selected)
+                if (value != _selected)
                 {
-                    selected = value;
+                    _selected = value;
                     if (OnSelectedChanged != null)
                     {
                         OnSelectedChanged(this, EventArgs.Empty);
@@ -42,20 +39,20 @@ namespace FargowiltasSouls
             }
         }
 
-        public UICheckbox(string text, string tooltip, Color main, Color threed, bool clickable = true, float textScale = 1, bool large = false) : base("", textScale, large)
+        public UiCheckbox(string text, string tooltip, Color main, Color threed, bool clickable = true, float textScale = 1, bool large = false) : base("", textScale, large)
         {
-            this._color = main;
-            this.olor = threed;
-            this.tooltip = tooltip;
-            this.clickable = clickable;
-            this.test = "   " + text;
+            Color = main;
+            Olor = threed;
+            _tooltip = tooltip;
+            _clickable = clickable;
+            _test = "   " + text;
             SetText("   ");
             Recalculate();
         }
 
         public override void Click(UIMouseEvent evt)
         {
-            if (clickable)
+            if (_clickable)
             {
                 Selected = !Selected;
             }
@@ -64,23 +61,23 @@ namespace FargowiltasSouls
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            CalculatedStyle innerDimensions = base.GetInnerDimensions();
+            CalculatedStyle innerDimensions = GetInnerDimensions();
             //Vector2 pos = new Vector2(innerDimensions.X - 20, innerDimensions.Y - 5);
             Vector2 pos = new Vector2(innerDimensions.X, innerDimensions.Y - 5);
             Vector2 three = new Vector2(innerDimensions.X + 2, innerDimensions.Y - 3); //the positioning of the 3d part
 
-            spriteBatch.Draw(checkboxTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_checkboxTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             if (Selected)
-                spriteBatch.Draw(checkmarkTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(_checkmarkTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             base.DrawSelf(spriteBatch);
             //Utils.DrawBorderString(spriteBatch, this.test, three, this.olor, 1f, 0f, 0f, -1); the 3d part
-            Utils.DrawBorderString(spriteBatch, this.test, pos, this._color, 1f, 0f, 0f, -1);
-            if (IsMouseHovering && tooltip.Length > 0)
+            Utils.DrawBorderString(spriteBatch, _test, pos, Color);
+            if (IsMouseHovering && _tooltip.Length > 0)
             {
                 Main.HoverItem = new Item();
-                Main.hoverItemName = tooltip;
+                Main.hoverItemName = _tooltip;
             }
         }
 
@@ -96,8 +93,8 @@ namespace FargowiltasSouls
 
         public override int CompareTo(object obj)
         {
-            UICheckbox other = obj as UICheckbox;
-            return order.CompareTo(other.order);
+            UiCheckbox other = obj as UiCheckbox;
+            return Order.CompareTo(other.Order);
         }
     }
 }

@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -32,7 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.spiderEnchant = true;
+            modPlayer.SpiderEnchant = true;
 
             player.minionDamage += 0.1f;
 
@@ -41,19 +37,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 if (Soulcheck.GetValue("Spider Pet"))
                 {
-                    modPlayer.spiderPet = true;
+                    modPlayer.SpiderPet = true;
 
                     if (player.FindBuffIndex(81) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.Spider] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Spider, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Spider, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.spiderPet = false;
+                    modPlayer.SpiderPet = false;
                 }
             }
 

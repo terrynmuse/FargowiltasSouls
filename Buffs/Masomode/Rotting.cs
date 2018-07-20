@@ -1,6 +1,6 @@
+using FargowiltasSouls.NPCs;
 using Terraria;
 using Terraria.ModLoader;
-using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 		public override void Update(Player player, ref int buffIndex)
         {
 			//inflicts DOT (8 per second) and almost every stat reduced (move speed and use time by 25%)
-			player.GetModPlayer<FargoPlayer>(mod).rotting = true;
+			player.GetModPlayer<FargoPlayer>(mod).Rotting = true;
 
 			player.statLifeMax2 -= player.statLifeMax / 5;
 			player.statDefense -= 10;
@@ -49,7 +49,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
 		public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<FargoGlobalNPC>(mod).rotting = true;
+            npc.GetGlobalNPC<FargoGlobalNpc>(mod).Rotting = true;
         }
 	}
 }

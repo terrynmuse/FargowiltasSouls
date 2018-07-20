@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -32,9 +28,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            if (Soulcheck.GetValue("Spooky Scythes") == true)
+            if (Soulcheck.GetValue("Spooky Scythes"))
             {
-                modPlayer.spookyEnchant = true;
+                modPlayer.SpookyEnchant = true;
             }
             player.maxMinions += 1;
             player.minionDamage += 0.12f;
@@ -43,19 +39,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 if (Soulcheck.GetValue("Cursed Sapling Pet"))
                 {
-                    modPlayer.saplingPet = true;
+                    modPlayer.SaplingPet = true;
 
                     if (player.FindBuffIndex(85) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.CursedSapling] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CursedSapling, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CursedSapling, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.saplingPet = false;
+                    modPlayer.SaplingPet = false;
                 }
             }
 

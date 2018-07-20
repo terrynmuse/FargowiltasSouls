@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using System;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.Souls
@@ -37,18 +37,18 @@ namespace FargowiltasSouls.Projectiles.Souls
 
 			if (player.dead)
 			{
-				modPlayer.chloroEnchant = false;
+				modPlayer.ChloroEnchant = false;
 			}
 			
 			float cooldown = 50f;
 			
-			if(modPlayer.terrariaSoul)
+			if(modPlayer.TerrariaSoul)
 			{
 				cooldown = 10f;
 			}
 			
-			projectile.position.X = Main.player[projectile.owner].Center.X - (float)(projectile.width / 2);
-			projectile.position.Y = Main.player[projectile.owner].Center.Y - (float)(projectile.height / 2) + Main.player[projectile.owner].gfxOffY - 60f;
+			projectile.position.X = Main.player[projectile.owner].Center.X - projectile.width / 2;
+			projectile.position.Y = Main.player[projectile.owner].Center.Y - projectile.height / 2 + Main.player[projectile.owner].gfxOffY - 60f;
 			if (Main.player[projectile.owner].gravDir == -1f)
 			{
 				projectile.position.Y = projectile.position.Y + 120f;
@@ -59,9 +59,9 @@ namespace FargowiltasSouls.Projectiles.Souls
 				projectile.rotation = 0f;
 			}
 
-			projectile.position.X = (float)((int)projectile.position.X);
-			projectile.position.Y = (float)((int)projectile.position.Y);
-			float num395 = (float)Main.mouseTextColor / 200f - 0.35f;
+			projectile.position.X = (int)projectile.position.X;
+			projectile.position.Y = (int)projectile.position.Y;
+			float num395 = Main.mouseTextColor / 200f - 0.35f;
 			num395 *= 0.2f;
 			projectile.scale = num395 + 0.95f;
 
@@ -82,9 +82,9 @@ namespace FargowiltasSouls.Projectiles.Souls
 				{
 					if (Main.npc[num399].CanBeChasedBy(projectile, true))
 					{
-						float num400 = Main.npc[num399].position.X + (float)(Main.npc[num399].width / 2);
-						float num401 = Main.npc[num399].position.Y + (float)(Main.npc[num399].height / 2);
-						float num402 = Math.Abs(projectile.position.X + (float)(projectile.width / 2) - num400) + Math.Abs(projectile.position.Y + (float)(projectile.height / 2) - num401);
+						float num400 = Main.npc[num399].position.X + Main.npc[num399].width / 2;
+						float num401 = Main.npc[num399].position.Y + Main.npc[num399].height / 2;
+						float num402 = Math.Abs(projectile.position.X + projectile.width / 2 - num400) + Math.Abs(projectile.position.Y + projectile.height / 2 - num401);
 
 						if (num402 < num398 && Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[num399].position, Main.npc[num399].width, Main.npc[num399].height))
 						{
@@ -98,16 +98,15 @@ namespace FargowiltasSouls.Projectiles.Souls
 
 				if (flag11)
 				{
-					Vector2 vector29 = new Vector2(projectile.position.X + (float)projectile.width * 0.5f, projectile.position.Y + (float)projectile.height * 0.5f);
+					Vector2 vector29 = new Vector2(projectile.position.X + projectile.width * 0.5f, projectile.position.Y + projectile.height * 0.5f);
 					float num404 = num396 - vector29.X;
 					float num405 = num397 - vector29.Y;
-					float num406 = (float)Math.Sqrt((double)(num404 * num404 + num405 * num405));
+					float num406 = (float)Math.Sqrt(num404 * num404 + num405 * num405);
 					num406 = 10f / num406;
 					num404 *= num406;
 					num405 *= num406;
-					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, num404, num405, 227, 100/*dmg*/, 10, projectile.owner, 0f, 0f);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, num404, num405, 227, 100/*dmg*/, 10, projectile.owner);
 					projectile.ai[0] = cooldown;
-					return;
 				}
 			}
 		}

@@ -1,12 +1,8 @@
 using System;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -18,12 +14,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 			
 			String tooltip = "'Nothing can stop you' \n20% chance to instantly heal back 50% of any damage taken\n20% damage reduction \n15% increased defense \nIncreases life regeneration by 8 \nIncreases HP by 100 \nGrants immunity to knockback and most debuffs \nEnemies are more likely to target you";
 			
-			if(Fargowiltas.instance.calamityLoaded)
+			if(Fargowiltas.Instance.CalamityLoaded)
 			{
 				tooltip += "\nEffects of the Absorber and Asgardian Aegis";
 			}
 			
-			if(Fargowiltas.instance.thoriumLoaded)
+			if(Fargowiltas.Instance.ThoriumLoaded)
 			{
 				 tooltip += "\nEffects of the Star Veil and Terrarium Defender";
 			}
@@ -48,10 +44,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			
-			(player.GetModPlayer<FargoPlayer>(mod)).tankEffect = true;
+			player.GetModPlayer<FargoPlayer>(mod).TankEffect = true;
 			
 			//thorium
-			if(Fargowiltas.instance.thoriumLoaded)
+			if(Fargowiltas.Instance.ThoriumLoaded)
 			{
 				if (player.statLife < 75)
 				{
@@ -98,7 +94,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 			
 					if (target.active && player != target && Vector2.Distance(target.Center, player.Center) < 400)
 					{
-						target.AddBuff(BuffID.PaladinsShield, 30, true);
+						target.AddBuff(BuffID.PaladinsShield, 30);
 					}
 				}
 			}
@@ -107,7 +103,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 		   
 		    if (player.statLife < player.statLifeMax2 * .5)
             {
-                player.AddBuff(BuffID.IceBarrier, 30, true);
+                player.AddBuff(BuffID.IceBarrier, 30);
             }
 				
 				
@@ -115,7 +111,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 		    player.shinyStone = true;
 			
 			// sweet vengeance or star veil
-			if(Fargowiltas.instance.thoriumLoaded)
+			if(Fargowiltas.Instance.ThoriumLoaded)
 			{
 				player.bee = true;
 				player.panic = true;
@@ -137,7 +133,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 			}
 			
 
-			if(Fargowiltas.instance.calamityLoaded)
+			if(Fargowiltas.Instance.CalamityLoaded)
 			{
 				player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("BrimstoneFlames")] = true;
 				player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("HolyLight")] = true;
@@ -146,7 +142,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 				CalamityTank(player);
 			}
 			
-			if(Fargowiltas.instance.blueMagicLoaded)
+			if(Fargowiltas.Instance.BlueMagicLoaded)
 			{
 				BlueTank(player);
 			}
@@ -172,14 +168,14 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             ModRecipe tank = new ModRecipe(mod);
 			
-			if(Fargowiltas.instance.thoriumLoaded)
+			if(Fargowiltas.Instance.ThoriumLoaded)
 			{
-				if(Fargowiltas.instance.calamityLoaded)
+				if(Fargowiltas.Instance.CalamityLoaded)
 				{
 						tank.AddIngredient(ItemID.HandWarmer);
 						tank.AddIngredient(ItemID.PocketMirror);
 					
-					if(Fargowiltas.instance.blueMagicLoaded)
+					if(Fargowiltas.Instance.BlueMagicLoaded)
 					{
 						//all 3
 						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("MoonlightCharm"));	
@@ -205,13 +201,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Sponge"));	
 				}
 				
-				if(!Fargowiltas.instance.calamityLoaded)
+				if(!Fargowiltas.Instance.CalamityLoaded)
 				{
 						tank.AddIngredient(ItemID.HandWarmer);
 						tank.AddIngredient(ItemID.PocketMirror);
 						tank.AddRecipeGroup("FargowiltasSouls:AnyEvilExpert");
 					
-					if(Fargowiltas.instance.blueMagicLoaded)
+					if(Fargowiltas.Instance.BlueMagicLoaded)
 					{
 						//blue and thorium
 						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("MoonlightCharm"));	
@@ -238,16 +234,16 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 				}
 			}
 				
-			if(!Fargowiltas.instance.thoriumLoaded)
+			if(!Fargowiltas.Instance.ThoriumLoaded)
 			{
-				if(Fargowiltas.instance.calamityLoaded)
+				if(Fargowiltas.Instance.CalamityLoaded)
 				{
 						tank.AddIngredient(ItemID.LifeCrystal, 10);
 						tank.AddIngredient(ItemID.HandWarmer);
 						tank.AddIngredient(ItemID.PocketMirror);
 						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("BloodyWormScarf"));	
 					
-					if(Fargowiltas.instance.blueMagicLoaded)
+					if(Fargowiltas.Instance.BlueMagicLoaded)
 					{
 						//calamity and blue
 						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("MoonlightCharm"));	
@@ -271,14 +267,14 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Sponge"));
 				}
 			
-				if(!Fargowiltas.instance.calamityLoaded)
+				if(!Fargowiltas.Instance.CalamityLoaded)
 				{
 						tank.AddIngredient(ItemID.LifeCrystal, 10);
 						tank.AddIngredient(ItemID.HandWarmer);
 						tank.AddIngredient(ItemID.PocketMirror);
 						tank.AddRecipeGroup("FargowiltasSouls:AnyEvilExpert");
 					
-					if(Fargowiltas.instance.blueMagicLoaded)
+					if(Fargowiltas.Instance.BlueMagicLoaded)
 					{
 						//just blue
 						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("MoonlightCharm"));	

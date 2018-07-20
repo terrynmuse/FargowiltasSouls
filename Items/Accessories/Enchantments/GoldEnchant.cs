@@ -1,17 +1,14 @@
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class GoldEnchant : ModItem
     {
-        public float damage = 0f;
+        public float Damage;
 
         public override bool CloneNewInstances
         {
@@ -30,7 +27,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             lines[0] = new TooltipLine(mod, "1", "'Gold makes the world go round'");
             lines[1] = new TooltipLine(mod, "2", "Increased damage based on current coin count");
-            lines[2] = new TooltipLine(mod, "3", "Current: " + (damage * 100).ToString("0.00") + "% increased damage");
+            lines[2] = new TooltipLine(mod, "3", "Current: " + (Damage * 100).ToString("0.00") + "% increased damage");
             lines[2].overrideColor = Color.LimeGreen;
             lines[3] = new TooltipLine(mod, "4", "Picking up gold coins gives you extra life regen or movement speed for a short time");
             lines[4] = new TooltipLine(mod, "5", "You will throw away any lesser valued coins you pick up");
@@ -59,17 +56,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public static long GetCoins(Player player)
         {
             bool overflowing;
-            long inventoryCoins = Utils.CoinsCount(out overflowing, player.inventory, new int[] { 58, 57, 56, 55, 54 });
-            long piggyBankCoins = Utils.CoinsCount(out overflowing, player.bank.item, new int[0]);
-            long safeCoins = Utils.CoinsCount(out overflowing, player.bank2.item, new int[0]);
-            long defendersForgeCoins = Utils.CoinsCount(out overflowing, player.bank3.item, new int[0]);
-            long totalCoins = Utils.CoinsCombineStacks(out overflowing, new long[]
-            {
-                inventoryCoins,
-                piggyBankCoins,
-                safeCoins,
-                defendersForgeCoins
-            });
+            long inventoryCoins = Utils.CoinsCount(out overflowing, player.inventory, 58, 57, 56, 55, 54);
+            long piggyBankCoins = Utils.CoinsCount(out overflowing, player.bank.item);
+            long safeCoins = Utils.CoinsCount(out overflowing, player.bank2.item);
+            long defendersForgeCoins = Utils.CoinsCount(out overflowing, player.bank3.item);
+            long totalCoins = Utils.CoinsCombineStacks(out overflowing, inventoryCoins, piggyBankCoins, safeCoins, defendersForgeCoins);
             return totalCoins;
         }
 
@@ -82,31 +73,31 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             if (plat <= 0)
             {
-                damage = coins[2] * .0004f;
+                Damage = coins[2] * .0004f;
             }
             else if (plat < 5) // 1-4 plat
             {
-                damage = .05f;
+                Damage = .05f;
             }
             else if (plat < 15) // 5-14 plat
             {
-                damage = .10f;
+                Damage = .10f;
             }
             else if (plat < 30) // 15-29 plat 
             {
-                damage = .15f;
+                Damage = .15f;
             }
             else if (plat < 50) // 30-49 plat
             {
-                damage = .20f;
+                Damage = .20f;
             }
             else if (plat < 75) // 50-74 plat
             {
-                damage = .25f;
+                Damage = .25f;
             }
             else // 75+ plat
             {
-                damage = .30f;
+                Damage = .30f;
             }
 
         }
@@ -122,7 +113,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            modPlayer.goldEnchant = true;
+            modPlayer.GoldEnchant = true;
 
             //gold ring
             player.goldRing = true;
@@ -131,11 +122,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             //discount card
             player.discount = true;
 
-            player.magicDamage += damage;
-            player.meleeDamage += damage;
-            player.rangedDamage += damage;
-            player.minionDamage += damage;
-            player.thrownDamage += damage;
+            player.magicDamage += Damage;
+            player.meleeDamage += Damage;
+            player.rangedDamage += Damage;
+            player.minionDamage += Damage;
+            player.thrownDamage += Damage;
         }
 
         public override void AddRecipes()

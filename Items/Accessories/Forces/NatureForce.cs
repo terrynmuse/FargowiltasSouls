@@ -1,10 +1,7 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
@@ -40,15 +37,15 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             //jungle
-            if (Soulcheck.GetValue("Spore Explosion") == true)
+            if (Soulcheck.GetValue("Spore Explosion"))
             {
-                modPlayer.jungleEnchant = true;
+                modPlayer.JungleEnchant = true;
             }
             //fossil
-            modPlayer.fossilEnchant = true;
+            modPlayer.FossilEnchant = true;
 
             //molten
-            if (Soulcheck.GetValue("Inferno Buff") == true)
+            if (Soulcheck.GetValue("Inferno Buff"))
             {
                 player.inferno = true;
                 Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
@@ -60,16 +57,16 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                 {
                     for (int l = 0; l < 200; l++)
                     {
-                        NPC nPC = Main.npc[l];
-                        if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && !nPC.buffImmune[num] && Vector2.Distance(player.Center, nPC.Center) <= num2)
+                        NPC nPc = Main.npc[l];
+                        if (nPc.active && !nPc.friendly && nPc.damage > 0 && !nPc.dontTakeDamage && !nPc.buffImmune[num] && Vector2.Distance(player.Center, nPc.Center) <= num2)
                         {
-                            if (nPC.FindBuffIndex(num) == -1)
+                            if (nPc.FindBuffIndex(num) == -1)
                             {
-                                nPC.AddBuff(num, 120, false);
+                                nPc.AddBuff(num, 120);
                             }
                             if (flag)
                             {
-                                player.ApplyDamageToNPC(nPC, damage, 0f, 0, false);
+                                player.ApplyDamageToNPC(nPc, damage, 0f, 0, false);
                             }
                         }
                     }
@@ -86,24 +83,24 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             player.buffImmune[70] = true; //Venom
 
             //chloro
-            if (Soulcheck.GetValue("Leaf Crystal") == true)
+            if (Soulcheck.GetValue("Leaf Crystal"))
             {
-                modPlayer.chloroEnchant = true;
+                modPlayer.ChloroEnchant = true;
 
                 if (player.whoAmI == Main.myPlayer)
                 {
                     if (player.ownedProjectileCounts[mod.ProjectileType("Chlorofuck")] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, mod.ProjectileType("Chlorofuck"), 0, 0f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, mod.ProjectileType("Chlorofuck"), 0, 0f, Main.myPlayer);
                     }
                 }
             }
 
             //shroomite
-            if (Soulcheck.GetValue("Shroomite Stealth") == true)
+            if (Soulcheck.GetValue("Shroomite Stealth"))
             {
                 player.shroomiteStealth = true;
-                modPlayer.shroomEnchant = true;
+                modPlayer.ShroomEnchant = true;
             }
 
             //pets
@@ -111,19 +108,19 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             {
                 if (Soulcheck.GetValue("Baby Dino Pet"))
                 {
-                    modPlayer.dinoPet = true;
+                    modPlayer.DinoPet = true;
 
                     if (player.FindBuffIndex(61) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.BabyDino] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyDino, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyDino, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.dinoPet = false;
+                    modPlayer.DinoPet = false;
                 }
             }
         }

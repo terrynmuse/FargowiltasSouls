@@ -27,7 +27,7 @@ If an enemy is wet, the chance and damage is increased");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            (player.GetModPlayer<FargoPlayer>(mod)).copperEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
         }
 		
 		public override void AddRecipes()

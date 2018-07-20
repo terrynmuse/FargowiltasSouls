@@ -1,169 +1,162 @@
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
-using Terraria.GameContent.Generation;
-using Microsoft.Xna.Framework;
-using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
-using System.Linq;
 using Terraria.ModLoader.IO;
-using FargowiltasSouls;
-using System;
-using Terraria.UI;
 
 namespace FargowiltasSouls
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class FargoWorld : ModWorld
     {
-        public static bool movedLumberjack = false;
-        public static bool downedBetsy = false;
-        public static bool downedBoss = false;
+        private static bool _movedLumberjack;
+        private static bool _downedBetsy;
+        private static bool _downedBoss;
 
         //masomode
-        public static bool masochistMode = false;
-        public static int eyeCount = 0;
-        public static int slimeCount = 0;
-        public static int eaterCount = 0;
-        public static int brainCount = 0;
-        public static int beeCount = 0;
-        public static int skeletronCount = 0;
-        public static int wallCount = 0;
-        public static int destroyerCount = 0;
-        public static int primeCount = 0;
-        public static int twinsCount = 0;
-        public static int planteraCount = 0;
-        public static int golemCount = 0;
-        public static int fishronCount = 0;
-        public static int cultistCount = 0;
-        public static int moonlordCount = 0;
+        public static bool MasochistMode;
+        public static int EyeCount;
+        public static int SlimeCount;
+        public static int EaterCount;
+        public static int BrainCount;
+        public static int BeeCount;
+        public static int SkeletronCount;
+        public static int WallCount;
+        public static int DestroyerCount;
+        public static int PrimeCount;
+        public static int TwinsCount;
+        public static int PlanteraCount;
+        public static int GolemCount;
+        public static int FishronCount;
+        public static int CultistCount;
+        public static int MoonlordCount;
 
         //town npcs
-        public static bool guide = false;
-        public static bool merch = false;
-        public static bool nurse = false;
-        public static bool demo = false;
-        public static bool dye = false;
-        public static bool dryad = false;
-        public static bool keep = false;
-        public static bool dealer = false;
-        public static bool style = false;
-        public static bool paint = false;
-        public static bool angler = false;
-        public static bool goblin = false;
-        public static bool doc = false;
-        public static bool cloth = false;
-        public static bool mech = false;
-        public static bool party = false;
-        public static bool wiz = false;
-        public static bool tax = false;
-        public static bool truf = false;
-        public static bool pirate = false;
-        public static bool steam = false;
-        public static bool borg = false;
+        private static bool _guide;
+        private static bool _merch;
+        private static bool _nurse;
+        private static bool _demo;
+        private static bool _dye;
+        private static bool _dryad;
+        private static bool _keep;
+        private static bool _dealer;
+        private static bool _style;
+        private static bool _paint;
+        private static bool _angler;
+        private static bool _goblin;
+        private static bool _doc;
+        private static bool _cloth;
+        private static bool _mech;
+        private static bool _party;
+        private static bool _wiz;
+        private static bool _tax;
+        private static bool _truf;
+        private static bool _pirate;
+        private static bool _steam;
+        private static bool _borg;
 
         public override void Initialize()
         {
-            movedLumberjack = false;
-            downedBetsy = false;
-            downedBoss = false;
+            _movedLumberjack = false;
+            _downedBetsy = false;
+            _downedBoss = false;
 
             //masomode
-            masochistMode = false;
-            eyeCount = 0;
-            slimeCount = 0;
-            eaterCount = 0;
-            brainCount = 0;
-            beeCount = 0;
-            skeletronCount = 0;
-            wallCount = 0;
-            destroyerCount = 0;
-            primeCount = 0;
-            twinsCount = 0;
-            planteraCount = 0;
-            golemCount = 0;
-            fishronCount = 0;
-            cultistCount = 0;
-            moonlordCount = 0;
+            MasochistMode = false;
+            EyeCount = 0;
+            SlimeCount = 0;
+            EaterCount = 0;
+            BrainCount = 0;
+            BeeCount = 0;
+            SkeletronCount = 0;
+            WallCount = 0;
+            DestroyerCount = 0;
+            PrimeCount = 0;
+            TwinsCount = 0;
+            PlanteraCount = 0;
+            GolemCount = 0;
+            FishronCount = 0;
+            CultistCount = 0;
+            MoonlordCount = 0;
 
             //town npcs
-            guide = false;
-            merch = false;
-            nurse = false;
-            demo = false;
-            dye = false;
-            dryad = false;
-            keep = false;
-            dealer = false;
-            style = false;
-            paint = false;
-            angler = false;
-            goblin = false;
-            doc = false;
-            cloth = false;
-            mech = false;
-            party = false;
-            wiz = false;
-            tax = false;
-            truf = false;
-            pirate = false;
-            steam = false;
-            borg = false;
+            _guide = false;
+            _merch = false;
+            _nurse = false;
+            _demo = false;
+            _dye = false;
+            _dryad = false;
+            _keep = false;
+            _dealer = false;
+            _style = false;
+            _paint = false;
+            _angler = false;
+            _goblin = false;
+            _doc = false;
+            _cloth = false;
+            _mech = false;
+            _party = false;
+            _wiz = false;
+            _tax = false;
+            _truf = false;
+            _pirate = false;
+            _steam = false;
+            _borg = false;
 
         }
 
         public override TagCompound Save()
         {
-            var count = new List<int>();
-            count.Add(eyeCount);
-            count.Add(slimeCount);
-            count.Add(eaterCount);
-            count.Add(brainCount);
-            count.Add(beeCount);
-            count.Add(skeletronCount);
-            count.Add(wallCount);
-            count.Add(destroyerCount);
-            count.Add(primeCount);
-            count.Add(twinsCount);
-            count.Add(planteraCount);
-            count.Add(golemCount);
-            count.Add(fishronCount);
-            count.Add(cultistCount);
-            count.Add(moonlordCount);
+            List<int> count = new List<int>
+            {
+                EyeCount,
+                SlimeCount,
+                EaterCount,
+                BrainCount,
+                BeeCount,
+                SkeletronCount,
+                WallCount,
+                DestroyerCount,
+                PrimeCount,
+                TwinsCount,
+                PlanteraCount,
+                GolemCount,
+                FishronCount,
+                CultistCount,
+                MoonlordCount
+            };
 
-            var downed = new List<string>();
-            if (movedLumberjack) downed.Add("lumberjack");
-            if (downedBetsy) downed.Add("betsy");
-            if (downedBoss) downed.Add("boss");
+            List<string> downed = new List<string>();
+            if (_movedLumberjack) downed.Add("lumberjack");
+            if (_downedBetsy) downed.Add("betsy");
+            if (_downedBoss) downed.Add("boss");
 
             //masomode
-            if (masochistMode) downed.Add("masochist");
+            if (MasochistMode) downed.Add("masochist");
 
             //town npcs
-            if (guide) downed.Add("guide");
-            if (merch) downed.Add("merch");
-            if (nurse) downed.Add("nurse");
-            if (demo) downed.Add("demo");
-            if (dye) downed.Add("dye");
-            if (dryad) downed.Add("dryad");
-            if (keep) downed.Add("keep");
-            if (dealer) downed.Add("dealer");
-            if (style) downed.Add("style");
-            if (paint) downed.Add("paint");
-            if (angler) downed.Add("angler");
-            if (goblin) downed.Add("goblin");
-            if (doc) downed.Add("doc");
-            if (cloth) downed.Add("cloth");
-            if (mech) downed.Add("mech");
-            if (party) downed.Add("party");
-            if (wiz) downed.Add("wiz");
-            if (tax) downed.Add("tax");
-            if (truf) downed.Add("truf");
-            if (pirate) downed.Add("pirate");
-            if (steam) downed.Add("steam");
-            if (borg) downed.Add("borg");
+            if (_guide) downed.Add("guide");
+            if (_merch) downed.Add("merch");
+            if (_nurse) downed.Add("nurse");
+            if (_demo) downed.Add("demo");
+            if (_dye) downed.Add("dye");
+            if (_dryad) downed.Add("dryad");
+            if (_keep) downed.Add("keep");
+            if (_dealer) downed.Add("dealer");
+            if (_style) downed.Add("style");
+            if (_paint) downed.Add("paint");
+            if (_angler) downed.Add("angler");
+            if (_goblin) downed.Add("goblin");
+            if (_doc) downed.Add("doc");
+            if (_cloth) downed.Add("cloth");
+            if (_mech) downed.Add("mech");
+            if (_party) downed.Add("party");
+            if (_wiz) downed.Add("wiz");
+            if (_tax) downed.Add("tax");
+            if (_truf) downed.Add("truf");
+            if (_pirate) downed.Add("pirate");
+            if (_steam) downed.Add("steam");
+            if (_borg) downed.Add("borg");
 
             return new TagCompound {
                 {"downed", downed}, { "count", count}
@@ -174,156 +167,161 @@ namespace FargowiltasSouls
         {
             if (tag.ContainsKey("count"))
             {
-                var count = tag.GetList<int>("count");
-                eyeCount = count[0];
-                slimeCount = count[1];
-                eaterCount = count[2];
-                brainCount = count[3];
-                beeCount = count[4];
-                skeletronCount = count[5];
-                wallCount = count[6];
-                destroyerCount = count[7];
-                primeCount = count[8];
-                twinsCount = count[9];
-                planteraCount = count[10];
-                golemCount = count[11];
-                fishronCount = count[12];
-                cultistCount = count[13];
-                moonlordCount = count[14];
+                IList<int> count = tag.GetList<int>("count");
+                EyeCount = count[0];
+                SlimeCount = count[1];
+                EaterCount = count[2];
+                BrainCount = count[3];
+                BeeCount = count[4];
+                SkeletronCount = count[5];
+                WallCount = count[6];
+                DestroyerCount = count[7];
+                PrimeCount = count[8];
+                TwinsCount = count[9];
+                PlanteraCount = count[10];
+                GolemCount = count[11];
+                FishronCount = count[12];
+                CultistCount = count[13];
+                MoonlordCount = count[14];
             }
 
-            var downed = tag.GetList<string>("downed");
-            movedLumberjack = downed.Contains("lumberjack");
-            downedBetsy = downed.Contains("betsy");
-            downedBoss = downed.Contains("boss");
-            masochistMode = downed.Contains("masochist");
+            IList<string> downed = tag.GetList<string>("downed");
+            _movedLumberjack = downed.Contains("lumberjack");
+            _downedBetsy = downed.Contains("betsy");
+            _downedBoss = downed.Contains("boss");
+            MasochistMode = downed.Contains("masochist");
 
-            guide = downed.Contains("guide");
-            merch = downed.Contains("merch");
-            nurse = downed.Contains("nurse");
-            demo = downed.Contains("demo");
-            dye = downed.Contains("dye");
-            dryad = downed.Contains("dryad");
-            keep = downed.Contains("keep");
-            dealer = downed.Contains("dealer");
-            style = downed.Contains("style");
-            paint = downed.Contains("paint");
-            angler = downed.Contains("angler");
-            goblin = downed.Contains("goblin");
-            doc = downed.Contains("doc");
-            cloth = downed.Contains("cloth");
-            mech = downed.Contains("mech");
-            party = downed.Contains("party");
-            wiz = downed.Contains("wiz");
-            tax = downed.Contains("tax");
-            truf = downed.Contains("truf");
-            pirate = downed.Contains("pirate");
-            steam = downed.Contains("steam");
-            borg = downed.Contains("borg");
+            _guide = downed.Contains("guide");
+            _merch = downed.Contains("merch");
+            _nurse = downed.Contains("nurse");
+            _demo = downed.Contains("demo");
+            _dye = downed.Contains("dye");
+            _dryad = downed.Contains("dryad");
+            _keep = downed.Contains("keep");
+            _dealer = downed.Contains("dealer");
+            _style = downed.Contains("style");
+            _paint = downed.Contains("paint");
+            _angler = downed.Contains("angler");
+            _goblin = downed.Contains("goblin");
+            _doc = downed.Contains("doc");
+            _cloth = downed.Contains("cloth");
+            _mech = downed.Contains("mech");
+            _party = downed.Contains("party");
+            _wiz = downed.Contains("wiz");
+            _tax = downed.Contains("tax");
+            _truf = downed.Contains("truf");
+            _pirate = downed.Contains("pirate");
+            _steam = downed.Contains("steam");
+            _borg = downed.Contains("borg");
         }
 
         public override void NetReceive(BinaryReader reader)
         {
-            eyeCount = reader.ReadInt32();
-            slimeCount = reader.ReadInt32();
-            eaterCount = reader.ReadInt32();
-            brainCount = reader.ReadInt32();
-            beeCount = reader.ReadInt32();
-            skeletronCount = reader.ReadInt32();
-            wallCount = reader.ReadInt32();
-            destroyerCount = reader.ReadInt32();
-            primeCount = reader.ReadInt32();
-            twinsCount = reader.ReadInt32();
-            planteraCount = reader.ReadInt32();
-            golemCount = reader.ReadInt32();
-            fishronCount = reader.ReadInt32();
-            cultistCount = reader.ReadInt32();
-            moonlordCount = reader.ReadInt32();
+            EyeCount = reader.ReadInt32();
+            SlimeCount = reader.ReadInt32();
+            EaterCount = reader.ReadInt32();
+            BrainCount = reader.ReadInt32();
+            BeeCount = reader.ReadInt32();
+            SkeletronCount = reader.ReadInt32();
+            WallCount = reader.ReadInt32();
+            DestroyerCount = reader.ReadInt32();
+            PrimeCount = reader.ReadInt32();
+            TwinsCount = reader.ReadInt32();
+            PlanteraCount = reader.ReadInt32();
+            GolemCount = reader.ReadInt32();
+            FishronCount = reader.ReadInt32();
+            CultistCount = reader.ReadInt32();
+            MoonlordCount = reader.ReadInt32();
 
             BitsByte flags = reader.ReadByte();
-            downedBetsy = flags[0];
-            downedBoss = flags[1];
-            masochistMode = flags[2];
-            guide = flags[3];
-            merch = flags[4];
-            nurse = flags[5];
-            demo = flags[6];
-            dye = flags[7];
+            _downedBetsy = flags[0];
+            _downedBoss = flags[1];
+            MasochistMode = flags[2];
+            _guide = flags[3];
+            _merch = flags[4];
+            _nurse = flags[5];
+            _demo = flags[6];
+            _dye = flags[7];
 
             BitsByte flags2 = reader.ReadByte();
-            dryad = flags2[0];
-            keep = flags2[1];
-            dealer = flags2[2];
-            style = flags2[3];
-            paint = flags2[4];
-            angler = flags2[5];
-            goblin = flags2[6];
-            doc = flags2[7];
+            _dryad = flags2[0];
+            _keep = flags2[1];
+            _dealer = flags2[2];
+            _style = flags2[3];
+            _paint = flags2[4];
+            _angler = flags2[5];
+            _goblin = flags2[6];
+            _doc = flags2[7];
 
             BitsByte flags3 = reader.ReadByte();
-            cloth = flags3[0];
-            mech = flags3[1];
-            party = flags3[2];
-            wiz = flags3[3];
-            tax = flags3[4];
-            truf = flags3[5];
-            pirate = flags3[6];
-            steam = flags3[7];
+            _cloth = flags3[0];
+            _mech = flags3[1];
+            _party = flags3[2];
+            _wiz = flags3[3];
+            _tax = flags3[4];
+            _truf = flags3[5];
+            _pirate = flags3[6];
+            _steam = flags3[7];
 
             BitsByte flags4 = reader.ReadByte();
-            borg = flags4[0];
+            _borg = flags4[0];
         }
 
         public override void NetSend(BinaryWriter writer)
         {
-            writer.Write(eyeCount);
-            writer.Write(slimeCount);
-            writer.Write(eaterCount);
-            writer.Write(brainCount);
-            writer.Write(beeCount);
-            writer.Write(skeletronCount);
-            writer.Write(wallCount);
-            writer.Write(destroyerCount);
-            writer.Write(primeCount);
-            writer.Write(twinsCount);
-            writer.Write(planteraCount);
-            writer.Write(golemCount);
-            writer.Write(fishronCount);
-            writer.Write(cultistCount);
-            writer.Write(moonlordCount);
+            writer.Write(EyeCount);
+            writer.Write(SlimeCount);
+            writer.Write(EaterCount);
+            writer.Write(BrainCount);
+            writer.Write(BeeCount);
+            writer.Write(SkeletronCount);
+            writer.Write(WallCount);
+            writer.Write(DestroyerCount);
+            writer.Write(PrimeCount);
+            writer.Write(TwinsCount);
+            writer.Write(PlanteraCount);
+            writer.Write(GolemCount);
+            writer.Write(FishronCount);
+            writer.Write(CultistCount);
+            writer.Write(MoonlordCount);
 
-            BitsByte flags = new BitsByte();
-            flags[0] = downedBetsy;
-            flags[1] = downedBoss;
-            flags[2] = masochistMode;
-            flags[3] = guide;
-            flags[4] = merch;
-            flags[5] = nurse;
-            flags[6] = demo;
-            flags[7] = dye;
+            BitsByte flags = new BitsByte
+            {
+                [0] = _downedBetsy,
+                [1] = _downedBoss,
+                [2] = MasochistMode,
+                [3] = _guide,
+                [4] = _merch,
+                [5] = _nurse,
+                [6] = _demo,
+                [7] = _dye
+            };
 
-            BitsByte flags2 = new BitsByte();
-            flags2[0] = dryad;
-            flags2[1] = keep;
-            flags2[2] = dealer;
-            flags2[3] = style;
-            flags2[4] = paint;
-            flags2[5] = angler;
-            flags2[6] = goblin;
-            flags2[7] = doc;
+            BitsByte flags2 = new BitsByte
+            {
+                [0] = _dryad,
+                [1] = _keep,
+                [2] = _dealer,
+                [3] = _style,
+                [4] = _paint,
+                [5] = _angler,
+                [6] = _goblin,
+                [7] = _doc
+            };
 
-            BitsByte flags3 = new BitsByte();
-            flags3[0] = cloth;
-            flags3[1] = mech;
-            flags3[2] = party;
-            flags3[3] = wiz;
-            flags3[4] = tax;
-            flags3[5] = truf;
-            flags3[6] = pirate;
-            flags3[7] = steam;
+            BitsByte flags3 = new BitsByte
+            {
+                [0] = _cloth,
+                [1] = _mech,
+                [2] = _party,
+                [3] = _wiz,
+                [4] = _tax,
+                [5] = _truf,
+                [6] = _pirate,
+                [7] = _steam
+            };
 
-            BitsByte flags4 = new BitsByte();
-            flags4[0] = borg;
+            BitsByte flags4 = new BitsByte {[0] = _borg};
 
             writer.Write(flags);
             writer.Write(flags2);
@@ -334,14 +332,11 @@ namespace FargowiltasSouls
 
         public override void PostUpdate()
         {
-            if (Soulcheck.GetValue("Seasonal Enemies"))
-            {
-                Main.xMas = true;
-                Main.halloween = true;
-            }
+            if (!Soulcheck.GetValue("Seasonal Enemies")) return;
+            Main.xMas = true;
+            Main.halloween = true;
 
-            Player player = Main.player[Main.myPlayer];
-
+            #region commented
             //right when day starts
             /*if(/*Main.time == 0 && Main.dayTime && !Main.eclipse && FargoWorld.masochistMode)
 			{
@@ -453,6 +448,7 @@ namespace FargowiltasSouls
             // NetMessage.SendData(61, -1, -1, "", this.whoAmI, -5f, 0f, 0f, 0, 0, 0);
             // }
             // }
+            #endregion
 
         }
     }

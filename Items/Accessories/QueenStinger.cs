@@ -1,7 +1,5 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 
 namespace FargowiltasSouls.Items.Accessories
 {
@@ -40,7 +38,7 @@ namespace FargowiltasSouls.Items.Accessories
 		 player.npcTypeNoAggro[235] = true;
 		 
 		 //stinger immmune/poison
-		  (player.GetModPlayer<FargoPlayer>(mod)).queenStinger = true;
+		  player.GetModPlayer<FargoPlayer>(mod).QueenStinger = true;
 		 
 		 //dash
         }

@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -35,7 +31,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             //modPlayer.mythrilEnchant = true;
 
 
-            modPlayer.firingSpeed += .20f;
+            modPlayer.FiringSpeed += .20f;
 
             /*if (player.whoAmI == Main.myPlayer)
             {

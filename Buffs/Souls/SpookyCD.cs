@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Souls
 {
-	public class SpookyCD : ModBuff
+	public class SpookyCd : ModBuff
 	{
 		public override void SetDefaults()
 		{

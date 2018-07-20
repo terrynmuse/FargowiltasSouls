@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -32,7 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.shadowEnchant = true;
+            modPlayer.ShadowEnchant = true;
 
             player.moveSpeed += 15f;
             player.meleeSpeed += 0.1f;
@@ -41,30 +37,30 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 if (Soulcheck.GetValue("Baby Eater Pet"))
                 {
-                    modPlayer.shadowPet = true;
+                    modPlayer.ShadowPet = true;
 
                     if (player.FindBuffIndex(45) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.BabyEater] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyEater, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyEater, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.shadowPet = false;
+                    modPlayer.ShadowPet = false;
                 }
 
                 //if(Soulcheck.GetValue("Baby Eater Pet"))
                 //{
-                modPlayer.shadowPet2 = true;
+                modPlayer.ShadowPet2 = true;
 
                 if (player.FindBuffIndex(19) == -1)
                 {
                     if (player.ownedProjectileCounts[ProjectileID.ShadowOrb] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ShadowOrb, 0, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ShadowOrb, 0, 2f, Main.myPlayer);
                     }
                 }
                 //}

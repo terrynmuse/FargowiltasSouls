@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\home\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_FargowiltasSouls.-1999273832.00" t="ExcludeRecursive" />
+    <e p="D:\home\Documents\GitHub\FargowiltasSouls" t="IncludeRecursive">
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="Buffs" t="Include">
+        <e p="debuffTemplate.png" t="Include" />
+        <e p="FargoGlobalBuff.cs" t="Include" />
+        <e p="Masomode" t="Include">
+          <e p="Antisocial.cs" t="Include" />
+          <e p="Atrophied.cs" t="Include" />
+          <e p="Berserked.cs" t="Include" />
+          <e p="Bloodthirsty.cs" t="Include" />
+          <e p="ClippedWings.cs" t="Include" />
+          <e p="Crippled.cs" t="Include" />
+          <e p="Defenseless.cs" t="Include" />
+          <e p="FlamesoftheUniverse.cs" t="Include" />
+          <e p="Flipped.cs" t="Include" />
+          <e p="Fused.cs" t="Include" />
+          <e p="GodEater.cs" t="Include" />
+          <e p="Hexed.cs" t="Include" />
+          <e p="Infested.cs" t="Include" />
+          <e p="Jammed.cs" t="Include" />
+          <e p="Lethargic.cs" t="Include" />
+          <e p="LightningRod.cs" t="Include" />
+          <e p="LivingWasteland.cs" t="Include" />
+          <e p="MarkedforDeath.cs" t="Include" />
+          <e p="MutantNibble.cs" t="Include" />
+          <e p="Purified.cs" t="Include" />
+          <e p="Rotting.cs" t="Include" />
+          <e p="SqueakyToy.cs" t="Include" />
+          <e p="Stunned.cs" t="Include" />
+          <e p="Unstable.cs" t="Include" />
+        </e>
+        <e p="Minions" t="Include">
+          <e p="BrainMinion.cs" t="Include" />
+          <e p="BrainMinion.png" t="Include" />
+          <e p="Eater.cs" t="Include" />
+          <e p="Eater.png" t="Include" />
+          <e p="EaterMinion.cs" t="Include" />
+          <e p="EaterMinion.png" t="Include" />
+        </e>
+        <e p="PlaceholderDebuff.png" t="Include" />
+        <e p="Souls" t="Include">
+          <e p="InfinityDebuff.cs" t="Include" />
+          <e p="InfinityDebuff.png" t="Include" />
+          <e p="Revived.cs" t="Include" />
+          <e p="Revived.png" t="Include" />
+          <e p="Shock.cs" t="Include" />
+          <e p="Shock.png" t="Include" />
+          <e p="SpookyCD.cs" t="Include" />
+          <e p="SpookyCD.png" t="Include" />
+          <e p="SuperBleed.cs" t="Include" />
+          <e p="SuperBleed.png" t="Include" />
+        </e>
+      </e>
+      <e p="build.txt" t="Include" />
+      <e p="checkBox.png" t="Include" />
+      <e p="checkMark.png" t="Include" />
+      <e p="description.txt" t="Include" />
+      <e p="FargoPlayer.cs" t="Include" />
+      <e p="Fargowiltas.cs" t="Include" />
+      <e p="FargowiltasSouls.csproj" t="IncludeRecursive" />
+      <e p="FargowiltasSouls.sln" t="IncludeFlat" />
+      <e p="FargoWorld.cs" t="Include" />
+      <e p="Items" t="Include">
+        <e p="Accessories" t="Include">
+          <e p="Enchantments" t="Include">
+            <e p="AdamantiteEnchant.cs" t="Include" />
+            <e p="AdamantiteEnchant.png" t="Include" />
+            <e p="AnglerEnchantment.cs" t="Include" />
+            <e p="AnglerEnchantment.png" t="Include" />
+            <e p="BeeEnchant.cs" t="Include" />
+            <e p="BeeEnchant.png" t="Include" />
+            <e p="BeetleEnchant.cs" t="Include" />
+            <e p="BeetleEnchant.png" t="Include" />
+            <e p="CactusEnchant.cs" t="Include" />
+            <e p="CactusEnchant.png" t="Include" />
+            <e p="ChlorophyteEnchant.cs" t="Include" />
+            <e p="ChlorophyteEnchant.png" t="Include" />
+            <e p="CobaltEnchant.cs" t="Include" />
+            <e p="CobaltEnchant.png" t="Include" />
+            <e p="CopperEnchant.cs" t="Include" />
+            <e p="CopperEnchant.png" t="Include" />
+            <e p="CrimsonEnchant.cs" t="Include" />
+            <e p="CrimsonEnchant.png" t="Include" />
+            <e p="DarkArtistEnchant.cs" t="Include" />
+            <e p="Edgy_ArtistEnchant.png" t="Include" />
+            <e p="ForbiddenEnchant.cs" t="Include" />
+            <e p="ForbiddenEnchant.png" t="Include" />
+            <e p="FossilEnchant.cs" t="Include" />
+            <e p="FossilEnchant.png" t="Include" />
+            <e p="FrostEnchant.cs" t="Include" />
+            <e p="FrostEnchant.png" t="Include" />
+            <e p="GladiatorEnchant.cs" t="Include" />
+            <e p="GladiatorEnchant.png" t="Include" />
+            <e p="GoldEnchant.cs" t="Include" />
+            <e p="GoldEnchant.png" t="Include" />
+            <e p="HallowEnchant.cs" t="Include" />
+            <e p="HallowEnchant.png" t="Include" />
+            <e p="IronEnchant.cs" t="Include" />
+            <e p="IronEnchant.png" t="Include" />
+            <e p="JungleEnchant.cs" t="Include" />
+            <e p="JungleEnchant.png" t="Include" />
+            <e p="LeadEnchant.cs" t="Include" />
+            <e p="LeadEnchant.png" t="Include" />
+            <e p="MeteorEnchant.cs" t="Include" />
+            <e p="MeteorEnchant.png" t="Include" />
+            <e p="MinerEnchant.cs" t="Include" />
+            <e p="MinerEnchant.png" t="Include" />
+            <e p="MoltenEnchant.cs" t="Include" />
+            <e p="MoltenEnchant.png" t="Include" />
+            <e p="MythrilEnchant.cs" t="Include" />
+            <e p="MythrilEnchant.png" t="Include" />
+            <e p="NebulaEnchant.cs" t="Include" />
+            <e p="NebulaEnchant.png" t="Include" />
+            <e p="NecroEnchant.cs" t="Include" />
+            <e p="NecroEnchant.png" t="Include" />
+            <e p="NinjaEnchant.cs" t="Include" />
+            <e p="NinjaEnchant.png" t="Include" />
+            <e p="ObsidianEnchant.cs" t="Include" />
+            <e p="ObsidianEnchant.png" t="Include" />
+            <e p="OrichalcumEnchant.cs" t="Include" />
+            <e p="OrichalcumEnchant.png" t="Include" />
+            <e p="PalladiumEnchant.cs" t="Include" />
+            <e p="PalladiumEnchant.png" t="Include" />
+            <e p="PlatinumEnchant.cs" t="Include" />
+            <e p="PlatinumEnchant.png" t="Include" />
+            <e p="PumpkinEnchant.cs" t="Include" />
+            <e p="PumpkinEnchant.png" t="Include" />
+            <e p="RedEnchant.png" t="Include" />
+            <e p="RedRidingEnchant.cs" t="Include" />
+            <e p="ShadowEnchant.cs" t="Include" />
+            <e p="ShadowEnchant.png" t="Include" />
+            <e p="ShinobiEnchant.cs" t="Include" />
+            <e p="ShinobiEnchant.png" t="Include" />
+            <e p="ShroomiteEnchant.cs" t="Include" />
+            <e p="ShroomiteEnchant.png" t="Include" />
+            <e p="SilverEnchant.cs" t="Include" />
+            <e p="SilverEnchant.png" t="Include" />
+            <e p="SolarEnchant.cs" t="Include" />
+            <e p="SolarEnchant.png" t="Include" />
+            <e p="SpectreEnchant.cs" t="Include" />
+            <e p="SpectreEnchant.png" t="Include" />
+            <e p="SpiderEnchant.cs" t="Include" />
+            <e p="SpiderEnchant.png" t="Include" />
+            <e p="SpookyEnchant.cs" t="Include" />
+            <e p="SpookyEnchant.png" t="Include" />
+            <e p="StardustEnchant.cs" t="Include" />
+            <e p="StardustEnchant.png" t="Include" />
+            <e p="TikiEnchant.png" t="Include" />
+            <e p="TinEnchant.cs" t="Include" />
+            <e p="TinEnchant.png" t="Include" />
+            <e p="TitaniumEnchant.cs" t="Include" />
+            <e p="TitaniumEnchant.png" t="Include" />
+            <e p="TungstenEnchant.cs" t="Include" />
+            <e p="TungstenEnchant.png" t="Include" />
+            <e p="TurtleEnchant.cs" t="Include" />
+            <e p="TurtleEnchant.png" t="Include" />
+            <e p="ValhalaEnchant.png" t="Include" />
+            <e p="ValhallaKnightEnchant.cs" t="Include" />
+            <e p="VortexEnchant.cs" t="Include" />
+            <e p="VortexEnchant.png" t="Include" />
+          </e>
+          <e p="Essences" t="Include">
+            <e p="ApprenticesEssence.cs" t="Include" />
+            <e p="ApprenticesEssence.png" t="Include" />
+            <e p="BarbariansEssence.cs" t="Include" />
+            <e p="BarbariansEssence.png" t="Include" />
+            <e p="BardEssence.png" t="Include" />
+            <e p="OccultistsEssence.cs" t="Include" />
+            <e p="OccultistsEssence.png" t="Include" />
+            <e p="SlingersEssence.cs" t="Include" />
+            <e p="SlingersEssence.png" t="Include" />
+            <e p="SnipersEssence.cs" t="Include" />
+            <e p="SnipersEssence.png" t="Include" />
+          </e>
+          <e p="Forces" t="Include">
+            <e p="CosmoForce.cs" t="Include" />
+            <e p="CosmoForce.png" t="Include" />
+            <e p="EarthForce.cs" t="Include" />
+            <e p="EarthForce.png" t="Include" />
+            <e p="LifeForce.cs" t="Include" />
+            <e p="LifeForce.png" t="Include" />
+            <e p="NatureForce.cs" t="Include" />
+            <e p="NatureForce.png" t="Include" />
+            <e p="SpiritForce.cs" t="Include" />
+            <e p="SpiritForce.png" t="Include" />
+          </e>
+          <e p="Infinity.cs" t="Include" />
+          <e p="Infinity.png" t="Include" />
+          <e p="QueenStinger.cs" t="Include" />
+          <e p="QueenStinger.png" t="Include" />
+          <e p="Souls" t="Include">
+            <e p="ArchWizardsSoul.cs" t="Include" />
+            <e p="ArchWizardsSoul.png" t="Include" />
+            <e p="BardSoul.cs" t="Include" />
+            <e p="BardSoul.png" t="Include" />
+            <e p="ColossusSoul.cs" t="Include" />
+            <e p="ColossusSoul.png" t="Include" />
+            <e p="ConjuristsSoul.cs" t="Include" />
+            <e p="ConjuristsSoul.png" t="Include" />
+            <e p="DimensionSoul.cs" t="Include" />
+            <e p="DimensionSoul.png" t="Include" />
+            <e p="DimensionSoul_Wings.png" t="Include" />
+            <e p="FlightMasterySoul.cs" t="Include" />
+            <e p="FlightMasterySoul.png" t="Include" />
+            <e p="FlightMasterySoul_Wings.png" t="Include" />
+            <e p="GladiatorsSoul.cs" t="Include" />
+            <e p="GladiatorsSoul.png" t="Include" />
+            <e p="GuardianAngelsSoul.cs" t="Include" />
+            <e p="GuardianAngelsSoul.png" t="Include" />
+            <e p="OlympiansSoul.cs" t="Include" />
+            <e p="OlympiansSoul.png" t="Include" />
+            <e p="PetSoul.png" t="Include" />
+            <e p="SharpshootersSoul.cs" t="Include" />
+            <e p="SharpshootersSoul.png" t="Include" />
+            <e p="SupersonicSoul.cs" t="Include" />
+            <e p="SupersonicSoul.png" t="Include" />
+            <e p="TerrariaSoul.cs" t="Include" />
+            <e p="TerrariaSoul.png" t="Include" />
+            <e p="TrawlerSoul.cs" t="Include" />
+            <e p="TrawlerSoul.png" t="Include" />
+            <e p="UniverseSoul.cs" t="Include" />
+            <e p="UniverseSoul.png" t="Include" />
+            <e p="UniverseSoul1.png" t="Include" />
+            <e p="VoidSoul.cs" t="Include" />
+            <e p="VoidSoul.png" t="Include" />
+            <e p="WorldShaperSoul.cs" t="Include" />
+            <e p="WorldShaperSoul.png" t="Include" />
+          </e>
+        </e>
+        <e p="Ammos" t="Include">
+          <e p="FargoBullet.cs" t="Include" />
+        </e>
+        <e p="Banner.png" t="Include" />
+        <e p="FargoGlobalItem.cs" t="Include" />
+        <e p="Masochist.cs" t="Include" />
+        <e p="Placeholder.png" t="Include" />
+        <e p="Weapons" t="Include">
+          <e p="BossDrops" t="Include">
+            <e p="Bonezone.cs" t="Include" />
+            <e p="Bonezone.png" t="Include" />
+            <e p="boomerang.cs" t="Include" />
+            <e p="boomerang.png" t="Include" />
+            <e p="BrainStaff.cs" t="Include" />
+            <e p="BrainStaff.png" t="Include" />
+            <e p="DamnedBook.cs" t="Include" />
+            <e p="DamnedBook.png" t="Include" />
+            <e p="Dicer.cs" t="Include" />
+            <e p="Dicer.png" t="Include" />
+            <e p="EaterStaff.cs" t="Include" />
+            <e p="EaterStaff.png" t="Include" />
+            <e p="EyeFlail.cs" t="Include" />
+            <e p="EyeFlail.png" t="Include" />
+            <e p="FleshHand.cs" t="Include" />
+            <e p="FleshHand.png" t="Include" />
+            <e p="GolemStaff.png" t="Include" />
+            <e p="nukeFishronnn.png" t="Include" />
+            <e p="PrimeStaff.cs" t="Include" />
+            <e p="PrimeStaff.png" t="Include" />
+            <e p="SlimeKingsSlasher.cs" t="Include" />
+            <e p="SlimeKingsSlasher.png" t="Include" />
+          </e>
+          <e p="DualSaber.png" t="Include" />
+          <e p="PandoraTwo.cs" t="Include" />
+          <e p="PandoraTwo.png" t="Include" />
+          <e p="SlimeRain.cs" t="Include" />
+          <e p="SlimeRain.png" t="Include" />
+          <e p="SwarmDrops" t="Include">
+            <e p="Blender.png" t="Include" />
+            <e p="GuardianTome.cs" t="Include" />
+            <e p="GuardianTome.png" t="Include" />
+            <e p="HellZone.cs" t="Include" />
+            <e p="HellZone.png" t="Include" />
+            <e p="HentaiSpear.cs" t="Include" />
+            <e p="HentaiSpear.png" t="Include" />
+            <e p="laser.cs" t="Include" />
+            <e p="laser.png" t="Include" />
+            <e p="NukeFishron.cs" t="Include" />
+            <e p="NukeFishron.png" t="Include" />
+            <e p="SlimeSword.cs" t="Include" />
+            <e p="SlimeSword.png" t="Include" />
+          </e>
+          <e p="TophatSquirrel.cs" t="Include" />
+          <e p="TophatSquirrel.png" t="Include" />
+          <e p="VoidBow.cs" t="Include" />
+          <e p="VoidBow.png" t="Include" />
+        </e>
+      </e>
+      <e p="masobool doom.txt" t="Include" />
+      <e p="Masochist Info.txt" t="Include" />
+      <e p="NPCs" t="Include">
+        <e p="FargoGlobalNPC.cs" t="Include" />
+        <e p="FeznySquirrelSheet.png" t="Include" />
+        <e p="PinkBun.png" t="Include" />
+        <e p="TophatSquirrel.cs" t="Include" />
+        <e p="TophatSquirrel.png" t="Include" />
+        <e p="TophatSquirrel2.png" t="Include" />
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Projectiles" t="Include">
+        <e p="BossWeapons" t="Include">
+          <e p="BlenderProjectile.cs" t="Include" />
+          <e p="BlenderProjectile.png" t="Include" />
+          <e p="Bonez.cs" t="Include" />
+          <e p="Bonez.png" t="Include" />
+          <e p="Dash.cs" t="Include" />
+          <e p="Dash.png" t="Include" />
+          <e p="DicerProjectile.cs" t="Include" />
+          <e p="DicerProjectile.png" t="Include" />
+          <e p="DicerProjectile2.cs" t="Include" />
+          <e p="DicerProjectile2.png" t="Include" />
+          <e p="DungeonGuardian.cs" t="Include" />
+          <e p="DungeonGuardian.png" t="Include" />
+          <e p="FishNuke.cs" t="Include" />
+          <e p="FishNuke.png" t="Include" />
+          <e p="HellFlame.cs" t="Include" />
+          <e p="HellFlame.png" t="Include" />
+          <e p="HentaiSpear.cs" t="Include" />
+          <e p="HentaiSpear.png" t="Include" />
+          <e p="Hungry.cs" t="Include" />
+          <e p="Hungry.png" t="Include" />
+          <e p="LeashFlail.cs" t="Include" />
+          <e p="LeashFlail.png" t="Include" />
+          <e p="LeashFlailChain.png" t="Include" />
+          <e p="SlimeBall.cs" t="Include" />
+          <e p="SlimeBall.png" t="Include" />
+        </e>
+        <e p="DualSaberProj.cs" t="Include" />
+        <e p="DualSaberProj.png" t="Include" />
+        <e p="DualSaberProj2.cs" t="Include" />
+        <e p="DualSaberProj2.png" t="Include" />
+        <e p="ExampleCloneProjectile.cs" t="Include" />
+        <e p="ExampleCloneProjectile.png" t="Include" />
+        <e p="Explosion.cs" t="Include" />
+        <e p="Explosion.png" t="Include" />
+        <e p="EyeProjectile2.cs" t="Include" />
+        <e p="EyeProjectile2.png" t="Include" />
+        <e p="FargoBulletProj.cs" t="Include" />
+        <e p="FargoBulletProj.png" t="Include" />
+        <e p="FargoGlobalProjectile.cs" t="Include" />
+        <e p="flamethrowerProj.cs" t="Include" />
+        <e p="flamethrowerProj.png" t="Include" />
+        <e p="grapplehookProj.cs" t="Include" />
+        <e p="grapplehookProj.png" t="Include" />
+        <e p="laserProj.cs" t="Include" />
+        <e p="laserProj.png" t="Include" />
+        <e p="Masomode" t="Include">
+          <e p="DeathAura.cs" t="Include" />
+          <e p="DeathAura.png" t="Include" />
+          <e p="FuseBomb.cs" t="Include" />
+        </e>
+        <e p="Minions" t="Include">
+          <e p="Body22.png" t="Include" />
+          <e p="BrainProj.cs" t="Include" />
+          <e p="BrainProj.png" t="Include" />
+          <e p="CreeperProj.cs" t="Include" />
+          <e p="CreeperProj.png" t="Include" />
+          <e p="EaterBody.cs" t="Include" />
+          <e p="EaterBody.png" t="Include" />
+          <e p="EaterHead.cs" t="Include" />
+          <e p="EaterHead.png" t="Include" />
+          <e p="EaterTail.cs" t="Include" />
+          <e p="EaterTail.png" t="Include" />
+          <e p="GolemHead.cs" t="Include" />
+          <e p="GolemHead.png" t="Include" />
+          <e p="HallowProj.cs" t="Include" />
+          <e p="HallowProj.png" t="Include" />
+          <e p="HallowSword.cs" t="Include" />
+          <e p="HallowSword.png" t="Include" />
+          <e p="HoverShooter.cs" t="Include" />
+          <e p="Minion.cs" t="Include" />
+          <e p="PrimeCannon.cs" t="Include" />
+          <e p="PrimeCannon.png" t="Include" />
+          <e p="PrimeCannonBall.cs" t="Include" />
+          <e p="PrimeLaser.cs" t="Include" />
+          <e p="PrimeLaser.png" t="Include" />
+          <e p="PrimeSaw.png" t="Include" />
+          <e p="PrimeVice.png" t="Include" />
+          <e p="RpxxyOl.png" t="Include" />
+        </e>
+        <e p="PhantasmalSphere.cs" t="Include" />
+        <e p="PhantasmalSphere.png" t="Include" />
+        <e p="Souls" t="Include">
+          <e p="Chlorofuck.cs" t="Include" />
+          <e p="Chlorofuck.png" t="Include" />
+          <e p="Shock.cs" t="Include" />
+          <e p="Shock.png" t="Include" />
+          <e p="SpookyScythe.cs" t="Include" />
+          <e p="SpookyScythe.png" t="Include" />
+          <e p="SporeBoom.cs" t="Include" />
+          <e p="SporeBoom.png" t="Include" />
+          <e p="SuperBlood.cs" t="Include" />
+          <e p="SuperBlood.png" t="Include" />
+        </e>
+        <e p="SpearProjectileName.cs" t="Include" />
+        <e p="SpearProjectileName.png" t="Include" />
+        <e p="Squirrel1.cs" t="Include" />
+        <e p="sun.cs" t="Include" />
+        <e p="sun.png" t="Include" />
+        <e p="Void.cs" t="Include" />
+        <e p="VoidArrow.cs" t="Include" />
+        <e p="VoidArrow.png" t="Include" />
+        <e p="VoidPortal.cs" t="Include" />
+        <e p="VoidPortal.png" t="Include" />
+      </e>
+      <e p="Properties" t="Include">
+        <e p="AssemblyInfo.cs" t="Include" />
+      </e>
+      <e p="soulcheck.cs" t="Include" />
+      <e p="Sounds" t="Include">
+        <e p="SqueakyToy" t="Include">
+          <e p="squeak1.wav" t="Include" />
+          <e p="squeak2.wav" t="Include" />
+          <e p="squeak3.wav" t="Include" />
+          <e p="squeak4.wav" t="Include" />
+          <e p="squeak5.wav" t="Include" />
+          <e p="squeak6.wav" t="Include" />
+        </e>
+      </e>
+      <e p="UICheckbox.cs" t="Include" />
+      <e p="UIPageSelect.cs" t="Include" />
+    </e>
+  </component>
+</project>

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles
 {
-	public class sun : ModProjectile
+	public class Sun : ModProjectile
 	{public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sun");

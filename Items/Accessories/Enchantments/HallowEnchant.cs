@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -33,15 +29,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public static void EffectAdd(Player player, bool hideVisual, Mod mod)
         {
             player.noKnockback = true;
-            if (Soulcheck.GetValue("Hallowed Shield") == true)
+            if (Soulcheck.GetValue("Hallowed Shield"))
             {
-                (player.GetModPlayer<FargoPlayer>(mod)).hallowEnchant = true;
+                player.GetModPlayer<FargoPlayer>(mod).HallowEnchant = true;
                 //shield and sword
                 if (player.whoAmI == Main.myPlayer)
                 {
                     if (player.ownedProjectileCounts[mod.ProjectileType("HallowProj")] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, mod.ProjectileType("HallowProj"), 80/*dmg*/, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, mod.ProjectileType("HallowProj"), 80/*dmg*/, 2f, Main.myPlayer);
                     }
                 }
             }

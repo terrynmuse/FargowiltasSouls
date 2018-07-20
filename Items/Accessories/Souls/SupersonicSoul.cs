@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -16,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Supersonic Soul");
             Tooltip.SetDefault("'Sound barriers forever broken' \n25% increased movement speed \nAllows supersonic fast running, and extra mobility on ice \nProvides lava immunity and permanent light \nGrants the ability to swim and greatly extends underwater breathing \nIncreases jump height, allows auto jump, and negates fall damage \nAllows the player to dash into the enemy");
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 Tooltip.SetDefault("'Sound barriers forever broken' \n25% increased movement speed \nAllows supersonic fast running, and extra mobility on ice \nProvides lava immunity and permanent light \nGrants the ability to swim and greatly extends underwater breathing \nIncreases jump height, allows auto jump, and negates fall damage \nAllows the player to dash into the enemy \nReflects 35% of damage back to attackers");
             }
@@ -46,9 +40,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
 
             //frostspark
-            if (Soulcheck.GetValue("Super Speed") == true)
+            if (Soulcheck.GetValue("Super Speed"))
             {
-                (player.GetModPlayer<FargoPlayer>(mod)).speedEffect = true;
+                player.GetModPlayer<FargoPlayer>(mod).SpeedEffect = true;
                 player.accRunSpeed = 2.00f;
                 player.moveSpeed += 5f;
             }
@@ -69,7 +63,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.lavaImmune = true;
 
             //spiked stompers
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 player.thorns += 0.35f;
             }
@@ -79,7 +73,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.autoJump = true;
 
             //elysian tracers
-            if (Fargowiltas.instance.calamityLoaded && !hideVisual)
+            if (Fargowiltas.Instance.CalamityLoaded && !hideVisual)
             {
                 CalamityBoots(player);
             }
@@ -100,9 +94,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             ModRecipe speed = new ModRecipe(mod);
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //thorium and calamity
                     speed.AddIngredient(ItemID.EoCShield);
@@ -121,7 +115,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     speed.AddIngredient(ItemID.BrainScrambler);
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just thorium
                     speed.AddIngredient(ItemID.EoCShield);
@@ -141,9 +135,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 }
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just calamity
                     speed.AddIngredient(ItemID.EoCShield);
@@ -161,7 +155,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     speed.AddIngredient(ItemID.BrainScrambler);
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //no others
                     speed.AddIngredient(ItemID.EoCShield);

@@ -1,68 +1,64 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
-using System;
 using Terraria.ModLoader;
-using System.Collections.Generic;
-
+using Terraria.UI;
 
 namespace FargowiltasSouls
 {
     class Soulcheck : UIState
     {
-        public UIPanel checklistPanel;
-        public static bool visible = false;
+        private UIPanel _checklistPanel;
+        public static bool Visible = false;
 
-        public static Dictionary<String, bool> toggleDict = new Dictionary<String, bool>();
+        public static readonly Dictionary<string, bool> ToggleDict = new Dictionary<string, bool>();
 
         public static bool GetValue(string buff)
         {
-            bool returnVar;
-            toggleDict.TryGetValue(buff, out returnVar);
-            ErrorLogger.Log(buff + ": " + returnVar.ToString());
-            return returnVar;
+            ToggleDict.TryGetValue(buff, out bool ret);
+            ErrorLogger.Log(buff + ": " + ret);
+            return ret;
         }
 
-        private Color WTF = new Color(173, 94, 171);
-        private float Left;
-        private float Top = 20f;
-        public void CreateCheckbox(String name, Color color)
+        private readonly Color _wtf = new Color(173, 94, 171);
+        private float _left;
+        private float _top = 20f;
+
+        private void CreateCheckbox(string name, Color color)
         {
-            toggleDict.Add(name, true);
+            ToggleDict.Add(name, true);
 
-            var temp = new UICheckbox(name, "", color, WTF, true);
-            temp.Left.Set(Left, 0f);
-            temp.Top.Set(Top, 0f);
-            temp.OnSelectedChanged += (object o, EventArgs e) =>
+            UiCheckbox temp = new UiCheckbox(name, "", color, _wtf);
+            temp.Left.Set(_left, 0f);
+            temp.Top.Set(_top, 0f);
+            temp.OnSelectedChanged += (o, e) =>
             {
-                toggleDict[name] = !toggleDict[name];
+                ToggleDict[name] = !ToggleDict[name];
             };
-            checklistPanel.Append(temp);
+            _checklistPanel.Append(temp);
 
-            Top += 25f;
-            if (Top >= 540)
-            {
-                Top = 20f;
-                Left += 190f;
-            }
+            _top += 25f;
+            if (!(_top >= 540)) return;
+            _top = 20f;
+            _left += 190f;
         }
 
         public override void OnInitialize()
         {
             // Is initialize called? (Yes it is called on reload) I want to reset nicely with new character or new loaded mods: visible = false;
 
-            checklistPanel = new UIPanel();
-            checklistPanel.SetPadding(10);
-            checklistPanel.Width.Set(450f, 0f);
-            checklistPanel.Height.Set(600f, 0f);
-            checklistPanel.Left.Set(1000f, 0f);
-            checklistPanel.Top.Set(450f, 0f);
-            checklistPanel.BackgroundColor = new Color(73, 94, 171);
-            checklistPanel.OnMouseDown += new UIElement.MouseEvent(DragOn);
-            checklistPanel.OnMouseUp += new UIElement.MouseEvent(DragOff);
-            base.Append(checklistPanel);
+            _checklistPanel = new UIPanel();
+            _checklistPanel.SetPadding(10);
+            _checklistPanel.Width.Set(450f, 0f);
+            _checklistPanel.Height.Set(600f, 0f);
+            _checklistPanel.Left.Set(1000f, 0f);
+            _checklistPanel.Top.Set(450f, 0f);
+            _checklistPanel.BackgroundColor = new Color(73, 94, 171);
+            _checklistPanel.OnMouseDown += DragOn;
+            _checklistPanel.OnMouseUp += DragOff;
+            Append(_checklistPanel);
 
             CreateCheckbox("Inferno Buff", new Color(244, 121, 13));
             CreateCheckbox("Hallowed Shield", new Color(224, 221, 44));
@@ -110,44 +106,38 @@ namespace FargowiltasSouls
 
         }
 
-        internal void UpdateNeeded()
-        {
-            updateneeded = true;
-        }
-        private bool updateneeded;
-
-        private Vector2 offset;
-        public bool dragging = false;
+        private Vector2 _offset;
+        private bool _dragging;
 
         private void DragOn(UIMouseEvent evt, UIElement listeningElement)
         {
-            offset = new Vector2(evt.MousePosition.X - checklistPanel.Left.Pixels, evt.MousePosition.Y - checklistPanel.Top.Pixels);
+            _offset = new Vector2(evt.MousePosition.X - _checklistPanel.Left.Pixels, evt.MousePosition.Y - _checklistPanel.Top.Pixels);
 
-            dragging = true;
+            _dragging = true;
         }
 
         private void DragOff(UIMouseEvent evt, UIElement listeningElement)
         {
             Vector2 end = evt.MousePosition;
-            dragging = false;
+            _dragging = false;
 
-            checklistPanel.Left.Set(end.X - offset.X, 0f);
-            checklistPanel.Top.Set(end.Y - offset.Y, 0f);
+            _checklistPanel.Left.Set(end.X - _offset.X, 0f);
+            _checklistPanel.Top.Set(end.Y - _offset.Y, 0f);
 
             Recalculate();
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            Vector2 MousePosition = new Vector2((float)Main.mouseX, (float)Main.mouseY);
-            if (checklistPanel.ContainsPoint(MousePosition))
+            Vector2 mousePosition = new Vector2(Main.mouseX, Main.mouseY);
+            if (_checklistPanel.ContainsPoint(mousePosition))
             {
                 Main.LocalPlayer.mouseInterface = true;
             }
-            if (dragging)
+            if (_dragging)
             {
-                checklistPanel.Left.Set(MousePosition.X - offset.X, 0f);
-                checklistPanel.Top.Set(MousePosition.Y - offset.Y, 0f);
+                _checklistPanel.Left.Set(mousePosition.X - _offset.X, 0f);
+                _checklistPanel.Top.Set(mousePosition.Y - _offset.Y, 0f);
                 Recalculate();
             }
         }

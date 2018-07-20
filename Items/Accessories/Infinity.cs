@@ -1,10 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using static Terraria.ID.ItemID;
 
 namespace FargowiltasSouls.Items.Accessories
 {
@@ -22,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            ItemID.Sets.ItemNoGravity[item.type] = true;
+            Sets.ItemNoGravity[item.type] = true;
             item.rare = 8;
             item.value = 250000;
         }
@@ -30,7 +27,7 @@ namespace FargowiltasSouls.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             //nothing used son
-            (player.GetModPlayer<FargoPlayer>(mod)).infinity = true;
+            player.GetModPlayer<FargoPlayer>(mod).Infinity = true;
             player.manaCost -= 1f;
 
             //the price
@@ -42,16 +39,16 @@ namespace FargowiltasSouls.Items.Accessories
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(ItemID.EndlessQuiver);
-            recipe.AddIngredient(ItemID.HolyArrow, 999);
-            recipe.AddIngredient(ItemID.VenomArrow, 999);
-            recipe.AddIngredient(ItemID.EndlessMusketPouch);
-            recipe.AddIngredient(ItemID.PartyBullet, 999);
-            recipe.AddIngredient(ItemID.ChlorophyteBullet, 999);
-            recipe.AddIngredient(ItemID.RocketIII, 999);
-            recipe.AddIngredient(ItemID.CrystalDart, 999);
-            recipe.AddIngredient(ItemID.ManaCrystal, 10);
-            recipe.AddIngredient(ItemID.LifeCrystal, 10);
+            recipe.AddIngredient(EndlessQuiver);
+            recipe.AddIngredient(HolyArrow, 999);
+            recipe.AddIngredient(VenomArrow, 999);
+            recipe.AddIngredient(EndlessMusketPouch);
+            recipe.AddIngredient(PartyBullet, 999);
+            recipe.AddIngredient(ChlorophyteBullet, 999);
+            recipe.AddIngredient(RocketIII, 999);
+            recipe.AddIngredient(CrystalDart, 999);
+            recipe.AddIngredient(ManaCrystal, 10);
+            recipe.AddIngredient(LifeCrystal, 10);
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

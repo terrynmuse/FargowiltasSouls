@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -31,7 +27,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			
-			modPlayer.ironEnchant = true;
+			modPlayer.IronEnchant = true;
         }
 		
 		public override void AddRecipes()

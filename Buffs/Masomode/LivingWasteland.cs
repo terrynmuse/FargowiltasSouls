@@ -1,5 +1,4 @@
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
@@ -28,11 +27,11 @@ namespace FargowiltasSouls.Buffs.Masomode
 			//inflicts rotting on everything in range
 			if(player.ownedProjectileCounts[mod.ProjectileType("DeathAura")] <= 0 && player.whoAmI == Main.myPlayer)
 			{
-				Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y + (float)(player.height / 2), 0f, 0f, mod.ProjectileType("DeathAura"), 9001, 9f, player.whoAmI);
+				Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, 0f, 0f, mod.ProjectileType("DeathAura"), 9001, 9f, player.whoAmI);
 				player.ownedProjectileCounts[mod.ProjectileType("DeathAura")]++;
 			}
 			
-			player.GetModPlayer<FargoPlayer>(mod).rotting = true;
+			player.GetModPlayer<FargoPlayer>(mod).Rotting = true;
         }
 	}
 }

@@ -1,6 +1,6 @@
+using FargowiltasSouls.NPCs;
 using Terraria;
 using Terraria.ModLoader;
-using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls.Buffs.Souls
 {
@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Buffs.Souls
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<FargoGlobalNPC>(mod).shock = true;
+			npc.GetGlobalNPC<FargoGlobalNpc>(mod).Shock = true;
 		}
 	}
 }

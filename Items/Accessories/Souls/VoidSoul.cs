@@ -1,17 +1,16 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using static Terraria.ID.ItemID;
+using static Terraria.ID.ProjectileID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class VoidSoul : ModItem
     {
-        public int cd = 0;
-        public int voidTimer = 600;
+        public int Cd;
+        public int VoidTimer = 600;
 
         public override void SetStaticDefaults()
         {
@@ -99,13 +98,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            modPlayer.voidSoul = true;
+            modPlayer.VoidSoul = true;
 
             //2 second cd
-            if (player.controlHook && cd <= 0 && Main.myPlayer == player.whoAmI)
+            if (player.controlHook && Cd <= 0 && Main.myPlayer == player.whoAmI)
             {
                 //void spawn
-                if (voidTimer <= 0)
+                if (VoidTimer <= 0)
                 {
                     for (int i = 0; i < 1000; i++)
                     {
@@ -114,35 +113,35 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                             Main.projectile[i].Kill();
                         }
                     }
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("Void"), 0, 0f, player.whoAmI, 0f, 0f);
-                    voidTimer = 600;
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("Void"), 0, 0f, player.whoAmI);
+                    VoidTimer = 600;
                 }
 
                 Vector2 vector32;
-                vector32.X = (float)Main.mouseX + Main.screenPosition.X;
+                vector32.X = Main.mouseX + Main.screenPosition.X;
                 if (player.gravDir == 1f)
                 {
-                    vector32.Y = (float)Main.mouseY + Main.screenPosition.Y - (float)player.height;
+                    vector32.Y = Main.mouseY + Main.screenPosition.Y - player.height;
                 }
                 else
                 {
-                    vector32.Y = Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY;
+                    vector32.Y = Main.screenPosition.Y + Main.screenHeight - Main.mouseY;
                 }
-                vector32.X -= (float)(player.width / 2);
-                if (vector32.X > 50f && vector32.X < (float)(Main.maxTilesX * 16 - 50) && vector32.Y > 50f && vector32.Y < (float)(Main.maxTilesY * 16 - 50))
+                vector32.X -= player.width / 2;
+                if (vector32.X > 50f && vector32.X < Main.maxTilesX * 16 - 50 && vector32.Y > 50f && vector32.Y < Main.maxTilesY * 16 - 50)
                 {
                     int num246 = (int)(vector32.X / 16f);
                     int num247 = (int)(vector32.Y / 16f);
                     if (!Collision.SolidCollision(vector32, player.width, player.height))
                     {
-                        player.Teleport(vector32, 1, 0);
-                        NetMessage.SendData(65, -1, -1, null, 0, (float)player.whoAmI, vector32.X, vector32.Y, 1, 0, 0);
-                        cd = 120;
+                        player.Teleport(vector32, 1);
+                        NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, vector32.X, vector32.Y, 1);
+                        Cd = 120;
                     }
                 }
             }
-            cd--;
-            voidTimer--;
+            Cd--;
+            VoidTimer--;
 
             player.accWatch = 3;
             player.accDepthMeter = 1;
@@ -158,143 +157,139 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.accDreamCatcher = true;
 
             //pets
-            if (player.whoAmI == Main.myPlayer)
+            if (player.whoAmI != Main.myPlayer) return;
+            if (Soulcheck.GetValue("Baby Penguin Pet"))
             {
-                if (Soulcheck.GetValue("Baby Penguin Pet"))
-                {
-                    modPlayer.penguinPet = true;
+                modPlayer.PenguinPet = true;
 
-                    if (player.FindBuffIndex(41) == -1)
+                if (player.FindBuffIndex(41) == -1)
+                {
+                    if (player.ownedProjectileCounts[ProjectileID.Penguin] < 1)
                     {
-                        if (player.ownedProjectileCounts[ProjectileID.Penguin] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Penguin, 0, 2f, Main.myPlayer, 0f, 0f);
-                        }
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Penguin, 0, 2f, Main.myPlayer);
                     }
                 }
-                else
-                {
-                    modPlayer.penguinPet = false;
-                }
+            }
+            else
+            {
+                modPlayer.PenguinPet = false;
+            }
 
-                if (Soulcheck.GetValue("Baby Skeletron Pet"))
-                {
-                    modPlayer.skullPet = true;
+            if (Soulcheck.GetValue("Baby Skeletron Pet"))
+            {
+                modPlayer.SkullPet = true;
 
-                    if (player.FindBuffIndex(50) == -1)
+                if (player.FindBuffIndex(50) == -1)
+                {
+                    if (player.ownedProjectileCounts[BabySkeletronHead] < 1)
                     {
-                        if (player.ownedProjectileCounts[ProjectileID.BabySkeletronHead] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabySkeletronHead, 0, 2f, Main.myPlayer, 0f, 0f);
-                        }
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, BabySkeletronHead, 0, 2f, Main.myPlayer);
                     }
                 }
-                else
-                {
-                    modPlayer.skullPet = false;
-                }
+            }
+            else
+            {
+                modPlayer.SkullPet = false;
+            }
 
-                if (Soulcheck.GetValue("Baby Snowman Pet"))
-                {
-                    modPlayer.snowmanPet = true;
+            if (Soulcheck.GetValue("Baby Snowman Pet"))
+            {
+                modPlayer.SnowmanPet = true;
 
-                    if (player.FindBuffIndex(66) == -1)
+                if (player.FindBuffIndex(66) == -1)
+                {
+                    if (player.ownedProjectileCounts[BabySnowman] < 1)
                     {
-                        if (player.ownedProjectileCounts[ProjectileID.BabySnowman] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabySnowman, 0, 2f, Main.myPlayer, 0f, 0f);
-                        }
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, BabySnowman, 0, 2f, Main.myPlayer);
                     }
                 }
-                else
-                {
-                    modPlayer.snowmanPet = false;
-                }
+            }
+            else
+            {
+                modPlayer.SnowmanPet = false;
+            }
 
-                if (Soulcheck.GetValue("Zephyr Fish Pet"))
-                {
-                    modPlayer.fishPet = true;
+            if (Soulcheck.GetValue("Zephyr Fish Pet"))
+            {
+                modPlayer.FishPet = true;
 
-                    if (player.FindBuffIndex(127) == -1)
+                if (player.FindBuffIndex(127) == -1)
+                {
+                    if (player.ownedProjectileCounts[ProjectileID.ZephyrFish] < 1)
                     {
-                        if (player.ownedProjectileCounts[ProjectileID.ZephyrFish] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ZephyrFish, 0, 2f, Main.myPlayer, 0f, 0f);
-                        }
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ZephyrFish, 0, 2f, Main.myPlayer);
                     }
                 }
-                else
-                {
-                    modPlayer.fishPet = false;
-                }
+            }
+            else
+            {
+                modPlayer.FishPet = false;
+            }
 
-                if (Soulcheck.GetValue("Companion Cube Pet"))
-                {
-                    modPlayer.cubePet = true;
+            if (Soulcheck.GetValue("Companion Cube Pet"))
+            {
+                modPlayer.CubePet = true;
 
-                    if (player.FindBuffIndex(191) == -1)
+                if (player.FindBuffIndex(191) == -1)
+                {
+                    if (player.ownedProjectileCounts[ProjectileID.CompanionCube] < 1)
                     {
-                        if (player.ownedProjectileCounts[ProjectileID.CompanionCube] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CompanionCube, 0, 2f, Main.myPlayer, 0f, 0f);
-                        }
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CompanionCube, 0, 2f, Main.myPlayer);
                     }
                 }
-                else
-                {
-                    modPlayer.cubePet = false;
-                }
+            }
+            else
+            {
+                modPlayer.CubePet = false;
+            }
 
-                if (Soulcheck.GetValue("Baby Grinch Pet"))
-                {
-                    modPlayer.grinchPet = true;
+            if (Soulcheck.GetValue("Baby Grinch Pet"))
+            {
+                modPlayer.GrinchPet = true;
 
-                    if (player.FindBuffIndex(92) == -1)
+                if (player.FindBuffIndex(92) == -1)
+                {
+                    if (player.ownedProjectileCounts[BabyGrinch] < 1)
                     {
-                        if (player.ownedProjectileCounts[ProjectileID.BabyGrinch] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyGrinch, 0, 2f, Main.myPlayer, 0f, 0f);
-                        }
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, BabyGrinch, 0, 2f, Main.myPlayer);
                     }
                 }
-                else
-                {
-                    modPlayer.grinchPet = false;
-                }
+            }
+            else
+            {
+                modPlayer.GrinchPet = false;
+            }
 
-                if (Soulcheck.GetValue("Lizard Pet"))
-                {
-                    modPlayer.lizPet = true;
+            if (Soulcheck.GetValue("Lizard Pet"))
+            {
+                modPlayer.LizPet = true;
 
-                    if (player.FindBuffIndex(53) == -1)
+                if (player.FindBuffIndex(53) == -1)
+                {
+                    if (player.ownedProjectileCounts[PetLizard] < 1)
                     {
-                        if (player.ownedProjectileCounts[ProjectileID.PetLizard] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.PetLizard, 0, 2f, Main.myPlayer, 0f, 0f);
-                        }
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, PetLizard, 0, 2f, Main.myPlayer);
                     }
                 }
-                else
-                {
-                    modPlayer.lizPet = false;
-                }
+            }
+            else
+            {
+                modPlayer.LizPet = false;
+            }
 
-                if (Soulcheck.GetValue("Suspicious Looking Eye Pet"))
-                {
-                    modPlayer.suspiciousEyePet = true;
+            if (Soulcheck.GetValue("Suspicious Looking Eye Pet"))
+            {
+                modPlayer.SuspiciousEyePet = true;
 
-                    if (player.FindBuffIndex(190) == -1)
-                    {
-                        if (player.ownedProjectileCounts[ProjectileID.SuspiciousTentacle] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.SuspiciousTentacle, 0, 2f, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                }
-                else
+                if (player.FindBuffIndex(190) != -1) return;
+                if (player.ownedProjectileCounts[SuspiciousTentacle] < 1)
                 {
-                    modPlayer.suspiciousEyePet = false;
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, SuspiciousTentacle, 0, 2f, Main.myPlayer);
                 }
+            }
+            else
+            {
+                modPlayer.SuspiciousEyePet = false;
             }
 
         }
@@ -304,20 +299,20 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(ItemID.PortalGun);
-            recipe.AddIngredient(ItemID.RodofDiscord);
-            recipe.AddIngredient(ItemID.CellPhone);
-            recipe.AddIngredient(ItemID.CoinGun);
+            recipe.AddIngredient(RodofDiscord);
+            recipe.AddIngredient(CellPhone);
+            recipe.AddIngredient(CoinGun);
 
-            recipe.AddIngredient(ItemID.AmberMosquito);
-            recipe.AddIngredient(ItemID.Fish);
-            recipe.AddIngredient(ItemID.Seaweed);
-            recipe.AddIngredient(ItemID.ToySled);
+            recipe.AddIngredient(AmberMosquito);
+            recipe.AddIngredient(Fish);
+            recipe.AddIngredient(Seaweed);
+            recipe.AddIngredient(ToySled);
             recipe.AddIngredient(ItemID.ZephyrFish);
             recipe.AddIngredient(ItemID.CompanionCube);
-            recipe.AddIngredient(ItemID.LizardEgg);
-            recipe.AddIngredient(ItemID.BabyGrinchMischiefWhistle);
-            recipe.AddIngredient(ItemID.BoneKey);
-            recipe.AddIngredient(ItemID.SuspiciousLookingTentacle);
+            recipe.AddIngredient(LizardEgg);
+            recipe.AddIngredient(BabyGrinchMischiefWhistle);
+            recipe.AddIngredient(BoneKey);
+            recipe.AddIngredient(SuspiciousLookingTentacle);
 
             //recipe.AddTile(null, "CrucibleCosmosSheet");
             recipe.SetResult(this);

@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
- 
+
 namespace FargowiltasSouls.Projectiles       //We need this to basically indicate the folder where it is to be read from, so you the texture will load correctly
 {
-    public class flamethrowerProj : ModProjectile
+    public class FlamethrowerProj : ModProjectile
     {
 		public override void SetStaticDefaults()
 		{
@@ -27,7 +25,7 @@ namespace FargowiltasSouls.Projectiles       //We need this to basically indicat
  
         public override void AI()
         {
-            Lighting.AddLight(projectile.Center, ((255 - projectile.alpha) * 0.15f) / 255f, ((255 - projectile.alpha) * 0.45f) / 255f, ((255 - projectile.alpha) * 0.05f) / 255f);   //this is the light colors
+            Lighting.AddLight(projectile.Center, (255 - projectile.alpha) * 0.15f / 255f, (255 - projectile.alpha) * 0.45f / 255f, (255 - projectile.alpha) * 0.05f / 255f);   //this is the light colors
             if (projectile.timeLeft > 125)
             {
                 projectile.timeLeft = 125;
@@ -46,7 +44,6 @@ namespace FargowiltasSouls.Projectiles       //We need this to basically indicat
             {
                 projectile.ai[0] += 1f;
             }
-            return;
         }
  
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

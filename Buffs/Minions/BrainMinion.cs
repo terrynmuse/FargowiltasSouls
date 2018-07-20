@@ -18,9 +18,9 @@ namespace FargowiltasSouls.Buffs.Minions
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			if (player.ownedProjectileCounts[mod.ProjectileType("BrainProj")] > 0)
 			{
-				modPlayer.brainMinion = true;
+				modPlayer.BrainMinion = true;
 			}
-			if (!modPlayer.brainMinion)
+			if (!modPlayer.BrainMinion)
 			{
 				player.DelBuff(buffIndex);
 				buffIndex--;

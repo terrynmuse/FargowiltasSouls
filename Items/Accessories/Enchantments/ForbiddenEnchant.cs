@@ -39,7 +39,7 @@ Double tap down to call an ancient storm to the cursor location");
         {
             player.buffImmune[BuffID.WindPushed] = true; 
 
-            if (Soulcheck.GetValue("Forbidden Storm") == true)
+            if (Soulcheck.GetValue("Forbidden Storm"))
             {
                 player.setForbidden = true;
                 player.UpdateForbiddenSetLock();

@@ -5,33 +5,37 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles
 {
-	public class ExampleCloneProjectile : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("MagnetSphere V2");
-		}
-		public override void SetDefaults()
-		{
-			projectile.CloneDefaults(ProjectileID.MagnetSphereBall);
-			aiType = ProjectileID.Starfury;
-		}
+    public class ExampleCloneProjectile : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("MagnetSphere V2");
+        }
 
-		public override bool PreKill(int timeLeft)
-		{
-			projectile.type = ProjectileID.MagnetSphereBall;
-			return true;
-		}
+        public override void SetDefaults()
+        {
+            projectile.CloneDefaults(ProjectileID.MagnetSphereBall);
+            aiType = ProjectileID.Starfury;
+        }
 
-		public override bool OnTileCollide(Vector2 oldVelocity)
-		{
-			for (int i = 0; i < 5; i++)
-			{
-				int a = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-10, 11) * .25f, Main.rand.Next(-10, -5) * .25f, ProjectileID.Starfury, (int)(projectile.damage * .5f), 0, projectile.owner);
-				Main.projectile[a].aiStyle = 1;
-				Main.projectile[a].tileCollide = true;
-			}
-			return true;
-		}
-	}
+        public override bool PreKill(int timeLeft)
+        {
+            projectile.type = ProjectileID.MagnetSphereBall;
+            return true;
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                int a = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f,
+                    Main.rand.Next(-10, 11) * .25f, Main.rand.Next(-10, -5) * .25f, ProjectileID.Starfury,
+                    (int) (projectile.damage * .5f), 0, projectile.owner);
+                Main.projectile[a].aiStyle = 1;
+                Main.projectile[a].tileCollide = true;
+            }
+
+            return true;
+        }
+    }
 }

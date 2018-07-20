@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<FargoPlayer>().fused = true;
+            player.GetModPlayer<FargoPlayer>().Fused = true;
 
             if (player.buffTime[buffIndex] < 3)
             {
