@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -12,6 +10,7 @@ namespace FargowiltasSouls.Projectiles.Souls
 		{
 			DisplayName.SetDefault("Shock");
 		}
+
         public override void SetDefaults()
         {
             projectile.width = 12;
@@ -32,6 +31,5 @@ namespace FargowiltasSouls.Projectiles.Souls
 			//int DustID3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 226, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
 			//Main.dust[DustID3].noGravity = true;
 		}
-	   
     }
 }

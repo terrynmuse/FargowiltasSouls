@@ -1,22 +1,14 @@
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.IO;
-using Terraria.ModLoader.IO;
-using Terraria.DataStructures;
 
 namespace FargowiltasSouls.Items
 {
 	public class FargoGlobalItem : GlobalItem
 	{
-	
-		public class UseSpeed : GlobalItem
+        public class UseSpeed : GlobalItem
 		{
-			
-			
 			public override float UseTimeMultiplier(Item item, Player player)
 			{
 				FargoPlayer p = (FargoPlayer)player.GetModPlayer(mod, "FargoPlayer");
@@ -100,31 +92,14 @@ namespace FargowiltasSouls.Items
 				}
 				return 1f;
 			}
-			
-			
 		}
 		
 		public override void ModifyTooltips (Item item, List< TooltipLine > tooltips)
-		{
-			if(item.type == ItemID.CrystalBall)
-			{
-				TooltipLine line = new TooltipLine(mod, "fun", "Functions as a Demon altar as well");
-				//line.overrideColor = Color.LimeGreen;
-				tooltips.Add(line);
-			}
-			
+		{			
 			if(item.type == ItemID.DogWhistle)
 			{
 				TooltipLine line = new TooltipLine(mod, "fun", "Shoutout to Browny and Paca");
 				tooltips.Add(line);
-			}
-		}
-		
-		public override void SetDefaults (Item item)
-		{
-			if(item.maxStack > 10 && item.maxStack != 100 && item.type != ItemID.CopperCoin && item.type != ItemID.SilverCoin && item.type != ItemID.GoldCoin && item.type != ItemID.PlatinumCoin)
-			{
-				item.maxStack = 9999;
 			}
 		}
 		
@@ -174,14 +149,6 @@ namespace FargowiltasSouls.Items
 
         public override void OpenVanillaBag(string context, Player player, int arg)
         {
-            if (arg == ItemID.KingSlimeBossBag)
-            {
-                if (Main.rand.Next(50) == 0)
-                {
-                    player.QuickSpawnItem(ItemID.SlimeStaff);
-                }
-            }
-
             if (Main.rand.Next(10) == 0)
             {
                 switch (arg)
@@ -224,7 +191,6 @@ namespace FargowiltasSouls.Items
                         break;
                 }
             }
-
         }
 
         public override bool OnPickup(Item item, Player player)
@@ -232,9 +198,17 @@ namespace FargowiltasSouls.Items
             bool returnVal = true;
             FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (p.chloroEnchant && (item.type == ItemID.Daybloom || item.type == ItemID.Blinkroot || item.type == ItemID.Deathweed || item.type == ItemID.Fireblossom || item.type == ItemID.Moonglow || item.type == ItemID.Shiverthorn || item.type == ItemID.Waterleaf || item.type == ItemID.Mushroom || item.type == ItemID.VileMushroom || item.type == ItemID.ViciousMushroom || item.type == ItemID.GlowingMushroom))
+            if (p.chloroEnchant && item.stack == 1 && (item.type == ItemID.Daybloom || item.type == ItemID.Blinkroot || item.type == ItemID.Deathweed || item.type == ItemID.Fireblossom || item.type == ItemID.Moonglow || item.type == ItemID.Shiverthorn || item.type == ItemID.Waterleaf || item.type == ItemID.Mushroom || item.type == ItemID.VileMushroom || item.type == ItemID.ViciousMushroom || item.type == ItemID.GlowingMushroom))
             {
-                item.stack *= 2;
+                item.stack = 2;
+            }
+
+            if(p.crimsonEnchant && item.type == ItemID.Heart)
+            {
+                player.HealEffect(30);
+                player.statLife += 30;
+
+                return false;
             }
 
             if (p.goldEnchant)
@@ -295,12 +269,8 @@ namespace FargowiltasSouls.Items
                             player.AddBuff(BuffID.Swiftness, 600);
                             break;
                     }
-
-                    //item.stack = 2;
-
                 }
             }
-
 
             return returnVal;
         }

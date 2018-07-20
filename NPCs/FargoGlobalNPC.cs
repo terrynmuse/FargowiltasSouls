@@ -833,10 +833,9 @@ namespace FargowiltasSouls.NPCs
 					
 					Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 40, 0f + Main.rand.Next(-5, 5), -5f, mod.ProjectileType("SuperBlood"), dmg, 0f, Main.myPlayer, 0f, 0f);
 				}
-				
 			}
 			
-			if(shock && Main.rand.Next(2) == 0)
+			if(shock && Main.rand.Next(4) == 0)
 			{
 				if(npc.FindBuffIndex(BuffID.Wet) != -1)  
 				{
@@ -846,7 +845,23 @@ namespace FargowiltasSouls.NPCs
 				{
 					dmg = 10;
 				}
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, 0f, mod.ProjectileType("Shock"), dmg, 0f, Main.myPlayer, 0f, 0f);
+
+				Projectile p = Projectile.NewProjectileDirect(npc.Center, new Vector2(0, 0), mod.ProjectileType("Shock"), dmg, 0f, Main.myPlayer);
+                p.friendly = true;
+                p.hostile = false;
+                //p.timeLeft = 60;
+
+                for(int i = 0; i < 200; i++)
+                {
+                    if(Main.npc[i].Distance(npc.Center) < 500f && Main.npc[i].Distance(npc.Center) > 100f)
+                    {
+                        Vector2 velocity = Vector2.Normalize(Main.npc[i].Center - npc.Center) * 20;
+
+                        Projectile p2 = Projectile.NewProjectileDirect(npc.Center, velocity, ProjectileID.CultistBossLightningOrbArc, dmg, 0f, Main.myPlayer);
+                        p2.friendly = true;
+                        p2.hostile = false;
+                    }
+                }
 			}
 
             if (rotting)
@@ -1473,13 +1488,7 @@ namespace FargowiltasSouls.NPCs
 		public override void NPCLoot(NPC npc)
 		{
 			Player player = Main.player[Main.myPlayer];
-			
-			//crimson enchant
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-			if(modPlayer.crimsonEnchant && Main.rand.Next(8) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Heart, 1);
-			}
 			
 			//spider enchant
 			if(modPlayer.spiderEnchant && Main.rand.Next(5) == 0)
@@ -1500,20 +1509,6 @@ namespace FargowiltasSouls.NPCs
 		{
 			Player player = Main.player[Main.myPlayer];
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            if (modPlayer.cobaltEnchant && !npc.friendly && (npc.damage > 0 || npc.lifeMax > 5))
-			{
-				Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 27);
-			                                        
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, 5f, 90, 50/*dmg*/, 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5f, 0f, 90, 50, 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f, -5f, 90, 50, 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5f, 0f, 90, 50, 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4f, 4f, 90, 50, 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4f, -4f, 90, 50, 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4f, -4f, 90, 50, 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4f, 4f, 90, 50, 2, Main.myPlayer, 0f, 0f);
-			}
 
             if(FargoWorld.masochistMode)
             {
@@ -1738,12 +1733,21 @@ namespace FargowiltasSouls.NPCs
 
         public override void ModifyHitByProjectile (NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{
+            Player player = Main.player[Main.myPlayer];
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
             if (FargoWorld.masochistMode)
             {
                 if (npc.type == NPCID.Salamander || npc.type == NPCID.Salamander2 || npc.type == NPCID.Salamander3 || npc.type == NPCID.Salamander4 || npc.type == NPCID.Salamander5 || npc.type == NPCID.Salamander6 || npc.type == NPCID.Salamander7 || npc.type == NPCID.Salamander8 || npc.type == NPCID.Salamander9)
                 {
                     npc.Opacity *= 25;
                 }
+            }
+
+            //bees ignore defense
+            if (modPlayer.beeEnchant && projectile.type == ProjectileID.GiantBee)
+            {
+                damage = (int)(damage + npc.defense * .5);
             }
 
             if (projectile.type == mod.ProjectileType("FishNuke"))

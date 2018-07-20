@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -13,11 +9,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cobalt Enchantment");
-			Tooltip.SetDefault(@"'I can't believe it's not palladium' 
-10% increased melee and movement speed 
-Chance to confuse enemies 
-Enemies will explode into cobalt shards on death");
+			Tooltip.SetDefault(
+@"'I can't believe it's not Palladium' 
+50% chance for your projectiles to explode into shards");
 		}
+
 		public override void SetDefaults()
 		{
 			item.width = 20;
@@ -31,8 +27,6 @@ Enemies will explode into cobalt shards on death");
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			(player.GetModPlayer<FargoPlayer>(mod)).cobaltEnchant = true;
-			player.meleeSpeed += .1f;
-			player.moveSpeed += 0.1f;
         }
 		
 		public override void AddRecipes()
@@ -41,10 +35,10 @@ Enemies will explode into cobalt shards on death");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyCobaltHead");
 			recipe.AddIngredient(ItemID.CobaltBreastplate);
 			recipe.AddIngredient(ItemID.CobaltLeggings);
-			recipe.AddIngredient(ItemID.HelFire);
-			recipe.AddRecipeGroup("FargowiltasSouls:AnyPhasesaber");
-			recipe.AddIngredient(ItemID.DaoofPow);
-			recipe.AddTile(TileID.CrystalBall);
+			recipe.AddIngredient(ItemID.CrystalStorm);
+            recipe.AddIngredient(ItemID.CrystalVileShard);
+            recipe.AddIngredient(ItemID.Chik);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}

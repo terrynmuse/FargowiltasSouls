@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
 using FargowiltasSouls.NPCs;
-using FargowiltasSouls;
 
 namespace FargowiltasSouls.Buffs.Souls
 {
@@ -11,7 +10,6 @@ namespace FargowiltasSouls.Buffs.Souls
 		{
 			DisplayName.SetDefault("Shock");
 			Main.buffNoSave[Type] = true;
-
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)

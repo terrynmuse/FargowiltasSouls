@@ -8,6 +8,8 @@ using Terraria.ModLoader;
 using Terraria.GameInput;
 using System.Linq;
 using Terraria.ModLoader.IO;
+using FargowiltasSouls.Projectiles;
+using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls
 {
@@ -54,28 +56,31 @@ namespace FargowiltasSouls
         public bool cobaltEnchant = false;
         public bool spookyEnchant = false;
         public bool hallowEnchant = false;
-        public bool chloroEnchant = false;
-        public bool vortexEnchant = false;
+        public bool chloroEnchant;
+        public bool vortexEnchant;
         public static int vortexCrit = 4;
-        public bool vortexStealth = false;
-        public bool adamantiteEnchant = false;
-        public bool frostEnchant = false;
-        public bool palladEnchant = false;
-        public bool oriEnchant = false;
-        public bool meteorEnchant = false;
+        public bool vortexStealth;
+        public bool adamantiteEnchant;
+        public bool frostEnchant;
+        public bool palladEnchant;
+        public bool oriEnchant;
+        public bool meteorEnchant;
         private int meteorTimer = 120;
         private int meteorCD = 0;
-        public bool moltenEnchant = false;
+        public bool moltenEnchant;
 
 
-        public bool copperEnchant = false;
-        public bool ninjaEnchant = false;
-        public bool firstStrike = false;
-        public bool ironEnchant = false;
-        public bool turtleEnchant = false;
-        public bool leadEnchant = false;
-        public bool gladEnchant = false;
-        public bool goldEnchant = false;
+        public bool copperEnchant;
+        public bool ninjaEnchant;
+        public bool firstStrike;
+        public bool ironEnchant;
+        public bool turtleEnchant;
+        public bool leadEnchant;
+        public bool gladEnchant;
+        public bool goldEnchant;
+        public bool cactusEnchant;
+        private int cactusCD = 0;
+        public bool beetleEnchant;
 
         //pets
         public bool flickerPet = false;
@@ -103,7 +108,6 @@ namespace FargowiltasSouls
         public bool cubePet = false;
         public bool grinchPet = false;
         public bool suspiciousEyePet = false;
-        public bool beePet = false;
         public bool spiderPet = false;
         public bool lanternPet = false;
 
@@ -229,7 +233,6 @@ namespace FargowiltasSouls
 
             queenStinger = false;
             infinity = false;
-            //npcBoost = false;
 
             firingSpeed = 0f;
             castingSpeed = 0f;
@@ -277,6 +280,8 @@ namespace FargowiltasSouls
             leadEnchant = false;
             gladEnchant = false;
             goldEnchant = false;
+            cactusEnchant = false;
+            beetleEnchant = false;
 
             //pets
             flickerPet = false;
@@ -304,11 +309,12 @@ namespace FargowiltasSouls
             cubePet = false;
             grinchPet = false;
             suspiciousEyePet = false;
-            beePet = false;
             spiderPet = false;
             lanternPet = false;
+            
 
-            //add to kill pets!
+
+            //add missing pets to kill pets!
 
             //souls
             meleeEffect = false;
@@ -411,6 +417,11 @@ namespace FargowiltasSouls
             if (!infested && !firstInfection)
             {
                 firstInfection = true;
+            }
+
+            if(cactusEnchant && cactusCD !=0)
+            {
+                cactusCD--;
             }
 
             //ninja smoke bomb nonsense
@@ -626,6 +637,24 @@ namespace FargowiltasSouls
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
 
+        }
+
+        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        {
+            if (cactusEnchant && cactusCD == 0)
+            {
+                Projectile[] projs = FargoGlobalProjectile.XWay(16, player.Center, ProjectileID.PineNeedleFriendly, (int)(30 * player.meleeDamage), 5f);
+
+                for(int i = 0; i < projs.Length; i++)
+                {
+                    Projectile p = projs[i];
+                    p.GetGlobalProjectile<FargoGlobalProjectile>().isRecolor = true;
+                    p.magic = false;
+                    p.melee = true;
+                }
+
+                cactusCD = 30;
+            }
         }
 
         public override void OnHitAnything(float x, float y, Entity victim)
@@ -846,25 +875,8 @@ namespace FargowiltasSouls
             {
                 target.AddBuff(BuffID.CursedInferno, 120, true);
             }
-            if (crimsonEnchant && Main.rand.Next(10) == 0)
-            {
-                target.AddBuff(BuffID.Ichor, 120, true);
-            }
 
-
-
-            if (chloroEnchant)
-            {
-                target.AddBuff(BuffID.Poisoned, 240, true);
-                target.AddBuff(BuffID.Venom, 240, true);
-            }
-
-            if (cobaltEnchant)
-            {
-                target.AddBuff(BuffID.Confused, 120, true);
-            }
-
-            if (copperEnchant && proj.type != mod.ProjectileType("Shock"))
+            if (copperEnchant && !target.GetGlobalNPC<FargoGlobalNPC>().shock)
             {
                 knockback = 0f;
                 target.AddBuff(mod.BuffType("Shock"), 60, true);
@@ -951,17 +963,6 @@ namespace FargowiltasSouls
             if (shadowEnchant && Main.rand.Next(4) == 0)
             {
                 target.AddBuff(BuffID.ShadowFlame, 120, true);
-            }
-
-            if (chloroEnchant)
-            {
-                target.AddBuff(BuffID.Poisoned, 240, true);
-                target.AddBuff(BuffID.Venom, 240, true);
-            }
-
-            if (cobaltEnchant && Main.rand.Next(3) == 0)
-            {
-                target.AddBuff(BuffID.Confused, 120, true);
             }
 
             if (goldEnchant)
@@ -1318,16 +1319,21 @@ namespace FargowiltasSouls
         /*public override void SetControls ()
 		{
 			vortexStealth = player.vortexStealthActive;
-		}
+		}*/
 		
 		public override void PostUpdateEquips ()
 		{
-			if(vortexEnchant)
+            /*if(vortexEnchant)
 			{
 				player.setVortex = true;
 				player.vortexStealthActive = vortexStealth;
-			}
-		}*/
+			}*/
+
+            if(beetleEnchant)
+            {
+                player.wingTimeMax = (int)(player.wingTimeMax * 1.5);
+            }
+		}
 
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -1338,42 +1344,6 @@ namespace FargowiltasSouls
                 {
                     player.statMana += item.mana;
                 }
-            }
-
-            if (fishSoul2 && item.fishingPole > 0)
-            {
-                float spread = 45f * 0.0174f;
-                float baseSpeed = (float)Math.Sqrt(speedX * speedX + speedY * speedY);
-                double startAngle = Math.Atan2(speedX, speedY) - spread / 2;
-                double deltaAngle = spread / 20f;
-                double offsetAngle;
-                int i;
-                for (i = 0; i < 10; i++)
-                {
-                    offsetAngle = startAngle + deltaAngle * i;
-                    Projectile.NewProjectile(position.X, position.Y, baseSpeed * (float)Math.Sin(offsetAngle), baseSpeed * (float)Math.Cos(offsetAngle), type, damage, knockBack, player.whoAmI);
-                }
-
-                return true;
-            }
-
-            if (fishSoul1 && item.fishingPole > 0)
-            {
-                float spread = 45f * 0.0174f;
-                float baseSpeed = (float)Math.Sqrt(speedX * speedX + speedY * speedY);
-                double startAngle = Math.Atan2(speedX, speedY) - spread / 2;
-                double deltaAngle = spread / 20f;
-                double offsetAngle;
-                int i;
-
-                for (i = 0; i < 4; i++)
-                {
-                    offsetAngle = startAngle + deltaAngle * i;
-                    Projectile.NewProjectile(position.X, position.Y, baseSpeed * (float)Math.Sin(offsetAngle), baseSpeed * (float)Math.Cos(offsetAngle), type, damage, knockBack, player.whoAmI);
-                }
-
-                return true;
-
             }
 
             if (terrariaSoul && Main.rand.Next(2) == 0 && Soulcheck.GetValue("Splitting Projectiles") && !item.summon)
@@ -1392,51 +1362,29 @@ namespace FargowiltasSouls
                 return false;
             }
 
-            if (adamantiteEnchant && item.magic)
+            return true;
+        }
+
+        public void AddPet(string toggle, int buff, int proj)
+        {
+            if (player.whoAmI == Main.myPlayer && player.FindBuffIndex(buff) == -1)
             {
-
-                if (Main.rand.Next(5) == 0)
+                if (Soulcheck.GetValue(toggle) && player.ownedProjectileCounts[proj] < 1)
                 {
-                    float spread = 2f * 0.1250f;
-                    float baseSpeed = (float)Math.Sqrt(speedX * speedX + speedY * speedY);
-                    double baseAngle = Math.Atan2(speedX, speedY);
-                    double offsetAngle;
-
-                    for (float i = -1f; i <= 1f; i++)
-                    {
-                        offsetAngle = baseAngle + i * spread;
-                        Projectile.NewProjectile(position.X, position.Y, baseSpeed * (float)Math.Sin(offsetAngle), baseSpeed * (float)Math.Cos(offsetAngle), type, damage, knockBack, player.whoAmI, 0f, 0f);
-                    }
-
-                    return false;
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, 0, 0f, Main.myPlayer);
                 }
-                else if (Main.rand.Next(20) == 0)
+            }      
+        }
+
+        public void AddMinion(string toggle, int proj, int damage, float knockback)
+        {
+            if (player.whoAmI == Main.myPlayer)
+            {
+                if (Soulcheck.GetValue(toggle) && player.ownedProjectileCounts[proj] < 1)
                 {
-                    float spread = 45f * 0.0174f;
-                    double startAngle = Math.Atan2(speedX, speedY) - spread / 2;
-                    double deltaAngle = spread / 8f;
-                    double offsetAngle;
-                    int i;
-                    int j = Main.rand.Next(3);
-
-                    int r = 0;
-
-                    do
-                    {
-                        r = Main.rand.Next(714);
-                    } while (r != 15 && r != 20 && r != 27 && r != 45 && r != 88 && r != 95 && r != 114 && r != 253 && r != 261 && r != 280 && r != 316 && r != 409 && r != 459 && r != 504 && r != 510 && r != 521 && r != 634 && r != 635 && r != 660 && r != 711 && r != 704 && !((r >= 76) && (r <= 78)) && !((r >= 121) && (r <= 126)) && !((r >= 294) && (r <= 295)));
-
-                    for (i = 0; i < 1; i++)
-                    {
-                        offsetAngle = (startAngle + deltaAngle * (i + i * i) / 2f) + 32f * i;
-                        Projectile.NewProjectile(position.X, position.Y, speedX, speedY, r, damage, knockBack, player.whoAmI, 0f, 0f);
-                    }
-
-                    return false;
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, damage, knockback, Main.myPlayer);
                 }
             }
-
-            return true;
         }
 
         private void KillPets()
@@ -1450,7 +1398,6 @@ namespace FargowiltasSouls
             player.ClearBuff(petID);
             player.ClearBuff(lightPetID);
 
-            beePet = false;
             catPet = false;
             crimsonPet = false;
             crimsonPet2 = false;

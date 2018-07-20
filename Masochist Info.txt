@@ -3,7 +3,7 @@ Masochist Mode boiii
 
 NEW FOR THIS BETA
 **********************************************************************************************
--Twins now respawn at half HP
+-Twins now respawn at half HP instead of like a fourth
 -test prime dungeon mode again reeeeeeeeee
 -lowered post plantera mage skeletons rate
 -increased moon mini boss rate

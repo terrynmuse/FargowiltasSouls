@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -17,6 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                                 "Attacks have a chance to shock enemies\n" +
                                 "If an enemy is wet, the chance and damage is increased");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -27,29 +24,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             item.value = 200000;
         }
 
-        public override string Texture
-        {
-            get
-            {
-                return "FargowiltasSouls/Items/Placeholder";
-            }
-        }
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            modPlayer.copperEnchant = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-
-
-            //silver armor
-            //EoC shield
-            //silver broadsword
 
             recipe.AddIngredient(ItemID.TurtleHelmet);
             recipe.AddIngredient(ItemID.TurtleScaleMail);
@@ -57,8 +40,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.Yelets);
             recipe.AddIngredient(ItemID.Seedler);
             recipe.AddIngredient(ItemID.ButchersChainsaw);
-
-
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

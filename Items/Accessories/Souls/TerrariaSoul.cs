@@ -475,22 +475,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     modPlayer.turtlePet = false;
                 }
 
-                if (Soulcheck.GetValue("Baby Hornet Pet"))
-                {
-                    modPlayer.beePet = true;
-
-                    if (player.FindBuffIndex(51) == -1)
-                    {
-                        if (player.ownedProjectileCounts[ProjectileID.BabyHornet] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyHornet, 0, 2f, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                }
-                else
-                {
-                    modPlayer.beePet = false;
-                }
+                modPlayer.AddPet("Baby Hornet Pet", BuffID.BabyHornet, ProjectileID.BabyHornet);
 
                 if (Soulcheck.GetValue("Spider Pet"))
                 {

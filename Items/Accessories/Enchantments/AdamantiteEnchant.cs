@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -14,11 +10,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Adamantite Enchantment");
             Tooltip.SetDefault(
-@"'This world cannot know me. So I will destroy it with my magic' 
-10% increased magic damage 
-20% chance to shoot multiple projectiles with single shot magic weapons 
-5% chance to cast the wrong spell with single shot magic weapons");
+@"'' 
+25% chance for any weapon to shoot in a spread
+Any secondary projectiles may also split");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -31,14 +27,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             if (Soulcheck.GetValue("Splitting Projectiles"))
             {
-                modPlayer.adamantiteEnchant = true;
+                (player.GetModPlayer<FargoPlayer>(mod)).adamantiteEnchant = true;
             }
-
-            player.magicDamage += .1f;
-
         }
 
         public override void AddRecipes()
@@ -47,9 +39,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddRecipeGroup("FargowiltasSouls:AnyAdamHead");
             recipe.AddIngredient(ItemID.AdamantiteBreastplate);
             recipe.AddIngredient(ItemID.AdamantiteLeggings);
-            recipe.AddIngredient(ItemID.SkyFracture);
-            recipe.AddIngredient(ItemID.NimbusRod);
-            recipe.AddIngredient(ItemID.BookStaff);
+            recipe.AddIngredient(ItemID.DarkLance);
+            recipe.AddIngredient(ItemID.Shotgun);
+            recipe.AddIngredient(ItemID.VenomStaff);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

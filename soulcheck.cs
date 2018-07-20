@@ -3,10 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
-using Terraria.ID;
 using System;
-using System.Reflection;
-using System.Linq;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 
@@ -48,7 +45,7 @@ namespace FargowiltasSouls
             if (Top >= 540)
             {
                 Top = 20f;
-                Left = 190f;
+                Left += 190f;
             }
         }
 
@@ -108,6 +105,9 @@ namespace FargowiltasSouls
             CreateCheckbox("Wisp Pet", new Color(81, 181, 113));
             CreateCheckbox("Cursed Sapling Pet", new Color(81, 181, 113));
             CreateCheckbox("Black Cat Pet", new Color(81, 181, 113));
+            CreateCheckbox("Seedling Pet", new Color(81, 181, 113));
+            CreateCheckbox("Crimson Heart Pet", new Color(81, 181, 113));
+
         }
 
         internal void UpdateNeeded()
