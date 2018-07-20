@@ -2,185 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f523d9d7-a31c-4db5-9aec-7f4f4329cd43" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Buffs/FargoGlobalBuff.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/FargoGlobalBuff.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Antisocial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Antisocial.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Atrophied.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Atrophied.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Bloodthirsty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Bloodthirsty.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Crippled.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Crippled.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Defenseless.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Defenseless.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/FlamesoftheUniverse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/FlamesoftheUniverse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Fused.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Fused.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/GodEater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/GodEater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Hexed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Hexed.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Infested.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Infested.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Jammed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Jammed.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Lethargic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Lethargic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/LightningRod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/LightningRod.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/LivingWasteland.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/LivingWasteland.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/MutantNibble.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/MutantNibble.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Purified.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Purified.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Rotting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Rotting.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/SqueakyToy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/SqueakyToy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Masomode/Unstable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Masomode/Unstable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Minions/BrainMinion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Minions/BrainMinion.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Minions/Eater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Minions/Eater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Minions/EaterMinion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Minions/EaterMinion.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Souls/Shock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Souls/Shock.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Souls/SpookyCD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Souls/SpookyCD.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffs/Souls/SuperBleed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Buffs/Souls/SuperBleed.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FargoPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FargoPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FargoWorld.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FargoWorld.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fargowiltas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Fargowiltas.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FargowiltasSouls.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FargowiltasSouls.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/AdamantiteEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/AdamantiteEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/AnglerEnchantment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/AnglerEnchantment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/BeeEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/BeeEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/BeetleEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/BeetleEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/CactusEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/CactusEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/ChlorophyteEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/ChlorophyteEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/CobaltEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/CobaltEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/CopperEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/CopperEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/CrimsonEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/CrimsonEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/ForbiddenEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/ForbiddenEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/FossilEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/FossilEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/FrostEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/FrostEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/GladiatorEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/GladiatorEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/GoldEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/GoldEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/HallowEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/HallowEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/IronEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/IronEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/JungleEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/JungleEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/LeadEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/LeadEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/MeteorEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/MeteorEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/MinerEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/MinerEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/MoltenEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/MoltenEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/MythrilEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/MythrilEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/NebulaEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/NebulaEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/NecroEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/NecroEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/NinjaEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/NinjaEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/ObsidianEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/ObsidianEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/OrichalcumEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/OrichalcumEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/PalladiumEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/PalladiumEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/PlatinumEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/PlatinumEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/PumpkinEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/PumpkinEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/RedRidingEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/RedRidingEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/ShadowEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/ShadowEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/ShinobiEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/ShinobiEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/ShroomiteEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/ShroomiteEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/SilverEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/SilverEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/SolarEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/SolarEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/SpectreEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/SpectreEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/SpiderEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/SpiderEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/SpookyEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/SpookyEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/StardustEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/StardustEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/TinEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/TinEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/TitaniumEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/TitaniumEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/TungstenEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/TungstenEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/TurtleEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/TurtleEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/ValhallaKnightEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/ValhallaKnightEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Enchantments/VortexEnchant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Enchantments/VortexEnchant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Essences/ApprenticesEssence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Essences/ApprenticesEssence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Essences/BarbariansEssence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Essences/BarbariansEssence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Essences/OccultistsEssence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Essences/OccultistsEssence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Essences/SlingersEssence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Essences/SlingersEssence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Essences/SnipersEssence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Essences/SnipersEssence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Forces/CosmoForce.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Forces/CosmoForce.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Forces/EarthForce.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Forces/EarthForce.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Forces/LifeForce.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Forces/LifeForce.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Forces/NatureForce.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Forces/NatureForce.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Forces/SpiritForce.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Forces/SpiritForce.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Infinity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Infinity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/QueenStinger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/QueenStinger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/ArchWizardsSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/ArchWizardsSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/BardSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/BardSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/ColossusSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/ColossusSoul.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/ConjuristsSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/ConjuristsSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/DimensionSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/DimensionSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/FlightMasterySoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/FlightMasterySoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/GladiatorsSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/GladiatorsSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/GuardianAngelsSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/GuardianAngelsSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/OlympiansSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/OlympiansSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/SharpshootersSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/SharpshootersSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/SupersonicSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/SupersonicSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/TerrariaSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/TerrariaSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/TrawlerSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/TrawlerSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/UniverseSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/UniverseSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/VoidSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/VoidSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Accessories/Souls/WorldShaperSoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Accessories/Souls/WorldShaperSoul.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/FargoGlobalItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/FargoGlobalItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Masochist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Masochist.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/Bonezone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/Bonezone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/BrainStaff.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/BrainStaff.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/DamnedBook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/DamnedBook.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/Dicer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/Dicer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/EaterStaff.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/EaterStaff.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/EyeFlail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/EyeFlail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/FleshHand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/FleshHand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/PrimeStaff.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/PrimeStaff.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/SlimeKingsSlasher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/SlimeKingsSlasher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/BossDrops/boomerang.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/BossDrops/boomerang.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/PandoraTwo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/PandoraTwo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/SlimeRain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/SlimeRain.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/GuardianTome.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/GuardianTome.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/HellZone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/HellZone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/HentaiSpear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/HentaiSpear.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/NukeFishron.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/NukeFishron.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/SlimeSword.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/SlimeSword.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/laser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/SwarmDrops/laser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/TophatSquirrel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/TophatSquirrel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Items/Weapons/VoidBow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Items/Weapons/VoidBow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NPCs/FargoGlobalNPC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NPCs/FargoGlobalNPC.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NPCs/TophatSquirrel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NPCs/TophatSquirrel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/BlenderProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/BlenderProjectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/Bonez.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/Bonez.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/Dash.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/Dash.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/DicerProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/DicerProjectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/DicerProjectile2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/DicerProjectile2.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/DungeonGuardian.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/DungeonGuardian.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/FishNuke.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/FishNuke.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/HellFlame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/HellFlame.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/HentaiSpear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/HentaiSpear.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/Hungry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/Hungry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/LeashFlail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/LeashFlail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/BossWeapons/SlimeBall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/BossWeapons/SlimeBall.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/DualSaberProj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/DualSaberProj.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/DualSaberProj2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/DualSaberProj2.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/ExampleCloneProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/ExampleCloneProjectile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projectiles/Explosion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Explosion.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/EyeProjectile2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/EyeProjectile2.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/FargoBulletProj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/FargoBulletProj.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/FargoGlobalProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/FargoGlobalProjectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Masomode/DeathAura.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Masomode/DeathAura.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Masomode/FuseBomb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Masomode/FuseBomb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/BrainProj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/BrainProj.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/CreeperProj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/CreeperProj.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/EaterBody.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/EaterBody.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/EaterHead.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/EaterHead.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/EaterTail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/EaterTail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/GolemHead.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/GolemHead.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/HallowProj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/HallowProj.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/HallowSword.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/HallowSword.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/HoverShooter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/HoverShooter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/PrimeCannon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/PrimeCannon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/PrimeCannonBall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/PrimeCannonBall.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Minions/PrimeLaser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Minions/PrimeLaser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/PhantasmalSphere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/PhantasmalSphere.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Souls/Chlorofuck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Souls/Chlorofuck.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Souls/Shock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Souls/Shock.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Souls/SpookyScythe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Souls/SpookyScythe.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Souls/SporeBoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Souls/SporeBoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Souls/SuperBlood.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Souls/SuperBlood.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/SpearProjectileName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/SpearProjectileName.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Squirrel1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Squirrel1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/Void.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/Void.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/VoidArrow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/VoidArrow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/VoidPortal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/VoidPortal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/flamethrowerProj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/flamethrowerProj.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/grapplehookProj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/grapplehookProj.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/laserProj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/laserProj.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projectiles/sun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Projectiles/sun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Properties/AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UICheckbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UICheckbox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UIPageSelect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UIPageSelect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/soulcheck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/soulcheck.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -211,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DualSaberProj.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DualSaberProj.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Projectiles/DualSaberProj.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
+            <state relative-caret-position="308">
+              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
               <folding>
                 <marker date="1532123539411" expanded="false" signature="6:112" ph="..." />
                 <marker date="1532123539411" expanded="true" signature="152:3267" ph="{...}" />
@@ -269,110 +94,198 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Explosion.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Explosion.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Projectiles/Explosion.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="966">
-              <caret line="72" column="19" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
+            <state relative-caret-position="784">
+              <caret line="74" column="52" selection-start-line="74" selection-start-column="52" selection-end-line="74" selection-end-column="52" />
               <folding>
-                <marker date="1532123733353" expanded="false" signature="6:91" ph="..." />
-                <marker date="1532123733353" expanded="true" signature="131:3255" ph="{...}" />
-                <marker date="1532123733353" expanded="true" signature="176:3253" ph="{...}" />
-                <marker date="1532123733353" expanded="true" signature="231:434" ph="{...}" />
-                <marker date="1532123733353" expanded="true" signature="478:972" ph="{...}" />
-                <marker date="1532123733353" expanded="true" signature="1021:3247" ph="{...}" />
-                <marker date="1532123733353" expanded="true" signature="1583:1861" ph="{...}" />
-                <marker date="1532123733353" expanded="true" signature="1918:2488" ph="{...}" />
-                <marker date="1532123733353" expanded="true" signature="2544:3237" ph="{...}" />
-                <marker date="1532123733353" expanded="true" signature="2634:2711" ph="{...}" />
-                <marker date="1532123733353" expanded="true" signature="2756:3223" ph="{...}" />
+                <marker date="1532125218020" expanded="false" signature="6:91" ph="..." />
+                <marker date="1532125218020" expanded="true" signature="131:3197" ph="{...}" />
+                <marker date="1532125218020" expanded="true" signature="176:3195" ph="{...}" />
+                <marker date="1532125218020" expanded="true" signature="231:434" ph="{...}" />
+                <marker date="1532125218020" expanded="true" signature="478:972" ph="{...}" />
+                <marker date="1532125218020" expanded="true" signature="1021:3189" ph="{...}" />
+                <marker date="1532125218020" expanded="true" signature="1583:1861" ph="{...}" />
+                <marker date="1532125218020" expanded="true" signature="1918:2488" ph="{...}" />
+                <marker date="1532125218020" expanded="true" signature="2544:3179" ph="{...}" />
+                <marker date="1532125218020" expanded="true" signature="2634:2711" ph="{...}" />
+                <marker date="1532125218020" expanded="true" signature="2756:3165" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SlimeKingsSlasher.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Items/Weapons/BossDrops/SlimeKingsSlasher.cs">
+      <file leaf-file-name="flamethrowerProj.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Projectiles/flamethrowerProj.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="44" column="15" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+            <state relative-caret-position="466">
+              <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
               <folding>
-                <marker date="1532123366325" expanded="false" signature="6:91" ph="..." />
-                <marker date="1532123366325" expanded="true" signature="143:1303" ph="{...}" />
-                <marker date="1532123366325" expanded="true" signature="187:1301" ph="{...}" />
-                <marker date="1532123366325" expanded="true" signature="259:388" ph="{...}" />
-                <marker date="1532123366325" expanded="true" signature="425:786" ph="{...}" />
-                <marker date="1532123366325" expanded="true" signature="942:1149" ph="{...}" />
-                <marker date="1532123366325" expanded="true" signature="1251:1298" ph="{...}" />
+                <marker date="1532119149274" expanded="false" signature="6:91" ph="..." />
+                <marker date="1532119149274" expanded="true" signature="253:3192" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="305:3190" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="354:412" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="455:1169" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="1205:2785" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="1460:1531" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="1611:2690" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="1711:2676" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="2707:2775" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="2877:3041" ph="{...}" />
+                <marker date="1532119149274" expanded="true" signature="3107:3184" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EaterStaff.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Items/Weapons/BossDrops/EaterStaff.cs">
+      <file leaf-file-name="laserProj.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Projectiles/laserProj.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-878">
               <folding>
-                <marker date="1532123433102" expanded="false" signature="6:91" ph="..." />
-                <marker date="1532123433102" expanded="true" signature="143:2948" ph="{...}" />
-                <marker date="1532123433102" expanded="true" signature="183:2946" ph="{...}" />
-                <marker date="1532123433102" expanded="true" signature="326:482" ph="{...}" />
-                <marker date="1532123433102" expanded="true" signature="526:1172" ph="{...}" />
-                <marker date="1532123433102" expanded="true" signature="1260:1320" ph="{...}" />
-                <marker date="1532123433102" expanded="true" signature="1373:1442" ph="{...}" />
-                <marker date="1532123433102" expanded="true" signature="1614:2765" ph="{...}" />
-                <marker date="1532123433102" expanded="true" signature="1722:2706" ph="{...}" />
-                <marker date="1532123433102" expanded="true" signature="2872:2940" ph="{...}" />
+                <marker date="1532119149276" expanded="false" signature="6:126" ph="..." />
+                <marker date="1532119149276" expanded="true" signature="166:8740" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="211:8738" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="516:561" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="604:1048" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="1130:1640" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="1172:1602" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="1651:1736" ph="/// The core function of drawing a laser ... " />
+                <marker date="1532119149276" expanded="true" signature="1975:3067" ph="{...}" />
+                <marker date="1532119149276" expanded="false" signature="2088:2536" ph="Draw laser body" />
+                <marker date="1532119149276" expanded="true" signature="2176:2513" ph="{...}" />
+                <marker date="1532119149276" expanded="false" signature="2551:2796" ph="Draw laser tail" />
+                <marker date="1532119149276" expanded="false" signature="2811:3057" ph="Draw laser head" />
+                <marker date="1532119149276" expanded="true" signature="3078:3178" ph="/// Change the way of collision check of the projectile ... " />
+                <marker date="1532119149276" expanded="true" signature="3264:3814" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="3306:3778" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="3695:3764" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="3825:3909" ph="/// Change the behavior after hit a NPC ... " />
+                <marker date="1532119149276" expanded="true" signature="3999:4068" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="4079:4152" ph="/// The AI of the projectile ... " />
+                <marker date="1532119149276" expanded="true" signature="4186:8622" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="4425:5059" ph="{...}" />
+                <marker date="1532119149276" expanded="false" signature="5076:6772" ph="Charging process" />
+                <marker date="1532119149276" expanded="true" signature="5199:5262" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="5279:6749" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="5404:5479" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="5731:5798" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="6115:6735" ph="{...}" />
+                <marker date="1532119149276" expanded="false" signature="6789:8612" ph="Set laser tail position and dusts" />
+                <marker date="1532119149276" expanded="true" signature="7128:7813" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="7273:7373" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="7479:7797" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="7933:8579" ph="{...}" />
+                <marker date="1532119149276" expanded="true" signature="8676:8722" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EyeFlail.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Items/Weapons/BossDrops/EyeFlail.cs">
+      <file leaf-file-name="Squirrel1.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Projectiles/Squirrel1.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+            <state relative-caret-position="480">
+              <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
               <folding>
-                <marker date="1532123429113" expanded="true" signature="6:60" ph="..." />
-                <marker date="1532123429113" expanded="true" signature="112:1003" ph="{...}" />
-                <marker date="1532123429113" expanded="true" signature="150:1001" ph="{...}" />
-                <marker date="1532123429113" expanded="true" signature="205:360" ph="{...}" />
-                <marker date="1532123429113" expanded="true" signature="404:995" ph="{...}" />
+                <marker date="1532123870903" expanded="true" signature="6:70" ph="..." />
+                <marker date="1532123870903" expanded="true" signature="110:2204" ph="{...}" />
+                <marker date="1532123870903" expanded="true" signature="145:2202" ph="{...}" />
+                <marker date="1532123870903" expanded="true" signature="212:451" ph="{...}" />
+                <marker date="1532123870903" expanded="true" signature="487:572" ph="{...}" />
+                <marker date="1532123870903" expanded="true" signature="498:568" ph="{...}" />
+                <marker date="1532123870903" expanded="true" signature="603:725" ph="{...}" />
+                <marker date="1532123870903" expanded="true" signature="664:703" ph="{...}" />
+                <marker date="1532123870903" expanded="true" signature="770:2196" ph="{...}" />
+                <marker date="1532123870903" expanded="true" signature="1978:2191" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FleshHand.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Items/Weapons/BossDrops/FleshHand.cs">
+      <file leaf-file-name="soulcheck.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/soulcheck.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+            <state relative-caret-position="294">
+              <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
               <folding>
-                <marker date="1532123425759" expanded="true" signature="6:47" ph="..." />
-                <marker date="1532123425759" expanded="true" signature="99:1000" ph="{...}" />
-                <marker date="1532123425759" expanded="true" signature="138:998" ph="{...}" />
-                <marker date="1532123425759" expanded="true" signature="193:341" ph="{...}" />
-                <marker date="1532123425759" expanded="true" signature="385:992" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="6:219" ph="..." />
+                <marker date="1532125340431" expanded="true" signature="247:5978" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="279:5976" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="522:687" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="877:1331" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="1431:3939" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="3985:4791" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="4699:4781" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="4932:5135" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="5211:5457" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="5524:5970" ph="{...}" />
+                <marker date="1532125340431" expanded="true" signature="5671:5755" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PrimeStaff.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Items/Weapons/BossDrops/PrimeStaff.cs">
+      <file leaf-file-name="ConjuristsSoul.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Items/Accessories/Souls/ConjuristsSoul.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="2898">
+              <caret line="209" column="23" selection-start-line="209" selection-start-column="23" selection-end-line="209" selection-end-column="23" />
               <folding>
-                <marker date="1532123419248" expanded="false" signature="6:44" ph="..." />
-                <marker date="1532123419248" expanded="true" signature="96:1125" ph="{...}" />
-                <marker date="1532123419248" expanded="true" signature="136:1123" ph="{...}" />
-                <marker date="1532123419248" expanded="true" signature="191:348" ph="{...}" />
-                <marker date="1532123419248" expanded="true" signature="392:1117" ph="{...}" />
-                <marker date="1532123419248" expanded="true" signature="893:1072" ph="/* item.buffType = mod.BuffType(&quot;BrainMinion&quot;);&#9;//The buff added to player after used the item ... */" />
+                <marker date="1532125361294" expanded="false" signature="6:74" ph="..." />
+                <marker date="1532125361294" expanded="true" signature="181:15148" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="225:15146" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="417:1487" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="537:1053" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="1070:1476" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="1530:1738" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="1817:9315" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="2100:5175" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="2349:5161" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="2552:2680" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="2780:3006" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="3091:3214" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="3311:3509" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="3600:3729" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="3832:4068" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="4154:4278" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="4376:4607" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="4694:4819" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="4918:5143" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="5460:5540" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="5934:6584" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="5995:6429" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="6275:6411" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="6468:6570" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="6637:7736" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="6695:7127" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="6973:7109" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="7148:7581" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="7427:7563" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="7620:7722" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="7796:8892" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="7854:8285" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="8132:8267" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="8306:8737" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="8584:8719" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="8776:8878" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="8951:9305" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="9189:9291" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="9359:9744" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="9787:15139" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="10020:12610" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="10150:11476" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="10230:10392" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="10998:11150" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="11535:12596" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="12664:14998" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="12736:13936" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="12816:12990" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="13366:13451" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="13995:14984" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="14075:14241" ph="{...}" />
+                <marker date="1532125361294" expanded="true" signature="14267:14471" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -409,10 +322,13 @@
     <setting file="file://$PROJECT_DIR$/Items/Weapons/BossDrops/FleshHand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Items/Weapons/BossDrops/PrimeStaff.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Items/Weapons/BossDrops/EyeFlail.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Projectiles/Squirrel1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Projectiles/DualSaberProj.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Projectiles/Explosion.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Projectiles/flamethrowerProj.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Projectiles/DualSaberProj2.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Items/Accessories/QueenStinger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Projectiles/laserProj.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Items/Accessories/Infinity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Projectiles/ExampleCloneProjectile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Items/Accessories/Souls/WorldShaperSoul.cs" root0="FORCE_HIGHLIGHTING" />
@@ -429,10 +345,8 @@
         <option value="$PROJECT_DIR$/Projectiles/Souls/SporeBoom.cs" />
         <option value="$PROJECT_DIR$/Projectiles/Souls/Chlorofuck.cs" />
         <option value="$PROJECT_DIR$/FargoPlayer.cs" />
-        <option value="$PROJECT_DIR$/soulcheck.cs" />
         <option value="$PROJECT_DIR$/Items/Accessories/Souls/BardSoul.cs" />
         <option value="$PROJECT_DIR$/Items/Accessories/Souls/DimensionSoul.cs" />
-        <option value="$PROJECT_DIR$/Items/Accessories/Souls/ConjuristsSoul.cs" />
         <option value="$PROJECT_DIR$/Items/Accessories/Infinity.cs" />
         <option value="$PROJECT_DIR$/Items/Accessories/Souls/WorldShaperSoul.cs" />
         <option value="$PROJECT_DIR$/Items/Accessories/Souls/VoidSoul.cs" />
@@ -452,7 +366,10 @@
         <option value="$PROJECT_DIR$/Projectiles/DualSaberProj.cs" />
         <option value="$PROJECT_DIR$/Projectiles/DualSaberProj2.cs" />
         <option value="$PROJECT_DIR$/Projectiles/ExampleCloneProjectile.cs" />
+        <option value="$PROJECT_DIR$/Projectiles/Squirrel1.cs" />
         <option value="$PROJECT_DIR$/Projectiles/Explosion.cs" />
+        <option value="$PROJECT_DIR$/soulcheck.cs" />
+        <option value="$PROJECT_DIR$/Items/Accessories/Souls/ConjuristsSoul.cs" />
       </list>
     </option>
   </component>
@@ -585,12 +502,12 @@
       <workItem from="1531599141704" duration="153000" />
       <workItem from="1531599296514" duration="2004000" />
       <workItem from="1531696122667" duration="344000" />
-      <workItem from="1532116534812" duration="6957000" />
+      <workItem from="1532116534812" duration="9197000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9458000" />
+    <option name="totallyTimeSpent" value="11698000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1211,91 +1128,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/soulcheck.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <marker date="1532117643766" expanded="false" signature="40:205" ph="..." />
-            <marker date="1532117643766" expanded="true" signature="233:6302" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="265:6300" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="508:656" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="846:1340" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="1088:1170" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="1385:5101" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="5242:5429" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="5505:5751" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="5818:6294" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="5965:6049" ph="{...}" />
-            <marker date="1532117643766" expanded="true" signature="6076:6284" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Items/Accessories/Souls/ConjuristsSoul.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Items/Accessories/Souls/ConjuristsSoul.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-906">
-          <caret line="221" column="60" selection-start-line="221" selection-start-column="60" selection-end-line="221" selection-end-column="60" />
-          <folding>
-            <marker date="1532119768950" expanded="true" signature="6:74" ph="..." />
-            <marker date="1532119768950" expanded="true" signature="181:15136" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="225:15134" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="417:1487" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="537:1053" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="1070:1476" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="1530:1738" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="1817:9315" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="2100:5175" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="2349:5161" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="2552:2680" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="2780:3006" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="3091:3214" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="3311:3509" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="3600:3729" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="3832:4068" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="4154:4278" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="4376:4607" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="4694:4819" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="4918:5143" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="5460:5540" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="5934:6584" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="5995:6429" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="6275:6411" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="6468:6570" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="6637:7736" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="6695:7127" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="6973:7109" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="7148:7581" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="7427:7563" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="7620:7722" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="7796:8892" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="7854:8285" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="8132:8267" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="8306:8737" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="8584:8719" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="8776:8878" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="8951:9305" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="9189:9291" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="9359:9732" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="9775:15127" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="10008:12598" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="10138:11464" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="10218:10380" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="10986:11138" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="11523:12584" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="12652:14986" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="12724:13924" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="12804:12978" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="13354:13439" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="13983:14972" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="14063:14229" ph="{...}" />
-            <marker date="1532119768950" expanded="true" signature="14255:14459" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Items/Accessories/QueenStinger.cs">
       <provider selected="true" editor-type-id="text-editor">
@@ -1784,28 +1618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Projectiles/DualSaberProj.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-          <folding>
-            <marker date="1532123539411" expanded="false" signature="6:112" ph="..." />
-            <marker date="1532123539411" expanded="true" signature="152:3267" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="201:3265" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="256:335" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="379:675" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="710:2397" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="937:1122" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="1388:1561" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="1472:1547" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="1995:2080" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="2126:2211" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="2576:3060" ph="{...}" />
-            <marker date="1532123539411" expanded="true" signature="3070:3259" ph="/* public override bool Colliding (Rectangle projHitbox, Rectangle targetHitbox) ... */" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Projectiles/DualSaberProj2.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -1815,6 +1627,108 @@
             <marker date="1532123543715" expanded="true" signature="115:659" ph="{...}" />
             <marker date="1532123543715" expanded="true" signature="170:250" ph="{...}" />
             <marker date="1532123543715" expanded="true" signature="294:653" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projectiles/flamethrowerProj.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+          <folding>
+            <marker date="1532119149274" expanded="false" signature="6:91" ph="..." />
+            <marker date="1532119149274" expanded="true" signature="253:3192" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="305:3190" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="354:412" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="455:1169" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="1205:2785" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="1460:1531" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="1611:2690" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="1711:2676" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="2707:2775" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="2877:3041" ph="{...}" />
+            <marker date="1532119149274" expanded="true" signature="3107:3184" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projectiles/laserProj.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-878">
+          <folding>
+            <marker date="1532119149276" expanded="false" signature="6:126" ph="..." />
+            <marker date="1532119149276" expanded="true" signature="166:8740" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="211:8738" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="516:561" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="604:1048" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="1130:1640" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="1172:1602" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="1651:1736" ph="/// The core function of drawing a laser ... " />
+            <marker date="1532119149276" expanded="true" signature="1975:3067" ph="{...}" />
+            <marker date="1532119149276" expanded="false" signature="2088:2536" ph="Draw laser body" />
+            <marker date="1532119149276" expanded="true" signature="2176:2513" ph="{...}" />
+            <marker date="1532119149276" expanded="false" signature="2551:2796" ph="Draw laser tail" />
+            <marker date="1532119149276" expanded="false" signature="2811:3057" ph="Draw laser head" />
+            <marker date="1532119149276" expanded="true" signature="3078:3178" ph="/// Change the way of collision check of the projectile ... " />
+            <marker date="1532119149276" expanded="true" signature="3264:3814" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="3306:3778" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="3695:3764" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="3825:3909" ph="/// Change the behavior after hit a NPC ... " />
+            <marker date="1532119149276" expanded="true" signature="3999:4068" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="4079:4152" ph="/// The AI of the projectile ... " />
+            <marker date="1532119149276" expanded="true" signature="4186:8622" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="4425:5059" ph="{...}" />
+            <marker date="1532119149276" expanded="false" signature="5076:6772" ph="Charging process" />
+            <marker date="1532119149276" expanded="true" signature="5199:5262" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="5279:6749" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="5404:5479" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="5731:5798" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="6115:6735" ph="{...}" />
+            <marker date="1532119149276" expanded="false" signature="6789:8612" ph="Set laser tail position and dusts" />
+            <marker date="1532119149276" expanded="true" signature="7128:7813" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="7273:7373" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="7479:7797" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="7933:8579" ph="{...}" />
+            <marker date="1532119149276" expanded="true" signature="8676:8722" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projectiles/Squirrel1.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+          <folding>
+            <marker date="1532123870903" expanded="true" signature="6:70" ph="..." />
+            <marker date="1532123870903" expanded="true" signature="110:2204" ph="{...}" />
+            <marker date="1532123870903" expanded="true" signature="145:2202" ph="{...}" />
+            <marker date="1532123870903" expanded="true" signature="212:451" ph="{...}" />
+            <marker date="1532123870903" expanded="true" signature="487:572" ph="{...}" />
+            <marker date="1532123870903" expanded="true" signature="498:568" ph="{...}" />
+            <marker date="1532123870903" expanded="true" signature="603:725" ph="{...}" />
+            <marker date="1532123870903" expanded="true" signature="664:703" ph="{...}" />
+            <marker date="1532123870903" expanded="true" signature="770:2196" ph="{...}" />
+            <marker date="1532123870903" expanded="true" signature="1978:2191" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projectiles/Explosion.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="784">
+          <caret line="74" column="52" selection-start-line="74" selection-start-column="52" selection-end-line="74" selection-end-column="52" />
+          <folding>
+            <marker date="1532125218020" expanded="false" signature="6:91" ph="..." />
+            <marker date="1532125218020" expanded="true" signature="131:3197" ph="{...}" />
+            <marker date="1532125218020" expanded="true" signature="176:3195" ph="{...}" />
+            <marker date="1532125218020" expanded="true" signature="231:434" ph="{...}" />
+            <marker date="1532125218020" expanded="true" signature="478:972" ph="{...}" />
+            <marker date="1532125218020" expanded="true" signature="1021:3189" ph="{...}" />
+            <marker date="1532125218020" expanded="true" signature="1583:1861" ph="{...}" />
+            <marker date="1532125218020" expanded="true" signature="1918:2488" ph="{...}" />
+            <marker date="1532125218020" expanded="true" signature="2544:3179" ph="{...}" />
+            <marker date="1532125218020" expanded="true" signature="2634:2711" ph="{...}" />
+            <marker date="1532125218020" expanded="true" signature="2756:3165" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1836,22 +1750,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Projectiles/Explosion.cs">
+    <entry file="file://$PROJECT_DIR$/soulcheck.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="72" column="19" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
+        <state relative-caret-position="294">
+          <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
           <folding>
-            <marker date="1532123733353" expanded="false" signature="6:91" ph="..." />
-            <marker date="1532123733353" expanded="true" signature="131:3255" ph="{...}" />
-            <marker date="1532123733353" expanded="true" signature="176:3253" ph="{...}" />
-            <marker date="1532123733353" expanded="true" signature="231:434" ph="{...}" />
-            <marker date="1532123733353" expanded="true" signature="478:972" ph="{...}" />
-            <marker date="1532123733353" expanded="true" signature="1021:3247" ph="{...}" />
-            <marker date="1532123733353" expanded="true" signature="1583:1861" ph="{...}" />
-            <marker date="1532123733353" expanded="true" signature="1918:2488" ph="{...}" />
-            <marker date="1532123733353" expanded="true" signature="2544:3237" ph="{...}" />
-            <marker date="1532123733353" expanded="true" signature="2634:2711" ph="{...}" />
-            <marker date="1532123733353" expanded="true" signature="2756:3223" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="6:219" ph="..." />
+            <marker date="1532125340431" expanded="true" signature="247:5978" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="279:5976" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="522:687" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="877:1331" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="1431:3939" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="3985:4791" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="4699:4781" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="4932:5135" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="5211:5457" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="5524:5970" ph="{...}" />
+            <marker date="1532125340431" expanded="true" signature="5671:5755" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Items/Accessories/Souls/ConjuristsSoul.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2898">
+          <caret line="209" column="23" selection-start-line="209" selection-start-column="23" selection-end-line="209" selection-end-column="23" />
+          <folding>
+            <marker date="1532125361294" expanded="false" signature="6:74" ph="..." />
+            <marker date="1532125361294" expanded="true" signature="181:15148" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="225:15146" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="417:1487" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="537:1053" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="1070:1476" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="1530:1738" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="1817:9315" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="2100:5175" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="2349:5161" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="2552:2680" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="2780:3006" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="3091:3214" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="3311:3509" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="3600:3729" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="3832:4068" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="4154:4278" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="4376:4607" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="4694:4819" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="4918:5143" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="5460:5540" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="5934:6584" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="5995:6429" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="6275:6411" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="6468:6570" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="6637:7736" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="6695:7127" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="6973:7109" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="7148:7581" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="7427:7563" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="7620:7722" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="7796:8892" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="7854:8285" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="8132:8267" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="8306:8737" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="8584:8719" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="8776:8878" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="8951:9305" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="9189:9291" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="9359:9744" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="9787:15139" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="10020:12610" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="10150:11476" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="10230:10392" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="10998:11150" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="11535:12596" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="12664:14998" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="12736:13936" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="12816:12990" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="13366:13451" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="13995:14984" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="14075:14241" ph="{...}" />
+            <marker date="1532125361294" expanded="true" signature="14267:14471" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projectiles/DualSaberProj.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding>
+            <marker date="1532123539411" expanded="false" signature="6:112" ph="..." />
+            <marker date="1532123539411" expanded="true" signature="152:3267" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="201:3265" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="256:335" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="379:675" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="710:2397" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="937:1122" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="1388:1561" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="1472:1547" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="1995:2080" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="2126:2211" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="2576:3060" ph="{...}" />
+            <marker date="1532123539411" expanded="true" signature="3070:3259" ph="/* public override bool Colliding (Rectangle projHitbox, Rectangle targetHitbox) ... */" />
           </folding>
         </state>
       </provider>

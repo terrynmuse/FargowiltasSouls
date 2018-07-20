@@ -72,8 +72,8 @@ namespace FargowiltasSouls.Projectiles
                         Main.rand.Next(61, 64));
 
                     Main.gore[num620].velocity *= scaleFactor9;
-                    Main.gore[num620].velocity.X = gore97.velocity.X + 1f;
-                    Main.gore[num620].velocity.Y = gore98.velocity.Y + 1f;
+                    Main.gore[num620].velocity.X += 1f;
+                    Main.gore[num620].velocity.Y += 1f;
                 }
             }
         }

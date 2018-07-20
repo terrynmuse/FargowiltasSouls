@@ -207,7 +207,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         private void Waifus(Player player)
         {
-            CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity);
+            CalamityMod.CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity);
             
             calamityPlayer.brimstoneWaifu = true;
             calamityPlayer.sandBoobWaifu = true;
