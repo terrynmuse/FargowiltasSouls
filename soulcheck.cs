@@ -42,7 +42,7 @@ namespace FargowiltasSouls
             _checklistPanel.Append(uibox);
 
             _top += 25f;
-            if (!(_top >= 540)) return;
+            if (!(_top >= 565)) return;
             _top = 20f;
             _left += 190f;
         }
