@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -34,19 +30,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             player.pickSpeed -= 0.3f;
-            if (Soulcheck.GetValue("Shine Buff") == true)
+            if (Soulcheck.GetValue("Shine Buff"))
             {
                 Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             }
-            if (Soulcheck.GetValue("Spelunker Buff") == true)
+            if (Soulcheck.GetValue("Spelunker Buff"))
             {
                 player.findTreasure = true;
             }
-            if (Soulcheck.GetValue("Hunter Buff") == true)
+            if (Soulcheck.GetValue("Hunter Buff"))
             {
                 player.detectCreature = true;
             }
-            if (Soulcheck.GetValue("Dangersense Buff") == true)
+            if (Soulcheck.GetValue("Dangersense Buff"))
             {
                 player.dangerSense = true;
             }
@@ -55,13 +51,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 //if(Soulcheck.GetValue("Baby Face Monster Pet"))
                 //{
-                modPlayer.lanternPet = true;
+                modPlayer.LanternPet = true;
 
                 if (player.FindBuffIndex(152) == -1)
                 {
                     if (player.ownedProjectileCounts[ProjectileID.MagicLantern] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MagicLantern, 0, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MagicLantern, 0, 2f, Main.myPlayer);
                     }
                 }
                 //}

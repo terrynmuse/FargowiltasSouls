@@ -1,8 +1,4 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -51,14 +47,14 @@ namespace FargowiltasSouls.Projectiles.Minions
 			bool flag31 = false;
 			for (int num651 = 0; num651 < 200; num651++)
 			{
-				NPC nPC2 = Main.npc[num651];
-				if (nPC2.CanBeChasedBy(projectile, false))
+				NPC nPc2 = Main.npc[num651];
+				if (nPc2.CanBeChasedBy(projectile))
 				{
-					float num652 = Vector2.Distance(nPC2.Center, projectile.Center);
-					if (((Vector2.Distance(projectile.Center, vector58) > num652 && num652 < num768) || !flag31) && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, nPC2.position, nPC2.width, nPC2.height))
+					float num652 = Vector2.Distance(nPc2.Center, projectile.Center);
+					if ((Vector2.Distance(projectile.Center, vector58) > num652 && num652 < num768 || !flag31) && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, nPc2.position, nPc2.width, nPc2.height))
 					{
 						num768 = num652;
-						vector58 = nPC2.Center;
+						vector58 = nPc2.Center;
 						flag31 = true;
 					}
 				}
@@ -91,7 +87,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 						Vector2 value16 = vector58 - projectile.Center;
 						value16.Normalize();
 						value16 *= scaleFactor6;
-						int num777 = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, value16.X, value16.Y, 389/*laser*/, projectile.damage, 0f, projectile.owner, 0f, 0f);
+						int num777 = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, value16.X, value16.Y, 389/*laser*/, projectile.damage, 0f, projectile.owner);
 						projectile.netUpdate = true;
 					}
 				}

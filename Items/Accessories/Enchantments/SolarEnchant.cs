@@ -1,10 +1,7 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -30,7 +27,7 @@ Solar shield allows you to dash through enemies");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.meleeDamage += .15f;
-            if (Soulcheck.GetValue("Solar Shield") == true)
+            if (Soulcheck.GetValue("Solar Shield"))
             {
                 player.AddBuff(172, 5, false);
                 player.setSolar = true;
@@ -53,7 +50,7 @@ Solar shield allows you to dash through enemies");
                         player.AddBuff(170 + player.solarShields, 5, false);
                         for (int num13 = 0; num13 < 16; num13++)
                         {
-                            Dust dust = Main.dust[Dust.NewDust(player.position, player.width, player.height, 6, 0f, 0f, 100, default(Color), 1f)];
+                            Dust dust = Main.dust[Dust.NewDust(player.position, player.width, player.height, 6, 0f, 0f, 100)];
                             dust.noGravity = true;
                             dust.scale = 1.7f;
                             dust.fadeIn = 0.5f;
@@ -73,8 +70,8 @@ Solar shield allows you to dash through enemies");
                 for (int num15 = 0; num15 < player.solarShields; num15++)
                 {
                     player.solarShieldPos[num15] += player.solarShieldVel[num15];
-                    Vector2 value = ((float)player.miscCounter / 100f * 6.28318548f + (float)num15 * (6.28318548f / (float)player.solarShields)).ToRotationVector2() * 6f;
-                    value.X = (float)(player.direction * 20);
+                    Vector2 value = (player.miscCounter / 100f * 6.28318548f + num15 * (6.28318548f / player.solarShields)).ToRotationVector2() * 6f;
+                    value.X = player.direction * 20;
                     player.solarShieldVel[num15] = (value - player.solarShieldPos[num15]) * 0.2f;
                 }
                 if (player.dashDelay >= 0)

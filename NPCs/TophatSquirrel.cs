@@ -1,8 +1,5 @@
 using Terraria;
-using System;
 using Terraria.ID;
-using System.Diagnostics;
-using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.NPCs
@@ -49,7 +46,7 @@ namespace FargowiltasSouls.NPCs
 			{
 				for (int k = 0; k < 20; k++)
 				{
-					Dust.NewDust(npc.position, npc.width, npc.height, 5, hitDirection, -1f, 0, default(Color), 1f);
+					Dust.NewDust(npc.position, npc.width, npc.height, 5, hitDirection, -1f);
 				}
 			}
         }

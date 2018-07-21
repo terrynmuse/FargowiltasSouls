@@ -1,0 +1,2 @@
+D:\home\Documents\GitHub\FargowiltasSouls\obj\Debug\FargowiltasSouls.csprojAssemblyReference.cache
+D:\home\Documents\GitHub\FargowiltasSouls\obj\Debug\FargowiltasSouls.csproj.CoreCompileInputs.cache

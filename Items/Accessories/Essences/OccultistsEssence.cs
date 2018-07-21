@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {
@@ -33,9 +32,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             ModRecipe summon1 = new ModRecipe(mod);
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //both
                     summon1.AddIngredient(ItemID.SummonerEmblem);
@@ -54,7 +53,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                     summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DistressCaller"));
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just thorium
                     summon1.AddIngredient(ItemID.SummonerEmblem);
@@ -73,9 +72,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 }
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just calamity
                     summon1.AddIngredient(ItemID.SummonerEmblem);

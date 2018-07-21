@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.BossWeapons
@@ -19,11 +18,11 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public float UpdateCount { get { return projectile.ai[0]; }set { projectile.ai[0] = value; } }
         public float DashCount { get { return projectile.ai[0] - 20; } }
-        public Vector2 dashStep;
-        public const float dashStepCount = 15;
-        public const float dashStepDelay = 0;
+        public Vector2 DashStep;
+        public const float DASH_STEP_COUNT = 15;
+        public const float DASH_STEP_DELAY = 0;
 
-        bool playedLocalSound = false;
+        bool _playedLocalSound = false;
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
@@ -36,7 +35,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             // Get dash location
             if (UpdateCount == 0)
             {
-                for (int i = 0; i < dashStepCount * 8; i++)
+                for (int i = 0; i < DASH_STEP_COUNT * 8; i++)
                 {
                     Vector2 move = Collision.TileCollision(
                         projectile.position, projectile.velocity / 2,
@@ -45,20 +44,20 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                     if (move == Vector2.Zero) break;
                     projectile.position += move / 2;
                 }
-                dashStep = (projectile.Center - player.Center) / dashStepCount;
+                DashStep = (projectile.Center - player.Center) / DASH_STEP_COUNT;
 
                 projectile.velocity = Vector2.Zero;
             }
 
             // Dash towards location
-            if (UpdateCount >= dashStepDelay)
+            if (UpdateCount >= DASH_STEP_DELAY)
             {
 				//spawn along path
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 0, mod.ProjectileType("PhantasmalSphere"), (int)(projectile.damage * 0.5f), 0/*kb*/, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 0, mod.ProjectileType("PhantasmalSphere"), (int)(projectile.damage * 0.5f), 0/*kb*/, Main.myPlayer);
 				
-                if (UpdateCount == dashStepDelay)
+                if (UpdateCount == DASH_STEP_DELAY)
                 {
-                    dashStep = (projectile.Center - player.Center) / dashStepCount;
+                    DashStep = (projectile.Center - player.Center) / DASH_STEP_COUNT;
                     player.inventory[player.selectedItem].useStyle = 3;
                 }
 
@@ -67,12 +66,12 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
                 // dash, change position to influence camera lerp
                 player.position += Collision.TileCollision(player.position,
-                    dashStep / 2,
+                    DashStep / 2,
                     player.width,
                     player.height,
                     true, true, (int)player.gravDir);
                 player.velocity = Collision.TileCollision(player.position,
-                    dashStep * 0.8f,
+                    DashStep * 0.8f,
                     player.width,
                     player.height,
                     true, true, (int)player.gravDir);
@@ -85,10 +84,10 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 player.fallStart2 = player.fallStart;
 
                 //point in direction
-                if (dashStep.X > 0) player.direction = 1;
-                if (dashStep.X < 0) player.direction = -1;
+                if (DashStep.X > 0) player.direction = 1;
+                if (DashStep.X < 0) player.direction = -1;
 
-                if (UpdateCount >= dashStepDelay + dashStepCount - 1)
+                if (UpdateCount >= DASH_STEP_DELAY + DASH_STEP_COUNT - 1)
                 {
                     projectile.timeLeft = 0;
                 }
@@ -105,7 +104,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         public override void Kill(int timeLeft)
         {
             Player player = Main.player[projectile.owner];
-            player.velocity = dashStep / dashStepCount;
+            player.velocity = DashStep / DASH_STEP_COUNT;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

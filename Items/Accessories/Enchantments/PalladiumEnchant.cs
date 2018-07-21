@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -31,7 +27,7 @@ Very small chance for an attack to gain 33% life steal");
         {
             player.onHitRegen = true;
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.palladEnchant = true;
+            modPlayer.PalladEnchant = true;
 
 
         }

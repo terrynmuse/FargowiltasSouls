@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -36,10 +32,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
 
             player.rangedDamage += .12f;
-            if (Soulcheck.GetValue("Shroomite Stealth") == true)
+            if (Soulcheck.GetValue("Shroomite Stealth"))
             {
                 player.shroomiteStealth = true;
-                (player.GetModPlayer<FargoPlayer>(mod)).shroomEnchant = true;
+                player.GetModPlayer<FargoPlayer>(mod).ShroomEnchant = true;
             }
         }
 

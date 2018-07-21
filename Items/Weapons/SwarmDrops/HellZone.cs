@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
- 
+
 namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 {
     public class HellZone : ModItem
@@ -30,7 +27,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.knockBack = 0.5f;
             item.shootSpeed = 10f; //
             item.noMelee = true;
-            item.value = Item.sellPrice(0, 15, 0, 0); //
+            item.value = Item.sellPrice(0, 15); //
             item.rare = 10; //
             item.ranged = true;
         }

@@ -6,15 +6,15 @@ namespace FargowiltasSouls.Projectiles.Minions
 {
 	public abstract class HoverShooter : Minion
 	{
-		protected float idleAccel = 0.05f;
-		protected float spacingMult = 1f;
-		protected float viewDist = 400f;
-		protected float chaseDist = 200f;
-		protected float chaseAccel = 6f;
-		protected float inertia = 40f;
-		protected float shootCool = 90f;
-		protected float shootSpeed;
-		protected int shoot;
+		protected float IdleAccel = 0.05f;
+		protected float SpacingMult = 1f;
+		protected float ViewDist = 400f;
+		protected float ChaseDist = 200f;
+		protected float ChaseAccel = 6f;
+		protected float Inertia = 40f;
+		protected float ShootCool = 90f;
+		protected float ShootSpeed;
+		protected int Shoot;
 
 		public virtual void CreateDust()
 		{
@@ -27,32 +27,32 @@ namespace FargowiltasSouls.Projectiles.Minions
 		public override void Behavior()
 		{
 			Player player = Main.player[projectile.owner];
-			float spacing = (float)projectile.width * spacingMult;
+			float spacing = projectile.width * SpacingMult;
 			for (int k = 0; k < 1000; k++)
 			{
 				Projectile otherProj = Main.projectile[k];
-				if (k != projectile.whoAmI && otherProj.active && otherProj.owner == projectile.owner && otherProj.type == projectile.type && System.Math.Abs(projectile.position.X - otherProj.position.X) + System.Math.Abs(projectile.position.Y - otherProj.position.Y) < spacing)
+				if (k != projectile.whoAmI && otherProj.active && otherProj.owner == projectile.owner && otherProj.type == projectile.type && Math.Abs(projectile.position.X - otherProj.position.X) + Math.Abs(projectile.position.Y - otherProj.position.Y) < spacing)
 				{
 					if (projectile.position.X < Main.projectile[k].position.X)
 					{
-						projectile.velocity.X -= idleAccel;
+						projectile.velocity.X -= IdleAccel;
 					}
 					else
 					{
-						projectile.velocity.X += idleAccel;
+						projectile.velocity.X += IdleAccel;
 					}
 					if (projectile.position.Y < Main.projectile[k].position.Y)
 					{
-						projectile.velocity.Y -= idleAccel;
+						projectile.velocity.Y -= IdleAccel;
 					}
 					else
 					{
-						projectile.velocity.Y += idleAccel;
+						projectile.velocity.Y += IdleAccel;
 					}
 				}
 			}
 			Vector2 targetPos = projectile.position;
-			float targetDist = viewDist;
+			float targetDist = ViewDist;
 			bool target = false;
 			projectile.tileCollide = true;
 			if(player.HasMinionAttackTargetNPC)
@@ -68,7 +68,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 			else for (int k = 0; k < 200; k++)
 			{
 				NPC npc = Main.npc[k];
-				if (npc.CanBeChasedBy(this, false))
+				if (npc.CanBeChasedBy(this))
 				{
 					float distance = Vector2.Distance(npc.Center, projectile.Center);
 					if ((distance < targetDist || !target) && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
@@ -91,14 +91,14 @@ namespace FargowiltasSouls.Projectiles.Minions
 			if (target && projectile.ai[0] == 0f)
 			{
 				Vector2 direction = targetPos - projectile.Center;
-				if (direction.Length() > chaseDist)
+				if (direction.Length() > ChaseDist)
 				{
 					direction.Normalize();
-					projectile.velocity = (projectile.velocity * inertia + direction * chaseAccel) / (inertia + 1);
+					projectile.velocity = (projectile.velocity * Inertia + direction * ChaseAccel) / (Inertia + 1);
 				}
 				else
 				{
-					projectile.velocity *= (float)Math.Pow(0.97, 40.0 / inertia);
+					projectile.velocity *= (float)Math.Pow(0.97, 40.0 / Inertia);
 				}
 			}
 			else
@@ -124,7 +124,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 						num++;
 					}
 				}
-				direction.X -= (float)((10 + num * 40) * player.direction);
+				direction.X -= (10 + num * 40) * player.direction;
 				direction.Y -= 70f;
 				float distanceTo = direction.Length();
 				if (distanceTo > 200f && speed < 9f)
@@ -144,13 +144,13 @@ namespace FargowiltasSouls.Projectiles.Minions
 				{
 					direction.Normalize();
 					direction *= speed;
-					float temp = inertia / 2f;
+					float temp = Inertia / 2f;
 					projectile.velocity = (projectile.velocity * temp + direction) / (temp + 1);
 				}
 				else
 				{
 					projectile.direction = Main.player[projectile.owner].direction;
-					projectile.velocity *= (float)Math.Pow(0.9, 40.0 / inertia);
+					projectile.velocity *= (float)Math.Pow(0.9, 40.0 / Inertia);
 				}
 			}
 			projectile.rotation = projectile.velocity.X * 0.05f;
@@ -158,11 +158,11 @@ namespace FargowiltasSouls.Projectiles.Minions
 			CreateDust();
 			if (projectile.velocity.X > 0f)
 			{
-				projectile.spriteDirection = (projectile.direction = -1);
+				projectile.spriteDirection = projectile.direction = -1;
 			}
 			else if (projectile.velocity.X < 0f)
 			{
-				projectile.spriteDirection = (projectile.direction = 1);
+				projectile.spriteDirection = projectile.direction = 1;
 			}
 			if (projectile.ai[1] > 0f)
 			{
@@ -172,7 +172,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 					projectile.ai[1] += 1f;
 				}
 			}
-			if (projectile.ai[1] > shootCool)
+			if (projectile.ai[1] > ShootCool)
 			{
 				projectile.ai[1] = 0f;
 				projectile.netUpdate = true;
@@ -183,11 +183,11 @@ namespace FargowiltasSouls.Projectiles.Minions
 				{
 					if ((targetPos - projectile.Center).X > 0f)
 					{
-						projectile.spriteDirection = (projectile.direction = -1);
+						projectile.spriteDirection = projectile.direction = -1;
 					}
 					else if ((targetPos - projectile.Center).X < 0f)
 					{
-						projectile.spriteDirection = (projectile.direction = 1);
+						projectile.spriteDirection = projectile.direction = 1;
 					}
 					if (projectile.ai[1] == 0f)
 					{
@@ -200,8 +200,8 @@ namespace FargowiltasSouls.Projectiles.Minions
 								shootVel = new Vector2(0f, 1f);
 							}
 							shootVel.Normalize();
-							shootVel *= shootSpeed;
-							int proj = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, shootVel.X, shootVel.Y, shoot, projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
+							shootVel *= ShootSpeed;
+							int proj = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, shootVel.X, shootVel.Y, Shoot, projectile.damage, projectile.knockBack, Main.myPlayer);
 							Main.projectile[proj].timeLeft = 300;
 							Main.projectile[proj].netUpdate = true;
 							projectile.netUpdate = true;

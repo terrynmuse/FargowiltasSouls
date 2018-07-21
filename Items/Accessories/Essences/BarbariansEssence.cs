@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {
@@ -33,9 +32,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             ModRecipe melee1 = new ModRecipe(mod);
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //both
                     melee1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrimsonGauntlet"));
@@ -54,7 +53,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                     melee1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("TheGodsGambit"));
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just thorium
                     melee1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrimsonGauntlet"));
@@ -74,9 +73,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 }
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just calamity
                     melee1.AddIngredient(ItemID.WarriorEmblem);

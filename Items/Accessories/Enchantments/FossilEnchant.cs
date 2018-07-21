@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -32,7 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-			modPlayer.fossilEnchant = true;
+			modPlayer.FossilEnchant = true;
 			
 			player.thrownVelocity += 0.05f;
 			player.thrownDamage += 0.05f;
@@ -42,19 +38,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
 				if(Soulcheck.GetValue("Baby Dino Pet"))
 				{
-					modPlayer.dinoPet = true;
+					modPlayer.DinoPet = true;
 					
 					if(player.FindBuffIndex(61) == -1)
 					{
 						if (player.ownedProjectileCounts[ProjectileID.BabyDino] < 1)
 						{
-							Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyDino, 0, 2f, Main.myPlayer, 0f, 0f);
+							Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyDino, 0, 2f, Main.myPlayer);
 						}
 					}
 				}
 				else
 				{
-					modPlayer.dinoPet = false;
+					modPlayer.DinoPet = false;
 				}
 			}
 			

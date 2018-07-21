@@ -25,8 +25,8 @@ namespace FargowiltasSouls.Buffs.Masomode
 		public override void Update(Player player, ref int buffIndex)
         {
            //activates various vanilla debuffs
-		   player.GetModPlayer<FargoPlayer>(mod).flamesoftheUniverse = true;
-		   player.GetModPlayer<FargoPlayer>(mod).shadowflame = true;
+		   player.GetModPlayer<FargoPlayer>(mod).FlamesoftheUniverse = true;
+		   player.GetModPlayer<FargoPlayer>(mod).Shadowflame = true;
 		   player.onFire = true;
 		   player.onFire2 = true;
 		   player.onFrostBurn = true;

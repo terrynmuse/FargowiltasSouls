@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -26,9 +25,9 @@ namespace FargowiltasSouls.Projectiles.Minions
 			projectile.ignoreWater = true;
 			ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
 			ProjectileID.Sets.Homing[projectile.type] = true;
-			inertia = 20f;//
-			shoot = mod.ProjectileType("CreeperProj");//
-			shootSpeed = 12f; // 
+			Inertia = 20f;//
+			Shoot = mod.ProjectileType("CreeperProj");//
+			ShootSpeed = 12f; // 
 		}
 
 		public override void CheckActive()

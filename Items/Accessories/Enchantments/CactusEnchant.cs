@@ -28,7 +28,7 @@ Needles scale with melee damage");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            (player.GetModPlayer<FargoPlayer>(mod)).cactusEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).CactusEnchant = true;
             player.thorns = .5f;
         }
 		

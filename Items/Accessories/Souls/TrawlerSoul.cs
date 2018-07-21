@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -30,7 +29,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            (player.GetModPlayer<FargoPlayer>(mod)).fishSoul2 = true;
+            player.GetModPlayer<FargoPlayer>(mod).FishSoul2 = true;
 
             player.sonarPotion = true;
             player.fishingSkill += 50;
@@ -45,7 +44,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.autoJump = true;
             player.jumpSpeedBoost += 2.4f;
 
-            if (Soulcheck.GetValue("Spore Sac") == true)
+            if (Soulcheck.GetValue("Spore Sac"))
             {
                 //spore sac
                 player.SporeSac();
@@ -63,7 +62,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             fishing.AddIngredient(ItemID.MechanicsRod);
             fishing.AddIngredient(ItemID.SittingDucksFishingRod);
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 fishing.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AquaticSonarDevice"));
                 fishing.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumFisher"));

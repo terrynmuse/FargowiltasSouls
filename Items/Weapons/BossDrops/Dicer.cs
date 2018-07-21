@@ -29,7 +29,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 
 			item.knockBack = 2.5f;
 			item.damage = 84;
-			item.value = Item.sellPrice(0, 30, 0, 0);
+			item.value = Item.sellPrice(0, 30);
 			item.rare = 8;
 		}
 	}

@@ -1,15 +1,12 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using System.ComponentModel;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using System;
 
 namespace FargowiltasSouls.Projectiles
 {
 	class Squirrel1 : ModProjectile
 	{
-		public int counter = 1;
+		public int Counter = 1;
 
 		public override void SetDefaults()
 		{
@@ -35,30 +32,30 @@ namespace FargowiltasSouls.Projectiles
 		{
 			projectile.rotation += 0.2f;
 			
-			if(counter >= 75)
+			if(Counter >= 75)
 			{
 				projectile.scale += .1f;
 			}
 			
-			counter++;
+			Counter++;
 		}
 		
 		public override void Kill(int timeLeft)
         {
-				int proj2 = 88; //laser rifle
+				const int proj2 = 88; //laser rifle
 				
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 5f, proj2, (int)(projectile.damage * 0.5f), 2/*kb*/, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5f, 0f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -5f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5f, 0f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, 4f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, -4f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, -4f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, 4f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 5f, proj2, (int)(projectile.damage * 0.5f), 2/*kb*/, Main.myPlayer);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5f, 0f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, -5f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5f, 0f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, 4f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, -4f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4f, -4f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4f, 4f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer);
 				
 				for(int i = 0; i < 40; i++)
 				{
-					Projectile.NewProjectile(projectile.Center.X + Main.rand.Next(-1000, 1000), projectile.Center.Y - 1000, 0f, 0f + Main.rand.Next(4, 10), proj2, (int)(projectile.damage * 0.5f), 0f, Main.myPlayer, 0f, 0f);
+					Projectile.NewProjectile(projectile.Center.X + Main.rand.Next(-1000, 1000), projectile.Center.Y - 1000, 0f, 0f + Main.rand.Next(4, 10), proj2, (int)(projectile.damage * 0.5f), 0f, Main.myPlayer);
 				}
 
 		}

@@ -1,155 +1,154 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
-using System;
 using Terraria.ModLoader;
-using System.Collections.Generic;
-
+using Terraria.UI;
 
 namespace FargowiltasSouls
 {
-    class Soulcheck : UIState
+    internal class Soulcheck : UIState
     {
-        public UIPanel checklistPanel;
-        public static bool visible = false;
+        private UIPanel _checklistPanel;
+        public static bool Visible = false;
 
-        public static Dictionary<String, bool> toggleDict = new Dictionary<String, bool>();
+        public static readonly Dictionary<string, bool> ToggleDict = new Dictionary<string, bool>();
 
         public static bool GetValue(string buff)
         {
-            bool returnVar;
-            toggleDict.TryGetValue(buff, out returnVar);
-            ErrorLogger.Log(buff + ": " + returnVar.ToString());
-            return returnVar;
+            bool ret;
+            ToggleDict.TryGetValue(buff, out ret);
+            ErrorLogger.Log(buff + ": " + ret);
+            return ret;
         }
 
-        private Color WTF = new Color(173, 94, 171);
-        private float Left;
-        private float Top = 20f;
-        public void CreateCheckbox(String name, Color color)
+        private readonly Color _wtf = new Color(173, 94, 171);
+        private float _left;
+        private float _top = 20f;
+
+        private void CreateCheckbox(string name, Color color)
         {
-            toggleDict.Add(name, true);
-
-            var temp = new UICheckbox(name, "", color, WTF, true);
-            temp.Left.Set(Left, 0f);
-            temp.Top.Set(Top, 0f);
-            temp.OnSelectedChanged += (object o, EventArgs e) =>
+            if (ToggleDict.Count != _buffs.Count)
             {
-                toggleDict[name] = !toggleDict[name];
-            };
-            checklistPanel.Append(temp);
-
-            Top += 25f;
-            if (Top >= 540)
-            {
-                Top = 20f;
-                Left += 190f;
+                ToggleDict.Add(name, true);
             }
+
+
+            UiCheckbox uibox = new UiCheckbox(name, "", color, _wtf);
+            uibox.Left.Set(_left, 0f);
+            uibox.Top.Set(_top, 0f);
+            uibox.OnSelectedChanged += (o, e) => { ToggleDict[name] = !ToggleDict[name]; };
+            _checklistPanel.Append(uibox);
+
+            _top += 25f;
+            if (!(_top >= 565)) return;
+            _top = 20f;
+            _left += 190f;
         }
+
+        private readonly Dictionary<string, Color> _buffs = new Dictionary<string, Color>
+        {
+            ["Inferno Buff"] = new Color(244, 121, 13),
+            ["Hallowed Shield"] = new Color(224, 221, 44),
+            ["Split Enemies"] = new Color(242, 201, 21),
+            ["Seasonal Enemies"] = new Color(114, 74, 25),
+            ["Beetles"] = new Color(88, 89, 153),
+            ["Leaf Crystal"] = new Color(47, 224, 67),
+            ["Spore Explosion"] = new Color(12, 183, 32),
+            ["Forbidden Storm"] = new Color(221, 186, 171),
+            ["Stardust guardian"] = new Color(11, 221, 196),
+            ["Solar Shield"] = new Color(229, 124, 11),
+            ["Shroomite Stealth"] = new Color(11, 42, 196),
+            ["Orichalcum Fireball"] = new Color(211, 99, 192),
+            ["Spooky Scythes"] = new Color(37, 41, 68),
+            ["Hunter Buff"] = new Color(219, 143, 37),
+            ["Spelunker Buff"] = new Color(246, 255, 2),
+            ["Dangersense Buff"] = new Color(209, 75, 27),
+            ["Shine Buff"] = new Color(247, 255, 48),
+            ["Spore Sac"] = new Color(93, 255, 0),
+            ["Super Speed"] = new Color(255, 25, 52),
+            ["Melee Speed"] = new Color(255, 178, 0),
+            ["Splitting Projectiles"] = new Color(224, 58, 58),
+            ["Increase Use Speed"] = new Color(81, 181, 113),
+            ["Bees on Hit"] = new Color(81, 181, 113),
+            ["Baby Dino Pet"] = new Color(81, 181, 113),
+            ["Baby Penguin Pet"] = new Color(81, 181, 113),
+            ["Baby Skeletron Pet"] = new Color(81, 181, 113),
+            ["Turtle Pet"] = new Color(81, 181, 113),
+            ["Baby Snowman Pet"] = new Color(81, 181, 113),
+            ["Zephyr Fish Pet"] = new Color(81, 181, 113),
+            ["Companion Cube Pet"] = new Color(81, 181, 113),
+            ["Baby Grinch Pet"] = new Color(81, 181, 113),
+            ["Lizard Pet"] = new Color(81, 181, 113),
+            ["Suspicious Looking Eye Pet"] = new Color(81, 181, 113),
+            ["Mini Minotaur Pet"] = new Color(81, 181, 113),
+            ["Baby Eater Pet"] = new Color(81, 181, 113),
+            ["Baby Face Monster Pet"] = new Color(81, 181, 113),
+            ["Spider Pet"] = new Color(81, 181, 113),
+            ["Baby Hornet Pet"] = new Color(81, 181, 113),
+            ["Wisp Pet"] = new Color(81, 181, 113),
+            ["Cursed Sapling Pet"] = new Color(81, 181, 113),
+            ["Black Cat Pet"] = new Color(81, 181, 113),
+            ["Seedling Pet"] = new Color(81, 181, 113),
+            ["Crimson Heart Pet"] = new Color(81, 181, 113),
+        };
 
         public override void OnInitialize()
         {
             // Is initialize called? (Yes it is called on reload) I want to reset nicely with new character or new loaded mods: visible = false;
 
-            checklistPanel = new UIPanel();
-            checklistPanel.SetPadding(10);
-            checklistPanel.Width.Set(450f, 0f);
-            checklistPanel.Height.Set(600f, 0f);
-            checklistPanel.Left.Set(1000f, 0f);
-            checklistPanel.Top.Set(450f, 0f);
-            checklistPanel.BackgroundColor = new Color(73, 94, 171);
-            checklistPanel.OnMouseDown += new UIElement.MouseEvent(DragOn);
-            checklistPanel.OnMouseUp += new UIElement.MouseEvent(DragOff);
-            base.Append(checklistPanel);
+            _checklistPanel = new UIPanel();
+            _checklistPanel.SetPadding(10);
+            _checklistPanel.Width.Set(450f, 0f);
+            _checklistPanel.Height.Set(600f, 0f);
+            _checklistPanel.Left.Set(1000f, 0f);
+            _checklistPanel.Top.Set(450f, 0f);
+            _checklistPanel.BackgroundColor = new Color(73, 94, 171);
+            _checklistPanel.OnMouseDown += DragOn;
+            _checklistPanel.OnMouseUp += DragOff;
+            Append(_checklistPanel);
 
-            CreateCheckbox("Inferno Buff", new Color(244, 121, 13));
-            CreateCheckbox("Hallowed Shield", new Color(224, 221, 44));
-            CreateCheckbox("Split Enemies", new Color(242, 201, 21));
-            CreateCheckbox("Seasonal Enemies", new Color(114, 74, 25));
-            CreateCheckbox("Beetles", new Color(88, 89, 153));
-            CreateCheckbox("Leaf Crystal", new Color(47, 224, 67));
-            CreateCheckbox("Spore Explosion", new Color(12, 183, 32));
-            CreateCheckbox("Forbidden Storm", new Color(221, 186, 171));
-            CreateCheckbox("Stardust guardian", new Color(11, 221, 196));
-            CreateCheckbox("Solar Shield", new Color(229, 124, 11));
-            CreateCheckbox("Shroomite Stealth", new Color(11, 42, 196));
-            CreateCheckbox("Orichalcum Fireball", new Color(211, 99, 192));
-            CreateCheckbox("Spooky Scythes", new Color(37, 41, 68));
-            CreateCheckbox("Hunter Buff", new Color(219, 143, 37));
-            CreateCheckbox("Spelunker Buff", new Color(246, 255, 2));
-            CreateCheckbox("Dangersense Buff", new Color(209, 75, 27));
-            CreateCheckbox("Shine Buff", new Color(247, 255, 48));
-            CreateCheckbox("Spore Sac", new Color(93, 255, 0));
-            CreateCheckbox("Super Speed", new Color(255, 25, 52));
-            CreateCheckbox("Melee Speed", new Color(255, 178, 0));
-            CreateCheckbox("Splitting Projectiles", new Color(224, 58, 58));
-            CreateCheckbox("Increase Use Speed", new Color(81, 181, 113));
-            CreateCheckbox("Bees on Hit", new Color(81, 181, 113));
-            CreateCheckbox("Baby Dino Pet", new Color(81, 181, 113));
-            CreateCheckbox("Baby Penguin Pet", new Color(81, 181, 113));
-            CreateCheckbox("Baby Skeletron Pet", new Color(81, 181, 113));
-            CreateCheckbox("Turtle Pet", new Color(81, 181, 113));
-            CreateCheckbox("Baby Snowman Pet", new Color(81, 181, 113));
-            CreateCheckbox("Zephyr Fish Pet", new Color(81, 181, 113));
-            CreateCheckbox("Companion Cube Pet", new Color(81, 181, 113));
-            CreateCheckbox("Baby Grinch Pet", new Color(81, 181, 113));
-            CreateCheckbox("Lizard Pet", new Color(81, 181, 113));
-            CreateCheckbox("Suspicious Looking Eye Pet", new Color(81, 181, 113));
-            CreateCheckbox("Mini Minotaur Pet", new Color(81, 181, 113));
-            CreateCheckbox("Baby Eater Pet", new Color(81, 181, 113));
-            CreateCheckbox("Baby Face Monster Pet", new Color(81, 181, 113));
-            CreateCheckbox("Spider Pet", new Color(81, 181, 113));
-            CreateCheckbox("Baby Hornet Pet", new Color(81, 181, 113));
-            CreateCheckbox("Wisp Pet", new Color(81, 181, 113));
-            CreateCheckbox("Cursed Sapling Pet", new Color(81, 181, 113));
-            CreateCheckbox("Black Cat Pet", new Color(81, 181, 113));
-            CreateCheckbox("Seedling Pet", new Color(81, 181, 113));
-            CreateCheckbox("Crimson Heart Pet", new Color(81, 181, 113));
-
+            foreach (KeyValuePair<string, Color> buff in _buffs)
+            {
+                CreateCheckbox(buff.Key, buff.Value);
+            }
         }
 
-        internal void UpdateNeeded()
-        {
-            updateneeded = true;
-        }
-        private bool updateneeded;
-
-        private Vector2 offset;
-        public bool dragging = false;
+        private Vector2 _offset;
+        private bool _dragging;
 
         private void DragOn(UIMouseEvent evt, UIElement listeningElement)
         {
-            offset = new Vector2(evt.MousePosition.X - checklistPanel.Left.Pixels, evt.MousePosition.Y - checklistPanel.Top.Pixels);
+            _offset = new Vector2(evt.MousePosition.X - _checklistPanel.Left.Pixels,
+                evt.MousePosition.Y - _checklistPanel.Top.Pixels);
 
-            dragging = true;
+            _dragging = true;
         }
 
         private void DragOff(UIMouseEvent evt, UIElement listeningElement)
         {
             Vector2 end = evt.MousePosition;
-            dragging = false;
+            _dragging = false;
 
-            checklistPanel.Left.Set(end.X - offset.X, 0f);
-            checklistPanel.Top.Set(end.Y - offset.Y, 0f);
+            _checklistPanel.Left.Set(end.X - _offset.X, 0f);
+            _checklistPanel.Top.Set(end.Y - _offset.Y, 0f);
 
             Recalculate();
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            Vector2 MousePosition = new Vector2((float)Main.mouseX, (float)Main.mouseY);
-            if (checklistPanel.ContainsPoint(MousePosition))
+            Vector2 mousePosition = new Vector2(Main.mouseX, Main.mouseY);
+            if (_checklistPanel.ContainsPoint(mousePosition))
             {
                 Main.LocalPlayer.mouseInterface = true;
             }
-            if (dragging)
-            {
-                checklistPanel.Left.Set(MousePosition.X - offset.X, 0f);
-                checklistPanel.Top.Set(MousePosition.Y - offset.Y, 0f);
-                Recalculate();
-            }
+
+            if (!_dragging) return;
+            _checklistPanel.Left.Set(mousePosition.X - _offset.X, 0f);
+            _checklistPanel.Top.Set(mousePosition.Y - _offset.Y, 0f);
+            Recalculate();
         }
     }
 }

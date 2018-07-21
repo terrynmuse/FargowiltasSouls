@@ -26,8 +26,8 @@ namespace FargowiltasSouls.Projectiles.Souls
 		public override void AI()
 		{
 			//dust!
-			int DustID = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width * 2, projectile.height * 2, 226, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), .5f);
-			Main.dust[DustID].noGravity = true;
+			int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width * 2, projectile.height * 2, 226, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), .5f);
+			Main.dust[dustId].noGravity = true;
 			//int DustID3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 226, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
 			//Main.dust[DustID3].noGravity = true;
 		}

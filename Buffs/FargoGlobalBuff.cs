@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,13 +12,13 @@ namespace FargowiltasSouls.Buffs
 
             if (type == BuffID.ShadowFlame)
             {
-                modPlayer.shadowflame = true;
+                modPlayer.Shadowflame = true;
             }
 
             if(type == BuffID.Slimed)
             {
                 Main.buffNoTimeDisplay[type] = false;
-                modPlayer.slimed = true;
+                modPlayer.Slimed = true;
             }
 
             base.Update(type, player, ref buffIndex);

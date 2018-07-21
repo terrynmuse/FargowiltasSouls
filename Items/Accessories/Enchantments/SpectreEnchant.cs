@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -40,19 +36,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
 				if(Soulcheck.GetValue("Wisp Pet"))
 				{
-					modPlayer.spectrePet = true;
+					modPlayer.SpectrePet = true;
 					
 					if(player.FindBuffIndex(57) == -1)
 					{
 						if (player.ownedProjectileCounts[ProjectileID.Wisp] < 1)
 						{
-							Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Wisp, 0, 2f, Main.myPlayer, 0f, 0f);
+							Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Wisp, 0, 2f, Main.myPlayer);
 						}
 					}
 				}
 				else
 				{
-						modPlayer.spectrePet = false;
+						modPlayer.SpectrePet = false;
 				}
             }
         }
@@ -61,9 +57,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-			modPlayer.spectreEnchant = true;
+			modPlayer.SpectreEnchant = true;
 			
-			if(modPlayer.specHeal)
+			if(modPlayer.SpecHeal)
 			{
 				player.ghostHeal = true;
 			}

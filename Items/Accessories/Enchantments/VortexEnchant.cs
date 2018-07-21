@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -34,8 +30,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			
 			
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-			modPlayer.vortexEnchant = true;
-			player.rangedCrit = FargoPlayer.vortexCrit;
+			modPlayer.VortexEnchant = true;
+			player.rangedCrit = FargoPlayer.VortexCrit;
 			
 			/*if ((player.controlDown && player.releaseDown))
             {

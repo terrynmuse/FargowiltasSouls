@@ -29,7 +29,7 @@ Any secondary projectiles may also split");
         {
             if (Soulcheck.GetValue("Splitting Projectiles"))
             {
-                (player.GetModPlayer<FargoPlayer>(mod)).adamantiteEnchant = true;
+                player.GetModPlayer<FargoPlayer>(mod).AdamantiteEnchant = true;
             }
         }
 

@@ -32,7 +32,7 @@ Summons a Baby Face Monster and a Crimson Heart");
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             player.crimsonRegen = true;
 
-            modPlayer.crimsonEnchant = true;
+            modPlayer.CrimsonEnchant = true;
             modPlayer.AddPet("Baby Face Monster Pet", BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
             modPlayer.AddPet("Crimson Heart Pet", BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
         }

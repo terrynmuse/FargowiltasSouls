@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -32,7 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            modPlayer.gladEnchant = true;
+            modPlayer.GladEnchant = true;
 
             player.thrownDamage += 0.05f;
 
@@ -41,19 +37,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 if (Soulcheck.GetValue("Mini Minotaur Pet"))
                 {
-                    modPlayer.minotaurPet = true;
+                    modPlayer.MinotaurPet = true;
 
                     if (player.FindBuffIndex(136) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.MiniMinotaur] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MiniMinotaur, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MiniMinotaur, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.minotaurPet = false;
+                    modPlayer.MinotaurPet = false;
                 }
             }
         }

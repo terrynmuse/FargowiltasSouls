@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,7 +6,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 {
 	class DicerProjectile : ModProjectile
 	{
-		public int counter = 1;
+		public int Counter = 1;
 		public override void SetStaticDefaults()
 		{
 			// Vanilla values range from 3f(Wood) to 16f(Chik), and defaults to -1f. Leaving as -1 will make the time infinite.
@@ -42,11 +40,11 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 		
 		public override void AI()
 		{
-			if(counter % 30 == 0)
+			if(Counter % 30 == 0)
 			{
 				int proj2 = mod.ProjectileType("DicerProjectile2");//484;//374;
 				
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, proj2, projectile.damage, 0, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, proj2, projectile.damage, 0, Main.myPlayer);
 				
 				//Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 5f, proj2, (int)(projectile.damage * 0.5f), 2/*kb*/, Main.myPlayer, 0f, 0f);
 				/*Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5f, 0f, proj2, (int)(projectile.damage * 0.5f), 2, Main.myPlayer, 0f, 0f);
@@ -59,7 +57,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
 			}
 			
-			counter++;
+			Counter++;
 		}
 		
 		public override void PostAI()

@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {
@@ -11,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Apprentice's Essence");
             Tooltip.SetDefault("'This is only the beginning..' \n18% increased magic damage \nIncreases your maximum mana by 40 \nReduces mana usage by 5% \nAutomatically use mana potions when needed");
-            if (Fargowiltas.instance.calamityLoaded)
+            if (Fargowiltas.Instance.CalamityLoaded)
             {
                 Tooltip.SetDefault("'This is only the beginning..' \n18% increased magic damage \nIncreases your maximum mana by 40 \nReduces mana usage by 5% \nAutomatically use mana potions when needed \nGrants the effects of the Mana Overloader");
             }
@@ -34,9 +33,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             player.manaFlower = true;
 
             //mana overloader
-            if (Fargowiltas.instance.calamityLoaded)
+            if (Fargowiltas.Instance.CalamityLoaded)
             {
-                if (player.statMana < (player.statManaMax2 * 0.15f))
+                if (player.statMana < player.statManaMax2 * 0.15f)
                 {
                     player.ghostHeal = true;
                 }
@@ -47,9 +46,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             ModRecipe magic1 = new ModRecipe(mod);
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //both
                     magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AzureGauntlet"));
@@ -68,7 +67,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                     magic1.AddIngredient(ItemID.Flamelash);
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just thorium
                     magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AzureGauntlet"));
@@ -88,9 +87,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 }
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just calamity
                     magic1.AddIngredient(ItemID.WizardHat);

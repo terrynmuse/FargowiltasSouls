@@ -1,18 +1,13 @@
-using System;
-using System.Diagnostics;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class GuardianAngelsSoul : ModItem
     {
-        string tooltip = null;
+        string _tooltip = null;
 
         public override void SetStaticDefaults()
         {
@@ -52,7 +47,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //Turn undead
                 player.aggro -= 50;
@@ -110,7 +105,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void AddRecipes()
         {
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 ModRecipe recipe = new ModRecipe(mod);
 
@@ -134,7 +129,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             else
             {
-                return;
             }
         }
     }

@@ -1,169 +1,171 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using FargowiltasSouls.NPCs;
+using FargowiltasSouls.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameInput;
-using System.Linq;
 using Terraria.ModLoader.IO;
-using FargowiltasSouls.Projectiles;
-using FargowiltasSouls.NPCs;
+
+// ReSharper disable CompareOfFloatsByEqualityOperator
 
 namespace FargowiltasSouls
 {
     public class FargoPlayer : ModPlayer
     {
         //for convenience
-        public bool isStandingStill = false;
+        public bool IsStandingStill;
 
-        public bool wood = false;
-        public bool eater = false;
-        public bool queenStinger = false;
-        public bool infinity = false;
-        public bool npcBoost = false;
+        public bool Wood;
+        public bool Eater;
+        public bool QueenStinger;
+        public bool Infinity;
+        public bool NpcBoost = false;
 
         //shoot speed
-        public float firingSpeed = 0f;
-        public float castingSpeed = 0f;
-        public float throwingSpeed = 0f;
-        public float radiantSpeed = 0f;
-        public float symphonicSpeed = 0f;
-        public float healingSpeed = 0f;
-        public float axeSpeed = 0f;
-        public float hammerSpeed = 0f;
-        public float pickSpeed = 0f;
+        public float FiringSpeed;
+        public float CastingSpeed;
+        public float ThrowingSpeed;
+        public float RadiantSpeed;
+        public float SymphonicSpeed;
+        public float HealingSpeed;
+        public float AxeSpeed;
+        public float HammerSpeed;
+        public float PickSpeed;
 
         //minions
-        public bool brainMinion = false;
-        public bool eaterMinion = false;
+        public bool BrainMinion;
+        public bool EaterMinion;
 
         //enchantments
-        public bool shadowEnchant = false;
-        public bool crimsonEnchant = false;
-        public bool spectreEnchant = false;
-        public bool specHeal = false;
-        public int healTown = 0;
-        public bool beeEnchant = false;
-        public bool spiderEnchant = false;
-        public bool stardustEnchant = false;
-        public bool mythrilEnchant = false;
-        public bool fossilEnchant = false;
-        public bool jungleEnchant = false;
-        public bool elementEnchant = false;
-        public bool shroomEnchant = false;
-        public bool cobaltEnchant = false;
-        public bool spookyEnchant = false;
-        public bool hallowEnchant = false;
-        public bool chloroEnchant;
-        public bool vortexEnchant;
-        public static int vortexCrit = 4;
-        public bool vortexStealth;
-        public bool adamantiteEnchant;
-        public bool frostEnchant;
-        public bool palladEnchant;
-        public bool oriEnchant;
-        public bool meteorEnchant;
-        private int meteorTimer = 120;
-        private int meteorCD = 0;
-        public bool moltenEnchant;
+        public bool ShadowEnchant;
+        public bool CrimsonEnchant;
+        public bool SpectreEnchant;
+        public bool SpecHeal;
+        public int HealTown;
+        public bool BeeEnchant;
+        public bool SpiderEnchant;
+        public bool StardustEnchant;
+        public bool MythrilEnchant;
+        public bool FossilEnchant;
+        public bool JungleEnchant;
+        public bool ElementEnchant;
+        public bool ShroomEnchant;
+        public bool CobaltEnchant;
+        public bool SpookyEnchant;
+        public bool HallowEnchant;
+        public bool ChloroEnchant;
+        public bool VortexEnchant;
+        public static int VortexCrit = 4;
+        public bool VortexStealth;
+        public bool AdamantiteEnchant;
+        public bool FrostEnchant;
+        public bool PalladEnchant;
+        public bool OriEnchant;
+        public bool MeteorEnchant;
+        private int _meteorTimer = 120;
+        private int _meteorCd;
+        public bool MoltenEnchant;
 
 
-        public bool copperEnchant;
-        public bool ninjaEnchant;
-        public bool firstStrike;
-        public bool ironEnchant;
-        public bool turtleEnchant;
-        public bool leadEnchant;
-        public bool gladEnchant;
-        public bool goldEnchant;
-        public bool cactusEnchant;
-        private int cactusCD = 0;
-        public bool beetleEnchant;
+        public bool CopperEnchant;
+        public bool NinjaEnchant;
+        public bool FirstStrike;
+        public bool IronEnchant;
+        public bool TurtleEnchant;
+        public bool LeadEnchant;
+        public bool GladEnchant;
+        public bool GoldEnchant;
+        public bool CactusEnchant;
+        private int _cactusCd;
+        public bool BeetleEnchant;
 
         //pets
-        public bool flickerPet = false;
-        public bool moonEye = false;
-        public bool dinoPet = false;
-        public bool seedPet = false;
-        public bool dogPet = false;
-        public bool catPet = false;
-        public bool pumpkinPet = false;
-        public bool skullPet = false;
-        public bool saplingPet = false;
-        public bool turtlePet = false;
-        public bool lizPet = false;
-        public bool eyePet = false;
-        public bool minotaurPet = false;
-        public bool dragPet = false;
-        public bool shadowPet = false;
-        public bool shadowPet2 = false;
-        public bool crimsonPet = false;
-        public bool crimsonPet2 = false;
-        public bool spectrePet = false;
-        public bool penguinPet = false;
-        public bool snowmanPet = false;
-        public bool fishPet = false;
-        public bool cubePet = false;
-        public bool grinchPet = false;
-        public bool suspiciousEyePet = false;
-        public bool spiderPet = false;
-        public bool lanternPet = false;
+        public bool FlickerPet;
+        public bool MoonEye;
+        public bool DinoPet;
+        public bool SeedPet;
+        public bool DogPet;
+        public bool CatPet;
+        public bool PumpkinPet;
+        public bool SkullPet;
+        public bool SaplingPet;
+        public bool TurtlePet;
+        public bool LizPet;
+        public bool EyePet;
+        public bool MinotaurPet;
+        public bool DragPet;
+        public bool ShadowPet;
+        public bool ShadowPet2;
+        public bool CrimsonPet;
+        public bool CrimsonPet2;
+        public bool SpectrePet;
+        public bool PenguinPet;
+        public bool SnowmanPet;
+        public bool FishPet;
+        public bool CubePet;
+        public bool GrinchPet;
+        public bool SuspiciousEyePet;
+        public bool SpiderPet;
+        public bool LanternPet;
 
         //soul effects
-        public bool meleeEffect = false;
-        public bool throwSoul = false;
-        public bool rangedEffect = false;
-        public bool miniRangedEffect = false;
-        public bool builderEffect = false;
-        public bool builderMode = false;
-        public bool universeEffect = false;
-        public bool speedEffect = false;
-        public bool tankEffect = false;
-        public bool fishSoul1 = false;
-        public bool fishSoul2 = false;
-        public bool dimensionSoul = false;
-        public bool terrariaSoul = false;
-        public int healTimer = 0;
-        public bool voidSoul = false;
+        public bool MeleeEffect;
+        public bool ThrowSoul;
+        public bool RangedEffect;
+        public bool MiniRangedEffect;
+        public bool BuilderEffect;
+        public bool BuilderMode;
+        public bool UniverseEffect;
+        public bool SpeedEffect;
+        public bool TankEffect;
+        public bool FishSoul1;
+        public bool FishSoul2;
+        public bool DimensionSoul;
+        public bool TerrariaSoul;
+        public int HealTimer;
+        public bool VoidSoul;
 
         //debuffs
-        public bool hexed = false;
-        public bool unstable = false;
-        private int unstableCD = 0;
-        public bool fused = false;
-        public bool shadowflame = false;
+        public bool Hexed;
+        public bool Unstable;
+        private int _unstableCd;
+        public bool Fused;
+        public bool Shadowflame;
 
-        public bool godEater = false;               //defense removed, endurance removed, colossal DOT
-        public bool flamesoftheUniverse = false;    //activates various vanilla debuffs
-        public bool mutantNibble = false;           //disables potions, moon bite effect, feral bite effect, disables lifesteal
-        public int statLifePrevious = -1;           //used for mutantNibble
-        public bool asocial = false;                //disables minions, disables pets
-        public bool wasAsocial = false;
-        public bool hidePetToggle0 = true;
-        public bool hidePetToggle1 = true;
-        public bool kneecapped = false;             //disables running :v
-        public bool defenseless = false;            //-30 defense, no damage reduction, cross necklace and knockback prevention effects disabled
-        public bool lethargic = false;              //all item speed reduced to 75%
-        public bool purified = false;               //purges all other buffs
-        public bool infested = false;               //weak DOT that grows exponentially stronger
-        public int maxInfestTime;
-        public bool firstInfection = true;
-        public float infestedDust;
-        public bool rotting = false;                //inflicts DOT and almost every stat reduced
-        public bool squeakyToy = false;             //all attacks do one damage and make squeaky noises
-        public bool bloodthirst = false;
-        public bool atrophied = false;              //melee speed and damage reduced. maybe player cannot fire melee projectiles?
-        public bool jammed = false;                 //ranged damage and speed reduced, all non-custom ammo set to baseline ammos
-        public bool slimed = false;
+        public bool GodEater;               //defense removed, endurance removed, colossal DOT
+        public bool FlamesoftheUniverse;    //activates various vanilla debuffs
+        public bool MutantNibble;           //disables potions, moon bite effect, feral bite effect, disables lifesteal
+        public int StatLifePrevious = -1;           //used for mutantNibble
+        public bool Asocial;                //disables minions, disables pets
+        public bool WasAsocial;
+        public bool HidePetToggle0 = true;
+        public bool HidePetToggle1 = true;
+        public bool Kneecapped;             //disables running :v
+        public bool Defenseless;            //-30 defense, no damage reduction, cross necklace and knockback prevention effects disabled
+        public bool Lethargic;              //all item speed reduced to 75%
+        public bool Purified;               //purges all other buffs
+        public bool Infested;               //weak DOT that grows exponentially stronger
+        public int MaxInfestTime;
+        public bool FirstInfection = true;
+        public float InfestedDust;
+        public bool Rotting;                //inflicts DOT and almost every stat reduced
+        public bool SqueakyToy;             //all attacks do one damage and make squeaky noises
+        public bool Bloodthirst;
+        public bool Atrophied;              //melee speed and damage reduced. maybe player cannot fire melee projectiles?
+        public bool Jammed;                 //ranged damage and speed reduced, all non-custom ammo set to baseline ammos
+        public bool Slimed;
 
 
 
         public override TagCompound Save()
         {
             TagCompound tagCompound = new TagCompound();
-            foreach (KeyValuePair<String, Boolean> entry in Soulcheck.toggleDict)
+            foreach (KeyValuePair<String, Boolean> entry in Soulcheck.ToggleDict)
             {
                 tagCompound.Add(entry.Key, entry.Value);
             }
@@ -176,13 +178,13 @@ namespace FargowiltasSouls
             {
                 try
                 {
-                    if (Soulcheck.toggleDict.ContainsKey(entry.Key))
+                    if (Soulcheck.ToggleDict.ContainsKey(entry.Key))
                     {
-                        Soulcheck.toggleDict[entry.Key] = (bool)entry.Value;
+                        Soulcheck.ToggleDict[entry.Key] = (bool)entry.Value;
                     }
                     else
                     {
-                        Soulcheck.toggleDict.Add(entry.Key, (bool)entry.Value);
+                        Soulcheck.ToggleDict.Add(entry.Key, (bool)entry.Value);
                     }
                 }
                 catch (Exception e) { }
@@ -195,18 +197,18 @@ namespace FargowiltasSouls
         {
             if (Fargowiltas.CheckListKey.JustPressed)
             {
-                if (Soulcheck.visible == false)
+                if (Soulcheck.Visible == false)
                 {
-                    Soulcheck.visible = true;
+                    Soulcheck.Visible = true;
                 }
                 else
                 {
-                    Soulcheck.visible = false;
+                    Soulcheck.Visible = false;
                 }
             }
 
             //may need cooldown?
-            if (voidSoul && Fargowiltas.HomeKey.JustPressed)
+            if (VoidSoul && Fargowiltas.HomeKey.JustPressed)
             {
                 if (Main.rand.Next(2) == 0)
                     Dust.NewDust(player.position, player.width, player.height, 15, 0.0f, 0.0f, 150, Color.White, 1.1f);
@@ -228,144 +230,144 @@ namespace FargowiltasSouls
         public override void ResetEffects()
         {
 
-            wood = false;
-            eater = false;
+            Wood = false;
+            Eater = false;
 
-            queenStinger = false;
-            infinity = false;
+            QueenStinger = false;
+            Infinity = false;
 
-            firingSpeed = 0f;
-            castingSpeed = 0f;
-            throwingSpeed = 0f;
-            radiantSpeed = 0f;
-            symphonicSpeed = 0f;
-            healingSpeed = 0f;
-            axeSpeed = 0f;
-            hammerSpeed = 0f;
-            pickSpeed = 0f;
+            FiringSpeed = 0f;
+            CastingSpeed = 0f;
+            ThrowingSpeed = 0f;
+            RadiantSpeed = 0f;
+            SymphonicSpeed = 0f;
+            HealingSpeed = 0f;
+            AxeSpeed = 0f;
+            HammerSpeed = 0f;
+            PickSpeed = 0f;
 
 
-            brainMinion = false;
-            eaterMinion = false;
+            BrainMinion = false;
+            EaterMinion = false;
 
             //enchantments
-            shadowEnchant = false;
-            crimsonEnchant = false;
-            spectreEnchant = false;
-            beeEnchant = false;
-            spiderEnchant = false;
-            stardustEnchant = false;
-            mythrilEnchant = false;
-            fossilEnchant = false;
-            jungleEnchant = false;
-            elementEnchant = false;
-            shroomEnchant = false;
-            cobaltEnchant = false;
-            spookyEnchant = false;
-            hallowEnchant = false;
-            chloroEnchant = false;
-            vortexEnchant = false;
-            vortexStealth = false;
-            adamantiteEnchant = false;
-            frostEnchant = false;
-            palladEnchant = false;
-            oriEnchant = false;
-            meteorEnchant = false;
-            moltenEnchant = false;
-            copperEnchant = false;
-            ninjaEnchant = false;
-            firstStrike = false;
-            ironEnchant = false;
-            turtleEnchant = false;
-            leadEnchant = false;
-            gladEnchant = false;
-            goldEnchant = false;
-            cactusEnchant = false;
-            beetleEnchant = false;
+            ShadowEnchant = false;
+            CrimsonEnchant = false;
+            SpectreEnchant = false;
+            BeeEnchant = false;
+            SpiderEnchant = false;
+            StardustEnchant = false;
+            MythrilEnchant = false;
+            FossilEnchant = false;
+            JungleEnchant = false;
+            ElementEnchant = false;
+            ShroomEnchant = false;
+            CobaltEnchant = false;
+            SpookyEnchant = false;
+            HallowEnchant = false;
+            ChloroEnchant = false;
+            VortexEnchant = false;
+            VortexStealth = false;
+            AdamantiteEnchant = false;
+            FrostEnchant = false;
+            PalladEnchant = false;
+            OriEnchant = false;
+            MeteorEnchant = false;
+            MoltenEnchant = false;
+            CopperEnchant = false;
+            NinjaEnchant = false;
+            FirstStrike = false;
+            IronEnchant = false;
+            TurtleEnchant = false;
+            LeadEnchant = false;
+            GladEnchant = false;
+            GoldEnchant = false;
+            CactusEnchant = false;
+            BeetleEnchant = false;
 
             //pets
-            flickerPet = false;
-            moonEye = false;
-            dinoPet = false;
-            seedPet = false;
-            dogPet = false;
-            catPet = false;
-            pumpkinPet = false;
-            skullPet = false;
-            saplingPet = false;
-            turtlePet = false;
-            lizPet = false;
-            eyePet = false;
-            minotaurPet = false;
-            dragPet = false;
-            shadowPet = false;
-            shadowPet2 = false;
-            crimsonPet = false;
-            crimsonPet2 = false;
-            spectrePet = false;
-            penguinPet = false;
-            snowmanPet = false;
-            fishPet = false;
-            cubePet = false;
-            grinchPet = false;
-            suspiciousEyePet = false;
-            spiderPet = false;
-            lanternPet = false;
+            FlickerPet = false;
+            MoonEye = false;
+            DinoPet = false;
+            SeedPet = false;
+            DogPet = false;
+            CatPet = false;
+            PumpkinPet = false;
+            SkullPet = false;
+            SaplingPet = false;
+            TurtlePet = false;
+            LizPet = false;
+            EyePet = false;
+            MinotaurPet = false;
+            DragPet = false;
+            ShadowPet = false;
+            ShadowPet2 = false;
+            CrimsonPet = false;
+            CrimsonPet2 = false;
+            SpectrePet = false;
+            PenguinPet = false;
+            SnowmanPet = false;
+            FishPet = false;
+            CubePet = false;
+            GrinchPet = false;
+            SuspiciousEyePet = false;
+            SpiderPet = false;
+            LanternPet = false;
             
 
 
             //add missing pets to kill pets!
 
             //souls
-            meleeEffect = false;
-            throwSoul = false;
-            rangedEffect = false;
-            miniRangedEffect = false;
-            builderEffect = false;
-            builderMode = false;
-            universeEffect = false;
-            speedEffect = false;
-            tankEffect = false;
-            fishSoul1 = false;
-            fishSoul2 = false;
-            dimensionSoul = false;
-            terrariaSoul = false;
-            healTimer = 0;
-            voidSoul = false;
+            MeleeEffect = false;
+            ThrowSoul = false;
+            RangedEffect = false;
+            MiniRangedEffect = false;
+            BuilderEffect = false;
+            BuilderMode = false;
+            UniverseEffect = false;
+            SpeedEffect = false;
+            TankEffect = false;
+            FishSoul1 = false;
+            FishSoul2 = false;
+            DimensionSoul = false;
+            TerrariaSoul = false;
+            HealTimer = 0;
+            VoidSoul = false;
 
             //debuffs
-            hexed = false;
-            unstable = false;
-            fused = false;
-            shadowflame = false;
-            slimed = false;
+            Hexed = false;
+            Unstable = false;
+            Fused = false;
+            Shadowflame = false;
+            Slimed = false;
 
-            godEater = false;
-            flamesoftheUniverse = false;
-            mutantNibble = false;
-            asocial = false;
-            kneecapped = false;
-            defenseless = false;
-            lethargic = false;
-            purified = false;
-            infested = false;
-            rotting = false;
-            squeakyToy = false;
-            bloodthirst = false;
-            atrophied = false;
-            jammed = false;
+            GodEater = false;
+            FlamesoftheUniverse = false;
+            MutantNibble = false;
+            Asocial = false;
+            Kneecapped = false;
+            Defenseless = false;
+            Lethargic = false;
+            Purified = false;
+            Infested = false;
+            Rotting = false;
+            SqueakyToy = false;
+            Bloodthirst = false;
+            Atrophied = false;
+            Jammed = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
-            if (moltenEnchant)
+            if (MoltenEnchant)
             {
-                Projectile boom = Projectile.NewProjectileDirect(player.Center, new Vector2(0, 0), mod.ProjectileType("Explosion"), (int)(50 * player.meleeDamage), 0f, Main.myPlayer);
+                Projectile.NewProjectileDirect(player.Center, new Vector2(0, 0), mod.ProjectileType("Explosion"), (int)(50 * player.meleeDamage), 0f, Main.myPlayer);
                 //boom.width *= 5;
                 //boom.height *= 5;
             }
 
-            if (voidSoul)
+            if (VoidSoul)
             {
                 player.respawnTimer = (int)(player.respawnTimer * .5);
             }
@@ -374,33 +376,33 @@ namespace FargowiltasSouls
         public override void UpdateDead()
         {
             //debuffs
-            hexed = false;
-            unstable = false;
-            fused = false;
-            shadowflame = false;
-            slimed = false;
+            Hexed = false;
+            Unstable = false;
+            Fused = false;
+            Shadowflame = false;
+            Slimed = false;
 
-            godEater = false;
-            flamesoftheUniverse = false;
-            mutantNibble = false;
-            asocial = false;
-            kneecapped = false;
-            defenseless = false;
-            lethargic = false;
-            purified = false;
-            infested = false;
-            rotting = false;
-            squeakyToy = false;
-            bloodthirst = false;
-            atrophied = false;
-            jammed = false;
+            GodEater = false;
+            FlamesoftheUniverse = false;
+            MutantNibble = false;
+            Asocial = false;
+            Kneecapped = false;
+            Defenseless = false;
+            Lethargic = false;
+            Purified = false;
+            Infested = false;
+            Rotting = false;
+            SqueakyToy = false;
+            Bloodthirst = false;
+            Atrophied = false;
+            Jammed = false;
         }
 
         public override void PreUpdate()
         {
-            isStandingStill = (double)Math.Abs(player.velocity.X) < 0.05 && (double)Math.Abs(player.velocity.Y) < 0.05;
+            IsStandingStill = Math.Abs(player.velocity.X) < 0.05 && Math.Abs(player.velocity.Y) < 0.05;
 
-            if (FargoWorld.masochistMode)
+            if (FargoWorld.MasochistMode)
             {
                 if (Main.bloodMoon)
                 {
@@ -414,14 +416,14 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (!infested && !firstInfection)
+            if (!Infested && !FirstInfection)
             {
-                firstInfection = true;
+                FirstInfection = true;
             }
 
-            if(cactusEnchant && cactusCD !=0)
+            if(CactusEnchant && _cactusCd !=0)
             {
-                cactusCD--;
+                _cactusCd--;
             }
 
             //ninja smoke bomb nonsense
@@ -445,32 +447,32 @@ namespace FargowiltasSouls
             if (nearestProj != null)
             {
                 player.endurance += 0.20f;
-                firstStrike = true;
+                FirstStrike = true;
             }
 
             //meteor shower nonsense
-            if (meteorEnchant && player.statMana <= 5 && meteorCD == 0)
+            if (MeteorEnchant && player.statMana <= 5 && _meteorCd == 0)
             {
-                if (meteorTimer % 2 == 0)
+                if (_meteorTimer % 2 == 0)
                 {
-                    Projectile.NewProjectile(player.Center.X + Main.rand.Next(-1000, 1000), player.Center.Y - 1000, (float)Main.rand.Next(-2, 2), 0f + Main.rand.Next(8, 12), Main.rand.Next(424, 427), (int)(50 * player.magicDamage), 0f, Main.myPlayer, 0f, 0.5f + (float)Main.rand.NextDouble() * 0.3f);
+                    Projectile.NewProjectile(player.Center.X + Main.rand.Next(-1000, 1000), player.Center.Y - 1000, Main.rand.Next(-2, 2), 0f + Main.rand.Next(8, 12), Main.rand.Next(424, 427), (int)(50 * player.magicDamage), 0f, Main.myPlayer, 0f, 0.5f + (float)Main.rand.NextDouble() * 0.3f);
                 }
 
-                meteorTimer--;
+                _meteorTimer--;
 
-                if (meteorTimer == 0)
+                if (_meteorTimer == 0)
                 {
-                    meteorCD = 600;
-                    meteorTimer = 120;
+                    _meteorCd = 600;
+                    _meteorTimer = 120;
                 }
             }
-            if (meteorCD > 0)
+            if (_meteorCd > 0)
             {
-                meteorCD--;
+                _meteorCd--;
             }
 
             //tele through wall until open space on dash into wall
-            if (voidSoul && player.dashDelay > 0 && player.velocity.X == 0)
+            if (VoidSoul && player.dashDelay > 0 && player.velocity.X == 0)
             {
                 var teleportPos = new Vector2();
                 int direction = player.direction;
@@ -492,14 +494,14 @@ namespace FargowiltasSouls
                 if (teleportPos.X > 50 && teleportPos.X < (double)(Main.maxTilesX * 16 - 50) && teleportPos.Y > 50 && teleportPos.Y < (double)(Main.maxTilesY * 16 - 50))
                 {
                     player.Teleport(teleportPos, 1);
-                    NetMessage.SendData(65, -1, -1, null, 0, (float)player.whoAmI, teleportPos.X, teleportPos.Y, 1);
+                    NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, teleportPos.X, teleportPos.Y, 1);
                 }
             }
 
 
-            if (unstable)
+            if (Unstable)
             {
-                if (unstableCD >= 60)
+                if (_unstableCd >= 60)
                 {
                     Vector2 pos = Main.screenPosition;
 
@@ -515,11 +517,11 @@ namespace FargowiltasSouls
                     }
 
                     player.Teleport(teleportPos, 1);
-                    NetMessage.SendData(65, -1, -1, null, 0, (float)player.whoAmI, teleportPos.X, teleportPos.Y, 1);
+                    NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, teleportPos.X, teleportPos.Y, 1);
 
-                    unstableCD = 0;
+                    _unstableCd = 0;
                 }
-                unstableCD++;
+                _unstableCd++;
             }
         }
 
@@ -530,33 +532,33 @@ namespace FargowiltasSouls
 
         public override void PostUpdateMiscEffects()
         {
-            if (slimed)
+            if (Slimed)
             {
                 //slowed effect
                 player.moveSpeed /= 2f;
                 player.jump /= 2;
             }
 
-            if (godEater)
+            if (GodEater)
             {
                 player.statDefense = 0;
                 player.endurance = 0;
             }
 
-            if (mutantNibble)
+            if (MutantNibble)
             {
                 //disables lifesteal, mostly
-                if (player.statLife > statLifePrevious)
-                    player.statLife = statLifePrevious;
+                if (player.statLife > StatLifePrevious)
+                    player.statLife = StatLifePrevious;
                 else
-                    statLifePrevious = player.statLife;
+                    StatLifePrevious = player.statLife;
             }
             else
             {
-                statLifePrevious = player.statLife;
+                StatLifePrevious = player.statLife;
             }
 
-            if (defenseless)
+            if (Defenseless)
             {
                 player.statDefense -= 30;
                 player.endurance = 0;
@@ -564,7 +566,7 @@ namespace FargowiltasSouls
                 player.noKnockback = false;
             }
 
-            if (purified)
+            if (Purified)
             {
                 KillPets();
 
@@ -572,37 +574,37 @@ namespace FargowiltasSouls
                 
                 for (int i = 0; i < 22; i++)
                 {
-                    if (player.buffType[i] > 0 && player.buffTime[i] > 0 && Array.IndexOf(Fargowiltas.debuffIDs, player.buffType[i]) == -1)
+                    if (player.buffType[i] > 0 && player.buffTime[i] > 0 && Array.IndexOf(Fargowiltas.DebuffIDs, player.buffType[i]) == -1)
                     {
                         player.DelBuff(i);
                     }
                 }
             }
-            else if (asocial)
+            else if (Asocial)
             {
                 KillPets();
                 player.maxMinions = 0;
                 player.minionDamage -= .5f;
             }
-            else if (wasAsocial) //should only occur when above debuffs end
+            else if (WasAsocial) //should only occur when above debuffs end
             {
-                player.hideMisc[0] = hidePetToggle0;
-                player.hideMisc[1] = hidePetToggle1;
+                player.hideMisc[0] = HidePetToggle0;
+                player.hideMisc[1] = HidePetToggle1;
 
-                wasAsocial = false;
+                WasAsocial = false;
             }
 
-            if (rotting)
+            if (Rotting)
             {
                 player.moveSpeed *= 0.75f;
             }
 
-            if (kneecapped)
+            if (Kneecapped)
             {
                 player.accRunSpeed = player.maxRunSpeed;
             }
 
-            if (atrophied)
+            if (Atrophied)
             {
                 player.meleeSpeed = 0f; //melee silence
                 player.thrownVelocity = 0f;
@@ -621,12 +623,12 @@ namespace FargowiltasSouls
 
         public override float UseTimeMultiplier(Item item)
         {
-            if (lethargic)
+            if (Lethargic)
             {
                 return 0.5f;
             }
 
-            if (rotting)
+            if (Rotting)
             {
                 return 0.75f;
             }
@@ -641,19 +643,19 @@ namespace FargowiltasSouls
 
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
         {
-            if (cactusEnchant && cactusCD == 0)
+            if (CactusEnchant && _cactusCd == 0)
             {
                 Projectile[] projs = FargoGlobalProjectile.XWay(16, player.Center, ProjectileID.PineNeedleFriendly, (int)(30 * player.meleeDamage), 5f);
 
                 for(int i = 0; i < projs.Length; i++)
                 {
                     Projectile p = projs[i];
-                    p.GetGlobalProjectile<FargoGlobalProjectile>().isRecolor = true;
+                    p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     p.magic = false;
                     p.melee = true;
                 }
 
-                cactusCD = 30;
+                _cactusCd = 30;
             }
         }
 
@@ -664,17 +666,15 @@ namespace FargowiltasSouls
 
         public override void PostUpdateRunSpeeds()
         {
-            if (speedEffect)
-            {
-                player.maxRunSpeed = 1000;
-                player.accRunSpeed = 2;
-                player.runAcceleration = 5;
-            }
+            if (!SpeedEffect) return;
+            player.maxRunSpeed = 1000;
+            player.accRunSpeed = 2;
+            player.runAcceleration = 5;
         }
 
         public override void UpdateBadLifeRegen()
         {
-            if (shadowflame)
+            if (Shadowflame)
             {
                 if (player.lifeRegen > 0)
                 {
@@ -685,7 +685,7 @@ namespace FargowiltasSouls
 
             }
 
-            if (godEater)
+            if (GodEater)
             {
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
@@ -694,7 +694,7 @@ namespace FargowiltasSouls
                 player.lifeRegen -= 90;
             }
 
-            if (mutantNibble)
+            if (MutantNibble)
             {
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
@@ -705,17 +705,17 @@ namespace FargowiltasSouls
                 player.lifeRegenTime = 0;
             }
 
-            if (infested)
+            if (Infested)
             {
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
 
                 player.lifeRegenTime = 0;
 
-                player.lifeRegen -= InfestedExtraDOT();
+                player.lifeRegen -= InfestedExtraDot();
             }
 
-            if (rotting)
+            if (Rotting)
             {
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
@@ -734,7 +734,7 @@ namespace FargowiltasSouls
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
 
-            if (shadowflame)
+            if (Shadowflame)
             {
                 if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f)
                 {
@@ -748,11 +748,11 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (infested)
+            if (Infested)
             {
                 if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f)
                 {
-                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.Shadowflame, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), infestedDust);
+                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.Shadowflame, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), InfestedDust);
                     Main.dust[dust].noGravity = true;
                     //Main.dust[dust].velocity *= 1.8f;
                     // Main.dust[dust].velocity.Y -= 0.5f;
@@ -762,7 +762,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (godEater) //plague dust code but its pink
+            if (GodEater) //plague dust code but its pink
             {
                 if (Main.rand.Next(3) == 0 && drawInfo.shadow == 0f)
                 {
@@ -779,7 +779,7 @@ namespace FargowiltasSouls
                 fullBright = true;
             }
 
-            if (flamesoftheUniverse)
+            if (FlamesoftheUniverse)
             {
                 drawInfo.drawPlayer.onFire = true;
                 drawInfo.drawPlayer.onFire2 = true;
@@ -788,16 +788,14 @@ namespace FargowiltasSouls
                 drawInfo.drawPlayer.burned = true;
 
                 //shadowflame
-                if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f)
-                {
-                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.Shadowflame, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].velocity *= 1.8f;
-                    Main.dust[dust].velocity.Y -= 0.5f;
-                    Main.playerDrawDust.Add(dust);
+                if (Main.rand.Next(4) != 0 || drawInfo.shadow != 0f) return;
+                int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.Shadowflame, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 1.8f;
+                Main.dust[dust].velocity.Y -= 0.5f;
+                Main.playerDrawDust.Add(dust);
 
-                    fullBright = true;
-                }
+                fullBright = true;
 
             }
         }
@@ -805,10 +803,10 @@ namespace FargowiltasSouls
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (hexed)
+            if (Hexed)
             {
                 target.life += damage;
-                target.HealEffect(damage, true);
+                target.HealEffect(damage);
 
                 if (target.life > target.lifeMax)
                 {
@@ -823,7 +821,7 @@ namespace FargowiltasSouls
 
             }
 
-            if (squeakyToy)
+            if (SqueakyToy)
             {
                 damage = 1;
                 Squeak(target.Center);
@@ -835,17 +833,17 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.Wet, 180, true);
             }
 
-            if (terrariaSoul)
+            if (TerrariaSoul)
             {
                 target.AddBuff(BuffID.Venom, 240, true);
             }
 
-            if (queenStinger)
+            if (QueenStinger)
             {
                 target.AddBuff(BuffID.Poisoned, 120, true);
             }
 
-            if (spiderEnchant && proj.minion)
+            if (SpiderEnchant && proj.minion)
             {
                 target.AddBuff(BuffID.Venom, 120, true);
             }
@@ -858,7 +856,7 @@ namespace FargowiltasSouls
 			   }  
 			}   */
 
-            if (rangedEffect)
+            if (RangedEffect)
             {
                 if (proj.ranged)
                 {
@@ -866,24 +864,24 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (universeEffect)
+            if (UniverseEffect)
             {
                 target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
             }
 
-            if (shadowEnchant && Main.rand.Next(10) == 0)
+            if (ShadowEnchant && Main.rand.Next(10) == 0)
             {
                 target.AddBuff(BuffID.CursedInferno, 120, true);
             }
 
-            if (copperEnchant && !target.GetGlobalNPC<FargoGlobalNPC>().shock)
+            if (CopperEnchant && !target.GetGlobalNPC<FargoGlobalNpc>().Shock)
             {
                 knockback = 0f;
                 target.AddBuff(mod.BuffType("Shock"), 60, true);
                 //Projectile.NewProjectile(target.Center.X, target.Center.Y, target.velocity.X, target.velocity.Y, mod.ProjectileType("Shock"), 20, 0, Main.myPlayer, 0f, 0f);
             }
 
-            if (goldEnchant)
+            if (GoldEnchant)
             {
                 target.AddBuff(BuffID.Midas, 120, true);
             }
@@ -891,10 +889,10 @@ namespace FargowiltasSouls
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
-            if (hexed)
+            if (Hexed)
             {
                 target.life += damage;
-                target.HealEffect(damage, true);
+                target.HealEffect(damage);
 
                 if (target.life > target.lifeMax)
                 {
@@ -909,34 +907,34 @@ namespace FargowiltasSouls
 
             }
 
-            if (squeakyToy)
+            if (SqueakyToy)
             {
                 damage = 1;
                 Squeak(target.Center);
                 return;
             }
 
-            if (voidSoul && Main.rand.Next(25) == 0 && target.type != NPCID.TargetDummy)
+            if (VoidSoul && Main.rand.Next(25) == 0 && target.type != NPCID.TargetDummy)
             {
-                Projectile.NewProjectile(target.Center.X, target.Center.Y - 10, 0f, 0f, 518, 0, 0f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(target.Center.X, target.Center.Y - 10, 0f, 0f, 518, 0, 0f, Main.myPlayer);
             }
 
-            if (terrariaSoul)
+            if (TerrariaSoul)
             {
                 target.AddBuff(BuffID.Venom, 240, true);
             }
 
-            if (queenStinger)
+            if (QueenStinger)
             {
                 target.AddBuff(BuffID.Poisoned, 120, true);
             }
 
-            if (spiderEnchant && item.summon)
+            if (SpiderEnchant && item.summon)
             {
                 target.AddBuff(BuffID.Venom, 120, true);
             }
 
-            if (meleeEffect)
+            if (MeleeEffect)
             {
                 if (item.melee)
                 {
@@ -946,7 +944,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (rangedEffect)
+            if (RangedEffect)
             {
                 if (item.ranged)
                 {
@@ -955,17 +953,17 @@ namespace FargowiltasSouls
 
             }
 
-            if (universeEffect)
+            if (UniverseEffect)
             {
                 target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
             }
 
-            if (shadowEnchant && Main.rand.Next(4) == 0)
+            if (ShadowEnchant && Main.rand.Next(4) == 0)
             {
                 target.AddBuff(BuffID.ShadowFlame, 120, true);
             }
 
-            if (goldEnchant)
+            if (GoldEnchant)
             {
                 target.AddBuff(BuffID.Midas, 120, true);
             }
@@ -973,25 +971,21 @@ namespace FargowiltasSouls
 
         public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
         {
-            if (squeakyToy)
-            {
-                damage = 1;
-                Squeak(target.Center);
-            }
+            if (!SqueakyToy) return;
+            damage = 1;
+            Squeak(target.Center);
         }
 
         public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
         {
-            if (squeakyToy)
-            {
-                damage = 1;
-                Squeak(target.Center);
-            }
+            if (!SqueakyToy) return;
+            damage = 1;
+            Squeak(target.Center);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (infinity && (player.HeldItem.ranged || player.HeldItem.magic || player.HeldItem.thrown))
+            if (Infinity && (player.HeldItem.ranged || player.HeldItem.magic || player.HeldItem.thrown))
             {
                 player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " self destructed."), player.HeldItem.damage / 33, 0);
                 player.immune = false;
@@ -1003,61 +997,59 @@ namespace FargowiltasSouls
                 return;
             }
 
-            if (spectreEnchant && proj.magic)
+            if (SpectreEnchant && proj.magic)
             {
                 if (crit)
                 {
-                    specHeal = true;
-                    healTown++;
+                    SpecHeal = true;
+                    HealTown++;
                 }
                 else
                 {
-                    if (healTown != 0 && healTown <= 6)
+                    if (HealTown != 0 && HealTown <= 6)
                     {
-                        healTown++;
+                        HealTown++;
                     }
                     else
                     {
-                        specHeal = false;
-                        healTown = 0;
+                        SpecHeal = false;
+                        HealTown = 0;
                     }
                 }
             }
 
-            if (vortexEnchant && proj.ranged)
+            if (VortexEnchant && proj.ranged)
             {
-                if (crit && (vortexCrit < 100))
+                if (crit && VortexCrit < 100)
                 {
-                    vortexCrit += 4;
+                    VortexCrit += 4;
                 }
             }
 
-            if (terrariaSoul)
+            if (TerrariaSoul)
             {
-                if (crit && (vortexCrit < 100))
+                if (crit && VortexCrit < 100)
                 {
-                    vortexCrit += 4;
+                    VortexCrit += 4;
                 }
-                else if (vortexCrit >= 100 && proj.type != ProjectileID.CrystalLeafShot && proj.type != mod.ProjectileType("HallowSword"))
+                else if (VortexCrit >= 100 && proj.type != ProjectileID.CrystalLeafShot && proj.type != mod.ProjectileType("HallowSword"))
                 {
-                    if (healTimer == 0)
+                    if (HealTimer == 0)
                     {
-                        player.statLife += (damage / 25);
+                        player.statLife += damage / 25;
                         player.HealEffect(damage / 25);
-                        healTimer = 10;
+                        HealTimer = 10;
                     }
                     else
                     {
-                        healTimer--;
+                        HealTimer--;
                     }
                 }
             }
 
-            if (palladEnchant && Main.rand.Next(50) == 0)
-            {
-                player.statLife += (damage / 3);
-                player.HealEffect(damage / 3);
-            }
+            if (!PalladEnchant || Main.rand.Next(50) != 0) return;
+            player.statLife += damage / 3;
+            player.HealEffect(damage / 3);
 
         }
 
@@ -1100,122 +1092,102 @@ namespace FargowiltasSouls
 
         public override bool CanBeHitByProjectile(Projectile proj)
         {
-            if (queenStinger)
-            {
-                if (proj.type == ProjectileID.Stinger)
-                {
-                    return false;
-                }
-            }
-
-            //ninja?
-            /*if(tankEffect/* && Main.rand.Next(10) == 0)
-			{
-				return false;
-			}*/
-            return true;
+            if (!QueenStinger) return true;
+            return proj.type != ProjectileID.Stinger;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            bool returnValue = true;
-
-            if (FargoWorld.masochistMode)
+            if (!FargoWorld.MasochistMode) return !VoidSoul || Main.rand.Next(10) != 0;
+            
+            //no work
+            //lava
+            
+            if (damageSource == PlayerDeathReason.ByOther(2))
             {
-                //no work
-                //lava
-                if (damageSource == PlayerDeathReason.ByOther(2))
-                {
-                    //player.KillMe(PlayerDeathReason.ByOther(2), 999, 1);
-                    player.Hurt(PlayerDeathReason.ByOther(2), 999, 1);
-                }
+                player.Hurt(PlayerDeathReason.ByOther(2), 999, 1);
             }
-
-            if (voidSoul && Main.rand.Next(10) == 0)
-            {
-                returnValue = false; ;
-            }
-            return returnValue;
+            return !VoidSoul || Main.rand.Next(10) != 0;
         }
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
 
-            if (jungleEnchant)
+            if (JungleEnchant)
             {
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
 
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 5f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 5f, 0f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -5f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -5f, 0f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, 4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, -4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, -4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, 4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 5f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 5f, 0f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -5f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -5f, 0f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, 4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, -4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, -4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, 4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
             }
 
-            if (terrariaSoul && jungleEnchant)
+            if (TerrariaSoul && JungleEnchant)
             {
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
 
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 5f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 5f, 0f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -5f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -5f, 0f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, 4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, -4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, -4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, 4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 5f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 5f, 0f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -5f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -5f, 0f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, 4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, -4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, -4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, 4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
             }
 
-            if (spookyEnchant && player.FindBuffIndex(mod.BuffType("SpookyCD")) == -1)
+            if (SpookyEnchant && player.FindBuffIndex(mod.BuffType("SpookyCD")) == -1)
             {
                 Main.PlaySound(2/**/, (int)player.position.X, (int)player.position.Y, 62);
 
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 5f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 5f, 0f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -5f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -5f, 0f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, 4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, -4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, -4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, 4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 5f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 5f, 0f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -5f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -5f, 0f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, 4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, -4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, -4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, 4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
 
                 player.AddBuff(mod.BuffType("SpookyCD"), 240);
 
             }
 
-            if ((vortexEnchant || terrariaSoul) && vortexCrit > 4)
+            if ((VortexEnchant || TerrariaSoul) && VortexCrit > 4)
             {
-                vortexCrit /= 2;
+                VortexCrit /= 2;
             }
 
-            if (tankEffect && Main.rand.Next(5) == 0)
+            if (TankEffect && Main.rand.Next(5) == 0)
             {
-                player.statLife += (Convert.ToInt32(damage * .5));
+                player.statLife += Convert.ToInt32(damage * .5);
                 player.HealEffect(Convert.ToInt32(damage * .5));
             }
 
-            if (dimensionSoul && Main.rand.Next(3) == 0)
+            if (DimensionSoul && Main.rand.Next(3) == 0)
             {
-                player.statLife += (Convert.ToInt32(damage * .75));
+                player.statLife += Convert.ToInt32(damage * .75);
                 player.HealEffect(Convert.ToInt32(damage * .75));
             }
 
@@ -1232,39 +1204,39 @@ namespace FargowiltasSouls
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if (fossilEnchant && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
+            if (FossilEnchant && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
             {
                 player.statLife = 20;
                 player.HealEffect(20);
                 player.immune = true;
                 player.immuneTime = player.longInvince ? 180 : 120;
-                Main.NewText("You've been revived!", 175, 75, 255);
+                Main.NewText("You've been revived!", 175, 75);
                 player.AddBuff(mod.BuffType("Revived"), 18000);
                 return false;
             }
-            if (terrariaSoul && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
+            if (TerrariaSoul && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
             {
                 player.statLife = 200;
                 player.HealEffect(200);
                 player.immune = true;
                 player.immuneTime = player.longInvince ? 180 : 120;
-                Main.NewText("You've been revived!", 175, 75, 255);
+                Main.NewText("You've been revived!", 175, 75);
                 player.AddBuff(mod.BuffType("Revived"), 14400);
                 return false;
             }
 
             //add more tbh
-            if (infested && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
+            if (Infested && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
             {
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " could not handle the infection.");
             }
 
-            if (rotting && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
+            if (Rotting && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
             {
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " rotted away.");
             }
 
-            if ((godEater || flamesoftheUniverse) && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
+            if ((GodEater || FlamesoftheUniverse) && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
             {
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " was annihilated by divine wrath.");
             }
@@ -1274,12 +1246,12 @@ namespace FargowiltasSouls
 
         public override bool ConsumeAmmo(Item weapon, Item ammo)
         {
-            if (infinity)
+            if (Infinity)
             {
                 return false;
             }
 
-            if (universeEffect)
+            if (UniverseEffect)
             {
                 if (Main.rand.Next(100) < 50)
                 {
@@ -1287,7 +1259,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (rangedEffect)
+            if (RangedEffect)
             {
                 if (Main.rand.Next(100) < 32)
                 {
@@ -1295,7 +1267,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (miniRangedEffect)
+            if (MiniRangedEffect)
             {
                 if (Main.rand.Next(100) < 4)
                 {
@@ -1303,7 +1275,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (throwSoul)
+            if (ThrowSoul)
             {
                 if (Main.rand.Next(100) < 32)
                 {
@@ -1329,7 +1301,7 @@ namespace FargowiltasSouls
 				player.vortexStealthActive = vortexStealth;
 			}*/
 
-            if(beetleEnchant)
+            if(BeetleEnchant)
             {
                 player.wingTimeMax = (int)(player.wingTimeMax * 1.5);
             }
@@ -1338,7 +1310,7 @@ namespace FargowiltasSouls
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
 
-            if (meteorEnchant)
+            if (MeteorEnchant)
             {
                 if (item.type == ItemID.SpaceGun || item.type == ItemID.LaserRifle || item.type == ItemID.HeatRay || item.type == ItemID.LaserMachinegun)
                 {
@@ -1346,7 +1318,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (terrariaSoul && Main.rand.Next(2) == 0 && Soulcheck.GetValue("Splitting Projectiles") && !item.summon)
+            if (TerrariaSoul && Main.rand.Next(2) == 0 && Soulcheck.GetValue("Splitting Projectiles") && !item.summon)
             {
                 float spread = 2f * 0.1250f;
                 float baseSpeed = (float)Math.Sqrt(speedX * speedX + speedY * speedY);
@@ -1356,7 +1328,7 @@ namespace FargowiltasSouls
                 for (float i = -1f; i <= 1f; i++)
                 {
                     offsetAngle = baseAngle + i * spread;
-                    Projectile.NewProjectile(position.X, position.Y, baseSpeed * (float)Math.Sin(offsetAngle), baseSpeed * (float)Math.Cos(offsetAngle), type, damage, knockBack, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(position.X, position.Y, baseSpeed * (float)Math.Sin(offsetAngle), baseSpeed * (float)Math.Cos(offsetAngle), type, damage, knockBack, player.whoAmI);
                 }
 
                 return false;
@@ -1389,48 +1361,48 @@ namespace FargowiltasSouls
 
         private void KillPets()
         {
-            int petID = player.miscEquips[0].buffType;
-            int lightPetID = player.miscEquips[1].buffType;
+            int petId = player.miscEquips[0].buffType;
+            int lightPetId = player.miscEquips[1].buffType;
 
-            player.buffImmune[petID] = true;
-            player.buffImmune[lightPetID] = true;
+            player.buffImmune[petId] = true;
+            player.buffImmune[lightPetId] = true;
 
-            player.ClearBuff(petID);
-            player.ClearBuff(lightPetID);
+            player.ClearBuff(petId);
+            player.ClearBuff(lightPetId);
 
-            catPet = false;
-            crimsonPet = false;
-            crimsonPet2 = false;
-            cubePet = false;
-            dinoPet = false;
-            dogPet = false;
-            dragPet = false;
-            eyePet = false;
-            fishPet = false;
-            grinchPet = false;
-            lanternPet = false;
-            lizPet = false;
-            minotaurPet = false;
-            penguinPet = false;
-            pumpkinPet = false;
-            saplingPet = false;
-            seedPet = false;
-            shadowPet = false;
-            shadowPet2 = false;
-            skullPet = false;
-            snowmanPet = false;
-            spectrePet = false;
-            spiderPet = false;
-            suspiciousEyePet = false;
-            turtlePet = false;
+            CatPet = false;
+            CrimsonPet = false;
+            CrimsonPet2 = false;
+            CubePet = false;
+            DinoPet = false;
+            DogPet = false;
+            DragPet = false;
+            EyePet = false;
+            FishPet = false;
+            GrinchPet = false;
+            LanternPet = false;
+            LizPet = false;
+            MinotaurPet = false;
+            PenguinPet = false;
+            PumpkinPet = false;
+            SaplingPet = false;
+            SeedPet = false;
+            ShadowPet = false;
+            ShadowPet2 = false;
+            SkullPet = false;
+            SnowmanPet = false;
+            SpectrePet = false;
+            SpiderPet = false;
+            SuspiciousEyePet = false;
+            TurtlePet = false;
 
             //memorizes player selections
-            if (!wasAsocial)
+            if (!WasAsocial)
             {
-                hidePetToggle0 = player.hideMisc[0];
-                hidePetToggle1 = player.hideMisc[1];
+                HidePetToggle0 = player.hideMisc[0];
+                HidePetToggle1 = player.hideMisc[1];
 
-                wasAsocial = true;
+                WasAsocial = true;
             }
 
             //disables pet and light pet too!
@@ -1456,7 +1428,7 @@ namespace FargowiltasSouls
 
         }
 
-        private int InfestedExtraDOT()
+        private int InfestedExtraDot()
         {
             int buffIndex = player.FindBuffIndex(mod.BuffType("Infested"));
 
@@ -1465,15 +1437,15 @@ namespace FargowiltasSouls
 
             int timeLeft = player.buffTime[buffIndex];
 
-            float baseVal = (float)(maxInfestTime - timeLeft) / (120);
+            float baseVal = (float)(MaxInfestTime - timeLeft) / 120;
             //change the denominator to adjust max power of DOT
             int modifier = (int)(baseVal * baseVal + 8);
 
-            infestedDust = (baseVal / 10) + 1f;
+            InfestedDust = baseVal / 10 + 1f;
 
-            if (infestedDust > 5f)
+            if (InfestedDust > 5f)
             {
-                infestedDust = 5f;
+                InfestedDust = 5f;
             }
 
             return modifier;

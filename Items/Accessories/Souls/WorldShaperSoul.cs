@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
+using static Terraria.ID.ItemID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -37,7 +32,7 @@ No enemies can spawn
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            (player.GetModPlayer<FargoPlayer>(mod)).builderEffect = true;
+            player.GetModPlayer<FargoPlayer>(mod).BuilderEffect = true;
 
             player.tileSpeed += 0.25f;
             player.wallSpeed += 0.25f;
@@ -68,7 +63,7 @@ No enemies can spawn
                 player.minionDamage*= 0f;
                 player.thrownDamage*= 0f;*/
 
-                (player.GetModPlayer<FargoPlayer>(mod)).builderMode = true;
+                player.GetModPlayer<FargoPlayer>(mod).BuilderMode = true;
             }
 
         }
@@ -77,73 +72,73 @@ No enemies can spawn
         {
             ModRecipe build = new ModRecipe(mod);
 
-            build.AddIngredient(ItemID.Toolbelt);
-            build.AddIngredient(ItemID.Toolbox);
-            build.AddIngredient(ItemID.ArchitectGizmoPack);
-            build.AddIngredient(ItemID.ActuationAccessory);
+            build.AddIngredient(Toolbelt);
+            build.AddIngredient(Toolbox);
+            build.AddIngredient(ArchitectGizmoPack);
+            build.AddIngredient(ActuationAccessory);
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //thorium and calamity
                     build.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("AncientFossil"));
                     build.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalineCharm"));
                     build.AddRecipeGroup("FargowiltasSouls:AnyDrax");
-                    build.AddIngredient(ItemID.ShroomiteDiggingClaw);
-                    build.AddIngredient(ItemID.Picksaw);
-                    build.AddIngredient(ItemID.LaserDrill);
-                    build.AddIngredient(ItemID.DrillContainmentUnit);
-                    build.AddIngredient(ItemID.PeaceCandle, 10);
-                    build.AddIngredient(ItemID.RoyalGel);
+                    build.AddIngredient(ShroomiteDiggingClaw);
+                    build.AddIngredient(Picksaw);
+                    build.AddIngredient(LaserDrill);
+                    build.AddIngredient(DrillContainmentUnit);
+                    build.AddIngredient(PeaceCandle, 10);
+                    build.AddIngredient(RoyalGel);
                     build.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("OceanCrest"));
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just thorium
-                    build.AddIngredient(ItemID.MiningHelmet);
+                    build.AddIngredient(MiningHelmet);
                     build.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalineCharm"));
                     build.AddRecipeGroup("FargowiltasSouls:AnyDrax");
-                    build.AddIngredient(ItemID.ShroomiteDiggingClaw);
-                    build.AddIngredient(ItemID.Picksaw);
-                    build.AddIngredient(ItemID.LaserDrill);
-                    build.AddIngredient(ItemID.DrillContainmentUnit);
-                    build.AddIngredient(ItemID.Sunflower, 50);
-                    build.AddIngredient(ItemID.PeaceCandle, 10);
-                    build.AddIngredient(ItemID.RoyalGel);
+                    build.AddIngredient(ShroomiteDiggingClaw);
+                    build.AddIngredient(Picksaw);
+                    build.AddIngredient(LaserDrill);
+                    build.AddIngredient(DrillContainmentUnit);
+                    build.AddIngredient(Sunflower, 50);
+                    build.AddIngredient(PeaceCandle, 10);
+                    build.AddIngredient(RoyalGel);
                 }
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just calamity
                     build.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("AncientFossil"));
                     build.AddRecipeGroup("FargowiltasSouls:AnyDrax");
-                    build.AddIngredient(ItemID.ShroomiteDiggingClaw);
-                    build.AddIngredient(ItemID.MoltenPickaxe);
-                    build.AddIngredient(ItemID.Picksaw);
-                    build.AddIngredient(ItemID.LaserDrill);
-                    build.AddIngredient(ItemID.DrillContainmentUnit);
-                    build.AddIngredient(ItemID.PeaceCandle, 10);
-                    build.AddIngredient(ItemID.RoyalGel);
+                    build.AddIngredient(ShroomiteDiggingClaw);
+                    build.AddIngredient(MoltenPickaxe);
+                    build.AddIngredient(Picksaw);
+                    build.AddIngredient(LaserDrill);
+                    build.AddIngredient(DrillContainmentUnit);
+                    build.AddIngredient(PeaceCandle, 10);
+                    build.AddIngredient(RoyalGel);
                     build.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("OceanCrest"));
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //no others
                     build.AddRecipeGroup("FargowiltasSouls:AnyDrax");
-                    build.AddIngredient(ItemID.ShroomiteDiggingClaw);
-                    build.AddIngredient(ItemID.MoltenPickaxe);
-                    build.AddIngredient(ItemID.Picksaw);
-                    build.AddIngredient(ItemID.LaserDrill);
-                    build.AddIngredient(ItemID.DrillContainmentUnit);
-                    build.AddIngredient(ItemID.Sunflower, 50);
-                    build.AddIngredient(ItemID.PeaceCandle, 10);
-                    build.AddIngredient(ItemID.RoyalGel);
+                    build.AddIngredient(ShroomiteDiggingClaw);
+                    build.AddIngredient(MoltenPickaxe);
+                    build.AddIngredient(Picksaw);
+                    build.AddIngredient(LaserDrill);
+                    build.AddIngredient(DrillContainmentUnit);
+                    build.AddIngredient(Sunflower, 50);
+                    build.AddIngredient(PeaceCandle, 10);
+                    build.AddIngredient(RoyalGel);
                 }
             }
 

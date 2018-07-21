@@ -1,10 +1,8 @@
+using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
@@ -39,29 +37,29 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             //crimson
-            modPlayer.crimsonEnchant = true;
+            modPlayer.CrimsonEnchant = true;
             player.crimsonRegen = true;
 
             //bee + spider 
             if (Soulcheck.GetValue("Bees on Hit"))
             {
-                modPlayer.beeEnchant = true;
+                modPlayer.BeeEnchant = true;
             }
-            modPlayer.spiderEnchant = true;
+            modPlayer.SpiderEnchant = true;
             player.strongBees = true;
 
             //beetle + turtle
-            modPlayer.turtleEnchant = true;
+            modPlayer.TurtleEnchant = true;
             player.aggro += 50;
             player.thorns = 1f;
             player.turtleThorns = true;
             player.statDefense = (int)(player.statDefense * 1.25);
-            if (Soulcheck.GetValue("Beetles") == true)
+            if (Soulcheck.GetValue("Beetles"))
             {
                 player.beetleDefense = true;
                 player.beetleCounter += 1f;
                 int num5 = 180;
-                if (player.beetleCounter >= (float)num5)
+                if (player.beetleCounter >= num5)
                 {
                     if (player.beetleOrbs > 0 && player.beetleOrbs < 3)
                     {
@@ -80,7 +78,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                     }
                     else
                     {
-                        player.beetleCounter = (float)num5;
+                        player.beetleCounter = num5;
                     }
                 }
 
@@ -108,23 +106,23 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                     for (int m = 0; m < player.beetleOrbs; m++)
                     {
                         player.beetlePos[m] += player.beetleVel[m];
-                        Vector2[] expr_6EC_cp_0 = player.beetleVel;
-                        int expr_6EC_cp_1 = m;
-                        expr_6EC_cp_0[expr_6EC_cp_1].X = expr_6EC_cp_0[expr_6EC_cp_1].X + (float)Main.rand.Next(-100, 101) * 0.005f;
-                        Vector2[] expr_71A_cp_0 = player.beetleVel;
-                        int expr_71A_cp_1 = m;
-                        expr_71A_cp_0[expr_71A_cp_1].Y = expr_71A_cp_0[expr_71A_cp_1].Y + (float)Main.rand.Next(-100, 101) * 0.005f;
+                        Vector2[] expr_6EcCp0 = player.beetleVel;
+                        int expr_6EcCp1 = m;
+                        expr_6EcCp0[expr_6EcCp1].X = expr_6EcCp0[expr_6EcCp1].X + Main.rand.Next(-100, 101) * 0.005f;
+                        Vector2[] expr71ACp0 = player.beetleVel;
+                        int expr71ACp1 = m;
+                        expr71ACp0[expr71ACp1].Y = expr71ACp0[expr71ACp1].Y + Main.rand.Next(-100, 101) * 0.005f;
                         float num6 = player.beetlePos[m].X;
                         float num7 = player.beetlePos[m].Y;
-                        float num8 = (float)Math.Sqrt((double)(num6 * num6 + num7 * num7));
+                        float num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
                         if (num8 > 100f)
                         {
                             num8 = 20f / num8;
                             num6 *= -num8;
                             num7 *= -num8;
                             int num9 = 10;
-                            player.beetleVel[m].X = (player.beetleVel[m].X * (float)(num9 - 1) + num6) / (float)num9;
-                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (float)(num9 - 1) + num7) / (float)num9;
+                            player.beetleVel[m].X = (player.beetleVel[m].X * (num9 - 1) + num6) / num9;
+                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (num9 - 1) + num7) / num9;
                         }
                         else if (num8 > 30f)
                         {
@@ -132,12 +130,12 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                             num6 *= -num8;
                             num7 *= -num8;
                             int num10 = 20;
-                            player.beetleVel[m].X = (player.beetleVel[m].X * (float)(num10 - 1) + num6) / (float)num10;
-                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (float)(num10 - 1) + num7) / (float)num10;
+                            player.beetleVel[m].X = (player.beetleVel[m].X * (num10 - 1) + num6) / num10;
+                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (num10 - 1) + num7) / num10;
                         }
                         num6 = player.beetleVel[m].X;
                         num7 = player.beetleVel[m].Y;
-                        num8 = (float)Math.Sqrt((double)(num6 * num6 + num7 * num7));
+                        num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
                         if (num8 > 2f)
                         {
                             player.beetleVel[m] *= 0.9f;
@@ -152,19 +150,19 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             {
                 if (Soulcheck.GetValue("Baby Face Monster Pet"))
                 {
-                    modPlayer.crimsonPet = true;
+                    modPlayer.CrimsonPet = true;
 
                     if (player.FindBuffIndex(154) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.BabyFaceMonster] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyFaceMonster, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyFaceMonster, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.crimsonPet = false;
+                    modPlayer.CrimsonPet = false;
                 }
             }
 
@@ -172,49 +170,49 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             {
                 if (Soulcheck.GetValue("Turtle Pet"))
                 {
-                    modPlayer.turtlePet = true;
+                    modPlayer.TurtlePet = true;
 
                     if (player.FindBuffIndex(42) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.Turtle] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Turtle, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Turtle, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.turtlePet = false;
+                    modPlayer.TurtlePet = false;
                 }
 
                 modPlayer.AddPet("Baby Hornet Pet", BuffID.BabyHornet, ProjectileID.BabyHornet);
 
                 if (Soulcheck.GetValue("Spider Pet"))
                 {
-                    modPlayer.spiderPet = true;
+                    modPlayer.SpiderPet = true;
 
                     if (player.FindBuffIndex(81) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.Spider] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Spider, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Spider, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.spiderPet = false;
+                    modPlayer.SpiderPet = false;
                 }
 
                 //if(Soulcheck.GetValue("Baby Eater Pet"))
                 //{
-                modPlayer.crimsonPet2 = true;
+                modPlayer.CrimsonPet2 = true;
 
                 if (player.FindBuffIndex(155) == -1)
                 {
                     if (player.ownedProjectileCounts[ProjectileID.CrimsonHeart] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CrimsonHeart, 0, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CrimsonHeart, 0, 2f, Main.myPlayer);
                     }
                 }
                 //}

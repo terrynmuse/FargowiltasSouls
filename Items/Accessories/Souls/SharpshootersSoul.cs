@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -36,7 +35,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            (player.GetModPlayer<FargoPlayer>(mod)).rangedEffect = true;
+            player.GetModPlayer<FargoPlayer>(mod).RangedEffect = true;
 
             player.rangedDamage += .4f;
             player.rangedCrit += 25;
@@ -51,11 +50,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             range2.AddIngredient(null, "SnipersEssence");
             range2.AddIngredient(ItemID.MagicQuiver);
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
-                    if (Fargowiltas.instance.blueMagicLoaded)
+                    if (Fargowiltas.Instance.BlueMagicLoaded)
                     {
                         //all 3
                         range2.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CrystalDestroyerScope"));
@@ -66,7 +65,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     range2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerraBow"));
                     range2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("BarracudaGun"));
 
-                    if (!Fargowiltas.instance.blueMagicLoaded)
+                    if (!Fargowiltas.Instance.BlueMagicLoaded)
                     {
                         //thorium and calamity
                         range2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("ShadowFlareBow"));
@@ -78,11 +77,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     range2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("SDFMG"));
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     range2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DragonTalonNecklace"));
 
-                    if (Fargowiltas.instance.blueMagicLoaded)
+                    if (Fargowiltas.Instance.BlueMagicLoaded)
                     {
                         //blue and thorium
                         range2.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CrystalDestroyerScope"));
@@ -97,7 +96,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     range2.AddIngredient(ItemID.Xenopopper);
                     range2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumPulseRifle"));
 
-                    if (!Fargowiltas.instance.blueMagicLoaded)
+                    if (!Fargowiltas.Instance.BlueMagicLoaded)
                     {
                         //just thorium
                         range2.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("NovaRifle"));
@@ -108,11 +107,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 }
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
+                if (Fargowiltas.Instance.CalamityLoaded)
                 {
-                    if (Fargowiltas.instance.blueMagicLoaded)
+                    if (Fargowiltas.Instance.BlueMagicLoaded)
                     {
                         //calamity and blue
                         range2.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CrystalDestroyerScope"));
@@ -122,7 +121,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     range2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("MagnaStriker"));
                     range2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("BarracudaGun"));
 
-                    if (!Fargowiltas.instance.blueMagicLoaded)
+                    if (!Fargowiltas.Instance.BlueMagicLoaded)
                     {
                         //just calamity
                         range2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("PlanetaryAnnihilation"));
@@ -135,9 +134,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                     range2.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("SDFMG"));
                 }
 
-                if (!Fargowiltas.instance.calamityLoaded)
+                if (!Fargowiltas.Instance.CalamityLoaded)
                 {
-                    if (Fargowiltas.instance.blueMagicLoaded)
+                    if (Fargowiltas.Instance.BlueMagicLoaded)
                     {
                         //just blue
                         range2.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CrystalDestroyerScope"));

@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
@@ -42,53 +38,53 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 
             //miner
             player.pickSpeed -= 0.3f;
-            if (Soulcheck.GetValue("Shine Buff") == true)
+            if (Soulcheck.GetValue("Shine Buff"))
             {
                 Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             }
-            if (Soulcheck.GetValue("Spelunker Buff") == true)
+            if (Soulcheck.GetValue("Spelunker Buff"))
             {
                 player.findTreasure = true;
             }
-            if (Soulcheck.GetValue("Hunter Buff") == true)
+            if (Soulcheck.GetValue("Hunter Buff"))
             {
                 player.detectCreature = true;
             }
-            if (Soulcheck.GetValue("Dangersense Buff") == true)
+            if (Soulcheck.GetValue("Dangersense Buff"))
             {
                 player.dangerSense = true;
             }
             //cobalt
-            modPlayer.cobaltEnchant = true;
+            modPlayer.CobaltEnchant = true;
 
             //palladium
             player.onHitRegen = true;
-            modPlayer.palladEnchant = true;
+            modPlayer.PalladEnchant = true;
 
             //mythril	
             if (Soulcheck.GetValue("Increase Use Speed"))
             {
-                modPlayer.firingSpeed += .3f;
-                modPlayer.castingSpeed += .3f;
-                modPlayer.throwingSpeed += .3f;
-                modPlayer.radiantSpeed += .3f;
-                modPlayer.symphonicSpeed += .3f;
-                modPlayer.healingSpeed += .3f;
-                modPlayer.axeSpeed += .3f;
-                modPlayer.hammerSpeed += .3f;
-                modPlayer.pickSpeed += .3f;
+                modPlayer.FiringSpeed += .3f;
+                modPlayer.CastingSpeed += .3f;
+                modPlayer.ThrowingSpeed += .3f;
+                modPlayer.RadiantSpeed += .3f;
+                modPlayer.SymphonicSpeed += .3f;
+                modPlayer.HealingSpeed += .3f;
+                modPlayer.AxeSpeed += .3f;
+                modPlayer.HammerSpeed += .3f;
+                modPlayer.PickSpeed += .3f;
             }
 
             //orichalcum
-            if (Soulcheck.GetValue("Orichalcum Fireball") == true)
+            if (Soulcheck.GetValue("Orichalcum Fireball"))
             {
                 player.onHitPetal = true;
-                modPlayer.oriEnchant = true;
+                modPlayer.OriEnchant = true;
             }
             //adamantite
             if (Soulcheck.GetValue("Splitting Projectiles"))
             {
-                modPlayer.adamantiteEnchant = true;
+                modPlayer.AdamantiteEnchant = true;
             }
 
             //titanium
@@ -116,13 +112,13 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             {
                 //if(Soulcheck.GetValue("Baby Face Monster Pet"))
                 //{
-                modPlayer.lanternPet = true;
+                modPlayer.LanternPet = true;
 
                 if (player.FindBuffIndex(152) == -1)
                 {
                     if (player.ownedProjectileCounts[ProjectileID.MagicLantern] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MagicLantern, 0, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MagicLantern, 0, 2f, Main.myPlayer);
                     }
                 }
                 //}

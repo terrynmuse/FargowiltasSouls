@@ -1,10 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -33,7 +29,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            modPlayer.ninjaEnchant = true;
+            modPlayer.NinjaEnchant = true;
 
             //ninja gear
             player.blackBelt = true;
@@ -45,19 +41,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 if (Soulcheck.GetValue("Black Cat Pet"))
                 {
-                    modPlayer.catPet = true;
+                    modPlayer.CatPet = true;
 
                     if (player.FindBuffIndex(84) == -1)
                     {
                         if (player.ownedProjectileCounts[ProjectileID.BlackCat] < 1)
                         {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BlackCat, 0, 2f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BlackCat, 0, 2f, Main.myPlayer);
                         }
                     }
                 }
                 else
                 {
-                    modPlayer.catPet = false;
+                    modPlayer.CatPet = false;
                 }
             }
 

@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -50,12 +48,12 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             int i;
 			int j = Main.rand.Next(3);
 			
-			if((j == 0) || (j == 2))
+			if(j == 0 || j == 2)
 			{
 				for (i = 0; i < 1; i++ )
 				{
-					offsetAngle = (startAngle + deltaAngle * (i + i*i) / 2f) + 32f * i;
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("Bonez"), damage, knockBack, player.whoAmI, 0f, 0f);
+					offsetAngle = startAngle + deltaAngle * (i + i*i) / 2f + 32f * i;
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("Bonez"), damage, knockBack, player.whoAmI);
 				}
 			}
 			
@@ -63,8 +61,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			{
 				for (i = 0; i < 1; i++ )
 				{
-					offsetAngle = (startAngle + deltaAngle * (i + i*i) / 2f) + 32f * i;
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.ClothiersCurse, damage, knockBack, player.whoAmI, 0f, 0f);
+					offsetAngle = startAngle + deltaAngle * (i + i*i) / 2f + 32f * i;
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.ClothiersCurse, damage, knockBack, player.whoAmI);
 				}
 			}
 			

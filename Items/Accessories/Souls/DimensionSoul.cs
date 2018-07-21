@@ -1,17 +1,16 @@
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using System;
+using static Terraria.ID.BuffID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     [AutoloadEquip(EquipType.Wings)]
     public class DimensionSoul : ModItem
     {
+        private readonly Mod _calamity = ModLoader.GetMod("CalamityMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of Dimensions");
@@ -52,7 +51,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            (player.GetModPlayer<FargoPlayer>(mod)).dimensionSoul = true;
+            player.GetModPlayer<FargoPlayer>(mod).DimensionSoul = true;
 
             //tank
             player.endurance += 0.30f;
@@ -90,14 +89,14 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.buffImmune[68] = true; //suffocation
 
             // sweet vengeance or star veil
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 player.panic = true;
                 player.starCloak = true;
                 player.longInvince = true;
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
                 player.starCloak = true;
                 player.longInvince = true;
@@ -112,13 +111,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             //paladin
             if (player.statLife > player.statLifeMax2 * .20)
             {
-                player.AddBuff(BuffID.PaladinsShield, 30, true);
+                player.AddBuff(PaladinsShield, 30);
             }
 
             //frozenshell
             if (player.statLife < player.statLifeMax2 * .6)
             {
-                player.AddBuff(BuffID.IceBarrier, 30, true);
+                player.AddBuff(IceBarrier, 30);
             }
 
             //celestial shell
@@ -146,9 +145,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
 
             //frostspark
-            if (Soulcheck.GetValue("Super Speed") == true)
+            if (Soulcheck.GetValue("Super Speed"))
             {
-                (player.GetModPlayer<FargoPlayer>(mod)).speedEffect = true;
+                player.GetModPlayer<FargoPlayer>(mod).SpeedEffect = true;
                 player.accRunSpeed = 2.00f;
                 player.moveSpeed += 5f;
             }
@@ -174,7 +173,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.bee = true;
 
             //shield of cthulu
-            if (!Fargowiltas.instance.calamityLoaded)
+            if (!Fargowiltas.Instance.CalamityLoaded)
             {
                 player.dash = 2;
             }
@@ -208,12 +207,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 player.minionDamage*= 0f;
                 player.thrownDamage*= 0f;*/
 
-                (player.GetModPlayer<FargoPlayer>(mod)).builderMode = true;
+                player.GetModPlayer<FargoPlayer>(mod).BuilderMode = true;
             }
 
 
             //mining helmet
-            if (Soulcheck.GetValue("Shine Buff") == true)
+            if (Soulcheck.GetValue("Shine Buff"))
             {
                 Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             }
@@ -229,67 +228,70 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.autoJump = true;
             player.jumpSpeedBoost += 2.5f;
 
-            if (Soulcheck.GetValue("Spore Sac") == true)
+            if (Soulcheck.GetValue("Spore Sac"))
             {
                 //spore sac
                 player.SporeSac();
                 player.sporeSac = true;
             }
 
-        (player.GetModPlayer<FargoPlayer>(mod)).fishSoul2 = true;
+        player.GetModPlayer<FargoPlayer>(mod).FishSoul2 = true;
 
             //dread eye
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Soulcheck.GetValue("Dangersense Buff") == true)
+                if (Soulcheck.GetValue("Dangersense Buff"))
                 {
                     player.dangerSense = true;
                 }
-                if (Soulcheck.GetValue("Hunter Buff") == true)
+                if (Soulcheck.GetValue("Hunter Buff"))
                 {
                     player.detectCreature = true;
                 }
             }
 
-            if (Fargowiltas.instance.calamityLoaded)
+            if (Fargowiltas.Instance.CalamityLoaded)
             {
-                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("BrimstoneFlames")] = true;
-                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("HolyLight")] = true;
-                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("GlacialState")] = true;
+                player.buffImmune[_calamity.BuffType("BrimstoneFlames")] = true;
+                player.buffImmune[_calamity.BuffType("HolyLight")] = true;
+                player.buffImmune[_calamity.BuffType("GlacialState")] = true;
 
                 CalamityTank(player);
 
                 CalamityBoots(player);
             }
 
-            if (Fargowiltas.instance.blueMagicLoaded)
+            if (Fargowiltas.Instance.BlueMagicLoaded)
             {
                 BlueTank(player);
             }
         }
 
-        public void CalamityTank(Player player)
+        private void CalamityTank(Player player)
         {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).elysianAegis = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).dashMod = 4;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).aSpark = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).gShell = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).fCarapace = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).absorber = true;
+            CalamityMod.CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity);
+            
+            calamityPlayer.elysianAegis = true;
+            calamityPlayer.dashMod = 4;
+            calamityPlayer.aSpark = true;
+            calamityPlayer.gShell = true;
+            calamityPlayer.fCarapace = true;
+            calamityPlayer.absorber = true;
         }
 
-        public void CalamityBoots(Player player)
+        private void CalamityBoots(Player player)
         {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).IBoots = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).elysianFire = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).IBoots = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).elysianFire = true;
         }
 
-        public void BlueTank(Player player)
+        private void BlueTank(Player player)
         {
             player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).lifeMagnet2 = true;
             player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).crystalCloak = true;
         }
 
+        // ReSharper disable twice RedundantAssignment
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {

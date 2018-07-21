@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Terraria;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,7 +7,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 {
     public class HellFlame : ModProjectile
     {
-        static int currentShade = 82;//76;
+        static int _currentShade = 82;//76;
 
         public override void SetStaticDefaults()
         {
@@ -37,7 +32,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void Kill(int timeLeft)
         {
-            Main.NewText(currentShade.ToString(), 175, 75, 255);
+            Main.NewText(_currentShade.ToString(), 175, 75);
             //currentShade++;
         }
         //76, 77, 79, 83

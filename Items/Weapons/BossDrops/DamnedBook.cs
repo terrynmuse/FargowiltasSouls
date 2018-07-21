@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -36,7 +34,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             item.shootSpeed = 8f;    //projectile speed when shoot
 		}
 		
-		public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{	
 
 		  float spread = 45f * 0.0174f;
@@ -50,8 +48,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			{
 				for (i = 0; i < 1; i++ )
 				{
-					offsetAngle = (startAngle + deltaAngle * (i + i*i) / 2f) + 32f * i;
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 464, damage, knockBack, player.whoAmI, 0f, 0f);
+					offsetAngle = startAngle + deltaAngle * (i + i*i) / 2f + 32f * i;
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 464, damage, knockBack, player.whoAmI);
 				}
 			}
 			
@@ -59,8 +57,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			{
 				for (i = 0; i < 1; i++ )
 				{
-					offsetAngle = (startAngle + deltaAngle * (i + i*i) / 2f) + 32f * i;
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 465, damage, knockBack, player.whoAmI, 0f, 0f);
+					offsetAngle = startAngle + deltaAngle * (i + i*i) / 2f + 32f * i;
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 465, damage, knockBack, player.whoAmI);
 				}
 			}
 			
@@ -68,8 +66,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			{
 				for (i = 0; i < 1; i++ )
 				{
-					offsetAngle = (startAngle + deltaAngle * (i + i*i) / 2f) + 32f * i;
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 466, damage, knockBack, player.whoAmI, 0f, 0f);
+					offsetAngle = startAngle + deltaAngle * (i + i*i) / 2f + 32f * i;
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 466, damage, knockBack, player.whoAmI);
 				}
 			}
 			
@@ -77,8 +75,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			{
 				for (i = 0; i < 1; i++ )
 				{
-					offsetAngle = (startAngle + deltaAngle * (i + i*i) / 2f) + 32f * i;
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 467, damage, knockBack, player.whoAmI, 0f, 0f);
+					offsetAngle = startAngle + deltaAngle * (i + i*i) / 2f + 32f * i;
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 467, damage, knockBack, player.whoAmI);
 				}
 			}
 			
@@ -86,8 +84,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			{
 				for (i = 0; i < 1; i++ )
 				{
-					offsetAngle = (startAngle + deltaAngle * (i + i*i) / 2f) + 32f * i;
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 468, damage, knockBack, player.whoAmI, 0f, 0f);
+					offsetAngle = startAngle + deltaAngle * (i + i*i) / 2f + 32f * i;
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 468, damage, knockBack, player.whoAmI);
 				}
 			}
 			

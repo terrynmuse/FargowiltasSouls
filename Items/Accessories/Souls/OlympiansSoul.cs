@@ -1,8 +1,5 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -29,7 +26,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            (player.GetModPlayer<FargoPlayer>(mod)).throwSoul = true;
+            player.GetModPlayer<FargoPlayer>(mod).ThrowSoul = true;
 
             player.thrownVelocity += 0.2f;
             player.thrownDamage += 0.4f;

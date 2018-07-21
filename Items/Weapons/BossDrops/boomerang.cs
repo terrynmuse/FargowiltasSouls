@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
- 
+
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
-    public class boomerang : ModItem
+    public class Boomerang : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -33,7 +33,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             item.autoReuse = true;
         }
 		
-		 public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		 public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			float spread = 45f * 0.0174f;
 			float baseSpeed = (float)Math.Sqrt(speedX * speedX + speedY * speedY);
@@ -44,7 +44,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			for (i = 0; i < 3;i++ )
 			{
 				offsetAngle = startAngle + deltaAngle * i;
-				Terraria.Projectile.NewProjectile(position.X, position.Y, baseSpeed*(float)Math.Sin(offsetAngle), baseSpeed*(float)Math.Cos(offsetAngle), item.shoot, damage, knockBack, item.owner);
+				Projectile.NewProjectile(position.X, position.Y, baseSpeed*(float)Math.Sin(offsetAngle), baseSpeed*(float)Math.Cos(offsetAngle), item.shoot, damage, knockBack, item.owner);
 			}
 			return false;
 		}
@@ -63,7 +63,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         public override void AddRecipes()
         {
                 ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(ItemID.DirtBlock, 1);
+                recipe.AddIngredient(ItemID.DirtBlock);
                 recipe.SetResult(this);
                 recipe.AddRecipe();
         }

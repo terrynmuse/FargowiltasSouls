@@ -1,9 +1,5 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.Graphics.Shaders;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.BossWeapons
@@ -30,7 +26,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 		}
         	public override void AI()
         	{
-			projectile.rotation += 0.3f * (float)projectile.direction;
+			projectile.rotation += 0.3f * projectile.direction;
 			for (int num103 = 0; num103 < 1; num103++)
 			{
 				int num104 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 59, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
@@ -48,7 +44,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 				int num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 59, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
 				Main.dust[num469].noGravity = true;
 				Main.dust[num469].velocity *= 2f;
-				num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 59, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default(Color), 1f);
+				num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 59, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100);
 				Main.dust[num469].velocity *= 2f;
 			}
 		}

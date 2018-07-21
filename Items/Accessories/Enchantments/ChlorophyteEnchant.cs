@@ -30,7 +30,7 @@ Summons a pet Seedling");
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            modPlayer.chloroEnchant = true;
+            modPlayer.ChloroEnchant = true;
             modPlayer.AddMinion("Leaf Crystal", mod.ProjectileType("Chlorofuck"), 100, 10f);
             modPlayer.AddPet("Seedling Pet", BuffID.PetSapling, ProjectileID.Sapling);
         }
