@@ -9,14 +9,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Enchantment");
-            Tooltip.SetDefault("'Made with real shrooms!' \n" +
-                                "12% increased ranged damage \n" +
-                                "Not moving puts you in stealth \n" +
-                                "You can only crit in stealth, but crits deal 4x damage\n" +
-                                "Spores spawn on enemies when you attack in stealth");
-
-            //remove spores? 
+            Tooltip.SetDefault(
+@"'Made with real shrooms!'
+Not moving puts you in stealth
+While in stealth crits deal 4x damage and spores spawn on enemies
+Summons a pet Baby Truffle");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -29,14 +28,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-
-            player.rangedDamage += .12f;
             if (Soulcheck.GetValue("Shroomite Stealth"))
             {
                 player.shroomiteStealth = true;
-                player.GetModPlayer<FargoPlayer>(mod).ShroomEnchant = true;
+                modPlayer.ShroomEnchant = true;
             }
+
+            modPlayer.AddPet("Truffle Pet", BuffID.BabyTruffle, ProjectileID.Truffle);
         }
 
         public override void AddRecipes()
@@ -45,13 +45,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddRecipeGroup("FargowiltasSouls:AnyShroomHead");
             recipe.AddIngredient(ItemID.ShroomiteBreastplate);
             recipe.AddIngredient(ItemID.ShroomiteLeggings);
+            recipe.AddIngredient(ItemID.MushroomSpear);
             recipe.AddIngredient(ItemID.Hammush);
-            recipe.AddIngredient(ItemID.Uzi);
-            recipe.AddIngredient(ItemID.GrenadeLauncher);
+            recipe.AddIngredient(ItemID.StrangeGlowingMushroom);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
     }
 }
-

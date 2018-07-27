@@ -12,11 +12,13 @@ namespace FargowiltasSouls.Projectiles.Minions
 		{
 			DisplayName.SetDefault("Eater");
 		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 28;
 			projectile.height = 50;
 			projectile.friendly = true;
+            projectile.minion = true;
 			projectile.ignoreWater = true;
 			projectile.penetrate = -1;
 			projectile.timeLeft = 100;

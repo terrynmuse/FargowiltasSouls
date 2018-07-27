@@ -9,12 +9,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ninja Enchantment");
-            Tooltip.SetDefault("'They are already dead' \n" +
-                                "Throw a smoke bomb to teleport to it\n" +
-                                "Standing nearby smoke makes you take 20% less damage and you always crit when you attack a full health enemy \n" +
-                                "Effects of the Master Ninja Gear\n" +
-                                "Summons a pet Black cat");
+            Tooltip.SetDefault(
+@"'They are already dead'
+Throw a smoke bomb to teleport to it
+Standing nearby smoke gives you the First Strike buff
+Effects of the Master Ninja Gear
+Summons a pet Black cat");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -28,53 +30,27 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
             modPlayer.NinjaEnchant = true;
+            modPlayer.AddPet("Black Cat Pet", BuffID.BlackCat, ProjectileID.BlackCat);
 
             //ninja gear
             player.blackBelt = true;
             player.spikedBoots = 2;
-            player.dash = 1;
-
-            //pet
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (Soulcheck.GetValue("Black Cat Pet"))
-                {
-                    modPlayer.CatPet = true;
-
-                    if (player.FindBuffIndex(84) == -1)
-                    {
-                        if (player.ownedProjectileCounts[ProjectileID.BlackCat] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BlackCat, 0, 2f, Main.myPlayer);
-                        }
-                    }
-                }
-                else
-                {
-                    modPlayer.CatPet = false;
-                }
-            }
-
-
+            player.dash = 1;  
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-
             recipe.AddIngredient(ItemID.NinjaHood);
             recipe.AddIngredient(ItemID.NinjaShirt);
             recipe.AddIngredient(ItemID.NinjaPants);
             recipe.AddIngredient(ItemID.MasterNinjaGear);
             recipe.AddIngredient(ItemID.SmokeBomb, 50);
             recipe.AddIngredient(ItemID.UnluckyYarn);
-
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
     }
 }
-

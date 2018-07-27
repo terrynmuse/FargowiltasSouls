@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -7,93 +8,6 @@ namespace FargowiltasSouls.Items
 {
 	public class FargoGlobalItem : GlobalItem
 	{
-        public class UseSpeed : GlobalItem
-		{
-			public override float UseTimeMultiplier(Item item, Player player)
-			{
-				FargoPlayer p = (FargoPlayer)player.GetModPlayer(mod, "FargoPlayer");
-				if (item.ranged && item.damage > 0 && item.useTime > 5 && item.useAnimation > 5)
-				{
-					return 1f + p.FiringSpeed;
-				}
-				if (item.magic && item.width != 25 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.CastingSpeed;
-				}
-				if (item.thrown && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1 || item.ranged && item.width == 29 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.ThrowingSpeed;
-				}
-				if (item.width == 27 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.RadiantSpeed;
-				}
-				if (item.width == 25 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.SymphonicSpeed;
-				}
-				if (item.magic && item.damage < 1 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.HealingSpeed;
-				}
-				if (item.axe >= 1 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.AxeSpeed;
-				}
-				if (item.hammer >= 1 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.HammerSpeed;
-				}
-				if (item.pick >= 1 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.PickSpeed;
-				}
-				return 1f;
-			}
-			
-			public override float MeleeSpeedMultiplier(Item item, Player player)
-			{
-				FargoPlayer p = (FargoPlayer)player.GetModPlayer(mod, "FargoPlayer");
-				if (item.ranged && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.FiringSpeed;
-				}
-				if (item.magic && item.width != 25 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.CastingSpeed;
-				}
-				if (item.thrown && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1 || item.ranged && item.width == 29 && item.damage > 0 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.ThrowingSpeed;
-				}
-				if (item.width == 27 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.RadiantSpeed;
-				}
-				if (item.width == 25 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.SymphonicSpeed;
-				}
-				if (item.magic && item.damage < 1 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.HealingSpeed;
-				}
-				if (item.axe >= 1 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.AxeSpeed;
-				}
-				if (item.hammer >= 1 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.HammerSpeed;
-				}
-				if (item.pick >= 1 && item.useTime > 1 && item.useAnimation > 1)
-				{
-					return 1f + p.PickSpeed;
-				}
-				return 1f;
-			}
-		}
-		
 		public override void ModifyTooltips (Item item, List< TooltipLine > tooltips)
 		{			
 			if(item.type == ItemID.DogWhistle)
@@ -256,6 +170,7 @@ namespace FargowiltasSouls.Items
 
                     returnVal = false;
                 }
+
                 if (item.type == ItemID.GoldCoin)
                 {
                     int x = Main.rand.Next(2);
@@ -275,5 +190,30 @@ namespace FargowiltasSouls.Items
             return returnVal;
         }
 
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if (item.type == ItemID.PumpkinPie && player.HasBuff(BuffID.PotionSickness))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public override bool UseItem(Item item, Player player)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+
+            if(item.type == ItemID.PumpkinPie && modPlayer.PumpkinEnchant)
+            {
+                int heal = player.statLifeMax2 - player.statLife;
+                player.HealEffect(heal);
+                player.statLife += heal;
+                player.AddBuff(BuffID.PotionSickness, 14400);
+
+            }
+
+            return true;
+        }
     }
 }

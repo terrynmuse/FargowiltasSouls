@@ -64,15 +64,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             //mythril	
             if (Soulcheck.GetValue("Increase Use Speed"))
             {
-                modPlayer.FiringSpeed += .3f;
-                modPlayer.CastingSpeed += .3f;
-                modPlayer.ThrowingSpeed += .3f;
-                modPlayer.RadiantSpeed += .3f;
-                modPlayer.SymphonicSpeed += .3f;
-                modPlayer.HealingSpeed += .3f;
-                modPlayer.AxeSpeed += .3f;
-                modPlayer.HammerSpeed += .3f;
-                modPlayer.PickSpeed += .3f;
+                //30%
             }
 
             //orichalcum
@@ -112,7 +104,6 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             {
                 //if(Soulcheck.GetValue("Baby Face Monster Pet"))
                 //{
-                modPlayer.LanternPet = true;
 
                 if (player.FindBuffIndex(152) == -1)
                 {

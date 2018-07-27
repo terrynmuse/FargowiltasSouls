@@ -22,9 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-
             TooltipLine[] lines = new TooltipLine[8];
-
             lines[0] = new TooltipLine(mod, "1", "'Gold makes the world go round'");
             lines[1] = new TooltipLine(mod, "2", "Increased damage based on current coin count");
             lines[2] = new TooltipLine(mod, "3", "Current: " + (Damage * 100).ToString("0.00") + "% increased damage");
@@ -33,14 +31,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             lines[4] = new TooltipLine(mod, "5", "You will throw away any lesser valued coins you pick up");
             lines[5] = new TooltipLine(mod, "6", "Increases coin pickup range and shops have lower prices");
             lines[6] = new TooltipLine(mod, "7", "Hitting enemies will sometimes drop extra coins");
-            lines[7] = new TooltipLine(mod, "8", "Your attacks also inflict Midas");
-
+            lines[7] = new TooltipLine(mod, "8", "Your attacks inflict Midas");
 
             for (int i = 0; i < lines.Length; i++)
             {
                 tooltips.Add(lines[i]);
             }
-
         }
 
         public override void SetDefaults()
@@ -99,7 +95,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 Damage = .30f;
             }
-
         }
 
         public override void UpdateInventory(Player player)
@@ -112,7 +107,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             UpdateDamage(player);
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
             modPlayer.GoldEnchant = true;
 
             //gold ring
@@ -122,28 +116,21 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             //discount card
             player.discount = true;
 
-            player.magicDamage += Damage;
-            player.meleeDamage += Damage;
-            player.rangedDamage += Damage;
-            player.minionDamage += Damage;
-            player.thrownDamage += Damage;
+            modPlayer.AllDamageUp(Damage);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-
             recipe.AddIngredient(ItemID.GoldHelmet);
             recipe.AddIngredient(ItemID.GoldChainmail);
             recipe.AddIngredient(ItemID.GoldGreaves);
             recipe.AddIngredient(ItemID.GreedyRing);
             recipe.AddIngredient(ItemID.RubyStaff);
             recipe.AddIngredient(ItemID.SquirrelGold);
-
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
     }
 }
-

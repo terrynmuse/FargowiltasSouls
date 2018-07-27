@@ -9,10 +9,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mythril Enchantment");
-            Tooltip.SetDefault("'You feel the knowledge of your weapons seep into your mind' \n" +
-                                "20% increased ranged weapon use speed \n" +
-                                "10% increased ranged critical strike chance");
+            Tooltip.SetDefault(
+@"'You feel the knowledge of your weapons seep into your mind'
+30% increased weapon use speed");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -25,36 +26,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.rangedCrit += 10;
-
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //modPlayer.mythrilEnchant = true;
-
-
-            modPlayer.FiringSpeed += .20f;
-
-            /*if (player.whoAmI == Main.myPlayer)
-            {
-				if(!hideVisual)
-				{
-					modPlayer.mythrilPet = true;
-					
-					if(player.FindBuffIndex(200) == -1)
-					{
-						if (player.ownedProjectileCounts[ProjectileID.DD2PetGato] < 1)
-						{
-							
-							Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.DD2PetGato, 0, 2f, Main.myPlayer, 0f, 0f);
-						}
-					}
-				}
-				else
-				{
-						modPlayer.mythrilPet = false;
-				}
-				
-            }*/
-
+            modPlayer.MythrilEnchant = true;
         }
 
         public override void AddRecipes()
@@ -63,10 +36,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddRecipeGroup("FargowiltasSouls:AnyMythrilHead");
             recipe.AddIngredient(ItemID.MythrilChainmail);
             recipe.AddIngredient(ItemID.MythrilGreaves);
-            recipe.AddIngredient(ItemID.OnyxBlaster);
-            recipe.AddIngredient(ItemID.ShadowFlameBow);
-            recipe.AddIngredient(ItemID.DD2PhoenixBow);
-
+            recipe.AddIngredient(ItemID.FetidBaghnakhs);
+            recipe.AddIngredient(ItemID.Megashark);
+            recipe.AddIngredient(ItemID.LaserRifle);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -12,9 +12,16 @@ namespace FargowiltasSouls.Buffs.Souls
 			Main.buffNoSave[Type] = true;
 		}
 
-		public override void Update(NPC npc, ref int buffIndex)
+        public override bool Autoload(ref string name, ref string texture)
+        {
+            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
+
+            return true;
+        }
+
+        public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<FargoGlobalNpc>(mod).Shock = true;
+			npc.GetGlobalNPC<FargoGlobalNPC>(mod).Shock = true;
 		}
 	}
 }

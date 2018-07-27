@@ -9,12 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spooky Enchantment");
-            Tooltip.SetDefault("'Melting souls since 1902' \n" +
-                                "12% increased minion damage \n" +
-                                "Increases your max number of minions by 1 \n" +
-                                "When you get hit, you release a legion of scythes\n" +
-                                "Summons a Cursed Sapling");
+            Tooltip.SetDefault(
+@"'Melting souls since 1902'
+All of your minions may occasionally spew massive scythes everywhere
+Summons a Cursed Sapling");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -32,29 +32,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 modPlayer.SpookyEnchant = true;
             }
-            player.maxMinions += 1;
-            player.minionDamage += 0.12f;
 
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (Soulcheck.GetValue("Cursed Sapling Pet"))
-                {
-                    modPlayer.SaplingPet = true;
-
-                    if (player.FindBuffIndex(85) == -1)
-                    {
-                        if (player.ownedProjectileCounts[ProjectileID.CursedSapling] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CursedSapling, 0, 2f, Main.myPlayer);
-                        }
-                    }
-                }
-                else
-                {
-                    modPlayer.SaplingPet = false;
-                }
-            }
-
+            modPlayer.AddPet("Cursed Sapling Pet", BuffID.CursedSapling, ProjectileID.CursedSapling);
         }
 
         public override void AddRecipes()
@@ -63,8 +42,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.SpookyHelmet);
             recipe.AddIngredient(ItemID.SpookyBreastplate);
             recipe.AddIngredient(ItemID.SpookyLeggings);
-            recipe.AddIngredient(ItemID.DemonScythe);
             recipe.AddIngredient(ItemID.DeathSickle);
+            recipe.AddIngredient(ItemID.DemonScythe);
             recipe.AddIngredient(ItemID.CursedSapling);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
@@ -72,4 +51,3 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         }
     }
 }
-

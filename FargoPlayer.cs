@@ -26,17 +26,6 @@ namespace FargowiltasSouls
         public bool Infinity;
         public bool NpcBoost = false;
 
-        //shoot speed
-        public float FiringSpeed;
-        public float CastingSpeed;
-        public float ThrowingSpeed;
-        public float RadiantSpeed;
-        public float SymphonicSpeed;
-        public float HealingSpeed;
-        public float AxeSpeed;
-        public float HammerSpeed;
-        public float PickSpeed;
-
         //minions
         public bool BrainMinion;
         public bool EaterMinion;
@@ -67,22 +56,32 @@ namespace FargowiltasSouls
         public bool PalladEnchant;
         public bool OriEnchant;
         public bool MeteorEnchant;
-        private int _meteorTimer = 120;
-        private int _meteorCd;
+        private int meteorTimer = 150;
+        private int meteorCD = 0;
+        private int prevMana;
+        private bool meteorShower = false;
+
         public bool MoltenEnchant;
 
 
         public bool CopperEnchant;
         public bool NinjaEnchant;
         public bool FirstStrike;
+        public bool NearSmoke;
         public bool IronEnchant;
         public bool TurtleEnchant;
         public bool LeadEnchant;
         public bool GladEnchant;
         public bool GoldEnchant;
         public bool CactusEnchant;
-        private int _cactusCd;
+        private int cactusCD;
         public bool BeetleEnchant;
+        public bool ForbiddenEnchant;
+        public bool MinerEnchant;
+        public bool TungstenEnchant;
+        public bool PumpkinEnchant;
+        private int pumpkinCD;
+        public bool SilverEnchant;
 
         //pets
         public bool FlickerPet;
@@ -90,28 +89,21 @@ namespace FargowiltasSouls
         public bool DinoPet;
         public bool SeedPet;
         public bool DogPet;
-        public bool CatPet;
-        public bool PumpkinPet;
         public bool SkullPet;
         public bool SaplingPet;
-        public bool TurtlePet;
         public bool LizPet;
         public bool EyePet;
-        public bool MinotaurPet;
         public bool DragPet;
         public bool ShadowPet;
         public bool ShadowPet2;
         public bool CrimsonPet;
         public bool CrimsonPet2;
-        public bool SpectrePet;
         public bool PenguinPet;
         public bool SnowmanPet;
         public bool FishPet;
         public bool CubePet;
         public bool GrinchPet;
         public bool SuspiciousEyePet;
-        public bool SpiderPet;
-        public bool LanternPet;
 
         //soul effects
         public bool MeleeEffect;
@@ -236,17 +228,6 @@ namespace FargowiltasSouls
             QueenStinger = false;
             Infinity = false;
 
-            FiringSpeed = 0f;
-            CastingSpeed = 0f;
-            ThrowingSpeed = 0f;
-            RadiantSpeed = 0f;
-            SymphonicSpeed = 0f;
-            HealingSpeed = 0f;
-            AxeSpeed = 0f;
-            HammerSpeed = 0f;
-            PickSpeed = 0f;
-
-
             BrainMinion = false;
             EaterMinion = false;
 
@@ -277,6 +258,7 @@ namespace FargowiltasSouls
             CopperEnchant = false;
             NinjaEnchant = false;
             FirstStrike = false;
+            NearSmoke = false;
             IronEnchant = false;
             TurtleEnchant = false;
             LeadEnchant = false;
@@ -284,6 +266,11 @@ namespace FargowiltasSouls
             GoldEnchant = false;
             CactusEnchant = false;
             BeetleEnchant = false;
+            ForbiddenEnchant = false;
+            MinerEnchant = false;
+            TungstenEnchant = false;
+            PumpkinEnchant = false;
+            SilverEnchant = false;
 
             //pets
             FlickerPet = false;
@@ -291,28 +278,21 @@ namespace FargowiltasSouls
             DinoPet = false;
             SeedPet = false;
             DogPet = false;
-            CatPet = false;
-            PumpkinPet = false;
             SkullPet = false;
             SaplingPet = false;
-            TurtlePet = false;
             LizPet = false;
             EyePet = false;
-            MinotaurPet = false;
             DragPet = false;
             ShadowPet = false;
             ShadowPet2 = false;
             CrimsonPet = false;
             CrimsonPet2 = false;
-            SpectrePet = false;
             PenguinPet = false;
             SnowmanPet = false;
             FishPet = false;
             CubePet = false;
             GrinchPet = false;
             SuspiciousEyePet = false;
-            SpiderPet = false;
-            LanternPet = false;
             
 
 
@@ -362,15 +342,16 @@ namespace FargowiltasSouls
         {
             if (MoltenEnchant)
             {
-                Projectile.NewProjectileDirect(player.Center, new Vector2(0, 0), mod.ProjectileType("Explosion"), (int)(50 * player.meleeDamage), 0f, Main.myPlayer);
-                //boom.width *= 5;
-                //boom.height *= 5;
+                Projectile.NewProjectileDirect(player.Center, Vector2.Zero, mod.ProjectileType("Explosion"), (int)(500 * player.meleeDamage), 0f, Main.myPlayer);
             }
 
             if (VoidSoul)
             {
                 player.respawnTimer = (int)(player.respawnTimer * .5);
             }
+
+            //remove this after testing you fool
+            player.respawnTimer = (int)(player.respawnTimer * .01);
         }
 
         public override void UpdateDead()
@@ -421,54 +402,131 @@ namespace FargowiltasSouls
                 FirstInfection = true;
             }
 
-            if(CactusEnchant && _cactusCd !=0)
+            if(CactusEnchant && cactusCD !=0)
             {
-                _cactusCd--;
+                cactusCD--;
             }
 
-            //ninja smoke bomb nonsense
-            Projectile nearestProj = null;
-            float distance = 5 * 16;
-
-            Main.projectile.Where(x => x.type == ProjectileID.SmokeBomb && x.active).ToList().ForEach(x =>
+            if(NinjaEnchant)
             {
-                if (nearestProj == null && Vector2.Distance(x.position, player.position) <= distance)
-                {
-                    nearestProj = x;
-                    distance = Vector2.Distance(x.position, player.position);
-                }
-                else if (nearestProj != null && Vector2.Distance(nearestProj.position, player.position) <= distance)
-                {
-                    nearestProj = x;
-                    distance = Vector2.Distance(nearestProj.position, player.position);
-                }
-            });
+                //ninja smoke bomb nonsense
+                Projectile nearestProj = null;
+                float distance = 4 * 16;
 
-            if (nearestProj != null)
-            {
-                player.endurance += 0.20f;
-                FirstStrike = true;
-            }
-
-            //meteor shower nonsense
-            if (MeteorEnchant && player.statMana <= 5 && _meteorCd == 0)
-            {
-                if (_meteorTimer % 2 == 0)
+                Main.projectile.Where(x => x.type == ProjectileID.SmokeBomb && x.active).ToList().ForEach(x =>
                 {
-                    Projectile.NewProjectile(player.Center.X + Main.rand.Next(-1000, 1000), player.Center.Y - 1000, Main.rand.Next(-2, 2), 0f + Main.rand.Next(8, 12), Main.rand.Next(424, 427), (int)(50 * player.magicDamage), 0f, Main.myPlayer, 0f, 0.5f + (float)Main.rand.NextDouble() * 0.3f);
-                }
+                    if (nearestProj == null && Vector2.Distance(x.Center, player.Center) <= distance)
+                    {
+                        nearestProj = x;
+                        distance = Vector2.Distance(x.Center, player.Center);
+                    }
+                    else if (nearestProj != null && Vector2.Distance(nearestProj.Center, player.Center) <= distance)
+                    {
+                        nearestProj = x;
+                        distance = Vector2.Distance(nearestProj.Center, player.Center);
+                    }
+                });
 
-                _meteorTimer--;
-
-                if (_meteorTimer == 0)
+                if (nearestProj != null)
                 {
-                    _meteorCd = 600;
-                    _meteorTimer = 120;
+                    player.AddBuff(mod.BuffType("FirstStrike"), 300);
                 }
             }
-            if (_meteorCd > 0)
+
+            if(TurtleEnchant && IsStandingStill && !player.controlUseItem)
             {
-                _meteorCd--;
+                player.AddBuff(mod.BuffType("ShellHide"), 2);
+            }
+
+            //reflect proj
+            if (HallowEnchant)
+            {
+                float distance = 5f * 16;
+
+                Main.projectile.Where(x => x.active && x.hostile).ToList().ForEach(x =>
+                {
+                    if (Vector2.Distance(x.Center, player.Center) <= distance && Main.rand.Next(5) == 0)
+                    {
+                        for(int i = 0; i < 5; i++)
+                        {
+                            int dustId = Dust.NewDust(new Vector2(x.position.X, x.position.Y + 2f), x.width, x.height + 5, DustID.GoldFlame, x.velocity.X * 0.2f, x.velocity.Y * 0.2f, 100, default(Color), 3f);
+                            Main.dust[dustId].noGravity = true;
+                        }
+
+                        // Set ownership
+                        x.hostile = false;
+                        x.friendly = true;
+                        x.owner = player.whoAmI;
+
+                        // Turn around
+                        x.velocity *= -1f;
+                        //x.penetrate = 1;
+
+                        // Flip sprite
+                        if (x.Center.X > player.Center.X * 0.5f)
+                        {
+                            x.direction = 1;
+                            x.spriteDirection = 1;
+                        }
+                        else
+                        {
+                            x.direction = -1;
+                            x.spriteDirection = -1;
+                        }
+
+                        // Don't know if this will help but here it is
+                        x.netUpdate = true;
+                    }
+                });
+            }
+
+            if (MeteorEnchant)
+            {
+                if (meteorShower)
+                {
+                    if (meteorTimer % 2 == 0)
+                    {
+                        Projectile.NewProjectile(player.Center.X + Main.rand.Next(-1000, 1000), player.Center.Y - 1000, Main.rand.Next(-2, 2), 0f + Main.rand.Next(8, 12), Main.rand.Next(424, 427), (int)(50 * player.magicDamage), 0f, Main.myPlayer, 0f, 0.5f + (float)Main.rand.NextDouble() * 0.3f);
+                    }
+
+                    meteorTimer--;
+
+                    if (meteorTimer <= 0)
+                    {
+                        meteorCD = 0;
+                        meteorTimer = 150;
+                        meteorShower = false;
+                    }
+                }
+                else
+                {
+                    if (meteorCD <= 0)
+                    {
+                        prevMana = player.statMana;
+                        meteorCD = 150;
+                    }
+                    else
+                    {
+                        meteorCD--;
+
+                        if (prevMana - player.statMana >= 50 || (player.HeldItem.mana >= 50 && player.controlUseItem))
+                        {
+                            //commence shower
+                            meteorShower = true;
+                        }
+                    }
+                }  
+            }
+
+            if(PumpkinEnchant && (player.controlLeft || player.controlRight) && !IsStandingStill)
+            {
+                if(pumpkinCD <= 0)
+                {
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileID.MolotovFire, (int)(12 * player.magicDamage), 1f, player.whoAmI);
+                    pumpkinCD = 10;
+                }
+
+                pumpkinCD--;
             }
 
             //tele through wall until open space on dash into wall
@@ -623,17 +681,29 @@ namespace FargowiltasSouls
 
         public override float UseTimeMultiplier(Item item)
         {
+            float multiplier = 1f;
+
             if (Lethargic)
             {
-                return 0.5f;
+                multiplier *= .5f;
             }
 
             if (Rotting)
             {
-                return 0.75f;
+                multiplier *= .75f;
             }
 
-            return 1f;
+            if(TungstenEnchant)
+            {
+                multiplier *= .125f;
+            }
+
+            if(MythrilEnchant)
+            {
+                multiplier *= 1.3f;
+            }
+
+            return multiplier;
         }
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
@@ -643,9 +713,9 @@ namespace FargowiltasSouls
 
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
         {
-            if (CactusEnchant && _cactusCd == 0)
+            if (CactusEnchant && cactusCD == 0)
             {
-                Projectile[] projs = FargoGlobalProjectile.XWay(16, player.Center, ProjectileID.PineNeedleFriendly, (int)(30 * player.meleeDamage), 5f);
+                Projectile[] projs = FargoGlobalProjectile.XWay(16, player.Center, ProjectileID.PineNeedleFriendly, 5, (int)(30 * player.meleeDamage), 5f);
 
                 for(int i = 0; i < projs.Length; i++)
                 {
@@ -655,7 +725,7 @@ namespace FargowiltasSouls
                     p.melee = true;
                 }
 
-                _cactusCd = 30;
+                cactusCD = 30;
             }
         }
 
@@ -845,7 +915,7 @@ namespace FargowiltasSouls
 
             if (SpiderEnchant && proj.minion)
             {
-                target.AddBuff(BuffID.Venom, 120, true);
+                target.AddBuff(mod.BuffType("Swarmed"), 600);
             }
 
             /*if (meleeEffect)
@@ -874,7 +944,7 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.CursedInferno, 120, true);
             }
 
-            if (CopperEnchant && !target.GetGlobalNPC<FargoGlobalNpc>().Shock)
+            if (CopperEnchant && !target.GetGlobalNPC<FargoGlobalNPC>().Shock)
             {
                 knockback = 0f;
                 target.AddBuff(mod.BuffType("Shock"), 60, true);
@@ -931,7 +1001,7 @@ namespace FargowiltasSouls
 
             if (SpiderEnchant && item.summon)
             {
-                target.AddBuff(BuffID.Venom, 120, true);
+                target.AddBuff(mod.BuffType("Swarmed"), 600);
             }
 
             if (MeleeEffect)
@@ -997,6 +1067,12 @@ namespace FargowiltasSouls
                 return;
             }
 
+            if(JungleEnchant && Main.rand.Next(4) == 0)
+            {
+                player.ManaEffect(5);
+                player.statMana += 5;
+            }
+
             if (SpectreEnchant && proj.magic)
             {
                 if (crit)
@@ -1006,7 +1082,7 @@ namespace FargowiltasSouls
                 }
                 else
                 {
-                    if (HealTown != 0 && HealTown <= 6)
+                    if (HealTown != 0 && HealTown <= 10)
                     {
                         HealTown++;
                     }
@@ -1032,7 +1108,7 @@ namespace FargowiltasSouls
                 {
                     VortexCrit += 4;
                 }
-                else if (VortexCrit >= 100 && proj.type != ProjectileID.CrystalLeafShot && proj.type != mod.ProjectileType("HallowSword"))
+                else if (VortexCrit >= 100 && proj.type != ProjectileID.CrystalLeafShot)
                 {
                     if (HealTimer == 0)
                     {
@@ -1047,47 +1123,21 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (!PalladEnchant || Main.rand.Next(50) != 0) return;
-            player.statLife += damage / 3;
-            player.HealEffect(damage / 3);
-
+            if (PalladEnchant && Main.rand.Next(40) == 0)
+            {
+                player.statLife += damage / 3;
+                player.HealEffect(damage / 3);
+            }
         }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
 
-            /*if(terrariaSoul && Main.rand.Next(10) == 0)
-			{
-				player.statLife += (damage);
-				player.HealEffect(damage);
-			}*/
-        }
-
-        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
-        {
-            // if(turtleEnchant)
-            // {
-            //when standing still
-            // if ((double)Math.Abs(player.velocity.X) < 0.05 && (double)Math.Abs(player.velocity.Y) < 0.05 && player.itemAnimation == 0)
-            // {
-            // if(Main.expertMode)
-            // {
-            // damage = damage - (int)(player.statDefense * 0.75);
-            // }
-            // else
-            // {
-            // damage = damage - (int)(player.statDefense * 0.5);
-            // }
-            // player.statLife -= damage;
-
-            // damage = 0;
-            // }
-            // }
-        }
-
-        public override void MeleeEffects(Item item, Rectangle hitbox)
-        {
-
+            if (PalladEnchant && Main.rand.Next(40) == 0)
+            {
+                player.statLife += damage / 3;
+                player.HealEffect(damage / 3);
+            }
         }
 
         public override bool CanBeHitByProjectile(Projectile proj)
@@ -1112,66 +1162,19 @@ namespace FargowiltasSouls
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
-
             if (JungleEnchant)
             {
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 5f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 5f, 0f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -5f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -5f, 0f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, 4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, -4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, -4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, 4f, mod.ProjectileType("SporeBoom"), 30, 5, Main.myPlayer);
+                FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 5, (int)(30 * player.magicDamage), 5f);
+                FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
             }
 
             if (TerrariaSoul && JungleEnchant)
             {
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -2.5f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, 0f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.75f, -0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.75f, 0.75f, mod.ProjectileType("SporeBoom"), 0, 0, Main.myPlayer);
 
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 5f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 5f, 0f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -5f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -5f, 0f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, 4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, -4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, -4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, 4f, mod.ProjectileType("SporeBoom"), 120, 5, Main.myPlayer);
-            }
-
-            if (SpookyEnchant && player.FindBuffIndex(mod.BuffType("SpookyCD")) == -1)
-            {
-                Main.PlaySound(2/**/, (int)player.position.X, (int)player.position.Y, 62);
-
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 5f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 5f, 0f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -5f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -5f, 0f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, 4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, -4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4f, -4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4f, 4f, mod.ProjectileType("SpookyScythe"), 80, 2, Main.myPlayer);
-
-                player.AddBuff(mod.BuffType("SpookyCD"), 240);
-
+                FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 5, (int)(120 * player.magicDamage), 5f);
+                FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
             }
 
             if ((VortexEnchant || TerrariaSoul) && VortexCrit > 4)
@@ -1190,7 +1193,6 @@ namespace FargowiltasSouls
                 player.statLife += Convert.ToInt32(damage * .75);
                 player.HealEffect(Convert.ToInt32(damage * .75));
             }
-
         }
 
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -1309,15 +1311,6 @@ namespace FargowiltasSouls
 
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-
-            if (MeteorEnchant)
-            {
-                if (item.type == ItemID.SpaceGun || item.type == ItemID.LaserRifle || item.type == ItemID.HeatRay || item.type == ItemID.LaserMachinegun)
-                {
-                    player.statMana += item.mana;
-                }
-            }
-
             if (TerrariaSoul && Main.rand.Next(2) == 0 && Soulcheck.GetValue("Splitting Projectiles") && !item.summon)
             {
                 float spread = 2f * 0.1250f;
@@ -1370,7 +1363,6 @@ namespace FargowiltasSouls
             player.ClearBuff(petId);
             player.ClearBuff(lightPetId);
 
-            CatPet = false;
             CrimsonPet = false;
             CrimsonPet2 = false;
             CubePet = false;
@@ -1380,21 +1372,15 @@ namespace FargowiltasSouls
             EyePet = false;
             FishPet = false;
             GrinchPet = false;
-            LanternPet = false;
             LizPet = false;
-            MinotaurPet = false;
             PenguinPet = false;
-            PumpkinPet = false;
             SaplingPet = false;
             SeedPet = false;
             ShadowPet = false;
             ShadowPet2 = false;
             SkullPet = false;
             SnowmanPet = false;
-            SpectrePet = false;
-            SpiderPet = false;
             SuspiciousEyePet = false;
-            TurtlePet = false;
 
             //memorizes player selections
             if (!WasAsocial)
@@ -1449,6 +1435,30 @@ namespace FargowiltasSouls
             }
 
             return modifier;
+        }
+
+        public void AllDamageUp(float dmg)
+        {
+            player.magicDamage += dmg;
+            player.meleeDamage += dmg;
+            player.rangedDamage += dmg;
+            player.minionDamage += dmg;
+            player.thrownDamage += dmg;
+
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {
+                ///
+            }
+        }
+
+        public void AllCritUp(int crit)
+        {
+            player.meleeCrit += crit;
+            player.rangedCrit += crit;
+            player.magicCrit += crit;
+            player.thrownCrit += crit;
+
+            //thorium meme
         }
 
     }

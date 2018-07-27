@@ -9,12 +9,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Miner Enchantment");
-            Tooltip.SetDefault("'The planet trembles with each swing of your pick' \n" +
-                                "30% increased mining speed \n" +
-                                "Shows the location of enemies, traps, and treasures \n" +
-                                "You emit an aura of light\n" +
-                                "Summons a magic lantern");
+            Tooltip.SetDefault(
+@"'The planet trembles with each swing of your pick'
+50% increased mining speed
+Shows the location of enemies, traps, and treasures
+You emit an aura of light
+Summons a magic lantern");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -28,44 +30,30 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            player.pickSpeed -= 0.5f;
 
-            player.pickSpeed -= 0.3f;
             if (Soulcheck.GetValue("Shine Buff"))
             {
                 Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             }
+
             if (Soulcheck.GetValue("Spelunker Buff"))
             {
                 player.findTreasure = true;
             }
+
             if (Soulcheck.GetValue("Hunter Buff"))
             {
                 player.detectCreature = true;
             }
+
             if (Soulcheck.GetValue("Dangersense Buff"))
             {
                 player.dangerSense = true;
             }
 
-            if (player.whoAmI == Main.myPlayer)
-            {
-                //if(Soulcheck.GetValue("Baby Face Monster Pet"))
-                //{
-                modPlayer.LanternPet = true;
-
-                if (player.FindBuffIndex(152) == -1)
-                {
-                    if (player.ownedProjectileCounts[ProjectileID.MagicLantern] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MagicLantern, 0, 2f, Main.myPlayer);
-                    }
-                }
-                //}
-                //else
-                //{
-                //	modPlayer.lanternPet = false;
-                //}
-            }
+            modPlayer.MinerEnchant = true;
+            modPlayer.AddPet("Magic Lantern Pet", BuffID.MagicLantern, ProjectileID.MagicLantern);
         }
 
         public override void AddRecipes()
@@ -74,7 +62,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.MiningHelmet);
             recipe.AddIngredient(ItemID.MiningShirt);
             recipe.AddIngredient(ItemID.MiningPants);
-            recipe.AddIngredient(ItemID.CactusPickaxe);
+            recipe.AddIngredient(ItemID.MoltenPickaxe);
             recipe.AddIngredient(ItemID.MagicLantern);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

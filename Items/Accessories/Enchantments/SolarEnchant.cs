@@ -10,10 +10,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Solar Enchantment");
-            Tooltip.SetDefault(@"'Too hot to handle' 
-15% increased melee damage 
-Solar shield allows you to dash through enemies");
+            Tooltip.SetDefault(
+@"'Too hot to handle' 
+Solar shield allows you to dash through enemies
+inflict the Solar Flare debuff");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -26,7 +28,6 @@ Solar shield allows you to dash through enemies");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeDamage += .15f;
             if (Soulcheck.GetValue("Solar Shield"))
             {
                 player.AddBuff(172, 5, false);

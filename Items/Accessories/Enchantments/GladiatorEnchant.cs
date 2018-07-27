@@ -9,11 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gladiator Enchantment");
-            Tooltip.SetDefault("'Are you not entertained?' \n" +
-                                "5% increased throwing damage\n" +
-                                "Throwing weapons will speed up drastically\n" +
-                                "Summons a pet Minotaur");
+            Tooltip.SetDefault(
+@"'Are you not entertained?'
+Throwing weapons will speed up drastically
+Summons a pet Minotaur");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -27,47 +28,21 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
             modPlayer.GladEnchant = true;
-
-            player.thrownDamage += 0.05f;
-
-            //pets
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (Soulcheck.GetValue("Mini Minotaur Pet"))
-                {
-                    modPlayer.MinotaurPet = true;
-
-                    if (player.FindBuffIndex(136) == -1)
-                    {
-                        if (player.ownedProjectileCounts[ProjectileID.MiniMinotaur] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MiniMinotaur, 0, 2f, Main.myPlayer);
-                        }
-                    }
-                }
-                else
-                {
-                    modPlayer.MinotaurPet = false;
-                }
-            }
+            modPlayer.AddPet("Mini Minotaur Pet", BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-
             recipe.AddIngredient(ItemID.GladiatorHelmet);
             recipe.AddIngredient(ItemID.GladiatorBreastplate);
             recipe.AddIngredient(ItemID.GladiatorLeggings);
             recipe.AddIngredient(ItemID.Javelin, 200);
             recipe.AddIngredient(ItemID.TartarSauce);
-
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
     }
 }
-

@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.NPCs
 {
-    public class FargoGlobalNpc : GlobalNPC
+    public class FargoGlobalNPC : GlobalNPC
     {
         public override bool InstancePerEntity
         {
@@ -20,10 +20,10 @@ namespace FargowiltasSouls.NPCs
                 return true;
             }
         }
+
         public bool SBleed;
         public bool Shock;
         public bool Rotting;
-
         public bool PillarSpawn = true;
 
         //masochist doom
@@ -166,7 +166,6 @@ namespace FargowiltasSouls.NPCs
 
                 #endregion
             }
-
         }
 
         public override void AI(NPC npc)
@@ -262,7 +261,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 int j = NPC.NewNPC((int)pos.X, (int)pos.Y, (int)npc.position.Y, NPCID.Zombie);
                                 NPC zombie = Main.npc[j];
-                                zombie.GetGlobalNPC<FargoGlobalNpc>().Transform = true;
+                                zombie.GetGlobalNPC<FargoGlobalNPC>().Transform = true;
                             }
                         }
                     }
@@ -403,7 +402,7 @@ namespace FargowiltasSouls.NPCs
                     if(player.wet && player.HasBuff(BuffID.Bleeding))
                     {
                         int piranha = NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-20, 20), (int)npc.Center.Y + Main.rand.Next(-20, 20), NPCID.Piranha);
-                        Main.npc[piranha].GetGlobalNPC<FargoGlobalNpc>().Counter = 1;
+                        Main.npc[piranha].GetGlobalNPC<FargoGlobalNPC>().Counter = 1;
                     }
                     Counter = 1;
                 }
@@ -719,9 +718,14 @@ namespace FargowiltasSouls.NPCs
                         Timer = 600;
                     }
                 }
-
-                Counter++;
             }
+
+            Counter++;
+
+            if(Counter > 10000)
+            {
+                Counter = 0;
+            }   
         }
 
         public override Color? GetAlpha(NPC npc, Color drawColor)
@@ -780,12 +784,12 @@ namespace FargowiltasSouls.NPCs
             if (npc.boss)
             {
                 //5 sec
-                npc.GetGlobalNPC<FargoGlobalNpc>().RegenTimer = 300;
+                npc.GetGlobalNPC<FargoGlobalNPC>().RegenTimer = 300;
             }
             else
             {
                 //10 sec
-                npc.GetGlobalNPC<FargoGlobalNpc>().RegenTimer = 600;
+                npc.GetGlobalNPC<FargoGlobalNPC>().RegenTimer = 600;
             }
         }
 		
@@ -1489,14 +1493,7 @@ namespace FargowiltasSouls.NPCs
 		{
 			Player player = Main.player[Main.myPlayer];
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-			
-			//spider enchant
-			if(modPlayer.SpiderEnchant && Main.rand.Next(5) == 0)
-			{
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f + Main.rand.Next(-5, 5), -5f, ProjectileID.SpiderEgg, 26, 0f, Main.myPlayer);
-				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0f + Main.rand.Next(-5, 5), -5f, ProjectileID.SpiderEgg, 26, 0f, Main.myPlayer);
-			}
-			
+					
 			//SoT
 			if(modPlayer.TerrariaSoul && Main.rand.Next(3) == 0)
 			{
@@ -1625,7 +1622,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             slimes[i] = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), NPCID.RainbowSlime);
                             Main.npc[slimes[i]].scale = 1f;
-                            Main.npc[slimes[i]].GetGlobalNPC<FargoGlobalNpc>().Revive = true;
+                            Main.npc[slimes[i]].GetGlobalNPC<FargoGlobalNPC>().Revive = true;
                         }
 
                         for (int i = 0; i < 20; i++)
@@ -1729,6 +1726,8 @@ namespace FargowiltasSouls.NPCs
                     player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was impaled by a Giant Shelly."), damage / 4, 0);
                 }
             }
+
+            
         }
 
         public override void ModifyHitByProjectile (NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -1757,13 +1756,14 @@ namespace FargowiltasSouls.NPCs
 				{
 					damage = 50;
 				}
-			}
-						
+			}			
 		}
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
         {
-            if(FargoWorld.MasochistMode)
+            FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>(mod);
+
+            if (FargoWorld.MasochistMode)
             {
                 //SLIMES
                 if (npc.netID == NPCID.GreenSlime || npc.netID == NPCID.BlueSlime || npc.type == NPCID.BunnySlimed || npc.type == NPCID.SlimeRibbonGreen || npc.type == NPCID.SlimeRibbonRed || npc.type == NPCID.SlimeRibbonWhite || npc.type == NPCID.SlimeRibbonYellow)
@@ -2405,11 +2405,17 @@ namespace FargowiltasSouls.NPCs
 
                 }
            
+            if(target.HasBuff(mod.BuffType("ShellHide")))
+            {
+                damage *= 2;
+            }
         }
 
 
         public override bool StrikeNPC (NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
 		{
+            bool retValue = true;
+
 			Player player = Main.player[Main.myPlayer];
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			
@@ -2463,30 +2469,24 @@ namespace FargowiltasSouls.NPCs
 				if(crit)
 				{
 					damage *= 4;
-					//return false;
+                    retValue = false;
 				}
 			}
 			
-			if(modPlayer.ShroomEnchant && crit)
+			if(modPlayer.ShroomEnchant && crit && modPlayer.IsStandingStill)
 			{
-				if(modPlayer.IsStandingStill)
-				{
-					damage *= 2;
-					//return false;
-				}
-				else
-				{
-					crit = false;
-				}
+			    damage *= 2;
+                retValue = false;
 			}
 			
 			if(modPlayer.FirstStrike && npc.lifeMax == npc.life)
 			{
-				crit = true;
-			}
+                crit = true;
+                retValue = false;
+            }
 			
 			//normal damage calc
-			return true;
+			return retValue;
 		}
 		
 		public override void OnHitByItem (NPC npc, Player player, Item item, int damage, float knockback, bool crit)

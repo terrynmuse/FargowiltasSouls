@@ -9,12 +9,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Fossil Enchantment");
-			Tooltip.SetDefault("'Beyond a forgotten age' \n" +
-								"5% increased throwing damage and velocity \n" +
-								"You cheat death, returning with 20 HP \n" +
-								"5 minute cooldown\n" +
-								"Summons a pet Baby Dino");
+			Tooltip.SetDefault(
+@"'Beyond a forgotten age'
+You cheat death, returning with 20 HP
+5 minute cooldown
+Summons a pet Baby Dino");
 		}
+
 		public override void SetDefaults()
 		{
 			item.width = 20;
@@ -29,9 +30,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			modPlayer.FossilEnchant = true;
-			
-			player.thrownVelocity += 0.05f;
-			player.thrownDamage += 0.05f;
 			
 			//pet
 			if (player.whoAmI == Main.myPlayer)
@@ -53,7 +51,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 					modPlayer.DinoPet = false;
 				}
 			}
-			
         }
 		
 		public override void AddRecipes()
@@ -63,9 +60,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.FossilShirt);
 			recipe.AddIngredient(ItemID.FossilPants);
 			recipe.AddIngredient(ItemID.BoneJavelin, 100);
-			recipe.AddIngredient(ItemID.SecretoftheSands);
+			recipe.AddIngredient(ItemID.AntlionMandible);
 			recipe.AddIngredient(ItemID.AmberMosquito);
-			
 			recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

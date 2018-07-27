@@ -17,7 +17,8 @@ namespace FargowiltasSouls.Projectiles.Minions
 			projectile.width = 28;
 			projectile.height = 32;
 			projectile.friendly = true;
-			projectile.ignoreWater = true;
+            projectile.minion = true;
+            projectile.ignoreWater = true;
 			projectile.penetrate = -1;
 			projectile.timeLeft = 100;
 			projectile.tileCollide = false;

@@ -92,6 +92,11 @@ namespace FargowiltasSouls
             ["Black Cat Pet"] = new Color(81, 181, 113),
             ["Seedling Pet"] = new Color(81, 181, 113),
             ["Crimson Heart Pet"] = new Color(81, 181, 113),
+            ["Magic Lantern Pet"] = new Color(81, 181, 113),
+            ["Truffle Pet"] = new Color(81, 181, 113),
+            ["Squashling Pet"] = new Color(81, 181, 113),
+            ["Silver Sword Familiar"] = new Color(81, 181, 113),
+            ["Enchanted Sword Familiar"] = new Color(81, 181, 113),
         };
 
         public override void OnInitialize()

@@ -1,19 +1,17 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
-    public class TungstenEnchant : ModItem
+    public class TikiEnchant : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tungsten Enchantment");
+            DisplayName.SetDefault("Tiki Enchantment");
             Tooltip.SetDefault(
 @"''
-Your weapons shoot at 1/8 the speed
-300% increased damage
-25% increased crit chance");
+");
         }
 
         public override void SetDefaults()
@@ -22,27 +20,28 @@ Your weapons shoot at 1/8 the speed
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 0; 
-            item.value = 20000;
+            item.rare = 8; //
+            item.value = 200000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.TungstenEnchant = true;
-            modPlayer.AllDamageUp(3f);
-            modPlayer.AllCritUp(25);
+
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TungstenHelmet);
-            recipe.AddIngredient(ItemID.TungstenChainmail);
-            recipe.AddIngredient(ItemID.TungstenGreaves);
-            recipe.AddIngredient(ItemID.TungstenHammer);
-            recipe.AddIngredient(ItemID.EmeraldStaff);
-            recipe.AddTile(TileID.DemonAltar);
+
+            recipe.AddIngredient(ItemID.TikiMask);
+            recipe.AddIngredient(ItemID.TikiShirt);
+            recipe.AddIngredient(ItemID.TikiPants);
+
+            recipe.AddIngredient(ItemID.LeadBroadsword);
+            recipe.AddIngredient(ItemID.LeadBow);
+
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

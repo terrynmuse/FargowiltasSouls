@@ -9,11 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frost Enchantment");
-            Tooltip.SetDefault(@"'Let's coat the world with a deep freeze' 
-10% increased melee and ranged damage 
+            Tooltip.SetDefault(
+@"'Let's coat the world with a deep freeze' 
 You are immune to chilled and frozen debuffs 
 Melee and ranged attacks cause frostburn and emit light");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -26,8 +27,6 @@ Melee and ranged attacks cause frostburn and emit light");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeDamage += .1f;
-            player.rangedDamage += .1f;
             player.frostBurn = true;
 
             player.buffImmune[46] = true; //chilled
@@ -36,8 +35,6 @@ Melee and ranged attacks cause frostburn and emit light");
             //if slowing enemies is a thing add later
             //FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //modPlayer.frostEnchant = true;
-
-
         }
 
         public override void AddRecipes()
@@ -55,5 +52,3 @@ Melee and ranged attacks cause frostburn and emit light");
         }
     }
 }
-
-

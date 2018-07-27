@@ -9,10 +9,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lead Enchantment");
-            Tooltip.SetDefault("'Behold' \n" +
-                                "Attacks inflict enemies with lead poisoning\n" +
-                                "");
+            Tooltip.SetDefault(
+@"''
+Attacks inflict enemies with lead poisoning");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -26,7 +27,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
             modPlayer.LeadEnchant = true;
         }
 
@@ -40,10 +40,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.LeadBroadsword);
             recipe.AddIngredient(ItemID.LeadBow);
 
-            recipe.AddTile(TileID.Furnaces);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
     }
 }
-

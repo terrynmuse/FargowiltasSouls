@@ -9,9 +9,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Iron Enchantment");
-			Tooltip.SetDefault("'Nice magnetic field' \n"+ //why
-								"You attract items from a much larger range");
+			Tooltip.SetDefault(
+@"'Nice magnetic field'
+You attract items from a much larger range");
 		}
+
 		public override void SetDefaults()
 		{
 			item.defense = 1;
@@ -26,23 +28,24 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-			
 			modPlayer.IronEnchant = true;
+
+
+            
+
+            
         }
 		
 		public override void AddRecipes()
 		{
             ModRecipe recipe = new ModRecipe(mod);
-			
 			recipe.AddIngredient(ItemID.IronHelmet);
 			recipe.AddIngredient(ItemID.IronChainmail);
 			recipe.AddIngredient(ItemID.IronGreaves);
 			recipe.AddIngredient(ItemID.IronBroadsword);
-			
 			recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}
 	}
 }
-		

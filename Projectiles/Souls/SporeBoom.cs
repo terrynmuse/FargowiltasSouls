@@ -11,6 +11,7 @@ namespace FargowiltasSouls.Projectiles.Souls
 		{
 			DisplayName.SetDefault("Spore Boom");
 		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 16;
@@ -40,5 +41,10 @@ namespace FargowiltasSouls.Projectiles.Souls
 			int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width + 5, projectile.height + 5, 44, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 1.2f);
 			Main.dust[dustId].noGravity = true;
 		}
-	}
+
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            target.AddBuff(BuffID.Poisoned, 300);
+        }
+    }
 }

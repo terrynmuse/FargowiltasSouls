@@ -13,7 +13,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'The blood of your enemy is your rebirth'
 Greatly increases life regen
 Hearts heal for 1.5x as much
-Attacks have a chance to inflict ichor
 Summons a Baby Face Monster and a Crimson Heart");
 		}
 
@@ -52,10 +51,3 @@ Summons a Baby Face Monster and a Crimson Heart");
 		}
 	}
 }
-		
-	
-
-
-
-
-

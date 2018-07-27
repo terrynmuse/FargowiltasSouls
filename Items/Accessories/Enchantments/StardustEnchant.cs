@@ -9,11 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Stardust Enchantment");
-			Tooltip.SetDefault(@"'The power of the Stand is yours' 
-15% increased minion damage 
-Increases max minions by 2 
-Double tap down to direct your guardian");
+			Tooltip.SetDefault(
+@"'The power of the Stand is yours' 
+Double tap down to direct your guardian
+When you do, you freeze time temporarily");
 		}
+
 		public override void SetDefaults()
 		{
 			item.width = 20;
@@ -26,22 +27,20 @@ Double tap down to direct your guardian");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			player.maxMinions += 2;
-			player.minionDamage += 0.15f;
 			if(Soulcheck.GetValue("Stardust Guardian"))
 			{
-			player.setStardust = true;
-			if (player.whoAmI == Main.myPlayer)
-			{
-				if (player.FindBuffIndex(187) == -1)
-				{
-					player.AddBuff(187, 3600);
-				}
-				if (player.ownedProjectileCounts[623] < 1)
-				{
-					Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, 623, 0, 0f, Main.myPlayer);
-				}
-			}
+			    player.setStardust = true;
+			    if (player.whoAmI == Main.myPlayer)
+			    {
+			    	if (player.FindBuffIndex(187) == -1)
+			    	{
+			    		player.AddBuff(187, 3600);
+			    	}
+			    	if (player.ownedProjectileCounts[623] < 1)
+			    	{
+			    		Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, 623, 0, 0f, Main.myPlayer);
+			    	}
+			    }
 			}
 			
 			player.GetModPlayer<FargoPlayer>(mod).StardustEnchant = true;
@@ -56,17 +55,9 @@ Double tap down to direct your guardian");
 			recipe.AddIngredient(ItemID.StardustCellStaff);
 			recipe.AddIngredient(ItemID.StardustDragonStaff);
 			recipe.AddIngredient(ItemID.RainbowCrystalStaff);
-			
 			recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}
 	}	
 }
-		
-	
-
-
-
-
-

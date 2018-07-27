@@ -41,5 +41,101 @@ Copper Armor
 Wires
 Amethyst Staff
 
-Dark Artist Armor
+Forbidden Armor
+Tome of Infinite Wisdom
+Spirit Flame
+Secret of the Sands
 
+Mining Armor
+Magic Lantern
+Molten Pickaxe
+
+Gladiator Armor
+Javelins
+Tartar Sauce
+
+Meteor Armor
+Space Gun
+Meteor Staff
+Place Above the Clouds
+
+Tungsten Armor
+Tungsten Hammer
+Emerald Staff
+
+Jungle Armor
+Jungle Rose
+Do Not Step on the Grass
+
+Gold Armor
+Greedy Ring
+Ruby Staff
+Gold Squirrel
+
+Mythril Armor
+Fetid Baghnakhs
+Megashark
+Laser Rifle 
+
+Titanium Armor 
+Slap Hand
+Anchor
+Sleepy Octopod
+
+Ninja Armor
+Master Ninja Gear
+Smoke Bombs
+Unlucky Yarn
+
+Palladium Armor
+Soul Drain
+Vampire Knives
+Palladium Sword
+
+Spectre Armor
+Spectre Staff
+Unholy Trident
+Wisp in a Bottle
+
+Spooky Armor
+Death Sickle
+Demon Scythe
+Cursed Sapling
+
+Turtle Armor
+Flesh Knuckles
+Nettle Burst
+Seaweed
+
+Shroomite Armor
+Mushroom Spear
+Hammush
+Strange Glowing Mushroom
+
+Spider Armor
+Spider Staff
+Queen Spider Staff
+Spider Egg
+
+Pumpkin Armor
+Molotov Cocktails
+Jack o Lantern
+Magical Pumpkin Seed
+
+Orichalcum Armor
+Flower of Fire
+Flower of Frost
+Cursed Flames
+
+Molten Armor
+Fiery Greatsword
+Sunfury
+
+Silver Armor
+Silver Broadsword
+Sapphire Staff
+
+Hallowed Armor
+Excalibur
+Silver Enchantment
+The Land of Deceiving Looks

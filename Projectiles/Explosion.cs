@@ -16,8 +16,8 @@ namespace FargowiltasSouls.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 1000;
-            projectile.height = 1000;
+            projectile.width = 500;
+            projectile.height = 500;
             projectile.aiStyle = 0;
             projectile.friendly = true;
             projectile.thrown = true;
@@ -35,45 +35,44 @@ namespace FargowiltasSouls.Projectiles
             Main.PlaySound(2, (int) projectile.position.X, (int) projectile.position.Y, 14);
             projectile.position.X = projectile.position.X + projectile.width / 2;
             projectile.position.Y = projectile.position.Y + projectile.height / 2;
-            projectile.width = 100;
-            projectile.height = 100;
             projectile.position.X = projectile.position.X - projectile.width / 2;
             projectile.position.Y = projectile.position.Y - projectile.height / 2;
-            for (int num615 = 0; num615 < 30; num615++)
+
+            for (int i = 0; i < 50; i++)
             {
-                int num616 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
-                    projectile.height, 31, 0f, 0f, 100, default(Color), 1.5f);
-                Main.dust[num616].velocity *= 1.4f;
+                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
+                    projectile.height, 31, 0f, 0f, 100, default(Color), 3f);
+                Main.dust[dust].velocity *= 1.4f;
             }
 
-            for (int num617 = 0; num617 < 20; num617++)
+            for (int i = 0; i < 30; i++)
             {
-                int num618 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
+                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
                     projectile.height, 6, 0f, 0f, 100, default(Color), 3.5f);
-                Main.dust[num618].noGravity = true;
-                Main.dust[num618].velocity *= 7f;
-                num618 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 7f;
+                dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
                     projectile.height, 6, 0f, 0f, 100, default(Color), 1.5f);
-                Main.dust[num618].velocity *= 3f;
+                Main.dust[dust].velocity *= 3f;
             }
 
-            for (int num619 = 0; num619 < 2; num619++)
+            for (int i = 0; i < 5; i++)
             {
-                float scaleFactor9 = 0.4f;
-                if (num619 == 1)
+                float scaleFactor9 = 0.5f;
+                if (i == 1 || i == 3)
                 {
-                    scaleFactor9 = 0.8f;
+                    scaleFactor9 = 1f;
                 }
 
-                for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
                 {
-                    int num620 = Gore.NewGore(new Vector2(projectile.position.X, projectile.position.Y),
+                    int gore = Gore.NewGore(new Vector2(projectile.Center.X, projectile.Center.Y),
                         default(Vector2),
                         Main.rand.Next(61, 64));
 
-                    Main.gore[num620].velocity *= scaleFactor9;
-                    Main.gore[num620].velocity.X += 1f;
-                    Main.gore[num620].velocity.Y += 1f;
+                    Main.gore[gore].velocity *= scaleFactor9;
+                    Main.gore[gore].velocity.X += 1f;
+                    Main.gore[gore].velocity.Y += 1f;
                 }
             }
         }

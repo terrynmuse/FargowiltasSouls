@@ -9,8 +9,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jungle Enchantment");
-            Tooltip.SetDefault("'The wrath of the jungle dwells within' \nReduces mana usage by 10% \nTaking damage will release a spore explosion");
+            Tooltip.SetDefault(
+@"'The wrath of the jungle dwells within'
+Chance to steal 5 mana with each attack
+Taking damage will release a poisoning spore explosion
+Spore damage scales with magic damage");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -27,7 +32,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 player.GetModPlayer<FargoPlayer>(mod).JungleEnchant = true;
             }
-            player.manaCost -= .1f;
         }
 
         public override void AddRecipes()
@@ -36,7 +40,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.JungleHat);
             recipe.AddIngredient(ItemID.JungleShirt);
             recipe.AddIngredient(ItemID.JunglePants);
-            recipe.AddIngredient(ItemID.StaffofRegrowth);
+            recipe.AddIngredient(ItemID.JungleRose);
             recipe.AddIngredient(ItemID.DoNotStepontheGrass);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

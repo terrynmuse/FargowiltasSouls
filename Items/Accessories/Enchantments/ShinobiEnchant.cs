@@ -23,14 +23,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			item.value = 200000; 
 		}
 		
-		public override string Texture
-		{
-			get
-			{
-				return "FargowiltasSouls/Items/Placeholder";
-			}
-		}
-		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);

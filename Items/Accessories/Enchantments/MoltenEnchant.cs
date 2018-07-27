@@ -10,11 +10,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Molten Enchantment");
-            Tooltip.SetDefault(@"'They shall know the fury of hell.' 
-10% increased melee damage 
-Provides a few seconds of lava immunity 
-Nearby enemies are ignited");
+            Tooltip.SetDefault(
+@"'They shall know the fury of hell.' 
+Nearby enemies are ignited
+When you die, you violently explode dealing massive damage to surrounding enemies");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -27,7 +28,6 @@ Nearby enemies are ignited");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeDamage += .1f;
             //explode on death
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.MoltenEnchant = true;
@@ -39,7 +39,7 @@ Nearby enemies are ignited");
                 int num = 24;
                 float num2 = 200f;
                 bool flag = player.infernoCounter % 60 == 0;
-                int damage = 10;
+                int damage = (int)(10 * player.meleeDamage);
                 if (player.whoAmI == Main.myPlayer)
                 {
                     for (int l = 0; l < 200; l++)
@@ -59,8 +59,6 @@ Nearby enemies are ignited");
                     }
                 }
             }
-
-            //player.lavaMax += 420;
         }
 
         public override void AddRecipes()
@@ -69,7 +67,7 @@ Nearby enemies are ignited");
             recipe.AddIngredient(ItemID.MoltenHelmet);
             recipe.AddIngredient(ItemID.MoltenBreastplate);
             recipe.AddIngredient(ItemID.MoltenGreaves);
-            //recipe.AddIngredient(ItemID.ObsidianRose);
+            recipe.AddIngredient(ItemID.FieryGreatsword);
             recipe.AddIngredient(ItemID.Sunfury);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

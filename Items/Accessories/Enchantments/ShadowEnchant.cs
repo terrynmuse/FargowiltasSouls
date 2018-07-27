@@ -9,12 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadow Enchantment");
-            Tooltip.SetDefault("'You feel your body slip into the deepest shadows'\n" +
-                                "15% increased movement speed \n" +
-                                "10% increased melee speed \n" +
-                                "Attacks have a chance to inflict cursed flame\n" +
-                                "Summons a Baby Eater of Souls and a Shadow Orb");
+            Tooltip.SetDefault(
+@"'You feel your body slip into the deepest shadows'
+Attacks have a chance to inflict cursed flame
+Summons a Baby Eater of Souls and a Shadow Orb");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -30,45 +30,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.ShadowEnchant = true;
 
-            player.moveSpeed += 15f;
-            player.meleeSpeed += 0.1f;
-
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (Soulcheck.GetValue("Baby Eater Pet"))
-                {
-                    modPlayer.ShadowPet = true;
-
-                    if (player.FindBuffIndex(45) == -1)
-                    {
-                        if (player.ownedProjectileCounts[ProjectileID.BabyEater] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyEater, 0, 2f, Main.myPlayer);
-                        }
-                    }
-                }
-                else
-                {
-                    modPlayer.ShadowPet = false;
-                }
-
-                //if(Soulcheck.GetValue("Baby Eater Pet"))
-                //{
-                modPlayer.ShadowPet2 = true;
-
-                if (player.FindBuffIndex(19) == -1)
-                {
-                    if (player.ownedProjectileCounts[ProjectileID.ShadowOrb] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ShadowOrb, 0, 2f, Main.myPlayer);
-                    }
-                }
-                //}
-                //else
-                //{
-                //		modPlayer.shadowPet2 = false;
-                //}
-            }
+            modPlayer.AddPet("Baby Eater Pet", BuffID.BabyEater, ProjectileID.BabyEater);
+            modPlayer.AddPet("Shadow Orb Pet", BuffID.ShadowOrb, ProjectileID.ShadowOrb);
         }
 
         public override void AddRecipes()
@@ -80,17 +43,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.LightlessChasms);
             recipe.AddIngredient(ItemID.EatersBone);
             recipe.AddIngredient(ItemID.ShadowOrb);
-
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
     }
 }
-
-
-
-
-
-
-

@@ -9,12 +9,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Meteor Enchantment");
-            Tooltip.SetDefault("'Cosmic power builds your magical prowess'\n" +
-                                "10% increased magic damage \n" +
-                                "A meteor shower initiates upon reaching less than 5 mana");
-
-            //check that uh blue magic sword rain
+            Tooltip.SetDefault(
+@"'Cosmic power builds your magical prowess'
+A meteor shower initiates when you use 50 or more mana in a short period");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -29,8 +28,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.MeteorEnchant = true;
-
-            player.magicDamage += .10f;
         }
 
         public override void AddRecipes()

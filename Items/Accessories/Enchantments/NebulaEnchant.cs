@@ -9,8 +9,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Nebula Enchantment");
-			Tooltip.SetDefault("'The pillars of creation have shined upon you' \n15% increased magic damage \nHurting enemies has a chance to spawn buff boosters");
+			Tooltip.SetDefault(
+@"'The pillars of creation have shined upon you'
+Hurting enemies has a chance to spawn buff boosters");
 		}
+
 		public override void SetDefaults()
 		{
 			item.width = 20;
@@ -28,8 +31,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 				player.nebulaCD--;
 			}
 				player.setNebula = true;
-				
-				player.magicDamage += 0.15f;
 			
         }
 		
@@ -46,14 +47,5 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}
-	}
-		
-		
+	}	
 }
-		
-	
-
-
-
-
-

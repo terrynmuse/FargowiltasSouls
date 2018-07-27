@@ -5,15 +5,16 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.Minions
 {
-    public class HallowSword : ModProjectile
+    public class SilverSword : ModProjectile
     {
         public override void SetDefaults()
         {
             projectile.netImportant = true;
             projectile.CloneDefaults(ProjectileID.DeadlySphere);
             aiType = ProjectileID.DeadlySphere;
-            projectile.width = 58;
-            projectile.height = 60;
+
+            projectile.width = 32;
+            projectile.height = 32;
             projectile.friendly = true;
             projectile.minion = true;
             projectile.penetrate = -1;
@@ -25,7 +26,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("HallowSword");
+            DisplayName.SetDefault("SilverSword");
         }
 
         public override void AI()

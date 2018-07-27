@@ -11,9 +11,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Forbidden Enchantment");
             Tooltip.SetDefault(
 @"'Walk like an Egyptian'
-Increases your max number of minions by 1
-You are immune to the Mighty Wind debuff
-Double tap down to call an ancient storm to the cursor location");
+Double tap down to call an ancient storm to the cursor location
+Any projectiles shot through your storm gain double pierce and 50% damage
+You are immune to the Mighty Wind debuff");
         }
 
         public override void SetDefaults()
@@ -29,9 +29,7 @@ Double tap down to call an ancient storm to the cursor location");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            player.maxMinions += 1;
-
+            modPlayer.ForbiddenEnchant = true;
             EffectAdd(player, hideVisual, mod);
         }
 
@@ -53,9 +51,9 @@ Double tap down to call an ancient storm to the cursor location");
             recipe.AddIngredient(ItemID.AncientBattleArmorHat);
             recipe.AddIngredient(ItemID.AncientBattleArmorShirt);
             recipe.AddIngredient(ItemID.AncientBattleArmorPants);
+            recipe.AddIngredient(ItemID.BookStaff);
             recipe.AddIngredient(ItemID.SpiritFlame);
-            recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
-            recipe.AddIngredient(ItemID.DeadlySphereStaff);
+            recipe.AddIngredient(ItemID.SecretoftheSands);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

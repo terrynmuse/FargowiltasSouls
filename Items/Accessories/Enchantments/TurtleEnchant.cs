@@ -9,12 +9,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Turtle Enchantment");
-            Tooltip.SetDefault("'You suddenly have the urge to hide in a shell' \n" +
-                                "When standing still, you 'hide in your shell' and may dodge projectiles\n" +
-                                "100% of damage taken by melee attacks is reflected \n" +
-                                "Enemies are more likely to target you\n" +
-                                "Summons a pet Turtle");
+            Tooltip.SetDefault(
+@"'You suddenly have the urge to hide in a shell'
+When standing still and not attacking, you gain the Shell Hide buff
+100% of damage taken by melee attacks is reflected
+Enemies are more likely to target you
+Summons a pet Turtle");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -29,30 +31,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.TurtleEnchant = true;
-
             player.aggro += 50;
             player.thorns = 1f;
             player.turtleThorns = true;
-
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (Soulcheck.GetValue("Turtle Pet"))
-                {
-                    modPlayer.TurtlePet = true;
-
-                    if (player.FindBuffIndex(42) == -1)
-                    {
-                        if (player.ownedProjectileCounts[ProjectileID.Turtle] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Turtle, 0, 2f, Main.myPlayer);
-                        }
-                    }
-                }
-                else
-                {
-                    modPlayer.TurtlePet = false;
-                }
-            }
+            modPlayer.AddPet("Turtle Pet", BuffID.PetTurtle, ProjectileID.Turtle);
         }
 
         public override void AddRecipes()
@@ -61,14 +43,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.TurtleHelmet);
             recipe.AddIngredient(ItemID.TurtleScaleMail);
             recipe.AddIngredient(ItemID.TurtleLeggings);
-            recipe.AddIngredient(ItemID.Yelets);
-            recipe.AddIngredient(ItemID.Seedler);
-            recipe.AddIngredient(ItemID.ButchersChainsaw);
-
+            recipe.AddIngredient(ItemID.FleshKnuckles);
+            recipe.AddIngredient(ItemID.NettleBurst);
+            recipe.AddIngredient(ItemID.Seaweed);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
     }
 }
-

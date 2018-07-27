@@ -9,10 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Palladium Enchantment");
-            Tooltip.SetDefault(@"'You feel your wounds slowly healing' 
+            Tooltip.SetDefault(
+@"'You feel your wounds slowly healing' 
 Greatly increases life regeneration after striking an enemy 
-Very small chance for an attack to gain 33% life steal");
+Small chance for an attack to gain 33% life steal");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -25,11 +27,8 @@ Very small chance for an attack to gain 33% life steal");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.GetModPlayer<FargoPlayer>(mod).PalladEnchant = true;
             player.onHitRegen = true;
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.PalladEnchant = true;
-
-
         }
 
         public override void AddRecipes()
@@ -38,13 +37,13 @@ Very small chance for an attack to gain 33% life steal");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyPallaHead");
             recipe.AddIngredient(ItemID.PalladiumBreastplate);
             recipe.AddIngredient(ItemID.PalladiumLeggings);
-            recipe.AddIngredient(ItemID.ClockworkAssaultRifle);
-            recipe.AddIngredient(ItemID.DartRifle);
+            recipe.AddIngredient(ItemID.PalladiumSword);
             recipe.AddIngredient(ItemID.SoulDrain);
+            recipe.AddIngredient(ItemID.VampireKnives);
+            recipe.AddIngredient(ItemID.PalladiumSword);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
     }
 }
-

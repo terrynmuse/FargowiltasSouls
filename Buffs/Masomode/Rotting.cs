@@ -49,7 +49,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
 		public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<FargoGlobalNpc>(mod).Rotting = true;
+            npc.GetGlobalNPC<FargoGlobalNPC>(mod).Rotting = true;
         }
 	}
 }

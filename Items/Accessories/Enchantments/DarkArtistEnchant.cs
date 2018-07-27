@@ -9,9 +9,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dark Artist Enchantment");
-            Tooltip.SetDefault("'Behold' \n" +
-                                "Attacks have a chance to shock enemies\n" +
-                                "If an enemy is wet, the chance and damage is increased");
+            Tooltip.SetDefault(
+@"''
+Greatly enhances Flameburst effectiveness");
         }
 
         public override void SetDefaults()
@@ -27,7 +27,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
+            player.setApprenticeT2 = true;
+            player.setApprenticeT3 = true;
         }
 
         public override void AddRecipes()

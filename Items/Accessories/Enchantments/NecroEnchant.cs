@@ -9,11 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Necro Enchantment");
-            Tooltip.SetDefault(@"'Welcome to the bone zone' 
+            Tooltip.SetDefault(
+@"'Welcome to the bone zone' 
 25% chance to not consume ammo 
-5% increased ranged damage 
-You are immune to basic skeletons");
+A Dungeon Guardian will aid you occasionally");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -29,29 +30,7 @@ You are immune to basic skeletons");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             player.ammoCost75 = true;
-            player.rangedDamage += .05f;
-
-
-            //skeletons
-            player.npcTypeNoAggro[21] = true;
-            player.npcTypeNoAggro[31] = true;
-            player.npcTypeNoAggro[32] = true;
-            player.npcTypeNoAggro[33] = true;
-            player.npcTypeNoAggro[34] = true;
-            player.npcTypeNoAggro[167] = true;
-            player.npcTypeNoAggro[201] = true;
-            player.npcTypeNoAggro[202] = true;
-            player.npcTypeNoAggro[203] = true;
-            player.npcTypeNoAggro[294] = true;
-            player.npcTypeNoAggro[295] = true;
-            player.npcTypeNoAggro[296] = true;
-            player.npcTypeNoAggro[322] = true;
-            player.npcTypeNoAggro[323] = true;
-            player.npcTypeNoAggro[324] = true;
-            player.npcTypeNoAggro[449] = true;
-            player.npcTypeNoAggro[450] = true;
-            player.npcTypeNoAggro[451] = true;
-            player.npcTypeNoAggro[452] = true;
+           
         }
 
         public override void AddRecipes()
@@ -68,4 +47,3 @@ You are immune to basic skeletons");
         }
     }
 }
-

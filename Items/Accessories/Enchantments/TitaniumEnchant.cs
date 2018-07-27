@@ -9,12 +9,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Titanium Enchantment");
-            Tooltip.SetDefault(@"'Hit me with your best shot' 
-Briefly become invulnerable after striking an enemy 
-While a dodge is active, damage is increased by 20% 
-When dodge is on cooldown, damage is decreased by 20% 
+            Tooltip.SetDefault(
+@"'Hit me with your best shot' 
+Any damage you take while at full HP is reduced by 90%
+Briefly become invulnerable after striking an enemy when below 50% HP
 Increases all knockback");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -28,29 +29,16 @@ Increases all knockback");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            player.onHitDodge = true;
             player.kbBuff = true;
 
-            if (player.FindBuffIndex(59) == -1)
+            if(player.statLife == player.statLifeMax2)
             {
-                player.magicDamage -= .2f;
-                player.meleeDamage -= .2f;
-                player.rangedDamage -= .2f;
-                player.minionDamage -= .2f;
-                player.thrownDamage -= .2f;
+                player.endurance = .9f;
             }
-            else
+            else if(player.statLife < player.statLifeMax2 / 2)
             {
-                player.magicDamage += .2f;
-                player.meleeDamage += .2f;
-                player.rangedDamage += .2f;
-                player.minionDamage += .2f;
-                player.thrownDamage += .2f;
+                player.onHitDodge = true;
             }
-
-
-
         }
 
         public override void AddRecipes()
@@ -68,5 +56,3 @@ Increases all knockback");
         }
     }
 }
-
-

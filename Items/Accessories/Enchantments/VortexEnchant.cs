@@ -9,8 +9,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Vortex Enchantment");
-			Tooltip.SetDefault("'Tear into reality' \n15% increased ranged damage \nSets your ranged critical strike chance to 4% \nEvery crit will increase it by 4% \nGetting hit drops your crit back down");
+			Tooltip.SetDefault(
+@"'Tear into reality'
+15% increased ranged damage
+Sets your ranged critical strike chance to 4%
+Every crit will increase it by 4%
+Getting hit drops your crit back down");
 		}
+
 		public override void SetDefaults()
 		{
 			item.width = 20;
@@ -73,4 +79,3 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 		}
 	}
 }
-		

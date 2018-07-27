@@ -9,10 +9,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Platinum Enchantment");
-            Tooltip.SetDefault("'Behold' \n" +
-                                "Attacks have a chance to shock enemies\n" +
-                                "If an enemy is wet, the chance and damage is increased");
+            Tooltip.SetDefault(
+@"''
+");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -23,35 +24,25 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             item.value = 200000;
         }
 
-        public override string Texture
-        {
-            get
-            {
-                return "FargowiltasSouls/Items/Placeholder";
-            }
-        }
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            modPlayer.CopperEnchant = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-
-            //plat armor
             //diamond staff
             //platinum chandelier
 
             //reflective or dragno
 
-            recipe.AddIngredient(ItemID.TurtleHelmet);
-            recipe.AddIngredient(ItemID.TurtleScaleMail);
-            recipe.AddIngredient(ItemID.TurtleLeggings);
+            recipe.AddIngredient(ItemID.PlatinumHelmet);
+            recipe.AddIngredient(ItemID.PlatinumChainmail);
+            recipe.AddIngredient(ItemID.PlatinumGreaves);
+
             recipe.AddIngredient(ItemID.Yelets);
             recipe.AddIngredient(ItemID.Seedler);
             recipe.AddIngredient(ItemID.ButchersChainsaw);
@@ -64,4 +55,3 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         }
     }
 }
-

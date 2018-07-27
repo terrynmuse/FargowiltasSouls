@@ -1,0 +1,51 @@
+-no dmg boost on any enchantment or force, almost all enchantments recipe changed
+
+-adamanite enchantment lost its magic damage boost, now all weapons can shoot a spread
+
+-angler enchant extra lures works better
+
+-bee enchant now makes bees ignore defense
+
+-beetle enchant lost extra aggro and defense, gained 1.5 wing time
+
+-added cactus enchantment, tungsten, pumpkin, silver
+
+-chlorophyte Enchantment lost poison and venom on hit and immunity, leaf crystal works exactly like the armor now (not faster shooting at lower damage), herb double made less abusable, no more 1 million herbs in less than a minute :D, added a pet to it
+
+-Cobalt Enchantment shards when a proj dies instead of when enemy dies
+
+-crimson makes hearts heal more instead of more dropping, added crimson heart toggle, removed ichor chance
+
+-forbidden now buffs projectiles shot through your storm
+
+-fossil
+
+-frost
+
+-mining lantern TOGGLE, increased mine speed even more
+
+-titanium removed buffs/nerfs to dmg, added
+
+-gladiator
+
+-jungle spores now scale with damage and they inflict poison, added mana steal effect
+
+-mythril buffed use speed
+
+-ninja made first strike work better and it is now a buff when youre in smoke that lasts a few seconds after leaving 
+
+-turtle stand still to take less dmg became stand still to totally block projectiles
+
+-shroomite added pet, removed no critting when not in stealth, lowered spore chance and changed spores 
+
+-spider removed venom chance and spiders on death, added swarm chance
+
+-ori removed fireball to spew on hit and made it rotate around player instead on hit
+
+-hallow shield looks different and works better at reflecting, no more shooting swords, actual sword minion 
+
+-molten you now explode when you die
+
+
+
+

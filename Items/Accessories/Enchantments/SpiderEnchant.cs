@@ -9,12 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spider Enchantment");
-            Tooltip.SetDefault("'Arachniphobia is punishable by arachnid induced death' \n" +
-                                "10% increased minion damage \n" +
-                                "Summon damage causes venom\n" +
-                                "When an enemy dies, it may drop spider eggs\n" +
-                                "Summons a pet Spider");
+            Tooltip.SetDefault(
+@"'Arachniphobia is punishable by arachnid induced death'
+Summon damage causes the enemy to be Swarmed
+Summons a pet Spider");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -29,31 +29,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.SpiderEnchant = true;
-
-            player.minionDamage += 0.1f;
-
-            //pet
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (Soulcheck.GetValue("Spider Pet"))
-                {
-                    modPlayer.SpiderPet = true;
-
-                    if (player.FindBuffIndex(81) == -1)
-                    {
-                        if (player.ownedProjectileCounts[ProjectileID.Spider] < 1)
-                        {
-                            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Spider, 0, 2f, Main.myPlayer);
-                        }
-                    }
-                }
-                else
-                {
-                    modPlayer.SpiderPet = false;
-                }
-            }
-
-
+            modPlayer.AddPet("Spider Pet", BuffID.PetSpider, ProjectileID.Spider);
         }
 
         public override void AddRecipes()
@@ -65,11 +41,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.SpiderStaff);
             recipe.AddIngredient(ItemID.QueenSpiderStaff);
             recipe.AddIngredient(ItemID.SpiderEgg);
-
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
     }
 }
-
