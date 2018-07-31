@@ -8,7 +8,7 @@
 
 -beetle enchant lost extra aggro and defense, gained 1.5 wing time
 
--added cactus enchantment, tungsten, pumpkin, silver
+-added cactus enchantment, tungsten, pumpkin, silver, platinum, lead, tiki, copper, tin, obsidian 
 
 -chlorophyte Enchantment lost poison and venom on hit and immunity, leaf crystal works exactly like the armor now (not faster shooting at lower damage), herb double made less abusable, no more 1 million herbs in less than a minute :D, added a pet to it
 
@@ -18,15 +18,11 @@
 
 -forbidden now buffs projectiles shot through your storm
 
--fossil
-
--frost
-
 -mining lantern TOGGLE, increased mine speed even more
 
 -titanium removed buffs/nerfs to dmg, added
 
--gladiator
+-gladiator same as before 
 
 -jungle spores now scale with damage and they inflict poison, added mana steal effect
 
@@ -46,6 +42,21 @@
 
 -molten you now explode when you die
 
+-meteor shower now activates whenever you use a magic weapon for x amount of time without stopping 
+
+-necro now spawns DG on hit
+
+-solar now adds Solar Flare debuff
+
+-Vortex has an actual vortex set bonus and spawns voids on hit
+
+-stardust can freeze time
+
+-nebula 
+
+-fossil
+
+-frost
 
 
 

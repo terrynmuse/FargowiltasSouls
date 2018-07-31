@@ -11,10 +11,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			DisplayName.SetDefault("Vortex Enchantment");
 			Tooltip.SetDefault(
 @"'Tear into reality'
-15% increased ranged damage
-Sets your ranged critical strike chance to 4%
-Every crit will increase it by 4%
-Getting hit drops your crit back down");
+Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
+Rarely spawn a vortex to draw in and massively damage enemies
+");
 		}
 
 		public override void SetDefaults()
@@ -29,39 +28,31 @@ Getting hit drops your crit back down");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			player.rangedDamage+= .15f;
-			player.setVortex = true;
-			//player.setVortex = true; why u no work
-			//player.vortexStealthActive = true;
-			
-			
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			modPlayer.VortexEnchant = true;
-			player.rangedCrit = FargoPlayer.VortexCrit;
-			
-			/*if ((player.controlDown && player.releaseDown))
+
+            if ((player.controlDown && player.releaseDown))
             {
                 if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15) 
                 {
-                    float num29 = player.stealth;
-                    player.stealth -= 0.04f;
-                    if (player.stealth < 0f)
-                    {
-                        player.stealth = 0f;
-                    }
+                    modPlayer.VortexStealth = !modPlayer.VortexStealth;
+                    modPlayer.VortexDust = 30;
+                }   
+			}
 
-                    player.rangedDamage += (1f - player.stealth) * 0.8f;
-                    player.rangedCrit += (int)((1f - player.stealth) * 20f);
-                    player.aggro -= (int)((1f - player.stealth) * 1200f);
-                    player.moveSpeed *= 0.3f;
+            if (player.mount.Active)
+            {
+                modPlayer.VortexStealth = false;
+            }
 
-                    if (player.mount.Active)
-                    {
-                        player.vortexStealthActive = false;
-                    }
-				}   
-			}*/
-			
+            if (modPlayer.VortexStealth)
+            {
+                player.moveSpeed *= 0.3f;
+                player.aggro -= 1200;
+                player.setVortex = true;
+                player.stealth = 0f;
+                //player.invis = true;
+            }
         }
 		
 		public override void AddRecipes()
@@ -72,7 +63,7 @@ Getting hit drops your crit back down");
 			recipe.AddIngredient(ItemID.VortexLeggings);
 			recipe.AddIngredient(ItemID.VortexBeater);
 			recipe.AddIngredient(ItemID.Phantasm);
-			recipe.AddIngredient(ItemID.FireworksLauncher);
+			recipe.AddIngredient(ItemID.SDMG);
 			recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

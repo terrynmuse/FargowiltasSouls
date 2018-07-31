@@ -11,8 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Necro Enchantment");
             Tooltip.SetDefault(
 @"'Welcome to the bone zone' 
-25% chance to not consume ammo 
-A Dungeon Guardian will aid you occasionally");
+A Dungeon Guardian will occasionally annihilate a foe when struck by a ranged attack");
         }
 
         public override void SetDefaults()
@@ -28,8 +27,7 @@ A Dungeon Guardian will aid you occasionally");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            player.ammoCost75 = true;
+            modPlayer.NecroEnchant = true;
            
         }
 
@@ -40,7 +38,7 @@ A Dungeon Guardian will aid you occasionally");
             recipe.AddIngredient(ItemID.NecroBreastplate);
             recipe.AddIngredient(ItemID.NecroGreaves);
             recipe.AddIngredient(ItemID.BoneSword);
-            recipe.AddIngredient(ItemID.PhoenixBlaster);
+            recipe.AddIngredient(ItemID.TheGuardiansGaze);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

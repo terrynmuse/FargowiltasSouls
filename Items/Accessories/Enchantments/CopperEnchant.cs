@@ -11,8 +11,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			DisplayName.SetDefault("Copper Enchantment");
 			Tooltip.SetDefault(
 @"'Behold'
-Attacks have a chance to shock enemies
-If an enemy is wet, the chance and damage is increased");
+Attacks have a chance to shock enemies with lightning
+If an enemy is wet, the chance and damage is increased
+Attacks that cause Wet cannot proc the lightning");
 		}
 
 		public override void SetDefaults()
@@ -21,8 +22,8 @@ If an enemy is wet, the chance and damage is increased");
 			item.height = 20;
 			item.accessory = true;			
 			ItemID.Sets.ItemNoGravity[item.type] = true;
-			item.rare = 8; //
-			item.value = 200000; //
+			item.rare = 0; 
+			item.value = 20000; 
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
@@ -36,8 +37,9 @@ If an enemy is wet, the chance and damage is increased");
 			recipe.AddIngredient(ItemID.CopperHelmet);
 			recipe.AddIngredient(ItemID.CopperChainmail);
 			recipe.AddIngredient(ItemID.CopperGreaves);
-			recipe.AddIngredient(ItemID.Wire, 10);
-			recipe.AddIngredient(ItemID.AmethystStaff);			
+            recipe.AddIngredient(ItemID.CopperShortsword);
+            recipe.AddIngredient(ItemID.AmethystStaff);
+            recipe.AddIngredient(ItemID.Wire, 20);
 			recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

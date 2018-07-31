@@ -40,7 +40,6 @@ Small chance for an attack to gain 33% life steal");
             recipe.AddIngredient(ItemID.PalladiumSword);
             recipe.AddIngredient(ItemID.SoulDrain);
             recipe.AddIngredient(ItemID.VampireKnives);
-            recipe.AddIngredient(ItemID.PalladiumSword);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -11,14 +11,15 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 		{
 			DisplayName.SetDefault("DG");
 		}
+
 		public override void SetDefaults()
 		{
-			projectile.width = 80;
-			projectile.height = 102;
+			projectile.width = 40;
+			projectile.height = 40;
 			projectile.aiStyle = 0;
 			aiType = ProjectileID.Bullet;
 			projectile.friendly = true;
-			projectile.magic = true;
+			projectile.ranged = true;
 			projectile.penetrate = -1;
 			projectile.tileCollide = false;
 			projectile.timeLeft = 1000;
@@ -33,26 +34,25 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 		{
 			projectile.rotation += 0.2f;
 
-				const int aislotHomingCooldown = 0;
-				const int homingDelay = 10;
-				const float desiredFlySpeedInPixelsPerFrame = 60;
-				const float amountOfFramesToLerpBy = 20; // minimum of 1, please keep in full numbers even though it's a float!
+			const int aislotHomingCooldown = 0;
+            //int homingDelay = 10;
+            int homingDelay = (int)projectile.ai[1];
+			const float desiredFlySpeedInPixelsPerFrame = 60;
+			const float amountOfFramesToLerpBy = 20; // minimum of 1, please keep in full numbers even though it's  float!
 	
-				projectile.ai[aislotHomingCooldown]++;
-				if(projectile.ai[aislotHomingCooldown] > homingDelay)
+			projectile.ai[aislotHomingCooldown]++;
+			if(projectile.ai[aislotHomingCooldown] > homingDelay)
+			{
+				projectile.ai[aislotHomingCooldown] = homingDelay; //cap this value 
+	
+				int foundTarget = HomeOnTarget();
+				if(foundTarget != -1)
 				{
-					projectile.ai[aislotHomingCooldown] = homingDelay; //cap this value 
-	
-					int foundTarget = HomeOnTarget();
-					if(foundTarget != -1)
-					{
-						NPC n = Main.npc[foundTarget];
-						Vector2 desiredVelocity = projectile.DirectionTo(n.Center) * desiredFlySpeedInPixelsPerFrame;
-						projectile.velocity = Vector2.Lerp(projectile.velocity, desiredVelocity, 1f / amountOfFramesToLerpBy);
-					}
+					NPC n = Main.npc[foundTarget];
+					Vector2 desiredVelocity = projectile.DirectionTo(n.Center) * desiredFlySpeedInPixelsPerFrame;
+					projectile.velocity = Vector2.Lerp(projectile.velocity, desiredVelocity, 1f /amountOfFramesToLerpBy);
 				}
-
-			
+			}
 		}
 		
 		int HomeOnTarget()
@@ -81,11 +81,14 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             return selectedTarget;
         }
 	
-		
 		public override void Kill(int timeLeft)
 		{
-			//dust idk
-		}
-		
+            for (int i = 0; i < 50; i++)
+            {
+                Vector2 pos = new Vector2(projectile.Center.X + Main.rand.Next(-20, 20), projectile.Center.Y + Main.rand.Next(-20, 20));
+                int dust = Dust.NewDust(pos, projectile.width, projectile.height, DustID.Blood, 0, 0, 100, default(Color), 2f);
+                Main.dust[dust].noGravity = true;
+            }
+        }
 	}
 }

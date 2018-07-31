@@ -11,10 +11,12 @@ OldShoe
 
 Bee Armor
 Hive Pack
+Bee Gun
 Nectar
 
 Cactus Armor
 Cactus Sword
+Cactus Pickaxe
 Pink Prickly Pear
 
 Beetle Armor
@@ -33,13 +35,9 @@ Crystal Vile Shard
 Chik
 
 Crimson Armor
-Crimson Heart
-Bone Rattle
 Deadland Comes Alive
-
-Copper Armor
-Wires
-Amethyst Staff
+Bone Rattle
+Crimson Heart
 
 Forbidden Armor
 Tome of Infinite Wisdom
@@ -47,25 +45,14 @@ Spirit Flame
 Secret of the Sands
 
 Mining Armor
-Magic Lantern
+Bone Pickaxe
 Molten Pickaxe
-
-Gladiator Armor
-Javelins
-Tartar Sauce
+Magic Lantern
 
 Meteor Armor
 Space Gun
 Meteor Staff
 Place Above the Clouds
-
-Tungsten Armor
-Tungsten Hammer
-Emerald Staff
-
-Jungle Armor
-Jungle Rose
-Do Not Step on the Grass
 
 Gold Armor
 Greedy Ring
@@ -130,12 +117,101 @@ Cursed Flames
 Molten Armor
 Fiery Greatsword
 Sunfury
-
-Silver Armor
-Silver Broadsword
-Sapphire Staff
+Demons Eye
 
 Hallowed Armor
 Excalibur
 Silver Enchantment
 The Land of Deceiving Looks
+
+Obsidian Armor
+Obsidian Rose
+Lava Waders
+SharkTooth Necklace
+
+Copper Armor
+Copper Shortsword
+Amethyst Staff
+Wires
+
+Lead Armor
+Lead Shortsword
+Lead Pickaxe
+Red Paint
+
+Tiki Armor
+Pygmy Necklace
+Pygmy Staff
+Tiki Totem
+
+Vortex Armor
+Vortex Beater
+Phantasm
+SDMG
+
+Solar Armor
+Solar Eruption
+Daybreak
+Terrarian
+
+Stardust Armor
+Stardust Cell Staff
+Stardust Dragon Staff
+Rainbow Crystal Staff
+
+Nebula Armor
+Nebula Arcanum
+Nebula Blaze
+Lunar Flare
+
+Tin Armor
+Tin Bow
+Topaz Staff
+Daylight
+
+
+
+
+
+
+
+
+
+
+Tungsten Armor
+Tungsten Hammer
+Emerald Staff
+
+Frost Armor
+
+Platinum Armor
+Diamond Staff
+Platinum Crown
+Diamond Ring
+
+Shadow Armor
+Lightless Chasms
+Eaters Bone
+Shadow Orb
+
+Iron Armor
+
+Necro Armor
+Bone Sword
+Guardian's Gaze
+
+Fossil Armor
+Amber Staff
+Amber Mosquito
+
+Silver Armor
+Silver Broadsword
+Sapphire Staff
+
+Jungle Armor
+Jungle Rose
+Do Not Step on the Grass
+
+Gladiator Armor
+Javelins
+Tartar Sauce

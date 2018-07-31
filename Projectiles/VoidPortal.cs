@@ -12,6 +12,7 @@ namespace FargowiltasSouls.Projectiles
 		{
 			DisplayName.SetDefault("Void Portal");
 		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 60;

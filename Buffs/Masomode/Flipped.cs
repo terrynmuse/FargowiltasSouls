@@ -29,6 +29,5 @@ namespace FargowiltasSouls.Buffs.Masomode
             //player.fallStart = (int)(player.position.Y / 16f);
             //player.jump = 0;
         }
-
     }
 }

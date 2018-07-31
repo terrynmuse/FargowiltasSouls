@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Lead Enchantment");
             Tooltip.SetDefault(
 @"''
-Attacks inflict enemies with lead poisoning");
+Attacks inflict enemies with Lead Poisoning");
         }
 
         public override void SetDefaults()
@@ -20,8 +20,8 @@ Attacks inflict enemies with lead poisoning");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 8; //
-            item.value = 200000;
+            item.rare = 0;
+            item.value = 20000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -33,13 +33,12 @@ Attacks inflict enemies with lead poisoning");
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-
             recipe.AddIngredient(ItemID.LeadHelmet);
             recipe.AddIngredient(ItemID.LeadChainmail);
             recipe.AddIngredient(ItemID.LeadGreaves);
-            recipe.AddIngredient(ItemID.LeadBroadsword);
-            recipe.AddIngredient(ItemID.LeadBow);
-
+            recipe.AddIngredient(ItemID.LeadShortsword);
+            recipe.AddIngredient(ItemID.LeadPickaxe);
+            recipe.AddIngredient(ItemID.GrayPaint);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -27,10 +27,21 @@ Melee and ranged attacks cause frostburn and emit light");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.frostBurn = true;
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            modPlayer.FrostEnchant = true;
+
+            player.waterWalk = true;
+            //player.frostBurn = true;
+
+            if(player.statLife < player.statLifeMax2)// / 5)
+            {
+                player.immuneTime = 300;
+                player.AddBuff(BuffID.Frozen, 2);
+                player.AddBuff(mod.BuffType("Berserked"), 2);
+            }
 
             player.buffImmune[46] = true; //chilled
-            player.buffImmune[47] = true; //frozen
+            //player.buffImmune[47] = true; //frozen
 
             //if slowing enemies is a thing add later
             //FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);

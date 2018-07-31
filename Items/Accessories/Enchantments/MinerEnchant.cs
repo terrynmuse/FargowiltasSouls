@@ -62,6 +62,7 @@ Summons a magic lantern");
             recipe.AddIngredient(ItemID.MiningHelmet);
             recipe.AddIngredient(ItemID.MiningShirt);
             recipe.AddIngredient(ItemID.MiningPants);
+            recipe.AddIngredient(ItemID.BonePickaxe);
             recipe.AddIngredient(ItemID.MoltenPickaxe);
             recipe.AddIngredient(ItemID.MagicLantern);
             recipe.AddTile(TileID.DemonAltar);

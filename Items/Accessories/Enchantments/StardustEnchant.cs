@@ -12,7 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			Tooltip.SetDefault(
 @"'The power of the Stand is yours' 
 Double tap down to direct your guardian
-When you do, you freeze time temporarily");
+When you do, you freeze time temporarily
+There is a longer cooldown for this effect, a sound effect plays when it's back");
 		}
 
 		public override void SetDefaults()
@@ -27,26 +28,25 @@ When you do, you freeze time temporarily");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			if(Soulcheck.GetValue("Stardust Guardian"))
-			{
-			    player.setStardust = true;
-			    if (player.whoAmI == Main.myPlayer)
-			    {
-			    	if (player.FindBuffIndex(187) == -1)
-			    	{
-			    		player.AddBuff(187, 3600);
-			    	}
-			    	if (player.ownedProjectileCounts[623] < 1)
-			    	{
-			    		Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, 623, 0, 0f, Main.myPlayer);
-			    	}
-			    }
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+			modPlayer.StardustEnchant = true;
+            modPlayer.AddPet("Stardust Guardian", BuffID.StardustGuardianMinion, ProjectileID.StardustGuardian);
+
+            player.setStardust = true;
+
+            if ((player.controlDown && player.releaseDown))
+            {
+                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15 && modPlayer.FreezeCD == 0) 
+                {
+                    modPlayer.FreezeTime = true;
+                    modPlayer.FreezeCD = 1800;
+
+                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/ZaWarudo").WithVolume(1f).WithPitchVariance(.5f), player.Center);
+                }   
 			}
-			
-			player.GetModPlayer<FargoPlayer>(mod).StardustEnchant = true;
         }
-		
-		public override void AddRecipes()
+
+        public override void AddRecipes()
 		{
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.StardustHelmet);

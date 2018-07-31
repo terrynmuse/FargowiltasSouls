@@ -11,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Platinum Enchantment");
             Tooltip.SetDefault(
 @"''
-");
+10% chance for enemies to drop 3x loot
+If the enemy has Midas, the chance and bonus is doubled");
         }
 
         public override void SetDefaults()
@@ -20,36 +21,26 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 8;
-            item.value = 200000;
+            item.rare = 8; 
+            item.value = 20000; 
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
+            modPlayer.PlatinumEnchant = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-
-            //diamond staff
-            //platinum chandelier
-
-            //reflective or dragno
-
             recipe.AddIngredient(ItemID.PlatinumHelmet);
             recipe.AddIngredient(ItemID.PlatinumChainmail);
             recipe.AddIngredient(ItemID.PlatinumGreaves);
-
-            recipe.AddIngredient(ItemID.Yelets);
-            recipe.AddIngredient(ItemID.Seedler);
-            recipe.AddIngredient(ItemID.ButchersChainsaw);
-
-
-
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddIngredient(ItemID.DiamondStaff);
+            recipe.AddIngredient(ItemID.PlatinumCrown);
+            recipe.AddIngredient(ItemID.DiamondRing);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -13,7 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Too hot to handle' 
 Solar shield allows you to dash through enemies
-inflict the Solar Flare debuff");
+Attacks inflict the Solar Flare debuff
+Melee attacks inflict it for less time (which is a good thing)");
         }
 
         public override void SetDefaults()
@@ -28,9 +29,12 @@ inflict the Solar Flare debuff");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            modPlayer.SolarEnchant = true;
+
             if (Soulcheck.GetValue("Solar Shield"))
             {
-                player.AddBuff(172, 5, false);
+                player.AddBuff(BuffID.SolarShield3, 5, false);
                 player.setSolar = true;
                 player.solarCounter++;
                 int num11 = 240;

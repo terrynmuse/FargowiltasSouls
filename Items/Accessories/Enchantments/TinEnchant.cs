@@ -11,7 +11,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Tin Enchantment");
             Tooltip.SetDefault(
 @"''
-");
+Sets your critical strike chance to 4%
+Every crit will increase it by 4%
+Getting hit drops your crit back down");
         }
 
         public override void SetDefaults()
@@ -20,34 +22,27 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 8;
-            item.value = 200000;
+            item.rare = 0;
+            item.value = 20000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
+            modPlayer.TinEnchant = true;
+            modPlayer.AllCritEquals(modPlayer.TinCrit);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-
-            //topaz staff
-            //tin bow?
-
             recipe.AddIngredient(ItemID.TinHelmet);
             recipe.AddIngredient(ItemID.TinChainmail);
             recipe.AddIngredient(ItemID.TinGreaves);
-
-            recipe.AddIngredient(ItemID.Yelets);
-            recipe.AddIngredient(ItemID.Seedler);
-            recipe.AddIngredient(ItemID.ButchersChainsaw);
-
-
-
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddIngredient(ItemID.TinBow);
+            recipe.AddIngredient(ItemID.TopazStaff);
+            recipe.AddIngredient(ItemID.Daylight);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

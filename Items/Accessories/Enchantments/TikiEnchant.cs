@@ -11,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Tiki Enchantment");
             Tooltip.SetDefault(
 @"''
-");
+Attacks will inflict a random debuff
+Summons a Tiki Spirit");
         }
 
         public override void SetDefaults()
@@ -20,27 +21,26 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 8; //
-            item.value = 200000;
+            item.rare = 7;
+            item.value = 100000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
+            modPlayer.TikiEnchant = true;
+            modPlayer.AddPet("Tiki Pet", BuffID.TikiSpirit, ProjectileID.TikiSpirit);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-
             recipe.AddIngredient(ItemID.TikiMask);
             recipe.AddIngredient(ItemID.TikiShirt);
             recipe.AddIngredient(ItemID.TikiPants);
-
-            recipe.AddIngredient(ItemID.LeadBroadsword);
-            recipe.AddIngredient(ItemID.LeadBow);
-
+            recipe.AddIngredient(ItemID.PygmyNecklace);
+            recipe.AddIngredient(ItemID.PygmyStaff);
+            recipe.AddIngredient(ItemID.TikiTotem);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

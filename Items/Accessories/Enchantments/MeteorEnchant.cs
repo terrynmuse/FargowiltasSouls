@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Meteor Enchantment");
             Tooltip.SetDefault(
 @"'Cosmic power builds your magical prowess'
-A meteor shower initiates when you use 50 or more mana in a short period");
+A meteor shower initiates every few seconds when using magic weapons");
         }
 
         public override void SetDefaults()

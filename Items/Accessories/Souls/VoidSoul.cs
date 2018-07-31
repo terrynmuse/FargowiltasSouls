@@ -157,147 +157,19 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.accDreamCatcher = true;
 
             //pets
-            if (player.whoAmI != Main.myPlayer) return;
-            if (Soulcheck.GetValue("Baby Penguin Pet"))
-            {
-                modPlayer.PenguinPet = true;
-
-                if (player.FindBuffIndex(41) == -1)
-                {
-                    if (player.ownedProjectileCounts[ProjectileID.Penguin] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.Penguin, 0, 2f, Main.myPlayer);
-                    }
-                }
-            }
-            else
-            {
-                modPlayer.PenguinPet = false;
-            }
-
-            if (Soulcheck.GetValue("Baby Skeletron Pet"))
-            {
-                modPlayer.SkullPet = true;
-
-                if (player.FindBuffIndex(50) == -1)
-                {
-                    if (player.ownedProjectileCounts[BabySkeletronHead] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, BabySkeletronHead, 0, 2f, Main.myPlayer);
-                    }
-                }
-            }
-            else
-            {
-                modPlayer.SkullPet = false;
-            }
-
-            if (Soulcheck.GetValue("Baby Snowman Pet"))
-            {
-                modPlayer.SnowmanPet = true;
-
-                if (player.FindBuffIndex(66) == -1)
-                {
-                    if (player.ownedProjectileCounts[BabySnowman] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, BabySnowman, 0, 2f, Main.myPlayer);
-                    }
-                }
-            }
-            else
-            {
-                modPlayer.SnowmanPet = false;
-            }
-
-            if (Soulcheck.GetValue("Zephyr Fish Pet"))
-            {
-                modPlayer.FishPet = true;
-
-                if (player.FindBuffIndex(127) == -1)
-                {
-                    if (player.ownedProjectileCounts[ProjectileID.ZephyrFish] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.ZephyrFish, 0, 2f, Main.myPlayer);
-                    }
-                }
-            }
-            else
-            {
-                modPlayer.FishPet = false;
-            }
-
-            if (Soulcheck.GetValue("Companion Cube Pet"))
-            {
-                modPlayer.CubePet = true;
-
-                if (player.FindBuffIndex(191) == -1)
-                {
-                    if (player.ownedProjectileCounts[ProjectileID.CompanionCube] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.CompanionCube, 0, 2f, Main.myPlayer);
-                    }
-                }
-            }
-            else
-            {
-                modPlayer.CubePet = false;
-            }
-
-            if (Soulcheck.GetValue("Baby Grinch Pet"))
-            {
-                modPlayer.GrinchPet = true;
-
-                if (player.FindBuffIndex(92) == -1)
-                {
-                    if (player.ownedProjectileCounts[BabyGrinch] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, BabyGrinch, 0, 2f, Main.myPlayer);
-                    }
-                }
-            }
-            else
-            {
-                modPlayer.GrinchPet = false;
-            }
-
-            if (Soulcheck.GetValue("Lizard Pet"))
-            {
-                modPlayer.LizPet = true;
-
-                if (player.FindBuffIndex(53) == -1)
-                {
-                    if (player.ownedProjectileCounts[PetLizard] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, PetLizard, 0, 2f, Main.myPlayer);
-                    }
-                }
-            }
-            else
-            {
-                modPlayer.LizPet = false;
-            }
-
-            if (Soulcheck.GetValue("Suspicious Looking Eye Pet"))
-            {
-                modPlayer.SuspiciousEyePet = true;
-
-                if (player.FindBuffIndex(190) != -1) return;
-                if (player.ownedProjectileCounts[SuspiciousTentacle] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, SuspiciousTentacle, 0, 2f, Main.myPlayer);
-                }
-            }
-            else
-            {
-                modPlayer.SuspiciousEyePet = false;
-            }
-
+            modPlayer.AddPet("Baby Penguin Pet", BuffID.BabyPenguin, ProjectileID.Penguin);
+            modPlayer.AddPet("Baby Skeletron Pet", BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
+            modPlayer.AddPet("Baby Snowman Pet", BuffID.BabySnowman, ProjectileID.BabySnowman);
+            modPlayer.AddPet("Zephyr Fish Pet", BuffID.ZephyrFish, ProjectileID.ZephyrFish);
+            modPlayer.AddPet("Companion Cube Pet", BuffID.CompanionCube, ProjectileID.CompanionCube);
+            modPlayer.AddPet("Baby Grinch Pet", BuffID.BabyGrinch, ProjectileID.BabyGrinch);
+            modPlayer.AddPet("Lizard Pet", BuffID.PetLizard, ProjectileID.PetLizard);
+            modPlayer.AddPet("Suspicious Looking Eye Pet", BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-
             recipe.AddIngredient(ItemID.PortalGun);
             recipe.AddIngredient(RodofDiscord);
             recipe.AddIngredient(CellPhone);
@@ -320,4 +192,3 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         }
     }
 }
-

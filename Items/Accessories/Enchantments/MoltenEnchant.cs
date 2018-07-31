@@ -69,6 +69,7 @@ When you die, you violently explode dealing massive damage to surrounding enemie
             recipe.AddIngredient(ItemID.MoltenGreaves);
             recipe.AddIngredient(ItemID.FieryGreatsword);
             recipe.AddIngredient(ItemID.Sunfury);
+            recipe.AddIngredient(ItemID.DemonsEye);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

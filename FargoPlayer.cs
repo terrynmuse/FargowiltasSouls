@@ -39,8 +39,12 @@ namespace FargowiltasSouls
         public bool BeeEnchant;
         public bool SpiderEnchant;
         public bool StardustEnchant;
+        public bool FreezeTime = false;
+        private int freezeLength = 600;
+        public int FreezeCD = 0;
         public bool MythrilEnchant;
         public bool FossilEnchant;
+        public bool FossilBones = false;
         public bool JungleEnchant;
         public bool ElementEnchant;
         public bool ShroomEnchant;
@@ -49,8 +53,8 @@ namespace FargowiltasSouls
         public bool HallowEnchant;
         public bool ChloroEnchant;
         public bool VortexEnchant;
-        public static int VortexCrit = 4;
-        public bool VortexStealth;
+        public bool VortexStealth = false;
+        public int VortexDust = 0;
         public bool AdamantiteEnchant;
         public bool FrostEnchant;
         public bool PalladEnchant;
@@ -58,12 +62,8 @@ namespace FargowiltasSouls
         public bool MeteorEnchant;
         private int meteorTimer = 150;
         private int meteorCD = 0;
-        private int prevMana;
         private bool meteorShower = false;
-
         public bool MoltenEnchant;
-
-
         public bool CopperEnchant;
         public bool NinjaEnchant;
         public bool FirstStrike;
@@ -82,28 +82,16 @@ namespace FargowiltasSouls
         public bool PumpkinEnchant;
         private int pumpkinCD;
         public bool SilverEnchant;
-
-        //pets
-        public bool FlickerPet;
-        public bool MoonEye;
-        public bool DinoPet;
-        public bool SeedPet;
-        public bool DogPet;
-        public bool SkullPet;
-        public bool SaplingPet;
-        public bool LizPet;
-        public bool EyePet;
-        public bool DragPet;
-        public bool ShadowPet;
-        public bool ShadowPet2;
-        public bool CrimsonPet;
-        public bool CrimsonPet2;
-        public bool PenguinPet;
-        public bool SnowmanPet;
-        public bool FishPet;
-        public bool CubePet;
-        public bool GrinchPet;
-        public bool SuspiciousEyePet;
+        public bool PlatinumEnchant;
+        public bool NecroEnchant;
+        private int necroCD;
+        public bool ObsidianEnchant;
+        public bool TinEnchant;
+        public int TinCrit = 4;
+        public bool TikiEnchant;
+        public bool SolarEnchant;
+        public bool NebulaEnchant;
+        public int NebulaCounter = 0;
 
         //soul effects
         public bool MeleeEffect;
@@ -152,7 +140,9 @@ namespace FargowiltasSouls
         public bool Jammed;                 //ranged damage and speed reduced, all non-custom ammo set to baseline ammos
         public bool Slimed;
 
+        private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
+        private int[] tikiDebuffs = { 0, 0, BuffID.OnFire, BuffID.CursedInferno, BuffID.Frostburn, BuffID.Ichor, BuffID.ShadowFlame, BuffID.Venom, BuffID.Poisoned, BuffID.Confused, BuffID.Stinky };
 
         public override TagCompound Save()
         {
@@ -248,7 +238,6 @@ namespace FargowiltasSouls
             HallowEnchant = false;
             ChloroEnchant = false;
             VortexEnchant = false;
-            VortexStealth = false;
             AdamantiteEnchant = false;
             FrostEnchant = false;
             PalladEnchant = false;
@@ -271,30 +260,13 @@ namespace FargowiltasSouls
             TungstenEnchant = false;
             PumpkinEnchant = false;
             SilverEnchant = false;
-
-            //pets
-            FlickerPet = false;
-            MoonEye = false;
-            DinoPet = false;
-            SeedPet = false;
-            DogPet = false;
-            SkullPet = false;
-            SaplingPet = false;
-            LizPet = false;
-            EyePet = false;
-            DragPet = false;
-            ShadowPet = false;
-            ShadowPet2 = false;
-            CrimsonPet = false;
-            CrimsonPet2 = false;
-            PenguinPet = false;
-            SnowmanPet = false;
-            FishPet = false;
-            CubePet = false;
-            GrinchPet = false;
-            SuspiciousEyePet = false;
-            
-
+            PlatinumEnchant = false;
+            NecroEnchant = false;
+            ObsidianEnchant = false;
+            TinEnchant = false;
+            TikiEnchant = false;
+            SolarEnchant = false;
+            NebulaEnchant = false;
 
             //add missing pets to kill pets!
 
@@ -336,6 +308,9 @@ namespace FargowiltasSouls
             Bloodthirst = false;
             Atrophied = false;
             Jammed = false;
+
+            tikiDebuffs[0] = mod.BuffType("Rotting");
+            tikiDebuffs[1] = mod.BuffType("SqueakyToy");
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -407,7 +382,50 @@ namespace FargowiltasSouls
                 cactusCD--;
             }
 
-            if(NinjaEnchant)
+            if (NecroEnchant && necroCD != 0)
+            {
+                necroCD--;
+            }
+
+            if(ObsidianEnchant && player.lavaWet)
+            {
+                player.armorPenetration += 10;
+            }
+
+            if (VortexDust > 0)
+            {
+                if (Main.rand.Next(2) == 0)
+                {
+                    Vector2 vector = Vector2.UnitY.RotatedByRandom(6.2831854820251465);
+                    Dust dust = Main.dust[Dust.NewDust(player.Center - vector * 30f, 0, 0, 229, 0f, 0f, 0, default(Color), 1f)];
+                    dust.noGravity = true;
+                    dust.position = player.Center - vector * (float)Main.rand.Next(5, 11);
+                    dust.velocity = vector.RotatedBy(1.5707963705062866, default(Vector2)) * 4f;
+                    dust.scale = 0.5f + Main.rand.NextFloat();
+                    dust.fadeIn = 0.5f;
+                }
+                if (Main.rand.Next(2) == 0)
+                {
+                    Vector2 vector2 = Vector2.UnitY.RotatedByRandom(6.2831854820251465);
+                    Dust dust2 = Main.dust[Dust.NewDust(player.Center - vector2 * 30f, 0, 0, 240, 0f, 0f, 0, default(Color), 1f)];
+                    dust2.noGravity = true;
+                    dust2.position = player.Center - vector2 * 12f;
+                    dust2.velocity = vector2.RotatedBy(-1.5707963705062866, default(Vector2)) * 2f;
+                    dust2.scale = 0.5f + Main.rand.NextFloat();
+                    dust2.fadeIn = 0.5f;
+                }
+
+                VortexDust--;
+            }
+
+            if(VortexStealth && !VortexEnchant)
+            {
+                VortexStealth = false;
+            }
+
+
+
+            if (NinjaEnchant)
             {
                 //ninja smoke bomb nonsense
                 Projectile nearestProj = null;
@@ -493,29 +511,91 @@ namespace FargowiltasSouls
 
                     if (meteorTimer <= 0)
                     {
-                        meteorCD = 0;
+                        meteorCD = 300;
                         meteorTimer = 150;
                         meteorShower = false;
                     }
                 }
                 else
                 {
-                    if (meteorCD <= 0)
-                    {
-                        prevMana = player.statMana;
-                        meteorCD = 150;
-                    }
-                    else
+                    if(player.HeldItem.magic && player.controlUseItem)
                     {
                         meteorCD--;
 
-                        if (prevMana - player.statMana >= 50 || (player.HeldItem.mana >= 50 && player.controlUseItem))
+                        if(meteorCD == 0)
                         {
-                            //commence shower
                             meteorShower = true;
                         }
                     }
+                    else
+                    {
+                        meteorCD = 300;
+                    }
                 }  
+            }
+
+            if(StardustEnchant)
+            {
+                if(FreezeTime && freezeLength != 0)
+                {
+                    for (int i = 0; i < 200; i++)
+                    {
+                        if (Main.npc[i].active)
+                        {
+                            Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().TimeFrozen = true;
+                        }
+                    }
+
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        if (Main.projectile[i].active)
+                        {
+                            Main.projectile[i].GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = true;
+                        }
+                    }
+
+                    freezeLength--;
+
+                    if(freezeLength == 0)
+                    {
+                        FreezeTime = false;
+
+                        freezeLength = 600;
+
+                        for (int i = 0; i < 200; i++)
+                        {
+                            NPC npc = Main.npc[i];
+                            if (npc.active && npc.GetGlobalNPC<FargoGlobalNPC>().TimeFrozen)
+                            {
+                                npc.GetGlobalNPC<FargoGlobalNPC>().TimeFrozen = false;
+
+                                if(npc.life == 1)
+                                {
+                                    npc.StrikeNPC(9999, 0f, 0);
+                                }
+                            }
+                        }
+
+                        for (int i = 0; i < 1000; i++)
+                        {
+                            Projectile proj = Main.projectile[i];
+                            if (proj.active && proj.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen)
+                            {
+                                proj.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = false;
+                            }
+                        }
+                    }
+                }
+
+                if(!FreezeTime && FreezeCD != 0)
+                {
+                    FreezeCD--;
+
+                    if(FreezeCD == 0)
+                    {
+                        Main.PlaySound(SoundID.MaxMana, player.Center);
+                    }
+                }
             }
 
             if(PumpkinEnchant && (player.controlLeft || player.controlRight) && !IsStandingStill)
@@ -583,13 +663,9 @@ namespace FargowiltasSouls
             }
         }
 
-        public override void PostUpdate()
-        {
-
-        }
-
         public override void PostUpdateMiscEffects()
         {
+
             if (Slimed)
             {
                 //slowed effect
@@ -703,12 +779,12 @@ namespace FargowiltasSouls
                 multiplier *= 1.3f;
             }
 
+            if(ObsidianEnchant && player.lavaWet)
+            {
+                multiplier *= 1.1f;
+            }
+
             return multiplier;
-        }
-
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
-        {
-
         }
 
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
@@ -727,11 +803,6 @@ namespace FargowiltasSouls
 
                 cactusCD = 30;
             }
-        }
-
-        public override void OnHitAnything(float x, float y, Entity victim)
-        {
-
         }
 
         public override void PostUpdateRunSpeeds()
@@ -898,7 +969,27 @@ namespace FargowiltasSouls
                 return;
             }
 
-            if (proj.type == ProjectileID.Kraken || proj.type == ProjectileID.Trident || proj.type == ProjectileID.Flairon || proj.type == ProjectileID.FlaironBubble || proj.type == ProjectileID.WaterStream || proj.type == ProjectileID.WaterBolt || proj.type == ProjectileID.RainNimbus || proj.type == ProjectileID.Bubble)
+            if (LeadEnchant && Main.rand.Next(5) == 0)
+            {
+                target.AddBuff(mod.BuffType("LeadPoison"), 120);
+            }
+
+            if(TikiEnchant && Main.rand.Next(3) == 0)
+            {
+                target.AddBuff(tikiDebuffs[Main.rand.Next(tikiDebuffs.Length)], 300);
+            }
+
+            if (SolarEnchant && Main.rand.Next(4) == 0)
+            {
+                target.AddBuff(mod.BuffType("SolarFlare"), 120);
+            }
+
+            if(VortexEnchant && proj.type != mod.ProjectileType("Void") && Main.rand.Next(10) == 0)
+            {
+                Projectile.NewProjectile(proj.Center.X, proj.Center.Y, 0f, 0f, mod.ProjectileType("Void"), 60, 5f, proj.owner);
+            }
+
+            if (Array.IndexOf(wetProj, proj.type) > -1)
             {
                 target.AddBuff(BuffID.Wet, 180, true);
             }
@@ -916,6 +1007,11 @@ namespace FargowiltasSouls
             if (SpiderEnchant && proj.minion)
             {
                 target.AddBuff(mod.BuffType("Swarmed"), 600);
+            }
+
+            if(ObsidianEnchant && player.lavaWet)
+            {
+                target.AddBuff(BuffID.OnFire, 600);
             }
 
             /*if (meleeEffect)
@@ -942,13 +1038,6 @@ namespace FargowiltasSouls
             if (ShadowEnchant && Main.rand.Next(10) == 0)
             {
                 target.AddBuff(BuffID.CursedInferno, 120, true);
-            }
-
-            if (CopperEnchant && !target.GetGlobalNPC<FargoGlobalNPC>().Shock)
-            {
-                knockback = 0f;
-                target.AddBuff(mod.BuffType("Shock"), 60, true);
-                //Projectile.NewProjectile(target.Center.X, target.Center.Y, target.velocity.X, target.velocity.Y, mod.ProjectileType("Shock"), 20, 0, Main.myPlayer, 0f, 0f);
             }
 
             if (GoldEnchant)
@@ -989,6 +1078,21 @@ namespace FargowiltasSouls
                 Projectile.NewProjectile(target.Center.X, target.Center.Y - 10, 0f, 0f, 518, 0, 0f, Main.myPlayer);
             }
 
+            if (LeadEnchant && Main.rand.Next(5) == 0)
+            {
+                target.AddBuff(mod.BuffType("LeadPoison"), 180);
+            }
+
+            if (SolarEnchant && Main.rand.Next(4) == 0)
+            {
+                target.AddBuff(mod.BuffType("SolarFlare"), 300);
+            }
+
+            if (TikiEnchant && Main.rand.Next(3) == 0)
+            {
+                target.AddBuff(tikiDebuffs[Main.rand.Next(tikiDebuffs.Length)], 300);
+            }
+
             if (TerrariaSoul)
             {
                 target.AddBuff(BuffID.Venom, 240, true);
@@ -1002,6 +1106,11 @@ namespace FargowiltasSouls
             if (SpiderEnchant && item.summon)
             {
                 target.AddBuff(mod.BuffType("Swarmed"), 600);
+            }
+
+            if (ObsidianEnchant && player.lavaWet)
+            {
+                target.AddBuff(BuffID.OnFire, 600);
             }
 
             if (MeleeEffect)
@@ -1055,10 +1164,92 @@ namespace FargowiltasSouls
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
+            if (CopperEnchant && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
+            {
+                int dmg = 5;
+                int chance = 20;
+
+                if (target.FindBuffIndex(BuffID.Wet) != -1)
+                {
+                    dmg *= 2;
+                    chance /= 4;
+                }
+
+                if (Main.rand.Next(chance) == 0)
+                {
+                    float closestDist;
+                    NPC closestNPC;
+
+                    for(int i = 0; i < 5; i++)
+                    {
+                        closestDist = 500f;
+                        closestNPC = null;
+
+                        for (int j = 0; j < 200; j++)
+                        {
+                            NPC npc = Main.npc[j];
+                            if (npc.active && npc != target && !npc.GetGlobalNPC<FargoGlobalNPC>().Shock && npc.Distance(target.Center) < closestDist && npc.Distance(target.Center) >= 100)
+                            {
+                                closestNPC = npc;
+                                closestDist = npc.Distance(target.Center);
+                            }
+                        }
+
+                        if (closestNPC != null)
+                        {
+                            Vector2 ai = closestNPC.Center - target.Center;
+                            float ai2 = Main.rand.Next(100);
+                            Vector2 velocity = Vector2.Normalize(ai) * 20;
+
+                            Projectile p2 = Projectile.NewProjectileDirect(target.Center, velocity, ProjectileID.CultistBossLightningOrbArc, dmg, 0f, player.whoAmI, ai.ToRotation(), ai2);
+                            p2.friendly = true;
+                            p2.hostile = false;
+                            p2.penetrate = -1;
+                            p2.timeLeft = 90;
+
+                            target.AddBuff(mod.BuffType("Shock"), 60);
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                        target = closestNPC;
+                    }
+
+                }
+            }
+
+
             if (Infinity && (player.HeldItem.ranged || player.HeldItem.magic || player.HeldItem.thrown))
             {
                 player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " self destructed."), player.HeldItem.damage / 33, 0);
                 player.immune = false;
+            }
+
+            if (NecroEnchant && proj.type != mod.ProjectileType("DungeonGuardian") && necroCD == 0)
+            {
+                //necroTimer = 1200;
+                necroCD = 60;
+                float screenX = Main.screenPosition.X;
+                if (player.direction < 0)
+                {
+                    screenX += Main.screenWidth;
+                }
+                float screenY = Main.screenPosition.Y;
+                screenY += Main.rand.Next(Main.screenHeight);
+                Vector2 vector = new Vector2(screenX, screenY);
+                float velocityX = target.Center.X - vector.X;
+                float velocityY = target.Center.Y - vector.Y;
+                velocityX += Main.rand.Next(-50, 51) * 0.1f;
+                velocityY += Main.rand.Next(-50, 51) * 0.1f;
+                int num5 = 24;
+                float num6 = (float)Math.Sqrt(velocityX * velocityX + velocityY * velocityY);
+                num6 = num5 / num6;
+                velocityX *= num6;
+                velocityY *= num6;
+                Projectile p = Projectile.NewProjectileDirect(new Vector2(screenX, screenY), new Vector2(velocityX, velocityY), mod.ProjectileType("DungeonGuardian"), 500, 0f, player.whoAmI, 0, 120);
+                p.penetrate = 1;
             }
 
             //no heal on dummy!!!
@@ -1094,15 +1285,15 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (VortexEnchant && proj.ranged)
+            if (TinEnchant)
             {
-                if (crit && VortexCrit < 100)
+                if (crit && TinCrit < 100)
                 {
-                    VortexCrit += 4;
+                    TinCrit += 4;
                 }
             }
 
-            if (TerrariaSoul)
+            /*if (TerrariaSoul)
             {
                 if (crit && VortexCrit < 100)
                 {
@@ -1121,7 +1312,7 @@ namespace FargowiltasSouls
                         HealTimer--;
                     }
                 }
-            }
+            }*/
 
             if (PalladEnchant && Main.rand.Next(40) == 0)
             {
@@ -1177,9 +1368,9 @@ namespace FargowiltasSouls
                 FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
             }
 
-            if ((VortexEnchant || TerrariaSoul) && VortexCrit > 4)
+            if ((TinEnchant || TerrariaSoul) && TinCrit != 4)
             {
-                VortexCrit /= 2;
+                TinCrit = 4;
             }
 
             if (TankEffect && Main.rand.Next(5) == 0)
@@ -1211,7 +1402,8 @@ namespace FargowiltasSouls
                 player.statLife = 20;
                 player.HealEffect(20);
                 player.immune = true;
-                player.immuneTime = player.longInvince ? 180 : 120;
+                player.immuneTime = player.longInvince ? 720 : 480;
+                FossilBones = true;
                 Main.NewText("You've been revived!", 175, 75);
                 player.AddBuff(mod.BuffType("Revived"), 18000);
                 return false;
@@ -1289,20 +1481,9 @@ namespace FargowiltasSouls
 
 
         }
-
-        /*public override void SetControls ()
-		{
-			vortexStealth = player.vortexStealthActive;
-		}*/
 		
 		public override void PostUpdateEquips ()
 		{
-            /*if(vortexEnchant)
-			{
-				player.setVortex = true;
-				player.vortexStealthActive = vortexStealth;
-			}*/
-
             if(BeetleEnchant)
             {
                 player.wingTimeMax = (int)(player.wingTimeMax * 1.5);
@@ -1363,24 +1544,7 @@ namespace FargowiltasSouls
             player.ClearBuff(petId);
             player.ClearBuff(lightPetId);
 
-            CrimsonPet = false;
-            CrimsonPet2 = false;
-            CubePet = false;
-            DinoPet = false;
-            DogPet = false;
-            DragPet = false;
-            EyePet = false;
-            FishPet = false;
-            GrinchPet = false;
-            LizPet = false;
-            PenguinPet = false;
-            SaplingPet = false;
-            SeedPet = false;
-            ShadowPet = false;
-            ShadowPet2 = false;
-            SkullPet = false;
-            SnowmanPet = false;
-            SuspiciousEyePet = false;
+
 
             //memorizes player selections
             if (!WasAsocial)
@@ -1406,7 +1570,7 @@ namespace FargowiltasSouls
             player.hideMisc[1] = true;
         }
 
-        private void Squeak(Vector2 center)
+        public void Squeak(Vector2 center)
         {
             int rng = Main.rand.Next(6);
 
@@ -1459,6 +1623,14 @@ namespace FargowiltasSouls
             player.thrownCrit += crit;
 
             //thorium meme
+        }
+
+        public void AllCritEquals(int crit)
+        {
+            player.meleeCrit = crit;
+            player.rangedCrit = crit;
+            player.magicCrit = crit;
+            player.thrownCrit = crit;
         }
 
     }

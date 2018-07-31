@@ -11,8 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			DisplayName.SetDefault("Fossil Enchantment");
 			Tooltip.SetDefault(
 @"'Beyond a forgotten age'
-You cheat death, returning with 20 HP
-5 minute cooldown
+If you reach zero HP you cheat death, returning with 20 HP
+For a few seconds after reviving, you are immune to all damage and spawn bones everywhere
 Summons a pet Baby Dino");
 		}
 
@@ -30,27 +30,12 @@ Summons a pet Baby Dino");
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			modPlayer.FossilEnchant = true;
-			
-			//pet
-			if (player.whoAmI == Main.myPlayer)
+            modPlayer.AddPet("Baby Dino Pet", BuffID.BabyDinosaur, ProjectileID.BabyDino);
+
+            if(modPlayer.FossilBones)
             {
-				if(Soulcheck.GetValue("Baby Dino Pet"))
-				{
-					modPlayer.DinoPet = true;
-					
-					if(player.FindBuffIndex(61) == -1)
-					{
-						if (player.ownedProjectileCounts[ProjectileID.BabyDino] < 1)
-						{
-							Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.BabyDino, 0, 2f, Main.myPlayer);
-						}
-					}
-				}
-				else
-				{
-					modPlayer.DinoPet = false;
-				}
-			}
+                
+            }
         }
 		
 		public override void AddRecipes()
@@ -68,4 +53,3 @@ Summons a pet Baby Dino");
 		}
 	}
 }
-		

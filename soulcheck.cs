@@ -57,7 +57,7 @@ namespace FargowiltasSouls
             ["Leaf Crystal"] = new Color(47, 224, 67),
             ["Spore Explosion"] = new Color(12, 183, 32),
             ["Forbidden Storm"] = new Color(221, 186, 171),
-            ["Stardust guardian"] = new Color(11, 221, 196),
+            ["Stardust Guardian"] = new Color(11, 221, 196),
             ["Solar Shield"] = new Color(229, 124, 11),
             ["Shroomite Stealth"] = new Color(11, 42, 196),
             ["Orichalcum Fireball"] = new Color(211, 99, 192),
@@ -97,6 +97,7 @@ namespace FargowiltasSouls
             ["Squashling Pet"] = new Color(81, 181, 113),
             ["Silver Sword Familiar"] = new Color(81, 181, 113),
             ["Enchanted Sword Familiar"] = new Color(81, 181, 113),
+            ["Tiki Pet"] = new Color(81, 181, 113),
         };
 
         public override void OnInitialize()

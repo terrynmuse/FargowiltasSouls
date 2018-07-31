@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using FargowiltasSouls.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -28,6 +29,8 @@ namespace FargowiltasSouls.Projectiles
         private int oriDistance = 64;
         private int oriDirection = 1;
         private bool firstTick = true;
+        private bool squeakyToy = false;
+        public bool TimeFrozen = false;
 
         public override void SetDefaults(Projectile projectile)
         {
@@ -147,6 +150,12 @@ namespace FargowiltasSouls.Projectiles
                 counter = 0;
             }
 
+            if(projectile.hostile && Main.npc[projectile.owner].active && Main.npc[projectile.owner].GetGlobalNPC<FargoGlobalNPC>().SqueakyToy)
+            {
+                projectile.damage = 1;
+                squeakyToy = true;
+            }
+
             if(modPlayer.OriEnchant && OriBall)
             {
                 if(firstTick)
@@ -192,12 +201,20 @@ namespace FargowiltasSouls.Projectiles
                 retVal = false;
             }
 
+            if (TimeFrozen)
+            {
+                projectile.position = projectile.oldPosition;
+                projectile.frameCounter--;
+                projectile.timeLeft++;
+                retVal = false;
+            }
+
             firstTick = false;
 
             return retVal;
         }
 
-        public void SplitProj(Projectile projectile, int number)
+        public static void SplitProj(Projectile projectile, int number)
         {
             //if its odd, we just keep the original 
             if (number % 2 != 0)
@@ -225,8 +242,8 @@ namespace FargowiltasSouls.Projectiles
                     }
 
                     split = Projectile.NewProjectileDirect(projectile.Center, projectile.velocity.RotatedBy(factor * spread * (i + 1)), projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
-                    split.GetGlobalProjectile<FargoGlobalProjectile>().numSplits = numSplits;
-                    split.GetGlobalProjectile<FargoGlobalProjectile>()._instantSplit = _instantSplit;
+                    split.GetGlobalProjectile<FargoGlobalProjectile>().numSplits = projectile.GetGlobalProjectile<FargoGlobalProjectile>().numSplits;
+                    split.GetGlobalProjectile<FargoGlobalProjectile>()._instantSplit = projectile.GetGlobalProjectile<FargoGlobalProjectile>()._instantSplit;
                 }
 
             }
@@ -392,46 +409,18 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            if (projectile.type == 623)
+            if (projectile.type == ProjectileID.StardustGuardian && player.FindBuffIndex(BuffID.StardustGuardianMinion) == -1)
             {
-                if (!modPlayer.StardustEnchant && player.FindBuffIndex(187) == -1)
+                if (!modPlayer.StardustEnchant || !Soulcheck.GetValue("Stardust Guardian")) 
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
+            if (projectile.type == ProjectileID.TikiSpirit && player.FindBuffIndex(BuffID.TikiSpirit) == -1)
+            {
+                if (!modPlayer.TikiEnchant || !Soulcheck.GetValue("Tiki Pet"))
                 {
                     projectile.Kill();
                     return;
@@ -439,7 +428,45 @@ namespace FargowiltasSouls.Projectiles
             }
 
 
-            if (projectile.type == ProjectileID.DD2PetDragon && player.FindBuffIndex(202) == -1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*if (projectile.type == ProjectileID.DD2PetDragon && player.FindBuffIndex(202) == -1)
             {
                 if (!modPlayer.DragPet)
                 {
@@ -491,7 +518,7 @@ namespace FargowiltasSouls.Projectiles
 					projectile.Kill();
 					return;
 				}
-			}*/
+			}
 
             if (projectile.type == ProjectileID.Puppy && player.FindBuffIndex(91) == -1)
             {
@@ -579,12 +606,12 @@ namespace FargowiltasSouls.Projectiles
                 {
                     projectile.Kill();
                 }
-            }
+            }*/
 
 
             #endregion
 
-            if(stormBoosted)
+            if (stormBoosted)
             {
                 int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.GoldFlame, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1.5f);
                 Main.dust[dustId].noGravity = true;
@@ -884,6 +911,11 @@ namespace FargowiltasSouls.Projectiles
                 }
 
             }
+
+            if(squeakyToy)
+            {
+                modPlayer.Squeak(target.Center);
+            }
         }
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -891,8 +923,9 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.SqueakyToy)
+            if(modPlayer.NecroEnchant && projectile.type == mod.ProjectileType("DungeonGuardian") && projectile.penetrate == 1)
             {
+                crit = true;
             }
         }
 

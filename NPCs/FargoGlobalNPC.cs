@@ -24,6 +24,11 @@ namespace FargowiltasSouls.NPCs
         public bool SBleed;
         public bool Shock;
         public bool Rotting;
+        public bool LeadPoison;
+        public bool SqueakyToy;
+        public bool SolarFlare;
+        public bool TimeFrozen;
+
         public bool PillarSpawn = true;
 
         //masochist doom
@@ -40,6 +45,9 @@ namespace FargowiltasSouls.NPCs
             SBleed = false;
             Shock = false;
             Rotting = false;
+            LeadPoison = false;
+            SqueakyToy = false;
+            SolarFlare = false;
         }
 
         public override void SetDefaults(NPC npc)
@@ -166,6 +174,18 @@ namespace FargowiltasSouls.NPCs
 
                 #endregion
             }
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if(TimeFrozen)
+            {
+                npc.position = npc.oldPosition;
+                npc.frameCounter--;
+                return false;
+            }
+
+            return true;
         }
 
         public override void AI(NPC npc)
@@ -425,7 +445,7 @@ namespace FargowiltasSouls.NPCs
                     if(npc.Distance(player.Center) < 500f)
                     {
                         Vector2 velocity = Vector2.Normalize(player.Center - npc.Center) * 10;
-                        Projectile proj = Projectile.NewProjectileDirect(npc.Center, velocity, ProjectileID.HarpyFeather, npc.damage / 2, 1f);
+                        Projectile proj = Projectile.NewProjectileDirect(npc.Center, velocity, ProjectileID.HarpyFeather, npc.damage / 2, 1f, npc.whoAmI);
                         proj.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     }
                    
@@ -438,7 +458,7 @@ namespace FargowiltasSouls.NPCs
                     if (npc.Distance(player.Center) < 1000)
                     {
                         Vector2 velocity = Vector2.Normalize(player.Center - npc.Center) * 14;
-                        Projectile.NewProjectile(npc.Center, velocity, ProjectileID.Boulder, 200, 1f);
+                        Projectile.NewProjectile(npc.Center, velocity, ProjectileID.Boulder, 200, 1f, npc.whoAmI);
                     }
 
                     Counter = 1;
@@ -451,7 +471,7 @@ namespace FargowiltasSouls.NPCs
                     {
                         Vector2 velocity = Vector2.Normalize(player.Center - npc.Center) * 14;
                         
-                        Projectile bubble = Projectile.NewProjectileDirect(npc.Center, velocity, ProjectileID.Bubble, npc.damage / 2, 1f);
+                        Projectile bubble = Projectile.NewProjectileDirect(npc.Center, velocity, ProjectileID.Bubble, npc.damage / 2, 1f, npc.whoAmI);
                         bubble.hostile = true;
                         bubble.friendly = false;
                         
@@ -480,7 +500,7 @@ namespace FargowiltasSouls.NPCs
                     if (npc.Distance(player.Center) < 400)
                     {
                         Vector2 velocity = Vector2.Normalize(player.Center - npc.Center) * 14;
-                        Projectile.NewProjectile(npc.Center, velocity, ProjectileID.WebSpit, npc.damage / 4, 0f);
+                        Projectile.NewProjectile(npc.Center, velocity, ProjectileID.WebSpit, npc.damage / 4, 0f, npc.whoAmI);
                     }
 
                     Counter = 1;
@@ -653,7 +673,7 @@ namespace FargowiltasSouls.NPCs
                     Player player = Main.player[npc.FindClosestPlayer()];
                     if (npc.Distance(player.Center) < 500)
                     {
-                        Projectile.NewProjectile(npc.Center, npc.velocity, ProjectileID.EyeFire, npc.damage / 3, 0f);
+                        Projectile.NewProjectile(npc.Center, npc.velocity, ProjectileID.EyeFire, npc.damage / 3, 0f, npc.whoAmI);
                     }
 
                     Counter = 1;
@@ -664,14 +684,14 @@ namespace FargowiltasSouls.NPCs
                     Player player = Main.player[npc.FindClosestPlayer()];
                     if (npc.Distance(player.Center) < 800)
                     {
-                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(0, -2), ProjectileID.DemonSickle, npc.damage / 2, 0f);
-                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(0, 2), ProjectileID.DemonSickle, npc.damage / 2, 0f);
-                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(2, 0), ProjectileID.DemonSickle, npc.damage / 2, 0f);
-                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(-2, 0), ProjectileID.DemonSickle, npc.damage / 2, 0f);
-                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(2, 2), ProjectileID.DemonSickle, npc.damage / 2, 0f);
-                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(2, -2), ProjectileID.DemonSickle, npc.damage / 2, 0f);
-                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(-2, 2), ProjectileID.DemonSickle, npc.damage / 2, 0f);
-                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(-2, -2), ProjectileID.DemonSickle, npc.damage / 2, 0f);
+                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(0, -2), ProjectileID.DemonSickle, npc.damage / 2, 0f, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(0, 2), ProjectileID.DemonSickle, npc.damage / 2, 0f, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(2, 0), ProjectileID.DemonSickle, npc.damage / 2, 0f, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(-2, 0), ProjectileID.DemonSickle, npc.damage / 2, 0f, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(2, 2), ProjectileID.DemonSickle, npc.damage / 2, 0f, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(2, -2), ProjectileID.DemonSickle, npc.damage / 2, 0f, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(-2, 2), ProjectileID.DemonSickle, npc.damage / 2, 0f, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, npc.velocity * new Vector2(-2, -2), ProjectileID.DemonSickle, npc.damage / 2, 0f, npc.whoAmI);
                     }
 
                     Counter = 1;
@@ -683,7 +703,7 @@ namespace FargowiltasSouls.NPCs
                     if (npc.Distance(player.Center) < 200)
                     {
                         Vector2 velocity = Vector2.Normalize(player.Center - npc.Center) * 10;
-                        Projectile proj = Projectile.NewProjectileDirect(npc.Center, velocity, ProjectileID.IceSickle, npc.damage / 2, 1f);
+                        Projectile proj = Projectile.NewProjectileDirect(npc.Center, velocity, ProjectileID.IceSickle, npc.damage / 2, 1f, npc.whoAmI);
                         proj.hostile = true;
                         proj.friendly = false;
                     }
@@ -720,6 +740,10 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
+            //tank meme
+            //npc.knockBackResist = 1f;
+
+
             Counter++;
 
             if(Counter > 10000)
@@ -738,6 +762,45 @@ namespace FargowiltasSouls.NPCs
             }
 
             return null;
+        }
+
+        public override void DrawEffects(NPC npc, ref Color drawColor)
+        {
+            if (LeadPoison)
+            {
+                if (Main.rand.Next(4) < 3)
+                {
+                    int dust = Dust.NewDust(new Vector2(npc.position.X - 2f, npc.position.Y - 2f), npc.width + 4, npc.height + 4, DustID.Lead, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Dust expr_1CCF_cp_0 = Main.dust[dust];
+                    expr_1CCF_cp_0.velocity.Y = expr_1CCF_cp_0.velocity.Y - 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+            }
+
+            if (SqueakyToy)
+            {
+                if (Main.rand.Next(4) < 3)
+                {
+                    int dust = Dust.NewDust(new Vector2(npc.position.X - 2f, npc.position.Y - 2f), npc.width + 4, npc.height + 4, 44, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, Color.LimeGreen, 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Dust expr_1CCF_cp_0 = Main.dust[dust];
+                    expr_1CCF_cp_0.velocity.Y = expr_1CCF_cp_0.velocity.Y - 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+
+                Lighting.AddLight((int)(npc.position.X / 16f), (int)(npc.position.Y / 16f + 1f), 1f, 0.3f, 0.1f);
+            }
         }
 
         public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
@@ -838,35 +901,6 @@ namespace FargowiltasSouls.NPCs
 					Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 40, 0f + Main.rand.Next(-5, 5), -5f, mod.ProjectileType("SuperBlood"), dmg, 0f, Main.myPlayer);
 				}
 			}
-			
-			if(Shock && Main.rand.Next(4) == 0)
-			{
-				if(npc.FindBuffIndex(BuffID.Wet) != -1)  
-				{
-					dmg = 20;
-				}
-				else
-				{
-					dmg = 10;
-				}
-
-				Projectile p = Projectile.NewProjectileDirect(npc.Center, new Vector2(0, 0), mod.ProjectileType("Shock"), dmg, 0f, Main.myPlayer);
-                p.friendly = true;
-                p.hostile = false;
-                //p.timeLeft = 60;
-
-                for(int i = 0; i < 200; i++)
-                {
-                    if(Main.npc[i].Distance(npc.Center) < 500f && Main.npc[i].Distance(npc.Center) > 100f)
-                    {
-                        Vector2 velocity = Vector2.Normalize(Main.npc[i].Center - npc.Center) * 20;
-
-                        Projectile p2 = Projectile.NewProjectileDirect(npc.Center, velocity, ProjectileID.CultistBossLightningOrbArc, dmg, 0f, Main.myPlayer);
-                        p2.friendly = true;
-                        p2.hostile = false;
-                    }
-                }
-			}
 
             if (Rotting)
             {
@@ -880,6 +914,31 @@ namespace FargowiltasSouls.NPCs
                 if (damage < 5)
                 { 
                     damage = 5;
+                }
+            }
+
+            if(LeadPoison)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+
+                npc.lifeRegen -= 10;
+            }
+
+            if(SolarFlare)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+
+                npc.lifeRegen -= 500;
+
+                if (damage < 5)
+                {
+                    damage = 10;
                 }
             }
 		}
@@ -1484,28 +1543,54 @@ namespace FargowiltasSouls.NPCs
             if((npc.type == NPCID.Medusa || npc.type == NPCID.IchorSticker || npc.type == NPCID.SeekerHead || npc.type == NPCID.Mimic || npc.type == NPCID.AngryNimbus) && !Main.hardMode)
             {
                 return false;
-            }			
+            }
 
 			return true;
 		}
+
+        private bool firstLoot = true;
 
 		public override void NPCLoot(NPC npc)
 		{
 			Player player = Main.player[Main.myPlayer];
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-					
-			//SoT
-			if(modPlayer.TerrariaSoul && Main.rand.Next(3) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Heart);
-			}
-			
-		}
+
+            if(modPlayer.PlatinumEnchant && firstLoot)
+            {
+                bool midas = npc.HasBuff(BuffID.Midas);
+                int chance = 10;
+                int bonus = 3;
+
+                if(midas)
+                {
+                    chance/= 2;
+                    bonus *= 2;
+                }
+
+                if(Main.rand.Next(chance) == 0)
+                {
+                    firstLoot = false;
+                    for (int i = 0; i < bonus; i++)
+                    {
+                        npc.NPCLoot();
+                        NPC.killCount[Item.NPCtoBanner(npc.BannerID())]--;
+                    }
+                }
+            }
+
+            firstLoot = false;
+        }
 		
 		public override bool CheckDead(NPC npc)
 		{
 			Player player = Main.player[Main.myPlayer];
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            if(TimeFrozen)
+            {
+                npc.life = 1;
+                return false;
+            }
 
             if(FargoWorld.MasochistMode)
             {
@@ -1527,7 +1612,7 @@ namespace FargowiltasSouls.NPCs
                 if(npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinWarrior)
                 {
                     //Projectile.NewProjectile(npc.Center, new Vector2(0, -10), ProjectileID.SpikyBallTrap, 15, 0);
-                    Projectile ball = Projectile.NewProjectileDirect(npc.Center, new Vector2(0, -5), ProjectileID.SpikyBall, 15, 0);
+                    Projectile ball = Projectile.NewProjectileDirect(npc.Center, new Vector2(0, -5), ProjectileID.SpikyBall, 15, 0, npc.whoAmI);
                     ball.hostile = true;
                     ball.friendly = true;
                     ball.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
@@ -1601,7 +1686,7 @@ namespace FargowiltasSouls.NPCs
                 {
                     for(int i = 0; i < 10; i++)
                     {
-                        Projectile flask = Projectile.NewProjectileDirect(npc.Center, new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), ProjectileID.DrManFlyFlask, 200, 1f);
+                        Projectile flask = Projectile.NewProjectileDirect(npc.Center, new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), ProjectileID.DrManFlyFlask, 200, 1f, npc.whoAmI);
                     }
                     
                 }
@@ -2408,6 +2493,12 @@ namespace FargowiltasSouls.NPCs
             if(target.HasBuff(mod.BuffType("ShellHide")))
             {
                 damage *= 2;
+            }
+
+            if(SqueakyToy)
+            {
+                damage = 1;
+                modPlayer.Squeak(target.Center);
             }
         }
 
