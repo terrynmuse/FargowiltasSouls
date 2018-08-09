@@ -24,13 +24,11 @@ Your wings last 1.5x as long");
 			item.accessory = true;			
 			ItemID.Sets.ItemNoGravity[item.type] = true;
 			item.rare = 8; 
-			item.value = 250000; 
+			item.value = 200000; 
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).BeetleEnchant = true;
-		
 		    if(Soulcheck.GetValue("Beetles"))
 		    {
 				player.beetleDefense = true;
@@ -121,7 +119,10 @@ Your wings last 1.5x as long");
 			    	}
 			    }
             }
-		}
+
+            //wing time up
+            player.GetModPlayer<FargoPlayer>(mod).BeetleEnchant = true;
+        }
 		
 		public override void AddRecipes()
 		{
@@ -132,16 +133,10 @@ Your wings last 1.5x as long");
 			recipe.AddIngredient(ItemID.BeetleWings);
 			recipe.AddIngredient(ItemID.BeeWings);
             recipe.AddIngredient(ItemID.ButterflyWings);
+            recipe.AddIngredient(ItemID.MothronWings);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}
 	}	
 }
-		
-	
-
-
-
-
-

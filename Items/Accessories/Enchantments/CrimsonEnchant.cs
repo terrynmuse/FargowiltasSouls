@@ -22,15 +22,15 @@ Summons a Baby Face Monster and a Crimson Heart");
 			item.height = 20;
 			item.accessory = true;
 			ItemID.Sets.ItemNoGravity[item.type] = true;
-			item.rare = 1; 
-			item.value = 20000; 
+			item.rare = 3; 
+			item.value = 50000; 
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {	
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             player.crimsonRegen = true;
-
+            //increase heart heal
             modPlayer.CrimsonEnchant = true;
             modPlayer.AddPet("Baby Face Monster Pet", BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
             modPlayer.AddPet("Crimson Heart Pet", BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);

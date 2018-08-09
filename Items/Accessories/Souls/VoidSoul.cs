@@ -17,9 +17,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of the Void");
             Tooltip.SetDefault("'The depths of the Void have surrendered to your might' \n" +
                                 "Rod of Discord effect on grapple key with a 2 second cooldown\n" +
-                                "Whenever you teleport, you leave behind a void that sucks in nearby enemies\n" +
-                                "Dash into any walls, to teleport through them to the next opening\n" +
-                                "Chance for damage to be nullified completely\n" +
                                 "Chance to spawn coin portals on enemy hits\n" +
                                 "The Mutant's Grab Bags have unlocked their true potential\n" +
                                 "Effects of the Cell Phone, set key to go home\n" +
@@ -27,6 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                                 "Summons several pets from the Void");
 
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -46,36 +44,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             {
                 return "FargowiltasSouls/Items/Placeholder";
             }
-        }
-
-        public override bool UseItem(Player player)
-        {
-            if (Main.rand.Next(2) == 0)
-                Dust.NewDust(player.position, player.width, player.height, 15, 0.0f, 0.0f, 150, Color.White, 1.1f);
-
-            for (int index = 0; index < 70; ++index)
-                Dust.NewDust(player.position, player.width, player.height, 15, (float)(player.velocity.X * 0.5), (float)(player.velocity.Y * 0.5), 150, Color.White, 1.5f);
-            player.grappling[0] = -1;
-            player.grapCount = 0;
-            for (int index = 0; index < 1000; ++index)
-            {
-                if (Main.projectile[index].active && Main.projectile[index].owner == player.whoAmI && Main.projectile[index].aiStyle == 7)
-                    Main.projectile[index].Kill();
-            }
-            player.Spawn();
-            for (int index = 0; index < 70; ++index)
-                Dust.NewDust(player.position, player.width, player.height, 15, 0.0f, 0.0f, 150, Color.White, 1.5f);
-            // var teleportPos = new Vector2();
-            // teleportPos.X = Main.mouseX + Main.screenPosition.X;
-            // teleportPos.Y = Main.mouseY + Main.screenPosition.Y;
-
-            // if (teleportPos.X > 50 && teleportPos.X < (double) (Main.maxTilesX * 16 - 50) && (teleportPos.Y > 50 && teleportPos.Y < (double) (Main.maxTilesY * 16 - 50)))
-            // {
-            // Projectile.NewProjectile(teleportPos.X, teleportPos.Y, 0f, 0f, mod.ProjectileType("Void"), 0, 0, Main.myPlayer, 0f, 0f);
-
-            // }
-
-            return true;
         }
 
         public override void UpdateInventory(Player player)
@@ -103,20 +71,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             //2 second cd
             if (player.controlHook && Cd <= 0 && Main.myPlayer == player.whoAmI)
             {
-                //void spawn
-                if (VoidTimer <= 0)
-                {
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        if (Main.projectile[i].type == mod.ProjectileType("Void") && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].active)
-                        {
-                            Main.projectile[i].Kill();
-                        }
-                    }
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("Void"), 0, 0f, player.whoAmI);
-                    VoidTimer = 600;
-                }
-
                 Vector2 vector32;
                 vector32.X = Main.mouseX + Main.screenPosition.X;
                 if (player.gravDir == 1f)

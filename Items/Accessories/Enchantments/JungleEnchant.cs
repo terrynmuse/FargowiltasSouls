@@ -23,15 +23,13 @@ Spore damage scales with magic damage");
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 3;
-            item.value = 20000;
+            item.value = 50000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (Soulcheck.GetValue("Spore Explosion"))
-            {
-                player.GetModPlayer<FargoPlayer>(mod).JungleEnchant = true;
-            }
+            player.cordage = true;
+            player.GetModPlayer<FargoPlayer>(mod).JungleEnchant = true;
         }
 
         public override void AddRecipes()
@@ -40,6 +38,7 @@ Spore damage scales with magic damage");
             recipe.AddIngredient(ItemID.JungleHat);
             recipe.AddIngredient(ItemID.JungleShirt);
             recipe.AddIngredient(ItemID.JunglePants);
+            recipe.AddIngredient(ItemID.CordageGuide);
             recipe.AddIngredient(ItemID.JungleRose);
             recipe.AddIngredient(ItemID.DoNotStepontheGrass);
             recipe.AddTile(TileID.DemonAltar);

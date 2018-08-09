@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Tear into reality'
 Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
 Rarely spawn a vortex to draw in and massively damage enemies
-");
+Summons a Companion Cube Pet");
 		}
 
 		public override void SetDefaults()
@@ -53,6 +53,8 @@ Rarely spawn a vortex to draw in and massively damage enemies
                 player.stealth = 0f;
                 //player.invis = true;
             }
+
+            modPlayer.AddPet("Companion Cube Pet", BuffID.CompanionCube, ProjectileID.CompanionCube);
         }
 		
 		public override void AddRecipes()
@@ -61,10 +63,11 @@ Rarely spawn a vortex to draw in and massively damage enemies
             recipe.AddIngredient(ItemID.VortexHelmet);
 			recipe.AddIngredient(ItemID.VortexBreastplate);
 			recipe.AddIngredient(ItemID.VortexLeggings);
-			recipe.AddIngredient(ItemID.VortexBeater);
+            recipe.AddIngredient(ItemID.VortexBeater);
 			recipe.AddIngredient(ItemID.Phantasm);
 			recipe.AddIngredient(ItemID.SDMG);
-			recipe.AddTile(TileID.CrystalBall);
+            recipe.AddIngredient(ItemID.CompanionCube);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}

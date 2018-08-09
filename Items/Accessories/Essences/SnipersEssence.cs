@@ -9,11 +9,11 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sniper's Essence");
-            Tooltip.SetDefault("'This is only the beginning..' \n18% increased ranged damage \n5% increased ranged critical chance \n5% chance to not consume ammo");
-            if (Fargowiltas.Instance.ThoriumLoaded)
-            {
-                Tooltip.SetDefault("'This is only the beginning..' \n18% increased ranged damage \n5% increased ranged critical chance \n5% chance to not consume ammo /nIncreased armor penetration by 5");
-            }
+            Tooltip.SetDefault(
+@"'This is only the beginning..'
+18% increased ranged damage
+5% increased ranged critical chance
+5% chance to not consume ammo");
         }
         public override void SetDefaults()
         {
@@ -27,15 +27,8 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).MiniRangedEffect = true;
-
             player.rangedCrit += 5;
             player.rangedDamage += .18f;
-
-            //shark tooth 
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                player.armorPenetration = 5;
-            }
         }
 
         public override void AddRecipes()
@@ -108,7 +101,6 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 else
                 {
                     //no others
-                    range1.AddIngredient(ItemID.SharkToothNecklace);
                     range1.AddIngredient(ItemID.RangerEmblem);
                     range1.AddIngredient(ItemID.SlimeGun);
                     range1.AddIngredient(ItemID.Blowpipe);

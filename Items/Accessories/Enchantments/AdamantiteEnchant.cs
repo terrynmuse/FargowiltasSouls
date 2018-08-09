@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Adamantite Enchantment");
             Tooltip.SetDefault(
-@"'' 
+@"'Who needs to aim?' 
 25% chance for any weapon to shoot in a spread
 Any secondary projectiles may also split");
         }
@@ -21,8 +21,8 @@ Any secondary projectiles may also split");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 4;
-            item.value = 80000;
+            item.rare = 5;
+            item.value = 100000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -39,6 +39,7 @@ Any secondary projectiles may also split");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyAdamHead");
             recipe.AddIngredient(ItemID.AdamantiteBreastplate);
             recipe.AddIngredient(ItemID.AdamantiteLeggings);
+            recipe.AddIngredient(ItemID.AdamantiteGlaive);
             recipe.AddIngredient(ItemID.DarkLance);
             recipe.AddIngredient(ItemID.Shotgun);
             recipe.AddIngredient(ItemID.VenomStaff);
@@ -48,4 +49,3 @@ Any secondary projectiles may also split");
         }
     }
 }
-

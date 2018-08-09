@@ -16,6 +16,7 @@ namespace FargowiltasSouls
         public UserInterface CustomResources;
 
         //loaded
+        internal bool FargosLoaded;
         internal bool BlueMagicLoaded;
         internal bool CalamityLoaded;
         internal bool TerraCompLoaded;
@@ -79,6 +80,7 @@ namespace FargowiltasSouls
         {
             try
             {
+                FargosLoaded = ModLoader.GetMod("Fargowiltas") != null;
                 BlueMagicLoaded = ModLoader.GetMod("Bluemagic") != null;
                 CalamityLoaded = ModLoader.GetMod("CalamityMod") != null;
                 TerraCompLoaded = ModLoader.GetMod("TerraCompilation") != null;

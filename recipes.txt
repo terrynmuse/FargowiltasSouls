@@ -1,14 +1,3 @@
-Adamantite Armor
-Dark Lance
-Shotgun
-Venom Staff
-
-Angler Armor
-WoodFishingPole
-ReinforcedFishingPole
-FiberglassFishingPole
-OldShoe
-
 Bee Armor
 Hive Pack
 Bee Gun
@@ -19,110 +8,25 @@ Cactus Sword
 Cactus Pickaxe
 Pink Prickly Pear
 
-Beetle Armor
-Beetle Wings
-BeeWings
-ButterflyWings
-
-Chlorophyte Armor
-Staff of Regrowth
-Leaf Blower
-Seedling 
-
-Cobalt Armor
-Crystal Storm
-Crystal Vile Shard
-Chik
-
 Crimson Armor
 Deadland Comes Alive
 Bone Rattle
 Crimson Heart
-
-Forbidden Armor
-Tome of Infinite Wisdom
-Spirit Flame
-Secret of the Sands
 
 Mining Armor
 Bone Pickaxe
 Molten Pickaxe
 Magic Lantern
 
-Meteor Armor
-Space Gun
-Meteor Staff
-Place Above the Clouds
-
-Gold Armor
-Greedy Ring
-Ruby Staff
-Gold Squirrel
-
-Mythril Armor
-Fetid Baghnakhs
-Megashark
-Laser Rifle 
-
-Titanium Armor 
-Slap Hand
-Anchor
-Sleepy Octopod
-
-Ninja Armor
-Master Ninja Gear
-Smoke Bombs
-Unlucky Yarn
-
-Palladium Armor
-Soul Drain
-Vampire Knives
-Palladium Sword
-
-Spectre Armor
-Spectre Staff
-Unholy Trident
-Wisp in a Bottle
-
-Spooky Armor
-Death Sickle
-Demon Scythe
-Cursed Sapling
-
-Turtle Armor
-Flesh Knuckles
-Nettle Burst
-Seaweed
-
-Shroomite Armor
-Mushroom Spear
-Hammush
-Strange Glowing Mushroom
-
-Spider Armor
-Spider Staff
-Queen Spider Staff
-Spider Egg
-
 Pumpkin Armor
 Molotov Cocktails
 Jack o Lantern
 Magical Pumpkin Seed
 
-Orichalcum Armor
-Flower of Fire
-Flower of Frost
-Cursed Flames
-
 Molten Armor
 Fiery Greatsword
 Sunfury
 Demons Eye
-
-Hallowed Armor
-Excalibur
-Silver Enchantment
-The Land of Deceiving Looks
 
 Obsidian Armor
 Obsidian Rose
@@ -139,55 +43,45 @@ Lead Shortsword
 Lead Pickaxe
 Red Paint
 
-Tiki Armor
-Pygmy Necklace
-Pygmy Staff
-Tiki Totem
-
-Vortex Armor
-Vortex Beater
-Phantasm
-SDMG
-
-Solar Armor
-Solar Eruption
-Daybreak
-Terrarian
-
-Stardust Armor
-Stardust Cell Staff
-Stardust Dragon Staff
-Rainbow Crystal Staff
-
-Nebula Armor
-Nebula Arcanum
-Nebula Blaze
-Lunar Flare
-
 Tin Armor
 Tin Bow
 Topaz Staff
 Daylight
 
-
-
-
-
-
-
-
-
-
-Tungsten Armor
-Tungsten Hammer
-Emerald Staff
-
-Frost Armor
+Fossil Armor
+Amber Staff
+Mandible Blade
+Amber Mosquito
 
 Platinum Armor
 Diamond Staff
 Platinum Crown
 Diamond Ring
+
+Tungsten Armor
+Tungsten Hammer
+Emerald Staff
+Snail
+
+Necro Armor
+Bone Sword
+Guardian's Gaze
+Bone Key
+
+Silver Armor
+Silver Broadsword
+Silver Bow
+Sapphire Staff
+
+Jungle Armor
+Guide to Plant Fiber Cordage
+Jungle Rose
+Do Not Step on the Grass
+
+Gladiator Armor
+Javelins
+Marble Chest
+Tartar Sauce
 
 Shadow Armor
 Lightless Chasms
@@ -195,23 +89,323 @@ Eaters Bone
 Shadow Orb
 
 Iron Armor
+Shield of Cthulhu
+Iron Broadsword
+Iron Anvil
 
-Necro Armor
-Bone Sword
-Guardian's Gaze
+Ninja Armor
+Shurikens
+Smoke Bombs
+Unlucky Yarn
 
-Fossil Armor
-Amber Staff
-Amber Mosquito
+Adamantite Armor 
+Adamantite Glaive
+Dark Lance
+Shotgun
+Venom Staff
 
-Silver Armor
-Silver Broadsword
-Sapphire Staff
+Beetle Armor
+Beetle Wings
+Bee Wings
+Butterfly Wings
+Mothron Wings
 
-Jungle Armor
-Jungle Rose
-Do Not Step on the Grass
+Chlorophyte Armor
+Flower Boots
+Staff of Regrowth
+Leaf Blower
+Seedling 
 
-Gladiator Armor
-Javelins
-Tartar Sauce
+Cobalt Armor
+Chik
+Crystal Dart
+Crystal Storm
+Crystal Vile Shard
+
+Dark Artist
+Apprentice Scarf
+Flameburst Staff
+Shadowflame Hex Doll
+Creeper Egg
+
+Forbidden Armor
+Tome of Infinite Wisdom
+Spirit Flame
+Scorpion
+Secret of the Sands
+
+Frost Armor
+Ice Bow
+Cold Waters in the White Land
+Fish
+Toy Sled
+
+Gold Armor
+Greedy Ring
+Ruby Staff
+Gold Squirrel
+Parrot Cracker
+
+Hallowed Armor
+Excalibur
+Silver Enchantment
+The Land of Deceiving Looks
+Fairy Bell
+
+Meteor Armor
+Space Gun
+Meteor Staff
+Star Cannon
+Place Above the Clouds
+
+Mythril Armor
+Mythril Repeater
+Fetid Baghnakhs
+Megashark
+Laser Rifle 
+
+Nebula Armor
+Shadowbeam Staff
+Nebula Arcanum
+Nebula Blaze
+Lunar Flare
+
+Orichalcum Armor
+Orichalcum Waraxe
+Flower of Fire
+Flower of Frost
+Cursed Flames
+
+Palladium Armor
+Palladium Sword
+Palladium Repeater
+Soul Drain
+Vampire Knives
+
+Red Riding Armor
+Huntress Buckler
+Celestial Shell
+Explosive Trap Staff
+Puppy
+
+Shinobi Armor
+Monk Belt
+Master Ninja Gear
+Lightning Aura Staff
+Gato Egg
+
+Shroomite Armor
+Mushroom Spear
+Hammush
+Uzi
+Strange Glowing Mushroom
+
+Solar Armor
+Helfire
+Solar Eruption
+Daybreak
+Star Wrath
+
+Vortex Armor
+Vortex Beater
+Phantasm
+SDMG
+Companion Cube
+
+Tiki Armor
+Pygmy Necklace
+Pygmy Staff
+Blowgun
+Tiki Totem
+
+Turtle Armor
+Flesh Knuckles
+Nettle Burst
+Seaweed
+Lizard Egg
+
+Titanium Armor 
+Titanium Sword
+Slap Hand
+Anchor
+Sleepy Octopod
+
+Valhalla Knight Armor
+Squire Shield
+Shiny Stone
+Ballista Staff
+Dragon Egg
+
+Spider Armor
+Spider Staff
+Queen Spider Staff
+Bat Scepter
+Spider Egg
+
+Spectre Armor
+Spectre Hamaxe
+Spectre Staff
+Unholy Trident
+Wisp in a Bottle
+
+Spooky Armor
+Demon Scythe
+Death Sickle
+Cursed Sapling
+Eye Spring
+
+Stardust Armor
+Stardust Pickaxe
+Stardust Cell Staff
+Stardust Dragon Staff
+Rainbow Crystal Staff
+
+
+
+
+
+
+
+
+
+
+
+
+Earth Force
+
+
+Terra Force
+
+
+Will Force
+
+
+Shadow Force
+
+
+Cosmo Force
+
+
+Nature Force
+
+
+Spirit Force
+Grinch
+
+Cosmo Force
+Suspicious Eye
+Gravity Globe
+
+Soul of Terraria
+Earth Force
+Terra Force
+Will Force
+Shadow Force
+Cosmo Force
+Nature Force
+Spirit Force
+Cosmo Force
+
+
+
+
+
+Barbarian
+
+
+Slinger
+
+
+Sniper
+
+
+Apprentice
+
+
+Occultist
+
+
+Supersonic
+Arctic Diving Gear
+Frostspark Boots
+Lava Waders
+Frog Legs
+
+Angler Armor
+Wood Fishing Pole
+Reinforced Fishing Pole
+Fiberglass Fishing Pole
+OldShoe
+
+Trawler
+Angler Tackle Bag
+
+Colossus
+Charm of Myths
+Ankh Shield
+Flesh Knuckles
+Frozen Turtle Shell
+Worm Scarf
+Hand Warmer
+Bee Cloak
+Sweetheart Necklace
+Shiny Stone
+Brain of Confusion
+Spore Sac
+Star Veil
+Paladins Shield
+Pocket Mirror
+
+Arch Wizard
+Mana Flower
+Celestial Cuffs
+Celestial Emblem
+
+
+
+Berserker
+Fire Gauntlet
+Yoyo Bag
+
+Sharpshooter
+Magic Quiver
+Sniper Scope
+
+Conjurist
+Papyrus Scarab
+Pygmy Necklace
+
+World Shaper
+Architect Gizmo Pack
+Presserator
+Toolbelt
+Toolbox
+Mechanical Ruler
+Royal Gel
+Gravity Globe
+Cell Phone
+Putrid Scent
+
+
+
+Flight Mastery
+Angel Wings
+Harpy Wings
+Bone Wings
+Leaf Wings
+Frozen Wings
+Flame Wings
+Tattered Fairy Wings
+Festive Wings
+Betsy Wings
+Fishron Wings
+Wings Stardust
+Wings Vortex
+Wings Nebula
+Wings Solar
+
+
+if (Main.netMode != 1)
+            {
+                Main.checkForSpawns += 50;
+            }

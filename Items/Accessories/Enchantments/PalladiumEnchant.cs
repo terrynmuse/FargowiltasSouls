@@ -21,14 +21,14 @@ Small chance for an attack to gain 33% life steal");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 4;
-            item.value = 40000;
+            item.rare = 5;
+            item.value = 100000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).PalladEnchant = true;
             player.onHitRegen = true;
+            player.GetModPlayer<FargoPlayer>(mod).PalladEnchant = true;
         }
 
         public override void AddRecipes()
@@ -38,6 +38,7 @@ Small chance for an attack to gain 33% life steal");
             recipe.AddIngredient(ItemID.PalladiumBreastplate);
             recipe.AddIngredient(ItemID.PalladiumLeggings);
             recipe.AddIngredient(ItemID.PalladiumSword);
+            recipe.AddIngredient(ItemID.PalladiumRepeater);
             recipe.AddIngredient(ItemID.SoulDrain);
             recipe.AddIngredient(ItemID.VampireKnives);
             recipe.AddTile(TileID.CrystalBall);

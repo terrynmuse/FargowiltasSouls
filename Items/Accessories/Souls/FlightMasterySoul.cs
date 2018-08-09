@@ -10,8 +10,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Flight Mastery Soul");
-            Tooltip.SetDefault("'Ascend' \nActs as wings \nAllows for very long lasting flight \nReleases bees when damaged");
+            Tooltip.SetDefault(
+@"'Ascend'
+Acts as wings
+Allows for very long lasting flight
+Releases bees when damaged");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -60,27 +65,26 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void AddRecipes()
         {
-            ModRecipe wings = new ModRecipe(mod);
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.AngelWings);
+            recipe.AddIngredient(ItemID.HarpyWings);
+            recipe.AddIngredient(ItemID.BoneWings);
+            recipe.AddIngredient(ItemID.LeafWings);
+            recipe.AddIngredient(ItemID.FrozenWings);
+            recipe.AddIngredient(ItemID.FlameWings);
+            recipe.AddIngredient(ItemID.TatteredFairyWings);
+            recipe.AddIngredient(ItemID.FestiveWings);
+            recipe.AddIngredient(ItemID.BetsyWings);
+            recipe.AddIngredient(ItemID.FishronWings);
+            recipe.AddIngredient(ItemID.WingsStardust);
+            recipe.AddIngredient(ItemID.WingsVortex);
+            recipe.AddIngredient(ItemID.WingsNebula);
+            recipe.AddIngredient(ItemID.WingsSolar);
 
-            wings.AddIngredient(ItemID.BalloonHorseshoeHoney);
-            wings.AddIngredient(ItemID.HarpyWings);
-            wings.AddIngredient(ItemID.BoneWings);
-            wings.AddIngredient(ItemID.MothronWings);
-            wings.AddIngredient(ItemID.FrozenWings);
-            wings.AddIngredient(ItemID.FlameWings);
-            wings.AddIngredient(ItemID.TatteredFairyWings);
-
-            wings.AddIngredient(ItemID.FestiveWings);
-            wings.AddIngredient(ItemID.BetsyWings);
-            wings.AddIngredient(ItemID.FishronWings);
-            wings.AddIngredient(ItemID.WingsStardust);
-            wings.AddIngredient(ItemID.WingsVortex);
-            wings.AddIngredient(ItemID.WingsNebula);
-            wings.AddIngredient(ItemID.WingsSolar);
-
+            recipe.AddTile(TileID.LunarCraftingStation);
             //wings.AddTile(null, "CrucibleCosmosSheet");
-            wings.SetResult(this);
-            wings.AddRecipe();
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

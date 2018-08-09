@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using FargowiltasSouls.NPCs;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,6 +23,22 @@ namespace FargowiltasSouls.Buffs
             }
 
             base.Update(type, player, ref buffIndex);
+        }
+
+        public override void Update(int type, NPC npc, ref int buffIndex)
+        {
+            FargoGlobalNPC globalNPC = npc.GetGlobalNPC<FargoGlobalNPC>();
+
+            if(type == BuffID.Chilled)
+            {
+                //globalNPC.
+                npc.color = Colors.RarityBlue;
+
+                if(!npc.boss)
+                {
+                    npc.velocity *= .5f;
+                }
+            }
         }
     }
 }

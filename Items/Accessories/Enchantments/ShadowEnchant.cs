@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,8 +10,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Shadow Enchantment");
             Tooltip.SetDefault(
-@"'You feel your body slip into the deepest shadows'
-Your shadow fires what you do at a delay or some shet
+@"'You feel your body slip into the deepest of shadows'
+You will recieve escalating Darkness debuffs while hitting enemies
+Surrounding enemies will take rapid damage when it is the darkest
 Summons a Baby Eater of Souls and a Shadow Orb");
         }
 
@@ -22,8 +22,8 @@ Summons a Baby Eater of Souls and a Shadow Orb");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 1;
-            item.value = 20000;
+            item.rare = 3;
+            item.value = 50000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -32,10 +32,6 @@ Summons a Baby Eater of Souls and a Shadow Orb");
             modPlayer.ShadowEnchant = true;
             modPlayer.AddPet("Baby Eater Pet", BuffID.BabyEater, ProjectileID.BabyEater);
             modPlayer.AddPet("Shadow Orb Pet", BuffID.ShadowOrb, ProjectileID.ShadowOrb);
-
-
-
-            player.armorEffectDrawShadow = true;
         }
 
         public override void AddRecipes()

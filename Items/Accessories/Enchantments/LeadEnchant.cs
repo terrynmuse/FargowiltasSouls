@@ -10,8 +10,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Lead Enchantment");
             Tooltip.SetDefault(
-@"''
-Attacks inflict enemies with Lead Poisoning");
+@"'Not recommended for eating'
+Attacks may inflict enemies with Lead Poisoning
+Lead Poisoning deals damage over time and slows enemies slightly");
         }
 
         public override void SetDefaults()
@@ -20,14 +21,13 @@ Attacks inflict enemies with Lead Poisoning");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 0;
+            item.rare = 1;
             item.value = 20000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.LeadEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).LeadEnchant = true;
         }
 
         public override void AddRecipes()

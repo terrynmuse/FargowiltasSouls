@@ -23,19 +23,14 @@ Summons a magic lantern");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 1;
-            item.value = 10000;
+            item.rare = 2;
+            item.value = 20000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             player.pickSpeed -= 0.5f;
-
-            if (Soulcheck.GetValue("Shine Buff"))
-            {
-                Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
-            }
 
             if (Soulcheck.GetValue("Spelunker Buff"))
             {
@@ -50,6 +45,11 @@ Summons a magic lantern");
             if (Soulcheck.GetValue("Dangersense Buff"))
             {
                 player.dangerSense = true;
+            }
+
+            if (Soulcheck.GetValue("Shine Buff"))
+            {
+                Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             }
 
             modPlayer.MinerEnchant = true;
@@ -71,5 +71,3 @@ Summons a magic lantern");
         }
     }
 }
-
-

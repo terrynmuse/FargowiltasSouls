@@ -1,3 +1,5 @@
+using FargowiltasSouls.Projectiles;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -6,13 +8,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class FrostEnchant : ModItem
     {
+        int icicleCD = 0;
+        Projectile[] icicles = new Projectile[3];
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frost Enchantment");
             Tooltip.SetDefault(
-@"'Let's coat the world with a deep freeze' 
-You are immune to chilled and frozen debuffs 
-Melee and ranged attacks cause frostburn and emit light");
+@"'Let's coat the world in a deep freeze' 
+Icicles will start to appear around you
+When there are three, using any weapon will launch them towards the cursor, Chilling enemies
+Allows the ability to walk on water
+Summons a baby penguin and snowman");
         }
 
         public override void SetDefaults()
@@ -22,30 +29,47 @@ Melee and ranged attacks cause frostburn and emit light");
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 5;
-            item.value = 80000;
+            item.value = 150000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.FrostEnchant = true;
-
             player.waterWalk = true;
-            //player.frostBurn = true;
-
-            if(player.statLife < player.statLifeMax2)// / 5)
+            modPlayer.AddPet("Baby Penguin Pet", BuffID.BabyPenguin, ProjectileID.Penguin);
+            modPlayer.AddPet("Baby Snowman Pet", BuffID.BabySnowman, ProjectileID.BabySnowman);
+            
+            if(icicleCD == 0 && modPlayer.IcicleCount < 3)
             {
-                player.immuneTime = 300;
-                player.AddBuff(BuffID.Frozen, 2);
-                player.AddBuff(mod.BuffType("Berserked"), 2);
+                Projectile p = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, ProjectileID.Blizzard, 0, 0, player.whoAmI);
+                p.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                p.width = 10;
+                p.height = 10;
+
+                icicles[modPlayer.IcicleCount] = p;
+                modPlayer.IcicleCount++;
+                icicleCD = 120;
             }
 
-            player.buffImmune[46] = true; //chilled
-            //player.buffImmune[47] = true; //frozen
+            if(icicleCD != 0)
+            {
+                icicleCD--;
+            }
 
-            //if slowing enemies is a thing add later
-            //FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //modPlayer.frostEnchant = true;
+            if(modPlayer.IcicleCount == 3 && player.controlUseItem && player.HeldItem.damage > 0)
+            {
+                for(int i = 0; i < icicles.Length; i++)
+                {
+                    Vector2 vel = (Main.MouseWorld - icicles[i].Center).SafeNormalize(-Vector2.UnitY) * 5;
+
+                    Projectile.NewProjectile(icicles[i].Center, vel, icicles[i].type, 50, 1f, player.whoAmI);
+                    icicles[i].Kill();
+                }
+
+                modPlayer.IcicleCount = 0;
+                icicleCD = 300;
+            }
         }
 
         public override void AddRecipes()
@@ -55,7 +79,8 @@ Melee and ranged attacks cause frostburn and emit light");
             recipe.AddIngredient(ItemID.FrostBreastplate);
             recipe.AddIngredient(ItemID.FrostLeggings);
             recipe.AddIngredient(ItemID.IceBow);
-            recipe.AddIngredient(ItemID.Amarok);
+            recipe.AddIngredient(ItemID.Fish);
+            recipe.AddIngredient(ItemID.ToySled);
             recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

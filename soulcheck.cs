@@ -55,7 +55,6 @@ namespace FargowiltasSouls
             ["Seasonal Enemies"] = new Color(114, 74, 25),
             ["Beetles"] = new Color(88, 89, 153),
             ["Leaf Crystal"] = new Color(47, 224, 67),
-            ["Spore Explosion"] = new Color(12, 183, 32),
             ["Forbidden Storm"] = new Color(221, 186, 171),
             ["Stardust Guardian"] = new Color(11, 221, 196),
             ["Solar Shield"] = new Color(229, 124, 11),
@@ -98,6 +97,14 @@ namespace FargowiltasSouls
             ["Silver Sword Familiar"] = new Color(81, 181, 113),
             ["Enchanted Sword Familiar"] = new Color(81, 181, 113),
             ["Tiki Pet"] = new Color(81, 181, 113),
+            ["Gato Pet"] = new Color(81, 181, 113),
+            ["Flickerwick Pet"] = new Color(81, 181, 113),
+            ["Puppy Pet"] = new Color(81, 181, 113),
+            ["Dragon Pet"] = new Color(81, 181, 113),
+            ["Parrot Pet"] = new Color(81, 181, 113),
+            ["Fairy Pet"] = new Color(81, 181, 113),
+            ["Companion Cube Pet"] = new Color(81, 181, 113),
+            ["Eye Spring Pet"] = new Color(81, 181, 113),
         };
 
         public override void OnInitialize()

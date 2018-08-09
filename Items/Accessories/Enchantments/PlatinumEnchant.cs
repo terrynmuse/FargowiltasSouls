@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Platinum Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Its value is immeasurable'
 10% chance for enemies to drop 3x loot
 If the enemy has Midas, the chance and bonus is doubled");
         }
@@ -21,14 +21,13 @@ If the enemy has Midas, the chance and bonus is doubled");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 8; 
-            item.value = 20000; 
+            item.rare = 4; 
+            item.value = 100000; 
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.PlatinumEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).PlatinumEnchant = true;
         }
 
         public override void AddRecipes()

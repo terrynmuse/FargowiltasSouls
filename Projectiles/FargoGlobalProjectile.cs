@@ -25,9 +25,10 @@ namespace FargowiltasSouls.Projectiles
         private bool ninjaTele;
         public bool IsRecolor = false;
         private bool stormBoosted = false;
-        public bool OriBall = false;
-        private int oriDistance = 64;
-        private int oriDirection = 1;
+        public bool Rotate = false;
+        public int RotateDist = 64;
+        public int RotateDir = 1;
+        private int oriDir = 1;
         private bool firstTick = true;
         private bool squeakyToy = false;
         public bool TimeFrozen = false;
@@ -150,13 +151,18 @@ namespace FargowiltasSouls.Projectiles
                 counter = 0;
             }
 
+            if(modPlayer.RedEnchant && projectile.ranged && projectile.penetrate != -1 && firstTick)
+            {
+                projectile.penetrate += 5;
+            }
+
             if(projectile.hostile && Main.npc[projectile.owner].active && Main.npc[projectile.owner].GetGlobalNPC<FargoGlobalNPC>().SqueakyToy)
             {
                 projectile.damage = 1;
                 squeakyToy = true;
             }
 
-            if(modPlayer.OriEnchant && OriBall)
+            if(Rotate)
             {
                 if(firstTick)
                 {
@@ -164,7 +170,6 @@ namespace FargowiltasSouls.Projectiles
                 }
 
                 projectile.tileCollide = false;
-                projectile.penetrate = -1;
                 projectile.usesLocalNPCImmunity = true;
 
                 Player p = Main.player[projectile.owner];
@@ -173,30 +178,50 @@ namespace FargowiltasSouls.Projectiles
                 double deg = (double)projectile.ai[1];
                 double rad = deg * (Math.PI / 180);
 
-                projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * oriDistance) - projectile.width / 2;
-                projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * oriDistance) - projectile.height / 2;
+                projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * RotateDist) - projectile.width / 2;
+                projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * RotateDist) - projectile.height / 2;
 
                 //Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
-                projectile.ai[1] += 2.5f;
-                projectile.rotation = projectile.ai[1] * 0.0174f;
-
-                if(oriDirection == 1)
+                if(RotateDir == 1)
                 {
-                    oriDistance++;
+                    projectile.ai[1] += 2.5f;
                 }
                 else
                 {
-                    oriDistance--;
+                    projectile.ai[1] -= 2.5f;
                 }
 
-                if(oriDistance >= 256)
+                //projectile.rotation = projectile.ai[1] * 0.0174f;
+
+                if (modPlayer.OriEnchant)
                 {
-                    oriDirection = 0;
+                    projectile.penetrate = -1;
+
+                    if (oriDir == 1)
+                    {
+                        RotateDist++;
+                    }
+                    else
+                    {
+                        RotateDist--;
+                    }
+
+                    if (RotateDist >= 256)
+                    {
+                        oriDir = 0;
+                    }
+                    if (RotateDist <= 64)
+                    {
+                        oriDir = 1;
+                    }
                 }
-                if(oriDistance <= 64)
+
+                if(modPlayer.FrostEnchant)
                 {
-                    oriDirection = 1;
+                    //projectile.rotation = (Main.MouseWorld - projectile.Center).ToRotation() + 90;
+                    projectile.timeLeft++;
                 }
+                
 
                 retVal = false;
             }
@@ -346,9 +371,27 @@ namespace FargowiltasSouls.Projectiles
 				}
 			}
 
+            if (projectile.type == ProjectileID.EyeSpring && (player.FindBuffIndex(BuffID.EyeballSpring) == -1))
+            {
+                if (!modPlayer.SpookyEnchant || !Soulcheck.GetValue("Eye Spring Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
             if (projectile.type == ProjectileID.Turtle && player.FindBuffIndex(BuffID.PetTurtle) == -1)
             {
                 if (!modPlayer.TurtleEnchant || !Soulcheck.GetValue("Turtle Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
+            if (projectile.type == ProjectileID.PetLizard && player.FindBuffIndex(BuffID.PetLizard) == -1)
+            {
+                if (!modPlayer.TurtleEnchant || !Soulcheck.GetValue("Lizard Pet"))
                 {
                     projectile.Kill();
                     return;
@@ -427,53 +470,104 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*if (projectile.type == ProjectileID.DD2PetDragon && player.FindBuffIndex(202) == -1)
+            if (projectile.type == ProjectileID.Penguin && player.FindBuffIndex(BuffID.BabyPenguin) == -1)
             {
-                if (!modPlayer.DragPet)
+                if (!modPlayer.FrostEnchant || !Soulcheck.GetValue("Baby Penguin Pet"))
                 {
                     projectile.Kill();
                     return;
                 }
             }
+
+            if (projectile.type == ProjectileID.BabySnowman && player.FindBuffIndex(BuffID.BabySnowman) == -1)
+            {
+                if (!modPlayer.FrostEnchant || !Soulcheck.GetValue("Baby Snowman Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
+            if (projectile.type == ProjectileID.DD2PetGato && (player.FindBuffIndex(BuffID.PetDD2Gato) == -1))
+            {
+                if (!modPlayer.ShinobiEnchant || !Soulcheck.GetValue("Gato Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
+            if (projectile.type == ProjectileID.Parrot && (player.FindBuffIndex(BuffID.PetParrot) == -1))
+            {
+                if (!modPlayer.GoldEnchant || !Soulcheck.GetValue("Parrot Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
+            if (projectile.type == ProjectileID.Puppy && player.FindBuffIndex(BuffID.Puppy) == -1)
+            {
+                if (!modPlayer.RedEnchant || !Soulcheck.GetValue("Puppy Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
+            if (projectile.type == ProjectileID.CompanionCube && player.FindBuffIndex(BuffID.CompanionCube) == -1)
+            {
+                if (!modPlayer.VortexEnchant || !Soulcheck.GetValue("Companion Cube Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
+            if (projectile.type == ProjectileID.DD2PetDragon && player.FindBuffIndex(BuffID.PetDD2Dragon) == -1)
+            {
+                if (!modPlayer.ValhallaEnchant || !Soulcheck.GetValue("Dragon Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
+            if (projectile.type == ProjectileID.BabySkeletronHead && player.FindBuffIndex(BuffID.BabySkeletronHead) == -1)
+            {
+                if (!modPlayer.NecroEnchant || !Soulcheck.GetValue("Baby Skeletron  Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
 
             if (projectile.type == ProjectileID.BabyDino && player.FindBuffIndex(61) == -1)
             {
@@ -484,32 +578,6 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-            if (projectile.type == ProjectileID.Penguin && player.FindBuffIndex(41) == -1)
-            {
-                if (!modPlayer.PenguinPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.BabySkeletronHead && player.FindBuffIndex(50) == -1)
-            {
-                if (!modPlayer.SkullPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            /*if(projectile.type == ProjectileID.DD2PetGato && (player.FindBuffIndex(200) == -1))
-			{
-				if (!modPlayer.mythrilPet)
-				{
-					projectile.Kill();
-					return;
-				}
-			}
 			
 			if(projectile.type == ProjectileID.Parrot && (player.FindBuffIndex(54) == -1))
 			{
@@ -519,26 +587,6 @@ namespace FargowiltasSouls.Projectiles
 					return;
 				}
 			}
-
-            if (projectile.type == ProjectileID.Puppy && player.FindBuffIndex(91) == -1)
-            {
-                if (!modPlayer.DogPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            
-
-            if (projectile.type == ProjectileID.PetLizard && player.FindBuffIndex(53) == -1)
-            {
-                if (!modPlayer.LizPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
 
             
 
@@ -552,16 +600,7 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-            
-
-            if (projectile.type == ProjectileID.BabySnowman && player.FindBuffIndex(66) == -1)
-            {
-                if (!modPlayer.SnowmanPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
+           
 
             if (projectile.type == ProjectileID.ZephyrFish && player.FindBuffIndex(127) == -1)
             {
@@ -641,6 +680,11 @@ namespace FargowiltasSouls.Projectiles
                 {
                     return Color.Blue;
                 }
+
+                if(projectile.type == ProjectileID.Bone || projectile.type == ProjectileID.BoneGloveProj)
+                {
+                    return Color.SandyBrown;
+                }
             }
 
             return null;
@@ -667,7 +711,7 @@ namespace FargowiltasSouls.Projectiles
                 spore.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
             }
 
-            if (modPlayer.OriEnchant && !OriBall && projectile.magic && Main.rand.Next(6) == 0)
+            if (modPlayer.OriEnchant && !Rotate && projectile.magic && Main.rand.Next(6) == 0)
             {
                 int[] fireballs = { ProjectileID.BallofFire, ProjectileID.BallofFrost, ProjectileID.CursedFlameFriendly };
                 const int MAXBALLS = 10;
@@ -679,7 +723,7 @@ namespace FargowiltasSouls.Projectiles
                 for(int i = 0; i < 1000; i++)
                 {
                     Projectile p = Main.projectile[i];
-                    if (p.active && p.GetGlobalProjectile<FargoGlobalProjectile>().OriBall)
+                    if (p.active && p.GetGlobalProjectile<FargoGlobalProjectile>().Rotate)
                     {
                         ballCount++;
                         
@@ -704,7 +748,7 @@ namespace FargowiltasSouls.Projectiles
                         {
                             if(dist == 63)
                             {
-                                dist = balls[i].GetGlobalProjectile<FargoGlobalProjectile>().oriDistance;
+                                dist = balls[i].GetGlobalProjectile<FargoGlobalProjectile>().RotateDist;
                             }
 
                             balls[i].Kill();
@@ -716,8 +760,8 @@ namespace FargowiltasSouls.Projectiles
                     {
                         degree = (360 / ballCount) * i;
                         Projectile fireball = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, fireballs[Main.rand.Next(3)], (int)(10 * player.magicDamage), 0f, projectile.owner, 0, degree);
-                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().OriBall = true;
-                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().oriDistance = dist;
+                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = dist;
                     }
                 }
             }
@@ -732,12 +776,6 @@ namespace FargowiltasSouls.Projectiles
                 target.AddBuff(BuffID.OnFire, 240, true);
                 target.AddBuff(BuffID.Frostburn, 240, true);
                 target.AddBuff(BuffID.Daybreak, 240, true);
-            }
-
-            //coin portals
-            if (modPlayer.VoidSoul && target.type != NPCID.TargetDummy && Main.rand.Next(100) == 0)
-            {
-                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f - 10, 0f, 518, 0, 0f, projectile.owner);
             }
         }
 
@@ -927,6 +965,11 @@ namespace FargowiltasSouls.Projectiles
             {
                 crit = true;
             }
+
+            if(modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && player.HeldItem.type != ItemID.BlizzardStaff)
+            {
+                target.AddBuff(BuffID.Chilled, 300);
+            }
         }
 
         public override void Kill(Projectile projectile, int timeLeft)
@@ -938,6 +981,11 @@ namespace FargowiltasSouls.Projectiles
             {
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 27);
                 XWay(8, projectile.Center, ProjectileID.CrystalShard, 5, 50, 2f);
+            }
+
+            if(modPlayer.FrostEnchant && Rotate)
+            {
+                modPlayer.IcicleCount--;
             }
         }
 

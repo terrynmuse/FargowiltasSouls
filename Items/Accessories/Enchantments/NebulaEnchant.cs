@@ -1,5 +1,3 @@
-using FargowiltasSouls.Projectiles;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			DisplayName.SetDefault("Nebula Enchantment");
 			Tooltip.SetDefault(
 @"'The pillars of creation have shined upon you'
-Hurting enemies has a chance to spawn buff boosters");
+Hurting enemies has a chance to spawn buff boosters
+Once you get to the last tier with each booster type, your magic power hits obscene levels");
 		}
 
 		public override void SetDefaults()
@@ -46,11 +45,6 @@ Hurting enemies has a chance to spawn buff boosters");
 
             if(player.HasBuff(BuffID.NebulaUpDmg3) && player.HasBuff(BuffID.NebulaUpLife3) && player.HasBuff(BuffID.NebulaUpMana3) && modPlayer.NebulaCounter == 600)
             {
-                Vector2 vel = (Main.MouseWorld - player.Center).SafeNormalize(-Vector2.UnitY) * 10;
-                Projectile p = Projectile.NewProjectileDirect(player.Center, vel, ProjectileID.NebulaArcanum, 50, 1f, player.whoAmI);
-                
-                FargoGlobalProjectile.SplitProj(p, 5);
-
                 modPlayer.NebulaCounter = -600;
             }
         }
@@ -61,10 +55,11 @@ Hurting enemies has a chance to spawn buff boosters");
 			recipe.AddIngredient(ItemID.NebulaHelmet);
 			recipe.AddIngredient(ItemID.NebulaBreastplate);
 			recipe.AddIngredient(ItemID.NebulaLeggings);
-			recipe.AddIngredient(ItemID.NebulaArcanum);
+            recipe.AddIngredient(ItemID.ShadowbeamStaff);
+            recipe.AddIngredient(ItemID.NebulaArcanum);
 			recipe.AddIngredient(ItemID.NebulaBlaze);
 			recipe.AddIngredient(ItemID.LunarFlareBook);
-			recipe.AddTile(TileID.CrystalBall);
+			recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}

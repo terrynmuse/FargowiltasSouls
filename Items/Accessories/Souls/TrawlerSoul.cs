@@ -9,14 +9,17 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Trawler Soul");
-            Tooltip.SetDefault("'The fish catch themselves' \n" +
-                                "Increases fishing skill substantially \n" +
-                                "All fishing rods will have 10 extra lures \n" +
-                                "Fishing line will never break \n" +
-                                "Decreases chance of bait consumption \n" +
-                                "Permanent Sonar and Crate Buffs \n" +
-                                "Effects of the Frog Legs and Spore Sac \n");
+            Tooltip.SetDefault(
+@"'The fish catch themselves'
+Increases fishing skill substantially
+All fishing rods will have 10 extra lures
+Fishing line will never break
+Decreases chance of bait consumption
+Permanent Sonar and Crate Buffs
+Effects of the Frog Legs and Spore Sac
+");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -29,7 +32,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).FishSoul2 = true;
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            modPlayer.FishSoul2 = true;
+            modPlayer.AddPet("", BuffID.ZephyrFish, ProjectileID.ZephyrFish);
 
             player.sonarPotion = true;
             player.fishingSkill += 50;
@@ -38,55 +43,57 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.accTackleBox = true;
             player.accFishFinder = true;
 
-            //fishing in lava??
-
             //froglegs
             player.autoJump = true;
             player.jumpSpeedBoost += 2.4f;
 
             if (Soulcheck.GetValue("Spore Sac"))
             {
-                //spore sac
                 player.SporeSac();
                 player.sporeSac = true;
             }
-
+            
+            
         }
 
         public override void AddRecipes()
         {
-            ModRecipe fishing = new ModRecipe(mod);
-
-            fishing.AddIngredient(null, "AnglerEnchantment");
-            fishing.AddIngredient(ItemID.AnglerTackleBag);
-            fishing.AddIngredient(ItemID.MechanicsRod);
-            fishing.AddIngredient(ItemID.SittingDucksFishingRod);
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(null, "AnglerEnchantment");
+            recipe.AddIngredient(ItemID.AnglerTackleBag);
+            recipe.AddIngredient(ItemID.MechanicsRod);
+            recipe.AddIngredient(ItemID.SittingDucksFishingRod);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                fishing.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AquaticSonarDevice"));
-                fishing.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumFisher"));
+                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AquaticSonarDevice"));
+                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumFisher"));
             }
-
             else
             {
-                fishing.AddIngredient(ItemID.GoldenFishingRod);
+                recipe.AddIngredient(ItemID.GoldenFishingRod);
             }
 
-            fishing.AddIngredient(ItemID.FrogLeg);
-            fishing.AddIngredient(ItemID.BalloonHorseshoeSharkron);
-            fishing.AddIngredient(ItemID.FinWings);
+            recipe.AddIngredient(ItemID.FrogLeg);
+            recipe.AddIngredient(ItemID.FinWings);
+            recipe.AddIngredient(ItemID.Toxikarp);
+            recipe.AddIngredient(ItemID.Bladetongue);
+            recipe.AddIngredient(ItemID.CrystalSerpent);
+            recipe.AddIngredient(ItemID.ObsidianSwordfish);
+            recipe.AddIngredient(ItemID.SporeSac);
+            recipe.AddIngredient(ItemID.ZephyrFish);
 
-            fishing.AddIngredient(ItemID.Toxikarp);
-            fishing.AddIngredient(ItemID.Bladetongue);
-            fishing.AddIngredient(ItemID.CrystalSerpent);
-            fishing.AddIngredient(ItemID.ObsidianSwordfish);
-
-            fishing.AddIngredient(ItemID.SporeSac);
-
-            //fishing.AddTile(null, "CrucibleCosmosSheet");
-            fishing.SetResult(this);
-            fishing.AddRecipe();
+            if(Fargowiltas.Instance.FargosLoaded)
+            {
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            }
+            else
+            {
+                recipe.AddTile(TileID.LunarCraftingStation);
+            }
+            
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

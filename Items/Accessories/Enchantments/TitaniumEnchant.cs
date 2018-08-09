@@ -22,13 +22,12 @@ Increases all knockback");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 4;
-            item.value = 60000;
+            item.rare = 5;
+            item.value = 100000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             player.kbBuff = true;
 
             if(player.statLife == player.statLifeMax2)
@@ -47,6 +46,7 @@ Increases all knockback");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyTitaHead");
             recipe.AddIngredient(ItemID.TitaniumBreastplate);
             recipe.AddIngredient(ItemID.TitaniumLeggings);
+            recipe.AddIngredient(ItemID.TitaniumSword);
             recipe.AddIngredient(ItemID.SlapHand);
             recipe.AddIngredient(ItemID.Anchor);
             recipe.AddIngredient(ItemID.MonkStaffT1);

@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Melting souls since 1902'
 All of your minions may occasionally spew massive scythes everywhere
-Summons a Cursed Sapling");
+Summons a Cursed Sapling and an eyeball spring");
         }
 
         public override void SetDefaults()
@@ -28,12 +28,14 @@ Summons a Cursed Sapling");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
             if (Soulcheck.GetValue("Spooky Scythes"))
             {
                 modPlayer.SpookyEnchant = true;
             }
 
             modPlayer.AddPet("Cursed Sapling Pet", BuffID.CursedSapling, ProjectileID.CursedSapling);
+            modPlayer.AddPet("Eye Spring Pet", BuffID.EyeballSpring, ProjectileID.EyeSpring);
         }
 
         public override void AddRecipes()
@@ -42,9 +44,10 @@ Summons a Cursed Sapling");
             recipe.AddIngredient(ItemID.SpookyHelmet);
             recipe.AddIngredient(ItemID.SpookyBreastplate);
             recipe.AddIngredient(ItemID.SpookyLeggings);
-            recipe.AddIngredient(ItemID.DeathSickle);
             recipe.AddIngredient(ItemID.DemonScythe);
+            recipe.AddIngredient(ItemID.DeathSickle);
             recipe.AddIngredient(ItemID.CursedSapling);
+            recipe.AddIngredient(ItemID.EyeSpring);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

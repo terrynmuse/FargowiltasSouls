@@ -21,17 +21,17 @@ Magic attacks may spawn fireballs to rotate around you");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 4;
-            item.value = 50000;
+            item.rare = 5;
+            item.value = 100000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            player.onHitPetal = true;
+
             if (Soulcheck.GetValue("Orichalcum Fireball"))
             {
-                modPlayer.OriEnchant = true;
-                player.onHitPetal = true;
+                player.GetModPlayer<FargoPlayer>(mod).OriEnchant = true;
             }
         }
 
@@ -41,6 +41,7 @@ Magic attacks may spawn fireballs to rotate around you");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyOriHead");
             recipe.AddIngredient(ItemID.OrichalcumBreastplate);
             recipe.AddIngredient(ItemID.OrichalcumLeggings);
+            recipe.AddIngredient(ItemID.OrichalcumWaraxe);
             recipe.AddIngredient(ItemID.FlowerofFire);
             recipe.AddIngredient(ItemID.FlowerofFrost);
             recipe.AddIngredient(ItemID.CursedFlames);

@@ -8,7 +8,7 @@
 
 -beetle enchant lost extra aggro and defense, gained 1.5 wing time
 
--added cactus enchantment, tungsten, pumpkin, silver, platinum, lead, tiki, copper, tin, obsidian 
+-added cactus enchantment, tungsten, pumpkin, silver, platinum, lead, tiki, copper, tin, obsidian, shinobi, valhalla, dark artist, red riding
 
 -chlorophyte Enchantment lost poison and venom on hit and immunity, leaf crystal works exactly like the armor now (not faster shooting at lower damage), herb double made less abusable, no more 1 million herbs in less than a minute :D, added a pet to it
 
@@ -52,11 +52,16 @@
 
 -stardust can freeze time
 
--nebula 
+-nebula when you get max level of all booster your attack speed goes ham for a bit
 
--fossil
+-fossil, after reviving you are immune and spawn bones everywhere for a few seconds
 
--frost
+-frost icicles orbit you, when you have three your next attack will launch them at your cursor, significantly slowing enemies
 
+-iron now has brand of inferno shield raise effect, plus you fall faster
 
+-shadow is very different 
 
+-gold added parrot
+
+bug fixed where things would shoot too fast

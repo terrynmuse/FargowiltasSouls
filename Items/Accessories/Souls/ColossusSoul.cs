@@ -39,11 +39,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 			item.value = 750000;
 			item.expert = true;
 			item.rare = -12;
+            item.shieldSlot = 4;
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			
+		
+
 			player.GetModPlayer<FargoPlayer>(mod).TankEffect = true;
 			
 			//thorium
@@ -105,10 +107,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             {
                 player.AddBuff(BuffID.IceBarrier, 30);
             }
-				
-				
-		    // shiny stone
-		    player.shinyStone = true;
+					
+		    
 			
 			// sweet vengeance or star veil
 			if(Fargowiltas.Instance.ThoriumLoaded)
@@ -132,7 +132,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 				player.hideWolf = true;
 			}
 			
-
 			if(Fargowiltas.Instance.CalamityLoaded)
 			{
 				player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("BrimstoneFlames")] = true;

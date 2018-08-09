@@ -29,9 +29,6 @@ Melee attacks inflict it for less time (which is a good thing)");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.SolarEnchant = true;
-
             if (Soulcheck.GetValue("Solar Shield"))
             {
                 player.AddBuff(BuffID.SolarShield3, 5, false);
@@ -90,6 +87,8 @@ Melee attacks inflict it for less time (which is a good thing)");
                     player.dash = 3;
                 }
             }
+
+            player.GetModPlayer<FargoPlayer>(mod).SolarEnchant = true;
         }
 
         public override void AddRecipes()
@@ -98,10 +97,11 @@ Melee attacks inflict it for less time (which is a good thing)");
             recipe.AddIngredient(ItemID.SolarFlareHelmet);
             recipe.AddIngredient(ItemID.SolarFlareBreastplate);
             recipe.AddIngredient(ItemID.SolarFlareLeggings);
+            recipe.AddIngredient(ItemID.HelFire);
             recipe.AddIngredient(ItemID.SolarEruption);
             recipe.AddIngredient(ItemID.DayBreak);
-            recipe.AddIngredient(ItemID.Terrarian);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddIngredient(ItemID.StarWrath);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

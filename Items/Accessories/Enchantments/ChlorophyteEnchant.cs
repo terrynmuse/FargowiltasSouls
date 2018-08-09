@@ -12,6 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			Tooltip.SetDefault(
 @"'The jungle's essence crystallizes above you'
 Summons a leaf crystal to shoot at nearby enemies
+Flowers grow on the grass you walk on
 All herb collection is doubled
 Summons a pet Seedling");
 		}
@@ -29,9 +30,10 @@ Summons a pet Seedling");
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            modPlayer.ChloroEnchant = true;
             modPlayer.AddMinion("Leaf Crystal", mod.ProjectileType("Chlorofuck"), 100, 10f);
+            modPlayer.FlowerBoots();
+            //herb double
+            modPlayer.ChloroEnchant = true;
             modPlayer.AddPet("Seedling Pet", BuffID.PetSapling, ProjectileID.Sapling);
         }
 		
@@ -41,7 +43,8 @@ Summons a pet Seedling");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyChloroHead");
 			recipe.AddIngredient(ItemID.ChlorophytePlateMail);
 			recipe.AddIngredient(ItemID.ChlorophyteGreaves);
-			recipe.AddIngredient(ItemID.StaffofRegrowth);
+            recipe.AddIngredient(ItemID.FlowerBoots);
+            recipe.AddIngredient(ItemID.StaffofRegrowth);
             recipe.AddIngredient(ItemID.LeafBlower);
             recipe.AddIngredient(ItemID.Seedling);
             recipe.AddTile(TileID.CrystalBall);

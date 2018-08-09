@@ -21,8 +21,8 @@ Summons a pet Minotaur");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 1;
-            item.value = 20000;
+            item.rare = 2;
+            item.value = 40000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -39,6 +39,7 @@ Summons a pet Minotaur");
             recipe.AddIngredient(ItemID.GladiatorBreastplate);
             recipe.AddIngredient(ItemID.GladiatorLeggings);
             recipe.AddIngredient(ItemID.Javelin, 200);
+            recipe.AddIngredient(ItemID.MarbleChest);
             recipe.AddIngredient(ItemID.TartarSauce);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

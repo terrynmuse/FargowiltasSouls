@@ -77,10 +77,14 @@
     <Compile Include="Buffs\Minions\BrainMinion.cs" />
     <Compile Include="Buffs\Minions\Eater.cs" />
     <Compile Include="Buffs\Minions\EaterMinion.cs" />
+    <Compile Include="Buffs\Souls\FirstStrike.cs" />
     <Compile Include="Buffs\Souls\InfinityDebuff.cs" />
+    <Compile Include="Buffs\Souls\LeadPoison.cs" />
+    <Compile Include="Buffs\Souls\SolarFlare.cs" />
+    <Compile Include="Buffs\Souls\Swarmed.cs" />
     <Compile Include="Buffs\Souls\Revived.cs" />
+    <Compile Include="Buffs\Souls\ShellHide.cs" />
     <Compile Include="Buffs\Souls\Shock.cs" />
-    <Compile Include="Buffs\Souls\SpookyCD.cs" />
     <Compile Include="Buffs\Souls\SuperBleed.cs" />
     <Compile Include="FargoPlayer.cs" />
     <Compile Include="Fargowiltas.cs" />
@@ -126,6 +130,7 @@
     <Compile Include="Items\Accessories\Enchantments\SpiderEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\SpookyEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\StardustEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\TikiEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\TinEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\TitaniumEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\TungstenEnchant.cs" />
@@ -215,16 +220,16 @@
     <Compile Include="Projectiles\Minions\EaterHead.cs" />
     <Compile Include="Projectiles\Minions\EaterTail.cs" />
     <Compile Include="Projectiles\Minions\GolemHead.cs" />
-    <Compile Include="Projectiles\Minions\HallowProj.cs" />
+    <Compile Include="Projectiles\Minions\HallowShield.cs" />
     <Compile Include="Projectiles\Minions\HallowSword.cs" />
     <Compile Include="Projectiles\Minions\HoverShooter.cs" />
     <Compile Include="Projectiles\Minions\Minion.cs" />
     <Compile Include="Projectiles\Minions\PrimeCannon.cs" />
     <Compile Include="Projectiles\Minions\PrimeCannonBall.cs" />
     <Compile Include="Projectiles\Minions\PrimeLaser.cs" />
+    <Compile Include="Projectiles\Minions\SilverSword.cs" />
     <Compile Include="Projectiles\PhantasmalSphere.cs" />
     <Compile Include="Projectiles\Souls\Chlorofuck.cs" />
-    <Compile Include="Projectiles\Souls\Shock.cs" />
     <Compile Include="Projectiles\Souls\SpookyScythe.cs" />
     <Compile Include="Projectiles\Souls\SporeBoom.cs" />
     <Compile Include="Projectiles\Souls\SuperBlood.cs" />
@@ -247,8 +252,6 @@
     <Content Include="Buffs\PlaceholderDebuff.png" />
     <Content Include="Buffs\Souls\InfinityDebuff.png" />
     <Content Include="Buffs\Souls\Revived.png" />
-    <Content Include="Buffs\Souls\Shock.png" />
-    <Content Include="Buffs\Souls\SpookyCD.png" />
     <Content Include="Buffs\Souls\SuperBleed.png" />
     <Content Include="build.txt" />
     <Content Include="checkBox.png" />
@@ -285,7 +288,7 @@
     <Content Include="Items\Accessories\Enchantments\PalladiumEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\PlatinumEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\PumpkinEnchant.png" />
-    <Content Include="Items\Accessories\Enchantments\RedEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\RedRidingEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\ShadowEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\ShinobiEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\ShroomiteEnchant.png" />
@@ -300,7 +303,7 @@
     <Content Include="Items\Accessories\Enchantments\TitaniumEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\TungstenEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\TurtleEnchant.png" />
-    <Content Include="Items\Accessories\Enchantments\ValhalaEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\ValhallaKnightEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\VortexEnchant.png" />
     <Content Include="Items\Accessories\Essences\ApprenticesEssence.png" />
     <Content Include="Items\Accessories\Essences\BarbariansEssence.png" />
@@ -397,7 +400,7 @@
     <Content Include="Projectiles\Minions\EaterHead.png" />
     <Content Include="Projectiles\Minions\EaterTail.png" />
     <Content Include="Projectiles\Minions\GolemHead.png" />
-    <Content Include="Projectiles\Minions\HallowProj.png" />
+    <Content Include="Projectiles\Minions\HallowShield.png" />
     <Content Include="Projectiles\Minions\HallowSword.png" />
     <Content Include="Projectiles\Minions\PrimeCannon.png" />
     <Content Include="Projectiles\Minions\PrimeLaser.png" />
@@ -406,7 +409,6 @@
     <Content Include="Projectiles\Minions\RpxxyOl.png" />
     <Content Include="Projectiles\PhantasmalSphere.png" />
     <Content Include="Projectiles\Souls\Chlorofuck.png" />
-    <Content Include="Projectiles\Souls\Shock.png" />
     <Content Include="Projectiles\Souls\SpookyScythe.png" />
     <Content Include="Projectiles\Souls\SporeBoom.png" />
     <Content Include="Projectiles\Souls\SuperBlood.png" />

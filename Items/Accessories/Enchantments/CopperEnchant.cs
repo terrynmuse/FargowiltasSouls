@@ -13,7 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Behold'
 Attacks have a chance to shock enemies with lightning
 If an enemy is wet, the chance and damage is increased
-Attacks that cause Wet cannot proc the lightning");
+Attacks that cause Wet cannot proc the lightning
+Lightning scales with magic damage");
 		}
 
 		public override void SetDefaults()
@@ -22,8 +23,8 @@ Attacks that cause Wet cannot proc the lightning");
 			item.height = 20;
 			item.accessory = true;			
 			ItemID.Sets.ItemNoGravity[item.type] = true;
-			item.rare = 0; 
-			item.value = 20000; 
+			item.rare = 2; 
+			item.value = 40000; 
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
@@ -46,4 +47,3 @@ Attacks that cause Wet cannot proc the lightning");
 		}
 	}
 }
-		

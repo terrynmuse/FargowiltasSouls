@@ -20,8 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			item.height = 20;
 			item.accessory = true;
 			ItemID.Sets.ItemNoGravity[item.type] = true;
-			item.rare = 4; 
-			item.value = 40000; 
+			item.rare = 5; 
+			item.value = 100000; 
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
@@ -35,19 +35,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddRecipeGroup("FargowiltasSouls:AnyCobaltHead");
 			recipe.AddIngredient(ItemID.CobaltBreastplate);
 			recipe.AddIngredient(ItemID.CobaltLeggings);
-			recipe.AddIngredient(ItemID.CrystalStorm);
-            recipe.AddIngredient(ItemID.CrystalVileShard);
             recipe.AddIngredient(ItemID.Chik);
+            recipe.AddIngredient(ItemID.CrystalDart, 200);
+            recipe.AddIngredient(ItemID.CrystalStorm);
+            recipe.AddIngredient(ItemID.CrystalVileShard);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}
 	}
 }
-		
-	
-
-
-
-
-

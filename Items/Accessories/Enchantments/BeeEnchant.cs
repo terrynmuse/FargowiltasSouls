@@ -23,16 +23,15 @@ Summons a pet Baby Hornet");
 			item.accessory = true;			
 			ItemID.Sets.ItemNoGravity[item.type] = true;
 			item.rare = 3; 
-			item.value = 20000; 
+			item.value = 50000; 
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
+            player.strongBees = true;
+            //bees ignore defense
             modPlayer.BeeEnchant = true;
-			player.strongBees = true;
-
             modPlayer.AddPet("Baby Hornet Pet", BuffID.BabyHornet, ProjectileID.BabyHornet);
         }
 		
@@ -51,4 +50,3 @@ Summons a pet Baby Hornet");
 		}
 	}	
 }
-		

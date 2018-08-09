@@ -47,6 +47,7 @@ Summons a pet Baby Truffle");
             recipe.AddIngredient(ItemID.ShroomiteLeggings);
             recipe.AddIngredient(ItemID.MushroomSpear);
             recipe.AddIngredient(ItemID.Hammush);
+            recipe.AddIngredient(ItemID.Uzi);
             recipe.AddIngredient(ItemID.StrangeGlowingMushroom);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

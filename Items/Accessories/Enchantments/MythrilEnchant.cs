@@ -20,14 +20,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 4;
-            item.value = 60000;
+            item.rare = 5;
+            item.value = 100000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.MythrilEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).MythrilEnchant = true;
         }
 
         public override void AddRecipes()
@@ -36,6 +35,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddRecipeGroup("FargowiltasSouls:AnyMythrilHead");
             recipe.AddIngredient(ItemID.MythrilChainmail);
             recipe.AddIngredient(ItemID.MythrilGreaves);
+            recipe.AddIngredient(ItemID.MythrilRepeater);
             recipe.AddIngredient(ItemID.FetidBaghnakhs);
             recipe.AddIngredient(ItemID.Megashark);
             recipe.AddIngredient(ItemID.LaserRifle);

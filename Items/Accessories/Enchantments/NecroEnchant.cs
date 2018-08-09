@@ -11,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Necro Enchantment");
             Tooltip.SetDefault(
 @"'Welcome to the bone zone' 
-A Dungeon Guardian will occasionally annihilate a foe when struck by a ranged attack");
+A Dungeon Guardian will occasionally annihilate a foe when struck by a ranged attack
+Summons a Baby Skeletron Head");
         }
 
         public override void SetDefaults()
@@ -20,15 +21,15 @@ A Dungeon Guardian will occasionally annihilate a foe when struck by a ranged at
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 2;
-            item.value = 20000;
+            item.rare = 3;
+            item.value = 50000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.NecroEnchant = true;
-           
+            modPlayer.AddPet("Baby Skeletron  Pet", BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
         }
 
         public override void AddRecipes()
@@ -39,6 +40,7 @@ A Dungeon Guardian will occasionally annihilate a foe when struck by a ranged at
             recipe.AddIngredient(ItemID.NecroGreaves);
             recipe.AddIngredient(ItemID.BoneSword);
             recipe.AddIngredient(ItemID.TheGuardiansGaze);
+            recipe.AddIngredient(ItemID.BoneKey);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

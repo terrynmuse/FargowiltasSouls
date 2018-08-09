@@ -12,7 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Hallowed be your sword and shield'
 You gain a shield that can reflect projectiles
-Summons an Enchanted Sword familiar");
+Summons an Enchanted Sword familiar that scales with minion damage
+Summons a magical fairy");
         }
 
         public override void SetDefaults()
@@ -21,21 +22,17 @@ Summons an Enchanted Sword familiar");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 5;
-            item.value = 150000;
+            item.rare = 6;
+            item.value = 180000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            EffectAdd(player, hideVisual, mod);
-        }
-
-        public static void EffectAdd(Player player, bool hideVisual, Mod mod)
-        {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.HallowEnchant = true;
-            modPlayer.AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), 80, 0f);
             modPlayer.AddMinion("Hallowed Shield", mod.ProjectileType("HallowShield"), 0, 0f);
+            modPlayer.AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(80 * player.minionDamage), 0f);
+            modPlayer.AddPet("Fairy Pet", BuffID.FairyBlue, ProjectileID.BlueFairy);
         }
 
         public override void AddRecipes()
@@ -47,6 +44,7 @@ Summons an Enchanted Sword familiar");
             recipe.AddIngredient(ItemID.Excalibur);
             recipe.AddIngredient(null, "SilverEnchant");
             recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
+            recipe.AddIngredient(ItemID.FairyBell);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

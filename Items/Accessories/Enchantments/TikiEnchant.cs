@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Tiki Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Aku Aku!'
 Attacks will inflict a random debuff
 Summons a Tiki Spirit");
         }
@@ -22,7 +22,7 @@ Summons a Tiki Spirit");
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 7;
-            item.value = 100000;
+            item.value = 150000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -40,6 +40,7 @@ Summons a Tiki Spirit");
             recipe.AddIngredient(ItemID.TikiPants);
             recipe.AddIngredient(ItemID.PygmyNecklace);
             recipe.AddIngredient(ItemID.PygmyStaff);
+            recipe.AddIngredient(ItemID.Blowgun);
             recipe.AddIngredient(ItemID.TikiTotem);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -28,6 +29,7 @@ namespace FargowiltasSouls.NPCs
         public bool SqueakyToy;
         public bool SolarFlare;
         public bool TimeFrozen;
+        public bool Chilled;
 
         public bool PillarSpawn = true;
 
@@ -48,6 +50,8 @@ namespace FargowiltasSouls.NPCs
             LeadPoison = false;
             SqueakyToy = false;
             SolarFlare = false;
+            Chilled = false;
+            npc.color = default(Color);
         }
 
         public override void SetDefaults(NPC npc)
@@ -178,11 +182,20 @@ namespace FargowiltasSouls.NPCs
 
         public override bool PreAI(NPC npc)
         {
+            Player player = Main.player[Main.myPlayer];
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+
             if(TimeFrozen)
             {
                 npc.position = npc.oldPosition;
-                npc.frameCounter--;
+                //npc.frameCounter--;
+                npc.frameCounter = 0;
                 return false;
+            }
+
+            if(modPlayer.ValhallaEnchant && npc.dontTakeDamage)
+            {
+                npc.dontTakeDamage = false;
             }
 
             return true;
@@ -2559,14 +2572,30 @@ namespace FargowiltasSouls.NPCs
 			{
 				if(crit)
 				{
-					damage *= 4;
+					damage *= 8;
                     retValue = false;
 				}
 			}
+
+            if(modPlayer.RedEnchant)
+            {
+                switch(npc.life / npc.lifeMax * 100)
+                {
+                    case 50:
+                        damage *= 1.1;
+                        break;
+                    case 25:
+                        damage *= 1.4;
+                        break;
+                    case 10:
+                        damage *= 2;
+                        break;
+                }
+            }
 			
 			if(modPlayer.ShroomEnchant && crit && modPlayer.IsStandingStill)
 			{
-			    damage *= 2;
+			    damage *= 4;
                 retValue = false;
 			}
 			
@@ -2589,7 +2618,40 @@ namespace FargowiltasSouls.NPCs
 			{
 				NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, npc.type);
 			}
+
+            if(modPlayer.ValhallaEnchant)
+            {
+                npc.knockBackResist = 1f;
+
+                if (npc.dontTakeDamage)
+                {
+                    npc.dontTakeDamage = false;
+                    Main.NewText("meme");
+                }
+            }
 		}
 
-	}
+        public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
+        {
+            FargoPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<FargoPlayer>(mod);
+
+            //spears
+            if(modPlayer.ValhallaEnchant && projectile.aiStyle == 19)
+            {
+                npc.knockBackResist = 1f;
+
+                if(npc.dontTakeDamage)
+                {
+                    npc.dontTakeDamage = false;
+                }
+            }
+            else
+            {
+                NPC n = new NPC();
+                n.SetDefaults(npc.type);
+                npc.knockBackResist = n.knockBackResist;
+            }
+        }
+
+    }
 }

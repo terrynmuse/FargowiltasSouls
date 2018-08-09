@@ -8,11 +8,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Shinobi Enchantment");
-			Tooltip.SetDefault("'Behold' \n"+ 
-								"Attacks have a chance to shock enemies\n" + 
-								"If an enemy is wet, the chance and damage is increased");
+			DisplayName.SetDefault("Shinobi Infiltrator Enchantment");
+			Tooltip.SetDefault(
+@"'Hidden in the Wall'
+Greatly enhances Lightning Aura effectiveness
+Effects of the Master Ninja Gear
+Dash into any walls, to teleport through them to the next opening
+Summons a pet gato");
 		}
+
 		public override void SetDefaults()
 		{
 			item.width = 20;
@@ -20,38 +24,36 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			item.accessory = true;			
 			ItemID.Sets.ItemNoGravity[item.type] = true;
 			item.rare = 8; 
-			item.value = 200000; 
+			item.value = 250000; 
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-			
-			modPlayer.CopperEnchant = true;
+            player.setMonkT2 = true;
+            player.setMonkT3 = true;
+            //ninja gear
+            player.blackBelt = true;
+            player.spikedBoots = 2;
+            player.dash = 1;
+            //tele thru walls
+            modPlayer.ShinobiEnchant = true;
+            modPlayer.AddPet("Gato Pet", BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
         }
 		
 		public override void AddRecipes()
 		{
             ModRecipe recipe = new ModRecipe(mod);
-			
-			
-			//silver armor
-			//EoC shield
-			//silver broadsword
-			
-			recipe.AddIngredient(ItemID.TurtleHelmet);
-			recipe.AddIngredient(ItemID.TurtleScaleMail);
-			recipe.AddIngredient(ItemID.TurtleLeggings);
-			recipe.AddIngredient(ItemID.Yelets);
-			recipe.AddIngredient(ItemID.Seedler);
-			recipe.AddIngredient(ItemID.ButchersChainsaw);
-			
-			
-			
-			recipe.AddTile(TileID.CrystalBall);
+			recipe.AddIngredient(ItemID.MonkAltHead);
+            recipe.AddIngredient(ItemID.MonkAltShirt);
+            recipe.AddIngredient(ItemID.MonkAltPants);
+            recipe.AddIngredient(ItemID.MonkBelt);
+            recipe.AddIngredient(ItemID.MasterNinjaGear);
+            recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
+            recipe.AddIngredient(ItemID.DD2PetGato);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}
 	}
 }
-		

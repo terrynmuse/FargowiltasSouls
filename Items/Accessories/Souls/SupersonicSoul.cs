@@ -10,11 +10,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Supersonic Soul");
             Tooltip.SetDefault("'Sound barriers forever broken' \n25% increased movement speed \nAllows supersonic fast running, and extra mobility on ice \nProvides lava immunity and permanent light \nGrants the ability to swim and greatly extends underwater breathing \nIncreases jump height, allows auto jump, and negates fall damage \nAllows the player to dash into the enemy");
+
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 Tooltip.SetDefault("'Sound barriers forever broken' \n25% increased movement speed \nAllows supersonic fast running, and extra mobility on ice \nProvides lava immunity and permanent light \nGrants the ability to swim and greatly extends underwater breathing \nIncreases jump height, allows auto jump, and negates fall damage \nAllows the player to dash into the enemy \nReflects 35% of damage back to attackers");
             }
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -51,8 +53,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 player.accRunSpeed = 35.00f;
                 player.moveSpeed += 0.25f;
             }
-
-
 
             player.rocketBoots = 3;
             player.iceSkate = true;
@@ -92,46 +92,46 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void AddRecipes()
         {
-            ModRecipe speed = new ModRecipe(mod);
+            ModRecipe recipe = new ModRecipe(mod);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //thorium and calamity
-                    speed.AddIngredient(ItemID.EoCShield);
-                    speed.AddIngredient(ItemID.BundleofBalloons);
-                    speed.AddIngredient(ItemID.ArcticDivingGear);
-                    speed.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SpikedStompers"));
-                    speed.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumBoots"));
-                    speed.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("ElysianTracers"));
-                    speed.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("WarpCore"));
-                    speed.AddIngredient(ItemID.SlimySaddle);
-                    speed.AddIngredient(ItemID.FuzzyCarrot);
-                    speed.AddIngredient(ItemID.BlessedApple);
-                    speed.AddIngredient(ItemID.AncientHorn);
-                    speed.AddIngredient(ItemID.ShrimpyTruffle);
-                    speed.AddIngredient(ItemID.ReindeerBells);
-                    speed.AddIngredient(ItemID.BrainScrambler);
+                    recipe.AddIngredient(ItemID.EoCShield);
+                    recipe.AddIngredient(ItemID.BundleofBalloons);
+                    recipe.AddIngredient(ItemID.ArcticDivingGear);
+                    recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SpikedStompers"));
+                    recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumBoots"));
+                    recipe.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("ElysianTracers"));
+                    recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("WarpCore"));
+                    recipe.AddIngredient(ItemID.SlimySaddle);
+                    recipe.AddIngredient(ItemID.FuzzyCarrot);
+                    recipe.AddIngredient(ItemID.BlessedApple);
+                    recipe.AddIngredient(ItemID.AncientHorn);
+                    recipe.AddIngredient(ItemID.ShrimpyTruffle);
+                    recipe.AddIngredient(ItemID.ReindeerBells);
+                    recipe.AddIngredient(ItemID.BrainScrambler);
                 }
 
                 if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just thorium
-                    speed.AddIngredient(ItemID.EoCShield);
-                    speed.AddIngredient(ItemID.BundleofBalloons);
-                    speed.AddIngredient(ItemID.ArcticDivingGear);
-                    speed.AddIngredient(ItemID.FlowerBoots);
-                    speed.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SpikedStompers"));
-                    speed.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumBoots"));
-                    speed.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("WarpCore"));
-                    speed.AddIngredient(ItemID.SlimySaddle);
-                    speed.AddIngredient(ItemID.FuzzyCarrot);
-                    speed.AddIngredient(ItemID.BlessedApple);
-                    speed.AddIngredient(ItemID.AncientHorn);
-                    speed.AddIngredient(ItemID.ShrimpyTruffle);
-                    speed.AddIngredient(ItemID.ReindeerBells);
-                    speed.AddIngredient(ItemID.BrainScrambler);
+                    recipe.AddIngredient(ItemID.EoCShield);
+                    recipe.AddIngredient(ItemID.BundleofBalloons);
+                    recipe.AddIngredient(ItemID.ArcticDivingGear);
+                    recipe.AddIngredient(ItemID.FlowerBoots);
+                    recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SpikedStompers"));
+                    recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumBoots"));
+                    recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("WarpCore"));
+                    recipe.AddIngredient(ItemID.SlimySaddle);
+                    recipe.AddIngredient(ItemID.FuzzyCarrot);
+                    recipe.AddIngredient(ItemID.BlessedApple);
+                    recipe.AddIngredient(ItemID.AncientHorn);
+                    recipe.AddIngredient(ItemID.ShrimpyTruffle);
+                    recipe.AddIngredient(ItemID.ReindeerBells);
+                    recipe.AddIngredient(ItemID.BrainScrambler);
                 }
             }
 
@@ -140,44 +140,55 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     //just calamity
-                    speed.AddIngredient(ItemID.EoCShield);
-                    speed.AddIngredient(ItemID.FlyingCarpet);
-                    speed.AddIngredient(ItemID.BundleofBalloons);
-                    speed.AddIngredient(ItemID.ArcticDivingGear);
-                    speed.AddIngredient(ItemID.FlowerBoots);
-                    speed.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("ElysianTracers"));
-                    speed.AddIngredient(ItemID.SlimySaddle);
-                    speed.AddIngredient(ItemID.FuzzyCarrot);
-                    speed.AddIngredient(ItemID.BlessedApple);
-                    speed.AddIngredient(ItemID.AncientHorn);
-                    speed.AddIngredient(ItemID.ShrimpyTruffle);
-                    speed.AddIngredient(ItemID.ReindeerBells);
-                    speed.AddIngredient(ItemID.BrainScrambler);
+                    recipe.AddIngredient(ItemID.EoCShield);
+                    recipe.AddIngredient(ItemID.FlyingCarpet);
+                    recipe.AddIngredient(ItemID.BundleofBalloons);
+                    recipe.AddIngredient(ItemID.ArcticDivingGear);
+                    recipe.AddIngredient(ItemID.FlowerBoots);
+                    recipe.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("ElysianTracers"));
+                    recipe.AddIngredient(ItemID.SlimySaddle);
+                    recipe.AddIngredient(ItemID.FuzzyCarrot);
+                    recipe.AddIngredient(ItemID.BlessedApple);
+                    recipe.AddIngredient(ItemID.AncientHorn);
+                    recipe.AddIngredient(ItemID.ShrimpyTruffle);
+                    recipe.AddIngredient(ItemID.ReindeerBells);
+                    recipe.AddIngredient(ItemID.BrainScrambler);
                 }
 
                 if (!Fargowiltas.Instance.CalamityLoaded)
                 {
                     //no others
-                    speed.AddIngredient(ItemID.EoCShield);
-                    speed.AddIngredient(ItemID.FlyingCarpet);
-                    speed.AddIngredient(ItemID.BundleofBalloons);
-                    speed.AddIngredient(ItemID.ArcticDivingGear);
-                    speed.AddIngredient(ItemID.FlowerBoots);
-                    speed.AddIngredient(ItemID.FrostsparkBoots);
-                    speed.AddIngredient(ItemID.LavaWaders);
-                    speed.AddIngredient(ItemID.SlimySaddle);
-                    speed.AddIngredient(ItemID.FuzzyCarrot);
-                    speed.AddIngredient(ItemID.BlessedApple);
-                    speed.AddIngredient(ItemID.AncientHorn);
-                    speed.AddIngredient(ItemID.ShrimpyTruffle);
-                    speed.AddIngredient(ItemID.ReindeerBells);
-                    speed.AddIngredient(ItemID.BrainScrambler);
+                    recipe.AddIngredient(ItemID.ArcticDivingGear);
+                    recipe.AddIngredient(ItemID.BundleofBalloons);
+                    recipe.AddIngredient(ItemID.FlyingCarpet);
+                    recipe.AddIngredient(ItemID.FrostsparkBoots);
+                    recipe.AddIngredient(ItemID.LavaWaders);
+                    //green horseshoe balloon
+                    //pink horsehsoe balloon
+
+
+
+
+
+                    recipe.AddIngredient(ItemID.EoCShield);
+                    
+                    
+                    
+                    recipe.AddIngredient(ItemID.FlowerBoots);
+                    
+                    recipe.AddIngredient(ItemID.SlimySaddle);
+                    recipe.AddIngredient(ItemID.FuzzyCarrot);
+                    recipe.AddIngredient(ItemID.BlessedApple);
+                    recipe.AddIngredient(ItemID.AncientHorn);
+                    recipe.AddIngredient(ItemID.ShrimpyTruffle);
+                    recipe.AddIngredient(ItemID.ReindeerBells);
+                    recipe.AddIngredient(ItemID.BrainScrambler);
                 }
             }
 
             //speed.AddTile(null, "CrucibleCosmosSheet");
-            speed.SetResult(this);
-            speed.AddRecipe();
+            recipe.SetResult(this);
+            recipe.AddRecipe();
 
         }
     }

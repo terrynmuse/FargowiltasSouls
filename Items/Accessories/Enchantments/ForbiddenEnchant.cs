@@ -23,19 +23,12 @@ You are immune to the Mighty Wind debuff");
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 5;
-            item.value = 80000;
+            item.value = 150000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.ForbiddenEnchant = true;
-            EffectAdd(player, hideVisual, mod);
-        }
-
-        public static void EffectAdd(Player player, bool hideVisual, Mod mod)
-        {
-            player.buffImmune[BuffID.WindPushed] = true; 
 
             if (Soulcheck.GetValue("Forbidden Storm"))
             {
@@ -43,6 +36,9 @@ You are immune to the Mighty Wind debuff");
                 player.UpdateForbiddenSetLock();
                 Lighting.AddLight(player.Center, 0.8f, 0.7f, 0.2f);
             }
+
+            modPlayer.ForbiddenEnchant = true;
+            player.buffImmune[BuffID.WindPushed] = true;
         }
 
         public override void AddRecipes()
@@ -53,6 +49,7 @@ You are immune to the Mighty Wind debuff");
             recipe.AddIngredient(ItemID.AncientBattleArmorPants);
             recipe.AddIngredient(ItemID.BookStaff);
             recipe.AddIngredient(ItemID.SpiritFlame);
+            recipe.AddIngredient(ItemID.Scorpion);
             recipe.AddIngredient(ItemID.SecretoftheSands);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
@@ -60,10 +57,3 @@ You are immune to the Mighty Wind debuff");
         }
     }
 }
-
-
-
-
-
-
-

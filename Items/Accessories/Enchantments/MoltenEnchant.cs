@@ -23,42 +23,42 @@ When you die, you violently explode dealing massive damage to surrounding enemie
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 3;
-            item.value = 20000;
+            item.value = 50000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            //explode on death
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.MoltenEnchant = true;
-
             if (Soulcheck.GetValue("Inferno Buff"))
             {
                 player.inferno = true;
                 Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
-                int num = 24;
-                float num2 = 200f;
-                bool flag = player.infernoCounter % 60 == 0;
+                int buff = BuffID.OnFire;
+                float distance = 200f;
+                bool doDmg = player.infernoCounter % 60 == 0;
                 int damage = (int)(10 * player.meleeDamage);
+
                 if (player.whoAmI == Main.myPlayer)
                 {
-                    for (int l = 0; l < 200; l++)
+                    for (int i = 0; i < 200; i++)
                     {
-                        NPC nPc = Main.npc[l];
-                        if (nPc.active && !nPc.friendly && nPc.damage > 0 && !nPc.dontTakeDamage && !nPc.buffImmune[num] && Vector2.Distance(player.Center, nPc.Center) <= num2)
+                        NPC npc = Main.npc[i];
+                        if (npc.active && !npc.friendly && npc.damage > 0 && !npc.dontTakeDamage && !npc.buffImmune[buff] && Vector2.Distance(player.Center, npc.Center) <= distance)
                         {
-                            if (nPc.FindBuffIndex(num) == -1)
+                            if (npc.FindBuffIndex(buff) == -1)
                             {
-                                nPc.AddBuff(num, 120);
+                                npc.AddBuff(buff, 120);
                             }
-                            if (flag)
+                            if (doDmg)
                             {
-                                player.ApplyDamageToNPC(nPc, damage, 0f, 0, false);
+                                player.ApplyDamageToNPC(npc, damage, 0f, 0, false);
                             }
                         }
                     }
                 }
             }
+
+            //explode on death
+            player.GetModPlayer<FargoPlayer>(mod).MoltenEnchant = true;
         }
 
         public override void AddRecipes()

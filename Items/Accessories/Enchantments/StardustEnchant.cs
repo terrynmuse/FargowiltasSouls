@@ -52,10 +52,11 @@ There is a longer cooldown for this effect, a sound effect plays when it's back"
             recipe.AddIngredient(ItemID.StardustHelmet);
 			recipe.AddIngredient(ItemID.StardustBreastplate);
 			recipe.AddIngredient(ItemID.StardustLeggings);
-			recipe.AddIngredient(ItemID.StardustCellStaff);
+            recipe.AddIngredient(ItemID.StardustPickaxe);
+            recipe.AddIngredient(ItemID.StardustCellStaff);
 			recipe.AddIngredient(ItemID.StardustDragonStaff);
 			recipe.AddIngredient(ItemID.RainbowCrystalStaff);
-			recipe.AddTile(TileID.CrystalBall);
+			recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}

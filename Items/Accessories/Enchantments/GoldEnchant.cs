@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine[] lines = new TooltipLine[8];
+            TooltipLine[] lines = new TooltipLine[9];
             lines[0] = new TooltipLine(mod, "1", "'Gold makes the world go round'");
             lines[1] = new TooltipLine(mod, "2", "Increased damage based on current coin count");
             lines[2] = new TooltipLine(mod, "3", "Current: " + (Damage * 100).ToString("0.00") + "% increased damage");
@@ -32,6 +32,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             lines[5] = new TooltipLine(mod, "6", "Increases coin pickup range and shops have lower prices");
             lines[6] = new TooltipLine(mod, "7", "Hitting enemies will sometimes drop extra coins");
             lines[7] = new TooltipLine(mod, "8", "Your attacks inflict Midas");
+            lines[8] = new TooltipLine(mod, "9", "Summons a Pet Parrot");
 
             for (int i = 0; i < lines.Length; i++)
             {
@@ -45,8 +46,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 6;
-            item.value = 200000;
+            item.rare = 5;
+            item.value = 150000;
         }
 
         public static long GetCoins(Player player)
@@ -117,6 +118,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             player.discount = true;
 
             modPlayer.AllDamageUp(Damage);
+            modPlayer.AddPet("Parrot Pet", BuffID.PetParrot, ProjectileID.Parrot);
         }
 
         public override void AddRecipes()
@@ -128,6 +130,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.GreedyRing);
             recipe.AddIngredient(ItemID.RubyStaff);
             recipe.AddIngredient(ItemID.SquirrelGold);
+            recipe.AddIngredient(ItemID.ParrotCracker);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

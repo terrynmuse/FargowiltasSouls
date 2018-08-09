@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Tin Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Return of the Crit'
 Sets your critical strike chance to 4%
 Every crit will increase it by 4%
 Getting hit drops your crit back down");
@@ -22,8 +22,8 @@ Getting hit drops your crit back down");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 0;
-            item.value = 20000;
+            item.rare = 1;
+            item.value = 30000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Meteor Enchantment");
             Tooltip.SetDefault(
 @"'Cosmic power builds your magical prowess'
-A meteor shower initiates every few seconds when using magic weapons");
+A meteor shower initiates every few seconds while using magic weapons");
         }
 
         public override void SetDefaults()
@@ -26,8 +26,7 @@ A meteor shower initiates every few seconds when using magic weapons");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.MeteorEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).MeteorEnchant = true;
         }
 
         public override void AddRecipes()
@@ -38,6 +37,7 @@ A meteor shower initiates every few seconds when using magic weapons");
             recipe.AddIngredient(ItemID.MeteorLeggings);
             recipe.AddIngredient(ItemID.SpaceGun);
             recipe.AddIngredient(ItemID.MeteorStaff);
+            recipe.AddIngredient(ItemID.StarCannon);
             recipe.AddIngredient(ItemID.PlaceAbovetheClouds);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

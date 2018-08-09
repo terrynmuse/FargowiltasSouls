@@ -10,8 +10,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Silver Enchantment");
             Tooltip.SetDefault(
-@"''
-Summons a sword familiar");
+@"'Have you power enough to wield me?'
+Summons a sword familiar that scales with minion damage");
         }
 
         public override void SetDefaults()
@@ -20,15 +20,15 @@ Summons a sword familiar");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 0;
-            item.value = 20000;
+            item.rare = 1;
+            item.value = 30000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.SilverEnchant = true;
-            modPlayer.AddMinion("Silver Sword Familiar", mod.ProjectileType("SilverSword"), 20, 0f);
+            modPlayer.AddMinion("Silver Sword Familiar", mod.ProjectileType("SilverSword"), (int)(20 * player.minionDamage), 0f);
         }
 
         public override void AddRecipes()
@@ -38,6 +38,7 @@ Summons a sword familiar");
             recipe.AddIngredient(ItemID.SilverChainmail);
             recipe.AddIngredient(ItemID.SilverGreaves);
             recipe.AddIngredient(ItemID.SilverBroadsword);
+            recipe.AddIngredient(ItemID.SilverBow);
             recipe.AddIngredient(ItemID.SapphireStaff);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

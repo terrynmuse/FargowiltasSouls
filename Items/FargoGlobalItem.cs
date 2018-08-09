@@ -209,8 +209,17 @@ namespace FargowiltasSouls.Items
                 int heal = player.statLifeMax2 - player.statLife;
                 player.HealEffect(heal);
                 player.statLife += heal;
-                player.AddBuff(BuffID.PotionSickness, 14400);
+                player.AddBuff(BuffID.PotionSickness, 10800);
 
+            }
+
+            if(item.useTime < 1)
+            {
+                item.useTime = 1;
+            }
+            if(item.useAnimation < 2)
+            {
+                item.useAnimation = 2;
             }
 
             return true;
