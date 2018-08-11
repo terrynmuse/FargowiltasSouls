@@ -29,15 +29,8 @@ You are immune to the Mighty Wind debuff");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            if (Soulcheck.GetValue("Forbidden Storm"))
-            {
-                player.setForbidden = true;
-                player.UpdateForbiddenSetLock();
-                Lighting.AddLight(player.Center, 0.8f, 0.7f, 0.2f);
-            }
-
-            modPlayer.ForbiddenEnchant = true;
+            //storm
+            modPlayer.ForbiddenEffect();
             player.buffImmune[BuffID.WindPushed] = true;
         }
 

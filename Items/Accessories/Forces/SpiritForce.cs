@@ -9,16 +9,18 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Force of Spirit");
-            Tooltip.SetDefault("'The strength of your spirit amazes even the Mutant'\n" +
-                                "Attacks have a chance to inflict shadow flame\n" +
-                                "You are immune to all skeletons and knockback\n" +
-                                "Double tap down to call an ancient storm to the cursor location\n" +
-                                "Summons a shield that can reflect projectiles into enchanted swords \n" +
-                                "You also summon enchanted swords to attack enemies\n" +
-                                "Magic damage has a chance to spawn damaging orbs\n" +
-                                "When you crit, you get a burst of healing orbs on hit instead\n" +
-                                "On hit, you release a legion of scythes\n" +
-                                "Summons several pets");
+            Tooltip.SetDefault(
+@"'The strength of your spirit amazes even the Mutant'
+If you reach zero HP you cheat death, returning with 20 HP
+For a few seconds after reviving, you are immune to all damage and spawn bones everywhere
+Double tap down to call an ancient storm to the cursor location
+Any projectiles shot through your storm gain double pierce and 50% damage
+You are immune to the Mighty Wind debuff
+You gain a shield that can reflect projectiles
+Summons an Enchanted Sword familiar that scales with minion damage
+Attacks will inflict a random debuff
+All damage can spawn damaging orbs and healing orbs
+Summons a pet Baby Dino, Magical Fairy, Tiki Spirit, and Wisp");
         }
 
         public override void SetDefaults()
@@ -28,32 +30,54 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 10;
-            item.value = 300000;
+            item.value = 600000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            
+            modPlayer.SpiritForce = true;
+            //revive
+            modPlayer.FossilEnchant = true;
+            //bone zone
+            modPlayer.FossilEffect(20);
+            //storm
+            modPlayer.ForbiddenEffect();
+            player.buffImmune[BuffID.WindPushed] = true;
+            //sword and shield bois
+            modPlayer.HallowEnchant = true;
+            modPlayer.AddMinion("Hallowed Shield", mod.ProjectileType("HallowShield"), 0, 0f);
+            modPlayer.AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(80 * player.minionDamage), 0f);
+            //random debuffs
+            modPlayer.TikiEnchant = true;
+            //spectre orbs
+            modPlayer.SpectreEffect();
+            modPlayer.AddPet("Baby Dino Pet", BuffID.BabyDinosaur, ProjectileID.BabyDino);
+            modPlayer.AddPet("Fairy Pet", BuffID.FairyBlue, ProjectileID.BlueFairy);
+            modPlayer.AddPet("Tiki Pet", BuffID.TikiSpirit, ProjectileID.TikiSpirit);
+            modPlayer.AddPet("Wisp Pet", BuffID.Wisp, ProjectileID.Wisp);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ShadowEnchant");
-            recipe.AddIngredient(null, "NecroEnchant");
+            recipe.AddIngredient(null, "FossilEnchant");
             recipe.AddIngredient(null, "ForbiddenEnchant");
             recipe.AddIngredient(null, "HallowEnchant");
+            recipe.AddIngredient(null, "TikiEnchant");
             recipe.AddIngredient(null, "SpectreEnchant");
-            recipe.AddIngredient(null, "SpookyEnchant");
+            
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            }
+            else
+            {
+                recipe.AddTile(TileID.LunarCraftingStation);
+            }
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
             recipe.SetResult(this);
             recipe.AddRecipe();
-
         }
     }
 }
-
-

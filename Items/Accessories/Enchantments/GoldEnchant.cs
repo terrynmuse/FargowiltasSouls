@@ -106,17 +106,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             UpdateDamage(player);
-
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.GoldEnchant = true;
-
             //gold ring
             player.goldRing = true;
             //lucky coin
             player.coins = true;
             //discount card
             player.discount = true;
-
             modPlayer.AllDamageUp(Damage);
             modPlayer.AddPet("Parrot Pet", BuffID.PetParrot, ProjectileID.Parrot);
         }

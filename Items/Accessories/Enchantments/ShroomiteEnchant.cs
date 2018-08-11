@@ -29,13 +29,7 @@ Summons a pet Baby Truffle");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            if (Soulcheck.GetValue("Shroomite Stealth"))
-            {
-                player.shroomiteStealth = true;
-                modPlayer.ShroomEnchant = true;
-            }
-
+            modPlayer.ShroomiteEffect();
             modPlayer.AddPet("Truffle Pet", BuffID.BabyTruffle, ProjectileID.Truffle);
         }
 

@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Spider Enchantment");
             Tooltip.SetDefault(
 @"'Arachniphobia is punishable by arachnid induced death'
-Summon damage causes the enemy to be Swarmed
+Summon damage may cause the enemy to be Swarmed
 Summons a pet Spider");
         }
 

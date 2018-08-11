@@ -34,7 +34,6 @@ Summons a Puppy");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             player.setHuntressT2 = true;
             player.setHuntressT3 = true;
-
             //celestial shell
             player.accMerman = true;
             player.wolfAcc = true;

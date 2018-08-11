@@ -1,5 +1,3 @@
-using System;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,17 +9,22 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Force of Life");
-            Tooltip.SetDefault("'Rare is a living thing that dare disobey your will' \n" +
-                                "25% increased defense \n" +
-                                "100% of damage taken by melee attacks is reflected\n" +
-                                "Greatly increases life regen \n" +
-                                "Enemies drop hearts more often \n" +
-                                "Enemies are more likely to target you \n" +
-                                "Increases the strength of friendly bees \n" +
-                                "Summon damage causes venom and has a chance to spawn additional bees and spiders\n" +
-                                 "Beetles protect you from damage\n" +
-                                "Summons several pets");
+            Tooltip.SetDefault(
+@"'Rare is a living thing that dare disobey your will'
+Getting hit by a projectile causes a needle spray
+You leave behind a trail of fire when you walk
+Eating Pumpkin Pie also heals you to full HP
+Increases the strength of friendly bees
+Bees ignore enemy defense
+Attacks may cause the enemy to be Swarmed
+When standing still and not attacking, you gain the Shell Hide buff
+100% of damage taken by melee attacks is reflected
+Enemies are more likely to target you
+Beetles protect you from damage
+Your wings last 1.5x as long
+Summons a pet Squashling, Baby Hornet, Spider, Lizard, and Turtle");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -29,32 +32,60 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 10;
-            item.value = 300000;
+            item.value = 600000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            
-
-
-
+            //needle spray
+            modPlayer.CactusEnchant = true;
+            //pie
+            modPlayer.PumpkinEnchant = true;
+            //flames
+            modPlayer.PumpkinEffect(40);
+            player.strongBees = true;
+            //bees ignore defense
+            modPlayer.BeeEnchant = true;
+            //swarm debuff
+            modPlayer.SpiderEnchant = true;
+            //hide in shell buff
+            modPlayer.TurtleEnchant = true;
+            player.thorns = 1f;
+            player.turtleThorns = true;
+            player.aggro += 50;
+            //wing time up
+            modPlayer.BeetleEnchant = true;
+            //beetle resistance
+            modPlayer.BeetleEffect();
+            modPlayer.AddPet("Squashling Pet", BuffID.Squashling, ProjectileID.Squashling);
+            modPlayer.AddPet("Baby Hornet Pet", BuffID.BabyHornet, ProjectileID.BabyHornet);
+            modPlayer.AddPet("Spider Pet", BuffID.PetSpider, ProjectileID.Spider);
+            modPlayer.AddPet("Turtle Pet", BuffID.PetTurtle, ProjectileID.Turtle);
+            modPlayer.AddPet("Lizard Pet", BuffID.PetLizard, ProjectileID.PetLizard);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "CrimsonEnchant");
+            recipe.AddIngredient(null, "CactusEnchant");
+            recipe.AddIngredient(null, "PumpkinEnchant");
             recipe.AddIngredient(null, "BeeEnchant");
             recipe.AddIngredient(null, "SpiderEnchant");
             recipe.AddIngredient(null, "TurtleEnchant");
             recipe.AddIngredient(null, "BeetleEnchant");
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            }
+            else
+            {
+                recipe.AddTile(TileID.LunarCraftingStation);
+            }
+
             recipe.SetResult(this);
             recipe.AddRecipe();
-
         }
     }
 }

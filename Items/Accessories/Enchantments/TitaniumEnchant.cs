@@ -28,16 +28,7 @@ Increases all knockback");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.kbBuff = true;
-
-            if(player.statLife == player.statLifeMax2)
-            {
-                player.endurance = .9f;
-            }
-            else if(player.statLife < player.statLifeMax2 / 2)
-            {
-                player.onHitDodge = true;
-            }
+            player.GetModPlayer<FargoPlayer>(mod).TitaniumEffect();
         }
 
         public override void AddRecipes()

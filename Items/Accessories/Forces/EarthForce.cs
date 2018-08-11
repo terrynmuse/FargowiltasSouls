@@ -9,19 +9,21 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Force of Earth");
-            Tooltip.SetDefault("'Gaia's blessing shines upon you'\n" +
-                                "30% increased weapon use speed\n" +
-                                "Enemies will explode into cobalt shards on death\n" +
-                                "Greatly increases life regeneration after striking an enemy\n" +
-                                "Very small chance for an attack to gain 33% life steal\n" +
-                                "Chance for a fireball to spew from a hit enemy\n" +
-                                "20% chance to shoot multiple projectiles with single shot magic weapons \n" +
-                                "Briefly become invulnerable after striking an enemy\n" +
-                                "While a dodge is active, damage is increased by 25%\n" +
-                                "While on cooldown, damage is decreased by 15%\n" +
-                                "Shows the location of enemies, traps, and treasures\n" +
-                                "Other effects of material enchantments");
+            Tooltip.SetDefault(
+@"'Gaia's blessing shines upon you'
+25% chance for your projectiles to explode into shards
+Greatly increases life regeneration after striking an enemy 
+Small chance for an attack to gain 33% life steal
+30% increased weapon use speed
+Flower petals will cause extra damage to your target 
+Attacks may spawn fireballs to rotate around you
+25% chance for any weapon to shoot in a spread
+Any secondary projectiles may also split
+Any damage you take while at full HP is reduced by 90%
+Briefly become invulnerable after striking an enemy when below 50% HP
+Increases all knockback");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -29,102 +31,32 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 10;
-            item.value = 300000;
+            item.value = 600000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            //miner
-            player.pickSpeed -= 0.3f;
-            if (Soulcheck.GetValue("Shine Buff"))
-            {
-                Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
-            }
-            if (Soulcheck.GetValue("Spelunker Buff"))
-            {
-                player.findTreasure = true;
-            }
-            if (Soulcheck.GetValue("Hunter Buff"))
-            {
-                player.detectCreature = true;
-            }
-            if (Soulcheck.GetValue("Dangersense Buff"))
-            {
-                player.dangerSense = true;
-            }
-            //cobalt
+            modPlayer.EarthForce = true;
+            //shards
             modPlayer.CobaltEnchant = true;
-
-            //palladium
             player.onHitRegen = true;
+            //lifesteal
             modPlayer.PalladEnchant = true;
-
-            //mythril	
-            if (Soulcheck.GetValue("Increase Use Speed"))
-            {
-                //30%
-            }
-
-            //orichalcum
-            if (Soulcheck.GetValue("Orichalcum Fireball"))
-            {
-                player.onHitPetal = true;
-                modPlayer.OriEnchant = true;
-            }
-            //adamantite
-            if (Soulcheck.GetValue("Splitting Projectiles"))
-            {
-                modPlayer.AdamantiteEnchant = true;
-            }
-
-            //titanium
-            player.onHitDodge = true;
-            player.kbBuff = true;
-
-            if (player.FindBuffIndex(59) == -1)
-            {
-                player.magicDamage -= .15f;
-                player.meleeDamage -= .15f;
-                player.rangedDamage -= .15f;
-                player.minionDamage -= .15f;
-                player.thrownDamage -= .15f;
-            }
-            else
-            {
-                player.magicDamage += .25f;
-                player.meleeDamage += .25f;
-                player.rangedDamage += .25f;
-                player.minionDamage += .25f;
-                player.thrownDamage += .25f;
-            }
-
-            if (player.whoAmI == Main.myPlayer)
-            {
-                //if(Soulcheck.GetValue("Baby Face Monster Pet"))
-                //{
-
-                if (player.FindBuffIndex(152) == -1)
-                {
-                    if (player.ownedProjectileCounts[ProjectileID.MagicLantern] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, ProjectileID.MagicLantern, 0, 2f, Main.myPlayer);
-                    }
-                }
-                //}
-                //else
-                //{
-                //	modPlayer.lanternPet = false;
-                //}
-            }
-
+            //use speed
+            modPlayer.MythrilEnchant = true;
+            player.onHitPetal = true;
+            //fireballs
+            modPlayer.OriEnchant = true;
+            //projectile split
+            modPlayer.AdamantiteEnchant = true;
+            //knockback, dodge, damage reduce
+            modPlayer.TitaniumEffect();
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "MinerEnchant");
             recipe.AddIngredient(null, "CobaltEnchant");
             recipe.AddIngredient(null, "PalladiumEnchant");
             recipe.AddIngredient(null, "MythrilEnchant");
@@ -132,13 +64,17 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             recipe.AddIngredient(null, "AdamantiteEnchant");
             recipe.AddIngredient(null, "TitaniumEnchant");
 
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            }
+            else
+            {
+                recipe.AddTile(TileID.LunarCraftingStation);
+            }
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
             recipe.SetResult(this);
             recipe.AddRecipe();
-
         }
     }
 }
-
-

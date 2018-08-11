@@ -30,20 +30,7 @@ There is a longer cooldown for this effect, a sound effect plays when it's back"
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			modPlayer.StardustEnchant = true;
-            modPlayer.AddPet("Stardust Guardian", BuffID.StardustGuardianMinion, ProjectileID.StardustGuardian);
-
-            player.setStardust = true;
-
-            if ((player.controlDown && player.releaseDown))
-            {
-                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15 && modPlayer.FreezeCD == 0) 
-                {
-                    modPlayer.FreezeTime = true;
-                    modPlayer.FreezeCD = 1800;
-
-                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/ZaWarudo").WithVolume(1f).WithPitchVariance(.5f), player.Center);
-                }   
-			}
+            modPlayer.StardustEffect();
         }
 
         public override void AddRecipes()

@@ -10,6 +10,7 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.Graphics.Capture;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -47,6 +48,7 @@ namespace FargowiltasSouls
         public bool MythrilEnchant;
         public bool FossilEnchant;
         public bool FossilBones = false;
+        private int boneCD = 0;
         public bool JungleEnchant;
         public bool ElementEnchant;
         public bool ShroomEnchant;
@@ -56,10 +58,11 @@ namespace FargowiltasSouls
         public bool ChloroEnchant;
         public bool VortexEnchant;
         public bool VortexStealth = false;
-        public int VortexDust = 0;
         public bool AdamantiteEnchant;
         public bool FrostEnchant;
         public int IcicleCount = 0;
+        private int icicleCD = 0;
+        private Projectile[] icicles = new Projectile[3];
         public bool PalladEnchant;
         public bool OriEnchant;
         public bool MeteorEnchant;
@@ -94,7 +97,6 @@ namespace FargowiltasSouls
         public int TinCrit = 4;
         public bool TikiEnchant;
         public bool SolarEnchant;
-        public bool NebulaEnchant;
         public int NebulaCounter = 0;
         public bool ShinobiEnchant;
         public bool ValhallaEnchant;
@@ -103,6 +105,15 @@ namespace FargowiltasSouls
         Item prevWeapon = new Item();
         Vector2 prevPosition;
         public bool RedEnchant;
+
+        public bool CosmoForce;
+        public bool EarthForce;
+        public bool LifeForce;
+        public bool NatureForce;
+        public bool SpiritForce;
+        public bool ShadowForce;
+        public bool TerraForce;
+        public bool WillForce;
 
         //soul effects
         public bool MeleeEffect;
@@ -153,7 +164,7 @@ namespace FargowiltasSouls
 
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
-        private int[] tikiDebuffs = { 0, 0, BuffID.OnFire, BuffID.CursedInferno, BuffID.Frostburn, BuffID.Ichor, BuffID.ShadowFlame, BuffID.Venom, BuffID.Poisoned, BuffID.Confused, BuffID.Stinky };
+        private int[] tikiDebuffs = { 0, BuffID.CursedInferno, BuffID.Ichor, BuffID.ShadowFlame, BuffID.Venom, BuffID.Poisoned, BuffID.Confused, BuffID.Stinky };
 
         public override TagCompound Save()
         {
@@ -258,11 +269,19 @@ namespace FargowiltasSouls
             TinEnchant = false;
             TikiEnchant = false;
             SolarEnchant = false;
-            NebulaEnchant = false;
             ShinobiEnchant = false;
             ValhallaEnchant = false;
             DarkEnchant = false;
             RedEnchant = false;
+
+            CosmoForce = false;
+            EarthForce = false;
+            LifeForce = false;
+            NatureForce = false;
+            SpiritForce = false;
+            TerraForce = false;
+            ShadowForce = false;
+            WillForce = false;
 
             //add missing pets to kill pets!
 
@@ -305,8 +324,7 @@ namespace FargowiltasSouls
             Atrophied = false;
             Jammed = false;
 
-            tikiDebuffs[0] = mod.BuffType("Rotting");
-            tikiDebuffs[1] = mod.BuffType("SqueakyToy");
+            tikiDebuffs[0] = mod.BuffType("SqueakyToy");
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -357,7 +375,7 @@ namespace FargowiltasSouls
                     player.AddBuff(BuffID.Bleeding, 2);
                 }
 
-                if(player.HasBuff(BuffID.Webbed) && NPC.AnyNPCs(NPCID.BlackRecluse))
+                if (player.HasBuff(BuffID.Webbed) && NPC.AnyNPCs(NPCID.BlackRecluse))
                 {
                     player.AddBuff(mod.BuffType("Defenseless"), 300);
                 }
@@ -368,7 +386,7 @@ namespace FargowiltasSouls
                 FirstInfection = true;
             }
 
-            if(CactusEnchant && cactusCD !=0)
+            if (CactusEnchant && cactusCD != 0)
             {
                 cactusCD--;
             }
@@ -378,56 +396,35 @@ namespace FargowiltasSouls
                 necroCD--;
             }
 
-            if(ShadowEnchant)
+            if (ShadowEnchant)
             {
                 if (shadowDeathCD != 0)
                 {
-                    
+
                     for (int i = 0; i < 200; i++)
                     {
                         NPC npc = Main.npc[i];
-                        if (npc.active && Main.rand.Next(4) == 0 && Vector2.Distance(npc.Center, player.Center) < 1000 && !npc.townNPC )
+                        if (npc.active && Main.rand.Next(4) == 0 && Vector2.Distance(npc.Center, player.Center) < 1000 && !npc.townNPC)
                         {
-                            
+
                             npc.StrikeNPC(Main.rand.Next(5, 10), 0, 0);
                         }
                     }
                     shadowDeathCD--;
                 }
 
-                if(shadowCD != 0)
+                if (shadowCD != 0)
                 {
                     shadowCD--;
                 }
             }
 
-            if (VortexDust > 0)
+            if (TerraForce && TinCrit < 10)
             {
-                if (Main.rand.Next(2) == 0)
-                {
-                    Vector2 vector = Vector2.UnitY.RotatedByRandom(6.2831854820251465);
-                    Dust dust = Main.dust[Dust.NewDust(player.Center - vector * 30f, 0, 0, 229, 0f, 0f, 0, default(Color), 1f)];
-                    dust.noGravity = true;
-                    dust.position = player.Center - vector * (float)Main.rand.Next(5, 11);
-                    dust.velocity = vector.RotatedBy(1.5707963705062866, default(Vector2)) * 4f;
-                    dust.scale = 0.5f + Main.rand.NextFloat();
-                    dust.fadeIn = 0.5f;
-                }
-                if (Main.rand.Next(2) == 0)
-                {
-                    Vector2 vector2 = Vector2.UnitY.RotatedByRandom(6.2831854820251465);
-                    Dust dust2 = Main.dust[Dust.NewDust(player.Center - vector2 * 30f, 0, 0, 240, 0f, 0f, 0, default(Color), 1f)];
-                    dust2.noGravity = true;
-                    dust2.position = player.Center - vector2 * 12f;
-                    dust2.velocity = vector2.RotatedBy(-1.5707963705062866, default(Vector2)) * 2f;
-                    dust2.scale = 0.5f + Main.rand.NextFloat();
-                    dust2.fadeIn = 0.5f;
-                }
-
-                VortexDust--;
+                TinCrit = 10;
             }
 
-            if(VortexStealth && !VortexEnchant)
+            if (VortexStealth && !VortexEnchant)
             {
                 VortexStealth = false;
             }
@@ -458,7 +455,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if(TurtleEnchant && IsStandingStill && !player.controlUseItem)
+            if (TurtleEnchant && IsStandingStill && !player.controlUseItem)
             {
                 player.AddBuff(mod.BuffType("ShellHide"), 2);
             }
@@ -472,7 +469,7 @@ namespace FargowiltasSouls
                 {
                     if (Vector2.Distance(x.Center, player.Center) <= distance && Main.rand.Next(5) == 0)
                     {
-                        for(int i = 0; i < 5; i++)
+                        for (int i = 0; i < 5; i++)
                         {
                             int dustId = Dust.NewDust(new Vector2(x.position.X, x.position.Y + 2f), x.width, x.height + 5, DustID.GoldFlame, x.velocity.X * 0.2f, x.velocity.Y * 0.2f, 100, default(Color), 3f);
                             Main.dust[dustId].noGravity = true;
@@ -504,117 +501,6 @@ namespace FargowiltasSouls
                 });
             }
 
-            if (MeteorEnchant)
-            {
-                if (meteorShower)
-                {
-                    if (meteorTimer % 2 == 0)
-                    {
-                        Projectile.NewProjectile(player.Center.X + Main.rand.Next(-1000, 1000), player.Center.Y - 1000, Main.rand.Next(-2, 2), 0f + Main.rand.Next(8, 12), Main.rand.Next(424, 427), (int)(50 * player.magicDamage), 0f, Main.myPlayer, 0f, 0.5f + (float)Main.rand.NextDouble() * 0.3f);
-                    }
-
-                    meteorTimer--;
-
-                    if (meteorTimer <= 0)
-                    {
-                        meteorCD = 300;
-                        meteorTimer = 150;
-                        meteorShower = false;
-                    }
-                }
-                else
-                {
-                    if(player.HeldItem.magic && player.controlUseItem)
-                    {
-                        meteorCD--;
-
-                        if(meteorCD == 0)
-                        {
-                            meteorShower = true;
-                        }
-                    }
-                    else
-                    {
-                        meteorCD = 300;
-                    }
-                }  
-            }
-
-            if(StardustEnchant)
-            {
-                if(FreezeTime && freezeLength != 0)
-                {
-                    for (int i = 0; i < 200; i++)
-                    {
-                        if (Main.npc[i].active)
-                        {
-                            Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().TimeFrozen = true;
-                        }
-                    }
-
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        if (Main.projectile[i].active)
-                        {
-                            Main.projectile[i].GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = true;
-                        }
-                    }
-
-                    freezeLength--;
-
-                    if(freezeLength == 0)
-                    {
-                        FreezeTime = false;
-
-                        freezeLength = 600;
-
-                        for (int i = 0; i < 200; i++)
-                        {
-                            NPC npc = Main.npc[i];
-                            if (npc.active && npc.GetGlobalNPC<FargoGlobalNPC>().TimeFrozen)
-                            {
-                                npc.GetGlobalNPC<FargoGlobalNPC>().TimeFrozen = false;
-
-                                if(npc.life == 1)
-                                {
-                                    npc.StrikeNPC(9999, 0f, 0);
-                                }
-                            }
-                        }
-
-                        for (int i = 0; i < 1000; i++)
-                        {
-                            Projectile proj = Main.projectile[i];
-                            if (proj.active && proj.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen)
-                            {
-                                proj.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = false;
-                            }
-                        }
-                    }
-                }
-
-                if(!FreezeTime && FreezeCD != 0)
-                {
-                    FreezeCD--;
-
-                    if(FreezeCD == 0)
-                    {
-                        Main.PlaySound(SoundID.MaxMana, player.Center);
-                    }
-                }
-            }
-
-            if(PumpkinEnchant && (player.controlLeft || player.controlRight) && !IsStandingStill)
-            {
-                if(pumpkinCD <= 0)
-                {
-                    Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileID.MolotovFire, (int)(12 * player.magicDamage), 1f, player.whoAmI);
-                    pumpkinCD = 10;
-                }
-
-                pumpkinCD--;
-            }
-
             //tele through wall until open space on dash into wall
             if (ShinobiEnchant && player.dashDelay > 0 && player.velocity.X == 0)
             {
@@ -642,13 +528,13 @@ namespace FargowiltasSouls
                 }
             }
 
-            if(DarkEnchant)
+            if (DarkEnchant)
             {
                 Item heldItem = player.HeldItem;
                 Projectile proj = new Projectile();
                 proj.SetDefaults(heldItem.shoot);
 
-                if(darkCD == 0 && heldItem.magic && !heldItem.summon && heldItem.shoot > 0 && heldItem.damage > 0 && !heldItem.channel && proj.aiStyle != 19 && player.controlUseItem && Vector2.Distance(prevPosition, player.position) > 25)
+                if (darkCD == 0 && (heldItem.magic || ShadowForce) && !heldItem.summon && heldItem.shoot > 0 && heldItem.damage > 0 && !heldItem.channel && proj.aiStyle != 19 && player.controlUseItem && Vector2.Distance(prevPosition, player.position) > 25)
                 {
                     if (prevPosition != null)
                     {
@@ -676,7 +562,7 @@ namespace FargowiltasSouls
 
                 darkCD--;
 
-                if(darkCD < 0)
+                if (darkCD < 0)
                 {
                     darkCD = 0;
                 }
@@ -750,7 +636,7 @@ namespace FargowiltasSouls
                 KillPets();
 
                 //removes all buffs/debuffs, but it interacts really weirdly with luiafk infinite potions.
-                
+
                 for (int i = 0; i < 22; i++)
                 {
                     if (player.buffType[i] > 0 && player.buffTime[i] > 0 && Array.IndexOf(Fargowiltas.DebuffIDs, player.buffType[i]) == -1)
@@ -806,7 +692,7 @@ namespace FargowiltasSouls
             int useTime = item.useTime;
             int useAnimate = item.useAnimation;
 
-            
+
             if (Lethargic)
             {
                 multiplier *= .5f;
@@ -817,22 +703,34 @@ namespace FargowiltasSouls
                 multiplier *= .75f;
             }
 
-            if(TungstenEnchant)
+            if (TungstenEnchant)
             {
                 multiplier *= .125f;
             }
 
-            if(MythrilEnchant)
+            if(TerraForce && !TerrariaSoul)
+            {
+                multiplier *= .33f;
+            }
+
+            if (MythrilEnchant)
             {
                 multiplier *= 1.3f;
             }
 
-            if(ObsidianEnchant)
+            if (ObsidianEnchant)
             {
-                multiplier *= 1.1f;
+                if(TerraForce)
+                {
+                    multiplier *= 1.5f;
+                }
+                else
+                {
+                    multiplier *= 1.1f;
+                }
             }
 
-            if(NebulaEnchant && NebulaCounter < 0 && player.HeldItem.magic)
+            if (NebulaCounter < 0 && (player.HeldItem.magic || CosmoForce))
             {
                 multiplier *= 5;
             }
@@ -855,9 +753,16 @@ namespace FargowiltasSouls
         {
             if (CactusEnchant && cactusCD == 0)
             {
-                Projectile[] projs = FargoGlobalProjectile.XWay(16, player.Center, ProjectileID.PineNeedleFriendly, 5, (int)(30 * player.meleeDamage), 5f);
+                int dmg = 30;
 
-                for(int i = 0; i < projs.Length; i++)
+                if (LifeForce)
+                {
+                    dmg = 75;
+                }
+
+                Projectile[] projs = FargoGlobalProjectile.XWay(16, player.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
+
+                for (int i = 0; i < projs.Length; i++)
                 {
                     Projectile p = projs[i];
                     p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
@@ -1036,7 +941,7 @@ namespace FargowiltasSouls
                 target.AddBuff(mod.BuffType("LeadPoison"), 120);
             }
 
-            if(TikiEnchant && Main.rand.Next(3) == 0)
+            if (TikiEnchant && Main.rand.Next(3) == 0)
             {
                 target.AddBuff(tikiDebuffs[Main.rand.Next(tikiDebuffs.Length)], 300);
             }
@@ -1047,14 +952,14 @@ namespace FargowiltasSouls
             }
 
             //full moon
-            if(RedEnchant && proj.ranged && Main.moonPhase == 0)
+            if (RedEnchant && ((proj.ranged && Main.moonPhase == 0) || (WillForce && Main.rand.Next(5) == 0)))
             {
                 target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
             }
 
-            if(VortexEnchant && proj.type != mod.ProjectileType("Void") && Main.rand.Next(10) == 0)
+            if (VortexEnchant && (proj.ranged || CosmoForce) && proj.type != mod.ProjectileType("Void") && Main.rand.Next(10) == 0)
             {
-                Projectile.NewProjectile(proj.Center.X, proj.Center.Y, 0f, 0f, mod.ProjectileType("Void"), 60, 5f, proj.owner);
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("Void"), 60, 5f, proj.owner);
             }
 
             if (Array.IndexOf(wetProj, proj.type) > -1)
@@ -1062,22 +967,17 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.Wet, 180, true);
             }
 
-            if (TerrariaSoul)
-            {
-                target.AddBuff(BuffID.Venom, 240, true);
-            }
-
             if (QueenStinger)
             {
                 target.AddBuff(BuffID.Poisoned, 120, true);
             }
 
-            if (SpiderEnchant && proj.minion)
+            if (SpiderEnchant && Main.rand.Next(5) == 0 && (proj.minion || LifeForce))
             {
                 target.AddBuff(mod.BuffType("Swarmed"), 600);
             }
 
-            if(ObsidianEnchant)
+            if (ObsidianEnchant)
             {
                 target.AddBuff(BuffID.OnFire, 600);
             }
@@ -1156,9 +1056,9 @@ namespace FargowiltasSouls
                 target.AddBuff(tikiDebuffs[Main.rand.Next(tikiDebuffs.Length)], 300);
             }
 
-            if (TerrariaSoul)
+            if (RedEnchant && WillForce && Main.rand.Next(5) == 0)
             {
-                target.AddBuff(BuffID.Venom, 240, true);
+                target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
             }
 
             if (QueenStinger)
@@ -1166,7 +1066,7 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.Poisoned, 120, true);
             }
 
-            if (SpiderEnchant && item.summon)
+            if (SpiderEnchant && Main.rand.Next(5) == 0 && (item.summon || LifeForce))
             {
                 target.AddBuff(mod.BuffType("Swarmed"), 600);
             }
@@ -1224,61 +1124,10 @@ namespace FargowiltasSouls
         {
             if (CopperEnchant && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
             {
-                int dmg = 5;
-                int chance = 20;
-
-                if (target.FindBuffIndex(BuffID.Wet) != -1)
-                {
-                    dmg *= 2;
-                    chance /= 4;
-                }
-
-                if (Main.rand.Next(chance) == 0)
-                {
-                    float closestDist;
-                    NPC closestNPC;
-
-                    for(int i = 0; i < 5; i++)
-                    {
-                        closestDist = 500f;
-                        closestNPC = null;
-
-                        for (int j = 0; j < 200; j++)
-                        {
-                            NPC npc = Main.npc[j];
-                            if (npc.active && npc != target && !npc.GetGlobalNPC<FargoGlobalNPC>().Shock && npc.Distance(target.Center) < closestDist && npc.Distance(target.Center) >= 100)
-                            {
-                                closestNPC = npc;
-                                closestDist = npc.Distance(target.Center);
-                            }
-                        }
-
-                        if (closestNPC != null)
-                        {
-                            Vector2 ai = closestNPC.Center - target.Center;
-                            float ai2 = Main.rand.Next(100);
-                            Vector2 velocity = Vector2.Normalize(ai) * 20;
-
-                            Projectile p = Projectile.NewProjectileDirect(target.Center, velocity, ProjectileID.CultistBossLightningOrbArc, (int)(dmg * player.magicDamage), 0f, player.whoAmI, ai.ToRotation(), ai2);
-                            p.friendly = true;
-                            p.hostile = false;
-                            p.penetrate = -1;
-                            p.timeLeft = 90;
-
-                            target.AddBuff(mod.BuffType("Shock"), 60);
-                        }
-                        else
-                        {
-                            break;
-                        }
-
-                        target = closestNPC;
-                    }
-
-                }
+                CopperEffect(target);
             }
 
-            if(ShadowEnchant)
+            if (ShadowEnchant)
             {
                 ShadowEffect();
             }
@@ -1289,10 +1138,9 @@ namespace FargowiltasSouls
                 player.immune = false;
             }
 
-            if (NecroEnchant && proj.type != mod.ProjectileType("DungeonGuardian") && necroCD == 0)
+            if (NecroEnchant && (proj.ranged || ShadowForce) && proj.type != mod.ProjectileType("DungeonGuardian") && necroCD == 0)
             {
-                //necroTimer = 1200;
-                necroCD = 60;
+                necroCD = 1200;
                 float screenX = Main.screenPosition.X;
                 if (player.direction < 0)
                 {
@@ -1314,19 +1162,13 @@ namespace FargowiltasSouls
                 p.penetrate = 1;
             }
 
-            //no heal on dummy!!!
-            if (target.type == NPCID.TargetDummy)
-            {
-                return;
-            }
-
-            if(JungleEnchant && Main.rand.Next(4) == 0)
+            if (JungleEnchant && Main.rand.Next(4) == 0)
             {
                 player.ManaEffect(5);
                 player.statMana += 5;
             }
 
-            if (SpectreEnchant && proj.magic)
+            if (SpectreEnchant && !SpiritForce && proj.magic)
             {
                 if (crit)
                 {
@@ -1347,9 +1189,19 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (TinEnchant)
+            if(SpiritForce && proj.type != ProjectileID.SpectreWrath)
             {
-                if (crit && TinCrit < 100)
+                SpectreHeal(target, proj);
+                SpectreHurt(proj);
+            }
+
+            if (TinEnchant && crit && TinCrit < 100)
+            {
+                if (TerraForce)
+                {
+                    TinCrit += 5;
+                }
+                else
                 {
                     TinCrit += 4;
                 }
@@ -1385,6 +1237,10 @@ namespace FargowiltasSouls
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
+            if (CopperEnchant)
+            {
+                CopperEffect(target);
+            }
 
             if (PalladEnchant && Main.rand.Next(40) == 0)
             {
@@ -1395,6 +1251,18 @@ namespace FargowiltasSouls
             if (ShadowEnchant)
             {
                 ShadowEffect();
+            }
+
+            if (TinEnchant && crit && TinCrit < 100)
+            {
+                if (TerraForce)
+                {
+                    TinCrit += 5;
+                }
+                else
+                {
+                    TinCrit += 4;
+                }
             }
         }
 
@@ -1408,7 +1276,7 @@ namespace FargowiltasSouls
         {
             //no work
             //lava
-            
+
             if (damageSource == PlayerDeathReason.ByOther(2))
             {
                 player.Hurt(PlayerDeathReason.ByOther(2), 999, 1);
@@ -1421,22 +1289,36 @@ namespace FargowiltasSouls
         {
             if (JungleEnchant)
             {
+                int dmg = 30;
+
+                if (NatureForce)
+                {
+                    dmg = 100;
+                }
+
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
-                FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 5, (int)(30 * player.magicDamage), 5f);
+                FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 5, (int)(dmg * player.magicDamage), 5f);
                 FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
             }
 
-            if (TerrariaSoul && JungleEnchant)
+            /*if (TerrariaSoul && JungleEnchant)
             {
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
 
                 FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 5, (int)(120 * player.magicDamage), 5f);
                 FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
-            }
+            }*/
 
-            if ((TinEnchant || TerrariaSoul) && TinCrit != 4)
+            if(TinEnchant)
             {
-                TinCrit = 4;
+                if(TerraForce && TinCrit != 10)
+                {
+                    TinCrit = 10;
+                }
+                else if(TinCrit != 4)
+                {
+                    TinCrit = 4;
+                }
             }
 
             if (TankEffect && Main.rand.Next(5) == 0)
@@ -1554,18 +1436,18 @@ namespace FargowiltasSouls
 
 
         }
-		
-		public override void PostUpdateEquips ()
-		{
-            if(BeetleEnchant)
+
+        public override void PostUpdateEquips()
+        {
+            if (BeetleEnchant)
             {
                 player.wingTimeMax = (int)(player.wingTimeMax * 1.5);
             }
-		}
+        }
 
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (TerrariaSoul && Main.rand.Next(2) == 0 && Soulcheck.GetValue("Splitting Projectiles") && !item.summon)
+            /*if (TerrariaSoul && Main.rand.Next(2) == 0 && Soulcheck.GetValue("Splitting Projectiles") && !item.summon)
             {
                 float spread = 2f * 0.1250f;
                 float baseSpeed = (float)Math.Sqrt(speedX * speedX + speedY * speedY);
@@ -1579,7 +1461,7 @@ namespace FargowiltasSouls
                 }
 
                 return false;
-            }
+            }*/
 
             return true;
         }
@@ -1600,7 +1482,7 @@ namespace FargowiltasSouls
                 {
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, 0, 0f, Main.myPlayer);
                 }
-            }      
+            }
         }
 
         public void AddMinion(string toggle, int proj, int damage, float knockback)
@@ -1682,34 +1564,6 @@ namespace FargowiltasSouls
             return modifier;
         }
 
-        private void ShadowEffect()
-        {
-            if(shadowCD == 0)
-            {
-                if (player.HasBuff(BuffID.Blackout))
-                {
-                    player.AddBuff(BuffID.Obstructed, 150);
-                    player.DelBuff(player.FindBuffIndex(BuffID.Blackout));
-
-                    shadowDeathCD = 120;
-                    shadowCD = 720;
-                }
-                else if (player.HasBuff(BuffID.Darkness))
-                {
-                    player.AddBuff(BuffID.Blackout, 300);
-                    player.DelBuff(player.FindBuffIndex(BuffID.Darkness));
-                    shadowCD = 120;
-                }
-                else
-                {
-                    player.AddBuff(BuffID.Darkness, 300);
-                    shadowCD = 120;
-                }
-
-                
-            }
-        }
-
         public void AllDamageUp(float dmg)
         {
             player.magicDamage += dmg;
@@ -1718,7 +1572,7 @@ namespace FargowiltasSouls
             player.minionDamage += dmg;
             player.thrownDamage += dmg;
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 ///
             }
@@ -1827,6 +1681,757 @@ namespace FargowiltasSouls
                         NetMessage.SendTileSquare(-1, x, y, 1, TileChangeType.None);
                     }
                 }
+            }
+        }
+
+        private void ShadowEffect()
+        {
+            if (shadowCD == 0)
+            {
+                if (player.HasBuff(BuffID.Blackout))
+                {
+                    player.AddBuff(BuffID.Obstructed, 150);
+                    player.DelBuff(player.FindBuffIndex(BuffID.Blackout));
+
+                    shadowDeathCD = 120;
+                    shadowCD = 720;
+                }
+                else if (player.HasBuff(BuffID.Darkness))
+                {
+                    player.AddBuff(BuffID.Blackout, 300);
+                    player.DelBuff(player.FindBuffIndex(BuffID.Darkness));
+                    shadowCD = 120;
+                }
+                else
+                {
+                    player.AddBuff(BuffID.Darkness, 300);
+                    shadowCD = 120;
+                }
+            }
+        }
+
+        public void MeteorEffect(int damage, int version = 1)
+        {
+            bool check = true;
+
+            if (version == 1)
+            {
+                check = player.HeldItem.magic;
+            }
+
+            if (meteorShower)
+            {
+                if (meteorTimer % 2 == 0)
+                {
+                    Projectile.NewProjectile(player.Center.X + Main.rand.Next(-1000, 1000), player.Center.Y - 1000, Main.rand.Next(-2, 2), 0f + Main.rand.Next(8, 12), Main.rand.Next(424, 427), (int)(damage * player.magicDamage), 0f, player.whoAmI, 0f, 0.5f + (float)Main.rand.NextDouble() * 0.3f);
+                }
+
+                meteorTimer--;
+
+                if (meteorTimer <= 0)
+                {
+                    meteorCD = 300;
+                    meteorTimer = 150;
+                    meteorShower = false;
+                }
+            }
+            else
+            {
+                if (check && player.controlUseItem)
+                {
+                    meteorCD--;
+
+                    if (meteorCD == 0)
+                    {
+                        meteorShower = true;
+                    }
+                }
+                else
+                {
+                    meteorCD = 300;
+                }
+            }
+        }
+
+        public void SolarShield()
+        {
+            if (Soulcheck.GetValue("Solar Shield"))
+            {
+                player.AddBuff(BuffID.SolarShield3, 5, false);
+                player.setSolar = true;
+                player.solarCounter++;
+                int solarCD = 240;
+                if (player.solarCounter >= solarCD)
+                {
+                    if (player.solarShields > 0 && player.solarShields < 3)
+                    {
+                        for (int i = 0; i < 22; i++)
+                        {
+                            if (player.buffType[i] >= BuffID.SolarShield1 && player.buffType[i] <= BuffID.SolarShield2)
+                            {
+                                player.DelBuff(i);
+                            }
+                        }
+                    }
+                    if (player.solarShields < 3)
+                    {
+                        player.AddBuff(BuffID.SolarShield1 + player.solarShields, 5, false);
+                        for (int i = 0; i < 16; i++)
+                        {
+                            Dust dust = Main.dust[Dust.NewDust(player.position, player.width, player.height, 6, 0f, 0f, 100)];
+                            dust.noGravity = true;
+                            dust.scale = 1.7f;
+                            dust.fadeIn = 0.5f;
+                            dust.velocity *= 5f;
+                        }
+                        player.solarCounter = 0;
+                    }
+                    else
+                    {
+                        player.solarCounter = solarCD;
+                    }
+                }
+                for (int i = player.solarShields; i < 3; i++)
+                {
+                    player.solarShieldPos[i] = Vector2.Zero;
+                }
+                for (int i = 0; i < player.solarShields; i++)
+                {
+                    player.solarShieldPos[i] += player.solarShieldVel[i];
+                    Vector2 value = (player.miscCounter / 100f * 6.28318548f + i * (6.28318548f / player.solarShields)).ToRotationVector2() * 6f;
+                    value.X = player.direction * 20;
+                    player.solarShieldVel[i] = (value - player.solarShieldPos[i]) * 0.2f;
+                }
+                if (player.dashDelay >= 0)
+                {
+                    player.solarDashing = false;
+                    player.solarDashConsumedFlare = false;
+                }
+                bool flag = player.solarDashing && player.dashDelay < 0;
+                if (player.solarShields > 0 || flag)
+                {
+                    player.dash = 3;
+                }
+            }
+
+
+        }
+
+        public void VortexEffect()
+        {
+            if ((player.controlDown && player.releaseDown))
+            {
+                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15)
+                {
+                    VortexStealth = !VortexStealth;
+                }
+            }
+
+            if (player.mount.Active)
+            {
+                VortexStealth = false;
+            }
+
+            if (VortexStealth)
+            {
+                player.moveSpeed *= 0.3f;
+                player.aggro -= 1200;
+                player.setVortex = true;
+                player.stealth = 0f;
+            }
+        }
+
+        public void NebulaEffect()
+        {
+            if (player.nebulaCD > 0)
+            {
+                player.nebulaCD--;
+            }
+            player.setNebula = true;
+
+            NebulaCounter++;
+
+            if (NebulaCounter > 900)
+            {
+                NebulaCounter = 900;
+            }
+
+            if (player.HasBuff(BuffID.NebulaUpDmg3) && player.HasBuff(BuffID.NebulaUpLife3) && player.HasBuff(BuffID.NebulaUpMana3) && NebulaCounter == 900)
+            {
+                NebulaCounter = -300;
+            }
+        }
+
+        public void StardustEffect()
+        {
+            AddPet("Stardust Guardian", BuffID.StardustGuardianMinion, ProjectileID.StardustGuardian);
+            player.setStardust = true;
+
+            if ((player.controlDown && player.releaseDown))
+            {
+                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15 && FreezeCD == 0)
+                {
+                    FreezeTime = true;
+                    FreezeCD = 1800;
+
+                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/ZaWarudo").WithVolume(1f).WithPitchVariance(.5f), player.Center);
+                }
+            }
+
+            if (FreezeTime && freezeLength != 0)
+            {
+                for (int i = 0; i < 200; i++)
+                {
+                    if (Main.npc[i].active)
+                    {
+                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().TimeFrozen = true;
+                    }
+                }
+
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (Main.projectile[i].active)
+                    {
+                        Main.projectile[i].GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = true;
+                    }
+                }
+
+                freezeLength--;
+
+                if (freezeLength == 0)
+                {
+                    FreezeTime = false;
+
+                    freezeLength = 600;
+
+                    for (int i = 0; i < 200; i++)
+                    {
+                        NPC npc = Main.npc[i];
+                        if (npc.active && npc.GetGlobalNPC<FargoGlobalNPC>().TimeFrozen)
+                        {
+                            npc.GetGlobalNPC<FargoGlobalNPC>().TimeFrozen = false;
+
+                            if (npc.life == 1)
+                            {
+                                npc.StrikeNPC(9999, 0f, 0);
+                            }
+                        }
+                    }
+
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        Projectile proj = Main.projectile[i];
+                        if (proj.active && proj.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen)
+                        {
+                            proj.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = false;
+                        }
+                    }
+                }
+            }
+
+            if (!FreezeTime && FreezeCD != 0)
+            {
+                FreezeCD--;
+
+                if (FreezeCD == 0)
+                {
+                    Main.PlaySound(SoundID.MaxMana, player.Center);
+                }
+            }
+        }
+
+        public void TitaniumEffect()
+        {
+            player.kbBuff = true;
+
+            if (player.statLife == player.statLifeMax2)
+            {
+                player.endurance = .9f;
+            }
+            else if (player.statLife < player.statLifeMax2 / 2)
+            {
+                player.onHitDodge = true;
+            }
+        }
+
+        public void PumpkinEffect(int dmg)
+        {
+            if ((player.controlLeft || player.controlRight) && !IsStandingStill)
+            {
+                if (pumpkinCD <= 0)
+                {
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileID.MolotovFire, (int)(dmg * player.magicDamage), 1f, player.whoAmI);
+                    pumpkinCD = 10;
+                }
+
+                pumpkinCD--;
+            }
+        }
+
+        public void BeetleEffect()
+        {
+            if (Soulcheck.GetValue("Beetles"))
+            {
+                player.beetleDefense = true;
+                player.beetleCounter += 1f;
+                int num5 = 180;
+                if (player.beetleCounter >= num5)
+                {
+                    if (player.beetleOrbs > 0 && player.beetleOrbs < 3)
+                    {
+                        for (int k = 0; k < 22; k++)
+                        {
+                            if (player.buffType[k] >= 95 && player.buffType[k] <= 96)
+                            {
+                                player.DelBuff(k);
+                            }
+                        }
+                    }
+                    if (player.beetleOrbs < 3)
+                    {
+                        player.AddBuff(95 + player.beetleOrbs, 5, false);
+                        player.beetleCounter = 0f;
+                    }
+                    else
+                    {
+                        player.beetleCounter = num5;
+                    }
+                }
+
+                if (!player.beetleDefense && !player.beetleOffense)
+                {
+                    player.beetleCounter = 0f;
+                }
+                else
+                {
+                    player.beetleFrameCounter++;
+                    if (player.beetleFrameCounter >= 1)
+                    {
+                        player.beetleFrameCounter = 0;
+                        player.beetleFrame++;
+                        if (player.beetleFrame > 2)
+                        {
+                            player.beetleFrame = 0;
+                        }
+                    }
+                    for (int l = player.beetleOrbs; l < 3; l++)
+                    {
+                        player.beetlePos[l].X = 0f;
+                        player.beetlePos[l].Y = 0f;
+                    }
+                    for (int m = 0; m < player.beetleOrbs; m++)
+                    {
+                        player.beetlePos[m] += player.beetleVel[m];
+                        Vector2[] expr_6EcCp0 = player.beetleVel;
+                        int expr_6EcCp1 = m;
+                        expr_6EcCp0[expr_6EcCp1].X = expr_6EcCp0[expr_6EcCp1].X + Main.rand.Next(-100, 101) * 0.005f;
+                        Vector2[] expr71ACp0 = player.beetleVel;
+                        int expr71ACp1 = m;
+                        expr71ACp0[expr71ACp1].Y = expr71ACp0[expr71ACp1].Y + Main.rand.Next(-100, 101) * 0.005f;
+                        float num6 = player.beetlePos[m].X;
+                        float num7 = player.beetlePos[m].Y;
+                        float num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
+                        if (num8 > 100f)
+                        {
+                            num8 = 20f / num8;
+                            num6 *= -num8;
+                            num7 *= -num8;
+                            int num9 = 10;
+                            player.beetleVel[m].X = (player.beetleVel[m].X * (num9 - 1) + num6) / num9;
+                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (num9 - 1) + num7) / num9;
+                        }
+                        else if (num8 > 30f)
+                        {
+                            num8 = 10f / num8;
+                            num6 *= -num8;
+                            num7 *= -num8;
+                            int num10 = 20;
+                            player.beetleVel[m].X = (player.beetleVel[m].X * (num10 - 1) + num6) / num10;
+                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (num10 - 1) + num7) / num10;
+                        }
+                        num6 = player.beetleVel[m].X;
+                        num7 = player.beetleVel[m].Y;
+                        num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
+                        if (num8 > 2f)
+                        {
+                            player.beetleVel[m] *= 0.9f;
+                        }
+                        player.beetlePos[m] -= player.velocity * 0.25f;
+                    }
+                }
+            }
+        }
+
+        public void InfernoEffect(int dmg)
+        {
+            if (Soulcheck.GetValue("Inferno Buff"))
+            {
+                player.inferno = true;
+                Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
+                int buff = BuffID.OnFire;
+                float distance = 200f;
+                bool doDmg = player.infernoCounter % 60 == 0;
+                int damage = (int)(dmg * player.meleeDamage);
+
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    for (int i = 0; i < 200; i++)
+                    {
+                        NPC npc = Main.npc[i];
+                        if (npc.active && !npc.friendly && npc.damage > 0 && !npc.dontTakeDamage && !npc.buffImmune[buff] && Vector2.Distance(player.Center, npc.Center) <= distance)
+                        {
+                            if (npc.FindBuffIndex(buff) == -1)
+                            {
+                                npc.AddBuff(buff, 120);
+                            }
+                            if (doDmg)
+                            {
+                                player.ApplyDamageToNPC(npc, damage, 0f, 0, false);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void FrostEffect(int dmg)
+        {
+            if (icicleCD == 0 && IcicleCount < 3)
+            {
+                Projectile p = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, ProjectileID.Blizzard, 0, 0, player.whoAmI);
+                p.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                p.width = 10;
+                p.height = 10;
+
+                icicles[IcicleCount] = p;
+                IcicleCount++;
+                icicleCD = 120;
+            }
+
+            if (icicleCD != 0)
+            {
+                icicleCD--;
+            }
+
+            if (IcicleCount == 3 && player.controlUseItem && player.HeldItem.damage > 0)
+            {
+                for (int i = 0; i < icicles.Length; i++)
+                {
+                    Vector2 vel = (Main.MouseWorld - icicles[i].Center).SafeNormalize(-Vector2.UnitY) * 5;
+
+                    Projectile.NewProjectile(icicles[i].Center, vel, icicles[i].type, dmg, 1f, player.whoAmI);
+                    icicles[i].Kill();
+                }
+
+                IcicleCount = 0;
+                icicleCD = 300;
+            }
+        }
+
+        public void ShroomiteEffect()
+        {
+            if (Soulcheck.GetValue("Shroomite Stealth"))
+            {
+                player.shroomiteStealth = true;
+                ShroomEnchant = true;
+            }
+        }
+
+        public void FossilEffect(int dmg)
+        {
+            if (FossilBones)
+            {
+                if (boneCD == 0)
+                {
+                    for (int i = 0; i < Main.rand.Next(4, 12); i++)
+                    {
+                        float randX, randY;
+
+                        do
+                        {
+                            randX = Main.rand.Next(-10, 10);
+                        } while (randX <= 4f && randX >= -4f);
+
+                        do
+                        {
+                            randY = Main.rand.Next(-10, 10);
+                        } while (randY <= 4f && randY >= -4f);
+
+                        Projectile p = Projectile.NewProjectileDirect(player.Center, new Vector2(randX, randY), ProjectileID.BoneGloveProj, (int)(dmg * player.thrownDamage), 2, Main.myPlayer);
+                        p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                    }
+
+                    Projectile p2 = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, ProjectileID.Bone, (int)(dmg * 1.5 * player.thrownDamage), 0f, player.whoAmI);
+                    p2.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                    p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = Main.rand.Next(32, 128);
+                    p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDir = Main.rand.Next(2);
+                    p2.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                    p2.noDropItem = true;
+
+                    boneCD = 20;
+                }
+
+                boneCD--;
+
+                if (!player.immune)
+                {
+                    FossilBones = false;
+                }
+            }
+        }
+
+        public void ForbiddenEffect()
+        {
+            if (Soulcheck.GetValue("Forbidden Storm"))
+            {
+                player.setForbidden = true;
+                player.UpdateForbiddenSetLock();
+                Lighting.AddLight(player.Center, 0.8f, 0.7f, 0.2f);
+                //storm boosted
+                ForbiddenEnchant = true;
+            }
+        }
+
+        public void SpectreEffect()
+        {
+            SpectreEnchant = true;
+
+            if (!SpiritForce)
+            {
+                if (SpecHeal)
+                {
+                    player.ghostHeal = true;
+                }
+                else
+                {
+                    player.ghostHurt = true;
+                }
+            }
+        }
+
+        public void SpectreHeal(NPC npc, Projectile proj)
+        {
+            if (npc.canGhostHeal && !player.moonLeech)
+            {
+                float num = 0.2f;
+                num -= proj.numHits * 0.05f;
+                if (num <= 0f)
+                {
+                    return;
+                }
+                float num2 = proj.damage * num;
+                if ((int)num2 <= 0)
+                {
+                    return;
+                }
+                if (Main.player[Main.myPlayer].lifeSteal <= 0f)
+                {
+                    return;
+                }
+                Main.player[Main.myPlayer].lifeSteal -= num2;
+
+                float num3 = 0f;
+                int num4 = proj.owner;
+                for (int i = 0; i < 255; i++)
+                {
+                    if (Main.player[i].active && !Main.player[i].dead && ((!Main.player[proj.owner].hostile && !Main.player[i].hostile) || Main.player[proj.owner].team == Main.player[i].team))
+                    {
+                        float num5 = Math.Abs(Main.player[i].position.X + (Main.player[i].width / 2) - proj.position.X + (proj.width / 2)) + Math.Abs(Main.player[i].position.Y + (Main.player[i].height / 2) - proj.position.Y + (proj.height / 2));
+                        if (num5 < 1200f && (Main.player[i].statLifeMax2 - Main.player[i].statLife) > num3)
+                        {
+                            num3 = (Main.player[i].statLifeMax2 - Main.player[i].statLife);
+                            num4 = i;
+                        }
+                    }
+                }
+                Projectile.NewProjectile(proj.position.X, proj.position.Y, 0f, 0f, ProjectileID.SpiritHeal, 0, 0f, proj.owner, num4, num2);
+            }
+        }
+
+        public void SpectreHurt(Projectile proj)
+        {
+            int num = proj.damage / 2;
+            if (proj.damage / 2 <= 1)
+            {
+                return;
+            }
+            int num2 = 1000;
+            if (Main.player[Main.myPlayer].ghostDmg > (float)num2)
+            {
+                return;
+            }
+            Main.player[Main.myPlayer].ghostDmg += (float)num;
+            int[] array = new int[200];
+            int num3 = 0;
+            int num4 = 0;
+            for (int i = 0; i < 200; i++)
+            {
+                if (Main.npc[i].CanBeChasedBy(this, false))
+                {
+                    float num5 = Math.Abs(Main.npc[i].position.X + (Main.npc[i].width / 2) - proj.position.X + (proj.width / 2)) + Math.Abs(Main.npc[i].position.Y + (Main.npc[i].height / 2) - proj.position.Y + (proj.height / 2));
+                    if (num5 < 800f)
+                    {
+                        if (Collision.CanHit(proj.position, 1, 1, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height) && num5 > 50f)
+                        {
+                            array[num4] = i;
+                            num4++;
+                        }
+                        else if (num4 == 0)
+                        {
+                            array[num3] = i;
+                            num3++;
+                        }
+                    }
+                }
+            }
+            if (num3 == 0 && num4 == 0)
+            {
+                return;
+            }
+            int num6;
+            if (num4 > 0)
+            {
+                num6 = array[Main.rand.Next(num4)];
+            }
+            else
+            {
+                num6 = array[Main.rand.Next(num3)];
+            }
+            float num7 = 4f;
+            float num8 = Main.rand.Next(-100, 101);
+            float num9 = Main.rand.Next(-100, 101);
+            float num10 = (float)Math.Sqrt((double)(num8 * num8 + num9 * num9));
+            num10 = num7 / num10;
+            num8 *= num10;
+            num9 *= num10;
+            Projectile.NewProjectile(proj.position.X, proj.position.Y, num8, num9, ProjectileID.SpectreWrath, num, 0f, proj.owner, (float)num6, 0f);
+        }
+
+        public void CopperEffect(NPC target)
+        {
+            int dmg = 5;
+            int chance = 20;
+
+            if (target.FindBuffIndex(BuffID.Wet) != -1)
+            {
+                dmg *= 2;
+                chance /= 4;
+            }
+
+            if (TerraForce)
+            {
+                dmg *= 2;
+            }
+
+            if (Main.rand.Next(chance) == 0)
+            {
+                float closestDist;
+                NPC closestNPC;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    closestDist = 500f;
+                    closestNPC = null;
+
+                    for (int j = 0; j < 200; j++)
+                    {
+                        NPC npc = Main.npc[j];
+                        if (npc.active && npc != target && !npc.GetGlobalNPC<FargoGlobalNPC>().Shock && npc.Distance(target.Center) < closestDist && npc.Distance(target.Center) >= 100)
+                        {
+                            closestNPC = npc;
+                            closestDist = npc.Distance(target.Center);
+                        }
+                    }
+
+                    if (closestNPC != null)
+                    {
+                        Vector2 ai = closestNPC.Center - target.Center;
+                        float ai2 = Main.rand.Next(100);
+                        Vector2 velocity = Vector2.Normalize(ai) * 20;
+
+                        Projectile p = Projectile.NewProjectileDirect(target.Center, velocity, ProjectileID.CultistBossLightningOrbArc, (int)(dmg * player.magicDamage), 0f, player.whoAmI, ai.ToRotation(), ai2);
+                        p.friendly = true;
+                        p.hostile = false;
+                        p.penetrate = -1;
+                        p.timeLeft = 90;
+
+                        target.AddBuff(mod.BuffType("Shock"), 60);
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                    target = closestNPC;
+                }
+
+            }
+        }
+
+        private int internalTimer = 0;
+        private bool wasHoldingShield = false;
+
+        public void IronEffect()
+        {
+            //no need when player has brand of inferno
+            if (player.inventory[player.selectedItem].type == ItemID.DD2SquireDemonSword)
+            {
+                internalTimer = 0;
+                wasHoldingShield = false;
+                return;
+            }
+
+            player.shieldRaised = player.selectedItem != 58 && player.controlUseTile && (!player.tileInteractionHappened && player.releaseUseItem) && (!player.controlUseItem && !player.mouseInterface && (!CaptureManager.Instance.Active && !Main.HoveringOverAnNPC)) && !Main.SmartInteractShowingGenuine && (player.hasRaisableShield && !player.mount.Active) && (player.itemAnimation == 0 || PlayerInput.Triggers.JustPressed.MouseRight);
+
+            if (internalTimer > 0)
+            {
+                internalTimer++;
+                player.shieldParryTimeLeft = internalTimer;
+                if (player.shieldParryTimeLeft > 20)
+                {
+                    player.shieldParryTimeLeft = 0;
+                    internalTimer = 0;
+                }
+            }
+
+            if (player.shieldRaised)
+            {
+                IronGuard = true;
+
+                for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
+                {
+                    if (player.shield == -1 && player.armor[i].shieldSlot != -1)
+                    {
+                        player.shield = player.armor[i].shieldSlot;
+                    }
+                }
+
+                if (!wasHoldingShield)
+                {
+                    wasHoldingShield = true;
+
+                    if (player.shield_parry_cooldown == 0)
+                    {
+                        internalTimer = 1;
+                    }
+
+                    player.itemAnimation = 0;
+                    player.itemTime = 0;
+                    player.reuseDelay = 0;
+                }
+            }
+            else
+            {
+                wasHoldingShield = false;
+                player.shield_parry_cooldown = 15;
+                player.shieldParryTimeLeft = 0;
+                internalTimer = 0;
+
+                //breaks melee idk
+                /*if (player.attackCD < 20)
+                {
+                    player.attackCD = 20;
+                }*/
             }
         }
     }

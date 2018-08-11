@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			DisplayName.SetDefault("Cobalt Enchantment");
 			Tooltip.SetDefault(
 @"'I can't believe it's not Palladium' 
-33% chance for your projectiles to explode into shards");
+25% chance for your projectiles to explode into shards");
 		}
 
 		public override void SetDefaults()

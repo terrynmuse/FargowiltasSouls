@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			Tooltip.SetDefault(
 @"'According to all known laws of aviation, there is no way a bee should be able to fly'
 Increases the strength of friendly bees
-Bees ignore enemies defense
+Bees ignore enemy defense
 Summons a pet Baby Hornet");
 		}
 

@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,18 +9,24 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Force of Nature");
-            Tooltip.SetDefault("'Tapped into every secret of the wilds'\n" +
-                                "Taking damage will release a spore explosion\n" +
-                                "Provides immunity to lava and some debuffs\n" +
-                                "Nearby enemies are ignited with vanity on\n" +
-                                "Melee and ranged attacks cause frostburn and emit light\n" +
-                                "All attacks inflict poison and venom\n" +
-                                "Summons a modified leaf crystal to shoot at nearby enemies\n" +
-                                "Not moving puts you in stealth\n" +
-                                "Spores spawn on enemies when you attack in stealth mode\n" +
-                                "You cheat death, returning with 20 HP\n" +
-                                "5 minute cooldown");
+            Tooltip.SetDefault(
+@"'Tapped into every secret of the wilds'
+Greatly increases life regen
+Hearts heal for 1.5x as much
+Allows the collection of Vine Rope from vines
+Chance to steal 5 mana with each attack
+Taking damage will release a poisoning spore explosion
+Nearby enemies are ignited
+When you die, you violently explode dealing massive damage to surrounding enemies
+Icicles will start to appear around you
+When there are three, using any weapon will launch them towards the cursor, Chilling and Frostburning enemies
+Allows the ability to walk on water
+Summons a leaf crystal to shoot at nearby enemies
+Flowers grow on the grass you walk on and all herb collection is doubled
+Not moving puts you in stealth, while in stealth crits deal 4x damage and spores spawn on enemies
+Summons a Baby Face Monster, Crimson Heart, Baby Penguin, Snowman, Seedling, and Baby Truffle");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -29,33 +34,59 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 10;
-            item.value = 300000;
+            item.value = 600000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            
-            
+            player.crimsonRegen = true;
+            //increase heart heal
+            modPlayer.CrimsonEnchant = true;
+            player.cordage = true;
+            modPlayer.JungleEnchant = true;
+            modPlayer.InfernoEffect(20);
+            //explode on death
+            modPlayer.MoltenEnchant = true;
+            player.waterWalk = true;
+            //icicles
+            modPlayer.FrostEnchant = true;
+            modPlayer.FrostEffect(80);
+            modPlayer.AddMinion("Leaf Crystal", mod.ProjectileType("Chlorofuck"), 100, 10f);
+            modPlayer.FlowerBoots();
+            //herb double
+            modPlayer.ChloroEnchant = true;
+            //stealth and spores
+            modPlayer.ShroomiteEffect();
+            modPlayer.AddPet("Baby Face Monster Pet", BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
+            modPlayer.AddPet("Crimson Heart Pet", BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
+            modPlayer.AddPet("Baby Penguin Pet", BuffID.BabyPenguin, ProjectileID.Penguin);
+            modPlayer.AddPet("Baby Snowman Pet", BuffID.BabySnowman, ProjectileID.BabySnowman);
+            modPlayer.AddPet("Seedling Pet", BuffID.PetSapling, ProjectileID.Sapling);
+            modPlayer.AddPet("Truffle Pet", BuffID.BabyTruffle, ProjectileID.Truffle);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(null, "CrimsonEnchant");
             recipe.AddIngredient(null, "JungleEnchant");
-            recipe.AddIngredient(null, "FossilEnchant");
             recipe.AddIngredient(null, "MoltenEnchant");
             recipe.AddIngredient(null, "FrostEnchant");
             recipe.AddIngredient(null, "ChlorophyteEnchant");
             recipe.AddIngredient(null, "ShroomiteEnchant");
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            }
+            else
+            {
+                recipe.AddTile(TileID.LunarCraftingStation);
+            }
+
             recipe.SetResult(this);
             recipe.AddRecipe();
-
         }
     }
 }
-
-

@@ -28,37 +28,10 @@ When you die, you violently explode dealing massive damage to surrounding enemie
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (Soulcheck.GetValue("Inferno Buff"))
-            {
-                player.inferno = true;
-                Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
-                int buff = BuffID.OnFire;
-                float distance = 200f;
-                bool doDmg = player.infernoCounter % 60 == 0;
-                int damage = (int)(10 * player.meleeDamage);
-
-                if (player.whoAmI == Main.myPlayer)
-                {
-                    for (int i = 0; i < 200; i++)
-                    {
-                        NPC npc = Main.npc[i];
-                        if (npc.active && !npc.friendly && npc.damage > 0 && !npc.dontTakeDamage && !npc.buffImmune[buff] && Vector2.Distance(player.Center, npc.Center) <= distance)
-                        {
-                            if (npc.FindBuffIndex(buff) == -1)
-                            {
-                                npc.AddBuff(buff, 120);
-                            }
-                            if (doDmg)
-                            {
-                                player.ApplyDamageToNPC(npc, damage, 0f, 0, false);
-                            }
-                        }
-                    }
-                }
-            }
-
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            modPlayer.InfernoEffect(10);
             //explode on death
-            player.GetModPlayer<FargoPlayer>(mod).MoltenEnchant = true;
+            modPlayer.MoltenEnchant = true;
         }
 
         public override void AddRecipes()

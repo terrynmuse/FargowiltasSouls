@@ -272,29 +272,69 @@ Rainbow Crystal Staff
 
 
 Earth Force
-
+Cobalt 
+Palladium
+Mythril
+Orichalcum
+Adamantite
+Titanium
 
 Terra Force
+Copper 
+Tin
+Iron
+Lead
+Tungsten
+Obsidian
 
-
-Will Force
-
+Force of Will
+Gold
+Platinum
+Mining
+Gladiator
+Red Riding
+Valhalla Knight
 
 Shadow Force
+Ninja 
+Shadow
+Necro
+Spooky
+Shinobi
+Dark Artist
 
+Force of Cosmos
+Meteor
+Solar
+Vortex
+Nebula
+Stardust
+Suspicious Eye
 
-Cosmo Force
+Force of Nature
+Crimson
+Jungle
+Molten
+Frost
+Chlorophyte
+Shroomite
 
-
-Nature Force
-
+Life Force
+Cactus
+Pumpkin
+Bee
+Spider
+Turtle
+Beetle
 
 Spirit Force
+Fossil
+Forbidden
+Hallowed
+Tiki
+Spectre
 Grinch
 
-Cosmo Force
-Suspicious Eye
-Gravity Globe
 
 Soul of Terraria
 Earth Force

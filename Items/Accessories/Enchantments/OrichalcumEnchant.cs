@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Nature blesses you' 
 Flower petals will cause extra damage to your target 
-Magic attacks may spawn fireballs to rotate around you");
+Attacks may spawn fireballs to rotate around you");
         }
 
         public override void SetDefaults()
@@ -28,11 +28,7 @@ Magic attacks may spawn fireballs to rotate around you");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.onHitPetal = true;
-
-            if (Soulcheck.GetValue("Orichalcum Fireball"))
-            {
-                player.GetModPlayer<FargoPlayer>(mod).OriEnchant = true;
-            }
+            player.GetModPlayer<FargoPlayer>(mod).OriEnchant = true;
         }
 
         public override void AddRecipes()

@@ -2622,12 +2622,6 @@ namespace FargowiltasSouls.NPCs
             if(modPlayer.ValhallaEnchant)
             {
                 npc.knockBackResist = 1f;
-
-                if (npc.dontTakeDamage)
-                {
-                    npc.dontTakeDamage = false;
-                    Main.NewText("meme");
-                }
             }
 		}
 
@@ -2636,14 +2630,9 @@ namespace FargowiltasSouls.NPCs
             FargoPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<FargoPlayer>(mod);
 
             //spears
-            if(modPlayer.ValhallaEnchant && projectile.aiStyle == 19)
+            if(modPlayer.ValhallaEnchant && (projectile.aiStyle == 19 || modPlayer.WillForce))
             {
                 npc.knockBackResist = 1f;
-
-                if(npc.dontTakeDamage)
-                {
-                    npc.dontTakeDamage = false;
-                }
             }
             else
             {
@@ -2652,6 +2641,5 @@ namespace FargowiltasSouls.NPCs
                 npc.knockBackResist = n.knockBackResist;
             }
         }
-
     }
 }

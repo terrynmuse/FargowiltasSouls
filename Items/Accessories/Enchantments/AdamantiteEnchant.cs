@@ -27,10 +27,7 @@ Any secondary projectiles may also split");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (Soulcheck.GetValue("Splitting Projectiles"))
-            {
-                player.GetModPlayer<FargoPlayer>(mod).AdamantiteEnchant = true;
-            }
+            player.GetModPlayer<FargoPlayer>(mod).AdamantiteEnchant = true;
         }
 
         public override void AddRecipes()

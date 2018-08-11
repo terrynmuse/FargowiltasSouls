@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Projectiles
 
         private int counter;
         private int numSplits = 1;
-        private bool _instantSplit;
+        private bool instantSplit;
         private int numSpeedups = 3;
         private bool ninjaTele;
         public bool IsRecolor = false;
@@ -72,16 +72,17 @@ namespace FargowiltasSouls.Projectiles
 
             if (projectile.owner == Main.myPlayer)
             {
-                if (modPlayer.AdamantiteEnchant && !projectile.minion && projectile.damage > 0 && Main.rand.Next(4) == 0 /*&& !/*projectile.spear*/ && !_instantSplit)
+                if (Soulcheck.GetValue("Splitting Projectiles") && modPlayer.AdamantiteEnchant && !projectile.minion && projectile.damage > 0 && Main.rand.Next(4) == 0 && projectile.aiStyle != 19 && !instantSplit && 
+                    !Rotate)
                 {
-                    _instantSplit = true;
+                    instantSplit = true;
                     SplitProj(projectile, 3);
                     retVal = false;
                 }
 
-                if (projectile.bobber && !_instantSplit)
+                if (projectile.bobber && !instantSplit)
                 {
-                    _instantSplit = true;
+                    instantSplit = true;
 
                     if (modPlayer.FishSoul1)
                     {
@@ -93,23 +94,20 @@ namespace FargowiltasSouls.Projectiles
                     }
                 }
 
-                if (projectile.thrown)
+                if (modPlayer.GladEnchant && (projectile.thrown || modPlayer.WillForce) && numSpeedups > 0 && counter % 10 == 0)
                 {
-                    if (modPlayer.GladEnchant && numSpeedups > 0 && counter % 10 == 0)
-                    {
-                        numSpeedups--;
-                        projectile.velocity = Vector2.Multiply(projectile.velocity, 2);
-                    }
-
-                    if (modPlayer.ThrowSoul && numSplits > 0 && counter == 20 * (1 + projectile.extraUpdates))
-                    {
-                        numSplits--;
-                        SplitProj(projectile, 3);
-                        retVal = false;
-                    }
+                    numSpeedups--;
+                    projectile.velocity = Vector2.Multiply(projectile.velocity, 1.5f);
                 }
 
-                _instantSplit = true;
+                if (modPlayer.ThrowSoul && projectile.thrown && numSplits > 0 && counter == 20 * (1 + projectile.extraUpdates))
+                {
+                    numSplits--;
+                    SplitProj(projectile, 3);
+                    retVal = false;
+                }
+
+                instantSplit = true;
             }
 
             if(modPlayer.ForbiddenEnchant && projectile.type != ProjectileID.SandnadoFriendly)
@@ -144,14 +142,14 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-            if (modPlayer.SpookyEnchant && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(10) == 0)
+            if (modPlayer.SpookyEnchant && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
             {
                 Main.PlaySound(2/**/, (int)projectile.position.X, (int)projectile.position.Y, 62);
-                XWay(8, projectile.Center, mod.ProjectileType("SpookyScythe"), 5, (int)(projectile.damage), 2f);
+                XWay(8, projectile.Center, mod.ProjectileType("SpookyScythe"), 5, (int)(projectile.damage / 2), 2f);
                 counter = 0;
             }
 
-            if(modPlayer.RedEnchant && projectile.ranged && projectile.penetrate != -1 && firstTick)
+            if(modPlayer.RedEnchant && (projectile.ranged || modPlayer.WillForce) && projectile.penetrate != -1 && firstTick)
             {
                 projectile.penetrate += 5;
             }
@@ -193,7 +191,7 @@ namespace FargowiltasSouls.Projectiles
 
                 //projectile.rotation = projectile.ai[1] * 0.0174f;
 
-                if (modPlayer.OriEnchant)
+                if (modPlayer.OriEnchant && projectile.type != ProjectileID.Blizzard)
                 {
                     projectile.penetrate = -1;
 
@@ -268,7 +266,7 @@ namespace FargowiltasSouls.Projectiles
 
                     split = Projectile.NewProjectileDirect(projectile.Center, projectile.velocity.RotatedBy(factor * spread * (i + 1)), projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
                     split.GetGlobalProjectile<FargoGlobalProjectile>().numSplits = projectile.GetGlobalProjectile<FargoGlobalProjectile>().numSplits;
-                    split.GetGlobalProjectile<FargoGlobalProjectile>()._instantSplit = projectile.GetGlobalProjectile<FargoGlobalProjectile>()._instantSplit;
+                    split.GetGlobalProjectile<FargoGlobalProjectile>().instantSplit = projectile.GetGlobalProjectile<FargoGlobalProjectile>().instantSplit;
                 }
 
             }
@@ -452,6 +450,15 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
+            if (projectile.type == ProjectileID.BlueFairy)
+            {
+                if (!modPlayer.HallowEnchant || !Soulcheck.GetValue("Fairy Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
+
             if (projectile.type == ProjectileID.StardustGuardian && player.FindBuffIndex(BuffID.StardustGuardianMinion) == -1)
             {
                 if (!modPlayer.StardustEnchant || !Soulcheck.GetValue("Stardust Guardian")) 
@@ -542,11 +549,40 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
+            if (projectile.type == ProjectileID.BabyDino && player.FindBuffIndex(BuffID.BabyDinosaur) == -1)
+            {
+                if (!modPlayer.FossilEnchant || !Soulcheck.GetValue("Baby Dino Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
 
+            if (projectile.type == ProjectileID.BabyEater && player.FindBuffIndex(BuffID.BabyEater) == -1)
+            {
+                if (!modPlayer.ShadowEnchant || !Soulcheck.GetValue("Baby Eater Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
 
+            if (projectile.type == ProjectileID.ShadowOrb && player.FindBuffIndex(BuffID.ShadowOrb) == -1)
+            {
+                if (!modPlayer.ShadowEnchant || !Soulcheck.GetValue("Shadow Orb Pet"))
+                {
+                    projectile.Kill();
+                }
+            }
 
-
-
+            if (projectile.type == ProjectileID.SuspiciousTentacle && player.FindBuffIndex(BuffID.SuspiciousTentacle) == -1)
+            {
+                if (!modPlayer.CosmoForce || !Soulcheck.GetValue("Suspicious Looking Eye Pet"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }
 
 
 
@@ -569,51 +605,9 @@ namespace FargowiltasSouls.Projectiles
 
             /*
 
-            if (projectile.type == ProjectileID.BabyDino && player.FindBuffIndex(61) == -1)
-            {
-                if (!modPlayer.DinoPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-			
-			if(projectile.type == ProjectileID.Parrot && (player.FindBuffIndex(54) == -1))
-			{
-				if (!modPlayer.oriPet)
-				{
-					projectile.Kill();
-					return;
-				}
-			}
-
-            
-
-
-            if (projectile.type == ProjectileID.BabyEater && player.FindBuffIndex(45) == -1)
-            {
-                if (!modPlayer.ShadowPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-           
-
             if (projectile.type == ProjectileID.ZephyrFish && player.FindBuffIndex(127) == -1)
             {
                 if (!modPlayer.FishPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.CompanionCube && player.FindBuffIndex(191) == -1)
-            {
-                if (!modPlayer.CubePet)
                 {
                     projectile.Kill();
                     return;
@@ -629,23 +623,7 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-            if (projectile.type == ProjectileID.SuspiciousTentacle && player.FindBuffIndex(190) == -1)
-            {
-                if (!modPlayer.SuspiciousEyePet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-            
-
-            if (projectile.type == ProjectileID.ShadowOrb && player.FindBuffIndex(19) == -1)
-            {
-                if (!modPlayer.ShadowPet2)
-                {
-                    projectile.Kill();
-                }
-            }*/
+            */
 
 
             #endregion
@@ -711,7 +689,7 @@ namespace FargowiltasSouls.Projectiles
                 spore.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
             }
 
-            if (modPlayer.OriEnchant && !Rotate && projectile.magic && Main.rand.Next(6) == 0)
+            if (Soulcheck.GetValue("Orichalcum Fireball") && modPlayer.OriEnchant && !Rotate && Main.rand.Next(6) == 0)
             {
                 int[] fireballs = { ProjectileID.BallofFire, ProjectileID.BallofFrost, ProjectileID.CursedFlameFriendly };
                 const int MAXBALLS = 10;
@@ -969,6 +947,7 @@ namespace FargowiltasSouls.Projectiles
             if(modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && player.HeldItem.type != ItemID.BlizzardStaff)
             {
                 target.AddBuff(BuffID.Chilled, 300);
+                target.AddBuff(BuffID.Frostburn, 300);
             }
         }
 
@@ -977,13 +956,20 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.CobaltEnchant && projectile.type != ProjectileID.CrystalShard && projectile.friendly && projectile.damage > 0 && Main.rand.Next(3) == 0)
+            if (modPlayer.CobaltEnchant && projectile.type != ProjectileID.CrystalShard && projectile.friendly && projectile.damage > 0  && !Rotate && Main.rand.Next(4) == 0)
             {
+                int damage = 50;
+
+                if(modPlayer.EarthForce)
+                {
+                    damage = 100;
+                }
+
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 27);
-                XWay(8, projectile.Center, ProjectileID.CrystalShard, 5, 50, 2f);
+                XWay(8, projectile.Center, ProjectileID.CrystalShard, 5, damage, 2f);
             }
 
-            if(modPlayer.FrostEnchant && Rotate)
+            if(modPlayer.FrostEnchant && Rotate && projectile.type == ProjectileID.Blizzard)
             {
                 modPlayer.IcicleCount--;
             }

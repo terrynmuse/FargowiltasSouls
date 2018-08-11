@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -213,17 +212,7 @@ namespace FargowiltasSouls.Items
 
             }
 
-            if(item.useTime < 1)
-            {
-                item.useTime = 1;
-            }
-            if(item.useAnimation < 2)
-            {
-                item.useAnimation = 2;
-            }
-
-            return true;
+            return false;
         }
-
     }
 }

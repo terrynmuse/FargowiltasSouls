@@ -29,17 +29,7 @@ Summons a Wisp to provide light");
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.SpectreEnchant = true;
-
-            if (modPlayer.SpecHeal)
-            {
-                player.ghostHeal = true;
-            }
-            else
-            {
-                player.ghostHurt = true;
-            }
-
+            modPlayer.SpectreEffect();
             modPlayer.AddPet("Wisp Pet", BuffID.Wisp, ProjectileID.Wisp);
         }
 		

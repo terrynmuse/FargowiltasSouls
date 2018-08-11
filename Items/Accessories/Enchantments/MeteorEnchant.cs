@@ -26,7 +26,7 @@ A meteor shower initiates every few seconds while using magic weapons");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MeteorEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).MeteorEffect(50);
         }
 
         public override void AddRecipes()

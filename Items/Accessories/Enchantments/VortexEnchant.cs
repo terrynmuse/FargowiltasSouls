@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			Tooltip.SetDefault(
 @"'Tear into reality'
 Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
-Rarely spawn a vortex to draw in and massively damage enemies
+Ranged attacks rarely spawn a vortex to draw in and massively damage enemies
 Summons a Companion Cube Pet");
 		}
 
@@ -29,31 +29,10 @@ Summons a Companion Cube Pet");
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            //portal spawn
 			modPlayer.VortexEnchant = true;
-
-            if ((player.controlDown && player.releaseDown))
-            {
-                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15) 
-                {
-                    modPlayer.VortexStealth = !modPlayer.VortexStealth;
-                    modPlayer.VortexDust = 30;
-                }   
-			}
-
-            if (player.mount.Active)
-            {
-                modPlayer.VortexStealth = false;
-            }
-
-            if (modPlayer.VortexStealth)
-            {
-                player.moveSpeed *= 0.3f;
-                player.aggro -= 1200;
-                player.setVortex = true;
-                player.stealth = 0f;
-                //player.invis = true;
-            }
-
+            //stealth memes
+            modPlayer.VortexEffect();
             modPlayer.AddPet("Companion Cube Pet", BuffID.CompanionCube, ProjectileID.CompanionCube);
         }
 		

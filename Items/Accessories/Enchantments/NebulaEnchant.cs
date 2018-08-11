@@ -28,25 +28,7 @@ Once you get to the last tier with each booster type, your magic power hits obsc
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.NebulaEnchant = true;
-
-            if (player.nebulaCD > 0)
-			{
-				player.nebulaCD--;
-			}
-				player.setNebula = true;
-
-            modPlayer.NebulaCounter++;
-
-            if(modPlayer.NebulaCounter > 600)
-            {
-                modPlayer.NebulaCounter = 600;
-            }
-
-            if(player.HasBuff(BuffID.NebulaUpDmg3) && player.HasBuff(BuffID.NebulaUpLife3) && player.HasBuff(BuffID.NebulaUpMana3) && modPlayer.NebulaCounter == 600)
-            {
-                modPlayer.NebulaCounter = -600;
-            }
+            modPlayer.NebulaEffect();
         }
 		
 		public override void AddRecipes()
