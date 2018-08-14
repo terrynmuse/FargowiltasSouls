@@ -51,8 +51,8 @@ Summons a Companion Cube Pet and a suspicious looking eye to provide light");
             //minion and freeze time
             modPlayer.StardustEnchant = true;
             modPlayer.StardustEffect();
-            modPlayer.AddPet("Companion Cube Pet", BuffID.CompanionCube, ProjectileID.CompanionCube);
-            modPlayer.AddPet("Suspicious Looking Eye Pet", BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
+            modPlayer.AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
+            modPlayer.AddPet("Suspicious Looking Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
         }
 
         public override void AddRecipes()

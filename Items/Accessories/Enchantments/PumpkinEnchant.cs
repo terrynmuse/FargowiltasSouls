@@ -32,7 +32,7 @@ Summons a pet squashling");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.PumpkinEnchant = true;
             modPlayer.PumpkinEffect(12);
-            modPlayer.AddPet("Squashling Pet", BuffID.Squashling, ProjectileID.Squashling);
+            modPlayer.AddPet("Squashling Pet", hideVisual, BuffID.Squashling, ProjectileID.Squashling);
         }
 
         public override void AddRecipes()

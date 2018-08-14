@@ -30,7 +30,7 @@ Summons a pet Baby Truffle");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.ShroomiteEffect();
-            modPlayer.AddPet("Truffle Pet", BuffID.BabyTruffle, ProjectileID.Truffle);
+            modPlayer.AddPet("Truffle Pet", hideVisual, BuffID.BabyTruffle, ProjectileID.Truffle);
         }
 
         public override void AddRecipes()

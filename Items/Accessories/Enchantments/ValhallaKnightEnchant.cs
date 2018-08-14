@@ -35,7 +35,7 @@ Summons a pet Dragon");
             player.setSquireT3 = true;
             modPlayer.ValhallaEnchant = true;
             player.shinyStone = true;
-            modPlayer.AddPet("Dragon Pet", BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
+            modPlayer.AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
         }
 
         public override void AddRecipes()

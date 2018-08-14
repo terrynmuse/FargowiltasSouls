@@ -1474,13 +1474,29 @@ namespace FargowiltasSouls
             }
         }
 
-        public void AddPet(string toggle, int buff, int proj)
+        public void AddPet(string toggle, bool vanityToggle, int buff, int proj)
         {
             if (player.whoAmI == Main.myPlayer && player.FindBuffIndex(buff) == -1)
             {
-                if (Soulcheck.GetValue(toggle) && player.ownedProjectileCounts[proj] < 1)
+                if (Soulcheck.GetValue(toggle) && !vanityToggle)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, 0, 0f, Main.myPlayer);
+                    if(player.ownedProjectileCounts[proj] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, 0, 0f, player.whoAmI);
+                    }
+                }
+                else if (player.ownedProjectileCounts[proj] >= 1)
+                {
+                    for(int i = 0; i < 1000; i++)
+                    {
+                        Projectile p = Main.projectile[i];
+
+                        if (p.type == proj && p.owner == player.whoAmI)
+                        {
+                            p.Kill();
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -1864,7 +1880,7 @@ namespace FargowiltasSouls
 
         public void StardustEffect()
         {
-            AddPet("Stardust Guardian", BuffID.StardustGuardianMinion, ProjectileID.StardustGuardian);
+            AddPet("Stardust Guardian", true, BuffID.StardustGuardianMinion, ProjectileID.StardustGuardian);
             player.setStardust = true;
 
             if ((player.controlDown && player.releaseDown))

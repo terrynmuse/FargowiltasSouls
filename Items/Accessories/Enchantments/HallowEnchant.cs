@@ -32,7 +32,7 @@ Summons a magical fairy");
             modPlayer.HallowEnchant = true;
             modPlayer.AddMinion("Hallowed Shield", mod.ProjectileType("HallowShield"), 0, 0f);
             modPlayer.AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(80 * player.minionDamage), 0f);
-            modPlayer.AddPet("Fairy Pet", BuffID.FairyBlue, ProjectileID.BlueFairy);
+            modPlayer.AddPet("Fairy Pet", hideVisual, BuffID.FairyBlue, ProjectileID.BlueFairy);
         }
 
         public override void AddRecipes()

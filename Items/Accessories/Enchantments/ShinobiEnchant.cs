@@ -38,7 +38,7 @@ Summons a pet gato");
             player.dash = 1;
             //tele thru walls
             modPlayer.ShinobiEnchant = true;
-            modPlayer.AddPet("Gato Pet", BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
+            modPlayer.AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
         }
 		
 		public override void AddRecipes()

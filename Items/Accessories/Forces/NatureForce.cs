@@ -58,12 +58,12 @@ Summons a Baby Face Monster, Crimson Heart, Baby Penguin, Snowman, Seedling, and
             modPlayer.ChloroEnchant = true;
             //stealth and spores
             modPlayer.ShroomiteEffect();
-            modPlayer.AddPet("Baby Face Monster Pet", BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
-            modPlayer.AddPet("Crimson Heart Pet", BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
-            modPlayer.AddPet("Baby Penguin Pet", BuffID.BabyPenguin, ProjectileID.Penguin);
-            modPlayer.AddPet("Baby Snowman Pet", BuffID.BabySnowman, ProjectileID.BabySnowman);
-            modPlayer.AddPet("Seedling Pet", BuffID.PetSapling, ProjectileID.Sapling);
-            modPlayer.AddPet("Truffle Pet", BuffID.BabyTruffle, ProjectileID.Truffle);
+            modPlayer.AddPet("Baby Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
+            modPlayer.AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
+            modPlayer.AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
+            modPlayer.AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
+            modPlayer.AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
+            modPlayer.AddPet("Truffle Pet", hideVisual, BuffID.BabyTruffle, ProjectileID.Truffle);
         }
 
         public override void AddRecipes()

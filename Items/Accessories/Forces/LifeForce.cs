@@ -58,11 +58,11 @@ Summons a pet Squashling, Baby Hornet, Spider, Lizard, and Turtle");
             modPlayer.BeetleEnchant = true;
             //beetle resistance
             modPlayer.BeetleEffect();
-            modPlayer.AddPet("Squashling Pet", BuffID.Squashling, ProjectileID.Squashling);
-            modPlayer.AddPet("Baby Hornet Pet", BuffID.BabyHornet, ProjectileID.BabyHornet);
-            modPlayer.AddPet("Spider Pet", BuffID.PetSpider, ProjectileID.Spider);
-            modPlayer.AddPet("Turtle Pet", BuffID.PetTurtle, ProjectileID.Turtle);
-            modPlayer.AddPet("Lizard Pet", BuffID.PetLizard, ProjectileID.PetLizard);
+            modPlayer.AddPet("Squashling Pet", hideVisual, BuffID.Squashling, ProjectileID.Squashling);
+            modPlayer.AddPet("Baby Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
+            modPlayer.AddPet("Spider Pet", hideVisual, BuffID.PetSpider, ProjectileID.Spider);
+            modPlayer.AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
+            modPlayer.AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
         }
 
         public override void AddRecipes()

@@ -34,7 +34,7 @@ Effects of the Frog Legs and Spore Sac
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             modPlayer.FishSoul2 = true;
-            modPlayer.AddPet("", BuffID.ZephyrFish, ProjectileID.ZephyrFish);
+            modPlayer.AddPet("", hideVisual, BuffID.ZephyrFish, ProjectileID.ZephyrFish);
 
             player.sonarPotion = true;
             player.fishingSkill += 50;

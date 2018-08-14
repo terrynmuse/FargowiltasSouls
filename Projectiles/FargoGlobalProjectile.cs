@@ -272,6 +272,17 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
+        private void KillPet(Projectile projectile, Player player, int proj, int buff, bool enchant, string toggle)
+        {
+            if (projectile.type == proj && player.FindBuffIndex(buff) == -1)
+            {
+                if (!enchant || !Soulcheck.GetValue(toggle))
+                {
+                    projectile.Kill();
+                }
+            }
+        }
+
         public override void AI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
@@ -279,144 +290,41 @@ namespace FargowiltasSouls.Projectiles
 
             #region pets
 
-            if (projectile.type == ProjectileID.BabyHornet && player.FindBuffIndex(BuffID.BabyHornet) == -1)
-            {
-                if (!modPlayer.BeeEnchant || !Soulcheck.GetValue("Baby Hornet Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
+            KillPet(projectile, player, ProjectileID.BabyHornet, BuffID.BabyHornet, modPlayer.BeeEnchant, "Baby Hornet Pet");
+            KillPet(projectile, player, ProjectileID.Sapling, BuffID.PetSapling, modPlayer.ChloroEnchant, "Seedling Pet");
+            KillPet(projectile, player, ProjectileID.BabyFaceMonster, BuffID.BabyFaceMonster, modPlayer.CrimsonEnchant, "Baby Face Monster Pet");
+            KillPet(projectile, player, ProjectileID.CrimsonHeart, BuffID.CrimsonHeart, modPlayer.CrimsonEnchant, "Crimson Heart Pet");
+            KillPet(projectile, player, ProjectileID.MagicLantern, BuffID.MagicLantern, modPlayer.MinerEnchant, "Magic Lantern Pet");
+            KillPet(projectile, player, ProjectileID.MiniMinotaur, BuffID.MiniMinotaur, modPlayer.GladEnchant, "Mini Minotaur Pet");
+            KillPet(projectile, player, ProjectileID.BlackCat, BuffID.BlackCat, modPlayer.NinjaEnchant, "Black Cat Pet");
+            KillPet(projectile, player, ProjectileID.Wisp, BuffID.Wisp, modPlayer.SpectreEnchant, "Wisp Pet");
+            KillPet(projectile, player, ProjectileID.CursedSapling, BuffID.CursedSapling, modPlayer.SpookyEnchant, "Cursed Sapling Pet");
+            KillPet(projectile, player, ProjectileID.EyeSpring, BuffID.EyeballSpring, modPlayer.SpookyEnchant, "Eye Spring Pet");
+            KillPet(projectile, player, ProjectileID.Turtle, BuffID.PetTurtle, modPlayer.TurtleEnchant, "Turtle Pet");
+            KillPet(projectile, player, ProjectileID.PetLizard, BuffID.PetLizard, modPlayer.TurtleEnchant, "Lizard Pet");
+            KillPet(projectile, player, ProjectileID.Truffle, BuffID.BabyTruffle, modPlayer.ShroomEnchant, "Truffle Pet");
+            KillPet(projectile, player, ProjectileID.Spider, BuffID.PetSpider, modPlayer.SpiderEnchant, "Spider Pet");
+            KillPet(projectile, player, ProjectileID.Squashling, BuffID.Squashling, modPlayer.PumpkinEnchant, "Squashling Pet");
+            KillPet(projectile, player, ProjectileID.BlueFairy, BuffID.FairyBlue, modPlayer.HallowEnchant, "Fairy Pet");
+            KillPet(projectile, player, ProjectileID.StardustGuardian, BuffID.StardustGuardianMinion, modPlayer.StardustEnchant, "Stardust Guardian");
+            KillPet(projectile, player, ProjectileID.TikiSpirit, BuffID.TikiSpirit, modPlayer.TikiEnchant, "Tiki Pet");
+            KillPet(projectile, player, ProjectileID.Penguin, BuffID.BabyPenguin, modPlayer.FrostEnchant, "Baby Penguin Pet");
+            KillPet(projectile, player, ProjectileID.BabySnowman, BuffID.BabySnowman, modPlayer.FrostEnchant, "Baby Snowman Pet");
+            KillPet(projectile, player, ProjectileID.DD2PetGato, BuffID.PetDD2Gato, modPlayer.ShinobiEnchant, "Gato Pet");
+            KillPet(projectile, player, ProjectileID.Parrot, BuffID.PetParrot, modPlayer.GoldEnchant, "Parrot Pet");
+            KillPet(projectile, player, ProjectileID.Puppy, BuffID.Puppy, modPlayer.RedEnchant, "Puppy Pet");
+            KillPet(projectile, player, ProjectileID.CompanionCube, BuffID.CompanionCube, modPlayer.VortexEnchant, "Companion Cube Pet");
+            KillPet(projectile, player, ProjectileID.DD2PetDragon, BuffID.PetDD2Dragon, modPlayer.ValhallaEnchant, "Dragon Pet");
+            KillPet(projectile, player, ProjectileID.BabySkeletronHead, BuffID.BabySkeletronHead, modPlayer.NecroEnchant, "Baby Skeletron  Pet");
+            KillPet(projectile, player, ProjectileID.BabyDino, BuffID.BabyDinosaur, modPlayer.FossilEnchant, "Baby Dino Pet");
+            KillPet(projectile, player, ProjectileID.BabyEater, BuffID.BabyEater, modPlayer.ShadowEnchant, "Baby Eater Pet");
+            KillPet(projectile, player, ProjectileID.ShadowOrb, BuffID.ShadowOrb, modPlayer.ShadowEnchant, "Shadow Orb Pet");
+            KillPet(projectile, player, ProjectileID.SuspiciousTentacle, BuffID.SuspiciousTentacle, modPlayer.CosmoForce, "Suspicious Looking Eye Pet");
+            KillPet(projectile, player, ProjectileID.DD2PetGhost, BuffID.PetDD2Ghost, modPlayer.DarkEnchant, "Flickerwick Pet");
 
             if (projectile.type == mod.ProjectileType("Chlorofuck"))
             {
                 if (!modPlayer.ChloroEnchant || !Soulcheck.GetValue("Leaf Crystal"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.Sapling && player.FindBuffIndex(BuffID.PetSapling) == -1)
-            {
-                if (!modPlayer.ChloroEnchant || !Soulcheck.GetValue("Seedling Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.BabyFaceMonster && player.FindBuffIndex(BuffID.BabyFaceMonster) == -1)
-            {
-                if (!modPlayer.CrimsonEnchant || !Soulcheck.GetValue("Baby Face Monster Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.CrimsonHeart && player.FindBuffIndex(BuffID.CrimsonHeart) == -1)
-            {
-                if (!modPlayer.CrimsonEnchant || !Soulcheck.GetValue("Crimson Heart Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.MagicLantern && player.FindBuffIndex(BuffID.MagicLantern) == -1)
-            {
-                if (!modPlayer.MinerEnchant || !Soulcheck.GetValue("Magic Lantern Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.MiniMinotaur && player.FindBuffIndex(BuffID.MiniMinotaur) == -1)
-            {
-                if (!modPlayer.GladEnchant || !Soulcheck.GetValue("Mini Minotaur Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.BlackCat && player.FindBuffIndex(BuffID.BlackCat) == -1)
-            {
-                if (!modPlayer.NinjaEnchant || !Soulcheck.GetValue("Black Cat Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.Wisp && player.FindBuffIndex(BuffID.Wisp) == -1)
-            {
-                if (!modPlayer.SpectreEnchant || !Soulcheck.GetValue("Wisp Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if(projectile.type == ProjectileID.CursedSapling && (player.FindBuffIndex(BuffID.CursedSapling) == -1))
-			{
-				if (!modPlayer.SpookyEnchant || !Soulcheck.GetValue("Cursed Sapling Pet"))
-                {
-					projectile.Kill();
-					return;
-				}
-			}
-
-            if (projectile.type == ProjectileID.EyeSpring && (player.FindBuffIndex(BuffID.EyeballSpring) == -1))
-            {
-                if (!modPlayer.SpookyEnchant || !Soulcheck.GetValue("Eye Spring Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.Turtle && player.FindBuffIndex(BuffID.PetTurtle) == -1)
-            {
-                if (!modPlayer.TurtleEnchant || !Soulcheck.GetValue("Turtle Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.PetLizard && player.FindBuffIndex(BuffID.PetLizard) == -1)
-            {
-                if (!modPlayer.TurtleEnchant || !Soulcheck.GetValue("Lizard Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.Truffle && player.FindBuffIndex(BuffID.BabyTruffle) == -1)
-            {
-                if (!modPlayer.ShroomEnchant || !Soulcheck.GetValue("Truffle Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.Spider && player.FindBuffIndex(BuffID.PetSpider) == -1)
-            {
-                if (!modPlayer.SpiderEnchant || !Soulcheck.GetValue("Spider Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.Squashling && player.FindBuffIndex(BuffID.Squashling) == -1)
-            {
-                if (!modPlayer.PumpkinEnchant || !Soulcheck.GetValue("Squashling Pet"))
                 {
                     projectile.Kill();
                     return;
@@ -450,161 +358,8 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-            if (projectile.type == ProjectileID.BlueFairy)
-            {
-                if (!modPlayer.HallowEnchant || !Soulcheck.GetValue("Fairy Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.StardustGuardian && player.FindBuffIndex(BuffID.StardustGuardianMinion) == -1)
-            {
-                if (!modPlayer.StardustEnchant || !Soulcheck.GetValue("Stardust Guardian")) 
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.TikiSpirit && player.FindBuffIndex(BuffID.TikiSpirit) == -1)
-            {
-                if (!modPlayer.TikiEnchant || !Soulcheck.GetValue("Tiki Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.Penguin && player.FindBuffIndex(BuffID.BabyPenguin) == -1)
-            {
-                if (!modPlayer.FrostEnchant || !Soulcheck.GetValue("Baby Penguin Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.BabySnowman && player.FindBuffIndex(BuffID.BabySnowman) == -1)
-            {
-                if (!modPlayer.FrostEnchant || !Soulcheck.GetValue("Baby Snowman Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.DD2PetGato && (player.FindBuffIndex(BuffID.PetDD2Gato) == -1))
-            {
-                if (!modPlayer.ShinobiEnchant || !Soulcheck.GetValue("Gato Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.Parrot && (player.FindBuffIndex(BuffID.PetParrot) == -1))
-            {
-                if (!modPlayer.GoldEnchant || !Soulcheck.GetValue("Parrot Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.Puppy && player.FindBuffIndex(BuffID.Puppy) == -1)
-            {
-                if (!modPlayer.RedEnchant || !Soulcheck.GetValue("Puppy Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.CompanionCube && player.FindBuffIndex(BuffID.CompanionCube) == -1)
-            {
-                if (!modPlayer.VortexEnchant || !Soulcheck.GetValue("Companion Cube Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.DD2PetDragon && player.FindBuffIndex(BuffID.PetDD2Dragon) == -1)
-            {
-                if (!modPlayer.ValhallaEnchant || !Soulcheck.GetValue("Dragon Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.BabySkeletronHead && player.FindBuffIndex(BuffID.BabySkeletronHead) == -1)
-            {
-                if (!modPlayer.NecroEnchant || !Soulcheck.GetValue("Baby Skeletron  Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.BabyDino && player.FindBuffIndex(BuffID.BabyDinosaur) == -1)
-            {
-                if (!modPlayer.FossilEnchant || !Soulcheck.GetValue("Baby Dino Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.BabyEater && player.FindBuffIndex(BuffID.BabyEater) == -1)
-            {
-                if (!modPlayer.ShadowEnchant || !Soulcheck.GetValue("Baby Eater Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.ShadowOrb && player.FindBuffIndex(BuffID.ShadowOrb) == -1)
-            {
-                if (!modPlayer.ShadowEnchant || !Soulcheck.GetValue("Shadow Orb Pet"))
-                {
-                    projectile.Kill();
-                }
-            }
-
-            if (projectile.type == ProjectileID.SuspiciousTentacle && player.FindBuffIndex(BuffID.SuspiciousTentacle) == -1)
-            {
-                if (!modPlayer.CosmoForce || !Soulcheck.GetValue("Suspicious Looking Eye Pet"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             /*
-
             if (projectile.type == ProjectileID.ZephyrFish && player.FindBuffIndex(127) == -1)
             {
                 if (!modPlayer.FishPet)
@@ -621,10 +376,7 @@ namespace FargowiltasSouls.Projectiles
                     projectile.Kill();
                     return;
                 }
-            }
-
-            */
-
+            }*/
 
             #endregion
 
@@ -951,12 +703,14 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
+        private static int[] noShard = { ProjectileID.CrystalShard };
+
         public override void Kill(Projectile projectile, int timeLeft)
         {
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.CobaltEnchant && projectile.type != ProjectileID.CrystalShard && projectile.friendly && projectile.damage > 0  && !Rotate && Main.rand.Next(4) == 0)
+            if (modPlayer.CobaltEnchant && Array.IndexOf(noShard, projectile.type) <= -1 && projectile.friendly && projectile.damage > 0  && !Rotate && Main.rand.Next(4) == 0)
             {
                 int damage = 50;
 

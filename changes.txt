@@ -65,3 +65,5 @@
 -gold added parrot
 
 bug fixed where things would shoot too fast
+
+added Force of Will, Shadow Force, Terra Force, chnaged all Forces, changed SoT

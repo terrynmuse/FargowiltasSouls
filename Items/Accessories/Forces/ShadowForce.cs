@@ -66,14 +66,14 @@ Summons a pet Black Cat, Baby Eater of Souls, Shadow Orb, Baby Skeletron Head, C
             player.setApprenticeT3 = true;
             //shadow shoot meme
             modPlayer.DarkEnchant = true;
-            modPlayer.AddPet("Black Cat Pet", BuffID.BlackCat, ProjectileID.BlackCat);
-            modPlayer.AddPet("Baby Eater Pet", BuffID.BabyEater, ProjectileID.BabyEater);
-            modPlayer.AddPet("Shadow Orb Pet", BuffID.ShadowOrb, ProjectileID.ShadowOrb);
-            modPlayer.AddPet("Baby Skeletron  Pet", BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
-            modPlayer.AddPet("Cursed Sapling Pet", BuffID.CursedSapling, ProjectileID.CursedSapling);
-            modPlayer.AddPet("Eye Spring Pet", BuffID.EyeballSpring, ProjectileID.EyeSpring);
-            modPlayer.AddPet("Gato Pet", BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
-            modPlayer.AddPet("Flickerwick Pet", BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
+            modPlayer.AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
+            modPlayer.AddPet("Baby Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
+            modPlayer.AddPet("Shadow Orb Pet", hideVisual, BuffID.ShadowOrb, ProjectileID.ShadowOrb);
+            modPlayer.AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
+            modPlayer.AddPet("Cursed Sapling Pet", hideVisual, BuffID.CursedSapling, ProjectileID.CursedSapling);
+            modPlayer.AddPet("Eye Spring Pet", hideVisual, BuffID.EyeballSpring, ProjectileID.EyeSpring);
+            modPlayer.AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
+            modPlayer.AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
         }
 
         public override void AddRecipes()

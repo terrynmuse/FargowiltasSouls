@@ -146,7 +146,10 @@
     <Compile Include="Items\Accessories\Forces\EarthForce.cs" />
     <Compile Include="Items\Accessories\Forces\LifeForce.cs" />
     <Compile Include="Items\Accessories\Forces\NatureForce.cs" />
+    <Compile Include="Items\Accessories\Forces\ShadowForce.cs" />
     <Compile Include="Items\Accessories\Forces\SpiritForce.cs" />
+    <Compile Include="Items\Accessories\Forces\TerraForce.cs" />
+    <Compile Include="Items\Accessories\Forces\WillForce.cs" />
     <Compile Include="Items\Accessories\Infinity.cs" />
     <Compile Include="Items\Accessories\QueenStinger.cs" />
     <Compile Include="Items\Accessories\Souls\ArchWizardsSoul.cs" />

@@ -34,7 +34,7 @@ Summons a pet Seedling");
             modPlayer.FlowerBoots();
             //herb double
             modPlayer.ChloroEnchant = true;
-            modPlayer.AddPet("Seedling Pet", BuffID.PetSapling, ProjectileID.Sapling);
+            modPlayer.AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
         }
 		
 		public override void AddRecipes()

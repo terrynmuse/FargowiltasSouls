@@ -29,7 +29,7 @@ Summons a Baby Skeletron Head");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.NecroEnchant = true;
-            modPlayer.AddPet("Baby Skeletron  Pet", BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
+            modPlayer.AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
         }
 
         public override void AddRecipes()

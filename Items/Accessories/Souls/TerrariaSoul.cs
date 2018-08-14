@@ -238,42 +238,36 @@ Most other effects of material Forces");
             //minion and freeze time
             modPlayer.StardustEnchant = true;
             modPlayer.StardustEffect();
-            
-
-            if (!hideVisual)
-            {
-                modPlayer.AddPet("Baby Face Monster Pet", BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
-                modPlayer.AddPet("Crimson Heart Pet", BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
-                modPlayer.AddPet("Baby Penguin Pet", BuffID.BabyPenguin, ProjectileID.Penguin);
-                modPlayer.AddPet("Baby Snowman Pet", BuffID.BabySnowman, ProjectileID.BabySnowman);
-                modPlayer.AddPet("Seedling Pet", BuffID.PetSapling, ProjectileID.Sapling);
-                modPlayer.AddPet("Truffle Pet", BuffID.BabyTruffle, ProjectileID.Truffle);
-                modPlayer.AddPet("Squashling Pet", BuffID.Squashling, ProjectileID.Squashling);
-                modPlayer.AddPet("Baby Hornet Pet", BuffID.BabyHornet, ProjectileID.BabyHornet);
-                modPlayer.AddPet("Spider Pet", BuffID.PetSpider, ProjectileID.Spider);
-                modPlayer.AddPet("Turtle Pet", BuffID.PetTurtle, ProjectileID.Turtle);
-                modPlayer.AddPet("Lizard Pet", BuffID.PetLizard, ProjectileID.PetLizard);
-                modPlayer.AddPet("Baby Dino Pet", BuffID.BabyDinosaur, ProjectileID.BabyDino);
-                modPlayer.AddPet("Fairy Pet", BuffID.FairyBlue, ProjectileID.BlueFairy);
-                modPlayer.AddPet("Tiki Pet", BuffID.TikiSpirit, ProjectileID.TikiSpirit);
-                modPlayer.AddPet("Wisp Pet", BuffID.Wisp, ProjectileID.Wisp);
-                modPlayer.AddPet("Black Cat Pet", BuffID.BlackCat, ProjectileID.BlackCat);
-                modPlayer.AddPet("Baby Eater Pet", BuffID.BabyEater, ProjectileID.BabyEater);
-                modPlayer.AddPet("Shadow Orb Pet", BuffID.ShadowOrb, ProjectileID.ShadowOrb);
-                modPlayer.AddPet("Baby Skeletron  Pet", BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
-                modPlayer.AddPet("Cursed Sapling Pet", BuffID.CursedSapling, ProjectileID.CursedSapling);
-                modPlayer.AddPet("Eye Spring Pet", BuffID.EyeballSpring, ProjectileID.EyeSpring);
-                modPlayer.AddPet("Gato Pet", BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
-                modPlayer.AddPet("Flickerwick Pet", BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
-                modPlayer.AddPet("Magic Lantern Pet", BuffID.MagicLantern, ProjectileID.MagicLantern);
-                modPlayer.AddPet("Parrot Pet", BuffID.PetParrot, ProjectileID.Parrot);
-                modPlayer.AddPet("Mini Minotaur Pet", BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
-                modPlayer.AddPet("Puppy Pet", BuffID.Puppy, ProjectileID.Puppy);
-                modPlayer.AddPet("Dragon Pet", BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
-                modPlayer.AddPet("Companion Cube Pet", BuffID.CompanionCube, ProjectileID.CompanionCube);
-                modPlayer.AddPet("Suspicious Looking Eye Pet", BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
-            }
-            
+            modPlayer.AddPet("Baby Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
+            modPlayer.AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
+            modPlayer.AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
+            modPlayer.AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
+            modPlayer.AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
+            modPlayer.AddPet("Truffle Pet", hideVisual, BuffID.BabyTruffle, ProjectileID.Truffle);
+            modPlayer.AddPet("Squashling Pet", hideVisual, BuffID.Squashling, ProjectileID.Squashling);
+            modPlayer.AddPet("Baby Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
+            modPlayer.AddPet("Spider Pet", hideVisual, BuffID.PetSpider, ProjectileID.Spider);
+            modPlayer.AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
+            modPlayer.AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
+            modPlayer.AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
+            modPlayer.AddPet("Fairy Pet", hideVisual, BuffID.FairyBlue, ProjectileID.BlueFairy);
+            modPlayer.AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
+            modPlayer.AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
+            modPlayer.AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
+            modPlayer.AddPet("Baby Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
+            modPlayer.AddPet("Shadow Orb Pet", hideVisual, BuffID.ShadowOrb, ProjectileID.ShadowOrb);
+            modPlayer.AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
+            modPlayer.AddPet("Cursed Sapling Pet", hideVisual, BuffID.CursedSapling, ProjectileID.CursedSapling);
+            modPlayer.AddPet("Eye Spring Pet", hideVisual, BuffID.EyeballSpring, ProjectileID.EyeSpring);
+            modPlayer.AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
+            modPlayer.AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
+            modPlayer.AddPet("Magic Lantern Pet", hideVisual, BuffID.MagicLantern, ProjectileID.MagicLantern);
+            modPlayer.AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
+            modPlayer.AddPet("Mini Minotaur Pet", hideVisual, BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
+            modPlayer.AddPet("Puppy Pet", hideVisual, BuffID.Puppy, ProjectileID.Puppy);
+            modPlayer.AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
+            modPlayer.AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
+            modPlayer.AddPet("Suspicious Looking Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
         }
 
         public override void AddRecipes()

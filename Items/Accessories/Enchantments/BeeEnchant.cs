@@ -32,7 +32,7 @@ Summons a pet Baby Hornet");
             player.strongBees = true;
             //bees ignore defense
             modPlayer.BeeEnchant = true;
-            modPlayer.AddPet("Baby Hornet Pet", BuffID.BabyHornet, ProjectileID.BabyHornet);
+            modPlayer.AddPet("Baby Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
         }
 		
 		public override void AddRecipes()

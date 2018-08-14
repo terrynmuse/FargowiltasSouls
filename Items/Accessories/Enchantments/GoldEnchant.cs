@@ -115,7 +115,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             //discount card
             player.discount = true;
             modPlayer.AllDamageUp(Damage);
-            modPlayer.AddPet("Parrot Pet", BuffID.PetParrot, ProjectileID.Parrot);
+            modPlayer.AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
         }
 
         public override void AddRecipes()

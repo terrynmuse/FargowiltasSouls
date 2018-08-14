@@ -32,8 +32,8 @@ Summons a Baby Face Monster and a Crimson Heart");
             player.crimsonRegen = true;
             //increase heart heal
             modPlayer.CrimsonEnchant = true;
-            modPlayer.AddPet("Baby Face Monster Pet", BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
-            modPlayer.AddPet("Crimson Heart Pet", BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
+            modPlayer.AddPet("Baby Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
+            modPlayer.AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
         }
 		
 		public override void AddRecipes()

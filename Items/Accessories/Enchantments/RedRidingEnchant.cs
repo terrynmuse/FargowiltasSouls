@@ -44,7 +44,7 @@ Summons a Puppy");
             }
 
             modPlayer.RedEnchant = true;
-            modPlayer.AddPet("Puppy Pet", BuffID.Puppy, ProjectileID.Puppy);
+            modPlayer.AddPet("Puppy Pet", hideVisual, BuffID.Puppy, ProjectileID.Puppy);
         }
 
         public override void AddRecipes()

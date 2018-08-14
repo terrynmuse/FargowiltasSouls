@@ -53,7 +53,7 @@ Summons a magic lantern");
             }
 
             modPlayer.MinerEnchant = true;
-            modPlayer.AddPet("Magic Lantern Pet", BuffID.MagicLantern, ProjectileID.MagicLantern);
+            modPlayer.AddPet("Magic Lantern Pet", hideVisual, BuffID.MagicLantern, ProjectileID.MagicLantern);
         }
 
         public override void AddRecipes()

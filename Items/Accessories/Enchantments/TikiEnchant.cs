@@ -29,7 +29,7 @@ Summons a Tiki Spirit");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.TikiEnchant = true;
-            modPlayer.AddPet("Tiki Pet", BuffID.TikiSpirit, ProjectileID.TikiSpirit);
+            modPlayer.AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
         }
 
         public override void AddRecipes()

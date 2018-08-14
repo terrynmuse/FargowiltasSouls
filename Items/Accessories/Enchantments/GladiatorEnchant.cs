@@ -29,7 +29,7 @@ Summons a pet Minotaur");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.GladEnchant = true;
-            modPlayer.AddPet("Mini Minotaur Pet", BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
+            modPlayer.AddPet("Mini Minotaur Pet", hideVisual, BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
         }
 
         public override void AddRecipes()

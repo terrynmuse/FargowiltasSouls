@@ -34,8 +34,8 @@ Summons a pet Lizard and Turtle");
             player.thorns = 1f;
             player.turtleThorns = true;
             player.aggro += 50;
-            modPlayer.AddPet("Turtle Pet", BuffID.PetTurtle, ProjectileID.Turtle);
-            modPlayer.AddPet("Lizard Pet", BuffID.PetLizard, ProjectileID.PetLizard);
+            modPlayer.AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
+            modPlayer.AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
         }
 
         public override void AddRecipes()

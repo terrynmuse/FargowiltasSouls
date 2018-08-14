@@ -33,7 +33,7 @@ Summons a flickerwick to provide light");
             player.setApprenticeT3 = true;
             //shadow shoot meme
             modPlayer.DarkEnchant = true;
-            modPlayer.AddPet("Flickerwick Pet", BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
+            modPlayer.AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
         }
 
         public override void AddRecipes()

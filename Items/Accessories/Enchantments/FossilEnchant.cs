@@ -36,7 +36,7 @@ Summons a pet Baby Dino");
 			modPlayer.FossilEnchant = true;
             //bone zone
             modPlayer.FossilEffect(10);
-            modPlayer.AddPet("Baby Dino Pet", BuffID.BabyDinosaur, ProjectileID.BabyDino);
+            modPlayer.AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
         }
 		
 		public override void AddRecipes()

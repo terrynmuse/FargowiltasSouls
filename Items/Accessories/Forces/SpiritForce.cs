@@ -52,10 +52,10 @@ Summons a pet Baby Dino, Magical Fairy, Tiki Spirit, and Wisp");
             modPlayer.TikiEnchant = true;
             //spectre orbs
             modPlayer.SpectreEffect();
-            modPlayer.AddPet("Baby Dino Pet", BuffID.BabyDinosaur, ProjectileID.BabyDino);
-            modPlayer.AddPet("Fairy Pet", BuffID.FairyBlue, ProjectileID.BlueFairy);
-            modPlayer.AddPet("Tiki Pet", BuffID.TikiSpirit, ProjectileID.TikiSpirit);
-            modPlayer.AddPet("Wisp Pet", BuffID.Wisp, ProjectileID.Wisp);
+            modPlayer.AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
+            modPlayer.AddPet("Fairy Pet", hideVisual, BuffID.FairyBlue, ProjectileID.BlueFairy);
+            modPlayer.AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
+            modPlayer.AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
         }
 
         public override void AddRecipes()

@@ -33,7 +33,7 @@ Summons a Companion Cube Pet");
 			modPlayer.VortexEnchant = true;
             //stealth memes
             modPlayer.VortexEffect();
-            modPlayer.AddPet("Companion Cube Pet", BuffID.CompanionCube, ProjectileID.CompanionCube);
+            modPlayer.AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
         }
 		
 		public override void AddRecipes()

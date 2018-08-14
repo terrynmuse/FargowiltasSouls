@@ -30,7 +30,7 @@ Summons a pet Black cat");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.NinjaEnchant = true;
-            modPlayer.AddPet("Black Cat Pet", BuffID.BlackCat, ProjectileID.BlackCat);
+            modPlayer.AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
         }
 
         public override void AddRecipes()

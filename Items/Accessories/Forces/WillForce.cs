@@ -102,11 +102,11 @@ Summons a pet Magic Lantern, Parrot, Minotaur, Puppy, and Dragon");
             //knockback and immune memes
             modPlayer.ValhallaEnchant = true;
             player.shinyStone = true;
-            modPlayer.AddPet("Magic Lantern Pet", BuffID.MagicLantern, ProjectileID.MagicLantern);
-            modPlayer.AddPet("Parrot Pet", BuffID.PetParrot, ProjectileID.Parrot);
-            modPlayer.AddPet("Mini Minotaur Pet", BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
-            modPlayer.AddPet("Puppy Pet", BuffID.Puppy, ProjectileID.Puppy);
-            modPlayer.AddPet("Dragon Pet", BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
+            modPlayer.AddPet("Magic Lantern Pet", hideVisual, BuffID.MagicLantern, ProjectileID.MagicLantern);
+            modPlayer.AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
+            modPlayer.AddPet("Mini Minotaur Pet", hideVisual, BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
+            modPlayer.AddPet("Puppy Pet", hideVisual, BuffID.Puppy, ProjectileID.Puppy);
+            modPlayer.AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
         }
 
         public override void AddRecipes()

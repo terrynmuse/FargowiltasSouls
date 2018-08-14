@@ -30,7 +30,7 @@ Summons a Wisp to provide light");
         {
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.SpectreEffect();
-            modPlayer.AddPet("Wisp Pet", BuffID.Wisp, ProjectileID.Wisp);
+            modPlayer.AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
         }
 		
 		public override void AddRecipes()

@@ -35,8 +35,8 @@ Summons a baby penguin and snowman");
             //icicles
             modPlayer.FrostEnchant = true;
             modPlayer.FrostEffect(50);
-            modPlayer.AddPet("Baby Penguin Pet", BuffID.BabyPenguin, ProjectileID.Penguin);
-            modPlayer.AddPet("Baby Snowman Pet", BuffID.BabySnowman, ProjectileID.BabySnowman);
+            modPlayer.AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
+            modPlayer.AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
         }
 
         public override void AddRecipes()

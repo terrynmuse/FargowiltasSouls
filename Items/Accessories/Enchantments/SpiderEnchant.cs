@@ -29,7 +29,7 @@ Summons a pet Spider");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.SpiderEnchant = true;
-            modPlayer.AddPet("Spider Pet", BuffID.PetSpider, ProjectileID.Spider);
+            modPlayer.AddPet("Spider Pet", hideVisual, BuffID.PetSpider, ProjectileID.Spider);
         }
 
         public override void AddRecipes()
