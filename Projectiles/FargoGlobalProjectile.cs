@@ -260,10 +260,15 @@ namespace FargowiltasSouls.Projectiles
                     }
                 }
 
-                if(projectile.type == ProjectileID.Blizzard || (modPlayer.TerrariaSoul && Soulcheck.GetValue("Orichalcum Fireballs")))
+                if (projectile.type == ProjectileID.Blizzard && modPlayer.FrostEnchant && Soulcheck.GetValue("Frost Icicles"))
                 {
                     //projectile.rotation = (Main.MouseWorld - projectile.Center).ToRotation() + 90;
-                    projectile.timeLeft++;
+                    projectile.timeLeft = 2;
+                }
+
+                if ((modPlayer.TerrariaSoul && Soulcheck.GetValue("Orichalcum Fireballs")))
+                {
+                    projectile.timeLeft = 2;
                 }
 
                 retVal = false;
@@ -371,7 +376,7 @@ namespace FargowiltasSouls.Projectiles
 
             if (projectile.type == mod.ProjectileType("Chlorofuck"))
             {
-                if (!modPlayer.ChloroEnchant || !Soulcheck.GetValue("Chlorophyte Leaf Crystal"))
+                if (!(modPlayer.ChloroEnchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue("Chlorophyte Leaf Crystal"))
                 {
                     projectile.Kill();
                     return;
@@ -771,7 +776,7 @@ namespace FargowiltasSouls.Projectiles
                 XWay(8, projectile.Center, ProjectileID.CrystalShard, 5, damage, 2f);
             }
 
-            if(modPlayer.FrostEnchant && Rotate && projectile.type == ProjectileID.Blizzard)
+            if(Rotate && projectile.type == ProjectileID.Blizzard)
             {
                 modPlayer.IcicleCount--;
             }

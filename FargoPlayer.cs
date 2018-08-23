@@ -983,7 +983,7 @@ namespace FargowiltasSouls
                 player.immune = false;
             }
 
-            if (NecroEnchant && Soulcheck.GetValue("Necro Guardian") && necroCD == 0 && (proj.ranged || ShadowForce) && proj.type != mod.ProjectileType("DungeonGuardian"))
+            if (NecroEnchant && Soulcheck.GetValue("Necro Guardian") && necroCD == 0 && (proj.ranged || ShadowForce || TerrariaSoul) && proj.type != mod.ProjectileType("DungeonGuardian"))
             {
                 necroCD = 1200;
                 float screenX = Main.screenPosition.X;
@@ -1016,7 +1016,12 @@ namespace FargowiltasSouls
 
             if(Soulcheck.GetValue("Spectre Orbs"))
             {
-                if (SpectreEnchant && !SpiritForce && proj.magic)
+                if ((SpiritForce || TerrariaSoul) && proj.type != ProjectileID.SpectreWrath)
+                {
+                    SpectreHeal(target, proj);
+                    SpectreHurt(proj);
+                }
+                else if (SpectreEnchant && !SpiritForce && proj.magic)
                 {
                     if (crit)
                     {
@@ -1037,11 +1042,7 @@ namespace FargowiltasSouls
                     }
                 }
 
-                if (SpiritForce && proj.type != ProjectileID.SpectreWrath)
-                {
-                    SpectreHeal(target, proj);
-                    SpectreHurt(proj);
-                }
+                
             }
 
             
@@ -1331,13 +1332,17 @@ namespace FargowiltasSouls
 
         public void AddPet(string toggle, bool vanityToggle, int buff, int proj)
         {
-            if(!TerrariaSoul && vanityToggle)
+            if(player.ownedProjectileCounts[proj] >= 1)
             {
-                KillPet(proj);
+                if (!TerrariaSoul && vanityToggle)
+                {
+                    KillPet(proj);
+                }
+
                 return;
             }
 
-            if (player.ownedProjectileCounts[proj] < 1 && Soulcheck.GetValue(toggle) && player.FindBuffIndex(buff) == -1)
+            if (Soulcheck.GetValue(toggle) && player.FindBuffIndex(buff) == -1)
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, 0, 0f, player.whoAmI);
             }
@@ -1367,12 +1372,14 @@ namespace FargowiltasSouls
 
         public void AddMinion(string toggle, int proj, int damage, float knockback)
         {
-            if (player.whoAmI == Main.myPlayer)
+            if(player.ownedProjectileCounts[proj] >= 1)
             {
-                if (Soulcheck.GetValue(toggle) && player.ownedProjectileCounts[proj] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, damage, knockback, Main.myPlayer);
-                }
+                return;
+            }
+
+            if (Soulcheck.GetValue(toggle))
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, damage, knockback, Main.myPlayer);
             }
         }
 
@@ -1637,6 +1644,9 @@ namespace FargowiltasSouls
             player.strongBees = true;
             //bees ignore defense
             BeeEnchant = true;
+
+            if (TerrariaSoul) return;
+                
             AddPet("Baby Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
         }
 
@@ -1760,11 +1770,11 @@ namespace FargowiltasSouls
         {
             AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
             FlowerBoots();
-            //herb double
-            ChloroEnchant = true;
-
+           
             if (TerrariaSoul) return;
 
+            //herb double
+            ChloroEnchant = true;
             AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
         }
 
@@ -1846,7 +1856,8 @@ namespace FargowiltasSouls
         {
             player.setApprenticeT2 = true;
             player.setApprenticeT3 = true;
-            DarkEnchant = true;
+            
+            if (TerrariaSoul) return;
 
             //shadow shoot meme
             if (Soulcheck.GetValue("Dark Artist Effect"))
@@ -1889,8 +1900,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (TerrariaSoul) return;
-
+            DarkEnchant = true;
             AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
         }
 
@@ -1970,6 +1980,7 @@ namespace FargowiltasSouls
                     p.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
                     p.width = 10;
                     p.height = 10;
+                    p.timeLeft = 2;
 
                     icicles[IcicleCount] = p;
                     IcicleCount++;
@@ -2015,7 +2026,6 @@ namespace FargowiltasSouls
 
         public void GoldEffect(bool hideVisual)
         {
-            GoldEnchant = true;
             //gold ring
             player.goldRing = true;
             //lucky coin
@@ -2025,18 +2035,37 @@ namespace FargowiltasSouls
 
             if (TerrariaSoul) return;
 
+            GoldEnchant = true;
             AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
         }
 
         public void HallowEffect(bool hideVisual, int dmg)
         {
             HallowEnchant = true;
-            AddMinion("Hallowed Shield", mod.ProjectileType("HallowShield"), 0, 0f);
             AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(dmg * player.minionDamage), 0f);
 
             //reflect proj
             if (Soulcheck.GetValue("Hallowed Shield"))
             {
+                const int focusRadius = 50;
+
+                if (player.velocity.X < 1.5f && player.velocity.Y < 1.5f)
+                {
+                    for (int i = 0; i < 25; i++)
+                    {
+                        Vector2 offset = new Vector2();
+                        double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                        offset.X += (float)(Math.Sin(angle) * focusRadius);
+                        offset.Y += (float)(Math.Cos(angle) * focusRadius);
+                        Dust dust = Main.dust[Dust.NewDust(
+                            player.Center + offset - new Vector2(4, 4), 0, 0,
+                            DustID.GoldFlame, 0, 0, 100, Color.White, 1f
+                            )];
+                        dust.velocity = player.velocity;
+                        dust.noGravity = true;
+                    }
+                }
+
                 float distance = 5f * 16;
 
                 Main.projectile.Where(x => x.active && x.hostile).ToList().ForEach(x =>
@@ -2085,12 +2114,6 @@ namespace FargowiltasSouls
 
         public void IronEffect()
         {
-            if(!CosmoForce)
-            {
-                //EoC Shield
-                player.dash = 2;
-            }
-            
             //item attract
             IronEnchant = true;
 
@@ -2162,7 +2185,11 @@ namespace FargowiltasSouls
                     //}
                 }
             //}
-            
+
+            if (CosmoForce || TerrariaSoul) return;
+
+            //EoC Shield
+            player.dash = 2;
         }
 
         public void JungleEffect()
@@ -2370,10 +2397,11 @@ namespace FargowiltasSouls
             {
                 int[] fireballs = { ProjectileID.BallofFire, ProjectileID.BallofFrost, ProjectileID.CursedFlameFriendly };
 
+                int ballAmt = 4;
                 float degree;
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < ballAmt; i++)
                 {
-                    degree = (360 / 4) * i;
+                    degree = (360 / ballAmt) * i;
                     Projectile fireball = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, fireballs[Main.rand.Next(3)], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
                     fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
                     fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
@@ -2494,18 +2522,11 @@ namespace FargowiltasSouls
 
         public void ShinobiEffect(bool hideVisual)
         {
-            ShinobiEnchant = true;
-
-            
             player.setMonkT2 = true;
             player.setMonkT3 = true;
             //ninja gear
             player.blackBelt = true;
             player.spikedBoots = 2;
-
-            if (TerrariaSoul) return;
-
-            player.dash = 1;
 
             //tele through wall until open space on dash into wall
             if (Soulcheck.GetValue("Shinobi Through Walls") && player.dashDelay > 0 && player.velocity.X == 0)
@@ -2536,6 +2557,8 @@ namespace FargowiltasSouls
 
             if (TerrariaSoul) return;
 
+            player.dash = 1;
+            ShinobiEnchant = true;
             AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
         }
 
@@ -2555,8 +2578,11 @@ namespace FargowiltasSouls
 
         public void SolarEffect()
         {
-            SolarEnchant = true;
-
+            if(!TerrariaSoul)
+            {
+                SolarEnchant = true;
+            }
+            
             if (!Soulcheck.GetValue("Solar Shield")) return;
 
             player.AddBuff(BuffID.SolarShield3, 5, false);
@@ -2619,8 +2645,6 @@ namespace FargowiltasSouls
         public void SpectreEffect(bool hideVisual)
         {
             SpectreEnchant = true;
-
-            
 
             if (!SpiritForce && !TerrariaSoul)
             {
@@ -2874,8 +2898,6 @@ namespace FargowiltasSouls
             player.turtleThorns = true;
             player.aggro += 50;
 
-            
-
             if (Soulcheck.GetValue("Turtle Shell Buff") && IsStandingStill && !player.controlUseItem)
             {
                 player.AddBuff(mod.BuffType("ShellHide"), 2);
@@ -2891,12 +2913,12 @@ namespace FargowiltasSouls
         {
             player.setSquireT2 = true;
             player.setSquireT3 = true;
-            //knockback memes
-            ValhallaEnchant = true;
             player.shinyStone = true;
 
             if (TerrariaSoul) return;
 
+            //knockback memes
+            ValhallaEnchant = true;
             AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
         }
 
@@ -2905,9 +2927,6 @@ namespace FargowiltasSouls
             //portal spawn
             VortexEnchant = true;
             //stealth memes
-
-            
-
             if ((player.controlDown && player.releaseDown))
             {
                 if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15)

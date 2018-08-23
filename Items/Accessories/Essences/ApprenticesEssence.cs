@@ -44,94 +44,48 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override void AddRecipes()
         {
-            ModRecipe magic1 = new ModRecipe(mod);
+            ModRecipe recipe = new ModRecipe(mod);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.Instance.CalamityLoaded)
-                {
-                    //both
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AzureGauntlet"));
-                    magic1.AddIngredient(ItemID.WizardHat);
-                    magic1.AddIngredient(ItemID.ManaFlower);
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("ManaOverloader"));
-                    magic1.AddIngredient(ItemID.SorcererEmblem);
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MagikStaffAmber"));
-                    magic1.AddRecipeGroup("FargowiltasSouls:AnySilverStaff");
-                    magic1.AddRecipeGroup("FargowiltasSouls:AnyGoldStaff");
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("SkyGlaze"));
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("PlasmaRod"));
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DetachedUFOBlaster"));
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MagicConch"));
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("GaussSpark"));
-                    magic1.AddIngredient(ItemID.Flamelash);
-                }
-
-                if (!Fargowiltas.Instance.CalamityLoaded)
-                {
-                    //just thorium
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AzureGauntlet"));
-                    magic1.AddIngredient(ItemID.WizardHat);
-                    magic1.AddIngredient(ItemID.ManaFlower);
-                    magic1.AddIngredient(ItemID.SorcererEmblem);
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MagikStaffAmber"));
-                    magic1.AddRecipeGroup("FargowiltasSouls:AnySilverStaff");
-                    magic1.AddRecipeGroup("FargowiltasSouls:AnyGoldStaff");
-                    magic1.AddIngredient(ItemID.SpaceGun);
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DetachedUFOBlaster"));
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MagicConch"));
-                    magic1.AddIngredient(ItemID.BeeGun);
-                    magic1.AddIngredient(ItemID.BookofSkulls);
-                    magic1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("GaussSpark"));
-                    magic1.AddIngredient(ItemID.Flamelash);
-                }
+                //just thorium
+                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AzureGauntlet"));
+                recipe.AddIngredient(ItemID.WizardHat);
+                recipe.AddIngredient(ItemID.ManaFlower);
+                recipe.AddIngredient(ItemID.SorcererEmblem);
+                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MagikStaffAmber"));
+                recipe.AddRecipeGroup("FargowiltasSouls:AnySilverStaff");
+                recipe.AddRecipeGroup("FargowiltasSouls:AnyGoldStaff");
+                recipe.AddIngredient(ItemID.SpaceGun);
+                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DetachedUFOBlaster"));
+                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MagicConch"));
+                recipe.AddIngredient(ItemID.BeeGun);
+                recipe.AddIngredient(ItemID.BookofSkulls);
+                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("GaussSpark"));
+                recipe.AddIngredient(ItemID.Flamelash);
             }
-
-            if (!Fargowiltas.Instance.ThoriumLoaded)
+            else
             {
-                if (Fargowiltas.Instance.CalamityLoaded)
-                {
-                    //just calamity
-                    magic1.AddIngredient(ItemID.WizardHat);
-                    magic1.AddIngredient(ItemID.ManaFlower);
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("ManaOverloader"));
-                    magic1.AddIngredient(ItemID.SorcererEmblem);
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("WintersFury"));
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("HarvestStaff"));
-                    magic1.AddRecipeGroup("FargowiltasSouls:AnySilverStaff");
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("CoralSpout"));
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("StormSpray"));
-                    magic1.AddRecipeGroup("FargowiltasSouls:AnyGoldStaff");
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("SkyGlaze"));
-                    magic1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("PlasmaRod"));
-                    magic1.AddIngredient(ItemID.BeeGun);
-                    magic1.AddIngredient(ItemID.Flamelash);
-                }
-
-                else
-                {
-                    //no others
-                    magic1.AddIngredient(ItemID.WizardHat);
-                    magic1.AddIngredient(ItemID.ManaFlower);
-                    magic1.AddIngredient(ItemID.SorcererEmblem);
-                    magic1.AddIngredient(ItemID.WandofSparking);
-                    magic1.AddRecipeGroup("FargowiltasSouls:AnySilverStaff");
-                    magic1.AddRecipeGroup("FargowiltasSouls:AnyGoldStaff");
-                    magic1.AddRecipeGroup("FargowiltasSouls:AnyEvilMagic");
-                    magic1.AddIngredient(ItemID.AmberStaff);
-                    magic1.AddIngredient(ItemID.SpaceGun);
-                    magic1.AddIngredient(ItemID.WaterBolt);
-                    magic1.AddIngredient(ItemID.BeeGun);
-                    magic1.AddIngredient(ItemID.BookofSkulls);
-                    magic1.AddIngredient(ItemID.MagicMissile);
-                    magic1.AddIngredient(ItemID.Flamelash);
-                }
+                //no others
+                recipe.AddIngredient(ItemID.WizardHat);
+                recipe.AddIngredient(ItemID.ManaFlower);
+                recipe.AddIngredient(ItemID.SorcererEmblem);
+                recipe.AddIngredient(ItemID.WandofSparking);
+                recipe.AddRecipeGroup("FargowiltasSouls:AnySilverStaff");
+                recipe.AddRecipeGroup("FargowiltasSouls:AnyGoldStaff");
+                recipe.AddRecipeGroup("FargowiltasSouls:AnyEvilMagic");
+                recipe.AddIngredient(ItemID.AmberStaff);
+                recipe.AddIngredient(ItemID.SpaceGun);
+                recipe.AddIngredient(ItemID.WaterBolt);
+                recipe.AddIngredient(ItemID.BeeGun);
+                recipe.AddIngredient(ItemID.BookofSkulls);
+                recipe.AddIngredient(ItemID.MagicMissile);
+                recipe.AddIngredient(ItemID.Flamelash);
             }
 
-            magic1.AddTile(TileID.TinkerersWorkbench);
-            magic1.SetResult(this);
-            magic1.AddRecipe();
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
-
     }
 }
