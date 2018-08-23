@@ -32,6 +32,7 @@ namespace FargowiltasSouls
         public bool EaterMinion;
 
         //enchantments
+        public bool petsSpawned = false;
         public bool ShadowEnchant;
         private int shadowCD = 0;
         private int shadowDeathCD = 0;
@@ -1013,32 +1014,37 @@ namespace FargowiltasSouls
                 player.statMana += 5;
             }
 
-            if (SpectreEnchant && Soulcheck.GetValue("Spectre Orbs") && !SpiritForce && proj.magic)
+            if(Soulcheck.GetValue("Spectre Orbs"))
             {
-                if (crit)
+                if (SpectreEnchant && !SpiritForce && proj.magic)
                 {
-                    SpecHeal = true;
-                    HealTown++;
-                }
-                else
-                {
-                    if (HealTown != 0 && HealTown <= 10)
+                    if (crit)
                     {
+                        SpecHeal = true;
                         HealTown++;
                     }
                     else
                     {
-                        SpecHeal = false;
-                        HealTown = 0;
+                        if (HealTown != 0 && HealTown <= 10)
+                        {
+                            HealTown++;
+                        }
+                        else
+                        {
+                            SpecHeal = false;
+                            HealTown = 0;
+                        }
                     }
+                }
+
+                if (SpiritForce && proj.type != ProjectileID.SpectreWrath)
+                {
+                    SpectreHeal(target, proj);
+                    SpectreHurt(proj);
                 }
             }
 
-            if(SpiritForce && Soulcheck.GetValue("Spectre Orbs") && proj.type != ProjectileID.SpectreWrath)
-            { 
-                SpectreHeal(target, proj);
-                SpectreHurt(proj);
-            }
+            
 
             if (TerrariaSoul)
             {
@@ -1325,29 +1331,38 @@ namespace FargowiltasSouls
 
         public void AddPet(string toggle, bool vanityToggle, int buff, int proj)
         {
-            if (player.whoAmI == Main.myPlayer && player.FindBuffIndex(buff) == -1)
+            if(!TerrariaSoul && vanityToggle)
             {
-                if (Soulcheck.GetValue(toggle) && !vanityToggle)
-                {
-                    if(player.ownedProjectileCounts[proj] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, 0, 0f, player.whoAmI);
-                    }
-                }
-                else if (player.ownedProjectileCounts[proj] >= 1)
-                {
-                    for(int i = 0; i < 1000; i++)
-                    {
-                        Projectile p = Main.projectile[i];
+                KillPet(proj);
+                return;
+            }
 
-                        if (p.type == proj && p.owner == player.whoAmI)
-                        {
-                            p.Kill();
-                            break;
-                        }
+            if (player.ownedProjectileCounts[proj] < 1 && Soulcheck.GetValue(toggle) && player.FindBuffIndex(buff) == -1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, 0, 0f, player.whoAmI);
+            }
+
+            if (proj == ProjectileID.StardustGuardian && TerrariaSoul) return;
+
+            petsSpawned = true;
+        }
+
+        public void KillPet(int proj)
+        {
+            if (player.ownedProjectileCounts[proj] >= 1)
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    Projectile p = Main.projectile[i];
+
+                    if (p.type == proj && p.owner == player.whoAmI)
+                    {
+                        p.Kill();
+                        break;
                     }
                 }
             }
+            petsSpawned = false;
         }
 
         public void AddMinion(string toggle, int proj, int damage, float knockback)
@@ -1549,6 +1564,74 @@ namespace FargowiltasSouls
             }
         }
 
+        public void TerrariaPets(bool hideVisual)
+        {
+            if (hideVisual && petsSpawned)
+            {
+                KillPet(ProjectileID.BabyHornet);
+                KillPet(ProjectileID.BabyDino);
+                KillPet(ProjectileID.Penguin);
+                KillPet(ProjectileID.BabySnowman);
+                KillPet(ProjectileID.BlackCat);
+                KillPet(ProjectileID.Squashling);
+                KillPet(ProjectileID.BabyEater);
+                KillPet(ProjectileID.ShadowOrb);
+                KillPet(ProjectileID.Truffle);
+                KillPet(ProjectileID.Wisp);
+                KillPet(ProjectileID.Spider);
+                KillPet(ProjectileID.CursedSapling);
+                KillPet(ProjectileID.EyeSpring);
+                KillPet(ProjectileID.TikiSpirit);
+                KillPet(ProjectileID.Turtle);
+                KillPet(ProjectileID.PetLizard);
+                KillPet(ProjectileID.SuspiciousTentacle);
+                KillPet(ProjectileID.CompanionCube);
+                KillPet(ProjectileID.DD2PetDragon);
+                KillPet(ProjectileID.DD2PetGato);
+                KillPet(ProjectileID.BabySkeletronHead);
+                KillPet(ProjectileID.MagicLantern);
+                KillPet(ProjectileID.BlueFairy);
+                KillPet(ProjectileID.Parrot);
+                KillPet(ProjectileID.MiniMinotaur);
+                KillPet(ProjectileID.DD2PetGhost);
+                KillPet(ProjectileID.BabyFaceMonster);
+                KillPet(ProjectileID.CrimsonHeart);
+                KillPet(ProjectileID.Sapling);
+            }
+            else if(!hideVisual && !petsSpawned)
+            {
+                AddPet("Baby Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
+                AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
+                AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
+                AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
+                AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
+                AddPet("Squashling Pet", hideVisual, BuffID.Squashling, ProjectileID.Squashling);
+                AddPet("Baby Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
+                AddPet("Shadow Orb Pet", hideVisual, BuffID.ShadowOrb, ProjectileID.ShadowOrb);
+                AddPet("Truffle Pet", hideVisual, BuffID.BabyTruffle, ProjectileID.Truffle);
+                AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
+                AddPet("Spider Pet", hideVisual, BuffID.PetSpider, ProjectileID.Spider);
+                AddPet("Cursed Sapling Pet", hideVisual, BuffID.CursedSapling, ProjectileID.CursedSapling);
+                AddPet("Eye Spring Pet", hideVisual, BuffID.EyeballSpring, ProjectileID.EyeSpring);
+                AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
+                AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
+                AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
+                AddPet("Suspicious Looking Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
+                AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
+                AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
+                AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
+                AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
+                AddPet("Magic Lantern Pet", hideVisual, BuffID.MagicLantern, ProjectileID.MagicLantern);
+                AddPet("Fairy Pet", hideVisual, BuffID.FairyBlue, ProjectileID.BlueFairy);
+                AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
+                AddPet("Mini Minotaur Pet", hideVisual, BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
+                AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
+                AddPet("Baby Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
+                AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
+                AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
+            }
+        }
+
         public void BeeEffect(bool hideVisual)
         {
             player.strongBees = true;
@@ -1563,95 +1646,94 @@ namespace FargowiltasSouls
             {
                 BeetleEnchant = true;
             }
-            
-            if (Soulcheck.GetValue("Beetles"))
+
+            if (!Soulcheck.GetValue("Beetles")) return;
+
+            player.beetleDefense = true;
+            player.beetleCounter += 1f;
+            int num5 = 180;
+            if (player.beetleCounter >= num5)
             {
-                player.beetleDefense = true;
-                player.beetleCounter += 1f;
-                int num5 = 180;
-                if (player.beetleCounter >= num5)
+                if (player.beetleOrbs > 0 && player.beetleOrbs < 3)
                 {
-                    if (player.beetleOrbs > 0 && player.beetleOrbs < 3)
+                    for (int k = 0; k < 22; k++)
                     {
-                        for (int k = 0; k < 22; k++)
+                        if (player.buffType[k] >= 95 && player.buffType[k] <= 96)
                         {
-                            if (player.buffType[k] >= 95 && player.buffType[k] <= 96)
-                            {
-                                player.DelBuff(k);
-                            }
+                            player.DelBuff(k);
                         }
                     }
-                    if (player.beetleOrbs < 3)
-                    {
-                        player.AddBuff(95 + player.beetleOrbs, 5, false);
-                        player.beetleCounter = 0f;
-                    }
-                    else
-                    {
-                        player.beetleCounter = num5;
-                    }
                 }
-
-                if (!player.beetleDefense && !player.beetleOffense)
+                if (player.beetleOrbs < 3)
                 {
+                    player.AddBuff(95 + player.beetleOrbs, 5, false);
                     player.beetleCounter = 0f;
                 }
                 else
                 {
-                    player.beetleFrameCounter++;
-                    if (player.beetleFrameCounter >= 1)
+                    player.beetleCounter = num5;
+                }
+            }
+
+            if (!player.beetleDefense && !player.beetleOffense)
+            {
+                player.beetleCounter = 0f;
+            }
+            else
+            {
+                player.beetleFrameCounter++;
+                if (player.beetleFrameCounter >= 1)
+                {
+                    player.beetleFrameCounter = 0;
+                    player.beetleFrame++;
+                    if (player.beetleFrame > 2)
                     {
-                        player.beetleFrameCounter = 0;
-                        player.beetleFrame++;
-                        if (player.beetleFrame > 2)
-                        {
-                            player.beetleFrame = 0;
-                        }
+                        player.beetleFrame = 0;
                     }
-                    for (int l = player.beetleOrbs; l < 3; l++)
+                }
+                for (int l = player.beetleOrbs; l < 3; l++)
+                {
+                    player.beetlePos[l].X = 0f;
+                    player.beetlePos[l].Y = 0f;
+                }
+                for (int m = 0; m < player.beetleOrbs; m++)
+                {
+                    player.beetlePos[m] += player.beetleVel[m];
+                    Vector2[] expr_6EcCp0 = player.beetleVel;
+                    int expr_6EcCp1 = m;
+                    expr_6EcCp0[expr_6EcCp1].X = expr_6EcCp0[expr_6EcCp1].X + Main.rand.Next(-100, 101) * 0.005f;
+                    Vector2[] expr71ACp0 = player.beetleVel;
+                    int expr71ACp1 = m;
+                    expr71ACp0[expr71ACp1].Y = expr71ACp0[expr71ACp1].Y + Main.rand.Next(-100, 101) * 0.005f;
+                    float num6 = player.beetlePos[m].X;
+                    float num7 = player.beetlePos[m].Y;
+                    float num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
+                    if (num8 > 100f)
                     {
-                        player.beetlePos[l].X = 0f;
-                        player.beetlePos[l].Y = 0f;
+                        num8 = 20f / num8;
+                        num6 *= -num8;
+                        num7 *= -num8;
+                        int num9 = 10;
+                        player.beetleVel[m].X = (player.beetleVel[m].X * (num9 - 1) + num6) / num9;
+                        player.beetleVel[m].Y = (player.beetleVel[m].Y * (num9 - 1) + num7) / num9;
                     }
-                    for (int m = 0; m < player.beetleOrbs; m++)
+                    else if (num8 > 30f)
                     {
-                        player.beetlePos[m] += player.beetleVel[m];
-                        Vector2[] expr_6EcCp0 = player.beetleVel;
-                        int expr_6EcCp1 = m;
-                        expr_6EcCp0[expr_6EcCp1].X = expr_6EcCp0[expr_6EcCp1].X + Main.rand.Next(-100, 101) * 0.005f;
-                        Vector2[] expr71ACp0 = player.beetleVel;
-                        int expr71ACp1 = m;
-                        expr71ACp0[expr71ACp1].Y = expr71ACp0[expr71ACp1].Y + Main.rand.Next(-100, 101) * 0.005f;
-                        float num6 = player.beetlePos[m].X;
-                        float num7 = player.beetlePos[m].Y;
-                        float num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
-                        if (num8 > 100f)
-                        {
-                            num8 = 20f / num8;
-                            num6 *= -num8;
-                            num7 *= -num8;
-                            int num9 = 10;
-                            player.beetleVel[m].X = (player.beetleVel[m].X * (num9 - 1) + num6) / num9;
-                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (num9 - 1) + num7) / num9;
-                        }
-                        else if (num8 > 30f)
-                        {
-                            num8 = 10f / num8;
-                            num6 *= -num8;
-                            num7 *= -num8;
-                            int num10 = 20;
-                            player.beetleVel[m].X = (player.beetleVel[m].X * (num10 - 1) + num6) / num10;
-                            player.beetleVel[m].Y = (player.beetleVel[m].Y * (num10 - 1) + num7) / num10;
-                        }
-                        num6 = player.beetleVel[m].X;
-                        num7 = player.beetleVel[m].Y;
-                        num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
-                        if (num8 > 2f)
-                        {
-                            player.beetleVel[m] *= 0.9f;
-                        }
-                        player.beetlePos[m] -= player.velocity * 0.25f;
+                        num8 = 10f / num8;
+                        num6 *= -num8;
+                        num7 *= -num8;
+                        int num10 = 20;
+                        player.beetleVel[m].X = (player.beetleVel[m].X * (num10 - 1) + num6) / num10;
+                        player.beetleVel[m].Y = (player.beetleVel[m].Y * (num10 - 1) + num7) / num10;
                     }
+                    num6 = player.beetleVel[m].X;
+                    num7 = player.beetleVel[m].Y;
+                    num8 = (float)Math.Sqrt(num6 * num6 + num7 * num7);
+                    if (num8 > 2f)
+                    {
+                        player.beetleVel[m] *= 0.9f;
+                    }
+                    player.beetlePos[m] -= player.velocity * 0.25f;
                 }
             }
         }
@@ -1680,6 +1762,9 @@ namespace FargowiltasSouls
             FlowerBoots();
             //herb double
             ChloroEnchant = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
         }
 
@@ -1750,6 +1835,9 @@ namespace FargowiltasSouls
             player.crimsonRegen = true;
             //increase heart heal
             CrimsonEnchant = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Baby Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
             AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
         }
@@ -1759,7 +1847,6 @@ namespace FargowiltasSouls
             player.setApprenticeT2 = true;
             player.setApprenticeT3 = true;
             DarkEnchant = true;
-            AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
 
             //shadow shoot meme
             if (Soulcheck.GetValue("Dark Artist Effect"))
@@ -1801,78 +1888,79 @@ namespace FargowiltasSouls
                     darkCD = 0;
                 }
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
         }
 
         public void ForbiddenEffect()
         {
             player.buffImmune[BuffID.WindPushed] = true;
 
-            if (Soulcheck.GetValue("Forbidden Storm"))
-            {
-                player.setForbidden = true;
-                player.UpdateForbiddenSetLock();
-                Lighting.AddLight(player.Center, 0.8f, 0.7f, 0.2f);
-                //storm boosted
-                ForbiddenEnchant = true;
-            }
+            if (!Soulcheck.GetValue("Forbidden Storm")) return;
+
+            player.setForbidden = true;
+            player.UpdateForbiddenSetLock();
+            Lighting.AddLight(player.Center, 0.8f, 0.7f, 0.2f);
+            //storm boosted
+            ForbiddenEnchant = true;
         }
 
         public void FossilEffect(int dmg, bool hideVisual)
         {
             FossilEnchant = true;
-            AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
 
             //bone zone
-            if (!TerrariaSoul)
+            if (FossilBones)
             {
-                if (FossilBones)
+                if (boneCD == 0)
                 {
-                    if (boneCD == 0)
+                    for (int i = 0; i < Main.rand.Next(4, 12); i++)
                     {
-                        for (int i = 0; i < Main.rand.Next(4, 12); i++)
+                        float randX, randY;
+
+                        do
                         {
-                            float randX, randY;
+                            randX = Main.rand.Next(-10, 10);
+                        } while (randX <= 4f && randX >= -4f);
 
-                            do
-                            {
-                                randX = Main.rand.Next(-10, 10);
-                            } while (randX <= 4f && randX >= -4f);
+                        do
+                        {
+                            randY = Main.rand.Next(-10, 10);
+                        } while (randY <= 4f && randY >= -4f);
 
-                            do
-                            {
-                                randY = Main.rand.Next(-10, 10);
-                            } while (randY <= 4f && randY >= -4f);
-
-                            Projectile p = Projectile.NewProjectileDirect(player.Center, new Vector2(randX, randY), ProjectileID.BoneGloveProj, (int)(dmg * player.thrownDamage), 2, Main.myPlayer);
-                            p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                        }
-
-                        Projectile p2 = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, ProjectileID.Bone, (int)(dmg * 1.5 * player.thrownDamage), 0f, player.whoAmI);
-                        p2.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                        p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = Main.rand.Next(32, 128);
-                        p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDir = Main.rand.Next(2);
-                        p2.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                        p2.noDropItem = true;
-
-                        boneCD = 20;
+                        Projectile p = Projectile.NewProjectileDirect(player.Center, new Vector2(randX, randY), ProjectileID.BoneGloveProj, (int)(dmg * player.thrownDamage), 2, Main.myPlayer);
+                        p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     }
 
-                    boneCD--;
+                    Projectile p2 = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, ProjectileID.Bone, (int)(dmg * 1.5 * player.thrownDamage), 0f, player.whoAmI);
+                    p2.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                    p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = Main.rand.Next(32, 128);
+                    p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDir = Main.rand.Next(2);
+                    p2.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                    p2.noDropItem = true;
 
-                    if (!player.immune)
-                    {
-                        FossilBones = false;
-                    }
+                    boneCD = 20;
+                }
+
+                boneCD--;
+
+                if (!player.immune)
+                {
+                    FossilBones = false;
                 }
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
         }
 
         public void FrostEffect(int dmg, bool hideVisual)
         {
             FrostEnchant = true;
             player.waterWalk = true;
-            AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
-            AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
 
             if (Soulcheck.GetValue("Frost Icicles"))
             {
@@ -1899,7 +1987,7 @@ namespace FargowiltasSouls
                     {
                         Vector2 vel = (Main.MouseWorld - icicles[i].Center).SafeNormalize(-Vector2.UnitY) * 5;
 
-                        int p =Projectile.NewProjectile(icicles[i].Center, vel, icicles[i].type, dmg, 1f, player.whoAmI);
+                        int p = Projectile.NewProjectile(icicles[i].Center, vel, icicles[i].type, dmg, 1f, player.whoAmI);
                         icicles[i].Kill();
 
                         Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
@@ -1909,12 +1997,19 @@ namespace FargowiltasSouls
                     icicleCD = 300;
                 }
             }
-            
+
+            if (TerrariaSoul) return;
+
+            AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
+            AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
         }
 
         public void GladiatorEffect(bool hideVisual)
         {
             GladEnchant = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Mini Minotaur Pet", hideVisual, BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
         }
 
@@ -1927,6 +2022,9 @@ namespace FargowiltasSouls
             player.coins = true;
             //discount card
             player.discount = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
         }
 
@@ -1935,7 +2033,6 @@ namespace FargowiltasSouls
             HallowEnchant = true;
             AddMinion("Hallowed Shield", mod.ProjectileType("HallowShield"), 0, 0f);
             AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(dmg * player.minionDamage), 0f);
-            AddPet("Fairy Pet", hideVisual, BuffID.FairyBlue, ProjectileID.BlueFairy);
 
             //reflect proj
             if (Soulcheck.GetValue("Hallowed Shield"))
@@ -1977,6 +2074,10 @@ namespace FargowiltasSouls
                     }
                 });
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Fairy Pet", hideVisual, BuffID.FairyBlue, ProjectileID.BlueFairy);
         }
 
         private int internalTimer = 0;
@@ -2136,6 +2237,9 @@ namespace FargowiltasSouls
             }
 
             MinerEnchant = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Magic Lantern Pet", hideVisual, BuffID.MagicLantern, ProjectileID.MagicLantern);
         }
 
@@ -2175,46 +2279,46 @@ namespace FargowiltasSouls
 
         public void NebulaEffect()
         {
-            if(Soulcheck.GetValue("Nebula Boosters"))
+            if (!Soulcheck.GetValue("Nebula Boosters")) return;
+
+            if (player.nebulaCD > 0)
             {
-                if (player.nebulaCD > 0)
-                {
-                    player.nebulaCD--;
-                }
-                player.setNebula = true;
+                player.nebulaCD--;
+            }
+            player.setNebula = true;
 
-                if(!TerrariaSoul)
-                {
-                    NebulaCounter++;
+            if (TerrariaSoul) return;
 
-                    if (NebulaCounter > 900)
-                    {
-                        NebulaCounter = 900;
-                    }
+            NebulaCounter++;
 
-                    if (player.HasBuff(BuffID.NebulaUpDmg3) && player.HasBuff(BuffID.NebulaUpLife3) && player.HasBuff(BuffID.NebulaUpMana3) && NebulaCounter == 900)
-                    {
-                        NebulaCounter = -300;
-                    }
-                }
+            if (NebulaCounter > 900)
+            {
+                NebulaCounter = 900;
+            }
+
+            if (player.HasBuff(BuffID.NebulaUpDmg3) && player.HasBuff(BuffID.NebulaUpLife3) && player.HasBuff(BuffID.NebulaUpMana3) && NebulaCounter == 900)
+            {
+                NebulaCounter = -300;
             }
         }
 
         public void NecroEffect(bool hideVisual)
         {
             NecroEnchant = true;
-            AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
 
             if (necroCD != 0)
             {
                 necroCD--;
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
         }
 
         public void NinjaEffect(bool hideVisual)
         {
             NinjaEnchant = true;
-            AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
 
             //ninja smoke bomb nonsense
             float distance = 4 * 16;
@@ -2228,23 +2332,23 @@ namespace FargowiltasSouls
                     break;
                 }
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
         }
 
         public void ObsidianEffect()
         {
             player.fireWalk = true;
             player.lavaImmune = true;
+            player.armorPenetration += 10;
 
-            if(!TerrariaSoul)
+            //in lava effects
+            if (player.lavaWet)
             {
                 player.armorPenetration += 10;
-
-                //in lava effects
-                if (player.lavaWet)
-                {
-                    player.armorPenetration += 10;
-                    ObsidianEnchant = true;
-                }
+                ObsidianEnchant = true;
             }
         }
 
@@ -2254,51 +2358,45 @@ namespace FargowiltasSouls
             {
                 player.onHitPetal = true;
             }
-            
-            if(Soulcheck.GetValue("Orichalcum Fireballs"))
+
+            if (!Soulcheck.GetValue("Orichalcum Fireballs")) return;
+
+            if (!TerrariaSoul)
             {
-                if(!TerrariaSoul)
+                OriEnchant = true;
+            }
+
+            if (TerrariaSoul && !OriSpawn)
+            {
+                int[] fireballs = { ProjectileID.BallofFire, ProjectileID.BallofFrost, ProjectileID.CursedFlameFriendly };
+
+                float degree;
+                for (int i = 0; i < 4; i++)
                 {
-                    OriEnchant = true;
+                    degree = (360 / 4) * i;
+                    Projectile fireball = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, fireballs[Main.rand.Next(3)], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
+                    fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                    fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
+                    fireball.timeLeft = 2;
+                    fireball.penetrate = -1;
                 }
 
-                if (TerrariaSoul && !OriSpawn)
-                {
-                    int[] fireballs = { ProjectileID.BallofFire, ProjectileID.BallofFrost, ProjectileID.CursedFlameFriendly };
-
-                    float degree;
-                    for (int i = 0; i < 4; i++)
-                    {
-                        degree = (360 / 4) * i;
-                        Projectile fireball = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, fireballs[Main.rand.Next(3)], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
-                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
-                        fireball.timeLeft = 2;
-                        fireball.penetrate = -1;
-                    }
-
-                    OriSpawn = true;
-                }
+                OriSpawn = true;
             }
         }
 
         public void PalladiumEffect()
         {
             player.onHitRegen = true;
-
-            if(!TerrariaSoul)
-            {
-                PalladEnchant = true;
-            }
+            PalladEnchant = true;
         }
 
         public void PumpkinEffect(int dmg, bool hideVisual)
         {
             //pumpkin pies
             PumpkinEnchant = true;
-            AddPet("Squashling Pet", hideVisual, BuffID.Squashling, ProjectileID.Squashling);
 
-            if (Soulcheck.GetValue("Pumpkin Fire") && !TerrariaSoul && (player.controlLeft || player.controlRight) && !IsStandingStill)
+            if (Soulcheck.GetValue("Pumpkin Fire") && (player.controlLeft || player.controlRight) && !IsStandingStill)
             {
                 if (pumpkinCD <= 0)
                 {
@@ -2310,6 +2408,10 @@ namespace FargowiltasSouls
 
                 pumpkinCD--;
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Squashling Pet", hideVisual, BuffID.Squashling, ProjectileID.Squashling);
         }
 
         public void RedRidingEffect(bool hideVisual)
@@ -2326,38 +2428,42 @@ namespace FargowiltasSouls
                 player.hideWolf = true;
             }
 
+            if (TerrariaSoul) return;
+
             RedEnchant = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Puppy Pet", hideVisual, BuffID.Puppy, ProjectileID.Puppy);
         }
         
         public void ShadowEffect(bool hideVisual)
         {
+            ShadowEnchant = true;
+
+            if (shadowDeathCD != 0)
+            {
+                for (int i = 0; i < 200; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.active && Main.rand.Next(4) == 0 && Vector2.Distance(npc.Center, player.Center) < 1000 && !npc.townNPC)
+                    {
+
+                        npc.StrikeNPC(Main.rand.Next(5, 10), 0, 0);
+                    }
+                }
+                shadowDeathCD--;
+            }
+
+            if (shadowCD != 0)
+            {
+                shadowCD--;
+            }
+
+            if (TerrariaSoul) return;
+
             AddPet("Baby Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
             AddPet("Shadow Orb Pet", hideVisual, BuffID.ShadowOrb, ProjectileID.ShadowOrb);
-
-            if(!TerrariaSoul)
-            {
-                ShadowEnchant = true;
-
-                if (shadowDeathCD != 0)
-                {
-                    for (int i = 0; i < 200; i++)
-                    {
-                        NPC npc = Main.npc[i];
-                        if (npc.active && Main.rand.Next(4) == 0 && Vector2.Distance(npc.Center, player.Center) < 1000 && !npc.townNPC)
-                        {
-
-                            npc.StrikeNPC(Main.rand.Next(5, 10), 0, 0);
-                        }
-                    }
-                    shadowDeathCD--;
-                }
-
-                if (shadowCD != 0)
-                {
-                    shadowCD--;
-                }
-            }
         }
 
         private void Darkness()
@@ -2388,14 +2494,18 @@ namespace FargowiltasSouls
 
         public void ShinobiEffect(bool hideVisual)
         {
+            ShinobiEnchant = true;
+
+            
             player.setMonkT2 = true;
             player.setMonkT3 = true;
             //ninja gear
             player.blackBelt = true;
             player.spikedBoots = 2;
+
+            if (TerrariaSoul) return;
+
             player.dash = 1;
-            ShinobiEnchant = true;
-            AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
 
             //tele through wall until open space on dash into wall
             if (Soulcheck.GetValue("Shinobi Through Walls") && player.dashDelay > 0 && player.velocity.X == 0)
@@ -2423,16 +2533,23 @@ namespace FargowiltasSouls
                     NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, teleportPos.X, teleportPos.Y, 1);
                 }
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
         }
 
         public void ShroomiteEffect(bool hideVisual)
         {
-            if (Soulcheck.GetValue("Shroomite Stealth") && !TerrariaSoul)
+            if (Soulcheck.GetValue("Shroomite Stealth"))
             {
                 player.shroomiteStealth = true;
             }
 
             ShroomEnchant = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Truffle Pet", hideVisual, BuffID.BabyTruffle, ProjectileID.Truffle);
         }
 
@@ -2440,72 +2557,70 @@ namespace FargowiltasSouls
         {
             SolarEnchant = true;
 
-            if (Soulcheck.GetValue("Solar Shield"))
+            if (!Soulcheck.GetValue("Solar Shield")) return;
+
+            player.AddBuff(BuffID.SolarShield3, 5, false);
+            player.setSolar = true;
+            player.solarCounter++;
+            int solarCD = 240;
+            if (player.solarCounter >= solarCD)
             {
-                player.AddBuff(BuffID.SolarShield3, 5, false);
-                player.setSolar = true;
-                player.solarCounter++;
-                int solarCD = 240;
-                if (player.solarCounter >= solarCD)
+                if (player.solarShields > 0 && player.solarShields < 3)
                 {
-                    if (player.solarShields > 0 && player.solarShields < 3)
+                    for (int i = 0; i < 22; i++)
                     {
-                        for (int i = 0; i < 22; i++)
+                        if (player.buffType[i] >= BuffID.SolarShield1 && player.buffType[i] <= BuffID.SolarShield2)
                         {
-                            if (player.buffType[i] >= BuffID.SolarShield1 && player.buffType[i] <= BuffID.SolarShield2)
-                            {
-                                player.DelBuff(i);
-                            }
+                            player.DelBuff(i);
                         }
                     }
-                    if (player.solarShields < 3)
+                }
+                if (player.solarShields < 3)
+                {
+                    player.AddBuff(BuffID.SolarShield1 + player.solarShields, 5, false);
+                    for (int i = 0; i < 16; i++)
                     {
-                        player.AddBuff(BuffID.SolarShield1 + player.solarShields, 5, false);
-                        for (int i = 0; i < 16; i++)
-                        {
-                            Dust dust = Main.dust[Dust.NewDust(player.position, player.width, player.height, 6, 0f, 0f, 100)];
-                            dust.noGravity = true;
-                            dust.scale = 1.7f;
-                            dust.fadeIn = 0.5f;
-                            dust.velocity *= 5f;
-                        }
-                        player.solarCounter = 0;
+                        Dust dust = Main.dust[Dust.NewDust(player.position, player.width, player.height, 6, 0f, 0f, 100)];
+                        dust.noGravity = true;
+                        dust.scale = 1.7f;
+                        dust.fadeIn = 0.5f;
+                        dust.velocity *= 5f;
                     }
-                    else
-                    {
-                        player.solarCounter = solarCD;
-                    }
+                    player.solarCounter = 0;
                 }
-                for (int i = player.solarShields; i < 3; i++)
+                else
                 {
-                    player.solarShieldPos[i] = Vector2.Zero;
-                }
-                for (int i = 0; i < player.solarShields; i++)
-                {
-                    player.solarShieldPos[i] += player.solarShieldVel[i];
-                    Vector2 value = (player.miscCounter / 100f * 6.28318548f + i * (6.28318548f / player.solarShields)).ToRotationVector2() * 6f;
-                    value.X = player.direction * 20;
-                    player.solarShieldVel[i] = (value - player.solarShieldPos[i]) * 0.2f;
-                }
-                if (player.dashDelay >= 0)
-                {
-                    player.solarDashing = false;
-                    player.solarDashConsumedFlare = false;
-                }
-                bool flag = player.solarDashing && player.dashDelay < 0;
-                if (player.solarShields > 0 || flag)
-                {
-                    player.dash = 3;
+                    player.solarCounter = solarCD;
                 }
             }
-
-
+            for (int i = player.solarShields; i < 3; i++)
+            {
+                player.solarShieldPos[i] = Vector2.Zero;
+            }
+            for (int i = 0; i < player.solarShields; i++)
+            {
+                player.solarShieldPos[i] += player.solarShieldVel[i];
+                Vector2 value = (player.miscCounter / 100f * 6.28318548f + i * (6.28318548f / player.solarShields)).ToRotationVector2() * 6f;
+                value.X = player.direction * 20;
+                player.solarShieldVel[i] = (value - player.solarShieldPos[i]) * 0.2f;
+            }
+            if (player.dashDelay >= 0)
+            {
+                player.solarDashing = false;
+                player.solarDashConsumedFlare = false;
+            }
+            bool flag = player.solarDashing && player.dashDelay < 0;
+            if (player.solarShields > 0 || flag)
+            {
+                player.dash = 3;
+            }
         }
 
         public void SpectreEffect(bool hideVisual)
         {
             SpectreEnchant = true;
-            AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
+
+            
 
             if (!SpiritForce && !TerrariaSoul)
             {
@@ -2518,6 +2633,10 @@ namespace FargowiltasSouls
                     player.ghostHurt = true;
                 }
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
         }
 
         public void SpectreHeal(NPC npc, Projectile proj)
@@ -2621,6 +2740,9 @@ namespace FargowiltasSouls
         public void SpiderEffect(bool hideVisual)
         {
             SpiderEnchant = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Spider Pet", hideVisual, BuffID.PetSpider, ProjectileID.Spider);
         }
 
@@ -2628,6 +2750,9 @@ namespace FargowiltasSouls
         {
             //scythe doom
             SpookyEnchant = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Cursed Sapling Pet", hideVisual, BuffID.CursedSapling, ProjectileID.CursedSapling);
             AddPet("Eye Spring Pet", hideVisual, BuffID.EyeballSpring, ProjectileID.EyeSpring);
         }
@@ -2635,6 +2760,7 @@ namespace FargowiltasSouls
         public void StardustEffect()
         {
             StardustEnchant = true;
+
             AddPet("Stardust Guardian", false, BuffID.StardustGuardianMinion, ProjectileID.StardustGuardian);
             player.setStardust = true;
 
@@ -2704,27 +2830,25 @@ namespace FargowiltasSouls
         public void TikiEffect(bool hideVisual)
         {
             TikiEnchant = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
         }
 
         public void TinEffect()
         {
-            if (Soulcheck.GetValue("Tin Crit"))
-            {
-                TinEnchant = true;
-                AllCritEquals(TinCrit);
-            }
+            if (!Soulcheck.GetValue("Tin Crit")) return;
+
+            TinEnchant = true;
+            AllCritEquals(TinCrit);
         }
 
         public void TitaniumEffect()
         {
             player.kbBuff = true;
 
-            if(TerrariaSoul)
-            {
-                player.onHitDodge = true;
-            }
-            else if(player.statLife == player.statLifeMax2)
+            if(player.statLife == player.statLifeMax2)
             {
                 player.endurance = .9f;
             }
@@ -2736,12 +2860,11 @@ namespace FargowiltasSouls
 
         public void TungstenEffect(float dmg)
         {
-            if (Soulcheck.GetValue("Tungsten Effect"))
-            {
-                TungstenEnchant = true;
-                AllDamageUp(dmg);
-                AllCritUp(25);
-            }
+            if (!Soulcheck.GetValue("Tungsten Effect")) return;
+
+            TungstenEnchant = true;
+            AllDamageUp(dmg);
+            AllCritUp(25);
         }
 
         public void TurtleEffect(bool hideVisual)
@@ -2750,13 +2873,18 @@ namespace FargowiltasSouls
             player.thorns = 1f;
             player.turtleThorns = true;
             player.aggro += 50;
-            AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
-            AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
+
+            
 
             if (Soulcheck.GetValue("Turtle Shell Buff") && IsStandingStill && !player.controlUseItem)
             {
                 player.AddBuff(mod.BuffType("ShellHide"), 2);
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
+            AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
         }
 
         public void ValhallaEffect(bool hideVisual)
@@ -2766,6 +2894,9 @@ namespace FargowiltasSouls
             //knockback memes
             ValhallaEnchant = true;
             player.shinyStone = true;
+
+            if (TerrariaSoul) return;
+
             AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
         }
 
@@ -2774,7 +2905,8 @@ namespace FargowiltasSouls
             //portal spawn
             VortexEnchant = true;
             //stealth memes
-            AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
+
+            
 
             if ((player.controlDown && player.releaseDown))
             {
@@ -2809,6 +2941,10 @@ namespace FargowiltasSouls
                 player.setVortex = true;
                 player.stealth = 0f;
             }
+
+            if (TerrariaSoul) return;
+
+            AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
         } 
 
     }

@@ -138,9 +138,7 @@ namespace FargowiltasSouls.Items
                 return false;
             }
 
-            
-
-            if (p.GoldEnchant)
+            if (p.GoldEnchant && !p.TerrariaSoul)
             {
                 if (item.type == ItemID.CopperCoin)
                 {

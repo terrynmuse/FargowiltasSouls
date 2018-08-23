@@ -69,70 +69,54 @@ Most other effects of material Forces
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             modPlayer.TerrariaSoul = true;
+            modPlayer.TerrariaPets(hideVisual);
+            
             //includes:
             //modPlayer.AdamantiteEnchant = true;
+            //includes revive, both spectres, shadow dodge, palad heal
+
+            player.onHitDodge = true;
+            player.onHitRegen = true;
 
             modPlayer.CosmoForce = true;
             modPlayer.SpiritForce = true;
             modPlayer.ShadowForce = true;
             modPlayer.WillForce = true;
 
-            modPlayer.BeeEffect(hideVisual);
-            modPlayer.BeetleEffect(); //no extra wing time
-            modPlayer.ChloroEffect(hideVisual, 100);
-            modPlayer.CrimsonEffect(hideVisual);
-            modPlayer.ForbiddenEffect();
-            modPlayer.FossilEffect(20, hideVisual); //no bone zone, 200HP, 4 minute CD
-            modPlayer.FrostEffect(80, hideVisual);
-            modPlayer.GoldEffect(hideVisual);
-            modPlayer.HallowEffect(hideVisual, 100);
-            modPlayer.IronEffect();
-            modPlayer.MoltenEffect(20);
+            
+            modPlayer.BeetleEffect(); //just beetles
+            modPlayer.ChloroEffect(hideVisual, 100); //everything
+            modPlayer.CrimsonEffect(hideVisual); //everything
+            modPlayer.ForbiddenEffect(); //everything, maybe kill storm boost
+            modPlayer.GoldEffect(hideVisual); // cut coin trash and buff memes
+            modPlayer.HallowEffect(hideVisual, 100); //everything
+            modPlayer.IronEffect(); //everything
+            modPlayer.MoltenEffect(20); //everything
             modPlayer.NebulaEffect(); //no meme speed
-            modPlayer.NecroEffect(hideVisual);
-            modPlayer.NinjaEffect(hideVisual);
-            modPlayer.ObsidianEffect(); //no armor pen or lava bonuses
-            modPlayer.OrichalcumEffect(); //no petals, permanent 4 balls instead of spawning
-            player.onHitRegen = true; // no life steal
+            modPlayer.NecroEffect(hideVisual); //everything
             modPlayer.PlatinumEnchant = true;
-            modPlayer.PumpkinEffect(40, hideVisual); //no fire trail
-            modPlayer.RedRidingEffect(hideVisual); 
-            modPlayer.ShadowEffect(hideVisual); //no darkness
-            modPlayer.ShinobiEffect(hideVisual);
-            modPlayer.ShroomiteEffect(hideVisual); //just the pet
-            modPlayer.SolarEffect();
-            modPlayer.SpectreEffect(hideVisual);
-            modPlayer.SpiderEffect(hideVisual); //just pet
-            modPlayer.SpookyEffect(hideVisual); //just pet
-            modPlayer.StardustEffect();
+            modPlayer.RedRidingEffect(hideVisual); //no super bleed or increase low Hp dmg
+            modPlayer.ShinobiEffect(hideVisual); //no tele thru walls, hmm
+            modPlayer.SolarEffect(); //all effects, maybe kill solar flare debuff
+            modPlayer.StardustEffect(); //all, may kill freeze time
             modPlayer.TinEffect(); //lifesteal bonus
-            modPlayer.TitaniumEffect(); //just the shadow dodge
-            modPlayer.TurtleEffect(hideVisual);
-            modPlayer.ValhallaEffect(hideVisual);
-            modPlayer.VortexEffect(hideVisual);
-            modPlayer.AddPet("Suspicious Looking Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
+            modPlayer.ValhallaEffect(hideVisual); //all, may kill KB
+            modPlayer.VortexEffect(hideVisual); //all may kill voids
 
+
+
+            modPlayer.OrichalcumEffect(); //no petals, permanent 4 balls instead of spawning
 
             /*
-            modPlayer.TerraForce = true;
-            modPlayer.EarthForce = true;
-
-            modPlayer.CobaltEnchant = true;
             modPlayer.DarkArtistEffect(hideVisual);
             modPlayer.GladiatorEffect(hideVisual);
+            
             */
 
             //modPlayer.MythrilEnchant = true; effects in class souls
             //modPlayer.TikiEffect(hideVisual); effect in SoU
             //modPlayer.MinerEffect(hideVisual, .5f); into world shaper
 
-
-            //modPlayer.CactusEffect(); cut
-            
-            //modPlayer.MeteorEffect(75); cut
-            //modPlayer.CopperEnchant = true; cut
-            //modPlayer.LeadEnchant = true; cut
-            //modPlayer.JungleEffect(); cut
         }
 
         public override void AddRecipes()

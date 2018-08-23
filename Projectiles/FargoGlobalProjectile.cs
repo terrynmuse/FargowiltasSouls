@@ -319,9 +319,11 @@ namespace FargowiltasSouls.Projectiles
 
         private void KillPet(Projectile projectile, Player player, int proj, int buff, bool enchant, string toggle)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
             if (projectile.type == proj && player.FindBuffIndex(buff) == -1)
             {
-                if (!enchant || !Soulcheck.GetValue(toggle))
+                if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle))
                 {
                     projectile.Kill();
                 }
