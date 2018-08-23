@@ -27,8 +27,7 @@ Small chance for an attack to gain 33% life steal");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.onHitRegen = true;
-            player.GetModPlayer<FargoPlayer>(mod).PalladEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).PalladiumEffect();
         }
 
         public override void AddRecipes()

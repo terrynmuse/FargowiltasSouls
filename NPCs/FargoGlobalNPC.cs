@@ -193,11 +193,6 @@ namespace FargowiltasSouls.NPCs
                 return false;
             }
 
-            if(modPlayer.ValhallaEnchant && npc.dontTakeDamage)
-            {
-                npc.dontTakeDamage = false;
-            }
-
             return true;
         }
 
@@ -902,17 +897,12 @@ namespace FargowiltasSouls.NPCs
 				
 				if(Main.rand.Next(4) == 0)
 				{
-					if(npc.lifeMax < 2000)
-					{
-						dmg = 20;
-					}
-					else
-					{
-						dmg = npc.lifeMax / 100;
-					}
+                    dmg = 20;
 					
-					Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 40, 0f + Main.rand.Next(-5, 5), -5f, mod.ProjectileType("SuperBlood"), dmg, 0f, Main.myPlayer);
-				}
+					int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 40, 0f + Main.rand.Next(-5, 5), -5f, mod.ProjectileType("SuperBlood"), dmg, 0f, Main.myPlayer);
+
+                    Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                }
 			}
 
             if (Rotting)
@@ -947,7 +937,7 @@ namespace FargowiltasSouls.NPCs
                     npc.lifeRegen = 0;
                 }
 
-                npc.lifeRegen -= 500;
+                npc.lifeRegen -= 200;
 
                 if (damage < 5)
                 {
@@ -2593,7 +2583,7 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 			
-			if(modPlayer.ShroomEnchant && crit && modPlayer.IsStandingStill)
+			if(crit && modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && modPlayer.IsStandingStill)
 			{
 			    damage *= 4;
                 retValue = false;
@@ -2619,9 +2609,9 @@ namespace FargowiltasSouls.NPCs
 				NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, npc.type);
 			}
 
-            if(modPlayer.ValhallaEnchant)
+            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
-                npc.knockBackResist = 1f;
+                npc.knockBackResist += .1f;
             }
 		}
 
@@ -2630,9 +2620,9 @@ namespace FargowiltasSouls.NPCs
             FargoPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<FargoPlayer>(mod);
 
             //spears
-            if(modPlayer.ValhallaEnchant && (projectile.aiStyle == 19 || modPlayer.WillForce))
+            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce) && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
-                npc.knockBackResist = 1f;
+                npc.knockBackResist += .1f;
             }
             else
             {

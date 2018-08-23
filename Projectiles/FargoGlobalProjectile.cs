@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using FargowiltasSouls.NPCs;
 using Microsoft.Xna.Framework;
@@ -19,16 +20,21 @@ namespace FargowiltasSouls.Projectiles
         }
 
         private int counter;
+        public bool CanSplit = true;
         private int numSplits = 1;
-        private bool instantSplit;
+        private static int adamantiteCD = 0;
+
         private int numSpeedups = 3;
         private bool ninjaTele;
         public bool IsRecolor = false;
         private bool stormBoosted = false;
+        private int stormTimer;
+
         public bool Rotate = false;
         public int RotateDist = 64;
         public int RotateDir = 1;
         private int oriDir = 1;
+
         private bool firstTick = true;
         private bool squeakyToy = false;
         public bool TimeFrozen = false;
@@ -49,11 +55,89 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
+        private static int[] noSplit = { ProjectileID.CrystalShard, ProjectileID.SandnadoFriendly, ProjectileID.LastPrism, ProjectileID.LastPrismLaser, ProjectileID.FlowerPetal, ProjectileID.BabySpider, ProjectileID.CrystalLeafShot };
+
         public override bool PreAI(Projectile projectile)
         {
             bool retVal = true;
             FargoPlayer modPlayer = Main.LocalPlayer.GetModPlayer<FargoPlayer>();
             counter++;
+
+            if (projectile.owner == Main.myPlayer && projectile.friendly && !projectile.hostile)
+            {
+                if (Soulcheck.GetValue("Adamantite Splitting") && (modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && firstTick && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 && CanSplit &&
+                    !Rotate)
+                {
+                    if (adamantiteCD != 0)
+                    {
+                        adamantiteCD--;
+                    }
+
+                    if(adamantiteCD == 0)
+                    {
+                        firstTick = false;
+                        adamantiteCD = modPlayer.TerrariaSoul ? 4 : 8;
+                        SplitProj(projectile, 3);
+                    }
+                }
+
+                if (modPlayer.ForbiddenEnchant && projectile.damage > 0 && projectile.type != ProjectileID.SandnadoFriendly && !stormBoosted)
+                {
+                    Projectile nearestProj = null;
+                    float distance = 5 * 16;
+
+                    List<Projectile> projs = Main.projectile.Where(x => x.type == ProjectileID.SandnadoFriendly && x.active).ToList();
+
+                    foreach (Projectile p in projs)
+                    {
+                        if (Vector2.Distance(p.Center, projectile.Center) <= distance)
+                        {
+                            nearestProj = p;
+                            break;
+                        }
+                    }
+
+                    if (nearestProj != null)
+                    {
+                        if (projectile.maxPenetrate != -1)
+                        {
+                            projectile.maxPenetrate *= 2;
+                        }
+
+                        projectile.damage = (int)(projectile.damage * 1.5);
+
+                        stormBoosted = true;
+                        stormTimer = 120;
+                    }
+                }
+
+                if (stormTimer > 0)
+                {
+                    stormTimer--;
+
+                    if (stormTimer == 0)
+                    {
+                        if (projectile.maxPenetrate != -1)
+                        {
+                            projectile.maxPenetrate /= 2;
+                        }
+
+                        projectile.damage = projectile.damage / 3;
+                        stormBoosted = false;
+                    }
+                }
+            }
+
+            
+
+
+
+
+
+
+
+
+
 
             if (modPlayer.Jammed && projectile.ranged && projectile.type != ProjectileID.ConfettiGun)
             {
@@ -70,19 +154,28 @@ namespace FargowiltasSouls.Projectiles
                 projectile.Kill();
             }
 
-            if (projectile.owner == Main.myPlayer)
+            if (projectile.owner == Main.myPlayer && projectile.friendly && !projectile.hostile)
             {
-                if (Soulcheck.GetValue("Splitting Projectiles") && modPlayer.AdamantiteEnchant && !projectile.minion && projectile.damage > 0 && Main.rand.Next(4) == 0 && projectile.aiStyle != 19 && !instantSplit && 
-                    !Rotate)
+                if(projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 && CanSplit)
                 {
-                    instantSplit = true;
-                    SplitProj(projectile, 3);
-                    retVal = false;
-                }
 
-                if (projectile.bobber && !instantSplit)
+                    if (modPlayer.GladEnchant && Soulcheck.GetValue("Gladiator Speedup") && (projectile.thrown || modPlayer.WillForce) && numSpeedups > 0 && counter % 10 == 0)
+                    {
+                        numSpeedups--;
+                        projectile.velocity = Vector2.Multiply(projectile.velocity, 1.5f);
+                    }
+
+                    if (modPlayer.ThrowSoul && projectile.thrown && numSplits > 0 && counter == 20 * (1 + projectile.extraUpdates))
+                    {
+                        numSplits--;
+                        SplitProj(projectile, 3);
+                        retVal = false;
+                    }
+                }
+                
+                if (projectile.bobber && firstTick)
                 {
-                    instantSplit = true;
+                    firstTick = false;
 
                     if (modPlayer.FishSoul1)
                     {
@@ -93,65 +186,18 @@ namespace FargowiltasSouls.Projectiles
                         SplitProj(projectile, 11);
                     }
                 }
-
-                if (modPlayer.GladEnchant && (projectile.thrown || modPlayer.WillForce) && numSpeedups > 0 && counter % 10 == 0)
-                {
-                    numSpeedups--;
-                    projectile.velocity = Vector2.Multiply(projectile.velocity, 1.5f);
-                }
-
-                if (modPlayer.ThrowSoul && projectile.thrown && numSplits > 0 && counter == 20 * (1 + projectile.extraUpdates))
-                {
-                    numSplits--;
-                    SplitProj(projectile, 3);
-                    retVal = false;
-                }
-
-                instantSplit = true;
             }
 
-            if(modPlayer.ForbiddenEnchant && projectile.type != ProjectileID.SandnadoFriendly)
-            {
-                Projectile nearestProj = null;
-                float distance = 5 * 16;
-
-                Main.projectile.Where(x => x.type == ProjectileID.SandnadoFriendly && x.active).ToList().ForEach(x =>
-                {
-                    if (nearestProj == null && Vector2.Distance(x.Center, projectile.Center) <= distance)
-                    {
-                        nearestProj = x;
-                        distance = Vector2.Distance(x.Center, projectile.Center);
-                    }
-                    else if (nearestProj != null && Vector2.Distance(nearestProj.Center, projectile.Center) <= distance)
-                    {
-                        nearestProj = x;
-                        distance = Vector2.Distance(nearestProj.Center, projectile.Center);
-                    }
-                });
-
-                if (nearestProj != null && !stormBoosted)
-                {
-                    if(projectile.penetrate != -1)
-                    {
-                        projectile.penetrate *= 2;
-                    }
-
-                    projectile.damage = (int)(projectile.damage * 1.5);
-
-                    stormBoosted = true;
-                }
-            }
-
-            if (modPlayer.SpookyEnchant && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
+            if (modPlayer.SpookyEnchant && !modPlayer.TerrariaSoul && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
             {
                 Main.PlaySound(2/**/, (int)projectile.position.X, (int)projectile.position.Y, 62);
-                XWay(8, projectile.Center, mod.ProjectileType("SpookyScythe"), 5, (int)(projectile.damage / 2), 2f);
+                Projectile[] projs = XWay(8, projectile.Center, mod.ProjectileType("SpookyScythe"), 5, (int)(projectile.damage / 2), 2f);
                 counter = 0;
-            }
 
-            if(modPlayer.RedEnchant && (projectile.ranged || modPlayer.WillForce) && projectile.penetrate != -1 && firstTick)
-            {
-                projectile.penetrate += 5;
+                for(int i = 0; i <projs.Length; i++)
+                {
+                    projs[i].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                }
             }
 
             if(projectile.hostile && Main.npc[projectile.owner].active && Main.npc[projectile.owner].GetGlobalNPC<FargoGlobalNPC>().SqueakyToy)
@@ -162,7 +208,7 @@ namespace FargowiltasSouls.Projectiles
 
             if(Rotate)
             {
-                if(firstTick)
+                if(firstTick && !modPlayer.TerrariaSoul)
                 {
                     projectile.timeLeft = 600;
                 }
@@ -173,7 +219,7 @@ namespace FargowiltasSouls.Projectiles
                 Player p = Main.player[projectile.owner];
 
                 //Factors for calculations
-                double deg = (double)projectile.ai[1];
+                double deg = projectile.ai[1];
                 double rad = deg * (Math.PI / 180);
 
                 projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * RotateDist) - projectile.width / 2;
@@ -191,7 +237,7 @@ namespace FargowiltasSouls.Projectiles
 
                 //projectile.rotation = projectile.ai[1] * 0.0174f;
 
-                if (modPlayer.OriEnchant && projectile.type != ProjectileID.Blizzard)
+                if (modPlayer.OriEnchant && projectile.type != ProjectileID.Blizzard && projectile.type != ProjectileID.Bone)
                 {
                     projectile.penetrate = -1;
 
@@ -214,12 +260,11 @@ namespace FargowiltasSouls.Projectiles
                     }
                 }
 
-                if(modPlayer.FrostEnchant)
+                if(projectile.type == ProjectileID.Blizzard || (modPlayer.TerrariaSoul && Soulcheck.GetValue("Orichalcum Fireballs")))
                 {
                     //projectile.rotation = (Main.MouseWorld - projectile.Center).ToRotation() + 90;
                     projectile.timeLeft++;
                 }
-                
 
                 retVal = false;
             }
@@ -266,7 +311,7 @@ namespace FargowiltasSouls.Projectiles
 
                     split = Projectile.NewProjectileDirect(projectile.Center, projectile.velocity.RotatedBy(factor * spread * (i + 1)), projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
                     split.GetGlobalProjectile<FargoGlobalProjectile>().numSplits = projectile.GetGlobalProjectile<FargoGlobalProjectile>().numSplits;
-                    split.GetGlobalProjectile<FargoGlobalProjectile>().instantSplit = projectile.GetGlobalProjectile<FargoGlobalProjectile>().instantSplit;
+                    split.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = projectile.GetGlobalProjectile<FargoGlobalProjectile>().firstTick;
                 }
 
             }
@@ -324,7 +369,7 @@ namespace FargowiltasSouls.Projectiles
 
             if (projectile.type == mod.ProjectileType("Chlorofuck"))
             {
-                if (!modPlayer.ChloroEnchant || !Soulcheck.GetValue("Leaf Crystal"))
+                if (!modPlayer.ChloroEnchant || !Soulcheck.GetValue("Chlorophyte Leaf Crystal"))
                 {
                     projectile.Kill();
                     return;
@@ -431,7 +476,7 @@ namespace FargowiltasSouls.Projectiles
             }
 
             //spawn proj on hit
-            if (modPlayer.ShroomEnchant && modPlayer.IsStandingStill && Main.rand.Next(5) == 0)
+            if (modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && CountProj(ProjectileID.SporeCloud) < 5 && modPlayer.IsStandingStill && Main.rand.Next(5) == 0)
             {
                 Vector2 pos = new Vector2(projectile.Center.X + Main.rand.Next(-30, 30), projectile.Center.Y + Main.rand.Next(-40, 40));
 
@@ -439,9 +484,10 @@ namespace FargowiltasSouls.Projectiles
                 spore.ranged = true;
                 spore.melee = false;
                 spore.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                spore.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
 
-            if (Soulcheck.GetValue("Orichalcum Fireball") && modPlayer.OriEnchant && !Rotate && Main.rand.Next(6) == 0)
+            if (modPlayer.OriEnchant && !modPlayer.TerrariaSoul && !Rotate && Main.rand.Next(6) == 0)
             {
                 int[] fireballs = { ProjectileID.BallofFire, ProjectileID.BallofFrost, ProjectileID.CursedFlameFriendly };
                 const int MAXBALLS = 10;
@@ -567,8 +613,6 @@ namespace FargowiltasSouls.Projectiles
         {
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            //Main.NewText(projectile.type.ToString(), 206, 12, 15);
 
             if (FargoWorld.MasochistMode)
             {
@@ -710,7 +754,7 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.CobaltEnchant && Array.IndexOf(noShard, projectile.type) <= -1 && projectile.friendly && projectile.damage > 0  && !Rotate && Main.rand.Next(4) == 0)
+            if (modPlayer.CobaltEnchant && Soulcheck.GetValue("Cobalt Shards") && CanSplit && Array.IndexOf(noShard, projectile.type) <= -1 && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
             {
                 int damage = 50;
 
@@ -718,6 +762,8 @@ namespace FargowiltasSouls.Projectiles
                 {
                     damage = 100;
                 }
+
+                Main.NewText(projectile.Name);
 
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 27);
                 XWay(8, projectile.Center, ProjectileID.CrystalShard, 5, damage, 2f);
@@ -727,9 +773,12 @@ namespace FargowiltasSouls.Projectiles
             {
                 modPlayer.IcicleCount--;
             }
-        }
 
-        
+            if(modPlayer.TerrariaSoul && Rotate && projectile.type != ProjectileID.Blizzard && projectile.type != ProjectileID.Bone)
+            {
+                modPlayer.OriSpawn = false;
+            }
+        }
 
         public static Projectile[] XWay(int num, Vector2 pos, int type, float speed, int damage, float knockback)
         {
@@ -745,6 +794,21 @@ namespace FargowiltasSouls.Projectiles
             }
 
             return projs;
+        }
+
+        public static int CountProj(int type)
+        {
+            int count = 0;
+
+            for (int i = 0; i < 1000; i++)
+            {
+                if (Main.projectile[i].type == type)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
     }
 }

@@ -46,15 +46,14 @@ namespace FargowiltasSouls.Projectiles.Souls
 				Main.dust[num490].velocity *= 1.5f;
 				Main.dust[num490].scale *= 0.9f;
 			}
-			if (projectile.owner == Main.myPlayer)
-			{
-				for (int num491 = 0; num491 < 3; num491++)
-				{
-					float num492 = -projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-					float num493 = -projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-					Projectile.NewProjectile(projectile.position.X + num492, projectile.position.Y + num493, num492, num493, 45, (int)(projectile.damage * 0.5), 0f, projectile.owner);
-				}
-			}
+		    for (int i = 0; i < 3; i++)
+		    {
+		    	float x = -projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+		    	float y = -projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+		    	int p = Projectile.NewProjectile(projectile.position.X + x, projectile.position.Y + y, x, y, 45, (int)    (projectile.damage * 0.5), 0f, projectile.owner);
+
+                Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+            }
 		}
 		
 	}

@@ -27,9 +27,7 @@ Summons a Tiki Spirit");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.TikiEnchant = true;
-            modPlayer.AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
+            player.GetModPlayer<FargoPlayer>(mod).TikiEffect(hideVisual);
         }
 
         public override void AddRecipes()

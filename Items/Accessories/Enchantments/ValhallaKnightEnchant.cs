@@ -13,7 +13,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Valhalla calls'
 Greatly enhances Ballista effectiveness
 You ignore enemy knockback immunity with your close range melee weapons
-No enemy is ever safe from you
 Shiny Stone effects
 Summons a pet Dragon");
         }
@@ -30,12 +29,7 @@ Summons a pet Dragon");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            player.setSquireT2 = true;
-            player.setSquireT3 = true;
-            modPlayer.ValhallaEnchant = true;
-            player.shinyStone = true;
-            modPlayer.AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
+            player.GetModPlayer<FargoPlayer>(mod).ValhallaEffect(hideVisual);
         }
 
         public override void AddRecipes()

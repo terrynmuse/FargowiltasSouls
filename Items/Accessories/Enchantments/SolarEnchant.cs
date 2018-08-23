@@ -28,9 +28,7 @@ Melee attacks inflict it for less time (which is a good thing)");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.SolarShield();
-            modPlayer.SolarEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).SolarEffect();
         }
 
         public override void AddRecipes()

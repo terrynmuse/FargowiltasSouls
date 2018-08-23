@@ -37,25 +37,11 @@ Summons a pet Baby Dino, Magical Fairy, Tiki Spirit, and Wisp");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.SpiritForce = true;
-            //revive
-            modPlayer.FossilEnchant = true;
-            //bone zone
-            modPlayer.FossilEffect(20);
-            //storm
+            modPlayer.FossilEffect(20, hideVisual);
             modPlayer.ForbiddenEffect();
-            player.buffImmune[BuffID.WindPushed] = true;
-            //sword and shield bois
-            modPlayer.HallowEnchant = true;
-            modPlayer.AddMinion("Hallowed Shield", mod.ProjectileType("HallowShield"), 0, 0f);
-            modPlayer.AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(80 * player.minionDamage), 0f);
-            //random debuffs
+            modPlayer.HallowEffect(hideVisual, 80);
             modPlayer.TikiEnchant = true;
-            //spectre orbs
-            modPlayer.SpectreEffect();
-            modPlayer.AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
-            modPlayer.AddPet("Fairy Pet", hideVisual, BuffID.FairyBlue, ProjectileID.BlueFairy);
-            modPlayer.AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
-            modPlayer.AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
+            modPlayer.SpectreEffect(hideVisual);
         }
 
         public override void AddRecipes()

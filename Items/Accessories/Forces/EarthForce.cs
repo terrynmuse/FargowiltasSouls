@@ -17,7 +17,7 @@ Small chance for an attack to gain 33% life steal
 30% increased weapon use speed
 Flower petals will cause extra damage to your target 
 Attacks may spawn fireballs to rotate around you
-25% chance for any weapon to shoot in a spread
+Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split
 Any damage you take while at full HP is reduced by 90%
 Briefly become invulnerable after striking an enemy when below 50% HP
@@ -38,19 +38,11 @@ Increases all knockback");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.EarthForce = true;
-            //shards
             modPlayer.CobaltEnchant = true;
-            player.onHitRegen = true;
-            //lifesteal
-            modPlayer.PalladEnchant = true;
-            //use speed
+            modPlayer.PalladiumEffect();
             modPlayer.MythrilEnchant = true;
-            player.onHitPetal = true;
-            //fireballs
-            modPlayer.OriEnchant = true;
-            //projectile split
+            modPlayer.OrichalcumEffect();
             modPlayer.AdamantiteEnchant = true;
-            //knockback, dodge, damage reduce
             modPlayer.TitaniumEffect();
         }
 

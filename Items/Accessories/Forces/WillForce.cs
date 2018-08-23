@@ -21,10 +21,8 @@ Your attacks inflict Midas and may cause Super Bleed
 All projectiles will speed up drastically over time
 Greatly enhances Explosive Traps and Ballista effectiveness
 Celestial Shell and Shiny Stone effects
-All projectiles gain 5 pierce
 Your attacks deal increasing damage to low HP enemies
 You ignore enemy knockback immunity with all weapons
-No enemy is ever safe from you
 Summons a pet Magic Lantern, Parrot, Minotaur, Puppy, and Dragon");
         }
 
@@ -50,63 +48,12 @@ Summons a pet Magic Lantern, Parrot, Minotaur, Puppy, and Dragon");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.WillForce = true;
-            player.pickSpeed -= 0.5f;
-            modPlayer.MinerEnchant = true;
-
-            if (Soulcheck.GetValue("Spelunker Buff"))
-            {
-                player.findTreasure = true;
-            }
-
-            if (Soulcheck.GetValue("Hunter Buff"))
-            {
-                player.detectCreature = true;
-            }
-
-            if (Soulcheck.GetValue("Dangersense Buff"))
-            {
-                player.dangerSense = true;
-            }
-
-            if (Soulcheck.GetValue("Shine Buff"))
-            {
-                Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
-            }
-
-            modPlayer.GoldEnchant = true;
-            //gold ring
-            player.goldRing = true;
-            //lucky coin
-            player.coins = true;
-            //discount card
-            player.discount = true;
-            //extra loot
+            modPlayer.MinerEffect(hideVisual, .5f);
+            modPlayer.GoldEffect(hideVisual);
             modPlayer.PlatinumEnchant = true;
-            //speed up
-            modPlayer.GladEnchant = true;
-            player.setHuntressT2 = true;
-            player.setHuntressT3 = true;
-            //celestial shell
-            player.accMerman = true;
-            player.wolfAcc = true;
-
-            if (hideVisual)
-            {
-                player.hideMerman = true;
-                player.hideWolf = true;
-            }
-            //increase dmg to low HP and super bleed
-            modPlayer.RedEnchant = true;
-            player.setSquireT2 = true;
-            player.setSquireT3 = true;
-            //knockback and immune memes
-            modPlayer.ValhallaEnchant = true;
-            player.shinyStone = true;
-            modPlayer.AddPet("Magic Lantern Pet", hideVisual, BuffID.MagicLantern, ProjectileID.MagicLantern);
-            modPlayer.AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
-            modPlayer.AddPet("Mini Minotaur Pet", hideVisual, BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
-            modPlayer.AddPet("Puppy Pet", hideVisual, BuffID.Puppy, ProjectileID.Puppy);
-            modPlayer.AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
+            modPlayer.GladiatorEffect(hideVisual);
+            modPlayer.RedRidingEffect(hideVisual);
+            modPlayer.ValhallaEffect(hideVisual);
         }
 
         public override void AddRecipes()

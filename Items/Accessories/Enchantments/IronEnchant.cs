@@ -29,14 +29,7 @@ You attract items from a much larger range and fall 5 times as quickly");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //EoC Shield
-            player.dash = 2;
-            //shield raise stuff
-            modPlayer.IronEffect();
-            //item attract
-            modPlayer.IronEnchant = true;
-            player.maxFallSpeed *= 5;
+			player.GetModPlayer<FargoPlayer>(mod).IronEffect();
         }
 		
 		public override void AddRecipes()

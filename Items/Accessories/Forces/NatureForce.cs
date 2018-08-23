@@ -40,30 +40,12 @@ Summons a Baby Face Monster, Crimson Heart, Baby Penguin, Snowman, Seedling, and
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            player.crimsonRegen = true;
-            //increase heart heal
-            modPlayer.CrimsonEnchant = true;
-            player.cordage = true;
-            modPlayer.JungleEnchant = true;
-            modPlayer.InfernoEffect(20);
-            //explode on death
-            modPlayer.MoltenEnchant = true;
-            player.waterWalk = true;
-            //icicles
-            modPlayer.FrostEnchant = true;
-            modPlayer.FrostEffect(80);
-            modPlayer.AddMinion("Leaf Crystal", mod.ProjectileType("Chlorofuck"), 100, 10f);
-            modPlayer.FlowerBoots();
-            //herb double
-            modPlayer.ChloroEnchant = true;
-            //stealth and spores
-            modPlayer.ShroomiteEffect();
-            modPlayer.AddPet("Baby Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
-            modPlayer.AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
-            modPlayer.AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
-            modPlayer.AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
-            modPlayer.AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
-            modPlayer.AddPet("Truffle Pet", hideVisual, BuffID.BabyTruffle, ProjectileID.Truffle);
+            modPlayer.CrimsonEffect(hideVisual);
+            modPlayer.JungleEffect();
+            modPlayer.MoltenEffect(20);
+            modPlayer.FrostEffect(80, hideVisual);
+            modPlayer.ChloroEffect(hideVisual, 100);
+            modPlayer.ShroomiteEffect(hideVisual);
         }
 
         public override void AddRecipes()

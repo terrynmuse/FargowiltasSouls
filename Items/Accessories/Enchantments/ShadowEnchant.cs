@@ -28,10 +28,7 @@ Summons a Baby Eater of Souls and a Shadow Orb");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.ShadowEnchant = true;
-            modPlayer.AddPet("Baby Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
-            modPlayer.AddPet("Shadow Orb Pet", hideVisual, BuffID.ShadowOrb, ProjectileID.ShadowOrb);
+            player.GetModPlayer<FargoPlayer>(mod).ShadowEffect(hideVisual);
         }
 
         public override void AddRecipes()

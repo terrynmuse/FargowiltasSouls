@@ -28,12 +28,7 @@ Summons a Baby Face Monster and a Crimson Heart");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {	
-			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            player.crimsonRegen = true;
-            //increase heart heal
-            modPlayer.CrimsonEnchant = true;
-            modPlayer.AddPet("Baby Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
-            modPlayer.AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
+			player.GetModPlayer<FargoPlayer>(mod).CrimsonEffect(hideVisual);
         }
 		
 		public override void AddRecipes()

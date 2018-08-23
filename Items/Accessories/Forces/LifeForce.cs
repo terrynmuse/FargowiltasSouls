@@ -15,7 +15,7 @@ Getting hit by a projectile causes a needle spray
 You leave behind a trail of fire when you walk
 Eating Pumpkin Pie also heals you to full HP
 Increases the strength of friendly bees
-Bees ignore enemy defense
+Bees ignore most enemy defense
 Attacks may cause the enemy to be Swarmed
 When standing still and not attacking, you gain the Shell Hide buff
 100% of damage taken by melee attacks is reflected
@@ -38,31 +38,12 @@ Summons a pet Squashling, Baby Hornet, Spider, Lizard, and Turtle");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //needle spray
-            modPlayer.CactusEnchant = true;
-            //pie
-            modPlayer.PumpkinEnchant = true;
-            //flames
-            modPlayer.PumpkinEffect(40);
-            player.strongBees = true;
-            //bees ignore defense
-            modPlayer.BeeEnchant = true;
-            //swarm debuff
+            modPlayer.CactusEffect();
+            modPlayer.PumpkinEffect(40, hideVisual);
+            modPlayer.BeeEffect(hideVisual);
             modPlayer.SpiderEnchant = true;
-            //hide in shell buff
-            modPlayer.TurtleEnchant = true;
-            player.thorns = 1f;
-            player.turtleThorns = true;
-            player.aggro += 50;
-            //wing time up
-            modPlayer.BeetleEnchant = true;
-            //beetle resistance
+            modPlayer.TurtleEffect(hideVisual);
             modPlayer.BeetleEffect();
-            modPlayer.AddPet("Squashling Pet", hideVisual, BuffID.Squashling, ProjectileID.Squashling);
-            modPlayer.AddPet("Baby Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
-            modPlayer.AddPet("Spider Pet", hideVisual, BuffID.PetSpider, ProjectileID.Spider);
-            modPlayer.AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
-            modPlayer.AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
         }
 
         public override void AddRecipes()

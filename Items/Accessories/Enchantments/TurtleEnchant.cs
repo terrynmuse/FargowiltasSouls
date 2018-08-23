@@ -29,13 +29,7 @@ Summons a pet Lizard and Turtle");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.TurtleEnchant = true;
-            player.thorns = 1f;
-            player.turtleThorns = true;
-            player.aggro += 50;
-            modPlayer.AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
-            modPlayer.AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
+            player.GetModPlayer<FargoPlayer>(mod).TurtleEffect(hideVisual);
         }
 
         public override void AddRecipes()

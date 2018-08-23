@@ -28,11 +28,7 @@ Summons a magical fairy");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.HallowEnchant = true;
-            modPlayer.AddMinion("Hallowed Shield", mod.ProjectileType("HallowShield"), 0, 0f);
-            modPlayer.AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(80 * player.minionDamage), 0f);
-            modPlayer.AddPet("Fairy Pet", hideVisual, BuffID.FairyBlue, ProjectileID.BlueFairy);
+            player.GetModPlayer<FargoPlayer>(mod).HallowEffect(hideVisual, 80);
         }
 
         public override void AddRecipes()

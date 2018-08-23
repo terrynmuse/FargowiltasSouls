@@ -27,9 +27,7 @@ Summons a Baby Skeletron Head");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.NecroEnchant = true;
-            modPlayer.AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
+            player.GetModPlayer<FargoPlayer>(mod).NecroEffect(hideVisual);
         }
 
         public override void AddRecipes()

@@ -46,34 +46,12 @@ Summons a pet Black Cat, Baby Eater of Souls, Shadow Orb, Baby Skeletron Head, C
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.ShadowForce = true;
-            //smoke tele
-            modPlayer.NinjaEnchant = true;
-            //darkness doom
-            modPlayer.ShadowEnchant = true;
-            //DG hit
-            modPlayer.NecroEnchant = true;
-            //scythe doom
+            modPlayer.NinjaEffect(hideVisual);
+            modPlayer.ShadowEffect(hideVisual);
+            modPlayer.NecroEffect(hideVisual);
             modPlayer.SpookyEnchant = true;
-            player.setMonkT2 = true;
-            player.setMonkT3 = true;
-            //ninja gear
-            player.blackBelt = true;
-            player.spikedBoots = 2;
-            player.dash = 1;
-            //tele thru walls
-            modPlayer.ShinobiEnchant = true;
-            player.setApprenticeT2 = true;
-            player.setApprenticeT3 = true;
-            //shadow shoot meme
-            modPlayer.DarkEnchant = true;
-            modPlayer.AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
-            modPlayer.AddPet("Baby Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
-            modPlayer.AddPet("Shadow Orb Pet", hideVisual, BuffID.ShadowOrb, ProjectileID.ShadowOrb);
-            modPlayer.AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
-            modPlayer.AddPet("Cursed Sapling Pet", hideVisual, BuffID.CursedSapling, ProjectileID.CursedSapling);
-            modPlayer.AddPet("Eye Spring Pet", hideVisual, BuffID.EyeballSpring, ProjectileID.EyeSpring);
-            modPlayer.AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
-            modPlayer.AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
+            modPlayer.ShinobiEffect(hideVisual);
+            modPlayer.DarkArtistEffect(hideVisual);
         }
 
         public override void AddRecipes()

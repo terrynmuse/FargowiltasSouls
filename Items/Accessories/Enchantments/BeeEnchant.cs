@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			Tooltip.SetDefault(
 @"'According to all known laws of aviation, there is no way a bee should be able to fly'
 Increases the strength of friendly bees
-Bees ignore enemy defense
+Bees ignore most enemy defense
 Summons a pet Baby Hornet");
 		}
 
@@ -28,11 +28,7 @@ Summons a pet Baby Hornet");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            player.strongBees = true;
-            //bees ignore defense
-            modPlayer.BeeEnchant = true;
-            modPlayer.AddPet("Baby Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
+			player.GetModPlayer<FargoPlayer>(mod).BeeEffect(hideVisual);
         }
 		
 		public override void AddRecipes()

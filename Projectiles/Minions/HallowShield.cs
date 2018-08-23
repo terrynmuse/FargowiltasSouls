@@ -28,24 +28,25 @@ namespace FargowiltasSouls.Projectiles.Minions
 		public override void AI()
         {
 			Player player = Main.player[projectile.owner];
-			//FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
             const int focusRadius = 50;
-            
-            for (int i = 0; i < 25; i++)
+
+            if(player.velocity.X < 2 && player.velocity.Y < 2)
             {
-                Vector2 offset = new Vector2();
-                double angle = Main.rand.NextDouble() * 2d * Math.PI;
-                offset.X += (float)(Math.Sin(angle) * focusRadius);
-                offset.Y += (float)(Math.Cos(angle) * focusRadius);
-                Dust dust = Main.dust[Dust.NewDust(
-                    player.Center + offset - new Vector2(4, 4), 0, 0,
-                    DustID.GoldFlame, 0, 0, 100, Color.White, 1f
-                    )];
-                dust.velocity = player.velocity;
-                //dust.fadeIn = 0.5f;
-                dust.noGravity = true;
-            } 
+                for (int i = 0; i < 25; i++)
+                {
+                    Vector2 offset = new Vector2();
+                    double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                    offset.X += (float)(Math.Sin(angle) * focusRadius);
+                    offset.Y += (float)(Math.Cos(angle) * focusRadius);
+                    Dust dust = Main.dust[Dust.NewDust(
+                        player.Center + offset - new Vector2(4, 4), 0, 0,
+                        DustID.GoldFlame, 0, 0, 100, Color.White, 1f
+                        )];
+                    dust.velocity = player.velocity;
+                    dust.noGravity = true;
+                }
+            }
+            
         }
     }
 }

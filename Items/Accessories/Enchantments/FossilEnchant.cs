@@ -31,12 +31,7 @@ Summons a pet Baby Dino");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //revive
-			modPlayer.FossilEnchant = true;
-            //bone zone
-            modPlayer.FossilEffect(10);
-            modPlayer.AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
+			player.GetModPlayer<FargoPlayer>(mod).FossilEffect(10, hideVisual);
         }
 		
 		public override void AddRecipes()

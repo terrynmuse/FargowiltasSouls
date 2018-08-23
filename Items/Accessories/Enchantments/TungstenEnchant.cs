@@ -28,10 +28,7 @@ Your weapons shoot at 1/8 the speed
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.TungstenEnchant = true;
-            modPlayer.AllDamageUp(3f);
-            modPlayer.AllCritUp(25);
+            player.GetModPlayer<FargoPlayer>().TungstenEffect(3);
         }
 
         public override void AddRecipes()

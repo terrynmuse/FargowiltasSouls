@@ -1,4 +1,5 @@
 ﻿using FargowiltasSouls.NPCs;
+using FargowiltasSouls.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -27,7 +28,9 @@ namespace FargowiltasSouls.Buffs.Souls
 
             if (npc.buffTime[buffIndex] < 3)
             {
-                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("Explosion"), 1000, 0f, Main.myPlayer);
+                int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("Explosion"), 1000, 0f, Main.myPlayer);
+
+                Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
         }
 

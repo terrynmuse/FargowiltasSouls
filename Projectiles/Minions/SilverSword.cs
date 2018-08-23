@@ -12,7 +12,6 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.netImportant = true;
             projectile.CloneDefaults(ProjectileID.DeadlySphere);
             aiType = ProjectileID.DeadlySphere;
-
             projectile.width = 32;
             projectile.height = 32;
             projectile.friendly = true;
@@ -21,6 +20,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.timeLeft = 18000;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
+            projectile.minionSlots = 0;
             ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
         }
 

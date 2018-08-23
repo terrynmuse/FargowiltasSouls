@@ -29,8 +29,7 @@ Spore damage scales with magic damage");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.cordage = true;
-            player.GetModPlayer<FargoPlayer>(mod).JungleEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).JungleEffect();
         }
 
         public override void AddRecipes()

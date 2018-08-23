@@ -29,16 +29,7 @@ Summons a pet gato");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            player.setMonkT2 = true;
-            player.setMonkT3 = true;
-            //ninja gear
-            player.blackBelt = true;
-            player.spikedBoots = 2;
-            player.dash = 1;
-            //tele thru walls
-            modPlayer.ShinobiEnchant = true;
-            modPlayer.AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
+            player.GetModPlayer<FargoPlayer>(mod).ShinobiEffect(hideVisual);
         }
 		
 		public override void AddRecipes()

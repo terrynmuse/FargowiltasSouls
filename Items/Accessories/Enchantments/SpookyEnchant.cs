@@ -27,11 +27,7 @@ Summons a Cursed Sapling and an eyeball spring");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //scythe doom
-            modPlayer.SpookyEnchant = true;
-            modPlayer.AddPet("Cursed Sapling Pet", hideVisual, BuffID.CursedSapling, ProjectileID.CursedSapling);
-            modPlayer.AddPet("Eye Spring Pet", hideVisual, BuffID.EyeballSpring, ProjectileID.EyeSpring);
+            player.GetModPlayer<FargoPlayer>(mod).SpookyEffect(hideVisual);
         }
 
         public override void AddRecipes()

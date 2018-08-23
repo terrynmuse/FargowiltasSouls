@@ -28,12 +28,7 @@ Summons a flickerwick to provide light");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            player.setApprenticeT2 = true;
-            player.setApprenticeT3 = true;
-            //shadow shoot meme
-            modPlayer.DarkEnchant = true;
-            modPlayer.AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
+            player.GetModPlayer<FargoPlayer>(mod).DarkArtistEffect(hideVisual);
         }
 
         public override void AddRecipes()

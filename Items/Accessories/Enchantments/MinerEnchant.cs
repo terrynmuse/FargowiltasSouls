@@ -29,31 +29,7 @@ Summons a magic lantern");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            player.pickSpeed -= 0.5f;
-
-            if (Soulcheck.GetValue("Spelunker Buff"))
-            {
-                player.findTreasure = true;
-            }
-
-            if (Soulcheck.GetValue("Hunter Buff"))
-            {
-                player.detectCreature = true;
-            }
-
-            if (Soulcheck.GetValue("Dangersense Buff"))
-            {
-                player.dangerSense = true;
-            }
-
-            if (Soulcheck.GetValue("Shine Buff"))
-            {
-                Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
-            }
-
-            modPlayer.MinerEnchant = true;
-            modPlayer.AddPet("Magic Lantern Pet", hideVisual, BuffID.MagicLantern, ProjectileID.MagicLantern);
+            player.GetModPlayer<FargoPlayer>(mod).MinerEffect(hideVisual, .5f);
         }
 
         public override void AddRecipes()

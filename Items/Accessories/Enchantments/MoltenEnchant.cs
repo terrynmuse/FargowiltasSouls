@@ -28,10 +28,7 @@ When you die, you violently explode dealing massive damage to surrounding enemie
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.InfernoEffect(10);
-            //explode on death
-            modPlayer.MoltenEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).MoltenEffect(10);
         }
 
         public override void AddRecipes()

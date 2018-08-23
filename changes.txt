@@ -1,6 +1,6 @@
 -no dmg boost on any enchantment or force, almost all enchantments recipe changed
 
--adamanite enchantment lost its magic damage boost, now all weapons can shoot a spread
+-adamanite enchantment lost its magic damage boost, now all weapons can shoot a spread, and its every x instead of chance
 
 -angler enchant extra lures works better
 
@@ -67,3 +67,5 @@
 bug fixed where things would shoot too fast
 
 added Force of Will, Shadow Force, Terra Force, chnaged all Forces, changed SoT
+
+SoT life steal cooldown actually works now

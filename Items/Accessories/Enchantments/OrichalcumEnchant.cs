@@ -27,8 +27,7 @@ Attacks may spawn fireballs to rotate around you");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.onHitPetal = true;
-            player.GetModPlayer<FargoPlayer>(mod).OriEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).OrichalcumEffect();
         }
 
         public override void AddRecipes()

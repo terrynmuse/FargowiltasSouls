@@ -29,12 +29,7 @@ Summons a pet Seedling");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.AddMinion("Leaf Crystal", mod.ProjectileType("Chlorofuck"), 100, 10f);
-            modPlayer.FlowerBoots();
-            //herb double
-            modPlayer.ChloroEnchant = true;
-            modPlayer.AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
+			player.GetModPlayer<FargoPlayer>(mod).ChloroEffect(hideVisual, 100);
         }
 		
 		public override void AddRecipes()

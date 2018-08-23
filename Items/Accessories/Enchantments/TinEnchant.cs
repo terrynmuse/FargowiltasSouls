@@ -28,9 +28,7 @@ Getting hit drops your crit back down");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.TinEnchant = true;
-            modPlayer.AllCritEquals(modPlayer.TinCrit);
+            player.GetModPlayer<FargoPlayer>(mod).TinEffect();
         }
 
         public override void AddRecipes()

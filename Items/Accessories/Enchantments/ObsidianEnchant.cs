@@ -28,16 +28,7 @@ While standing in lava, you gain 10 more armor penetration, 10% attack speed, an
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.fireWalk = true;
-            player.lavaImmune = true;
-            player.armorPenetration += 10;
-
-            //in lava effects
-            if (player.lavaWet)
-            {
-                player.armorPenetration += 10;
-                player.GetModPlayer<FargoPlayer>(mod).ObsidianEnchant = true;
-            }  
+            player.GetModPlayer<FargoPlayer>(mod).ObsidianEffect();
         }
 
         public override void AddRecipes()

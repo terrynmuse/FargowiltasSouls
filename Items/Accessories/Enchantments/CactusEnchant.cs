@@ -28,9 +28,7 @@ Needles scale with melee damage");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.thorns = .5f;
-            //needle spray
-            player.GetModPlayer<FargoPlayer>(mod).CactusEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).CactusEffect(); ;
         }
 		
 		public override void AddRecipes()

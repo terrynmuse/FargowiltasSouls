@@ -28,10 +28,7 @@ You are immune to the Mighty Wind debuff");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //storm
-            modPlayer.ForbiddenEffect();
-            player.buffImmune[BuffID.WindPushed] = true;
+            player.GetModPlayer<FargoPlayer>(mod).ForbiddenEffect();
         }
 
         public override void AddRecipes()

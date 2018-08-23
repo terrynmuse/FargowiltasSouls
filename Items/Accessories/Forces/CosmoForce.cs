@@ -15,11 +15,12 @@ A meteor shower initiates every few seconds while using any weapon
 Solar shield allows you to dash through enemies
 Attacks inflict the Solar Flare debuff
 Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
+You also spawn a vortex to draw in and massively damage enemies when you enter stealth
 Attacks rarely spawn a vortex to draw in and massively damage enemies
 Hurting enemies has a chance to spawn buff boosters
 Once you get to the last tier with each booster type, your attack speed hits obscene levels
 Double tap down to direct your guardian
-When you do, you freeze time temporarily
+Press the Freeze Key to freeze time for 5 seconds
 Summons a Companion Cube Pet and a suspicious looking eye to provide light");
         }
 
@@ -37,21 +38,11 @@ Summons a Companion Cube Pet and a suspicious looking eye to provide light");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.CosmoForce = true;
-            //meteor shower
-            modPlayer.MeteorEffect(75, 2);
-            modPlayer.SolarShield();
-            //solar flare debuff
-            modPlayer.SolarEnchant = true;
-            //portal spawn
-            modPlayer.VortexEnchant = true;
-            //stealth memes
-            modPlayer.VortexEffect();
-            //boosters and meme speed
+            modPlayer.MeteorEffect(75);
+            modPlayer.SolarEffect();
+            modPlayer.VortexEffect(hideVisual);
             modPlayer.NebulaEffect();
-            //minion and freeze time
-            modPlayer.StardustEnchant = true;
             modPlayer.StardustEffect();
-            modPlayer.AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
             modPlayer.AddPet("Suspicious Looking Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
         }
 

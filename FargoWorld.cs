@@ -332,10 +332,6 @@ namespace FargowiltasSouls
 
         public override void PostUpdate()
         {
-            if (!Soulcheck.GetValue("Seasonal Enemies")) return;
-            Main.xMas = true;
-            Main.halloween = true;
-
             #region commented
             //right when day starts
             /*if(/*Main.time == 0 && Main.dayTime && !Main.eclipse && FargoWorld.masochistMode)

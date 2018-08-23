@@ -27,9 +27,7 @@ Summons a pet Minotaur");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.GladEnchant = true;
-            modPlayer.AddPet("Mini Minotaur Pet", hideVisual, BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
+            player.GetModPlayer<FargoPlayer>(mod).GladiatorEffect(hideVisual);
         }
 
         public override void AddRecipes()

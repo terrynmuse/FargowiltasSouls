@@ -50,30 +50,12 @@ While standing in lava, you gain 10 more armor penetration, 50% attack speed, an
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.TerraForce = true;
-            //lightning
             modPlayer.CopperEnchant = true;
-            //crit memes
-            modPlayer.TinEnchant = true;
-            modPlayer.AllCritEquals(modPlayer.TinCrit);
-            //EoC Shield
-            player.dash = 2;
-            //shield raise stuff
+            modPlayer.TinEffect();
             modPlayer.IronEffect();
-            //item attract
-            modPlayer.IronEnchant = true;
-            player.maxFallSpeed *= 5;
             modPlayer.LeadEnchant = true;
-            modPlayer.AllDamageUp(1f);
-            player.fireWalk = true;
-            player.lavaImmune = true;
-            player.armorPenetration += 10;
-
-            //in lava effects
-            if (player.lavaWet)
-            {
-                player.armorPenetration += 10;
-                modPlayer.ObsidianEnchant = true;
-            }
+            modPlayer.TungstenEffect(1);
+            modPlayer.ObsidianEffect();
         }
 
         public override void AddRecipes()

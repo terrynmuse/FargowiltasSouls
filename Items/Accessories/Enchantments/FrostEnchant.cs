@@ -30,13 +30,7 @@ Summons a baby penguin and snowman");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            player.waterWalk = true;
-            //icicles
-            modPlayer.FrostEnchant = true;
-            modPlayer.FrostEffect(50);
-            modPlayer.AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
-            modPlayer.AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
+            player.GetModPlayer<FargoPlayer>(mod).FrostEffect(50, hideVisual);
         }
 
         public override void AddRecipes()

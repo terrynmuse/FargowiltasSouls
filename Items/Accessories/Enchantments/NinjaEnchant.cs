@@ -28,9 +28,7 @@ Summons a pet Black cat");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.NinjaEnchant = true;
-            modPlayer.AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
+            player.GetModPlayer<FargoPlayer>(mod).NinjaEffect(hideVisual);
         }
 
         public override void AddRecipes()

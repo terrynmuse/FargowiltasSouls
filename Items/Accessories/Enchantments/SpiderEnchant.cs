@@ -27,9 +27,7 @@ Summons a pet Spider");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.SpiderEnchant = true;
-            modPlayer.AddPet("Spider Pet", hideVisual, BuffID.PetSpider, ProjectileID.Spider);
+            player.GetModPlayer<FargoPlayer>(mod).SpiderEffect(hideVisual);
         }
 
         public override void AddRecipes()

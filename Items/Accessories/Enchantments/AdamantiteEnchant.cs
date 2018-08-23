@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Adamantite Enchantment");
             Tooltip.SetDefault(
 @"'Who needs to aim?' 
-25% chance for any weapon to shoot in a spread
+Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split");
         }
 

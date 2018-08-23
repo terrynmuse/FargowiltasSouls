@@ -116,13 +116,29 @@ namespace FargowiltasSouls.Items
                 item.stack = 2;
             }
 
-            if(p.CrimsonEnchant && item.type == ItemID.Heart)
+            if (p.TerrariaSoul)
+            {
+                if (item.type == ItemID.Heart)
+                {
+                    player.HealEffect(40);
+                    player.statLife += 40;
+                    return false;
+                }
+                else if (item.type == ItemID.Star)
+                {
+                    player.ManaEffect(200);
+                    player.statMana += 200;
+                    return false;
+                }
+            }
+            else if (p.CrimsonEnchant && item.type == ItemID.Heart)
             {
                 player.HealEffect(30);
                 player.statLife += 30;
-
                 return false;
             }
+
+            
 
             if (p.GoldEnchant)
             {

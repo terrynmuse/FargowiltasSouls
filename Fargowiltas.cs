@@ -4,14 +4,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
-// why
 
 namespace FargowiltasSouls
 {
     class Fargowiltas : Mod
     {
         internal static ModHotKey CheckListKey;
-        internal static ModHotKey HomeKey;
+        internal static ModHotKey FreezeKey;
+
         internal Soulcheck SoulCheck;
         public UserInterface CustomResources;
 
@@ -45,7 +45,7 @@ namespace FargowiltasSouls
         {
             Instance = this;
             CheckListKey = RegisterHotKey("Soul Toggles", "L");
-            HomeKey = RegisterHotKey("Teleport Home", "+");
+            FreezeKey = RegisterHotKey("Freeze Time", "P");
 
             if (!Main.dedServ)
             {

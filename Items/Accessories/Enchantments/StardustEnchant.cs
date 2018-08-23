@@ -12,8 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 			Tooltip.SetDefault(
 @"'The power of the Stand is yours' 
 Double tap down to direct your guardian
-When you do, you freeze time temporarily
-There is a longer cooldown for this effect, a sound effect plays when it's back");
+Press the Freeze Key to freeze time for 5 seconds
+There is a 60 second cooldown for this effect, a sound effect plays when it's back");
 		}
 
 		public override void SetDefaults()
@@ -28,9 +28,7 @@ There is a longer cooldown for this effect, a sound effect plays when it's back"
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-			modPlayer.StardustEnchant = true;
-            modPlayer.StardustEffect();
+            player.GetModPlayer<FargoPlayer>(mod).StardustEffect();
         }
 
         public override void AddRecipes()

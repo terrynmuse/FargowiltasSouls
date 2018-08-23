@@ -27,11 +27,7 @@ Your wings last 1.5x as long");
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //wing time up
-            modPlayer.BeetleEnchant = true;
-            //beetle resistance
-            modPlayer.BeetleEffect();
+            player.GetModPlayer<FargoPlayer>(mod).BeetleEffect();
         }
 		
 		public override void AddRecipes()
