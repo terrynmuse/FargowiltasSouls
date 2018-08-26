@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -6,149 +5,97 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-	public class ColossusSoul : ModItem
+    [AutoloadEquip(EquipType.Shield)]
+    public class ColossusSoul : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Colossus Soul");
-			
-			String tooltip = "'Nothing can stop you' \n20% chance to instantly heal back 50% of any damage taken\n20% damage reduction \n15% increased defense \nIncreases life regeneration by 8 \nIncreases HP by 100 \nGrants immunity to knockback and most debuffs \nEnemies are more likely to target you";
-			
-			if(Fargowiltas.Instance.CalamityLoaded)
-			{
-				tooltip += "\nEffects of the Absorber and Asgardian Aegis";
-			}
-			
-			if(Fargowiltas.Instance.ThoriumLoaded)
-			{
-				 tooltip += "\nEffects of the Star Veil and Terrarium Defender";
-			}
-			else
-			{
-				tooltip += "\nEffects of the Star Veil, Paladin's Shield, and Frozen Turtle Shell";
-			}
-
-			Tooltip.SetDefault(tooltip);
+			Tooltip.SetDefault(
+@"'Nothing can stop you'
+Increases HP by 100
+15% damage reduction
+Increases life regeneration by 5
+Grants immunity to knockback and several debuffs
+Enemies are more likely to target you
+Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
+Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
 		}
+
 		public override void SetDefaults()
 		{
 			item.width = 20;
 			item.height = 20;
 			item.accessory = true;
-			item.defense = 8;
-			item.value = 750000;
+			item.defense = 10;
+            item.value = 1000000;
 			item.expert = true;
 			item.rare = -12;
-            item.shieldSlot = 4;
+            
+            //item.shieldSlot = 4;
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
-		
+            player.statLifeMax2 += 100;
+            player.endurance += 0.15f;
+            player.lifeRegen += 5;
 
-			player.GetModPlayer<FargoPlayer>(mod).TankEffect = true;
-			
-			//thorium
-			if(Fargowiltas.Instance.ThoriumLoaded)
-			{
-				if (player.statLife < 75)
-				{
-				player.AddBuff(ModLoader.GetMod("ThoriumMod").BuffType("TerrariumRegen"), 60);
-				player.lifeRegen += 20;
-				}
-				if (player.statLife < 100)
-				{
-				player.AddBuff(ModLoader.GetMod("ThoriumMod").BuffType("TerrariumDefense"), 60);
-				player.statDefense += 20;
-				}
-			}			
-			
-           player.endurance += 0.20f;
-		   player.lifeRegen += 8;
-		   player.aggro += 50;
-		   player.statLifeMax2 += 100;
-		   player.hasPaladinShield = true;
-		   
-		   player.statDefense = (int)(player.statDefense * 1.15);
-		   
-		   //ankh shield
-		    player.buffImmune[46] = true;
-			player.noKnockback = true;
-			player.fireWalk = true;
-			player.buffImmune[33] = true;
-			player.buffImmune[36] = true;
-			player.buffImmune[30] = true;
-			player.buffImmune[20] = true;
-			player.buffImmune[32] = true;
-			player.buffImmune[31] = true;
-			player.buffImmune[35] = true;
-			player.buffImmune[23] = true;
-			player.buffImmune[22] = true;
-			
-			player.buffImmune[156] = true; //Stoned
-			
-		   //paladin
-			if (player.statLife > player.statLifeMax2 * .25)
-			{
-				for (int k = 0; k < 255; k++)
-				{
-					Player target = Main.player[k];
-			
-					if (target.active && player != target && Vector2.Distance(target.Center, player.Center) < 400)
-					{
-						target.AddBuff(BuffID.PaladinsShield, 30);
-					}
-				}
-			}
-		   
-		   //frozenshell
-		   
-		    if (player.statLife < player.statLifeMax2 * .5)
+            //hand warmer, pocket mirror, ankh shield
+            player.buffImmune[BuffID.Chilled] = true;
+            player.buffImmune[BuffID.Frozen] = true;
+            player.buffImmune[BuffID.Stoned] = true;
+            player.buffImmune[BuffID.Weak] = true;
+            player.buffImmune[BuffID.BrokenArmor] = true;
+            player.buffImmune[BuffID.Bleeding] = true;
+            player.buffImmune[BuffID.Poisoned] = true;
+            player.buffImmune[BuffID.Slow] = true;
+            player.buffImmune[BuffID.Confused] = true;
+            player.buffImmune[BuffID.Silenced] = true;
+            player.buffImmune[BuffID.Cursed] = true;
+            player.buffImmune[BuffID.Darkness] = true;
+            player.noKnockback = true;
+            player.fireWalk = true;
+            //brain of confusion
+            player.brainOfConfusion = true;
+            //charm of myths
+            player.pStone = true;
+            //bee cloak, sweet heart necklace, star veil
+            player.starCloak = true;
+            player.bee = true;
+            player.panic = true;
+            player.longInvince = true;
+            //spore sac
+            player.SporeSac();
+            player.sporeSac = true;
+            //flesh knuckles
+            player.aggro += 400;
+            //frozen turtle shell
+            if (player.statLife <= player.statLifeMax2 * 0.5)
             {
-                player.AddBuff(BuffID.IceBarrier, 30);
+                player.AddBuff(BuffID.IceBarrier, 5, true);
             }
-					
-		    
-			
-			// sweet vengeance or star veil
-			if(Fargowiltas.Instance.ThoriumLoaded)
-			{
-				player.bee = true;
-				player.panic = true;
-			}
+            //paladins shield
+            if (player.statLife > player.statLifeMax2 * .25)
+            {
+                player.hasPaladinShield = true;
+                for (int k = 0; k < 255; k++)
+                {
+                    Player target = Main.player[k];
 
-				player.starCloak = true;
-				player.longInvince = true;
-			
-			//charm of myths
-			player.pStone = true;
-			
-			//celestial shell
-			player.accMerman = true;
-			player.wolfAcc = true;
-			if (hideVisual)
-			{
-				player.hideMerman = true;
-				player.hideWolf = true;
-			}
-			
-			if(Fargowiltas.Instance.CalamityLoaded)
-			{
-				player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("BrimstoneFlames")] = true;
-				player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("HolyLight")] = true;
-				player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("GlacialState")] = true;
-				
-				CalamityTank(player);
-			}
-			
-			if(Fargowiltas.Instance.BlueMagicLoaded)
-			{
-				BlueTank(player);
-			}
+                    if (target.active && player != target && Vector2.Distance(target.Center, player.Center) < 400)
+                    {
+                        target.AddBuff(BuffID.PaladinsShield, 30);
+                    }
+                }
+            }
         }
-		
-		public void CalamityTank(Player player)
+
+        /*public void CalamityTank(Player player)
 		{
+                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("BrimstoneFlames")] = true;
+                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("HolyLight")] = true;
+                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("GlacialState")] = true;
 				player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).elysianAegis = true;
 				player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).dashMod = 4;
 				player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).aSpark = true;
@@ -161,145 +108,36 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 		{
 				player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).lifeMagnet2 = true;
 				player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).crystalCloak = true;
-		}
-		
-		public override void AddRecipes()
+		}*/
+
+        public override void AddRecipes()
         {
-            ModRecipe tank = new ModRecipe(mod);
+            ModRecipe recipe = new ModRecipe(mod);
 			
 			if(Fargowiltas.Instance.ThoriumLoaded)
 			{
-				if(Fargowiltas.Instance.CalamityLoaded)
-				{
-						tank.AddIngredient(ItemID.HandWarmer);
-						tank.AddIngredient(ItemID.PocketMirror);
-					
-					if(Fargowiltas.Instance.BlueMagicLoaded)
-					{
-						//all 3
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("MoonlightCharm"));	
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CrystalVeil"));	
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CelestialLegend"));	
-					}
 
-					else
-					{
-						//thorium and calamity	
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SweetVengeance"));
-						tank.AddIngredient(ItemID.CelestialShell); 
-					}
-						
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("OceanRetaliation"));
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DeathEmbrace"));	//cape of the survivor? wtf diver
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("BlastShield"));
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DemonRageBadge"));
-						tank.AddIngredient(ItemID.ShinyStone);
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumDefender"));	
-						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("AsgardianAegis"));	
-						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("AstralArcanum"));
-						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Sponge"));	
-				}
-				
-				if(!Fargowiltas.Instance.CalamityLoaded)
-				{
-						tank.AddIngredient(ItemID.HandWarmer);
-						tank.AddIngredient(ItemID.PocketMirror);
-						tank.AddRecipeGroup("FargowiltasSouls:AnyEvilExpert");
-					
-					if(Fargowiltas.Instance.BlueMagicLoaded)
-					{
-						//blue and thorium
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("MoonlightCharm"));	
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CrystalVeil"));	
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CelestialLegend"));	
-					}
-					
-					else
-					{
-						//just thorium
-						tank.AddIngredient(ItemID.CharmofMyths);
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SweetVengeance"));
-						tank.AddIngredient(ItemID.CelestialShell); 
-					}
-						
-						tank.AddRecipeGroup("FargowiltasSouls:AnyEvilMimic");	
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AstroBeetleHusk"));	
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("OceanRetaliation"));
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DeathEmbrace"));	//cape of the survivor? wtf diver
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("BlastShield"));
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DemonRageBadge"));
-						tank.AddIngredient(ItemID.ShinyStone);
-						tank.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumDefender"));	
-				}
-			}
-				
-			if(!Fargowiltas.Instance.ThoriumLoaded)
-			{
-				if(Fargowiltas.Instance.CalamityLoaded)
-				{
-						tank.AddIngredient(ItemID.LifeCrystal, 10);
-						tank.AddIngredient(ItemID.HandWarmer);
-						tank.AddIngredient(ItemID.PocketMirror);
-						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("BloodyWormScarf"));	
-					
-					if(Fargowiltas.Instance.BlueMagicLoaded)
-					{
-						//calamity and blue
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("MoonlightCharm"));	
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CrystalVeil"));	
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CelestialLegend"));	
-					}
-				
-					else
-					{
-						//just calamity	
-						tank.AddIngredient(ItemID.StarVeil);
-						tank.AddIngredient(ItemID.CelestialShell); 
-					}
-						
-						tank.AddIngredient(ItemID.FrozenTurtleShell);
-						tank.AddIngredient(ItemID.PaladinsShield);
-						tank.AddRecipeGroup("FargowiltasSouls:AnyEvilMimic");
-						tank.AddIngredient(ItemID.ShinyStone);	
-						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("AsgardianAegis"));	
-						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("AstralArcanum"));
-						tank.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Sponge"));
-				}
-			
-				if(!Fargowiltas.Instance.CalamityLoaded)
-				{
-						tank.AddIngredient(ItemID.LifeCrystal, 10);
-						tank.AddIngredient(ItemID.HandWarmer);
-						tank.AddIngredient(ItemID.PocketMirror);
-						tank.AddRecipeGroup("FargowiltasSouls:AnyEvilExpert");
-					
-					if(Fargowiltas.Instance.BlueMagicLoaded)
-					{
-						//just blue
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("MoonlightCharm"));	
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CrystalVeil"));	
-						tank.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("CelestialLegend"));	
-					}
-			
-					else
-					{
-						//no others
-						tank.AddIngredient(ItemID.CharmofMyths);
-						tank.AddIngredient(ItemID.StarVeil);
-						tank.AddIngredient(ItemID.CelestialShell); 
-					}
-					
-						tank.AddIngredient(ItemID.FrozenTurtleShell);
-						tank.AddIngredient(ItemID.PaladinsShield);
-						tank.AddIngredient(ItemID.AnkhShield);
-						tank.AddRecipeGroup("FargowiltasSouls:AnyEvilMimic");
-						tank.AddIngredient(ItemID.ShinyStone);
-				}
-			}
-			
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.HandWarmer);
+                recipe.AddIngredient(ItemID.WormScarf);
+                recipe.AddIngredient(ItemID.BrainOfConfusion);
+                recipe.AddIngredient(ItemID.PocketMirror);
+                recipe.AddIngredient(ItemID.CharmofMyths);
+                recipe.AddIngredient(ItemID.BeeCloak);
+                recipe.AddIngredient(ItemID.SweetheartNecklace);
+                recipe.AddIngredient(ItemID.StarVeil);
+                recipe.AddIngredient(ItemID.SporeSac);
+                recipe.AddIngredient(ItemID.FleshKnuckles);
+                recipe.AddIngredient(ItemID.FrozenTurtleShell);
+                recipe.AddIngredient(ItemID.PaladinsShield);
+                recipe.AddIngredient(ItemID.AnkhShield);
+            }
+
             //tank.AddTile(null, "CrucibleCosmosSheet");
-            tank.SetResult(this);
-            tank.AddRecipe();
+            recipe.SetResult(this);
+            recipe.AddRecipe();
 		}
 	}
 }

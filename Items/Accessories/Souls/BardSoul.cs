@@ -15,19 +15,20 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             if (ModLoader.GetLoadedMods().Contains("ThoriumMod"))
             {
-                Tooltip.SetDefault("'Every note you produce births a new world'\n" +
-                                    "40% increased symphonic damage\n" +
-                                    "25% increased symphonic playing speed\n" +
-                                    "20% increased symphonic critical strike chance\n" +
-                                    "Your symphonic damage empowers all nearby allies with: Cold Shoulder, Spider Bite, Abomination's Blood, Vile Flames and Terrarian\n" +
-                                    "Damage done against frostburnt, envenomed, ichor'd, and cursed flamed enemies is increased by 10%\n" +
-                                    "Doubles the range of your empowerments effect radius\n" +
-                                    "Percussion critical strikes will deal 10% more damage\n" +
-                                    "Percussion critical strikes will briefly stun enemies\n" +
-                                    "Your wind instrument attacks now attempt to quickly home in on enemies\n" +
-                                    "If the attack already homes onto enemies, it does so far more quickly\n" +
-                                    "String weapon projectiles bounce five additional times\n" +
-                                    "Critical strikes caused by brass instrument attacks release a spread of energy");
+                Tooltip.SetDefault(
+@"'Every note you produce births a new world'
+40% increased symphonic damage
+25% increased symphonic playing speed
+20% increased symphonic critical strike chance
+Your symphonic damage empowers all nearby allies with: Cold Shoulder, Spider Bite, Abomination's Blood, Vile Flames and Terrarian
+Damage done against frostburnt, envenomed, ichor'd, and cursed flamed enemies is increased by 10%
+Doubles the range of your empowerments effect radius
+Percussion critical strikes will deal 10% more damage
+Percussion critical strikes will briefly stun enemies
+Your wind instrument attacks now attempt to quickly home in on enemies
+If the attack already homes onto enemies, it does so far more quickly
+String weapon projectiles bounce five additional times
+Critical strikes caused by brass instrument attacks release a spread of energy");
 
                 //at a later date
                 // Increases inspiration regeneration by 10%
@@ -45,7 +46,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.value = 750000;
+            item.value = 1000000;
             item.expert = true;
             item.rare = -12;
         }

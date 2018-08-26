@@ -22,22 +22,15 @@ Releases bees when damaged");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.value = 750000;
+            item.value = 1000000;
             item.expert = true;
             item.rare = -12;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-
-            player.ignoreWater = true;
             player.wingTimeMax = 2000;
-
-            //honey
-            player.noFallDmg = true;
-            player.jumpBoost = true;
-            player.bee = true;
-
+            player.ignoreWater = true;
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,

@@ -31,7 +31,7 @@ namespace FargowiltasSouls
         public bool BrainMinion;
         public bool EaterMinion;
 
-        //enchantments
+        #region enchantments
         public bool petsSpawned = false;
         public bool ShadowEnchant;
         private int shadowCD = 0;
@@ -119,16 +119,25 @@ namespace FargowiltasSouls
         public bool TerraForce;
         public bool WillForce;
 
+        private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
+
+        private int[] tikiDebuffs = { 0, BuffID.CursedInferno, BuffID.Ichor, BuffID.ShadowFlame, BuffID.Venom, BuffID.Poisoned, BuffID.Confused, BuffID.Stinky };
+
+        #endregion
+
         //soul effects
-        public bool MeleeEffect;
+        public bool MagicSoul;
+
+
+
+
         public bool ThrowSoul;
-        public bool RangedEffect;
-        public bool MiniRangedEffect;
+        public bool RangedSoul;
+        public bool RangedEssence;
         public bool BuilderEffect;
         public bool BuilderMode;
         public bool UniverseEffect;
         public bool SpeedEffect;
-        public bool TankEffect;
         public bool FishSoul1;
         public bool FishSoul2;
         public bool DimensionSoul;
@@ -166,9 +175,7 @@ namespace FargowiltasSouls
         public bool Jammed;                 //ranged damage and speed reduced, all non-custom ammo set to baseline ammos
         public bool Slimed;
 
-        private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
-
-        private int[] tikiDebuffs = { 0, BuffID.CursedInferno, BuffID.Ichor, BuffID.ShadowFlame, BuffID.Venom, BuffID.Poisoned, BuffID.Confused, BuffID.Stinky };
+        
 
         public override TagCompound Save()
         {
@@ -235,7 +242,7 @@ namespace FargowiltasSouls
             BrainMinion = false;
             EaterMinion = false;
 
-            //enchantments
+            #region enchantments 
             ShadowEnchant = false;
             CrimsonEnchant = false;
             SpectreEnchant = false;
@@ -295,18 +302,20 @@ namespace FargowiltasSouls
             ShadowForce = false;
             WillForce = false;
 
+            #endregion
+
             //add missing pets to kill pets!
 
             //souls
-            MeleeEffect = false;
+            MagicSoul = false;
+
             ThrowSoul = false;
-            RangedEffect = false;
-            MiniRangedEffect = false;
+            RangedSoul = false;
+            RangedEssence = false;
             BuilderEffect = false;
             BuilderMode = false;
             UniverseEffect = false;
             SpeedEffect = false;
-            TankEffect = false;
             FishSoul1 = false;
             FishSoul2 = false;
             DimensionSoul = false;
@@ -525,6 +534,11 @@ namespace FargowiltasSouls
                 player.meleeDamage = 0.01f;
                 player.meleeCrit = 0;
             }
+
+            if(UniverseEffect)
+            {
+                player.statManaMax2 += 300;
+            }
         }
 
         public override void SetupStartInventory(IList<Item> items)
@@ -539,7 +553,6 @@ namespace FargowiltasSouls
             float multiplier = 1f;
             int useTime = item.useTime;
             int useAnimate = item.useAnimation;
-
 
             if (Lethargic)
             {
@@ -562,14 +575,9 @@ namespace FargowiltasSouls
                 multiplier *= .33f;
             }
 
-            if (MythrilEnchant)
-            {
-                multiplier *= 1.3f;
-            }
-
             if (ObsidianEnchant)
             {
-                if(TerraForce)
+                if (TerraForce)
                 {
                     multiplier *= 1.5f;
                 }
@@ -579,9 +587,39 @@ namespace FargowiltasSouls
                 }
             }
 
+            if (RangedEssence && item.ranged)
+            {
+                multiplier *= 1.05f;
+            }
+
+            if (MythrilEnchant)
+            {
+                multiplier *= 1.3f;
+            }
+
             if (NebulaCounter < 0 && (player.HeldItem.magic || CosmoForce))
             {
                 multiplier *= 5;
+            }
+
+            if(MagicSoul && item.magic)
+            {
+                multiplier *= 1.2f;
+            }
+
+            if (ThrowSoul && item.thrown)
+            {
+                multiplier *= 1.2f;
+            }
+
+            if (RangedSoul && item.ranged)
+            {
+                multiplier *= 1.2f;
+            }
+
+            if (UniverseEffect)
+            {
+                multiplier *= 1.5f;
             }
 
             //checks so weapons dont break
@@ -827,22 +865,6 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.OnFire, 600);
             }
 
-            /*if (meleeEffect)
-            {
-               if(proj.melee)
-			   {
-				  target.AddBuff(BuffID.CursedInferno, 240, true);
-			   }  
-			}   */
-
-            if (RangedEffect)
-            {
-                if (proj.ranged)
-                {
-                    target.AddBuff(BuffID.ShadowFlame, 240, true);
-                }
-            }
-
             if (UniverseEffect)
             {
                 target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
@@ -919,25 +941,6 @@ namespace FargowiltasSouls
             if (ObsidianEnchant)
             {
                 target.AddBuff(BuffID.OnFire, 600);
-            }
-
-            if (MeleeEffect)
-            {
-                if (item.melee)
-                {
-                    // target.AddBuff(BuffID.CursedInferno, 240, true);
-                    target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
-
-                }
-            }
-
-            if (RangedEffect)
-            {
-                if (item.ranged)
-                {
-                    target.AddBuff(BuffID.ShadowFlame, 240, true);
-                }
-
             }
 
             if (UniverseEffect)
@@ -1195,12 +1198,6 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (TankEffect && Main.rand.Next(5) == 0)
-            {
-                player.statLife += Convert.ToInt32(damage * .5);
-                player.HealEffect(Convert.ToInt32(damage * .5));
-            }
-
             if (DimensionSoul && Main.rand.Next(3) == 0)
             {
                 player.statLife += Convert.ToInt32(damage * .75);
@@ -1277,41 +1274,7 @@ namespace FargowiltasSouls
                 return false;
             }
 
-            if (UniverseEffect)
-            {
-                if (Main.rand.Next(100) < 50)
-                {
-                    return false;
-                }
-            }
-
-            if (RangedEffect)
-            {
-                if (Main.rand.Next(100) < 32)
-                {
-                    return false;
-                }
-            }
-
-            if (MiniRangedEffect)
-            {
-                if (Main.rand.Next(100) < 4)
-                {
-                    return false;
-                }
-            }
-
-            if (ThrowSoul)
-            {
-                if (Main.rand.Next(100) < 32)
-                {
-                    return false;
-                }
-
-            }
             return true;
-
-
         }
 
         public override void PostUpdateEquips()

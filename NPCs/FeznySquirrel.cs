@@ -4,11 +4,12 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.NPCs
 {
-    public class TophatSquirrel : ModNPC
+    public class FeznySquirrel : ModNPC
     {
+		
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Top Hat Squirrel");
+            DisplayName.SetDefault("Fez Squirrel");
             Main.npcFrameCount[npc.type] = 6;
         }
 		
@@ -21,13 +22,12 @@ namespace FargowiltasSouls.NPCs
             npc.defense = 0;
             npc.lifeMax = 100;
 			Main.npcCatchable[npc.type] = true;
-            npc.catchItem = (short)mod.ItemType("TophatSquirrel");
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = 0f;
             npc.knockBackResist = .25f;
 			banner = npc.type;
-			bannerItem = mod.ItemType("TophatSquirrelBanner");
+			bannerItem = mod.ItemType("FezSquirrelBanner");
 			
 			animationType = NPCID.Squirrel;
 			npc.aiStyle = 7;

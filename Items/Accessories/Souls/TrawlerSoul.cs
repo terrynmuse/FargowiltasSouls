@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
+    [AutoloadEquip(EquipType.Back)]
     public class TrawlerSoul : ModItem
     {
         public override void SetStaticDefaults()

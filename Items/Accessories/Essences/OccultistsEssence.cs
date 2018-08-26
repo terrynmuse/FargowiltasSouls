@@ -9,8 +9,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Occultist's Essence");
-            Tooltip.SetDefault("'This is only the beginning..' \n12% increased summon damage \nIncreases your max number of minions by 1 \nIncreases your max number of sentries by 1");
+            Tooltip.SetDefault(
+@"'This is only the beginning..'
+18% increased summon damage
+Increases your max number of minions by 1
+Increases your max number of sentries by 1");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -22,88 +27,43 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-
+            player.minionDamage += 0.18f;
             player.maxMinions += 1;
             player.maxTurrets += 1;
-            player.minionDamage += 0.12f;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe summon1 = new ModRecipe(mod);
+            ModRecipe recipe = new ModRecipe(mod);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.Instance.CalamityLoaded)
-                {
-                    //both
-                    summon1.AddIngredient(ItemID.SummonerEmblem);
-                    summon1.AddIngredient(ItemID.SlimeStaff);
-                    summon1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("SeaboundStaff"));
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MeteorStaff"));
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AmberMinion"));
-                    summon1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("DankStaff"));
-                    summon1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("BloodClotStaff"));
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("HiveMind"));
-                    summon1.AddIngredient(ItemID.HornetStaff);
-                    summon1.AddIngredient(ItemID.ImpStaff);
-                    summon1.AddRecipeGroup("FargowiltasSouls:AnySentry1");
-                    summon1.AddRecipeGroup("FargowiltasSouls:AnySentry1");
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("StrangeSkull"));
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DistressCaller"));
-                }
-
-                if (!Fargowiltas.Instance.CalamityLoaded)
-                {
-                    //just thorium
-                    summon1.AddIngredient(ItemID.SummonerEmblem);
-                    summon1.AddIngredient(ItemID.SlimeStaff);
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("StarfishWand"));
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("HatchlingStaff"));
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MeteorStaff"));
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AmberMinion"));
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("HiveMind"));
-                    summon1.AddIngredient(ItemID.HornetStaff);
-                    summon1.AddIngredient(ItemID.ImpStaff);
-                    summon1.AddRecipeGroup("FargowiltasSouls:AnySentry1");
-                    summon1.AddRecipeGroup("FargowiltasSouls:AnySentry1");
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("StrangeSkull"));
-                    summon1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DistressCaller"));
-                }
+                //just thorium
+                recipe.AddIngredient(ItemID.SummonerEmblem);
+                recipe.AddIngredient(ItemID.SlimeStaff);
+                recipe.AddIngredient(ItemID.HornetStaff);
+                recipe.AddIngredient(ItemID.ImpStaff);
+                recipe.AddIngredient(ItemID.DD2BallistraTowerT1Popper);
+                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT1Popper);
+                recipe.AddIngredient(ItemID.DD2FlameburstTowerT1Popper);
+                recipe.AddIngredient(ItemID.DD2LightningAuraT1Popper);
             }
-
-            if (!Fargowiltas.Instance.ThoriumLoaded)
+            else
             {
-                if (Fargowiltas.Instance.CalamityLoaded)
-                {
-                    //just calamity
-                    summon1.AddIngredient(ItemID.SummonerEmblem);
-                    summon1.AddIngredient(ItemID.SlimeStaff);
-                    summon1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("SeaboundStaff"));
-                    summon1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("DankStaff"));
-                    summon1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("BloodClotStaff"));
-                    summon1.AddIngredient(ItemID.HornetStaff);
-                    summon1.AddIngredient(ItemID.ImpStaff);
-                    summon1.AddRecipeGroup("FargowiltasSouls:AnySentry1");
-                    summon1.AddRecipeGroup("FargowiltasSouls:AnySentry1");
-                }
-
-                else
-                {
-                    //no others
-                    summon1.AddIngredient(ItemID.SummonerEmblem);
-                    summon1.AddIngredient(ItemID.SlimeStaff);
-                    summon1.AddIngredient(ItemID.HornetStaff);
-                    summon1.AddIngredient(ItemID.ImpStaff);
-                    summon1.AddRecipeGroup("FargowiltasSouls:AnySentry1");
-                    summon1.AddRecipeGroup("FargowiltasSouls:AnySentry1");
-                }
+                //no others
+                recipe.AddIngredient(ItemID.SummonerEmblem);
+                recipe.AddIngredient(ItemID.SlimeStaff);
+                recipe.AddIngredient(ItemID.HornetStaff);
+                recipe.AddIngredient(ItemID.ImpStaff);
+                recipe.AddIngredient(ItemID.DD2BallistraTowerT1Popper);
+                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT1Popper);
+                recipe.AddIngredient(ItemID.DD2FlameburstTowerT1Popper);
+                recipe.AddIngredient(ItemID.DD2LightningAuraT1Popper);
             }
 
-            summon1.AddTile(TileID.TinkerersWorkbench);
-            summon1.SetResult(this);
-            summon1.AddRecipe();
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
-
     }
 }

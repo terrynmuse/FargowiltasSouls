@@ -13,8 +13,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 @"'This is only the beginning..'
 18% increased ranged damage
 5% increased ranged critical chance
-5% chance to not consume ammo");
+5% increased ranged use time");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -26,101 +27,49 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MiniRangedEffect = true;
+            player.GetModPlayer<FargoPlayer>(mod).RangedEssence = true;
             player.rangedCrit += 5;
             player.rangedDamage += .18f;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe range1 = new ModRecipe(mod);
+            ModRecipe recipe = new ModRecipe(mod);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.Instance.CalamityLoaded)
-                {
-                    //both
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("JadeGauntlet"));
-                    range1.AddIngredient(ItemID.RangerEmblem);
-                    range1.AddIngredient(ItemID.SlimeGun);
-                    range1.AddIngredient(ItemID.Blowpipe);
-                    range1.AddIngredient(ItemID.SnowballCannon);
-                    range1.AddIngredient(ItemID.Sandgun);
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("FeatherFoe"));
-                    range1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("MarniteRifleSpear"));
-                    range1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("StormSurge"));
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("Zapper"));
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SharkStorm"));
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("fDarksteelBow"));
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("RangedThorHammer"));
-                    range1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Goobow"));
-                }
+                //just thorium
+                recipe.AddIngredient(ItemID.RangerEmblem);
+                recipe.AddIngredient(ItemID.RedRyder);
+                recipe.AddIngredient(ItemID.PainterPaintballGun);
+                recipe.AddIngredient(ItemID.SnowballCannon);
+                recipe.AddIngredient(ItemID.Harpoon);
+                recipe.AddIngredient(ItemID.Musket);
+                recipe.AddIngredient(ItemID.Boomstick);
+                recipe.AddIngredient(ItemID.BeesKnees);
+                recipe.AddIngredient(ItemID.HellwingBow);
 
-                if (!Fargowiltas.Instance.CalamityLoaded)
-                {
-                    //just thorium
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("JadeGauntlet"));
-                    range1.AddIngredient(ItemID.RangerEmblem);
-                    range1.AddIngredient(ItemID.SlimeGun);
-                    range1.AddIngredient(ItemID.Blowpipe);
-                    range1.AddIngredient(ItemID.SnowballCannon);
-                    range1.AddIngredient(ItemID.Sandgun);
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("FeatherFoe"));
-                    range1.AddIngredient(ItemID.Harpoon);
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("Zapper"));
-                    range1.AddIngredient(ItemID.StarCannon);
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SharkStorm"));
-                    range1.AddIngredient(ItemID.BeesKnees);
-                    range1.AddIngredient(ItemID.HellwingBow);
-                    range1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("RangedThorHammer"));
-                }
+                /*
+                 * 
+                 * */
             }
-
-            if (!Fargowiltas.Instance.ThoriumLoaded)
+            else
             {
-
-                if (Fargowiltas.Instance.CalamityLoaded)
-                {
-                    //just calamity
-                    range1.AddIngredient(ItemID.SharkToothNecklace);
-                    range1.AddIngredient(ItemID.RangerEmblem);
-                    range1.AddIngredient(ItemID.WaterGun);
-                    range1.AddIngredient(ItemID.SlimeGun);
-                    range1.AddIngredient(ItemID.Blowpipe);
-                    range1.AddIngredient(ItemID.SnowballCannon);
-                    range1.AddIngredient(ItemID.Sandgun);
-                    range1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Barinade"));
-                    range1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("MarniteRifleSpear"));
-                    range1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("StormSurge"));
-                    range1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Pumpler"));
-                    range1.AddIngredient(ItemID.Revolver);
-                    range1.AddIngredient(ItemID.Blowgun);
-                    range1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Goobow"));
-                }
-
-                else
-                {
-                    //no others
-                    range1.AddIngredient(ItemID.RangerEmblem);
-                    range1.AddIngredient(ItemID.SlimeGun);
-                    range1.AddIngredient(ItemID.Blowpipe);
-                    range1.AddIngredient(ItemID.SnowballCannon);
-                    range1.AddIngredient(ItemID.Sandgun);
-                    range1.AddIngredient(ItemID.RedRyder);
-                    range1.AddIngredient(ItemID.Harpoon);
-                    range1.AddRecipeGroup("FargowiltasSouls:AnyEvilGun");
-                    range1.AddRecipeGroup("FargowiltasSouls:AnyEvilBow");
-                    range1.AddIngredient(ItemID.Boomstick);
-                    range1.AddIngredient(ItemID.StarCannon);
-                    range1.AddIngredient(ItemID.BeesKnees);
-                    range1.AddIngredient(ItemID.HellwingBow);
-
-                }
+                //no others
+                recipe.AddIngredient(ItemID.RangerEmblem);
+                recipe.AddIngredient(ItemID.RedRyder);
+                recipe.AddIngredient(ItemID.PainterPaintballGun);
+                recipe.AddIngredient(ItemID.SnowballCannon);
+                recipe.AddIngredient(ItemID.Harpoon);
+                recipe.AddIngredient(ItemID.Musket);
+                recipe.AddIngredient(ItemID.Boomstick);
+                recipe.AddIngredient(ItemID.BeesKnees);
+                recipe.AddIngredient(ItemID.HellwingBow);
             }
 
-            range1.AddTile(TileID.TinkerersWorkbench);
-            range1.SetResult(this);
-            range1.AddRecipe();
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

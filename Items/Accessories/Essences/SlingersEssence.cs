@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
@@ -8,8 +9,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slinger's Essence");
-            Tooltip.SetDefault("'This is only the beginning..' \n18% increased throwing damage \n5% increased throwing critical chance \n5% increased throwing velocity");
+            Tooltip.SetDefault(
+@"'This is only the beginning..'
+18% increased throwing damage
+5% increased throwing critical chance
+5% increased throwing velocity");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -21,97 +27,54 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-
-            player.thrownVelocity += 0.05f;
             player.thrownDamage += 0.18f;
             player.thrownCrit += 5;
+            player.thrownVelocity += 0.05f;
         }
 
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
-            ModRecipe throw1 = new ModRecipe(mod);
+            ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.instance.thoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.instance.calamityLoaded)
-                {
-                    //both
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TopazGauntlet"));
-                    throw1.AddIngredient(null, "FruitcakeChakramThrown");
-                    throw1.AddIngredient(null, "BloodyMacheteThrown");
-                    throw1.AddIngredient(null, "IceBoomerangThrown");
-                    throw1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Crystalline"));
-                    throw1.AddIngredient(ItemID.MolotovCocktail, 99);
-                    throw1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Mycoroot"));
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("StarfishSlicer"), 300);
-                    throw1.AddIngredient(null, "ThornChakramThrown");
-                    throw1.AddIngredient(ItemID.BoneGlove);
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("ChampionsGodHand"));
-                    throw1.AddIngredient(null, "FlamarangThrown");
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("GaussKnife"));
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("NinjaEmblem"));
-                }
+                //just thorium
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("WoodenYoyoThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("BloodyMacheteThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("IceBoomerangThrown"));
+                recipe.AddIngredient(ItemID.MolotovCocktail, 99);
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("MeatballThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ThornChakramThrown"));
+                recipe.AddIngredient(ItemID.BoneGlove);
+                recipe.AddIngredient(ItemID.BlueMoon);
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlamarangThrown"));
 
-                if (!Fargowiltas.instance.calamityLoaded)
-                {
-                    //just thorium
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TopazGauntlet"));
-                    throw1.AddIngredient(null, "FruitcakeChakramThrown");
-                    throw1.AddIngredient(null, "BloodyMacheteThrown");
-                    throw1.AddIngredient(null, "IceBoomerangThrown");
-                    throw1.AddIngredient(ItemID.MolotovCocktail, 99);
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SpikeBomb"), 200);
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("StarfishSlicer"), 300);
-                    throw1.AddIngredient(null, "ThornChakramThrown");
-                    throw1.AddIngredient(ItemID.Beenade, 99);
-                    throw1.AddIngredient(ItemID.BoneGlove);
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("ChampionsGodHand"));
-                    throw1.AddIngredient(null, "FlamarangThrown");
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("GaussKnife"));
-                    throw1.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("NinjaEmblem"));
-                }
+                /*
+                 * 
+                 * */
+            }
+            else if(Fargowiltas.Instance.FargosLoaded)
+            {
+                //no others
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("WoodenYoyoThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("BloodyMacheteThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("IceBoomerangThrown"));
+                recipe.AddIngredient(ItemID.MolotovCocktail, 99);
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("MeatballThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ThornChakramThrown"));
+                recipe.AddIngredient(ItemID.BoneGlove);
+                recipe.AddIngredient(ItemID.BlueMoon);
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlamarangThrown"));
+            }
+            else
+            {
+
             }
 
-            if (!Fargowiltas.instance.thoriumLoaded)
-            {
-                if (Fargowiltas.instance.calamityLoaded)
-                {
-                    //just calamity
-                    throw1.AddIngredient(null, "WoodenBoomerangThrown");
-                    throw1.AddIngredient(null, "FruitcakeChakramThrown");
-                    throw1.AddIngredient(null, "BloodyMacheteThrown");
-                    throw1.AddIngredient(null, "IceBoomerangThrown");
-                    throw1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Crystalline"));
-                    throw1.AddIngredient(ItemID.MolotovCocktail, 99);
-                    throw1.AddIngredient(ModLoader.GetMod("CalamityMod").ItemType("Mycoroot"));
-                    throw1.AddIngredient(ItemID.BoneJavelin, 300);
-                    throw1.AddIngredient(null, "ThornChakramThrown");
-                    throw1.AddIngredient(ItemID.Beenade, 99);
-                    throw1.AddIngredient(ItemID.BoneGlove);
-                    throw1.AddIngredient(null, "FlamarangThrown");
-                }
-
-                else
-                {
-                    //no others
-                    throw1.AddIngredient(null, "WoodenBoomerangThrown");
-                    throw1.AddIngredient(null, "FruitcakeChakramThrown");
-                    throw1.AddIngredient(null, "BloodyMacheteThrown");
-                    throw1.AddIngredient(null, "IceBoomerangThrown");
-                    throw1.AddIngredient(ItemID.SpikyBall, 200);
-                    throw1.AddIngredient(ItemID.MolotovCocktail, 99);
-                    throw1.AddIngredient(ItemID.BoneJavelin, 300);
-                    throw1.AddIngredient(null, "ThornChakramThrown");
-                    throw1.AddIngredient(ItemID.Beenade, 99);
-                    throw1.AddIngredient(ItemID.BoneGlove);
-                    throw1.AddIngredient(null, "FlamarangThrown");
-                }
-            }
-
-            throw1.AddTile(TileID.TinkerersWorkbench);
-            throw1.SetResult(this);
-            throw1.AddRecipe();
-        }*/
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

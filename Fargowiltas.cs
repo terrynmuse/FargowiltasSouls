@@ -156,49 +156,9 @@ namespace FargowiltasSouls
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
             }
 
-            //evil chest
-            group = new RecipeGroup(() => Lang.misc[37] + " Evil Chest", ItemID.VampireKnives, ItemType("VampireKnivesThrown"), ItemID.ScourgeoftheCorruptor);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyEvilChest", group);
-
             //evil wood
             group = new RecipeGroup(() => Lang.misc[37] + " Evil Wood", ItemID.Ebonwood, ItemID.Shadewood);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyEvilWood", group);
-
-            //evilbow
-            group = new RecipeGroup(() => Lang.misc[37] + " Evil Bow", ItemID.DemonBow, ItemID.TendonBow);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyEvilBow", group);
-
-            //evilgun
-            group = new RecipeGroup(() => Lang.misc[37] + " Evil Gun", ItemID.Musket, ItemID.TheUndertaker);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyEvilGun", group);
-
-            //silverstaff
-            group = new RecipeGroup(() => Lang.misc[37] + " Silver Staff", ItemID.SapphireStaff, ItemID.EmeraldStaff);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnySilverStaff", group);
-
-            //goldstaff
-            group = new RecipeGroup(() => Lang.misc[37] + " Gold Staff", ItemID.RubyStaff, ItemID.DiamondStaff);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyGoldStaff", group);
-
-            //evilmagic
-            group = new RecipeGroup(() => Lang.misc[37] + " Evil Magic Weapon", ItemID.Vilethorn, ItemID.CrimsonRod);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyEvilMagic", group);
-
-            //expertevil
-            group = new RecipeGroup(() => Lang.misc[37] + " Evil Expert Drop", ItemID.WormScarf, ItemID.BrainOfConfusion);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyEvilExpert", group);
-
-            //evilmimic acc
-            group = new RecipeGroup(() => Lang.misc[37] + " Evil Mimic Accessory", ItemID.FleshKnuckles, ItemID.PutridScent);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyEvilMimic", group);
-
-            //tier 1 sentry
-            group = new RecipeGroup(() => Lang.misc[37] + " Tier 1 Sentry", ItemID.DD2LightningAuraT1Popper, ItemID.DD2FlameburstTowerT1Popper, ItemID.DD2ExplosiveTrapT1Popper, ItemID.DD2BallistraTowerT1Popper);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnySentry1", group);
-
-            //tier 3 sentry
-            group = new RecipeGroup(() => Lang.misc[37] + " Tier 3 Sentry", ItemID.DD2LightningAuraT3Popper, ItemID.DD2FlameburstTowerT3Popper, ItemID.DD2ExplosiveTrapT3Popper, ItemID.DD2BallistraTowerT3Popper);
-            RecipeGroup.RegisterGroup("FargowiltasSouls:AnySentry", group);
 
             //anvil HM
             group = new RecipeGroup(() => Lang.misc[37] + " Mythril Anvil", ItemID.MythrilAnvil, ItemID.OrichalcumAnvil);
@@ -306,6 +266,5 @@ namespace FargowiltasSouls
         {
             return NormalSpawn(spawnInfo) && NoBiome(spawnInfo) && NoZone(spawnInfo);
         }
-
     }
 }

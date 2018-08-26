@@ -126,37 +126,8 @@ namespace FargowiltasSouls.Projectiles
                         stormBoosted = false;
                     }
                 }
-            }
 
-            
-
-
-
-
-
-
-
-
-
-
-            if (modPlayer.Jammed && projectile.ranged && projectile.type != ProjectileID.ConfettiGun)
-            {
-                Projectile.NewProjectile(projectile.Center, projectile.velocity, ProjectileID.ConfettiGun, 0, 0f);
-                projectile.damage = 0;
-                projectile.position = new Vector2(Main.maxTilesX);
-                projectile.Kill();
-            }
-
-            if (modPlayer.Atrophied && projectile.thrown)
-            {
-                projectile.damage = 0;
-                projectile.position = new Vector2(Main.maxTilesX);
-                projectile.Kill();
-            }
-
-            if (projectile.owner == Main.myPlayer && projectile.friendly && !projectile.hostile)
-            {
-                if(projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 && CanSplit)
+                if (projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 && CanSplit)
                 {
 
                     if (modPlayer.GladEnchant && Soulcheck.GetValue("Gladiator Speedup") && (projectile.thrown || modPlayer.WillForce) && numSpeedups > 0 && counter % 10 == 0)
@@ -164,15 +135,8 @@ namespace FargowiltasSouls.Projectiles
                         numSpeedups--;
                         projectile.velocity = Vector2.Multiply(projectile.velocity, 1.5f);
                     }
-
-                    if (modPlayer.ThrowSoul && projectile.thrown && numSplits > 0 && counter == 20 * (1 + projectile.extraUpdates))
-                    {
-                        numSplits--;
-                        SplitProj(projectile, 3);
-                        retVal = false;
-                    }
                 }
-                
+
                 if (projectile.bobber && firstTick)
                 {
                     firstTick = false;
@@ -186,6 +150,39 @@ namespace FargowiltasSouls.Projectiles
                         SplitProj(projectile, 11);
                     }
                 }
+
+                if (modPlayer.Jammed && projectile.ranged && projectile.type != ProjectileID.ConfettiGun)
+                {
+                    Projectile.NewProjectile(projectile.Center, projectile.velocity, ProjectileID.ConfettiGun, 0, 0f);
+                    projectile.damage = 0;
+                    projectile.position = new Vector2(Main.maxTilesX);
+                    projectile.Kill();
+                }
+
+                if (modPlayer.Atrophied && projectile.thrown)
+                {
+                    projectile.damage = 0;
+                    projectile.position = new Vector2(Main.maxTilesX);
+                    projectile.Kill();
+                }
+            }
+
+            
+
+
+
+
+
+
+
+
+
+
+            
+
+            if (projectile.owner == Main.myPlayer && projectile.friendly && !projectile.hostile)
+            {
+                
             }
 
             if (modPlayer.SpookyEnchant && !modPlayer.TerrariaSoul && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)

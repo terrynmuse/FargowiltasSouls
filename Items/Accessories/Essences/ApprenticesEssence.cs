@@ -9,12 +9,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Apprentice's Essence");
-            Tooltip.SetDefault("'This is only the beginning..' \n18% increased magic damage \nIncreases your maximum mana by 40 \nReduces mana usage by 5% \nAutomatically use mana potions when needed");
-            if (Fargowiltas.Instance.CalamityLoaded)
-            {
-                Tooltip.SetDefault("'This is only the beginning..' \n18% increased magic damage \nIncreases your maximum mana by 40 \nReduces mana usage by 5% \nAutomatically use mana potions when needed \nGrants the effects of the Mana Overloader");
-            }
+            Tooltip.SetDefault(
+@"'This is only the beginning..'
+18% increased magic damage
+5% increased magic crit
+Increases your maximum mana by 50");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -26,20 +27,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-
-            player.manaCost -= .05f;
             player.magicDamage += .18f;
-            player.statManaMax2 += 40;
-            player.manaFlower = true;
-
-            //mana overloader
-            if (Fargowiltas.Instance.CalamityLoaded)
-            {
-                if (player.statMana < player.statManaMax2 * 0.15f)
-                {
-                    player.ghostHeal = true;
-                }
-            }
+            player.magicCrit += 5;
+            player.statManaMax2 += 50;
         }
 
         public override void AddRecipes()
@@ -49,35 +39,29 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AzureGauntlet"));
-                recipe.AddIngredient(ItemID.WizardHat);
-                recipe.AddIngredient(ItemID.ManaFlower);
                 recipe.AddIngredient(ItemID.SorcererEmblem);
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MagikStaffAmber"));
-                recipe.AddRecipeGroup("FargowiltasSouls:AnySilverStaff");
-                recipe.AddRecipeGroup("FargowiltasSouls:AnyGoldStaff");
-                recipe.AddIngredient(ItemID.SpaceGun);
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("DetachedUFOBlaster"));
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("MagicConch"));
-                recipe.AddIngredient(ItemID.BeeGun);
+                recipe.AddIngredient(ItemID.WandofSparking);
+                recipe.AddIngredient(ItemID.Vilethorn);
+                recipe.AddIngredient(ItemID.CrimsonRod);
+                recipe.AddIngredient(ItemID.WaterBolt);
                 recipe.AddIngredient(ItemID.BookofSkulls);
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("GaussSpark"));
+                recipe.AddIngredient(ItemID.MagicMissile);
                 recipe.AddIngredient(ItemID.Flamelash);
+
+                /*
+                 * magik staff
+                 * magic conch
+                 * grave buster
+                 * dark tome
+                 * */
             }
             else
             {
-                //no others
-                recipe.AddIngredient(ItemID.WizardHat);
-                recipe.AddIngredient(ItemID.ManaFlower);
                 recipe.AddIngredient(ItemID.SorcererEmblem);
                 recipe.AddIngredient(ItemID.WandofSparking);
-                recipe.AddRecipeGroup("FargowiltasSouls:AnySilverStaff");
-                recipe.AddRecipeGroup("FargowiltasSouls:AnyGoldStaff");
-                recipe.AddRecipeGroup("FargowiltasSouls:AnyEvilMagic");
-                recipe.AddIngredient(ItemID.AmberStaff);
-                recipe.AddIngredient(ItemID.SpaceGun);
+                recipe.AddIngredient(ItemID.Vilethorn);
+                recipe.AddIngredient(ItemID.CrimsonRod);
                 recipe.AddIngredient(ItemID.WaterBolt);
-                recipe.AddIngredient(ItemID.BeeGun);
                 recipe.AddIngredient(ItemID.BookofSkulls);
                 recipe.AddIngredient(ItemID.MagicMissile);
                 recipe.AddIngredient(ItemID.Flamelash);

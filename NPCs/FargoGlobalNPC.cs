@@ -2562,7 +2562,7 @@ namespace FargowiltasSouls.NPCs
 			{
 				if(crit)
 				{
-					damage *= 8;
+					damage *= 5;
                     retValue = false;
 				}
 			}
@@ -2603,12 +2603,6 @@ namespace FargowiltasSouls.NPCs
 		{
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			
-			
-			if((Soulcheck.GetValue("Split Enemies") && modPlayer.MeleeEffect || modPlayer.UniverseEffect) && !npc.boss && Main.rand.Next(5) == 0)
-			{
-				NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, npc.type);
-			}
-
             if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
                 npc.knockBackResist += .1f;

@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
+    [AutoloadEquip(EquipType.Face)]
     public class GuardianAngelsSoul : ModItem
     {
         string _tooltip = null;
@@ -15,21 +16,20 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             if (ModLoader.GetLoadedMods().Contains("ThoriumMod"))
             {
-                Tooltip.SetDefault("'Divine Intervention' \n" +
-                                    "40% increased radiant damage\n" +
-                                    "25% increased healing and radiant casting speed\n" +
-                                    "20% increased radiant critical strike chance\n" +
-                                    "Healing spells will heal an additional 5 life\n" +
-                                    "Healing an ally will increase your movement speed and increase their life regen and defense\n" +
-                                    "Upon drinking a healing potion, all allies will recover 25 life and 40 mana\n" +
-                                    "You and nearby allies will take 8% reduced damage\n" +
-                                    "Taking fatal damage unleashes your inner spirit");
+                Tooltip.SetDefault(
+@"'Divine Intervention'
+40% increased radiant damage
+25% increased healing and radiant casting speed
+20% increased radiant critical strike chance
+Healing spells will heal an additional 5 life
+Healing an ally will increase your movement speed and increase their life regen and defense
+Upon drinking a healing potion, all allies will recover 25 life and 40 mana
+You and nearby allies will take 8% reduced damage
+Taking fatal damage unleashes your inner spirit");
             }
             else
             {
                 Tooltip.SetDefault("'Divine Intervention' \n" +
-                                   "Enemies are less likely to target you\n" +
-                                   "You and nearby allies will take 10% reduced damage\n" +
                                    "-Enable Thorium for this soul's full potential-");
             }
         }
@@ -46,7 +46,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //Turn undead
@@ -64,12 +63,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
                 //the rest
                 Healer(player);
-            }
-
-            else
-            {
-                player.aggro -= 50;
-                player.endurance += 0.1f;
             }
         }
 
@@ -108,7 +101,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 ModRecipe recipe = new ModRecipe(mod);
-
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("ArchDemonCurse"));
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SupportSash"));
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TurnUndead"));
@@ -125,10 +117,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 //recipe.AddTile(null, "CrucibleCosmosSheet");
                 recipe.SetResult(this);
                 recipe.AddRecipe();
-            }
-
-            else
-            {
             }
         }
     }

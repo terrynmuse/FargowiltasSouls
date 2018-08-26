@@ -203,6 +203,16 @@ namespace FargowiltasSouls.Items
             return returnVal;
         }
 
+        public override void GetWeaponKnockback(Item item, Player player, ref float knockback)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+
+            if(modPlayer.UniverseEffect)
+            {
+                knockback *= 2;
+            }
+        }
+
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.type == ItemID.PumpkinPie && player.HasBuff(BuffID.PotionSickness))
@@ -224,6 +234,11 @@ namespace FargowiltasSouls.Items
                 player.statLife += heal;
                 player.AddBuff(BuffID.PotionSickness, 10800);
 
+            }
+
+            if (modPlayer.UniverseEffect && item.damage > 0)
+            {
+                item.shootSpeed *= 1.5f;
             }
 
             return false;

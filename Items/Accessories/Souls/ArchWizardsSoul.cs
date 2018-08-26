@@ -4,155 +4,102 @@ using static Terraria.ID.ItemID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    // ReSharper disable once UnusedMember.Global
     public class ArchWizardsSoul : ModItem
     {
-        private readonly Mod _calamity = ModLoader.GetMod("CalamityMod");
-        private readonly Mod _thorium = ModLoader.GetMod("ThoriumMod");
-        private readonly Mod _bluemagic = ModLoader.GetMod("Bluemagic");
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Arch Wizard's Soul");
-            Tooltip.SetDefault("'Arcane to the core' \n40% increased magic damage \n20% increased magic critical chance \nIncreases your maximum mana by 100 \nReduces mana usage by 33% \nIncreased pickup range for mana stars \nAutomatically use mana potions when needed");
-            if (Fargowiltas.Instance.CalamityLoaded)
-            {
-                Tooltip.SetDefault("'Arcane to the core' \n40% increased magic damage \n20% increased magic critical chance \nIncreases your maximum mana by 100 \nReduces mana usage by 33% \nIncreased pickup range for mana stars \nAutomatically use mana potions when needed \nGrants the effects of the Ethereal Talisman");
-            }
+            Tooltip.SetDefault(
+@"'Arcane to the core'
+30% increased magic damage
+20% increased spell casting speed
+15% increased magic crit chance
+Increases your maximum mana by 200
+Restores mana when damaged
+Increased pickup range for mana stars
+Automatically use mana potions when needed");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.value = 750000;
+            item.value = 1000000;
             item.rare = -12;
             item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-
-            player.manaCost -= .33f;
-            player.magicDamage += .4f;
-            player.magicCrit += 20;
-            player.statManaMax2 += 100;
-            player.magicCuffs = true;
-            player.manaMagnet = true;
+            player.GetModPlayer<FargoPlayer>().MagicSoul = true;
+            player.magicDamage += .3f;
+            player.magicCrit += 15;
+            player.statManaMax2 += 200;
+            //accessorys
             player.manaFlower = true;
-
-            if (Fargowiltas.Instance.BlueMagicLoaded)
-            {
-                BlueMagnet(player);
-            }
-            if (Fargowiltas.Instance.CalamityLoaded)
-            {
-                Talisman(player);
-            }
+            player.manaMagnet = true;
+            player.magicCuffs = true;
         }
 
-        private void Talisman(Player player)
+        /*private void Talisman(Player player)
         {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).eTalisman = true;
+            player.GetModPlayer<CalamityMod.CalamityPlayer>(calamity).eTalisman = true;
         }
 
         private void BlueMagnet(Player player)
         {
-            player.GetModPlayer<Bluemagic.BluemagicPlayer>(_bluemagic).manaMagnet2 = true;
-        }
+            player.GetModPlayer<Bluemagic.BluemagicPlayer>(blue).manaMagnet2 = true;
+        }*/
 
         public override void AddRecipes()
         {
-            ModRecipe magic2 = new ModRecipe(mod);
+            ModRecipe recipe = new ModRecipe(mod);
 
-            magic2.AddIngredient(null, "ApprenticesEssence");
-
+            recipe.AddIngredient(null, "ApprenticesEssence");
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                if (Fargowiltas.Instance.CalamityLoaded)
-                {
-                    magic2.AddIngredient(Fargowiltas.Instance.BlueMagicLoaded
-                        ? _bluemagic.ItemType("CelestialSeal")
-                        : CelestialCuffs);
+                recipe.AddIngredient(ManaFlower);
+                recipe.AddIngredient(WizardHat);
+                recipe.AddIngredient(CelestialCuffs);
+                recipe.AddIngredient(CelestialEmblem);
+                recipe.AddIngredient(GoldenShower);
+                recipe.AddIngredient(RainbowGun);
+                recipe.AddIngredient(MagnetSphere);
+                recipe.AddIngredient(ApprenticeStaffT3);
+                recipe.AddIngredient(RazorbladeTyphoon);
+                recipe.AddIngredient(BatScepter);
+                recipe.AddIngredient(BlizzardStaff);
+                recipe.AddIngredient(LaserMachinegun);
+                recipe.AddIngredient(LastPrism);
 
-                    magic2.AddIngredient(_calamity.ItemType("EtherealTalisman"));
-                    magic2.AddIngredient(_thorium.ItemType("SpectrelBlade"));
-                    magic2.AddIngredient(_thorium.ItemType("TerraStaff"));
-                    magic2.AddIngredient(_calamity.ItemType("CosmicRainbow"));
-                    magic2.AddIngredient(_thorium.ItemType("TerrariumSageStaff"));
-                    magic2.AddIngredient(_calamity.ItemType("Effervescence"));
-                    magic2.AddIngredient(_calamity.ItemType("AlphaRay"));
-                    magic2.AddIngredient(LastPrism);
-                    magic2.AddIngredient(_thorium.ItemType("AlmanacofDespair"));
-                    magic2.AddIngredient(_calamity.ItemType("T1000"));
-                }
-
-                if (!Fargowiltas.Instance.CalamityLoaded)
-                {
-                    magic2.AddIngredient(Fargowiltas.Instance.BlueMagicLoaded
-                        ? _bluemagic.ItemType("CelestialSeal")
-                        : CelestialCuffs);
-
-                    magic2.AddIngredient(_thorium.ItemType("PrismaticSpray"));
-                    magic2.AddIngredient(RainbowGun);
-                    magic2.AddIngredient(_thorium.ItemType("SpectrelBlade"));
-                    magic2.AddIngredient(_thorium.ItemType("TerraStaff"));
-                    magic2.AddIngredient(_thorium.ItemType("OldGodGrasp"));
-                    magic2.AddIngredient(_thorium.ItemType("NuclearFury"));
-                    magic2.AddIngredient(ApprenticeStaffT3);
-                    magic2.AddIngredient(BatScepter);
-                    magic2.AddIngredient(BlizzardStaff);
-                    magic2.AddIngredient(_thorium.ItemType("TerrariumSageStaff"));
-                    magic2.AddIngredient(LastPrism);
-                    magic2.AddIngredient(_thorium.ItemType("AlmanacofDespair"));
-                }
+                /*
+                 * 
+                 * */
             }
             else
             {
-
-                if (Fargowiltas.Instance.CalamityLoaded)
-                {
-                    magic2.AddIngredient(Fargowiltas.Instance.BlueMagicLoaded
-                        ? _bluemagic.ItemType("CelestialSeal")
-                        : CelestialCuffs);
-
-                    magic2.AddIngredient(_calamity.ItemType("EtherealTalisman"));
-                    magic2.AddIngredient(_calamity.ItemType("InfernalRift"));
-                    magic2.AddIngredient(_calamity.ItemType("CosmicRainbow"));
-                    magic2.AddIngredient(ApprenticeStaffT3);
-                    magic2.AddIngredient(BatScepter);
-                    magic2.AddIngredient(BlizzardStaff);
-                    magic2.AddIngredient(_calamity.ItemType("Effervescence"));
-                    magic2.AddIngredient(_calamity.ItemType("AlphaRay"));
-                    magic2.AddIngredient(LastPrism);
-                    magic2.AddIngredient(_calamity.ItemType("T1000"));
-                }
-                else
-                {
-                    magic2.AddIngredient(Fargowiltas.Instance.BlueMagicLoaded
-                        ? _bluemagic.ItemType("CelestialSeal")
-                        : CelestialCuffs);
-
-                    magic2.AddIngredient(MeteorStaff);
-                    magic2.AddIngredient(CrystalStorm);
-                    magic2.AddIngredient(MagicalHarp);
-                    magic2.AddIngredient(NettleBurst);
-                    magic2.AddIngredient(RainbowGun);
-                    magic2.AddIngredient(InfernoFork);
-                    magic2.AddIngredient(ApprenticeStaffT3);
-                    magic2.AddIngredient(RazorbladeTyphoon);
-                    magic2.AddIngredient(BatScepter);
-                    magic2.AddIngredient(BlizzardStaff);
-                    magic2.AddIngredient(LaserMachinegun);
-                    magic2.AddIngredient(LastPrism);
-                }
+                recipe.AddIngredient(ManaFlower);
+                recipe.AddIngredient(WizardHat);
+                recipe.AddIngredient(CelestialCuffs);
+                recipe.AddIngredient(CelestialEmblem);
+                recipe.AddIngredient(GoldenShower);
+                recipe.AddIngredient(RainbowGun);
+                recipe.AddIngredient(MagnetSphere);
+                recipe.AddIngredient(ApprenticeStaffT3);
+                recipe.AddIngredient(RazorbladeTyphoon);
+                recipe.AddIngredient(BatScepter);
+                recipe.AddIngredient(BlizzardStaff);
+                recipe.AddIngredient(LaserMachinegun);
+                recipe.AddIngredient(LastPrism);  
             }
 
             //magic2.AddTile(null, "CrucibleCosmosSheet");
-            magic2.SetResult(this);
-            magic2.AddRecipe();
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
-
     }
 }

@@ -69,3 +69,6 @@ bug fixed where things would shoot too fast
 added Force of Will, Shadow Force, Terra Force, chnaged all Forces, changed SoT
 
 SoT life steal cooldown actually works now
+
+class souls have visuals
+no more reduce mana or ammo use in souls

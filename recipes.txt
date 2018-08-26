@@ -333,7 +333,7 @@ Forbidden
 Hallowed
 Tiki
 Spectre
-Grinch
+Grinch?
 
 
 Soul of Terraria
@@ -353,16 +353,56 @@ Cosmo Force
 Barbarian
 
 
+Berserker
+Fire Gauntlet
+Yoyo Bag
+arkhalis
+
 Slinger
 
+Olympian
 
 Sniper
 
+Sharpshooter
+Magic Quiver
+Sniper Scope
 
 Apprentice
+Sorcerer Emblem
+Wand of Sparking
+Vilethorn
+Crimson Rod
+Water Bolt
+Book of Skulls
+Magic Missile
+Flamelash
+
+Arch Wizard
+wizard hat
+Mana Flower
+Celestial Cuffs
+Celestial Emblem
 
 
 Occultist
+
+Conjurist
+Papyrus Scarab
+Pygmy Necklace
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Supersonic
@@ -396,25 +436,6 @@ Star Veil
 Paladins Shield
 Pocket Mirror
 
-Arch Wizard
-Mana Flower
-Celestial Cuffs
-Celestial Emblem
-
-
-
-Berserker
-Fire Gauntlet
-Yoyo Bag
-
-Sharpshooter
-Magic Quiver
-Sniper Scope
-
-Conjurist
-Papyrus Scarab
-Pygmy Necklace
-
 World Shaper
 Architect Gizmo Pack
 Presserator
@@ -425,8 +446,6 @@ Royal Gel
 Gravity Globe
 Cell Phone
 Putrid Scent
-
-
 
 Flight Mastery
 Angel Wings
