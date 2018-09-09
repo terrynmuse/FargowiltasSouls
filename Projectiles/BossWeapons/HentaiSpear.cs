@@ -44,8 +44,6 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 			int dustId3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width / 2, projectile.height + 5, 15, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
 			Main.dust[dustId3].noGravity = true;
 			
-			// Since we access the owner player instance so much, it's useful to create a helper local variable for this
-			// Sadly, Projectile/ModProjectile does not have its own
 			Player projOwner = Main.player[projectile.owner];
 			// Here we set some of the projectile's owner properties, such as held item and itemtime, along with projectile directio and position based on the player
 			Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter);
@@ -86,9 +84,6 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 			{
 				projectile.rotation -= MathHelper.ToRadians(90f);
 			}
-
-			
-			
 		}
 	}
 }

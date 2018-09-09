@@ -63,25 +63,5 @@ namespace FargowiltasSouls.Items.Weapons
         {
             return Vector2.Zero;
         }
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-
-            recipe.AddRecipeGroup("FargowiltasSouls:AnyCobaltRepeater");
-            recipe.AddRecipeGroup("FargowiltasSouls:AnyMythrilRepeater");
-            recipe.AddRecipeGroup("FargowiltasSouls:AnyAdamantiteRepeater");
-
-            recipe.AddIngredient(ItemID.HallowedRepeater);
-            recipe.AddIngredient(ItemID.ChlorophyteShotbow);
-            recipe.AddIngredient(ItemID.StakeLauncher);
-            recipe.AddIngredient(ItemID.Tsunami);
-            recipe.AddIngredient(ItemID.DD2BetsyBow);
-            recipe.AddIngredient(ItemID.Phantasm);
-
-            recipe.AddTile(TileID.LunarCraftingStation);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
     }
 }

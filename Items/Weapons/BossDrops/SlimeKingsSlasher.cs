@@ -7,15 +7,17 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
 	public class SlimeKingsSlasher : ModItem
 	{
-		private int _shoot = 0;
+		private static int shoot = 0;
+
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Slime King's Slasher");
 			Tooltip.SetDefault("'Torn from the insides of a defeated foe..'");
 		}
+
 		public override void SetDefaults()
 		{
-			item.damage = 16;
+			item.damage = 15;
 			item.melee=true;
 			item.width = 40;
 			item.height = 40;
@@ -33,14 +35,12 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockback)
 		{
-			_shoot++;
-			if (_shoot % 4 != 0) return false;
-			Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockback, player.whoAmI);
-			_shoot = 0;
-			return false; 
+			shoot++;
+			if (shoot % 4 != 0) return false;
+
+			shoot = 0;
+			return true; 
         }
-
-
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{

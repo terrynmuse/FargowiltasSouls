@@ -18,7 +18,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             item.width = 24;
             item.height = 24;
             item.useTime = 15;
-            item.useAnimation = 15; // must be the same^
+            item.useAnimation = 15;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 1.5f;

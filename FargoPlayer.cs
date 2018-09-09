@@ -22,10 +22,8 @@ namespace FargowiltasSouls
         public bool IsStandingStill;
 
         public bool Wood;
-        public bool Eater;
         public bool QueenStinger;
         public bool Infinity;
-        public bool NpcBoost = false;
 
         //minions
         public bool BrainMinion;
@@ -234,7 +232,6 @@ namespace FargowiltasSouls
         {
 
             Wood = false;
-            Eater = false;
 
             QueenStinger = false;
             Infinity = false;
@@ -349,13 +346,8 @@ namespace FargowiltasSouls
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
-            if (VoidSoul)
-            {
-                player.respawnTimer = (int)(player.respawnTimer * .5);
-            }
-
             //remove this after testing you fool
-            player.respawnTimer = (int)(player.respawnTimer * .01);
+            //player.respawnTimer = (int)(player.respawnTimer * .01);
         }
 
         public override void UpdateDead()
@@ -387,17 +379,14 @@ namespace FargowiltasSouls
         {
             IsStandingStill = Math.Abs(player.velocity.X) < 0.05 && Math.Abs(player.velocity.Y) < 0.05;
 
+            player.npcTypeNoAggro[0] = true;
+
             if (FargoWorld.MasochistMode)
             {
                 if (Main.bloodMoon)
                 {
                     player.buffImmune[BuffID.Bleeding] = false;
                     player.AddBuff(BuffID.Bleeding, 2);
-                }
-
-                if (player.HasBuff(BuffID.Webbed) && NPC.AnyNPCs(NPCID.BlackRecluse))
-                {
-                    player.AddBuff(mod.BuffType("Defenseless"), 300);
                 }
             }
 
@@ -453,11 +442,10 @@ namespace FargowiltasSouls
 
         public override void PostUpdateMiscEffects()
         {
-
             if (Slimed)
             {
                 //slowed effect
-                player.moveSpeed /= 2f;
+                player.moveSpeed *= .7f;
                 player.jump /= 2;
             }
 

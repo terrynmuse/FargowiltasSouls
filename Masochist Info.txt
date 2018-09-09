@@ -3,6 +3,23 @@ Masochist Mode boiii
 
 NEW FOR THIS BETA
 **********************************************************************************************
+-change golm to heal every few sec
+-removed harpy demon transform, add new harpy attack
+-removed skeletron darkness aura
+
+-voodoo demon spawning WoF changed
+-reduced slimed speed debuff
+-reduced most slimed debuff times
+removed pinky ichor, sandstorm summon from sand slime
+no more king slime lethargic
+no more EoC slow
+QB now cripples you
+no more vulture confuse
+
+make sapped debuff,slippery, super fall 
+
+
+
 -Twins now respawn at half HP instead of like a fourth
 -test prime dungeon mode again reeeeeeeeee
 -lowered post plantera mage skeletons rate

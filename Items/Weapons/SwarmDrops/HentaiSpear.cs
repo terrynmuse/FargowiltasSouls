@@ -48,13 +48,14 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 		
 		public override void AddRecipes()
 		{
-            ModRecipe recipe = new ModRecipe(mod);
-			
-			//recipe.AddIngredient(null, "EnergizerMoon");
-			
-			recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            if(Fargowiltas.Instance.FargosLoaded)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerMoon"));
+                recipe.AddTile(TileID.Anvils);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
 		}
 	}
 }

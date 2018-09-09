@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,88 +8,110 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
     public class EaterStaff : ModItem
     {
-        private int _shoot;
-        public float PermaX, PermaY, PermaXPos, PermaYPos;
-
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Eater of Worlds Wand");
-            Tooltip.SetDefault("'An old foe beaten into submission..'"); //
+            DisplayName.SetDefault("Eater of Worlds Staff");
+            Tooltip.SetDefault(
+@"An old foe beaten into submission..
+Summons 4 segments for each minion slot"); 
         }
 
         public override void SetDefaults()
         {
-            item.damage = 8;
-            item.summon = true;
-            item.mana = 20;
-            item.width = 40;
-            item.height = 40;
-            item.useTime = 4;
-            item.useAnimation = 32;
-            item.useStyle = 5;
-            item.knockBack = 2;
-            item.value = 10000; //
-            item.rare = 2;
-            item.UseSound = SoundID.Item1;
-            item.autoReuse = true;
+            item.mana = 10;
+            item.damage = 5;
+            item.useStyle = 1;
+            item.shootSpeed = 10f;
             item.shoot = mod.ProjectileType("EaterHead");
-            item.shootSpeed = 8f;
-            item.reuseDelay = 80;
-
-
+            item.width = 26;
+            item.height = 28;
+            item.UseSound = SoundID.Item44;
+            item.useAnimation = 36;
+            item.useTime = 36;
+            item.rare = 2;
             item.noMelee = true;
-
-            item.UseSound = SoundID.Item44; //
+            item.knockBack = 2f;
+            item.buffType = mod.BuffType("EaterMinion");
+            item.buffTime = 3600;
+            item.summon = true;
         }
 
-        //make them hold it different
-        public override Vector2? HoldoutOffset()
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            return new Vector2(0, -15);
-        }
+            //to fix tail disapearing meme
+            float slotsUsed = 0;
 
-        public override bool UseItem(Player player)
-        {
-            _shoot = 0;
-            return true;
-        }
-
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY,
-            ref int type, ref int damage, ref float knockback)
-        {
-            // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (_shoot)
+            Main.projectile.Where(x => x.active && x.owner == player.whoAmI && x.minionSlots > 0).ToList().ForEach(x =>
             {
-                case 0:
-                    Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("EaterHead"),
-                        damage, knockback, player.whoAmI);
-                    PermaX = speedX;
-                    PermaY = speedY;
-                    PermaXPos = position.X;
-                    PermaYPos = position.Y;
-                    break;
-                case 1:
-                case 2:
-                    Projectile.NewProjectile(PermaXPos, PermaYPos, PermaX, PermaY, mod.ProjectileType("EaterBody"),
-                        damage, knockback, player.whoAmI);
-                    break;
-                case 3:
-                    Projectile.NewProjectile(PermaXPos, PermaYPos, PermaX, PermaY, mod.ProjectileType("EaterTail"),
-                        damage, knockback, player.whoAmI);
-                    break;
-                case 7:
-                    _shoot = 0;
-                    return false;
+                slotsUsed += x.minionSlots;
+            });
+
+            if((player.maxMinions - slotsUsed) < 1)
+            {
+                return false;
             }
 
-            _shoot++;
+            int headCheck = -1;
+            int tailCheck = -1;
+
+            for (int i = 0; i < 1000; i++)
+            {
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.owner == player.whoAmI)
+                {
+                    if (headCheck == -1 && proj.type == mod.ProjectileType("EaterHead"))
+                    {
+                        headCheck = i;
+                    }
+                    if (tailCheck == -1 && proj.type == mod.ProjectileType("EaterTail"))
+                    {
+                        tailCheck = i;
+                    }
+                    if (headCheck != -1 && tailCheck != -1)
+                    {
+                        break;
+                    }
+                }
+            }
+            //initial spawn
+            if (headCheck == -1 && tailCheck == -1)
+            {
+                int current = Projectile.NewProjectile(position.X, position.Y, 0, 0, mod.ProjectileType("EaterHead"), damage, knockBack, player.whoAmI, 0f, 0f);
+
+                int previous = 0;
+
+                for(int i = 0; i < 4; i++)
+                {
+                    current = Projectile.NewProjectile(position.X, position.Y, 0, 0, mod.ProjectileType("EaterBody"), damage, knockBack, player.whoAmI, current, 0f);
+                    previous = current;
+                }
+
+                current = Projectile.NewProjectile(position.X, position.Y, 0, 0, mod.ProjectileType("EaterTail"), damage, knockBack, player.whoAmI, current, 0f);
+
+                Main.projectile[previous].localAI[1] = current;
+                Main.projectile[previous].netUpdate = true;
+            }
+            //spawn more body segments
+            else
+            {
+                int previous = (int)Main.projectile[tailCheck].ai[0];
+                int current = 0;
+
+                for (int i = 0; i < 4; i++)
+                {
+                    current = Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("EaterBody"), damage, knockBack, player.whoAmI, Projectile.GetByUUID(Main.myPlayer, previous), 0f);
+
+                    previous = current;
+                }
+
+                Main.projectile[current].localAI[1] = tailCheck;
+
+                Main.projectile[tailCheck].ai[0] = current;
+                Main.projectile[tailCheck].netUpdate = true;
+                Main.projectile[tailCheck].ai[1] = 1f;
+            }
+
             return false;
-        }
-
-
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-        {
-            target.AddBuff(BuffID.Slimed, 120);
         }
     }
 }

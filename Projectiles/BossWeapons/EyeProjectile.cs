@@ -3,14 +3,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargowiltasSouls.Projectiles
+namespace FargowiltasSouls.Projectiles.BossWeapons
 {
-	public class EyeProjectile2 : ModProjectile
+	public class EyeProjectile : ModProjectile
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("EyeProjectile2");
 		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 16;
@@ -23,11 +24,8 @@ namespace FargowiltasSouls.Projectiles
 			aiType = ProjectileID.Bullet;
 		}
 				
-		
 		public override void AI()
 		{
-			
-			
 			const int aislotHomingCooldown = 0;
             const int homingDelay = 10;
             const float desiredFlySpeedInPixelsPerFrame = 10;
@@ -85,6 +83,5 @@ namespace FargowiltasSouls.Projectiles
 				Main.dust[num469].velocity *= 2f;
 			}
 		}
-		
 	}
 }

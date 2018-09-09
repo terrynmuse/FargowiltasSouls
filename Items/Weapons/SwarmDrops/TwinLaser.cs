@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 {
-    public class Laser : ModItem
+    public class TwinLaser : ModItem
     {
         public override void SetStaticDefaults()
         {

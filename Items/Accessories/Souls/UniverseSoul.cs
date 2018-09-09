@@ -18,6 +18,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 25% increased all critical chance
 Crits deal 5x damage
 All weapons have double knockback and have auto swing
+All swords are twice as large
 Increases your maximum mana by 300
 Increases your max number of minions by 8
 Increases your max number of sentries by 4
@@ -63,6 +64,12 @@ All attacks inflict Flames of the Universe");
             {
                 player.HeldItem.autoReuse = true;
             }
+
+            if(player.HeldItem.useStyle == 1)
+            {
+                player.HeldItem.scale = 2;
+            }
+            
         }
 
         private void Healer(Player player)

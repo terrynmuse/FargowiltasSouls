@@ -10,6 +10,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 			DisplayName.SetDefault("Nuke Fishron");
 			Tooltip.SetDefault("'The highly weaponized remains of a defeated foe..'");
 		}
+
 		 public override void SetDefaults()
 	    {
 			item.damage = 1;
@@ -17,7 +18,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 			item.width = 24;
 			item.height = 24;
 			item.useTime = 10;
-			item.useAnimation = 100;// must be the same^
+			item.useAnimation = 100;
 			item.useStyle = 5; 
 			item.noMelee = true; 
 			item.knockBack = 1.5f; 

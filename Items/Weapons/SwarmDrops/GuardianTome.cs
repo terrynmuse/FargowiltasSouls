@@ -10,6 +10,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 			DisplayName.SetDefault("The Guardian");
 			Tooltip.SetDefault("'It's their turn to run'");
 		}
+
 		public override void SetDefaults()
 		{   
             item.damage = 999;                        
@@ -18,7 +19,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.height = 28;
             item.useTime = 50;
             item.useAnimation = 50;
-            item.useStyle = 5;        
+            item.useStyle = 5;
+            item.useTurn = true;
             item.noMelee = true;
             item.knockBack = 2;        
             item.value = 1000;
@@ -27,12 +29,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.UseSound = SoundID.Item21;    //
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("DungeonGuardian");
-            item.shootSpeed = 18f;    //projectile speed when shoot
-			
-			
+            item.shootSpeed = 18f;
 		}
-		
-		
-		
 	}
 }

@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Weapons
             item.useTime = 10;
             item.useAnimation = 20;
             item.useStyle = 1;
-            item.melee = true; //so the item's animation doesn't do damage
+            item.melee = true;
             item.knockBack = 6;
             item.value = 10000;
             item.rare = 10;
@@ -35,41 +35,24 @@ namespace FargowiltasSouls.Items.Weapons
             item.reuseDelay = 14;
         }
 
-        public override Vector2? HoldoutOffset()
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            return new Vector2(1, -0);
+            target.AddBuff(BuffID.Slimed, 180);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY,
             ref int type, ref int damage, ref float knockBack)
         {
-            for (int index = 0; index < 10; ++index)
-            {
-                Vector2 vector21 = new Vector2(
-                    (float) (player.position.X + player.width * 0.5 + Main.rand.Next(201) * -player.direction +
-                             (Main.mouseX + (double) Main.screenPosition.X - player.position.X)),
-                    (float) (player.position.Y + player.height * 0.5 -
-                             600.0)); //this defines the projectile width, direction and position
-                vector21.X = (float) ((vector21.X + (double) player.Center.X) / 2.0) + Main.rand.Next(-1000, 1001);
-                vector21.Y -= 100 * index;
-                float num12 = Main.mouseX + Main.screenPosition.X - vector21.X;
-                float num13 = Main.mouseY - Main.screenPosition.Y - vector21.Y;
-                if (num13 < 0.0) num13 *= -1f;
-                if (num13 < 20.0) num13 = 20f;
-                float num14 = (float) Math.Sqrt(num12 * (double) num12 + num13 * (double) num13);
-                float num15 = item.shootSpeed / num14;
-                float num16 = num12 * num15;
-                float num17 = num13 * num15;
-                float xspeed =
-                    num16 + Main.rand.Next(-40, 41) *
-                    0.02f; //this defines the projectile X position speed and randomnes
-                float yspeed =
-                    num17 + Main.rand.Next(-40, 41) *
-                    0.02f; //this defines the projectile Y position speed and randomnes
-                Projectile.NewProjectile(vector21.X, vector21.Y, xspeed, yspeed, type, damage, knockBack, Main.myPlayer,
-                    0.0f, Main.rand.Next(5));
-            }
+            float x;
+            float y = player.Center.Y - 400f;
 
+            for(int i = 0; i < 5; i++)
+            {
+                x = player.Center.X + 2f * Main.rand.Next(-400, 401);
+                Projectile p = Projectile.NewProjectileDirect(new Vector2(x, y), new Vector2(Main.rand.Next(-4, 4), 12f), type, damage, knockBack, player.whoAmI);
+                p.timeLeft = 60;
+            }
+            
             return false;
         }
     }

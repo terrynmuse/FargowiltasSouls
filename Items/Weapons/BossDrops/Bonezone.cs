@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -13,6 +12,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			DisplayName.SetDefault("The Bone Zone");
 			Tooltip.SetDefault("'The shattered remains of a defeated foe..'");
 		}
+
 		 public override void SetDefaults()
 	    {
 			item.damage = 18;
@@ -30,7 +30,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			item.autoReuse = true; 
 			item.shoot = mod.ProjectileType("Bonez"); 
 			item.shootSpeed = 5.5f; 
-			item.useAmmo = 154;
+			item.useAmmo = ItemID.Bone;
 		}
 		
 		//make them hold it different
@@ -41,31 +41,20 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            float spread = 45f * 0.0174f;
-            double startAngle = Math.Atan2(speedX, speedY)- spread/2;
-            double deltaAngle = spread/8f;
-            double offsetAngle;
-            int i;
-			int j = Main.rand.Next(3);
+			int rand = Main.rand.Next(3);
+            int shoot = 0;
 			
-			if(j == 0 || j == 2)
+			if(rand == 0)
 			{
-				for (i = 0; i < 1; i++ )
-				{
-					offsetAngle = startAngle + deltaAngle * (i + i*i) / 2f + 32f * i;
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("Bonez"), damage, knockBack, player.whoAmI);
-				}
-			}
-			
-			if(j == 1)
+                shoot = ProjectileID.ClothiersCurse;
+            }
+			else
 			{
-				for (i = 0; i < 1; i++ )
-				{
-					offsetAngle = startAngle + deltaAngle * (i + i*i) / 2f + 32f * i;
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.ClothiersCurse, damage, knockBack, player.whoAmI);
-				}
-			}
-			
+                shoot = mod.ProjectileType("Bonez");
+            }
+
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, shoot, damage, knockBack, player.whoAmI);
+
             return false;
         }
 	}

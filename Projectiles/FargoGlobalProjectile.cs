@@ -39,7 +39,7 @@ namespace FargowiltasSouls.Projectiles
         private bool squeakyToy = false;
         public bool TimeFrozen = false;
 
-        public override void SetDefaults(Projectile projectile)
+        /*public override void SetDefaults(Projectile projectile)
         {
             if (FargoWorld.MasochistMode)
             {
@@ -167,27 +167,10 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-            
-
-
-
-
-
-
-
-
-
-
-            
-
-            if (projectile.owner == Main.myPlayer && projectile.friendly && !projectile.hostile)
-            {
-                
-            }
 
             if (modPlayer.SpookyEnchant && !modPlayer.TerrariaSoul && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
             {
-                Main.PlaySound(2/**/, (int)projectile.position.X, (int)projectile.position.Y, 62);
+                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 62);
                 Projectile[] projs = XWay(8, projectile.Center, mod.ProjectileType("SpookyScythe"), 5, (int)(projectile.damage / 2), 2f);
                 counter = 0;
 
@@ -425,7 +408,7 @@ namespace FargowiltasSouls.Projectiles
                     projectile.Kill();
                     return;
                 }
-            }*/
+            }
 
             #endregion
 
@@ -782,7 +765,7 @@ namespace FargowiltasSouls.Projectiles
             {
                 modPlayer.OriSpawn = false;
             }
-        }
+        }*/
 
         public static Projectile[] XWay(int num, Vector2 pos, int type, float speed, int damage, float knockback)
         {

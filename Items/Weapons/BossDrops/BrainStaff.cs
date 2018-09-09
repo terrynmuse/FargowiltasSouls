@@ -10,6 +10,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			DisplayName.SetDefault("Mind Break");
 			Tooltip.SetDefault("'An old foe beaten into submission..'\n Needs 2 minion slots");
 		}
+
 		public override void SetDefaults()
 		{
 			item.damage = 32; 
@@ -26,10 +27,9 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 			item.UseSound = SoundID.Item44; 
 			item.shoot = mod.ProjectileType("BrainProj");
 			item.shootSpeed = 10f;
-			item.buffType = mod.BuffType("BrainMinion");	//The buff added to player after used the item
-			item.buffTime = 3600;				//The duration of the buff, here is 60 seconds
+			item.buffType = mod.BuffType("BrainMinion");	
+			item.buffTime = 3600;
 			item.autoReuse = true;
 		}
-		
 	}
 }

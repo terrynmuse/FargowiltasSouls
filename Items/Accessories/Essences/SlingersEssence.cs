@@ -69,7 +69,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             }
             else
             {
-
+                recipe.AddIngredient(ItemID.BlueMoon);
             }
 
             recipe.AddTile(TileID.TinkerersWorkbench);

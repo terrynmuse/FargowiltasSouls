@@ -72,3 +72,9 @@ SoT life steal cooldown actually works now
 
 class souls have visuals
 no more reduce mana or ammo use in souls
+
+
+
+WEAPONS
+-Leash of Cthulhu has shorter range and will always shoot one eye per use
+Added Mechanical Leash of Cthulhu

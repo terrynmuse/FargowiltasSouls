@@ -12,6 +12,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             DisplayName.SetDefault("Hell Zone");
             Tooltip.SetDefault("");
         }
+
         public override void SetDefaults()
         {
             item.useStyle = 5;
@@ -34,7 +35,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position, new Vector2(speedX, speedY), type, damage, knockBack, Main.myPlayer, Main.rand.Next(6));
+            Projectile.NewProjectile(position, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
             return false;
         }
 
@@ -47,7 +48,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         //make them hold it different
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-30, 4);
+            return new Vector2(-30, -5);
         }
     }
 }
