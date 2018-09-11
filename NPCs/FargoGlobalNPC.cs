@@ -1678,14 +1678,14 @@ namespace FargowiltasSouls.NPCs
                 damage = (int)(damage + npc.defense * .5);
             }
 
-            if (projectile.type == mod.ProjectileType("FishNuke"))
+            /*if (projectile.type == mod.ProjectileType("FishNuke"))
 			{
 				damage = npc.lifeMax / 10;
 				if(damage < 50)
 				{
 					damage = 50;
 				}
-			}			
+			}*/		
 		}
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
@@ -2372,12 +2372,12 @@ namespace FargowiltasSouls.NPCs
             {
                 npc.knockBackResist += .1f;
             }
-            else
+            /*else
             {
                 NPC n = new NPC();
                 n.SetDefaults(npc.type);
                 npc.knockBackResist = n.knockBackResist;
-            }
+            }*/
         }
     }
 }
