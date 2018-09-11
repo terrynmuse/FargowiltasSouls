@@ -282,8 +282,12 @@ namespace FargowiltasSouls.NPCs
                 {
                     if(npc.type == NPCID.SkeletronPrime)
                     {
+                        npc.defDefense = 9999;
+                        npc.defDamage = 1000;
                         npc.defense = 9999;
                         npc.damage = 1000;
+
+                        npc.ai[1] = 2f;
                     }
                 }
 
@@ -1608,6 +1612,11 @@ namespace FargowiltasSouls.NPCs
                     {
                         Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
                         npc.life = 100;
+
+                        for (int k = 0; k < npc.buffImmune.Length; k++)
+                        {
+                            npc.buffImmune[k] = true;
+                        }
                     }
                     else if (npc.type == NPCID.RainbowSlime)
                     {
@@ -1678,14 +1687,14 @@ namespace FargowiltasSouls.NPCs
                 damage = (int)(damage + npc.defense * .5);
             }
 
-            if (projectile.type == mod.ProjectileType("FishNuke"))
+            /*if (projectile.type == mod.ProjectileType("FishNuke"))
 			{
 				damage = npc.lifeMax / 10;
 				if(damage < 50)
 				{
 					damage = 50;
 				}
-			}			
+			}*/		
 		}
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
@@ -2372,12 +2381,12 @@ namespace FargowiltasSouls.NPCs
             {
                 npc.knockBackResist += .1f;
             }
-            else
+            /*else
             {
                 NPC n = new NPC();
                 n.SetDefaults(npc.type);
                 npc.knockBackResist = n.knockBackResist;
-            }
+            }*/
         }
     }
 }
