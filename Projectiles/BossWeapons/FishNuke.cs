@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -20,6 +21,14 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 			projectile.timeLeft = 600;
 			aiType = ProjectileID.Bullet;
 		}
-		
-	}
+
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            damage = target.lifeMax / 10;
+            if (damage < 50)
+            {
+                damage = 50;
+            }
+        }
+    }
 }
