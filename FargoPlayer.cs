@@ -828,7 +828,7 @@ namespace FargowiltasSouls
             }
 
             //full moon
-            if (Soulcheck.GetValue("Red Riding Super Bleed") && RedEnchant && ((proj.ranged && Main.moonPhase == 0) || (WillForce && Main.rand.Next(5) == 0)))
+            if (RedEnchant && Soulcheck.GetValue("Red Riding Super Bleed") && ((proj.ranged && Main.moonPhase == 0) || (WillForce && Main.rand.Next(5) == 0)))
             {
                 target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
             }
@@ -911,7 +911,7 @@ namespace FargowiltasSouls
                 target.AddBuff(tikiDebuffs[Main.rand.Next(tikiDebuffs.Length)], 300);
             }
 
-            if (Soulcheck.GetValue("Red Riding Super Bleed") && RedEnchant && WillForce && Main.rand.Next(5) == 0)
+            if ((RedEnchant || WillForce) && Soulcheck.GetValue("Red Riding Super Bleed") && Main.rand.Next(5) == 0)
             {
                 target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
             }
@@ -958,7 +958,7 @@ namespace FargowiltasSouls
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && lightningCD == 0 && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
+            if (CopperEnchant && lightningCD == 0 && Soulcheck.GetValue("Copper Lightning") && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
             {
                 CopperEffect(target);
             }
@@ -974,7 +974,7 @@ namespace FargowiltasSouls
                 player.immune = false;
             }
 
-            if (NecroEnchant && Soulcheck.GetValue("Necro Guardian") && necroCD == 0 && (proj.ranged || ShadowForce || TerrariaSoul) && proj.type != mod.ProjectileType("DungeonGuardian"))
+            if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian") && (proj.ranged || ShadowForce || TerrariaSoul) && proj.type != mod.ProjectileType("DungeonGuardian"))
             {
                 necroCD = 1200;
                 float screenX = Main.screenPosition.X;
@@ -1005,14 +1005,17 @@ namespace FargowiltasSouls
                 player.statMana += 5;
             }
 
-            if(Soulcheck.GetValue("Spectre Orbs"))
+            if ((SpiritForce || TerrariaSoul) && proj.type != ProjectileID.SpectreWrath)
             {
-                if ((SpiritForce || TerrariaSoul) && proj.type != ProjectileID.SpectreWrath)
+                if (Soulcheck.GetValue("Spectre Orbs"))
                 {
                     SpectreHeal(target, proj);
                     SpectreHurt(proj);
                 }
-                else if (SpectreEnchant && !SpiritForce && proj.magic)
+            }
+            else if (SpectreEnchant && !SpiritForce && proj.magic)
+            {
+                if (Soulcheck.GetValue("Spectre Orbs"))
                 {
                     if (crit)
                     {
@@ -1032,12 +1035,9 @@ namespace FargowiltasSouls
                         }
                     }
                 }
-
-                
             }
 
             
-
             if (TerrariaSoul)
             {
                 if (crit && TinCrit < 100)
@@ -1079,7 +1079,7 @@ namespace FargowiltasSouls
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && lightningCD == 0)
+            if (CopperEnchant && lightningCD == 0 && Soulcheck.GetValue("Copper Lightning"))
             {
                 CopperEffect(target);
             }
