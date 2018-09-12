@@ -47,6 +47,20 @@ namespace FargowiltasSouls.NPCs
         public byte SharkCount = 0;
         private static MethodInfo _startSandstormMethod;
 
+        public static int slimeBoss = -1;
+        public static int eyeBoss = -1;
+        public static int eaterBoss = -1;
+        public static int beeBoss = -1;
+        public static int skeleBoss = -1;
+        public static int wallBoss = -1;
+        public static int retiBoss = -1;
+        public static int spazBoss = -1;
+        public static int destroyBoss = -1;
+        public static int primeBoss = -1;
+        public static int fishBoss = -1;
+        public static int cultBoss = -1;
+        public static int moonBoss = -1;
+
         public override void ResetEffects(NPC npc)
         {
             SBleed = false;
@@ -262,6 +276,38 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.CultistBoss:
                         masoAI = 30;
+                        break;
+
+                    case NPCID.KingSlime:
+                        masoAI = 31;
+                        break;
+
+                    case NPCID.EaterofWorldsHead:
+                        masoAI = 32;
+                        break;
+
+                    case NPCID.QueenBee:
+                        masoAI = 33;
+                        break;
+
+                    case NPCID.SkeletronHead:
+                        masoAI = 34;
+                        break;
+
+                    case NPCID.WallofFlesh:
+                        masoAI = 35;
+                        break;
+
+                    case NPCID.TheDestroyer:
+                        masoAI = 36;
+                        break;
+
+                    case NPCID.DukeFishron:
+                        masoAI = 37;
+                        break;
+
+                    case NPCID.MoonLordCore:
+                        masoAI = 38;
                         break;
 
                     default:
@@ -843,7 +889,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.AddBuff(BuffID.OnFire, 300);
                         }
-                        else if (npc.HasBuff(BuffID.OnFire) && npc.buffTime[npc.FindBuffIndex(BuffID.OnFire)] < 60 && !NPC.AnyNPCs(NPCID.WallofFlesh))
+                        else if (npc.HasBuff(BuffID.OnFire) && npc.buffTime[npc.FindBuffIndex(BuffID.OnFire)] < 60 && !BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
                         {
                             NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.WallofFlesh);
                             Main.NewText("Wall of Flesh has awoken!", 175, 75);
@@ -907,6 +953,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 23: //eye of cthulhu
+                        eyeBoss = npc.whoAmI;
+
                         Counter++;
                         if (Counter >= 240)
                         {
@@ -930,7 +978,9 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 24: //retinazer
-                        if (!NPC.AnyNPCs(NPCID.Spazmatism))
+                        retiBoss = npc.whoAmI;
+
+                        if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
                         {
                             Timer--;
 
@@ -945,7 +995,9 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 25: //spazmatism
-                        if (!NPC.AnyNPCs(NPCID.Retinazer))
+                        spazBoss = npc.whoAmI;
+
+                        if (!BossIsAlive(ref retiBoss, NPCID.Retinazer))
                         {
                             Timer--;
 
@@ -1011,7 +1063,41 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 30: //cultistboss
+                        cultBoss = npc.whoAmI;
                         Aura(npc, 2000, mod.BuffType("ClippedWings"));
+                        break;
+
+                    case 31: //king slime
+                        slimeBoss = npc.whoAmI;
+                        break;
+
+                    case 32: //eater of worlds head
+                        eaterBoss = npc.whoAmI;
+                        break;
+
+                    case 33: //queen bee
+                        beeBoss = npc.whoAmI;
+                        break;
+
+                    case 34: //skeletron head
+                        skeleBoss = npc.whoAmI;
+                        break;
+
+                    case 35: //wall of flesh mouth
+                        wallBoss = npc.whoAmI;
+                        break;
+
+                    case 36: //destroyer head
+                        destroyBoss = npc.whoAmI;
+                        break;
+
+                    case 37: //fishron
+                        fishBoss = npc.whoAmI;
+                        break;
+
+                    case 38: //moon lord core
+                        //fun fact: npc.ai[0] = 1 is tied to npc.dontTakeDamage = false
+                        moonBoss = npc.whoAmI;
                         break;
 
                     default:
@@ -1130,14 +1216,14 @@ namespace FargowiltasSouls.NPCs
             {
                 if (Main.hardMode && Main.rand.Next(10) == 0)
                 {
-                    if (npc.type == NPCID.SlimeSpiked && !NPC.AnyNPCs(NPCID.KingSlime))
+                    if (npc.type == NPCID.SlimeSpiked && !BossIsAlive(ref slimeBoss, NPCID.KingSlime))
                     {
                         npc.Transform(NPCID.KingSlime);
                         npc.velocity.Y = -20f;
                         Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                     }
 
-                    if (npc.type == NPCID.WanderingEye && !NPC.AnyNPCs(NPCID.EyeofCthulhu))
+                    if (npc.type == NPCID.WanderingEye && !BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
                     {
                         npc.Transform(NPCID.EyeofCthulhu);
                         npc.velocity.Y = -5f;
@@ -1302,57 +1388,6 @@ namespace FargowiltasSouls.NPCs
 		
 		public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
 		{
-            //layers
-			int y = spawnInfo.spawnTileY;
-			bool cavern = y >= Main.maxTilesY * 0.4f && y <= Main.maxTilesY * 0.8f;
-            bool underground = y > Main.worldSurface && y <= Main.maxTilesY * 0.4f;
-            bool surface = y < Main.worldSurface && !spawnInfo.sky;
-            bool underworld = spawnInfo.player.ZoneUnderworldHeight;
-            bool sky = spawnInfo.sky;
-            
-            //times
-            bool night = !Main.dayTime;
-            bool day = Main.dayTime;
-
-            //biomes
-            bool noBiome = Fargowiltas.NoBiomeNormalSpawn(spawnInfo);
-            bool ocean = spawnInfo.player.ZoneBeach;
-            bool dungeon = spawnInfo.player.ZoneDungeon;
-            bool meteor = spawnInfo.player.ZoneMeteor;
-            bool spiderCave = spawnInfo.spiderCave;
-            bool mushroom = spawnInfo.player.ZoneGlowshroom;
-            bool jungle = spawnInfo.player.ZoneJungle;
-            bool granite = spawnInfo.granite;
-            bool marble = spawnInfo.marble;
-            bool corruption = spawnInfo.player.ZoneCorrupt;
-            bool crimson = spawnInfo.player.ZoneCrimson;
-            bool snow = spawnInfo.player.ZoneSnow;
-            bool hallow = spawnInfo.player.ZoneHoly;
-            bool desert = spawnInfo.player.ZoneDesert;
-
-            bool nebulaTower = spawnInfo.player.ZoneTowerNebula;
-            bool vortexTower = spawnInfo.player.ZoneTowerVortex;
-            bool stardustTower = spawnInfo.player.ZoneTowerStardust;
-            bool solarTower = spawnInfo.player.ZoneTowerSolar;
-
-            bool water = spawnInfo.water;
-
-            //events
-            bool goblinArmy = Main.invasionType == 1;
-            bool frostLegion = Main.invasionType == 2;
-            bool pirates = Main.invasionType == 3;
-            bool martianMadness = Main.invasionType == 4;
-            bool oldOnesArmy = DD2Event.Ongoing && spawnInfo.player.ZoneOldOneArmy;
-            bool frostMoon = surface && night && Main.snowMoon;
-            bool pumpkinMoon = surface && night && Main.pumpkinMoon;
-            bool solarEclipse = surface && day && Main.eclipse;
-            
-
-            //no work?
-            //is lava on screen
-            bool nearLava = Collision.LavaCollision(spawnInfo.player.position, spawnInfo.spawnTileX, spawnInfo.spawnTileY);
-
-
             //ZoneCorrupt
             //ZoneHoly
             //ZoneMeteor
@@ -1380,29 +1415,119 @@ namespace FargowiltasSouls.NPCs
             //spawnInfo.sky
             //spawnInfo.spiderCave
             //spawnInfo.player.adjLava
-			
-			//MASOCHIST MODE
-			if(FargoWorld.MasochistMode)
+
+            //MASOCHIST MODE
+            if (FargoWorld.MasochistMode)
 			{
-				//all the pre hardmode
-				if(!Main.hardMode)
+                //layers
+                int y = spawnInfo.spawnTileY;
+                bool cavern = y >= Main.maxTilesY * 0.4f && y <= Main.maxTilesY * 0.8f;
+                bool underground = y > Main.worldSurface && y <= Main.maxTilesY * 0.4f;
+                bool surface = y < Main.worldSurface && !spawnInfo.sky;
+                bool underworld = spawnInfo.player.ZoneUnderworldHeight;
+                bool sky = spawnInfo.sky;
+
+                //times
+                bool night = !Main.dayTime;
+                bool day = Main.dayTime;
+
+                //biomes
+                bool noBiome = Fargowiltas.NoBiomeNormalSpawn(spawnInfo);
+                bool ocean = spawnInfo.player.ZoneBeach;
+                bool dungeon = spawnInfo.player.ZoneDungeon;
+                bool meteor = spawnInfo.player.ZoneMeteor;
+                bool spiderCave = spawnInfo.spiderCave;
+                bool mushroom = spawnInfo.player.ZoneGlowshroom;
+                bool jungle = spawnInfo.player.ZoneJungle;
+                bool granite = spawnInfo.granite;
+                bool marble = spawnInfo.marble;
+                bool corruption = spawnInfo.player.ZoneCorrupt;
+                bool crimson = spawnInfo.player.ZoneCrimson;
+                bool snow = spawnInfo.player.ZoneSnow;
+                bool hallow = spawnInfo.player.ZoneHoly;
+                bool desert = spawnInfo.player.ZoneDesert;
+
+                bool nebulaTower = spawnInfo.player.ZoneTowerNebula;
+                bool vortexTower = spawnInfo.player.ZoneTowerVortex;
+                bool stardustTower = spawnInfo.player.ZoneTowerStardust;
+                bool solarTower = spawnInfo.player.ZoneTowerSolar;
+
+                bool water = spawnInfo.water;
+
+                //events
+                bool goblinArmy = Main.invasionType == 1;
+                bool frostLegion = Main.invasionType == 2;
+                bool pirates = Main.invasionType == 3;
+                bool martianMadness = Main.invasionType == 4;
+                bool oldOnesArmy = DD2Event.Ongoing && spawnInfo.player.ZoneOldOneArmy;
+                bool frostMoon = surface && night && Main.snowMoon;
+                bool pumpkinMoon = surface && night && Main.pumpkinMoon;
+                bool solarEclipse = surface && day && Main.eclipse;
+
+
+                //no work?
+                //is lava on screen
+                bool nearLava = Collision.LavaCollision(spawnInfo.player.position, spawnInfo.spawnTileX, spawnInfo.spawnTileY);
+                bool noInvasion = Fargowiltas.NoInvasion(spawnInfo);
+
+
+
+                //all the pre hardmode
+                if (!Main.hardMode)
 				{
+                    /*if (surface)
+                    {
+                        if (day)
+                        {
+                            if (Main.slimeRain && NPC.downedSlimeKing)
+                            {
+                                if (!NPC.AnyNPCs(NPCID.KingSlime))
+                                {
+                                    pool[NPCID.KingSlime] = .04f;
+                                }
+                                else
+                                {
+                                    pool[NPCID.KingSlime] = .01f;
+                                }
+                            }
+                        }
+                        else //night
+                        {
+                            if (!spawnInfo.playerInTown && noInvasion && NPC.downedBoss1 && NPC.downedBoss3)
+                            {
+                                if (!NPC.AnyNPCs(NPCID.EyeofCthulhu))
+                                {
+                                    pool[NPCID.EyeofCthulhu] = .004f;
+                                }
+                                else
+                                {
+                                    pool[NPCID.EyeofCthulhu] = .001f;
+                                }
+                            }
+                        }
+                    }
+                    else if (underground)
+                    {
+
+                    }
+                    else if (cavern)
+                    {
+
+                    }
+                    else if (underworld)
+                    {
+
+                    }
+                    else if (sky)
+                    {
+
+                    }*/
+
+
                     //bosses
-					if(surface && day && NPC.downedSlimeKing && NPC.downedBoss2 && Main.slimeRain)
+					if(Fargowiltas.NormalSpawn(spawnInfo) && NPC.downedBoss1 && NPC.downedBoss3)
 					{
-                        if(!NPC.AnyNPCs(NPCID.KingSlime))
-                        {
-                            pool[NPCID.KingSlime] = .04f;
-                        }
-                        else
-                        {
-                            pool[NPCID.KingSlime] = .01f;
-                        }
-					}
-					
-					if(Fargowiltas.NormalSpawn(spawnInfo) && surface && night && NPC.downedBoss1 && NPC.downedBoss3)
-					{
-                        if (!NPC.AnyNPCs(NPCID.EyeofCthulhu))
+                        if (!BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
                         {
                             pool[NPCID.EyeofCthulhu] = .004f;
                         }
@@ -1414,7 +1539,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(surface && night && NPC.downedBoss1 && NPC.downedBoss3 && Main.bloodMoon)
 					{
-                        if (!NPC.AnyNPCs(NPCID.EyeofCthulhu))
+                        if (!BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
                         {
                             pool[NPCID.EyeofCthulhu] = .01f;
                         }
@@ -1426,7 +1551,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(Fargowiltas.NormalSpawn(spawnInfo) && NPC.downedBoss2 && NPC.downedBoss3 && NPC.downedQueenBee && corruption && !underworld)
 					{
-                        if (!NPC.AnyNPCs(NPCID.EaterofWorldsHead))
+                        if (!BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
                         {
                             pool[NPCID.EaterofWorldsHead] = .005f;
                         }
@@ -1438,7 +1563,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(Fargowiltas.NormalSpawn(spawnInfo) && NPC.downedBoss2 && NPC.downedBoss3 && NPC.downedQueenBee && crimson && !underworld)
 					{
-                        if (!NPC.AnyNPCs(NPCID.BrainofCthulhu))
+                        if (!BossIsAlive(ref NPC.crimsonBoss, NPCID.BrainofCthulhu))
                         {
                             pool[NPCID.BrainofCthulhu] = .005f;
                         }
@@ -1536,7 +1661,7 @@ namespace FargowiltasSouls.NPCs
                     //bosses
 					if(Fargowiltas.NormalSpawn(spawnInfo) && surface && day && Main.slimeRain)
 					{
-                        if (!NPC.AnyNPCs(NPCID.KingSlime))
+                        if (!BossIsAlive(ref slimeBoss, NPCID.KingSlime))
                         {
                             pool[NPCID.KingSlime] = .1f;
                         }
@@ -1548,7 +1673,7 @@ namespace FargowiltasSouls.NPCs
 				
 					if(surface && day && noBiome)
 					{
-                        if (!NPC.AnyNPCs(NPCID.KingSlime))
+                        if (!BossIsAlive(ref slimeBoss, NPCID.KingSlime))
                         {
                             pool[NPCID.KingSlime] = .04f;
                         }
@@ -1560,7 +1685,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(surface && night && Fargowiltas.NormalSpawn(spawnInfo))
 					{
-                        if (!NPC.AnyNPCs(NPCID.EyeofCthulhu))
+                        if (!BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
                         {
                             pool[NPCID.EyeofCthulhu] = .02f;
                         }
@@ -1572,7 +1697,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(surface && night && Main.bloodMoon)
 					{
-                        if (!NPC.AnyNPCs(NPCID.EyeofCthulhu))
+                        if (!BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
                         {
                             pool[NPCID.EyeofCthulhu] = .05f;
                         }
@@ -1584,7 +1709,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(Fargowiltas.NormalSpawn(spawnInfo) && corruption && !underworld)
 					{
-                        if (!NPC.AnyNPCs(NPCID.EaterofWorldsHead))
+                        if (!BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
                         {
                             pool[NPCID.EaterofWorldsHead] = .01f;
                         }
@@ -1596,7 +1721,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(Fargowiltas.NormalSpawn(spawnInfo) && crimson && !underworld)
 					{
-                        if (!NPC.AnyNPCs(NPCID.BrainofCthulhu))
+                        if (!BossIsAlive(ref NPC.crimsonBoss, NPCID.BrainofCthulhu))
                         {
                             pool[NPCID.BrainofCthulhu] = .01f;
                         }
@@ -1608,7 +1733,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(Fargowiltas.NormalSpawn(spawnInfo) && night && spawnInfo.player.ZoneDungeon && NPC.downedMechBossAny)
 					{
-                        if (!NPC.AnyNPCs(NPCID.SkeletronHead))
+                        if (!BossIsAlive(ref skeleBoss, NPCID.SkeletronHead))
                         {
                             pool[NPCID.SkeletronHead] = .005f;
                         }
@@ -1620,7 +1745,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(Fargowiltas.NormalSpawn(spawnInfo) && day && spawnInfo.player.ZoneJungle && NPC.downedMechBossAny)
 					{
-                        if (!NPC.AnyNPCs(NPCID.QueenBee))
+                        if (!BossIsAlive(ref beeBoss, NPCID.QueenBee))
                         {
                             pool[NPCID.QueenBee] = .005f;
                         }
@@ -1633,7 +1758,7 @@ namespace FargowiltasSouls.NPCs
 					//all the hard mode bosses
 					if(Fargowiltas.NormalSpawn(spawnInfo) && surface && night && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && Main.bloodMoon)
 					{
-                        if (!NPC.AnyNPCs(NPCID.Retinazer) || !NPC.AnyNPCs(NPCID.Spazmatism) || !NPC.AnyNPCs(NPCID.SkeletronPrime) || !NPC.AnyNPCs(NPCID.TheDestroyer))
+                        if (!BossIsAlive(ref retiBoss, NPCID.Retinazer) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref destroyBoss, NPCID.TheDestroyer))
                         {
                             pool[NPCID.Retinazer] = .005f;
                             pool[NPCID.Spazmatism] = .005f;
@@ -1651,7 +1776,7 @@ namespace FargowiltasSouls.NPCs
 					
 					if(surface && night && NPC.downedPlantBoss && Main.bloodMoon)
 					{
-                        if (!NPC.AnyNPCs(NPCID.Retinazer) || !NPC.AnyNPCs(NPCID.Spazmatism) || !NPC.AnyNPCs(NPCID.SkeletronPrime) || !NPC.AnyNPCs(NPCID.TheDestroyer))
+                        if (!BossIsAlive(ref retiBoss, NPCID.Retinazer) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref destroyBoss, NPCID.TheDestroyer))
                         {
                             pool[NPCID.Retinazer] = .05f;
                             pool[NPCID.Spazmatism] = .05f;
@@ -1698,7 +1823,7 @@ namespace FargowiltasSouls.NPCs
                         pool[NPCID.DesertBeast] = .05f;
                     }
 
-                    if(NPC.AnyNPCs(NPCID.MoonLordHand))
+                    if(BossIsAlive(ref moonBoss, NPCID.MoonLordCore) && NPC.AnyNPCs(NPCID.MoonLordHand))
                     {
                         pool[NPCID.AncientCultistSquidhead] = .05f;
                         pool[NPCID.CultistDragonHead] = .05f;
@@ -2056,6 +2181,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 17: //skeletron prime
+                        primeBoss = npc.whoAmI;
+
                         if (npc.ai[1] != 2f)
                         {
                             Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
@@ -3125,6 +3252,26 @@ namespace FargowiltasSouls.NPCs
                 n.SetDefaults(npc.type);
                 npc.knockBackResist = n.knockBackResist;
             }*/
+        }
+
+        private bool BossIsAlive(ref int bossID, int bossType)
+        {
+            if (bossID != -1)
+            {
+                if (Main.npc[bossID].active && Main.npc[bossID].type == bossType)
+                {
+                    return true;
+                }
+                else
+                {
+                    bossID = -1;
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
