@@ -36,9 +36,9 @@ namespace FargowiltasSouls.Buffs.Masomode
             p.Infested = true;
         }
 
-        public override bool ReApply(Player player, int time, int buffIndex)
+        /*public override bool ReApply(Player player, int time, int buffIndex)
         {
             return true;
-        }
+        }*/
     }
 }
