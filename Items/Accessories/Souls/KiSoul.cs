@@ -93,7 +93,7 @@ Drastically increased ki regen
 
         public override void AddRecipes()
         {
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (!Fargowiltas.Instance.DBTLoaded) return;
             ModRecipe recipe = new ModRecipe(mod);
 
             foreach (string i in _items)
