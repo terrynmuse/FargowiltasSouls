@@ -31,5 +31,13 @@ namespace FargowiltasSouls.Buffs.Masomode
 				player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " was reaped by the cold hand of death."), 4444, 0);
 			}
         }
-	}
+
+        public override bool ReApply(Player player, int time, int buffIndex)
+        {
+            if (time < player.buffTime[buffIndex])
+                player.buffTime[buffIndex] = time;
+
+            return true;
+        }
+    }
 }
