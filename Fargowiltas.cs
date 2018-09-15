@@ -21,6 +21,7 @@ namespace FargowiltasSouls
         internal bool CalamityLoaded;
         internal bool TerraCompLoaded;
         internal bool ThoriumLoaded;
+        internal bool DBTLoaded;
 
         //stoned (ID 156) is placeholder for modded debuffs
         //add more 156s after the currently existing ones (not at the actual end of array) and then overwrite them in PostSetupContent when adding buffs
@@ -85,6 +86,7 @@ namespace FargowiltasSouls
                 CalamityLoaded = ModLoader.GetMod("CalamityMod") != null;
                 TerraCompLoaded = ModLoader.GetMod("TerraCompilation") != null;
                 ThoriumLoaded = ModLoader.GetMod("ThoriumMod") != null;
+                DBTLoaded = Modloader.GetMod("DBZMOD") != null;
 
                 DebuffIDs[0] = BuffType("Antisocial");
                 DebuffIDs[1] = BuffType("Atrophied");
