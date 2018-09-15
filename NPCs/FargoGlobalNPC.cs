@@ -340,6 +340,14 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 45;
                         break;
 
+                    case NPCID.CultistDragonBody1:
+                    case NPCID.CultistDragonBody2:
+                    case NPCID.CultistDragonBody3:
+                    case NPCID.CultistDragonBody4:
+                    case NPCID.CultistDragonTail:
+                        masoAI = 46;
+                        break;
+
                     default:
                         break;
                 }
@@ -1120,7 +1128,16 @@ namespace FargowiltasSouls.NPCs
 
                     case 30: //lunatic cultist
                         cultBoss = npc.whoAmI;
-                        Aura(npc, 2000, mod.BuffType("ClippedWings"));
+                        foreach (Player p in Main.player.Where(x => x.active && !x.dead))
+                        {
+                            if (npc.Distance(p.Center) < 2000)
+                            {
+                                p.AddBuff(mod.BuffType("ClippedWings"), 2);
+
+                                if (p.mount.Active)
+                                    p.mount.Dismount(p);
+                            }
+                        }
 
                         Counter++;
                         if (Counter >= 240)
@@ -1143,6 +1160,15 @@ namespace FargowiltasSouls.NPCs
 
                                 Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
                             }
+                        }
+
+                        Timer++;
+                        if (Timer >= 1200)
+                        {
+                            Timer = 0;
+
+                            if (Main.player[npc.target].active && !NPC.AnyNPCs(NPCID.AncientCultistSquidhead))
+                                NPC.SpawnOnPlayer(npc.target, NPCID.AncientCultistSquidhead);
                         }
                         break;
 
@@ -1227,28 +1253,24 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         Counter++;
-                        if (Counter >= 360)
+                        if (Counter >= 600)
                         {
-                            Counter = (ushort)(330f * (1f - (float)npc.life / npc.lifeMax) + Main.rand.Next(30));
+                            Counter = 0;
 
                             if (!npc.dontTakeDamage)
                             {
-                                Vector2 velocity = Main.player[npc.target].Center - npc.Center;
-                                velocity.Normalize();
-                                velocity *= 12f;
-
                                 for (int i = 0; i < 8; i++)
                                 {
-                                    int p = Projectile.NewProjectile(npc.Center, velocity, ProjectileID.EyeBeam, 28, 0f, Main.myPlayer);
-                                    Main.projectile[p].timeLeft = 300;
-
-                                    velocity = velocity.RotatedBy(2 * Math.PI / 8);
+                                    int p = Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-2, 3), Main.rand.Next(-2, 3), ProjectileID.SpikyBallTrap, 35, 0f, Main.myPlayer);
+                                    Main.projectile[p].friendly = false;
                                 }
                             }
                         }
                         goto case 42;
 
                     case 41: //golem head flying
+                        npc.position += npc.velocity * 0.25f;
+
                         Timer++;
                         if (Timer >= 4)
                         {
@@ -1270,19 +1292,32 @@ namespace FargowiltasSouls.NPCs
                                     Main.PlaySound(SoundID.Item34, npc.Center);
                                 }
                             }
+                        }
+
+                        Counter++;
+                        if (Counter >= 360)
+                        {
+                            if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
+                            {
+                                Counter = (ushort)(300 * (1f - (float)Main.npc[NPC.golemBoss].life / Main.npc[NPC.golemBoss].lifeMax));
+
+                                Vector2 velocity = Main.player[npc.target].Center - npc.Center;
+                                velocity.Normalize();
+                                velocity *= 11f;
+
+                                velocity = velocity.RotatedBy(MathHelper.ToRadians(-15));
+
+                                for (int i = 0; i < 4; i++)
+                                {
+                                    int p = Projectile.NewProjectile(npc.Center, velocity, ProjectileID.EyeBeam, 27, 0f, Main.myPlayer);
+                                    Main.projectile[p].timeLeft = 300;
+
+                                    velocity = velocity.RotatedBy(MathHelper.ToRadians(10));
+                                }
+                            }
                             else
                             {
-                                Counter++;
-                                if (Counter >= 120) //spiky balls every 8sec (8 * 60 / 4 = 120)
-                                {
-                                    Counter = 0;
-
-                                    for (int i = 0; i < 6; i++)
-                                    {
-                                        int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Main.rand.Next(-2, 3), Main.rand.Next(-2, 3), ProjectileID.SpikyBallTrap, 35, 0f, Main.myPlayer);
-                                        Main.projectile[p].friendly = false;
-                                    }
-                                }
+                                Counter = 0; //failsafe
                             }
                         }
                         break; //invincible anyway, so no regen needed
@@ -1291,15 +1326,15 @@ namespace FargowiltasSouls.NPCs
                         if (!npc.dontTakeDamage)
                         {
                             bool isFist = npc.type == NPCID.GolemFistLeft || npc.type == NPCID.GolemFistRight;
-                            npc.life += isFist ? 167 : 17;
+                            npc.life += isFist ? 167 : 8;
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
 
                             Timer++;
-                            if (Timer >= 70)
+                            if (Timer >= 75)
                             {
-                                Timer = Main.rand.Next(20);
-                                int healDisplay = isFist ? 9999 : 1000;
+                                Timer = Main.rand.Next(30);
+                                int healDisplay = isFist ? 9999 : 500;
                                 CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, healDisplay, false, false);
                             }
                         }
@@ -1350,6 +1385,10 @@ namespace FargowiltasSouls.NPCs
 
                             npc.Transform(newType);
                         }
+                        break;
+
+                    case 46: //phantasm dragon non-head segments
+                        npc.dontTakeDamage = true;
                         break;
 
                     default:
