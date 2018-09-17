@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Sharpshooter's Soul");
             Tooltip.SetDefault(
-@"'Ready, aim, fire'
+                @"'Ready, aim, fire'
 30% increased range damage
 20% increased firing speed
 15% increased ranged critical chance
@@ -43,7 +43,7 @@ Increases view range for guns (Right click to zoom out)");
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(null, "SnipersEssence");
-            
+
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
@@ -79,7 +79,7 @@ Increases view range for guns (Right click to zoom out)");
                 recipe.AddIngredient(ItemID.StakeLauncher);
                 recipe.AddIngredient(ItemID.EldMelter);
                 recipe.AddIngredient(ItemID.Xenopopper);
-                recipe.AddIngredient(ItemID.FireworksLauncher);          
+                recipe.AddIngredient(ItemID.FireworksLauncher);
             }
 
             //range2.AddTile(null, "CrucibleCosmosSheet");

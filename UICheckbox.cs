@@ -8,36 +8,18 @@ using Terraria.UI;
 namespace FargowiltasSouls
 {
     // TODO, tri-state checkbox.
-    class UiCheckbox : UIText
+    internal class UiCheckbox : UIText
     {
+        private static readonly Texture2D _checkboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
+        private static readonly Texture2D _checkmarkTexture = Fargowiltas.Instance.GetTexture("checkMark");
+        private readonly bool _clickable = true;
+        private bool _selected = true;
+        private readonly string _test;
+        private readonly string _tooltip = "";
         public Color Color;
         public Color Olor;
-        static Texture2D _checkboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
-        static Texture2D _checkmarkTexture = Fargowiltas.Instance.GetTexture("checkMark");
-        public event EventHandler OnSelectedChanged;
 
         public float Order = 0;
-        bool _clickable = true;
-        string _tooltip = "";
-        string _test;
-        private bool _selected = true;
-
-        public bool Selected
-        {
-            get { return _selected; }
-            set
-            {
-                if (value != _selected)
-                {
-                    _selected = value;
-                    if (OnSelectedChanged != null)
-                    {
-                        OnSelectedChanged(this, EventArgs.Empty);
-                    }
-                    //OnSelectedChanged?.Invoke();
-                }
-            }
-        }
 
         public UiCheckbox(string text, string tooltip, Color main, Color threed, bool clickable = true, float textScale = 1, bool large = false) : base("", textScale, large)
         {
@@ -50,12 +32,25 @@ namespace FargowiltasSouls
             Recalculate();
         }
 
+        public bool Selected
+        {
+            get { return _selected; }
+            set
+            {
+                if (value != _selected)
+                {
+                    _selected = value;
+                    if (OnSelectedChanged != null) OnSelectedChanged(this, EventArgs.Empty);
+                    //OnSelectedChanged?.Invoke();
+                }
+            }
+        }
+
+        public event EventHandler OnSelectedChanged;
+
         public override void Click(UIMouseEvent evt)
         {
-            if (_clickable)
-            {
-                Selected = !Selected;
-            }
+            if (_clickable) Selected = !Selected;
             Recalculate();
         }
 

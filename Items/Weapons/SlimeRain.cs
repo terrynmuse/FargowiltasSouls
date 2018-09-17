@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -46,13 +45,13 @@ namespace FargowiltasSouls.Items.Weapons
             float x;
             float y = player.Center.Y - 400f;
 
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 x = player.Center.X + 2f * Main.rand.Next(-400, 401);
                 Projectile p = Projectile.NewProjectileDirect(new Vector2(x, y), new Vector2(Main.rand.Next(-4, 4), 12f), type, damage, knockBack, player.whoAmI);
                 p.timeLeft = 60;
             }
-            
+
             return false;
         }
     }

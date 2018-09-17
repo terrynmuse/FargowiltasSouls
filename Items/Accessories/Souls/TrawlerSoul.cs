@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Trawler Soul");
             Tooltip.SetDefault(
-@"'The fish catch themselves'
+                @"'The fish catch themselves'
 Increases fishing skill substantially
 All fishing rods will have 10 extra lures
 Fishing line will never break
@@ -53,8 +53,6 @@ Effects of the Frog Legs and Spore Sac
                 player.SporeSac();
                 player.sporeSac = true;
             }
-            
-            
         }
 
         public override void AddRecipes()
@@ -84,15 +82,11 @@ Effects of the Frog Legs and Spore Sac
             recipe.AddIngredient(ItemID.SporeSac);
             recipe.AddIngredient(ItemID.ZephyrFish);
 
-            if(Fargowiltas.Instance.FargosLoaded)
-            {
+            if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
-            
+
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

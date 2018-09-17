@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -11,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Soul of the Universe");
             Tooltip.SetDefault(
-@"'The heavens themselves bow to you'
+                @"'The heavens themselves bow to you'
 66% increased all damage
 50% increased use speed for all weapons
 50% increased shoot speed
@@ -60,23 +61,16 @@ All attacks inflict Flames of the Universe");
             player.manaMagnet = true;
             player.magicCuffs = true;
 
-            if(player.controlUseItem && !player.HeldItem.autoReuse)
-            {
-                player.HeldItem.autoReuse = true;
-            }
+            if (player.controlUseItem && !player.HeldItem.autoReuse) player.HeldItem.autoReuse = true;
 
-            if(player.HeldItem.useStyle == 1)
-            {
-                player.HeldItem.scale = 2;
-            }
-            
+            if (player.HeldItem.useStyle == 1) player.HeldItem.scale = 2;
         }
 
         private void Healer(Player player)
         {
             //general
-            ThoriumMod.ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod"));
-            
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod"));
+
             thoriumPlayer.radiantBoost += 0.66f; //radiant damage
             thoriumPlayer.radiantSpeed -= 0.25f; //radiant casting speed
             thoriumPlayer.healingSpeed += 0.25f; //healing spell casting speed
@@ -107,8 +101,8 @@ All attacks inflict Flames of the Universe");
         private void Bard(Player player)
         {
             //general
-            ThoriumMod.ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumMod.ThoriumPlayer>(ModLoader.GetMod("ThoriumMod"));
-            
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod"));
+
             thoriumPlayer.symphonicDamage += 0.66f; //symphonic damage
             thoriumPlayer.symphonicCrit += 25;
             thoriumPlayer.symphonicSpeed += .25f;
@@ -167,16 +161,10 @@ All attacks inflict Flames of the Universe");
                 recipe.AddIngredient(null, "BardSoul");
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TheRing"));
 
-                if (!Fargowiltas.Instance.CalamityLoaded)
-                {
-                    recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalEyeMask"));
-                }
+                if (!Fargowiltas.Instance.CalamityLoaded) recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalEyeMask"));
             }
 
-            if (Fargowiltas.Instance.BlueMagicLoaded)
-            {
-                recipe.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("AvengerSeal"));
-            }
+            if (Fargowiltas.Instance.BlueMagicLoaded) recipe.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("AvengerSeal"));
 
             //recipe.AddTile(null, "CrucibleCosmosSheet");
             recipe.SetResult(this);

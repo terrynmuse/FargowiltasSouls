@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Berserker's Soul");
             Tooltip.SetDefault(
-@"'None shall live to tell the tale'
+                @"'None shall live to tell the tale'
 30% increased melee damage
 20% increased melee speed
 15% increased melee crit chance
@@ -56,7 +56,7 @@ Grants the effects of the Yoyo Bag");
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(null, "BarbariansEssence");
-            
+
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(FireGauntlet);

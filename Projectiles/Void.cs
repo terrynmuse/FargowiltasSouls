@@ -30,16 +30,16 @@ namespace FargowiltasSouls.Projectiles
 
         public override bool PreDraw(SpriteBatch sb, Color lightColor)
         {
-            projectile.frameCounter++;   //Making the timer go up.
-            if (projectile.frameCounter >= 4)  //Change the 4 to how fast you want the animation to be
+            projectile.frameCounter++; //Making the timer go up.
+            if (projectile.frameCounter >= 4) //Change the 4 to how fast you want the animation to be
             {
                 projectile.frame++; //Making the frame go up...
                 projectile.frameCounter = 0; //Resetting the timer.
                 if (projectile.frame > 9) //Change the 3 to the amount of frames your projectile has.
                     projectile.frame = 0;
             }
-            return true;
 
+            return true;
         }
 
         public override void AI()
@@ -49,11 +49,11 @@ namespace FargowiltasSouls.Projectiles
                 float distance = projectile.Distance(Main.npc[i].Center);
                 NPC npc = Main.npc[i];
 
-                if (npc.active && !npc.townNPC && npc.type != NPCID.TargetDummy && npc.type != NPCID.DD2EterniaCrystal && npc.type != NPCID.DD2LanePortal && !npc.boss && distance < 200)
-                {
-                    Vector2 dir = projectile.position - npc.Center;
-                    npc.velocity = dir.SafeNormalize(Vector2.Zero) * 8;
-                }
+                if (!npc.active || npc.townNPC || npc.type == NPCID.TargetDummy || npc.type == NPCID.DD2EterniaCrystal || npc.type == NPCID.DD2LanePortal || npc.boss ||
+                    !(distance < 200)) continue;
+
+                Vector2 dir = projectile.position - npc.Center;
+                npc.velocity = dir.SafeNormalize(Vector2.Zero) * 8;
             }
         }
 
@@ -61,10 +61,12 @@ namespace FargowiltasSouls.Projectiles
         {
             for (int i = 0; i < 20; i++)
             {
-                int dust = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, DustID.Shadowflame, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+                int dust = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, DustID.Shadowflame, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 2f;
-                dust = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, DustID.Shadowflame, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100);
+                dust = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, DustID.Shadowflame, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100);
                 Main.dust[dust].velocity *= 2f;
             }
         }

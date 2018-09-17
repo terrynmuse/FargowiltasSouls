@@ -102,7 +102,6 @@ namespace FargowiltasSouls
             _pirate = false;
             _steam = false;
             _borg = false;
-
         }
 
         public override TagCompound Save()
@@ -158,8 +157,9 @@ namespace FargowiltasSouls
             if (_steam) downed.Add("steam");
             if (_borg) downed.Add("borg");
 
-            return new TagCompound {
-                {"downed", downed}, { "count", count}
+            return new TagCompound
+            {
+                {"downed", downed}, {"count", count}
             };
         }
 
@@ -327,12 +327,12 @@ namespace FargowiltasSouls
             writer.Write(flags2);
             writer.Write(flags3);
             writer.Write(flags4);
-
         }
 
         public override void PostUpdate()
         {
             #region commented
+
             //right when day starts
             /*if(/*Main.time == 0 && Main.dayTime && !Main.eclipse && FargoWorld.masochistMode)
 			{
@@ -444,8 +444,8 @@ namespace FargowiltasSouls
             // NetMessage.SendData(61, -1, -1, "", this.whoAmI, -5f, 0f, 0f, 0, 0, 0);
             // }
             // }
-            #endregion
 
+            #endregion
         }
     }
 }

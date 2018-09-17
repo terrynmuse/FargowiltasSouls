@@ -3,16 +3,16 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
-	public class Unstable : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Unstable");
-			Description.SetDefault("You don't quite fit into reality.");
-			Main.buffNoSave[Type] = true;
-			canBeCleared = false;
-			Main.debuff[Type] = true;
-		}
+    public class Unstable : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Unstable");
+            Description.SetDefault("You don't quite fit into reality.");
+            Main.buffNoSave[Type] = true;
+            canBeCleared = false;
+            Main.debuff[Type] = true;
+        }
 
         public override bool Autoload(ref string name, ref string texture)
         {

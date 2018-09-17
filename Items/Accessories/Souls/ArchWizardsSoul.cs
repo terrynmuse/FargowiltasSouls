@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Arch Wizard's Soul");
             Tooltip.SetDefault(
-@"'Arcane to the core'
+                @"'Arcane to the core'
 30% increased magic damage
 20% increased spell casting speed
 15% increased magic crit chance
@@ -94,7 +94,7 @@ Automatically use mana potions when needed");
                 recipe.AddIngredient(BatScepter);
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);
-                recipe.AddIngredient(LastPrism);  
+                recipe.AddIngredient(LastPrism);
             }
 
             //magic2.AddTile(null, "CrucibleCosmosSheet");

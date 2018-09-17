@@ -3,26 +3,26 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
-	public class Infested : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Infested");
-			Description.SetDefault("This can only get worse.");
-			Main.debuff[Type] = true;
+    public class Infested : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Infested");
+            Description.SetDefault("This can only get worse.");
+            Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
-		}
-		
-		public override bool Autoload(ref string name, ref string texture)
+        }
+
+        public override bool Autoload(ref string name, ref string texture)
         {
             texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
 
             return true;
         }
 
-		public override void Update(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
             FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
 
@@ -32,7 +32,7 @@ namespace FargowiltasSouls.Buffs.Masomode
                 p.MaxInfestTime = player.buffTime[buffIndex];
                 p.FirstInfection = false;
             }
-            
+
             p.Infested = true;
         }
 

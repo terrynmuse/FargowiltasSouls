@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Adamantite Enchantment");
             Tooltip.SetDefault(
-@"'Who needs to aim?' 
+                @"'Who needs to aim?' 
 Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split");
         }

@@ -10,46 +10,14 @@ namespace FargowiltasSouls
 {
     internal class Soulcheck : UIState
     {
-        private UIPanel _checklistPanel;
         public static bool Visible = false;
 
         public static readonly Dictionary<string, bool> ToggleDict = new Dictionary<string, bool>();
 
-        public static bool GetValue(string buff)
-        {
-            bool ret;
-            ToggleDict.TryGetValue(buff, out ret);
-            ErrorLogger.Log(buff + ": " + ret);
-            return ret;
-        }
-
-        private readonly Color _wtf = new Color(173, 94, 171);
-        private float left;
-        private float top = 20f;
-
-        private void CreateCheckbox(string name, Color color)
-        {
-            if (ToggleDict.Count != _buffs.Count)
-            {
-                ToggleDict.Add(name, true);
-            }
-
-
-            UiCheckbox uibox = new UiCheckbox(name, "", color, _wtf);
-            uibox.Left.Set(left, 0f);
-            uibox.Top.Set(top, 0f);
-            uibox.OnSelectedChanged += (o, e) => { ToggleDict[name] = !ToggleDict[name]; };
-            _checklistPanel.Append(uibox);
-
-            top += 25f;
-            if (!(top >= 565)) return;
-            top = 20f;
-            left += 260f;
-        }
-
         private readonly Dictionary<string, Color> _buffs = new Dictionary<string, Color>
         {
             #region enchantment toggles
+
             ["Hunter Buff"] = new Color(81, 181, 113),
             ["Dangersense Buff"] = new Color(81, 181, 113),
             ["Spelunker Buff"] = new Color(81, 181, 113),
@@ -93,6 +61,7 @@ namespace FargowiltasSouls
             ["Vortex Voids"] = new Color(81, 181, 113),
             ["Nebula Boosters"] = new Color(81, 181, 113),
             ["Stardust Guardian"] = new Color(81, 181, 113),
+
             #endregion
 
             #region soul toggles
@@ -106,7 +75,7 @@ namespace FargowiltasSouls
             ["Spore Sac"] = new Color(81, 181, 113),
             ["Super Speed"] = new Color(81, 181, 113),
             ["Melee Speed"] = new Color(81, 181, 113),
-            
+
             ["Baby Dino Pet"] = new Color(81, 181, 113),
             ["Baby Penguin Pet"] = new Color(81, 181, 113),
             ["Baby Skeletron Pet"] = new Color(81, 181, 113),
@@ -138,8 +107,41 @@ namespace FargowiltasSouls
             ["Parrot Pet"] = new Color(81, 181, 113),
             ["Fairy Pet"] = new Color(81, 181, 113),
             ["Companion Cube Pet"] = new Color(81, 181, 113),
-            ["Eye Spring Pet"] = new Color(81, 181, 113),
+            ["Eye Spring Pet"] = new Color(81, 181, 113)
         };
+
+        private readonly Color _wtf = new Color(173, 94, 171);
+        private UIPanel _checklistPanel;
+        private bool _dragging;
+
+        private Vector2 _offset;
+        private float left;
+        private float top = 20f;
+
+        public static bool GetValue(string buff)
+        {
+            bool ret;
+            ToggleDict.TryGetValue(buff, out ret);
+            ErrorLogger.Log(buff + ": " + ret);
+            return ret;
+        }
+
+        private void CreateCheckbox(string name, Color color)
+        {
+            if (ToggleDict.Count != _buffs.Count) ToggleDict.Add(name, true);
+
+
+            UiCheckbox uibox = new UiCheckbox(name, "", color, _wtf);
+            uibox.Left.Set(left, 0f);
+            uibox.Top.Set(top, 0f);
+            uibox.OnSelectedChanged += (o, e) => { ToggleDict[name] = !ToggleDict[name]; };
+            _checklistPanel.Append(uibox);
+
+            top += 25f;
+            if (!(top >= 565)) return;
+            top = 20f;
+            left += 260f;
+        }
 
         public override void OnInitialize()
         {
@@ -149,21 +151,15 @@ namespace FargowiltasSouls
             _checklistPanel.SetPadding(10);
             _checklistPanel.Width.Set(1000f, 0f);
             _checklistPanel.Height.Set(600f, 0f);
-            _checklistPanel.Left.Set(Main.screenWidth / 2, 0f);
-            _checklistPanel.Top.Set(Main.screenHeight / 2, 0f);
+            _checklistPanel.Left.Set(Main.screenWidth / 2f, 0f);
+            _checklistPanel.Top.Set(Main.screenHeight / 2f, 0f);
             _checklistPanel.BackgroundColor = new Color(73, 94, 171);
             _checklistPanel.OnMouseDown += DragOn;
             _checklistPanel.OnMouseUp += DragOff;
             Append(_checklistPanel);
 
-            foreach (KeyValuePair<string, Color> buff in _buffs)
-            {
-                CreateCheckbox(buff.Key, buff.Value);
-            }
+            foreach (KeyValuePair<string, Color> buff in _buffs) CreateCheckbox(buff.Key, buff.Value);
         }
-
-        private Vector2 _offset;
-        private bool _dragging;
 
         private void DragOn(UIMouseEvent evt, UIElement listeningElement)
         {
@@ -187,10 +183,7 @@ namespace FargowiltasSouls
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             Vector2 mousePosition = new Vector2(Main.mouseX, Main.mouseY);
-            if (_checklistPanel.ContainsPoint(mousePosition))
-            {
-                Main.LocalPlayer.mouseInterface = true;
-            }
+            if (_checklistPanel.ContainsPoint(mousePosition)) Main.LocalPlayer.mouseInterface = true;
 
             if (!_dragging) return;
             _checklistPanel.Left.Set(mousePosition.X - _offset.X, 0f);

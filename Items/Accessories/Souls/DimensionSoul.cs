@@ -15,13 +15,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of Dimensions");
 
 
-
             Tooltip.SetDefault("'The dimensions of Terraria are at your fingertips'"
-                + "\nDoes various things");
-            
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 18));
+                               + "\nDoes various things");
 
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 18));
         }
+
         public override void SetDefaults()
         {
             item.width = 32;
@@ -37,8 +36,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).DimensionSoul = true;
-
-            
         }
 
         /*private void CalamityTank(Player player)

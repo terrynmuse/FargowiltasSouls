@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Nature");
             Tooltip.SetDefault(
-@"'Tapped into every secret of the wilds'
+                @"'Tapped into every secret of the wilds'
 Greatly increases life regen
 Hearts heal for 1.5x as much
 Allows the collection of Vine Rope from vines
@@ -59,13 +59,9 @@ Summons a Baby Face Monster, Crimson Heart, Baby Penguin, Snowman, Seedling, and
             recipe.AddIngredient(null, "ShroomiteEnchant");
 
             if (Fargowiltas.Instance.FargosLoaded)
-            {
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();
