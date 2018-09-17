@@ -33,13 +33,6 @@ namespace FargowiltasSouls.NPCs
             npc.aiStyle = 7;
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return spawnInfo.spawnTileY < Main.rockLayer && !spawnInfo.invasion && !spawnInfo.sky && !Main.eclipse && !spawnInfo.player.ZoneDesert && !spawnInfo.player.ZoneJungle
-                ? 0.05f
-                : 0f;
-        }
-
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)
