@@ -109,7 +109,11 @@ Taking fatal damage unleashes your inner spirit");
             recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumHolyScythe"));
             recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("RealitySlasher"));
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
