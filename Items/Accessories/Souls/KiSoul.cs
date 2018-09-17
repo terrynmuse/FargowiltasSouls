@@ -66,9 +66,9 @@ Drastically increased ki regen
             dbtPlayer.KiCrit += 20;
             dbtPlayer.KiSpeedAddition += 4;
             dbtPlayer.KiKbAddition += 0.3;
-            dbtPlayer.KiDrainMulti -= 0.3;
+            dbtPlayer.KiDrainMulti -= 0.4;
             dbtPlayer.KiMax *= 1.3;
-            dbtPlayer.KiRegen = 4;
+            dbtPlayer.KiRegen += 4;
             dbtPlayer.OrbGrabRange += 6;
             dbtPlayer.OrbHealAmount += 100;
             dbtPlayer.ChargeLimitAdd += 5;
