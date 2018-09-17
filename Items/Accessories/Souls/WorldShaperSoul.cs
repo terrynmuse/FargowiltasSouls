@@ -72,7 +72,6 @@ No enemies can spawn
                 recipe.AddIngredient(ArchitectGizmoPack);
                 recipe.AddIngredient(ActuationAccessory);
 
-
                 recipe.AddRecipeGroup("FargowiltasSouls:AnyDrax");
                 recipe.AddIngredient(ShroomiteDiggingClaw);
                 recipe.AddIngredient(Picksaw);
@@ -81,7 +80,11 @@ No enemies can spawn
                 recipe.AddIngredient(RoyalGel);
             }
 
-            //build.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
