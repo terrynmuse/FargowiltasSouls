@@ -46,11 +46,6 @@ Grants the effects of the Yoyo Bag");
             player.yoyoString = true;
         }
 
-        /*private void Gauntlet(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).eGauntlet = true;
-        }*/
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -93,6 +88,11 @@ Grants the effects of the Yoyo Bag");
                 recipe.AddIngredient(InfluxWaver);
                 recipe.AddIngredient(Meowmere);
             }
+            
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();
