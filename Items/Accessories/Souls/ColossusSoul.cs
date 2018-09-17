@@ -85,25 +85,6 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
             }
         }
 
-        /*public void CalamityTank(Player player)
-        {
-                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("BrimstoneFlames")] = true;
-                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("HolyLight")] = true;
-                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("GlacialState")] = true;
-                player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).elysianAegis = true;
-                player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).dashMod = 4;
-                player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).aSpark = true;
-                player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).gShell = true;
-                player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).fCarapace = true;
-                player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).absorber = true;
-        }
-        
-        public void BlueTank(Player player)
-        {
-                player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).lifeMagnet2 = true;
-                player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).crystalCloak = true;
-        }*/
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -128,7 +109,11 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
                 recipe.AddIngredient(ItemID.AnkhShield);
             }
 
-            //tank.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
