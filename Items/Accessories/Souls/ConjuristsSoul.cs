@@ -39,17 +39,6 @@ Increased minion knockback");
             player.minionKB += 3f;
         }
 
-        /*private void Waifus(Player player)
-        {
-            CalamityMod.CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityMod.CalamityPlayer>(calamity);
-            
-            calamityPlayer.brimstoneWaifu = true;
-            calamityPlayer.sandBoobWaifu = true;
-            calamityPlayer.sandWaifu = true;
-            calamityPlayer.cloudWaifu = true;
-            calamityPlayer.sirenWaifu = true;
-        }*/
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -92,7 +81,11 @@ Increased minion knockback");
                 recipe.AddIngredient(ItemID.MoonlordTurretStaff);
             }
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
