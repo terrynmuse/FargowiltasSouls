@@ -82,7 +82,11 @@ Increases view range for guns (Right click to zoom out)");
                 recipe.AddIngredient(ItemID.FireworksLauncher);
             }
 
-            //range2.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
