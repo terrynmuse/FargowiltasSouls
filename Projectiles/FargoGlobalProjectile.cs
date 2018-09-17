@@ -138,7 +138,7 @@ namespace FargowiltasSouls.Projectiles
                             projectile.maxPenetrate /= 2;
                         }
 
-                        projectile.damage = projectile.damage / 3;
+                        projectile.damage = (int)(projectile.damage * (2 / 3));
                         stormBoosted = false;
                     }
                 }
@@ -178,7 +178,7 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-            //projectile.owner usually means Main.myPlayer, doesn't apply to npc arrayyyyyy
+            //projectile.owner usually means Main.myPlayer, doesn't apply to npc arrayyyyyy (WTF REEEEE)
             /*if(projectile.hostile && Main.npc[projectile.owner].active && Main.npc[projectile.owner].GetGlobalNPC<FargoGlobalNPC>().SqueakyToy)
             {
                 projectile.damage = 1;
@@ -199,7 +199,7 @@ namespace FargowiltasSouls.Projectiles
                 projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * RotateDist) - projectile.width / 2;
                 projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * RotateDist) - projectile.height / 2;
 
-                //Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
+                //increase/decrease degrees
                 if(RotateDir == 1)
                 {
                     projectile.ai[1] += 2.5f;
@@ -472,16 +472,6 @@ namespace FargowiltasSouls.Projectiles
                         break;
             }
 
-            //does this projectile even exist
-            /*if (projectile.type == mod.ProjectileType("HallowShield"))
-            {
-                if (!modPlayer.HallowEnchant || !Soulcheck.GetValue("Hallowed Shield Familiar"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }*/
-
             if (stormBoosted)
             {
                 int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.GoldFlame, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1.5f);
@@ -740,11 +730,8 @@ namespace FargowiltasSouls.Projectiles
                             case 5:
                                 target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(60, 600));
                                 break;
-                            case 6:
-                                target.AddBuff(mod.BuffType("Purified"), Main.rand.Next(60, 600));
-                                break;
-
                             default:
+                                target.AddBuff(mod.BuffType("Purified"), Main.rand.Next(60, 600));
                                 break;
                         }
 
