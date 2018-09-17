@@ -38,30 +38,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.GetModPlayer<FargoPlayer>(mod).DimensionSoul = true;
         }
 
-        /*private void CalamityTank(Player player)
-        {
-            CalamityMod.CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity);
-            
-            calamityPlayer.elysianAegis = true;
-            calamityPlayer.dashMod = 4;
-            calamityPlayer.aSpark = true;
-            calamityPlayer.gShell = true;
-            calamityPlayer.fCarapace = true;
-            calamityPlayer.absorber = true;
-        }
-
-        private void CalamityBoots(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).IBoots = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).elysianFire = true;
-        }
-
-        private void BlueTank(Player player)
-        {
-            player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).lifeMagnet2 = true;
-            player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).crystalCloak = true;
-        }*/
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -72,7 +48,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             recipe.AddIngredient(null, "WorldShaperSoul");
             recipe.AddIngredient(null, "TrawlerSoul");
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
