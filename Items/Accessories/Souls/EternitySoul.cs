@@ -33,45 +33,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //includes revive, both spectres, adamantite
-            modPlayer.TerrariaSoul = true;
-            modPlayer.TerrariaPets(hideVisual);
-
-            player.onHitDodge = true;
-            player.onHitRegen = true;
-            player.fireWalk = true;
-            player.lavaImmune = true;
-            player.strongBees = true;
-
-            modPlayer.BeetleEffect(); //just beetles
-            modPlayer.ChloroEffect(hideVisual, 100); //everything
-            modPlayer.CrimsonEffect(hideVisual); //everything
-            modPlayer.DarkArtistEffect(hideVisual); //no meme effect
-            modPlayer.ForbiddenEffect(); //everything, maybe kill storm boost
-            modPlayer.FrostEffect(80, hideVisual);
-            modPlayer.GoldEffect(hideVisual); // just greed ring effect
-            modPlayer.HallowEffect(hideVisual, 100); //everything
-            modPlayer.IronEffect(); //everything
-            modPlayer.MoltenEffect(20); //everything
-            modPlayer.NebulaEffect(); //no meme speed
-            modPlayer.NecroEffect(hideVisual); //everything
-            modPlayer.OrichalcumEffect(); //no petals, permanent 4 balls instead of spawning
-            modPlayer.RedRidingEffect(hideVisual); //no super bleed or increase low Hp dmg
-            modPlayer.ShinobiEffect(hideVisual); //all
-            modPlayer.SolarEffect(); //no solar flare debuff
-            modPlayer.StardustEffect(); //all, may kill freeze time
-            modPlayer.TinEffect(); //lifesteal bonus
-            modPlayer.ValhallaEffect(hideVisual); //no KB memes
-            modPlayer.VortexEffect(hideVisual); //all may kill voids
-
-            //CUT
-            //cactus, cobalt, copper, fossil bone zone, gladiator, jungle, lead, meteor, nebula meme speed, ninja, obsidian, platinum, pumpkin, red riding blood, shadow, shroomite, solar flare debuff, spider, spooky, tungsten, turtle, dark artist shadow shoot
-
-            //ALTERED
-            //ori changed, tin and palladium fused, titanium changed
-
-            //ELSEWHERE
-            //mythril, tiki, mining
+            
         }
 
         public override void AddRecipes()
