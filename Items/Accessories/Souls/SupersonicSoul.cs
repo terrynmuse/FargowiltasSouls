@@ -84,13 +84,6 @@ Allows the player to dash into the enemy");
             player.autoJump = true;
         }
 
-        /*public void CalamityBoots(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).IBoots = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).elysianFire = true;
-        }*/
-
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -117,7 +110,11 @@ Allows the player to dash into the enemy");
                 recipe.AddIngredient(ItemID.BrainScrambler);
             }
 
-            //speed.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
