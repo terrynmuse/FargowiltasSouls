@@ -44,16 +44,6 @@ Automatically use mana potions when needed");
             player.magicCuffs = true;
         }
 
-        /*private void Talisman(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(calamity).eTalisman = true;
-        }
-
-        private void BlueMagnet(Player player)
-        {
-            player.GetModPlayer<Bluemagic.BluemagicPlayer>(blue).manaMagnet2 = true;
-        }*/
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -97,7 +87,11 @@ Automatically use mana potions when needed");
                 recipe.AddIngredient(LastPrism);
             }
 
-            //magic2.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
