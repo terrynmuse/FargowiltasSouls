@@ -59,7 +59,6 @@ Drastically increased ki regen
         private void Ki(Player player)
         {
             //general
-
             DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(_dbzmod);
             
             dbtPlayer.KiDamage += 0.35f;
@@ -99,10 +98,15 @@ Drastically increased ki regen
             foreach (string i in _items)
             {
                 recipe.AddIngredient(_dbzmod.ItemType(i));
-                recipe.AddIngredient(_dbzmod.ItemType("RadiantKiCrystal", 250));
             }
             
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            recipe.AddIngredient(_dbzmod.ItemType("RadiantKiCrystal", 250));
+            
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
