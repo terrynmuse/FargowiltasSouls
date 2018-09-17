@@ -1,43 +1,32 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using FargowiltasSouls.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles
 {
     public class FargoGlobalProjectile : GlobalProjectile
     {
-        public override bool InstancePerEntity
-        {
-            get
-            {
-                return true;
-            }
-        }
+        private static int adamantiteCD = 0;
+        public bool CanSplit = true;
 
         private int counter;
-        public bool CanSplit = true;
-        private int numSplits = 1;
-        private static int adamantiteCD = 0;
-
-        private int numSpeedups = 3;
-        private bool ninjaTele;
-        public bool IsRecolor = false;
-        private bool stormBoosted = false;
-        private int stormTimer;
-
-        public bool Rotate = false;
-        public int RotateDist = 64;
-        public int RotateDir = 1;
-        private int oriDir = 1;
 
         private bool firstTick = true;
+        public bool IsRecolor = false;
+        private bool ninjaTele;
+
+        private int numSpeedups = 3;
+        private int numSplits = 1;
+        private int oriDir = 1;
+
+        public bool Rotate = false;
+        public int RotateDir = 1;
+        public int RotateDist = 64;
         private bool squeakyToy = false;
+        private bool stormBoosted = false;
+        private int stormTimer;
         public bool TimeFrozen = false;
+        public override bool InstancePerEntity => true;
 
         /*public override void SetDefaults(Projectile projectile)
         {
@@ -769,8 +758,8 @@ namespace FargowiltasSouls.Projectiles
 
         public static Projectile[] XWay(int num, Vector2 pos, int type, float speed, int damage, float knockback)
         {
-            float[] _x = { 0, speed, 0, -speed, speed, -speed, speed, -speed, speed / 2, speed, -speed, speed / 2, speed, -speed / 2, -speed, -speed / 2 };
-            float[] _y = { speed, 0, -speed, 0, speed, -speed, -speed, speed, speed, speed / 2, speed / 2, -speed, -speed / 2, speed, -speed / 2, -speed };
+            float[] _x = {0, speed, 0, -speed, speed, -speed, speed, -speed, speed / 2, speed, -speed, speed / 2, speed, -speed / 2, -speed, -speed / 2};
+            float[] _y = {speed, 0, -speed, 0, speed, -speed, -speed, speed, speed, speed / 2, speed / 2, -speed, -speed / 2, speed, -speed / 2, -speed};
 
             Projectile[] projs = new Projectile[16];
 
@@ -788,12 +777,8 @@ namespace FargowiltasSouls.Projectiles
             int count = 0;
 
             for (int i = 0; i < 1000; i++)
-            {
                 if (Main.projectile[i].type == type)
-                {
                     count++;
-                }
-            }
 
             return count;
         }

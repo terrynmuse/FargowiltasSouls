@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Miner Enchantment");
             Tooltip.SetDefault(
-@"'The planet trembles with each swing of your pick'
+                @"'The planet trembles with each swing of your pick'
 50% increased mining speed
 Shows the location of enemies, traps, and treasures
 You emit an aura of light

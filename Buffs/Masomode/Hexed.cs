@@ -3,16 +3,16 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
-	public class Hexed : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Hexed");
-			Description.SetDefault("Your attacks heal enemies.");
-			Main.buffNoSave[Type] = true;
-			canBeCleared = true;
-			Main.debuff[Type] = true;
-		}
+    public class Hexed : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Hexed");
+            Description.SetDefault("Your attacks heal enemies.");
+            Main.buffNoSave[Type] = true;
+            canBeCleared = true;
+            Main.debuff[Type] = true;
+        }
 
         public override bool Autoload(ref string name, ref string texture)
         {
@@ -25,6 +25,5 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             player.GetModPlayer<FargoPlayer>().Hexed = true;
         }
-
     }
 }

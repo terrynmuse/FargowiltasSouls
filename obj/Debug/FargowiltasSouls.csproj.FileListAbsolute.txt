@@ -1,2 +1,11 @@
 D:\home\Documents\GitHub\FargowiltasSouls\obj\Debug\FargowiltasSouls.csprojAssemblyReference.cache
 D:\home\Documents\GitHub\FargowiltasSouls\obj\Debug\FargowiltasSouls.csproj.CoreCompileInputs.cache
+C:\Users\home\Projects\Terraria\FargowiltasSouls\obj\Debug\FargowiltasSouls.csprojAssemblyReference.cache
+C:\Users\home\Projects\Terraria\FargowiltasSouls\obj\Debug\FargowiltasSouls.csproj.CoreCompileInputs.cache
+C:\Users\home\Projects\Terraria\FargowiltasSouls\bin\Debug\FargowiltasSouls.dll
+C:\Users\home\Projects\Terraria\FargowiltasSouls\bin\Debug\FargowiltasSouls.pdb
+C:\Users\home\Projects\Terraria\FargowiltasSouls\bin\Debug\Terraria.exe
+C:\Users\home\Projects\Terraria\FargowiltasSouls\bin\Debug\Windows.dll
+C:\Users\home\Projects\Terraria\FargowiltasSouls\obj\Debug\FargowiltasSouls.csproj.CopyComplete
+C:\Users\home\Projects\Terraria\FargowiltasSouls\obj\Debug\FargowiltasSouls.dll
+C:\Users\home\Projects\Terraria\FargowiltasSouls\obj\Debug\FargowiltasSouls.pdb

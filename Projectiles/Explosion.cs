@@ -33,10 +33,10 @@ namespace FargowiltasSouls.Projectiles
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(2, (int) projectile.position.X, (int) projectile.position.Y, 14);
-            projectile.position.X = projectile.position.X + projectile.width / 2;
-            projectile.position.Y = projectile.position.Y + projectile.height / 2;
-            projectile.position.X = projectile.position.X - projectile.width / 2;
-            projectile.position.Y = projectile.position.Y - projectile.height / 2;
+            projectile.position.X = projectile.position.X + projectile.width / 2f;
+            projectile.position.Y = projectile.position.Y + projectile.height / 2f;
+            projectile.position.X = projectile.position.X - projectile.width / 2f;
+            projectile.position.Y = projectile.position.Y - projectile.height / 2f;
 
             for (int i = 0; i < 50; i++)
             {
@@ -59,10 +59,7 @@ namespace FargowiltasSouls.Projectiles
             for (int i = 0; i < 5; i++)
             {
                 float scaleFactor9 = 0.5f;
-                if (i == 1 || i == 3)
-                {
-                    scaleFactor9 = 1f;
-                }
+                if (i == 1 || i == 3) scaleFactor9 = 1f;
 
                 for (int j = 0; j < 4; j++)
                 {

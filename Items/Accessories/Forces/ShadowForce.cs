@@ -6,11 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 {
     public class ShadowForce : ModItem
     {
+        public override string Texture => "FargowiltasSouls/Items/Placeholder";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadow Force");
             Tooltip.SetDefault(
-@"''
+                @"''
 Throw a smoke bomb to teleport to it
 Standing nearby smoke gives you the First Strike buff
 You will recieve escalating Darkness debuffs while hitting enemies
@@ -32,14 +34,6 @@ Summons a pet Black Cat, Baby Eater of Souls, Shadow Orb, Baby Skeletron Head, C
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 10;
             item.value = 600000;
-        }
-
-        public override string Texture
-        {
-            get
-            {
-                return "FargowiltasSouls/Items/Placeholder";
-            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -65,13 +59,9 @@ Summons a pet Black Cat, Baby Eater of Souls, Shadow Orb, Baby Skeletron Head, C
             recipe.AddIngredient(null, "DarkArtistEnchant");
 
             if (Fargowiltas.Instance.FargosLoaded)
-            {
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();

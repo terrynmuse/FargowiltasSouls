@@ -6,12 +6,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class FrostEnchant : ModItem
     {
-        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frost Enchantment");
             Tooltip.SetDefault(
-@"'Let's coat the world in a deep freeze' 
+                @"'Let's coat the world in a deep freeze' 
 Icicles will start to appear around you
 When there are three, using any weapon will launch them towards the cursor, Chilling and Frostburning enemies
 Allows the ability to walk on water

@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Tungsten Enchantment");
             Tooltip.SetDefault(
-@"'Juggernaut'
+                @"'Juggernaut'
 Your weapons shoot at 1/8 the speed
 300% increased damage
 25% increased crit chance");
@@ -22,7 +22,7 @@ Your weapons shoot at 1/8 the speed
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 1; 
+            item.rare = 1;
             item.value = 40000;
         }
 

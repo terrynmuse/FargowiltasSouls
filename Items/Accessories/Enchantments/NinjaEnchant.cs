@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Ninja Enchantment");
             Tooltip.SetDefault(
-@"'Now you see me, now you don’t'
+                @"'Now you see me, now you donâ€™t'
 Throw a smoke bomb to teleport to it
 Standing nearby smoke gives you the First Strike buff
 Summons a pet Black cat");

@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Shadow Enchantment");
             Tooltip.SetDefault(
-@"'You feel your body slip into the deepest of shadows'
+                @"'You feel your body slip into the deepest of shadows'
 You will recieve escalating Darkness debuffs while hitting enemies
 Surrounding enemies will take rapid damage when it is the darkest
 Summons a Baby Eater of Souls and a Shadow Orb");

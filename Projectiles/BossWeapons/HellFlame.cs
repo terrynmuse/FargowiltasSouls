@@ -8,7 +8,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 {
     public class HellFlame : ModProjectile
     {
-        static int _currentShade = 76;//77;//79;//83;//82;
+        private static int _currentShade = 76; //77;//79;//83;//82;
 
         public override void SetStaticDefaults()
         {
@@ -33,11 +33,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void AI()
         {
-
-            if (projectile.timeLeft > 60)
-            {
-                projectile.timeLeft = 60;
-            }
+            if (projectile.timeLeft > 60) projectile.timeLeft = 60;
             if (projectile.ai[1] > 5f)
             {
                 Dust dust;
@@ -46,44 +42,42 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 dust.noGravity = true;
                 dust.shader = GameShaders.Armor.GetSecondaryShader(56, Main.LocalPlayer);
 
-                if (Main.rand.Next(3) != 0)
-                {
-                    dust.scale *= 2f;
-                    
-                }
+                if (Main.rand.Next(3) != 0) dust.scale *= 2f;
 
                 dustIndex = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.SolarFlare, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100);
                 dust = Main.dust[dustIndex];
                 dust.noGravity = true;
                 dust.shader = GameShaders.Armor.GetSecondaryShader(56, Main.LocalPlayer);
 
-                if (Main.rand.Next(3) != 0)
-                {
-                    dust.scale *= 2f;
-                }
+                if (Main.rand.Next(3) != 0) dust.scale *= 2f;
 
-                dustIndex = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Fire, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 0, default(Color), 1f);
+                dustIndex = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Fire, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 0, default(Color),
+                    1f);
                 dust = Main.dust[dustIndex];
                 if (Main.rand.Next(3) != 0)
                 {
                     dust.scale *= 1.5f;
                     dust.velocity *= 2f;
                 }
+
                 dust.velocity *= 1.2f;
 
-                dustIndex = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Smoke, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 0, default(Color), .5f);
+                dustIndex = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Smoke, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 0,
+                    default(Color), .5f);
                 dust = Main.dust[dustIndex];
                 if (Main.rand.Next(3) != 0)
                 {
                     dust.scale *= 2f;
                     dust.velocity *= 2f;
                 }
+
                 dust.velocity *= 1.2f;
             }
             else
             {
                 projectile.ai[1] += 1f;
             }
+
             projectile.rotation += 0.3f * projectile.direction;
         }
 

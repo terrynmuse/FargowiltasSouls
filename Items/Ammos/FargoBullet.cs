@@ -5,13 +5,15 @@ namespace FargowiltasSouls.Items.Ammos
 {
     public class FargoBullet : ModItem
     {
+        public override string Texture => "FargowiltasSouls/Items/Placeholder";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Amalgamated Bullet Pouch");
             Tooltip.SetDefault("Chases after your enemy\n" +
-                                "Bounces several times\n" +
-                                "Each impact causes an explosion of crystal bullets\n" +
-                                "Inflicts several debuffs");
+                               "Bounces several times\n" +
+                               "Each impact causes an explosion of crystal bullets\n" +
+                               "Inflicts several debuffs");
         }
 
         public override void SetDefaults()
@@ -25,14 +27,6 @@ namespace FargowiltasSouls.Items.Ammos
             item.shoot = mod.ProjectileType("FargoBulletProj");
             item.shootSpeed = 15f; // same as high velocity bullets                 
             item.ammo = AmmoID.Bullet;
-        }
-
-        public override string Texture
-        {
-            get
-            {
-                return "FargowiltasSouls/Items/Placeholder";
-            }
         }
 
         //do later

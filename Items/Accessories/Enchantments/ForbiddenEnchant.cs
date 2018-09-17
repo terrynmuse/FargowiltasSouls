@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Forbidden Enchantment");
             Tooltip.SetDefault(
-@"'Walk like an Egyptian'
+                @"'Walk like an Egyptian'
 Double tap down to call an ancient storm to the cursor location
 Any projectiles shot through your storm gain double pierce and 50% damage
 You are immune to the Mighty Wind debuff");

@@ -7,11 +7,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class EternitySoul : ModItem
     {
+        public override string Texture => "FargowiltasSouls/Items/Placeholder";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of Eternity");
             Tooltip.SetDefault(
-@"''
+                @"''
 ");
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 24));
@@ -26,14 +28,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             item.rare = 10;
             item.value = 100000000;
             item.shieldSlot = 5;
-        }
-
-        public override string Texture
-        {
-            get
-            {
-                return "FargowiltasSouls/Items/Placeholder";
-            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -93,13 +87,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             recipe.AddIngredient(null, "CosmoForce");
 
             if (Fargowiltas.Instance.FargosLoaded)
-            {
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();

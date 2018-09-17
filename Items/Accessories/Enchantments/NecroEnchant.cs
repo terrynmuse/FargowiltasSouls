@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Necro Enchantment");
             Tooltip.SetDefault(
-@"'Welcome to the bone zone' 
+                @"'Welcome to the bone zone' 
 A Dungeon Guardian will occasionally annihilate a foe when struck by a ranged attack
 Summons a Baby Skeletron Head");
         }

@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Sniper's Essence");
             Tooltip.SetDefault(
-@"'This is only the beginning..'
+                @"'This is only the beginning..'
 18% increased ranged damage
 5% increased ranged critical chance
 5% increased ranged use time");

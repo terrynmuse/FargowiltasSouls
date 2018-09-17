@@ -29,7 +29,7 @@ namespace FargowiltasSouls.Items.Weapons
             item.knockBack = 2;
             item.value = 1000;
             item.rare = 10;
-            item.mana = 12; 
+            item.mana = 12;
             item.UseSound = SoundID.Item21;
             item.autoReuse = true;
             item.shoot = 1;
@@ -48,10 +48,7 @@ namespace FargowiltasSouls.Items.Weapons
             Vector2.UnitX.RotatedBy(player.fullRotation);
             float num78 = Main.mouseX + Main.screenPosition.X - vector2.X;
             float num79 = Main.mouseY + Main.screenPosition.Y - vector2.Y;
-            if (player.gravDir == -1f)
-            {
-                num79 = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - vector2.Y;
-            }
+            if (player.gravDir == -1f) num79 = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - vector2.Y;
 
             float num80 = (float) Math.Sqrt(num78 * num78 + num79 * num79);
             if (float.IsNaN(num78) && float.IsNaN(num79) || num78 == 0f && num79 == 0f)
@@ -68,25 +65,13 @@ namespace FargowiltasSouls.Items.Weapons
             num78 *= num80;
             num79 *= num80;
             int num146 = 4;
-            if (Main.rand.Next(2) == 0)
-            {
-                num146++;
-            }
+            if (Main.rand.Next(2) == 0) num146++;
 
-            if (Main.rand.Next(4) == 0)
-            {
-                num146++;
-            }
+            if (Main.rand.Next(4) == 0) num146++;
 
-            if (Main.rand.Next(8) == 0)
-            {
-                num146++;
-            }
+            if (Main.rand.Next(8) == 0) num146++;
 
-            if (Main.rand.Next(16) == 0)
-            {
-                num146++;
-            }
+            if (Main.rand.Next(16) == 0) num146++;
 
             for (int num147 = 0; num147 < num146; num147++)
             {

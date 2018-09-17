@@ -50,36 +50,18 @@ No enemies can spawn
             player.pickSpeed -= 0.50f;
 
             //mining helmet
-            if (Soulcheck.GetValue("Shine Buff") == false)
-            {
-                Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
-            }
+            if (Soulcheck.GetValue("Shine Buff") == false) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
             player.autoActuator = true;
 
-            if (!hideVisual)
-            {
-                /*player.magicDamage*= 0f;
-                player.meleeDamage*= 0f;
-                player.rangedDamage*= 0f;
-                player.minionDamage*= 0f;
-                player.thrownDamage*= 0f;*/
-
-                player.GetModPlayer<FargoPlayer>(mod).BuilderMode = true;
-            }
+            if (!hideVisual) player.GetModPlayer<FargoPlayer>(mod).BuilderMode = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
-            {
-                
-
-                
-            }
-            else
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(LaserRuler);
                 recipe.AddIngredient(GravityGlobe);

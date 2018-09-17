@@ -6,11 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 {
     public class WillForce : ModItem
     {
+        public override string Texture => "FargowiltasSouls/Items/Placeholder";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Force of Will");
             Tooltip.SetDefault(
-@"''
+                @"''
 50% increased mining speed
 Shows the location of enemies, traps, and treasures
 You emit an aura of light
@@ -36,14 +38,6 @@ Summons a pet Magic Lantern, Parrot, Minotaur, Puppy, and Dragon");
             item.value = 600000;
         }
 
-        public override string Texture
-        {
-            get
-            {
-                return "FargowiltasSouls/Items/Placeholder";
-            }
-        }
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
@@ -67,13 +61,9 @@ Summons a pet Magic Lantern, Parrot, Minotaur, Puppy, and Dragon");
             recipe.AddIngredient(null, "ValhallaKnightEnchant");
 
             if (Fargowiltas.Instance.FargosLoaded)
-            {
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Life");
             Tooltip.SetDefault(
-@"'Rare is a living thing that dare disobey your will'
+                @"'Rare is a living thing that dare disobey your will'
 Getting hit by a projectile causes a needle spray
 You leave behind a trail of fire when you walk
 Eating Pumpkin Pie also heals you to full HP
@@ -57,13 +57,9 @@ Summons a pet Squashling, Baby Hornet, Spider, Lizard, and Turtle");
             recipe.AddIngredient(null, "BeetleEnchant");
 
             if (Fargowiltas.Instance.FargosLoaded)
-            {
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();
