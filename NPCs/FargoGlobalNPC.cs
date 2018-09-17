@@ -749,6 +749,13 @@ namespace FargowiltasSouls.NPCs
 
         public override void AI(NPC npc)
         {
+	
+	if(npc.type == NPCID.Squirrel && Main.rand.Next(10) == 0)
+	{
+		npc.transform(mod.npcType("TophatSquirrel"));
+	}
+	
+	
             if (FargoWorld.MasochistMode)
             {
                 if (_regenTimer > 0) _regenTimer--;
