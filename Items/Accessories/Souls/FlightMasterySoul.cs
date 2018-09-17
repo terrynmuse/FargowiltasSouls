@@ -74,8 +74,11 @@ Releases bees when damaged");
             recipe.AddIngredient(ItemID.WingsNebula);
             recipe.AddIngredient(ItemID.WingsSolar);
 
-            recipe.AddTile(TileID.LunarCraftingStation);
-            //wings.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
