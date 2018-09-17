@@ -4,12 +4,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-// ReSharper disable CompareOfFloatsByEqualityOperator
-
 namespace FargowiltasSouls.Items.Weapons
 {
     public class PandoraTwo : ModItem
     {
+        private int[] projectiles = {15, 27, 45, 76, 77, 78, 88, 89, 95, 114, 116, 119, 120, 121, 122, 123, 124, 125, 126, 132, 156, 157, 172, 173, 189, 207, 
+            225, 242, 253, 254, 261, 263, 270, 274, 278, 279, 280, 282, 283, 284, 285, 294, 295, 304, 306, 311, 321, 335, 336, 337, 338 343, 356, 357, 399, 408, 409, 410, 
+            424, 442, 444, 451, 461, 477, 478, 479, 483, 495, 496, 497, 502, 503, 510, 521, 523, 615, 617, 630, 636, 639, 659, 660, 661, 684, 700, 706, 710, 711, 712};
+    
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pandora's Tome");
@@ -75,21 +77,7 @@ namespace FargowiltasSouls.Items.Weapons
 
             for (int num147 = 0; num147 < num146; num147++)
             {
-                int r;
-
-                do
-                {
-                    r = Main.rand.Next(714);
-                } while (r != 15 && r != 27 && r != 45 && r != 88 && r != 89 && r != 95 && r != 114 && r != 116 &&
-                         r != 132 && r != 156 && r != 157 && r != 172 && r != 173 && r != 189 && r != 207 && r != 225 &&
-                         r != 242 && r != 253 && r != 254 && r != 261 && r != 263 && r != 270 && r != 274 && r != 304 &&
-                         r != 306 && r != 311 && r != 321 && r != 343 && r != 356 && r != 357 && r != 399 && r != 408 &&
-                         r != 409 && r != 410 && r != 424 && r != 442 && r != 444 && r != 451 && r != 461 && r != 483 &&
-                         r != 502 && r != 503 && r != 510 && r != 521 && r != 523 && r != 615 && r != 617 && r != 630 &&
-                         r != 636 && r != 639 && r != 684 && r != 700 && r != 706 && !(r >= 76 && r <= 78) &&
-                         !(r >= 119 && r <= 126) && !(r >= 278 && r <= 280) && !(r >= 282 && r <= 285) &&
-                         !(r >= 294 && r <= 295) && !(r >= 335 && r <= 338) && !(r >= 477 && r <= 479) &&
-                         !(r >= 495 && r <= 497) && !(r >= 659 && r <= 661) && !(r >= 710 && r <= 712));
+                int r = projectiles[Main.rand.Next(projectile.Length)];
 
                 float num148 = num78;
                 float num149 = num79;
