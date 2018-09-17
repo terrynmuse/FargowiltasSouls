@@ -39,8 +39,14 @@ namespace FargowiltasSouls.Projectiles.Souls
 			{
 				modPlayer.ChloroEnchant = false;
 			}
-			
-			float cooldown = 50f;
+
+            if (!(modPlayer.ChloroEnchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue("Chlorophyte Leaf Crystal"))
+            {
+                projectile.Kill();
+                return;
+            }
+
+            float cooldown = 50f;
 			
 			projectile.position.X = Main.player[projectile.owner].Center.X - projectile.width / 2;
 			projectile.position.Y = Main.player[projectile.owner].Center.Y - projectile.height / 2 + Main.player[projectile.owner].gfxOffY - 60f;

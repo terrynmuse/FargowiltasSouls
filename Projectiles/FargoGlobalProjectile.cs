@@ -28,18 +28,22 @@ namespace FargowiltasSouls.Projectiles
         public bool TimeFrozen = false;
         public override bool InstancePerEntity => true;
 
-        /*public override void SetDefaults(Projectile projectile)
+        public override void SetDefaults(Projectile projectile)
         {
             if (FargoWorld.MasochistMode)
             {
-                if (projectile.type == ProjectileID.SaucerLaser)
+                switch (projectile.type)
                 {
-                    projectile.tileCollide = false;
-                }
+                    case ProjectileID.SaucerLaser:
+                        projectile.tileCollide = false;
+                        break;
 
-                if (projectile.type == ProjectileID.FallingStar)
-                {
-                    projectile.hostile = true;
+                    case ProjectileID.FallingStar:
+                        projectile.hostile = true;
+                        break;
+
+                    default:
+                        break;
                 }
             }
         }
@@ -54,20 +58,43 @@ namespace FargowiltasSouls.Projectiles
 
             if (projectile.owner == Main.myPlayer && projectile.friendly && !projectile.hostile)
             {
-                if (Soulcheck.GetValue("Adamantite Splitting") && (modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && firstTick && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 && CanSplit &&
-                    !Rotate)
+                if (firstTick)
                 {
-                    if (adamantiteCD != 0)
+                    if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && Soulcheck.GetValue("Adamantite Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
                     {
-                        adamantiteCD--;
+                        if (adamantiteCD != 0)
+                        {
+                            adamantiteCD--;
+                        }
+
+                        if (adamantiteCD == 0)
+                        {
+                            firstTick = false;
+                            adamantiteCD = modPlayer.TerrariaSoul ? 4 : 8;
+                            SplitProj(projectile, 3);
+                        }
                     }
 
-                    if(adamantiteCD == 0)
+                    if (projectile.bobber)
                     {
                         firstTick = false;
-                        adamantiteCD = modPlayer.TerrariaSoul ? 4 : 8;
-                        SplitProj(projectile, 3);
+
+                        if (modPlayer.FishSoul1)
+                        {
+                            SplitProj(projectile, 5);
+                        }
+                        if (modPlayer.FishSoul2)
+                        {
+                            SplitProj(projectile, 11);
+                        }
                     }
+
+                    if (Rotate && !modPlayer.TerrariaSoul)
+                    {
+                        projectile.timeLeft = 600;
+                    }
+
+                    firstTick = false;
                 }
 
                 if (modPlayer.ForbiddenEnchant && projectile.damage > 0 && projectile.type != ProjectileID.SandnadoFriendly && !stormBoosted)
@@ -116,28 +143,11 @@ namespace FargowiltasSouls.Projectiles
                     }
                 }
 
-                if (projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 && CanSplit)
+                if (modPlayer.GladEnchant && (projectile.thrown || modPlayer.WillForce) && CanSplit && projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 &&
+                    Soulcheck.GetValue("Gladiator Speedup") && numSpeedups > 0 && counter % 10 == 0)
                 {
-
-                    if (modPlayer.GladEnchant && Soulcheck.GetValue("Gladiator Speedup") && (projectile.thrown || modPlayer.WillForce) && numSpeedups > 0 && counter % 10 == 0)
-                    {
-                        numSpeedups--;
-                        projectile.velocity = Vector2.Multiply(projectile.velocity, 1.5f);
-                    }
-                }
-
-                if (projectile.bobber && firstTick)
-                {
-                    firstTick = false;
-
-                    if (modPlayer.FishSoul1)
-                    {
-                        SplitProj(projectile, 5);
-                    }
-                    if (modPlayer.FishSoul2)
-                    {
-                        SplitProj(projectile, 11);
-                    }
+                    numSpeedups--;
+                    projectile.velocity = Vector2.Multiply(projectile.velocity, 1.5f);
                 }
 
                 if (modPlayer.Jammed && projectile.ranged && projectile.type != ProjectileID.ConfettiGun)
@@ -156,7 +166,6 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-
             if (modPlayer.SpookyEnchant && !modPlayer.TerrariaSoul && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
             {
                 Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 62);
@@ -169,19 +178,15 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-            if(projectile.hostile && Main.npc[projectile.owner].active && Main.npc[projectile.owner].GetGlobalNPC<FargoGlobalNPC>().SqueakyToy)
+            //projectile.owner usually means Main.myPlayer, doesn't apply to npc arrayyyyyy
+            /*if(projectile.hostile && Main.npc[projectile.owner].active && Main.npc[projectile.owner].GetGlobalNPC<FargoGlobalNPC>().SqueakyToy)
             {
                 projectile.damage = 1;
                 squeakyToy = true;
-            }
+            }*/
 
             if(Rotate)
             {
-                if(firstTick && !modPlayer.TerrariaSoul)
-                {
-                    projectile.timeLeft = 600;
-                }
-
                 projectile.tileCollide = false;
                 projectile.usesLocalNPCImmunity = true;
 
@@ -229,13 +234,13 @@ namespace FargowiltasSouls.Projectiles
                     }
                 }
 
-                if (projectile.type == ProjectileID.Blizzard && modPlayer.FrostEnchant && Soulcheck.GetValue("Frost Icicles"))
+                if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && Soulcheck.GetValue("Frost Icicles"))
                 {
                     //projectile.rotation = (Main.MouseWorld - projectile.Center).ToRotation() + 90;
                     projectile.timeLeft = 2;
                 }
 
-                if ((modPlayer.TerrariaSoul && Soulcheck.GetValue("Orichalcum Fireballs")))
+                if (modPlayer.TerrariaSoul && Soulcheck.GetValue("Orichalcum Fireballs"))
                 {
                     projectile.timeLeft = 2;
                 }
@@ -250,8 +255,6 @@ namespace FargowiltasSouls.Projectiles
                 projectile.timeLeft++;
                 retVal = false;
             }
-
-            firstTick = false;
 
             return retVal;
         }
@@ -291,11 +294,11 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
-        private void KillPet(Projectile projectile, Player player, int proj, int buff, bool enchant, string toggle)
+        private void KillPet(Projectile projectile, Player player, int buff, bool enchant, string toggle)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (projectile.type == proj && player.FindBuffIndex(buff) == -1)
+            if (player.FindBuffIndex(buff) == -1)
             {
                 if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle))
                 {
@@ -309,97 +312,175 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            #region pets
-
-            KillPet(projectile, player, ProjectileID.BabyHornet, BuffID.BabyHornet, modPlayer.BeeEnchant, "Baby Hornet Pet");
-            KillPet(projectile, player, ProjectileID.Sapling, BuffID.PetSapling, modPlayer.ChloroEnchant, "Seedling Pet");
-            KillPet(projectile, player, ProjectileID.BabyFaceMonster, BuffID.BabyFaceMonster, modPlayer.CrimsonEnchant, "Baby Face Monster Pet");
-            KillPet(projectile, player, ProjectileID.CrimsonHeart, BuffID.CrimsonHeart, modPlayer.CrimsonEnchant, "Crimson Heart Pet");
-            KillPet(projectile, player, ProjectileID.MagicLantern, BuffID.MagicLantern, modPlayer.MinerEnchant, "Magic Lantern Pet");
-            KillPet(projectile, player, ProjectileID.MiniMinotaur, BuffID.MiniMinotaur, modPlayer.GladEnchant, "Mini Minotaur Pet");
-            KillPet(projectile, player, ProjectileID.BlackCat, BuffID.BlackCat, modPlayer.NinjaEnchant, "Black Cat Pet");
-            KillPet(projectile, player, ProjectileID.Wisp, BuffID.Wisp, modPlayer.SpectreEnchant, "Wisp Pet");
-            KillPet(projectile, player, ProjectileID.CursedSapling, BuffID.CursedSapling, modPlayer.SpookyEnchant, "Cursed Sapling Pet");
-            KillPet(projectile, player, ProjectileID.EyeSpring, BuffID.EyeballSpring, modPlayer.SpookyEnchant, "Eye Spring Pet");
-            KillPet(projectile, player, ProjectileID.Turtle, BuffID.PetTurtle, modPlayer.TurtleEnchant, "Turtle Pet");
-            KillPet(projectile, player, ProjectileID.PetLizard, BuffID.PetLizard, modPlayer.TurtleEnchant, "Lizard Pet");
-            KillPet(projectile, player, ProjectileID.Truffle, BuffID.BabyTruffle, modPlayer.ShroomEnchant, "Truffle Pet");
-            KillPet(projectile, player, ProjectileID.Spider, BuffID.PetSpider, modPlayer.SpiderEnchant, "Spider Pet");
-            KillPet(projectile, player, ProjectileID.Squashling, BuffID.Squashling, modPlayer.PumpkinEnchant, "Squashling Pet");
-            KillPet(projectile, player, ProjectileID.BlueFairy, BuffID.FairyBlue, modPlayer.HallowEnchant, "Fairy Pet");
-            KillPet(projectile, player, ProjectileID.StardustGuardian, BuffID.StardustGuardianMinion, modPlayer.StardustEnchant, "Stardust Guardian");
-            KillPet(projectile, player, ProjectileID.TikiSpirit, BuffID.TikiSpirit, modPlayer.TikiEnchant, "Tiki Pet");
-            KillPet(projectile, player, ProjectileID.Penguin, BuffID.BabyPenguin, modPlayer.FrostEnchant, "Baby Penguin Pet");
-            KillPet(projectile, player, ProjectileID.BabySnowman, BuffID.BabySnowman, modPlayer.FrostEnchant, "Baby Snowman Pet");
-            KillPet(projectile, player, ProjectileID.DD2PetGato, BuffID.PetDD2Gato, modPlayer.ShinobiEnchant, "Gato Pet");
-            KillPet(projectile, player, ProjectileID.Parrot, BuffID.PetParrot, modPlayer.GoldEnchant, "Parrot Pet");
-            KillPet(projectile, player, ProjectileID.Puppy, BuffID.Puppy, modPlayer.RedEnchant, "Puppy Pet");
-            KillPet(projectile, player, ProjectileID.CompanionCube, BuffID.CompanionCube, modPlayer.VortexEnchant, "Companion Cube Pet");
-            KillPet(projectile, player, ProjectileID.DD2PetDragon, BuffID.PetDD2Dragon, modPlayer.ValhallaEnchant, "Dragon Pet");
-            KillPet(projectile, player, ProjectileID.BabySkeletronHead, BuffID.BabySkeletronHead, modPlayer.NecroEnchant, "Baby Skeletron  Pet");
-            KillPet(projectile, player, ProjectileID.BabyDino, BuffID.BabyDinosaur, modPlayer.FossilEnchant, "Baby Dino Pet");
-            KillPet(projectile, player, ProjectileID.BabyEater, BuffID.BabyEater, modPlayer.ShadowEnchant, "Baby Eater Pet");
-            KillPet(projectile, player, ProjectileID.ShadowOrb, BuffID.ShadowOrb, modPlayer.ShadowEnchant, "Shadow Orb Pet");
-            KillPet(projectile, player, ProjectileID.SuspiciousTentacle, BuffID.SuspiciousTentacle, modPlayer.CosmoForce, "Suspicious Looking Eye Pet");
-            KillPet(projectile, player, ProjectileID.DD2PetGhost, BuffID.PetDD2Ghost, modPlayer.DarkEnchant, "Flickerwick Pet");
-
-            if (projectile.type == mod.ProjectileType("Chlorofuck"))
+            switch (projectile.type)
             {
-                if (!(modPlayer.ChloroEnchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue("Chlorophyte Leaf Crystal"))
-                {
-                    projectile.Kill();
-                    return;
-                }
+                #region pets
+
+                case ProjectileID.BabyHornet:
+                    KillPet(projectile, player, BuffID.BabyHornet, modPlayer.BeeEnchant, "Baby Hornet Pet");
+                    break;
+
+                case ProjectileID.Sapling:
+                    KillPet(projectile, player, BuffID.PetSapling, modPlayer.ChloroEnchant, "Seedling Pet");
+                    break;
+
+                case ProjectileID.BabyFaceMonster:
+                    KillPet(projectile, player, BuffID.BabyFaceMonster, modPlayer.CrimsonEnchant, "Baby Face Monster Pet");
+                    break;
+
+                case ProjectileID.CrimsonHeart:
+                    KillPet(projectile, player, BuffID.CrimsonHeart, modPlayer.CrimsonEnchant, "Crimson Heart Pet");
+                    break;
+
+                case ProjectileID.MagicLantern:
+                    KillPet(projectile, player, BuffID.MagicLantern, modPlayer.MinerEnchant, "Magic Lantern Pet");
+                    break;
+
+                case ProjectileID.MiniMinotaur:
+                    KillPet(projectile, player, BuffID.MiniMinotaur, modPlayer.GladEnchant, "Mini Minotaur Pet");
+                    break;
+
+                case ProjectileID.BlackCat:
+                    KillPet(projectile, player, BuffID.BlackCat, modPlayer.NinjaEnchant, "Black Cat Pet");
+                    break;
+
+                case ProjectileID.Wisp:
+                    KillPet(projectile, player, BuffID.Wisp, modPlayer.SpectreEnchant, "Wisp Pet");
+                    break;
+
+                case ProjectileID.CursedSapling:
+                    KillPet(projectile, player, BuffID.CursedSapling, modPlayer.SpookyEnchant, "Cursed Sapling Pet");
+                    break;
+
+                case ProjectileID.EyeSpring:
+                    KillPet(projectile, player, BuffID.EyeballSpring, modPlayer.SpookyEnchant, "Eye Spring Pet");
+                    break;
+
+                case ProjectileID.Turtle:
+                    KillPet(projectile, player, BuffID.PetTurtle, modPlayer.TurtleEnchant, "Turtle Pet");
+                    break;
+
+                case ProjectileID.PetLizard:
+                    KillPet(projectile, player, BuffID.PetLizard, modPlayer.TurtleEnchant, "Lizard Pet");
+                    break;
+
+                case ProjectileID.Truffle:
+                    KillPet(projectile, player, BuffID.BabyTruffle, modPlayer.ShroomEnchant, "Truffle Pet");
+                    break;
+
+                case ProjectileID.Spider:
+                    KillPet(projectile, player, BuffID.PetSpider, modPlayer.SpiderEnchant, "Spider Pet");
+                    break;
+
+                case ProjectileID.Squashling:
+                    KillPet(projectile, player, BuffID.Squashling, modPlayer.PumpkinEnchant, "Squashling Pet");
+                    break;
+
+                case ProjectileID.BlueFairy:
+                    KillPet(projectile, player, BuffID.FairyBlue, modPlayer.HallowEnchant, "Fairy Pet");
+                    break;
+
+                case ProjectileID.StardustGuardian:
+                    KillPet(projectile, player, BuffID.StardustGuardianMinion, modPlayer.StardustEnchant, "Stardust Guardian");
+                    break;
+
+                case ProjectileID.TikiSpirit:
+                    KillPet(projectile, player, BuffID.TikiSpirit, modPlayer.TikiEnchant, "Tiki Pet");
+                    break;
+
+                case ProjectileID.Penguin:
+                    KillPet(projectile, player, BuffID.BabyPenguin, modPlayer.FrostEnchant, "Baby Penguin Pet");
+                    break;
+
+                case ProjectileID.BabySnowman:
+                    KillPet(projectile, player, BuffID.BabySnowman, modPlayer.FrostEnchant, "Baby Snowman Pet");
+                    break;
+
+                case ProjectileID.DD2PetGato:
+                    KillPet(projectile, player, BuffID.PetDD2Gato, modPlayer.ShinobiEnchant, "Gato Pet");
+                    break;
+
+                case ProjectileID.Parrot:
+                    KillPet(projectile, player, BuffID.PetParrot, modPlayer.GoldEnchant, "Parrot Pet");
+                    break;
+
+                case ProjectileID.Puppy:
+                    KillPet(projectile, player, BuffID.Puppy, modPlayer.RedEnchant, "Puppy Pet");
+                    break;
+
+                case ProjectileID.CompanionCube:
+                    KillPet(projectile, player, BuffID.CompanionCube, modPlayer.VortexEnchant, "Companion Cube Pet");
+                    break;
+
+                case ProjectileID.DD2PetDragon:
+                    KillPet(projectile, player, BuffID.PetDD2Dragon, modPlayer.ValhallaEnchant, "Dragon Pet");
+                    break;
+
+                case ProjectileID.BabySkeletronHead:
+                    KillPet(projectile, player, BuffID.BabySkeletronHead, modPlayer.NecroEnchant, "Baby Skeletron  Pet");
+                    break;
+
+                case ProjectileID.BabyDino:
+                    KillPet(projectile, player, BuffID.BabyDinosaur, modPlayer.FossilEnchant, "Baby Dino Pet");
+                    break;
+
+                case ProjectileID.BabyEater:
+                    KillPet(projectile, player, BuffID.BabyEater, modPlayer.ShadowEnchant, "Baby Eater Pet");
+                    break;
+
+                case ProjectileID.ShadowOrb:
+                    KillPet(projectile, player, BuffID.ShadowOrb, modPlayer.ShadowEnchant, "Shadow Orb Pet");
+                    break;
+
+                case ProjectileID.SuspiciousTentacle:
+                    KillPet(projectile, player, BuffID.SuspiciousTentacle, modPlayer.CosmoForce, "Suspicious Looking Eye Pet");
+                    break;
+
+                case ProjectileID.DD2PetGhost:
+                    KillPet(projectile, player, BuffID.PetDD2Ghost, modPlayer.DarkEnchant, "Flickerwick Pet");
+                    break;
+
+                /*case ProjectileID.ZephyrFish:
+                    if (player.FindBuffIndex(127) == -1)
+                    {
+                        if (!modPlayer.FishPet)
+                        {
+                            projectile.Kill();
+                            return;
+                        }
+                    }
+                    break;
+
+                case ProjectileID.BabyGrinch:
+                    if (player.FindBuffIndex(92) == -1)
+                    {
+                        if (!modPlayer.GrinchPet)
+                        {
+                            projectile.Kill();
+                            return;
+                        }
+                    }
+                    break;*/
+
+                #endregion
+
+                case ProjectileID.FlamingWood:
+                    projectile.position += projectile.velocity * .5f;
+                    break;
+
+                default:
+                        break;
             }
 
-            if (projectile.type == mod.ProjectileType("SilverSword"))
-            {
-                if (!modPlayer.SilverEnchant || !Soulcheck.GetValue("Silver Sword Familiar"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == mod.ProjectileType("HallowSword"))
-            {
-                if (!modPlayer.HallowEnchant || !Soulcheck.GetValue("Enchanted Sword Familiar"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == mod.ProjectileType("HallowShield"))
+            //does this projectile even exist
+            /*if (projectile.type == mod.ProjectileType("HallowShield"))
             {
                 if (!modPlayer.HallowEnchant || !Soulcheck.GetValue("Hallowed Shield Familiar"))
                 {
                     projectile.Kill();
                     return;
                 }
-            }
-
-
-            /*
-            if (projectile.type == ProjectileID.ZephyrFish && player.FindBuffIndex(127) == -1)
-            {
-                if (!modPlayer.FishPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            if (projectile.type == ProjectileID.BabyGrinch && player.FindBuffIndex(92) == -1)
-            {
-                if (!modPlayer.GrinchPet)
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }
-
-            #endregion
+            }*/
 
             if (stormBoosted)
             {
@@ -592,112 +673,175 @@ namespace FargowiltasSouls.Projectiles
 
             if (FargoWorld.MasochistMode)
             {
-                if (projectile.type == ProjectileID.JavelinHostile)
+                switch(projectile.type)
                 {
-                    target.AddBuff(mod.BuffType("Defenseless"), 600);
-                    target.AddBuff(mod.BuffType("Stunned"), 90);
-                }
+                    case ProjectileID.JavelinHostile:
+                        target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(60, 600));
+                        target.AddBuff(mod.BuffType("Stunned"), Main.rand.Next(60, 90));
+                        break;
 
-                if (projectile.type == ProjectileID.DemonSickle)
-                {
-                    target.AddBuff(BuffID.Darkness, 1800);
-                }
+                    case ProjectileID.DemonSickle:
+                        target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
+                        break;
 
-                if (projectile.type == ProjectileID.HarpyFeather && Main.rand.Next(2) == 0)
-                {
-                    target.AddBuff(mod.BuffType("ClippedWings"), 480);
-                }
+                    case ProjectileID.HarpyFeather:
+                        if (Main.rand.Next(2) == 0)
+                            target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(60, 480));
+                        break;
 
-                //so only antlion sand and not falling sand 
-                if (projectile.type == ProjectileID.SandBallFalling && projectile.velocity.X != 0)
-                {
-                    target.AddBuff(mod.BuffType("Stunned"), 120);
-                }
+                    //so only antlion sand and not falling sand 
+                    case ProjectileID.SandBallFalling:
+                        if (projectile.velocity.X != 0)
+                            target.AddBuff(mod.BuffType("Stunned"), Main.rand.Next(60, 120));
+                        break;
 
-                if (projectile.type == ProjectileID.Stinger && NPC.AnyNPCs(NPCID.QueenBee))
-                {
-                    target.AddBuff(BuffID.Venom, 900);
-                    target.AddBuff(BuffID.BrokenArmor, 1200);
-                }
+                    case ProjectileID.Stinger:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee))
+                            target.AddBuff(BuffID.Venom, Main.rand.Next(180, 900));
+                            target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(120, 1200));
+                        break;
 
-                if (projectile.type == ProjectileID.Skull && Main.rand.Next(10) == 0)
-                {
-                    target.AddBuff(BuffID.Cursed, 360);
-                }
+                    case ProjectileID.Skull:
+                        if (Main.rand.Next(4) == 0)
+                            target.AddBuff(BuffID.Cursed, Main.rand.Next(60, 360));
+                        break;
 
-                if (projectile.type == ProjectileID.EyeLaser && NPC.AnyNPCs(NPCID.WallofFlesh))
-                {
-                    target.AddBuff(BuffID.OnFire, 600);
-                }
+                    case ProjectileID.EyeLaser:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.wallBoss, NPCID.WallofFlesh))
+                            target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
+                        break;
 
-                if (projectile.type == ProjectileID.DeathSickle && !player.HasBuff(mod.BuffType("MarkedforDeath")))
-                {
-                    target.AddBuff(mod.BuffType("MarkedforDeath"), 900);
-                    target.AddBuff(mod.BuffType("LivingWasteland"), 1800);
-                }
+                    case ProjectileID.DeathSickle:
+                        if (!player.HasBuff(mod.BuffType("MarkedforDeath")))
+                        {
+                            target.AddBuff(mod.BuffType("MarkedforDeath"), 1800);
+                            target.AddBuff(mod.BuffType("LivingWasteland"), 1800);
+                        }
+                        break;
 
-                if (projectile.type == ProjectileID.DrManFlyFlask)
-                {
-                    int[] buffs = { BuffID.Venom, BuffID.Confused, BuffID.CursedInferno, BuffID.OgreSpit, mod.BuffType("LivingWasteland"), mod.BuffType("Defenseless"), mod.BuffType("Purified") };
+                    case ProjectileID.DrManFlyFlask:
+                        switch (Main.rand.Next(7))
+                        {
+                            case 0:
+                                target.AddBuff(BuffID.Venom, Main.rand.Next(60, 600));
+                                break;
+                            case 1:
+                                target.AddBuff(BuffID.Confused, Main.rand.Next(60, 600));
+                                break;
+                            case 2:
+                                target.AddBuff(BuffID.CursedInferno, Main.rand.Next(60, 600));
+                                break;
+                            case 3:
+                                target.AddBuff(BuffID.OgreSpit, Main.rand.Next(60, 600));
+                                break;
+                            case 4:
+                                target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(60, 600));
+                                break;
+                            case 5:
+                                target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(60, 600));
+                                break;
+                            case 6:
+                                target.AddBuff(mod.BuffType("Purified"), Main.rand.Next(60, 600));
+                                break;
 
-                    target.AddBuff(buffs[Main.rand.Next(buffs.Length)], 600);
-                    target.AddBuff(BuffID.Stinky, 1200);
-                }
+                            default:
+                                break;
+                        }
 
-                //CULTIST OP
-                if (projectile.type == ProjectileID.CultistBossLightningOrb)
-                {
-                    target.AddBuff(mod.BuffType("LightningRod"), 600);
-                }
-                if (projectile.type == ProjectileID.CultistBossLightningOrbArc)
-                {
-                    target.AddBuff(BuffID.Electrified, 300);
-                }
-                if (projectile.type == ProjectileID.CultistBossIceMist)
-                {
-                    target.AddBuff(BuffID.Frozen, 300);
-                }
-                if (projectile.type == ProjectileID.CultistBossFireBall)
-                {
-                    target.AddBuff(mod.BuffType("Berserked"), 300);
-                    target.AddBuff(BuffID.BrokenArmor, 900);
-                    target.AddBuff(BuffID.OnFire, 600);
-                }
-                if (projectile.type == ProjectileID.CultistBossFireBallClone)
-                {
-                    target.AddBuff(BuffID.ShadowFlame, 600);
-                }
+                        target.AddBuff(BuffID.Stinky, Main.rand.Next(900, 1200));
+                        break;
 
-                if (projectile.type == ProjectileID.PaladinsHammerHostile)
-                {
-                    target.AddBuff(mod.BuffType("Lethargic"), 600);
-                }
+                    //CULTIST OP
+                    case ProjectileID.CultistBossLightningOrb:
+                        target.AddBuff(mod.BuffType("LightningRod"), Main.rand.Next(300, 900));
+                        break;
 
-                if (projectile.type == ProjectileID.RuneBlast)
-                {
-                    target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 300);
-                }
+                    case ProjectileID.CultistBossLightningOrbArc:
+                        target.AddBuff(BuffID.Electrified, Main.rand.Next(60, 300));
+                        break;
 
-                if (projectile.type == ProjectileID.ThornBall || projectile.type == ProjectileID.PoisonSeedPlantera)
-                {
-                    target.AddBuff(mod.BuffType("Infested"), 600);
-                }
+                    case ProjectileID.CultistBossIceMist:
+                        if (!target.HasBuff(BuffID.Frozen))
+                            target.AddBuff(BuffID.Frozen, Main.rand.Next(30, 120));
+                        break;
 
-                if (projectile.type == ProjectileID.DesertDjinnCurse && target.ZoneCorrupt)
-                {
-                    target.AddBuff(BuffID.ShadowFlame, 900);
-                }
+                    case ProjectileID.CultistBossFireBall:
+                        target.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(60, 300));
+                        target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(90, 900));
+                        target.AddBuff(BuffID.OnFire, Main.rand.Next(120, 600));
+                        break;
 
-                if (projectile.type == ProjectileID.DesertDjinnCurse && target.ZoneCrimson)
-                {
-                    target.AddBuff(BuffID.Ichor, 1800);
-                }
+                    case ProjectileID.CultistBossFireBallClone:
+                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        break;
 
-                if (projectile.type == ProjectileID.PhantasmalDeathray)
-                {
-                    target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 300);
-                }
+                    case ProjectileID.PaladinsHammerHostile:
+                        target.AddBuff(mod.BuffType("Lethargic"), Main.rand.Next(480, 720));
+                        break;
 
+                    case ProjectileID.RuneBlast:
+                        target.AddBuff(mod.BuffType("FlamesoftheUniverse"), Main.rand.Next(300));
+                        break;
+
+                    case ProjectileID.ThornBall:
+                    case ProjectileID.PoisonSeedPlantera:
+                        target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
+                        target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
+
+                        if (target.HasBuff(mod.BuffType("Infested")))
+                            target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(180, 360));
+                        else
+                            target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(90, 180));
+                        break;
+
+                    case ProjectileID.DesertDjinnCurse:
+                        if (target.ZoneCorrupt)
+                            target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 900));
+                        else if (target.ZoneCrimson)
+                            target.AddBuff(BuffID.Ichor, Main.rand.Next(900, 1800));
+                        break;
+
+                    case ProjectileID.PhantasmalDeathray:
+                        target.AddBuff(mod.BuffType("FlamesoftheUniverse"), Main.rand.Next(60, 300));
+                        break;
+
+                    case ProjectileID.BrainScramblerBolt:
+                        target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(15, 60));
+                        target.AddBuff(mod.BuffType("Unstable"), Main.rand.Next(60, 180));
+                        break;
+
+                    case ProjectileID.MartianTurretBolt:
+                    case ProjectileID.GigaZapperSpear:
+                        target.AddBuff(mod.BuffType("LightningRod"), Main.rand.Next(300, 600));
+                        break;
+
+                    case ProjectileID.SaucerMissile:
+                        target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 180));
+                        target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(120, 180));
+                        break;
+
+                    case ProjectileID.SaucerLaser:
+                        target.AddBuff(BuffID.Electrified, Main.rand.Next(240, 480));
+                        break;
+
+                    case ProjectileID.UFOLaser:
+                    case ProjectileID.SaucerDeathray:
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), 600);
+                        break;
+
+                    case ProjectileID.FlamingWood:
+                    case ProjectileID.GreekFire1:
+                    case ProjectileID.GreekFire2:
+                    case ProjectileID.GreekFire3:
+                        int duration = Main.rand.Next(90, 120);
+                        target.AddBuff(BuffID.OnFire, duration);
+                        target.AddBuff(BuffID.CursedInferno, duration);
+                        target.AddBuff(BuffID.ShadowFlame, duration);
+                        break;
+
+                    default:
+                        break;
+                }
             }
 
             if(squeakyToy)
@@ -754,7 +898,7 @@ namespace FargowiltasSouls.Projectiles
             {
                 modPlayer.OriSpawn = false;
             }
-        }*/
+        }
 
         public static Projectile[] XWay(int num, Vector2 pos, int type, float speed, int damage, float knockback)
         {
