@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Red Riding Enchantment");
             Tooltip.SetDefault(
-@"'Big Bad Red Riding Hood'
+                @"'Big Bad Red Riding Hood'
 Greatly enhances Explosive Traps effectiveness
 Celestial Shell effects
 Your attacks deal increasing damage to low HP enemies

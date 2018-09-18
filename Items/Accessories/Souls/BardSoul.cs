@@ -1,22 +1,39 @@
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class BardSoul : ModItem
     {
-        string _tooltip = null;
+        private readonly string[] _items =
+        {
+            "VenomSubwoofer",
+            "FrostSubwoofer",
+            "CorruptSubwoofer",
+            "CrimsonSubwoofer",
+            "TerrariumSubwoofer",
+            "DigitalVibrationTuner",
+            "EpicMouthpiece",
+            "StraightMute",
+            "GuitarPickClaw",
+            "Triangle",
+            "Ocarina",
+            "Saxophone",
+            "RockstarsDoubleBassBlastGuitar"
+        };
+
+        private readonly Mod _thorium = ModLoader.GetMod("ThoriumMod");
+        private string _tooltip = null;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rhapsodist's Soul");
 
             if (ModLoader.GetLoadedMods().Contains("ThoriumMod"))
-            {
                 Tooltip.SetDefault(
-@"'Every note you produce births a new world'
+                    @"'Every note you produce births a new world'
 40% increased symphonic damage
 25% increased symphonic playing speed
 20% increased symphonic critical strike chance
@@ -29,16 +46,9 @@ Your wind instrument attacks now attempt to quickly home in on enemies
 If the attack already homes onto enemies, it does so far more quickly
 String weapon projectiles bounce five additional times
 Critical strikes caused by brass instrument attacks release a spread of energy");
-
-                //at a later date
-                // Increases inspiration regeneration by 10%
-                // Increases maximum inspiration by 4					
-            }
             else
-            {
                 Tooltip.SetDefault("'Every note you produce births a new world'\n" +
                                    "-Enable Thorium for this soul to do anything-");
-            }
         }
 
         public override void SetDefaults()
@@ -53,18 +63,15 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (Fargowiltas.Instance.ThoriumLoaded)
-            {
-                Bard(player);
-            }
+            if (Fargowiltas.Instance.ThoriumLoaded) Bard(player);
         }
 
         private void Bard(Player player)
         {
             //general
 
-            ThoriumMod.ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumMod.ThoriumPlayer>(_thorium);
-            
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(_thorium);
+
             thoriumPlayer.symphonicDamage += 0.4f;
             thoriumPlayer.symphonicCrit += 20;
             thoriumPlayer.symphonicSpeed += .25f;
@@ -84,36 +91,18 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
             thoriumPlayer.bardBounceBonus = 5;
         }
 
-        private readonly string[] _items = 
-        {
-            "VenomSubwoofer",
-            "FrostSubwoofer",
-            "CorruptSubwoofer",
-            "CrimsonSubwoofer",
-            "TerrariumSubwoofer",
-            "DigitalVibrationTuner",
-            "EpicMouthpiece",
-            "StraightMute",
-            "GuitarPickClaw",
-            "Triangle",
-            "Ocarina",
-            "Saxophone",
-            "RockstarsDoubleBassBlastGuitar"
-        };
-
-        private readonly Mod _thorium = ModLoader.GetMod("ThoriumMod");
-
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             ModRecipe recipe = new ModRecipe(mod);
 
-            foreach (string i in _items)
-            {
-                recipe.AddIngredient(_thorium.ItemType(i));
-            }
-            
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            foreach (string i in _items) recipe.AddIngredient(_thorium.ItemType(i));
+
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

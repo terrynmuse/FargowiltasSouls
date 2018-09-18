@@ -10,10 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     {
         public float Damage;
 
-        public override bool CloneNewInstances
-        {
-            get { return true; }
-        }
+        public override bool CloneNewInstances => true;
 
         public override void SetStaticDefaults()
         {
@@ -34,10 +31,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             lines[7] = new TooltipLine(mod, "8", "Your attacks inflict Midas");
             lines[8] = new TooltipLine(mod, "9", "Summons a Pet Parrot");
 
-            for (int i = 0; i < lines.Length; i++)
-            {
-                tooltips.Add(lines[i]);
-            }
+            for (int i = 0; i < lines.Length; i++) tooltips.Add(lines[i]);
         }
 
         public override void SetDefaults()
@@ -69,33 +63,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             int gold = coins[2];
 
             if (plat <= 0)
-            {
                 Damage = coins[2] * .0004f;
-            }
             else if (plat < 5) // 1-4 plat
-            {
                 Damage = .05f;
-            }
             else if (plat < 15) // 5-14 plat
-            {
                 Damage = .10f;
-            }
             else if (plat < 30) // 15-29 plat 
-            {
                 Damage = .15f;
-            }
             else if (plat < 50) // 30-49 plat
-            {
                 Damage = .20f;
-            }
             else if (plat < 75) // 50-74 plat
-            {
                 Damage = .25f;
-            }
             else // 75+ plat
-            {
                 Damage = .30f;
-            }
         }
 
         public override void UpdateInventory(Player player)

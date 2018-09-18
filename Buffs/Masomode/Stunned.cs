@@ -3,16 +3,16 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
-	public class Stunned : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Stunned");
-			Description.SetDefault("You're too dizzy to move");
-			Main.buffNoSave[Type] = true;
-			canBeCleared = false;
-			Main.debuff[Type] = true;
-		}
+    public class Stunned : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Stunned");
+            Description.SetDefault("You're too dizzy to move");
+            Main.buffNoSave[Type] = true;
+            canBeCleared = false;
+            Main.debuff[Type] = true;
+        }
 
         public override bool Autoload(ref string name, ref string texture)
         {

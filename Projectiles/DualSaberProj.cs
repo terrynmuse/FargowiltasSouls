@@ -37,27 +37,18 @@ namespace FargowiltasSouls.Projectiles
             //-----------------------------------------------How the projectile works---------------------------------------------------------------------
             Player player = Main.player[projectile.owner];
             if (Main.myPlayer == projectile.owner)
-            {
                 if (!player.channel || player.noItems || player.CCed)
-                {
                     projectile.Kill();
-                }
-            }
 
             Lighting.AddLight(projectile.Center, 1f, 0.6f, 0f);
             projectile.Center = player.MountedCenter;
             projectile.position.X +=
-                player.width / 2 * player.direction; 
+                player.width / 2 * player.direction;
             projectile.spriteDirection = player.direction;
             projectile.rotation += 0.3f * player.direction; //this is the projectile rotation/spinning speed
             if (projectile.rotation > MathHelper.TwoPi)
-            {
                 projectile.rotation -= MathHelper.TwoPi;
-            }
-            else if (projectile.rotation < 0)
-            {
-                projectile.rotation += MathHelper.TwoPi;
-            }
+            else if (projectile.rotation < 0) projectile.rotation += MathHelper.TwoPi;
 
             player.heldProj = projectile.whoAmI;
             player.itemTime = 2;

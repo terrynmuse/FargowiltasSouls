@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Tiki Enchantment");
             Tooltip.SetDefault(
-@"'Aku Aku!'
+                @"'Aku Aku!'
 Attacks will inflict a random debuff
 Summons a Tiki Spirit");
         }

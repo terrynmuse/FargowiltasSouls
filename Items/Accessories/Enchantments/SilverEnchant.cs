@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Silver Enchantment");
             Tooltip.SetDefault(
-@"'Have you power enough to wield me?'
+                @"'Have you power enough to wield me?'
 Summons a sword familiar that scales with minion damage");
         }
 
@@ -28,7 +28,7 @@ Summons a sword familiar that scales with minion damage");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.SilverEnchant = true;
-            modPlayer.AddMinion("Silver Sword Familiar", mod.ProjectileType("SilverSword"), (int)(20 * player.minionDamage), 0f);
+            modPlayer.AddMinion("Silver Sword Familiar", mod.ProjectileType("SilverSword"), (int) (20 * player.minionDamage), 0f);
         }
 
         public override void AddRecipes()

@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Conjurist's Soul");
 
             Tooltip.SetDefault(
-@"'An army at your disposal'
+                @"'An army at your disposal'
 30% increased summon damage
 Increases your max number of minions by 4
 Increases your max number of sentries by 2
@@ -38,17 +38,6 @@ Increased minion knockback");
             player.maxTurrets += 2;
             player.minionKB += 3f;
         }
-
-        /*private void Waifus(Player player)
-        {
-            CalamityMod.CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityMod.CalamityPlayer>(calamity);
-            
-            calamityPlayer.brimstoneWaifu = true;
-            calamityPlayer.sandBoobWaifu = true;
-            calamityPlayer.sandWaifu = true;
-            calamityPlayer.cloudWaifu = true;
-            calamityPlayer.sirenWaifu = true;
-        }*/
 
         public override void AddRecipes()
         {
@@ -92,7 +81,11 @@ Increased minion knockback");
                 recipe.AddIngredient(ItemID.MoonlordTurretStaff);
             }
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

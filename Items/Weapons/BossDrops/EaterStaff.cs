@@ -1,5 +1,5 @@
-using Microsoft.Xna.Framework;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,8 +12,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("Eater of Worlds Staff");
             Tooltip.SetDefault(
-@"An old foe beaten into submission..
-Summons 4 segments for each minion slot"); 
+                @"An old foe beaten into submission..
+Summons 4 segments for each minion slot");
         }
 
         public override void SetDefaults()
@@ -41,15 +41,9 @@ Summons 4 segments for each minion slot");
             //to fix tail disapearing meme
             float slotsUsed = 0;
 
-            Main.projectile.Where(x => x.active && x.owner == player.whoAmI && x.minionSlots > 0).ToList().ForEach(x =>
-            {
-                slotsUsed += x.minionSlots;
-            });
+            Main.projectile.Where(x => x.active && x.owner == player.whoAmI && x.minionSlots > 0).ToList().ForEach(x => { slotsUsed += x.minionSlots; });
 
-            if((player.maxMinions - slotsUsed) < 1)
-            {
-                return false;
-            }
+            if (player.maxMinions - slotsUsed < 1) return false;
 
             int headCheck = -1;
             int tailCheck = -1;
@@ -59,20 +53,12 @@ Summons 4 segments for each minion slot");
                 Projectile proj = Main.projectile[i];
                 if (proj.active && proj.owner == player.whoAmI)
                 {
-                    if (headCheck == -1 && proj.type == mod.ProjectileType("EaterHead"))
-                    {
-                        headCheck = i;
-                    }
-                    if (tailCheck == -1 && proj.type == mod.ProjectileType("EaterTail"))
-                    {
-                        tailCheck = i;
-                    }
-                    if (headCheck != -1 && tailCheck != -1)
-                    {
-                        break;
-                    }
+                    if (headCheck == -1 && proj.type == mod.ProjectileType("EaterHead")) headCheck = i;
+                    if (tailCheck == -1 && proj.type == mod.ProjectileType("EaterTail")) tailCheck = i;
+                    if (headCheck != -1 && tailCheck != -1) break;
                 }
             }
+
             //initial spawn
             if (headCheck == -1 && tailCheck == -1)
             {
@@ -80,7 +66,7 @@ Summons 4 segments for each minion slot");
 
                 int previous = 0;
 
-                for(int i = 0; i < 4; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     current = Projectile.NewProjectile(position.X, position.Y, 0, 0, mod.ProjectileType("EaterBody"), damage, knockBack, player.whoAmI, current, 0f);
                     previous = current;
@@ -94,12 +80,13 @@ Summons 4 segments for each minion slot");
             //spawn more body segments
             else
             {
-                int previous = (int)Main.projectile[tailCheck].ai[0];
+                int previous = (int) Main.projectile[tailCheck].ai[0];
                 int current = 0;
 
                 for (int i = 0; i < 4; i++)
                 {
-                    current = Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("EaterBody"), damage, knockBack, player.whoAmI, Projectile.GetByUUID(Main.myPlayer, previous), 0f);
+                    current = Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("EaterBody"), damage, knockBack, player.whoAmI,
+                        Projectile.GetByUUID(Main.myPlayer, previous), 0f);
 
                     previous = current;
                 }

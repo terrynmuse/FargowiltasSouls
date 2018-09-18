@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Tin Enchantment");
             Tooltip.SetDefault(
-@"'Return of the Crit'
+                @"'Return of the Crit'
 Sets your critical strike chance to 4%
 Every crit will increase it by 4%
 Getting hit drops your crit back down");

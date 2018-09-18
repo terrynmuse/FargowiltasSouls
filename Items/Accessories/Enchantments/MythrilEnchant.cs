@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Mythril Enchantment");
             Tooltip.SetDefault(
-@"'You feel the knowledge of your weapons seep into your mind'
+                @"'You feel the knowledge of your weapons seep into your mind'
 30% increased weapon use speed");
         }
 

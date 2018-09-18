@@ -7,28 +7,31 @@ using Terraria.UI;
 
 namespace FargowiltasSouls
 {
-    class Fargowiltas : Mod
+    internal class Fargowiltas : Mod
     {
         internal static ModHotKey CheckListKey;
         internal static ModHotKey FreezeKey;
 
-        internal Soulcheck SoulCheck;
-        public UserInterface CustomResources;
-
-        //loaded
-        internal bool FargosLoaded;
-        internal bool BlueMagicLoaded;
-        internal bool CalamityLoaded;
-        internal bool TerraCompLoaded;
-        internal bool ThoriumLoaded;
-
         //stoned (ID 156) is placeholder for modded debuffs
         //add more 156s after the currently existing ones (not at the actual end of array) and then overwrite them in PostSetupContent when adding buffs
         internal static int[] DebuffIDs =
-        {156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 20, 21, 22, 23, 24, 30, 31, 32, 33, 35, 36, 37, 39, 44, 46, 67, 68, 69, 70, 80, 94, 103, 120, 137, 144, 145, 148, 153, 156, 160, 163, 164, 195, 196, 197
+        {
+            156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 20, 21, 22, 23, 24, 30, 31, 32, 33, 35, 36, 37, 39, 44,
+            46, 67, 68, 69, 70, 80, 94, 103, 120, 137, 144, 145, 148, 153, 156, 160, 163, 164, 195, 196, 197
         };
 
         internal static Fargowiltas Instance;
+        internal bool BlueMagicLoaded;
+        internal bool CalamityLoaded;
+        public UserInterface CustomResources;
+        internal bool DBTLoaded;
+
+        //loaded
+        internal bool FargosLoaded;
+
+        internal Soulcheck SoulCheck;
+        internal bool TerraCompLoaded;
+        internal bool ThoriumLoaded;
 
         public Fargowiltas()
         {
@@ -38,7 +41,6 @@ namespace FargowiltasSouls
                 AutoloadGores = true,
                 AutoloadSounds = true
             };
-
         }
 
         public override void Load()
@@ -49,29 +51,30 @@ namespace FargowiltasSouls
 
             if (!Main.dedServ)
             {
-
                 CustomResources = new UserInterface();
                 SoulCheck = new Soulcheck();
                 Soulcheck.Visible = false;
                 CustomResources.SetState(SoulCheck);
             }
         }
+
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
             layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-            "CustomBars: Custom Resource Bar",
-            delegate
-            {
-                if (Soulcheck.Visible)
+                "CustomBars: Custom Resource Bar",
+                delegate
                 {
-                    //Update CustomBars
-                    CustomResources.Update(Main._drawInterfaceGameTime);
-                    SoulCheck.Draw(Main.spriteBatch);
-                }
-                return true;
-            },
-            InterfaceScaleType.UI)
+                    if (Soulcheck.Visible)
+                    {
+                        //Update CustomBars
+                        CustomResources.Update(Main._drawInterfaceGameTime);
+                        SoulCheck.Draw(Main.spriteBatch);
+                    }
+
+                    return true;
+                },
+                InterfaceScaleType.UI)
             );
         }
 
@@ -85,6 +88,7 @@ namespace FargowiltasSouls
                 CalamityLoaded = ModLoader.GetMod("CalamityMod") != null;
                 TerraCompLoaded = ModLoader.GetMod("TerraCompilation") != null;
                 ThoriumLoaded = ModLoader.GetMod("ThoriumMod") != null;
+                DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
 
                 DebuffIDs[0] = BuffType("Antisocial");
                 DebuffIDs[1] = BuffType("Atrophied");
@@ -110,13 +114,11 @@ namespace FargowiltasSouls
                 DebuffIDs[21] = BuffType("SqueakyToy");
                 DebuffIDs[22] = BuffType("Stunned");
                 DebuffIDs[23] = BuffType("Unstable");
-
             }
             catch (Exception e)
             {
                 ErrorLogger.Log("FargowiltasSouls PostSetupContent Error: " + e.StackTrace + e.Message);
             }
-
         }
 
         public override void AddRecipeGroups()
@@ -128,21 +130,23 @@ namespace FargowiltasSouls
             if (Instance.TerraCompLoaded)
             {
                 //cobalt
-                group = new RecipeGroup(() => Lang.misc[37] + " Cobalt Repeater", ItemID.CobaltRepeater, ItemID.PalladiumRepeater, ModLoader.GetMod("TerraCompilation").ItemType("CobaltComp"), ModLoader.GetMod("TerraCompilation").ItemType("PaladiumComp"));
+                group = new RecipeGroup(() => Lang.misc[37] + " Cobalt Repeater", ItemID.CobaltRepeater, ItemID.PalladiumRepeater,
+                    ModLoader.GetMod("TerraCompilation").ItemType("CobaltComp"), ModLoader.GetMod("TerraCompilation").ItemType("PaladiumComp"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyCobaltRepeater", group);
 
                 //mythril
-                group = new RecipeGroup(() => Lang.misc[37] + " Mythril Repeater", ItemID.MythrilRepeater, ItemID.OrichalcumRepeater, ModLoader.GetMod("TerraCompilation").ItemType("MythrilComp"), ModLoader.GetMod("TerraCompilation").ItemType("OrichalcumComp"));
+                group = new RecipeGroup(() => Lang.misc[37] + " Mythril Repeater", ItemID.MythrilRepeater, ItemID.OrichalcumRepeater,
+                    ModLoader.GetMod("TerraCompilation").ItemType("MythrilComp"), ModLoader.GetMod("TerraCompilation").ItemType("OrichalcumComp"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyMythrilRepeater", group);
 
                 //adamantite
-                group = new RecipeGroup(() => Lang.misc[37] + " Adamantite Repeater", ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater, ModLoader.GetMod("TerraCompilation").ItemType("AdamantiteComp"), ModLoader.GetMod("TerraCompilation").ItemType("TitaniumComp"));
+                group = new RecipeGroup(() => Lang.misc[37] + " Adamantite Repeater", ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater,
+                    ModLoader.GetMod("TerraCompilation").ItemType("AdamantiteComp"), ModLoader.GetMod("TerraCompilation").ItemType("TitaniumComp"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
             }
 
             else
             {
-
                 //cobalt
                 group = new RecipeGroup(() => Lang.misc[37] + " Cobalt Repeater", ItemID.CobaltRepeater, ItemID.PalladiumRepeater);
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyCobaltRepeater", group);
@@ -213,7 +217,8 @@ namespace FargowiltasSouls
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnySpectreHead", group);
 
             //book cases
-            group = new RecipeGroup(() => Lang.misc[37] + " Wooden Bookcase", ItemID.Bookcase, ItemID.EbonwoodBookcase, ItemID.RichMahoganyBookcase, ItemID.LivingWoodBookcase, ItemID.ShadewoodBookcase, ItemID.PalmWoodBookcase, ItemID.BorealWoodBookcase);
+            group = new RecipeGroup(() => Lang.misc[37] + " Wooden Bookcase", ItemID.Bookcase, ItemID.EbonwoodBookcase, ItemID.RichMahoganyBookcase, ItemID.LivingWoodBookcase,
+                ItemID.ShadewoodBookcase, ItemID.PalmWoodBookcase, ItemID.BorealWoodBookcase);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyBookcase", group);
 
             //beetle body
@@ -221,14 +226,15 @@ namespace FargowiltasSouls
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyBeetle", group);
 
             //phasesabers
-            group = new RecipeGroup(() => Lang.misc[37] + " Phasesaber", ItemID.RedPhasesaber, ItemID.BluePhasesaber, ItemID.GreenPhasesaber, ItemID.PurplePhasesaber, ItemID.WhitePhasesaber, ItemID.YellowPhasesaber);
+            group = new RecipeGroup(() => Lang.misc[37] + " Phasesaber", ItemID.RedPhasesaber, ItemID.BluePhasesaber, ItemID.GreenPhasesaber, ItemID.PurplePhasesaber, ItemID.WhitePhasesaber,
+                ItemID.YellowPhasesaber);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyPhasesaber", group);
-
         }
 
         public static bool NoInvasion(NPCSpawnInfo spawnInfo)
         {
-            return !spawnInfo.invasion && (!Main.pumpkinMoon && !Main.snowMoon || spawnInfo.spawnTileY > Main.worldSurface || Main.dayTime) && (!Main.eclipse || spawnInfo.spawnTileY > Main.worldSurface || !Main.dayTime);
+            return !spawnInfo.invasion && (!Main.pumpkinMoon && !Main.snowMoon || spawnInfo.spawnTileY > Main.worldSurface || Main.dayTime) &&
+                   (!Main.eclipse || spawnInfo.spawnTileY > Main.worldSurface || !Main.dayTime);
         }
 
         public static bool NoBiome(NPCSpawnInfo spawnInfo)

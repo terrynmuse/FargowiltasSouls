@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Cosmos");
             Tooltip.SetDefault(
-@"'Been around since the Big Bang'
+                @"'Been around since the Big Bang'
 A meteor shower initiates every few seconds while using any weapon
 Solar shield allows you to dash through enemies
 Attacks inflict the Solar Flare debuff
@@ -56,14 +56,10 @@ Summons a Companion Cube Pet and a suspicious looking eye to provide light");
             recipe.AddIngredient(null, "StardustEnchant");
             recipe.AddIngredient(ItemID.SuspiciousLookingTentacle);
 
-            if(Fargowiltas.Instance.FargosLoaded)
-            {
+            if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();

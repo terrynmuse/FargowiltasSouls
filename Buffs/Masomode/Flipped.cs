@@ -3,16 +3,16 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
-	public class Flipped : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Flipped");
-			Description.SetDefault("Your gravity has reversed.");
-			Main.buffNoSave[Type] = true;
-			canBeCleared = true;
-			Main.debuff[Type] = true;
-		}
+    public class Flipped : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Flipped");
+            Description.SetDefault("Your gravity has reversed.");
+            Main.buffNoSave[Type] = true;
+            canBeCleared = true;
+            Main.debuff[Type] = true;
+        }
 
         public override bool Autoload(ref string name, ref string texture)
         {

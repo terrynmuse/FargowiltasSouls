@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Buffs.Souls
         {
             npc.GetGlobalNPC<FargoGlobalNPC>().LeadPoison = true;
 
-            if(!npc.boss)
+            if (!npc.boss)
             {
                 npc.velocity.X *= .7f;
                 npc.velocity.Y *= .9f;

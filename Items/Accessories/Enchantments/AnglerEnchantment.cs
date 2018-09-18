@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Angler Enchantment");
             Tooltip.SetDefault(
-@"'As long as they aren't all shoes, you can go home happily'
+                @"'As long as they aren't all shoes, you can go home happily'
 Increases fishing skill
 All fishing rods will have 4 extra lures");
         }
@@ -46,5 +46,3 @@ All fishing rods will have 4 extra lures");
         }
     }
 }
-
-

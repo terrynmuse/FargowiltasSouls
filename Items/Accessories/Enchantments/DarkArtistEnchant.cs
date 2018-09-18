@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Dark Artist Enchantment");
             Tooltip.SetDefault(
-@"'The shadows hold more than they seem'
+                @"'The shadows hold more than they seem'
 Greatly enhances Flameburst effectiveness
 Magic weapons occasionally shoot from the shadows of where you used to be
 Summons a flickerwick to provide light");

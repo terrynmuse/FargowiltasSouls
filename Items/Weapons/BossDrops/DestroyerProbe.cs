@@ -1,11 +1,12 @@
-﻿using Terraria;
-using Terraria.Audio;
+﻿using Terraria.Audio;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
     public class DestroyerProbe : ModItem
     {
+        public override string Texture => "Terraria/NPC_139";
+
         public override void SetDefaults()
         {
             item.damage = 32;
@@ -24,14 +25,6 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             item.shoot = mod.ProjectileType("DestroyerProbeProj");
             item.shootSpeed = 20f;
             item.noUseGraphic = true;
-        }
-
-        public override string Texture
-        {
-            get
-            {
-                return "Terraria/NPC_139";
-            }
         }
     }
 }

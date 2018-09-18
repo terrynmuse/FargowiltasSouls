@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Lead Enchantment");
             Tooltip.SetDefault(
-@"'Not recommended for eating'
+                @"'Not recommended for eating'
 Attacks may inflict enemies with Lead Poisoning
 Lead Poisoning deals damage over time and slows enemies slightly");
         }

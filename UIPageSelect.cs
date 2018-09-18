@@ -6,12 +6,12 @@ namespace Terraria.GameContent.UI.Elements
 {
     public class UiPageSelect : UIImageButton
     {
-        private Texture2D _normal;
-        private Texture2D _nope;
-        internal string HoverText;
-        private int _pag;
         private static bool _math;
         private int _max;
+        private Texture2D _nope;
+        private readonly Texture2D _normal;
+        private int _pag;
+        internal string HoverText;
 
         public UiPageSelect(Texture2D normal, Texture2D nope, string hoverText) : base(normal)
         {
@@ -26,33 +26,23 @@ namespace Terraria.GameContent.UI.Elements
         {
             if (add)
             {
-                if (page < limit)
-                {
-                    page++;
-                }
+                if (page < limit) page++;
             }
             else
             {
-                if (page > limit)
-                {
-                    page--;
-                }
+                if (page > limit) page--;
             }
+
             if (page == limit)
-            {
                 _math = false;
-            }
             else
-            {
                 _math = true;
-            }
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             CalculatedStyle dimensions = GetDimensions();
             spriteBatch.Draw(_normal, dimensions.Position(), Color.White);
-
         }
 
         public override void MouseOver(UIMouseEvent evt)

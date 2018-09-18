@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Earth");
             Tooltip.SetDefault(
-@"'Gaia's blessing shines upon you'
+                @"'Gaia's blessing shines upon you'
 25% chance for your projectiles to explode into shards
 Greatly increases life regeneration after striking an enemy 
 Small chance for an attack to gain 33% life steal
@@ -57,13 +57,9 @@ Increases all knockback");
             recipe.AddIngredient(null, "TitaniumEnchant");
 
             if (Fargowiltas.Instance.FargosLoaded)
-            {
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();

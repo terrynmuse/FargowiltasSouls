@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Berserker's Soul");
             Tooltip.SetDefault(
-@"'None shall live to tell the tale'
+                @"'None shall live to tell the tale'
 30% increased melee damage
 20% increased melee speed
 15% increased melee crit chance
@@ -46,17 +46,12 @@ Grants the effects of the Yoyo Bag");
             player.yoyoString = true;
         }
 
-        /*private void Gauntlet(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).eGauntlet = true;
-        }*/
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(null, "BarbariansEssence");
-            
+
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(FireGauntlet);
@@ -93,6 +88,11 @@ Grants the effects of the Yoyo Bag");
                 recipe.AddIngredient(InfluxWaver);
                 recipe.AddIngredient(Meowmere);
             }
+            
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

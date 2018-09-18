@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Slinger's Essence");
             Tooltip.SetDefault(
-@"'This is only the beginning..'
+                @"'This is only the beginning..'
 18% increased throwing damage
 5% increased throwing critical chance
 5% increased throwing velocity");
@@ -54,7 +54,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                  * 
                  * */
             }
-            else if(Fargowiltas.Instance.FargosLoaded)
+            else if (Fargowiltas.Instance.FargosLoaded)
             {
                 //no others
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("WoodenYoyoThrown"));
