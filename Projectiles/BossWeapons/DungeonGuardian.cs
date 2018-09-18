@@ -12,23 +12,24 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             DisplayName.SetDefault("DG");
         }
 
-        public override void SetDefaults()
-        {
-            projectile.width = 40;
-            projectile.height = 40;
-            projectile.aiStyle = 0;
-            aiType = ProjectileID.Bullet;
-            projectile.friendly = true;
-            projectile.ranged = true;
-            projectile.penetrate = -1;
-            projectile.tileCollide = false;
-            projectile.timeLeft = 1000;
-
-            //ignore immune frame
-            projectile.usesLocalNPCImmunity = true;
-            projectile.localNPCHitCooldown = 1;
-        }
-
+		public override void SetDefaults()
+		{
+			projectile.width = 40;
+			projectile.height = 40;
+			projectile.aiStyle = 0;
+			aiType = ProjectileID.Bullet;
+			projectile.friendly = true;
+			projectile.magic = true;
+			projectile.penetrate = -1;
+			projectile.tileCollide = false;
+			projectile.timeLeft = 1000;
+			
+			//ignore immune frame
+			projectile.usesLocalNPCImmunity = true;
+			projectile.localNPCHitCooldown = 1;
+			
+		}
+		
         public override void AI()
         {
             projectile.rotation += 0.2f;
@@ -89,3 +90,4 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         }
     }
 }
+
