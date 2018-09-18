@@ -479,6 +479,15 @@ namespace FargowiltasSouls.Projectiles
                     projectile.position += projectile.velocity * .5f;
                     break;
 
+                case ProjectileID.VortexAcid:
+                    projectile.position += projectile.velocity * .25f;
+                    break;
+
+                case ProjectileID.BombSkeletronPrime:
+                    projectile.damage = 40;
+                    projectile.Damage();
+                    break;
+
                 default:
                         break;
             }
@@ -679,8 +688,8 @@ namespace FargowiltasSouls.Projectiles
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref int damage, ref bool crit)
         {
-            Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            //Player player = Main.player[Main.myPlayer];
+            FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>(mod);
 
             if (FargoWorld.MasochistMode)
             {
@@ -723,7 +732,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.DeathSickle:
-                        if (!player.HasBuff(mod.BuffType("MarkedforDeath")))
+                        if (!target.HasBuff(mod.BuffType("MarkedforDeath")))
                         {
                             target.AddBuff(mod.BuffType("MarkedforDeath"), 1800);
                             target.AddBuff(mod.BuffType("LivingWasteland"), 1800);
@@ -796,6 +805,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.ThornBall:
                     case ProjectileID.PoisonSeedPlantera:
+                    case ProjectileID.SeedPlantera:
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
                         target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
 
@@ -814,6 +824,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.PhantasmalDeathray:
                         target.AddBuff(mod.BuffType("FlamesoftheUniverse"), Main.rand.Next(60, 300));
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), 120);
                         break;
 
                     case ProjectileID.BrainScramblerBolt:
@@ -848,6 +859,44 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(BuffID.OnFire, duration);
                         target.AddBuff(BuffID.CursedInferno, duration);
                         target.AddBuff(BuffID.ShadowFlame, duration);
+                        break;
+
+                    case ProjectileID.VortexAcid:
+                    case ProjectileID.VortexLaser:
+                        target.AddBuff(mod.BuffType("LightningRod"), Main.rand.Next(30, 180));
+                        target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(30, 180));
+                        break;
+
+                    case ProjectileID.VortexLightning:
+                        if (NPC.downedGolemBoss)
+                        {
+                            damage *= 2;
+                            target.AddBuff(BuffID.Electrified, Main.rand.Next(30, 300));
+                        }
+                        break;
+
+                    case ProjectileID.LostSoulHostile:
+                        target.AddBuff(mod.BuffType("Unstable"), Main.rand.Next(30, 120));
+                        break;
+
+                    case ProjectileID.InfernoHostileBlast:
+                    case ProjectileID.InfernoHostileBolt:
+                        if (Main.rand.Next(5) == 0)
+                            target.AddBuff(mod.BuffType("Fused"), 1800);
+                        break;
+
+                    case ProjectileID.ShadowBeamHostile:
+                        target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(1800, 3600));
+                        break;
+
+                    case ProjectileID.PhantasmalBolt:
+                    case ProjectileID.PhantasmalEye:
+                    case ProjectileID.PhantasmalSphere:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.moonBoss, NPCID.MoonLordCore) && !Main.npc[FargoGlobalNPC.moonBoss].dontTakeDamage && (target.hurtCooldowns[1] == 0 || FargoWorld.MoonlordCount >= 120))
+                        {
+                            int d = Main.rand.Next(Fargowiltas.DebuffIDs.Length);
+                            target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 600));
+                        }
                         break;
 
                     default:
