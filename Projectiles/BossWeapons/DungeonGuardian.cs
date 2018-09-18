@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 			projectile.aiStyle = 0;
 			aiType = ProjectileID.Bullet;
 			projectile.friendly = true;
-			projectile.ranged = true;
+			projectile.magic = true;
 			projectile.penetrate = -1;
 			projectile.tileCollide = false;
 			projectile.timeLeft = 1000;
