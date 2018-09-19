@@ -68,11 +68,10 @@ Drastically increased ki regen
             dbtPlayer.KiKbAddition += 0.3f;
             dbtPlayer.KiDrainMulti -= 0.4f;
             dbtPlayer.KiMax = (int)(dbtPlayer.KiMax * 1.3);
-            //dbtPlayer.KiRegen += 4;
+            dbtPlayer.KiRegen += 4;
             dbtPlayer.OrbGrabRange += 6;
             dbtPlayer.OrbHealAmount += 100;
-            //dbtPlayer.ChargeLimitAdd += 5;
-
+            dbtPlayer.ChargeLimitAdd += 5;
         }
 
         private readonly string[] _items = 
