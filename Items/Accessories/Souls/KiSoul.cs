@@ -81,11 +81,12 @@ Drastically increased ki regen
             "SenzuBag",
             "ScouterT6",
             "SpiritualEmblem",
-            "TurtleShell",
-            "VegetaGloves",
+            "LargeTurtleShell",
+            "WornGloves",
             "NimbusWhistle",
             "KaioFragment4",
-            "KiFragment5"
+            "KiFragment5",
+            "NebulaTotem"
         };
 
         private readonly Mod _dbzmod = ModLoader.GetMod("DBZMOD");
