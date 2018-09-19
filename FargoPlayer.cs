@@ -410,6 +410,11 @@ namespace FargowiltasSouls
                 {
                 player.AddBuff(mod.BuffType("Lethargic"));
                 }
+                
+                if(player.stickybreak > 0 && player.spidercave)
+                {
+                player.AddBuff(BuffID.Webbed);
+                }
 
 
 
