@@ -149,7 +149,7 @@ namespace FargowiltasSouls.Projectiles
                             projectile.maxPenetrate /= 2;
                         }
 
-                        projectile.damage = projectile.damage / 3;
+                        projectile.damage = (int)(projectile.damage * (2 / 3));
                         stormBoosted = false;
                     }
                 }
@@ -210,7 +210,7 @@ namespace FargowiltasSouls.Projectiles
                 projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * RotateDist) - projectile.width / 2;
                 projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * RotateDist) - projectile.height / 2;
 
-                //Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
+                //increase/decrease degrees
                 if(RotateDir == 1)
                 {
                     projectile.ai[1] += 2.5f;
@@ -491,16 +491,6 @@ namespace FargowiltasSouls.Projectiles
                 default:
                         break;
             }
-
-            //does this projectile even exist
-            /*if (projectile.type == mod.ProjectileType("HallowShield"))
-            {
-                if (!modPlayer.HallowEnchant || !Soulcheck.GetValue("Hallowed Shield Familiar"))
-                {
-                    projectile.Kill();
-                    return;
-                }
-            }*/
 
             if (stormBoosted)
             {
