@@ -161,6 +161,7 @@
     <Compile Include="Items\Accessories\Souls\FlightMasterySoul.cs" />
     <Compile Include="Items\Accessories\Souls\GladiatorsSoul.cs" />
     <Compile Include="Items\Accessories\Souls\GuardianAngelsSoul.cs" />
+    <Compile Include="Items\Accessories\Souls\KiSoul.cs" />
     <Compile Include="Items\Accessories\Souls\OlympiansSoul.cs" />
     <Compile Include="Items\Accessories\Souls\SharpshootersSoul.cs" />
     <Compile Include="Items\Accessories\Souls\SupersonicSoul.cs" />

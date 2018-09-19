@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
@@ -64,14 +65,13 @@ Drastically increased ki regen
             dbtPlayer.KiDamage += 0.35f;
             dbtPlayer.KiCrit += 20;
             dbtPlayer.KiSpeedAddition += 4;
-            dbtPlayer.KiKbAddition += 0.3;
-            dbtPlayer.KiDrainMulti -= 0.4;
-            dbtPlayer.KiMax *= 1.3;
+            dbtPlayer.KiKbAddition += 0.3f;
+            dbtPlayer.KiDrainMulti -= 0.4f;
+            dbtPlayer.KiMax = (int)(dbtPlayer.KiMax * 1.3);
             dbtPlayer.KiRegen += 4;
             dbtPlayer.OrbGrabRange += 6;
             dbtPlayer.OrbHealAmount += 100;
             dbtPlayer.ChargeLimitAdd += 5;
-
         }
 
         private readonly string[] _items = 
@@ -81,11 +81,12 @@ Drastically increased ki regen
             "SenzuBag",
             "ScouterT6",
             "SpiritualEmblem",
-            "TurtleShell",
-            "VegetaGloves",
+            "LargeTurtleShell",
+            "WornGloves",
             "NimbusWhistle",
             "KaioFragment4",
-            "KiFragment5"
+            "KiFragment5",
+            "NebulaTotem"
         };
 
         private readonly Mod _dbzmod = ModLoader.GetMod("DBZMOD");
@@ -100,7 +101,7 @@ Drastically increased ki regen
                 recipe.AddIngredient(_dbzmod.ItemType(i));
             }
             
-            recipe.AddIngredient(_dbzmod.ItemType("RadiantKiCrystal", 250));
+            recipe.AddIngredient(_dbzmod.ItemType("RadiantKiCrystal"), 250);
             
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

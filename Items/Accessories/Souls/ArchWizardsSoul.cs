@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 using static Terraria.ID.ItemID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls

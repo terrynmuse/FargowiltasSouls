@@ -388,6 +388,38 @@ namespace FargowiltasSouls
                     player.buffImmune[BuffID.Bleeding] = false;
                     player.AddBuff(BuffID.Bleeding, 2);
                 }
+                
+                /* pseudo memes
+                
+                if (player fell from big height && !wings)
+                {
+                player.addbuff(BuffID.Dazed);
+                }
+                
+                if(player.hell && !player.obsidian)
+                {
+                player.AddBuff(BuffID.OnFire);
+                }
+                
+                if(player.heldItem.type == ItemID.RodofDiscord && player.HasBuff(BuffID.ChaosState) && try to telepoert again)
+                {
+                player.AddBuff(mod.BuffType("Berserked"));
+                }
+                
+                if(player.wet && !player.neptune or whatever else)
+                {
+                player.AddBuff(mod.BuffType("Lethargic"));
+                }
+                
+                if(player.stickybreak > 0 && player.spidercave)
+                {
+                player.AddBuff(BuffID.Webbed);
+                }
+
+
+
+                
+                */
             }
 
             if (!Infested && !FirstInfection)

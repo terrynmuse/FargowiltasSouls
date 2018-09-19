@@ -1830,6 +1830,70 @@ namespace FargowiltasSouls.NPCs
                     case 58: //nailhead
 
                         break;
+			
+			
+		/* pseudo memes
+		
+		case harpy:
+		summon tornado, cthulunado recolor without shark spawn
+		
+		case jellyfish:
+		if ai == electric thing && player.same water
+		player.AddBuff(BuffID.Electrocute);
+		
+		case demon eye
+		if counter == blah
+		pre AI return false for a few frames 
+		Shoot(petrify beam) new projectile or could use an existing one with special property or could steal medusa code and see wtf happens there
+		npc.velocity go backward a bit (beam knockback )
+		
+		case fire imp fire ball:
+		if fire imp is within like 2 pixels 
+		
+		newNPC(fire ball slight rotate velocity)
+		newNPC(fire ball, slight rotate velocity)
+		transform = false
+		
+		case angry bones:
+		count(NPCID.AngryBones) something something 
+		
+		case bats: swarm spawn
+		
+		case vulture: 
+		swarm if player.life < 25%
+		
+		case spike ball: 
+		some AI = faster speed ?
+		
+		case pixies:
+		if player is close by && counter == blah
+		PlaySound("HeyListen")
+		
+		case unicorn
+		if counter == blah
+		NewProjectile(Rainbow gun, 0 velocity) //trail of rainbow, possibly adjust rotation if it jumps or whatever?
+		
+		case destroyer head: 
+		ai = wyvern ai
+		
+		case turtles: 
+		if frame = in shell 
+		reflect the proj
+		
+		case moth:
+		Shoot(Spores)
+		
+		case flying fish:
+		swarm spawn
+		
+		case umbrealla slime:
+		fall slow and explodes water EVERYWHERE instantly flooding a world
+		
+		case nimbus:
+		Shoot(Lightning)
+		
+		
+		*/
 
                     default:
                         break;
@@ -3135,6 +3199,27 @@ namespace FargowiltasSouls.NPCs
                             return false;
                         }
                         break;
+			
+			/* pseudo memes
+			case: slime zombie
+			NewNPC(Slime)
+			
+			case skeletons:
+			for()
+			{
+			NewProjectile(Bones)
+			}
+			
+			case digger:
+			NewNPC(GiantWorm)
+			
+			case ichor sticker:
+			for()
+			{
+			NewProjectile(Ichor)
+			}
+			
+			*/
 
                     default:
                         break;
