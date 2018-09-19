@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,34 +5,39 @@ using FargowiltasSouls.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles
 {
     public class FargoGlobalProjectile : GlobalProjectile
     {
-        private static int adamantiteCD = 0;
-        public bool CanSplit = true;
+        public override bool InstancePerEntity
+        {
+            get
+            {
+                return true;
+            }
+        }
 
         private int counter;
-
-        private bool firstTick = true;
-        public bool IsRecolor = false;
-        private bool ninjaTele;
+        public bool CanSplit = true;
+        private int numSplits = 1;
+        private static int adamantiteCD = 0;
 
         private int numSpeedups = 3;
-        private int numSplits = 1;
-        private int oriDir = 1;
-
-        public bool Rotate = false;
-        public int RotateDir = 1;
-        public int RotateDist = 64;
-        private bool squeakyToy = false;
+        private bool ninjaTele;
+        public bool IsRecolor = false;
         private bool stormBoosted = false;
         private int stormTimer;
+
+        public bool Rotate = false;
+        public int RotateDist = 64;
+        public int RotateDir = 1;
+        private int oriDir = 1;
+
+        private bool firstTick = true;
+        private bool squeakyToy = false;
         public bool TimeFrozen = false;
-        public override bool InstancePerEntity => true;
 
         public override void SetDefaults(Projectile projectile)
         {
@@ -145,8 +149,7 @@ namespace FargowiltasSouls.Projectiles
                             projectile.maxPenetrate /= 2;
                         }
 
-                        projectile.damage = (int)(projectile.damage * (2 / 3));
-
+                        projectile.damage = projectile.damage / 3;
                         stormBoosted = false;
                     }
                 }
@@ -186,7 +189,7 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-    //fix
+            //projectile.owner usually means Main.myPlayer, doesn't apply to npc arrayyyyyy
             /*if(projectile.hostile && Main.npc[projectile.owner].active && Main.npc[projectile.owner].GetGlobalNPC<FargoGlobalNPC>().SqueakyToy)
             {
                 projectile.damage = 1;
@@ -207,8 +210,7 @@ namespace FargowiltasSouls.Projectiles
                 projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * RotateDist) - projectile.width / 2;
                 projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * RotateDist) - projectile.height / 2;
 
-
-                //increase/decrease degrees
+                //Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
                 if(RotateDir == 1)
                 {
                     projectile.ai[1] += 2.5f;
@@ -490,6 +492,15 @@ namespace FargowiltasSouls.Projectiles
                         break;
             }
 
+            //does this projectile even exist
+            /*if (projectile.type == mod.ProjectileType("HallowShield"))
+            {
+                if (!modPlayer.HallowEnchant || !Soulcheck.GetValue("Hallowed Shield Familiar"))
+                {
+                    projectile.Kill();
+                    return;
+                }
+            }*/
 
             if (stormBoosted)
             {
@@ -677,9 +688,8 @@ namespace FargowiltasSouls.Projectiles
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref int damage, ref bool crit)
         {
-            Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
+            //Player player = Main.player[Main.myPlayer];
+            FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>(mod);
 
             if (FargoWorld.MasochistMode)
             {
@@ -692,6 +702,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.DemonSickle:
                         target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
+                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.HarpyFeather:
@@ -750,8 +761,11 @@ namespace FargowiltasSouls.Projectiles
                             case 5:
                                 target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(60, 600));
                                 break;
-                            default:
+                            case 6:
                                 target.AddBuff(mod.BuffType("Purified"), Main.rand.Next(60, 600));
+                                break;
+
+                            default:
                                 break;
                         }
 
@@ -807,11 +821,6 @@ namespace FargowiltasSouls.Projectiles
                             target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 900));
                         else if (target.ZoneCrimson)
                             target.AddBuff(BuffID.Ichor, Main.rand.Next(900, 1800));
-                        break;
-
-                    case ProjectileID.PhantasmalDeathray:
-                        target.AddBuff(mod.BuffType("FlamesoftheUniverse"), Main.rand.Next(60, 300));
-                        target.AddBuff(mod.BuffType("MarkedforDeath"), 120);
                         break;
 
                     case ProjectileID.BrainScramblerBolt:
@@ -874,6 +883,26 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.ShadowBeamHostile:
                         target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(1800, 3600));
+                        break;
+
+                    case ProjectileID.DeathLaser:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer))
+                            target.AddBuff(mod.BuffType("ClippedWings"), 15);
+                        break;
+
+                    case ProjectileID.PhantasmalDeathray:
+                        if (Main.npc[(int)projectile.ai[1]].active)
+                        {
+                            if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordHead)
+                            {
+                                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), Main.rand.Next(60, 600));
+                                target.AddBuff(mod.BuffType("MarkedforDeath"), 120);
+                            }
+                            else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
+                            {
+                                goto case ProjectileID.PhantasmalSphere;
+                            }
+                        }
                         break;
 
                     case ProjectileID.PhantasmalBolt:
@@ -952,7 +981,6 @@ namespace FargowiltasSouls.Projectiles
             float[] _x = { 0, speed, 0, -speed, speed, -speed, speed, -speed, speed / 2, speed, -speed, speed / 2, speed, -speed / 2, -speed, -speed / 2 };
             float[] _y = { speed, 0, -speed, 0, speed, -speed, -speed, speed, speed, speed / 2, speed / 2, -speed, -speed / 2, speed, -speed / 2, -speed };
 
-
             Projectile[] projs = new Projectile[16];
 
             for (int i = 0; i < num; i++)
@@ -969,12 +997,14 @@ namespace FargowiltasSouls.Projectiles
             int count = 0;
 
             for (int i = 0; i < 1000; i++)
-
+            {
                 if (Main.projectile[i].type == type)
+                {
                     count++;
+                }
+            }
 
             return count;
         }
     }
 }
-
