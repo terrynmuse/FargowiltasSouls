@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 using static Terraria.ID.ItemID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
@@ -12,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Arch Wizard's Soul");
             Tooltip.SetDefault(
-@"'Arcane to the core'
+                @"'Arcane to the core'
 30% increased magic damage
 20% increased spell casting speed
 15% increased magic crit chance
@@ -43,16 +44,6 @@ Automatically use mana potions when needed");
             player.manaMagnet = true;
             player.magicCuffs = true;
         }
-
-        /*private void Talisman(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(calamity).eTalisman = true;
-        }
-
-        private void BlueMagnet(Player player)
-        {
-            player.GetModPlayer<Bluemagic.BluemagicPlayer>(blue).manaMagnet2 = true;
-        }*/
 
         public override void AddRecipes()
         {
@@ -94,10 +85,14 @@ Automatically use mana potions when needed");
                 recipe.AddIngredient(BatScepter);
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);
-                recipe.AddIngredient(LastPrism);  
+                recipe.AddIngredient(LastPrism);
             }
 
-            //magic2.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

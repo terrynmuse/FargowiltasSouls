@@ -17,14 +17,14 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         {
             item.useStyle = 5;
             item.autoReuse = true;
-            item.useAnimation = 30;//
-            item.useTime = 5;//
+            item.useAnimation = 30; //
+            item.useTime = 5; //
             item.width = 54;
             item.height = 14;
             item.shoot = mod.ProjectileType("HellFlame");
             item.useAmmo = AmmoID.Gel;
-            item.UseSound = SoundID.Item34;//
-            item.damage = 240;//
+            item.UseSound = SoundID.Item34; //
+            item.damage = 240; //
             item.knockBack = 0.5f;
             item.shootSpeed = 10f; //
             item.noMelee = true;

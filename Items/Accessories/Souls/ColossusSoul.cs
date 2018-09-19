@@ -7,12 +7,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 {
     [AutoloadEquip(EquipType.Shield)]
     public class ColossusSoul : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Colossus Soul");
-			Tooltip.SetDefault(
-@"'Nothing can stop you'
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Colossus Soul");
+            Tooltip.SetDefault(
+                @"'Nothing can stop you'
 Increases HP by 100
 15% damage reduction
 Increases life regeneration by 5
@@ -20,22 +20,22 @@ Grants immunity to knockback and several debuffs
 Enemies are more likely to target you
 Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
 Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
-		}
+        }
 
-		public override void SetDefaults()
-		{
-			item.width = 20;
-			item.height = 20;
-			item.accessory = true;
-			item.defense = 10;
+        public override void SetDefaults()
+        {
+            item.width = 20;
+            item.height = 20;
+            item.accessory = true;
+            item.defense = 10;
             item.value = 1000000;
-			item.expert = true;
-			item.rare = -12;
-            
+            item.expert = true;
+            item.rare = -12;
+
             //item.shieldSlot = 4;
-		}
-		
-		public override void UpdateAccessory(Player player, bool hideVisual)
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.statLifeMax2 += 100;
             player.endurance += 0.15f;
@@ -71,10 +71,7 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
             //flesh knuckles
             player.aggro += 400;
             //frozen turtle shell
-            if (player.statLife <= player.statLifeMax2 * 0.5)
-            {
-                player.AddBuff(BuffID.IceBarrier, 5, true);
-            }
+            if (player.statLife <= player.statLifeMax2 * 0.5) player.AddBuff(BuffID.IceBarrier, 5, true);
             //paladins shield
             if (player.statLife > player.statLifeMax2 * .25)
             {
@@ -83,40 +80,17 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
                 {
                     Player target = Main.player[k];
 
-                    if (target.active && player != target && Vector2.Distance(target.Center, player.Center) < 400)
-                    {
-                        target.AddBuff(BuffID.PaladinsShield, 30);
-                    }
+                    if (target.active && player != target && Vector2.Distance(target.Center, player.Center) < 400) target.AddBuff(BuffID.PaladinsShield, 30);
                 }
             }
         }
 
-        /*public void CalamityTank(Player player)
-		{
-                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("BrimstoneFlames")] = true;
-                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("HolyLight")] = true;
-                player.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("GlacialState")] = true;
-				player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).elysianAegis = true;
-				player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).dashMod = 4;
-				player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).aSpark = true;
-				player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).gShell = true;
-				player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).fCarapace = true;
-				player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).absorber = true;
-		}
-		
-		public void BlueTank(Player player)
-		{
-				player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).lifeMagnet2 = true;
-				player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).crystalCloak = true;
-		}*/
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-			
-			if(Fargowiltas.Instance.ThoriumLoaded)
-			{
 
+            if (Fargowiltas.Instance.ThoriumLoaded)
+            {
             }
             else
             {
@@ -135,9 +109,13 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
                 recipe.AddIngredient(ItemID.AnkhShield);
             }
 
-            //tank.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
-		}
-	}
+        }
+    }
 }

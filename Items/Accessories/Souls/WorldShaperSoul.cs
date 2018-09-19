@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 using static Terraria.ID.ItemID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
@@ -50,36 +51,18 @@ No enemies can spawn
             player.pickSpeed -= 0.50f;
 
             //mining helmet
-            if (Soulcheck.GetValue("Shine Buff") == false)
-            {
-                Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
-            }
+            if (Soulcheck.GetValue("Shine Buff") == false) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
             player.autoActuator = true;
 
-            if (!hideVisual)
-            {
-                /*player.magicDamage*= 0f;
-                player.meleeDamage*= 0f;
-                player.rangedDamage*= 0f;
-                player.minionDamage*= 0f;
-                player.thrownDamage*= 0f;*/
-
-                player.GetModPlayer<FargoPlayer>(mod).BuilderMode = true;
-            }
+            if (!hideVisual) player.GetModPlayer<FargoPlayer>(mod).BuilderMode = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
-            {
-                
-
-                
-            }
-            else
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(LaserRuler);
                 recipe.AddIngredient(GravityGlobe);
@@ -90,7 +73,6 @@ No enemies can spawn
                 recipe.AddIngredient(ArchitectGizmoPack);
                 recipe.AddIngredient(ActuationAccessory);
 
-
                 recipe.AddRecipeGroup("FargowiltasSouls:AnyDrax");
                 recipe.AddIngredient(ShroomiteDiggingClaw);
                 recipe.AddIngredient(Picksaw);
@@ -99,7 +81,11 @@ No enemies can spawn
                 recipe.AddIngredient(RoyalGel);
             }
 
-            //build.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

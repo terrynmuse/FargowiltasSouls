@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Soul of Terraria");
             Tooltip.SetDefault(
-@"'A true master of Terraria'
+                @"'A true master of Terraria'
 Summons a fireballs, icicles, a leaf crystal, Hallowed sword and shield, Beetles, and every pet
 Toggle vanity to remove all Pets
 Right Click to Guard, Double tap down to call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
@@ -46,7 +46,7 @@ When you die, you explode and revive with 200 HP");
             //includes revive, both spectres, adamantite
             modPlayer.TerrariaSoul = true;
             modPlayer.TerrariaPets(hideVisual);
-            
+
             player.onHitDodge = true;
             player.onHitRegen = true;
             player.fireWalk = true;
@@ -97,13 +97,9 @@ When you die, you explode and revive with 200 HP");
             recipe.AddIngredient(null, "CosmoForce");
 
             if (Fargowiltas.Instance.FargosLoaded)
-            {
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();

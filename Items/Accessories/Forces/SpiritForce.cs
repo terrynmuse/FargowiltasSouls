@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Spirit");
             Tooltip.SetDefault(
-@"'The strength of your spirit amazes even the Mutant'
+                @"'The strength of your spirit amazes even the Mutant'
 If you reach zero HP you cheat death, returning with 20 HP
 For a few seconds after reviving, you are immune to all damage and spawn bones everywhere
 Double tap down to call an ancient storm to the cursor location
@@ -52,15 +52,11 @@ Summons a pet Baby Dino, Magical Fairy, Tiki Spirit, and Wisp");
             recipe.AddIngredient(null, "HallowEnchant");
             recipe.AddIngredient(null, "TikiEnchant");
             recipe.AddIngredient(null, "SpectreEnchant");
-            
+
             if (Fargowiltas.Instance.FargosLoaded)
-            {
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();

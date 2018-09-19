@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Projectiles.Minions
         {
             DisplayName.SetDefault("Eater Body");
         }
-        
+
         public override void SetDefaults()
         {
             projectile.width = 24;
@@ -34,7 +34,8 @@ namespace FargowiltasSouls.Projectiles.Minions
             return Color.White;
         }
 
-        public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI)
+        public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles,
+            List<int> drawCacheProjsOverWiresUI)
         {
             drawCacheProjsBehindProjectiles.Add(index);
         }
@@ -44,7 +45,9 @@ namespace FargowiltasSouls.Projectiles.Minions
             Texture2D texture2D13 = Main.projectileTexture[projectile.type];
             int num214 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type];
             int y6 = num214 * projectile.frame;
-            Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(new Rectangle(0, y6, texture2D13.Width, num214)), projectile.GetAlpha(Color.White), projectile.rotation, new Vector2((float)texture2D13.Width / 2f, (float)num214 / 2f), projectile.scale, projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
+            Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Rectangle(0, y6, texture2D13.Width, num214),
+                projectile.GetAlpha(Color.White), projectile.rotation, new Vector2(texture2D13.Width / 2f, num214 / 2f), projectile.scale,
+                projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
             return false;
         }
 
@@ -53,10 +56,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if ((int)Main.time % 120 == 0)
-            {
-                projectile.netUpdate = true;
-            }
+            if ((int) Main.time % 120 == 0) projectile.netUpdate = true;
             if (!player.active)
             {
                 projectile.active = false;
@@ -64,14 +64,8 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
 
             int num1038 = 10;
-            if (player.dead)
-            {
-                modPlayer.EaterMinion = false;
-            }
-            if (modPlayer.EaterMinion)
-            {
-                projectile.timeLeft = 2;
-            }
+            if (player.dead) modPlayer.EaterMinion = false;
+            if (modPlayer.EaterMinion) projectile.timeLeft = 2;
             num1038 = 30;
 
             //D U S T
@@ -98,7 +92,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                 projectile.ai[1] = 0f;
                 projectile.netUpdate = true;
             }
-            int byUUID = Projectile.GetByUUID(projectile.owner, (int)projectile.ai[0]);
+
+            int byUUID = Projectile.GetByUUID(projectile.owner, (int) projectile.ai[0]);
             if (byUUID >= 0 && Main.projectile[byUUID].active)
             {
                 flag67 = true;
@@ -110,63 +105,48 @@ namespace FargowiltasSouls.Projectiles.Minions
                 scaleFactor16 = 16f;
                 int arg_2D9AD_0 = Main.projectile[byUUID].alpha;
                 Main.projectile[byUUID].localAI[0] = projectile.localAI[0] + 1f;
-                if (Main.projectile[byUUID].type != mod.ProjectileType("EaterHead"))
-                {
-                    Main.projectile[byUUID].localAI[1] = projectile.whoAmI;
-                }
+                if (Main.projectile[byUUID].type != mod.ProjectileType("EaterHead")) Main.projectile[byUUID].localAI[1] = projectile.whoAmI;
             }
-            if (!flag67)
-            {
-                return;
-            }
+
+            if (!flag67) return;
             if (projectile.alpha > 0)
-            {
                 for (int num1054 = 0; num1054 < 2; num1054++)
                 {
                     int num1055 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 100, default(Color), 2f);
                     Main.dust[num1055].noGravity = true;
                     Main.dust[num1055].noLight = true;
                 }
-            }
+
             projectile.alpha -= 42;
-            if (projectile.alpha < 0)
-            {
-                projectile.alpha = 0;
-            }
+            if (projectile.alpha < 0) projectile.alpha = 0;
             projectile.velocity = Vector2.Zero;
             Vector2 vector134 = value67 - projectile.Center;
             if (num1052 != projectile.rotation)
             {
                 float num1056 = MathHelper.WrapAngle(num1052 - projectile.rotation);
-                vector134 = vector134.RotatedBy((double)(num1056 * 0.1f), default(Vector2));
+                vector134 = vector134.RotatedBy(num1056 * 0.1f, default(Vector2));
             }
+
             projectile.rotation = vector134.ToRotation() + 1.57079637f;
             projectile.position = projectile.Center;
             projectile.scale = scaleFactor17;
-            projectile.width = (projectile.height = (int)((float)num1038 * projectile.scale));
+            projectile.width = projectile.height = (int) (num1038 * projectile.scale);
             projectile.Center = projectile.position;
-            if (vector134 != Vector2.Zero)
-            {
-                projectile.Center = value67 - Vector2.Normalize(vector134) * scaleFactor16 * scaleFactor17;
-            }
-            projectile.spriteDirection = ((vector134.X > 0f) ? 1 : -1);
-            return;
+            if (vector134 != Vector2.Zero) projectile.Center = value67 - Vector2.Normalize(vector134) * scaleFactor16 * scaleFactor17;
+            projectile.spriteDirection = vector134.X > 0f ? 1 : -1;
         }
 
         public override void Kill(int timeLeft)
         {
             Player player = Main.player[projectile.owner];
-            if (player.slotsMinions + projectile.minionSlots > (float)player.maxMinions && projectile.owner == Main.myPlayer)
+            if (player.slotsMinions + projectile.minionSlots > player.maxMinions && projectile.owner == Main.myPlayer)
             {
                 int byUUID = Projectile.GetByUUID(projectile.owner, projectile.ai[0]);
                 if (byUUID != -1)
                 {
                     Projectile projectile1 = Main.projectile[byUUID];
-                    if (projectile1.type != mod.ProjectileType("EaterHead"))
-                    {
-                        projectile1.localAI[1] = projectile.localAI[1];
-                    }
-                    projectile1 = Main.projectile[(int)projectile.localAI[1]];
+                    if (projectile1.type != mod.ProjectileType("EaterHead")) projectile1.localAI[1] = projectile.localAI[1];
+                    projectile1 = Main.projectile[(int) projectile.localAI[1]];
                     projectile1.ai[0] = projectile.ai[0];
                     projectile1.ai[1] = 1f;
                     projectile1.netUpdate = true;

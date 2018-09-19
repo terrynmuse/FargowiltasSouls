@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Valhalla Knight Enchantment");
             Tooltip.SetDefault(
-@"'Valhalla calls'
+                @"'Valhalla calls'
 Greatly enhances Ballista effectiveness
 You ignore enemy knockback immunity with your close range melee weapons
 Shiny Stone effects

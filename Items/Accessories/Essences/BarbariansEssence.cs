@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Barbarian's Essence");
             Tooltip.SetDefault(
-@"'This is only the beginning..' 
+                @"'This is only the beginning..' 
 18% increased melee damage 
 10% increased melee speed 
 5% increased melee crit chance");

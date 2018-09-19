@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Hallowed Enchantment");
             Tooltip.SetDefault(
-@"'Hallowed be your sword and shield'
+                @"'Hallowed be your sword and shield'
 You gain a shield that can reflect projectiles
 Summons an Enchanted Sword familiar that scales with minion damage
 Summons a magical fairy");

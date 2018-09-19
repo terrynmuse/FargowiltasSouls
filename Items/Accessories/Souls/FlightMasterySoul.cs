@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Flight Mastery Soul");
             Tooltip.SetDefault(
-@"'Ascend'
+                @"'Ascend'
 Acts as wings
 Allows for very long lasting flight
 Releases bees when damaged");
@@ -54,7 +54,7 @@ Releases bees when damaged");
     	if (inUse)
     		Dust.NewDust(player.position, player.width, player.height, 107, 0, 0, 0, Color.Green);
     	base.WingUpdate(player, inUse);
-    }*/   //add when you have actual wings
+    }*/ //add when you have actual wings
 
         public override void AddRecipes()
         {
@@ -74,8 +74,11 @@ Releases bees when damaged");
             recipe.AddIngredient(ItemID.WingsNebula);
             recipe.AddIngredient(ItemID.WingsSolar);
 
-            recipe.AddTile(TileID.LunarCraftingStation);
-            //wings.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

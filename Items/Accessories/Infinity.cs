@@ -11,9 +11,10 @@ namespace FargowiltasSouls.Items.Accessories
         {
             DisplayName.SetDefault("Infinity Relic");
             Tooltip.SetDefault("'Is it really worth it?'\n" +
-                                "You consume no ammo, mana, or consumables \n" +
-                                "There is of course a catch (^:");
+                               "You consume no ammo, mana, or consumables \n" +
+                               "There is of course a catch (^:");
         }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -32,7 +33,6 @@ namespace FargowiltasSouls.Items.Accessories
 
             //the price
             player.AddBuff(mod.BuffType("InfinityDebuff"), 7200, false);
-
         }
 
         public override void AddRecipes()
@@ -56,4 +56,3 @@ namespace FargowiltasSouls.Items.Accessories
         }
     }
 }
-

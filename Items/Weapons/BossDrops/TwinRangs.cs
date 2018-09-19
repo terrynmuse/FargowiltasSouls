@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -8,7 +7,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
     public class TwinRangs : ModItem
     {
-        private int shoot = 0;
+        private int shoot;
 
         public override void SetStaticDefaults()
         {
@@ -18,7 +17,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 
         public override void SetDefaults()
         {
-            item.damage = 30;            
+            item.damage = 30;
             item.melee = true;
             item.width = 30;
             item.height = 30;
@@ -37,7 +36,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if(shoot == 0)
+            if (shoot == 0)
             {
                 type = ProjectileID.IceBoomerang;
                 shoot = 1;
@@ -52,7 +51,5 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 
             return false;
         }
-
-
     }
 }

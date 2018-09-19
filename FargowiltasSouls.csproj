@@ -45,10 +45,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Terraria, Version=1.3.5.1, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-    </Reference>
-    <Reference Include="Terrariamod">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terrariamod.exe</HintPath>
+      <HintPath>D:\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +161,7 @@
     <Compile Include="Items\Accessories\Souls\FlightMasterySoul.cs" />
     <Compile Include="Items\Accessories\Souls\GladiatorsSoul.cs" />
     <Compile Include="Items\Accessories\Souls\GuardianAngelsSoul.cs" />
+    <Compile Include="Items\Accessories\Souls\KiSoul.cs" />
     <Compile Include="Items\Accessories\Souls\OlympiansSoul.cs" />
     <Compile Include="Items\Accessories\Souls\SharpshootersSoul.cs" />
     <Compile Include="Items\Accessories\Souls\SupersonicSoul.cs" />

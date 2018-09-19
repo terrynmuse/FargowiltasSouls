@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Supersonic Soul");
             Tooltip.SetDefault(
-@"'Sound barriers forever broken'
+                @"'Sound barriers forever broken'
 25% increased movement speed
 Allows supersonic fast running, and extra mobility on ice
 Provides lava immunity and permanent light
@@ -45,10 +45,7 @@ Allows the player to dash into the enemy");
             player.accDivingHelm = true;
             player.iceSkate = true;
 
-            if (player.wet)
-            {
-                Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
-            }
+            if (player.wet) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
 
             //frostspark
             /*if (Soulcheck.GetValue("Super Speed"))
@@ -85,15 +82,7 @@ Allows the player to dash into the enemy");
             //slime mount
             player.maxFallSpeed += 5f;
             player.autoJump = true;
-
         }
-
-        /*public void CalamityBoots(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).IBoots = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(ModLoader.GetMod("CalamityMod")).elysianFire = true;
-        }*/
-
 
         public override void AddRecipes()
         {
@@ -101,7 +90,6 @@ Allows the player to dash into the enemy");
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                
             }
             else
             {
@@ -111,7 +99,7 @@ Allows the player to dash into the enemy");
                 recipe.AddIngredient(ItemID.ArcticDivingGear);
                 recipe.AddIngredient(ItemID.FrogLeg);
                 recipe.AddIngredient(ItemID.BundleofBalloons);
-                
+
 
                 recipe.AddIngredient(ItemID.SlimySaddle);
                 recipe.AddIngredient(ItemID.FuzzyCarrot);
@@ -122,7 +110,11 @@ Allows the player to dash into the enemy");
                 recipe.AddIngredient(ItemID.BrainScrambler);
             }
 
-            //speed.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

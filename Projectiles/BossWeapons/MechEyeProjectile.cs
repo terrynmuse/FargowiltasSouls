@@ -46,7 +46,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             }
         }
 
-        int HomeOnTarget()
+        private int HomeOnTarget()
         {
             const bool homingCanAimAtWetEnemies = true;
             const float homingMaximumRangeInPixels = 500;
@@ -60,12 +60,10 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                     float distance = projectile.Distance(n.Center);
                     if (distance <= homingMaximumRangeInPixels &&
                         (
-                        selectedTarget == -1 ||  //there is no selected target
-                        projectile.Distance(Main.npc[selectedTarget].Center) > distance) //or we are closer to this target than the already selected target
-                        )
-                    {
+                            selectedTarget == -1 || //there is no selected target
+                            projectile.Distance(Main.npc[selectedTarget].Center) > distance) //or we are closer to this target than the already selected target
+                    )
                         selectedTarget = i;
-                    }
                 }
             }
 
@@ -76,10 +74,12 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         {
             for (int num468 = 0; num468 < 20; num468++)
             {
-                int num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, DustID.Silver, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default(Color), 1.5f);
+                int num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, DustID.Silver, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100, default(Color), 1.5f);
                 Main.dust[num469].noGravity = true;
                 Main.dust[num469].velocity *= 2f;
-                num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, DustID.Silver, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default(Color), .75f);
+                num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, DustID.Silver, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100, default(Color), .75f);
                 Main.dust[num469].velocity *= 2f;
             }
         }

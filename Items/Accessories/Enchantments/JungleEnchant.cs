@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Jungle Enchantment");
             Tooltip.SetDefault(
-@"'The wrath of the jungle dwells within'
+                @"'The wrath of the jungle dwells within'
 Allows the collection of Vine Rope from vines
 Chance to steal 5 mana with each attack
 Taking damage will release a poisoning spore explosion

@@ -6,11 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 {
     public class TerraForce : ModItem
     {
+        public override string Texture => "FargowiltasSouls/Items/Placeholder";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terra Force");
             Tooltip.SetDefault(
-@"''
+                @"''
 Attacks have a chance to shock enemies with lightning
 If an enemy is wet, the chance and damage is increased
 Sets your critical strike chance to 10%
@@ -38,14 +40,6 @@ While standing in lava, you gain 10 more armor penetration, 50% attack speed, an
             item.shieldSlot = 5;
         }
 
-        public override string Texture
-        {
-            get
-            {
-                return "FargowiltasSouls/Items/Placeholder";
-            }
-        }
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
@@ -69,13 +63,9 @@ While standing in lava, you gain 10 more armor penetration, 50% attack speed, an
             recipe.AddIngredient(null, "ObsidianEnchant");
 
             if (Fargowiltas.Instance.FargosLoaded)
-            {
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            }
             else
-            {
                 recipe.AddTile(TileID.LunarCraftingStation);
-            }
 
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -1,6 +1,6 @@
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Olympian's Soul");
             Tooltip.SetDefault(
-@"'Strike with deadly precision'
+                @"'Strike with deadly precision'
 30% increased throwing damage
 20% increased throwing speed
 15% increased throwing critical chance and velocity");
@@ -44,9 +44,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                
-
-
             }
             else
             {
@@ -66,7 +63,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             }
 
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

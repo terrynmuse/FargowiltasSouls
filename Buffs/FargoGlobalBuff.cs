@@ -1,22 +1,18 @@
-﻿using FargowiltasSouls.NPCs;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs
 {
-    class FargoGlobalBuff : GlobalBuff
+    internal class FargoGlobalBuff : GlobalBuff
     {
         public override void Update(int type, Player player, ref int buffIndex)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (type == BuffID.ShadowFlame)
-            {
-                modPlayer.Shadowflame = true;
-            }
+            if (type == BuffID.ShadowFlame) modPlayer.Shadowflame = true;
 
-            if(type == BuffID.Slimed)
+            if (type == BuffID.Slimed)
             {
                 Main.buffNoTimeDisplay[type] = false;
                 modPlayer.Slimed = true;
@@ -27,18 +23,11 @@ namespace FargowiltasSouls.Buffs
 
         public override void Update(int type, NPC npc, ref int buffIndex)
         {
-            FargoGlobalNPC globalNPC = npc.GetGlobalNPC<FargoGlobalNPC>();
+            if (type != BuffID.Chilled) return;
 
-            if(type == BuffID.Chilled)
-            {
-                //globalNPC.
-                npc.color = Colors.RarityBlue;
+            npc.color = Colors.RarityBlue;
 
-                if(!npc.boss)
-                {
-                    npc.velocity *= .5f;
-                }
-            }
+            if (!npc.boss) npc.velocity *= .5f;
         }
     }
 }
