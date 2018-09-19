@@ -2,6 +2,7 @@ using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.ID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -24,8 +25,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             "RockstarsDoubleBassBlastGuitar"
         };
 
-        private readonly Mod _thorium = ModLoader.GetMod("ThoriumMod");
-        private string _tooltip = null;
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private string tooltip = null;
 
         public override void SetStaticDefaults()
         {
@@ -70,7 +71,7 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
         {
             //general
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(_thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             thoriumPlayer.symphonicDamage += 0.4f;
             thoriumPlayer.symphonicCrit += 20;
@@ -96,7 +97,7 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             ModRecipe recipe = new ModRecipe(mod);
 
-            foreach (string i in _items) recipe.AddIngredient(_thorium.ItemType(i));
+            foreach (string i in _items) recipe.AddIngredient(thorium.ItemType(i));
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

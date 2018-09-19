@@ -3,6 +3,6 @@ author = Fargowilta
 version = 0.5
 displayName = Fargo's Mod: Souls
 homepage = http://forums.terraria.org/index.php?threads/fargos-mutant-mod-summons-and-souls.42291/
-weakReferences = ThoriumMod@1.2.13.3, CalamityMod@1.1.6.14, SpiritMod@1.1.1.6, Bluemagic@1.1
+weakReferences = ThoriumMod@1.2.13.3, CalamityMod@1.1.6.14, SpiritMod@1.1.1.6, Bluemagic@1.1, DBZMOD@0.1
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, lib\*, .git\*
 languageVersion = 6

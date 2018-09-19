@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.ID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
