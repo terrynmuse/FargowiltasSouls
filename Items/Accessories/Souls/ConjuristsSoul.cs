@@ -61,7 +61,10 @@ Increased minion knockback");
                 recipe.AddIngredient(ItemID.MoonlordTurretStaff);
 
                 /*
-                 * 
+                 prehistoric arachnid
+                 phylactery
+                 yumas pendent
+                 
                  * */
             }
             else
