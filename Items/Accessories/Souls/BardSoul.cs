@@ -24,6 +24,19 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             "Saxophone",
             "RockstarsDoubleBassBlastGuitar"
         };
+        
+        /*
+        band kit
+        metronome?
+        auto tuner?
+        
+        essence possibly? or universe just gets all of them ech
+        deep dark subwoofer
+        devils subwoofer
+        energized subwoofer
+        spartans subwoofer
+        toxic subwoofer
+        */
 
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         private string tooltip = null;
