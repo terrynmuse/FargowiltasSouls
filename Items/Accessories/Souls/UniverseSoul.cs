@@ -161,7 +161,11 @@ All attacks inflict Flames of the Universe");
                 recipe.AddIngredient(null, "BardSoul");
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TheRing"));
 
-                if (!Fargowiltas.Instance.CalamityLoaded) recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalEyeMask"));
+                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalEyeMask"));
+                
+                /*
+                plague lords flask
+                */
             }
 
             if (Fargowiltas.Instance.BlueMagicLoaded) recipe.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("AvengerSeal"));
