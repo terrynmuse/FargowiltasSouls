@@ -44,6 +44,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
+            /*
+            spartan sandles
+            bone grip
+            complete set
+            
+            */
             }
             else
             {
