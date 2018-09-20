@@ -80,6 +80,11 @@ No enemies can spawn
                 recipe.AddIngredient(DrillContainmentUnit);
                 recipe.AddIngredient(RoyalGel);
             }
+            
+            /*
+            crystalline charm
+            eye of the beholder
+            */
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
