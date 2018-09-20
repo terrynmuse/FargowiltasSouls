@@ -53,6 +53,13 @@ Automatically use mana potions when needed");
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
+            /*
+            shade band
+            */
+            
+            
+            
+            
                 recipe.AddIngredient(ManaFlower);
                 recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
