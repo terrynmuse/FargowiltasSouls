@@ -95,7 +95,7 @@ Allows the player to dash into the enemy");
             air walkers
             weighted winglets
             survivalist boots
-            
+            spring steps
             
             
             
