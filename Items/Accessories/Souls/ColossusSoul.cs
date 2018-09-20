@@ -91,6 +91,24 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
+            /*
+            terrarium defender
+            blast shield
+            cape of the survivor
+            ocean retaliation
+            ghastly carapace
+            sweet vengeance
+            astro beetle husk
+            champions rebuttal
+            thorium shield
+            */
+            
+                recipe.AddIngredient(ItemID.HandWarmer);
+                //recipe.AddIngredient(ItemID.BrainOfConfusion);
+                recipe.AddIngredient(ItemID.PocketMirror);
+                recipe.AddIngredient(ItemID.CharmofMyths);
+                recipe.AddIngredient(ItemID.SporeSac);
+                recipe.AddIngredient(ItemID.FleshKnuckles);
             }
             else
             {
