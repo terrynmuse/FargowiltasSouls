@@ -70,7 +70,8 @@ Grants the effects of the Yoyo Bag");
                 recipe.AddIngredient(Meowmere);
 
                 /*
-                 * 
+                 crystal spear tip
+                 cursed flail core
                  * */
             }
             else
