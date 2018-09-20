@@ -100,7 +100,7 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
             sweet vengeance
             astro beetle husk
             champions rebuttal
-            thorium shield
+            demon blood badge
             */
             
                 recipe.AddIngredient(ItemID.HandWarmer);
