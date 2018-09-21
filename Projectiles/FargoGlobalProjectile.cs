@@ -37,6 +37,7 @@ namespace FargowiltasSouls.Projectiles
 
         private bool firstTick = true;
         private bool squeakyToy = false;
+        public bool masoProj = false;
         public bool TimeFrozen = false;
 
         public override void SetDefaults(Projectile projectile)
@@ -475,6 +476,7 @@ namespace FargowiltasSouls.Projectiles
 
                 #endregion
 
+                case ProjectileID.JavelinHostile:
                 case ProjectileID.FlamingWood:
                     projectile.position += projectile.velocity * .5f;
                     break;
@@ -905,6 +907,52 @@ namespace FargowiltasSouls.Projectiles
                         }
                         break;
 
+                    case ProjectileID.MeteorShot:
+                        if (masoProj)
+                        {
+                            int buffTime = Main.rand.Next(120, 600);
+                            target.AddBuff(BuffID.OnFire, buffTime / 2);
+                            target.AddBuff(BuffID.Burning, buffTime);
+                        }
+                        break;
+
+                    case ProjectileID.SniperBullet:
+                    case ProjectileID.CrystalShard:
+                        if (masoProj)
+                        {
+                            target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(1200, 3600));
+
+                            int buffTime = Main.rand.Next(300, 600);
+                            target.AddBuff(mod.BuffType("Crippled"), buffTime);
+                            target.AddBuff(mod.BuffType("ClippedWings"), buffTime);
+                        }
+                        break;
+
+                    case ProjectileID.VenomArrow:
+                        if (masoProj)
+                        {
+                            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 480));
+                        }
+                        break;
+
+                    case ProjectileID.ChlorophyteArrow:
+                        if (masoProj)
+                        {
+                            target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
+                            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
+
+                            if (target.HasBuff(mod.BuffType("Infested")))
+                                target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(180, 360));
+                            else
+                                target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(90, 180));
+                        }
+                        break;
+
+                    case ProjectileID.RocketSkeleton:
+                        target.AddBuff(BuffID.Dazed, Main.rand.Next(30, 150));
+                        target.AddBuff(BuffID.Confused, Main.rand.Next(60, 300));
+                        break;
+
                     default:
                         break;
                 }
@@ -940,7 +988,7 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.CobaltEnchant && Soulcheck.GetValue("Cobalt Shards") && CanSplit && Array.IndexOf(noShard, projectile.type) <= -1 && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
+            if (modPlayer.CobaltEnchant && CanSplit && Soulcheck.GetValue("Cobalt Shards") && Array.IndexOf(noShard, projectile.type) <= -1 && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
             {
                 int damage = 50;
 
@@ -955,14 +1003,45 @@ namespace FargowiltasSouls.Projectiles
                 XWay(8, projectile.Center, ProjectileID.CrystalShard, 5, damage, 2f);
             }
 
-            if(Rotate && projectile.type == ProjectileID.Blizzard)
+            switch (projectile.type)
             {
-                modPlayer.IcicleCount--;
-            }
+                case ProjectileID.Blizzard:
+                    if (Rotate)
+                        modPlayer.IcicleCount--;
+                    break;
 
-            if(modPlayer.TerrariaSoul && Rotate && projectile.type != ProjectileID.Blizzard && projectile.type != ProjectileID.Bone)
-            {
-                modPlayer.OriSpawn = false;
+                case ProjectileID.Bone:
+                    break;
+
+                case ProjectileID.SniperBullet:
+                    Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
+
+                    for (int index1 = 0; index1 < 40; ++index1)
+                    {
+                        int index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 68, 0f, 0f, 0, new Color(), 1f);
+                        Main.dust[index2].noGravity = true;
+                        Main.dust[index2].velocity *= 1.5f;
+                        Main.dust[index2].scale *= 0.9f;
+                    }
+
+                    if (projectile.owner == Main.myPlayer)
+                    {
+                        for (int index = 0; index < 24; ++index)
+                        {
+                            float SpeedX = -projectile.velocity.X * Main.rand.Next(30, 60) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                            float SpeedY = -projectile.velocity.Y * Main.rand.Next(30, 60) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                            int p = Projectile.NewProjectile(projectile.position.X + SpeedX, projectile.position.Y + SpeedY, SpeedX, SpeedY, ProjectileID.CrystalShard, projectile.damage / 2, 0f, projectile.owner, 0f, 0f);
+                            Main.projectile[p].hostile = true;
+                            Main.projectile[p].friendly = false;
+                            Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().masoProj = true;
+                        }
+                    }
+                    break;
+
+                default:
+                    if (modPlayer.TerrariaSoul && Rotate)
+                        modPlayer.OriSpawn = false;
+                    break;
             }
         }
 
