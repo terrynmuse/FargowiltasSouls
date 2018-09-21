@@ -50,7 +50,14 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.HellwingBow);
 
                 /*
-                 * 
+                 danger dual shot
+                 champion trifecta
+                 shark storm
+                 slugger
+                 spud bomber
+                 web gun
+                 the zapper
+                 guano gunner
                  * */
             }
             else
