@@ -865,6 +865,11 @@ namespace FargowiltasSouls.Projectiles
                         }
                         break;
 
+                    case ProjectileID.PinkLaser:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer))
+                            target.AddBuff(mod.BuffType<ClippedWings>(), 15);
+                        break;
+
                     case ProjectileID.LostSoulHostile:
                         target.AddBuff(mod.BuffType<Unstable>(), Main.rand.Next(30, 120));
                         break;
