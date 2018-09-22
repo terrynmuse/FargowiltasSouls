@@ -1624,6 +1624,8 @@ namespace FargowiltasSouls.NPCs
                                 npc.localAI[0] = 1f;
                             }
                         }
+
+                        npc.position += npc.velocity * (1f - (float)npc.life / npc.lifeMax);
                         break;
 
                     case 37: //fishron
@@ -2077,7 +2079,7 @@ namespace FargowiltasSouls.NPCs
                             Counter = 0;
 
                             Vector2 velocity = new Vector2(7f, 0f).RotatedBy(npc.rotation + Math.PI / 2.0);
-                            Projectile.NewProjectile(npc.Center, velocity, ProjectileID.FlamesTrap, npc.damage / 5, 0f, Main.myPlayer);
+                            Projectile.NewProjectile(npc.Center, velocity, ProjectileID.FlamesTrap, npc.damage / 4, 0f, Main.myPlayer);
                             //Main.projectile[p].friendly = false;
 
                             Main.PlaySound(SoundID.Item34, npc.Center);
@@ -2138,7 +2140,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             Timer++;
 
-                            if (Timer >= 1200)
+                            if (Timer >= 1800)
                             {
                                 Timer = 0;
 
@@ -3780,7 +3782,9 @@ namespace FargowiltasSouls.NPCs
                         if (npc.ai[1] != 2f)
                         {
                             Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
-                            npc.life = 100;
+                            npc.life = npc.lifeMax / 1000;
+                            if (npc.life < 100)
+                                npc.life = 100;
 
                             npc.defDefense = 9999;
                             npc.defDamage = 1000;
@@ -4890,13 +4894,16 @@ namespace FargowiltasSouls.NPCs
                         goto case NPCID.PrimeCannon;
 
                     case NPCID.TheDestroyer:
-                        if (target.statLife < 200)
+                        target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 1200));
+                        target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(300, 1200));
+                        target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(300, 1200));
+
+                        if (target.statLife < 300)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by the Destroyer."), 999, 0);
                         goto case NPCID.TheDestroyerTail;
 
                     case NPCID.TheDestroyerBody:
                     case NPCID.TheDestroyerTail:
-                        target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 1200));
                         goto case NPCID.PrimeSaw;
 
                     case NPCID.SkeletronPrime:
