@@ -743,50 +743,50 @@ namespace FargowiltasSouls.NPCs
                         break;
 
 
-                    //case NPCID.TheDestroyer:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.DestroyerCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.DestroyerCount * .0125));
-                    //    break;
-                    //case NPCID.TheDestroyerBody:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.DestroyerCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.DestroyerCount * .0125));
-                    //    break;
-                    //case NPCID.TheDestroyerTail:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.DestroyerCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.DestroyerCount * .0125));
-                    //    break;
+                    case NPCID.TheDestroyer:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.DestroyerCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.DestroyerCount * .0125));
+                        break;
+                    case NPCID.TheDestroyerBody:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.DestroyerCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.DestroyerCount * .0125));
+                        break;
+                    case NPCID.TheDestroyerTail:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.DestroyerCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.DestroyerCount * .0125));
+                        break;
 
 
-                    //case NPCID.SkeletronPrime:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
-                    //    break;
-                    //case NPCID.PrimeCannon:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
-                    //    break;
-                    //case NPCID.PrimeLaser:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
-                    //    break;
-                    //case NPCID.PrimeSaw:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
-                    //    break;
-                    //case NPCID.PrimeVice:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
-                    //    break;
+                    case NPCID.SkeletronPrime:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
+                        break;
+                    case NPCID.PrimeCannon:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
+                        break;
+                    case NPCID.PrimeLaser:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
+                        break;
+                    case NPCID.PrimeSaw:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
+                        break;
+                    case NPCID.PrimeVice:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
+                        break;
 
 
-                    //case NPCID.Retinazer:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.TwinsCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.TwinsCount * .0125));
-                    //    break;
-                    //case NPCID.Spazmatism:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.TwinsCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.TwinsCount * .0125));
-                    //    break;
+                    case NPCID.Retinazer:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.TwinsCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.TwinsCount * .0125));
+                        break;
+                    case NPCID.Spazmatism:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.TwinsCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.TwinsCount * .0125));
+                        break;
 
 
                     case NPCID.Plantera:
@@ -824,16 +824,16 @@ namespace FargowiltasSouls.NPCs
                         break;
 
 
-                    //case NPCID.CultistBoss:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.CultistCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.CultistCount * .0125));
-                    //    break;
+                    case NPCID.CultistBoss:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.CultistCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.CultistCount * .0125));
+                        break;
 
 
-                    //case NPCID.DukeFishron:
-                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.FishronCount * .025));
-                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
-                    //    break;
+                    case NPCID.DukeFishron:
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.FishronCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
+                        break;
 
 
                     case NPCID.MoonLordCore:
@@ -4269,7 +4269,11 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 6: //desu body/tail
-                        if (projectile.maxPenetrate > 0)
+                        if (projectile.type == ProjectileID.HallowStar)
+                        {
+                            damage = 1;
+                        }
+                        else if (projectile.maxPenetrate > 0)
                         {
                             damage /= projectile.maxPenetrate;
                         }
@@ -4904,6 +4908,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.TheDestroyerBody:
                     case NPCID.TheDestroyerTail:
+                        target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 1200));
                         goto case NPCID.PrimeSaw;
 
                     case NPCID.SkeletronPrime:
