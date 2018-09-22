@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FargowiltasSouls.NPCs;
-using FargowiltasSouls.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,6 +9,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Graphics.Capture;
+using FargowiltasSouls.Buffs.Masomode;
+using FargowiltasSouls.Buffs.Souls;
+using FargowiltasSouls.Items;
+using FargowiltasSouls.NPCs;
+using FargowiltasSouls.Projectiles;
+using FargowiltasSouls.Projectiles.BossWeapons;
+using FargowiltasSouls.Projectiles.Souls;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -153,7 +158,7 @@ namespace FargowiltasSouls
         public bool GodEater;               //defense removed, endurance removed, colossal DOT
         public bool FlamesoftheUniverse;    //activates various vanilla debuffs
         public bool MutantNibble;           //disables potions, moon bite effect, feral bite effect, disables lifesteal
-        public int StatLifePrevious = -1;           //used for mutantNibble
+        public int StatLifePrevious = -1;   //used for mutantNibble
         public bool Asocial;                //disables minions, disables pets
         public bool WasAsocial;
         public bool HidePetToggle0 = true;
@@ -177,32 +182,64 @@ namespace FargowiltasSouls
 
         public override TagCompound Save()
         {
-            TagCompound tagCompound = new TagCompound();
-            foreach (KeyValuePair<String, Boolean> entry in Soulcheck.ToggleDict)
-            {
-                tagCompound.Add(entry.Key, entry.Value);
-            }
-            return tagCompound;
+            //TagCompound tagCompound = new TagCompound();
+            //foreach (KeyValuePair<String, Boolean> entry in Soulcheck.ToggleDict)
+            //{
+            //    tagCompound.Add(entry.Key, entry.Value);
+            //}
+            //return tagCompound;
             // return base.Save();
+
+            var FargoDisabledSouls = new List<string>();
+            foreach (KeyValuePair<string, bool> entry in Soulcheck.ToggleDict)
+            {
+                if (!entry.Value)
+                {
+                    FargoDisabledSouls.Add(entry.Key);
+                }
+            }
+
+            return new TagCompound {
+                {"FargoDisabledSouls", FargoDisabledSouls}
+            }; ;
         }
+
         public override void Load(TagCompound tag)
         {
-            foreach (KeyValuePair<String, Object> entry in tag)
+            var FargoDisabledSouls = tag.GetList<string>("FargoDisabledSouls");
+            foreach (string disabledSoul in FargoDisabledSouls)
             {
-                try
+                if (Soulcheck.ToggleDict.ContainsKey(disabledSoul))
                 {
-                    if (Soulcheck.ToggleDict.ContainsKey(entry.Key))
-                    {
-                        Soulcheck.ToggleDict[entry.Key] = (bool)entry.Value;
-                    }
-                    else
-                    {
-                        Soulcheck.ToggleDict.Add(entry.Key, (bool)entry.Value);
-                    }
+                    Soulcheck.ToggleDict[disabledSoul] = false;
                 }
-                catch (Exception e) { }
             }
-            base.Load(tag);
+
+            //foreach (KeyValuePair<string, bool> entry in Soulcheck.ToggleDict)
+            //{
+            //    if (disabledSouls.Contains(entry.Key))
+            //        Soulcheck.ToggleDict[entry.Key] = false;
+            //}
+            
+            //foreach (KeyValuePair<String, Object> entry in tag)
+            //{
+            //    try
+            //    {
+            //        if (Soulcheck.ToggleDict.ContainsKey(entry.Key))
+            //        {
+            //            Soulcheck.ToggleDict[entry.Key] = (bool)entry.Value;
+            //        }
+            //        else
+            //        {
+            //            Soulcheck.ToggleDict.Add(entry.Key, (bool)entry.Value);
+            //        }
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        ErrorLogger.Log(entry.Key + ": " + entry.Value + ": " + e);
+            //    }
+            //}
+            //base.Load(tag);
         }
 
 
@@ -341,7 +378,7 @@ namespace FargowiltasSouls
             Atrophied = false;
             Jammed = false;
 
-            tikiDebuffs[0] = mod.BuffType("SqueakyToy");
+            tikiDebuffs[0] = mod.BuffType<SqueakyToy>();
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -388,7 +425,7 @@ namespace FargowiltasSouls
                     player.buffImmune[BuffID.Bleeding] = false;
                     player.AddBuff(BuffID.Bleeding, 2);
                 }
-                
+
                 /* pseudo memes
                 
                 if (player fell from big height && !wings)
@@ -403,12 +440,12 @@ namespace FargowiltasSouls
                 
                 if(player.heldItem.type == ItemID.RodofDiscord && player.HasBuff(BuffID.ChaosState) && try to telepoert again)
                 {
-                player.AddBuff(mod.BuffType("Berserked"));
+                player.AddBuff(mod.BuffType<Berserked>());
                 }
                 
                 if(player.wet && !player.neptune or whatever else)
                 {
-                player.AddBuff(mod.BuffType("Lethargic"));
+                player.AddBuff(mod.BuffType<Lethargic>());
                 }
                 
                 if(player.stickybreak > 0 && player.spidercave)
@@ -564,7 +601,7 @@ namespace FargowiltasSouls
         public override void SetupStartInventory(IList<Item> items)
         {
             Item item = new Item();
-            item.SetDefaults(mod.ItemType("Masochist"));
+            item.SetDefaults(mod.ItemType<Masochist>());
             items.Add(item);
         }
 
@@ -846,7 +883,7 @@ namespace FargowiltasSouls
 
             if (LeadEnchant && Main.rand.Next(5) == 0)
             {
-                target.AddBuff(mod.BuffType("LeadPoison"), 120);
+                target.AddBuff(mod.BuffType<LeadPoison>(), 120);
             }
 
             if (TikiEnchant && Soulcheck.GetValue("Tiki Debuffs") && Main.rand.Next(3) == 0)
@@ -856,13 +893,13 @@ namespace FargowiltasSouls
 
             if (SolarEnchant && Main.rand.Next(4) == 0)
             {
-                target.AddBuff(mod.BuffType("SolarFlare"), 120);
+                target.AddBuff(mod.BuffType<SolarFlare>(), 120);
             }
 
             //full moon
             if (RedEnchant && Soulcheck.GetValue("Red Riding Super Bleed") && ((proj.ranged && Main.moonPhase == 0) || (WillForce && Main.rand.Next(5) == 0)))
             {
-                target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
+                target.AddBuff(mod.BuffType<SuperBleed>(), 240, true);
             }
 
             if (Array.IndexOf(wetProj, proj.type) > -1)
@@ -877,7 +914,7 @@ namespace FargowiltasSouls
 
             if (SpiderEnchant && !TerrariaSoul && Soulcheck.GetValue("Spider Swarm") && Main.rand.Next(5) == 0 && (proj.minion || LifeForce))
             {
-                target.AddBuff(mod.BuffType("Swarmed"), 600);
+                target.AddBuff(mod.BuffType<Swarmed>(), 600);
             }
 
             if (ObsidianEnchant)
@@ -885,9 +922,9 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.OnFire, 600);
             }
 
-            if (UniverseEffect)
+            if (UniverseEffect && !target.townNPC)
             {
-                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
+                target.AddBuff(mod.BuffType<Buffs.Masomode.FlamesoftheUniverse>(), 240, true);
             }
 
             if (GoldEnchant)
@@ -930,12 +967,12 @@ namespace FargowiltasSouls
 
             if (LeadEnchant && Main.rand.Next(5) == 0)
             {
-                target.AddBuff(mod.BuffType("LeadPoison"), 180);
+                target.AddBuff(mod.BuffType<LeadPoison>(), 180);
             }
 
             if (SolarEnchant && Main.rand.Next(4) == 0)
             {
-                target.AddBuff(mod.BuffType("SolarFlare"), 300);
+                target.AddBuff(mod.BuffType<SolarFlare>(), 300);
             }
 
             if (TikiEnchant && Soulcheck.GetValue("Tiki Debuffs") && Main.rand.Next(3) == 0)
@@ -945,7 +982,7 @@ namespace FargowiltasSouls
 
             if ((RedEnchant || WillForce) && Soulcheck.GetValue("Red Riding Super Bleed") && Main.rand.Next(5) == 0)
             {
-                target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
+                target.AddBuff(mod.BuffType<SuperBleed>(), 240, true);
             }
 
             if (QueenStinger)
@@ -955,7 +992,7 @@ namespace FargowiltasSouls
 
             if (SpiderEnchant && !TerrariaSoul && Soulcheck.GetValue("Spider Swarm") && Main.rand.Next(5) == 0 && (item.summon || LifeForce))
             {
-                target.AddBuff(mod.BuffType("Swarmed"), 600);
+                target.AddBuff(mod.BuffType<Swarmed>(), 600);
             }
 
             if (ObsidianEnchant)
@@ -965,7 +1002,7 @@ namespace FargowiltasSouls
 
             if (UniverseEffect)
             {
-                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
+                target.AddBuff(mod.BuffType<Buffs.Masomode.FlamesoftheUniverse>(), 240, true);
             }
 
             if (GoldEnchant)
@@ -1006,7 +1043,7 @@ namespace FargowiltasSouls
                 player.immune = false;
             }
 
-            if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian") && (proj.ranged || ShadowForce || TerrariaSoul) && proj.type != mod.ProjectileType("DungeonGuardian"))
+            if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian") && (proj.ranged || ShadowForce || TerrariaSoul) && proj.type != mod.ProjectileType<DungeonGuardian>())
             {
                 necroCD = 1200;
                 float screenX = Main.screenPosition.X;
@@ -1026,7 +1063,7 @@ namespace FargowiltasSouls
                 num6 = num5 / num6;
                 velocityX *= num6;
                 velocityY *= num6;
-                Projectile p = Projectile.NewProjectileDirect(new Vector2(screenX, screenY), new Vector2(velocityX, velocityY), mod.ProjectileType("DungeonGuardian"), 500, 0f, player.whoAmI, 0, 120);
+                Projectile p = Projectile.NewProjectileDirect(new Vector2(screenX, screenY), new Vector2(velocityX, velocityY), mod.ProjectileType<DungeonGuardian>(), 500, 0f, player.whoAmI, 0, 120);
                 p.penetrate = 1;
                 p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
@@ -1192,8 +1229,8 @@ namespace FargowiltasSouls
 
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
 
-                Projectile[] projs = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 5, (int)(dmg * player.magicDamage), 5f);
-                Projectile[] projs2 = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
+                Projectile[] projs = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType<SporeBoom>(), 5, (int)(dmg * player.magicDamage), 5f);
+                Projectile[] projs2 = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType<SporeBoom>(), 2.5f, 0, 0f);
 
                 for(int i = 0; i < projs.Length; i++)
                 {
@@ -1240,22 +1277,22 @@ namespace FargowiltasSouls
 
             if (MoltenEnchant)
             {
-                Projectile p = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, mod.ProjectileType("Explosion"), (int)(500 * player.meleeDamage), 0f, Main.myPlayer);
+                Projectile p = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, mod.ProjectileType<Explosion>(), (int)(500 * player.meleeDamage), 0f, Main.myPlayer);
 
                 p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
 
-            if (TerrariaSoul && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
+            if (TerrariaSoul && player.FindBuffIndex(mod.BuffType<Revived>()) == -1)
             {
                 player.statLife = 200;
                 player.HealEffect(200);
                 player.immune = true;
                 player.immuneTime = player.longInvince ? 180 : 120;
                 Main.NewText("You've been revived!", 175, 75);
-                player.AddBuff(mod.BuffType("Revived"), 14400);
+                player.AddBuff(mod.BuffType<Revived>(), 14400);
                 retVal = false;
             }
-            else if (FossilEnchant && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
+            else if (FossilEnchant && player.FindBuffIndex(mod.BuffType<Revived>()) == -1)
             {
                 player.statLife = 20;
                 player.HealEffect(20);
@@ -1263,7 +1300,7 @@ namespace FargowiltasSouls
                 player.immuneTime = player.longInvince ? 600 : 400;
                 FossilBones = true;
                 Main.NewText("You've been revived!", 175, 75);
-                player.AddBuff(mod.BuffType("Revived"), 18000);
+                player.AddBuff(mod.BuffType<Revived>(), 18000);
                 retVal = false;
             }
             
@@ -1413,7 +1450,7 @@ namespace FargowiltasSouls
 
         private int InfestedExtraDot()
         {
-            int buffIndex = player.FindBuffIndex(mod.BuffType("Infested"));
+            int buffIndex = player.FindBuffIndex(mod.BuffType<Infested>());
 
             if (buffIndex == -1)
                 return 0;
@@ -1751,7 +1788,7 @@ namespace FargowiltasSouls
 
         public void ChloroEffect(bool hideVisual, int dmg)
         {
-            AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
+            AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType<Chlorofuck>(), dmg, 10f);
             FlowerBoots();
            
             if (TerrariaSoul) return;
@@ -1789,7 +1826,7 @@ namespace FargowiltasSouls
                     for (int j = 0; j < 200; j++)
                     {
                         NPC npc = Main.npc[j];
-                        if (npc.active && npc != target && !npc.HasBuff(mod.BuffType("Shock")) && npc.Distance(target.Center) < closestDist && npc.Distance(target.Center) >= 50)
+                        if (npc.active && npc != target && !npc.HasBuff(mod.BuffType<Shock>()) && npc.Distance(target.Center) < closestDist && npc.Distance(target.Center) >= 50)
                         {
                             closestNPC = npc;
                             break;
@@ -1809,7 +1846,7 @@ namespace FargowiltasSouls
                         p.timeLeft = 60;
                         p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
 
-                        target.AddBuff(mod.BuffType("Shock"), 60);
+                        target.AddBuff(mod.BuffType<Shock>(), 60);
                     }
                     else
                     {
@@ -2025,7 +2062,7 @@ namespace FargowiltasSouls
         public void HallowEffect(bool hideVisual, int dmg)
         {
             HallowEnchant = true;
-            AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(dmg * player.minionDamage), 0f);
+            AddMinion("Enchanted Sword Familiar", mod.ProjectileType<Projectiles.Minions.HallowSword>(), (int)(dmg * player.minionDamage), 0f);
 
             //reflect proj
             if (Soulcheck.GetValue("Hallowed Shield"))
@@ -2338,7 +2375,7 @@ namespace FargowiltasSouls
             {
                 if (Vector2.Distance(p.Center, player.Center) <= distance)
                 {
-                    player.AddBuff(mod.BuffType("FirstStrike"), 300);
+                    player.AddBuff(mod.BuffType<FirstStrike>(), 300);
                     break;
                 }
             }
@@ -2883,7 +2920,7 @@ namespace FargowiltasSouls
 
             if (Soulcheck.GetValue("Turtle Shell Buff") && IsStandingStill && !player.controlUseItem)
             {
-                player.AddBuff(mod.BuffType("ShellHide"), 2);
+                player.AddBuff(mod.BuffType<ShellHide>(), 2);
             }
 
             if (TerrariaSoul) return;
@@ -2918,7 +2955,7 @@ namespace FargowiltasSouls
 
                     if(Soulcheck.GetValue("Vortex Voids") && vortexCD == 0 && VortexStealth)
                     {
-                        int p = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("Void"), 60, 5f, player.whoAmI);
+                        int p = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType<FargowiltasSouls.Projectiles.Void>(), 60, 5f, player.whoAmI);
 
                         Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                         vortexCD = 1200;
