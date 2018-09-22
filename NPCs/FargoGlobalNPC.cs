@@ -4269,7 +4269,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 6: //desu body/tail
-                        if (projectile.type == ProjectileID.HallowStar)
+                        if (projectile.type == ProjectileID.HallowStar || projectile.type == ProjectileID.CrystalShard)
                         {
                             damage = 1;
                         }
