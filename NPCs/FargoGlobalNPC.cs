@@ -1247,6 +1247,55 @@ namespace FargowiltasSouls.NPCs
                     case 24: //retinazer
                         retiBoss = npc.whoAmI;
 
+                        if (!masoBool)
+                        {
+                            masoBool = true;
+                            npc.ai[0] = 1f;
+                            npc.ai[1] = 0.0f;
+                            npc.ai[2] = 0.0f;
+                            npc.ai[3] = 0.0f;
+                            npc.netUpdate = true;
+                        }
+
+                        //laser code idfk
+                        Counter++;
+                        if (Counter == 600 && Main.netMode != 1 && npc.HasPlayerTarget)
+                        {
+                            Vector2 vector200 = Main.player[npc.target].Center - npc.Center;
+                            vector200.Normalize();
+                            float num1225 = -1f;
+                            if (vector200.X < 0f)
+                            {
+                                num1225 = 1f;
+                            }
+                            vector200 = vector200.RotatedBy(-num1225 * 1.04719755f, default(Vector2));
+                            Projectile.NewProjectile(npc.Center, vector200, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathray>(), npc.damage / 2, 0f, Main.myPlayer, num1225 * 0.0104719755f, npc.whoAmI);
+                            npc.localAI[3] = (vector200.ToRotation() + 2.0943951f) * num1225;
+                            npc.netUpdate = true;
+                        }
+                        else if (Counter > 780)
+                        {
+                            npc.localAI[2] += 0.05f;
+                            if (npc.localAI[2] > 1f)
+                            {
+                                npc.localAI[2] = 1f;
+                            }
+                            float num1226 = (npc.localAI[3] >= 0f).ToDirectionInt();
+                            float num1227 = npc.localAI[3];
+                            if (num1227 < 0f)
+                            {
+                                num1227 *= -1f;
+                            }
+                            num1227 += -2.0943951f;
+                            num1227 += num1226 * 6.28318548f / 120f;
+                            npc.localAI[2] = num1227;
+                        }
+                        else if (Counter >= 780)
+                        {
+                            Counter = 0;
+                            npc.localAI[2] = 0;
+                        }
+
                         if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
                         {
                             Timer--;
@@ -1264,8 +1313,18 @@ namespace FargowiltasSouls.NPCs
                     case 25: //spazmatism
                         spazBoss = npc.whoAmI;
 
+                        if (!masoBool)
+                        {
+                            masoBool = true;
+                            npc.ai[0] = 1f;
+                            npc.ai[1] = 0.0f;
+                            npc.ai[2] = 0.0f;
+                            npc.ai[3] = 0.0f;
+                            npc.netUpdate = true;
+                        }
+
                         Counter++;
-                        if (Counter >= 5)
+                        if (Counter >= 4)
                         {
                             Counter = 0;
 
@@ -2122,7 +2181,11 @@ namespace FargowiltasSouls.NPCs
 
                         if (npc.ai[1] == 1f && npc.ai[2] > 2f)
                         {
-                            npc.position += npc.velocity * 4f;
+                            if (npc.velocity.Length() < 10f)
+                            {
+                                npc.velocity.Normalize();
+                                npc.velocity *= 10f;
+                            }
                         }
 
                         if (Counter == 0)
