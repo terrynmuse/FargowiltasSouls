@@ -53,22 +53,40 @@ Automatically use mana potions when needed");
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-            /*
-            shade band
-            */
-            
-            
-            
-            
+                /*
+                shade band
+
+
+                    twins ire
+                    terra staff
+                    spectral blade
+                    nuclear fury
+                    lightning staff
+                    time gate
+                    spell book stalagmite
+                    cats eye great staff
+                    god killer
+                    prism staff
+                    ancient light
+
+                    SoU
+                    northern light
+                    almanac of fury
+
+                */
+
+
+
+
                 recipe.AddIngredient(ManaFlower);
                 recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
                 recipe.AddIngredient(CelestialEmblem);
                 recipe.AddIngredient(GoldenShower);
                 recipe.AddIngredient(RainbowGun);
-                recipe.AddIngredient(MagnetSphere);
+                //recipe.AddIngredient(MagnetSphere);
                 recipe.AddIngredient(ApprenticeStaffT3);
-                recipe.AddIngredient(RazorbladeTyphoon);
+                //recipe.AddIngredient(RazorbladeTyphoon);
                 recipe.AddIngredient(BatScepter);
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);

@@ -40,6 +40,11 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.WarriorEmblem);
+
+
+
+
+
                 recipe.AddIngredient(ItemID.ZombieArm);
                 recipe.AddIngredient(ItemID.Trident);
                 recipe.AddIngredient(ItemID.ChainKnife);
@@ -50,7 +55,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.Cascade);
 
                 /*
-                 * 
+                 * drenched dirk
+                 * whip
+                 * sanguine/nocturne yoyo
+                 * whirlpool saber
+                 * bellerose
+                 * red hourglass
+                 * energy storm partizan
                  * */
             }
             else

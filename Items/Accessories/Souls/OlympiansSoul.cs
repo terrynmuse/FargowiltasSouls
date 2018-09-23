@@ -48,6 +48,21 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             spartan sandles
             bone grip
             complete set
+
+            volt tomahawk
+            hot pot
+            cryo fang
+            soul cleaver
+            spark taser
+            pharoahs slab
+            plasma vial
+            terrarium ripple knife
+            shade dagger
+            cosmic dagger
+
+
+            sou
+            deity trefork
             
             */
             }

@@ -72,6 +72,20 @@ Grants the effects of the Yoyo Bag");
                 /*
                  crystal spear tip
                  cursed flail core
+
+                wyvern slayer
+                blitzzard
+                primes fury
+                spearmint
+                surtrs sword
+                poseidon charge
+                terrarium hyper disk
+                Absinthe Fury
+                ebony tail
+
+            SoU
+            terarians last knife
+            ocean judgement
                  * */
             }
             else

@@ -70,7 +70,7 @@ Increases view range for guns (Right click to zoom out)");
                  launch jumper
                  hand cannon
                  terrarium bomber
-                 ss devastator
+                 scorn
                  funngat
                  vega phaser
                  

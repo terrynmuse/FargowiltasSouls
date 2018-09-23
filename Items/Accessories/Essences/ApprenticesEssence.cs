@@ -50,9 +50,14 @@ Increases your maximum mana by 50");
 
                 /*
                  * magik staff
+                 * jelly pond wand
+                 * spell book blizzard
+                 * spell book wind gust
+                 * particle whip
+                 * spine breaker
                  * magic conch
                  * grave buster
-                 * dark tome
+                 * 
                  * */
             }
             else
