@@ -426,33 +426,89 @@ namespace FargowiltasSouls
                     player.AddBuff(BuffID.Bleeding, 2);
                 }
 
+                //falling gives you dazed and confused even with protection. wings save you
+                if (player.velocity.Y == 0f)
+                {
+                    bool wings = false;
+                    for (int n = 3; n < 10; n++)
+                    {
+                        if (player.armor[n].stack > 0 && player.armor[n].wingSlot > -1)
+                        {
+                            wings = true;
+                            break;
+                        }
+                    }
+
+                    if(!wings)
+                    {
+                        int num21 = 25;
+                        num21 += player.extraFall;
+                        int num22 = (int)(player.position.Y / 16f) - player.fallStart;
+                        if (player.mount.CanFly)
+                        {
+                            num22 = 0;
+                        }
+                        if (player.mount.Cart && Minecart.OnTrack(player.position, player.width, player.height))
+                        {
+                            num22 = 0;
+                        }
+                        if (player.mount.Type == 1)
+                        {
+                            num22 = 0;
+                        }
+                        player.mount.FatigueRecovery();
+
+                        if (((player.gravDir == 1f && num22 > num21) || (player.gravDir == -1f && num22 < -num21)))
+                        {
+                            player.immune = false;
+                            int dmg = (int)(num22 * player.gravDir - num21) * 10;
+                            if (player.mount.Active)
+                            {
+                                dmg = (int)(dmg * player.mount.FallDamage);
+                            }
+                            player.AddBuff(BuffID.Dazed, dmg);
+                            player.AddBuff(BuffID.Confused, dmg);
+                        }
+                        player.fallStart = (int)(player.position.Y / 16f);
+                    } 
+                }
+
+                if (player.ZoneUnderworldHeight && !player.fireWalk)
+                {
+                    player.AddBuff(BuffID.OnFire, 2);
+                }
+
+                if (player.wet && !(player.accFlipper || player.gills))
+                {
+                    player.AddBuff(mod.BuffType<Lethargic>(), 2);
+                }
+
+                int tileX = (int)Main.player[player.whoAmI].position.X / 16;
+                int tileY = (int)Main.player[player.whoAmI].position.Y / 16;
+                Tile currentTile = Framing.GetTileSafely(tileX, tileY);
+                if (currentTile.wall == WallID.SpiderUnsafe && player.stickyBreak > 0)
+                {
+                    player.AddBuff(BuffID.Webbed, 30);
+                    //player.stickyBreak = 1000;
+
+                    Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
+                    int num3 = (int)vector.X;
+                    int num4 = (int)vector.Y;
+                    WorldGen.KillTile(num3, num4, false, false, false);
+                    if (Main.netMode == 1 && !Main.tile[num3, num4].active() && Main.netMode == 1)
+                    {
+                        NetMessage.SendData(17, -1, -1, null, 0, (float)num3, (float)num4, 0f, 0, 0, 0);
+                    }
+                }
+
                 /* pseudo memes
-                
-                if (player fell from big height && !wings)
-                {
-                player.addbuff(BuffID.Dazed);
-                }
-                
-                if(player.hell && !player.obsidian)
-                {
-                player.AddBuff(BuffID.OnFire);
-                }
-                
+               
+               
                 if(player.heldItem.type == ItemID.RodofDiscord && player.HasBuff(BuffID.ChaosState) && try to telepoert again)
                 {
                 player.AddBuff(mod.BuffType<Berserked>());
                 }
                 
-                if(player.wet && !player.neptune or whatever else)
-                {
-                player.AddBuff(mod.BuffType<Lethargic>());
-                }
-                
-                if(player.stickybreak > 0 && player.spidercave)
-                {
-                player.AddBuff(BuffID.Webbed);
-                }
-
 
 
                 
