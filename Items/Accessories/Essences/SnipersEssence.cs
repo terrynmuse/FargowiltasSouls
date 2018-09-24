@@ -51,13 +51,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
                 /*
                  danger dual shot
-                 champion trifecta
+                 champion trifecta //champion
                  shark storm
                  slugger
                  spud bomber
                  web gun
                  the zapper
-                 guano gunner
+                 guano gunner //viscount
                  * */
             }
             else
