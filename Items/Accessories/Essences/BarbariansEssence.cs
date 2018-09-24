@@ -61,7 +61,8 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                  * whirlpool saber
                  * bellerose
                  * red hourglass
-                 * energy storm partizan
+                 * energy storm partizan //energy storm
+                 giant glowstick //jelly
                  * */
             }
             else
