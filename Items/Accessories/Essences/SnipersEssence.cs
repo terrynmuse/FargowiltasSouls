@@ -40,25 +40,19 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.RangerEmblem);
-                recipe.AddIngredient(ItemID.RedRyder);
                 recipe.AddIngredient(ItemID.PainterPaintballGun);
                 recipe.AddIngredient(ItemID.SnowballCannon);
+                //web gun
                 recipe.AddIngredient(ItemID.Harpoon);
                 recipe.AddIngredient(ItemID.Musket);
-                recipe.AddIngredient(ItemID.Boomstick);
+                //guano gunner //viscount
+                //the zapper
+                //shark storm
+                //slugger
                 recipe.AddIngredient(ItemID.BeesKnees);
+                //marine launcher
+                //champion trifecta //champion
                 recipe.AddIngredient(ItemID.HellwingBow);
-
-                /*
-                 danger dual shot
-                 champion trifecta //champion
-                 shark storm
-                 slugger
-                 spud bomber
-                 web gun
-                 the zapper
-                 guano gunner //viscount
-                 * */
             }
             else
             {
