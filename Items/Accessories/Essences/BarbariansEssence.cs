@@ -41,29 +41,19 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 //just thorium
                 recipe.AddIngredient(ItemID.WarriorEmblem);
 
-
-
-
-
                 recipe.AddIngredient(ItemID.ZombieArm);
                 recipe.AddIngredient(ItemID.Trident);
                 recipe.AddIngredient(ItemID.ChainKnife);
+                //red hourglass
                 recipe.AddIngredient(ItemID.StylistKilLaKillScissorsIWish);
                 recipe.AddIngredient(ItemID.IceBlade);
+                //bellerose
                 recipe.AddIngredient(ItemID.Starfury);
+                //drenched dirk
+                //whip
                 recipe.AddIngredient(ItemID.BeeKeeper);
-                recipe.AddIngredient(ItemID.Cascade);
-
-                /*
-                 * drenched dirk
-                 * whip
-                 * sanguine/nocturne yoyo
-                 * whirlpool saber
-                 * bellerose
-                 * red hourglass
-                 * energy storm partizan //energy storm
-                 giant glowstick //jelly
-                 * */
+                //energy storm partizan //energy storm
+                //sanguine/nocturne yoyo
             }
             else
             {
