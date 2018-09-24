@@ -730,7 +730,7 @@ namespace FargowiltasSouls
                 multiplier *= 1.2f;
             }
 
-            if (UniverseEffect)
+            if (UniverseEffect && Soulcheck.GetValue("Universe Speedup"))
             {
                 multiplier *= 1.5f;
             }

@@ -72,6 +72,8 @@ namespace FargowiltasSouls
 
             #endregion
 
+            ["Universe Speedup"] = new Color(81, 181, 113),
+
             ["Spore Sac"] = new Color(81, 181, 113),
             ["Super Speed"] = new Color(81, 181, 113),
             ["Melee Speed"] = new Color(81, 181, 113),
@@ -122,7 +124,7 @@ namespace FargowiltasSouls
         {
             bool ret;
             ToggleDict.TryGetValue(buff, out ret);
-            ErrorLogger.Log(buff + ": " + ret);
+            //ErrorLogger.Log(buff + ": " + ret);
             return ret;
         }
 
