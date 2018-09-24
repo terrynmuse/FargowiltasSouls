@@ -43,23 +43,22 @@ Increases your maximum mana by 50");
                 
                 
                 recipe.AddIngredient(ItemID.WandofSparking);
+                //grave buster
                 recipe.AddIngredient(ItemID.Vilethorn);
                 recipe.AddIngredient(ItemID.CrimsonRod);
+                //jelly pond wand //jelly
+                //magic conch
                 recipe.AddIngredient(ItemID.WaterBolt);
                 recipe.AddIngredient(ItemID.BookofSkulls);
                 recipe.AddIngredient(ItemID.MagicMissile);
+                //particle whip //saucer
                 recipe.AddIngredient(ItemID.Flamelash);
+                //spine breaker
+                //magik staff
 
                 /*
-                 * magik staff
-                 * jelly pond wand //jelly
                  * spell book blizzard
                  * spell book wind gust
-                 * particle whip //saucer
-                 * spine breaker
-                 * magic conch
-                 * grave buster
-                 * 
                  * */
             }
             else
