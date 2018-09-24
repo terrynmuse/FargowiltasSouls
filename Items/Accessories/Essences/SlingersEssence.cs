@@ -39,28 +39,20 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
             /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                //just thorium
+                //ninja emblem
+                //desert wind rune
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("WoodenYoyoThrown"));
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("BloodyMacheteThrown"));
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("IceBoomerangThrown"));
-                recipe.AddIngredient(ItemID.MolotovCocktail, 99);
+                //goblin war spear
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("MeatballThrown"));
+                //sea ninja star
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ThornChakramThrown"));
                 recipe.AddIngredient(ItemID.BoneGlove);
                 recipe.AddIngredient(ItemID.BlueMoon);
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlamarangThrown"));
-
-            ninja emblem
-            champion god hand // champion
-            granite throwing axes
-            goblin war spear
-            gauss flinger //saucer
-            pod bomb
-            severed hand
-            sea ninja star
-
-
-                
+                //champion god hand // champion
+                //gauss flinger //saucer
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlamarangThrown")); 
             }
             else if (Fargowiltas.Instance.FargosLoaded)
             {
