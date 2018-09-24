@@ -40,25 +40,20 @@ Increases your max number of sentries by 1");
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.SummonerEmblem);
-                //recipe.AddIngredient(ItemID.SlimeStaff);
+                
+                //living wood acorn
+                //starfish wand
+                //rosy slime staff
+                //hatchling staff //thunder bird
+                //meatball staff
+                //prehistoric amber staff
+                //nano clam cane
+                //viscount cane //viscount
                 recipe.AddIngredient(ItemID.HornetStaff);
+                //taboo wand
                 recipe.AddIngredient(ItemID.ImpStaff);
                 recipe.AddIngredient(ItemID.DD2BallistraTowerT1Popper);
-                //recipe.AddIngredient(ItemID.DD2ExplosiveTrapT1Popper);
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT1Popper);
-                //recipe.AddIngredient(ItemID.DD2LightningAuraT1Popper);
-
-                /*
-                 rosy slime staff
-                 hatchling staff //thunder bird
-                 living wood acorn
-                 nano clam cane
-                 taboo wand
-                 prehistoric amber staff
-                 starfish wand
-                 viscount cane //viscount
-                 meatball staff
-                 */
             }
             else
             {
