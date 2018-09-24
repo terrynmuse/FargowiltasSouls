@@ -51,7 +51,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             volt tomahawk
             hot pot
-            cryo fang
+            cryo fang //borean
             soul cleaver
             spark taser
             pharoahs slab
