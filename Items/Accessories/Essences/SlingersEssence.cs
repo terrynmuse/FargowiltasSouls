@@ -37,7 +37,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("WoodenYoyoThrown"));
@@ -50,9 +50,17 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.BlueMoon);
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlamarangThrown"));
 
-                /*
-                 * 
-                 * */
+            ninja emblem
+            champion god hand
+            granite throwing axes
+            goblin war spear
+            gauss flinger
+            pod bomb
+            severed hand
+            sea ninja star
+
+
+                
             }
             else if (Fargowiltas.Instance.FargosLoaded)
             {
@@ -70,8 +78,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             else
             {
                 recipe.AddIngredient(ItemID.BlueMoon);
-            }
+            }*/
 
+            recipe.AddIngredient(ItemID.BlueMoon);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();

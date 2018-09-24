@@ -47,6 +47,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             recipe.AddIngredient(null, "FlightMasterySoul");
             recipe.AddIngredient(null, "WorldShaperSoul");
             recipe.AddIngredient(null, "TrawlerSoul");
+            
+            /*
+            omega core
+            */
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

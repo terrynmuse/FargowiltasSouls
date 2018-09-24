@@ -51,9 +51,7 @@ Increased minion knockback");
                 recipe.AddIngredient(ItemID.OpticStaff);
                 recipe.AddIngredient(ItemID.DeadlySphereStaff);
                 recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
-                recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
-                recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
                 recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
                 recipe.AddIngredient(ItemID.TempestStaff);
                 recipe.AddIngredient(ItemID.RavenStaff);
@@ -61,7 +59,20 @@ Increased minion knockback");
                 recipe.AddIngredient(ItemID.MoonlordTurretStaff);
 
                 /*
-                 * 
+                 prehistoric arachnid
+                 phylactery
+                 yumas pendent
+
+                hail bomber
+                true silver fang
+                mortar staff
+                the incubator
+                black cane
+                 the butterfly staff
+                 hive mind
+
+            sou
+            banner molten
                  * */
             }
             else

@@ -73,6 +73,12 @@ Releases bees when damaged");
             recipe.AddIngredient(ItemID.WingsVortex);
             recipe.AddIngredient(ItemID.WingsNebula);
             recipe.AddIngredient(ItemID.WingsSolar);
+            
+            /*thorium
+            balladeers turbo tuba
+            celestial carrier
+            terrarium wings
+            */
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

@@ -62,7 +62,21 @@ Increases view range for guns (Right click to zoom out)");
                 recipe.AddIngredient(ItemID.FireworksLauncher);
 
                 /*
-                 * 
+                 terra bow
+                 destroyers rage
+                 shadowflare bow
+                 nova rifle
+                 freeze ray
+                 launch jumper
+                 hand cannon
+                 terrarium bomber
+                 scorn
+                 funngat
+                 vega phaser
+                 
+                 prob in SoU
+                 quasar flare
+                 wyrm decimator 
                  * */
             }
             else

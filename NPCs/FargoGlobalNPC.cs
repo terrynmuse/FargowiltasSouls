@@ -2690,6 +2690,37 @@ namespace FargowiltasSouls.NPCs
 
                     /* pseudo memes
 
+                    case pixies:
+                    if player is close by && counter == blah
+                    PlaySound("HeyListen")
+
+                    case unicorn
+                    if counter == blah
+                    NewProjectile(Rainbow gun, 0 velocity) //trail of rainbow, possibly adjust rotation if it jumps or whatever?
+
+                     case moth:
+                    Shoot(Spores)
+
+                    case flying fish:
+                    swarm spawn
+
+                    case umbrealla slime:
+                    fall slow and explodes water EVERYWHERE instantly flooding a world
+
+                    case nimbus:
+                    Shoot(Lightning)
+
+                    case bats: swarm spawn
+
+                    case vulture: 
+                    swarm if player.life < 25%
+
+                    case spike ball: 
+                    some AI = faster speed ?
+
+
+
+
                     case harpy:
                     summon tornado, cthulunado recolor without shark spawn
 
@@ -2713,41 +2744,9 @@ namespace FargowiltasSouls.NPCs
                     case angry bones:
                     count(NPCID.AngryBones) something something 
 
-                    case bats: swarm spawn
-
-                    case vulture: 
-                    swarm if player.life < 25%
-
-                    case spike ball: 
-                    some AI = faster speed ?
-
-                    case pixies:
-                    if player is close by && counter == blah
-                    PlaySound("HeyListen")
-
-                    case unicorn
-                    if counter == blah
-                    NewProjectile(Rainbow gun, 0 velocity) //trail of rainbow, possibly adjust rotation if it jumps or whatever?
-
-                    case destroyer head: 
-                    ai = wyvern ai
-
                     case turtles: 
                     if frame = in shell 
                     reflect the proj
-
-                    case moth:
-                    Shoot(Spores)
-
-                    case flying fish:
-                    swarm spawn
-
-                    case umbrealla slime:
-                    fall slow and explodes water EVERYWHERE instantly flooding a world
-
-                    case nimbus:
-                    Shoot(Lightning)
-
 
                     */
 

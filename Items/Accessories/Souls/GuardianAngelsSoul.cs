@@ -96,10 +96,17 @@ Taking fatal damage unleashes your inner spirit");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            /*
+            equalizer
+            medical bag
+            soul guard
+            demon tongue
+            aloe leaf
+            */
+
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("ArchDemonCurse"));
             recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SupportSash"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TurnUndead"));
             recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AscensionStatuette"));
             recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("Wynebgwrthucher"));
             recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("ArchangelHeart"));

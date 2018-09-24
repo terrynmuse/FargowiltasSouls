@@ -90,6 +90,28 @@ Allows the player to dash into the enemy");
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
+            /*
+            terrarium particle sprinters
+            air walkers
+            weighted winglets
+            survivalist boots
+            spring steps
+            
+            
+            
+                recipe.AddIngredient(ItemID.ArcticDivingGear);
+                recipe.AddIngredient(ItemID.FrogLeg);
+                recipe.AddIngredient(ItemID.BundleofBalloons);
+
+
+                recipe.AddIngredient(ItemID.SlimySaddle);
+                recipe.AddIngredient(ItemID.FuzzyCarrot);
+                recipe.AddIngredient(ItemID.BlessedApple);
+                recipe.AddIngredient(ItemID.AncientHorn);
+                recipe.AddIngredient(ItemID.ShrimpyTruffle);
+                recipe.AddIngredient(ItemID.ReindeerBells);
+                recipe.AddIngredient(ItemID.BrainScrambler);
+            */
             }
             else
             {
