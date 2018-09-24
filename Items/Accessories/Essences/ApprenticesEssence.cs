@@ -41,11 +41,11 @@ Increases your maximum mana by 50");
                 //just thorium
                 recipe.AddIngredient(ItemID.SorcererEmblem);
                 
-                
                 recipe.AddIngredient(ItemID.WandofSparking);
+                //spell book blizzard
+                //spell book wind gust
                 //grave buster
                 recipe.AddIngredient(ItemID.Vilethorn);
-                recipe.AddIngredient(ItemID.CrimsonRod);
                 //jelly pond wand //jelly
                 //magic conch
                 recipe.AddIngredient(ItemID.WaterBolt);
@@ -55,11 +55,6 @@ Increases your maximum mana by 50");
                 recipe.AddIngredient(ItemID.Flamelash);
                 //spine breaker
                 //magik staff
-
-                /*
-                 * spell book blizzard
-                 * spell book wind gust
-                 * */
             }
             else
             {
