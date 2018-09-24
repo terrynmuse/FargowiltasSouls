@@ -51,10 +51,10 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlamarangThrown"));
 
             ninja emblem
-            champion god hand
+            champion god hand // champion
             granite throwing axes
             goblin war spear
-            gauss flinger
+            gauss flinger //saucer
             pod bomb
             severed hand
             sea ninja star
