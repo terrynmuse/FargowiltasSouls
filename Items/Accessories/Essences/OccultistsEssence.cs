@@ -50,13 +50,13 @@ Increases your max number of sentries by 1");
 
                 /*
                  rosy slime staff
-                 hatchling staff
+                 hatchling staff //thunder bird
                  living wood acorn
                  nano clam cane
                  taboo wand
                  prehistoric amber staff
                  starfish wand
-                 viscount cane
+                 viscount cane //viscount
                  meatball staff
                  */
             }
