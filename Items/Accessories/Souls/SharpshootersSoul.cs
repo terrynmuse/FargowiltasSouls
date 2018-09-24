@@ -66,7 +66,7 @@ Increases view range for guns (Right click to zoom out)");
                  destroyers rage
                  shadowflare bow
                  nova rifle
-                 freeze ray
+                 freeze ray //borean
                  launch jumper
                  hand cannon
                  terrarium bomber
