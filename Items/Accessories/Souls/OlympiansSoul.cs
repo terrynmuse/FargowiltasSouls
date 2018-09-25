@@ -51,9 +51,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 recipe.AddIngredient(ItemID.MagicDagger);
                 recipe.AddIngredient(ItemID.Bananarang, 5);
                 recipe.AddIngredient(ItemID.Amarok);
+                recipe.AddIngredient(ItemID.FlyingKnife);
                 //cryo fang //borean
                 recipe.AddIngredient(ItemID.ShadowFlameKnife);
-                recipe.AddIngredient(ItemID.FlyingKnife);
                 //hot pot
                 //volt tomahawk
                 recipe.AddIngredient(ItemID.LightDisc, 5);
