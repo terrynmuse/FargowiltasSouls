@@ -57,32 +57,30 @@ Grants the effects of the Yoyo Bag");
             {
                 recipe.AddIngredient(FireGauntlet);
                 recipe.AddIngredient(YoyoBag);
+                //crystal spear tip
+                //cursed flail core
+                
                 recipe.AddIngredient(Arkhalis);
+                //ebony tail
                 recipe.AddIngredient(IceSickle);
+                //blitzzard
+                //poseidon charge
+                //absinthe fury
+                //surtrs sword
+                //prime fury
                 recipe.AddIngredient(MonkStaffT2);
                 recipe.AddIngredient(TerraBlade);
                 recipe.AddIngredient(ScourgeoftheCorruptor);
                 recipe.AddIngredient(Kraken);
+                //terrarium hyper disk
+                //spearmint
+                //wyvern slayer
                 recipe.AddIngredient(Flairon);
                 recipe.AddIngredient(TheHorsemansBlade);
                 recipe.AddIngredient(NorthPole);
                 recipe.AddIngredient(InfluxWaver);
                 recipe.AddIngredient(Meowmere);
-
                 /*
-                 crystal spear tip
-                 cursed flail core
-
-                wyvern slayer
-                blitzzard
-                primes fury
-                spearmint
-                surtrs sword
-                poseidon charge
-                terrarium hyper disk
-                Absinthe Fury
-                ebony tail
-
             SoU
             terarians last knife
             ocean judgement
