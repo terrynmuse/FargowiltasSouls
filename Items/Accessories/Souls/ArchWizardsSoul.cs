@@ -56,17 +56,10 @@ Automatically use mana potions when needed");
                 recipe.AddIngredient(ManaFlower);
                 recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
-                recipe.AddIngredient(CelestialEmblem);
                 //shade band
-                
-                //spell book stalagmite
-                //prism staff
-                recipe.AddIngredient(GoldenShower);
-                //twins ire
-                //god killer
-                //terra staff
-                recipe.AddIngredient(RainbowGun);
-                //time gate
+                //twins ire //
+                //terra staff//
+                recipe.AddIngredient(RainbowGun); //
                 //spectral blade
                 //lightning staff
                 recipe.AddIngredient(ApprenticeStaffT3);
@@ -75,19 +68,15 @@ Automatically use mana potions when needed");
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);
                 //ancient light
-                //cats eye great staff
                 recipe.AddIngredient(LastPrism);
-            
-            
+                
                 /*
-
                     SoU
                     northern light
                     almanac of fury
+                    
+                    //time gate to stardust enchnt
                 */
-
-
-
             }
             else
             {
