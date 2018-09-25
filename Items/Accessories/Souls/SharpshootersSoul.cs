@@ -48,13 +48,20 @@ Increases view range for guns (Right click to zoom out)");
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ItemID.MagicQuiver);
-                recipe.AddIngredient(ItemID.SniperScope);
+                //vega phaser
                 recipe.AddIngredient(ItemID.DartPistol);
+                //funngat
+                //scorn
+                //freeze ray //borean
+                //hand cannon
                 recipe.AddIngredient(ItemID.Megashark);
-                recipe.AddIngredient(ItemID.PulseBow);
+                //destroyers rage
                 recipe.AddIngredient(ItemID.NailGun);
+                //terra bow
                 recipe.AddIngredient(ItemID.PiranhaGun);
-                recipe.AddIngredient(ItemID.SniperRifle);
+                //launch jumper
+                //nova rifle
+                //shadowflare bow
                 recipe.AddIngredient(ItemID.Tsunami);
                 recipe.AddIngredient(ItemID.StakeLauncher);
                 recipe.AddIngredient(ItemID.EldMelter);
@@ -62,18 +69,6 @@ Increases view range for guns (Right click to zoom out)");
                 recipe.AddIngredient(ItemID.FireworksLauncher);
 
                 /*
-                 terra bow
-                 destroyers rage
-                 shadowflare bow
-                 nova rifle
-                 freeze ray //borean
-                 launch jumper
-                 hand cannon
-                 terrarium bomber
-                 scorn
-                 funngat
-                 vega phaser
-                 
                  prob in SoU
                  quasar flare
                  wyrm decimator 
