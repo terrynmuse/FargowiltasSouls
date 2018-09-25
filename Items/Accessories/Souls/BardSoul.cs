@@ -30,6 +30,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         metronome?
         auto tuner?
         
+        fishbone
+        cadavers cornet?
+        sirens lyre
+        
         essence possibly? or universe just gets all of them ech
         deep dark subwoofer
         devils subwoofer
