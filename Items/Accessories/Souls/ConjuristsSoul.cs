@@ -50,27 +50,23 @@ Increased minion knockback");
                 //prehistoric arachnid
                 // phylactery
                 // yumas pendent
-                //hive mind
                 
                 //the butterfly staff
-                //mortar staff
-                recipe.AddIngredient(ItemID.PirateStaff);
-                //hail bomber
+                //hail bomber//
                 recipe.AddIngredient(ItemID.OpticStaff);
-                recipe.AddIngredient(ItemID.DeadlySphereStaff);
-                //true silver fang
-                recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
-                //black cane
-                //the incubator
-                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
-                recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
-                recipe.AddIngredient(ItemID.TempestStaff);
-                recipe.AddIngredient(ItemID.RavenStaff);
-                recipe.AddIngredient(ItemID.XenoStaff);
-                recipe.AddIngredient(ItemID.MoonlordTurretStaff);
+                //true silver fang//
+                recipe.AddIngredient(ItemID.StaffoftheFrostHydra);//
+                //black cane//
+                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper); //do an any
+                recipe.AddIngredient(ItemID.RavenStaff);//
+                recipe.AddIngredient(ItemID.MoonlordTurretStaff);//
 
                 /*
-                
+                 rip deadly sphere 
+                 incubator
+                 pirate staff
+                 mortar staff
+                 
             sou
             banner molten
                  * */

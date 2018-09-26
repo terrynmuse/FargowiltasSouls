@@ -40,9 +40,8 @@ Increases your max number of sentries by 1");
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.SummonerEmblem);
-                
+                //hive mind
                 //living wood acorn
-                //starfish wand
                 //rosy slime staff
                 //hatchling staff //thunder bird
                 //meatball staff

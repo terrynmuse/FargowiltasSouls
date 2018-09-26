@@ -61,23 +61,12 @@ Grants the effects of the Yoyo Bag");
                 //cursed flail core
                 
                 recipe.AddIngredient(Arkhalis);
-                //ebony tail
-                recipe.AddIngredient(IceSickle);
-                //blitzzard
                 //poseidon charge
-                //absinthe fury
                 //surtrs sword
                 //prime fury
-                recipe.AddIngredient(MonkStaffT2);
                 recipe.AddIngredient(TerraBlade);
                 recipe.AddIngredient(ScourgeoftheCorruptor);
-                recipe.AddIngredient(Kraken);
-                //terrarium hyper disk
                 //spearmint
-                //wyvern slayer
-                recipe.AddIngredient(Flairon);
-                recipe.AddIngredient(TheHorsemansBlade);
-                recipe.AddIngredient(NorthPole);
                 recipe.AddIngredient(InfluxWaver);
                 recipe.AddIngredient(Meowmere);
                 /*

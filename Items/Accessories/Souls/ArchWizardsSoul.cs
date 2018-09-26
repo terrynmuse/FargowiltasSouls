@@ -54,28 +54,27 @@ Automatically use mana potions when needed");
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ManaFlower);
-                recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
                 //shade band
                 //twins ire //
                 //terra staff//
-                recipe.AddIngredient(RainbowGun); //
+                recipe.AddIngredient(RainbowGun); 
                 //spectral blade
                 //lightning staff
                 recipe.AddIngredient(ApprenticeStaffT3);
                 //nuclear fury
-                recipe.AddIngredient(BatScepter);
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);
-                //ancient light
                 recipe.AddIngredient(LastPrism);
-                
+
                 /*
                     SoU
                     northern light
                     almanac of fury
                     
                     //time gate to stardust enchnt
+                    wizard hat into some random thorium enchant
+                    //ancient light and all ancient bois to something
                 */
             }
             else

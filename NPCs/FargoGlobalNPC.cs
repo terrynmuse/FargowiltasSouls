@@ -514,6 +514,10 @@ namespace FargowiltasSouls.NPCs
                         npc.buffImmune[BuffID.OnFire] = true;
                         break;
 
+                    case NPCID.Pixie:
+                        masoAI = 71;
+                        break;
+
                     default:
                         break;
                 }
@@ -2688,11 +2692,19 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    /* pseudo memes
+                    case 71:
+                        if(npc.HasPlayerTarget && Vector2.Distance(Main.player[npc.target].Center, npc.Center) < 200)
+                        {
+                            Counter++;
+                        }
+                        if(Counter >= 60)
+                        {
+                            Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Navi").WithVolume(1f).WithPitchVariance(.5f), npc.Center);
+                            Counter = 0;
+                        }
+                        break;
 
-                    case pixies:
-                    if player is close by && counter == blah
-                    PlaySound("HeyListen")
+                    /* pseudo memes
 
                     case unicorn
                     if counter == blah
@@ -2717,8 +2729,6 @@ namespace FargowiltasSouls.NPCs
 
                     case spike ball: 
                     some AI = faster speed ?
-
-
 
 
                     case harpy:

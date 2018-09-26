@@ -49,23 +49,16 @@ Increases view range for guns (Right click to zoom out)");
             {
                 recipe.AddIngredient(ItemID.MagicQuiver);
                 //vega phaser
-                recipe.AddIngredient(ItemID.DartPistol);
-                //funngat
                 //scorn
-                //freeze ray //borean
                 //hand cannon
-                recipe.AddIngredient(ItemID.Megashark);
                 //destroyers rage
-                recipe.AddIngredient(ItemID.NailGun);
                 //terra bow
                 recipe.AddIngredient(ItemID.PiranhaGun);
                 //launch jumper
                 //nova rifle
-                //shadowflare bow
                 recipe.AddIngredient(ItemID.Tsunami);
                 recipe.AddIngredient(ItemID.StakeLauncher);
                 recipe.AddIngredient(ItemID.EldMelter);
-                recipe.AddIngredient(ItemID.Xenopopper);
                 recipe.AddIngredient(ItemID.FireworksLauncher);
 
                 /*
