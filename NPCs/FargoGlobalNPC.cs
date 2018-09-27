@@ -551,6 +551,7 @@ namespace FargowiltasSouls.NPCs
                         
                     case NPCID.Pixie:
                         masoAI = 73;
+                        break;
 
                     default:
                         break;
