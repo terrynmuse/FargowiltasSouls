@@ -1,25 +1,6 @@
-Golden Scale
-Sinister Acorn
-cleopatra keepsake
+10 items each :ECH:
 
 
-
-Icy enchant
-Frost Fire Katana
-Spell Book: Blizzard
-Ice Boomerang
-Ice Shaver
-Frost Fury
-shiverthorn butterfly
-
-Cryo-Magus enchant
-Forgotten Letter
-ice fairy staff
-Ice Bound Strider Hide 
-Frost Burnt Tongue
-Blitz-zard
-Frostwind Cymbals
-Blue Music Player
 
 Ocean enchant 
 Bubble Magnet
@@ -27,6 +8,28 @@ breathing reed
 ocean polearm
 starfish wand
 seashell castanets
+
+Tide Hunter enchant
+Shark Storm
+Hydro Cannon
+Nano Clam Cane
+illustrious
+Agnor's Bowl
+
+Depth Diver enchant
+Aquamarine Wineglass
+Deep Dark Subwoofer
+geyser staff
+Deeplight Esca
+aquatite scythe
+
+Iridescent enchant
+heretic breaker
+equalizer
+Iridescent Staff
+Aquaite Scythe
+
+
 
 Living Wood enchant
 Living Wood Acorn
@@ -103,19 +106,7 @@ Thorium Staff
 Mana-Charged Rocketeers
 random magic memes
 
-Tide Hunter enchant
-Shark Storm
-Hydro Cannon
-Nano Clam Cane
-illustrious
-Agnor's Bowl
 
-Depth Diver enchant
-Aquamarine Wineglass
-Deep Dark Subwoofer
-geyser staff
-Deeplight Esca
-aquatite scythe
 
 Spirit Trapper enchant 
 Viscount's Cane
@@ -336,12 +327,6 @@ Aloe Leaf
 Pills
 Palm Cross
 
-Iridescent enchant
-heretic breaker
-equalizer
-Iridescent Staff
-Aquaite Scythe
-
 Templar enchant
 Templar's Judgement
 life quartz shield
@@ -454,3 +439,33 @@ Black MIDI
 Holophonor
 Headset
 Concert Tickets
+
+
+DONE
+
+Icy enchant
+Frost Fire Katana
+Spell Book: Blizzard
+Ice Boomerang
+Frost Fury
+shiverthorn butterfly
+snowball launcher
+ice machine
+
+Frost Enchant
+Ice Bow
+Fish
+Toy Sled
+Ice Painting
+Glacior
+Freeze Ray
+Frozen Butterfly
+
+Cryo-Magus enchant
+Forgotten Letter
+ice fairy staff
+Ice Bound Strider Hide 
+Frost Burnt Tongue
+Blitz-zard
+Frostwind Cymbals
+Blue Music Player
