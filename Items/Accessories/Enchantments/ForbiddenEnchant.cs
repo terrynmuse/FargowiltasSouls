@@ -44,6 +44,12 @@ You are immune to the Mighty Wind debuff");
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
+            
+            /*
+            shus wrath
+            magic carpet
+            check forbidden material
+            */
         }
     }
 }
