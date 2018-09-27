@@ -44,6 +44,12 @@ Needles scale with melee damage");
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
+            
+            /*
+            cactus fruit 
+            sandy butterfly
+            check cactus material
+            */
         }
     }
 }
