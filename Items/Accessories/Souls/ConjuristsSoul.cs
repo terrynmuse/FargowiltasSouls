@@ -47,30 +47,26 @@ Increased minion knockback");
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ItemID.PapyrusScarab);
-                recipe.AddIngredient(ItemID.PirateStaff);
+                //prehistoric arachnid
+                // phylactery
+                // yumas pendent
+                
+                //the butterfly staff
+                //hail bomber//
                 recipe.AddIngredient(ItemID.OpticStaff);
-                recipe.AddIngredient(ItemID.DeadlySphereStaff);
-                recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
-                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
-                recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
-                recipe.AddIngredient(ItemID.TempestStaff);
-                recipe.AddIngredient(ItemID.RavenStaff);
-                recipe.AddIngredient(ItemID.XenoStaff);
-                recipe.AddIngredient(ItemID.MoonlordTurretStaff);
+                //true silver fang//
+                recipe.AddIngredient(ItemID.StaffoftheFrostHydra);//
+                //black cane//
+                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper); //do an any
+                recipe.AddIngredient(ItemID.RavenStaff);//
+                recipe.AddIngredient(ItemID.MoonlordTurretStaff);//
 
                 /*
-                 prehistoric arachnid
-                 phylactery
-                 yumas pendent
-
-                hail bomber
-                true silver fang
-                mortar staff
-                the incubator
-                black cane
-                 the butterfly staff
-                 hive mind
-
+                 rip deadly sphere 
+                 incubator
+                 pirate staff
+                 mortar staff
+                 
             sou
             banner molten
                  * */

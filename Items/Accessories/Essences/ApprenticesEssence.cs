@@ -40,25 +40,21 @@ Increases your maximum mana by 50");
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.SorcererEmblem);
+                
                 recipe.AddIngredient(ItemID.WandofSparking);
+                //spell book blizzard
+                //spell book wind gust
+                //grave buster
                 recipe.AddIngredient(ItemID.Vilethorn);
-                recipe.AddIngredient(ItemID.CrimsonRod);
+                //jelly pond wand //jelly
+                //magic conch
                 recipe.AddIngredient(ItemID.WaterBolt);
                 recipe.AddIngredient(ItemID.BookofSkulls);
                 recipe.AddIngredient(ItemID.MagicMissile);
+                //particle whip //saucer
                 recipe.AddIngredient(ItemID.Flamelash);
-
-                /*
-                 * magik staff
-                 * jelly pond wand
-                 * spell book blizzard
-                 * spell book wind gust
-                 * particle whip
-                 * spine breaker
-                 * magic conch
-                 * grave buster
-                 * 
-                 * */
+                //spine breaker
+                //magik staff
             }
             else
             {

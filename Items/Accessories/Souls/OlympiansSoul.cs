@@ -44,26 +44,22 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
+                //bone grip
+                //complete set
+                recipe.AddIngredient(ItemID.Bananarang, 5);
+                //cryo fang //borean
+                recipe.AddIngredient(ItemID.ShadowFlameKnife);
+                //hot pot
+                //volt tomahawk
+                //spark taser
+                //pharoahs slab
+                recipe.AddIngredient(ItemID.VampireKnives);
+                recipe.AddIngredient(ItemID.PaladinsHammer);
+                //cosmic dagger
+                recipe.AddIngredient(ItemID.Terrarian);
             /*
-            spartan sandles
-            bone grip
-            complete set
-
-            volt tomahawk
-            hot pot
-            cryo fang
-            soul cleaver
-            spark taser
-            pharoahs slab
-            plasma vial
-            terrarium ripple knife
-            shade dagger
-            cosmic dagger
-
-
             sou
             deity trefork
-            
             */
             }
             else

@@ -84,6 +84,7 @@ No enemies can spawn
             /*
             crystalline charm
             eye of the beholder
+            impact drill
             */
 
             if (Fargowiltas.Instance.FargosLoaded)

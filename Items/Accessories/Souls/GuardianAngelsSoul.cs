@@ -102,6 +102,9 @@ Taking fatal damage unleashes your inner spirit");
             soul guard
             demon tongue
             aloe leaf
+            
+            phoenix staff
+            void planter
             */
 
             ModRecipe recipe = new ModRecipe(mod);

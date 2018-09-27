@@ -53,48 +53,29 @@ Automatically use mana potions when needed");
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                /*
-                shade band
-
-
-                    twins ire
-                    terra staff
-                    spectral blade
-                    nuclear fury
-                    lightning staff
-                    time gate
-                    spell book stalagmite
-                    cats eye great staff
-                    god killer
-                    prism staff
-                    ancient light
-
-                    SoU
-                    northern light
-                    almanac of fury
-
-                */
-
-
-
-
                 recipe.AddIngredient(ManaFlower);
-                recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
-                recipe.AddIngredient(CelestialEmblem);
-                recipe.AddIngredient(GoldenShower);
-                recipe.AddIngredient(RainbowGun);
-                //recipe.AddIngredient(MagnetSphere);
+                //shade band
+                //twins ire //
+                //terra staff//
+                recipe.AddIngredient(RainbowGun); 
+                //spectral blade
+                //lightning staff
                 recipe.AddIngredient(ApprenticeStaffT3);
-                //recipe.AddIngredient(RazorbladeTyphoon);
-                recipe.AddIngredient(BatScepter);
+                //nuclear fury
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);
                 recipe.AddIngredient(LastPrism);
 
                 /*
-                 * 
-                 * */
+                    SoU
+                    northern light
+                    almanac of fury
+                    
+                    //time gate to stardust enchnt
+                    wizard hat into some random thorium enchant
+                    //ancient light and all ancient bois to something
+                */
             }
             else
             {

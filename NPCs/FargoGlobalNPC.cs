@@ -539,7 +539,7 @@ namespace FargowiltasSouls.NPCs
                         npc.noTileCollide = true;
                         npc.buffImmune[BuffID.OnFire] = true;
                         break;
-
+                        
                     case NPCID.BrainofCthulhu:
                         masoAI = 71;
                         npc.scale += 0.25f;
@@ -548,6 +548,9 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Creeper:
                         masoAI = 72;
                         break;
+                        
+                    case NPCID.Pixie:
+                        masoAI = 73;
 
                     default:
                         break;
@@ -3077,12 +3080,20 @@ namespace FargowiltasSouls.NPCs
                             npc.netUpdate = true;
                         }
                         break;
+                        
+                    case 73:
+                        if(npc.HasPlayerTarget && Vector2.Distance(Main.player[npc.target].Center, npc.Center) < 200)
+                        {
+                            Counter++;
+                        }
+                        if(Counter >= 60)
+                        {
+                            Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Navi").WithVolume(1f).WithPitchVariance(.5f), npc.Center);
+                            Counter = 0;
+                        }
+                        break;
 
                     /* pseudo memes
-
-                    case pixies:
-                    if player is close by && counter == blah
-                    PlaySound("HeyListen")
 
                     case unicorn
                     if counter == blah
@@ -3107,8 +3118,6 @@ namespace FargowiltasSouls.NPCs
 
                     case spike ball: 
                     some AI = faster speed ?
-
-
 
 
                     case harpy:

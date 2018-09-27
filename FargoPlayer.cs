@@ -1501,7 +1501,6 @@ namespace FargowiltasSouls
             int rng = Main.rand.Next(6);
 
             Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/SqueakyToy/squeak" + (rng + 1)).WithVolume(1f).WithPitchVariance(.5f), center);
-
         }
 
         private int InfestedExtraDot()
