@@ -1,5 +1,42 @@
 10 items each :ECH:
 
+Ornate enchant
+Vuvuzela Red
+Vuvuzela Blue
+Vuvuzela Green
+Vuvuzela Yellow
+The Green Tambourine 
+Turtle Drums
+
+Life Binder enchant
+Mist Weaver
+The Effuser
+Tesla Defibrillator
+Moonlight Staff
+Rich Leaf 
+Life Fruit Butterfly
+Bloom Guard
+
+Life Bloom enchant
+Hive Mind
+The Butterfly Staff
+Tulip Staff
+Grounded Totem
+Astral Barrier Wand
+Honey Blade
+Void Lance
+
+Bulb enchant
+Panflute
+Forest Ocarina
+petal wand
+petal shield
+blooming blade
+Moonglow Butterfly
+Sky Blue Flower
+
+
+
 
 
 Sandstone enchant
@@ -17,13 +54,6 @@ band of replenishment
 spell book purify
 whirlpool saber
 
-Magma enchant
-Molten Spear Tip
-devils subwoofer
-Magma Shiv
-Spring Steps
-hellwing butterfly
-
 Steel enchant; better think of a way to get this meme in hardmode
 Steel Blade
 Super Anvil
@@ -36,13 +66,6 @@ Tracker's Skinning Blade
 Danger Dual-Shot
 danger doomerang
 salamander drop meme, toxic subwoofer
-
-Bulb enchant
-Panflute
-Forest Ocarina, petal wand
-petal shield
-blooming blade
-any other meme magic flowery type things
 
 Flight enchant
 Feather Barrier Rod
@@ -61,8 +84,6 @@ Malignant enchant
 Thorium Staff
 Mana-Charged Rocketeers
 random magic memes
-
-
 
 Spirit Trapper enchant 
 Viscount's Cane
@@ -108,14 +129,6 @@ Toxic Flask
 1050 Gas Container
 Frost Plague Staff
 any other poisony memes?
-
-Flesh enchant
-Blister Sack
-Flesh Mace
-Absinthe Fury
-Saba
-Grim Flayer 
-vampire Gland
 
 Geode enchant
 Adventurer's Lantern
@@ -164,30 +177,11 @@ Soul Cleaver
 Death Grip
 Lich's Gaze 
 
-Life Bloom enchant
-Turtle Drums
-The Butterfly Staff
-Void Lance
-Berserk Soul Staff 
-
 Titan enchant
 All three helmets
 Titan Boomerang
 Rail Gun
 Cyan Music Player 
-
-Berserker enchant
-Berserker Breaker
-Bloody High Claw
-Obsidian Scale
-Crystal Spear Tip
-Orange Music Player 
-
-Demon Blood enchant
-Yellow Music Player
-Vile Flail-Core
-Dark Contagion
-Red Music Player 
 
 Harbinger enchant
 Lightning Staff
@@ -276,13 +270,6 @@ Whispering Dagger
 Mind Melter
 Pocket Guardian 
 
-Life Binder enchant
-Mist Weaver
-The Effuser
-Tesla Defibrillator
-Moonlight Staff
-Rich Leaf 
-
 Fallen Paladin enchant
 Cryotherapy
 Snack o' Lantern
@@ -301,14 +288,7 @@ Twinkle
 Bloom Guard
 Dream Catcher
 Unbound Fantasy
-Rebirth Statuette 
-
-Noble enchant
-Bongos
-Hot Horn
-Mixtape
-Meteorite Oboe
-Devil's Subwoofer 
+Rebirth Statuette  
 
 Marching Band enchant
 Trombone, Hell's Bell
@@ -322,13 +302,6 @@ Hallowed Megaphone
 Cadaver's Cornet
 Prime's Roar
 Midnight Bass Booster 
-
-Ornate enchant
-Vuvuzela Red
-Vuvuzela Blue
-Vuvuzela Green
-Vuvuzela Yellow
-The Green Tambourine 
 
 Conductor enchant
 Clarinet
@@ -520,3 +493,97 @@ Corrupt Butterfly
 Ball O Hurt
 Purple Blubberfish
 War Axe of the Night
+
+Crimson Enchant
+Deadland Comes Alive
+Bone Rattle
+Crimson Heart
+Crimson Butterfly
+The Undertaker
+Meatball
+Blood Lust Cluster
+
+Flesh enchant
+Blister Sack
+Spine Buster
+Blood Belcher
+Flesh Wings
+Grim Flayer 
+vampire Gland
+Flesh Mace
+
+Demon Blood enchant
+Demon Blood Badge
+Demon Blood Wings
+Demon Blood Staff
+Ichor Butterfly
+Vile Flail-Core
+Dark Contagion
+Red Music Player 
+
+Molten Enchant
+Fiery Greatsword
+Sunfury
+Demons Eye Painting
+Hellwing Butterfly
+more molten meme?
+
+Obsidian Enchant
+Obsidian Rose
+Lava Waders
+Sharktooth Necklace
+Obsidian Scale
+more obdisian meme?
+
+Magma enchant
+Molten Spear Tip
+Magma Shiv
+Magmatic Ricochet
+Spring Steps
+Fireblossom butterfly
+more magma stuff?
+
+Noble enchant
+Bongos
+Hot Horn
+Mixtape
+Honey Recorder
+Song of Ice and Fire
+Devil's Subwoofer
+fiery totem
+
+Berserker enchant
+Berserker Breaker
+Berserker Soul Staff
+Bloody High Claw
+Orange Music Player 
+Thermogenic Impaler
+Surtrs Sword
+Scorn
+
+Chlorophyte Enchant
+Chlorophyte Shotbow
+Flower Boots
+Staff of Regrowth
+Leaf Blower 
+Seedling
+Chlorophyte Butterfly
+Flower Pow
+
+Turtle Enchant
+Lizard Egg
+Seaweed
+Chlorophyte Partizan
+Chlorophyte Great Axe
+Absinthe Fury
+Yelets
+Frog
+
+Jungle Enchant
+Jungle Rose
+Jungle Painting
+Jungle Spore Butterfly
+Ivy Whip
+Thorn Chakram
+Grubby
+Boomstick
