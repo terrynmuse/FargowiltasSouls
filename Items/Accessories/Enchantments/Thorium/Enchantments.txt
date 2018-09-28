@@ -2,50 +2,6 @@
 
 
 
-Ocean enchant 
-Bubble Magnet
-breathing reed
-ocean polearm
-starfish wand
-seashell castanets
-
-Tide Hunter enchant
-Shark Storm
-Hydro Cannon
-Nano Clam Cane
-illustrious
-Agnor's Bowl
-
-Depth Diver enchant
-Aquamarine Wineglass
-Deep Dark Subwoofer
-geyser staff
-Deeplight Esca
-aquatite scythe
-
-Iridescent enchant
-heretic breaker
-equalizer
-Iridescent Staff
-Aquaite Scythe
-
-
-
-Living Wood enchant
-Living Wood Acorn
-Blowpipe
-5 Chi Tea
-Leaf Wand
-Wood Wand
-butterfly
-
-Silk enchant
-Wand of Sparking
-Ice Cube
-Magik Staff
-The ring
-any other silk memes? butterly?
-
 Sandstone enchant
 Didgeridoo
 1500 Sandstone Throwing Knifes
@@ -150,15 +106,8 @@ Toxic Flask
 1000 Corrosive Vial
 1000 Combustion Vial
 1050 Gas Container
+Frost Plague Staff
 any other poisony memes?
-
-Dragon enchant
-Three armor pieces can be either Ancient Dragon or Dragon
-Dragons Breath
-Dragon Wings
-Ebony Tail
-Draconic Magma Staff
-Cloudy Chew Toy 
 
 Flesh enchant
 Blister Sack
@@ -166,6 +115,7 @@ Flesh Mace
 Absinthe Fury
 Saba
 Grim Flayer 
+vampire Gland
 
 Geode enchant
 Adventurer's Lantern
@@ -193,13 +143,6 @@ Mycelium Whip
 1750 Fungal Poppers
 Survivalist's Boots
 Funggat 
-
-Naga-Skin enchant
-Hydromancer's Catalyst
-Serpent's Bubble Wand
-Blob-horn Coral Staff
-Vampire Gland
-Frost Plague Staff 
 
 Valadium enchant
 Vega Phaser
@@ -239,13 +182,6 @@ Bloody High Claw
 Obsidian Scale
 Crystal Spear Tip
 Orange Music Player 
-
-Dread enchant
-Impact Drill
-Wyvern Slayer
-Ogre Sandals
-Dread Launcher
-Cursed Flail-Core 
 
 Demon Blood enchant
 Yellow Music Player
@@ -314,19 +250,6 @@ The Kill Counter
 Bow of Light
 Omni-Bow 
 
-Ebon enchant
-Dark Heart
-Shadow Wand
-Wooden Baton
-dark gift
-eater of pain
-
-Novice Cleric enchant
-Fortifying Wand
-Aloe Leaf
-Pills
-Palm Cross
-
 Templar enchant
 Templar's Judgement
 life quartz shield
@@ -380,18 +303,6 @@ Dream Catcher
 Unbound Fantasy
 Rebirth Statuette 
 
-Crier enchant
-Flute
-Wooden Whistle
-Music Notes
-Harmonica 
-
-Jester enchant
-Ebon Tambourine/ Shadewood Tambourine
-Fan Letter/ Fan Letter
-Gold/ Platinum Bugle Horn
-Marching Boots 
-
 Noble enchant
 Bongos
 Hot Horn
@@ -441,7 +352,7 @@ Headset
 Concert Tickets
 
 
-DONE
+DONE ------------------------------------------------------------------------------------------------------------------------------
 
 Icy enchant
 Frost Fire Katana
@@ -469,3 +380,143 @@ Frost Burnt Tongue
 Blitz-zard
 Frostwind Cymbals
 Blue Music Player
+
+Ocean enchant 
+Sea breeze pendant
+Bubble Magnet
+breathing reed
+starfish wand
+seashell castanets
+sword fish
+ocean slasher
+
+Tide Hunter enchant
+Shark Storm
+Hydro Cannon
+Nano Clam Cane
+Pearl Pike
+Agnor's Bowl
+bucanners blunderpuss
+Marine Launcher
+
+Depth Diver enchant
+Aquamarine Wineglass
+music sheet stell drums
+Deep Dark Subwoofer
+Geyser staff
+Deeplight Esca
+magic conch
+Misty Totem
+
+Iridescent enchant
+giant glowstick
+heretic breaker
+equalizer
+Iridescent Staff
+Aquaite Scythe
+Serpent's Bubble Wand
+Tranquil Lyre
+
+Naga-Skin enchant
+nagas recurve
+Hydromancer's Catalyst
+sea foam scepter
+Spell Book Cyclone 
+Old Gods Grasp
+Leviathan
+Eel Rod
+
+Pumpkin Enchant
+Molotov Cocktail
+Jack O Lantern
+Magical Pumpkin Seed
+Pumkpkin Pie
+Sickle
+Through the Window Painting
+zombie arm
+any other pumpkin memes?
+
+Living Wood enchant
+Living Wood Acorn
+Slime Staff
+Blowpipe
+5 Chi Tea
+Leaf Wand
+Wood Wand
+Daybloom butterfly
+Grasshopper
+any living wood memes?
+Guide to Plant Fiber
+
+Crier enchant
+Flute
+Wooden Whistle
+Music Notes
+Harmonica 
+tambourine
+antlion maraca
+drum mallet
+
+Silk enchant
+Wand of Sparking
+Ice Cube
+Eigth Plague staff
+Thorium Staff
+Umbrella
+Bird, Duck
+Cure
+any other silk memes?
+
+Ebon enchant
+Dark Heart
+Shadow Wand
+Wooden Baton
+dark gift
+bordered butterfly
+leech bolt
+giga Needle
+
+Novice Cleric enchant
+Fortifying Wand
+Aloe Leaf
+Pills
+Palm Cross
+swallowtail butterfly
+purified water
+Good Book
+
+Jester enchant
+Ebon Tambourine/ Shadewood Tambourine
+Fan Letter/ Fan Letter
+Gold/ Platinum Bugle Horn
+Skyware Lute
+Meteorite Oboe
+Survivalist Boots 
+Death Weed Butterfly
+
+Dread enchant
+Impact Drill
+Crash Boots
+Dread Razor
+Dread Launcher
+Vile Spitter
+Cursed Flail-Core 
+Chain Guillotine
+
+Dragon enchant
+Dragons Breath
+Dragon Wings
+Ebony Tail
+Draconic Magma Staff
+Cloudy Chew Toy 
+Cursed Flame Butterfly
+Dragons Gaze
+
+Shadow Enchant
+Lightless Chasms
+Eater Bone
+Shadow Orb
+Corrupt Butterfly
+Ball O Hurt
+Purple Blubberfish
+War Axe of the Night
