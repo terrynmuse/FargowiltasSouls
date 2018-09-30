@@ -539,7 +539,7 @@ namespace FargowiltasSouls.NPCs
                         npc.noTileCollide = true;
                         npc.buffImmune[BuffID.OnFire] = true;
                         break;
-                        
+
                     case NPCID.BrainofCthulhu:
                         masoAI = 71;
                         npc.scale += 0.25f;
@@ -548,9 +548,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Creeper:
                         masoAI = 72;
                         break;
-                        
-                    case NPCID.Pixie:
-                        masoAI = 73;
 
                     default:
                         break;
@@ -1683,7 +1680,7 @@ namespace FargowiltasSouls.NPCs
                     case 34: //skeletron head
                         skeleBoss = npc.whoAmI;
 
-                        if (Counter != 0)
+                        if (Counter != 0) //hand revival stuff
                         {
                             Timer++;
 
@@ -1724,6 +1721,27 @@ namespace FargowiltasSouls.NPCs
                                 else
                                 {
                                     Counter = 0;
+                                }
+                            }
+                        }
+
+                        if (npc.ai[1] == 1f) //spinning
+                        {
+                            Timer++;
+
+                            int threshold = 1 + 29 * npc.life / npc.lifeMax;
+                            if (Timer >= threshold) //spray bones
+                            {
+                                Timer = 0;
+
+                                if (threshold > 0)
+                                {
+                                    Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
+                                    speed.Normalize();
+                                    speed *= 7f;
+
+                                    if (Main.netMode != 1)
+                                        Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 7 * 2, 0f, Main.myPlayer);
                                 }
                             }
                         }
@@ -2503,10 +2521,31 @@ namespace FargowiltasSouls.NPCs
 
                     case 53: //ice queen
                         Counter++;
-                        if (Counter >= 180)
+
+                        short countCap = 7;
+                        if (npc.life < npc.lifeMax * 3 / 4)
+                            countCap--;
+                        if (npc.life < npc.lifeMax / 2)
+                            countCap -= 2;
+                        if (npc.life < npc.lifeMax / 4)
+                            countCap -= 3;
+                        if (npc.life < npc.lifeMax / 10)
+                            countCap -= 4;
+
+                        if (Counter > countCap)
                         {
                             Counter = 0;
-                            NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Flocko);
+
+                            Vector2 speed = new Vector2(Main.rand.Next(-1000, 1001), Main.rand.Next(-1000, 1001));
+                            speed.Normalize();
+                            speed *= 15f;
+
+                            Vector2 spawn = npc.Center;
+                            spawn.Y -= 20f;
+                            spawn += speed * 4f;
+
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(spawn, speed, ProjectileID.FrostShard, 35, 0f, Main.myPlayer);
                         }
                         break;
 
@@ -3080,20 +3119,12 @@ namespace FargowiltasSouls.NPCs
                             npc.netUpdate = true;
                         }
                         break;
-                        
-                    case 73:
-                        if(npc.HasPlayerTarget && Vector2.Distance(Main.player[npc.target].Center, npc.Center) < 200)
-                        {
-                            Counter++;
-                        }
-                        if(Counter >= 60)
-                        {
-                            Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Navi").WithVolume(1f).WithPitchVariance(.5f), npc.Center);
-                            Counter = 0;
-                        }
-                        break;
 
                     /* pseudo memes
+
+                    case pixies:
+                    if player is close by && counter == blah
+                    PlaySound("HeyListen")
 
                     case unicorn
                     if counter == blah
@@ -3118,6 +3149,8 @@ namespace FargowiltasSouls.NPCs
 
                     case spike ball: 
                     some AI = faster speed ?
+
+
 
 
                     case harpy:
