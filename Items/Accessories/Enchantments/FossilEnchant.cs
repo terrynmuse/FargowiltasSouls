@@ -44,6 +44,12 @@ Summons a pet Baby Dino");
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
+            
+            /*
+            prehistoric staff
+            check sturdy fossil material
+            amber butterfly
+            */
         }
     }
 }

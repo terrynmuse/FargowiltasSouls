@@ -1,133 +1,589 @@
-Icy enchant | Frost Fire Katana, Spell Book: Blizzard, Ice Boomerang, Ice Shaver, Frost Fury, vanilla ice memes? or butterfly - just steal set bonus its pretty great
-
-Ocean enchant | Bubble Magnet, breathing reed, ocean polearm, starfish wand, seashell castanets - breath underwater, inflict deep cut, buble magnet effect
-
-Living Wood enchant | Living Wood Acorn, Blowpipe, 5 Chi Tea, Leaf Wand, Wood Wand, butterfly - permananet wood sapling boi
-
-Silk enchant | both helmets, Wand of Sparking, Ice Cube, Magik Staff, The ring, any other silk memes? butterly? - just increase magic dmg? turn invisble :ech:
-
-Sandstone enchant | Didgeridoo, 1500 Sandstone Throwing Knifes, Spell Book: Wind Gust, wreath, desert wind rune, any other desert meme - same set bonus maybe some extra
-
-Thorium enchant | Diver caught in a net only named Sam, Thorium Cube, band of replenishment, spell book purify, whirlpool saber - some effect 
-
-Magma enchant | Molten Spear Tip, devils subwoofer, Magma Shiv, Spring Steps, hellwing butterfly - set bonus, spring steps, blah
-
-Steel enchant; better think of a way to get this meme in hardmode | Steel Blade, Super Anvil, Blacksmith's Apron, War Forger - some effect
-
-Danger enchant | Tracker's Skinning Blade, 1000 Danger Daggers, Danger Dual-Shot, danger doomerang, salamander drop meme, toxic subwoofer - set bonus 
-
-Bulb enchant | Panflute, Forest Ocarina, petal wand, petal shield, blooming blade, any other meme magic flowery type things - set bonus, plus overgrowth effect
-
-Flight enchant | Feather Barrier Rod, Zephyr, Harpy Pelter, aerial, avian butterfly - set bonus 
-
-Yew-Wood enchant | Shadowflame Staff, Yew-Handled Flintlock, Goblin War Shield, yew wood lute, 500 spike bombs - set bonus
-
-Malignant enchant | Thorium Staff, Mana-Charged Rocketeers, random magic memes - set bonus, acc effects
-
-Tide Hunter enchant | Shark Storm, Hydro Cannon, Nano Clam Cane, illustrious, Agnor's Bowl  - set bonus
-
-Depth Diver enchant | Aquamarine Wineglass, Deep Dark Subwoofer, geyser staff, Deeplight Esca, aquatite scythe - set bonus
-
-Spirit Trapper enchant | Viscount's Cane, Taboo Wand, Windy Totem Caller, strange skull, spirit blast wand - set bonus
-
-Darksteel enchant | Darksteel Mace, Gray 'D' Painting, Man Hacker, Life Leech, Darksteel Helmet Stand - set bonus
-
-Granite enchant | Three armor pieces can be either Granite or Ancient Obsidian, Granite Boombox, Energy Projector, boulder probe staff, energywing butterfly, eye of the storm - set bonus 
-
-Bronze enchant | Spartan Sandals, Champion Swift Blade, champion rebuttal, Bronze Tuning Fork, ancientwing butterfly - set bonus
-
-Durasteel enchant | Steal Enchant, Armor Bane, Exile's Helmet, Searing Blade, Demo's Guidance - 
-
-Plague Doctor enchant | Toxic Flask, 1000 Nitrogen Vial, 1000 Corrosive Vial, 1000 Combustion Vial, 1050 Gas Container, any other poisony memes?
-
-Dragon enchant | Three armor pieces can be either Ancient Dragon or Dragon, Dragons Breath, Dragon Wings, Ebony Tail, Draconic Magma Staff, Cloudy Chew Toy 
-
-Flesh enchant | Blister Sack, Flesh Mace, Absinthe Fury, Saba, Grim Flayer 
-
-Geode enchant | Adventurer's Lantern, Enchanted Pickaxe, Gnome King's Pickaxe, Stone Sledge, Davy Jones Lock Box 
-
-Feral-Fur enchant | Bee Booties, Honey Blade, Forgotten Letter, Blood Drenched Dagger, Sacrificial Dagger 
-
-White Knight enchant | Shade Band, Prism Staff, Spell Book: Stalagmite, Spell Book: Cyclone, Delectable Nut 
-
-Fungus enchant | Mycelium Whip, 1750 Fungal Poppers, Survivalist's Boots, Funggat 
-
-Naga-Skin enchant | Hydromancer's Catalyst, Serpent's Bubble Wand, Blob-horn Coral Staff, Vampire Gland, Frost Plague Staff 
-
-Valadium enchant | Vega Phaser, Bio-Pod, Eye of the Beholder, Obliterator, Shu's Wrath 
-
-Lodestone enchant | Glacior, Astro Beetle Husk, Weighted Winglets , Crash Boots, Slag Stompers 
-
-Lich enchant | Sturdy of Lich, Soul Cleaver, Death Grip, Lich's Gaze 
-
-Life Bloom enchant | Turtle Drums, The Butterfly Staff, Void Lance, Berserk Soul Staff 
-
-Titan enchant | All three helmets, Titan Boomerang, Rail Gun, Cyan Music Player 
-
-Berserker enchant | Berserker Breaker, Bloody High Claw, Obsidian Scale, Crystal Spear Tip, Orange Music Player 
-
-Dread enchant | Impact Drill, Wyvern Slayer, Ogre Sandals, Dread Launcher, Cursed Flail-Core 
-
-Demon Blood enchant | Yellow Music Player, Vile Flail-Core, Dark Contagion, Red Music Player 
-
-Harbinger enchant | Lightning Staff, Blackhole Cannon, Harbinger Spear, Green Music Player, White Music Player 
-
-Cryo-Magus enchant | Teleologic Imposition, Frost Burnt Tongue, Blitz-zard, Frostwind Cymbals, Blue Music Player, Ice Bound Strider Hide 
-
-Flov's Ancient enchant | Spell Book: Time Gate, Legacy, Cat's Eye Great Staff, Gray Music Player, Brown Music Player 
-
-Illumite enchant | Launch Jumper, Trench Spitter, DMR, Illumite Blaster, Pink Music Player 
-
-Shade Master enchant | Shade Dagger, 1000 Soulslashers, Purple Music Player, 3500 Bugenkai Shurikens, 1000 Plasma Vials 
-
-Conduit enchant | Cosmic Knife, Super Plasma Cannon, Strange Communicator, Omega Drive, Livewire Crasher 
-
-Terrarium enchant | Essence of Flame, 3 Folded Metal, Searing Blade, Micro Launcher 
-
-White Dwarf enchant | The Black Dagger, 3600 White Dwarf Kunai, Void Planter 
-
-Pyromancer enchant | Northern Light, Devil's Claw, Molten Banner, Spell Book: Spores 
-
-Tide Turner enchant | Quake Gauntlet, Ocean's Judgement, Plague Lord's Flask 
-
-Assassin enchant | The Kill Counter, Bow of Light, Omni-Bow 
-
-Ebon enchant | Dark Heart, Shadow Wand, Heretic Breaker, Wooden Baton, Ice Shaver 
-
-Novice Cleric enchant | The Good Book, Fortifying Wand, 750 Purified Water, Aloe Leaf, Life Quartz Claymore 
-
-Iridescent enchant | Iridescent Staff, Aquaite Scythe, Life Quartz Shield, Eater of Pain/ The Stalker, Dark Gift 
-
-Templar enchant | Marrow Scepter, Omen, Templar's Judgement, Medical Bag, Inner Flame 
-
-Warlock enchant | Demon Tongue, Twilight Staff, Karmic Holder, Midnight Staff 
-
-Sacred enchant | Sacred Buldgeon, Null-Zone Staff, Liberation, Ra's Whisper, Holy Fire 
-
-Biotech enchant | Barrier Generator, Whispering Dagger, Mind Melter, Pocket Guardian 
-
-Life Binder enchant | Mist Weaver, The Effuser, Tesla Defibrillator, Moonlight Staff, Rich Leaf 
-
-Fallen Paladin enchant | Cryotherapy, Snack o' Lantern, Shield-Drone Beacon, Holy Hammer, Friendly-Fire Staff 
-
-Celestial enchant | Dragon Heart Wand, Life and Death, Ancient Tome of Revival, Celestial Burst Staff 
-
-Dream Weaver enchant | Twinkle, Bloom Guard, Dream Catcher, Unbound Fantasy, Rebirth Statuette 
-
-Crier enchant | Flute, Wooden Whistle, Music Notes, Harmonica 
-
-Jester enchant | Ebon Tambourine/ Shadewood Tambourine, Fan Letter/ Fan Letter, Gold/ Platinum Bugle Horn, Marching Boots 
-
-Noble enchant | Bongos, Hot Horn, Mixtape, Meteorite Oboe, Devil's Subwoofer 
-
-Marching Band enchant | Trombone, Hell's Bell, Wind Chimes, Shadowflame Warhorn, Eskimo Banjo 
-
-Cyber Punk enchant | Auto Tuner, Hallowed Megaphone, Cadaver's Cornet, Prime's Roar, Midnight Bass Booster 
-
-Ornate enchant | Vuvuzela Red, Vuvuzela Blue, Vuvuzela Green, Vuvuzela Yellow, The Green Tambourine 
-
-Conductor enchant | Clarinet, Bassoon, Ghastly French Horn, The Black Otamatone, Strawberry Heart 
-
-Balladeer enchant | Sonar Cannon, Sound Sage's Lament, Band Kit, Terrarium Autoharp, Metronome 
-
-Rhapsodist enchant | Both helmets, Black MIDI, Holophonor, Headset, Concert Tickets
+10 items each :ECH:
+
+Ornate enchant
+Vuvuzela Red
+Vuvuzela Blue
+Vuvuzela Green
+Vuvuzela Yellow
+The Green Tambourine 
+Turtle Drums
+
+Life Binder enchant
+Mist Weaver
+The Effuser
+Tesla Defibrillator
+Moonlight Staff
+Rich Leaf 
+Life Fruit Butterfly
+Bloom Guard
+
+Life Bloom enchant
+Hive Mind
+The Butterfly Staff
+Tulip Staff
+Grounded Totem
+Astral Barrier Wand
+Honey Blade
+Void Lance
+
+Bulb enchant
+Panflute
+Forest Ocarina
+petal wand
+petal shield
+blooming blade
+Moonglow Butterfly
+Sky Blue Flower
+
+
+
+
+
+Sandstone enchant
+Didgeridoo
+1500 Sandstone Throwing Knifes
+Spell Book: Wind Gust
+wreath
+desert wind rune
+talon burst
+
+Thorium enchant
+Diver caught in a net only named Sam
+Thorium Cube
+band of replenishment
+spell book purify
+whirlpool saber
+
+Steel enchant; better think of a way to get this meme in hardmode
+Steel Blade
+Super Anvil
+Blacksmith's Apron
+War Forger
+
+Danger enchant
+Tracker's Skinning Blade
+1000 Danger Daggers
+Danger Dual-Shot
+danger doomerang
+salamander drop meme, toxic subwoofer
+
+Flight enchant
+Feather Barrier Rod
+Zephyr, Harpy Pelter
+aerial
+avian butterfly
+
+Yew-Wood enchant
+Shadowflame Staff
+Yew-Handled Flintlock
+Goblin War Shield
+yew wood lute
+500 spike bombs
+
+Malignant enchant
+Thorium Staff
+Mana-Charged Rocketeers
+random magic memes
+
+Spirit Trapper enchant 
+Viscount's Cane
+Taboo Wand
+Windy Totem Caller
+strange skull
+spirit blast wand
+
+Darksteel enchant
+Darksteel Mace
+Gray 'D' Painting
+Man Hacker
+Life Leech
+Darksteel Helmet Stand
+
+Granite enchant
+Three armor pieces can be either Granite or Ancient Obsidian
+Granite Boombox
+Energy Projector
+boulder probe staff
+energywing butterfly
+eye of the storm
+
+Bronze enchant
+Spartan Sandals
+Champion Swift Blade
+champion rebuttal
+Bronze Tuning Fork
+ancientwing butterfly
+
+Durasteel enchant
+Steal Enchant
+Armor Bane
+Exile's Helmet
+Searing Blade
+Demo's Guidance
+
+Plague Doctor enchant 
+Toxic Flask
+1000 Nitrogen Vial
+1000 Corrosive Vial
+1000 Combustion Vial
+1050 Gas Container
+Frost Plague Staff
+any other poisony memes?
+
+Geode enchant
+Adventurer's Lantern
+Enchanted Pickaxe
+Gnome King's Pickaxe
+Stone Sledge
+Davy Jones Lock Box 
+
+Feral-Fur enchant
+Bee Booties
+Honey Blade
+Forgotten Letter
+Blood Drenched Dagger
+Sacrificial Dagger 
+
+White Knight enchant
+Shade Band
+Prism Staff
+Spell Book: Stalagmite
+Spell Book: Cyclone
+Delectable Nut 
+
+Fungus enchant
+Mycelium Whip
+1750 Fungal Poppers
+Survivalist's Boots
+Funggat 
+
+Valadium enchant
+Vega Phaser
+Bio-Pod
+Eye of the Beholder
+Obliterator
+Shu's Wrath 
+
+Lodestone enchant
+Glacior
+Astro Beetle Husk
+Weighted Winglets
+Crash Boots
+Slag Stompers 
+
+Lich enchant
+Sturdy of Lich
+Soul Cleaver
+Death Grip
+Lich's Gaze 
+
+Titan enchant
+All three helmets
+Titan Boomerang
+Rail Gun
+Cyan Music Player 
+
+Harbinger enchant
+Lightning Staff
+Blackhole Cannon
+Harbinger Spear
+Green Music Player
+White Music Player 
+
+Flov's Ancient enchant
+Spell Book: Time Gate
+Legacy
+Cat's Eye Great Staff
+Gray Music Player
+Brown Music Player 
+
+Illumite enchant
+Launch Jumper
+Trench Spitter
+DMR
+Illumite Blaster
+Pink Music Player 
+
+Shade Master enchant
+Shade Dagger
+1000 Soulslashers
+Purple Music Player
+500 Bugenkai Shurikens
+1000 Plasma Vials 
+
+Conduit enchant
+Cosmic Knife
+Super Plasma Cannon
+Strange Communicator
+Omega Drive
+Livewire Crasher 
+
+Terrarium enchant
+Essence of Flame
+3 Folded Metal
+Searing Blade, Micro Launcher 
+
+White Dwarf enchant
+The Black Dagger
+3600 White Dwarf Kunai
+Void Planter 
+
+Pyromancer enchant
+Northern Light
+Devil's Claw
+Molten Banner
+Spell Book: Spores 
+
+Tide Turner enchant
+Quake Gauntlet
+Ocean's Judgement
+Plague Lord's Flask 
+
+Assassin enchant
+The Kill Counter
+Bow of Light
+Omni-Bow 
+
+Templar enchant
+Templar's Judgement
+life quartz shield
+Medical Bag
+Inner Flame 
+
+Warlock enchant
+Omen
+Demon Tongue
+Twilight Staff
+Karmic Holder
+Midnight Staff 
+
+Sacred enchant
+Sacred Buldgeon
+Null-Zone Staff
+Liberation
+Ra's Whisper
+Holy Fire 
+
+Biotech enchant
+Barrier Generator
+Whispering Dagger
+Mind Melter
+Pocket Guardian 
+
+Fallen Paladin enchant
+Cryotherapy
+Snack o' Lantern
+Shield-Drone Beacon
+Holy Hammer
+Friendly-Fire Staff 
+
+Celestial enchant
+Dragon Heart Wand
+Life and Death
+Ancient Tome of Revival
+Celestial Burst Staff 
+
+Dream Weaver enchant
+Twinkle
+Bloom Guard
+Dream Catcher
+Unbound Fantasy
+Rebirth Statuette  
+
+Marching Band enchant
+Trombone, Hell's Bell
+Wind Chimes
+Shadowflame Warhorn
+Eskimo Banjo 
+
+Cyber Punk enchant
+Auto Tuner
+Hallowed Megaphone
+Cadaver's Cornet
+Prime's Roar
+Midnight Bass Booster 
+
+Conductor enchant
+Clarinet
+Bassoon
+Ghastly French Horn
+The Black Otamatone
+Strawberry Heart 
+
+Balladeer enchant
+Sonar Cannon
+Sound Sage's Lament
+Band Kit
+Terrarium Autoharp
+Metronome 
+
+Rhapsodist enchant
+Both helmets
+Black MIDI
+Holophonor
+Headset
+Concert Tickets
+
+
+DONE ------------------------------------------------------------------------------------------------------------------------------
+
+Icy enchant
+Frost Fire Katana
+Spell Book: Blizzard
+Ice Boomerang
+Frost Fury
+shiverthorn butterfly
+snowball launcher
+ice machine
+
+Frost Enchant
+Ice Bow
+Fish
+Toy Sled
+Ice Painting
+Glacior
+Freeze Ray
+Frozen Butterfly
+
+Cryo-Magus enchant
+Forgotten Letter
+ice fairy staff
+Ice Bound Strider Hide 
+Frost Burnt Tongue
+Blitz-zard
+Frostwind Cymbals
+Blue Music Player
+
+Ocean enchant 
+Sea breeze pendant
+Bubble Magnet
+breathing reed
+starfish wand
+seashell castanets
+sword fish
+ocean slasher
+
+Tide Hunter enchant
+Shark Storm
+Hydro Cannon
+Nano Clam Cane
+Pearl Pike
+Agnor's Bowl
+bucanners blunderpuss
+Marine Launcher
+
+Depth Diver enchant
+Aquamarine Wineglass
+music sheet stell drums
+Deep Dark Subwoofer
+Geyser staff
+Deeplight Esca
+magic conch
+Misty Totem
+
+Iridescent enchant
+giant glowstick
+heretic breaker
+equalizer
+Iridescent Staff
+Aquaite Scythe
+Serpent's Bubble Wand
+Tranquil Lyre
+
+Naga-Skin enchant
+nagas recurve
+Hydromancer's Catalyst
+sea foam scepter
+Spell Book Cyclone 
+Old Gods Grasp
+Leviathan
+Eel Rod
+
+Pumpkin Enchant
+Molotov Cocktail
+Jack O Lantern
+Magical Pumpkin Seed
+Pumkpkin Pie
+Sickle
+Through the Window Painting
+zombie arm
+any other pumpkin memes?
+
+Living Wood enchant
+Living Wood Acorn
+Slime Staff
+Blowpipe
+5 Chi Tea
+Leaf Wand
+Wood Wand
+Daybloom butterfly
+Grasshopper
+any living wood memes?
+Guide to Plant Fiber
+
+Crier enchant
+Flute
+Wooden Whistle
+Music Notes
+Harmonica 
+tambourine
+antlion maraca
+drum mallet
+
+Silk enchant
+Wand of Sparking
+Ice Cube
+Eigth Plague staff
+Thorium Staff
+Umbrella
+Bird, Duck
+Cure
+any other silk memes?
+
+Ebon enchant
+Dark Heart
+Shadow Wand
+Wooden Baton
+dark gift
+bordered butterfly
+leech bolt
+giga Needle
+
+Novice Cleric enchant
+Fortifying Wand
+Aloe Leaf
+Pills
+Palm Cross
+swallowtail butterfly
+purified water
+Good Book
+
+Jester enchant
+Ebon Tambourine/ Shadewood Tambourine
+Fan Letter/ Fan Letter
+Gold/ Platinum Bugle Horn
+Skyware Lute
+Meteorite Oboe
+Survivalist Boots 
+Death Weed Butterfly
+
+Dread enchant
+Impact Drill
+Crash Boots
+Dread Razor
+Dread Launcher
+Vile Spitter
+Cursed Flail-Core 
+Chain Guillotine
+
+Dragon enchant
+Dragons Breath
+Dragon Wings
+Ebony Tail
+Draconic Magma Staff
+Cloudy Chew Toy 
+Cursed Flame Butterfly
+Dragons Gaze
+
+Shadow Enchant
+Lightless Chasms
+Eater Bone
+Shadow Orb
+Corrupt Butterfly
+Ball O Hurt
+Purple Blubberfish
+War Axe of the Night
+
+Crimson Enchant
+Deadland Comes Alive
+Bone Rattle
+Crimson Heart
+Crimson Butterfly
+The Undertaker
+Meatball
+Blood Lust Cluster
+
+Flesh enchant
+Blister Sack
+Spine Buster
+Blood Belcher
+Flesh Wings
+Grim Flayer 
+vampire Gland
+Flesh Mace
+
+Demon Blood enchant
+Demon Blood Badge
+Demon Blood Wings
+Demon Blood Staff
+Ichor Butterfly
+Vile Flail-Core
+Dark Contagion
+Red Music Player 
+
+Molten Enchant
+Fiery Greatsword
+Sunfury
+Demons Eye Painting
+Hellwing Butterfly
+more molten meme?
+
+Obsidian Enchant
+Obsidian Rose
+Lava Waders
+Sharktooth Necklace
+Obsidian Scale
+more obdisian meme?
+
+Magma enchant
+Molten Spear Tip
+Magma Shiv
+Magmatic Ricochet
+Spring Steps
+Fireblossom butterfly
+more magma stuff?
+
+Noble enchant
+Bongos
+Hot Horn
+Mixtape
+Honey Recorder
+Song of Ice and Fire
+Devil's Subwoofer
+fiery totem
+
+Berserker enchant
+Berserker Breaker
+Berserker Soul Staff
+Bloody High Claw
+Orange Music Player 
+Thermogenic Impaler
+Surtrs Sword
+Scorn
+
+Chlorophyte Enchant
+Chlorophyte Shotbow
+Flower Boots
+Staff of Regrowth
+Leaf Blower 
+Seedling
+Chlorophyte Butterfly
+Flower Pow
+
+Turtle Enchant
+Lizard Egg
+Seaweed
+Chlorophyte Partizan
+Chlorophyte Great Axe
+Absinthe Fury
+Yelets
+Frog
+
+Jungle Enchant
+Jungle Rose
+Jungle Painting
+Jungle Spore Butterfly
+Ivy Whip
+Thorn Chakram
+Grubby
+Boomstick
