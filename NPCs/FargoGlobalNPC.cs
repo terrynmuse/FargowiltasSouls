@@ -1728,6 +1728,30 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
+			
+			if (npc.ai[1] == 1f) //spinning
+                        {
+                            Timer++;
+
+                            float ratio = (float)npc.life / npc.lifeMax;
+                            int threshold = 5 + 25 * (int) ratio;
+                            if (Timer >= threshold) //spray bones
+                            {
+                                Timer = 0;
+
+                                if (threshold > 0)
+                                {
+                                    Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
+                                    speed.Normalize();
+                                    speed *= 6f;
+                                    speed += npc.velocity * 1.5f * (1f - ratio);
+                                    speed.Y -= Math.Abs(speed.X) * 0.2f;
+
+                                    if (Main.netMode != 1)
+                                        Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 9 * 2, 0f, Main.myPlayer);
+                                }
+                            }
+                        }
                         break;
 
                     case 35: //wall of flesh mouth
@@ -2504,10 +2528,31 @@ namespace FargowiltasSouls.NPCs
 
                     case 53: //ice queen
                         Counter++;
-                        if (Counter >= 180)
+
+                        short countCap = 7;
+                        if (npc.life < npc.lifeMax * 3 / 4)
+                            countCap--;
+                        if (npc.life < npc.lifeMax / 2)
+                            countCap -= 2;
+                        if (npc.life < npc.lifeMax / 4)
+                            countCap -= 3;
+                        if (npc.life < npc.lifeMax / 10)
+                            countCap -= 4;
+
+                        if (Counter > countCap)
                         {
                             Counter = 0;
-                            NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Flocko);
+
+                            Vector2 speed = new Vector2(Main.rand.Next(-1000, 1001), Main.rand.Next(-1000, 1001));
+                            speed.Normalize();
+                            speed *= 15f;
+
+                            Vector2 spawn = npc.Center;
+                            spawn.Y -= 20f;
+                            spawn += speed * 4f;
+
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(spawn, speed, ProjectileID.FrostShard, 35, 0f, Main.myPlayer);
                         }
                         break;
 
