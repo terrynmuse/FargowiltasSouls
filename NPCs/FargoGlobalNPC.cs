@@ -42,11 +42,12 @@ namespace FargowiltasSouls.NPCs
         public byte masoAI = 0;
         public byte masoDeathAI = 0;
         public byte masoHurtAI = 0;
+        public byte masoState = 0;
         public bool[] masoBool = new bool[3];
         public bool Transform = false;
         public bool dropLoot = true;
         public int RegenTimer = 0;
-        public short Counter = 0;
+        public int Counter = 0;
         public int Timer = 600;
         public byte SharkCount = 0;
         private static MethodInfo _startSandstormMethod;
@@ -1340,30 +1341,108 @@ namespace FargowiltasSouls.NPCs
                                 if (!Main.npc[retiBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[1]) //if twin not in phase3
                                     npc.defense = 9999;
                             }
-                            else
+
+                            //may not actually reflect how fast reti is spinning
+                            //2*pi * 2 (two full circles) / 5 (in five seconds) / 60 (ticks per sec)
+                            const float rotationInterval = 2f * (float)Math.PI * 2f / 5f / 60f;
+
+                            Counter++;
+                            switch (masoState) //laser code idfk
                             {
-                                Timer--;
+                                case 0:
+                                    if (Counter >= 600)
+                                    {
+                                        Counter = 0;
+                                        if (npc.HasPlayerTarget)
+                                        {
+                                            masoState++;
+                                            npc.localAI[3] = npc.rotation;
+                                            masoBool[2] = (Main.player[npc.target].Center.X - npc.Center.X < 0);
+                                        }
+                                    }
+                                    break;
+
+                                case 1: //slowing down, beginning rotation
+                                    npc.velocity *= (1f - Counter / 120f);
+                                    npc.localAI[1] = 0f;
+                                    npc.localAI[3] += Counter / 120f * rotationInterval * (masoBool[2] ? 1f : -1f);
+                                    npc.rotation = npc.localAI[3];
+
+                                    if (Counter >= 120) //FIRE LASER
+                                    {
+                                        if (Main.netMode != 1)
+                                        {
+                                            Vector2 speed = Vector2.UnitX.RotatedBy(npc.rotation);
+                                            Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathray>(), npc.damage * 3 / 10, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                        }
+
+                                        masoState++;
+                                        Counter = 0;
+                                    }
+                                    break;
+
+                                case 2: //spinning full speed
+                                    npc.velocity = Vector2.Zero;
+                                    npc.localAI[1] = 0f;
+                                    npc.localAI[3] += rotationInterval * (masoBool[2] ? 1f : -1f);
+                                    npc.rotation = npc.localAI[3];
+
+                                    if (Counter >= 300)
+                                    {
+                                        masoState++;
+                                        Counter = 0;
+                                    }
+                                    break;
+
+                                case 3: //laser done, slowing down spin, moving again
+                                    npc.velocity *= Counter / 60f;
+                                    npc.localAI[1] = 0f;
+                                    npc.localAI[3] += (1f - Counter / 60f) * rotationInterval * (masoBool[2] ? 1f : -1f);
+                                    npc.rotation = npc.localAI[3];
+
+                                    if (Counter >= 60)
+                                    {
+                                        masoState = 0;
+                                        Counter = 0;
+                                    }
+                                    break;
+
+                                default:
+                                    masoState = 0;
+                                    Counter = 0;
+                                    break;
                             }
 
-                            //laser code idfk
-                            Counter++;
-                            if (Counter == 600 && Main.netMode != 1 && npc.HasPlayerTarget)
+                            npc.position += npc.velocity / 2f;
+
+                            //if (Counter == 600 && Main.netMode != 1 && npc.HasPlayerTarget)
+                            //{
+                            //    Vector2 vector200 = Main.player[npc.target].Center - npc.Center;
+                            //    vector200.Normalize();
+                            //    float num1225 = -1f;
+                            //    if (vector200.X < 0f)
+                            //    {
+                            //        num1225 = 1f;
+                            //    }
+                            //    vector200 = vector200.RotatedBy(-num1225 * 1.04719755f, default(Vector2));
+                            //    Projectile.NewProjectile(npc.Center, vector200, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathray>(), npc.damage / 2, 0f, Main.myPlayer, num1225 * 0.0104719755f, npc.whoAmI);
+                            //    npc.netUpdate = true;
+                            //}
+
+                            //dust code
+                            if (Main.rand.Next(4) < 3)
                             {
-                                Vector2 vector200 = Main.player[npc.target].Center - npc.Center;
-                                vector200.Normalize();
-                                float num1225 = -1f;
-                                if (vector200.X < 0f)
+                                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 90, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                                Main.dust[dust].noGravity = true;
+                                Main.dust[dust].velocity *= 1.8f;
+                                Main.dust[dust].velocity.Y -= 0.5f;
+                                if (Main.rand.Next(4) == 0)
                                 {
-                                    num1225 = 1f;
+                                    Main.dust[dust].noGravity = false;
+                                    Main.dust[dust].scale *= 0.5f;
                                 }
-                                vector200 = vector200.RotatedBy(-num1225 * 1.04719755f, default(Vector2));
-                                Projectile.NewProjectile(npc.Center, vector200, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathray>(), npc.damage / 2, 0f, Main.myPlayer, num1225 * 0.0104719755f, npc.whoAmI);
-                                npc.netUpdate = true;
                             }
-                            else if (Counter >= 780)
-                            {
-                                Counter = 0;
-                            }
+                            SharkCount = 253;
                         }
 
                         if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
@@ -1417,10 +1496,6 @@ namespace FargowiltasSouls.NPCs
                                 if (!Main.npc[retiBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[1]) //if twin not in phase3
                                     npc.defense = 9999;
                             }
-                            else
-                            {
-                                Timer--;
-                            }
 
                             if (npc.ai[1] == 0f) //not dashing
                             {
@@ -1469,20 +1544,20 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
 
-                            if (Main.rand.Next(4) < 3) //vanilla cursed inferno dust code
+                            //dust code
+                            if (Main.rand.Next(4) < 3)
                             {
-                                int index = Dust.NewDust(npc.position - new Vector2(2, 2), npc.width + 4, npc.height + 4, 75, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
-                                Dust dust = Main.dust[index];
-                                dust.noGravity = true;
-                                dust.velocity *= 1.8f;
-                                dust.velocity.Y -= 0.5f;
+                                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 89, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                                Main.dust[dust].noGravity = true;
+                                Main.dust[dust].velocity *= 1.8f;
+                                Main.dust[dust].velocity.Y -= 0.5f;
                                 if (Main.rand.Next(4) == 0)
                                 {
-                                    dust.noGravity = false;
-                                    dust.scale *= 0.5f;
+                                    Main.dust[dust].noGravity = false;
+                                    Main.dust[dust].scale *= 0.5f;
                                 }
                             }
-                            Lighting.AddLight((int)(npc.position.X / 16f), (int)(npc.position.Y / 16f + 1f), 1f, 0.3f, 0.1f);
+                            SharkCount = 254;
                         }
 
                         if (!BossIsAlive(ref retiBoss, NPCID.Retinazer))
@@ -3244,9 +3319,28 @@ namespace FargowiltasSouls.NPCs
         {
             if (SharkCount != 0)
             {
-                Color r = new Color(0, 0, 0, 255);
-                r.R = (byte)(SharkCount * 20 + 155);
-                return r;
+                switch (SharkCount)
+                {
+                    case 253:
+                        drawColor.R = 255;
+                        drawColor.G /= 2;
+                        drawColor.B /= 2;
+                        break;
+
+                    case 254:
+                        drawColor.R /= 2;
+                        drawColor.G = 255;
+                        drawColor.B /= 2;
+                        break;
+
+                    default:
+                        drawColor.R = (byte)(SharkCount * 20 + 155);
+                        drawColor.G /= (byte)(SharkCount + 1);
+                        drawColor.B /= (byte)(SharkCount + 1);
+                        break;
+                }
+
+                return drawColor;
             }
 
             return null;
