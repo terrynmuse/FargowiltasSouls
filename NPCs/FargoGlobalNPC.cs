@@ -1728,8 +1728,8 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-			
-			if (npc.ai[1] == 1f) //spinning
+
+                        if (npc.ai[1] == 1f) //spinning
                         {
                             Timer++;
 
