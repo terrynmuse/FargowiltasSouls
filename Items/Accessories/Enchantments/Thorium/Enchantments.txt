@@ -1,5 +1,48 @@
 10 items each :ECH:
 
+enchant/soul
+
+
+Crier enchant
+Flute
+Wooden Whistle
+Music Notes
+Harmonica 
+tambourine
+antlion maraca
+drum mallet
+
+Jester enchant
+Ebon Tambourine/ Shadewood Tambourine
+Fan Letter/ Fan Letter
+Gold/ Platinum Bugle Horn
+Skyware Lute
+Meteorite Oboe
+Survivalist Boots 
+Death Weed Butterfly
+
+Noble enchant
+Bongos
+Hot Horn
+Mixtape
+Honey Recorder
+Song of Ice and Fire
+Devil's Subwoofer
+fiery totem
+
+Marching Band enchant
+Trombone, Hell's Bell
+Wind Chimes
+Shadowflame Warhorn
+Eskimo Banjo 
+
+Cyber Punk enchant
+Auto Tuner
+Hallowed Megaphone
+Cadaver's Cornet
+Prime's Roar
+Midnight Bass Booster 
+
 Ornate enchant
 Vuvuzela Red
 Vuvuzela Blue
@@ -7,6 +50,41 @@ Vuvuzela Green
 Vuvuzela Yellow
 The Green Tambourine 
 Turtle Drums
+
+Conductor enchant
+Clarinet
+Bassoon
+Ghastly French Horn
+The Black Otamatone
+Strawberry Heart 
+
+Balladeer enchant
+Sonar Cannon
+Sound Sage's Lament
+Band Kit
+Terrarium Autoharp
+Metronome 
+
+Rhapsodist enchant
+Both helmets
+Black MIDI
+Holophonor
+Headset
+Concert Tickets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Life Binder enchant
 Mist Weaver
@@ -290,39 +368,7 @@ Dream Catcher
 Unbound Fantasy
 Rebirth Statuette  
 
-Marching Band enchant
-Trombone, Hell's Bell
-Wind Chimes
-Shadowflame Warhorn
-Eskimo Banjo 
 
-Cyber Punk enchant
-Auto Tuner
-Hallowed Megaphone
-Cadaver's Cornet
-Prime's Roar
-Midnight Bass Booster 
-
-Conductor enchant
-Clarinet
-Bassoon
-Ghastly French Horn
-The Black Otamatone
-Strawberry Heart 
-
-Balladeer enchant
-Sonar Cannon
-Sound Sage's Lament
-Band Kit
-Terrarium Autoharp
-Metronome 
-
-Rhapsodist enchant
-Both helmets
-Black MIDI
-Holophonor
-Headset
-Concert Tickets
 
 
 DONE ------------------------------------------------------------------------------------------------------------------------------
@@ -421,14 +467,7 @@ Grasshopper
 any living wood memes?
 Guide to Plant Fiber
 
-Crier enchant
-Flute
-Wooden Whistle
-Music Notes
-Harmonica 
-tambourine
-antlion maraca
-drum mallet
+
 
 Silk enchant
 Wand of Sparking
@@ -457,15 +496,6 @@ Palm Cross
 swallowtail butterfly
 purified water
 Good Book
-
-Jester enchant
-Ebon Tambourine/ Shadewood Tambourine
-Fan Letter/ Fan Letter
-Gold/ Platinum Bugle Horn
-Skyware Lute
-Meteorite Oboe
-Survivalist Boots 
-Death Weed Butterfly
 
 Dread enchant
 Impact Drill
@@ -542,15 +572,6 @@ Magmatic Ricochet
 Spring Steps
 Fireblossom butterfly
 more magma stuff?
-
-Noble enchant
-Bongos
-Hot Horn
-Mixtape
-Honey Recorder
-Song of Ice and Fire
-Devil's Subwoofer
-fiery totem
 
 Berserker enchant
 Berserker Breaker
