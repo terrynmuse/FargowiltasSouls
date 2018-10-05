@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using FargowiltasSouls.Buffs.Masomode;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FargowiltasSouls.Projectiles
 {
@@ -54,7 +55,6 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.FallingStar:
                         projectile.hostile = true;
                         break;
-
                     default:
                         break;
                 }
@@ -305,6 +305,20 @@ namespace FargowiltasSouls.Projectiles
                 }
 
             }
+        }
+
+        public override bool PreDraw(Projectile projectile, SpriteBatch spriteBatch, Color lightColor)
+        {
+            if(FargoWorld.MasochistMode)
+            {
+                if(projectile.type == ProjectileID.HappyBomb)
+                {
+                    //something something draw galactic reformer sprite idk
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void KillPet(Projectile projectile, Player player, int buff, bool enchant, string toggle)

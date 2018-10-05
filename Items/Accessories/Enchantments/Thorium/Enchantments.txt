@@ -1,5 +1,76 @@
 10 items each :ECH:
 
+enchant/soul
+bard emblem
+
+song of ice and fire
+bag pipe
+
+digital tuner
+epic mouthpiece
+guitar pick claw
+straight mute
+band kit
+fish bone
+
+edge of imagination
+holophonor
+chrono ocarina
+the maw
+
+survivalist boots - supersonic
+
+
+Crier enchant
+Flute
+Wooden Whistle
+Music Notes
+Harmonica 
+tambourine
+antlion maraca
+drum mallet
+
+Didgeridoo
+
+Jester enchant
+Ebon Tambourine/ Shadewood Tambourine
+Fan Letter
+Gold/ Platinum Bugle Horn
+Skyware Lute
+Meteorite Oboe
+Death Weed Butterfly
+
+Honey Recorder
+forest ocarina
+panflute
+granite boombox
+sonar cannon
+Conch shell
+
+Noble enchant
+Bongos
+Hot Horn
+Mixtape
+Devil's Subwoofer
+fiery totem
+Microphone
+
+Marching Band enchant
+Trombone, Hell's Bell
+Wind Chimes
+Shadowflame Warhorn
+Eskimo Banjo 
+
+kazoo
+
+Cyber Punk enchant
+Auto Tuner
+Hallowed Megaphone
+Cadaver's Cornet
+Prime's Roar
+Midnight Bass Booster 
+Red Music Player
+
 Ornate enchant
 Vuvuzela Red
 Vuvuzela Blue
@@ -7,6 +78,46 @@ Vuvuzela Green
 Vuvuzela Yellow
 The Green Tambourine 
 Turtle Drums
+Concert Tickets
+
+Sirens Lyre
+Strawberry Heart
+Lihzahrd Saxaphone
+
+Conductor enchant
+Clarinet
+Bassoon
+Ghastly French Horn
+The Black Otamatone
+Metronome
+
+Balladeer enchant
+Sonar Cannon
+Sound Sage's Lament
+Terrarium Autoharp
+Headset
+Rockstar Double Bass Blast Guitar
+
+Rhapsodist enchant
+Both helmets
+Black MIDI
+Holophonor
+
+
+
+Arachnid Subwoofer - spider
+Blood Demon Subwoofer - demon blood
+sub zero Subwoofer - frost
+
+
+
+
+
+
+
+
+
+
 
 Life Binder enchant
 Mist Weaver
@@ -25,6 +136,7 @@ Grounded Totem
 Astral Barrier Wand
 Honey Blade
 Void Lance
+Brown Music Player
 
 Bulb enchant
 Panflute
@@ -106,6 +218,7 @@ Energy Projector
 boulder probe staff
 energywing butterfly
 eye of the storm
+Energized Subwoofer
 
 Bronze enchant
 Spartan Sandals
@@ -113,6 +226,7 @@ Champion Swift Blade
 champion rebuttal
 Bronze Tuning Fork
 ancientwing butterfly
+Spartans Subwoofer
 
 Durasteel enchant
 Steal Enchant
@@ -187,15 +301,13 @@ Harbinger enchant
 Lightning Staff
 Blackhole Cannon
 Harbinger Spear
-Green Music Player
-White Music Player 
+White Music Player
 
 Flov's Ancient enchant
 Spell Book: Time Gate
 Legacy
 Cat's Eye Great Staff
 Gray Music Player
-Brown Music Player 
 
 Illumite enchant
 Launch Jumper
@@ -207,9 +319,9 @@ Pink Music Player
 Shade Master enchant
 Shade Dagger
 1000 Soulslashers
-Purple Music Player
 500 Bugenkai Shurikens
 1000 Plasma Vials 
+Purple Music Player
 
 Conduit enchant
 Cosmic Knife
@@ -222,6 +334,7 @@ Terrarium enchant
 Essence of Flame
 3 Folded Metal
 Searing Blade, Micro Launcher 
+Terrarium Surround Sound
 
 White Dwarf enchant
 The Black Dagger
@@ -290,39 +403,7 @@ Dream Catcher
 Unbound Fantasy
 Rebirth Statuette  
 
-Marching Band enchant
-Trombone, Hell's Bell
-Wind Chimes
-Shadowflame Warhorn
-Eskimo Banjo 
 
-Cyber Punk enchant
-Auto Tuner
-Hallowed Megaphone
-Cadaver's Cornet
-Prime's Roar
-Midnight Bass Booster 
-
-Conductor enchant
-Clarinet
-Bassoon
-Ghastly French Horn
-The Black Otamatone
-Strawberry Heart 
-
-Balladeer enchant
-Sonar Cannon
-Sound Sage's Lament
-Band Kit
-Terrarium Autoharp
-Metronome 
-
-Rhapsodist enchant
-Both helmets
-Black MIDI
-Holophonor
-Headset
-Concert Tickets
 
 
 DONE ------------------------------------------------------------------------------------------------------------------------------
@@ -421,14 +502,7 @@ Grasshopper
 any living wood memes?
 Guide to Plant Fiber
 
-Crier enchant
-Flute
-Wooden Whistle
-Music Notes
-Harmonica 
-tambourine
-antlion maraca
-drum mallet
+
 
 Silk enchant
 Wand of Sparking
@@ -458,15 +532,6 @@ swallowtail butterfly
 purified water
 Good Book
 
-Jester enchant
-Ebon Tambourine/ Shadewood Tambourine
-Fan Letter/ Fan Letter
-Gold/ Platinum Bugle Horn
-Skyware Lute
-Meteorite Oboe
-Survivalist Boots 
-Death Weed Butterfly
-
 Dread enchant
 Impact Drill
 Crash Boots
@@ -475,6 +540,8 @@ Dread Launcher
 Vile Spitter
 Cursed Flail-Core 
 Chain Guillotine
+Grim Subwoofer
+Green Music Player
 
 Dragon enchant
 Dragons Breath
@@ -519,7 +586,7 @@ Demon Blood Staff
 Ichor Butterfly
 Vile Flail-Core
 Dark Contagion
-Red Music Player 
+Yellow Music Player 
 
 Molten Enchant
 Fiery Greatsword
@@ -542,15 +609,6 @@ Magmatic Ricochet
 Spring Steps
 Fireblossom butterfly
 more magma stuff?
-
-Noble enchant
-Bongos
-Hot Horn
-Mixtape
-Honey Recorder
-Song of Ice and Fire
-Devil's Subwoofer
-fiery totem
 
 Berserker enchant
 Berserker Breaker
@@ -587,3 +645,4 @@ Ivy Whip
 Thorn Chakram
 Grubby
 Boomstick
+Toxic Subwoofer

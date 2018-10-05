@@ -77,7 +77,8 @@ namespace FargowiltasSouls.NPCs
             SolarFlare = false;
             Chilled = false;
             HellFire = false;
-            npc.color = default(Color);
+            //BLACK SLIMES
+            //npc.color = default(Color);
         }
 
         public override void SetDefaults(NPC npc)
