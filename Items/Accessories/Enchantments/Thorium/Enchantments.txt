@@ -3,14 +3,22 @@
 enchant/soul
 bard emblem
 
+song of ice and fire
+bag pipe
+
 digital tuner
 epic mouthpiece
 guitar pick claw
 straight mute
 band kit
+fish bone
+
+edge of imagination
+holophonor
+chrono ocarina
+the maw
 
 survivalist boots - supersonic
-
 
 
 Crier enchant
@@ -22,29 +30,38 @@ tambourine
 antlion maraca
 drum mallet
 
+Didgeridoo
+
 Jester enchant
 Ebon Tambourine/ Shadewood Tambourine
 Fan Letter
 Gold/ Platinum Bugle Horn
 Skyware Lute
 Meteorite Oboe
-Survivalist Boots 
 Death Weed Butterfly
+
+Honey Recorder
+forest ocarina
+panflute
+granite boombox
+sonar cannon
+Conch shell
 
 Noble enchant
 Bongos
 Hot Horn
 Mixtape
-Honey Recorder
-Song of Ice and Fire
 Devil's Subwoofer
 fiery totem
+Microphone
 
 Marching Band enchant
 Trombone, Hell's Bell
 Wind Chimes
 Shadowflame Warhorn
 Eskimo Banjo 
+
+kazoo
 
 Cyber Punk enchant
 Auto Tuner
@@ -63,12 +80,15 @@ The Green Tambourine
 Turtle Drums
 Concert Tickets
 
+Sirens Lyre
+Strawberry Heart
+Lihzahrd Saxaphone
+
 Conductor enchant
 Clarinet
 Bassoon
 Ghastly French Horn
 The Black Otamatone
-Strawberry Heart 
 Metronome
 
 Balladeer enchant
@@ -76,6 +96,7 @@ Sonar Cannon
 Sound Sage's Lament
 Terrarium Autoharp
 Headset
+Rockstar Double Bass Blast Guitar
 
 Rhapsodist enchant
 Both helmets
