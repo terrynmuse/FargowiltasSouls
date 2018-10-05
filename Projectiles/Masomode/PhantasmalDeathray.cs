@@ -12,7 +12,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class PhantasmalDeathray : ModProjectile
     {
-    	public override void SetStaticDefaults()
+        private const float maxTime = 240;
+
+        public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Phantasmal Deathray");
 		}
@@ -45,6 +47,11 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 Vector2 offset = new Vector2(Main.npc[(int)projectile.ai[1]].width - 24, 0).RotatedBy(Main.npc[(int)projectile.ai[1]].rotation + 1.57079633);
                 projectile.Center = Main.npc[(int)projectile.ai[1]].Center + offset;
             }
+            else
+            {
+                projectile.Kill();
+                return;
+            }
             if (projectile.velocity.HasNaNs() || projectile.velocity == Vector2.Zero)
             {
                 projectile.velocity = -Vector2.UnitY;
@@ -55,19 +62,22 @@ namespace FargowiltasSouls.Projectiles.Masomode
             }
             float num801 = 1f;
             projectile.localAI[0] += 1f;
-            if (projectile.localAI[0] >= 180f)
+            if (projectile.localAI[0] >= maxTime)
             {
                 projectile.Kill();
                 return;
             }
-            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / 180f) * 10f * num801;
+            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 10f * num801;
             if (projectile.scale > num801)
             {
                 projectile.scale = num801;
             }
-            float num804 = projectile.velocity.ToRotation();
-            num804 += projectile.ai[0];
-            projectile.rotation = num804 - 1.57079637f;
+            //float num804 = projectile.velocity.ToRotation();
+            //num804 += projectile.ai[0];
+            //projectile.rotation = num804 - 1.57079637f;
+            float num804 = Main.npc[(int)projectile.ai[1]].rotation;
+            projectile.rotation = num804;
+            num804 += 1.57079637f;
             projectile.velocity = num804.ToRotationVector2();
             float num805 = 3f;
             float num806 = (float)projectile.width;

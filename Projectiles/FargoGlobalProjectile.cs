@@ -723,7 +723,14 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.EyeLaser:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.wallBoss, NPCID.WallofFlesh))
+                        {
                             target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
+                            target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(120));
+                            target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(120));
+                        }
+
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.retiBoss, NPCID.Retinazer))
+                            target.AddBuff(mod.BuffType<ClippedWings>(), 15);
                         break;
 
                     case ProjectileID.DeathSickle:
@@ -885,7 +892,9 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.DeathLaser:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer))
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer) ||
+                            FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.retiBoss, NPCID.Retinazer) ||
+                            FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.primeBoss, NPCID.SkeletronPrime))
                             target.AddBuff(mod.BuffType<ClippedWings>(), 15);
                         break;
 
@@ -905,9 +914,9 @@ namespace FargowiltasSouls.Projectiles
                         }
                         break;
 
-                    case ProjectileID.PhantasmalBolt:
-                    case ProjectileID.PhantasmalEye:
-                    case ProjectileID.PhantasmalSphere:
+                    case ProjectileID.PhantasmalBolt:   //if ML alive, ML vulnerable
+                    case ProjectileID.PhantasmalEye:    //debuff once per hit normally
+                    case ProjectileID.PhantasmalSphere: //debuff per tick while overlapping player if 120 MLs killed
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.moonBoss, NPCID.MoonLordCore) && !Main.npc[FargoGlobalNPC.moonBoss].dontTakeDamage && (target.hurtCooldowns[1] == 0 || FargoWorld.MoonlordCount >= 120))
                         {
                             int d = Main.rand.Next(Fargowiltas.DebuffIDs.Length);
@@ -953,6 +962,14 @@ namespace FargowiltasSouls.Projectiles
                                 target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
                             else
                                 target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(90, 180));
+                        }
+                        break;
+
+                    case ProjectileID.MoonlordBullet:
+                        if (masoProj)
+                        {
+                            target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(60, 600));
+                            target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(30, 300));
                         }
                         break;
 
