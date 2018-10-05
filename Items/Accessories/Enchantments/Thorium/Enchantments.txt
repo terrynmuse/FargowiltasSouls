@@ -148,6 +148,223 @@ sub zero Subwoofer - frost
 
 
 
+Adamantite enchant
+Adamantite Glaive
+Dark Lance
+Shotgun
+Venom Staff
+
+Bee Enchant
+Hive Backpack
+Bee Gun
+Nectar
+
+Beetle Enchant
+Beetle Wings
+Bee Wings
+Butterfly Wings
+Mothron Wings
+
+Cactus Enchant
+Cactus Sword
+Cactus Pickaxe
+Pink Prickly Pear
+
+Cobalt
+Chik
+Crystal Darts
+Crystal Storm
+Crystal Vile Shard
+
+Copper Enchant
+Copper Shortsword
+Amethysts Staff
+Wires
+
+Dark Artist Enchant
+Apprentice Scarf
+Flameburst T3
+Shadowflame Hexdoll
+DD2 Ghost pet
+
+Forbidden Enchant
+Book staff
+Spirit Flame
+Scoropin
+Desert painting
+Magic carpet
+
+Fossil enchant
+amber staff
+antlion claw
+amber mosquito
+prehistoric staff
+amber butterfly
+
+Gladiator enchant
+javelins
+marble chest
+tartar sauce
+
+Gold enchant
+greedy ring
+gold squirrel
+parrot cracker
+ruby staff
+
+Hallow enchant
+Silver enchant
+excalibur
+hallow painting
+fairy bell
+
+Iron enchant
+EoC shield
+iron broadsword
+iron anvil
+
+Lead enchant
+lead shortsword
+lead pick axe
+gray paint
+
+Meteor enchant
+Space gun
+metoer staff
+star cannon
+space painting
+
+Miner enchant
+magic lantern
+bone pick axe
+molten pick axe
+
+Mythril enchant
+fetid baghanks
+laser rifle
+mega shark
+mythril repeater
+
+Nebula Enchant
+Shadowbeam staff
+Nebula Blaze
+Nebula Arcanum
+Lunar Flare
+
+Necro Enchant
+Bone Sword
+Dungeon painting
+Bone key
+
+Ninja Enchant
+smoke bombs
+unlucky yarn
+shurikens
+
+Orichalcum enchant
+ori war axe
+cursed flames
+flower of fire
+flower of frost
+
+Palladium enchant
+palladium sword
+palladium repeater
+vampire knives
+life drain
+
+Platinum enchant
+diamond staff
+platinum crown
+diamond ring
+
+Red Riding enchant
+dog whistle
+celestial shell
+Explosive T3
+Huntress buckler
+
+Shinobi enchant
+Lightning T3
+Monk belt
+master ninja gear
+Pet gato
+
+Shroomite enchant
+hammush
+uzi
+trufle pet
+mushroom spear
+
+Silver enchant
+silver broadsword
+silver bow
+saphire staff
+
+Solar Flare enchant
+hel fire
+day break
+star wrath
+solar eruption
+
+Spectre enchant
+spectre hamaxe
+spectre staff
+wisp pet
+unholy trident
+
+Spider enchant
+bat scepter
+spider egg
+spider staff
+queen spider staff
+
+Spook enchant
+death sickle
+demon scythe
+eye spring
+cursed sapling
+
+Stardust enchant
+stardust cell staff
+stardust dragon staff
+stardust pickaxe
+rainbow crystall staff
+
+Tiki enchant
+blowgun
+tiki totem
+pygmy necklace
+pygmy staff
+hex wand
+
+Tin enchant
+tin bow
+topaz staff
+daylight painting
+
+Titanium enchant
+titaium sword
+slap hand
+anchor
+monk staff octopod?
+
+Tungsten enchant
+emerald staff
+tunsten hammer
+snail
+
+Valhalla enchant
+shiny stone
+squire shield
+dragon pet
+Ballista T3
+
+Vortex enchant
+vortex popper 
+phantasm
+SDMG
+companion cube
 
 
 Life Binder enchant
