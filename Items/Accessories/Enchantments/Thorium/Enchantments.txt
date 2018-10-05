@@ -12,11 +12,17 @@ guitar pick claw
 straight mute
 band kit
 fish bone
+primes roar or bass booster
+Eskimo Banjo 
 
 edge of imagination
 holophonor
 chrono ocarina
 the maw
+sonic amplifier
+black midi
+sousaphone
+the set
 
 survivalist boots - supersonic
 
@@ -26,11 +32,13 @@ Flute
 Wooden Whistle
 Music Notes
 Harmonica 
-tambourine
 antlion maraca
 drum mallet
 
+dynasty guzheng
+seashell castanets
 Didgeridoo
+bugle horn gold or plat
 
 Jester enchant
 Ebon Tambourine/ Shadewood Tambourine
@@ -40,12 +48,19 @@ Skyware Lute
 Meteorite Oboe
 Death Weed Butterfly
 
+sitar - fossil?
+yew wood lute
 Honey Recorder
 forest ocarina
 panflute
 granite boombox
 sonar cannon
 Conch shell
+music sheet congas
+music sheet steel drum - aquatite
+bone trumpet
+bronze tuning fork
+aquamarine wineglass
 
 Noble enchant
 Bongos
@@ -56,12 +71,20 @@ fiery totem
 Microphone
 
 Marching Band enchant
-Trombone, Hell's Bell
+Hell's Bell
 Wind Chimes
 Shadowflame Warhorn
-Eskimo Banjo 
+Vinyl Record
+Acoustic Guitar
 
+violin
+Riff Weaver - spider?
+frostwind cymbals
 kazoo
+music sheet xylophone
+music sheet harp
+trombone
+24 carat tuba
 
 Cyber Punk enchant
 Auto Tuner
@@ -70,6 +93,8 @@ Cadaver's Cornet
 Prime's Roar
 Midnight Bass Booster 
 Red Music Player
+
+cadavers cornet
 
 Ornate enchant
 Vuvuzela Red
@@ -80,9 +105,11 @@ The Green Tambourine
 Turtle Drums
 Concert Tickets
 
+sunflare guitar
 Sirens Lyre
 Strawberry Heart
 Lihzahrd Saxaphone
+music sheet double bass
 
 Conductor enchant
 Clarinet
@@ -90,11 +117,15 @@ Bassoon
 Ghastly French Horn
 The Black Otamatone
 Metronome
+music sheet organ - spectre?
+
+Terrarium Autoharp
+music sheet turntable
+the triangle
 
 Balladeer enchant
 Sonar Cannon
 Sound Sage's Lament
-Terrarium Autoharp
 Headset
 Rockstar Double Bass Blast Guitar
 
