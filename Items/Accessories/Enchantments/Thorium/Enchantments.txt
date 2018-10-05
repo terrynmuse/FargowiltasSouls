@@ -1,6 +1,16 @@
 10 items each :ECH:
 
 enchant/soul
+bard emblem
+
+digital tuner
+epic mouthpiece
+guitar pick claw
+straight mute
+band kit
+
+survivalist boots - supersonic
+
 
 
 Crier enchant
@@ -14,7 +24,7 @@ drum mallet
 
 Jester enchant
 Ebon Tambourine/ Shadewood Tambourine
-Fan Letter/ Fan Letter
+Fan Letter
 Gold/ Platinum Bugle Horn
 Skyware Lute
 Meteorite Oboe
@@ -42,6 +52,7 @@ Hallowed Megaphone
 Cadaver's Cornet
 Prime's Roar
 Midnight Bass Booster 
+Red Music Player
 
 Ornate enchant
 Vuvuzela Red
@@ -50,6 +61,7 @@ Vuvuzela Green
 Vuvuzela Yellow
 The Green Tambourine 
 Turtle Drums
+Concert Tickets
 
 Conductor enchant
 Clarinet
@@ -57,24 +69,24 @@ Bassoon
 Ghastly French Horn
 The Black Otamatone
 Strawberry Heart 
+Metronome
 
 Balladeer enchant
 Sonar Cannon
 Sound Sage's Lament
-Band Kit
 Terrarium Autoharp
-Metronome 
+Headset
 
 Rhapsodist enchant
 Both helmets
 Black MIDI
 Holophonor
-Headset
-Concert Tickets
 
 
 
-
+Arachnid Subwoofer - spider
+Blood Demon Subwoofer - demon blood
+sub zero Subwoofer - frost
 
 
 
@@ -103,6 +115,7 @@ Grounded Totem
 Astral Barrier Wand
 Honey Blade
 Void Lance
+Brown Music Player
 
 Bulb enchant
 Panflute
@@ -184,6 +197,7 @@ Energy Projector
 boulder probe staff
 energywing butterfly
 eye of the storm
+Energized Subwoofer
 
 Bronze enchant
 Spartan Sandals
@@ -191,6 +205,7 @@ Champion Swift Blade
 champion rebuttal
 Bronze Tuning Fork
 ancientwing butterfly
+Spartans Subwoofer
 
 Durasteel enchant
 Steal Enchant
@@ -265,15 +280,13 @@ Harbinger enchant
 Lightning Staff
 Blackhole Cannon
 Harbinger Spear
-Green Music Player
-White Music Player 
+White Music Player
 
 Flov's Ancient enchant
 Spell Book: Time Gate
 Legacy
 Cat's Eye Great Staff
 Gray Music Player
-Brown Music Player 
 
 Illumite enchant
 Launch Jumper
@@ -285,9 +298,9 @@ Pink Music Player
 Shade Master enchant
 Shade Dagger
 1000 Soulslashers
-Purple Music Player
 500 Bugenkai Shurikens
 1000 Plasma Vials 
+Purple Music Player
 
 Conduit enchant
 Cosmic Knife
@@ -300,6 +313,7 @@ Terrarium enchant
 Essence of Flame
 3 Folded Metal
 Searing Blade, Micro Launcher 
+Terrarium Surround Sound
 
 White Dwarf enchant
 The Black Dagger
@@ -505,6 +519,8 @@ Dread Launcher
 Vile Spitter
 Cursed Flail-Core 
 Chain Guillotine
+Grim Subwoofer
+Green Music Player
 
 Dragon enchant
 Dragons Breath
@@ -549,7 +565,7 @@ Demon Blood Staff
 Ichor Butterfly
 Vile Flail-Core
 Dark Contagion
-Red Music Player 
+Yellow Music Player 
 
 Molten Enchant
 Fiery Greatsword
@@ -608,3 +624,4 @@ Ivy Whip
 Thorn Chakram
 Grubby
 Boomstick
+Toxic Subwoofer
