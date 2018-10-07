@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace FargowiltasSouls
@@ -13,6 +12,7 @@ namespace FargowiltasSouls
         public static bool Visible = false;
 
         public static readonly Dictionary<string, bool> ToggleDict = new Dictionary<string, bool>();
+        public static readonly Dictionary<string, UiCheckbox> checkboxDict = new Dictionary<string, UiCheckbox>();
 
         private readonly Dictionary<string, Color> _buffs = new Dictionary<string, Color>
         {
@@ -112,6 +112,7 @@ namespace FargowiltasSouls
             ["Eye Spring Pet"] = new Color(81, 181, 113)
         };
 
+        private readonly Color defaultColor = new Color(81, 181, 113);
         private readonly Color _wtf = new Color(173, 94, 171);
         private UIPanel _checklistPanel;
         private bool _dragging;
@@ -132,12 +133,26 @@ namespace FargowiltasSouls
         {
             if (ToggleDict.Count != _buffs.Count) ToggleDict.Add(name, true);
 
-
             UiCheckbox uibox = new UiCheckbox(name, "", color, _wtf);
             uibox.Left.Set(left, 0f);
             uibox.Top.Set(top, 0f);
             uibox.OnSelectedChanged += (o, e) => { ToggleDict[name] = !ToggleDict[name]; };
+
+            uibox.OnSelectedChanged += (o, e) => 
+            {
+                if(uibox.Color == defaultColor)
+                {
+                    uibox.Color = Color.Gray;
+                }
+                else
+                {
+                    uibox.Color = defaultColor;
+                }
+            };
+
             _checklistPanel.Append(uibox);
+
+            checkboxDict.Add(name, uibox);
 
             top += 25f;
             if (!(top >= 565)) return;

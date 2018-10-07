@@ -11,7 +11,6 @@ namespace FargowiltasSouls
     internal class UiCheckbox : UIText
     {
         private static readonly Texture2D _checkboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
-        private static readonly Texture2D _checkmarkTexture = Fargowiltas.Instance.GetTexture("checkMark");
         private readonly bool _clickable = true;
         private bool _selected = true;
         private readonly string _test;
@@ -63,9 +62,6 @@ namespace FargowiltasSouls
 
             spriteBatch.Draw(_checkboxTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-            if (Selected)
-                spriteBatch.Draw(_checkmarkTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-
             base.DrawSelf(spriteBatch);
             //Utils.DrawBorderString(spriteBatch, this.test, three, this.olor, 1f, 0f, 0f, -1); the 3d part
             Utils.DrawBorderString(spriteBatch, _test, pos, Color);
@@ -75,16 +71,6 @@ namespace FargowiltasSouls
                 Main.hoverItemName = _tooltip;
             }
         }
-
-        // public void AddCheck()
-        // {
-        // spriteBatch.Draw(checkmarkTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-        // }
-
-        // public void RemoveCheck()
-        // {
-        // spriteBatch.Draw("", pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-        // }
 
         public override int CompareTo(object obj)
         {

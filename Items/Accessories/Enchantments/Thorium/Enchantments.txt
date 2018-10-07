@@ -12,11 +12,17 @@ guitar pick claw
 straight mute
 band kit
 fish bone
+primes roar or bass booster
+Eskimo Banjo 
 
 edge of imagination
 holophonor
 chrono ocarina
 the maw
+sonic amplifier
+black midi
+sousaphone
+the set
 
 survivalist boots - supersonic
 
@@ -26,11 +32,13 @@ Flute
 Wooden Whistle
 Music Notes
 Harmonica 
-tambourine
 antlion maraca
 drum mallet
 
+dynasty guzheng
+seashell castanets
 Didgeridoo
+bugle horn gold or plat
 
 Jester enchant
 Ebon Tambourine/ Shadewood Tambourine
@@ -40,12 +48,19 @@ Skyware Lute
 Meteorite Oboe
 Death Weed Butterfly
 
+sitar - fossil?
+yew wood lute
 Honey Recorder
 forest ocarina
 panflute
 granite boombox
 sonar cannon
 Conch shell
+music sheet congas
+music sheet steel drum - aquatite
+bone trumpet
+bronze tuning fork
+aquamarine wineglass
 
 Noble enchant
 Bongos
@@ -56,12 +71,20 @@ fiery totem
 Microphone
 
 Marching Band enchant
-Trombone, Hell's Bell
+Hell's Bell
 Wind Chimes
 Shadowflame Warhorn
-Eskimo Banjo 
+Vinyl Record
+Acoustic Guitar
 
+violin
+Riff Weaver - spider?
+frostwind cymbals
 kazoo
+music sheet xylophone
+music sheet harp
+trombone
+24 carat tuba
 
 Cyber Punk enchant
 Auto Tuner
@@ -71,18 +94,21 @@ Prime's Roar
 Midnight Bass Booster 
 Red Music Player
 
+cadavers cornet
+
 Ornate enchant
 Vuvuzela Red
 Vuvuzela Blue
 Vuvuzela Green
 Vuvuzela Yellow
 The Green Tambourine 
-Turtle Drums
 Concert Tickets
 
+sunflare guitar
 Sirens Lyre
 Strawberry Heart
 Lihzahrd Saxaphone
+music sheet double bass
 
 Conductor enchant
 Clarinet
@@ -90,11 +116,15 @@ Bassoon
 Ghastly French Horn
 The Black Otamatone
 Metronome
+music sheet organ - spectre?
+
+Terrarium Autoharp
+music sheet turntable
+the triangle
 
 Balladeer enchant
 Sonar Cannon
 Sound Sage's Lament
-Terrarium Autoharp
 Headset
 Rockstar Double Bass Blast Guitar
 
@@ -117,6 +147,281 @@ sub zero Subwoofer - frost
 
 
 
+Adamantite enchant
+Adamantite Glaive
+Dark Lance
+Shotgun
+Venom Staff
+bloody high claw
+adam staff
+adam carbine
+
+Bee Enchant
+Hive Backpack
+Bee Gun
+Nectar
+honey recorder
+
+Beetle Enchant
+Beetle Wings
+Bee Wings
+Butterfly Wings
+Mothron Wings
+
+Cactus Enchant
+Cactus Sword
+Cactus Pickaxe
+Pink Prickly Pear
+
+Cobalt
+Chik
+Crystal Darts
+Crystal Storm
+Crystal Vile Shard
+Cobalt Staff
+Cobalt Popper
+
+Copper Enchant
+Copper Shortsword
+Amethysts Staff
+Copper Buckler
+Amethyst butterfly
+Wires
+
+
+Dark Artist Enchant
+Apprentice Scarf
+Flameburst T3
+Shadowflame Hexdoll
+DD2 Ghost pet
+
+Forbidden Enchant
+Book staff
+Spirit Flame
+Scoropin
+Desert painting
+Magic carpet
+shus wrath
+karmic holder
+ras whisper
+
+Fossil enchant
+amber staff
+antlion claw
+amber mosquito
+prehistoric staff
+amber butterfly
+sitar
+
+Gladiator enchant
+javelins
+marble chest
+tartar sauce
+
+Gold enchant
+greedy ring
+gold squirrel
+parrot cracker
+ruby staff
+gold aeigis
+Saba
+
+
+Hallow enchant
+Silver enchant
+excalibur
+hallow painting
+fairy bell
+life quartz shield?
+trigun
+hallow megaphone
+
+Iron enchant
+EoC shield
+iron broadsword
+iron anvil
+iron shield
+opal staff
+opal butterfly
+greedy magnet? idk
+
+Lead enchant
+lead shortsword
+lead pick axe
+gray paint
+lead shield
+onyx staff
+onyx butterfly
+
+Meteor enchant
+Space gun
+metoer staff
+star cannon
+space painting
+comet crossfire
+meteor butterfly
+Bio Pod
+
+Miner enchant
+magic lantern
+bone pick axe
+molten pick axe
+
+Mythril enchant
+laser rifle
+mega shark
+mythril repeater
+mythril staff
+mythril pelter
+
+Nebula Enchant
+Shadowbeam staff
+Nebula Blaze
+Nebula Arcanum
+Lunar Flare
+
+Necro Enchant
+Bone Sword
+Dungeon painting
+Bone key
+slugger
+
+Ninja Enchant
+smoke bombs
+unlucky yarn
+shurikens
+
+Orichalcum enchant
+ori war axe
+cursed flames
+flower of fire
+flower of frost
+ori staff
+ori pelter
+
+
+Palladium enchant
+palladium sword
+palladium repeater
+vampire knives
+life drain
+pal staff
+pal sub machine gun
+
+
+Platinum enchant
+diamond staff
+platinum crown
+diamond ring
+plat aigis
+diamond butterfly
+plat bugle horn?
+
+Red Riding enchant
+dog whistle
+celestial shell
+Explosive T3
+Huntress buckler
+
+Shinobi enchant
+Lightning T3
+Monk belt
+master ninja gear
+Pet gato
+
+Shroomite enchant
+hammush
+uzi
+trufle pet
+mushroom spear
+mycelium gatling gun
+hoverboard
+
+Silver enchant
+silver broadsword
+silver bow
+saphire staff
+silver bulwark
+saphire buterfly
+
+
+Solar Flare enchant
+hel fire
+day break
+star wrath
+solar eruption
+
+Spectre enchant
+spectre hamaxe
+spectre wings
+ghastly carapace
+spectre staff
+wisp pet
+unholy trident
+
+Spider enchant
+bat scepter
+spider egg
+spider staff
+queen spider staff
+riff weaver
+arachnid woofer
+
+Spook enchant
+death sickle
+demon scythe
+eye spring
+cursed sapling
+
+Stardust enchant
+stardust cell staff
+stardust dragon staff
+stardust pickaxe
+rainbow crystall staff
+
+Tiki enchant
+blowgun
+tiki totem
+pygmy necklace
+pygmy staff
+hex wand
+
+Tin enchant
+tin bow
+topaz staff
+daylight painting
+tin buckler
+topaz butterfly
+
+
+Titanium enchant
+titaium sword
+slap hand
+anchor
+monk staff octopod?
+tit rifle
+tit staff
+
+
+Tungsten enchant
+emerald staff
+tunsten hammer
+snail
+glowing snail?
+tungsten bulwark
+emerald butterfly
+
+Valhalla enchant
+shiny stone
+squire shield
+dragon pet
+Ballista T3
+
+Vortex enchant
+vortex popper 
+phantasm
+SDMG
+companion cube
 
 
 Life Binder enchant
@@ -560,6 +865,7 @@ Corrupt Butterfly
 Ball O Hurt
 Purple Blubberfish
 War Axe of the Night
+malaise
 
 Crimson Enchant
 Deadland Comes Alive
@@ -569,6 +875,8 @@ Crimson Butterfly
 The Undertaker
 Meatball
 Blood Lust Cluster
+artery
+
 
 Flesh enchant
 Blister Sack
@@ -593,6 +901,7 @@ Fiery Greatsword
 Sunfury
 Demons Eye Painting
 Hellwing Butterfly
+Thors Hammer melee
 more molten meme?
 
 Obsidian Enchant
@@ -600,6 +909,7 @@ Obsidian Rose
 Lava Waders
 Sharktooth Necklace
 Obsidian Scale
+bellarose
 more obdisian meme?
 
 Magma enchant
@@ -627,6 +937,8 @@ Leaf Blower
 Seedling
 Chlorophyte Butterfly
 Flower Pow
+chloro staff
+
 
 Turtle Enchant
 Lizard Egg
@@ -636,6 +948,7 @@ Chlorophyte Great Axe
 Absinthe Fury
 Yelets
 Frog
+Turtle Drums
 
 Jungle Enchant
 Jungle Rose
