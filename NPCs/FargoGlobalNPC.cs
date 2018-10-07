@@ -546,6 +546,12 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 73;
                         break;
 
+                    case NPCID.Clown:
+                        masoAI = 74;
+                        npc.lifeMax *= 5;
+                        npc.life = npc.lifeMax;
+                        break;
+
                     default:
                         break;
                 }
@@ -561,7 +567,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GoblinArcher:
                     case NPCID.GoblinScout:
                     case NPCID.GoblinSorcerer:
-                    case NPCID.GoblinSummoner:
                     case NPCID.GoblinThief:
                         masoDeathAI = 2;
                         break;
@@ -687,6 +692,10 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.EaterofWorldsBody:
                         masoDeathAI = 34;
+                        break;
+
+                    case NPCID.GoblinSummoner:
+                        masoDeathAI = 35;
                         break;
 
                     default:
@@ -3219,7 +3228,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
                         
-                    case 73:
+                    case 73: //pixie
                         if(npc.HasPlayerTarget && Vector2.Distance(Main.player[npc.target].Center, npc.Center) < 200)
                         {
                             Counter++;
@@ -3228,6 +3237,67 @@ namespace FargowiltasSouls.NPCs
                         {
                             Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Navi").WithVolume(1f).WithPitchVariance(.5f), npc.Center);
                             Counter = 0;
+                        }
+                        break;
+
+                    case 74: //clown
+                        if (!masoBool[0]) //roar when spawn
+                        {
+                            masoBool[0] = true;
+                            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+
+                            if (Main.netMode == 0)
+                                Main.NewText("A Clown has begun ticking!", 175, 75, byte.MaxValue);
+                        }
+
+                        Counter++;
+                        if (Counter >= 240)
+                        {
+                            Counter = 0;
+
+                            SharkCount++;
+                            if (SharkCount >= 5)
+                            {
+                                npc.life = 0;
+                                Main.PlaySound(npc.DeathSound, npc.Center);
+                                npc.active = false;
+
+                                if (Main.netMode != 1)
+                                {
+                                    for (int i = 0; i < 100; i++)
+                                    {
+                                        int type = ProjectileID.Dynamite;
+                                        int damage = 250 / 4;
+                                        float knockback = 8f;
+                                        switch (Main.rand.Next(10))
+                                        {
+                                            case 0: break;
+                                            case 1:
+                                            case 2:
+                                            case 3: type = ProjectileID.BouncyDynamite; knockback = 10f; break;
+                                            case 4: type = ProjectileID.StickyDynamite; knockback = 10f; break;
+                                            case 5: type = ProjectileID.Bomb; damage = 100 / 4; break;
+                                            case 6:
+                                            case 7:
+                                            case 8: type = ProjectileID.BouncyBomb; damage = 100 / 4; break;
+                                            case 9: type = ProjectileID.StickyBomb; damage = 100 / 4; break;
+                                            case 10: type = ProjectileID.Grenade; damage = 60 / 4; break;
+                                            case 11:
+                                            case 12:
+                                            case 13: type = ProjectileID.BouncyGrenade; damage = 60 / 4; break;
+                                            case 14: type = ProjectileID.StickyGrenade; damage = 60 / 4; break;
+                                        }
+
+                                        int p = Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-1000, 1001) / 100f, Main.rand.Next(-2000, 101) / 100f, type, damage, knockback, Main.myPlayer);
+                                        Main.projectile[p].timeLeft += Main.rand.Next(180);
+                                    }
+
+                                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType<NukeProj>(), 250, 20f, Main.myPlayer);
+                                }
+
+                                if (Main.netMode == 0)
+                                    Main.NewText("A Clown has exploded!", 175, 75, byte.MaxValue);
+                            }
                         }
                         break;
 
@@ -4242,7 +4312,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case 2: //goblin peon/warrior
+                    case 2: //goblins
                         Projectile ball = Projectile.NewProjectileDirect(npc.Center, new Vector2(Main.rand.Next(-5, 6), -5), ProjectileID.SpikyBall, 15, 0, Main.myPlayer);
                         ball.hostile = true;
                         ball.friendly = false;
@@ -4674,6 +4744,16 @@ namespace FargowiltasSouls.NPCs
 
                     case 34: //eater of worlds body
                         NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.EaterofSouls);
+                        break;
+
+                    case 35: //goblin summoner
+                        for (int i = 0; i < 50; i++)
+                        {
+                            Projectile balls = Projectile.NewProjectileDirect(npc.Center, new Vector2(Main.rand.Next(-500, 501) / 100f, Main.rand.Next(-1000, 1) / 100f), ProjectileID.SpikyBall, npc.damage / 8, 0, Main.myPlayer);
+                            balls.hostile = true;
+                            balls.friendly = false;
+                            balls.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                        }
                         break;
 			
 			/* pseudo memes
