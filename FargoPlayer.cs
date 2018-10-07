@@ -212,6 +212,7 @@ namespace FargowiltasSouls
                 if (Soulcheck.ToggleDict.ContainsKey(disabledSoul))
                 {
                     Soulcheck.ToggleDict[disabledSoul] = false;
+                    Soulcheck.checkboxDict[disabledSoul].Color = Color.Gray;
                 }
             }
 
