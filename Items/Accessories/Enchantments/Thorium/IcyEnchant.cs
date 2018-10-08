@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Icy Enchantment");
             Tooltip.SetDefault(
-                @"''
+                @"'Gives your hair some frosty tips too'
 ");
         }
 
