@@ -698,6 +698,10 @@ namespace FargowiltasSouls.NPCs
                         masoDeathAI = 35;
                         break;
 
+                    case NPCID.Clown:
+                        masoDeathAI = 36;
+                        break;
+
                     default:
                         break;
                 }
@@ -3267,7 +3271,7 @@ namespace FargowiltasSouls.NPCs
                                     for (int i = 0; i < 100; i++)
                                     {
                                         int type = ProjectileID.Dynamite;
-                                        int damage = 250 / 4;
+                                        int damage = 250;
                                         float knockback = 8f;
                                         switch (Main.rand.Next(10))
                                         {
@@ -3276,16 +3280,16 @@ namespace FargowiltasSouls.NPCs
                                             case 2:
                                             case 3: type = ProjectileID.BouncyDynamite; knockback = 10f; break;
                                             case 4: type = ProjectileID.StickyDynamite; knockback = 10f; break;
-                                            case 5: type = ProjectileID.Bomb; damage = 100 / 4; break;
+                                            case 5: type = ProjectileID.Bomb; damage = 100; break;
                                             case 6:
                                             case 7:
-                                            case 8: type = ProjectileID.BouncyBomb; damage = 100 / 4; break;
-                                            case 9: type = ProjectileID.StickyBomb; damage = 100 / 4; break;
-                                            case 10: type = ProjectileID.Grenade; damage = 60 / 4; break;
+                                            case 8: type = ProjectileID.BouncyBomb; damage = 100; break;
+                                            case 9: type = ProjectileID.StickyBomb; damage = 100; break;
+                                            case 10: type = ProjectileID.Grenade; damage = 60; break;
                                             case 11:
                                             case 12:
-                                            case 13: type = ProjectileID.BouncyGrenade; damage = 60 / 4; break;
-                                            case 14: type = ProjectileID.StickyGrenade; damage = 60 / 4; break;
+                                            case 13: type = ProjectileID.BouncyGrenade; damage = 60; break;
+                                            case 14: type = ProjectileID.StickyGrenade; damage = 60; break;
                                         }
 
                                         int p = Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-1000, 1001) / 100f, Main.rand.Next(-2000, 101) / 100f, type, damage, knockback, Main.myPlayer);
@@ -4755,6 +4759,14 @@ namespace FargowiltasSouls.NPCs
                             balls.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                         }
                         break;
+
+                    case 36: //clown
+                        for (int i = 0; i < 30; i++)
+                        {
+                            int p = Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-500, 501) / 100f, Main.rand.Next(-1000, 101) / 100f, ProjectileID.BouncyGrenade, 200, 8f, Main.myPlayer);
+                            Main.projectile[p].timeLeft -= Main.rand.Next(120);
+                        }
+                        break;
 			
 			/* pseudo memes
 			case: slime zombie
@@ -5012,17 +5024,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 6: //desu body/tail
-                        if (projectile.type == ProjectileID.HallowStar || projectile.type == ProjectileID.CrystalShard)
+                        if (projectile.type == ProjectileID.HallowStar || projectile.type == ProjectileID.CrystalShard || projectile.penetrate < 0)
                         {
                             damage = 1;
                         }
                         else if (projectile.maxPenetrate > 0)
                         {
                             damage /= projectile.maxPenetrate;
-                        }
-                        else
-                        {
-                            damage /= 4;
                         }
                         break;
 
@@ -5835,6 +5843,11 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.GigaZapper:
                         target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 600));
+                        break;
+
+                    case NPCID.Clown:
+                        target.AddBuff(mod.BuffType<Fused>(), 180);
+                        target.AddBuff(mod.BuffType<Hexed>(), 600);
                         break;
 
                     default:
