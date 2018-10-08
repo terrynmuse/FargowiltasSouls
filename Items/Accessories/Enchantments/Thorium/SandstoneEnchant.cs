@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Sandstone Enchantment");
             Tooltip.SetDefault(
-                @"''
+                @"'Enveloped by desert winds'
 ");
         }
 
