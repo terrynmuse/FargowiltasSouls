@@ -8,50 +8,19 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class BardSoul : ModItem
     {
-        private readonly string[] _items =
-        {
-            "VenomSubwoofer",
-            "FrostSubwoofer",
-            "CorruptSubwoofer",
-            "CrimsonSubwoofer",
-            "TerrariumSubwoofer",
-            "DigitalVibrationTuner",
-            "EpicMouthpiece",
-            "StraightMute",
-            "GuitarPickClaw",
-            "Triangle",
-            "Ocarina",
-            "Saxophone",
-            "RockstarsDoubleBassBlastGuitar"
-        };
-        
-        /*
-        band kit
-        metronome?
-        auto tuner?
-        
-        fishbone
-        cadavers cornet?
-        sirens lyre
-        
-        essence possibly? or universe just gets all of them ech
-        deep dark subwoofer
-        devils subwoofer
-        energized subwoofer
-        spartans subwoofer
-        toxic subwoofer
-        */
-
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        private string tooltip = null;
+        
+        public override bool Autoload(ref string name)
+        {
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+        }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rhapsodist's Soul");
 
-            if (ModLoader.GetLoadedMods().Contains("ThoriumMod"))
-                Tooltip.SetDefault(
-                    @"'Every note you produce births a new world'
+            Tooltip.SetDefault(
+@"'Every note you produce births a new world'
 40% increased symphonic damage
 25% increased symphonic playing speed
 20% increased symphonic critical strike chance
@@ -64,9 +33,6 @@ Your wind instrument attacks now attempt to quickly home in on enemies
 If the attack already homes onto enemies, it does so far more quickly
 String weapon projectiles bounce five additional times
 Critical strikes caused by brass instrument attacks release a spread of energy");
-            else
-                Tooltip.SetDefault("'Every note you produce births a new world'\n" +
-                                   "-Enable Thorium for this soul to do anything-");
         }
 
         public override void SetDefaults()
@@ -108,10 +74,46 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
             thoriumPlayer.tuner2 = true;
             thoriumPlayer.bardBounceBonus = 5;
         }
+        
+        private readonly string[] _items =
+        {
+            "VenomSubwoofer",
+            "FrostSubwoofer",
+            "CorruptSubwoofer",
+            "CrimsonSubwoofer",
+            "TerrariumSubwoofer",
+            "DigitalVibrationTuner",
+            "EpicMouthpiece",
+            "StraightMute",
+            "GuitarPickClaw",
+            "Triangle",
+            "Ocarina",
+            "Saxophone",
+            "RockstarsDoubleBassBlastGuitar"
+        };
+        
+        /*
+        band kit
+        metronome?
+        auto tuner?
+        
+        fishbone
+        cadavers cornet?
+        sirens lyre
+        
+        essence possibly? or universe just gets all of them ech
+        deep dark subwoofer
+        devils subwoofer
+        energized subwoofer
+        spartans subwoofer
+        toxic subwoofer
+        */
+
 
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            
             ModRecipe recipe = new ModRecipe(mod);
 
             foreach (string i in _items) recipe.AddIngredient(thorium.ItemType(i));
