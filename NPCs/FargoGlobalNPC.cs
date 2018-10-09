@@ -827,73 +827,73 @@ namespace FargowiltasSouls.NPCs
                     //    break;
 
 
-                    case NPCID.Plantera:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PlanteraCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PlanteraCount * .0125));
-                        break;
-                    case NPCID.PlanterasHook:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PlanteraCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PlanteraCount * .0125));
-                        break;
-                    case NPCID.PlanterasTentacle:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PlanteraCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PlanteraCount * .0125));
-                        break;
+                    //case NPCID.Plantera:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PlanteraCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.PlanteraCount * .0125));
+                    //    break;
+                    //case NPCID.PlanterasHook:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PlanteraCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.PlanteraCount * .0125));
+                    //    break;
+                    //case NPCID.PlanterasTentacle:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PlanteraCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.PlanteraCount * .0125));
+                    //    break;
 
-                    case NPCID.Golem:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
-                        break;
-                    case NPCID.GolemFistLeft:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
-                        break;
-                    case NPCID.GolemFistRight:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
-                        break;
-                    case NPCID.GolemHead:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
-                        break;
-                    case NPCID.GolemHeadFree:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
-                        break;
-
-
-                    case NPCID.CultistBoss:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.CultistCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.CultistCount * .0125));
-                        break;
+                    //case NPCID.Golem:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
+                    //    break;
+                    //case NPCID.GolemFistLeft:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
+                    //    break;
+                    //case NPCID.GolemFistRight:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
+                    //    break;
+                    //case NPCID.GolemHead:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
+                    //    break;
+                    //case NPCID.GolemHeadFree:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
+                    //    break;
 
 
-                    case NPCID.DukeFishron:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.FishronCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
-                        break;
+                    //case NPCID.CultistBoss:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.CultistCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.CultistCount * .0125));
+                    //    break;
 
 
-                    case NPCID.MoonLordCore:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
-                        break;
-                    case NPCID.MoonLordHand:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
-                        break;
-                    case NPCID.MoonLordHead:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
-                        break;
-                    case NPCID.MoonLordFreeEye:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
-                        break;
-                    case NPCID.MoonLordLeechBlob:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
-                        break;
+                    //case NPCID.DukeFishron:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.FishronCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
+                    //    break;
+
+
+                    //case NPCID.MoonLordCore:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
+                    //    break;
+                    //case NPCID.MoonLordHand:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
+                    //    break;
+                    //case NPCID.MoonLordHead:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
+                    //    break;
+                    //case NPCID.MoonLordFreeEye:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
+                    //    break;
+                    //case NPCID.MoonLordLeechBlob:
+                    //    npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
+                    //    npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
+                    //    break;
 
 
                     default:
@@ -2105,6 +2105,8 @@ namespace FargowiltasSouls.NPCs
 
                             case 4: //phase 2 transition
                                 npc.dontTakeDamage = true;
+
+                                masoBool[1] = false;
 
                                 if (npc.buffTime[0] != 0)
                                     npc.DelBuff(0);
