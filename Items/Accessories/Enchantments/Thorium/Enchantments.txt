@@ -45,21 +45,6 @@ Death Weed Butterfly
 panflute
 Conch shell
 
-
-
-
-
-
-yew wood lute
-forest ocarina
-granite boombox
-sonar cannon
-music sheet congas
-music sheet steel drum - aquatite
-bone trumpet
-bronze tuning fork
-aquamarine wineglass
-
 Noble enchant
 Bongos
 Hot Horn
@@ -67,22 +52,29 @@ Mixtape
 Devil's Subwoofer
 fiery totem
 Microphone
+Sonar cannon
 
 Marching Band enchant
 Hell's Bell
 Wind Chimes
 Shadowflame Warhorn
+frostwind cymbals
+trombone
+24 carat tuba
+violin
+
+
+
+
+
+
+
 Vinyl Record
 Acoustic Guitar
-
-violin
 Riff Weaver - spider?
-frostwind cymbals
 kazoo
 music sheet xylophone
 music sheet harp
-trombone
-24 carat tuba
 
 Cyber Punk enchant
 Auto Tuner
@@ -136,6 +128,14 @@ Holophonor
 
 seashell castanets
 Didgeridoo
+yew wood lute
+forest ocarina
+granite boombox
+music sheet congas
+music sheet steel drum - aquatite
+bone trumpet
+bronze tuning fork
+aquamarine wineglass - aqua
 
 
 Arachnid Subwoofer - spider
