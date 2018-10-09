@@ -34,28 +34,26 @@ Music Notes
 Harmonica 
 antlion maraca
 drum mallet
-
 dynasty guzheng
-seashell castanets
-Didgeridoo
-bugle horn gold or plat
 
 Jester enchant
 Ebon Tambourine/ Shadewood Tambourine
 Fan Letter
-Gold/ Platinum Bugle Horn
 Skyware Lute
 Meteorite Oboe
 Death Weed Butterfly
-
-sitar - fossil?
-yew wood lute
-Honey Recorder
-forest ocarina
 panflute
+Conch shell
+
+
+
+
+
+
+yew wood lute
+forest ocarina
 granite boombox
 sonar cannon
-Conch shell
 music sheet congas
 music sheet steel drum - aquatite
 bone trumpet
@@ -133,6 +131,11 @@ Both helmets
 Black MIDI
 Holophonor
 
+
+
+
+seashell castanets
+Didgeridoo
 
 
 Arachnid Subwoofer - spider
