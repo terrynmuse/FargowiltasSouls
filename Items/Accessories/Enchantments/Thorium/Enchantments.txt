@@ -12,8 +12,9 @@ guitar pick claw
 straight mute
 band kit
 fish bone
-primes roar or bass booster
+primes roar
 Eskimo Banjo 
+The Black Otamatone
 
 edge of imagination
 holophonor
@@ -63,51 +64,55 @@ trombone
 24 carat tuba
 violin
 
-
-
-
-
-
-
-Vinyl Record
-Acoustic Guitar
-Riff Weaver - spider?
-kazoo
-music sheet xylophone
-music sheet harp
-
 Cyber Punk enchant
 Auto Tuner
 Hallowed Megaphone
-Cadaver's Cornet
-Prime's Roar
 Midnight Bass Booster 
 Red Music Player
-
-cadavers cornet
+granite boombox
+Vinyl Record - cobalt
+kazoo
 
 Ornate enchant
-Vuvuzela Red
-Vuvuzela Blue
-Vuvuzela Green
-Vuvuzela Yellow
 The Green Tambourine 
 Concert Tickets
-
-sunflare guitar
-Sirens Lyre
-Strawberry Heart
-Lihzahrd Saxaphone
+Vuvuzela blah
+Vuvuzela blah
 music sheet double bass
+sunflare guitar
+forest ocarina
 
 Conductor enchant
+bone trumpet
 Clarinet
 Bassoon
 Ghastly French Horn
-The Black Otamatone
 Metronome
-music sheet organ - spectre?
+music sheet xylophone - hallow
+Lihzahrd Saxaphone
 
+
+
+
+
+
+
+
+
+seashell castanets
+Didgeridoo
+yew wood lute
+music sheet congas
+music sheet steel drum - aquatite
+bronze tuning fork
+aquamarine wineglass - aqua
+Acoustic Guitar - hallow
+Riff Weaver - spider?
+music sheet harp
+cadavers cornet
+Sirens Lyre
+Strawberry Heart
+music sheet organ - spectre?
 Terrarium Autoharp
 music sheet turntable
 the triangle
@@ -126,16 +131,7 @@ Holophonor
 
 
 
-seashell castanets
-Didgeridoo
-yew wood lute
-forest ocarina
-granite boombox
-music sheet congas
-music sheet steel drum - aquatite
-bone trumpet
-bronze tuning fork
-aquamarine wineglass - aqua
+
 
 
 Arachnid Subwoofer - spider
