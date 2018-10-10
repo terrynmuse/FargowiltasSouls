@@ -1,3 +1,5 @@
+shield drone beacon - healer soul
+
 Spider enchant
 WebGun
 spider egg
@@ -18,7 +20,7 @@ Yellow Music Player
 
 Frost Enchant
 Ice Bow
-Fish
+Toy Sled
 Ice Painting
 Glacior
 Freeze Ray
@@ -52,50 +54,60 @@ TheTriangle
 VegaPhaser
 Brain Scrambler
 
-
-
-
-aquamarine wineglass - aqua
-the triangle - conduit
-Toy Sled - cryo magus
-shield drone beacon - healer soul
-
+Icy enchant
+Frost Fire Katana
+Spell Book: Blizzard
+Ice Boomerang
+Frost Fury
+shiverthorn butterfly
+snowball launcher
+Fish
 
 Cryo-Magus enchant
 Forgotten Letter
 ice fairy staff
 Ice Bound Strider Hide 
 Frost Burnt Tongue
-Blitz-zard
-Frostwind Cymbals
 Blue Music Player
+Frost Staff
+GatewayGlass
 
 Depth Diver enchant
-Aquamarine Wineglass
-music sheet stell drums
-Deep Dark Subwoofer
-Geyser staff
-Deeplight Esca
-magic conch
-Misty Totem
-
-
-
+AquamarineWineglass
+DeepDarkSubwoofer
+GeyserStaff
+DeeplightEsca
+MagicConch
+MistyTotem
+Jellyfish bait
 
 Adamantite enchant
 Adamantite Glaive
-Dark Lance
 Shotgun
+OgreSnotGun
+AdamantiteStaff
+AdamantiteCarbine
+DynastyWarFan
+Scorn
+
+
+
+
+
+
+
+Dark Lance
 Venom Staff
 bloody high claw
-adam staff
-adam carbine
 
 Bee Enchant
 Hive Backpack
 Bee Gun
 Nectar
 honey recorder
+
+
+
 
 Beetle Enchant
 Beetle Wings
@@ -620,15 +632,6 @@ Rebirth Statuette
 
 
 DONE ------------------------------------------------------------------------------------------------------------------------------
-
-Icy enchant
-Frost Fire Katana
-Spell Book: Blizzard
-Ice Boomerang
-Frost Fury
-shiverthorn butterfly
-snowball launcher
-ice machine
 
 Ocean enchant 
 Sea breeze pendant
