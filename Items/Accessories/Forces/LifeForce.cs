@@ -41,7 +41,7 @@ Summons a pet Squashling, Baby Hornet, Spider, Lizard, and Turtle");
             modPlayer.CactusEffect();
             modPlayer.PumpkinEffect(40, hideVisual);
             modPlayer.BeeEffect(hideVisual);
-            modPlayer.SpiderEnchant = true;
+            modPlayer.SpiderEffect(hideVisual);
             modPlayer.TurtleEffect(hideVisual);
             modPlayer.BeetleEffect();
         }
