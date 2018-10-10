@@ -1,11 +1,22 @@
 10 items each :ECH:
 
 enchant/soul
-bard emblem
 
+bard emblem
 song of ice and fire
 bag pipe
+seashell castanets
+Didgeridoo
+yew wood lute
+antlion maraca
+music sheet congas
+music sheet steel drum
+bronze tuning fork
+granite boombox
+forest ocarina
+Hot Horn
 
+essence
 digital tuner
 epic mouthpiece
 guitar pick claw
@@ -15,15 +26,14 @@ fish bone
 primes roar
 Eskimo Banjo 
 The Black Otamatone
-
-edge of imagination
-holophonor
 chrono ocarina
 the maw
 sonic amplifier
-black midi
-sousaphone
 the set
+
+black midi
+
+
 
 survivalist boots - supersonic
 
@@ -33,7 +43,7 @@ Flute
 Wooden Whistle
 Music Notes
 Harmonica 
-antlion maraca
+bird
 drum mallet
 dynasty guzheng
 
@@ -44,16 +54,16 @@ Skyware Lute
 Meteorite Oboe
 Death Weed Butterfly
 panflute
-Conch shell
+mouse
 
 Noble enchant
 Bongos
-Hot Horn
 Mixtape
 Devil's Subwoofer
 fiery totem
 Microphone
 Sonar cannon
+Fireblossom butterfly
 
 Marching Band enchant
 Hell's Bell
@@ -67,9 +77,9 @@ violin
 Cyber Punk enchant
 Auto Tuner
 Hallowed Megaphone
+bass booster
 Midnight Bass Booster 
 Red Music Player
-granite boombox
 Vinyl Record - cobalt
 kazoo
 
@@ -78,9 +88,9 @@ The Green Tambourine
 Concert Tickets
 Vuvuzela blah
 Vuvuzela blah
+Vuvuzela blah
+Vuvuzela blah
 music sheet double bass
-sunflare guitar
-forest ocarina
 
 Conductor enchant
 bone trumpet
@@ -91,42 +101,27 @@ Metronome
 music sheet xylophone - hallow
 Lihzahrd Saxaphone
 
-
-
-
-
-
-
-
-
-seashell castanets
-Didgeridoo
-yew wood lute
-music sheet congas
-music sheet steel drum - aquatite
-bronze tuning fork
-aquamarine wineglass - aqua
-Acoustic Guitar - hallow
-Riff Weaver - spider?
-music sheet harp
-cadavers cornet
-Sirens Lyre
-Strawberry Heart
-music sheet organ - spectre?
-Terrarium Autoharp
-music sheet turntable
-the triangle
-
 Balladeer enchant
-Sonar Cannon
+sunflare guitar
 Sound Sage's Lament
 Headset
 Rockstar Double Bass Blast Guitar
+music sheet turntable
+Acoustic Guitar
+Strawberry Heart
 
 Rhapsodist enchant
 Both helmets
-Black MIDI
 Holophonor
+edge of imagination
+sousaphone
+Sirens Lyre
+Terrarium Autoharp
+music sheet harp
+
+
+
+
 
 
 
@@ -137,7 +132,11 @@ Holophonor
 Arachnid Subwoofer - spider
 Blood Demon Subwoofer - demon blood
 sub zero Subwoofer - frost
-
+aquamarine wineglass - aqua
+Riff Weaver - spider?
+cadavers cornet - lich
+music sheet organ - spectre?
+the triangle - conduit
 
 
 
@@ -916,7 +915,6 @@ Molten Spear Tip
 Magma Shiv
 Magmatic Ricochet
 Spring Steps
-Fireblossom butterfly
 more magma stuff?
 
 Berserker enchant

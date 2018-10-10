@@ -1,6 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Linq;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -12,8 +14,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {

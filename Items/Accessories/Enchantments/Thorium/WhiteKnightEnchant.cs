@@ -1,6 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Linq;
+using ThoriumMod;
+
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
