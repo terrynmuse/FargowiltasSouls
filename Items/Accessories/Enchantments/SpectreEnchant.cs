@@ -35,13 +35,23 @@ Summons a Wisp to provide light");
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddRecipeGroup("FargowiltasSouls:AnySpectreHead");
-            ;
+            
             recipe.AddIngredient(ItemID.SpectreRobe);
             recipe.AddIngredient(ItemID.SpectrePants);
             recipe.AddIngredient(ItemID.SpectreHamaxe);
             recipe.AddIngredient(ItemID.SpectreStaff);
             recipe.AddIngredient(ItemID.UnholyTrident);
             recipe.AddIngredient(ItemID.WispinaBottle);
+            
+            /*
+            both heads?
+spectre wings
+GhastlyCarapace
+Ghostly Grapple or some other random magic hmm
+MusicSheetOrgan
+Ectoplasmic Butterfly
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
