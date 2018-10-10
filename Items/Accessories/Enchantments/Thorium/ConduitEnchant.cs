@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            Conduit armor
+            Conduit armor
+            Conduit armor
+            SuperPlasmaCannon
+            StrangeCommunicator
+            OmegaDrive
+            LivewireCrasher 
+            TheTriangle
+            VegaPhaser
+            BrainScrambler
         };
 
         public override void AddRecipes()
