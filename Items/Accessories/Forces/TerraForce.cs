@@ -18,8 +18,8 @@ If an enemy is wet, the chance and damage is increased
 Sets your critical strike chance to 10%
 Every crit will increase it by 5%
 Getting hit drops your crit back down
-Allows the player to dash into the enemy
 Right Click to guard with your shield
+Your shield will also protect you from projectiles
 You attract items from a much larger range and fall 5 times as quickly
 Attacks may inflict enemies with Lead Poisoning
 Your weapons shoot at 1/3 the speed
