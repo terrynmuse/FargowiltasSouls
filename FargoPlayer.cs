@@ -84,6 +84,7 @@ namespace FargowiltasSouls
         public bool IronEnchant;
         public bool IronGuard;
         public bool TurtleEnchant;
+        public bool ShellHide;
         public bool LeadEnchant;
         public bool GladEnchant;
         public bool GoldEnchant;
@@ -178,69 +179,76 @@ namespace FargowiltasSouls
         public bool Jammed;                 //ranged damage and speed reduced, all non-custom ammo set to baseline ammos
         public bool Slimed;
 
-        
+        public IList<string> disabledSouls = new List<string>();
 
         public override TagCompound Save()
         {
-            //TagCompound tagCompound = new TagCompound();
-            //foreach (KeyValuePair<String, Boolean> entry in Soulcheck.ToggleDict)
-            //{
-            //    tagCompound.Add(entry.Key, entry.Value);
-            //}
-            //return tagCompound;
-            // return base.Save();
-
-            var FargoDisabledSouls = new List<string>();
-            foreach (KeyValuePair<string, bool> entry in Soulcheck.ToggleDict)
+            if (Soulcheck.owner == player.name) //to prevent newly made characters from taking the toggles of another char
             {
-                if (!entry.Value)
+                string name = "FargoDisabledSouls" + player.name;
+                //string log = name + " saved: ";
+
+                var FargoDisabledSouls = new List<string>();
+                foreach (KeyValuePair<string, bool> entry in Soulcheck.ToggleDict)
                 {
-                    FargoDisabledSouls.Add(entry.Key);
+                    if (!entry.Value)
+                    {
+                        FargoDisabledSouls.Add(entry.Key);
+                        //log += entry.Key + ". ";
+                    }
                 }
+
+                //ErrorLogger.Log(log);
+
+                return new TagCompound {
+                {name, FargoDisabledSouls}
+                }; ;
             }
 
-            return new TagCompound {
-                {"FargoDisabledSouls", FargoDisabledSouls}
-            }; ;
+            return null;
         }
 
         public override void Load(TagCompound tag)
         {
-            var FargoDisabledSouls = tag.GetList<string>("FargoDisabledSouls");
-            foreach (string disabledSoul in FargoDisabledSouls)
+            string name = "FargoDisabledSouls" + player.name;
+            //string log = name + " loaded: ";
+
+            disabledSouls = tag.GetList<string>(name);
+
+            //var FargoDisabledSouls = tag.GetList<string>(name);
+            //foreach (string disabledSoul in FargoDisabledSouls)
+            //{
+            //    disabledSouls.Add(disabledSoul);
+
+            //    log += disabledSoul + ". ";
+            //}
+
+            //ErrorLogger.Log(log);
+        }
+
+        public override void OnEnterWorld(Player player)
+        {
+            foreach (KeyValuePair<string, Color> buff in Soulcheck._buffs)
             {
-                if (Soulcheck.ToggleDict.ContainsKey(disabledSoul))
+                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
                 {
-                    Soulcheck.ToggleDict[disabledSoul] = false;
-                    Soulcheck.checkboxDict[disabledSoul].Color = Color.Gray;
+                    if (disabledSouls.Contains(buff.Key))
+                    {
+                        Soulcheck.ToggleDict[buff.Key] = false;
+                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
+                        //Main.NewText(buff.Key);
+                    }
+                    else
+                    {
+                        Soulcheck.ToggleDict[buff.Key] = true;
+                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
+                    }
                 }
             }
 
-            //foreach (KeyValuePair<string, bool> entry in Soulcheck.ToggleDict)
-            //{
-            //    if (disabledSouls.Contains(entry.Key))
-            //        Soulcheck.ToggleDict[entry.Key] = false;
-            //}
-            
-            //foreach (KeyValuePair<String, Object> entry in tag)
-            //{
-            //    try
-            //    {
-            //        if (Soulcheck.ToggleDict.ContainsKey(entry.Key))
-            //        {
-            //            Soulcheck.ToggleDict[entry.Key] = (bool)entry.Value;
-            //        }
-            //        else
-            //        {
-            //            Soulcheck.ToggleDict.Add(entry.Key, (bool)entry.Value);
-            //        }
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        ErrorLogger.Log(entry.Key + ": " + entry.Value + ": " + e);
-            //    }
-            //}
-            //base.Load(tag);
+            Soulcheck.owner = player.name;
+
+            disabledSouls.Clear();
         }
 
 
@@ -307,6 +315,7 @@ namespace FargowiltasSouls
             IronEnchant = false;
             IronGuard = false;
             TurtleEnchant = false;
+            ShellHide = false;
             LeadEnchant = false;
             GladEnchant = false;
             GoldEnchant = false;
@@ -430,17 +439,17 @@ namespace FargowiltasSouls
                 //falling gives you dazed and confused even with protection. wings save you
                 if (player.velocity.Y == 0f)
                 {
-                    bool wings = false;
-                    for (int n = 3; n < 10; n++)
-                    {
-                        if (player.armor[n].stack > 0 && player.armor[n].wingSlot > -1)
-                        {
-                            wings = true;
-                            break;
-                        }
-                    }
+                    //bool wings = false;
+                    //for (int n = 3; n < 10; n++)
+                    //{
+                    //    if (player.armor[n].stack > 0 && player.armor[n].wingSlot > -1)
+                    //    {
+                    //        wings = true;
+                    //        break;
+                    //    }
+                    //}
 
-                    if(!wings)
+                    if(player.wings == 0)
                     {
                         int num21 = 25;
                         num21 += player.extraFall;
@@ -1256,6 +1265,7 @@ namespace FargowiltasSouls
 
         public override bool CanBeHitByProjectile(Projectile proj)
         {
+            if (ShellHide) return false;
             if (!QueenStinger) return true;
             return proj.type != ProjectileID.Stinger;
         }
@@ -1268,6 +1278,14 @@ namespace FargowiltasSouls
             if (damageSource == PlayerDeathReason.ByOther(2))
             {
                 player.Hurt(PlayerDeathReason.ByOther(2), 999, 1);
+            }
+
+            if (IronGuard && internalTimer > 0 && !player.immune)
+            {
+                player.immune = true;
+                player.immuneTime = player.longInvince ? 60 : 30;
+                player.AddBuff(BuffID.ParryDamageBuff, 300);
+                return false;
             }
 
             return true;
@@ -2208,64 +2226,120 @@ namespace FargowiltasSouls
                     return;
                 }
 
-                player.shieldRaised = player.selectedItem != 58 && player.controlUseTile && (!player.tileInteractionHappened && player.releaseUseItem) && (!player.controlUseItem && !player.mouseInterface && (!CaptureManager.Instance.Active && !Main.HoveringOverAnNPC)) && !Main.SmartInteractShowingGenuine && (player.hasRaisableShield && !player.mount.Active) && (player.itemAnimation == 0 || PlayerInput.Triggers.JustPressed.MouseRight);
+            bool theGeneralCheck = player.selectedItem != 58 && player.controlUseTile && (!player.tileInteractionHappened && player.releaseUseItem) && (!player.controlUseItem && !player.mouseInterface && (!CaptureManager.Instance.Active && !Main.HoveringOverAnNPC)) && !Main.SmartInteractShowingGenuine;
 
-                if (internalTimer > 0)
+            bool flag = false;
+            if (theGeneralCheck && !player.mount.Active && (player.itemAnimation == 0 || PlayerInput.Triggers.JustPressed.MouseRight))
+                flag = true;
+
+            player.shieldRaised = flag;
+
+            if (player.shieldRaised && !player.hasRaisableShield)
+            {
+                player.hasRaisableShield = true;
+                player.shield = 1;
+            }
+
+            if (internalTimer > 0)
+            {
+                internalTimer++;
+                player.shieldParryTimeLeft = internalTimer;
+                if (player.shieldParryTimeLeft > 20)
                 {
-                    internalTimer++;
-                    player.shieldParryTimeLeft = internalTimer;
-                    if (player.shieldParryTimeLeft > 20)
-                    {
-                        player.shieldParryTimeLeft = 0;
-                        internalTimer = 0;
-                    }
-                }
-
-                if (player.shieldRaised)
-                {
-                    IronGuard = true;
-
-                    for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
-                    {
-                        if (player.shield == -1 && player.armor[i].shieldSlot != -1)
-                        {
-                            player.shield = player.armor[i].shieldSlot;
-                        }
-                    }
-
-                    if (!wasHoldingShield)
-                    {
-                        wasHoldingShield = true;
-
-                        if (player.shield_parry_cooldown == 0)
-                        {
-                            internalTimer = 1;
-                        }
-
-                        player.itemAnimation = 0;
-                        player.itemTime = 0;
-                        player.reuseDelay = 0;
-                    }
-                }
-                else
-                {
-                    wasHoldingShield = false;
-                    player.shield_parry_cooldown = 15;
                     player.shieldParryTimeLeft = 0;
                     internalTimer = 0;
-
-                    //breaks melee idk
-                    //if (player.attackCD < 20)
-                    //{
-                    //    player.attackCD = 20;
-                    //}
                 }
+            }
+
+            if (player.shieldRaised)
+            {
+                IronGuard = true;
+
+                for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
+                {
+                    if (player.shield == -1 && player.armor[i].shieldSlot != -1)
+                        player.shield = player.armor[i].shieldSlot;
+                }
+
+                if (!wasHoldingShield)
+                {
+                    wasHoldingShield = true;
+
+                    if (player.shield_parry_cooldown == 0)
+                        internalTimer = 1;
+                    player.itemAnimation = 0;
+                    player.itemTime = 0;
+                    player.reuseDelay = 0;
+                }
+            }
+            else if (wasHoldingShield)
+            {
+                wasHoldingShield = false;
+                player.shield_parry_cooldown = 15;
+                player.shieldParryTimeLeft = 0;
+                internalTimer = 0;
+                //if (player.attackCD < 20)
+                //    player.attackCD = 20;
+            }
+
+            //player.shieldRaised = player.selectedItem != 58 && player.controlUseTile && (!player.tileInteractionHappened && player.releaseUseItem) && (!player.controlUseItem && !player.mouseInterface && (!CaptureManager.Instance.Active && !Main.HoveringOverAnNPC)) && !Main.SmartInteractShowingGenuine && (player.hasRaisableShield && !player.mount.Active) && (player.itemAnimation == 0 || PlayerInput.Triggers.JustPressed.MouseRight);
+
+            //if (internalTimer > 0)
+            //{
+            //    internalTimer++;
+            //    player.shieldParryTimeLeft = internalTimer;
+            //    if (player.shieldParryTimeLeft > 20)
+            //    {
+            //        player.shieldParryTimeLeft = 0;
+            //        internalTimer = 0;
+            //    }
             //}
 
-            if (CosmoForce || TerrariaSoul) return;
+            //if (player.shieldRaised)
+            //{
+            //    IronGuard = true;
+
+            //    for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
+            //    {
+            //        if (player.shield == -1 && player.armor[i].shieldSlot != -1)
+            //        {
+            //            player.shield = player.armor[i].shieldSlot;
+            //        }
+            //    }
+
+            //    if (!wasHoldingShield)
+            //    {
+            //        wasHoldingShield = true;
+
+            //        if (player.shield_parry_cooldown == 0)
+            //        {
+            //            internalTimer = 1;
+            //        }
+
+            //        player.itemAnimation = 0;
+            //        player.itemTime = 0;
+            //        player.reuseDelay = 0;
+            //    }
+            //}
+            //else
+            //{
+            //    wasHoldingShield = false;
+            //    player.shield_parry_cooldown = 15;
+            //    player.shieldParryTimeLeft = 0;
+            //    internalTimer = 0;
+
+            //    //breaks melee idk
+            //    //if (player.attackCD < 20)
+            //    //{
+            //    //    player.attackCD = 20;
+            //    //}
+            //}
+            //}
+
+            //if (CosmoForce || TerrariaSoul) return;
 
             //EoC Shield
-            player.dash = 2;
+            //player.dash = 2;
         }
 
         public void JungleEffect()
@@ -2416,7 +2490,7 @@ namespace FargowiltasSouls
 
             if (TerrariaSoul) return;
 
-            AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
+            AddPet("Baby Skeletron Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
         }
 
         public void NinjaEffect(bool hideVisual)

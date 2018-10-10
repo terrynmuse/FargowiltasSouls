@@ -113,13 +113,14 @@ namespace FargowiltasSouls.Projectiles
                 if (modPlayer.ForbiddenEnchant && projectile.damage > 0 && projectile.type != ProjectileID.SandnadoFriendly && !stormBoosted)
                 {
                     Projectile nearestProj = null;
-                    float distance = 5 * 16;
 
                     List<Projectile> projs = Main.projectile.Where(x => x.type == ProjectileID.SandnadoFriendly && x.active).ToList();
 
                     foreach (Projectile p in projs)
                     {
-                        if (Vector2.Distance(p.Center, projectile.Center) <= distance)
+                        Vector2 stormDistance = p.Center - projectile.Center;
+
+                        if (Math.Abs(stormDistance.X) < p.width / 2 && Math.Abs(stormDistance.Y) < p.height / 2)
                         {
                             nearestProj = p;
                             break;
@@ -1036,7 +1037,7 @@ namespace FargowiltasSouls.Projectiles
                     damage = 100;
                 }
 
-                Main.NewText(projectile.Name);
+                //Main.NewText(projectile.Name);
 
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 27);
                 XWay(8, projectile.Center, ProjectileID.CrystalShard, 5, damage, 2f);

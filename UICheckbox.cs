@@ -10,7 +10,7 @@ namespace FargowiltasSouls
     // TODO, tri-state checkbox.
     internal class UiCheckbox : UIText
     {
-        private static readonly Texture2D _checkboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
+        public static Texture2D _checkboxTexture;
         private readonly bool _clickable = true;
         private bool _selected = true;
         private readonly string _test;
