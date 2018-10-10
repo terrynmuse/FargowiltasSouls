@@ -74,6 +74,7 @@ namespace FargowiltasSouls
             #endregion
 
             ["Universe Speedup"] = new Color(81, 181, 113),
+            ["Universe Scope"] = new Color(81, 181, 113),
 
             ["Spore Sac"] = new Color(81, 181, 113),
             ["Super Speed"] = new Color(81, 181, 113),
@@ -98,6 +99,7 @@ namespace FargowiltasSouls
             ["Cursed Sapling Pet"] = new Color(81, 181, 113),
             ["Black Cat Pet"] = new Color(81, 181, 113),
             ["Seedling Pet"] = new Color(81, 181, 113),
+            ["Shadow Orb Pet"] = new Color(81, 181, 113),
             ["Crimson Heart Pet"] = new Color(81, 181, 113),
             ["Magic Lantern Pet"] = new Color(81, 181, 113),
             ["Truffle Pet"] = new Color(81, 181, 113),
