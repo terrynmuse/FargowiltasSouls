@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            Lich armor
+            Lich armor
+            Lich armor
+            StudyofLich
+            SoulCleaver
+            DeathGrip
+            LichsGaze 
+            CadaversCornet
+            RocketFist
+            TitanJavelin
         };
 
         public override void AddRecipes()
