@@ -11,8 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Iron Enchantment");
             Tooltip.SetDefault(
                 @"'Strike while the iron is hot'
-Allows the player to dash into the enemy
 Right Click to guard with your shield
+Your shield will also protect you from projectiles
 You attract items from a much larger range and fall 5 times as quickly");
         }
 
@@ -24,7 +24,7 @@ You attract items from a much larger range and fall 5 times as quickly");
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 2;
             item.value = 40000;
-            item.shieldSlot = 5;
+            //item.shieldSlot = 1;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
