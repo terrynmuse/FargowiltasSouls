@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            Conductor armor
+            Conductor armor
+            Conductor armor
+            BoneTrumpet
+            Clarinet
+            Bassoon
+            GhastlyFrenchHorn
+            Metronome
+            MusicSheetXylophone
+            LihzahrdSaxaphone
         };
 
         public override void AddRecipes()
