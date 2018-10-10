@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            Ornate armor
+            Ornate armor
+            Ornate armor
+            ConcertTickets
+            TheGreenTambourine 
+            Vuvuzela blah
+            Vuvuzela blah
+            Vuvuzela blah
+            Vuvuzela blah
+            MusicSheetDoubleBass
         };
 
         public override void AddRecipes()
