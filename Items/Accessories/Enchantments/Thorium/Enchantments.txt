@@ -1,16 +1,83 @@
-enchant/soul
+Spider enchant
+WebGun
+spider egg
+spider staff
+queen spider staff
+RiffWeaver
+ArachnidSubwoofer
+ZereneButterfly
+
+Demon Blood enchant
+Demon Blood Badge
+Blood Demon Subwoofer
+Demon Blood Staff
+Ichor Butterfly
+Vile Flail-Core
+Dark Contagion
+Yellow Music Player 
+
+Frost Enchant
+Ice Bow
+Fish
+Ice Painting
+Glacior
+Freeze Ray
+Frozen Butterfly
+SubZeroSubwoofer
+
+Spectre enchant
+spectre wings
+GhastlyCarapace
+spectre staff
+wisp pet
+Ghostly Grapple or some other random magic hmm
+MusicSheetOrgan
+Ectoplasmic Butterfly
+
+Lich enchant
+StudyofLich
+SoulCleaver
+DeathGrip
+LichsGaze 
+CadaversCornet
+RocketFist
+TitanJavelin
+
+Conduit enchant
+SuperPlasmaCannon
+StrangeCommunicator
+OmegaDrive
+LivewireCrasher 
+TheTriangle
+VegaPhaser
+Brain Scrambler
 
 
 
-Arachnid Subwoofer - spider
-Blood Demon Subwoofer - demon blood
-sub zero Subwoofer - frost
+
 aquamarine wineglass - aqua
-Riff Weaver - spider?
-cadavers cornet - lich
-music sheet organ - spectre?
 the triangle - conduit
+Toy Sled - cryo magus
+shield drone beacon - healer soul
 
+
+Cryo-Magus enchant
+Forgotten Letter
+ice fairy staff
+Ice Bound Strider Hide 
+Frost Burnt Tongue
+Blitz-zard
+Frostwind Cymbals
+Blue Music Player
+
+Depth Diver enchant
+Aquamarine Wineglass
+music sheet stell drums
+Deep Dark Subwoofer
+Geyser staff
+Deeplight Esca
+magic conch
+Misty Totem
 
 
 
@@ -219,21 +286,7 @@ day break
 star wrath
 solar eruption
 
-Spectre enchant
-spectre hamaxe
-spectre wings
-ghastly carapace
-spectre staff
-wisp pet
-unholy trident
 
-Spider enchant
-bat scepter
-spider egg
-spider staff
-queen spider staff
-riff weaver
-arachnid woofer
 
 Spook enchant
 death sickle
@@ -458,12 +511,6 @@ Weighted Winglets
 Crash Boots
 Slag Stompers 
 
-Lich enchant
-Sturdy of Lich
-Soul Cleaver
-Death Grip
-Lich's Gaze 
-
 Titan enchant
 All three helmets
 Titan Boomerang
@@ -495,13 +542,6 @@ Shade Dagger
 500 Bugenkai Shurikens
 1000 Plasma Vials 
 Purple Music Player
-
-Conduit enchant
-Cosmic Knife
-Super Plasma Cannon
-Strange Communicator
-Omega Drive
-Livewire Crasher 
 
 Terrarium enchant
 Essence of Flame
@@ -590,24 +630,6 @@ shiverthorn butterfly
 snowball launcher
 ice machine
 
-Frost Enchant
-Ice Bow
-Fish
-Toy Sled
-Ice Painting
-Glacior
-Freeze Ray
-Frozen Butterfly
-
-Cryo-Magus enchant
-Forgotten Letter
-ice fairy staff
-Ice Bound Strider Hide 
-Frost Burnt Tongue
-Blitz-zard
-Frostwind Cymbals
-Blue Music Player
-
 Ocean enchant 
 Sea breeze pendant
 Bubble Magnet
@@ -625,15 +647,6 @@ Pearl Pike
 Agnor's Bowl
 bucanners blunderpuss
 Marine Launcher
-
-Depth Diver enchant
-Aquamarine Wineglass
-music sheet stell drums
-Deep Dark Subwoofer
-Geyser staff
-Deeplight Esca
-magic conch
-Misty Totem
 
 Iridescent enchant
 giant glowstick
@@ -754,15 +767,6 @@ Flesh Wings
 Grim Flayer 
 vampire Gland
 Flesh Mace
-
-Demon Blood enchant
-Demon Blood Badge
-Demon Blood Wings
-Demon Blood Staff
-Ichor Butterfly
-Vile Flail-Core
-Dark Contagion
-Yellow Music Player 
 
 Molten Enchant
 Fiery Greatsword
