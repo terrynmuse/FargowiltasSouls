@@ -19,6 +19,8 @@ namespace FargowiltasSouls.Buffs.Souls
 
         public override void Update(Player player, ref int buffIndex)
         {
+            player.GetModPlayer<FargoPlayer>().ShellHide = true;
+
             float distance = 3.5f * 16;
 
             Main.projectile.Where(x => x.active && x.hostile).ToList().ForEach(x =>
