@@ -371,7 +371,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.SkeletronHead:
                         masoAI = 34;
-                        Timer = 0;
                         break;
 
                     case NPCID.WallofFlesh:
@@ -1820,6 +1819,8 @@ namespace FargowiltasSouls.NPCs
                                         Counter = 2;
                                     else
                                         Counter = 1;
+
+                                    Main.NewText("reviving other hand");
                                 }
                                 else
                                 {
@@ -1830,13 +1831,13 @@ namespace FargowiltasSouls.NPCs
 
                         if (npc.ai[1] == 1f) //spinning
                         {
-                            Timer++;
+                            npc.localAI[2]++;
 
                             float ratio = (float)npc.life / npc.lifeMax;
-                            int threshold = 5 + 25 * (int) ratio;
-                            if (Timer >= threshold) //spray bones
+                            float threshold = 5f + 25f * ratio;
+                            if (npc.localAI[2] >= threshold) //spray bones
                             {
-                                Timer = 0;
+                                npc.localAI[2] = 0f;
 
                                 if (threshold > 0)
                                 {
@@ -4037,7 +4038,7 @@ namespace FargowiltasSouls.NPCs
 
                                     if (NPC.downedHalloweenKing)
                                     {
-                                        pool[NPCID.HeadlessHorseman] = .01f;
+                                        //pool[NPCID.HeadlessHorseman] = .01f;
                                         pool[NPCID.Pumpking] = .005f;
                                     }
                                 }
@@ -4745,6 +4746,8 @@ namespace FargowiltasSouls.NPCs
                                 head.GetGlobalNPC<FargoGlobalNPC>().Counter = 1;
                             else
                                 head.GetGlobalNPC<FargoGlobalNPC>().Counter = 2;
+
+                            Main.NewText("hand dead");
                         }
                         break;
 
@@ -5686,6 +5689,10 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.ZombieXmas:
                     case NPCID.ZombieMushroom:
                     case NPCID.ZombieMushroomHat:
+                    case NPCID.SwampZombie:
+                    case NPCID.SmallSwampZombie:
+                    case NPCID.BigSwampZombie:
+                    case NPCID.ZombieDoctor:
                         target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(60, 600));
                         break;
 
