@@ -40,6 +40,14 @@ Summons a pet Spider");
             recipe.AddIngredient(ItemID.QueenSpiderStaff);
             recipe.AddIngredient(ItemID.BatScepter);
             recipe.AddIngredient(ItemID.SpiderEgg);
+            
+            /*
+WebGun
+RiffWeaver
+ArachnidSubwoofer
+ZereneButterfly
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
