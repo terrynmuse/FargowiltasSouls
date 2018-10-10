@@ -43,9 +43,10 @@ namespace FargowiltasSouls.NPCs
         public byte masoDeathAI = 0;
         public byte masoHurtAI = 0;
         public byte masoState = 0;
-        public bool[] masoBool = new bool[3];
+        public bool[] masoBool = new bool[4];
         public bool Transform = false;
         public bool dropLoot = true;
+        public bool PaladinsShield = false;
         public int RegenTimer = 0;
         public int Counter = 0;
         public int Timer = 600;
@@ -77,6 +78,7 @@ namespace FargowiltasSouls.NPCs
             SolarFlare = false;
             Chilled = false;
             HellFire = false;
+            PaladinsShield = false;
             //BLACK SLIMES
             //npc.color = default(Color);
         }
@@ -108,13 +110,19 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.SolarSolenian: masoHurtAI = 5; npc.knockBackResist = 0f; break;
 
+                    case NPCID.EaterofWorldsBody:
+                    case NPCID.EaterofWorldsTail:
                     case NPCID.TheDestroyerBody:
-                    case NPCID.TheDestroyerTail: masoHurtAI = 6; Timer = 1800; break;
+                    case NPCID.TheDestroyerTail: masoHurtAI = 6; break;
 
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight: masoHurtAI = 7; npc.scale += 0.5f; break;
 
                     case NPCID.SkeletronPrime: masoHurtAI = 8; npc.trapImmune = true; break;
+
+                    case NPCID.BrainofCthulhu: masoHurtAI = 9; break;
+
+                    case NPCID.IceTortoise: masoHurtAI = 10; break;
 
                     case NPCID.RainbowSlime:
                         npc.scale = 3f;
@@ -173,8 +181,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Medusa:
                     case NPCID.IchorSticker:
-                    case NPCID.SeekerHead:
                     case NPCID.Mimic:
+                    case NPCID.SeekerHead:
                     case NPCID.AngryNimbus:
                         dropLoot = Main.hardMode;
                         break;
@@ -549,6 +557,14 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 74;
                         npc.lifeMax *= 5;
                         npc.life = npc.lifeMax;
+                        break;
+
+                    case NPCID.Paladin:
+                        masoAI = 75;
+                        break;
+
+                    case NPCID.Mimic:
+                        masoAI = 76;
                         break;
 
                     default:
@@ -1333,6 +1349,7 @@ namespace FargowiltasSouls.NPCs
 
                     case 24: //retinazer
                         retiBoss = npc.whoAmI;
+                        bool spazAlive = BossIsAlive(ref spazBoss, NPCID.Spazmatism);
 
                         if (!masoBool[0]) //spawn in phase 2
                         {
@@ -1354,10 +1371,36 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
-                            if (BossIsAlive(ref spazBoss, NPCID.Spazmatism))
+                            npc.dontTakeDamage = false;
+
+                            bool partnerP3 = true;
+                            if (spazAlive && !Main.npc[spazBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[1]) //if twin not in phase3
                             {
-                                if (!Main.npc[retiBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[1]) //if twin not in phase3
-                                    npc.defense = 9999;
+                                npc.dontTakeDamage = true;
+                                partnerP3 = false;
+                            }
+
+                            if (!masoBool[3] && partnerP3) //when both entering phase3
+                            {
+                                npc.defense = 9999;
+                                npc.localAI[2]++;
+
+                                if (npc.localAI[2] >= 6f) //heal every 6 ticks
+                                {
+                                    npc.localAI[2] = 0f;
+
+                                    int heal = npc.lifeMax * Main.rand.Next(90, 111) / 100 / 2 / 20;
+                                    npc.life += heal;
+                                    if (npc.life > npc.lifeMax) //stop healing when fully recovered
+                                    {
+                                        npc.life = npc.lifeMax;
+                                        
+                                        //if spaz dead, OR (spaz must be alive, then is spaz at full health?) -> stop regenerating
+                                        if (!spazAlive || Main.npc[spazBoss].life >= Main.npc[spazBoss].lifeMax)
+                                            masoBool[3] = true;
+                                    }
+                                    CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                }
                             }
 
                             //may not actually reflect how fast reti is spinning
@@ -1479,6 +1522,7 @@ namespace FargowiltasSouls.NPCs
 
                     case 25: //spazmatism
                         spazBoss = npc.whoAmI;
+                        bool retiAlive = BossIsAlive(ref retiBoss, NPCID.Retinazer);
 
                         if (!masoBool[0]) //spawn in phase 2
                         {
@@ -1508,11 +1552,36 @@ namespace FargowiltasSouls.NPCs
                         else
                         {
                             npc.position += npc.velocity / 2f;
+                            npc.dontTakeDamage = false;
 
-                            if (BossIsAlive(ref retiBoss, NPCID.Retinazer))
+                            bool partnerP3 = true;
+                            if (retiAlive && !Main.npc[retiBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[1]) //if twin not in phase3
                             {
-                                if (!Main.npc[retiBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[1]) //if twin not in phase3
-                                    npc.defense = 9999;
+                                npc.dontTakeDamage = true;
+                                partnerP3 = false;
+                            }
+
+                            if (!masoBool[3] && partnerP3) //when both entering phase3
+                            {
+                                npc.defense = 9999;
+                                npc.localAI[2]++;
+
+                                if (npc.localAI[2] >= 12f) //heal every 6 ticks
+                                {
+                                    npc.localAI[2] = 0f;
+
+                                    int heal = npc.lifeMax * Main.rand.Next(90, 111) / 100 / 2 / 20;
+                                    npc.life += heal;
+                                    if (npc.life > npc.lifeMax)
+                                    {
+                                        npc.life = npc.lifeMax;
+
+                                        //if reti dead, OR (reti must be alive, then is reti at full health?) -> stop regenerating
+                                        if (!retiAlive || Main.npc[retiBoss].life >= Main.npc[retiBoss].lifeMax)
+                                            masoBool[3] = true;
+                                    }
+                                    CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                }
                             }
 
                             if (npc.ai[1] == 0f) //not dashing
@@ -1521,11 +1590,13 @@ namespace FargowiltasSouls.NPCs
                                 switch (ai2)
                                 {
                                     case 5:
-                                    case 80:
+                                    case 55:
+                                    case 105:
                                     case 155:
-                                    case 230:
+                                    case 205:
+                                    case 255:
                                     case 305:
-                                    case 380:
+                                    case 355:
                                         if (Main.netMode != 1 && npc.HasPlayerTarget) //vanilla spaz p1 shoot fireball code
                                         {
                                             Vector2 Speed = Main.player[npc.target].Center - npc.Center;
@@ -1578,7 +1649,7 @@ namespace FargowiltasSouls.NPCs
                             SharkCount = 254;
                         }
 
-                        if (!BossIsAlive(ref retiBoss, NPCID.Retinazer))
+                        if (!retiAlive)
                         {
                             Timer--;
 
@@ -3210,7 +3281,7 @@ namespace FargowiltasSouls.NPCs
                     case 71: //brain of cthulhu
                         if (!npc.dontTakeDamage) //vulnerable
                         {
-                            npc.position += npc.velocity / 3f;
+                            npc.position += npc.velocity / 4f;
                         }
                         break;
 
@@ -3305,6 +3376,33 @@ namespace FargowiltasSouls.NPCs
                                 if (Main.netMode == 0)
                                     Main.NewText("A Clown has exploded!", 175, 75, byte.MaxValue);
                             }
+                        }
+                        break;
+
+                    case 75: //paladin
+                        foreach (NPC n in Main.npc.Where(n => n.active && !n.friendly && n.type != NPCID.Paladin && n.Distance(npc.Center) < 800f))
+                        {
+                            n.GetGlobalNPC<FargoGlobalNPC>().PaladinsShield = true;
+
+                            if (Main.rand.Next(2) == 0)
+                            {
+                                int d = Dust.NewDust(n.position, n.width, n.height, 246, 0f, -1.5f, 0, new Color());
+                                Main.dust[d].velocity *= 0.5f;
+                                Main.dust[d].noLight = true;
+                            }
+                        }
+                        break;
+
+                    case 76: //mimic (normal)
+                        npc.dontTakeDamage = false;
+
+                        if (npc.justHit)
+                            Counter = 20;
+
+                        if (Counter != 0)
+                        {
+                            Counter--;
+                            npc.dontTakeDamage = true;
                         }
                         break;
 
@@ -4901,6 +4999,18 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case 9: //brain of cthulhu
+                        if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
+                            player.AddBuff(BuffID.Confused, Main.rand.Next(30));
+                        break;
+
+                    case 10: //ice tortoise
+                        float reduction = (float)npc.life / npc.lifeMax;
+                        if (reduction < 0.25f)
+                            reduction = 0.25f;
+                        damage = (int)(damage * reduction);
+                        break;
+
                     default:
                         break;
                 }
@@ -5028,7 +5138,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case 6: //desu body/tail
+                    case 6: //desu body/tail & eow
                         if (projectile.type == ProjectileID.HallowStar || projectile.type == ProjectileID.CrystalShard || projectile.penetrate < 0)
                         {
                             damage = 1;
@@ -5073,6 +5183,18 @@ namespace FargowiltasSouls.NPCs
                             default:
                                 break;
                         }
+                        break;
+
+                    case 9: //brain of cthulhu
+                        if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
+                            player.AddBuff(BuffID.Confused, Main.rand.Next(30));
+                        break;
+
+                    case 10: //ice tortoise
+                        float reduction = (float)npc.life / npc.lifeMax;
+                        if (reduction < 0.25f)
+                            reduction = 0.25f;
+                        damage = (int)(damage * reduction);
                         break;
 
                     default:
@@ -5550,12 +5672,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(600, 1200));
+                        goto case NPCID.Sharkron;
+
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
-                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(600, 1200));
                         target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(300, 600));
-                        //target.AddBuff(mod.BuffType<Berserked>(), Main.rand.Next(60, 240));
-                        //target.AddBuff(BuffID.Rabies, Main.rand.Next(7200));
+                        target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
                         break;
 
                     case NPCID.Hellhound:
@@ -5911,6 +6034,9 @@ namespace FargowiltasSouls.NPCs
 			
 			if (FargoWorld.MasochistMode)
             {
+                if (PaladinsShield)
+                    damage /= 2;
+                
                 //basically, is this a segment?
                 if (npc.realLife == -1)
                     ResetRegenTimer(npc);
