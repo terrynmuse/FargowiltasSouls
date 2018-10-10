@@ -1,18 +1,13 @@
 shield drone beacon - healer soul
 
-Dark Lance
-Venom Staff
-bloody high claw
-
-
 Ocean enchant 
 Sea breeze pendant
 Bubble Magnet
 breathing reed
 starfish wand
-seashell castanets
 sword fish
 ocean slasher
+Tuna
 
 Tide Hunter enchant
 Shark Storm
@@ -22,6 +17,14 @@ Pearl Pike
 Agnor's Bowl
 bucanners blunderpuss
 Marine Launcher
+
+
+Dark Lance
+Venom Staff
+bloody high claw
+
+
+
 
 Iridescent enchant
 giant glowstick
