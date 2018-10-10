@@ -1,113 +1,213 @@
 shield drone beacon - healer soul
 
-Spider enchant
-WebGun
-spider egg
-spider staff
-queen spider staff
-RiffWeaver
-ArachnidSubwoofer
-ZereneButterfly
-
-Demon Blood enchant
-Demon Blood Badge
-Blood Demon Subwoofer
-Demon Blood Staff
-Ichor Butterfly
-Vile Flail-Core
-Dark Contagion
-Yellow Music Player 
-
-Frost Enchant
-Ice Bow
-Toy Sled
-Ice Painting
-Glacior
-Freeze Ray
-Frozen Butterfly
-SubZeroSubwoofer
-
-Spectre enchant
-spectre wings
-GhastlyCarapace
-spectre staff
-wisp pet
-Ghostly Grapple or some other random magic hmm
-MusicSheetOrgan
-Ectoplasmic Butterfly
-
-Lich enchant
-StudyofLich
-SoulCleaver
-DeathGrip
-LichsGaze 
-CadaversCornet
-RocketFist
-TitanJavelin
-
-Conduit enchant
-SuperPlasmaCannon
-StrangeCommunicator
-OmegaDrive
-LivewireCrasher 
-TheTriangle
-VegaPhaser
-Brain Scrambler
-
-Icy enchant
-Frost Fire Katana
-Spell Book: Blizzard
-Ice Boomerang
-Frost Fury
-shiverthorn butterfly
-snowball launcher
-Fish
-
-Cryo-Magus enchant
-Forgotten Letter
-ice fairy staff
-Ice Bound Strider Hide 
-Frost Burnt Tongue
-Blue Music Player
-Frost Staff
-GatewayGlass
-
-Depth Diver enchant
-AquamarineWineglass
-DeepDarkSubwoofer
-GeyserStaff
-DeeplightEsca
-MagicConch
-MistyTotem
-Jellyfish bait
-
-Adamantite enchant
-Adamantite Glaive
-Shotgun
-OgreSnotGun
-AdamantiteStaff
-AdamantiteCarbine
-DynastyWarFan
-Scorn
-
-
-
-
-
-
-
 Dark Lance
 Venom Staff
 bloody high claw
+
+
+Ocean enchant 
+Sea breeze pendant
+Bubble Magnet
+breathing reed
+starfish wand
+seashell castanets
+sword fish
+ocean slasher
+
+Tide Hunter enchant
+Shark Storm
+Hydro Cannon
+Nano Clam Cane
+Pearl Pike
+Agnor's Bowl
+bucanners blunderpuss
+Marine Launcher
+
+Iridescent enchant
+giant glowstick
+heretic breaker
+equalizer
+Iridescent Staff
+Aquaite Scythe
+Serpent's Bubble Wand
+Tranquil Lyre
+
+Naga-Skin enchant
+nagas recurve
+Hydromancer's Catalyst
+sea foam scepter
+Spell Book Cyclone 
+Old Gods Grasp
+Leviathan
+Eel Rod
+
+Pumpkin Enchant
+Molotov Cocktail
+Jack O Lantern
+Magical Pumpkin Seed
+Pumkpkin Pie
+Sickle
+Through the Window Painting
+zombie arm
+any other pumpkin memes?
+
+Living Wood enchant
+Living Wood Acorn
+Slime Staff
+Blowpipe
+5 Chi Tea
+Leaf Wand
+Wood Wand
+Daybloom butterfly
+Grasshopper
+any living wood memes?
+Guide to Plant Fiber
+
+Silk enchant
+Wand of Sparking
+Ice Cube
+Eigth Plague staff
+Thorium Staff
+Umbrella
+Bird, Duck
+Cure
+any other silk memes?
+
+Ebon enchant
+Dark Heart
+Shadow Wand
+Wooden Baton
+dark gift
+bordered butterfly
+leech bolt
+giga Needle
+
+Novice Cleric enchant
+Fortifying Wand
+Aloe Leaf
+Pills
+Palm Cross
+swallowtail butterfly
+purified water
+Good Book
+
+Dread enchant
+Impact Drill
+Crash Boots
+Dread Razor
+Dread Launcher
+Vile Spitter
+Cursed Flail-Core 
+Chain Guillotine
+Grim Subwoofer
+Green Music Player
+
+Dragon enchant
+Dragons Breath
+Dragon Wings
+Ebony Tail
+Draconic Magma Staff
+Cloudy Chew Toy 
+Cursed Flame Butterfly
+Dragons Gaze
+
+Shadow Enchant
+Lightless Chasms
+Eater Bone
+Shadow Orb
+Corrupt Butterfly
+Ball O Hurt
+Purple Blubberfish
+War Axe of the Night
+malaise
+
+Crimson Enchant
+Deadland Comes Alive
+Bone Rattle
+Crimson Heart
+Crimson Butterfly
+The Undertaker
+Meatball
+Blood Lust Cluster
+artery
+
+Flesh enchant
+Blister Sack
+Spine Buster
+Blood Belcher
+Flesh Wings
+Grim Flayer 
+vampire Gland
+Flesh Mace
+
+Molten Enchant
+Fiery Greatsword
+Sunfury
+Demons Eye Painting
+Hellwing Butterfly
+Thors Hammer melee
+more molten meme?
+
+Obsidian Enchant
+Obsidian Rose
+Lava Waders
+Sharktooth Necklace
+Obsidian Scale
+bellarose
+more obdisian meme?
+
+Magma enchant
+Molten Spear Tip
+Magma Shiv
+Magmatic Ricochet
+Spring Steps
+more magma stuff?
+
+Berserker enchant
+Berserker Breaker
+Berserker Soul Staff
+Bloody High Claw
+Orange Music Player 
+Thermogenic Impaler
+Surtrs Sword
+Scorn
+
+Chlorophyte Enchant
+Chlorophyte Shotbow
+Flower Boots
+Staff of Regrowth
+Leaf Blower 
+Seedling
+Chlorophyte Butterfly
+Flower Pow
+chloro staff
+
+Turtle Enchant
+Lizard Egg
+Seaweed
+Chlorophyte Partizan
+Chlorophyte Great Axe
+Absinthe Fury
+Yelets
+Frog
+Turtle Drums
+
+Jungle Enchant
+Jungle Rose
+Jungle Painting
+Jungle Spore Butterfly
+Ivy Whip
+Thorn Chakram
+Grubby
+Boomstick
+Toxic Subwoofer
+
 
 Bee Enchant
 Hive Backpack
 Bee Gun
 Nectar
 honey recorder
-
-
-
 
 Beetle Enchant
 Beetle Wings
@@ -335,7 +435,6 @@ monk staff octopod?
 tit rifle
 tit staff
 
-
 Tungsten enchant
 emerald staff
 tunsten hammer
@@ -355,7 +454,6 @@ vortex popper
 phantasm
 SDMG
 companion cube
-
 
 Life Binder enchant
 Mist Weaver
@@ -384,10 +482,6 @@ petal shield
 blooming blade
 Moonglow Butterfly
 Sky Blue Flower
-
-
-
-
 
 Sandstone enchant
 Didgeridoo
@@ -627,209 +721,3 @@ Bloom Guard
 Dream Catcher
 Unbound Fantasy
 Rebirth Statuette  
-
-
-
-
-DONE ------------------------------------------------------------------------------------------------------------------------------
-
-Ocean enchant 
-Sea breeze pendant
-Bubble Magnet
-breathing reed
-starfish wand
-seashell castanets
-sword fish
-ocean slasher
-
-Tide Hunter enchant
-Shark Storm
-Hydro Cannon
-Nano Clam Cane
-Pearl Pike
-Agnor's Bowl
-bucanners blunderpuss
-Marine Launcher
-
-Iridescent enchant
-giant glowstick
-heretic breaker
-equalizer
-Iridescent Staff
-Aquaite Scythe
-Serpent's Bubble Wand
-Tranquil Lyre
-
-Naga-Skin enchant
-nagas recurve
-Hydromancer's Catalyst
-sea foam scepter
-Spell Book Cyclone 
-Old Gods Grasp
-Leviathan
-Eel Rod
-
-Pumpkin Enchant
-Molotov Cocktail
-Jack O Lantern
-Magical Pumpkin Seed
-Pumkpkin Pie
-Sickle
-Through the Window Painting
-zombie arm
-any other pumpkin memes?
-
-Living Wood enchant
-Living Wood Acorn
-Slime Staff
-Blowpipe
-5 Chi Tea
-Leaf Wand
-Wood Wand
-Daybloom butterfly
-Grasshopper
-any living wood memes?
-Guide to Plant Fiber
-
-
-
-Silk enchant
-Wand of Sparking
-Ice Cube
-Eigth Plague staff
-Thorium Staff
-Umbrella
-Bird, Duck
-Cure
-any other silk memes?
-
-Ebon enchant
-Dark Heart
-Shadow Wand
-Wooden Baton
-dark gift
-bordered butterfly
-leech bolt
-giga Needle
-
-Novice Cleric enchant
-Fortifying Wand
-Aloe Leaf
-Pills
-Palm Cross
-swallowtail butterfly
-purified water
-Good Book
-
-Dread enchant
-Impact Drill
-Crash Boots
-Dread Razor
-Dread Launcher
-Vile Spitter
-Cursed Flail-Core 
-Chain Guillotine
-Grim Subwoofer
-Green Music Player
-
-Dragon enchant
-Dragons Breath
-Dragon Wings
-Ebony Tail
-Draconic Magma Staff
-Cloudy Chew Toy 
-Cursed Flame Butterfly
-Dragons Gaze
-
-Shadow Enchant
-Lightless Chasms
-Eater Bone
-Shadow Orb
-Corrupt Butterfly
-Ball O Hurt
-Purple Blubberfish
-War Axe of the Night
-malaise
-
-Crimson Enchant
-Deadland Comes Alive
-Bone Rattle
-Crimson Heart
-Crimson Butterfly
-The Undertaker
-Meatball
-Blood Lust Cluster
-artery
-
-
-Flesh enchant
-Blister Sack
-Spine Buster
-Blood Belcher
-Flesh Wings
-Grim Flayer 
-vampire Gland
-Flesh Mace
-
-Molten Enchant
-Fiery Greatsword
-Sunfury
-Demons Eye Painting
-Hellwing Butterfly
-Thors Hammer melee
-more molten meme?
-
-Obsidian Enchant
-Obsidian Rose
-Lava Waders
-Sharktooth Necklace
-Obsidian Scale
-bellarose
-more obdisian meme?
-
-Magma enchant
-Molten Spear Tip
-Magma Shiv
-Magmatic Ricochet
-Spring Steps
-more magma stuff?
-
-Berserker enchant
-Berserker Breaker
-Berserker Soul Staff
-Bloody High Claw
-Orange Music Player 
-Thermogenic Impaler
-Surtrs Sword
-Scorn
-
-Chlorophyte Enchant
-Chlorophyte Shotbow
-Flower Boots
-Staff of Regrowth
-Leaf Blower 
-Seedling
-Chlorophyte Butterfly
-Flower Pow
-chloro staff
-
-
-Turtle Enchant
-Lizard Egg
-Seaweed
-Chlorophyte Partizan
-Chlorophyte Great Axe
-Absinthe Fury
-Yelets
-Frog
-Turtle Drums
-
-Jungle Enchant
-Jungle Rose
-Jungle Painting
-Jungle Spore Butterfly
-Ivy Whip
-Thorn Chakram
-Grubby
-Boomstick
-Toxic Subwoofer
