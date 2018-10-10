@@ -77,39 +77,22 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
         
         private readonly string[] _items =
         {
-            "VenomSubwoofer",
-            "FrostSubwoofer",
-            "CorruptSubwoofer",
-            "CrimsonSubwoofer",
-            "TerrariumSubwoofer",
+            BardEssence
             "DigitalVibrationTuner",
             "EpicMouthpiece",
-            "StraightMute",
             "GuitarPickClaw",
-            "Triangle",
-            "Ocarina",
-            "Saxophone",
-            "RockstarsDoubleBassBlastGuitar"
+            "StraightMute",
+            BandKit
+            FishBone
+            PrimesRoar
+            EskimoBanjo 
+            TheBlackOtamatone
+            ChronoOcarina
+            TheMaw
+            SonicAmplifier
+            TheSet      
         };
         
-        /*
-        band kit
-        metronome?
-        auto tuner?
-        
-        fishbone
-        cadavers cornet?
-        sirens lyre
-        
-        essence possibly? or universe just gets all of them ech
-        deep dark subwoofer
-        devils subwoofer
-        energized subwoofer
-        spartans subwoofer
-        toxic subwoofer
-        */
-
-
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
