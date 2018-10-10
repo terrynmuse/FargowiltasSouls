@@ -40,6 +40,15 @@ Any secondary projectiles may also split");
             recipe.AddIngredient(ItemID.DarkLance);
             recipe.AddIngredient(ItemID.Shotgun);
             recipe.AddIngredient(ItemID.VenomStaff);
+            
+            /*
+OgreSnotGun
+AdamantiteStaff
+AdamantiteCarbine
+DynastyWarFan
+Scorn
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
