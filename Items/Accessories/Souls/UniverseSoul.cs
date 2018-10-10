@@ -164,6 +164,8 @@ All attacks inflict Flames of the Universe");
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalEyeMask"));
                 
                 /*
+                black midi - bard
+                
                 plague lords flask
                 */
             }
