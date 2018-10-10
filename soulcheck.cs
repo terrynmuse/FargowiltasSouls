@@ -10,11 +10,12 @@ namespace FargowiltasSouls
     internal class Soulcheck : UIState
     {
         public static bool Visible = false;
+        public static string owner = "";
 
         public static readonly Dictionary<string, bool> ToggleDict = new Dictionary<string, bool>();
         public static readonly Dictionary<string, UiCheckbox> checkboxDict = new Dictionary<string, UiCheckbox>();
 
-        private readonly Dictionary<string, Color> _buffs = new Dictionary<string, Color>
+        public static readonly Dictionary<string, Color> _buffs = new Dictionary<string, Color>
         {
             #region enchantment toggles
 
@@ -138,9 +139,9 @@ namespace FargowiltasSouls
             uibox.Top.Set(top, 0f);
             uibox.OnSelectedChanged += (o, e) => { ToggleDict[name] = !ToggleDict[name]; };
 
-            uibox.OnSelectedChanged += (o, e) => 
+            uibox.OnSelectedChanged += (o, e) =>
             {
-                if(uibox.Color == defaultColor)
+                if (uibox.Color == defaultColor)
                 {
                     uibox.Color = Color.Gray;
                 }
@@ -168,12 +169,14 @@ namespace FargowiltasSouls
             _checklistPanel.SetPadding(10);
             _checklistPanel.Width.Set(1000f, 0f);
             _checklistPanel.Height.Set(600f, 0f);
-            _checklistPanel.Left.Set(Main.screenWidth / 2f, 0f);
-            _checklistPanel.Top.Set(Main.screenHeight / 2f, 0f);
+            _checklistPanel.Left.Set((Main.screenWidth - 1000f) / 2f, 0f);
+            _checklistPanel.Top.Set((Main.screenHeight - 600f) / 2f, 0f);
             _checklistPanel.BackgroundColor = new Color(73, 94, 171);
             _checklistPanel.OnMouseDown += DragOn;
             _checklistPanel.OnMouseUp += DragOff;
             Append(_checklistPanel);
+
+            UiCheckbox._checkboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
 
             foreach (KeyValuePair<string, Color> buff in _buffs) CreateCheckbox(buff.Key, buff.Value);
         }

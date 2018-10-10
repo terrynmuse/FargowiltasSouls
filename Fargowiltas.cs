@@ -58,6 +58,12 @@ namespace FargowiltasSouls
             }
         }
 
+        public override void Unload()
+        {
+            Soulcheck.ToggleDict.Clear();
+            Soulcheck.checkboxDict.Clear();
+        }
+
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
