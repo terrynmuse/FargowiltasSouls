@@ -41,6 +41,14 @@ Lightning scales with magic damage");
             recipe.AddIngredient(ItemID.CopperShortsword);
             recipe.AddIngredient(ItemID.AmethystStaff);
             recipe.AddIngredient(ItemID.Wire, 20);
+            
+            /*
+Copper Buckler
+Amethyst butterfly
+The Zapper
+Thunder Talon
+            */
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
