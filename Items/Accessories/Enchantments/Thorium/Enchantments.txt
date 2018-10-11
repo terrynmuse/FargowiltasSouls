@@ -1,40 +1,6 @@
 shield drone beacon - healer soul
 
-Ocean enchant 
-Sea breeze pendant
-Bubble Magnet
-breathing reed
-starfish wand
-sword fish
-ocean slasher
-Tuna
 
-Tide Hunter enchant
-Shark Storm
-Hydro Cannon
-Nano Clam Cane
-Pearl Pike
-Agnor's Bowl
-bucanners blunderpuss
-Marine Launcher
-
-Iridescent enchant
-GiantGlowstick
-HereticBreaker
-Equalizer
-IridescentStaff
-AquaiteScythe
-SerpentsBubbleWand
-TranquilLyre
-
-Naga-Skin enchant
-NagasRecurve
-HydromancersCatalyst
-SeaFoamScepter
-SpellBookCyclone 
-OldGodsGrasp
-Leviathan
-EelRod
 
 Pumpkin Enchant
 Molotov Cocktail
@@ -45,42 +11,6 @@ Sickle
 Through the Window Painting
 zombie arm
 
-Living Wood enchant
-Living Wood Acorn
-Slime Staff
-Blowpipe
-5 Chi Tea
-Daybloom butterfly
-Grasshopper
-Guide to Plant Fiber
-
-Silk enchant
-Wand of Sparking
-Ice Cube
-Eigth Plague staff
-Thorium Staff
-Umbrella
-Zebra Swallowtail butterfly
-Cure
-
-Ebon enchant
-Dark Heart
-Shadow Wand
-Wooden Baton
-dark gift
-bordered butterfly
-leech bolt
-giga Needle
-
-Novice Cleric enchant
-Fortifying Wand
-Aloe Leaf
-Pills
-Palm Cross
-swallowtail butterfly
-purified water
-Good Book
-
 Dread enchant
 Impact Drill
 Crash Boots
@@ -89,14 +19,6 @@ Cursed Flail-Core
 Chain Guillotine
 Grim Subwoofer
 Green Music Player
-
-
-Dark Lance
-Venom Staff
-bloody high claw
-Vile Spitter
-
-
 
 Dragon enchant
 Dragons Breath
@@ -115,26 +37,37 @@ Corrupt Butterfly
 Ball O Hurt
 Purple Blubberfish
 War Axe of the Night
-malaise
 
-Crimson Enchant
-Deadland Comes Alive
-Bone Rattle
-Crimson Heart
-Crimson Butterfly
-The Undertaker
+Crimson armor
+Crimson armor
+Crimson armor
+DeadlandComesAlive
+BoneRattle
+CrimsonHeart
+CrimsonButterfly
+TheUndertaker
 Meatball
-Blood Lust Cluster
-artery
+BloodLustCluster
 
-Flesh enchant
-Blister Sack
-Spine Buster
-Blood Belcher
-Flesh Wings
-Grim Flayer 
-vampire Gland
-Flesh Mace
+Flesh armor
+Flesh armor
+Flesh armor
+BlisterSack
+SpineBuster
+BloodBelcher
+FleshWings
+GrimFlayer 
+VampireGland
+FleshMace
+
+
+
+
+Venom Staff
+bloody high claw
+Vile Spitter
+
+
 
 Molten Enchant
 Fiery Greatsword
@@ -142,7 +75,6 @@ Sunfury
 Demons Eye Painting
 Hellwing Butterfly
 Thors Hammer melee
-more molten meme?
 
 Obsidian Enchant
 Obsidian Rose
@@ -150,14 +82,13 @@ Lava Waders
 Sharktooth Necklace
 Obsidian Scale
 bellarose
-more obdisian meme?
+Dark Lance
 
 Magma enchant
 Molten Spear Tip
 Magma Shiv
 Magmatic Ricochet
 Spring Steps
-more magma stuff?
 
 Berserker enchant
 Berserker Breaker
@@ -166,7 +97,9 @@ Bloody High Claw
 Orange Music Player 
 Thermogenic Impaler
 Surtrs Sword
-Scorn
+
+
+
 
 Chlorophyte Enchant
 Chlorophyte Shotbow
