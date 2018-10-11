@@ -41,6 +41,14 @@ Summons a pet squashling");
             recipe.AddIngredient(ItemID.MolotovCocktail, 50);
             recipe.AddIngredient(ItemID.JackOLantern, 5);
             recipe.AddIngredient(ItemID.MagicalPumpkinSeed);
+            
+            /*
+Pumkpkin Pie
+Sickle
+Through the Window Painting
+zombie arm
+            */
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
