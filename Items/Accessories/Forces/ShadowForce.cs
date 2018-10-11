@@ -43,7 +43,7 @@ Summons a pet Black Cat, Baby Eater of Souls, Shadow Orb, Baby Skeletron Head, C
             modPlayer.NinjaEffect(hideVisual);
             modPlayer.ShadowEffect(hideVisual);
             modPlayer.NecroEffect(hideVisual);
-            modPlayer.SpookyEnchant = true;
+            modPlayer.SpookyEffect(hideVisual);
             modPlayer.ShinobiEffect(hideVisual);
             modPlayer.DarkArtistEffect(hideVisual);
         }

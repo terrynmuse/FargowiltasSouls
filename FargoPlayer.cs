@@ -687,15 +687,12 @@ namespace FargowiltasSouls
                 multiplier *= .75f;
             }
 
-            if (TungstenEnchant)
+            if (TungstenEnchant && Soulcheck.GetValue("Tungsten Effect"))
             {
-                multiplier *= .125f;
-            }
-
-            if(Soulcheck.GetValue("Tungsten Effect") &&
-                TerraForce && !TerrariaSoul)
-            {
-                multiplier *= .33f;
+                if (TerraForce)
+                    multiplier *= .33f;
+                else if (!TerrariaSoul)
+                    multiplier *= .125f;
             }
 
             if (ObsidianEnchant)

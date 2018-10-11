@@ -56,7 +56,8 @@ All attacks inflict Flames of the Universe");
             player.counterWeight = 556 + Main.rand.Next(6);
             player.yoyoGlove = true;
             player.yoyoString = true;
-            player.scope = true;
+            if (Soulcheck.GetValue("Universe Scope"))
+                player.scope = true;
             player.manaFlower = true;
             player.manaMagnet = true;
             player.magicCuffs = true;
