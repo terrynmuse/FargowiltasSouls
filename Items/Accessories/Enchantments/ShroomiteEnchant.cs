@@ -41,6 +41,13 @@ Summons a pet Baby Truffle");
             recipe.AddIngredient(ItemID.Hammush);
             recipe.AddIngredient(ItemID.Uzi);
             recipe.AddIngredient(ItemID.StrangeGlowingMushroom);
+            
+            /*
+mycelium gatling gun
+hoverboard
+Chlorophyte shotbow
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
