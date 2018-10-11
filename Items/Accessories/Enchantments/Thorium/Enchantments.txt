@@ -1,16 +1,6 @@
 shield drone beacon - healer soul
 
 
-
-
-
-
-
-
-
-
-
-
 Life Binder enchant
 Mist Weaver
 The Effuser
@@ -47,6 +37,21 @@ Toxic Flask
 Frost Plague Staff
 Vile Spitter
 
+Thorium enchant
+Diver caught in a net only named Sam
+Thorium Cube
+band of replenishment
+whirlpool saber
+Grand Thorium Vanity
+
+Bronze enchant
+Spartan Sandals
+Champion Swift Blade
+champion rebuttal
+Bronze Throwing Axes
+ancientwing butterfly
+Spartans Subwoofer
+ChampionWings
 
 
 
@@ -57,6 +62,23 @@ shus wrath
 Void Lance
 
 
+Granite enchant
+Energy Projector
+boulder probe staff
+energywing butterfly
+eye of the storm
+Energized Subwoofer
+
+
+Gladiator enchant
+javelins
+marble chest
+tartar sauce
+Gorgon Gaze Staff
+Bronze Gladius
+Rod of Aesculapius
+throwing weap
+
 
 
 Sandstone enchant
@@ -66,13 +88,6 @@ Spell Book: Wind Gust
 wreath
 desert wind rune
 talon burst
-
-Thorium enchant
-Diver caught in a net only named Sam
-Thorium Cube
-band of replenishment
-spell book purify
-whirlpool saber
 
 Steel enchant; better think of a way to get this meme in hardmode
 Steel Blade
@@ -120,22 +135,6 @@ Gray 'D' Painting
 Man Hacker
 Life Leech
 Darksteel Helmet Stand
-
-Granite enchant
-Granite Boombox
-Energy Projector
-boulder probe staff
-energywing butterfly
-eye of the storm
-Energized Subwoofer
-
-Bronze enchant
-Spartan Sandals
-Champion Swift Blade
-champion rebuttal
-Bronze Tuning Fork
-ancientwing butterfly
-Spartans Subwoofer
 
 Durasteel enchant
 Steal Enchant
@@ -297,10 +296,7 @@ Flameburst T3
 Shadowflame Hexdoll
 DD2 Ghost pet
 
-Gladiator enchant
-javelins
-marble chest
-tartar sauce
+
 
 Hallow enchant
 Silver enchant
