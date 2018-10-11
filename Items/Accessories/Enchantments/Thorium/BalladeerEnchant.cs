@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            Balladeer armor
-            Balladeer armor
-            Balladeer armor
-            SunflareGuitar
-            SoundSagesLament
-            Headset
-            RockstarDoubleBassBlastGuitar
-            MusicSheetTurntable
-            AcousticGuitar
-            StrawberryHeart
+            "Balladeer armor",
+            "Balladeer armor",
+            "Balladeer armor",
+            "SunflareGuitar",
+            "SoundSagesLament",
+            "Headset",
+            "RockstarDoubleBassBlastGuitar",
+            "MusicSheetTurntable",
+            "AcousticGuitar",
+            "StrawberryHeart"
         };
 
         public override void AddRecipes()

@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            Crier Armor
-            Crier Armor
-            Crier Armor
-            MusicNotes
-            Flute
-            WoodenWhistle
-            Harmonica 
-            DrumMallet
-            DynastyGuzheng
-            Bird
+            "Crier Armor",
+            "Crier Armor",
+            "Crier Armor",
+            "MusicNotes",
+            "Flute",
+            "WoodenWhistle",
+            "Harmonica",
+            "DrumMallet",
+            "DynastyGuzheng",
+            "Bird"
         };
 
         public override void AddRecipes()

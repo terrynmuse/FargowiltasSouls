@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            Cryo-Magus armor
-            Cryo-Magus armor
-            Cryo-Magus armor
-            ForgottenLetter
-            IceFairyStaff
-            IceBoundStriderHide 
-            FrostBurntTongue
-            BlueMusicPlayer
-            FrostStaff
-            GatewayGlass
+            "Cryo-Magus armor",
+            "Cryo-Magus armor",
+            "Cryo-Magus armor",
+            "ForgottenLetter",
+            "IceFairyStaff",
+            "IceBoundStriderHide",
+            "FrostBurntTongue",
+            "BlueMusicPlayer",
+            "FrostStaff",
+            "GatewayGlass"
         };
 
         public override void AddRecipes()

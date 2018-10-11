@@ -77,20 +77,20 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
         
         private readonly string[] _items =
         {
-            BardEssence
+            "BardEssence",
             "DigitalVibrationTuner",
             "EpicMouthpiece",
             "GuitarPickClaw",
             "StraightMute",
-            BandKit
-            FishBone
-            PrimesRoar
-            EskimoBanjo 
-            TheBlackOtamatone
-            ChronoOcarina
-            TheMaw
-            SonicAmplifier
-            TheSet      
+            "BandKit",
+            "FishBone",
+            "PrimesRoar",
+            "EskimoBanjo",
+            "TheBlackOtamatone",
+            "ChronoOcarina",
+            "TheMaw",
+            "SonicAmplifier",
+            "TheSet"   
         };
         
         public override void AddRecipes()

@@ -18,31 +18,23 @@ Agnor's Bowl
 bucanners blunderpuss
 Marine Launcher
 
-
-Dark Lance
-Venom Staff
-bloody high claw
-
-
-
-
 Iridescent enchant
-giant glowstick
-heretic breaker
-equalizer
-Iridescent Staff
-Aquaite Scythe
-Serpent's Bubble Wand
-Tranquil Lyre
+GiantGlowstick
+HereticBreaker
+Equalizer
+IridescentStaff
+AquaiteScythe
+SerpentsBubbleWand
+TranquilLyre
 
 Naga-Skin enchant
-nagas recurve
-Hydromancer's Catalyst
-sea foam scepter
-Spell Book Cyclone 
-Old Gods Grasp
+NagasRecurve
+HydromancersCatalyst
+SeaFoamScepter
+SpellBookCyclone 
+OldGodsGrasp
 Leviathan
-Eel Rod
+EelRod
 
 Pumpkin Enchant
 Molotov Cocktail
@@ -52,18 +44,14 @@ Pumkpkin Pie
 Sickle
 Through the Window Painting
 zombie arm
-any other pumpkin memes?
 
 Living Wood enchant
 Living Wood Acorn
 Slime Staff
 Blowpipe
 5 Chi Tea
-Leaf Wand
-Wood Wand
 Daybloom butterfly
 Grasshopper
-any living wood memes?
 Guide to Plant Fiber
 
 Silk enchant
@@ -72,9 +60,8 @@ Ice Cube
 Eigth Plague staff
 Thorium Staff
 Umbrella
-Bird, Duck
+Zebra Swallowtail butterfly
 Cure
-any other silk memes?
 
 Ebon enchant
 Dark Heart
@@ -97,13 +84,19 @@ Good Book
 Dread enchant
 Impact Drill
 Crash Boots
-Dread Razor
 Dread Launcher
-Vile Spitter
 Cursed Flail-Core 
 Chain Guillotine
 Grim Subwoofer
 Green Music Player
+
+
+Dark Lance
+Venom Staff
+bloody high claw
+Vile Spitter
+
+
 
 Dragon enchant
 Dragons Breath
@@ -204,6 +197,11 @@ Thorn Chakram
 Grubby
 Boomstick
 Toxic Subwoofer
+
+
+
+
+
 
 
 Bee Enchant

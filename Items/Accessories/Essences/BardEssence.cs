@@ -51,20 +51,20 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         
         private readonly string[] items =
         {
-            BardEmblem
-            SongofIceandFire
-            BagPipe
-            SeashellCastanets
-            Didgeridoo
-            YewWoodLute
-            AntlionMaraca
-            MusicSheetCongas
-            MusicSheetSteelDrum
-            BronzeTuningFork
-            GraniteBoombox
-            ForestOcarina
-            HotHorn
-            SonarCannon
+            "BardEmblem",
+            "SongofIceandFire",
+            "BagPipe",
+            "SeashellCastanets",
+            "Didgeridoo",
+            "YewWoodLute",
+            "AntlionMaraca",
+            "MusicSheetCongas",
+            "MusicSheetSteelDrum",
+            "BronzeTuningFork",
+            "GraniteBoombox",
+            "ForestOcarina",
+            "HotHorn",
+            "SonarCannon"
         };
 
         public override void AddRecipes()

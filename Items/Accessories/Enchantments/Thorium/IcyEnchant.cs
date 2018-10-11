@@ -49,16 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            Icy armor
-            Icy armor
-            Icy armor
-            FrostFireKatana
-            SpellBookBlizzard
-            IceBoomerang
-            FrostFury
-            ShiverthornButterfly
-            SnowballLauncher
-            Fish
+            "Icy armor",
+            "Icy armor",
+            "Icy armor",
+            "FrostFireKatana",
+            "SpellBookBlizzard",
+            "IceBoomerang",
+            "FrostFury",
+            "ShiverthornButterfly",
+            "SnowballLauncher",
+            "Fish"
         };
 
         public override void AddRecipes()

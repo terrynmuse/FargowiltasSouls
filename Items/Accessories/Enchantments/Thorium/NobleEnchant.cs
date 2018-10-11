@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            Noble armor
-            Noble armor
-            Noble armor
-            Bongos
-            Mixtape
-            DevilsSubwoofer
-            FieryTotem
-            Microphone
-            RingofUnity
-            FireblossomButterfly
+            "Noble armor",
+            "Noble armor",
+            "Noble armor",
+            "Bongos",
+            "Mixtape",
+            "DevilsSubwoofer",
+            "FieryTotem",
+            "Microphone",
+            "RingofUnity",
+            "FireblossomButterfly"
         };
 
         public override void AddRecipes()
