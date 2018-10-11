@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Novice Cleric armor",
+            "Novice Cleric armor",
+            "Novice Cleric armor",
+            "FortifyingWand",
+            "AloeLeaf",
+            "Pills",
+            "PalmCross",
+            "SwallowtailButterfly",
+            "PurifiedWater",
+            "GoodBook"
         };
 
         public override void AddRecipes()
