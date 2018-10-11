@@ -40,6 +40,13 @@ Your wings last 1.5x as long");
             recipe.AddIngredient(ItemID.BeeWings);
             recipe.AddIngredient(ItemID.ButterflyWings);
             recipe.AddIngredient(ItemID.MothronWings);
+            
+            /*
+Temple Butterfly
+SolScorchedSlab
+GolemFist
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
