@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Ocean armor",
+            "Ocean armor",
+            "Ocean armor",
+            "SeaBreezePendant",
+            "BubbleMagnet",
+            "BreathingReed",
+            "StarfishWand",
+            "SwordFish",
+            "OceanSlasher",
+            "Tuna"
         };
 
         public override void AddRecipes()
