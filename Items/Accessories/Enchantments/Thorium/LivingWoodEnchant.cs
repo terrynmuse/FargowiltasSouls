@@ -49,7 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Living Wood armor",
+            "Living Wood armor",
+            "Living Wood armor",
+            "LivingWoodAcorn",
+            "SlimeStaff",
+            "Blowpipe",
+            "ChiTea",
+            "DaybloomButterfly",
+            "Grasshopper",
+            "GuidetoPlantFiber"
         };
 
         public override void AddRecipes()
