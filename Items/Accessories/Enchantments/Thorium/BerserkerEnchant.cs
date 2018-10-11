@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Berserker armor",
+            "Berserker armor",
+            "Berserker armor",
+            "Berserker Breaker",
+            "Berserker Soul Staff",
+            "Bloody High Claw",
+            "Orange Music Player",
+            "Thermogenic Impaler",
+            "Surtrs Sword",
+            "Wyvern Slayer"
         };
 
         public override void AddRecipes()
