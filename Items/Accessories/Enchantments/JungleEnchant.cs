@@ -41,6 +41,15 @@ Spore damage scales with magic damage");
             recipe.AddIngredient(ItemID.CordageGuide);
             recipe.AddIngredient(ItemID.JungleRose);
             recipe.AddIngredient(ItemID.DoNotStepontheGrass);
+            
+            /*
+Jungle Spore Butterfly
+Thorn Chakram
+Grubby
+Boomstick
+Toxic Subwoofer
+            */
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
