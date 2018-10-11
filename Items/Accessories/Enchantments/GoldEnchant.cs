@@ -101,6 +101,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.RubyStaff);
             recipe.AddIngredient(ItemID.SquirrelGold);
             recipe.AddIngredient(ItemID.ParrotCracker);
+            
+            /*
+gold butterfly
+GoldAeigis
+Saba
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
