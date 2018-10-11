@@ -1,34 +1,33 @@
 shield drone beacon - healer soul
 
-
-
-
-Venom Staff
-bloody high claw
-Vile Spitter
-
-
+Obsidian armor
+Obsidian armor
+Obsidian armor
+ObsidianRose
+SharktoothNecklace
+ObsidianScale
+ObsidianButterfly
+Obsidian armor thorium
+Obsidian armor thorium
+Obsidian armor thorium
 
 Molten Enchant
-Fiery Greatsword
 Sunfury
 Demons Eye Painting
-Hellwing Butterfly
-Thors Hammer melee
-
-Obsidian Enchant
-Obsidian Rose
-Lava Waders
-Sharktooth Necklace
-Obsidian Scale
-bellarose
-Dark Lance
+HellwingButterfly
+ThorsHammerMelee
+DarkLance
+MoltenHamaxe
+Flamarang
 
 Magma enchant
 Molten Spear Tip
 Magma Shiv
 Magmatic Ricochet
 Spring Steps
+Flail
+Axe
+Polearm
 
 Berserker enchant
 Berserker Breaker
@@ -37,12 +36,9 @@ Bloody High Claw
 Orange Music Player 
 Thermogenic Impaler
 Surtrs Sword
-
-
-
+Wyvern Slayer
 
 Chlorophyte Enchant
-Chlorophyte Shotbow
 Flower Boots
 Staff of Regrowth
 Leaf Blower 
@@ -55,7 +51,6 @@ Turtle Enchant
 Lizard Egg
 Seaweed
 Chlorophyte Partizan
-Chlorophyte Great Axe
 Absinthe Fury
 Yelets
 Frog
@@ -65,7 +60,6 @@ Jungle Enchant
 Jungle Rose
 Jungle Painting
 Jungle Spore Butterfly
-Ivy Whip
 Thorn Chakram
 Grubby
 Boomstick
@@ -73,6 +67,10 @@ Toxic Subwoofer
 
 
 
+Venom Staff
+Vile Spitter
+Bellarose
+Chloro Shotbow
 
 
 
