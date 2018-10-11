@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Iridescent armor",
+            "Iridescent armor",
+            "Iridescent armor",
+            "GiantGlowstick",
+            "HereticBreaker",
+            "Equalizer",
+            "IridescentStaff",
+            "AquaiteScythe",
+            "SerpentsBubbleWand",
+            "TranquilLyre"
         };
 
         public override void AddRecipes()
