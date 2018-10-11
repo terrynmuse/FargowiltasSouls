@@ -46,9 +46,9 @@ You are immune to the Mighty Wind debuff");
             recipe.AddRecipe();
             
             /*
-            shus wrath
-            magic carpet
-            check forbidden material
+Magic carpet
+karmic holder
+ras whisper
             */
         }
     }
