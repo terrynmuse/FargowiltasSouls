@@ -46,9 +46,10 @@ Summons a pet Baby Dino");
             recipe.AddRecipe();
             
             /*
-            prehistoric staff
-            check sturdy fossil material
-            amber butterfly
+prehistoric staff
+AmberButterfly
+Sitar
+Bone Javelins
             */
         }
     }
