@@ -42,6 +42,15 @@ Summons a pet Lizard and Turtle");
             recipe.AddIngredient(ItemID.NettleBurst);
             recipe.AddIngredient(ItemID.Seaweed);
             recipe.AddIngredient(ItemID.LizardEgg);
+            
+            /*
+Chlorophyte Partizan
+Absinthe Fury
+Yelets
+Frog
+Turtle Drums
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
