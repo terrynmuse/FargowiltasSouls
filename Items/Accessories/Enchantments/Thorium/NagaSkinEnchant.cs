@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Naga-Skin armor",
+            "Naga-Skin armor",
+            "Naga-Skin armor",
+            "NagasRecurve",
+            "HydromancersCatalyst",
+            "SeaFoamScepter",
+            "SpellBookCyclone",
+            "OldGodsGrasp",
+            "Leviathan",
+            "EelRod"
         };
 
         public override void AddRecipes()
