@@ -42,6 +42,13 @@ Summons a pet Seedling");
             recipe.AddIngredient(ItemID.StaffofRegrowth);
             recipe.AddIngredient(ItemID.LeafBlower);
             recipe.AddIngredient(ItemID.Seedling);
+            
+            /*
+Chlorophyte Butterfly
+Flower Pow
+chloro staff
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
