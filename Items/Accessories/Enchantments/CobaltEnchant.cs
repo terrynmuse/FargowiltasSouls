@@ -39,6 +39,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.CrystalDart, 200);
             recipe.AddIngredient(ItemID.CrystalStorm);
             recipe.AddIngredient(ItemID.CrystalVileShard);
+            
+            /*
+Cobalt Staff
+Cobalt Popper
+Crystal Phaser
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
