@@ -2,66 +2,6 @@ shield drone beacon - healer soul
 
 
 
-Pumpkin Enchant
-Molotov Cocktail
-Jack O Lantern
-Magical Pumpkin Seed
-Pumkpkin Pie
-Sickle
-Through the Window Painting
-zombie arm
-
-Dread enchant
-Impact Drill
-Crash Boots
-Dread Launcher
-Cursed Flail-Core 
-Chain Guillotine
-Grim Subwoofer
-Green Music Player
-
-Dragon enchant
-Dragons Breath
-Dragon Wings
-Ebony Tail
-Draconic Magma Staff
-Cloudy Chew Toy 
-Cursed Flame Butterfly
-Dragons Gaze
-
-Shadow Enchant
-Lightless Chasms
-Eater Bone
-Shadow Orb
-Corrupt Butterfly
-Ball O Hurt
-Purple Blubberfish
-War Axe of the Night
-
-Crimson armor
-Crimson armor
-Crimson armor
-DeadlandComesAlive
-BoneRattle
-CrimsonHeart
-CrimsonButterfly
-TheUndertaker
-Meatball
-BloodLustCluster
-
-Flesh armor
-Flesh armor
-Flesh armor
-BlisterSack
-SpineBuster
-BloodBelcher
-FleshWings
-GrimFlayer 
-VampireGland
-FleshMace
-
-
-
 
 Venom Staff
 bloody high claw
