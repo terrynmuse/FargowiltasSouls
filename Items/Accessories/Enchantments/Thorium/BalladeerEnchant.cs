@@ -58,7 +58,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "SoundSagesLament",
             "Headset",
             "RockstarDoubleBassBlastGuitar",
-            "MusicSheetTurntable",
+            "BalladeerWings",
             "AcousticGuitar",
             "StrawberryHeart"
         };
