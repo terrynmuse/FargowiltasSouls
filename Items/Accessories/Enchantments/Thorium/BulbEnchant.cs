@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Bulb armor",
+            "Bulb armor",
+            "Bulb armor",
+            "PetalWand",
+            "PetalShield",
+            "BloomingBlade",
+            "MoonglowButterfly",
+            "SkyBlueFlower",
+            "YellowMarigold",
+            "Sunflower"
         };
 
         public override void AddRecipes()
