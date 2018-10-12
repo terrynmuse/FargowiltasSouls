@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Steel armor", // better think of a way to get this meme in hardmode
+            "Steel armor",
+            "Steel armor",
+            "IronEnchant",
+            "SteelBlade",
+            "SteelPick",
+            "SteelAxe",
+            "SteelMallet",
+            "SuperAnvil",
+            "WarForger"
         };
 
         public override void AddRecipes()
