@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Flight armor",
+            "Flight armor",
+            "Flight armor",
+            "ChampionWings",
+            "FeatherBarrierRod",
+            "Zephyr",
+            "HarpyPelter",
+            "Aerial",
+            "AvianButterfly",
+            "HarpyWings"
         };
 
         public override void AddRecipes()
