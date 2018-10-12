@@ -51,7 +51,70 @@ champion rebuttal
 Bronze Throwing Axes
 ancientwing butterfly
 Spartans Subwoofer
-ChampionWings
+Dracula Fangs
+
+Granite enchant
+Energy Projector
+boulder probe staff
+energywing butterfly
+eye of the storm
+Energized Subwoofer
+Night Vision Helmet
+GraniteSaber
+
+Gladiator enchant
+javelins
+Goblin War Spear
+tartar sauce
+Gorgon Gaze Staff
+Bronze Gladius
+Rod of Aesculapius
+Steel Throwing Axe
+
+Sandstone enchant
+1500 Sandstone Throwing Knifes
+wreath
+desert wind rune
+talon burst
+stone throwing spear
+ocean throwing axe
+throwing knives
+
+Steel enchant; better think of a way to get this meme in hardmode
+Iron Enchant
+Steel Blade
+Steel Pick
+Steel Axe
+Steel Mallet
+Super Anvil
+War Forger
+
+Danger enchant
+Tracker's Skinning Blade
+1000 Danger Daggers
+Danger Dual-Shot
+Danger Doomerang
+Danger Devastator
+Danger Daikatana
+Rally
+
+Flight enchant
+Champion Wings
+FeatherBarrierRod
+Zephyr
+HarpyPelter
+Aerial
+AvianButterfly
+Harpy Wings
+
+Yew-Wood enchant
+ShadowflameStaff
+Yew-HandledFlintlock
+FeatherFoe
+YewWoodBow
+GoblinWarShield
+SandstoneBow
+SpikeBombs
 
 
 
@@ -62,60 +125,8 @@ shus wrath
 Void Lance
 
 
-Granite enchant
-Energy Projector
-boulder probe staff
-energywing butterfly
-eye of the storm
-Energized Subwoofer
 
 
-Gladiator enchant
-javelins
-marble chest
-tartar sauce
-Gorgon Gaze Staff
-Bronze Gladius
-Rod of Aesculapius
-throwing weap
-
-
-
-Sandstone enchant
-Didgeridoo
-1500 Sandstone Throwing Knifes
-Spell Book: Wind Gust
-wreath
-desert wind rune
-talon burst
-
-Steel enchant; better think of a way to get this meme in hardmode
-Steel Blade
-Super Anvil
-Blacksmith's Apron
-War Forger
-
-Danger enchant
-Tracker's Skinning Blade
-1000 Danger Daggers
-Danger Dual-Shot
-danger doomerang
-salamander drop meme
-toxic subwoofer
-
-Flight enchant
-Feather Barrier Rod
-Zephyr
-Harpy Pelter
-aerial
-avian butterfly
-
-Yew-Wood enchant
-Shadowflame Staff
-Yew-Handled Flintlock
-Goblin War Shield
-yew wood lute
-500 spike bombs
 
 Malignant enchant
 Thorium Staff
@@ -135,6 +146,15 @@ Gray 'D' Painting
 Man Hacker
 Life Leech
 Darksteel Helmet Stand
+
+
+
+
+
+
+
+
+
 
 Durasteel enchant
 Steal Enchant
