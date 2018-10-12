@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Life Bloom armor",
+            "Life Bloom armor",
+            "Life Bloom armor",
+            "HiveMind",
+            "TheButterflyStaff",
+            "TulipStaff",
+            "GroundedTotem",
+            "HoneyBlade",
+            "BrownMusicPlayer",
+            "AstralBarrierWand"
         };
 
         public override void AddRecipes()
