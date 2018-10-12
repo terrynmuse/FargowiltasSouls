@@ -1,131 +1,152 @@
 shield drone beacon - healer soul
 
-
-
-
-
-Venom Staff
-Vile Spitter
-Bellarose
-shus wrath
-Void Lance
-
-
-
-
-Malignant enchant
-Thorium Staff
-Mana-Charged Rocketeers
-random magic memes
-
 Spirit Trapper enchant 
-Viscount's Cane
 Taboo Wand
-Windy Totem Caller
 strange skull
 spirit blast wand
+BlueDungeonButterfly
+AntagonizingSpirit
+CalmingSpirit
+Sacrificial Dagger
 
 Darksteel enchant
-Darksteel Mace
-Gray 'D' Painting
-Man Hacker
-Life Leech
-Darksteel Helmet Stand
+SteelEnchant
+DarksteelMace
+GrayDPainting
+ManHacker
+SoulSiphon
+DarksteelHelmetStand
+BallnChain
 
+Malignant enchant
+Mana-Charged Rocketeers
+Spine Breaker
+Vampire Scepter
+Champion Bomber Staff
+Dark Tome
+Thors Hammer Magic
+ParticleWhip
 
 Vortex enchant
 vortex popper 
 phantasm
 SDMG
 companion cube
-
-Tin enchant
-tin bow
-topaz staff
-daylight painting
-tin buckler
-topaz butterfly
-
-Titanium enchant
-titaium sword
-slap hand
-anchor
-monk staff octopod?
-tit rifle
-tit staff
-
-Tungsten enchant
-emerald staff
-tunsten hammer
-snail
-glowing snail?
-tungsten bulwark
-emerald butterfly
-
-
-Stardust enchant
-stardust cell staff
-stardust dragon staff
-stardust pickaxe
-rainbow crystall staff
-
-Silver enchant
-silver broadsword
-silver bow
-saphire staff
-silver bulwark
-saphire buterfly
+Void Lance
+VortexPickaxe
+VortexBooster
 
 Solar Flare enchant
 hel fire
 day break
 star wrath
 solar eruption
+SolarWings
+SolarPickaxe
+EruptingFlare
 
-Orichalcum enchant
-ori war axe
-cursed flames
-flower of fire
-flower of frost
-ori staff
-ori pelter
+Nebula Enchant
+Nebula Blaze
+Nebula Arcanum
+Lunar Flare
+NebulaMantle
+NebulaPickaxe
+NebulasReflection
+CatsEyeGreatStaff
+
+Stardust enchant
+stardust cell staff
+stardust dragon staff
+stardust pickaxe
+rainbow crystall staff
+StardustWings
+ShadowOrbStaff
+EyeofOdin
+
+Tin enchant
+tin bow
+topaz staff
+daylight painting
+TinBuckler
+TopazButterfly
+MaskoftheCrystalEye
+TinShortsword
 
 Palladium enchant
 palladium sword
 palladium repeater
 vampire knives
 life drain
-pal staff
-pal sub machine gun
+PalladiumStaff
+PalladiumSubMachineGun
+LifeLeech
 
-Platinum enchant
-diamond staff
-platinum crown
-diamond ring
-platinum Aegis
-diamond butterfly
-coin sack petboi
+Tungsten enchant
+emerald staff
+tungsten hammer
+Snail
+GlowingSnail
+Sluggy
+TungstenBulwark
+EmeraldButterfly
 
 Mythril enchant
 laser rifle
 mega shark
 mythril repeater
-mythril staff
-mythril pelter
+MythrilStaff
+MythrilPelter
+DrenchedDirk
+
+Platinum enchant
+diamond staff
+platinum crown
+diamond ring
+PlatinumAegis
+DiamondButterfly
+AncientDrachma
+DavyJonesLockBox
+
+
+MusicSheet Turntable
+Venom Staff
+Vile Spitter
+Bellarose
+shus wrath
+
+
+
+Titanium enchant
+titaium sword
+slap hand
+anchor
+monk staff octopod?
+TitaniumRifle
+TitStaff
+
+Silver enchant
+silver broadsword
+silver bow
+saphire staff
+SilverBulwark
+SaphireButerfly
+
+Orichalcum enchant
+ori war axe
+cursed flames
+flower of fire
+flower of frost
+OrichalcumStaff
+OrichalcumPelter
 
 Lead enchant
 lead shortsword
 lead pick axe
 gray paint
-lead shield
-onyx staff
-onyx butterfly
+LeadShield
+OnyxStaff
+OnyxButterfly
 
-Nebula Enchant
-Shadowbeam staff
-Nebula Blaze
-Nebula Arcanum
-Lunar Flare
 
 
 
