@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Sandstone armor",
+            "Sandstone armor",
+            "Sandstone armor",
+            "SandstoneThrowingKnifes",
+            "Wreath",
+            "DesertWindRune",
+            "TalonBurst",
+            "Stone ThrowingSpear",
+            "OceanThrowingAxe",
+            "ThrowingKnives"
         };
 
         public override void AddRecipes()
