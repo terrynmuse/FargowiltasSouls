@@ -107,30 +107,6 @@ DiamondButterfly
 AncientDrachma
 DavyJonesLockBox
 
-
-MusicSheet Turntable
-Venom Staff
-Vile Spitter
-Bellarose
-shus wrath
-
-
-
-Titanium enchant
-titaium sword
-slap hand
-anchor
-monk staff octopod?
-TitaniumRifle
-TitStaff
-
-Silver enchant
-silver broadsword
-silver bow
-saphire staff
-SilverBulwark
-SaphireButerfly
-
 Orichalcum enchant
 ori war axe
 cursed flames
@@ -138,6 +114,25 @@ flower of fire
 flower of frost
 OrichalcumStaff
 OrichalcumPelter
+PrismaticSpray
+
+Silver enchant
+silver broadsword
+silver bow
+saphire staff
+SilverBulwark
+SaphireButterfly
+EnchantedSword
+EnchantedShield
+
+Iron enchant
+EoC shield
+iron broadsword
+iron anvil
+IronShield
+OpalStaff
+OpalButterfly
+ThoriumShield
 
 Lead enchant
 lead shortsword
@@ -146,16 +141,38 @@ gray paint
 LeadShield
 OnyxStaff
 OnyxButterfly
+PoisonKnives
+
+Titanium enchant
+titanium sword
+slap hand
+anchor
+monk staff octopod?
+TitaniumRifle
+TitaniumStaff
+TitaniumAxe
+
+
+
+MusicSheet Turntable
+Venom Staff
+Vile Spitter
+Bellarose
+
+
+
+
 
 
 
 
 Durasteel enchant
-Steal Enchant
+DarkSteel Enchant
 Armor Bane
 Exile's Helmet
 Searing Blade
 Demo's Guidance
+greedy magnet
 
 Geode enchant
 Adventurer's Lantern
@@ -165,11 +182,7 @@ Stone Sledge
 Davy Jones Lock Box 
 
 Feral-Fur enchant
-Bee Booties
-Honey Blade
-Forgotten Letter
 Blood Drenched Dagger
-Sacrificial Dagger 
 
 White Knight enchant
 Shade Band
@@ -181,19 +194,16 @@ Delectable Nut
 Fungus enchant
 Mycelium Whip
 1750 Fungal Poppers
-Survivalist's Boots
 Funggat 
 
 Valadium enchant
 Vega Phaser
-Bio-Pod
 Eye of the Beholder
 Obliterator
 Shu's Wrath 
 
 Lodestone enchant
 Glacior
-Astro Beetle Husk
 Weighted Winglets
 Crash Boots
 Slag Stompers 
@@ -317,17 +327,6 @@ fairy bell
 life quartz shield?
 trigun
 hallow megaphone
-
-Iron enchant
-EoC shield
-iron broadsword
-iron anvil
-iron shield
-opal staff
-opal butterfly
-greedy magnet? idk
-
-
 
 Miner enchant
 magic lantern
