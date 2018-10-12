@@ -1,120 +1,6 @@
 shield drone beacon - healer soul
 
 
-Life Binder enchant
-Mist Weaver
-The Effuser
-Tesla Defibrillator
-Moonlight Staff
-Rich Leaf 
-Life Fruit Butterfly
-Bloom Guard
-
-Life Bloom enchant
-Hive Mind
-The Butterfly Staff
-Tulip Staff
-Grounded Totem
-Honey Blade
-Brown Music Player
-Astral Barrier Wand
-
-Bulb enchant
-petal wand
-petal shield
-blooming blade
-Moonglow Butterfly
-Sky Blue Flower
-Yellow Marigold
-Sunflower
-
-Plague Doctor enchant 
-Toxic Flask
-1000 Nitrogen Vial
-1000 Corrosive Vial
-1000 Combustion Vial
-1050 Gas Container
-Frost Plague Staff
-Vile Spitter
-
-Thorium enchant
-Diver caught in a net only named Sam
-Thorium Cube
-band of replenishment
-whirlpool saber
-Grand Thorium Vanity
-
-Bronze enchant
-Spartan Sandals
-Champion Swift Blade
-champion rebuttal
-Bronze Throwing Axes
-ancientwing butterfly
-Spartans Subwoofer
-Dracula Fangs
-
-Granite enchant
-Energy Projector
-boulder probe staff
-energywing butterfly
-eye of the storm
-Energized Subwoofer
-Night Vision Helmet
-GraniteSaber
-
-Gladiator enchant
-javelins
-Goblin War Spear
-tartar sauce
-Gorgon Gaze Staff
-Bronze Gladius
-Rod of Aesculapius
-Steel Throwing Axe
-
-Sandstone enchant
-1500 Sandstone Throwing Knifes
-wreath
-desert wind rune
-talon burst
-stone throwing spear
-ocean throwing axe
-throwing knives
-
-Steel enchant; better think of a way to get this meme in hardmode
-Iron Enchant
-Steel Blade
-Steel Pick
-Steel Axe
-Steel Mallet
-Super Anvil
-War Forger
-
-Danger enchant
-Tracker's Skinning Blade
-1000 Danger Daggers
-Danger Dual-Shot
-Danger Doomerang
-Danger Devastator
-Danger Daikatana
-Rally
-
-Flight enchant
-Champion Wings
-FeatherBarrierRod
-Zephyr
-HarpyPelter
-Aerial
-AvianButterfly
-Harpy Wings
-
-Yew-Wood enchant
-ShadowflameStaff
-Yew-HandledFlintlock
-FeatherFoe
-YewWoodBow
-GoblinWarShield
-SandstoneBow
-SpikeBombs
 
 
 
@@ -123,7 +9,6 @@ Vile Spitter
 Bellarose
 shus wrath
 Void Lance
-
 
 
 
@@ -148,11 +33,99 @@ Life Leech
 Darksteel Helmet Stand
 
 
+Vortex enchant
+vortex popper 
+phantasm
+SDMG
+companion cube
+
+Tin enchant
+tin bow
+topaz staff
+daylight painting
+tin buckler
+topaz butterfly
+
+Titanium enchant
+titaium sword
+slap hand
+anchor
+monk staff octopod?
+tit rifle
+tit staff
+
+Tungsten enchant
+emerald staff
+tunsten hammer
+snail
+glowing snail?
+tungsten bulwark
+emerald butterfly
 
 
+Stardust enchant
+stardust cell staff
+stardust dragon staff
+stardust pickaxe
+rainbow crystall staff
 
+Silver enchant
+silver broadsword
+silver bow
+saphire staff
+silver bulwark
+saphire buterfly
 
+Solar Flare enchant
+hel fire
+day break
+star wrath
+solar eruption
 
+Orichalcum enchant
+ori war axe
+cursed flames
+flower of fire
+flower of frost
+ori staff
+ori pelter
+
+Palladium enchant
+palladium sword
+palladium repeater
+vampire knives
+life drain
+pal staff
+pal sub machine gun
+
+Platinum enchant
+diamond staff
+platinum crown
+diamond ring
+platinum Aegis
+diamond butterfly
+coin sack petboi
+
+Mythril enchant
+laser rifle
+mega shark
+mythril repeater
+mythril staff
+mythril pelter
+
+Lead enchant
+lead shortsword
+lead pick axe
+gray paint
+lead shield
+onyx staff
+onyx butterfly
+
+Nebula Enchant
+Shadowbeam staff
+Nebula Blaze
+Nebula Arcanum
+Lunar Flare
 
 
 
@@ -309,14 +282,11 @@ Dream Catcher
 Unbound Fantasy
 Rebirth Statuette  
 
-
 Dark Artist Enchant
 Apprentice Scarf
 Flameburst T3
 Shadowflame Hexdoll
 DD2 Ghost pet
-
-
 
 Hallow enchant
 Silver enchant
@@ -336,31 +306,12 @@ opal staff
 opal butterfly
 greedy magnet? idk
 
-Lead enchant
-lead shortsword
-lead pick axe
-gray paint
-lead shield
-onyx staff
-onyx butterfly
+
 
 Miner enchant
 magic lantern
 bone pick axe
 molten pick axe
-
-Mythril enchant
-laser rifle
-mega shark
-mythril repeater
-mythril staff
-mythril pelter
-
-Nebula Enchant
-Shadowbeam staff
-Nebula Blaze
-Nebula Arcanum
-Lunar Flare
 
 Necro Enchant
 Bone Sword
@@ -372,32 +323,6 @@ Ninja Enchant
 smoke bombs
 unlucky yarn
 shurikens
-
-Orichalcum enchant
-ori war axe
-cursed flames
-flower of fire
-flower of frost
-ori staff
-ori pelter
-
-
-Palladium enchant
-palladium sword
-palladium repeater
-vampire knives
-life drain
-pal staff
-pal sub machine gun
-
-
-Platinum enchant
-diamond staff
-platinum crown
-diamond ring
-platinum Aegis
-diamond butterfly
-coin sack petboi
 
 Red Riding enchant
 dog whistle
@@ -411,30 +336,11 @@ Monk belt
 master ninja gear
 Pet gato
 
-Silver enchant
-silver broadsword
-silver bow
-saphire staff
-silver bulwark
-saphire buterfly
-
-Solar Flare enchant
-hel fire
-day break
-star wrath
-solar eruption
-
 Spook enchant
 death sickle
 demon scythe
 eye spring
 cursed sapling
-
-Stardust enchant
-stardust cell staff
-stardust dragon staff
-stardust pickaxe
-rainbow crystall staff
 
 Tiki enchant
 blowgun
@@ -443,37 +349,8 @@ pygmy necklace
 pygmy staff
 hex wand
 
-Tin enchant
-tin bow
-topaz staff
-daylight painting
-tin buckler
-topaz butterfly
-
-Titanium enchant
-titaium sword
-slap hand
-anchor
-monk staff octopod?
-tit rifle
-tit staff
-
-Tungsten enchant
-emerald staff
-tunsten hammer
-snail
-glowing snail?
-tungsten bulwark
-emerald butterfly
-
 Valhalla enchant
 shiny stone
 squire shield
 dragon pet
 Ballista T3
-
-Vortex enchant
-vortex popper 
-phantasm
-SDMG
-companion cube
