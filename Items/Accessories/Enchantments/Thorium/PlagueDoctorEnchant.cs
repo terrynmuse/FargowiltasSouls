@@ -49,7 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Plague Doctor armor",
+            "Plague Doctor armor",
+            "Plague Doctor armor",
+            "Toxic Flask",
+            "NitrogenVial",
+            "CorrosiveVial",
+            "CombustionVial",
+            "GasContainer",
+            "FrostPlagueStaff",
+            "VileSpitter"
         };
 
         public override void AddRecipes()
