@@ -55,7 +55,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Flight armor",
             "Flight armor",
             "ChampionWings",
-            "FeatherBarrierRod",
+            "WindyTotemCaller",
             "Zephyr",
             "HarpyPelter",
             "Aerial",
