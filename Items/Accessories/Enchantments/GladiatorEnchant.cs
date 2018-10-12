@@ -39,6 +39,15 @@ Summons a pet Minotaur");
             recipe.AddIngredient(ItemID.Javelin, 200);
             recipe.AddIngredient(ItemID.MarbleChest);
             recipe.AddIngredient(ItemID.TartarSauce);
+            
+            /*    
+Goblin War Spear
+Gorgon Gaze Staff
+Bronze Gladius
+Rod of Aesculapius
+Steel Throwing Axe
+            */
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
