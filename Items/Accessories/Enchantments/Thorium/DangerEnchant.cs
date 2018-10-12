@@ -49,7 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Danger armor",
+            "Danger armor",
+            "Danger armor",
+            "TrackersSkinningBlade",
+            "DangerDaggers",
+            "DangerDualShot",
+            "DangerDoomerang",
+            "DangerDevastator",
+            "DangerDaikatana",
+            "Rally"
         };
 
         public override void AddRecipes()
