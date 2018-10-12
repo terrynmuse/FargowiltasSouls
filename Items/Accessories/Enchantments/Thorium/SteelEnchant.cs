@@ -57,7 +57,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "IronEnchant",
             "SteelBlade",
             "SteelPick",
-            "BallnChain",
+            "SteelAxe",
             "SteelMallet",
             "SuperAnvil",
             "WarForger"
