@@ -49,7 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Yew-Wood armor",
+            "Yew-Wood armor",
+            "Yew-Wood armor",
+            "ShadowflameStaff",
+            "Yew-HandledFlintlock",
+            "FeatherFoe",
+            "YewWoodBow",
+            "GoblinWarShield",
+            "SandstoneBow",
+            "SpikeBombs"
         };
 
         public override void AddRecipes()
