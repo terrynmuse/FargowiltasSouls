@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Life Binder armor",
+            "Life Binder armor",
+            "Life Binder armor",
+            "MistWeaver",
+            "TheEffuser",
+            "TeslaDefibrillator",
+            "MoonlightStaff",
+            "RichLeaf",
+            "LifeFruitButterfly",
+            "BloomGuard"
         };
 
         public override void AddRecipes()
