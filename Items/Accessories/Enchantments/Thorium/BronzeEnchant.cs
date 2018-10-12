@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Bronze armor",
+            "Bronze armor",
+            "Bronze armor",
+            "SpartanSandals",
+            "ChampionSwiftBlade",
+            "ChampionRebuttal",
+            "BronzeThrowingAxes",
+            "AncientwingButterfly",
+            "SpartansSubwoofer",
+            "DraculaFangs"
         };
 
         public override void AddRecipes()
