@@ -58,7 +58,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "IceCube",
             "EigthPlagueStaff",
             "ThoriumStaff",
-            "", //check silk memes or another early magic item
+            "SpellBookWindGust", 
             "ZebraSwallowtailButterfly",
             "Cure"
         };
