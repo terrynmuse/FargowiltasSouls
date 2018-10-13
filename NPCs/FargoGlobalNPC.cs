@@ -1395,8 +1395,8 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         npc.life = npc.lifeMax;
                                         
-                                        //if spaz dead, OR (spaz must be alive, then is spaz at full health?) -> stop regenerating
-                                        if (!spazAlive || Main.npc[spazBoss].life >= Main.npc[spazBoss].lifeMax)
+                                        //if spaz dead, OR (spaz must be alive, then is spaz at full health OR spaz done regen?) -> stop regenerating
+                                        if (!spazAlive || Main.npc[spazBoss].life >= Main.npc[spazBoss].lifeMax || Main.npc[spazBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[3])
                                             masoBool[3] = true;
                                     }
                                     CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
@@ -1566,6 +1566,9 @@ namespace FargowiltasSouls.NPCs
                                 npc.defense = 9999;
                                 npc.localAI[2]++;
 
+                                if (npc.buffTime[0] != 0) //cleanse debuff
+                                    npc.DelBuff(0);
+
                                 if (npc.localAI[2] >= 12f) //heal every 6 ticks
                                 {
                                     npc.localAI[2] = 0f;
@@ -1576,8 +1579,8 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         npc.life = npc.lifeMax;
 
-                                        //if reti dead, OR (reti must be alive, then is reti at full health?) -> stop regenerating
-                                        if (!retiAlive || Main.npc[retiBoss].life >= Main.npc[retiBoss].lifeMax)
+                                        //if reti dead, OR (reti must be alive, then is reti at full health OR reti already done regen?) -> stop regenerating
+                                        if (!retiAlive || Main.npc[retiBoss].life >= Main.npc[retiBoss].lifeMax || Main.npc[retiBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[3])
                                             masoBool[3] = true;
                                     }
                                     CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
@@ -1891,7 +1894,7 @@ namespace FargowiltasSouls.NPCs
                                     else
                                         Counter = 1;
 
-                                    Main.NewText("reviving other hand");
+                                    //Main.NewText("reviving other hand");
                                 }
                                 else
                                 {
@@ -2420,7 +2423,21 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-                        goto case 42;
+
+                        if (!npc.dontTakeDamage)
+                        {
+                            npc.life += 17;
+                            if (npc.life > npc.lifeMax)
+                                npc.life = npc.lifeMax;
+
+                            Timer++;
+                            if (Timer >= 75)
+                            {
+                                Timer = Main.rand.Next(30);
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 1000, false, false);
+                            }
+                        }
+                        break;
 
                     case 41: //golem head flying
                         npc.position += npc.velocity * 0.25f;
@@ -2623,8 +2640,7 @@ namespace FargowiltasSouls.NPCs
                     case 51: //plantera
                         if (npc.life < npc.lifeMax / 2) //phase 2
                         {
-                            npc.position += npc.velocity * 0.5f;
-                            npc.defense = 42;
+                            npc.defense += 42;
 
                             Counter++;
                             if (Counter >= 20)
@@ -2680,6 +2696,22 @@ namespace FargowiltasSouls.NPCs
                                 for (int i = 0; i < tentaclesToSpawn; i++)
                                 {
                                     NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PlanterasTentacle, npc.whoAmI);
+                                }
+                            }
+
+                            SharkCount = 0;
+
+                            if (npc.HasPlayerTarget)
+                            {
+                                if (Main.player[npc.target].GetModPlayer<FargoPlayer>().Infested)
+                                {
+                                    npc.position += npc.velocity;
+                                    npc.defense *= 3;
+                                    Counter++;
+                                    SharkCount = 1;
+
+                                    if (RegenTimer > 60)
+                                        RegenTimer = 60;
                                 }
                             }
                         }
@@ -4845,7 +4877,7 @@ namespace FargowiltasSouls.NPCs
                             else
                                 head.GetGlobalNPC<FargoGlobalNPC>().Counter = 2;
 
-                            Main.NewText("hand dead");
+                            //Main.NewText("hand dead");
                         }
                         break;
 
@@ -5720,14 +5752,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Plantera:
-                        target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
-                        target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
-
-                        if (target.HasBuff(mod.BuffType<Infested>()))
-                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(720, 1080));
-                        else
-                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
-                        break;
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(600, 900));
+                        goto case NPCID.PlanterasHook;
 
                     case NPCID.PlanterasHook:
                     case NPCID.PlanterasTentacle:
@@ -5736,9 +5762,9 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
 
                         if (target.HasBuff(mod.BuffType<Infested>()))
-                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
+                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(900, 1260));
                         else
-                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(90, 180));
+                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
                         break;
 
                     case NPCID.ChaosElemental:
@@ -5979,7 +6005,20 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Clown:
                         target.AddBuff(mod.BuffType<Fused>(), 180);
-                        target.AddBuff(mod.BuffType<Hexed>(), 600);
+                        target.AddBuff(mod.BuffType<Hexed>(), 1200);
+                        break;
+
+                    case NPCID.UndeadMiner:
+                        int length = Main.rand.Next(3600, 7200);
+                        target.AddBuff(mod.BuffType<Lethargic>(), length * 2);
+                        target.AddBuff(BuffID.Darkness, length);
+                        target.AddBuff(BuffID.Blackout, length);
+
+                        for (int i = 0; i < 59; i++)
+                        {
+                            if (target.inventory[i].pick != 0 || target.inventory[i].hammer != 0 || target.inventory[i].axe != 0)
+                                StealFromInventory(target, ref target.inventory[i]);
+                        }
                         break;
 
                     default:
