@@ -825,11 +825,7 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.SeedPlantera:
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
                         target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
-
-                        if (target.HasBuff(mod.BuffType<Infested>()))
-                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
-                        else
-                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(90, 180));
+                        target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
                         break;
 
                     case ProjectileID.DesertDjinnCurse:
@@ -972,11 +968,7 @@ namespace FargowiltasSouls.Projectiles
                         {
                             target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
                             target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
-
-                            if (target.HasBuff(mod.BuffType<Infested>()))
-                                target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
-                            else
-                                target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(90, 180));
+                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
                         }
                         break;
 
