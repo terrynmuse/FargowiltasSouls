@@ -1,6 +1,82 @@
 shield drone beacon - healer soul
 
+Assassin armor
+Assassin armor
+Assassin armor
+Assassin armor (both helms)
+TheKillCounter
+OmniBow 
+OmniCannon
+TheJavelin
+NovaRifle
+nail gun
 
+Terrarium armor
+Terrarium armor
+Terrarium armor
+TerrariumSaber
+TerrariumLongbow
+Terrarium Surround Sound
+Essence of Flame
+
+White Dwarf enchant
+The Black Dagger
+3600 White Dwarf Kunai
+Void Planter 
+
+Pyromancer enchant
+Northern Light
+Devil's Claw
+Molten Banner
+Spell Book: Spores 
+
+Tide Turner enchant
+Quake Gauntlet
+Ocean's Judgement
+Plague Lord's Flask 
+
+Fungus enchant
+Mycelium Whip
+1750 Fungal Poppers
+Funggat 
+
+Valadium enchant
+Vega Phaser
+Eye of the Beholder
+Obliterator
+Shu's Wrath 
+
+Lodestone enchant
+Glacior
+Weighted Winglets
+Crash Boots
+Slag Stompers 
+
+Titan enchant
+All three helmets
+Titan Boomerang
+Rail Gun
+Cyan Music Player 
+
+Harbinger enchant
+Lightning Staff
+Blackhole Cannon
+Harbinger Spear
+White Music Player
+
+Illumite enchant
+Launch Jumper
+Trench Spitter
+DMR
+Illumite Blaster
+Pink Music Player 
+
+Shade Master enchant
+Shade Dagger
+1000 Soulslashers
+500 Bugenkai Shurikens
+1000 Plasma Vials 
+Purple Music Player
 
 
 MusicSheet Turntable
@@ -37,87 +113,15 @@ Spell Book: Stalagmite
 Spell Book: Cyclone
 Delectable Nut 
 
-Fungus enchant
-Mycelium Whip
-1750 Fungal Poppers
-Funggat 
-
-Valadium enchant
-Vega Phaser
-Eye of the Beholder
-Obliterator
-Shu's Wrath 
-
-Lodestone enchant
-Glacior
-Weighted Winglets
-Crash Boots
-Slag Stompers 
-
-Titan enchant
-All three helmets
-Titan Boomerang
-Rail Gun
-Cyan Music Player 
-
-Harbinger enchant
-Lightning Staff
-Blackhole Cannon
-Harbinger Spear
-White Music Player
-
 Flov's Ancient enchant
 Spell Book: Time Gate
 Legacy
 Cat's Eye Great Staff
 Gray Music Player
 
-Illumite enchant
-Launch Jumper
-Trench Spitter
-DMR
-Illumite Blaster
-Pink Music Player 
 
-Shade Master enchant
-Shade Dagger
-1000 Soulslashers
-500 Bugenkai Shurikens
-1000 Plasma Vials 
-Purple Music Player
 
-Terrarium enchant
-Essence of Flame
-3 Folded Metal
-Searing Blade, Micro Launcher 
-Terrarium Surround Sound
 
-White Dwarf enchant
-The Black Dagger
-3600 White Dwarf Kunai
-Void Planter 
-
-Pyromancer enchant
-Northern Light
-Devil's Claw
-Molten Banner
-Spell Book: Spores 
-
-Tide Turner enchant
-Quake Gauntlet
-Ocean's Judgement
-Plague Lord's Flask 
-
-Assassin armor
-Assassin armor
-Assassin armor
-Assassin armor (both helms)
-TheKillCounter
-OmniBow 
-OmniCannon
-TheJavelin
-NovaRifle
-nail gun
 
 Templar enchant
 Templar's Judgement
