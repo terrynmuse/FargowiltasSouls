@@ -40,6 +40,14 @@ Your weapons shoot at 1/8 the speed
             recipe.AddIngredient(ItemID.TungstenHammer);
             recipe.AddIngredient(ItemID.EmeraldStaff);
             recipe.AddIngredient(ItemID.Snail);
+
+            /*
+GlowingSnail
+Sluggy
+TungstenBulwark
+EmeraldButterfly
+             */
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -40,6 +40,13 @@ Attacks may spawn fireballs to rotate around you");
             recipe.AddIngredient(ItemID.FlowerofFire);
             recipe.AddIngredient(ItemID.FlowerofFrost);
             recipe.AddIngredient(ItemID.CursedFlames);
+
+            /*
+OrichalcumStaff
+OrichalcumPelter
+PrismaticSpray
+             */
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

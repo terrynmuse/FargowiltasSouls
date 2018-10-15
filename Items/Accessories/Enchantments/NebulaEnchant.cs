@@ -40,6 +40,14 @@ Once you get to the last tier with each booster type, your magic power hits obsc
             recipe.AddIngredient(ItemID.NebulaArcanum);
             recipe.AddIngredient(ItemID.NebulaBlaze);
             recipe.AddIngredient(ItemID.LunarFlareBook);
+
+            /*
+NebulaMantle
+NebulaPickaxe
+NebulasReflection
+CatsEyeGreatStaff
+             */
+
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

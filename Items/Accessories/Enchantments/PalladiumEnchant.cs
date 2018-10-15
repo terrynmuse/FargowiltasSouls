@@ -40,6 +40,13 @@ Small chance for an attack to gain 33% life steal");
             recipe.AddIngredient(ItemID.PalladiumRepeater);
             recipe.AddIngredient(ItemID.SoulDrain);
             recipe.AddIngredient(ItemID.VampireKnives);
+
+            /*
+PalladiumStaff
+PalladiumSubMachineGun
+LifeLeech
+             */
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

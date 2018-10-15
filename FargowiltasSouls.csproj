@@ -47,6 +47,9 @@
     <Reference Include="Terraria, Version=1.3.5.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>D:\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
+    <Reference Include="ThoriumMod">
+      <HintPath>..\folder for wip\Thorium\ThoriumMod.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buffs\FargoGlobalBuff.cs" />
@@ -206,6 +209,7 @@
     <Compile Include="Items\Accessories\Enchantments\VortexEnchant.cs" />
     <Compile Include="Items\Accessories\Essences\ApprenticesEssence.cs" />
     <Compile Include="Items\Accessories\Essences\BarbariansEssence.cs" />
+    <Compile Include="Items\Accessories\Essences\BardEssence.cs" />
     <Compile Include="Items\Accessories\Essences\OccultistsEssence.cs" />
     <Compile Include="Items\Accessories\Essences\SlingersEssence.cs" />
     <Compile Include="Items\Accessories\Essences\SnipersEssence.cs" />

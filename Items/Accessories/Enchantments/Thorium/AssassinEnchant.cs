@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -29,8 +31,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 2; //blood ornage
+            item.rare = 10;
             item.value = 400000;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 128, 0));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -43,8 +56,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void AssassinEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.omniArcherSet = true;
+            thoriumPlayer.omniArrowHat = true;
+            thoriumPlayer.omniBulletSet = true;
+            thoriumPlayer.omniBulletHat = true;
+
+
         }
         
         private readonly string[] items =

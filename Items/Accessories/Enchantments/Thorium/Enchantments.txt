@@ -1,156 +1,5 @@
 shield drone beacon - healer soul
 
-Spirit Trapper enchant 
-Taboo Wand
-strange skull
-spirit blast wand
-BlueDungeonButterfly
-AntagonizingSpirit
-CalmingSpirit
-Sacrificial Dagger
-
-Darksteel enchant
-SteelEnchant
-DarksteelMace
-GrayDPainting
-ManHacker
-SoulSiphon
-DarksteelHelmetStand
-BallnChain
-
-Malignant enchant
-Mana-Charged Rocketeers
-Spine Breaker
-Vampire Scepter
-Champion Bomber Staff
-Dark Tome
-Thors Hammer Magic
-ParticleWhip
-
-Vortex enchant
-vortex popper 
-phantasm
-SDMG
-companion cube
-Void Lance
-VortexPickaxe
-VortexBooster
-
-Solar Flare enchant
-hel fire
-day break
-star wrath
-solar eruption
-SolarWings
-SolarPickaxe
-EruptingFlare
-
-Nebula Enchant
-Nebula Blaze
-Nebula Arcanum
-Lunar Flare
-NebulaMantle
-NebulaPickaxe
-NebulasReflection
-CatsEyeGreatStaff
-
-Stardust enchant
-stardust cell staff
-stardust dragon staff
-stardust pickaxe
-rainbow crystall staff
-StardustWings
-ShadowOrbStaff
-EyeofOdin
-
-Tin enchant
-tin bow
-topaz staff
-daylight painting
-TinBuckler
-TopazButterfly
-MaskoftheCrystalEye
-TinShortsword
-
-Palladium enchant
-palladium sword
-palladium repeater
-vampire knives
-life drain
-PalladiumStaff
-PalladiumSubMachineGun
-LifeLeech
-
-Tungsten enchant
-emerald staff
-tungsten hammer
-Snail
-GlowingSnail
-Sluggy
-TungstenBulwark
-EmeraldButterfly
-
-Mythril enchant
-laser rifle
-mega shark
-mythril repeater
-MythrilStaff
-MythrilPelter
-DrenchedDirk
-
-Platinum enchant
-diamond staff
-platinum crown
-diamond ring
-PlatinumAegis
-DiamondButterfly
-AncientDrachma
-DavyJonesLockBox
-
-Orichalcum enchant
-ori war axe
-cursed flames
-flower of fire
-flower of frost
-OrichalcumStaff
-OrichalcumPelter
-PrismaticSpray
-
-Silver enchant
-silver broadsword
-silver bow
-saphire staff
-SilverBulwark
-SaphireButterfly
-EnchantedSword
-EnchantedShield
-
-Iron enchant
-EoC shield
-iron broadsword
-iron anvil
-IronShield
-OpalStaff
-OpalButterfly
-ThoriumShield
-
-Lead enchant
-lead shortsword
-lead pick axe
-gray paint
-LeadShield
-OnyxStaff
-OnyxButterfly
-PoisonKnives
-
-Titanium enchant
-titanium sword
-slap hand
-anchor
-monk staff octopod?
-TitaniumRifle
-TitaniumStaff
-TitaniumAxe
 
 
 
@@ -158,9 +7,6 @@ MusicSheet Turntable
 Venom Staff
 Vile Spitter
 Bellarose
-
-
-
 
 
 
@@ -262,10 +108,16 @@ Quake Gauntlet
 Ocean's Judgement
 Plague Lord's Flask 
 
-Assassin enchant
-The Kill Counter
-Bow of Light
-Omni-Bow 
+Assassin armor
+Assassin armor
+Assassin armor
+Assassin armor (both helms)
+TheKillCounter
+OmniBow 
+OmniCannon
+TheJavelin
+NovaRifle
+nail gun
 
 Templar enchant
 Templar's Judgement

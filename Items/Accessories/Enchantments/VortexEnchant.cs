@@ -42,6 +42,13 @@ Summons a Companion Cube Pet");
             recipe.AddIngredient(ItemID.SDMG);
             recipe.AddIngredient(ItemID.CompanionCube);
             recipe.AddTile(TileID.LunarCraftingStation);
+
+            /*
+Void Lance
+VortexPickaxe
+VortexBooster
+             */
+
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

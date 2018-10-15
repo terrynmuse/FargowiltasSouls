@@ -54,6 +54,8 @@ Summons a Companion Cube Pet and a suspicious looking eye to provide light");
             recipe.AddIngredient(null, "VortexEnchant");
             recipe.AddIngredient(null, "NebulaEnchant");
             recipe.AddIngredient(null, "StardustEnchant");
+
+            //bow of light
             recipe.AddIngredient(ItemID.SuspiciousLookingTentacle);
 
             if (Fargowiltas.Instance.FargosLoaded)

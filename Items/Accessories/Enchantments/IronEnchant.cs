@@ -41,6 +41,14 @@ You attract items from a much larger range and fall 5 times as quickly");
             recipe.AddIngredient(ItemID.EoCShield);
             recipe.AddIngredient(ItemID.IronBroadsword);
             recipe.AddIngredient(ItemID.IronAnvil);
+
+            /*
+IronShield
+OpalStaff
+OpalButterfly
+ThoriumShield
+             */
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -40,6 +40,14 @@ Summons a sword familiar that scales with minion damage");
             recipe.AddIngredient(ItemID.SilverBroadsword);
             recipe.AddIngredient(ItemID.SilverBow);
             recipe.AddIngredient(ItemID.SapphireStaff);
+
+            /*
+SilverBulwark
+SaphireButterfly
+EnchantedSword
+EnchantedShield
+             */
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

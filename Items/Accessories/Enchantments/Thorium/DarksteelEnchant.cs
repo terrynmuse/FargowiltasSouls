@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Darksteel armor",
+            "Darksteel armor",
+            "Darksteel armor",
+            "SteelEnchant",
+            "DarksteelMace",
+            "GrayDPainting",
+            "ManHacker",
+            "SoulSiphon",
+            "DarksteelHelmetStand",
+            "BallnChain"
         };
 
         public override void AddRecipes()

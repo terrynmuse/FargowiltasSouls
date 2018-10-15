@@ -39,6 +39,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.FetidBaghnakhs);
             recipe.AddIngredient(ItemID.Megashark);
             recipe.AddIngredient(ItemID.LaserRifle);
+
+            /*
+MythrilStaff
+MythrilPelter
+DrenchedDirk
+             */
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Malignant armor",
+            "Malignant armor",
+            "Malignant armor",
+            "Mana-ChargedRocketeers",
+            "SpineBreaker",
+            "VampireScepter",
+            "ChampionBomberStaff",
+            "DarkTome",
+            "ThorsHammerMagic",
+            "ParticleWhip"
         };
 
         public override void AddRecipes()
