@@ -11,6 +11,25 @@ TheJavelin
 NovaRifle
 nail gun
 
+Pyromancer armor
+Pyromancer armor
+Pyromancer armor
+Pyromancer armor (both helms)
+Devil's Claw
+Molten Banner
+Ancient Flame
+Spell Book Stalagmite
+True Silvers Fang
+Devil Dagger
+
+Tide Turner armor
+Tide Turner armor
+Tide Turner armor
+Tide Turner armor (both helms)
+Quake Gauntlet
+Ocean's Judgement
+Plague Lord's Flask 
+
 Terrarium armor
 Terrarium armor
 Terrarium armor
@@ -23,17 +42,6 @@ White Dwarf enchant
 The Black Dagger
 3600 White Dwarf Kunai
 Void Planter 
-
-Pyromancer enchant
-Northern Light
-Devil's Claw
-Molten Banner
-Spell Book: Spores 
-
-Tide Turner enchant
-Quake Gauntlet
-Ocean's Judgement
-Plague Lord's Flask 
 
 Fungus enchant
 Mycelium Whip
