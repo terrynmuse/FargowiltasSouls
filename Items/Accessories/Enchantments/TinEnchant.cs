@@ -44,7 +44,7 @@ Getting hit drops your crit back down");
             /*
 TinBuckler
 TopazButterfly
-MaskoftheCrystalEye
+tin sword
 TinShortsword
              */
 
