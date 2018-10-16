@@ -49,7 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Pyromancer armor",
+            "Pyromancer armor",
+            "Pyromancer armor",
+            "Pyromancer armor (both helms)",
+            "Devil's Claw",
+            "Molten Banner",
+            "Ancient Flame",
+            "Spell Book Stalagmite",
+            "True Silvers Fang",
+            "Devil Dagger"
         };
 
         public override void AddRecipes()

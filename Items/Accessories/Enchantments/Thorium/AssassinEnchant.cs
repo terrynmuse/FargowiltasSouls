@@ -66,7 +66,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Assassin armor",
+            "Assassin armor",
+            "Assassin armor",
+            "Assassin armor (both helms)",
+            "TheKillCounter",
+            "OmniBow",
+            "OmniCannon",
+            "TheJavelin",
+            "NovaRifle",
+            "nail gun"
         };
 
         public override void AddRecipes()

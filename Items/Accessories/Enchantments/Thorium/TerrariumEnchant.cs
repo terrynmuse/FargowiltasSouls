@@ -49,7 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Terrarium armor",
+            "Terrarium armor",
+            "Terrarium armor",
+            "TerrariumSaber",
+            "TerrariumLongbow",
+            "SickThrow",
+            "TerrariumBomber",
+            "Terrarium Surround Sound",
+            "Essence of Flame",
+            "SearingBlade"
         };
 
         public override void AddRecipes()
