@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
@@ -80,39 +80,38 @@ namespace FargowiltasSouls
             ["Super Speed"] = new Color(81, 181, 113),
             ["Melee Speed"] = new Color(81, 181, 113),
 
-            ["Baby Dino Pet"] = new Color(81, 181, 113),
-            ["Baby Penguin Pet"] = new Color(81, 181, 113),
-            ["Baby Skeletron Pet"] = new Color(81, 181, 113),
-            ["Turtle Pet"] = new Color(81, 181, 113),
-            ["Baby Snowman Pet"] = new Color(81, 181, 113),
-            ["Zephyr Fish Pet"] = new Color(81, 181, 113),
-            ["Companion Cube Pet"] = new Color(81, 181, 113),
-            ["Baby Grinch Pet"] = new Color(81, 181, 113),
-            ["Lizard Pet"] = new Color(81, 181, 113),
-            ["Suspicious Looking Eye Pet"] = new Color(81, 181, 113),
-            ["Mini Minotaur Pet"] = new Color(81, 181, 113),
-            ["Baby Eater Pet"] = new Color(81, 181, 113),
-            ["Baby Face Monster Pet"] = new Color(81, 181, 113),
-            ["Spider Pet"] = new Color(81, 181, 113),
-            ["Baby Hornet Pet"] = new Color(81, 181, 113),
-            ["Wisp Pet"] = new Color(81, 181, 113),
-            ["Cursed Sapling Pet"] = new Color(81, 181, 113),
             ["Black Cat Pet"] = new Color(81, 181, 113),
+            ["Companion Cube Pet"] = new Color(81, 181, 113),
+            ["Crimson Heart Pet"] = new Color(81, 181, 113),
+            ["Cursed Sapling Pet"] = new Color(81, 181, 113),
+            ["Dino Pet"] = new Color(81, 181, 113),
+            ["Dragon Pet"] = new Color(81, 181, 113),
+            ["Eater Pet"] = new Color(81, 181, 113),
+            ["Eye Spring Pet"] = new Color(81, 181, 113),
+            ["Fairy Pet"] = new Color(81, 181, 113),
+            ["Face Monster Pet"] = new Color(81, 181, 113),
+            ["Flickerwick Pet"] = new Color(81, 181, 113),
+            ["Gato Pet"] = new Color(81, 181, 113),
+            //["Grinch Pet"] = new Color(81, 181, 113),
+            ["Hornet Pet"] = new Color(81, 181, 113),
+            ["Lizard Pet"] = new Color(81, 181, 113),
+            ["Magic Lantern Pet"] = new Color(81, 181, 113),
+            ["Mini Minotaur Pet"] = new Color(81, 181, 113),
+            ["Parrot Pet"] = new Color(81, 181, 113),
+            ["Penguin Pet"] = new Color(81, 181, 113),
+            ["Puppy Pet"] = new Color(81, 181, 113),
             ["Seedling Pet"] = new Color(81, 181, 113),
             ["Shadow Orb Pet"] = new Color(81, 181, 113),
-            ["Crimson Heart Pet"] = new Color(81, 181, 113),
-            ["Magic Lantern Pet"] = new Color(81, 181, 113),
-            ["Truffle Pet"] = new Color(81, 181, 113),
+            ["Skeletron Pet"] = new Color(81, 181, 113),
+            ["Snowman Pet"] = new Color(81, 181, 113),
+            ["Spider Pet"] = new Color(81, 181, 113),
             ["Squashling Pet"] = new Color(81, 181, 113),
+            ["Suspicious Eye Pet"] = new Color(81, 181, 113),
             ["Tiki Pet"] = new Color(81, 181, 113),
-            ["Gato Pet"] = new Color(81, 181, 113),
-            ["Flickerwick Pet"] = new Color(81, 181, 113),
-            ["Puppy Pet"] = new Color(81, 181, 113),
-            ["Dragon Pet"] = new Color(81, 181, 113),
-            ["Parrot Pet"] = new Color(81, 181, 113),
-            ["Fairy Pet"] = new Color(81, 181, 113),
-            ["Companion Cube Pet"] = new Color(81, 181, 113),
-            ["Eye Spring Pet"] = new Color(81, 181, 113)
+            ["Truffle Pet"] = new Color(81, 181, 113),
+            ["Turtle Pet"] = new Color(81, 181, 113),
+            ["Wisp Pet"] = new Color(81, 181, 113),
+            ["Zephyr Fish Pet"] = new Color(81, 181, 113)
         };
 
         private readonly Color defaultColor = new Color(81, 181, 113);
