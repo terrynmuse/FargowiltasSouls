@@ -62,7 +62,7 @@ All attacks inflict Flames of the Universe");
             player.manaMagnet = true;
             player.magicCuffs = true;
 
-            if (player.controlUseItem && !player.HeldItem.autoReuse) player.HeldItem.autoReuse = true;
+            //if (player.controlUseItem && !player.HeldItem.autoReuse) player.HeldItem.autoReuse = true;
 
             if (player.HeldItem.useStyle == 1) player.HeldItem.scale = 2;
         }
