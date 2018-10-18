@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'The pillars of creation have shined upon you'
 Hurting enemies has a chance to spawn buff boosters
-Once you get to the last tier with each booster type, your magic power hits obscene levels");
+Maintain maxed buff boosters for 5 seconds to gain drastically increased magic attack speed");
         }
 
         public override void SetDefaults()
