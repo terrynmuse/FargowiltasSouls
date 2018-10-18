@@ -69,11 +69,13 @@ namespace FargowiltasSouls.Projectiles
             FargoPlayer modPlayer = Main.LocalPlayer.GetModPlayer<FargoPlayer>();
             counter++;
 
-            if (projectile.owner == Main.myPlayer && projectile.friendly && !projectile.hostile)
+            if (projectile.owner == Main.myPlayer)
             {
                 if (firstTick)
                 {
-                    if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && Soulcheck.GetValue("Adamantite Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
+                    firstTick = false;
+
+                    if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && Soulcheck.GetValue("Adamantite Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
                     {
                         if (adamantiteCD != 0)
                         {
@@ -82,7 +84,6 @@ namespace FargowiltasSouls.Projectiles
 
                         if (adamantiteCD == 0)
                         {
-                            firstTick = false;
                             adamantiteCD = modPlayer.TerrariaSoul ? 4 : 8;
                             SplitProj(projectile, 3);
                         }
@@ -90,8 +91,6 @@ namespace FargowiltasSouls.Projectiles
 
                     if (projectile.bobber)
                     {
-                        firstTick = false;
-
                         if (modPlayer.FishSoul1)
                         {
                             SplitProj(projectile, 5);
@@ -106,87 +105,88 @@ namespace FargowiltasSouls.Projectiles
                     {
                         projectile.timeLeft = 600;
                     }
-
-                    firstTick = false;
                 }
 
-                if (modPlayer.ForbiddenEnchant && projectile.damage > 0 && projectile.type != ProjectileID.SandnadoFriendly && !stormBoosted)
+                if (projectile.friendly && !projectile.hostile)
                 {
-                    Projectile nearestProj = null;
-
-                    List<Projectile> projs = Main.projectile.Where(x => x.type == ProjectileID.SandnadoFriendly && x.active).ToList();
-
-                    foreach (Projectile p in projs)
+                    if (modPlayer.ForbiddenEnchant && projectile.damage > 0 && projectile.type != ProjectileID.SandnadoFriendly && !stormBoosted)
                     {
-                        Vector2 stormDistance = p.Center - projectile.Center;
+                        Projectile nearestProj = null;
 
-                        if (Math.Abs(stormDistance.X) < p.width / 2 && Math.Abs(stormDistance.Y) < p.height / 2)
+                        List<Projectile> projs = Main.projectile.Where(x => x.type == ProjectileID.SandnadoFriendly && x.active).ToList();
+
+                        foreach (Projectile p in projs)
                         {
-                            nearestProj = p;
-                            break;
+                            Vector2 stormDistance = p.Center - projectile.Center;
+
+                            if (Math.Abs(stormDistance.X) < p.width / 2 && Math.Abs(stormDistance.Y) < p.height / 2)
+                            {
+                                nearestProj = p;
+                                break;
+                            }
+                        }
+
+                        if (nearestProj != null)
+                        {
+                            if (projectile.maxPenetrate != -1)
+                            {
+                                projectile.maxPenetrate *= 2;
+                            }
+
+                            projectile.damage = (int)(projectile.damage * 1.5);
+
+                            stormBoosted = true;
+                            stormTimer = 120;
                         }
                     }
 
-                    if (nearestProj != null)
+                    if (stormTimer > 0)
                     {
-                        if (projectile.maxPenetrate != -1)
+                        stormTimer--;
+
+                        if (stormTimer == 0)
                         {
-                            projectile.maxPenetrate *= 2;
+                            if (projectile.maxPenetrate != -1)
+                            {
+                                projectile.maxPenetrate /= 2;
+                            }
+
+                            projectile.damage = (int)(projectile.damage * (2 / 3));
+                            stormBoosted = false;
                         }
-
-                        projectile.damage = (int)(projectile.damage * 1.5);
-
-                        stormBoosted = true;
-                        stormTimer = 120;
                     }
-                }
 
-                if (stormTimer > 0)
-                {
-                    stormTimer--;
-
-                    if (stormTimer == 0)
+                    if (modPlayer.GladEnchant && (projectile.thrown || modPlayer.WillForce) && CanSplit && projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 &&
+                        Soulcheck.GetValue("Gladiator Speedup") && numSpeedups > 0 && counter % 10 == 0)
                     {
-                        if (projectile.maxPenetrate != -1)
-                        {
-                            projectile.maxPenetrate /= 2;
-                        }
-
-                        projectile.damage = (int)(projectile.damage * (2 / 3));
-                        stormBoosted = false;
+                        numSpeedups--;
+                        projectile.velocity = Vector2.Multiply(projectile.velocity, 1.5f);
                     }
-                }
 
-                if (modPlayer.GladEnchant && (projectile.thrown || modPlayer.WillForce) && CanSplit && projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 &&
-                    Soulcheck.GetValue("Gladiator Speedup") && numSpeedups > 0 && counter % 10 == 0)
-                {
-                    numSpeedups--;
-                    projectile.velocity = Vector2.Multiply(projectile.velocity, 1.5f);
-                }
+                    if (modPlayer.Jammed && projectile.ranged && projectile.type != ProjectileID.ConfettiGun)
+                    {
+                        Projectile.NewProjectile(projectile.Center, projectile.velocity, ProjectileID.ConfettiGun, 0, 0f);
+                        projectile.damage = 0;
+                        projectile.position = new Vector2(Main.maxTilesX);
+                        projectile.Kill();
+                    }
 
-                if (modPlayer.Jammed && projectile.ranged && projectile.type != ProjectileID.ConfettiGun)
-                {
-                    Projectile.NewProjectile(projectile.Center, projectile.velocity, ProjectileID.ConfettiGun, 0, 0f);
-                    projectile.damage = 0;
-                    projectile.position = new Vector2(Main.maxTilesX);
-                    projectile.Kill();
-                }
-
-                if (modPlayer.Atrophied && projectile.thrown)
-                {
-                    projectile.damage = 0;
-                    projectile.position = new Vector2(Main.maxTilesX);
-                    projectile.Kill();
+                    if (modPlayer.Atrophied && projectile.thrown)
+                    {
+                        projectile.damage = 0;
+                        projectile.position = new Vector2(Main.maxTilesX);
+                        projectile.Kill();
+                    }
                 }
             }
 
             if (modPlayer.SpookyEnchant && !modPlayer.TerrariaSoul && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
             {
                 Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 62);
-                Projectile[] projs = XWay(8, projectile.Center, mod.ProjectileType<Souls.SpookyScythe>(), 5, (int)(projectile.damage / 2), 2f);
+                Projectile[] projs = XWay(8, projectile.Center, mod.ProjectileType<Souls.SpookyScythe>(), 5, projectile.damage / 2, 2f);
                 counter = 0;
 
-                for(int i = 0; i <projs.Length; i++)
+                for(int i = 0; i < 8; i++)
                 {
                     projs[i].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                 }
@@ -345,7 +345,7 @@ namespace FargowiltasSouls.Projectiles
                 #region pets
 
                 case ProjectileID.BabyHornet:
-                    KillPet(projectile, player, BuffID.BabyHornet, modPlayer.BeeEnchant, "Baby Hornet Pet");
+                    KillPet(projectile, player, BuffID.BabyHornet, modPlayer.BeeEnchant, "Hornet Pet");
                     break;
 
                 case ProjectileID.Sapling:
@@ -353,7 +353,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.BabyFaceMonster:
-                    KillPet(projectile, player, BuffID.BabyFaceMonster, modPlayer.CrimsonEnchant, "Baby Face Monster Pet");
+                    KillPet(projectile, player, BuffID.BabyFaceMonster, modPlayer.CrimsonEnchant, "Face Monster Pet");
                     break;
 
                 case ProjectileID.CrimsonHeart:
@@ -417,11 +417,11 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Penguin:
-                    KillPet(projectile, player, BuffID.BabyPenguin, modPlayer.FrostEnchant, "Baby Penguin Pet");
+                    KillPet(projectile, player, BuffID.BabyPenguin, modPlayer.FrostEnchant, "Penguin Pet");
                     break;
 
                 case ProjectileID.BabySnowman:
-                    KillPet(projectile, player, BuffID.BabySnowman, modPlayer.FrostEnchant, "Baby Snowman Pet");
+                    KillPet(projectile, player, BuffID.BabySnowman, modPlayer.FrostEnchant, "Snowman Pet");
                     break;
 
                 case ProjectileID.DD2PetGato:
@@ -445,15 +445,15 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.BabySkeletronHead:
-                    KillPet(projectile, player, BuffID.BabySkeletronHead, modPlayer.NecroEnchant, "Baby Skeletron  Pet");
+                    KillPet(projectile, player, BuffID.BabySkeletronHead, modPlayer.NecroEnchant, "Skeletron Pet");
                     break;
 
                 case ProjectileID.BabyDino:
-                    KillPet(projectile, player, BuffID.BabyDinosaur, modPlayer.FossilEnchant, "Baby Dino Pet");
+                    KillPet(projectile, player, BuffID.BabyDinosaur, modPlayer.FossilEnchant, "Dino Pet");
                     break;
 
                 case ProjectileID.BabyEater:
-                    KillPet(projectile, player, BuffID.BabyEater, modPlayer.ShadowEnchant, "Baby Eater Pet");
+                    KillPet(projectile, player, BuffID.BabyEater, modPlayer.ShadowEnchant, "Eater Pet");
                     break;
 
                 case ProjectileID.ShadowOrb:
@@ -461,25 +461,18 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.SuspiciousTentacle:
-                    KillPet(projectile, player, BuffID.SuspiciousTentacle, modPlayer.CosmoForce, "Suspicious Looking Eye Pet");
+                    KillPet(projectile, player, BuffID.SuspiciousTentacle, modPlayer.CosmoForce, "Suspicious Eye Pet");
                     break;
 
                 case ProjectileID.DD2PetGhost:
                     KillPet(projectile, player, BuffID.PetDD2Ghost, modPlayer.DarkEnchant, "Flickerwick Pet");
                     break;
 
-                /*case ProjectileID.ZephyrFish:
-                    if (player.FindBuffIndex(127) == -1)
-                    {
-                        if (!modPlayer.FishPet)
-                        {
-                            projectile.Kill();
-                            return;
-                        }
-                    }
+                case ProjectileID.ZephyrFish:
+                    KillPet(projectile, player, BuffID.ZephyrFish, modPlayer.FishSoul2, "Zephyr Fish Pet");
                     break;
 
-                case ProjectileID.BabyGrinch:
+                /*case ProjectileID.BabyGrinch:
                     if (player.FindBuffIndex(92) == -1)
                     {
                         if (!modPlayer.GrinchPet)
