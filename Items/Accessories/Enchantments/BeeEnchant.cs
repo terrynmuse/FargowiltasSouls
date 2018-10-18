@@ -40,6 +40,14 @@ Summons a pet Baby Hornet");
             recipe.AddIngredient(ItemID.HiveBackpack);
             recipe.AddIngredient(ItemID.BeeGun);
             recipe.AddIngredient(ItemID.Nectar);
+            
+            /*
+honey recorder
+Sweetwing Butterfly
+Bee Booties
+Bee Keeper
+            */
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

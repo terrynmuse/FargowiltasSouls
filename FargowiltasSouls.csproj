@@ -47,6 +47,9 @@
     <Reference Include="Terraria, Version=1.3.5.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>D:\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
+    <Reference Include="ThoriumMod">
+      <HintPath>..\folder for wip\Thorium\ThoriumMod.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buffs\FargoGlobalBuff.cs" />
@@ -130,6 +133,73 @@
     <Compile Include="Items\Accessories\Enchantments\SpiderEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\SpookyEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\StardustEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\AssassinEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\BalladeerEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\BerserkerEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\BiotechEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\BronzeEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\BulbEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\CelestialEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\ConductorEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\ConduitEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\CrierEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\CryoMagusEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\CyberPunkEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\DangerEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\DarksteelEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\DemonBloodEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\DepthDiverEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\DragonEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\DreadEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\DreamWeaverEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\DurasteelEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\EbonEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\FallenPaladinEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\FeralFurEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\FleshEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\FlightEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\FolvEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\FungusEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\GeodeEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\GraniteEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\HarbingerEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\IcyEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\IllumiteEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\IridescentEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\JesterEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\LichEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\LifeBinderEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\LifeBloomEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\LivingWoodEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\LodestoneEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\MagmaEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\MalignantEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\MarchingBandEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\NagaSkinEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\NobleEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\NoviceClericEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\OceanEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\OrnateEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\PlagueDoctorEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\PyromancerEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\RhapsodistEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\SacredEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\SandstoneEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\ShadeMasterEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\SilkEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\SpiritTrapperEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\SteelEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\TemplarEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\TerrariumEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\ThoriumEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\TideHunterEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\TideTurnerEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\TitanEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\ValadiumEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\WarlockEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\WhiteDwarfEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\WhiteKnightEnchant.cs" />
+    <Compile Include="Items\Accessories\Enchantments\Thorium\YewWoodEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\TikiEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\TinEnchant.cs" />
     <Compile Include="Items\Accessories\Enchantments\TitaniumEnchant.cs" />
@@ -139,6 +209,7 @@
     <Compile Include="Items\Accessories\Enchantments\VortexEnchant.cs" />
     <Compile Include="Items\Accessories\Essences\ApprenticesEssence.cs" />
     <Compile Include="Items\Accessories\Essences\BarbariansEssence.cs" />
+    <Compile Include="Items\Accessories\Essences\BardEssence.cs" />
     <Compile Include="Items\Accessories\Essences\OccultistsEssence.cs" />
     <Compile Include="Items\Accessories\Essences\SlingersEssence.cs" />
     <Compile Include="Items\Accessories\Essences\SnipersEssence.cs" />
@@ -334,7 +405,23 @@
     <Content Include="Items\Accessories\Enchantments\SpiderEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\SpookyEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\StardustEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\AssassinEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\DangerEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\DragonEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\DreamWeaverEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\Thorium\Enchantments.txt" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\FeralFurEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\FleshEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\IcyEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\LivingWoodEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\LodestoneEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\MagmaEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\PlagueDoctorEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\PyromancerEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\TerrariumEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\TideTurnerEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\WhiteDwarfEnchant.png" />
+    <Content Include="Items\Accessories\Enchantments\Thorium\YewWoodEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\TikiEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\TinEnchant.png" />
     <Content Include="Items\Accessories\Enchantments\TitaniumEnchant.png" />

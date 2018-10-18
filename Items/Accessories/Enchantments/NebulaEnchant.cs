@@ -40,6 +40,14 @@ Maintain maxed buff boosters for 5 seconds to gain drastically increased magic a
             recipe.AddIngredient(ItemID.NebulaArcanum);
             recipe.AddIngredient(ItemID.NebulaBlaze);
             recipe.AddIngredient(ItemID.LunarFlareBook);
+
+            /*
+NebulaMantle
+NebulaPickaxe
+NebulasReflection
+CatsEyeGreatStaff
+             */
+
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -39,6 +39,14 @@ If the enemy has Midas, the chance and bonus is doubled");
             recipe.AddIngredient(ItemID.DiamondStaff);
             recipe.AddIngredient(ItemID.PlatinumCrown);
             recipe.AddIngredient(ItemID.DiamondRing);
+
+            /*
+PlatinumAegis
+DiamondButterfly
+AncientDrachma
+DavyJonesLockBox
+             */
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

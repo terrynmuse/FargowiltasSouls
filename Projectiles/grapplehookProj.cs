@@ -9,7 +9,7 @@ namespace FargowiltasSouls.Projectiles
 {
     public class GrapplehookProj : ModProjectile
     {
-        public override void SetDefaults()
+        /*public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
         }
@@ -101,6 +101,6 @@ namespace FargowiltasSouls.Projectiles
                     color2 = projectile.GetAlpha(color2);
                     Main.spriteBatch.Draw(texture, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0.0f);
                 }
-        }
+        }*/
     }
 }

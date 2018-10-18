@@ -40,6 +40,14 @@ Summons a Baby Face Monster and a Crimson Heart");
             recipe.AddIngredient(ItemID.DeadlandComesAlive);
             recipe.AddIngredient(ItemID.BoneRattle);
             recipe.AddIngredient(ItemID.CrimsonHeart);
+            
+            /*
+CrimsonButterfly
+TheUndertaker
+Meatball
+BloodLustCluster
+            */
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

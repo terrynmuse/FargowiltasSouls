@@ -40,6 +40,13 @@ Summons a Baby Eater of Souls and a Shadow Orb");
             recipe.AddIngredient(ItemID.LightlessChasms);
             recipe.AddIngredient(ItemID.EatersBone);
             recipe.AddIngredient(ItemID.ShadowOrb);
+            
+            /*
+Corrupt Butterfly
+Ball O Hurt
+Purple Blubberfish
+War Axe of the Night
+            */
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

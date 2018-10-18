@@ -39,6 +39,14 @@ Lead Poisoning deals damage over time and slows enemies slightly");
             recipe.AddIngredient(ItemID.LeadShortsword);
             recipe.AddIngredient(ItemID.LeadPickaxe);
             recipe.AddIngredient(ItemID.GrayPaint);
+
+            /*
+LeadShield
+OnyxStaff
+OnyxButterfly
+PoisonKnives
+             */
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -42,16 +42,17 @@ Summons a baby penguin and snowman");
             recipe.AddIngredient(ItemID.Fish);
             recipe.AddIngredient(ItemID.ToySled);
             recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
+            
+            /*
+Glacior
+Freeze Ray
+Frozen Butterfly
+SubZeroSubwoofer
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
-            
-            /*
-            glacior
-            freeze ray
-            any frost core memes
-            frozen butterfly
-            */
         }
     }
 }

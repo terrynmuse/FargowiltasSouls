@@ -40,6 +40,14 @@ Getting hit drops your crit back down");
             recipe.AddIngredient(ItemID.TinBow);
             recipe.AddIngredient(ItemID.TopazStaff);
             recipe.AddIngredient(ItemID.Daylight);
+
+            /*
+TinBuckler
+TopazButterfly
+tin sword
+TinShortsword
+             */
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

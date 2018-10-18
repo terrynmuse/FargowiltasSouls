@@ -10,15 +10,17 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     [AutoloadEquip(EquipType.Face)]
     public class GuardianAngelsSoul : ModItem
     {
-        private string _tooltip = null;
+        public override bool Autoload(ref string name)
+        {
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+        }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Guardian Angel's Soul");
 
-            if (ModLoader.GetLoadedMods().Contains("ThoriumMod"))
-                Tooltip.SetDefault(
-                    @"'Divine Intervention'
+            Tooltip.SetDefault(
+@"'Divine Intervention'
 40% increased radiant damage
 25% increased healing and radiant casting speed
 20% increased radiant critical strike chance
@@ -27,9 +29,6 @@ Healing an ally will increase your movement speed and increase their life regen 
 Upon drinking a healing potion, all allies will recover 25 life and 40 mana
 You and nearby allies will take 8% reduced damage
 Taking fatal damage unleashes your inner spirit");
-            else
-                Tooltip.SetDefault("'Divine Intervention' \n" +
-                                   "-Enable Thorium for this soul's full potential-");
         }
 
         public override void SetDefaults()

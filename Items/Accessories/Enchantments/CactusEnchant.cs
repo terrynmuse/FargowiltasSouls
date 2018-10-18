@@ -46,9 +46,11 @@ Needles scale with melee damage");
             recipe.AddRecipe();
             
             /*
-            cactus fruit 
-            sandy butterfly
-            check cactus material
+Prickly Jam
+Sandy Butterfly
+Cactus Fruit
+Thorns Potion
+Sandgun
             */
         }
     }

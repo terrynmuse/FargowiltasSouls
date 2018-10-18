@@ -41,6 +41,13 @@ There is a 60 second cooldown for this effect, a sound effect plays when it's ba
             recipe.AddIngredient(ItemID.StardustCellStaff);
             recipe.AddIngredient(ItemID.StardustDragonStaff);
             recipe.AddIngredient(ItemID.RainbowCrystalStaff);
+
+            /*
+StardustWings
+ShadowOrbStaff
+EyeofOdin
+             */
+
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

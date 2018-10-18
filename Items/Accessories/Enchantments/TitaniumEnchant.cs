@@ -41,6 +41,13 @@ Increases all knockback");
             recipe.AddIngredient(ItemID.SlapHand);
             recipe.AddIngredient(ItemID.Anchor);
             recipe.AddIngredient(ItemID.MonkStaffT1);
+
+            /*
+TitaniumRifle
+TitaniumStaff
+TitaniumAxe
+             */
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

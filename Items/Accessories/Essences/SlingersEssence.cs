@@ -52,7 +52,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.BlueMoon);
                 //champion god hand // champion
                 //gauss flinger //saucer
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlamarangThrown")); 
+
             }
             else if (Fargowiltas.Instance.FargosLoaded)
             {

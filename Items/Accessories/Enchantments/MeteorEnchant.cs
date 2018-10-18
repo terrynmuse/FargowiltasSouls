@@ -39,6 +39,13 @@ A meteor shower initiates every few seconds while using magic weapons");
             recipe.AddIngredient(ItemID.MeteorStaff);
             recipe.AddIngredient(ItemID.StarCannon);
             recipe.AddIngredient(ItemID.PlaceAbovetheClouds);
+            
+            /*
+comet crossfire
+meteor butterfly
+Bio Pod
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

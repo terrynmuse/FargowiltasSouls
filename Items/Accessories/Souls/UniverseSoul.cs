@@ -57,7 +57,8 @@ All attacks inflict Flames of the Universe");
             player.yoyoGlove = true;
             player.yoyoString = true;
             if (Soulcheck.GetValue("Universe Scope"))
-                player.scope = true;
+
+            player.scope = true;
             player.manaFlower = true;
             player.manaMagnet = true;
             player.magicCuffs = true;
@@ -166,6 +167,8 @@ All attacks inflict Flames of the Universe");
                 
                 /*
                 plague lords flask
+                
+                black midi - bard
                 */
             }
 

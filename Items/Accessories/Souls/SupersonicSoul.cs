@@ -91,11 +91,12 @@ Allows the player to dash into the enemy");
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
             /*
-            terrarium particle sprinters
+            terrarium particle sprinters - for sure
             air walkers
             weighted winglets
-            survivalist boots
             spring steps
+            
+            survivalist boots - for sure
             
             
             

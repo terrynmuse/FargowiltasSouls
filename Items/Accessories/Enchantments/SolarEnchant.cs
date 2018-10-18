@@ -42,6 +42,13 @@ Melee attacks inflict it for less time (which is a good thing)");
             recipe.AddIngredient(ItemID.DayBreak);
             recipe.AddIngredient(ItemID.StarWrath);
             recipe.AddTile(TileID.LunarCraftingStation);
+
+            /*
+SolarWings
+SolarPickaxe
+EruptingFlare
+             */
+
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
