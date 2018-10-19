@@ -58,9 +58,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "HarbingerBow",
             "HarbingerSurgeWand",
             "White Music Player",
-            "AncientSpark",
-            "AncientFrost",
-            "AncientLight"
+            "NightStaff",
+            "GodKiller",
+            "BlackholeCannon"
         };
 
         public override void AddRecipes()
