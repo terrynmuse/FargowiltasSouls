@@ -56,8 +56,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "TerrariumLongbow",
             "SickThrow",
             "TerrariumBomber",
-            "Terrarium Surround Sound",
-            "Essence of Flame",
+            "TerrariumSurroundSound",
+            "EssenceofFlame",
             "SearingBlade"
         };
 
