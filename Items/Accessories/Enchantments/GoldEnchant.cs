@@ -105,7 +105,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             /*
 gold butterfly
 GoldAeigis
-Saba
+Proof of Avarice
             */
             
             recipe.AddTile(TileID.CrystalBall);
