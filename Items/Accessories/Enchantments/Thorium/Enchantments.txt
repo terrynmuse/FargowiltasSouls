@@ -1,53 +1,8 @@
 shield drone beacon - healer soul
 
-Geode armor
-Geode armor
-Geode armor
-EnchantedPickaxe
-GeodePickaxe
-DragonDrill
-FleshDrill
-AdventurersLantern
-DavyJonesLockBox 
-GeodeSaber
-
-Feral-Fur armor
-Feral-Fur armor
-Feral-Fur armor
-Blood Drenched Dagger
-Bellarose
-AstralBarrierWand
-GrimFlayer
-BackStabber
-BloodFeasterStaff
-CrimsonHoundStaff/CorruptlingStaff
-
-White Knight armor
-White Knight armor
-White Knight armor
-Shade Band
-Prism Staff
-Delectable Nut 
-Vile Spitter
-BoreanFangStaff
-SkyFracture
-FrostStaff
-
-Flov's Ancient armor
-Flov's Ancient armor
-Flov's Ancient armor
-Legacy
-Gray Music Player
-Venom Staff
-"AncientSpark",
-"AncientFrost",
-"AncientLight"
-UnholyTrident
-
 
 MusicSheet Turntable
 spellbook spores?
-
 
 
 Durasteel enchant
@@ -57,9 +12,6 @@ Exile's Helmet
 Searing Blade
 Demo's Guidance
 greedy magnet
-
-
-
 
 
 
