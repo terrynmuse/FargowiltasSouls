@@ -41,6 +41,10 @@ Summons a magic lantern");
             recipe.AddIngredient(ItemID.BonePickaxe);
             recipe.AddIngredient(ItemID.MoltenPickaxe);
             recipe.AddIngredient(ItemID.MagicLantern);
+            
+            /*
+            EnforcedThoriumPax
+            */
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
