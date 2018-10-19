@@ -43,7 +43,7 @@ Maintain maxed buff boosters for 5 seconds to gain drastically increased magic a
 
             /*
 NebulaMantle
-NebulaPickaxe
+BlackStaff
 NebulasReflection
 CatsEyeGreatStaff
              */
