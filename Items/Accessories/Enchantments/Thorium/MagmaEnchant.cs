@@ -57,7 +57,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "MagmaticRicochet",
             "SpringSteps",
             "MagmaFlail",
-            "MagmaAxe",
+            "SlagStompers",
             "MagmaPolearm"
         };
 
