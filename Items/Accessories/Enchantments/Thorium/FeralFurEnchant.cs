@@ -49,7 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Feral-Fur armor",
+            "Feral-Fur armor",
+            "Feral-Fur armor",
+            "Blood Drenched Dagger",
+            "Bellarose",
+            "AstralBarrierWand",
+            "GrimFlayer",
+            "BackStabber",
+            "BloodFeasterStaff",
+            "CrimsonHoundStaff/CorruptlingStaff"
         };
 
         public override void AddRecipes()
