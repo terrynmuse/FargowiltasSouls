@@ -44,7 +44,7 @@ Summons a pet Baby Truffle");
             
             /*
 mycelium gatling gun
-hoverboard
+ShroomiteButterfly
 Chlorophyte shotbow
             */
             
