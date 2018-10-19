@@ -74,7 +74,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "OmniBow",
             "OmniCannon",
             "TheJavelin",
-            "NovaRifle",
+            "DMR",
             "nail gun"
         };
 
