@@ -49,7 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Lodestone armor",
+            "Lodestone armor",
+            "Lodestone armor",
+            "LodestoneBreaker",
+            "LodestoneStaff",
+            "LodestoneClaymore",
+            "ValadiumSpear",
+            "AstroBeetleHusk",
+            "TheJuggernaut",
+            "StoneSledge"
         };
 
         public override void AddRecipes()
