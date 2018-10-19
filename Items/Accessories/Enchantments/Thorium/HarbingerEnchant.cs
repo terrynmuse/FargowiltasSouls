@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Harbinger armor",
+            "Harbinger armor",
+            "Harbinger armor",
+            "HarbingerSpear",
+            "HarbingerBow",
+            "HarbingerSurgeWand",
+            "White Music Player",
+            "AncientSpark",
+            "AncientFrost",
+            "AncientLight"
         };
 
         public override void AddRecipes()
