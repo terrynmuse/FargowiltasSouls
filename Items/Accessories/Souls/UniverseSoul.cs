@@ -57,12 +57,13 @@ All attacks inflict Flames of the Universe");
             player.yoyoGlove = true;
             player.yoyoString = true;
             if (Soulcheck.GetValue("Universe Scope"))
-                player.scope = true;
+
+            player.scope = true;
             player.manaFlower = true;
             player.manaMagnet = true;
             player.magicCuffs = true;
 
-            if (player.controlUseItem && !player.HeldItem.autoReuse) player.HeldItem.autoReuse = true;
+            //if (player.controlUseItem && !player.HeldItem.autoReuse) player.HeldItem.autoReuse = true;
 
             if (player.HeldItem.useStyle == 1) player.HeldItem.scale = 2;
         }
@@ -165,9 +166,9 @@ All attacks inflict Flames of the Universe");
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalEyeMask"));
                 
                 /*
-                black midi - bard
-                
                 plague lords flask
+                
+                black midi - bard
                 */
             }
 

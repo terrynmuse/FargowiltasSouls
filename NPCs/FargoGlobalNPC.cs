@@ -1434,7 +1434,7 @@ namespace FargowiltasSouls.NPCs
                                         if (Main.netMode != 1)
                                         {
                                             Vector2 speed = Vector2.UnitX.RotatedBy(npc.rotation);
-                                            Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathray>(), npc.damage * 3 / 10, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                            Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathray>(), npc.damage / 2, 0f, Main.myPlayer, 0f, npc.whoAmI);
                                         }
 
                                         masoState++;

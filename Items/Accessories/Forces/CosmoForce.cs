@@ -18,7 +18,7 @@ Double tap down to toggle stealth, reducing chance for enemies to target you but
 You also spawn a vortex to draw in and massively damage enemies when you enter stealth
 Attacks rarely spawn a vortex to draw in and massively damage enemies
 Hurting enemies has a chance to spawn buff boosters
-Once you get to the last tier with each booster type, your attack speed hits obscene levels
+Maintain maxed buff boosters for 5 seconds to gain obscene attack speed
 Double tap down to direct your guardian
 Press the Freeze Key to freeze time for 5 seconds
 Summons a Companion Cube Pet and a suspicious looking eye to provide light");
@@ -43,7 +43,7 @@ Summons a Companion Cube Pet and a suspicious looking eye to provide light");
             modPlayer.VortexEffect(hideVisual);
             modPlayer.NebulaEffect();
             modPlayer.StardustEffect();
-            modPlayer.AddPet("Suspicious Looking Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
+            modPlayer.AddPet("Suspicious Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
         }
 
         public override void AddRecipes()

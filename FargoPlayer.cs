@@ -105,7 +105,8 @@ namespace FargowiltasSouls
         public int TinCrit = 4;
         public bool TikiEnchant;
         public bool SolarEnchant;
-        public int NebulaCounter = 0;
+        public bool NebulaEnchant;
+        public int NebulaCounter;
         public bool ShinobiEnchant;
         public bool ValhallaEnchant;
         public bool DarkEnchant;
@@ -141,6 +142,7 @@ namespace FargowiltasSouls
         public bool BuilderEffect;
         public bool BuilderMode;
         public bool UniverseEffect;
+        public bool UniverseStoredAutofire;
         public bool SpeedEffect;
         public bool FishSoul1;
         public bool FishSoul2;
@@ -336,6 +338,7 @@ namespace FargowiltasSouls
             ValhallaEnchant = false;
             DarkEnchant = false;
             RedEnchant = false;
+            NebulaEnchant = false;
 
             CosmoForce = false;
             EarthForce = false;
@@ -717,9 +720,12 @@ namespace FargowiltasSouls
                 multiplier *= 1.3f;
             }
 
-            if (NebulaCounter < 0 && (player.HeldItem.magic || CosmoForce))
+            if (NebulaEnchant && NebulaCounter >= 300)
             {
-                multiplier *= 5;
+                if (CosmoForce)
+                    multiplier *= 5f;
+                else if (player.HeldItem.magic)
+                    multiplier *= 2f;
             }
 
             if(MagicSoul && item.magic)
@@ -1698,13 +1704,13 @@ namespace FargowiltasSouls
             }
             else if(!hideVisual && !petsSpawned)
             {
-                AddPet("Baby Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
-                AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
-                AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
-                AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
+                AddPet("Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
+                AddPet("Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
+                AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
+                AddPet("Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
                 AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
                 AddPet("Squashling Pet", hideVisual, BuffID.Squashling, ProjectileID.Squashling);
-                AddPet("Baby Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
+                AddPet("Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
                 AddPet("Shadow Orb Pet", hideVisual, BuffID.ShadowOrb, ProjectileID.ShadowOrb);
                 AddPet("Truffle Pet", hideVisual, BuffID.BabyTruffle, ProjectileID.Truffle);
                 AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
@@ -1714,17 +1720,17 @@ namespace FargowiltasSouls
                 AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
                 AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
                 AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
-                AddPet("Suspicious Looking Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
+                AddPet("Suspicious Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
                 AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
                 AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);
                 AddPet("Gato Pet", hideVisual, BuffID.PetDD2Gato, ProjectileID.DD2PetGato);
-                AddPet("Baby Skeletron  Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
+                AddPet("Skeletron Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
                 AddPet("Magic Lantern Pet", hideVisual, BuffID.MagicLantern, ProjectileID.MagicLantern);
                 AddPet("Fairy Pet", hideVisual, BuffID.FairyBlue, ProjectileID.BlueFairy);
                 AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
                 AddPet("Mini Minotaur Pet", hideVisual, BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
                 AddPet("Flickerwick Pet", hideVisual, BuffID.PetDD2Ghost, ProjectileID.DD2PetGhost);
-                AddPet("Baby Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
+                AddPet("Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
                 AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
                 AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
             }
@@ -1738,7 +1744,7 @@ namespace FargowiltasSouls
 
             if (TerrariaSoul) return;
                 
-            AddPet("Baby Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
+            AddPet("Hornet Pet", hideVisual, BuffID.BabyHornet, ProjectileID.BabyHornet);
         }
 
         public void BeetleEffect()
@@ -1939,7 +1945,7 @@ namespace FargowiltasSouls
 
             if (TerrariaSoul) return;
 
-            AddPet("Baby Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
+            AddPet("Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
             AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
         }
 
@@ -2055,7 +2061,7 @@ namespace FargowiltasSouls
 
             if (TerrariaSoul) return;
 
-            AddPet("Baby Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
+            AddPet("Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
         }
 
         public void FrostEffect(int dmg, bool hideVisual)
@@ -2102,8 +2108,8 @@ namespace FargowiltasSouls
 
             if (TerrariaSoul) return;
 
-            AddPet("Baby Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
-            AddPet("Baby Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
+            AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
+            AddPet("Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
         }
 
         public void GladiatorEffect(bool hideVisual)
@@ -2453,6 +2459,8 @@ namespace FargowiltasSouls
 
         public void NebulaEffect()
         {
+            NebulaEnchant = true;
+
             if (!Soulcheck.GetValue("Nebula Boosters")) return;
 
             if (player.nebulaCD > 0)
@@ -2461,18 +2469,14 @@ namespace FargowiltasSouls
             }
             player.setNebula = true;
 
-            if (TerrariaSoul) return;
-
-            NebulaCounter++;
-
-            if (NebulaCounter > 900)
+            if (player.nebulaLevelDamage == 3 && player.nebulaLevelLife == 3 && player.nebulaLevelMana == 3)
             {
-                NebulaCounter = 900;
+                if (NebulaCounter < 300)
+                    NebulaCounter++;
             }
-
-            if (player.HasBuff(BuffID.NebulaUpDmg3) && player.HasBuff(BuffID.NebulaUpLife3) && player.HasBuff(BuffID.NebulaUpMana3) && NebulaCounter == 900)
+            else
             {
-                NebulaCounter = -300;
+                NebulaCounter = 0;
             }
         }
 
@@ -2487,7 +2491,7 @@ namespace FargowiltasSouls
 
             if (TerrariaSoul) return;
 
-            AddPet("Baby Skeletron Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
+            AddPet("Skeletron Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
         }
 
         public void NinjaEffect(bool hideVisual)
@@ -2637,7 +2641,7 @@ namespace FargowiltasSouls
 
             if (TerrariaSoul) return;
 
-            AddPet("Baby Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
+            AddPet("Eater Pet", hideVisual, BuffID.BabyEater, ProjectileID.BabyEater);
             AddPet("Shadow Orb Pet", hideVisual, BuffID.ShadowOrb, ProjectileID.ShadowOrb);
         }
 
@@ -3111,7 +3115,26 @@ namespace FargowiltasSouls
             if (TerrariaSoul) return;
 
             AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
-        } 
+        }
+
+        public override bool PreItemCheck()
+        {
+            if (UniverseEffect)
+            {
+                UniverseStoredAutofire = player.HeldItem.autoReuse;
+                player.HeldItem.autoReuse = true;
+            }
+
+            return true;
+        }
+
+        public override void PostItemCheck()
+        {
+            if (UniverseEffect)
+            {
+                player.HeldItem.autoReuse = UniverseStoredAutofire;
+            }
+        }
 
     }
 }
