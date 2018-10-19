@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Fungus armor",
+            "Fungus armor",
+            "Fungus armor",
+            "FungalPopper",
+            "MorelGrenades",
+            "MushroomButterfly",
+            "MyceliumWhip",
+            "Chum",
+            "LegionOrnament",
+            "VenomKunai"
         };
 
         public override void AddRecipes()
