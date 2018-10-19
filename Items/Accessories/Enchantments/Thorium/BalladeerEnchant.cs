@@ -55,12 +55,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Balladeer armor",
             "Balladeer armor",
             "SunflareGuitar",
-            "SoundSagesLament",
             "Headset",
             "RockstarDoubleBassBlastGuitar",
             "BalladeerWings",
             "AcousticGuitar",
             "StrawberryHeart"
+            "BlackOtamatone"
         };
 
         public override void AddRecipes()
