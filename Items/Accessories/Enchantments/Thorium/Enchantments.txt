@@ -68,19 +68,21 @@ Flameburst T3
 Shadowflame Hexdoll
 DD2 Ghost pet
 
-Hallow enchant
+Hallow armor
+Hallow armor
+Hallow armor
+Hallow armor
+Hallow armor
 Silver enchant
-excalibur
+Excalibur
 hallow painting
 fairy bell
-life quartz shield?
-trigun
-hallow megaphone
+CobaltShield
 
 Miner enchant
 magic lantern
-bone pick axe
-molten pick axe
+bone pickaxe
+molten pickaxe
 
 Necro Enchant
 Bone Sword
