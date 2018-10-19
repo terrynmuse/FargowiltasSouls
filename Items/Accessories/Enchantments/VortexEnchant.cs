@@ -45,7 +45,7 @@ Summons a Companion Cube Pet");
 
             /*
 Void Lance
-VortexPickaxe
+BlackBow
 VortexBooster
              */
 
