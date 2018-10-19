@@ -2,63 +2,10 @@ shield drone beacon - healer soul
 
 
 
-
-White Dwarf enchant
-The Black Dagger
-3600 White Dwarf Kunai
-CosmicDagger
-
-
-Fungus enchant
-Mycelium Whip
-1750 Fungal Poppers
-Funggat 
-
-Valadium enchant
-Vega Phaser
-Eye of the Beholder
-Obliterator
-Shu's Wrath 
-
-Lodestone enchant
-Glacior
-Weighted Winglets
-Crash Boots
-Slag Stompers 
-
-Titan enchant
-All three helmets
-Titan Boomerang
-Rail Gun
-Cyan Music Player 
-
-Harbinger enchant
-Lightning Staff
-Blackhole Cannon
-Harbinger Spear
-White Music Player
-
-Illumite enchant
-Launch Jumper
-Trench Spitter
-DMR
-Illumite Blaster
-Pink Music Player 
-
-Shade Master enchant
-Shade Dagger
-1000 Soulslashers
-500 Bugenkai Shurikens
-1000 Plasma Vials 
-Purple Music Player
-
-
 MusicSheet Turntable
 Venom Staff
 Vile Spitter
-Bellarose
-
-
+spellbook spores?
 
 
 
@@ -79,6 +26,8 @@ Davy Jones Lock Box
 
 Feral-Fur enchant
 Blood Drenched Dagger
+Bellarose
+AstralBarrierWand
 
 White Knight enchant
 Shade Band
@@ -92,10 +41,6 @@ Spell Book: Time Gate
 Legacy
 Cat's Eye Great Staff
 Gray Music Player
-
-
-
-
 
 Templar enchant
 Templar's Judgement
