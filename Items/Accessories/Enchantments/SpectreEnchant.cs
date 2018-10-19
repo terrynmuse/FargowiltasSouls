@@ -44,10 +44,9 @@ Summons a Wisp to provide light");
             recipe.AddIngredient(ItemID.WispinaBottle);
             
             /*
-            both heads?
+            both heads
 spectre wings
-GhastlyCarapace
-Ghostly Grapple or some other random magic hmm
+GhastlyCarapace kill unholy trident with thorium
 MusicSheetOrgan
 Ectoplasmic Butterfly
             */
