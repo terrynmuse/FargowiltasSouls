@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Shade Master armor",
+            "Shade Master armor",
+            "Shade Master armor",
+            "Shade Dagger",
+            "ShadeKusarigama",
+            "Bugenkai Shurikens",
+            "Soulslashers",
+            "LihzahrdKukri",
+            "EvisceratingClaw",
+            "Purple Music Player"
         };
 
         public override void AddRecipes()
