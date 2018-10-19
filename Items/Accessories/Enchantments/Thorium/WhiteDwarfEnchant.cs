@@ -49,7 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "White Dwarf armor",
+            "White Dwarf armor",
+            "White Dwarf armor",
+            "TheBlackDagger",
+            "WhiteDwarfKunai",
+            "CosmicDagger",
+            "TheEbonHammer",
+            "LodestoneHammer",
+            "GeodeMallet",
+            "DurasteelJavelin"
         };
 
         public override void AddRecipes()
