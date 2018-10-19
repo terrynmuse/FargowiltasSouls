@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Illumite armor",
+            "Illumite armor",
+            "Illumite armor",
+            "Pink Music Player",
+            "ShusWrath",
+            "Illumite Shotbow",
+            "Illumite Barrager",
+            "Trench Spitter",
+            "CupidsString",
+            "HandCannon"
         };
 
         public override void AddRecipes()
