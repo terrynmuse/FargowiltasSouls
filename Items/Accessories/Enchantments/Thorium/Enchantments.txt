@@ -1,10 +1,51 @@
 shield drone beacon - healer soul
 
+Geode armor
+Geode armor
+Geode armor
+EnchantedPickaxe
+GeodePickaxe
+DragonDrill
+FleshDrill
+AdventurersLantern
+DavyJonesLockBox 
+GeodeSaber
+
+Feral-Fur armor
+Feral-Fur armor
+Feral-Fur armor
+Blood Drenched Dagger
+Bellarose
+AstralBarrierWand
+GrimFlayer
+BackStabber
+BloodFeasterStaff
+CrimsonHoundStaff/CorruptlingStaff
+
+White Knight armor
+White Knight armor
+White Knight armor
+Shade Band
+Prism Staff
+Delectable Nut 
+Vile Spitter
+BoreanFangStaff
+SkyFracture
+FrostStaff
+
+Flov's Ancient armor
+Flov's Ancient armor
+Flov's Ancient armor
+Legacy
+Gray Music Player
+Venom Staff
+"AncientSpark",
+"AncientFrost",
+"AncientLight"
+UnholyTrident
 
 
 MusicSheet Turntable
-Venom Staff
-Vile Spitter
 spellbook spores?
 
 
@@ -17,30 +58,11 @@ Searing Blade
 Demo's Guidance
 greedy magnet
 
-Geode enchant
-Adventurer's Lantern
-Enchanted Pickaxe
-Gnome King's Pickaxe
-Stone Sledge
-Davy Jones Lock Box 
 
-Feral-Fur enchant
-Blood Drenched Dagger
-Bellarose
-AstralBarrierWand
 
-White Knight enchant
-Shade Band
-Prism Staff
-Spell Book: Stalagmite
-Spell Book: Cyclone
-Delectable Nut 
 
-Flov's Ancient enchant
-Spell Book: Time Gate
-Legacy
-Cat's Eye Great Staff
-Gray Music Player
+
+
 
 Templar enchant
 Templar's Judgement
@@ -131,7 +153,7 @@ Monk belt
 master ninja gear
 Pet gato
 
-Spook enchant
+Spooky enchant
 death sickle
 demon scythe
 eye spring
