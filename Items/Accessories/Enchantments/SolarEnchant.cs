@@ -45,7 +45,7 @@ Melee attacks inflict it for less time (which is a good thing)");
 
             /*
 SolarWings
-SolarPickaxe
+BlackBlade
 EruptingFlare
              */
 
