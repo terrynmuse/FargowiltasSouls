@@ -44,7 +44,7 @@ If the enemy has Midas, the chance and bonus is doubled");
 PlatinumAegis
 DiamondButterfly
 AncientDrachma
-DavyJonesLockBox
+WhitePhaseSaber
              */
 
             recipe.AddTile(TileID.DemonAltar);
