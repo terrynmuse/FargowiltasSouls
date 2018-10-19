@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Valadium armor",
+            "Valadium armor",
+            "Valadium armor",
+            "LodestoneQuickDraw",
+            "EyeoftheBeholder",
+            "Obliterator",
+            "ValadiumBow",
+            "ValadiumStaff",
+            "GlacialSting",
+            "TommyGun"
         };
 
         public override void AddRecipes()
