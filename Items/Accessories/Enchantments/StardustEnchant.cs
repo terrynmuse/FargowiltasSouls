@@ -46,6 +46,7 @@ There is a 60 second cooldown for this effect, a sound effect plays when it's ba
 StardustWings
 ShadowOrbStaff
 EyeofOdin
+replace pick with Black Staff 
              */
 
             recipe.AddTile(TileID.LunarCraftingStation);
