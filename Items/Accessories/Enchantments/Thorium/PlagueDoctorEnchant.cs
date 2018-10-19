@@ -54,7 +54,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Plague Doctor armor",
             "Toxic Flask",
             "NitrogenVial",
-            "CorrosiveVial",
+            "AphrodisiacVial",
             "CombustionVial",
             "GasContainer",
             "FrostPlagueStaff",
