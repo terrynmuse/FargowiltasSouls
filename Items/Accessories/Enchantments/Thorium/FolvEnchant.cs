@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Flov's Ancient armor",
+            "Flov's Ancient armor",
+            "Flov's Ancient armor",
+            "Legacy",
+            "GrayMusicPlayer",
+            "VenomStaff",
+            "AncientSpark",
+            "AncientFrost",
+            "AncientLight",
+            "UnholyTrident"
         };
 
         public override void AddRecipes()
