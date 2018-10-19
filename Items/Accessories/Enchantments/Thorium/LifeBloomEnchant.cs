@@ -60,7 +60,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "GroundedTotem",
             "HoneyBlade",
             "BrownMusicPlayer",
-            "AstralBarrierWand"
+            "EyeofOdin"
         };
 
         public override void AddRecipes()
