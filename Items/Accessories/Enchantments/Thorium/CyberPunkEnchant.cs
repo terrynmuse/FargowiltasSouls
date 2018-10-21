@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Cyber Punk armor",
-            "Cyber Punk armor",
-            "Cyber Punk armor",
+            "CyberPunkHeadset",
+            "CyberPunkSuit",
+            "CyberPunkLeggings",
             "AutoTuner",
             "RedMusicPlayer",
+            "VinylRecord",
+            "Kazoo",
             "HallowedMegaphone",
             "BassBooster",
             "MidnightBassBooster",
-            "VinylRecord",
-            "Kazoo"
         };
 
         public override void AddRecipes()

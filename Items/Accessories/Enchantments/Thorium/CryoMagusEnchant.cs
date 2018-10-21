@@ -51,16 +51,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Cryo-Magus armor",
-            "Cryo-Magus armor",
-            "Cryo-Magus armor",
-            "ForgottenLetter",
-            "IceFairyStaff",
+            "CryoMagusSpark",
+            "CryoMagusTabard",
+            "CryoMagusLeggings",
             "IceBoundStriderHide",
+            "MusicPlayerManaRegen",
+            "IceFairyStaff",
             "FrostBurntTongue",
-            "BlueMusicPlayer",
-            "FrostStaff",
-            "GatewayGlass"
         };
 
         public override void AddRecipes()
@@ -70,6 +67,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(ItemID.FrostStaff);
+            recipe.AddIngredient(thorium.ItemType("GatewayGlass"));
+            recipe.AddIngredient(thorium.ItemType("LostMail"));
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

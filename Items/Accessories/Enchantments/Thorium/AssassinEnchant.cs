@@ -63,30 +63,25 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
 
         }
-        
-        private readonly string[] items =
-        {
-            "Assassin armor",
-            "Assassin armor",
-            "Assassin armor",
-            "Assassin armor (both helms)",
-            "TheKillCounter",
-            "OmniBow",
-            "OmniCannon",
-            "TheJavelin",
-            "DMR",
-            "nail gun"
-        };
 
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddIngredient(thorium.ItemType("OmniMarkHead"));
+            recipe.AddIngredient(thorium.ItemType("OmniArablastHood"));
+            recipe.AddIngredient(thorium.ItemType("OmniBody"));
+            recipe.AddIngredient(thorium.ItemType("OmniGreaves"));
+            recipe.AddIngredient(ItemID.NailGun);
+            recipe.AddIngredient(thorium.ItemType("DMR"));
+            recipe.AddIngredient(thorium.ItemType("KillCounter"));
+            recipe.AddIngredient(thorium.ItemType("OmniBow"));
+            recipe.AddIngredient(thorium.ItemType("OmniCannon"));
+            recipe.AddIngredient(thorium.ItemType("TheJavelin"));
+            
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -54,13 +54,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Bronze armor",
             "Bronze armor",
             "Bronze armor",
-            "SpartanSandals",
-            "ChampionSwiftBlade",
-            "ChampionRebuttal",
-            "BronzeThrowingAxes",
-            "AncientwingButterfly",
+            "ChampionsRebuttal",
+            "SpartansSandals",
             "SpartansSubwoofer",
-            "DraculaFangs"
+            "ChampionSwiftBlade",
+            "BronzeThrowingAxe",
+            "DraculaFang",
+            "AncientWingButterfly"
         };
 
         public override void AddRecipes()

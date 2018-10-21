@@ -54,13 +54,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Berserker armor",
             "Berserker armor",
             "Berserker armor",
-            "Berserker Breaker",
-            "Berserker Soul Staff",
-            "Bloody High Claw",
-            "Orange Music Player",
-            "Thermogenic Impaler",
-            "Surtrs Sword",
-            "Wyvern Slayer"
+            "BerserkerBreaker",
+            "BerserkerSoulStaff",
+            "BloodyHighClaw",
+            "OrangeMusicPlayer",
+            "ThermogenicImpaler",
+            "SurtrsSword",
+            "WyvernSlayer"
         };
 
         public override void AddRecipes()

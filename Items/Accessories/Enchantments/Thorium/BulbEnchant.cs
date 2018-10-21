@@ -51,16 +51,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Bulb armor",
-            "Bulb armor",
-            "Bulb armor",
-            "PetalWand",
+            "BulbHood",
+            "BulbChestplate",
+            "BulbLeggings",
             "PetalShield",
             "BloomingBlade",
-            "MoonglowButterfly",
-            "SkyBlueFlower",
-            "YellowMarigold",
-            "Sunflower"
+            "PetalWand",
+            "MoonglowButterfly"
         };
 
         public override void AddRecipes()
@@ -70,6 +67,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(ItemID.SkyBlueFlower);
+            recipe.AddIngredient(ItemID.Sunflower);
+            recipe.AddIngredient(ItemID.YellowMarigold);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

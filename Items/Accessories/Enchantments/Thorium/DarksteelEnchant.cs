@@ -51,16 +51,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Darksteel armor",
-            "Darksteel armor",
-            "Darksteel armor",
-            "SteelEnchant",
-            "DarksteelMace",
-            "GrayDPainting",
+            "BallnChain",
+            "eeDarksteelMace",
+            "eeSoulSiphon",
             "ManHacker",
-            "SoulSiphon",
             "DarksteelHelmetStand",
-            "BallnChain"
+            "GrayDPainting",
         };
 
         public override void AddRecipes()
@@ -68,7 +64,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("hDarksteelFaceGuard"));
+            recipe.AddIngredient(thorium.ItemType("iDarksteelBreastPlate"));
+            recipe.AddIngredient(thorium.ItemType("jDarksteelGreaves"));
+            recipe.AddIngredient(null, "SteelEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.DemonAltar);
