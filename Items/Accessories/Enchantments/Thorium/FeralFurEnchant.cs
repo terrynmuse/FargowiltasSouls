@@ -58,7 +58,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "GrimFlayer",
             "BackStabber",
             "BloodFeasterStaff",
-            "CrimsonHoundStaff/CorruptlingStaff"
+            "CrimsonHoundStaff/CorruptlingStaff",
+            "SacrificialDagger"
         };
 
         public override void AddRecipes()
