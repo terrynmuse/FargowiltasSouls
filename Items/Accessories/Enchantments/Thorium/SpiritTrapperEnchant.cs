@@ -60,7 +60,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "BlueDungeonButterfly",
             "AntagonizingSpirit",
             "CalmingSpirit",
-            "SacrificialDagger"
+            "InnerFlame"
         };
 
         public override void AddRecipes()
