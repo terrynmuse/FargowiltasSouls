@@ -57,10 +57,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Cure",
             "TemplarsGrace",
             "TemplarsJudgement",
-            "MarrowScepter",
             "ChiLantern",
             "GraniteIonStaff"
             "Prophecy",
+            "LifeCrystalButterfly"
         };
 
         public override void AddRecipes()
