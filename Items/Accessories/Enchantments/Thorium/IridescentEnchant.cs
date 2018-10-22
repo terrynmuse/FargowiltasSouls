@@ -54,13 +54,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Iridescent armor",
             "Iridescent armor",
             "Iridescent armor",
-            "GiantGlowstick",
-            "HereticBreaker",
-            "Equalizer",
-            "IridescentStaff",
+            "Equalizer", //post bee
+            "CleansingWaterPouch", //aquatite bars
             "AquaiteScythe",
-            "SerpentsBubbleWand",
-            "TranquilLyre"
+            "IridescentStaff", //pixie dust
+            "HereticBreaker", //gold
+            "SerpentsBubbleWand", //abyssal chitin
+            "TranquilLyre" //sold
         };
 
         public override void AddRecipes()
