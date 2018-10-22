@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Templar armor",
+            "Templar armor",
+            "Templar armor",
+            "Cure",
+            "TemplarsGrace",
+            "TemplarsJudgement",
+            "MarrowScepter",
+            "ChiLantern",
+            "GraniteIonStaff"
+            "Prophecy",
         };
 
         public override void AddRecipes()
