@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Novice Cleric armor",
-            "Novice Cleric armor",
-            "Novice Cleric armor",
-            "FortifyingWand",
+            "NoviceCleric armor",
+            "NoviceCleric armor",
+            "NoviceCleric armor",
             "AloeLeaf",
-            "Pills",
-            "PalmCross",
-            "SwallowtailButterfly",
-            "PurifiedWater",
-            "GoodBook"
+            "FortifyingWand", //wooden chest
+            "Renew", //thorium bar
+            "WoodenBaton", //wood
+            "PalmCross", // copper
+            "PurifiedWater", //blood moon w armor
+            "SwallowtailButterfly"
         };
 
         public override void AddRecipes()
