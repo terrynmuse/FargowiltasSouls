@@ -54,11 +54,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "NoviceCleric armor",
             "NoviceCleric armor",
             "NoviceCleric armor",
-            "AloeLeaf",
-            "FortifyingWand", //wooden chest
-            "Renew", //thorium bar
             "WoodenBaton", //wood
+            "FortifyingWand", //wooden chest
+            "IceShaver",
             "PalmCross", // copper
+            "Renew", //thorium bar
             "PurifiedWater", //blood moon w armor
             "SwallowtailButterfly"
         };
