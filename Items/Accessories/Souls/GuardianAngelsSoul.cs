@@ -96,7 +96,6 @@ Taking fatal damage unleashes your inner spirit");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             /*
-            equalizer
             medical bag
             soul guard
             demon tongue
