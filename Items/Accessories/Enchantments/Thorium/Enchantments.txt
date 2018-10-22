@@ -1,26 +1,6 @@
 shield drone beacon - healer soul
 
 
-MusicSheet Turntable
-spellbook spores?
-
-
-Durasteel enchant
-DarkSteel Enchant
-Armor Bane
-Exile's Helmet
-Searing Blade
-Demo's Guidance
-greedy magnet
-
-
-
-
-Templar enchant
-Templar's Judgement
-life quartz shield
-Medical Bag
-Inner Flame 
 
 Warlock enchant
 Omen
@@ -61,6 +41,20 @@ Bloom Guard
 Dream Catcher
 Unbound Fantasy
 Rebirth Statuette  
+
+MusicSheet Turntable
+spellbook spores?
+
+
+
+Durasteel enchant
+DarkSteel Enchant
+Armor Bane
+Exile's Helmet
+Searing Blade
+Demo's Guidance
+greedy magnet
+
 
 Dark Artist Enchant
 Apprentice Scarf
