@@ -43,6 +43,13 @@ Summons a Puppy");
             recipe.AddIngredient(ItemID.CelestialShell);
             recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
             recipe.AddIngredient(ItemID.DogWhistle);
+            
+            /*
+Explosive T2
+LadysLight
+EvisceratingClaw
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
