@@ -1,79 +1,90 @@
-healer soul:
-shield drone beacon
-moonlight staff - 8% drop lycan
 
+
+
+life disperser - sold pre hm
 redeemer staff - sold prehm
 void planter - coznix
 energy staff, protection staff, frenzy staff - crystal shards
 glittering scepter - geode
-Sacred Buldgeon
-Holy Fire 
-
-
-Warlock armor
-Warlock armor
-Warlock armor
-NecroticStaff - blood moon drop w armor
+DarkContagion - ichor
+HolyFire - cursed flame
 TwilightStaff - dark/light shard
-AggressionStaff
-
-Omen
-Demon Tongue
 Karmic Holder
-Midnight Staff 
+Bone Baton - molten residue
+lustruous Baton - crystal shard
+WildUmbra- pixie dust
+HeavenlyCloudScepter - sold hardmode
+Hallowed Blessing - hallow bars
+TitanScythe - titan
+SpiritBendersStaff - spectre
+IllumiteScythe
+DemonBloodRipper
+DreadTearer
+PillPopper - golem tier
+FriendlyFireStaff - spectre
+PagansGrasp - pumpking
+christmas cheer - frost moon
+HolyStaff - hallow
+LifeSurgeStaff - biotech tier meme
+BarrierGenerator - strange plating
+"TheEffuser", - life biner tier meme
+StaffofSol - jungle temple
+MartyrsChalice - ectoplasm
+SnackoLantern - pumpking
+Cryotherapy - ice queen
+MolecularStabiloizer - martian saucer
+LifePulseStaff - sold post mech
+WhisperingDagger - hallow bars void heart
+Holy Hammer - paladin
+DragonHeartWand - betsy
 
 
-Sacred armor
-Sacred armor
-Sacred armor
-LightBurstWand - soul of light
-SacredCharge - hallow charm w armor
-Twinkle - pet, pixie dust
-LilCherubWand - post coznix sell
-RenewStaff
+Biotech armor
+Biotech armor
+Biotech armor
 Null-Zone Staff
-Liberation
-
-
-Biotech armor
-Biotech armor
-Biotech armor
-
+Mind Melter
+LifeEssenceApparatus
+PocketGuardian
 
 Barrier Generator
 Whispering Dagger
-Mind Melter
 Pocket Guardian 
 
 
 FallenPaladin armor
 FallenPaladin armor
 FallenPaladin armor
+LightBringersWarhammer
+BubbleBulwarkWand
 
 Cryotherapy
 Snack o' Lantern
 Shield-Drone Beacon
-Holy Hammer
 Friendly-Fire Staff 
 
 
 Celestial armor
 Celestial armor
 Celestial armor
+BlackScythe
+Celestial Burst Staff - armor tier
+DivineStaff - armor tier
+Ancient Tome of Revival - golem tier
 
 Dragon Heart Wand
 Life and Death
-Ancient Tome of Revival
-Celestial Burst Staff 
+
+
 
 
 DreamWeaver armor
 DreamWeaver armor
 DreamWeaver armor
+Lucidity
+RealitySlasher
+DreamCatcher
 
-Twinkle
-Bloom Guard
-Dream Catcher
 Unbound Fantasy
 Rebirth Statuette  
 
