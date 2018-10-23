@@ -90,33 +90,33 @@ Taking fatal damage unleashes your inner spirit");
             player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).crossHeal = true; //bonus defense in heal
             player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).healBloom = true; //bonus life regen on heal
         }
+        
+        private readonly string[] items =
+        {
+            "SupportSash",
+            "SavingGrace",
+            "SoulGuard",
+            "ArchDemonCurse",
+            "ArchangelHeart",
+            "MedicalBag",
+            "ShieldDroneBeacon", 
+            "LifeandDeath", //ml drop
+            "TeslaDefibrillator - frankensteins drop",
+            "MoonlightStaff - drop lycan",
+            "TerrariumHolyScythe",
+            "TerraScythe",
+            "PhoenixStaff", //biome chest
+        };
 
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            /*
-            medical bag
-            soul guard
-            demon tongue
-            aloe leaf
-            
-            phoenix staff
-            void planter
-            */
-
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("ArchDemonCurse"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SupportSash"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AscensionStatuette"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("Wynebgwrthucher"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("ArchangelHeart"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("SavingGrace"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("BoneBaton"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerraScythe"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("ChristmasCheer"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumHolyScythe"));
-            recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("RealitySlasher"));
+            
+            //essence
+            
+            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
