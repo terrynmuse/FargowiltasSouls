@@ -1,46 +1,82 @@
-shield drone beacon - healer soul
+healer soul:
+shield drone beacon
+moonlight staff - 8% drop lycan
+
+redeemer staff - sold prehm
+void planter - coznix
+energy staff, protection staff, frenzy staff - crystal shards
+glittering scepter - geode
+Sacred Buldgeon
+Holy Fire 
 
 
+Warlock armor
+Warlock armor
+Warlock armor
+NecroticStaff - blood moon drop w armor
+TwilightStaff - dark/light shard
+AggressionStaff
 
-Warlock enchant
 Omen
 Demon Tongue
-Twilight Staff
 Karmic Holder
 Midnight Staff 
 
-Sacred enchant
-Sacred Buldgeon
+
+Sacred armor
+Sacred armor
+Sacred armor
+LightBurstWand - soul of light
+SacredCharge - hallow charm w armor
+Twinkle - pet, pixie dust
+LilCherubWand - post coznix sell
+RenewStaff
 Null-Zone Staff
 Liberation
-Ra's Whisper
-Holy Fire 
 
-Biotech enchant
+
+Biotech armor
+Biotech armor
+Biotech armor
+
+
 Barrier Generator
 Whispering Dagger
 Mind Melter
 Pocket Guardian 
 
-Fallen Paladin enchant
+
+FallenPaladin armor
+FallenPaladin armor
+FallenPaladin armor
+
 Cryotherapy
 Snack o' Lantern
 Shield-Drone Beacon
 Holy Hammer
 Friendly-Fire Staff 
 
-Celestial enchant
+
+Celestial armor
+Celestial armor
+Celestial armor
+
 Dragon Heart Wand
 Life and Death
 Ancient Tome of Revival
 Celestial Burst Staff 
 
-Dream Weaver enchant
+
+DreamWeaver armor
+DreamWeaver armor
+DreamWeaver armor
+
 Twinkle
 Bloom Guard
 Dream Catcher
 Unbound Fantasy
 Rebirth Statuette  
+
 
 MusicSheet Turntable
 spellbook spores?
