@@ -41,6 +41,13 @@ Summons a flickerwick to provide light");
             recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
             recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
             recipe.AddIngredient(ItemID.DD2PetGhost);
+            
+            /*
+FlameBurst T2
+WhisperingDagger
+DarkContagion
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
