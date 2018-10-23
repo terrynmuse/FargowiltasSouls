@@ -42,6 +42,13 @@ Summons a pet Dragon");
             recipe.AddIngredient(ItemID.ShinyStone);
             recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
             recipe.AddIngredient(ItemID.DD2PetDragon);
+            
+            /*
+Ballista T2
+BlobHornCoralStaff
+CloudwingButterfly
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
