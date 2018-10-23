@@ -54,13 +54,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Life Binder armor",
             "Life Binder armor",
             "Life Binder armor",
+            "MorningDew",
             "MistWeaver",
-            "TheEffuser",
-            "TeslaDefibrillator",
-            "MoonlightStaff",
-            "RichLeaf",
+            "BloomGuard" // pre hm jung
+            "SunrayStaff", //solar eclipse
             "LifeFruitButterfly",
-            "BloomGuard"
+            "AloeLeaf",
+            "RichLeaf"
         };
 
         public override void AddRecipes()
