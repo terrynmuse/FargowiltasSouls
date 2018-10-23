@@ -44,7 +44,11 @@ Summons a magic lantern");
             
             /*
             EnforcedThoriumPax
+BlinkrootButterfly
+SandstonePickaxe
+Deatbringer/ other pickaxe
             */
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
