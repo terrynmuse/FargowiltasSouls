@@ -60,7 +60,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "MyceliumWhip",
             "Chum",
             "LegionOrnament",
-            "VenomKunai"
+            "BloomGuard" //venom kunai
         };
 
         public override void AddRecipes()
