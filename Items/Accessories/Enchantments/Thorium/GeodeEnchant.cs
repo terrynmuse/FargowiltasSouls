@@ -60,7 +60,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "FleshDrill",
             "AdventurersLantern",
             "DavyJonesLockBox ",
-            "GeodeSaber"
+            "DemosGuidance"
         };
 
         public override void AddRecipes()
