@@ -56,11 +56,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "FallenPaladin armor",
             "Wynebgwrthucher",
             "HolyHammer - paladin",
-            "ChristmasCheer",
-            "SnackoLantern",
-            "MolecularStabiloizer",
             "FriendlyFireStaff",
-            "DragonHeartWand"
+            "PillPopper - golem tier",
+            "TwilightStaff - dark/light shard",
+            "BubbleBulwarkWand"
         };
 
         public override void AddRecipes()
