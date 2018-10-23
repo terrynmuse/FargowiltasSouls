@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Warlock armor",
+            "Warlock armor",
+            "Warlock armor",
+            "Demon Tongue",
+            "NecroticStaff - blood moon drop w armor",
+            "AggressionStaff",
+            "Omen - hellstone",
+            "Midnight Staff - dark shard",
+            "LilDevilsWand",
+            "BloodTransfusion"
         };
 
         public override void AddRecipes()
