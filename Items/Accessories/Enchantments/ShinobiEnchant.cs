@@ -42,6 +42,13 @@ Summons a pet gato");
             recipe.AddIngredient(ItemID.MasterNinjaGear);
             recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
             recipe.AddIngredient(ItemID.DD2PetGato);
+            
+            /*
+Lightning T2
+CorrodlingStaff
+TotalityButterfly
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
