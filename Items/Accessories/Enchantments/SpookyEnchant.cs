@@ -40,6 +40,13 @@ Summons a Cursed Sapling and an eyeball spring");
             recipe.AddIngredient(ItemID.DeathSickle);
             recipe.AddIngredient(ItemID.CursedSapling);
             recipe.AddIngredient(ItemID.EyeSpring);
+            
+            /*
+PagansGrasp
+BeholderStaff
+PhantomWand
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
