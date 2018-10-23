@@ -58,7 +58,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "MindMelter",
             "LifeEssenceApparatus",
             "PocketGuardian",
-            "WhisperingDagger",
+            "LifePulseStaff",
             "BarrierGenerator - strange plating",
             "void planter - coznix"
         };
