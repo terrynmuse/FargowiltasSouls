@@ -49,7 +49,17 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+
+            "DreamWeaver armor",
+            "DreamWeaver armor",
+            "DreamWeaver armor",
+            "both helmet",
+            "RealitySlasher",
+            "DreamCatcher",
+            "ChristmasCheer",
+            "SnackoLantern",
+            "MolecularStabiloizer",
+            "DragonHeartWand"
         };
 
         public override void AddRecipes()
