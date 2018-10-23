@@ -40,7 +40,15 @@ Summons a pet Black cat");
             recipe.AddIngredient(ItemID.Shuriken, 100);
             recipe.AddIngredient(ItemID.SmokeBomb, 50);
             recipe.AddIngredient(ItemID.UnluckyYarn);
-            recipe.AddTile(TileID.CrystalBall);
+            
+            /*
+            sea ninja star
+            poiosned knife
+            scorpain
+            bent zombie arm
+            */
+            
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
