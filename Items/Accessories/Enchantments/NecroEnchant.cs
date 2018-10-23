@@ -39,6 +39,14 @@ Summons a Baby Skeletron Head");
             recipe.AddIngredient(ItemID.BoneSword);
             recipe.AddIngredient(ItemID.TheGuardiansGaze);
             recipe.AddIngredient(ItemID.BoneKey);
+            
+            /*
+slugger
+BoneButterfly
+MarrowScepter
+BoneFlayerTail
+            */
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
