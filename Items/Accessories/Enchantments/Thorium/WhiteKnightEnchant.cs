@@ -61,7 +61,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Vile Spitter",
             "BoreanFangStaff",
             "SkyFracture",
-            "FrostStaff"
+            "PixieWingButterfly"
         };
 
         public override void AddRecipes()
