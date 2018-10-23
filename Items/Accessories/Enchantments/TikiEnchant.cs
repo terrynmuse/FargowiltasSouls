@@ -40,6 +40,15 @@ Summons a Tiki Spirit");
             recipe.AddIngredient(ItemID.PygmyStaff);
             recipe.AddIngredient(ItemID.Blowgun);
             recipe.AddIngredient(ItemID.TikiTotem);
+            
+            /*
+hex wand
+lightningbug
+gold frog
+the incubator
+one goes away ree
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
