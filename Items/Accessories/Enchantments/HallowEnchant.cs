@@ -41,6 +41,14 @@ Summons a magical fairy");
             recipe.AddIngredient(null, "SilverEnchant");
             recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
             recipe.AddIngredient(ItemID.FairyBell);
+            
+            /*
+
+Hallow armor all heads
+Hallow armor
+EnchantedShield
+            */
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
