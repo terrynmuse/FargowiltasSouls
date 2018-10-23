@@ -58,7 +58,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "TheEbonHammer",
             "LodestoneHammer",
             "GeodeMallet",
-            "DurasteelJavelin"
+            "LuminiteButterfly"
         };
 
         public override void AddRecipes()
