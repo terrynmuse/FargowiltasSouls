@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "Durasteel armor",
+            "Durasteel armor",
+            "Durasteel armor",
+            "DarkSteel Enchant",
+            "DurasteelRepeater",
+            "DurasteelChainsaw",
+            "GreedyMagnet",
+            "SpudBomber",
+            "SeaMine",
+            "ThiefsDagger"
         };
 
         public override void AddRecipes()
