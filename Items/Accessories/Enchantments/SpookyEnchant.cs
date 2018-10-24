@@ -38,14 +38,17 @@ Summons a Cursed Sapling and an eyeball spring");
             recipe.AddIngredient(ItemID.SpookyLeggings);
             recipe.AddIngredient(ItemID.DemonScythe);
             recipe.AddIngredient(ItemID.DeathSickle);
+            
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("BeholderStaff"));
+                recipe.AddIngredient(thorium.ItemType("PhantomWand"));
+                recipe.AddIngredient(thorium.ItemType("PagansGrasp"));
+            }
+            
             recipe.AddIngredient(ItemID.CursedSapling);
             recipe.AddIngredient(ItemID.EyeSpring);
-            
-            /*
-PagansGrasp
-BeholderStaff
-PhantomWand
-            */
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
