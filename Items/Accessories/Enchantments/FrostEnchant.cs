@@ -38,18 +38,25 @@ Summons a baby penguin and snowman");
             recipe.AddIngredient(ItemID.FrostHelmet);
             recipe.AddIngredient(ItemID.FrostBreastplate);
             recipe.AddIngredient(ItemID.FrostLeggings);
-            recipe.AddIngredient(ItemID.IceBow);
-            recipe.AddIngredient(ItemID.Fish);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("SubZeroSubwoofer"));
+                recipe.AddIngredient(thorium.ItemType("Glacior"));
+                recipe.AddIngredient(ItemID.IceBow);
+                recipe.AddIngredient(thorium.ItemType("FreezeRay"));
+                recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
+                recipe.AddIngredient(thorium.ItemType("FrozenButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.IceBow);
+                recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
+                recipe.AddIngredient(ItemID.Fish);
+            }
+            
             recipe.AddIngredient(ItemID.ToySled);
-            recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
-            
-            /*
-Glacior
-Freeze Ray
-Frozen Butterfly
-SubZeroSubwoofer
-            */
-            
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
