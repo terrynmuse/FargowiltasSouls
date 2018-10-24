@@ -39,9 +39,9 @@ Summons a pet Minotaur");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
+                recipe.AddIngredient(ItemID.Javelin, 200);
                 recipe.AddIngredient(thorium.ItemType("SteelThrowingAxe"), 300);
                 recipe.AddIngredient(thorium.ItemType("GoblinWarSpear"), 300);
-                recipe.AddIngredient(ItemID.Javelin, 200);
                 recipe.AddIngredient(thorium.ItemType("BronzeGladius"));
                 recipe.AddIngredient(thorium.ItemType("GorgonGazeStaff"));
                 recipe.AddIngredient(thorium.ItemType("RodofAesculapius"));
