@@ -37,16 +37,23 @@ Summons a pet Black cat");
             recipe.AddIngredient(ItemID.NinjaHood);
             recipe.AddIngredient(ItemID.NinjaShirt);
             recipe.AddIngredient(ItemID.NinjaPants);
-            recipe.AddIngredient(ItemID.Shuriken, 100);
-            recipe.AddIngredient(ItemID.SmokeBomb, 50);
-            recipe.AddIngredient(ItemID.UnluckyYarn);
             
-            /*
-            sea ninja star
-            poiosned knife
-            scorpain
-            bent zombie arm
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {   
+                recipe.AddIngredient(ItemID.ThrowingKnife, 200);
+                recipe.AddIngredient(ItemID.Shuriken, 100);
+                recipe.AddIngredient(thorium.ItemType("SeaNinjaStar"));
+                recipe.AddIngredient(ItemID.SmokeBomb, 50);
+                recipe.AddIngredient(thorium.ItemType("BentZombieArm"));
+                recipe.AddIngredient(thorium.ItemType("Scorpain"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.Shuriken, 100);
+                recipe.AddIngredient(ItemID.SmokeBomb, 50);
+            }
+            
+            recipe.AddIngredient(ItemID.UnluckyYarn);
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
