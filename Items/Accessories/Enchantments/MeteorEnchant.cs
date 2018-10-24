@@ -36,15 +36,21 @@ A meteor shower initiates every few seconds while using magic weapons");
             recipe.AddIngredient(ItemID.MeteorSuit);
             recipe.AddIngredient(ItemID.MeteorLeggings);
             recipe.AddIngredient(ItemID.SpaceGun);
-            recipe.AddIngredient(ItemID.MeteorStaff);
             recipe.AddIngredient(ItemID.StarCannon);
-            recipe.AddIngredient(ItemID.PlaceAbovetheClouds);
-            
-            /*
-comet crossfire
-meteor butterfly
-Bio Pod
-            */
+
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("CometCrossfire"));
+                recipe.AddIngredient(ItemID.MeteorStaff);
+                recipe.AddIngredient(ItemID.PlaceAbovetheClouds);
+                recipe.AddIngredient(thorium.ItemType("MeteorButterfly"));
+                recipe.AddIngredient(thorium.ItemType("BioPod"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.MeteorStaff);
+                recipe.AddIngredient(ItemID.PlaceAbovetheClouds);
+            }
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
