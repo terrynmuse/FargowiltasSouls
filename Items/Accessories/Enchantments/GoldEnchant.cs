@@ -97,16 +97,23 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.GoldHelmet);
             recipe.AddIngredient(ItemID.GoldChainmail);
             recipe.AddIngredient(ItemID.GoldGreaves);
-            recipe.AddIngredient(ItemID.GreedyRing);
-            recipe.AddIngredient(ItemID.RubyStaff);
+           
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("GoldAeigis"));
+                recipe.AddIngredient(thorium.ItemType("ProofofAvarice"));
+                recipe.AddIngredient(ItemID.GreedyRing);
+                recipe.AddIngredient(ItemID.RubyStaff);
+                recipe.AddIngredient(ItemID.GoldButterfly);
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.GreedyRing);
+                recipe.AddIngredient(ItemID.RubyStaff);
+            }
+            
             recipe.AddIngredient(ItemID.SquirrelGold);
             recipe.AddIngredient(ItemID.ParrotCracker);
-            
-            /*
-gold butterfly
-GoldAeigis
-Proof of Avarice
-            */
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
