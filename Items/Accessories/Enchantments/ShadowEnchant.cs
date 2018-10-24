@@ -37,16 +37,23 @@ Summons a Baby Eater of Souls and a Shadow Orb");
             recipe.AddIngredient(ItemID.ShadowHelmet);
             recipe.AddIngredient(ItemID.ShadowScalemail);
             recipe.AddIngredient(ItemID.ShadowGreaves);
-            recipe.AddIngredient(ItemID.LightlessChasms);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.WarAxeoftheNight);
+                recipe.AddIngredient(ItemID.BallOHurt);
+                recipe.AddIngredient(ItemID.PurpleBlubberfish);
+                recipe.AddIngredient(ItemID.LightlessChasms);
+                recipe.AddIngredient(thorium.ItemType("CorruptButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.LightlessChasms);
+            }
+            
             recipe.AddIngredient(ItemID.EatersBone);
             recipe.AddIngredient(ItemID.ShadowOrb);
             
-            /*
-Corrupt Butterfly
-Ball O Hurt
-Purple Blubberfish
-War Axe of the Night
-            */
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
