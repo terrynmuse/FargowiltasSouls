@@ -40,14 +40,20 @@ Summons a pet Dragon");
             recipe.AddIngredient(ItemID.SquireAltPants);
             recipe.AddIngredient(ItemID.SquireShield);
             recipe.AddIngredient(ItemID.ShinyStone);
-            recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
-            recipe.AddIngredient(ItemID.DD2PetDragon);
             
-            /*
-Ballista T2
-BlobHornCoralStaff
-CloudwingButterfly
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("BlobHornCoralStaff"));
+                recipe.AddIngredient(ItemID.DD2BallistraTowerT2Popper);
+                recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
+                recipe.AddIngredient(thorium.ItemType("CloudwingButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
+            }
+            
+            recipe.AddIngredient(ItemID.DD2PetDragon);
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
