@@ -36,16 +36,23 @@ If the enemy has Midas, the chance and bonus is doubled");
             recipe.AddIngredient(ItemID.PlatinumHelmet);
             recipe.AddIngredient(ItemID.PlatinumChainmail);
             recipe.AddIngredient(ItemID.PlatinumGreaves);
-            recipe.AddIngredient(ItemID.DiamondStaff);
             recipe.AddIngredient(ItemID.PlatinumCrown);
-            recipe.AddIngredient(ItemID.DiamondRing);
-
-            /*
-PlatinumAegis
-DiamondButterfly
-AncientDrachma
-WhitePhaseSaber
-             */
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("PlatinumAegis"));
+                recipe.AddIngredient(ItemID.DiamondRing);
+                recipe.AddIngredient(ItemID.DiamondStaff);
+                recipe.AddIngredient(ItemID.WhitePhaseSaber);
+                recipe.AddIngredient(thorium.ItemType("DiamondButterfly"));
+                recipe.AddIngredient(thorium.ItemType("AncientDrachma"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.DiamondRing);
+                recipe.AddIngredient(ItemID.DiamondStaff);
+                recipe.AddIngredient(ItemID.WhitePhaseSaber);
+            }
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
