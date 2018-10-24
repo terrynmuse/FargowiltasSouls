@@ -38,17 +38,24 @@ Summons a magic lantern");
             recipe.AddIngredient(ItemID.MiningHelmet);
             recipe.AddIngredient(ItemID.MiningShirt);
             recipe.AddIngredient(ItemID.MiningPants);
-            recipe.AddIngredient(ItemID.BonePickaxe);
-            recipe.AddIngredient(ItemID.MoltenPickaxe);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("SandstonePickaxe"));
+                recipe.AddRecipeGroup("FargowiltasSouls:AnyGoldPick");
+                recipe.AddIngredient(ItemID.BonePickaxe);
+                recipe.AddIngredient(thorium.ItemType("EnforcedThoriumPax"));
+                recipe.AddIngredient(ItemID.MoltenPickaxe);
+                recipe.AddIngredient(thorium.ItemType("BlinkrootButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.BonePickaxe);
+                recipe.AddIngredient(ItemID.MoltenPickaxe);
+            }
+            
             recipe.AddIngredient(ItemID.MagicLantern);
-            
-            /*
-            EnforcedThoriumPax
-BlinkrootButterfly
-SandstonePickaxe
-Deatbringer/ other pickaxe
-            */
-            
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
