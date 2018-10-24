@@ -36,18 +36,24 @@ Summons a pet Minotaur");
             recipe.AddIngredient(ItemID.GladiatorHelmet);
             recipe.AddIngredient(ItemID.GladiatorBreastplate);
             recipe.AddIngredient(ItemID.GladiatorLeggings);
-            recipe.AddIngredient(ItemID.Javelin, 200);
-            recipe.AddIngredient(ItemID.MarbleChest);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("SteelThrowingAxe"), 300);
+                recipe.AddIngredient(thorium.ItemType("GoblinWarSpear"), 300);
+                recipe.AddIngredient(ItemID.Javelin, 200);
+                recipe.AddIngredient(thorium.ItemType("BronzeGladius"));
+                recipe.AddIngredient(thorium.ItemType("GorgonGazeStaff"));
+                recipe.AddIngredient(thorium.ItemType("RodofAesculapius"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.Javelin, 200);
+                recipe.AddIngredient(ItemID.MarbleChest);
+            }
+            
             recipe.AddIngredient(ItemID.TartarSauce);
-            
-            /*    
-Goblin War Spear
-Gorgon Gaze Staff
-Bronze Gladius
-Rod of Aesculapius
-Steel Throwing Axe
-            */
-            
+ 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
