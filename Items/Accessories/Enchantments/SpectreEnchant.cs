@@ -34,23 +34,31 @@ Summons a Wisp to provide light");
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddRecipeGroup("FargowiltasSouls:AnySpectreHead");
             
-            recipe.AddIngredient(ItemID.SpectreRobe);
-            recipe.AddIngredient(ItemID.SpectrePants);
-            recipe.AddIngredient(ItemID.SpectreHamaxe);
-            recipe.AddIngredient(ItemID.SpectreStaff);
-            recipe.AddIngredient(ItemID.UnholyTrident);
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.SpectreMask);
+                recipe.AddIngredient(ItemID.SpectreHood);
+                recipe.AddIngredient(ItemID.SpectreRobe);
+                recipe.AddIngredient(ItemID.SpectrePants);
+                recipe.AddIngredient(ItemID.SpectreWings);
+                recipe.AddIngredient(thorium.ItemType("GhastlyCarapace"));
+                recipe.AddIngredient(ItemID.SpectreStaff);
+                recipe.AddIngredient(thorium.ItemType("MusicSheetOrgan"));
+                recipe.AddIngredient(thorium.ItemType("EctoplasmicButterfly"));
+            }
+            else
+            {
+                recipe.AddRecipeGroup("FargowiltasSouls:AnySpectreHead");
+                recipe.AddIngredient(ItemID.SpectreRobe);
+                recipe.AddIngredient(ItemID.SpectrePants);
+                recipe.AddIngredient(ItemID.SpectreHamaxe);
+                recipe.AddIngredient(ItemID.SpectreStaff);
+                recipe.AddIngredient(ItemID.UnholyTrident);
+            }
+            
             recipe.AddIngredient(ItemID.WispinaBottle);
-            
-            /*
-            both heads
-spectre wings
-GhastlyCarapace kill unholy trident with thorium
-MusicSheetOrgan
-Ectoplasmic Butterfly
-            */
-            
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
