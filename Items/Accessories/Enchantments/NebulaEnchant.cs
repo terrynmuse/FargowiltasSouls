@@ -36,17 +36,22 @@ Maintain maxed buff boosters for 5 seconds to gain drastically increased magic a
             recipe.AddIngredient(ItemID.NebulaHelmet);
             recipe.AddIngredient(ItemID.NebulaBreastplate);
             recipe.AddIngredient(ItemID.NebulaLeggings);
-            recipe.AddIngredient(ItemID.ShadowbeamStaff);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.NebulaMantle);
+                recipe.AddIngredient(thorium.ItemType("BlackStaff"));
+                recipe.AddIngredient(thorium.ItemType("CatsEyeGreatStaff"));
+                recipe.AddIngredient(thorium.ItemType("NebulasReflection"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.ShadowbeamStaff);
+            }
+            
             recipe.AddIngredient(ItemID.NebulaArcanum);
             recipe.AddIngredient(ItemID.NebulaBlaze);
             recipe.AddIngredient(ItemID.LunarFlareBook);
-
-            /*
-NebulaMantle
-BlackStaff
-NebulasReflection
-CatsEyeGreatStaff
-             */
 
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
