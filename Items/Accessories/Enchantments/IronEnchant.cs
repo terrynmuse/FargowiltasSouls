@@ -38,16 +38,23 @@ You attract items from a much larger range and fall 5 times as quickly");
             recipe.AddIngredient(ItemID.IronHelmet);
             recipe.AddIngredient(ItemID.IronChainmail);
             recipe.AddIngredient(ItemID.IronGreaves);
-            recipe.AddIngredient(ItemID.EoCShield);
-            recipe.AddIngredient(ItemID.IronBroadsword);
-            recipe.AddIngredient(ItemID.IronAnvil);
 
-            /*
-IronShield
-OpalStaff
-OpalButterfly
-ThoriumShield
-             */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("IronShield"));
+                recipe.AddIngredient(thorium.ItemType("ThoriumShield"));
+                recipe.AddIngredient(ItemID.EoCShield);
+                recipe.AddIngredient(ItemID.IronBroadsword);
+                recipe.AddIngredient(thorium.ItemType("OpalStaff"));
+                recipe.AddIngredient(ItemID.IronAnvil);
+                recipe.AddIngredient(thorium.ItemType("OpalButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.EoCShield);
+                recipe.AddIngredient(ItemID.IronBroadsword);
+                recipe.AddIngredient(ItemID.IronAnvil);
+            }
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
