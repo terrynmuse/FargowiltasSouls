@@ -46,7 +46,7 @@ Spore damage scales with magic damage");
                 recipe.AddIngredient(ItemID.ThornChakram);
                 recipe.AddIngredient(ItemID.Boomstick);
                 recipe.AddIngredient(ItemID.DoNotStepontheGrass);
-                recipe.AddIngredient(ItemID.Grubby);
+                recipe.AddIngredient(ItemID.Frog);
                 recipe.AddIngredient(thorium.ItemType("JungleSporeButterfly"));
             }
             else
