@@ -37,17 +37,22 @@ There is a 60 second cooldown for this effect, a sound effect plays when it's ba
             recipe.AddIngredient(ItemID.StardustHelmet);
             recipe.AddIngredient(ItemID.StardustBreastplate);
             recipe.AddIngredient(ItemID.StardustLeggings);
-            recipe.AddIngredient(ItemID.StardustPickaxe);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.StardustWings);
+                recipe.AddIngredient(thorium.ItemType("SpellbookTimeGate"));
+                recipe.AddIngredient(thorium.ItemType("BlackCane"));
+                recipe.AddIngredient(thorium.ItemType("ShadowOrbStaff"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.StardustPickaxe);
+            }
+            
             recipe.AddIngredient(ItemID.StardustCellStaff);
             recipe.AddIngredient(ItemID.StardustDragonStaff);
             recipe.AddIngredient(ItemID.RainbowCrystalStaff);
-
-            /*
-StardustWings
-ShadowOrbStaff
-replace pick with Black Staff 
-SpellbookTimeGate
-             */
 
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
