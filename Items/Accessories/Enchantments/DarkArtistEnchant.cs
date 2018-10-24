@@ -38,15 +38,22 @@ Summons a flickerwick to provide light");
             recipe.AddIngredient(ItemID.ApprenticeAltShirt);
             recipe.AddIngredient(ItemID.ApprenticeAltPants);
             recipe.AddIngredient(ItemID.ApprenticeScarf);
-            recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
-            recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
-            recipe.AddIngredient(ItemID.DD2PetGhost);
             
-            /*
-FlameBurst T2
-WhisperingDagger
-DarkContagion
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("DarkEffigy"));
+                recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
+                recipe.AddIngredient(thorium.ItemType("WhisperingDagger"));
+                recipe.AddIngredient(ItemID.DD2FlameburstTowerT2Popper);
+                recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
+                recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
+            }
+            
+            recipe.AddIngredient(ItemID.DD2PetGhost);
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
