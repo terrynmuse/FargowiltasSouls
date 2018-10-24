@@ -38,16 +38,22 @@ Summons a pet gato");
             recipe.AddIngredient(ItemID.MonkAltHead);
             recipe.AddIngredient(ItemID.MonkAltShirt);
             recipe.AddIngredient(ItemID.MonkAltPants);
+            recipe.AddIngredient(null, "NinjaEnchant");
             recipe.AddIngredient(ItemID.MonkBelt);
             recipe.AddIngredient(ItemID.MasterNinjaGear);
-            recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
-            recipe.AddIngredient(ItemID.DD2PetGato);
             
-            /*
-Lightning T2
-CorrodlingStaff
-TotalityButterfly
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.DD2LightningAuraT2Popper);
+                recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
+                recipe.AddIngredient(thorium.ItemType("TotalityButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
+            }
+            
+            recipe.AddIngredient(ItemID.DD2PetGato);
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
