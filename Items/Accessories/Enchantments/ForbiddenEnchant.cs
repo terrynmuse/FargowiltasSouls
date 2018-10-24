@@ -42,8 +42,8 @@ You are immune to the Mighty Wind debuff");
             {      
                 recipe.AddIngredient(ItemID.MagicCarpet);
                 recipe.AddIngredient(thorium.ItemType("KarmicHolder"));
-                recipe.AddIngredient(ItemID.SpiritFlame);
                 recipe.AddIngredient(thorium.ItemType("RasWhisper"));
+                recipe.AddIngredient(ItemID.SpiritFlame);
                 recipe.AddIngredient(ItemID.BookStaff);
             }
             else
