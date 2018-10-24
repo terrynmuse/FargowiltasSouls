@@ -37,18 +37,20 @@ Summons a Companion Cube Pet");
             recipe.AddIngredient(ItemID.VortexHelmet);
             recipe.AddIngredient(ItemID.VortexBreastplate);
             recipe.AddIngredient(ItemID.VortexLeggings);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.VortexBooster);
+                recipe.AddIngredient(thorium.ItemType("VoidLance"));
+                recipe.AddIngredient(thorium.ItemType("BlackBow"));
+            }
+            
             recipe.AddIngredient(ItemID.VortexBeater);
             recipe.AddIngredient(ItemID.Phantasm);
             recipe.AddIngredient(ItemID.SDMG);
             recipe.AddIngredient(ItemID.CompanionCube);
+
             recipe.AddTile(TileID.LunarCraftingStation);
-
-            /*
-Void Lance
-BlackBow
-VortexBooster
-             */
-
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
