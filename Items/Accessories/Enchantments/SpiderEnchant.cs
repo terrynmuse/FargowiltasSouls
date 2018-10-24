@@ -36,17 +36,24 @@ Summons a pet Spider");
             recipe.AddIngredient(ItemID.SpiderMask);
             recipe.AddIngredient(ItemID.SpiderBreastplate);
             recipe.AddIngredient(ItemID.SpiderGreaves);
-            recipe.AddIngredient(ItemID.SpiderStaff);
-            recipe.AddIngredient(ItemID.QueenSpiderStaff);
-            recipe.AddIngredient(ItemID.BatScepter);
-            recipe.AddIngredient(ItemID.SpiderEgg);
             
-            /*
-WebGun
-RiffWeaver
-ArachnidSubwoofer
-ZereneButterfly
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("ArachnidSubwoofer"));
+                recipe.AddIngredient(thorium.ItemType("WebGun"));
+                recipe.AddIngredient(ItemID.SpiderStaff);
+                recipe.AddIngredient(ItemID.QueenSpiderStaff);
+                recipe.AddIngredient(ItemID.BatScepter);
+                recipe.AddIngredient(thorium.ItemType("ZereneButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.SpiderStaff);
+                recipe.AddIngredient(ItemID.QueenSpiderStaff);
+                recipe.AddIngredient(ItemID.BatScepter);
+            }   
+            
+            recipe.AddIngredient(ItemID.SpiderEgg);
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
