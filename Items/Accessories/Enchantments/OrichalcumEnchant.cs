@@ -37,15 +37,22 @@ Attacks may spawn fireballs to rotate around you");
             recipe.AddIngredient(ItemID.OrichalcumBreastplate);
             recipe.AddIngredient(ItemID.OrichalcumLeggings);
             recipe.AddIngredient(ItemID.OrichalcumWaraxe);
-            recipe.AddIngredient(ItemID.FlowerofFire);
-            recipe.AddIngredient(ItemID.FlowerofFrost);
-            recipe.AddIngredient(ItemID.CursedFlames);
-
-            /*
-OrichalcumStaff
-OrichalcumPelter
-PrismaticSpray
-             */
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("OrichalcumPelter"));
+                recipe.AddIngredient(thorium.ItemType("OrichalcumStaff"));
+                recipe.AddIngredient(ItemID.FlowerofFire);
+                recipe.AddIngredient(ItemID.FlowerofFrost);
+                recipe.AddIngredient(ItemID.CursedFlames);
+                recipe.AddIngredient(thorium.ItemType("PrismaticSpray"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.FlowerofFire);
+                recipe.AddIngredient(ItemID.FlowerofFrost);
+                recipe.AddIngredient(ItemID.CursedFlames);
+            }
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
