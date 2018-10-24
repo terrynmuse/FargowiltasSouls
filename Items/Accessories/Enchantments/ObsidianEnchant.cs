@@ -37,17 +37,23 @@ While standing in lava, you gain 10 more armor penetration, 10% attack speed, an
             recipe.AddIngredient(ItemID.ObsidianHelm);
             recipe.AddIngredient(ItemID.ObsidianShirt);
             recipe.AddIngredient(ItemID.ObsidianPants);
-            recipe.AddIngredient(ItemID.ObsidianRose);
-            recipe.AddIngredient(ItemID.LavaWaders);
-            recipe.AddIngredient(ItemID.SharkToothNecklace); //hmmm reee
             
-            /*
-ObsidianScale
-ObsidianButterfly
-Obsidian armor thorium
-Obsidian armor thorium
-Obsidian armor thorium
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("AncientObsidianHelmet"));
+                recipe.AddIngredient(thorium.ItemType("AncientObsidianChestguard"));
+                recipe.AddIngredient(thorium.ItemType("AncientObsidianGreaves"));
+                recipe.AddIngredient(thorium.ItemType("ObsidianScale"));
+                recipe.AddIngredient(ItemID.ObsidianRose);
+                recipe.AddIngredient(ItemID.SharkToothNecklace);
+                recipe.AddIngredient(thorium.ItemType("ObsidianButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.ObsidianRose);
+                recipe.AddIngredient(ItemID.LavaWaders);
+                recipe.AddIngredient(ItemID.SharkToothNecklace);
+            }
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
