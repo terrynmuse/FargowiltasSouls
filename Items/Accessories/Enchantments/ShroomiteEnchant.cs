@@ -39,14 +39,20 @@ Summons a pet Baby Truffle");
             recipe.AddIngredient(ItemID.ShroomiteLeggings);
             recipe.AddIngredient(ItemID.MushroomSpear);
             recipe.AddIngredient(ItemID.Hammush);
-            recipe.AddIngredient(ItemID.Uzi);
-            recipe.AddIngredient(ItemID.StrangeGlowingMushroom);
             
-            /*
-mycelium gatling gun
-ShroomiteButterfly
-Chlorophyte shotbow
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("MyceliumGatlingGun"));
+                recipe.AddIngredient(ItemID.ChlorophyteShotbow);
+                recipe.AddIngredient(ItemID.Uzi);
+                recipe.AddIngredient(thorium.ItemType("ShroomiteButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.Uzi);
+            }
+            
+            recipe.AddIngredient(ItemID.StrangeGlowingMushroom);
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
