@@ -38,19 +38,22 @@ Summons a pet Baby Dino");
             recipe.AddIngredient(ItemID.FossilHelm);
             recipe.AddIngredient(ItemID.FossilShirt);
             recipe.AddIngredient(ItemID.FossilPants);
-            recipe.AddIngredient(ItemID.AmberStaff);
             recipe.AddIngredient(ItemID.AntlionClaw);
+            recipe.AddIngredient(ItemID.AmberStaff);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("PrehistoricStaff"));
+                recipe.AddIngredient(ItemID.BoneJavelin, 300);
+                recipe.AddIngredient(thorium.ItemType("Sitar"));
+                recipe.AddIngredient(thorium.ItemType("AmberButterfly"));
+            }
+
             recipe.AddIngredient(ItemID.AmberMosquito);
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
-            
-            /*
-prehistoric staff
-AmberButterfly
-Sitar
-Bone Javelins
-            */
         }
     }
 }
