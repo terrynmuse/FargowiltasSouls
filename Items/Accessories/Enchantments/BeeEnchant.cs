@@ -26,6 +26,7 @@ Summons a pet Baby Hornet");
             item.value = 50000;
         }
 
+        //meme add back free hornet minion IMO
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).BeeEffect(hideVisual);
@@ -38,15 +39,21 @@ Summons a pet Baby Hornet");
             recipe.AddIngredient(ItemID.BeeBreastplate);
             recipe.AddIngredient(ItemID.BeeGreaves);
             recipe.AddIngredient(ItemID.HiveBackpack);
-            recipe.AddIngredient(ItemID.BeeGun);
-            recipe.AddIngredient(ItemID.Nectar);
             
-            /*
-honey recorder
-Sweetwing Butterfly
-Bee Booties
-Bee Keeper
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("BeeBooties"));
+                recipe.AddIngredient(ItemID.BeeKeeper);
+                recipe.AddIngredient(ItemID.BeeGun);
+                recipe.AddIngredient(thorium.ItemType("HoneyRecorder"));
+                recipe.AddIngredient(thorium.ItemType("SweetwingButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.BeeGun);
+            }
+            
+            recipe.AddIngredient(ItemID.Nectar);
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
