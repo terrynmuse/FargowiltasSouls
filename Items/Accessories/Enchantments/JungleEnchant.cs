@@ -38,17 +38,24 @@ Spore damage scales with magic damage");
             recipe.AddIngredient(ItemID.JungleHat);
             recipe.AddIngredient(ItemID.JungleShirt);
             recipe.AddIngredient(ItemID.JunglePants);
-            recipe.AddIngredient(ItemID.CordageGuide);
-            recipe.AddIngredient(ItemID.JungleRose);
-            recipe.AddIngredient(ItemID.DoNotStepontheGrass);
             
-            /*
-Jungle Spore Butterfly
-Thorn Chakram
-Grubby
-Boomstick
-Toxic Subwoofer
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("ToxicSubwoofer"));
+                recipe.AddIngredient(ItemID.JungleRose);
+                recipe.AddIngredient(ItemID.ThornChakram);
+                recipe.AddIngredient(ItemID.Boomstick);
+                recipe.AddIngredient(ItemID.DoNotStepontheGrass);
+                recipe.AddIngredient(ItemID.Grubby);
+                recipe.AddIngredient(thorium.ItemType("JungleSporeButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.CordageGuide);
+                recipe.AddIngredient(ItemID.JungleRose);
+                recipe.AddIngredient(ItemID.ThornChakram);
+                recipe.AddIngredient(ItemID.DoNotStepontheGrass);
+            }
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
