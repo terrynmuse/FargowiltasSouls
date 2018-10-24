@@ -37,16 +37,24 @@ Increases all knockback");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyTitaHead");
             recipe.AddIngredient(ItemID.TitaniumBreastplate);
             recipe.AddIngredient(ItemID.TitaniumLeggings);
-            recipe.AddIngredient(ItemID.TitaniumSword);
-            recipe.AddIngredient(ItemID.SlapHand);
-            recipe.AddIngredient(ItemID.Anchor);
-            recipe.AddIngredient(ItemID.MonkStaffT1);
 
-            /*
-TitaniumRifle
-TitaniumStaff
-TitaniumAxe
-             */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.TitaniumSword);
+                recipe.AddIngredient(thorium.ItemType("TitaniumStaff"));
+                recipe.AddIngredient(ItemID.SlapHand);
+                recipe.AddIngredient(ItemID.Anchor);
+                recipe.AddIngredient(thorium.ItemType("Saba"));
+                recipe.AddIngredient(thorium.ItemType("ClimbersIceAxe"));
+                recipe.AddIngredient(ItemID.MonkStaffT1);  
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.TitaniumSword);
+                recipe.AddIngredient(ItemID.SlapHand);
+                recipe.AddIngredient(ItemID.Anchor);
+                recipe.AddIngredient(ItemID.MonkStaffT1);
+            }
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
