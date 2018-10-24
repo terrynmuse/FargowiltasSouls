@@ -37,15 +37,21 @@ Small chance for an attack to gain 33% life steal");
             recipe.AddIngredient(ItemID.PalladiumBreastplate);
             recipe.AddIngredient(ItemID.PalladiumLeggings);
             recipe.AddIngredient(ItemID.PalladiumSword);
-            recipe.AddIngredient(ItemID.PalladiumRepeater);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("PalladiumSubMachineGun"));
+                recipe.AddIngredient(thorium.ItemType("PalladiumStaff"));
+                recipe.AddIngredient(thorium.ItemType("LifeLeech"));
+                recipe.AddIngredient(thorium.ItemType("VampireScepter"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.PalladiumRepeater);
+            }
+            
             recipe.AddIngredient(ItemID.SoulDrain);
             recipe.AddIngredient(ItemID.VampireKnives);
-
-            /*
-PalladiumStaff
-PalladiumSubMachineGun
-LifeLeech
-             */
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
