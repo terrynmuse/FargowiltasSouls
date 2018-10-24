@@ -37,16 +37,23 @@ Summons a sword familiar that scales with minion damage");
             recipe.AddIngredient(ItemID.SilverHelmet);
             recipe.AddIngredient(ItemID.SilverChainmail);
             recipe.AddIngredient(ItemID.SilverGreaves);
-            recipe.AddIngredient(ItemID.SilverBroadsword);
-            recipe.AddIngredient(ItemID.SilverBow);
-            recipe.AddIngredient(ItemID.SapphireStaff);
 
-            /*
-SilverBulwark
-SaphireButterfly
-EnchantedSword
-EnchantedShield
-             */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("SilverBulwark"));
+                recipe.AddIngredient(thorium.ItemType("EnchantedShield"));
+                recipe.AddIngredient(ItemID.SilverBroadsword);
+                recipe.AddIngredient(ItemID.SilverBow);
+                recipe.AddIngredient(ItemID.SapphireStaff);
+                recipe.AddIngredient(ItemID.BluePhaseblade);
+                recipe.AddIngredient(thorium.ItemType("SaphireButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.SilverBroadsword);
+                recipe.AddIngredient(ItemID.SapphireStaff);
+                recipe.AddIngredient(ItemID.BluePhaseblade);
+            }
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
