@@ -37,16 +37,23 @@ Your weapons shoot at 1/8 the speed
             recipe.AddIngredient(ItemID.TungstenHelmet);
             recipe.AddIngredient(ItemID.TungstenChainmail);
             recipe.AddIngredient(ItemID.TungstenGreaves);
-            recipe.AddIngredient(ItemID.TungstenHammer);
-            recipe.AddIngredient(ItemID.EmeraldStaff);
-            recipe.AddIngredient(ItemID.Snail);
-
-            /*
-GlowingSnail
-Sluggy
-TungstenBulwark
-EmeraldButterfly
-             */
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("TungstenBulwark"));
+                recipe.AddIngredient(ItemID.TungstenHammer);
+                recipe.AddIngredient(ItemID.EmeraldStaff);
+                recipe.AddIngredient(ItemID.GreenPhaseblade);
+                recipe.AddIngredient(ItemID.Snail);
+                recipe.AddIngredient(ItemID.Sluggy);
+                recipe.AddIngredient(thorium.ItemType("EmeraldButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.TungstenHammer);
+                recipe.AddIngredient(ItemID.EmeraldStaff);
+                recipe.AddIngredient(ItemID.Snail);
+            }
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
