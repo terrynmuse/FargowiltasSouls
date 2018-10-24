@@ -39,15 +39,16 @@ Summons a Tiki Spirit");
             recipe.AddIngredient(ItemID.PygmyNecklace);
             recipe.AddIngredient(ItemID.PygmyStaff);
             recipe.AddIngredient(ItemID.Blowgun);
-            recipe.AddIngredient(ItemID.TikiTotem);
             
-            /*
-hex wand
-lightningbug
-gold frog
-the incubator
-one goes away ree
-            */
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("HexWand"));
+                recipe.AddIngredient(thorium.ItemType("TheIncubator"));
+                recipe.AddIngredient(ItemID.GoldFrog);
+            }
+            
+            recipe.AddIngredient(ItemID.TikiTotem);
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
