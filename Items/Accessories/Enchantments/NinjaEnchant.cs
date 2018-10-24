@@ -44,8 +44,8 @@ Summons a pet Black cat");
                 recipe.AddIngredient(ItemID.Shuriken, 100);
                 recipe.AddIngredient(thorium.ItemType("SeaNinjaStar"));
                 recipe.AddIngredient(ItemID.SmokeBomb, 50);
-                recipe.AddIngredient(thorium.ItemType("BentZombieArm"));
                 recipe.AddIngredient(thorium.ItemType("Scorpain"));
+                recipe.AddIngredient(thorium.ItemType("AmphibianEgg"));
             }
             else
             {
