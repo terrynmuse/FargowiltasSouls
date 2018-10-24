@@ -40,14 +40,20 @@ Summons a pet Seedling");
             recipe.AddIngredient(ItemID.ChlorophyteGreaves);
             recipe.AddIngredient(ItemID.FlowerBoots);
             recipe.AddIngredient(ItemID.StaffofRegrowth);
-            recipe.AddIngredient(ItemID.LeafBlower);
-            recipe.AddIngredient(ItemID.Seedling);
+
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("ChlorophyteStaff"));
+                recipe.AddIngredient(ItemID.FlowerPow);
+                recipe.AddIngredient(ItemID.LeafBlower);
+                recipe.AddIngredient(thorium.ItemType("ChlorophyteButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.LeafBlower);
+            }
             
-            /*
-Chlorophyte Butterfly
-Flower Pow
-chloro staff
-            */
+            recipe.AddIngredient(ItemID.Seedling);
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
