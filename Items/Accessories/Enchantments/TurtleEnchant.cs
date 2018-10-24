@@ -39,17 +39,17 @@ Summons a pet Lizard and Turtle");
             recipe.AddIngredient(ItemID.TurtleScaleMail);
             recipe.AddIngredient(ItemID.TurtleLeggings);
             recipe.AddIngredient(ItemID.FleshKnuckles);
-            recipe.AddIngredient(ItemID.NettleBurst);
+            recipe.AddIngredient(ItemID.ChlorophytePartizan);
+
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("AbsintheFury"));
+                recipe.AddIngredient(ItemID.Yelets);
+                recipe.AddIngredient(thorium.ItemType("TurtleDrums"));
+            }
+            
             recipe.AddIngredient(ItemID.Seaweed);
             recipe.AddIngredient(ItemID.LizardEgg);
-            
-            /*
-Chlorophyte Partizan
-Absinthe Fury
-Yelets
-Frog
-Turtle Drums
-            */
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
