@@ -51,15 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Berserker armor",
-            "Berserker armor",
-            "Berserker armor",
+            "BerserkerMask",
+            "BerserkerBreastplate",
+            "BerserkerGreaves",
+            "OrangeMusicPlayer",
             "BerserkerBreaker",
             "BerserkerSoulStaff",
-            "BloodyHighClaw",
-            "OrangeMusicPlayer",
-            "ThermogenicImpaler",
             "SurtrsSword",
+            "BloodyHighClaw",
+            "ThermogenicImpaler",
             "WyvernSlayer"
         };
 
