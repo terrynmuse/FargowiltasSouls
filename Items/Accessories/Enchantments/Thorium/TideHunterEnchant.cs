@@ -51,15 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Tide Hunter armor",
-            "Tide Hunter armor",
-            "Tide Hunter armor",
-            "SharkStorm",
-            "HydroCannon",
-            "NanoClamCane",
-            "PearlPike",
+            "TideHunterCap",
+            "TideHunterChestpiece",
+            "TideHunterLeggings",
             "AgnorsBowl",
             "BucannersBlunderpuss",
+            "PearlPike",
+            "HydroCannon",
+            "NanoClamCane",
+            "SharkStorm",
             "MarineLauncher"
         };
 
