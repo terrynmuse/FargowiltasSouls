@@ -48,20 +48,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             
         }
-        
-        private readonly string[] items =
-        {
-            "Fungus armor",
-            "Fungus armor",
-            "Fungus armor",
-            "FungalPopper",
-            "MorelGrenades",
-            "MushroomButterfly",
-            "MyceliumWhip",
-            "Chum",
-            "LegionOrnament",
-            "VenomKunai" 
-        };
 
         public override void AddRecipes()
         {
@@ -69,9 +55,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             ModRecipe recipe = new ModRecipe(mod);
             
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
-
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddIngredient(thorium.ItemType("FungusHat"));
+            recipe.AddIngredient(thorium.ItemType("FungusGuard"));
+            recipe.AddIngredient(thorium.ItemType("FungusLeggings"));
+            recipe.AddIngredient(thorium.ItemType("Chum"), 300);
+            recipe.AddIngredient(thorium.ItemType("VenomKunai"), 300);
+            recipe.AddIngredient(thorium.ItemType("FungalPopper"), 300);
+            recipe.AddIngredient(thorium.ItemType("MorelGrenades"), 300);
+            recipe.AddIngredient(thorium.ItemType("MyceliumWhip"));
+            recipe.AddIngredient(thorium.ItemType("LegionOrnament"), 300);
+            recipe.AddIngredient(thorium.ItemType("MushroomButterfly"));
+            
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
