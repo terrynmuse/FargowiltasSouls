@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Biotech armor",
-            "Biotech armor",
-            "Biotech armor",
+            "BiotechHood",
+            "BiotechGarment",
+            "BiotechLeggings",
             "NullZoneStaff",
-            "MindMelter",
+            "VoidPlanter",
             "LifeEssenceApparatus",
             "PocketGuardian",
             "LifePulseStaff",
-            "BarrierGenerator - strange plating",
-            "void planter - coznix"
+            "MindMelter",
+            "BarrierGenerator"
         };
 
         public override void AddRecipes()
