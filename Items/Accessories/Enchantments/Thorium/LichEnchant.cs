@@ -51,16 +51,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Lich armor",
-            "Lich armor",
-            "Lich armor",
-            "StudyofLich",
+            "LichCowl",
+            "LichCarapace",
+            "LichTalons",
+            "LichsGaze",
+            "RocketFist",
             "SoulCleaver",
             "DeathGrip",
-            "LichsGaze",
-            "CadaversCornet",
-            "RocketFist",
-            "TitanJavelin"
+            "CadaversCornet"
         };
 
         public override void AddRecipes()
@@ -70,7 +68,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
-
+            
+            recipe.AddIngredient(thorium.ItemType("TitanJavelin"), 300);
+            recipe.AddIngredient(thorium.ItemType("StudyofLich"));
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
