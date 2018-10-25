@@ -48,20 +48,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             
         }
-        
-        private readonly string[] items =
-        {
-            "Shade Master armor",
-            "Shade Master armor",
-            "Shade Master armor",
-            "Shade Dagger",
-            "ShadeKusarigama",
-            "Bugenkai Shurikens",
-            "Soulslashers",
-            "LihzahrdKukri",
-            "EvisceratingClaw",
-            "Purple Music Player"
-        };
 
         public override void AddRecipes()
         {
@@ -69,7 +55,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             ModRecipe recipe = new ModRecipe(mod);
             
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+            recipe.AddIngredient(thorium.ItemType("ShadeMasterMask"));
+            recipe.AddIngredient(thorium.ItemType("ShadeMasterGarb"));
+            recipe.AddIngredient(thorium.ItemType("ShadeMasterTreads"));
+            recipe.AddIngredient(thorium.ItemType("PurpleMusicPlayer"));
+            recipe.AddIngredient(thorium.ItemType("ClockworkBomb"), 300);
+            recipe.AddIngredient(thorium.ItemType("BugenkaiShuriken"), 300);
+            recipe.AddIngredient(thorium.ItemType("ShadeKunai"), 300);
+            recipe.AddIngredient(thorium.ItemType("ShadeDagger"));
+            recipe.AddIngredient(thorium.ItemType("Soulslasher"), 300);
+            recipe.AddIngredient(thorium.ItemType("LihzahrdKukri"), 300);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
