@@ -51,16 +51,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Durasteel armor",
-            "Durasteel armor",
-            "Durasteel armor",
-            "DarkSteel Enchant",
-            "DurasteelRepeater",
             "DurasteelChainsaw",
-            "GreedyMagnet",
+            "DurasteelRepeater",
             "SpudBomber",
+            "ThiefsDagger",
             "SeaMine",
-            "ThiefsDagger"
+            "GreedyMagnet"
         };
 
         public override void AddRecipes()
@@ -68,6 +64,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
+            
+            recipe.AddIngredient(thorium.ItemType("DurasteelHelmet"));
+            recipe.AddIngredient(thorium.ItemType("DurasteelChestplate"));
+            recipe.AddIngredient(thorium.ItemType("DurasteelGreaves"));
+            recipe.AddIngredient(null, "DarkSteelEnchant");
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
