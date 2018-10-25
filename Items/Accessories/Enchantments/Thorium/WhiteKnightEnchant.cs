@@ -52,16 +52,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "White Knight armor",
-            "White Knight armor",
-            "White Knight armor",
-            "Shade Band",
-            "Prism Staff",
-            "Delectable Nut",
-            "Vile Spitter",
-            "BoreanFangStaff",
+            "WhiteKnightMask",
+            "WhiteKnightTabard",
+            "WhiteKnightLeggings",
+            "ShadeBand",
+            "PrismStaff",
+            "VileSpitter",
             "SkyFracture",
-            "PixieWingButterfly"
+            "BoreanFangStaff",
+            "PixieWingButterfly",
+            "DelectableNut"
         };
 
         public override void AddRecipes()
