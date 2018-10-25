@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Dread armor",
-            "Dread armor",
-            "Dread armor",
-            "ImpactDrill",
+            "DreadSkull",
+            "DreadChestplate",
+            "DreadGreaves",
             "CrashBoots",
-            "DreadLauncher",
             "CursedFlail-Core",
-            "ChainGuillotine",
             "GrimSubwoofer",
-            "GreenMusicPlayer"
+            "GreenMusicPlayer",
+            "ChainGuillotine",
+            "ImpactDrill",
+            "DreadLauncher"
         };
 
         public override void AddRecipes()
