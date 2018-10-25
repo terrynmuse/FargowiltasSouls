@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Spirit Trapper armor",
-            "Spirit Trapper armor",
-            "Spirit Trapper armor",
+            "SpiritTrapperHelmet",
+            "SpiritTrapperCuirass",
+            "SpiritTrapperGreaves",
+            "InnerFlame",
             "TabooWand",
-            "StrangeSkull",
             "SpiritBlastWand",
-            "BlueDungeonButterfly",
-            "AntagonizingSpirit",
+            "StrangeSkull",
             "CalmingSpirit",
-            "InnerFlame"
+            "AntagonizingSpirit",
+            "BlueDungeonButterfly" //any
         };
 
         public override void AddRecipes()
