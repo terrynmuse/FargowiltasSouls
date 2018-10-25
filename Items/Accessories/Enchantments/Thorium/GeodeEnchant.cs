@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Geode armor",
-            "Geode armor",
-            "Geode armor",
+            "GeodeHelmet",
+            "GeodeChestplate",
+            "GeodeGreaves",
+            "AdventurersLantern",
             "EnchantedPickaxe",
             "GeodePickaxe",
             "DragonDrill",
             "FleshDrill",
-            "AdventurersLantern",
-            "DavyJonesLockBox ",
-            "DemosGuidance"
+            "DemosGuidance",
+            "DavyJonesLockBox "
         };
 
         public override void AddRecipes()
