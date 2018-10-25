@@ -49,16 +49,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Yew-Wood armor",
-            "Yew-Wood armor",
-            "Yew-Wood armor",
-            "ShadowflameStaff",
-            "Yew-HandledFlintlock",
-            "FeatherFoe",
-            "YewWoodBow",
+            "YewWoodHelmet",
+            "YewWoodBreastguard",
+            "YewWoodLeggings",
             "GoblinWarShield",
             "SandstoneBow",
-            "SpikeBombs"
+            "FeatherFoe",
+            "YewWoodBow",
+            "YewHandledFlintlock",
+            "ShadowflameStaff"
         };
 
         public override void AddRecipes()
@@ -68,7 +67,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
-
+            
+            recipe.AddIngredient(thorium.ItemType("SpikeBombs"), 300);
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
