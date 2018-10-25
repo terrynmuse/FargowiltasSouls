@@ -51,15 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "FallenPaladin armor",
-            "FallenPaladin armor",
-            "FallenPaladin armor",
+            "FallenPaladinFaceguard",
+            "FallenPaladinCuirass",
+            "FallenPaladinGreaves",
             "Wynebgwrthucher",
-            "HolyHammer - paladin",
+            "TwilightStaff",
+            "HolyHammer",
+            "LightBringersWarhammer"
+            "BubbleBulwarkWand",
             "FriendlyFireStaff",
-            "PillPopper - golem tier",
-            "TwilightStaff - dark/light shard",
-            "BubbleBulwarkWand"
+            "PillPopper"
         };
 
         public override void AddRecipes()
