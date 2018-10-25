@@ -35,27 +35,25 @@ Summons a magical fairy");
         {
             ModRecipe recipe = new ModRecipe(mod);
             
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyHallowHead");
+            recipe.AddIngredient(ItemID.HallowedPlateMail);
+            recipe.AddIngredient(ItemID.HallowedGreaves);
+            recipe.AddIngredient(null, "SilverEnchant");
+            
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.Hallowedhead1);
-                recipe.AddIngredient(ItemID.Hallowedhead2);
-                recipe.AddIngredient(ItemID.Hallowedhead3);
-                recipe.AddIngredient(ItemID.HallowedPlateMail);
-                recipe.AddIngredient(ItemID.HallowedGreaves);
-                recipe.AddIngredient(null, "SilverEnchant");
                 recipe.AddIngredient(thorium.ItemType("EnchantedShield"));
                 recipe.AddIngredient(ItemID.Excalibur);
+                recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
+                recipe.AddIngredient(thorium.ItemType("FuschiaButterfly"));
+                recipe.AddIngredient(thorium.ItemType("HallowedButterfly"));
             }
             else
             {
-                recipe.AddRecipeGroup("FargowiltasSouls:AnyHallowHead");
-                recipe.AddIngredient(ItemID.HallowedPlateMail);
-                recipe.AddIngredient(ItemID.HallowedGreaves);
-                recipe.AddIngredient(null, "SilverEnchant");
                 recipe.AddIngredient(ItemID.Excalibur);
+                recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
             }
-            
-            recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
+                      
             recipe.AddIngredient(ItemID.FairyBell);
             
             recipe.AddTile(TileID.CrystalBall);
