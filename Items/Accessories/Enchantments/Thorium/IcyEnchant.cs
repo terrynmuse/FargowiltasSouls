@@ -49,15 +49,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Icy armor",
-            "Icy armor",
-            "Icy armor",
+            "IcyBandanna",
+            "IcyMail",
+            "IcyGreaves",
             "FrostFireKatana",
+            "FrostFury",
             "SpellBookBlizzard",
             "IceBoomerang",
-            "FrostFury",
-            "ShiverthornButterfly",
             "SnowballLauncher",
+            "ShiverthornButterfly",
             "Fish"
         };
 
