@@ -49,16 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Flesh armor",
-            "Flesh armor",
-            "Flesh armor",
-            "BlisterSack",
-            "SpineBuster",
-            "BloodBelcher",
+            "FleshMask",
+            "FleshBody",
+            "FleshLegs",
             "FleshWings",
-            "GrimFlayer",
             "VampireGland",
+            "GrimFlayer",
             "FleshMace"
+            "BloodBelcher",
+            "BloodClotStaff"
+            "BlisterSack",
         };
 
         public override void AddRecipes()
