@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Granite armor",
-            "Granite armor",
-            "Granite armor",
-            "EnergyProjector",
-            "BoulderProbeStaff",
-            "EnergywingButterfly",
+            "GraniteHelmet",
+            "GraniteChestguard",
+            "GraniteGreaves",
+            "NightVisionHelmet",
             "EyeoftheStorm",
             "EnergizedSubwoofer",
-            "NightVisionHelmet",
-            "GraniteSaber"
+            "GraniteSaber",
+            "EnergyProjector",
+            "BoulderProbeStaff",
+            "EnergywingButterfly"
         };
 
         public override void AddRecipes()
