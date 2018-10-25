@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Rhapsodist armor",
-            "Rhapsodist armor",
-            "Rhapsodist armor",
-            "Rhapsodist armor (Both helmets)",
-            "Holophonor",
-            "EdgeofImagination",
-            "Sousaphone",
+            "RhapsodistHat",
+            "RhapsodistHelmet",
+            "RhapsodistChestwoofer",
+            "RhapsodistBoots",
+            "MusicSheetHarp",
             "SirensLyre",
             "TerrariumAutoharp",
-            "MusicSheetHarp"
+            "Holophonor",
+            "Sousaphone",
+            "EdgeofImagination"
         };
 
         public override void AddRecipes()
