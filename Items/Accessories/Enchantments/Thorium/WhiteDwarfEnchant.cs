@@ -49,15 +49,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "White Dwarf armor",
-            "White Dwarf armor",
-            "White Dwarf armor",
-            "TheBlackDagger",
-            "WhiteDwarfKunai",
-            "CosmicDagger",
+            "WhiteDwarfMask",
+            "WhiteDwarfGuard",
+            "WhiteDwarfGreaves",
             "TheEbonHammer",
-            "LodestoneHammer",
             "GeodeMallet",
+            "LodestoneHammer",
+            "TheBlackDagger",
+            "CosmicDagger",
+            "WhiteDwarfKunai",
             "LuminiteButterfly"
         };
 
