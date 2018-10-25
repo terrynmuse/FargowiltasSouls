@@ -49,16 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Tide Turner armor",
-            "Tide Turner armor",
-            "Tide Turner armor",
-            "Tide Turner armor (both helms)",
-            "TidalWave",
-            "OceansJudgement",
-            "DeityTrefork",
+            "TideTurnerDepthHelmet",
+            "TideTurnerDepthCrown",
+            "TideTurnerDepthGuard",
+            "TideTurnerDepthWalkers",
+            "PoseidonsCharge", 
             "MantisShrimpPunch",
             "QuakeGauntlet",
-            "PoseidonsCharge"
+            "TidalWave",
+            "OceansJudgement",
+            "DeityTrefork"
         };
 
         public override void AddRecipes()
