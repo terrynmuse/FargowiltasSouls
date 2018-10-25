@@ -49,16 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Dragon armor",
-            "Dragon armor",
-            "Dragon armor",
-            "DragonsBreath",
+            "DragonMask",
+            "DragonBreastplate",
+            "DragonGreaves",
             "DragonWings",
+            "DragonsGaze"
+            "DragonsBreath",
             "EbonyTail",
             "DraconicMagmaStaff",
-            "CloudyChewToy",
             "CursedFlameButterfly",
-            "DragonsGaze"
+            "CloudyChewToy",
         };
 
         public override void AddRecipes()
