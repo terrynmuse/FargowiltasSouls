@@ -55,11 +55,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "BerserkerBreastplate",
             "BerserkerGreaves",
             "OrangeMusicPlayer",
-            "BerserkerBreaker",
-            "BerserkerSoulStaff",
             "SurtrsSword",
             "BloodyHighClaw",
             "ThermogenicImpaler",
+            "BerserkerBreaker",
+            "BerserkerSoulStaff",
             "WyvernSlayer"
         };
 
