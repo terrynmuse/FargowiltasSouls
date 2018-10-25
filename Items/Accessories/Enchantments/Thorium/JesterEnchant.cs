@@ -51,15 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {        
-            "Jester armor",
-            "Jester armor",
-            "Jester armor",
-            "EbonTambourine/ ShadewoodTambourine",
+            "JesterMask/other", //either one
+            "JesterShirt",
+            "JesterLeggings",
             "FanLetter",
-            "SkywareLute",
+            "EbonTambourine/ShadewoodTambourine",
             "MeteoriteOboe",
-            "DeathWeedButterfly",
+            "SkywareLute",
             "Panflute",
+            "DeathWeedButterfly",
             "Mouse"
         };
 
