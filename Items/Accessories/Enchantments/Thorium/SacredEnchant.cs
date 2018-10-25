@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Sacred armor",
-            "Sacred armor",
-            "Sacred armor",
-            "LightBurstWand - soul of light",
-            "SacredCharge - hallow charm w armor",
-            "Sacred Buldgeon",
-            "Twinkle - pet, pixie dust",
-            "LilCherubWand - post coznix sell",
+            "SacredHelmet",
+            "SacredBreastplate",
+            "SacredLeggings",
             "RenewStaff",
-            "Liberation"
+            "LightBurstWand",
+            "SacredCharge",
+            "Sacred Buldgeon",
+            "LilCherubWand",
+            "Liberation",
+            "Twinkle"
         };
 
         public override void AddRecipes()
