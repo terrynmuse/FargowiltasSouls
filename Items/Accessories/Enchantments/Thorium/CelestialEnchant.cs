@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Celestial armor",
-            "Celestial armor",
-            "Celestial armor",
+            "CelestialCrown",
+            "CelestialVestment",
+            "CelestialLeggings",
             "CelestialCarrier",
-            "BlackScythe",
-            "CelestialBurstStaff - armor tier",
-            "DivineStaff - armor tier",
-            "AncientTomeofRevival - golem tier",
+            "HeavenlyCloudScepter",
             "AscensionStatuette",
-            "HeavenlyCloudScepter - sold hardmode"
+            "AncientTomeofRevival",
+            "BlackScythe",
+            "CelestialBurstStaff ",
+            "DivineStaff"
         };
 
         public override void AddRecipes()
