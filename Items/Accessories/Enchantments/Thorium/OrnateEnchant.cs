@@ -51,15 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Ornate armor",
-            "Ornate armor",
-            "Ornate armor",
+            "OrnateHat",
+            "OrnateJerkin",
+            "OrnateLeggings",
             "ConcertTickets",
             "TheGreenTambourine",
-            "Vuvuzela blah",
-            "Vuvuzela blah",
-            "Vuvuzela blah",
-            "Vuvuzela blah",
+            "VuvuzelaBlue",
+            "VuvuzelaGreen",
+            "VuvuzelaRed",
+            "VuvuzelaYellow",
             "MusicSheetDoubleBass"
         };
 
