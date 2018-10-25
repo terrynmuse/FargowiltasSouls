@@ -51,14 +51,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Steel armor", // better think of a way to get this meme in hardmode
-            "Steel armor",
-            "Steel armor",
+            "SteelHelmet", // better think of a way to get this meme in hardmode
+            "SteelChestplate",
+            "SteelGreaves",
             "IronEnchant",
-            "SteelBlade",
             "SteelPick",
             "SteelAxe",
             "SteelMallet",
+            "SteelBlade",
             "SuperAnvil",
             "WarForger"
         };
