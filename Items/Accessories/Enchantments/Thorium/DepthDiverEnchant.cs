@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Depth Diver armor",
-            "Depth Diver armor",
-            "Depth Diver armor",
-            "AquamarineWineglass",
+            "DepthDiverHelmet",
+            "DepthDiverChestplate",
+            "DepthDiverGreaves",
             "DeepDarkSubwoofer",
-            "GeyserStaff",
-            "DeeplightEsca",
             "MagicConch",
+            "AquamarineWineglass",
+            "GeyserStaff",
             "MistyTotem",
-            "Jellyfish bait"
+            "DeeplightEsca",
+            "Jellyfish bait" //or pet?
         };
 
         public override void AddRecipes()
