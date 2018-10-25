@@ -51,15 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Ocean armor",
-            "Ocean armor",
-            "Ocean armor",
+            "OceanHelmet",
+            "OceanChestguard",
+            "OceanGreaves",
             "SeaBreezePendant",
             "BubbleMagnet",
             "BreathingReed",
+            "OceanSlasher",
             "StarfishWand",
             "SwordFish",
-            "OceanSlasher",
             "Tuna"
         };
 
