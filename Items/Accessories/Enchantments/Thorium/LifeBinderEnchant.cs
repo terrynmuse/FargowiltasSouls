@@ -51,15 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Life Binder armor",
-            "Life Binder armor",
-            "Life Binder armor",
+            "LifeBinderMask",
+            "LifeBinderBreastplate",
+            "LifeBinderGreaves",
+            "AloeLeaf",
+            "BloomGuard",
+            "SunrayStaff",
             "MorningDew",
             "MistWeaver",
-            "BloomGuard" // pre hm jung
-            "SunrayStaff", //solar eclipse
             "LifeFruitButterfly",
-            "AloeLeaf",
             "RichLeaf"
         };
 
