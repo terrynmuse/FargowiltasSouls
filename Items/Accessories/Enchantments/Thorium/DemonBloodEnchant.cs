@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "DemonBlood armor",
-            "DemonBlood armor",
-            "DemonBlood armor",
+            "DemonBloodHelmet",
+            "DemonBloodBreastplate",
+            "DemonBloodGreaves",
             "DemonBloodBadge",
-            "BloodDemonSubwoofer",
-            "DemonBloodStaff",
-            "IchorButterfly",
             "VileFlail-Core",
-            "DarkContagion",
+            "BloodDemonSubwoofer",
             "YellowMusicPlayer"
+            "DemonBloodStaff",
+            "DarkContagion",
+            "IchorButterfly",
         };
 
         public override void AddRecipes()
