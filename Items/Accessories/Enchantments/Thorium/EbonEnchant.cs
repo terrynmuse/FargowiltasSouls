@@ -51,15 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Ebon armor",
-            "Ebon armor",
-            "Ebon armor",
-            "DarkHeart", //shadow orb drop
-            "EaterofPain/TheStalker", //drop EoW
-            "DarkGift", //dark mage drop
+            "EbonHood",
+            "EbonCloak",
+            "EbonLeggings",
             "LeechBolt", //sold by zombie
             "ShadowWand", //yew wood
+            "DarkHeart", //shadow orb drop
             "PoisonPrickler", //jungle spore
+            "EaterofPain/TheStalker", //drop EoW
+            "DarkGift", //dark mage drop
             "BloodiedButterfly" //blood moon
         };
 
