@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Iridescent armor",
-            "Iridescent armor",
-            "Iridescent armor",
-            "Equalizer", //post bee
-            "CleansingWaterPouch", //aquatite bars
+            "IridescentHelmet",
+            "IridescentMail",
+            "IridescentGreaves",
+            "Equalizer",
+            "HereticBreaker",
             "AquaiteScythe",
-            "IridescentStaff", //pixie dust
-            "HereticBreaker", //gold
-            "SerpentsBubbleWand", //abyssal chitin
-            "TranquilLyre" //sold
+            "CleansingWaterPouch", 
+            "TranquilLyre",
+            "IridescentStaff", 
+            "SerpentsBubbleWand"
         };
 
         public override void AddRecipes()
