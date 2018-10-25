@@ -51,12 +51,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Titan armor",
-            "Titan armor",
-            "Titan armor",
-            "Titan armor",
-            "Titan armor (All three helmets)",
-            "Cyan Music Player",
+            "TitanHeadgear",
+            "TitanHelmet",
+            "TitanMask",
+            "Titan Breastplate",
+            "TitanGreaves",
+            "CyanMusicPlayer",
             "MaskoftheCrystalEye",
             "Executioner",
             "KineticKnife",
