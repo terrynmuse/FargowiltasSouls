@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Silk armor",
-            "Silk armor",
-            "Silk armor", //other head?
+            "SilkCap",
+            "SilkHat",
+            "SilkTabard",
+            "SilkLeggings",
             "WandofSparking",
             "IceCube",
             "EigthPlagueStaff",
-            "ThoriumStaff",
             "SpellBookWindGust", 
-            "ZebraSwallowtailButterfly",
-            "Cure"
+            "Cure",
+            "ZebraSwallowtailButterfly"
         };
 
         public override void AddRecipes()
