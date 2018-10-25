@@ -47,29 +47,24 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             
             
-        }
-        
-        private readonly string[] items =
-        {
-            "Sandstone armor",
-            "Sandstone armor",
-            "Sandstone armor",
-            "SandstoneThrowingKnifes",
-            "Wreath",
-            "DesertWindRune",
-            "TalonBurst",
-            "Stone ThrowingSpear",
-            "OceanThrowingAxe",
-            "ThrowingKnives"
-        };
+        } 
 
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("SandstoneHelmet"));
+            recipe.AddIngredient(thorium.ItemType("SandstoneMail"));
+            recipe.AddIngredient(thorium.ItemType("SandstoneGreaves"));
+            recipe.AddIngredient(thorium.ItemType("Wreath"));
+            recipe.AddIngredient(thorium.ItemType("DesertWindRune"));
+            recipe.AddIngredient(thorium.ItemType("StoneThrowingSpear"), 300);
+            recipe.AddIngredient(thorium.ItemType("OceanThrowingAxe"), 300);
+            recipe.AddIngredient(thorium.ItemType("SandstoneThrowingKnifes"), 300);
+            recipe.AddIngredient(thorium.ItemType("TalonBurst"));
+            recipe.AddIngredient(thorium.ItemType(ItemID.BlackScorpion));
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
