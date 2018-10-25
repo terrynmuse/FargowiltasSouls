@@ -51,9 +51,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Bronze armor",
-            "Bronze armor",
-            "Bronze armor",
+            "BronzeHelmet",
+            "BronzeBreastplate",
+            "BronzeGreaves",
             "ChampionsRebuttal",
             "SpartansSandals",
             "SpartansSubwoofer",
