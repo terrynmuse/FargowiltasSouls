@@ -72,7 +72,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(thorium.ItemType("GatewayGlass"));
             recipe.AddIngredient(thorium.ItemType("LostMail"));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
