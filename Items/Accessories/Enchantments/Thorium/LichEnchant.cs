@@ -72,7 +72,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(thorium.ItemType("TitanJavelin"), 300);
             recipe.AddIngredient(thorium.ItemType("StudyofLich"));
             
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
