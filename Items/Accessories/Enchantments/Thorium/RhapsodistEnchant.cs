@@ -71,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
