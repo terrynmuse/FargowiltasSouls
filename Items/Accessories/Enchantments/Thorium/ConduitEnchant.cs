@@ -72,7 +72,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(ItemID.BrainScrambler);
             recipe.AddIngredient(thorium.ItemType("OmegaDrive"));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
