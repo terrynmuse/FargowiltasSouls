@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'Who needs to aim?'
 Every 8th projectile you shoot will split into 3
-Any secondary projectiles may also split");
+Any secondary projectiles may also split"); //possibly make it the old way but actually work meme
         }
 
         public override void SetDefaults()
