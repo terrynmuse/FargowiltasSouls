@@ -114,7 +114,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             }
             
             recipe.AddIngredient(ItemID.SquirrelGold);
-            recipe.AddIngredient(ItemID.ParrotCracker);
+            recipe.AddIngredient(thorium.ItemType("AncientDrachma"));
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
