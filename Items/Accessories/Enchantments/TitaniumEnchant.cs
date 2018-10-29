@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 @"'Hit me with your best shot' 
 Any damage you take while at full HP is reduced by 90%
 Briefly become invulnerable after striking an enemy when below 50% HP
-Increases all knockback");
+Increases all knockback"); //how about literally just shadow dodge ech
         }
 
         public override void SetDefaults()
