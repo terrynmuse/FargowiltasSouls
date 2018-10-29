@@ -52,7 +52,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private readonly string[] items =
         {
             "ChampionWing",
-            "Zephyr",
             "Aerial",
             "HarpyPelter",
             "WindyTotemCaller",
@@ -71,6 +70,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(ItemID.HarpyWings);
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+            
+            recipe.AddIngredient(ItemID.ParrotCracker);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
