@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Meteor Enchantment");
             Tooltip.SetDefault(
                 @"'Cosmic power builds your magical prowess'
-A meteor shower initiates every few seconds while using magic weapons");
+A meteor shower initiates every few seconds while using magic weapons"); //look at naga skin mana spent meme hmm
         }
 
         public override void SetDefaults()
