@@ -20,7 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Living Wood Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Summons a free living wood sapling and it's attacks will home in on enemies
+Allows the collection of Vine Rope from vines");
         }
 
         public override void SetDefaults()
