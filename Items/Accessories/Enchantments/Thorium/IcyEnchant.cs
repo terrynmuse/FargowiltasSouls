@@ -20,8 +20,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Icy Enchantment");
             Tooltip.SetDefault(
                 @"'Gives your hair some frosty tips too'
-");
-        }
+An icy aura surrounds you, which attempts to slow down approaching enemies
+Summons a baby penguin");
+        } //alternatively 'Ice to meet you' 
 
         public override void SetDefaults()
         {
