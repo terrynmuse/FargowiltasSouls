@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 @"'Tear into reality'
 Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
 You also spawn a vortex to draw in and massively damage enemies when you enter stealth
-Summons a Companion Cube Pet");
+Summons a Companion Cube Pet"); // make vortexes less of a meme
         }
 
         public override void SetDefaults()
