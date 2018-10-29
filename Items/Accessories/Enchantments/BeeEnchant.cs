@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 @"'According to all known laws of aviation, there is no way a bee should be able to fly'
 Increases the strength of friendly bees
 Bees ignore most enemy defense
-Summons a pet Baby Hornet");
+Summons a pet Baby Hornet"); //bring back free bee meme ECH
         }
 
         public override void SetDefaults()
