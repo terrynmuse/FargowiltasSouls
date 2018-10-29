@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Greatly enhances Lightning Aura effectiveness
 Effects of the Master Ninja Gear
 Dash into any walls, to teleport through them to the next opening
-Summons a pet gato");
+Summons a pet gato"); //ninja material effects here
         }
 
         public override void SetDefaults()
