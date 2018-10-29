@@ -235,6 +235,24 @@ namespace FargowiltasSouls
             group = new RecipeGroup(() => Lang.misc[37] + " Phasesaber", ItemID.RedPhasesaber, ItemID.BluePhasesaber, ItemID.GreenPhasesaber, ItemID.PurplePhasesaber, ItemID.WhitePhasesaber,
                 ItemID.YellowPhasesaber);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyPhasesaber", group);
+
+            if(ThoriumLoaded)
+            {
+                Mod thorium = ModLoader.GetMod("ThoriumMod");
+
+                //jester mask
+                group = new RecipeGroup(() => Lang.misc[37] + " Jester Mask", thorium.ItemType("JestersMask"), thorium.ItemType("JestersMask2"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyJesterMask", group);
+                //jester shirt
+                group = new RecipeGroup(() => Lang.misc[37] + " Jester Shirt", thorium.ItemType("JestersShirt"), thorium.ItemType("JestersShirt2"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyJesterShirt", group);
+                //jester legging
+                group = new RecipeGroup(() => Lang.misc[37] + " Jester Leggings", thorium.ItemType("JestersLeggings"), thorium.ItemType("JestersLeggings"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyJesterLeggings", group);
+                //evil wood tambourine
+                group = new RecipeGroup(() => Lang.misc[37] + " Evil Wood Tambourine", thorium.ItemType("EbonWoodTambourine"), thorium.ItemType("ShadeWoodTambourine"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyTambourine", group);
+            }
         }
 
         public static bool NoInvasion(NPCSpawnInfo spawnInfo)

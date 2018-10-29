@@ -8,6 +8,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class GoldEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public float Damage;
 
         public override bool CloneNewInstances => true;
@@ -97,16 +98,23 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.GoldHelmet);
             recipe.AddIngredient(ItemID.GoldChainmail);
             recipe.AddIngredient(ItemID.GoldGreaves);
-            recipe.AddIngredient(ItemID.GreedyRing);
-            recipe.AddIngredient(ItemID.RubyStaff);
+           
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("GoldAegis"));
+                recipe.AddIngredient(thorium.ItemType("ProofAvarice"));
+                recipe.AddIngredient(ItemID.GreedyRing);
+                recipe.AddIngredient(ItemID.RubyStaff);
+                recipe.AddIngredient(ItemID.GoldButterfly);
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.GreedyRing);
+                recipe.AddIngredient(ItemID.RubyStaff);
+            }
+            
             recipe.AddIngredient(ItemID.SquirrelGold);
             recipe.AddIngredient(ItemID.ParrotCracker);
-            
-            /*
-gold butterfly
-GoldAeigis
-Saba
-            */
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

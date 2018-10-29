@@ -51,16 +51,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Ocean armor",
-            "Ocean armor",
-            "Ocean armor",
+            "OceanHelmet",
+            "OceanChestGuard",
+            "OceanGreaves",
             "SeaBreezePendant",
-            "BubbleMagnet",
-            "BreathingReed",
-            "StarfishWand",
-            "SwordFish",
             "OceanSlasher",
-            "Tuna"
+            "StarfishWand",
+            "BubbleMagnet"
         };
 
         public override void AddRecipes()
@@ -70,6 +67,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(ItemID.BreathingReed);
+            recipe.AddIngredient(ItemID.Swordfish);
+            recipe.AddIngredient(ItemID.Tuna);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

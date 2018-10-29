@@ -51,14 +51,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Steel armor", // better think of a way to get this meme in hardmode
-            "Steel armor",
-            "Steel armor",
-            "IronEnchant",
-            "SteelBlade",
-            "SteelPick",
+            "SteelPickaxe",
             "SteelAxe",
             "SteelMallet",
+            "SteelBlade",
             "SuperAnvil",
             "WarForger"
         };
@@ -68,7 +64,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("SteelHelmet")); // better think of a way to get this meme in hardmode
+            recipe.AddIngredient(thorium.ItemType("SteelChestplate"));
+            recipe.AddIngredient(thorium.ItemType("SteelGreaves"));
+            recipe.AddIngredient(null, "IronEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.DemonAltar);

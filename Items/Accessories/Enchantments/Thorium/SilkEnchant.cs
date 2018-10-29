@@ -48,28 +48,23 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             
         }
-        
-        private readonly string[] items =
-        {
-            "Silk armor",
-            "Silk armor",
-            "Silk armor", //other head?
-            "WandofSparking",
-            "IceCube",
-            "EigthPlagueStaff",
-            "ThoriumStaff",
-            "SpellBookWindGust", 
-            "ZebraSwallowtailButterfly",
-            "Cure"
-        };
 
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("SilkCap"));
+            recipe.AddIngredient(thorium.ItemType("SilkHat"));
+            recipe.AddIngredient(thorium.ItemType("SilkTabard"));
+            recipe.AddIngredient(thorium.ItemType("SilkLeggings"));
+            recipe.AddIngredient(ItemID.WandofSparking);
+            recipe.AddIngredient(thorium.ItemType("IceCube"));
+            recipe.AddIngredient(thorium.ItemType("EighthPlagueStaff")); //nice diver, dam memer
+            recipe.AddIngredient(thorium.ItemType("WindGust"));
+            recipe.AddIngredient(thorium.ItemType("Cure"));
+            recipe.AddIngredient(ItemID.ZebraSwallowtailButterfly);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

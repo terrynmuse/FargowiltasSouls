@@ -51,16 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Malignant armor",
-            "Malignant armor",
-            "Malignant armor",
-            "Mana-ChargedRocketeers",
-            "SpineBreaker",
-            "VampireScepter",
+            "MalignantCap",
+            "MalignantRobe",
+            "ManaChargedRocketeers",
+            "ThoriumStaff",
+            "JellyPondWand",
             "ChampionBomberStaff",
-            "DarkTome",
-            "ThorsHammerMagic",
-            "ParticleWhip"
+            "GaussSpark",
+            "MagicThorHammer",
+            "SpineBreaker"
         };
 
         public override void AddRecipes()
@@ -70,6 +69,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(ItemID.PurpleEmperorButterfly);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

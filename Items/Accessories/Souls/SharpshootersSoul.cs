@@ -50,7 +50,7 @@ Increases view range for guns (Right click to zoom out)");
                 recipe.AddIngredient(ItemID.MagicQuiver);
                 //vega phaser
                 //scorn
-                //hand cannon
+                //spine buster
                 //destroyers rage
                 //terra bow
                 recipe.AddIngredient(ItemID.PiranhaGun);

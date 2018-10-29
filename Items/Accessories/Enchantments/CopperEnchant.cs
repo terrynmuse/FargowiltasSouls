@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class CopperEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Copper Enchantment");
@@ -38,17 +40,24 @@ Lightning scales with magic damage");
             recipe.AddIngredient(ItemID.CopperHelmet);
             recipe.AddIngredient(ItemID.CopperChainmail);
             recipe.AddIngredient(ItemID.CopperGreaves);
-            recipe.AddIngredient(ItemID.CopperShortsword);
-            recipe.AddIngredient(ItemID.AmethystStaff);
-            recipe.AddIngredient(ItemID.Wire, 20);
             
-            /*
-Copper Buckler
-Amethyst butterfly
-The Zapper
-Thunder Talon
-            */
-            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("CopperBuckler"));
+                recipe.AddIngredient(ItemID.CopperShortsword);
+                recipe.AddIngredient(ItemID.AmethystStaff);
+                recipe.AddIngredient(thorium.ItemType("ThunderTalon"));
+                recipe.AddIngredient(thorium.ItemType("Zapper"));
+                recipe.AddIngredient(ItemID.Wire, 20);
+                recipe.AddIngredient(thorium.ItemType("AmethystButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.CopperShortsword);
+                recipe.AddIngredient(ItemID.AmethystStaff);
+                recipe.AddIngredient(ItemID.Wire, 20);
+            }
+                       
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

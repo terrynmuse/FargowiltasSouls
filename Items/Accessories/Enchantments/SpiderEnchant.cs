@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class SpiderEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spider Enchantment");
@@ -36,17 +38,24 @@ Summons a pet Spider");
             recipe.AddIngredient(ItemID.SpiderMask);
             recipe.AddIngredient(ItemID.SpiderBreastplate);
             recipe.AddIngredient(ItemID.SpiderGreaves);
-            recipe.AddIngredient(ItemID.SpiderStaff);
-            recipe.AddIngredient(ItemID.QueenSpiderStaff);
-            recipe.AddIngredient(ItemID.BatScepter);
-            recipe.AddIngredient(ItemID.SpiderEgg);
             
-            /*
-WebGun
-RiffWeaver
-ArachnidSubwoofer
-ZereneButterfly
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("VenomSubwoofer"));
+                recipe.AddIngredient(thorium.ItemType("Webgun"));
+                recipe.AddIngredient(ItemID.SpiderStaff);
+                recipe.AddIngredient(ItemID.QueenSpiderStaff);
+                recipe.AddIngredient(ItemID.BatScepter);
+                recipe.AddIngredient(thorium.ItemType("ZereneButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.SpiderStaff);
+                recipe.AddIngredient(ItemID.QueenSpiderStaff);
+                recipe.AddIngredient(ItemID.BatScepter);
+            }   
+            
+            recipe.AddIngredient(ItemID.SpiderEgg);
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

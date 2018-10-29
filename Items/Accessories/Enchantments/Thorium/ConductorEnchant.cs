@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Conductor armor",
-            "Conductor armor",
-            "Conductor armor",
+            "PowderedWig",
+            "ConductorSuit",
+            "ConductorLeggings",
+            "Metronome",
             "BoneTrumpet",
+            "MusicSheet4",
             "Clarinet",
             "Bassoon",
-            "GhastlyFrenchHorn",
-            "Metronome",
-            "MusicSheetXylophone",
-            "LihzahrdSaxaphone"
+            "FrenchHorn",
+            "Saxophone"
         };
 
         public override void AddRecipes()
@@ -71,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

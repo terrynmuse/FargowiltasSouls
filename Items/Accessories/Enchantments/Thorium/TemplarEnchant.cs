@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "TemplarsCirclet",
+            "TemplarsTabard",
+            "TemplarsLeggings",
+            "LifesGift",
+            "TemplarsGrace",
+            "TemplarJudgment",
+            "ChiLantern",
+            "GraniteIonStaff",
+            "Prophecy",
+            "LifeCrystalButterfly"
         };
 
         public override void AddRecipes()

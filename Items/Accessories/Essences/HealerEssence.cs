@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 
-namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
+namespace FargowiltasSouls.Items.Accessories.Essences
 {
-    public class LifeBinderEnchant : ModItem
+    public class HealerEssence : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         
@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Life Binder Enchantment");
+            DisplayName.SetDefault("Healer Essence");
             Tooltip.SetDefault(
                 @"''
 ");
@@ -30,19 +30,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 4;
-            item.value = 120000;
+            ItemID.Sets.ItemNoGravity[item.type] = true; //
+            item.rare = 2; //
+            item.value = 60000; //
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
-            BinderEffect(player);
+            HealEffect(player);
         }
         
-        private void BinderEffect(Player player)
+        private void HealEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             
@@ -51,16 +51,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "DewBinderMask",
-            "DewBinderBreastplate",
-            "DewBinderGreaves",
-            "AloeLeaf",
-            "BloomGuard",
-            "SunrayStaff",
-            "MorningDew",
-            "MistWeaver",
-            "LifeFruitButterfly",
-            "RichLeaf"
+            "ClericEmblem",
+            "RottenCod - corrupt fishing",
+            "BrainCoral",
+            "lifes gift - jungle spores",
+            "bat scythe - viscount",
+            "feather barrier rod - avian",
+            "energy manipulator - granite boss",
+            "deep staff - scarlet chest",
+            "life quartz claymore - heart crystal",
+            "war forger - sold by blackmsith",
+            "star rod - star scouter",
+            "divine lotus - travel merch after skele",
+            "sentinels wand - sold by heal guy",
+            "MarrowScepter"
         };
 
         public override void AddRecipes()
@@ -71,7 +75,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

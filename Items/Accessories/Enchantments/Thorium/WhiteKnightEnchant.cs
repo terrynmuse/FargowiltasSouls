@@ -52,7 +52,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "WhiteKnightMask",
+            "WhiteKnightTabard",
+            "WhiteKnightLeggings",
+            "ShadeBand",
+            "PrismiteStaff",
+            "VileSpitter",
+            "FrostFang"
         };
 
         public override void AddRecipes()
@@ -63,7 +69,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddIngredient(ItemID.SkyFracture);
+            recipe.AddIngredient(thorium.ItemType("PixiewingButterfly"));
+            recipe.AddIngredient(thorium.ItemType("DelectableNut"));
+
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

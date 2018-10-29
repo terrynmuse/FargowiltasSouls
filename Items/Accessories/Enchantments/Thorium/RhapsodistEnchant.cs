@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Rhapsodist armor",
-            "Rhapsodist armor",
-            "Rhapsodist armor",
-            "Rhapsodist armor (Both helmets)",
-            "Holophonor",
-            "EdgeofImagination",
-            "Sousaphone",
-            "SirensLyre",
+            "SoloistHat",
+            "RallyHat",
+            "RhapsodistChestWoofer",
+            "RhapsodistBoots",
+            "MusicSheet6",
+            "SirensAllure",
             "TerrariumAutoharp",
-            "MusicSheetHarp"
+            "Holophonor",
+            "Sousaphone",
+            "EdgeofImagination"
         };
 
         public override void AddRecipes()
@@ -71,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

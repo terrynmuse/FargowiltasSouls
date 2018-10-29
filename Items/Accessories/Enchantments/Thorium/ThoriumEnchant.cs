@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Thorium armor",
-            "Thorium armor",
-            "Thorium armor",
-            "Diver caught in a net only named Sam",
-            "ThoriumCube",
+            "ThoriumHelmet",
+            "ThoriumMail",
+            "ThoriumGreaves",
+            "GrandThoriumHelmet",
+            "GrandThoriumBreastPlate",
+            "GrandThoriumGreaves",
             "BandofReplenishment",
+            "ThoriumBlade",
             "WhirlpoolSaber",
-            "GrandThoriumVanity",
-            "GrandThoriumVanity",
-            "GrandThoriumVanity"
+            "ThoriumCube"
         };
 
         public override void AddRecipes()

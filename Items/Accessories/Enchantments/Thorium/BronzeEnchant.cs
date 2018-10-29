@@ -51,16 +51,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Bronze armor",
-            "Bronze armor",
-            "Bronze armor",
-            "SpartanSandals",
-            "ChampionSwiftBlade",
-            "ChampionRebuttal",
-            "BronzeThrowingAxes",
-            "AncientwingButterfly",
-            "SpartansSubwoofer",
-            "DraculaFangs"
+            "BronzeHelmet",
+            "BronzeBreastplate",
+            "BronzeGreaves",
+            "ChampionsBarrier",
+            "SpartanSandles",
+            "BronzeSubwoofer",
+            "ChampionBlade",
+            "AncientWingButterfly"
         };
 
         public override void AddRecipes()
@@ -70,6 +68,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("BronzeThrowing"), 300);
+            recipe.AddIngredient(thorium.ItemType("DraculaFang"), 300);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

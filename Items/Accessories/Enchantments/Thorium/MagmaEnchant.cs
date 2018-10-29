@@ -49,16 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Magma armor",
-            "Magma armor",
-            "Magma armor",
+            "MagmaHelmet",
+            "MagmaChestGuard",
+            "MagmaGreaves",
+            "SpringSteps",
+            "SlagStompers",
             "MoltenSpearTip",
             "MagmaShiv",
+            "MagmaPolearm",
             "MagmaticRicochet",
-            "SpringSteps",
-            "MagmaFlail",
-            "MagmaAxe",
-            "MagmaPolearm"
+            "MagmaFlail"
         };
 
         public override void AddRecipes()

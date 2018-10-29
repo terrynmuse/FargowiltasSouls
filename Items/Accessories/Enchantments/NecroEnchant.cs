@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class NecroEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Necro Enchantment");
@@ -37,8 +39,22 @@ Summons a Baby Skeletron Head");
             recipe.AddIngredient(ItemID.NecroBreastplate);
             recipe.AddIngredient(ItemID.NecroGreaves);
             recipe.AddIngredient(ItemID.BoneSword);
-            recipe.AddIngredient(ItemID.TheGuardiansGaze);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("Slugger"));
+                recipe.AddIngredient(thorium.ItemType("MarrowScepter"));
+                recipe.AddIngredient(thorium.ItemType("BoneFlayerTail"));
+                recipe.AddIngredient(ItemID.TheGuardiansGaze);
+                recipe.AddIngredient(thorium.ItemType("BoneButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.TheGuardiansGaze);
+            }
+            
             recipe.AddIngredient(ItemID.BoneKey);
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

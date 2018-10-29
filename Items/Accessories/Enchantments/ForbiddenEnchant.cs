@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ForbiddenEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Forbidden Enchantment");
@@ -37,19 +39,27 @@ You are immune to the Mighty Wind debuff");
             recipe.AddIngredient(ItemID.AncientBattleArmorHat);
             recipe.AddIngredient(ItemID.AncientBattleArmorShirt);
             recipe.AddIngredient(ItemID.AncientBattleArmorPants);
-            recipe.AddIngredient(ItemID.BookStaff);
-            recipe.AddIngredient(ItemID.SpiritFlame);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.FlyingCarpet);
+                recipe.AddIngredient(thorium.ItemType("KarmicHolder"));
+                recipe.AddIngredient(thorium.ItemType("WhisperRa"));
+                recipe.AddIngredient(ItemID.SpiritFlame);
+                recipe.AddIngredient(ItemID.BookStaff);
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.SpiritFlame);
+                recipe.AddIngredient(ItemID.BookStaff);
+            }
+            
             recipe.AddIngredient(ItemID.Scorpion);
             recipe.AddIngredient(ItemID.SecretoftheSands);
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
-            
-            /*
-Magic carpet
-karmic holder
-ras whisper
-            */
         }
     }
 }

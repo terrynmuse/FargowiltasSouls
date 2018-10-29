@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class MythrilEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mythril Enchantment");
@@ -36,15 +38,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.MythrilChainmail);
             recipe.AddIngredient(ItemID.MythrilGreaves);
             recipe.AddIngredient(ItemID.MythrilRepeater);
+            
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("MythrilPelter"));
+                recipe.AddIngredient(thorium.ItemType("MythrilStaff"));
+                recipe.AddIngredient(thorium.ItemType("DrenchedDirk"));  
+            }
+            
+            recipe.AddIngredient(ItemID.LaserRifle);
             recipe.AddIngredient(ItemID.FetidBaghnakhs);
             recipe.AddIngredient(ItemID.Megashark);
-            recipe.AddIngredient(ItemID.LaserRifle);
-
-            /*
-MythrilStaff
-MythrilPelter
-DrenchedDirk
-             */
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

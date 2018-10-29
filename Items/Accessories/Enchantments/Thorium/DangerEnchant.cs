@@ -49,16 +49,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Danger armor",
-            "Danger armor",
-            "Danger armor",
-            "TrackersSkinningBlade",
-            "DangerDaggers",
-            "DangerDualShot",
-            "DangerDoomerang",
-            "DangerDevastator",
+            "DangerHelmet",
+            "DangerMail",
+            "DangerGreaves",
+            "TrackerBlade",
+            "DangerDevestator",
             "DangerDaikatana",
-            "Rally"
+            "DangerDoomerang",
+            "DangerDuelShot" //really diver
         };
 
         public override void AddRecipes()
@@ -68,6 +66,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("DangerDagger"), 500);
+            recipe.AddIngredient(ItemID.Rally);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

@@ -48,28 +48,23 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             
         }
-        
-        private readonly string[] items =
-        {        
-            "Jester armor",
-            "Jester armor",
-            "Jester armor",
-            "EbonTambourine/ ShadewoodTambourine",
-            "FanLetter",
-            "SkywareLute",
-            "MeteoriteOboe",
-            "DeathWeedButterfly",
-            "Panflute",
-            "Mouse"
-        };
 
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyJesterMask");
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyJesterShirt");
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyJesterLeggings");
+            recipe.AddIngredient(thorium.ItemType("FanLetter"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyTambourine");
+            recipe.AddIngredient(thorium.ItemType("Oboe"));
+            recipe.AddIngredient(thorium.ItemType("SkywareLute"));
+            recipe.AddIngredient(thorium.ItemType("Panflute"));
+            recipe.AddIngredient(thorium.ItemType("DeathweedButterfly"));
+            recipe.AddIngredient(ItemID.Mouse);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

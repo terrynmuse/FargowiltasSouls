@@ -66,6 +66,7 @@ Effects of the Frog Legs and Spore Sac
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AquaticSonarDevice"));
+                //CartilagedCatcher
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumFisher"));
             }
             else

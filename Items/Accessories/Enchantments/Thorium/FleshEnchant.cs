@@ -49,16 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Flesh armor",
-            "Flesh armor",
-            "Flesh armor",
-            "BlisterSack",
-            "SpineBuster",
-            "BloodBelcher",
+            "FleshMask",
+            "FleshBody",
+            "FleshLegs",
             "FleshWings",
-            "GrimFlayer",
             "VampireGland",
-            "FleshMace"
+            "GrimFlayer",
+            "FleshMace",
+            "BloodBelcher",
+            "HungerStaff",
+            "BlisterSack"
         };
 
         public override void AddRecipes()
@@ -69,7 +69,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -51,16 +51,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Flight armor",
-            "Flight armor",
-            "Flight armor",
-            "ChampionWings",
-            "WindyTotemCaller",
+            "ChampionWing",
             "Zephyr",
-            "HarpyPelter",
             "Aerial",
-            "AvianButterfly",
-            "HarpyWings"
+            "HarpyPelter",
+            "WindyTotemCaller",
+            "AvianButterfly"
         };
 
         public override void AddRecipes()
@@ -68,7 +64,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("FlightMask"));
+            recipe.AddIngredient(thorium.ItemType("FlightMail"));
+            recipe.AddIngredient(thorium.ItemType("FlightBoots"));
+            recipe.AddIngredient(ItemID.HarpyWings);
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.DemonAltar);

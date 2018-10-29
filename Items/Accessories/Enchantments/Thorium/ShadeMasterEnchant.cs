@@ -48,11 +48,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             
         }
-        
-        private readonly string[] items =
-        {
-            ""
-        };
 
         public override void AddRecipes()
         {
@@ -60,9 +55,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             ModRecipe recipe = new ModRecipe(mod);
             
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+            recipe.AddIngredient(thorium.ItemType("ShadeMasterMask"));
+            recipe.AddIngredient(thorium.ItemType("ShadeMasterGarb"));
+            recipe.AddIngredient(thorium.ItemType("ShadeMasterTreads"));
+            recipe.AddIngredient(thorium.ItemType("TunePlayerMaxMana"));
+            recipe.AddIngredient(thorium.ItemType("ClockWorkBomb"), 300);
+            recipe.AddIngredient(thorium.ItemType("BugenkaiShuriken"), 300);
+            recipe.AddIngredient(thorium.ItemType("ShadeKunai"), 300);
+            recipe.AddIngredient(thorium.ItemType("ShadeDagger"));
+            recipe.AddIngredient(thorium.ItemType("Soulslasher"), 300);
+            recipe.AddIngredient(thorium.ItemType("LihzahrdKukri"), 300);
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

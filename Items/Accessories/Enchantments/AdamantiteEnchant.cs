@@ -6,11 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class AdamantiteEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Adamantite Enchantment");
             Tooltip.SetDefault(
-                @"'Who needs to aim?' 
+                @"'Who needs to aim?'
 Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split");
         }
@@ -36,18 +38,23 @@ Any secondary projectiles may also split");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyAdamHead");
             recipe.AddIngredient(ItemID.AdamantiteBreastplate);
             recipe.AddIngredient(ItemID.AdamantiteLeggings);
-            recipe.AddIngredient(ItemID.AdamantiteGlaive);
-            recipe.AddIngredient(ItemID.DarkLance);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.AdamantiteGlaive);
+                recipe.AddIngredient(thorium.ItemType("AdamantiteStaff"));
+                recipe.AddIngredient(thorium.ItemType("DynastyWarFan"));
+                recipe.AddIngredient(thorium.ItemType("Scorn"));
+                recipe.AddIngredient(thorium.ItemType("OgreSnotGun"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.DarkLance);
+                recipe.AddIngredient(ItemID.AdamantiteGlaive);
+            }
+            
             recipe.AddIngredient(ItemID.Shotgun);
             recipe.AddIngredient(ItemID.VenomStaff);
-            
-            /*
-OgreSnotGun
-AdamantiteStaff
-AdamantiteCarbine
-DynastyWarFan
-Scorn
-            */
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

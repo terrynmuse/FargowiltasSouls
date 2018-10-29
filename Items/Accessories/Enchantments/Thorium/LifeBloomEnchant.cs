@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Life Bloom armor",
-            "Life Bloom armor",
-            "Life Bloom armor",
-            "HiveMind",
-            "TheButterflyStaff",
+            "LifeBloomMask",
+            "LifeBloomMail",
+            "LifeBloomLeggings",
+            "TunePlayerAmmoConsume",
             "TulipStaff",
-            "GroundedTotem",
+            "GroundedTotemCaller",
+            "ButterflyStaff5",
             "HoneyBlade",
-            "BrownMusicPlayer",
-            "AstralBarrierWand"
+            "OdinsEye",
+            "HiveMind"
         };
 
         public override void AddRecipes()
@@ -71,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

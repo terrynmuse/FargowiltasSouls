@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class MoltenEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Molten Enchantment");
@@ -36,17 +38,23 @@ When you die, you violently explode dealing massive damage to surrounding enemie
             recipe.AddIngredient(ItemID.MoltenHelmet);
             recipe.AddIngredient(ItemID.MoltenBreastplate);
             recipe.AddIngredient(ItemID.MoltenGreaves);
-            recipe.AddIngredient(ItemID.FieryGreatsword);
-            recipe.AddIngredient(ItemID.Sunfury);
-            recipe.AddIngredient(ItemID.DemonsEye);
             
-            /*
-HellwingButterfly
-ThorsHammerMelee
-DarkLance
-MoltenHamaxe
-Flamarang
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("MeleeThorHammer"));
+                recipe.AddIngredient(ItemID.MoltenHamaxe);
+                recipe.AddIngredient(ItemID.Flamarang);
+                recipe.AddIngredient(ItemID.Sunfury);
+                recipe.AddIngredient(ItemID.DarkLance);
+                recipe.AddIngredient(ItemID.DemonsEye);
+                recipe.AddIngredient(thorium.ItemType("HellwingButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.Flamarang);
+                recipe.AddIngredient(ItemID.Sunfury);
+                recipe.AddIngredient(ItemID.DemonsEye);
+            }
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

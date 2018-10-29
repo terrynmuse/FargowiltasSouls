@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class CrimsonEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crimson Enchantment");
@@ -37,16 +39,22 @@ Summons a Baby Face Monster and a Crimson Heart");
             recipe.AddIngredient(ItemID.CrimsonHelmet);
             recipe.AddIngredient(ItemID.CrimsonScalemail);
             recipe.AddIngredient(ItemID.CrimsonGreaves);
-            recipe.AddIngredient(ItemID.DeadlandComesAlive);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.BloodLustCluster);
+                recipe.AddIngredient(ItemID.TheUndertaker);
+                recipe.AddIngredient(ItemID.TheMeatball);
+                recipe.AddIngredient(ItemID.DeadlandComesAlive);
+                recipe.AddIngredient(thorium.ItemType("CrimsonButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.DeadlandComesAlive);
+            }
+            
             recipe.AddIngredient(ItemID.BoneRattle);
             recipe.AddIngredient(ItemID.CrimsonHeart);
-            
-            /*
-CrimsonButterfly
-TheUndertaker
-Meatball
-BloodLustCluster
-            */
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

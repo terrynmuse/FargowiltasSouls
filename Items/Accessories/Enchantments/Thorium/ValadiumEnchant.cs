@@ -51,7 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "ValadiumHelmet",
+            "ValadiumBreastPlate",
+            "ValadiumGreaves",
+            "EyeofBeholder",
+            "GlacialSting",
+            "Obliterator",
+            "ValadiumBow",
+            "ValadiumStaff",
+            "LodeStoneQuickDraw",
+            "TommyGun"
         };
 
         public override void AddRecipes()
@@ -62,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

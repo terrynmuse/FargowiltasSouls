@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Ornate armor",
-            "Ornate armor",
-            "Ornate armor",
+            "OrnateHat",
+            "OrnateJerkin",
+            "OrnateLeggings",
             "ConcertTickets",
-            "TheGreenTambourine",
-            "Vuvuzela blah",
-            "Vuvuzela blah",
-            "Vuvuzela blah",
-            "Vuvuzela blah",
-            "MusicSheetDoubleBass"
+            "GreenTambourine",
+            "VuvuzelaBlue",
+            "VuvuzelaGreen",
+            "VuvuzelaRed",
+            "VuvuzelaYellow",
+            "MusicSheet7"
         };
 
         public override void AddRecipes()
@@ -71,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

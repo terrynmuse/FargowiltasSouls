@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Berserker armor",
-            "Berserker armor",
-            "Berserker armor",
-            "Berserker Breaker",
-            "Berserker Soul Staff",
-            "Bloody High Claw",
-            "Orange Music Player",
-            "Thermogenic Impaler",
-            "Surtrs Sword",
-            "Wyvern Slayer"
+            "BerserkerMask",
+            "BerserkerBreastplate",
+            "BerserkerGreaves",
+            "TunePlayerAttackSpeed",
+            "SurtrsSword",
+            "BloodyHighClaws",
+            "ThermogenicImpaler",
+            "BerserkBreaker",
+            "BerserkSoulStaff",
+            "WyvernSlayer"
         };
 
         public override void AddRecipes()
@@ -71,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

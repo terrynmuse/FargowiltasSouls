@@ -49,16 +49,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Pyromancer armor",
-            "Pyromancer armor",
-            "Pyromancer armor",
-            "Pyromancer armor (both helms)",
-            "Devil's Claw",
-            "Molten Banner",
-            "Ancient Flame",
-            "Spell Book Stalagmite",
-            "True Silvers Fang",
-            "Devil Dagger"
+            "PyroSummonHat",
+            "PyromancerCowl",
+            "PyromancerTabard",
+            "PyromancerLeggings",
+            "StalagmiteBook",
+            "DevilDagger",
+            "TrueSilversBlade",
+            "AncientFlame",
+            "MoltenBanner",
+            "DevilsClaw"
         };
 
         public override void AddRecipes()
@@ -69,7 +69,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

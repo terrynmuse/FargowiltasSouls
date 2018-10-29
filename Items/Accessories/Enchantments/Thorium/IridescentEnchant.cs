@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Iridescent armor",
-            "Iridescent armor",
-            "Iridescent armor",
-            "GiantGlowstick",
-            "HereticBreaker",
+            "IridescentHelmet",
+            "IridescentMail",
+            "IridescentGreaves",
             "Equalizer",
-            "IridescentStaff",
+            "HereticBreaker",
             "AquaiteScythe",
-            "SerpentsBubbleWand",
-            "TranquilLyre"
+            "SpiritPouch", 
+            "TranquilLyre",
+            "IridescentStaff", 
+            "SerpentsBubbleWand"
         };
 
         public override void AddRecipes()
@@ -71,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

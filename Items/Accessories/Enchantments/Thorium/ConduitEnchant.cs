@@ -51,16 +51,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Conduit armor",
-            "Conduit armor",
-            "Conduit armor",
-            "SuperPlasmaCannon",
-            "StrangeCommunicator",
-            "OmegaDrive",
-            "LivewireCrasher",
-            "TheTriangle",
+            "ConduitHelmet",
+            "ConduitSuit",
+            "ConduitLeggings",
+            "UFOCommunicator",
             "VegaPhaser",
-            "BrainScrambler"
+            "SuperPlasmaCannon",
+            "LivewireCrasher",
+            "Triangle"
         };
 
         public override void AddRecipes()
@@ -71,7 +69,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddIngredient(ItemID.BrainScrambler);
+            recipe.AddIngredient(thorium.ItemType("OmegaDrive"));
+
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -51,7 +51,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "DemonBloodStaff",
+            "Legacy",
+            "AncientFrost",
+            "AncientSpark",
+            "AncientLight"
         };
 
         public override void AddRecipes()
@@ -59,10 +63,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("FolvHat"));
+            recipe.AddIngredient(thorium.ItemType("FolvRobe"));
+            recipe.AddIngredient(thorium.ItemType("FolvLegging"));
+            recipe.AddIngredient(thorium.ItemType("TunePlayerDefense"));
+            recipe.AddIngredient(ItemID.UnholyTrident);
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Ebon armor",
-            "Ebon armor",
-            "Ebon armor",
-            "DarkHeart",
-            "ShadowWand",
-            "WoodenBaton",
-            "DarkGift",
-            "BorderedButterfly",
+            "EbonHood",
+            "EbonCloak",
+            "EbonLeggings",
             "LeechBolt",
-            "GigaNeedle"
+            "ShadowWand",
+            "DarkHeart",
+            "PoisonPrickler",
+            "EaterOfPain",
+            "DarkMageStaff",
+            "BloodiedButterfly"
         };
 
         public override void AddRecipes()

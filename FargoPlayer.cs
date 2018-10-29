@@ -271,7 +271,7 @@ namespace FargowiltasSouls
             if(Fargowiltas.FreezeKey.JustPressed && StardustEnchant && FreezeCD == 0)
             {
                 FreezeTime = true;
-                FreezeCD = 3600;
+                FreezeCD = 360;//3600; bring back for after testing
 
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/ZaWarudo").WithVolume(1f).WithPitchVariance(.5f), player.Center);
             }
@@ -397,7 +397,7 @@ namespace FargowiltasSouls
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
             //remove this after testing you fool
-            //player.respawnTimer = (int)(player.respawnTimer * .01);
+            player.respawnTimer = (int)(player.respawnTimer * .01);
         }
 
         public override void UpdateDead()
@@ -513,19 +513,6 @@ namespace FargowiltasSouls
                         NetMessage.SendData(17, -1, -1, null, 0, (float)num3, (float)num4, 0f, 0, 0, 0);
                     }
                 }
-
-                /* pseudo memes
-               
-               
-                if(player.heldItem.type == ItemID.RodofDiscord && player.HasBuff(BuffID.ChaosState) && try to telepoert again)
-                {
-                player.AddBuff(mod.BuffType<Berserked>());
-                }
-                
-
-
-                
-                */
             }
 
             if (!Infested && !FirstInfection)
@@ -679,6 +666,11 @@ namespace FargowiltasSouls
             float multiplier = 1f;
             int useTime = item.useTime;
             int useAnimate = item.useAnimation;
+
+            if (useTime == 0 || useAnimate == 0)
+            {
+                return multiplier;
+            }
 
             if (Lethargic)
             {
@@ -851,8 +843,6 @@ namespace FargowiltasSouls
 
                 player.lifeRegen -= 12;
             }
-
-
         }
 
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)

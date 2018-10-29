@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class PumpkinEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pumpkin Enchantment");
@@ -39,15 +41,17 @@ Summons a pet squashling");
             recipe.AddIngredient(ItemID.PumpkinBreastplate);
             recipe.AddIngredient(ItemID.PumpkinLeggings);
             recipe.AddIngredient(ItemID.MolotovCocktail, 50);
-            recipe.AddIngredient(ItemID.JackOLantern, 5);
-            recipe.AddIngredient(ItemID.MagicalPumpkinSeed);
+            recipe.AddIngredient(ItemID.Sickle);
             
-            /*
-Pumkpkin Pie
-Sickle
-Through the Window Painting
-zombie arm
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("BentZombieArm"));
+                recipe.AddIngredient(ItemID.PumpkinPie);
+                recipe.AddIngredient(ItemID.JackOLantern, 5);
+                recipe.AddIngredient(ItemID.ThroughtheWindow);
+            }
+            
+            recipe.AddIngredient(ItemID.MagicalPumpkinSeed);
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class JungleEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jungle Enchantment");
@@ -38,17 +40,24 @@ Spore damage scales with magic damage");
             recipe.AddIngredient(ItemID.JungleHat);
             recipe.AddIngredient(ItemID.JungleShirt);
             recipe.AddIngredient(ItemID.JunglePants);
-            recipe.AddIngredient(ItemID.CordageGuide);
-            recipe.AddIngredient(ItemID.JungleRose);
-            recipe.AddIngredient(ItemID.DoNotStepontheGrass);
             
-            /*
-Jungle Spore Butterfly
-Thorn Chakram
-Grubby
-Boomstick
-Toxic Subwoofer
-            */
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("PoisonSubwoofer"));
+                recipe.AddIngredient(ItemID.JungleRose);
+                recipe.AddIngredient(ItemID.ThornChakram);
+                recipe.AddIngredient(ItemID.Boomstick);
+                recipe.AddIngredient(ItemID.DoNotStepontheGrass);
+                recipe.AddIngredient(ItemID.Frog);
+                recipe.AddIngredient(thorium.ItemType("JungleSporeButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.CordageGuide);
+                recipe.AddIngredient(ItemID.JungleRose);
+                recipe.AddIngredient(ItemID.ThornChakram);
+                recipe.AddIngredient(ItemID.DoNotStepontheGrass);
+            }
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

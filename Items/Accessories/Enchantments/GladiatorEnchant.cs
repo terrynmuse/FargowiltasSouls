@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class GladiatorEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gladiator Enchantment");
@@ -36,18 +38,24 @@ Summons a pet Minotaur");
             recipe.AddIngredient(ItemID.GladiatorHelmet);
             recipe.AddIngredient(ItemID.GladiatorBreastplate);
             recipe.AddIngredient(ItemID.GladiatorLeggings);
-            recipe.AddIngredient(ItemID.Javelin, 200);
-            recipe.AddIngredient(ItemID.MarbleChest);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.Javelin, 300);
+                recipe.AddIngredient(thorium.ItemType("SteelBattleAxe"), 300);
+                recipe.AddIngredient(thorium.ItemType("GoblinWarSpear"), 300);
+                recipe.AddIngredient(thorium.ItemType("BronzeGladius"));
+                recipe.AddIngredient(thorium.ItemType("GorganGazeStaff"));
+                recipe.AddIngredient(thorium.ItemType("RodAsclepius"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.Javelin, 300);
+                recipe.AddIngredient(ItemID.MarbleChest);
+            }
+            
             recipe.AddIngredient(ItemID.TartarSauce);
-            
-            /*    
-Goblin War Spear
-Gorgon Gaze Staff
-Bronze Gladius
-Rod of Aesculapius
-Steel Throwing Axe
-            */
-            
+ 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

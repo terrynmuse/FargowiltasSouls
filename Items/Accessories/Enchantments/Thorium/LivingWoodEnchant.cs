@@ -46,20 +46,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             
         }
-        
-        private readonly string[] items =
-        {
-            "Living Wood armor",
-            "Living Wood armor",
-            "Living Wood armor",
-            "LivingWoodAcorn",
-            "SlimeStaff",
-            "Blowpipe",
-            "ChiTea",
-            "DaybloomButterfly",
-            "Grasshopper",
-            "GuidetoPlantFiber"
-        };
 
         public override void AddRecipes()
         {
@@ -67,7 +53,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             ModRecipe recipe = new ModRecipe(mod);
             
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+            recipe.AddIngredient(thorium.ItemType("LivingWoodMask"));
+            recipe.AddIngredient(thorium.ItemType("LivingWoodChestguard"));
+            recipe.AddIngredient(thorium.ItemType("LivingWoodBoots"));
+            recipe.AddIngredient(ItemID.CordageGuide);
+            recipe.AddIngredient(thorium.ItemType("LivingWoodSprout"));
+            recipe.AddIngredient(ItemID.SlimeStaff);
+            recipe.AddIngredient(ItemID.Blowpipe);
+            recipe.AddIngredient(thorium.ItemType( "ChiTea"), 5);
+            recipe.AddIngredient(thorium.ItemType("DaybloomButterfly"));
+            recipe.AddIngredient(ItemID.Grasshopper);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

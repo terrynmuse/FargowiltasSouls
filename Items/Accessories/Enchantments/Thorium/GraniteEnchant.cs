@@ -51,16 +51,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Granite armor",
-            "Granite armor",
-            "Granite armor",
-            "EnergyProjector",
-            "BoulderProbeStaff",
-            "EnergywingButterfly",
             "EyeoftheStorm",
-            "EnergizedSubwoofer",
-            "NightVisionHelmet",
-            "GraniteSaber"
+            "GraniteSubwoofer",
+            "GraniteSaber",
+            "EnergyProjector",
+            "BoulderProbe",
+            "EnergyWingButterfly"
         };
 
         public override void AddRecipes()
@@ -68,7 +64,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("GraniteHelmet"));
+            recipe.AddIngredient(thorium.ItemType("GraniteChestGuard"));
+            recipe.AddIngredient(thorium.ItemType("GraniteGreaves"));
+            recipe.AddIngredient(ItemID.NightVisionHelmet);
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.DemonAltar);

@@ -51,16 +51,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Dread armor",
-            "Dread armor",
-            "Dread armor",
-            "ImpactDrill",
+            "DreadSkull",
+            "DreadChestPlate",
+            "DreadGreaves",
             "CrashBoots",
-            "DreadLauncher",
-            "CursedFlail-Core",
-            "ChainGuillotine",
-            "GrimSubwoofer",
-            "GreenMusicPlayer"
+            "CursedCore",
+            "CorruptSubwoofer",
+            "TunePlayerMovementSpeed"
         };
 
         public override void AddRecipes()
@@ -71,7 +68,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddIngredient(ItemID.ChainGuillotines);
+            recipe.AddIngredient(thorium.ItemType("ImpactDrill"));
+            recipe.AddIngredient(thorium.ItemType("DreadLauncher"));
+
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

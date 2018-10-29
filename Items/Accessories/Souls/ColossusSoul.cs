@@ -98,9 +98,8 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
             ocean retaliation
             ghastly carapace
             sweet vengeance
-            astro beetle husk
-            champions rebuttal
             demon blood badge
+            life quartz shield
             */
             
                 recipe.AddIngredient(ItemID.HandWarmer);

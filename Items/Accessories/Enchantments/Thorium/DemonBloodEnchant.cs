@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "DemonBlood armor",
-            "DemonBlood armor",
-            "DemonBlood armor",
-            "DemonBloodBadge",
-            "BloodDemonSubwoofer",
+            "DemonBloodHelmet",
+            "DemonBloodBreastPlate",
+            "DemonBloodGreaves",
+            "DemonRageBadge",
+            "VileCore",
+            "CrimsonSubwoofer",
+            "TunePlayerCritChance",
             "DemonBloodStaff",
-            "IchorButterfly",
-            "VileFlail-Core",
-            "DarkContagion",
-            "YellowMusicPlayer"
+            "DarkContagionBook",
+            "IchorButterfly"
         };
 
         public override void AddRecipes()
@@ -71,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

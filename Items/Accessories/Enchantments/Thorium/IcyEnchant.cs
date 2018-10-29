@@ -49,16 +49,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Icy armor",
-            "Icy armor",
-            "Icy armor",
+            "IcyBandana",
+            "IcyMail",
+            "IcyGreaves",
             "FrostFireKatana",
-            "SpellBookBlizzard",
-            "IceBoomerang",
             "FrostFury",
-            "ShiverthornButterfly",
-            "SnowballLauncher",
-            "Fish"
+            "Blizzard"
         };
 
         public override void AddRecipes()
@@ -68,6 +64,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(ItemID.IceBoomerang);
+            recipe.AddIngredient(ItemID.SnowballLauncher);
+            recipe.AddIngredient(thorium.ItemType("ShiverthornButterfly"));
+            recipe.AddIngredient(ItemID.Fish);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

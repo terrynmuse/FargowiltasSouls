@@ -49,7 +49,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            ""
+            "WhiteDwarfMask",
+            "WhiteDwarfGuard",
+            "WhiteDwarfGreaves",
+            "BlackHammer",
+            "GeodeMallet",
+            "LodeStoneHammer",
+            "BlackDagger",
+            "CosmicDagger"
         };
 
         public override void AddRecipes()
@@ -60,7 +67,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddIngredient(thorium.ItemType("WhiteDwarfKunai"), 300);
+            recipe.AddIngredient(thorium.ItemType("LuminiteButterfly"));
+
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
