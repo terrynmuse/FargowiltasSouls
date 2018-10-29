@@ -31,6 +31,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             lines[6] = new TooltipLine(mod, "7", "Hitting enemies will sometimes drop extra coins");
             lines[7] = new TooltipLine(mod, "8", "Your attacks inflict Midas");
             lines[8] = new TooltipLine(mod, "9", "Summons a Pet Parrot");
+            
+            //kill off coin pick up memes tbh
 
             for (int i = 0; i < lines.Length; i++) tooltips.Add(lines[i]);
         }
