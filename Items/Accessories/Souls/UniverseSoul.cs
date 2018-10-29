@@ -162,8 +162,6 @@ All attacks inflict Flames of the Universe");
                 recipe.AddIngredient(null, "GuardianAngelsSoul");
                 recipe.AddIngredient(null, "BardSoul");
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TheRing"));
-
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalEyeMask"));
                 
                 /*
                 plague lords flask
