@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 You leave behind a trail of fire when you walk
 Flames scale with magic damage
 Eating Pumpkin Pie also heals you to full HP
-Summons a pet squashling");
+Summons a pet squashling"); //make trail a little less often myb
         }
 
         public override void SetDefaults()
