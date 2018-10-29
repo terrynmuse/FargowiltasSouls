@@ -17,7 +17,7 @@ Greatly enhances Explosive Traps effectiveness
 Celestial Shell effects
 Your attacks deal increasing damage to low HP enemies
 During a Full Moon, ranged attacks cause enemies to Super Bleed
-Summons a Puppy");
+Summons a Puppy"); //palladium material? 
         }
 
         public override void SetDefaults()
