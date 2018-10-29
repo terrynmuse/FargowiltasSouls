@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 @"'You feel your body slip into the deepest of shadows'
 You will recieve escalating Darkness debuffs while hitting enemies
 Surrounding enemies will take rapid damage when it is the darkest
-Summons a Baby Eater of Souls and a Shadow Orb");
+Summons a Baby Eater of Souls and a Shadow Orb"); //gah idfk what this is, mana stars heal more lol
         }
 
         public override void SetDefaults()
