@@ -57,8 +57,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "SnackLantern",
             "ChristmasCheer",
             "MoleculeStabilizer",
-            "RealitySlasher",
-            "DreamCatcher"
+            "DreamCatcher",
+            "SimpleBroom"
         };
 
         public override void AddRecipes()
