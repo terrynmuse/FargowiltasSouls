@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Sandstone Enchantment");
             Tooltip.SetDefault(
                 @"'Enveloped by desert winds'
-");
+Grants Sandstorm in a Bottle effect
+Thrown attacks might refresh your jump");
         }
 
         public override void SetDefaults()
