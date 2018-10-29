@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 @"'The shadows hold more than they seem'
 Greatly enhances Flameburst effectiveness
 Magic weapons occasionally shoot from the shadows of where you used to be
-Summons a flickerwick to provide light");
+Summons a flickerwick to provide light"); // add melee version or idk butcher this hell
         }
 
         public override void SetDefaults()
