@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Greatly enhances Ballista effectiveness
 You ignore enemy knockback immunity with your close range melee weapons
 Shiny Stone effects
-Summons a pet Dragon");
+Summons a pet Dragon"); //just remove knockback immune and forget the set default shet
         }
 
         public override void SetDefaults()
