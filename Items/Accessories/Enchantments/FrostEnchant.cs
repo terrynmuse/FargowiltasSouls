@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Icicles will start to appear around you
 When there are three, using any weapon will launch them towards the cursor, Chilling and Frostburning enemies
 Allows the ability to walk on water
-Summons a baby penguin and snowman");
+Summons a baby penguin and snowman"); //kill water walk maybe, make ice bois rotate good
         }
 
         public override void SetDefaults()
