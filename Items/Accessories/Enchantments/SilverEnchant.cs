@@ -43,11 +43,12 @@ Summons a sword familiar that scales with minion damage");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("SilverBulwark"));
-                recipe.AddIngredient(thorium.ItemType("EnchantedShield")); //replace
+                
                 recipe.AddIngredient(ItemID.SilverBroadsword);
                 recipe.AddIngredient(ItemID.SilverBow);
                 recipe.AddIngredient(ItemID.SapphireStaff);
                 recipe.AddIngredient(ItemID.BluePhaseblade);
+                recipe.AddIngredient(thorium.ItemType("ArcaneDust"), 10); 
                 recipe.AddIngredient(thorium.ItemType("SapphireButterfly"));
             }
             else
