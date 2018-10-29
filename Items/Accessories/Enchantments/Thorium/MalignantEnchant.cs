@@ -54,12 +54,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "MalignantCap",
             "MalignantRobe",
             "ManaChargedRocketeers",
-            "SpeelBookWindGust",
             "ThoriumStaff",
             "JellyPondWand",
             "ChampionBomberStaff",
-            "ParticleWhip",
-            "ThorsHammerMagic",
+            "GaussSpark",
+            "MagicThorHammer",
             "SpineBreaker"
         };
 
@@ -70,6 +69,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(ItemID.PurpleEmperorButterfly);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

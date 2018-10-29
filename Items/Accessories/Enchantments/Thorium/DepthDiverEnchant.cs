@@ -54,13 +54,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "DepthDiverHelmet",
             "DepthDiverChestplate",
             "DepthDiverGreaves",
-            "DeepDarkSubwoofer",
+            "DepthSubwoofer",
             "MagicConch",
-            "AquamarineWineglass",
+            "AquamarineWineGlass",
             "GeyserStaff",
-            "MistyTotem",
-            "DeeplightEsca",
-            "Jellyfish bait" //or pet?
+            "MistyTotemCaller",
+            "AnglerBulb",
+            "JellyFishIdol"
         };
 
         public override void AddRecipes()

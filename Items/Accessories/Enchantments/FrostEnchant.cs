@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class FrostEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frost Enchantment");
@@ -41,8 +43,8 @@ Summons a baby penguin and snowman");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("SubZeroSubwoofer"));
-                recipe.AddIngredient(thorium.ItemType("Glacior"));
+                recipe.AddIngredient(thorium.ItemType("FrostSubwoofer"));
+                recipe.AddIngredient(thorium.ItemType("Glacieor"));
                 recipe.AddIngredient(ItemID.IceBow);
                 recipe.AddIngredient(thorium.ItemType("FreezeRay"));
                 recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);

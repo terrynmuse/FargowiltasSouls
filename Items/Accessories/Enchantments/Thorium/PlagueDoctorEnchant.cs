@@ -46,20 +46,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             
         }
-        
-        private readonly string[] items =
-        {
-            "PlagueDoctorMask",
-            "PlagueDoctorGarb",
-            "PlagueDoctorLeggings",
-            "GasContainer",
-            "CombustionVial",
-            "NitrogenVial",
-            "CorrosiveVial",
-            "VileSpitter",
-            "FrostPlagueStaff",
-            "ToxicFlask"
-        };
 
         public override void AddRecipes()
         {
@@ -67,7 +53,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             ModRecipe recipe = new ModRecipe(mod);
             
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+            recipe.AddIngredient(thorium.ItemType("PlagueDoctersMask"));
+            recipe.AddIngredient(thorium.ItemType("PlagueDoctersGarb"));
+            recipe.AddIngredient(thorium.ItemType("PlagueDoctersLeggings"));
+            recipe.AddIngredient(thorium.ItemType("GasContainer"), 300);
+            recipe.AddIngredient(thorium.ItemType("CombustionFlask"), 300);
+            recipe.AddIngredient(thorium.ItemType("NitrogenVial"), 300);
+            recipe.AddIngredient(thorium.ItemType("CorrosionBeaker"), 300);
+            recipe.AddIngredient(thorium.ItemType("VileSpitter"));
+            recipe.AddIngredient(thorium.ItemType("FrostPlagueStaff"));
+            recipe.AddIngredient(ItemID.ToxicFlask);
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

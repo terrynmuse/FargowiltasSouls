@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class RedRidingEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Red Riding Enchantment");
@@ -45,7 +47,7 @@ Summons a Puppy");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("EvisceratingClaw"), 300);
-                recipe.AddIngredient(thorium.ItemType("LadysLight"));
+                recipe.AddIngredient(thorium.ItemType("LadyLight"));
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT2Popper);
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
             }

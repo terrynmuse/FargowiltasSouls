@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class SpectreEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spectre Enchantment");
@@ -41,10 +43,10 @@ Summons a Wisp to provide light");
                 recipe.AddIngredient(ItemID.SpectreHood);
                 recipe.AddIngredient(ItemID.SpectreRobe);
                 recipe.AddIngredient(ItemID.SpectrePants);
-                recipe.AddIngredient(ItemID.SpectreWings);
+                recipe.AddIngredient(ItemID.GhostWings);
                 recipe.AddIngredient(thorium.ItemType("GhastlyCarapace"));
                 recipe.AddIngredient(ItemID.SpectreStaff);
-                recipe.AddIngredient(thorium.ItemType("MusicSheetOrgan"));
+                recipe.AddIngredient(thorium.ItemType("MusicSheet5"));
                 recipe.AddIngredient(thorium.ItemType("EctoplasmicButterfly"));
             }
             else

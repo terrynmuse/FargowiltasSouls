@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ValhallaKnightEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Valhalla Knight Enchantment");
@@ -43,7 +45,7 @@ Summons a pet Dragon");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("BlobHornCoralStaff"));
+                recipe.AddIngredient(thorium.ItemType("BlobhornCoralStaff"));
                 recipe.AddIngredient(ItemID.DD2BallistraTowerT2Popper);
                 recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
                 recipe.AddIngredient(thorium.ItemType("CloudwingButterfly"));

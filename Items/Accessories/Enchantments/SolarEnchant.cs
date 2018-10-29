@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class SolarEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Solar Enchantment");
@@ -40,7 +42,7 @@ Melee attacks inflict it for less time (which is a good thing)");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.SolarWings);
+                recipe.AddIngredient(ItemID.WingsSolar);
                 recipe.AddIngredient(ItemID.HelFire);
                 recipe.AddIngredient(thorium.ItemType("BlackBlade"));
                 recipe.AddIngredient(thorium.ItemType("EruptingFlare"));

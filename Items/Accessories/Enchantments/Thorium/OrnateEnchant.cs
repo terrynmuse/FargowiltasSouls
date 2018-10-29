@@ -55,12 +55,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "OrnateJerkin",
             "OrnateLeggings",
             "ConcertTickets",
-            "TheGreenTambourine",
+            "GreenTambourine",
             "VuvuzelaBlue",
             "VuvuzelaGreen",
             "VuvuzelaRed",
             "VuvuzelaYellow",
-            "MusicSheetDoubleBass"
+            "MusicSheet7"
         };
 
         public override void AddRecipes()

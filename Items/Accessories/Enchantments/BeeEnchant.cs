@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class BeeEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bee Enchantment");
@@ -42,11 +44,11 @@ Summons a pet Baby Hornet");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("BeeBooties"));
+                recipe.AddIngredient(thorium.ItemType("BeeBoots"));
                 recipe.AddIngredient(ItemID.BeeKeeper);
                 recipe.AddIngredient(ItemID.BeeGun);
                 recipe.AddIngredient(thorium.ItemType("HoneyRecorder"));
-                recipe.AddIngredient(thorium.ItemType("SweetwingButterfly"));
+                recipe.AddIngredient(thorium.ItemType("SweetWingButterfly"));
             }
             else
             {

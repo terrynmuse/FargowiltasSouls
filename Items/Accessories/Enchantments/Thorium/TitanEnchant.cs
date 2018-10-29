@@ -54,10 +54,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "TitanHeadgear",
             "TitanHelmet",
             "TitanMask",
-            "Titan Breastplate",
+            "TitanBreastplate",
             "TitanGreaves",
-            "CyanMusicPlayer",
-            "MaskoftheCrystalEye",
+            "TunePlayerDamageReduction",
+            "CrystalEyeMask",
             "Executioner",
             "KineticKnife",
             "ArmorBane"

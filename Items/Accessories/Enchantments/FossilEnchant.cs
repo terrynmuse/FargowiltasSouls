@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class FossilEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fossil Enchantment");
@@ -43,7 +45,7 @@ Summons a pet Baby Dino");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("PrehistoricStaff"));
+                recipe.AddIngredient(thorium.ItemType("AmberMinion"));
                 recipe.AddIngredient(ItemID.BoneJavelin, 300);
                 recipe.AddIngredient(thorium.ItemType("Sitar"));
                 recipe.AddIngredient(thorium.ItemType("AmberButterfly"));

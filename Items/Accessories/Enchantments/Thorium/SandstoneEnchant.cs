@@ -55,16 +55,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(thorium.ItemType("SandstoneHelmet"));
-            recipe.AddIngredient(thorium.ItemType("SandstoneMail"));
-            recipe.AddIngredient(thorium.ItemType("SandstoneGreaves"));
+            recipe.AddIngredient(thorium.ItemType("hSandStoneHelmet"));
+            recipe.AddIngredient(thorium.ItemType("iSandStoneMail"));
+            recipe.AddIngredient(thorium.ItemType("jSandStoneGreaves"));
             recipe.AddIngredient(thorium.ItemType("Wreath"));
             recipe.AddIngredient(thorium.ItemType("DesertWindRune"));
             recipe.AddIngredient(thorium.ItemType("StoneThrowingSpear"), 300);
             recipe.AddIngredient(thorium.ItemType("OceanThrowingAxe"), 300);
-            recipe.AddIngredient(thorium.ItemType("SandstoneThrowingKnifes"), 300);
+            recipe.AddIngredient(thorium.ItemType("gSandStoneThrowingKnife"), 300);
             recipe.AddIngredient(thorium.ItemType("TalonBurst"));
-            recipe.AddIngredient(thorium.ItemType(ItemID.BlackScorpion));
+            recipe.AddIngredient(ItemID.BlackScorpion);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

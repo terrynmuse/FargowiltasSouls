@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class CopperEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Copper Enchantment");
@@ -45,7 +47,7 @@ Lightning scales with magic damage");
                 recipe.AddIngredient(ItemID.CopperShortsword);
                 recipe.AddIngredient(ItemID.AmethystStaff);
                 recipe.AddIngredient(thorium.ItemType("ThunderTalon"));
-                recipe.AddIngredient(thorium.ItemType("TheZapper"));
+                recipe.AddIngredient(thorium.ItemType("Zapper"));
                 recipe.AddIngredient(ItemID.Wire, 20);
                 recipe.AddIngredient(thorium.ItemType("AmethystButterfly"));
             }

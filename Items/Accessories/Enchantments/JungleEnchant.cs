@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class JungleEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jungle Enchantment");
@@ -41,7 +43,7 @@ Spore damage scales with magic damage");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("ToxicSubwoofer"));
+                recipe.AddIngredient(thorium.ItemType("PoisonSubwoofer"));
                 recipe.AddIngredient(ItemID.JungleRose);
                 recipe.AddIngredient(ItemID.ThornChakram);
                 recipe.AddIngredient(ItemID.Boomstick);

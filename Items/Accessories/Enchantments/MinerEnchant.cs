@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class MinerEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Miner Enchantment");
@@ -41,8 +43,8 @@ Summons a magic lantern");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("SandstonePickaxe"));
-                recipe.AddRecipeGroup("FargowiltasSouls:AnyGoldPick");
+                recipe.AddIngredient(thorium.ItemType("aSandstonePickaxe"));
+                recipe.AddIngredient(ItemID.GoldPickaxe);
                 recipe.AddIngredient(ItemID.BonePickaxe);
                 recipe.AddIngredient(thorium.ItemType("EnforcedThoriumPax"));
                 recipe.AddIngredient(ItemID.MoltenPickaxe);

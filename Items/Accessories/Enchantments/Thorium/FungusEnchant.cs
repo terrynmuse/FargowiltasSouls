@@ -61,7 +61,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(thorium.ItemType("Chum"), 300);
             recipe.AddIngredient(thorium.ItemType("VenomKunai"), 300);
             recipe.AddIngredient(thorium.ItemType("FungalPopper"), 300);
-            recipe.AddIngredient(thorium.ItemType("MorelGrenades"), 300);
+            recipe.AddIngredient(thorium.ItemType("MorelGrenade"), 300);
             recipe.AddIngredient(thorium.ItemType("MyceliumWhip"));
             recipe.AddIngredient(thorium.ItemType("LegionOrnament"), 300);
             recipe.AddIngredient(thorium.ItemType("MushroomButterfly"));

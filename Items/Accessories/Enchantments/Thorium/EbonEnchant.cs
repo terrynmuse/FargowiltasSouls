@@ -54,13 +54,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "EbonHood",
             "EbonCloak",
             "EbonLeggings",
-            "LeechBolt", //sold by zombie
-            "ShadowWand", //yew wood
-            "DarkHeart", //shadow orb drop
-            "PoisonPrickler", //jungle spore
-            "EaterofPain/TheStalker", //drop EoW
-            "DarkGift", //dark mage drop
-            "BloodiedButterfly" //blood moon
+            "LeechBolt",
+            "ShadowWand",
+            "DarkHeart",
+            "PoisonPrickler",
+            "EaterOfPain",
+            "DarkMageStaff",
+            "BloodiedButterfly"
         };
 
         public override void AddRecipes()

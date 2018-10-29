@@ -51,15 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "NobleHat",
-            "NobleJerkin",
-            "NobleLeggings",
-            "Mixtape",
+            "NoblesHat",
+            "NoblesJerkin",
+            "NoblesLeggings",
+            "MixTape",
             "RingofUnity",
-            "DevilsSubwoofer",
+            "MoltenSubwoofer",
             "Microphone",
             "Bongos",
-            "FieryTotem",
+            "FieryTotemCaller",
             "FireblossomButterfly"
         };
 

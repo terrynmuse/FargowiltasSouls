@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ShinobiEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shinobi Infiltrator Enchantment");
@@ -39,8 +41,8 @@ Summons a pet gato");
             recipe.AddIngredient(ItemID.MonkAltShirt);
             recipe.AddIngredient(ItemID.MonkAltPants);
             recipe.AddIngredient(null, "NinjaEnchant");
-            recipe.AddIngredient(ItemID.MonkBelt);
             recipe.AddIngredient(ItemID.MasterNinjaGear);
+            recipe.AddIngredient(ItemID.MonkBelt);
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      

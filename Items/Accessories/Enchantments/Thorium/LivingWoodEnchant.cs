@@ -56,13 +56,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(thorium.ItemType("LivingWoodMask"));
             recipe.AddIngredient(thorium.ItemType("LivingWoodChestguard"));
             recipe.AddIngredient(thorium.ItemType("LivingWoodBoots"));
-            recipe.AddIngredient(ItemID.GuidetoPlantFiber);
-            recipe.AddIngredient(thorium.ItemType("LivingWoodAcorn"));
+            recipe.AddIngredient(ItemID.CordageGuide);
+            recipe.AddIngredient(thorium.ItemType("LivingWoodSprout"));
             recipe.AddIngredient(ItemID.SlimeStaff);
-            recipe.AddIngredient(thorium.ItemType("Blowpipe"));
+            recipe.AddIngredient(ItemID.Blowpipe);
             recipe.AddIngredient(thorium.ItemType( "ChiTea"), 5);
             recipe.AddIngredient(thorium.ItemType("DaybloomButterfly"));
-            recipe.AddIngredient(ItemID.Grasshopper));
+            recipe.AddIngredient(ItemID.Grasshopper);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

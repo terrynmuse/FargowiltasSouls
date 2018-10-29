@@ -54,7 +54,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "SpiritTrapperHelmet",
             "SpiritTrapperCuirass",
             "SpiritTrapperGreaves",
-            "InnerFlame",
+            "SpiritFlame",
             "TabooWand",
             "SpiritBlastWand",
             "StrangeSkull",

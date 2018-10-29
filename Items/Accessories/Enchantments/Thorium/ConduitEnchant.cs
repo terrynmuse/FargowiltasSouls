@@ -58,7 +58,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "VegaPhaser",
             "SuperPlasmaCannon",
             "LivewireCrasher",
-            "Triangle",
+            "Triangle"
         };
 
         public override void AddRecipes()

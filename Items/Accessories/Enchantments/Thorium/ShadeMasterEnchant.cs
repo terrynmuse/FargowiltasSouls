@@ -58,8 +58,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(thorium.ItemType("ShadeMasterMask"));
             recipe.AddIngredient(thorium.ItemType("ShadeMasterGarb"));
             recipe.AddIngredient(thorium.ItemType("ShadeMasterTreads"));
-            recipe.AddIngredient(thorium.ItemType("PurpleMusicPlayer"));
-            recipe.AddIngredient(thorium.ItemType("ClockworkBomb"), 300);
+            recipe.AddIngredient(thorium.ItemType("TunePlayerMaxMana"));
+            recipe.AddIngredient(thorium.ItemType("ClockWorkBomb"), 300);
             recipe.AddIngredient(thorium.ItemType("BugenkaiShuriken"), 300);
             recipe.AddIngredient(thorium.ItemType("ShadeKunai"), 300);
             recipe.AddIngredient(thorium.ItemType("ShadeDagger"));

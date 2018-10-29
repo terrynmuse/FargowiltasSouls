@@ -51,9 +51,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "LifeBinderMask",
-            "LifeBinderBreastplate",
-            "LifeBinderGreaves",
+            "DewBinderMask",
+            "DewBinderBreastplate",
+            "DewBinderGreaves",
             "AloeLeaf",
             "BloomGuard",
             "SunrayStaff",

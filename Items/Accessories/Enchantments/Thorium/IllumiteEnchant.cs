@@ -54,13 +54,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "IllumiteMask",
             "IllumiteChestplate",
             "IllumiteGreaves",
-            "PinkMusicPlayer",
-            "CupidsString",
+            "TunePlayerLifeRegen",
+            "CupidString",
             "ShusWrath",
-            "HandCannon"
-            "IllumiteShotbow",
-            "IllumiteBarrager",
-            "TrenchSpitter",
+            "HandCannon",
+            "IllumiteBow",
+            "IllumiteBarrage",
+            "TrenchSpitter"
         };
 
         public override void AddRecipes()

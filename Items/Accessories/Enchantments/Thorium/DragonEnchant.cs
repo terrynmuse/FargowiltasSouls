@@ -53,12 +53,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "DragonBreastplate",
             "DragonGreaves",
             "DragonWings",
-            "DragonsGaze"
+            "DragonsGaze",
             "DragonsBreath",
             "EbonyTail",
-            "DraconicMagmaStaff",
+            "DragonkinStaff",
             "CursedFlameButterfly",
-            "CloudyChewToy",
+            "CloudyChewToy"
         };
 
         public override void AddRecipes()

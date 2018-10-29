@@ -54,13 +54,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "NagaSkinMask",
             "NagaSkinSuit",
             "NagaSkinTail",
-            "EelRod",
-            "SpellBookCyclone",
-            "NagasRecurve",
-            "SeaFoamScepter",
-            "HydromancersCatalyst",
+            "Eelrod",
+            "CycloneBook",
+            "NagaRecurve",
+            "NagaSpitStaff",
+            "HydromancerCatalyst",
             "Leviathan",
-            "OldGodsGrasp"
+            "OldGodGrasp"
         };
 
         public override void AddRecipes()

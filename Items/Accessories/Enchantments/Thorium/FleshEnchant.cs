@@ -55,10 +55,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "FleshWings",
             "VampireGland",
             "GrimFlayer",
-            "FleshMace"
+            "FleshMace",
             "BloodBelcher",
-            "BloodClotStaff"
-            "BlisterSack",
+            "HungerStaff",
+            "BlisterSack"
         };
 
         public override void AddRecipes()

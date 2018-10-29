@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ShroomiteEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Enchantment");
@@ -42,7 +44,7 @@ Summons a pet Baby Truffle");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("MyceliumGatlingGun"));
+                recipe.AddIngredient(thorium.ItemType("MyceliumGattlingPulser"));
                 recipe.AddIngredient(ItemID.ChlorophyteShotbow);
                 recipe.AddIngredient(ItemID.Uzi);
                 recipe.AddIngredient(thorium.ItemType("ShroomiteButterfly"));

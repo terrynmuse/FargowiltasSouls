@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class IronEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Iron Enchantment");
@@ -47,7 +49,7 @@ You attract items from a much larger range and fall 5 times as quickly");
                 recipe.AddIngredient(ItemID.IronBroadsword);
                 recipe.AddIngredient(thorium.ItemType("OpalStaff"));
                 recipe.AddIngredient(ItemID.IronAnvil);
-                recipe.AddIngredient(thorium.ItemType("OpalButterfly"));
+                recipe.AddIngredient(ItemID.ZebraSwallowtailButterfly);
             }
             else
             {

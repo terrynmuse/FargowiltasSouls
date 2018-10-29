@@ -49,15 +49,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "LodestoneFaceGuard",
-            "LodestoneChestGuard",
-            "LodestonehinGuard",
+            "LodeStoneFaceGuard",
+            "LodeStoneChestGaurd",
+            "LodeStoneShinGaurds",
             "AstroBeetleHusk",
             "StoneSledge",
             "TheJuggernaut",
-            "LodestoneClaymore",
-            "LodestoneBreaker",
-            "LodestoneStaff",
+            "LodeStoneClaymore",
+            "LodeStoneMace",
+            "LodeStoneStaff",
             "ValadiumSpear"
         };
 

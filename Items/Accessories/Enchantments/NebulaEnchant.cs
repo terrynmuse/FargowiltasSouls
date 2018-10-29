@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class NebulaEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Nebula Enchantment");
@@ -39,10 +41,10 @@ Maintain maxed buff boosters for 5 seconds to gain drastically increased magic a
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.NebulaMantle);
+                recipe.AddIngredient(ItemID.WingsNebula);
                 recipe.AddIngredient(thorium.ItemType("BlackStaff"));
-                recipe.AddIngredient(thorium.ItemType("CatsEyeGreatStaff"));
-                recipe.AddIngredient(thorium.ItemType("NebulasReflection"));
+                recipe.AddIngredient(thorium.ItemType("CatsEye"));
+                recipe.AddIngredient(thorium.ItemType("NebulaReflection"));
             }
             else
             {

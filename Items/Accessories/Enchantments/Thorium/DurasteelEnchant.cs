@@ -54,7 +54,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "DurasteelChainsaw",
             "DurasteelRepeater",
             "SpudBomber",
-            "ThiefsDagger",
+            "ThiefDagger",
             "SeaMine",
             "GreedyMagnet"
         };
@@ -68,7 +68,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(thorium.ItemType("DurasteelHelmet"));
             recipe.AddIngredient(thorium.ItemType("DurasteelChestplate"));
             recipe.AddIngredient(thorium.ItemType("DurasteelGreaves"));
-            recipe.AddIngredient(null, "DarkSteelEnchant");
+            recipe.AddIngredient(null, "DarksteelEnchant");
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 

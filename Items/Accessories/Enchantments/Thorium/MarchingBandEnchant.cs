@@ -51,16 +51,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "Marching Band armor",
-            "Marching Band armor",
-            "Marching Band armor",
-            "HellsBell",
-            "WindChimes",
-            "ShadowflameWarhorn",
-            "FrostwindCymbals",
+            "MarchingBandCap",
+            "MarchingBandUniform",
+            "MarchingBandLeggings",
+            "Cymbals",
+            "Violin",
+            "HellBell",
+            "Chimes",
             "Trombone",
-            "24CaratTuba",
-            "Violin"
+            "SummonerWarhorn",
+            "Tuba"
         };
 
         public override void AddRecipes()

@@ -55,7 +55,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "CyberPunkSuit",
             "CyberPunkLeggings",
             "AutoTuner",
-            "RedMusicPlayer",
+            "TunePlayerDamage",
             "VinylRecord",
             "Kazoo",
             "HallowedMegaphone",

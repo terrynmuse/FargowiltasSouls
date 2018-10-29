@@ -56,7 +56,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "eeSoulSiphon",
             "ManHacker",
             "DarksteelHelmetStand",
-            "GrayDPainting",
+            "GrayDPaintingItem",
         };
 
         public override void AddRecipes()

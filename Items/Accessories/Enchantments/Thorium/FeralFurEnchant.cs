@@ -49,15 +49,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "FeralFurHead",
-            "FeralFurChest",
-            "FeralFurLegs",
-            "BloodDrenchedDagger",
-            "Bellarose",
+            "FeralSkinHead",
+            "FeralSkinChest",
+            "FeralSkinLegs",
+            "Dagger",
+            "Bellerose",
             "SacrificialDagger",
-            "AstralBarrierWand",
-            "CrimsonHoundStaff/CorruptlingStaff",
-            "BloodFeasterStaff",
+            "MeteorBarrier",
+            "CrimsonSummon",
+            "BloodCellStaff",
             "BackStabber"
         };
 

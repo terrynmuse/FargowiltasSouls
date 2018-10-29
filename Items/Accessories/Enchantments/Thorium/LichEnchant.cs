@@ -53,12 +53,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             "LichCowl",
             "LichCarapace",
-            "LichTalons",
-            "LichsGaze",
+            "LichTalon",
+            "LichGaze",
             "RocketFist",
             "SoulCleaver",
             "DeathGrip",
-            "CadaversCornet"
+            "CadaverCornet"
         };
 
         public override void AddRecipes()
@@ -70,7 +70,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
             
             recipe.AddIngredient(thorium.ItemType("TitanJavelin"), 300);
-            recipe.AddIngredient(thorium.ItemType("StudyofLich"));
+            recipe.AddIngredient(thorium.ItemType("PumpkinPaint"));
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

@@ -54,13 +54,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "GeodeHelmet",
             "GeodeChestplate",
             "GeodeGreaves",
-            "AdventurersLantern",
             "EnchantedPickaxe",
             "GeodePickaxe",
             "DragonDrill",
             "FleshDrill",
-            "DemosGuidance",
-            "DavyJonesLockBox "
+            "Lantern",
+            "SupportLanternItem",
+            "JonesLockBox"
         };
 
         public override void AddRecipes()

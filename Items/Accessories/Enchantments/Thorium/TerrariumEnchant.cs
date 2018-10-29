@@ -50,9 +50,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private readonly string[] items =
         {
             "TerrariumHelmet",
-            "TerrariumBreastplate",
+            "TerrariumBreastPlate",
             "TerrariumGreaves",
-            "TerrariumSurroundSound",
+            "TerrariumSubwoofer",
             "EssenceofFlame",
             "SearingBlade",
             "TerrariumSaber",

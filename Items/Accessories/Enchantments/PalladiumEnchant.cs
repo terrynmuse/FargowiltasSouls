@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class PalladiumEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Palladium Enchantment");
@@ -40,9 +42,9 @@ Small chance for an attack to gain 33% life steal");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("PalladiumSubMachineGun"));
+                recipe.AddIngredient(thorium.ItemType("PalladiumSub"));
                 recipe.AddIngredient(thorium.ItemType("PalladiumStaff"));
-                recipe.AddIngredient(thorium.ItemType("LifeLeech"));
+                recipe.AddIngredient(thorium.ItemType("eeeLifeLeech")); //um WTF
                 recipe.AddIngredient(thorium.ItemType("VampireScepter"));
             }
             else

@@ -52,9 +52,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private readonly string[] items =
         {
             "HarbingerHelmet",
-            "HarbingerChestguard",
+            "HarbingerChestGuard",
             "HarbingerGreaves",
-            "White Music Player",
+            "TunePlayerMaxLife",
             "NightStaff",
             "BlackholeCannon",
             "GodKiller",

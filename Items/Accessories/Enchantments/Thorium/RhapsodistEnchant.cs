@@ -51,12 +51,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "RhapsodistHat",
-            "RhapsodistHelmet",
-            "RhapsodistChestwoofer",
+            "SoloistHat",
+            "RallyHat",
+            "RhapsodistChestWoofer",
             "RhapsodistBoots",
-            "MusicSheetHarp",
-            "SirensLyre",
+            "MusicSheet6",
+            "SirensAllure",
             "TerrariumAutoharp",
             "Holophonor",
             "Sousaphone",

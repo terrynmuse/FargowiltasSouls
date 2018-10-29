@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class MoltenEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Molten Enchantment");
@@ -39,7 +41,7 @@ When you die, you violently explode dealing massive damage to surrounding enemie
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("ThorsHammerMelee"));
+                recipe.AddIngredient(thorium.ItemType("MeleeThorHammer"));
                 recipe.AddIngredient(ItemID.MoltenHamaxe);
                 recipe.AddIngredient(ItemID.Flamarang);
                 recipe.AddIngredient(ItemID.Sunfury);

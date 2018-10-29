@@ -57,7 +57,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Equalizer",
             "HereticBreaker",
             "AquaiteScythe",
-            "CleansingWaterPouch", 
+            "SpiritPouch", 
             "TranquilLyre",
             "IridescentStaff", 
             "SerpentsBubbleWand"

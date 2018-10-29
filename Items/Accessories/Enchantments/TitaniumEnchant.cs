@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class TitaniumEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Titanium Enchantment");
@@ -45,7 +47,7 @@ Increases all knockback");
                 recipe.AddIngredient(ItemID.SlapHand);
                 recipe.AddIngredient(ItemID.Anchor);
                 recipe.AddIngredient(thorium.ItemType("Saba"));
-                recipe.AddIngredient(thorium.ItemType("ClimbersIceAxe"));
+                recipe.AddIngredient(thorium.ItemType("IceAxe"));
                 recipe.AddIngredient(ItemID.MonkStaffT1);  
             }
             else

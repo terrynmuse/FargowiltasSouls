@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class DarkArtistEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dark Artist Enchantment");
@@ -41,7 +43,7 @@ Summons a flickerwick to provide light");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("DarkEffigy"));
+                recipe.AddIngredient(thorium.ItemType("Effigy"));
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
                 recipe.AddIngredient(thorium.ItemType("WhisperingDagger"));
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT2Popper);

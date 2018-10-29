@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class NinjaEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ninja Enchantment");
@@ -40,9 +42,9 @@ Summons a pet Black cat");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {   
-                recipe.AddIngredient(ItemID.ThrowingKnife, 200);
-                recipe.AddIngredient(ItemID.Shuriken, 100);
-                recipe.AddIngredient(thorium.ItemType("SeaNinjaStar"));
+                recipe.AddIngredient(ItemID.ThrowingKnife, 300);
+                recipe.AddIngredient(ItemID.Shuriken, 300);
+                recipe.AddIngredient(thorium.ItemType("StarfishSlicer"), 300);
                 recipe.AddIngredient(ItemID.SmokeBomb, 50);
                 recipe.AddIngredient(thorium.ItemType("Scorpain"));
                 recipe.AddIngredient(thorium.ItemType("AmphibianEgg"));

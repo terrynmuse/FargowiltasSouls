@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class VortexEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Vortex Enchantment");
@@ -40,7 +42,7 @@ Summons a Companion Cube Pet");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.VortexBooster);
+                recipe.AddIngredient(ItemID.WingsVortex);
                 recipe.AddIngredient(thorium.ItemType("VoidLance"));
                 recipe.AddIngredient(thorium.ItemType("BlackBow"));
             }

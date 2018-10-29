@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class LeadEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lead Enchantment");
@@ -44,8 +46,8 @@ Lead Poisoning deals damage over time and slows enemies slightly");
                 recipe.AddIngredient(ItemID.LeadPickaxe);
                 recipe.AddIngredient(thorium.ItemType("OnyxStaff"));
                 recipe.AddIngredient(thorium.ItemType("RustySword"));
-                recipe.AddIngredient(ItemID.GrayPaint);
-                recipe.AddIngredient(thorium.ItemType("OnyxButterfly"));
+                recipe.AddIngredient(ItemID.GrayPaint, 100);
+                recipe.AddIngredient(ItemID.SulphurButterfly);
             }
             else
             {

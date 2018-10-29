@@ -60,7 +60,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "Clarinet",
             "Bassoon",
             "FrenchHorn",
-            "Saxaphone"
+            "Saxophone"
         };
 
         public override void AddRecipes()

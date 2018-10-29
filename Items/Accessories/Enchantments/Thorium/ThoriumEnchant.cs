@@ -55,12 +55,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "ThoriumMail",
             "ThoriumGreaves",
             "GrandThoriumHelmet",
-            "GrandThoriumBreastplate",
+            "GrandThoriumBreastPlate",
             "GrandThoriumGreaves",
             "BandofReplenishment",
+            "ThoriumBlade",
             "WhirlpoolSaber",
-            "ThoriumCube",
-            "Diver caught in a net only named Sam"
+            "ThoriumCube"
         };
 
         public override void AddRecipes()

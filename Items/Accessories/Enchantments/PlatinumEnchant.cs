@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class PlatinumEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Platinum Enchantment");
@@ -43,7 +45,7 @@ If the enemy has Midas, the chance and bonus is doubled");
                 recipe.AddIngredient(thorium.ItemType("PlatinumAegis"));
                 recipe.AddIngredient(ItemID.DiamondRing);
                 recipe.AddIngredient(ItemID.DiamondStaff);
-                recipe.AddIngredient(ItemID.WhitePhaseSaber);
+                recipe.AddIngredient(ItemID.WhitePhasesaber);
                 recipe.AddIngredient(thorium.ItemType("DiamondButterfly"));
                 recipe.AddIngredient(thorium.ItemType("AncientDrachma"));
             }
@@ -51,7 +53,7 @@ If the enemy has Midas, the chance and bonus is doubled");
             {
                 recipe.AddIngredient(ItemID.DiamondRing);
                 recipe.AddIngredient(ItemID.DiamondStaff);
-                recipe.AddIngredient(ItemID.WhitePhaseSaber);
+                recipe.AddIngredient(ItemID.WhitePhasesaber);
             }
 
             recipe.AddTile(TileID.DemonAltar);

@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class SpookyEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spooky Enchantment");
@@ -43,8 +45,8 @@ Summons a Cursed Sapling and an eyeball spring");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BeholderStaff"));
-                recipe.AddIngredient(thorium.ItemType("PhantomWand"));
-                recipe.AddIngredient(thorium.ItemType("PagansGrasp"));
+                recipe.AddIngredient(thorium.ItemType("CryptWand"));
+                recipe.AddIngredient(thorium.ItemType("PaganGrasp"));
             }
             
             recipe.AddIngredient(ItemID.CursedSapling);

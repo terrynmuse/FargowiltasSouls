@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class CactusEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cactus Enchantment");
@@ -42,11 +44,11 @@ Needles scale with melee damage");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.SandGun);
-                recipe.AddIngredient(ItemID.ThornsPotion);
-                recipe.AddIngredient(thorium.ItemType("CactusFruit"));
-                recipe.AddIngredient(thorium.ItemType("PricklyJam"));
-                recipe.AddIngredient(thorium.ItemType("SandyButterfly"));
+                recipe.AddIngredient(ItemID.Sandgun);
+                recipe.AddIngredient(ItemID.ThornsPotion, 5);
+                recipe.AddIngredient(thorium.ItemType("CactusFruit"), 5);
+                recipe.AddIngredient(thorium.ItemType("PricklyJam"), 5);
+                recipe.AddIngredient(thorium.ItemType("SandButterfly"));
             }
             else
             {

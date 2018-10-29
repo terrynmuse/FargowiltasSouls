@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class SpiderEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spider Enchantment");
@@ -39,8 +41,8 @@ Summons a pet Spider");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("ArachnidSubwoofer"));
-                recipe.AddIngredient(thorium.ItemType("WebGun"));
+                recipe.AddIngredient(thorium.ItemType("VenomSubwoofer"));
+                recipe.AddIngredient(thorium.ItemType("Webgun"));
                 recipe.AddIngredient(ItemID.SpiderStaff);
                 recipe.AddIngredient(ItemID.QueenSpiderStaff);
                 recipe.AddIngredient(ItemID.BatScepter);

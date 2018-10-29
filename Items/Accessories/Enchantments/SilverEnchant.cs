@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class SilverEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Silver Enchantment");
@@ -41,12 +43,12 @@ Summons a sword familiar that scales with minion damage");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("SilverBulwark"));
-                recipe.AddIngredient(thorium.ItemType("EnchantedShield"));
+                recipe.AddIngredient(thorium.ItemType("EnchantedShield")); //replace
                 recipe.AddIngredient(ItemID.SilverBroadsword);
                 recipe.AddIngredient(ItemID.SilverBow);
                 recipe.AddIngredient(ItemID.SapphireStaff);
                 recipe.AddIngredient(ItemID.BluePhaseblade);
-                recipe.AddIngredient(thorium.ItemType("SaphireButterfly"));
+                recipe.AddIngredient(thorium.ItemType("SapphireButterfly"));
             }
             else
             {

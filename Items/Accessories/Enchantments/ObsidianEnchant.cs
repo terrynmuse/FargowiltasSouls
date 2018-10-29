@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ObsidianEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Obsidian Enchantment");
@@ -40,9 +42,9 @@ While standing in lava, you gain 10 more armor penetration, 10% attack speed, an
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("AncientObsidianHelmet"));
-                recipe.AddIngredient(thorium.ItemType("AncientObsidianChestguard"));
-                recipe.AddIngredient(thorium.ItemType("AncientObsidianGreaves"));
+                recipe.AddIngredient(thorium.ItemType("aObsidianHelmet"));
+                recipe.AddIngredient(thorium.ItemType("bObsidianChestGuard"));
+                recipe.AddIngredient(thorium.ItemType("cObsidianGreaves"));
                 recipe.AddIngredient(thorium.ItemType("ObsidianScale"));
                 recipe.AddIngredient(ItemID.ObsidianRose);
                 recipe.AddIngredient(ItemID.SharkToothNecklace);

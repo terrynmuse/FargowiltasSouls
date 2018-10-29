@@ -56,12 +56,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "WhiteKnightTabard",
             "WhiteKnightLeggings",
             "ShadeBand",
-            "PrismStaff",
+            "PrismiteStaff",
             "VileSpitter",
-            "SkyFracture",
-            "BoreanFangStaff",
-            "PixieWingButterfly",
-            "DelectableNut"
+            "FrostFang"
         };
 
         public override void AddRecipes()
@@ -71,6 +68,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(ItemID.SkyFracture);
+            recipe.AddIngredient(thorium.ItemType("PixiewingButterfly"));
+            recipe.AddIngredient(thorium.ItemType("DelectableNut"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

@@ -58,9 +58,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "FortifyingWand",
             "PalmCross",
             "IceShaver",
-            "PurifiedWater",
-            "Renew",
-            "SwallowtailButterfly"
+            "Renew"
         };
 
         public override void AddRecipes()
@@ -70,6 +68,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("PurifiedWater"), 300);
+            recipe.AddIngredient(thorium.ItemType("SwallowtailButterfly"));
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

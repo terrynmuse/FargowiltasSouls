@@ -55,7 +55,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "CryoMagusTabard",
             "CryoMagusLeggings",
             "IceBoundStriderHide",
-            "MusicPlayerManaRegen",
+            "TunePlayerManaRegen",
             "IceFairyStaff",
             "FrostBurntTongue",
         };

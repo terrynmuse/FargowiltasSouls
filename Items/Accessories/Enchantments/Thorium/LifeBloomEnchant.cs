@@ -54,12 +54,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "LifeBloomMask",
             "LifeBloomMail",
             "LifeBloomLeggings",
-            "BrownMusicPlayer",
+            "TunePlayerAmmoConsume",
             "TulipStaff",
-            "GroundedTotem",
-            "TheButterflyStaff",
+            "GroundedTotemCaller",
+            "ButterflyStaff5",
             "HoneyBlade",
-            "EyeofOdin",
+            "OdinsEye",
             "HiveMind"
         };
 

@@ -56,11 +56,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "WarlockLeggings",
             "DemonTongue",
             "Omen",
-            "AggressionStaff",
-            "Midnight Staff",
-            "BloodTransfusion",
+            "DamageStaff",
+            "ShadowStaff",
+            "BloodRage",
             "NecroticStaff",
-            "LilDevilsWand"
+            "DevilStaff"
         };
 
         public override void AddRecipes()

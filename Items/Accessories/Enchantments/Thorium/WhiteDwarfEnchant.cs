@@ -52,13 +52,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "WhiteDwarfMask",
             "WhiteDwarfGuard",
             "WhiteDwarfGreaves",
-            "TheEbonHammer",
+            "BlackHammer",
             "GeodeMallet",
-            "LodestoneHammer",
-            "TheBlackDagger",
-            "CosmicDagger",
-            "WhiteDwarfKunai",
-            "LuminiteButterfly"
+            "LodeStoneHammer",
+            "BlackDagger",
+            "CosmicDagger"
         };
 
         public override void AddRecipes()
@@ -68,6 +66,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("WhiteDwarfKunai"), 300);
+            recipe.AddIngredient(thorium.ItemType("LuminiteButterfly"));
 
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);

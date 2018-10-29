@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class StardustEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stardust Enchantment");
@@ -40,8 +42,8 @@ There is a 60 second cooldown for this effect, a sound effect plays when it's ba
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.StardustWings);
-                recipe.AddIngredient(thorium.ItemType("SpellbookTimeGate"));
+                recipe.AddIngredient(ItemID.WingsStardust);
+                recipe.AddIngredient(thorium.ItemType("TimeBook"));
                 recipe.AddIngredient(thorium.ItemType("BlackCane"));
                 recipe.AddIngredient(thorium.ItemType("ShadowOrbStaff"));
             }

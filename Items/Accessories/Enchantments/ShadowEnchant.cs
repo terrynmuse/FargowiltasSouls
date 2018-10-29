@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ShadowEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadow Enchantment");
@@ -42,7 +44,7 @@ Summons a Baby Eater of Souls and a Shadow Orb");
             {      
                 recipe.AddIngredient(ItemID.WarAxeoftheNight);
                 recipe.AddIngredient(ItemID.BallOHurt);
-                recipe.AddIngredient(ItemID.PurpleBlubberfish);
+                recipe.AddIngredient(ItemID.PurpleClubberfish);
                 recipe.AddIngredient(ItemID.LightlessChasms);
                 recipe.AddIngredient(thorium.ItemType("CorruptButterfly"));
             }

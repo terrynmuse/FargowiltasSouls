@@ -51,15 +51,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "FallenPaladinFaceguard",
+            "FallenPaladinFacegaurd",
             "FallenPaladinCuirass",
             "FallenPaladinGreaves",
             "Wynebgwrthucher",
             "TwilightStaff",
             "HolyHammer",
-            "LightBringersWarhammer"
-            "BubbleBulwarkWand",
-            "FriendlyFireStaff",
+            "LightBringerWarhammer",
+            "BulwarkStaff",
+            "SpiritFireWand",
             "PillPopper"
         };
 

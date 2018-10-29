@@ -50,7 +50,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private readonly string[] items =
         {
             "MagmaHelmet",
-            "MagmaChestguard",
+            "MagmaChestGuard",
             "MagmaGreaves",
             "SpringSteps",
             "SlagStompers",

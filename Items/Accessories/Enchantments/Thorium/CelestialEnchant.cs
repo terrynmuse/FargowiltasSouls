@@ -54,12 +54,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "CelestialCrown",
             "CelestialVestment",
             "CelestialLeggings",
-            "CelestialCarrier",
-            "HeavenlyCloudScepter",
+            "CelestialTrinity",
+            "HealingRain",
             "AscensionStatuette",
-            "AncientTomeofRevival",
+            "AncientTome",
             "BlackScythe",
-            "CelestialBurstStaff ",
+            "CelestialNova",
             "DivineStaff"
         };
 

@@ -51,14 +51,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "SacredHelmet",
-            "SacredBreastplate",
-            "SacredLeggings",
-            "RenewStaff",
+            "HallowedPaladinHelmet",
+            "HallowedPaladinBreastplate",
+            "HallowedPaladinLeggings",
+            "Renew",
             "LightBurstWand",
             "SacredCharge",
-            "Sacred Buldgeon",
-            "LilCherubWand",
+            "HallowedBludgeon",
+            "AngelStaff",
             "Liberation",
             "Twinkle"
         };

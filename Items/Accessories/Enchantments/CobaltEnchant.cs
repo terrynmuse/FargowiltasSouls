@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class CobaltEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cobalt Enchantment");
@@ -44,7 +46,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             }
             
             recipe.AddIngredient(ItemID.Chik);
-            recipe.AddIngredient(ItemID.CrystalDart, 200);
+            recipe.AddIngredient(ItemID.CrystalDart, 300);
             recipe.AddIngredient(ItemID.CrystalStorm);
             recipe.AddIngredient(ItemID.CrystalVileShard);
             

@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class TurtleEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Turtle Enchantment");
@@ -39,13 +41,13 @@ Summons a pet Lizard and Turtle");
             recipe.AddIngredient(ItemID.TurtleScaleMail);
             recipe.AddIngredient(ItemID.TurtleLeggings);
             recipe.AddIngredient(ItemID.FleshKnuckles);
-            recipe.AddIngredient(ItemID.ChlorophytePartizan);
+            recipe.AddIngredient(ItemID.ChlorophytePartisan);
 
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("AbsintheFury"));
                 recipe.AddIngredient(ItemID.Yelets);
-                recipe.AddIngredient(thorium.ItemType("TurtleDrums"));
+                recipe.AddIngredient(thorium.ItemType("TurtleDrum"));
             }
             
             recipe.AddIngredient(ItemID.Seaweed);

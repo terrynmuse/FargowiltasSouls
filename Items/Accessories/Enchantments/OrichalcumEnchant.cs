@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class OrichalcumEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Orichalcum Enchantment");
@@ -40,7 +42,7 @@ Attacks may spawn fireballs to rotate around you");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("OrichalcumPelter"));
+                recipe.AddIngredient(thorium.ItemType("OrichPelter"));
                 recipe.AddIngredient(thorium.ItemType("OrichalcumStaff"));
                 recipe.AddIngredient(ItemID.FlowerofFire);
                 recipe.AddIngredient(ItemID.FlowerofFrost);

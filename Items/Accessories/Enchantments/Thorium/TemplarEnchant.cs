@@ -51,14 +51,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "TemplarCirclet",
-            "TemplarTabard",
-            "TemplarLeggings",
+            "TemplarsCirclet",
+            "TemplarsTabard",
+            "TemplarsLeggings",
             "LifesGift",
             "TemplarsGrace",
-            "TemplarsJudgement",
+            "TemplarJudgment",
             "ChiLantern",
-            "GraniteIonStaff"
+            "GraniteIonStaff",
             "Prophecy",
             "LifeCrystalButterfly"
         };

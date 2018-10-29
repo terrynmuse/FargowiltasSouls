@@ -51,13 +51,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "BiotechHood",
-            "BiotechGarment",
-            "BiotechLeggings",
+            "LifeWeaverHood",
+            "LifeWeaverGarment",
+            "LifeWeaverLeggings",
             "NullZoneStaff",
             "VoidPlanter",
             "LifeEssenceApparatus",
-            "PocketGuardian",
+            "PocketGaurdian", //....
             "LifePulseStaff",
             "MindMelter",
             "BarrierGenerator"

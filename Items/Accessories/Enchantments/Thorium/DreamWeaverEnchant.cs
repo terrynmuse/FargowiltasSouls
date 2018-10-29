@@ -49,14 +49,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "DreamWeaverHelmet",
-            "DreamWeaverHood",
-            "DreamWeaverTabard",
-            "DreamWeaverTreads",
+            "DreamWeaversHelmet",
+            "DreamWeaversHood",
+            "DreamWeaversTabard",
+            "DreamWeaversTreads",
             "DragonHeartWand",
-            "SnackoLantern",
+            "SnackLantern",
             "ChristmasCheer",
-            "MolecularStabilizer",
+            "MoleculeStabilizer",
             "RealitySlasher",
             "DreamCatcher"
         };

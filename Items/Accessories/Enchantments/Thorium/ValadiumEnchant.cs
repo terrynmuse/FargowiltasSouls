@@ -52,14 +52,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private readonly string[] items =
         {
             "ValadiumHelmet",
-            "ValadiumBreastplate",
+            "ValadiumBreastPlate",
             "ValadiumGreaves",
-            "EyeoftheBeholder",
+            "EyeofBeholder",
             "GlacialSting",
             "Obliterator",
             "ValadiumBow",
             "ValadiumStaff",
-            "LodestoneQuickDraw",
+            "LodeStoneQuickDraw",
             "TommyGun"
         };
 
