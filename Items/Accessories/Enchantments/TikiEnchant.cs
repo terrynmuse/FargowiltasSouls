@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'Aku Aku!'
 Attacks will inflict a random debuff
-Summons a Tiki Spirit");
+Summons a Tiki Spirit"); //attacks transform, or 10% chance for 1 dmg 10% chance for 10x damage meme
         }
 
         public override void SetDefaults()
