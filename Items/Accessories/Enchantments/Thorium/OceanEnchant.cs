@@ -22,7 +22,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Ocean Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Grants the ability to swim
+Grants underwater breathing
+Being in water increases damage and damage reduction by 10%
+Attracts all nearby air bubbles found within the Aquatic Depths
+Doubles the duration of 'Refreshing Bubble' when held");
         }
 
         public override void SetDefaults()
