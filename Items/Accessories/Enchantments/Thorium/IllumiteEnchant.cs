@@ -58,9 +58,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "CupidString",
             "ShusWrath",
             "HandCannon",
-            "IllumiteBow",
             "IllumiteBarrage",
-            "TrenchSpitter"
+            "TrenchSpitter",
+            "PinkSludge"
         };
 
         public override void AddRecipes()
