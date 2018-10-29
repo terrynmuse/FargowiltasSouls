@@ -69,14 +69,8 @@ Releases bees when damaged");
             recipe.AddIngredient(ItemID.FestiveWings);
             recipe.AddIngredient(ItemID.BetsyWings);
             recipe.AddIngredient(ItemID.FishronWings);
-            recipe.AddIngredient(ItemID.WingsStardust);
-            recipe.AddIngredient(ItemID.WingsVortex);
-            recipe.AddIngredient(ItemID.WingsNebula);
-            recipe.AddIngredient(ItemID.WingsSolar);
             
             /*thorium
-            balladeers turbo tuba
-            celestial carrier
             terrarium wings
             */
 
