@@ -47,7 +47,7 @@ If the enemy has Midas, the chance and bonus is doubled");
                 recipe.AddIngredient(ItemID.DiamondStaff);
                 recipe.AddIngredient(ItemID.WhitePhasesaber);
                 recipe.AddIngredient(thorium.ItemType("DiamondButterfly"));
-                recipe.AddIngredient(thorium.ItemType("AncientDrachma"));
+                recipe.AddIngredient(thorium.ItemType("ShinyObject"));
             }
             else
             {
