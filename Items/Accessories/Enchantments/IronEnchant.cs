@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 @"'Strike while the iron is hot'
 Right Click to guard with your shield
 Your shield will also protect you from projectiles
-You attract items from a much larger range and fall 5 times as quickly");
+You attract items from a much larger range and fall 5 times as quickly"); //reduce range, bring back shield REE
         }
 
         public override void SetDefaults()
