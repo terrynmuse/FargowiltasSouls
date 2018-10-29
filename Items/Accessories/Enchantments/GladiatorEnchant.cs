@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'Are you not entertained?'
 Throwing weapons will speed up drastically over time
-Summons a pet Minotaur");
+Summons a pet Minotaur"); //chance to stone enemys or something
         }
 
         public override void SetDefaults()
