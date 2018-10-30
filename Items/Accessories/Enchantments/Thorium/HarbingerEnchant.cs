@@ -23,7 +23,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"''
 Increased mana regeneration
-Maximum mana increased by 50%. When above 75% maximum mana: +50% magic damage, +26% magic critical strike chance and -3 health per second till 50% life");
+Maximum mana increased by 50%. 
+When above 75% maximum mana: +50% magic damage, +26% magic critical strike chance and -3 health per second till 50% life
+Your symphonic damage will empower all nearby allies with: Maximum Life II");
         }
 
         public override void SetDefaults()
