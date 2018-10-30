@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Malignant Enchantment");
             Tooltip.SetDefault(
                 @"''
-Magic critical strikes inflict Light Curse & On Fire!");
+Magic critical strikes inflict Light Curse & On Fire!
+Allows flight at the cost of mana. Increases mana regeneration slightly");
         }
 
         public override void SetDefaults()
