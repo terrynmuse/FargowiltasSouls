@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Bulb Enchantment");
             Tooltip.SetDefault(
                 @"''
-Magic damage might puff hit enemies with a poisonous spore cloud");
+Magic damage might puff hit enemies with a poisonous spore cloud
+When out of combat for 5 seconds, life recovery will increase up to 3 over time");
         }
 
         public override void SetDefaults()
