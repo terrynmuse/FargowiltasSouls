@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Noble Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Symphonic empowerments last 5 seconds longer");
         }
 
         public override void SetDefaults()
