@@ -22,7 +22,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Illumite Enchantment");
             Tooltip.SetDefault(
                 @"''
-Most of your ranged weapons take on special properties");
+Most of your ranged weapons take on special properties
+Your symphonic damage will empower all nearby allies with: Life Regeneration II
+Summons a bright little flying slime");
         }
 
         public override void SetDefaults()
