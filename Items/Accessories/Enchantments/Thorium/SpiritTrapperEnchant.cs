@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Spirit Trapper Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Killing enemies generates soul wisps, after generating 5 wisps, you'll be healed 10 life");
         }
 
         public override void SetDefaults()
