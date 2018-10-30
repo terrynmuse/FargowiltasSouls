@@ -22,7 +22,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Sacred Enchantment");
             Tooltip.SetDefault(
                 @"''
-Healing spells heal an additional 5 life");
+Healing spells heal an additional 5 life
+Summons a spirit composed of distant stars
+The spirit will generate healing energy that can be picked up if you are hurt
+When energy is generated, 10 mana will be spent
+Summons a li'l cherub to periodically heal damaged allies");
         }
 
         public override void SetDefaults()
