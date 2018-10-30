@@ -23,7 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"'Enveloped by desert winds'
 Grants Sandstorm in a Bottle effect
-Thrown attacks might refresh your jump");
+Thrown attacks might refresh your jump
+10% increased chance to not consume throwing items");
         }
 
         public override void SetDefaults()
