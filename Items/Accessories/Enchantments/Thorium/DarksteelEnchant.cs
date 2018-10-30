@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Darksteel Enchantment");
             Tooltip.SetDefault(
                 @"'Light yet durable'
-");
+Grants the ability to dash, knockback immunity and Ice Skates effect");
         }
 
         public override void SetDefaults()
