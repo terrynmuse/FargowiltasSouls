@@ -25,7 +25,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 while beneath 75 life: +15% magic damage and +6% magic critical strike chance
 increased after hit invincibility
 grants vision of enemy positions (Hunter Potion effect), attacks apply Granite Surge to hit enemies
-+18% damage");
++18% damage
+Your symphonic damage will empower all nearby allies with: Damage Reduction II
+16% increased critical strike chance. 10% increased critical strike damage");
         }
 
         public override void SetDefaults()
