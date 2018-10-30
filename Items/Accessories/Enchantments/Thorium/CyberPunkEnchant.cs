@@ -22,7 +22,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Cyber Punk Enchantment");
             Tooltip.SetDefault(
                 @"''
-Pressing the Special Ability key will cycle you through four states:");
+Pressing the Special Ability key will cycle you through four states
+Symphonic damage has a 10% chance to increase its empowerment level
+Your symphonic damage will empower all nearby allies with: Damage II");
         }
 
         public override void SetDefaults()
