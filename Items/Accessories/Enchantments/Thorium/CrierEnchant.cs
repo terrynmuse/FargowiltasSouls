@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Crier Enchantment");
             Tooltip.SetDefault(
                 @"''
- +10% inspiriation regeneration rate");
+ +10% inspiriation regeneration rate
+ Increases the duration of your symphonic empowerments by 2 seconds");
         }
 
         public override void SetDefaults()
