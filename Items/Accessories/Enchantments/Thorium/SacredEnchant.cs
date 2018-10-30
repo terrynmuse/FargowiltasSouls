@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Sacred Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Healing spells heal an additional 5 life");
         }
 
         public override void SetDefaults()
