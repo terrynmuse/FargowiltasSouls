@@ -23,7 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"'The sky is your playing field'
 Increased jump height
-You can now briefly fly");
+You can now briefly fly
+Summons a Pet Parrot");
         }
 
         public override void SetDefaults()
