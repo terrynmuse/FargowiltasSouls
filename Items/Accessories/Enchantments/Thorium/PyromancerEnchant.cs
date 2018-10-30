@@ -20,7 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Pyromancer Enchantment");
             Tooltip.SetDefault(
                 @"'You're overcome with molten fury'
-");
+Magic damage will heavily burn and damage all adjacent enemies
+Pressing the Special Ability key will unleash an echo of Slag Fury's power");
         }
 
         public override void SetDefaults()
