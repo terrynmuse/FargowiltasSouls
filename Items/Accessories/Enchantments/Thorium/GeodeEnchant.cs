@@ -23,7 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"'Made from the most luxurious of materials'
 Light is emitted from the player
-Can detect ore and treasures");
+Can detect ore and treasures
+Summons a magic lantern, that releases a constant aura of regeneration
+Summons a money spitting treasure chest
+Every 10, 500 & 10,000 damage dealt will cause the chest to spit out a corresponding coin");
         }
 
         public override void SetDefaults()
