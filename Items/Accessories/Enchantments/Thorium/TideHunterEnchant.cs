@@ -23,7 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"'Not just for hunting fish'
 Allows you to breathe underwater
-Ranged critical strikes release a splash of foam, slowing nearby enemies");
+Ranged critical strikes release a splash of foam, slowing nearby enemies
+Brightens the area directly in front of you while in water.");
         }
 
         public override void SetDefaults()
