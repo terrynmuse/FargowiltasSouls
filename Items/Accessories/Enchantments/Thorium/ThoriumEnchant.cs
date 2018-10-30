@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Thorium Enchantment");
             Tooltip.SetDefault(
                 @"'It pulses with energy'
-+10% damage*");
++10% damage
+Increased health and mana regeneration. Taking more than three damage will replenish health and mana");
         }
 
         public override void SetDefaults()
