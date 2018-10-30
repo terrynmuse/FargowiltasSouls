@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Tide Hunter Enchantment");
             Tooltip.SetDefault(
                 @"'Not just for hunting fish'
-");
+Ranged critical strikes release a splash of foam, slowing nearby enemies");
         }
 
         public override void SetDefaults()
