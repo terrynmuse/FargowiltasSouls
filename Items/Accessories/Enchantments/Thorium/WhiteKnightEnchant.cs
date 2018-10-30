@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("White Knight Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Magic attacks have a 33% chance to restore some mana");
         }
 
         public override void SetDefaults()
