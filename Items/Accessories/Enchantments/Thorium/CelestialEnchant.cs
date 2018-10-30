@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Celestial Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Pressing the Special Ability key will cause a Holy Aura that costs 150 mana to appear around your cursor that lasts for 60 seconds");
         }
 
         public override void SetDefaults()
