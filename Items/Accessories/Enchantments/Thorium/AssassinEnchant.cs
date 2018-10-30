@@ -22,7 +22,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Assassin Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+ranged damage applies Cursed Inferno and Ichor to hit enemies
+Ranged damage has a 10% chance to duplicate and become increased by 15%
+Ranged damage has a 5% chance to instantly kill the enemy");
         }
 
         public override void SetDefaults()
