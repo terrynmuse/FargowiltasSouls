@@ -26,7 +26,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 +1 damage per nearby enemy
 Moving around generates up to 5 static rings, with each one generating life shielding
 When fully charged, a bubble of energy will protect you from one attack 
-When the bubble blocks an attack, an electrical discharge is released at nearby enemies");
+When the bubble blocks an attack, an electrical discharge is released at nearby enemies
+Summons a planetary visitor
+Summons a pet probe that has offensive capabilities");
         }
 
         public override void SetDefaults()
@@ -58,7 +60,7 @@ When the bubble blocks an attack, an electrical discharge is released at nearby 
             "ConduitHelmet",
             "ConduitSuit",
             "ConduitLeggings",
-            "UFOCommunicator",
+            "UFOCommunicator", //strange communicator?
             "VegaPhaser",
             "SuperPlasmaCannon",
             "LivewireCrasher",
