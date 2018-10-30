@@ -20,9 +20,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Naga-Skin Enchantment");
-            Tooltip.SetDefault(
-                @"''
-");
+            Tooltip.SetDefault(@"
+''
+Allows quicker movement in water
+Every 75 mana spent will dramatically increase your magic damage and casting speed briefly");
         }
 
         public override void SetDefaults()
