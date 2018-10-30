@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Balladeer Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Symphonic empowerments last 10 seconds longer, each unique empowerment you have increases your symphonic damage by 6% and your inspiration regeneration by 2%");
         }
 
         public override void SetDefaults()
