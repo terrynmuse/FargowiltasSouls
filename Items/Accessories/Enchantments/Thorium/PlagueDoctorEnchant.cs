@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Plague Doctor Enchantment");
             Tooltip.SetDefault(
                 @"'What nasty concoction could you be brewing?'
-");
+33% chance to recover thrown plague doctor vials");
         }
 
         public override void SetDefaults()
