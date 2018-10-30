@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Ornate Enchantment");
             Tooltip.SetDefault(
                 @"''
-Symphonic critical strikes cause the attacks empowerment to ascend to a fourth level of intensity");
+Symphonic critical strikes cause the attacks empowerment to ascend to a fourth level of intensity
+Increases maximum inspiration by 2. Every nearby ally increases your inspiration regeneration by 1%");
         }
 
         public override void SetDefaults()
