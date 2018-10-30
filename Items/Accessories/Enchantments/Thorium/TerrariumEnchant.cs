@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Terrarium Enchantment");
             Tooltip.SetDefault(
                 @"'All will fall before your might...'
-");
+Colourful homing spirits appear that deal damage and inflict a variety of debuffs on enemies");
         }
 
         public override void SetDefaults()
