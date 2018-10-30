@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("White Dwarf Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Critical strikes will unleash ivory flares from the cosmos, which deal 0.05% of the hit target's maximum life as damage");
         }
 
         public override void SetDefaults()
