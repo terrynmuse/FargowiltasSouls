@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Jester Enchantment");
             Tooltip.SetDefault(
                 @"''
-Symphonic critical strikes slow all nearby enemies briefly");
+Symphonic critical strikes slow all nearby enemies briefly
+Increases max inspiration by 2");
         }
 
         public override void SetDefaults()
