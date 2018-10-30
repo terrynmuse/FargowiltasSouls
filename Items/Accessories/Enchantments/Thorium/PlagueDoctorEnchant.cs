@@ -20,7 +20,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Plague Doctor Enchantment");
             Tooltip.SetDefault(
                 @"'What nasty concoction could you be brewing?'
-33% chance to recover thrown plague doctor vials");
+33% chance to recover thrown plague doctor vials
+7% increased throwing damage. 7% increased throwing velocity. 7% increased throwing speed. 
+Using a throwing item has a 20% chance to unleash two Blight Daggers that home in on enemies and apply a highly contagious disease");
         }
 
         public override void SetDefaults()
@@ -56,11 +58,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersMask"));
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersGarb"));
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersLeggings"));
+            recipe.AddIngredient(thorium.ItemType("PlagueLordsFlask")); //
             recipe.AddIngredient(thorium.ItemType("GasContainer"), 300);
             recipe.AddIngredient(thorium.ItemType("CombustionFlask"), 300);
             recipe.AddIngredient(thorium.ItemType("NitrogenVial"), 300);
             recipe.AddIngredient(thorium.ItemType("CorrosionBeaker"), 300);
-            recipe.AddIngredient(thorium.ItemType("VileSpitter"));
             recipe.AddIngredient(thorium.ItemType("FrostPlagueStaff"));
             recipe.AddIngredient(ItemID.ToxicFlask);
 
