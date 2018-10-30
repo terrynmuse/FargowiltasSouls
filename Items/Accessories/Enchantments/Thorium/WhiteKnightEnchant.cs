@@ -23,7 +23,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("White Knight Enchantment");
             Tooltip.SetDefault(
                 @"''
-Magic attacks have a 33% chance to restore some mana");
+Magic attacks have a 33% chance to restore some mana
+Every eighth magic cast costs no mana
+Summons a little winged friend");
         }
 
         public override void SetDefaults()
