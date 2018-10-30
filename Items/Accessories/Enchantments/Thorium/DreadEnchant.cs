@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Dread Enchantment");
             Tooltip.SetDefault(
                 @"'Infused with souls of the damned'
-");
++80% movement speed, +10% melee speed, insane maximum speed (upwards of 106mph); while near full speed, melee damage and critical strike chance are further increased");
         }
 
         public override void SetDefaults()
