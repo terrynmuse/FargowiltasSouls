@@ -22,7 +22,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Depth Diver Enchantment");
             Tooltip.SetDefault(
                 @"'Become a selfless protector'
-");
++8% damage for nearby allies
++10% movement speed for nearby allies
+Allows you and all nearby allies to breathe underwater");
         }
 
         public override void SetDefaults()
