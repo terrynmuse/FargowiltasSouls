@@ -23,7 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"''
 Taking damage will aggressively knockback the enemy
-Damage is increased by 15% at every 25% segment of life");
+Damage is increased by 15% at every 25% segment of life
+
+Hitting an enemy inflcits berserked, while berserked you gain attack speed and damage
+Your symphonic damage will empower all nearby allies with: Attack Speed II");
         }
 
         public override void SetDefaults()
