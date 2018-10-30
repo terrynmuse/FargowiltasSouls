@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Ebon Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Your radiant powers become corrupted.");
         }
 
         public override void SetDefaults()
