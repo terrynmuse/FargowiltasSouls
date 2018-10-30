@@ -21,7 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"'All will fall before your might...'
 Grants night vision
-Colourful homing spirits appear that deal damage and inflict a variety of debuffs on enemies");
+Colourful homing spirits appear that deal damage and inflict a variety of debuffs on enemies
+Your symphonic damage empowers all nearby allies with: Terrarian. Increases symphonic damage by 10%. Doubles the range of your empowerments effect radius.
+infinite terrarium mix meme");
         }
 
         public override void SetDefaults()
