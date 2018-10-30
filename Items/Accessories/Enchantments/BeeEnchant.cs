@@ -16,6 +16,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Increases the strength of friendly bees
 Bees ignore most enemy defense
 Summons a pet Baby Hornet"); //bring back free bee meme ECH
+
+
+//5% increased movement and maximum speed. While running, you will periodically generate bees
         }
 
         public override void SetDefaults()
