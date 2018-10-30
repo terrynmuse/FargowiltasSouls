@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Iridescent Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Your radiant heals have a 10% chance to critically strike");
         }
 
         public override void SetDefaults()
