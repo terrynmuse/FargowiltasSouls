@@ -22,6 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Flight Enchantment");
             Tooltip.SetDefault(
                 @"'The sky is your playing field'
+Increased jump height
 You can now briefly fly");
         }
 
