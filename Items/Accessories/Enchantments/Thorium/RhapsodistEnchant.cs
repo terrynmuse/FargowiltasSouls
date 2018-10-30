@@ -22,6 +22,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Rhapsodist Enchantment");
             Tooltip.SetDefault(
                 @"''
++15% chance for inspiration notes to drop from enemies
+Symphonic empowerments last 6 seconds longer
+increased wind instrument homing speed, string instrument projectiles bounce an additional time
+Pressing the Special Ability key will give you endless amounts of inspiration and greatly increased symphonic damage and playing speed. This effect lasts for 10 seconds and needs to recharge for 1 minute
+dropped inspiration notes are more potent and give a random level I empowerment to all nearby allies when picked up
+Pressing the Special Ability key will overload all nearby allies with every empowerment III for 15 seconds. Using this ability requires 20 inspiration and must recharge for one minute
 ");
         }
 
