@@ -22,7 +22,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Life Binder Enchantment");
             Tooltip.SetDefault(
                 @"''
-Healing spells will shortly increase the healed players maximum life by 50");
+Healing spells will shortly increase the healed players maximum life by 50
+Healing an ally grants them 2 life recovery for 10 seconds
+Summons a light infused goat to brighten up your path");
         }
 
         public override void SetDefaults()
