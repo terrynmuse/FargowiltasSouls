@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Bronze Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Thrown damage has a chance to cause a lightning bolt to strike");
         }
 
         public override void SetDefaults()
