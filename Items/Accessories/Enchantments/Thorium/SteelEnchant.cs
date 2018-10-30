@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Steel Enchantment");
             Tooltip.SetDefault(
                 @"'Expertly forged by the Blacksmith'
-");
++10% damage reduction");
         }
 
         public override void SetDefaults()
