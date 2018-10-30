@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Durasteel Enchantment");
             Tooltip.SetDefault(
                 @"'Masterfully forged by the Blacksmith'
-");
++12% damage reduction");
         }
 
         public override void SetDefaults()
