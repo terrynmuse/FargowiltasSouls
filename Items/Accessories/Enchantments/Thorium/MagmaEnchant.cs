@@ -21,7 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"'Bursting with heat'
 Inflicts fire damage on melee attack (Magma Stone effect)
-Increases effectiveness of On Fire! and Singe debuffs");
+Increases effectiveness of On Fire! and Singe debuffs
+Allows you to do a triple hop super jump. Increases fall resistance
+15% increased movement and maximum speed. Damaging slag drops from below your boots
+Spear weapons will release a flaming spear tip");
         }
 
         public override void SetDefaults()
