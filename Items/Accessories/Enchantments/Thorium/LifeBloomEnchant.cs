@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Life Bloom Enchantment");
             Tooltip.SetDefault(
                 @"'You are one with nature'
-");
+ Minion damage has a 33% chance to heal you slightly");
         }
 
         public override void SetDefaults()
