@@ -23,7 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"'Infused with Corrupt Blood'
 10% chance to negate incoming damage
-+70 maximum life, +15% damage reduction, enemies are much more likely to attack you");
++70 maximum life, +15% damage reduction, enemies are much more likely to attack you
+Getting hit will trigger 'Sanguine', increasing defensive abilities briefly.
+Flail weapons have a chance to release rolling spike balls on hit that apply ichor to damaged enemies.
+Your symphonic damage empowers all nearby allies with: Abomination's Blood. Damage done against ichor'd enemies is increased by 5%. Doubles the range of your empowerments effect radius
+Your symphonic damage will empower all nearby allies with: Critical Strike II");
         }
 
         public override void SetDefaults()
