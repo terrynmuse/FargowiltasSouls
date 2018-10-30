@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Geode Enchantment");
             Tooltip.SetDefault(
                 @"'Made from the most luxurious of materials'
-");
+Light is emitted from the player
+Can detect ore and treasures");
         }
 
         public override void SetDefaults()
