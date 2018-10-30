@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Thorium Enchantment");
             Tooltip.SetDefault(
                 @"'It pulses with energy'
-");
++10% damage*");
         }
 
         public override void SetDefaults()
