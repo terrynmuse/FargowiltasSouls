@@ -20,7 +20,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Tide Turner Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Pressing the Special Ability key will activate Ocean’s Buffer, causing incoming non-lethal damage to become healing
+thrown damage applies Granite Surge to hit enemies for 5 seconds
+Throwing damage has a 33% chance to release homing tide daggers all around the player");
         }
 
         public override void SetDefaults()
