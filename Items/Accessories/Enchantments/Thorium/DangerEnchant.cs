@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Danger Enchantment");
             Tooltip.SetDefault(
                 @"'Let's get dangerous...'
-");
+Immune to: Frostburn, Poisoned, On Fire!, Bleeding and Venom");
         }
 
         public override void SetDefaults()
