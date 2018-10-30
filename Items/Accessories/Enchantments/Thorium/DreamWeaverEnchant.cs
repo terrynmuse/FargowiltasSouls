@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
                 @"''
 Pressing the Special Ability key will activate The Dream, causing all of the player's heals to cure all debuffs and give 1 second of invulnerability to their heal target for 10 seconds
 Pressing the Special Ability key will activate Distorted Reality, slowing down all enemies, making them take more damage, and significantly increasing the attack speed of all allies for 15 seconds
-");
+Summons a cute lil' maid to clean");
         }
 
         public override void SetDefaults()
