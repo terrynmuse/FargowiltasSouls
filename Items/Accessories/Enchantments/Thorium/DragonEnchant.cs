@@ -20,7 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Dragon Enchantment");
             Tooltip.SetDefault(
                 @"'Made from mythical scales'
-25% chance to release a pulse of green flames on attack that applies Cursed Inferno to hit enemies");
+25% chance to release a pulse of green flames on attack that applies Cursed Inferno to hit enemies
+Summons a juvenile... wyvern pup?");
         }
 
         public override void SetDefaults()
