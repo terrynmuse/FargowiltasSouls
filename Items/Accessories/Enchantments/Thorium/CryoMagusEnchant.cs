@@ -22,6 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Cryo Magus Enchantment");
             Tooltip.SetDefault(
                 @"''
+Greatly increased mana regeneration
 Magic damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies");
         }
 
