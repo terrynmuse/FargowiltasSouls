@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Granite Enchantment");
             Tooltip.SetDefault(
                 @"'Defensively energized'
-Immune to knockback, fire blocks, lava and On Fire!. -50% movement speed and maximum running speed is capped.");
+Immune to knockback, fire blocks, lava and On Fire!. -50% movement speed and maximum running speed is capped
+While equipped, energy will slowly seep out and attack nearby enemies");
         }
 
         public override void SetDefaults()
