@@ -20,7 +20,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Flesh Enchantment");
             Tooltip.SetDefault(
                 @"'Symbiotically attached to your body'
-Struck enemies might drop Suitable Flesh, which heals and grants +8% damage for 5 seconds");
+Struck enemies might drop Suitable Flesh, which heals and grants +8% damage for 5 seconds
+Your damage will have a 10% chance to cause an eruption of blood
+This blood can be picked up by players to heal themselves for 15% of the damage you dealt 
+Healing amount cannot exceed 15 life and picking up blood causes bleeding for 5 seconds
+Summons an annoying blister to follow you around");
         }
 
         public override void SetDefaults()
