@@ -22,7 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Titan Enchantment");
             Tooltip.SetDefault(
                 @"'Infused with primordial energy'
-");
+while beneath 75 life: +15% magic damage and +6% magic critical strike chance
+increased after hit invincibility
+grants vision of enemy positions (Hunter Potion effect), attacks apply Granite Surge to hit enemies
++18% damage");
         }
 
         public override void SetDefaults()
