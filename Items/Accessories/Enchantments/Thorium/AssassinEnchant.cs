@@ -70,6 +70,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             ModRecipe recipe = new ModRecipe(mod);
 
+            //vortex enchant
+
             recipe.AddIngredient(thorium.ItemType("OmniMarkHead"));
             recipe.AddIngredient(thorium.ItemType("OmniArablastHood"));
             recipe.AddIngredient(thorium.ItemType("OmniBody"));

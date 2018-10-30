@@ -64,6 +64,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             ModRecipe recipe = new ModRecipe(mod);
 
+            //malignant
+
             recipe.AddIngredient(thorium.ItemType("FolvHat"));
             recipe.AddIngredient(thorium.ItemType("FolvRobe"));
             recipe.AddIngredient(thorium.ItemType("FolvLegging"));

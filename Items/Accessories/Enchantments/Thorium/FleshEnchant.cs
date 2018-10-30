@@ -64,6 +64,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //crimson
             
             ModRecipe recipe = new ModRecipe(mod);
             

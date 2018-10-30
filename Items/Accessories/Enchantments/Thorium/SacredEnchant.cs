@@ -54,7 +54,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "HallowedPaladinHelmet",
             "HallowedPaladinBreastplate",
             "HallowedPaladinLeggings",
-            "RenewStaff",
+            "RegenStaff",
             "LightBurstWand",
             "SacredCharge",
             "HallowedBludgeon",

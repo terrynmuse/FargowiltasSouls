@@ -66,6 +66,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //ballader
             
             ModRecipe recipe = new ModRecipe(mod);
             

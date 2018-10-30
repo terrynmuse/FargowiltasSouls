@@ -58,7 +58,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddRecipeGroup("FargowiltasSouls:AnyJesterMask");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyJesterShirt");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyJesterLeggings");
-            recipe.AddIngredient(thorium.ItemType("FanLetter"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyLetter");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyTambourine");
             recipe.AddIngredient(thorium.ItemType("Oboe"));
             recipe.AddIngredient(thorium.ItemType("SkywareLute"));

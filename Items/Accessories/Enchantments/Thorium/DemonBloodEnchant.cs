@@ -68,6 +68,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
+
+            //flesh
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
