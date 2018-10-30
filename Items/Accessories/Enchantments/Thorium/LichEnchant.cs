@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Lich Enchantment");
             Tooltip.SetDefault(
                 @"'Embrace death...'
-");
+Non-critical throwing damage applies Ichor to hit enemies");
         }
 
         public override void SetDefaults()
