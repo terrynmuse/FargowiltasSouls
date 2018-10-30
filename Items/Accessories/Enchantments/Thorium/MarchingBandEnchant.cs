@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Marching Band Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Inspiration notes are twice as potent and increase your symphonic damage briefly");
         }
 
         public override void SetDefaults()
