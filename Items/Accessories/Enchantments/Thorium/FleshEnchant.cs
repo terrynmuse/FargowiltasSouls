@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Flesh Enchantment");
             Tooltip.SetDefault(
                 @"'Symbiotically attached to your body'
-");
+Struck enemies might drop Suitable Flesh, which heals and grants +8% damage for 5 seconds");
         }
 
         public override void SetDefaults()
