@@ -20,7 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Magma Enchantment");
             Tooltip.SetDefault(
                 @"'Bursting with heat'
-");
+Inflicts fire damage on melee attack (Magma Stone effect)
+Increases effectiveness of On Fire! and Singe debuffs");
         }
 
         public override void SetDefaults()
