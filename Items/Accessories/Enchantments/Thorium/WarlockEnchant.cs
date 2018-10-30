@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Warlock Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Radiant critical strikes cause Shadow Wisps to generate. Pressing the Special Ability key will unleash all stored Shadow Wisps towards the cursor's position");
         }
 
         public override void SetDefaults()
