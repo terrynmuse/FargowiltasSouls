@@ -22,6 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Naga-Skin Enchantment");
             Tooltip.SetDefault(@"
 ''
+Allows you to breathe underwater
 Allows quicker movement in water
 Every 75 mana spent will dramatically increase your magic damage and casting speed briefly");
         }
