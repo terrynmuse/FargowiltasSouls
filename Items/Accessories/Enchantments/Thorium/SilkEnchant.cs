@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Silk Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
++7% magic damage");
         }
 
         public override void SetDefaults()
