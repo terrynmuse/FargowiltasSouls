@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Fallen Paladin Enchantment");
             Tooltip.SetDefault(
                 @"''
-Taking damage heals nearby allies equal to 10% of the damage taken");
+Taking damage heals nearby allies equal to 10% of the damage taken
+Grants immunity to knockback. Defense increased by 2. Successfully healing an ally with non-radiant healing spells will recover 4 life.");
         }
 
         public override void SetDefaults()
