@@ -20,7 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Lodestone Enchantment");
             Tooltip.SetDefault(
                 @"''
-Bonus damage reduction per 25% missing life, up to 30% reduction at <50% life");
+Bonus damage reduction per 25% missing life, up to 30% reduction at <50% life
+When out of combat for 5 seconds, next attack generates a 25 life shield");
         }
 
         public override void SetDefaults()
