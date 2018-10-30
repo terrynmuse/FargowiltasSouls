@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Danger Enchantment");
             Tooltip.SetDefault(
                 @"'Let's get dangerous...'
+Taking damage grants +10% melee damage and +6% melee critical strike chance
 Immune to: Frostburn, Poisoned, On Fire!, Bleeding and Venom");
         }
 
