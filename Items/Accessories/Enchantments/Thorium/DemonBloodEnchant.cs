@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Demon Blood Enchantment");
             Tooltip.SetDefault(
                 @"'Infused with Corrupt Blood'
-");
+10% chance to negate incoming damage
++70 maximum life, +15% damage reduction, enemies are much more likely to attack you");
         }
 
         public override void SetDefaults()
