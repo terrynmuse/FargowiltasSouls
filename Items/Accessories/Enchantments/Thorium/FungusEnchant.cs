@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Fungus Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Damage done against mycelium infected enemies is increased by 10% and briefly increases throwing speed by 10%");
         }
 
         public override void SetDefaults()
