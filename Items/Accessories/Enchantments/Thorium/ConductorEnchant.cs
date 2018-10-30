@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Conductor Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Pressing the Special Ability key will summon a chorus of music playing ghosts");
         }
 
         public override void SetDefaults()
