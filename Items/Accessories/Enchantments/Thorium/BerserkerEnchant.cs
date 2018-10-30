@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Berserker Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Taking damage will aggressively knockback the enemy
+Damage is increased by 15% at every 25% segment of life");
         }
 
         public override void SetDefaults()
