@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Lich Enchantment");
             Tooltip.SetDefault(
                 @"'Embrace death...'
-Non-critical throwing damage applies Ichor to hit enemies");
+Non-critical throwing damage applies Ichor to hit enemies
+Pressing the Special Ability key will trigger True Strikes. Needs to recharge for 2 minutes after being activated");
         }
 
         public override void SetDefaults()
