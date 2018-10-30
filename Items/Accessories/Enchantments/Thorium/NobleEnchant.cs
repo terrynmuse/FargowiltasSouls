@@ -22,7 +22,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Noble Enchantment");
             Tooltip.SetDefault(
                 @"''
-Symphonic empowerments last 5 seconds longer");
+Symphonic empowerments last 5 seconds longer
+Your symphonic damage will briefly singe hit enemies. Symphonic critical strikes cause an eruption of molten music notes
+Increases damage by 1. Increases damage by additional 1 for every nearby player who wears it
+Your symphonic damage empowers all nearby allies with: Burning Soul. Damage done against burning enemies is increased by 8%. 
+Doubles the range of your empowerments effect radius.");
         }
 
         public override void SetDefaults()
