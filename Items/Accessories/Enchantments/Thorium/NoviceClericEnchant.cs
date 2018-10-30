@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Novice Cleric Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Successfully healing an ally with non-radiant healing spells will recover 2 life");
         }
 
         public override void SetDefaults()
