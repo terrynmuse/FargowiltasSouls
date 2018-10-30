@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Cyber Punk Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Pressing the Special Ability key will cycle you through four states:");
         }
 
         public override void SetDefaults()
