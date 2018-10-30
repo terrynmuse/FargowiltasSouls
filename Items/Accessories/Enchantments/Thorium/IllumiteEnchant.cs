@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Illumite Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Most of your ranged weapons take on special properties");
         }
 
         public override void SetDefaults()
