@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Folv's Ancient Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Projects a mystical barrier around you, which responds to your current life");
         }
 
         public override void SetDefaults()
