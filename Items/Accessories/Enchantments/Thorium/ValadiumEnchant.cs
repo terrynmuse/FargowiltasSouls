@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Valadium Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Grants the ability to reverse gravity with the ▲ Up key. +12% ranged damage while gravity is reversed");
         }
 
         public override void SetDefaults()
