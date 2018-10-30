@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Feral-Fur Enchantment");
             Tooltip.SetDefault(
                 @"'Let your inner animal out'
-");
+Melee critical strikes grant 6 bonus minion damage for 5 seconds");
         }
 
         public override void SetDefaults()
