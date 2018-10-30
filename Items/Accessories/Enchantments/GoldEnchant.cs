@@ -32,6 +32,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             lines[7] = new TooltipLine(mod, "8", "Your attacks inflict Midas");
             lines[8] = new TooltipLine(mod, "9", "Summons a Pet Parrot");
             
+            //proof of avarice
+            //Enemies drop money on each successful hit
+            //Enemies drop more money on death
+            
             //kill off coin pick up memes tbh
 
             for (int i = 0; i < lines.Length; i++) tooltips.Add(lines[i]);
