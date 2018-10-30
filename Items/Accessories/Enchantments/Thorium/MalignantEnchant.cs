@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Malignant Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Magic critical strikes inflict Light Curse & On Fire!");
         }
 
         public override void SetDefaults()
