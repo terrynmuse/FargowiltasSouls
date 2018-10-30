@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Yew-Wood Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+After four consecutive non-critical strikes, your next ranged attack will mini-crit for 150% damage");
         }
 
         public override void SetDefaults()
