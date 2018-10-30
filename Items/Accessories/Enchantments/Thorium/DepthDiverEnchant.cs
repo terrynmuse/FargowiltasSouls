@@ -24,7 +24,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
                 @"'Become a selfless protector'
 +8% damage for nearby allies
 +10% movement speed for nearby allies
-Allows you and all nearby allies to breathe underwater");
+Allows you and all nearby allies to breathe underwater
+Your symphonic damage empowers all nearby allies with: Coral Edge. Damage done against gouged enemies is increased by 8%. Doubles the range of your empowerments effect radius
+Summons a Jellyfish in a Bubble to follow you around");
         }
 
         public override void SetDefaults()
