@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Crier Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+ +10% inspiriation regeneration rate");
         }
 
         public override void SetDefaults()
