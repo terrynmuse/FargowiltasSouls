@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Bulb Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Magic damage might puff hit enemies with a poisonous spore cloud");
         }
 
         public override void SetDefaults()
