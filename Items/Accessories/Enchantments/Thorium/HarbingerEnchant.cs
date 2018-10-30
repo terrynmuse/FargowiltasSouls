@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Harbinger Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Maximum mana increased by 50%. When above 75% maximum mana: +50% magic damage, +26% magic critical strike chance and -3 health per second till 50% life");
         }
 
         public override void SetDefaults()
