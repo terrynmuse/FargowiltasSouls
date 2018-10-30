@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Shade Master Enchantment");
             Tooltip.SetDefault(
                 @"'Live in the shadows, and strike with precision'
-Striking enemies with throwing weapons grants the ability to teleport to your cursor's location with the Shade Gate key");
+Striking enemies with throwing weapons grants the ability to teleport to your cursor's location with the Shade Gate key
+Your symphonic damage will empower all nearby allies with: Maximum Mana II");
         }
 
         public override void SetDefaults()
