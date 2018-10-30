@@ -22,7 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Conductor Enchantment");
             Tooltip.SetDefault(
                 @"''
-Pressing the Special Ability key will summon a chorus of music playing ghosts");
+Pressing the Special Ability key will summon a chorus of music playing ghosts
+Every three seconds the metronome will flip between tick & tock
+Tick increases your symphonic playing speed and damage
+Tock decreases your symphonic playing speed and damage");
         }
 
         public override void SetDefaults()
