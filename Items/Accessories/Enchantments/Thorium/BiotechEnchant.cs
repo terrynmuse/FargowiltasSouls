@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Biotech Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+A biotech probe will heal allies' life equal to your bonus healing");
         }
 
         public override void SetDefaults()
