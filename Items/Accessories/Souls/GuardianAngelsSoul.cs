@@ -31,6 +31,42 @@ Healing an ally will increase your movement speed and increase their life regen 
 Upon drinking a healing potion, all allies will recover 25 life and 40 mana
 You and nearby allies will take 8% reduced damage
 Taking fatal damage unleashes your inner spirit");
+
+//archangels heart
+//Maximum life increased by 20
+//Maximum mana increased by 20
+//5% increased radiant damage
+//15% increased healing speed
+//Healing spells will heal an additional 1 life
+
+//archdemons curse
+//Corrupts your radiant powers
+//Maximum life increased by 20
+//10% increased radiant casting speed
+//20% increased radiant damage
+//12% increased radiant critical strike chance
+
+//medical bag
+//Points you towards the ally with the least health
+//That ally will receive 1 additional healing
+//Healing allies that are in combat grants them 1 life recovery for 10 seconds
+
+//support sash
+//Healing an ally will significantly increase your movement speed
+//Upon drinking a healing potion, all nearby players recover 25 life and 50 mana
+//Aditionally, allies will receive increased healing for 30 seconds
+
+//saving grace
+//5% increased healing speed
+//Healing an ally increases their life regeneration and regeneration rate
+//Healing spells will increase the healed targets defense by 20 for 15 seconds
+//Increased length of invincibility after taking damage
+
+//soul guard
+//Enemies are less likely to target you
+//You and nearby allies take 10% reduced damage
+//Nearby allies that die drop a wisp of spirit energy
+//Players that touch the wisp replenish health equal to 15% of the allies max health
         }
 
         public override void SetDefaults()
@@ -101,13 +137,15 @@ Taking fatal damage unleashes your inner spirit");
             "ArchDemonCurse",
             "ArchangelHeart",
             "MedicalBag",
-            "ShieldDroneBeacon", 
-            "LifeandDeath", //ml drop
+            
+            
             "TeslaDefibrillator - frankensteins drop",
             "MoonlightStaff - drop lycan",
             "TerrariumHolyScythe",
             "TerraScythe",
             "PhoenixStaff", //biome chest
+            "ShieldDroneBeacon", 
+            "LifeandDeath" //ml drop
         };
 
         public override void AddRecipes()
