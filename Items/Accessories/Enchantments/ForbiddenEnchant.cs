@@ -16,6 +16,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Double tap down to call an ancient storm to the cursor location
 Any projectiles shot through your storm gain double pierce and 50% damage
 You are immune to the Mighty Wind debuff"); //maybe kill debuff immune lol
+
+//Allows the owner to float for a few seconds
+//Your healing streak fuels an ancient crucible every 100 life up to 500 total. 
+//The crucible increases your radiant damage by 5% per 100 life in the crucible.
         }
 
         public override void SetDefaults()
