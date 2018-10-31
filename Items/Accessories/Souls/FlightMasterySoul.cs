@@ -69,10 +69,24 @@ Releases bees when damaged");
             recipe.AddIngredient(ItemID.FestiveWings);
             recipe.AddIngredient(ItemID.BetsyWings);
             recipe.AddIngredient(ItemID.FishronWings);
+            recipe.AddIngredient(ItemID.WingsStardust);
+            recipe.AddIngredient(ItemID.WingsVortex);
+            recipe.AddIngredient(ItemID.WingsNebula);
+            recipe.AddIngredient(ItemID.WingsSolar);
             
-            /*thorium
-            terrarium wings
+            if (Fargowiltas.Instance.ThoriumLoaded)
+            {
+            /*
+            TerrariumWings
+            DridersGrace
+            DemonBloodWings
+            DreadWings
+            HarbingerWings
+            TitanWings
+            PhonicWings
             */
+            }
+            
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
