@@ -14,6 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'Have you power enough to wield me?'
 Summons a sword familiar that scales with minion damage");
+
+//While in combat, you generate a 14 life shield
         }
 
         public override void SetDefaults()
