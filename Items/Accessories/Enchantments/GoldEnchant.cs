@@ -36,6 +36,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             //Enemies drop money on each successful hit
             //Enemies drop more money on death
             
+            //While in combat, you generate a 16 life shield.
+            
             //kill off coin pick up memes tbh
 
             for (int i = 0; i < lines.Length; i++) tooltips.Add(lines[i]);
