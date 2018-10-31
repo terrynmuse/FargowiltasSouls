@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Your weapons shoot at 1/8 the speed
 300% increased damage
 25% increased crit chance");
+
+//While in combat, you generate a 15 life shield
         }
 
         public override void SetDefaults()
