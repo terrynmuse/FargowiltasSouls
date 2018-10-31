@@ -45,8 +45,12 @@ A biotech probe will heal allies' life equal to your bonus healing");
         private void BiotechEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+
+            thoriumPlayer.essenceSet = true;
+            if (player.ownedProjectileCounts[thorium.ProjectileType("LifeEssence")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("LifeEssence"), 0, 0f, player.whoAmI, 0f, 0f);
+            }
         }
         
         private readonly string[] items =

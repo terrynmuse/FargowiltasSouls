@@ -3,6 +3,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.DataStructures;
+using Terraria.GameInput;
+using Terraria.ModLoader.IO;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -22,10 +31,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Berserker Enchantment");
             Tooltip.SetDefault(
                 @"''
-Taking damage will aggressively knockback the enemy
 Damage is increased by 15% at every 25% segment of life
 
-Hitting an enemy inflcits berserked, while berserked you gain attack speed and damage
+Hitting an enemy inflicts berserked, while berserked you gain attack speed and damage
 Your symphonic damage will empower all nearby allies with: Attack Speed II");
         }
 
@@ -49,8 +57,47 @@ Your symphonic damage will empower all nearby allies with: Attack Speed II");
         private void BerserkerEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+
+            //thoriumPlayer.orbital = true;
+            //Vector2 meme = Vector2.UnitY;
+            //thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(((ThoriumPlayer)player.GetModPlayer(base.mod, "ThoriumPlayer")).orbitalRotation3, -0.075000002980232239, default(Vector2));
+            //Texture2D texture9 = mod.GetTexture("Gores/Static");
+
+
+
+            //making divers code less of a meme :scuseme:
+            if (player.statLife > player.statLifeMax * 0.75)
+            {
+                player.meleeDamage += 0.15f;
+                player.magicDamage += 0.15f;
+                player.rangedDamage += 0.15f;
+                player.thrownDamage += 0.15f;
+                //thoriumPlayer.berserkStage = 1;
+            }
+            else if (player.statLife > player.statLifeMax * 0.5)
+            {
+                player.meleeDamage += 0.3f;
+                player.magicDamage += 0.3f;
+                player.rangedDamage += 0.3f;
+                player.thrownDamage += 0.3f;
+                //thoriumPlayer.berserkStage = 2;
+            }
+            else if (player.statLife > player.statLifeMax * 0.25)
+            {
+                player.meleeDamage += 0.45f;
+                player.magicDamage += 0.45f;
+                player.rangedDamage += 0.45f;
+                player.thrownDamage += 0.45f;
+                //thoriumPlayer.berserkStage = 3;
+            }
+            else
+            {
+                player.meleeDamage += 0.6f;
+                player.magicDamage += 0.6f;
+                player.rangedDamage += 0.6f;
+                player.thrownDamage += 0.6f;
+                //thoriumPlayer.berserkStage = 4;
+            }
         }
         
         private readonly string[] items =

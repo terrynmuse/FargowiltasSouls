@@ -51,7 +51,11 @@ Your symphonic damage empowers all nearby allies with: Medusa's Gaze. Damage don
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             
-            
+            thoriumPlayer.greekSet = true;
+            thoriumPlayer.championShield = true;
+            thoriumPlayer.spartanSandle = true;
+            thoriumPlayer.subwooferMarble = true;
+            thoriumPlayer.bardRangeBoost += 450;
         }
         
         private readonly string[] items =
@@ -62,8 +66,7 @@ Your symphonic damage empowers all nearby allies with: Medusa's Gaze. Damage don
             "ChampionsBarrier",
             "SpartanSandles",
             "BronzeSubwoofer",
-            "ChampionBlade",
-            "AncientWingButterfly"
+            "ChampionBlade"
         };
 
         public override void AddRecipes()
@@ -76,6 +79,7 @@ Your symphonic damage empowers all nearby allies with: Medusa's Gaze. Damage don
 
             recipe.AddIngredient(thorium.ItemType("BronzeThrowing"), 300);
             recipe.AddIngredient(thorium.ItemType("DraculaFang"), 300);
+            recipe.AddIngredient(thorium.ItemType("AncientWingButterfly"));
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

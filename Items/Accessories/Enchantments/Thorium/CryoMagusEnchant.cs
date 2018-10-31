@@ -22,10 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Cryo Magus Enchantment");
             Tooltip.SetDefault(
                 @"''
-Greatly increased mana regeneration
 Magic damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies
-Damage done against slowed targets is increased by 15% and has a chance to heal you lightly.
+Damage done against slowed targets is increased by 15% and has a chance to heal you lightly
 Your symphonic damage will empower all nearby allies with: Mana Regeneration II
+
 Summons a Snowy Owl to watch over you");
         }
 
@@ -49,8 +49,14 @@ Summons a Snowy Owl to watch over you");
         private void CryoEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+
+            thoriumPlayer.cryoSet = true; //dmg duplicate
+            thoriumPlayer.frostBonusDamage = true; //strider hide
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3ManaRegen = 2;
+
+            //PET
         }
         
         private readonly string[] items =

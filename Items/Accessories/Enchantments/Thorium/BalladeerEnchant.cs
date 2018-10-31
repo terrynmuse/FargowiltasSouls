@@ -21,9 +21,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Balladeer Enchantment");
             Tooltip.SetDefault(
-                @"''
-Symphonic empowerments last 10 seconds longer, each unique empowerment you have increases your symphonic damage by 6% and your inspiration regeneration by 2%
-Each unique empowerment you have increases movement speed by 3% and playing speed by 1%.");
+                @"'You have memorized the cosmic ballad, and can play it without conscious thought'
+Each unique empowerment you have increases:
+    symphonic damage by 6%
+    movement speed by 3%
+    your inspiration regeneration by 2%
+    playing speed by 1%.");
         }
 
         public override void SetDefaults()
@@ -46,8 +49,10 @@ Each unique empowerment you have increases movement speed by 3% and playing spee
         private void BalladeerEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //dmg n regen
+            thoriumPlayer.BalladeerSet = true;
+            //speeds
+            thoriumPlayer.headphones = true;
         }
         
         private readonly string[] items =
