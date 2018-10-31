@@ -16,7 +16,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Attacks have a chance to shock enemies with lightning
 If an enemy is wet, the chance and damage is increased
 Attacks that cause Wet cannot proc the lightning
-Lightning scales with magic damage"); //do an actual good chain lightning
+Lightning scales with magic damage
+"); //do an actual good chain lightning
+
+//While in combat, you generate a 10 life shield
         }
 
         public override void SetDefaults()
