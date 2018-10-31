@@ -21,6 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"'Made from mythical scales'
 25% chance to release a pulse of green flames on attack that applies Cursed Inferno to hit enemies
+Increases armor penetration by 15
 Summons a juvenile... wyvern pup?");
         }
 
@@ -54,7 +55,7 @@ Summons a juvenile... wyvern pup?");
             "DragonBreastplate",
             "DragonGreaves",
             "DragonWings",
-            "DragonsGaze",
+            "DragonTalonNecklace",
             "DragonsBreath",
             "EbonyTail",
             "DragonkinStaff",
