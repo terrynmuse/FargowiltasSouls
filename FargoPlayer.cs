@@ -397,7 +397,7 @@ namespace FargowiltasSouls
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
             //remove this after testing you fool
-            player.respawnTimer = (int)(player.respawnTimer * .01);
+            //player.respawnTimer = (int)(player.respawnTimer * .01);
         }
 
         public override void UpdateDead()
