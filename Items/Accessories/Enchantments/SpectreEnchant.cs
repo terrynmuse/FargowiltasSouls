@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Magic damage has a chance to spawn damaging orbs
 If you crit, you get a burst of healing orbs instead
 Summons a Wisp to provide light");
+
+//While worn, taking fatal damage will instead return you to 100 life and instantly teleport you back to your home (2 minute recharge time)
         }
 
         public override void SetDefaults()
