@@ -16,6 +16,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Grants immunity to fire blocks and lava
 Increases armor penetration by 10
 While standing in lava, you gain 10 more armor penetration, 10% attack speed, and your attacks ignite enemies");
+
+//Enemies that directly attack you will be burned.
+//Grants immunity to fire blocks.
         }
 
         public override void SetDefaults()
