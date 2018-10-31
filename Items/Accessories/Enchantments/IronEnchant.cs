@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Right Click to guard with your shield
 Your shield will also protect you from projectiles
 You attract items from a much larger range and fall 5 times as quickly"); //reduce range, bring back shield REE
+
+//While in combat, you generate a 20 life shield
         }
 
         public override void SetDefaults()
