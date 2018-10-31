@@ -35,6 +35,19 @@ Summons a pet Baby Hornet"); //bring back free bee meme ECH
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).BeeEffect(hideVisual);
+            
+            if(hideVisual)
+            {
+                player.GetModPlayer<FargoPlayer>(mod).PetsActive = false;
+            }
+            else
+            {
+                AddPet();
+            }
+            
+            if(!Fargowiltas.Instance.ThoriumLoaded) return;
+            
+            //bee booties
         }
 
         public override void AddRecipes()
