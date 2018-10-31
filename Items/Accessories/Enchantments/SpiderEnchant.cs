@@ -15,6 +15,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 @"'Arachniphobia is punishable by arachnid induced death'
 Summon damage may cause the enemy to be Swarmed
 Summons a pet Spider"); // free spider minion meme?
+
+//Your symphonic damage empowers all nearby allies with: Spider Bite. Damage done against envenomed enemies is increased by 8%. 
+//Doubles the range of your empowerments effect radius
         }
 
         public override void SetDefaults()
