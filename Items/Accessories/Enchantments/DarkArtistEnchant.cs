@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Greatly enhances Flameburst effectiveness
 Magic weapons occasionally shoot from the shadows of where you used to be
 Summons a flickerwick to provide light"); // add melee version or idk butcher this hell
+
+//Corrupts your radiant powers. 15% increased radiant damage. Enemies afflicted with shadowflame or light curse increase your life regeneration
         }
 
         public override void SetDefaults()
