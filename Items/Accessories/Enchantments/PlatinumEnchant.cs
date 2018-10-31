@@ -15,6 +15,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 @"'Its value is immeasurable'
 10% chance for enemies to drop 3x loot
 If the enemy has Midas, the chance and bonus is doubled"); //drop loot on hit when?
+
+//While in combat, you generate a 17 life shield
+//Summons some living glitter to follow you around
         }
 
         public override void SetDefaults()
