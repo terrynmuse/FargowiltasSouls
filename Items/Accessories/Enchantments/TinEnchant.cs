@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Sets your critical strike chance to 4%
 Every crit will increase it by 4%
 Getting hit drops your crit back down");
+
+//While in combat, you generate a 11 life shield
         }
 
         public override void SetDefaults()
