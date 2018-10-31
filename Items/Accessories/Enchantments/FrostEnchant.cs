@@ -17,6 +17,9 @@ Icicles will start to appear around you
 When there are three, using any weapon will launch them towards the cursor, Chilling and Frostburning enemies
 Allows the ability to walk on water
 Summons a baby penguin and snowman"); //kill water walk maybe, make ice bois rotate good
+
+//Your symphonic damage empowers all nearby allies with: Cold Shoulder. 
+//Damage done against frostburnt enemies is increased by 8%. Doubles the range of your empowerments effect radius.
         }
 
         public override void SetDefaults()
