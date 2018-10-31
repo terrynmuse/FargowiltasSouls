@@ -18,6 +18,30 @@ Provides lava immunity and permanent light
 Grants the ability to swim and greatly extends underwater breathing
 Increases jump height, allows auto jump, and negates fall damage
 Allows the player to dash into the enemy");
+
+
+//air walkers
+//15% increased movement and maximum speed
+//Allows you to walk on air briefly after leaving a solid block
+
+//survivalist boots
+//15% increased movement and maximum speed
+//While running, your life, mana, and inspiration regeneration are lightly increased
+
+//terrarium
+//Provides the ability to walk on water, Fire blocks and lava
+//Allows flight
+//Increased flight time
+//The wearer can run impossibly fast
+
+//travelers boots
+//5% increased movement speed
+//Your dash will reach its peak faster
+
+//weighted winglets
+//15% increased movement and maximum speed
+//Allows you to control the rate of your descent with Up and Down
+
         }
 
         public override void SetDefaults()
@@ -91,27 +115,13 @@ Allows the player to dash into the enemy");
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
             /*
-            terrarium particle sprinters - for sure
-            air walkers
-            weighted winglets
-            spring steps
+            TerrariumParticleSprinters
+            AirWalkers
+            SurvivalistBoots
+            TravelersBoots
+            WeightedWinglets
             
-            survivalist boots - for sure
-            
-            
-            
-                recipe.AddIngredient(ItemID.ArcticDivingGear);
-                recipe.AddIngredient(ItemID.FrogLeg);
-                recipe.AddIngredient(ItemID.BundleofBalloons);
-
-
-                recipe.AddIngredient(ItemID.SlimySaddle);
-                recipe.AddIngredient(ItemID.FuzzyCarrot);
-                recipe.AddIngredient(ItemID.BlessedApple);
-                recipe.AddIngredient(ItemID.AncientHorn);
-                recipe.AddIngredient(ItemID.ShrimpyTruffle);
-                recipe.AddIngredient(ItemID.ReindeerBells);
-                recipe.AddIngredient(ItemID.BrainScrambler);
+           
             */
             }
             else
