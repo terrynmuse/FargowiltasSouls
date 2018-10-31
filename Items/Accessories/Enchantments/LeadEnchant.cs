@@ -15,6 +15,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 @"'Not recommended for eating'
 Attacks may inflict enemies with Lead Poisoning
 Lead Poisoning deals damage over time and slows enemies slightly");
+
+//While in combat, you generate a 13 life shield
         }
 
         public override void SetDefaults()
