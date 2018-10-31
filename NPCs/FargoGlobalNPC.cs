@@ -111,9 +111,9 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.SolarSolenian: masoHurtAI = 5; npc.knockBackResist = 0f; break;
 
                     case NPCID.EaterofWorldsBody:
-                    case NPCID.EaterofWorldsTail:
-                    case NPCID.TheDestroyerBody:
-                    case NPCID.TheDestroyerTail: masoHurtAI = 6; break;
+                    case NPCID.EaterofWorldsTail: masoHurtAI = 6; break;
+                    //case NPCID.TheDestroyerBody:
+                    //case NPCID.TheDestroyerTail: masoHurtAI = 6; break;
 
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight: masoHurtAI = 7; npc.scale += 0.5f; break;
@@ -387,6 +387,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.TheDestroyer:
                         masoAI = 36;
+                        npc.lifeMax = npc.lifeMax * 3 / 2;
+                        npc.life = npc.lifeMax;
                         break;
 
                     case NPCID.DukeFishron:
@@ -565,6 +567,12 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Mimic:
                         masoAI = 76;
+                        break;
+
+                    case NPCID.PrimeCannon:
+                    case NPCID.PrimeLaser:
+                    case NPCID.PrimeVice:
+                        masoAI = 77;
                         break;
 
                     default:
@@ -1403,9 +1411,8 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
 
-                            //may not actually reflect how fast reti is spinning
-                            //2*pi * 2 (two full circles) / 5 (in five seconds) / 60 (ticks per sec)
-                            const float rotationInterval = 2f * (float)Math.PI * 2f / 5f / 60f;
+                            //2*pi * (# of full circles) / (seconds to finish rotation) / (ticks per sec)
+                            const float rotationInterval = 2f * (float)Math.PI * 1.5f / 4f / 60f;
 
                             Counter++;
                             switch (masoState) //laser code idfk
@@ -1448,7 +1455,7 @@ namespace FargowiltasSouls.NPCs
                                     npc.localAI[3] += rotationInterval * (masoBool[2] ? 1f : -1f);
                                     npc.rotation = npc.localAI[3];
 
-                                    if (Counter >= 300)
+                                    if (Counter >= 240)
                                     {
                                         masoState++;
                                         Counter = 0;
@@ -1935,221 +1942,235 @@ namespace FargowiltasSouls.NPCs
                     case 36: //destroyer head
                         destroyBoss = npc.whoAmI;
 
-                        if (npc.HasPlayerTarget && !Main.dayTime && !Main.player[npc.target].dead)
+                        if (!masoBool[0])
                         {
-                            int cornerX1 = (int)npc.position.X / 16 - 1;
-                            int cornerX2 = (int)(npc.position.X + npc.width) / 16 + 2;
-                            int cornerY1 = (int)npc.position.Y / 16 - 1;
-                            int cornerY2 = (int)(npc.position.Y + npc.height) / 16 + 2;
-
-                            //out of bounds checks
-                            if (cornerX1 < 0)
-                                cornerX1 = 0;
-                            if (cornerX2 > Main.maxTilesX)
-                                cornerX2 = Main.maxTilesX;
-                            if (cornerY1 < 0)
-                                cornerY1 = 0;
-                            if (cornerY2 > Main.maxTilesY)
-                                cornerY2 = Main.maxTilesY;
-
-                            bool isOnSolidTile = false;
-
-                            //for every tile this npc occupies
-                            for (int x = cornerX1; x < cornerX2; ++x)
+                            if (npc.life < npc.lifeMax / 2)
                             {
-                                for (int y = cornerY1; y < cornerY2; ++y)
-                                {
-                                    Tile tile = Main.tile[x, y];
-                                    if (tile != null && (tile.nactive() && (Main.tileSolid[tile.type] || Main.tileSolidTop[tile.type] && tile.frameY == 0) || tile.liquid > 64))
-                                    {
-                                        Vector2 tilePos = new Vector2(x * 16f, y * 16f);
-                                        if (npc.position.X + npc.width > tilePos.X && npc.position.X < tilePos.X + 16f && npc.position.Y + npc.height > tilePos.Y && npc.position.Y < tilePos.Y + 16f)
-                                        {
-                                            isOnSolidTile = true;
-                                            break;
-                                        }
-                                    }
-                                }
-
-                                if (isOnSolidTile)
-                                    break;
+                                masoBool[0] = true;
+                                npc.netUpdate = true;
+                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                             }
 
-                            if (!isOnSolidTile)
+                            RegenTimer = 2;
+                        }
+                        else
+                        {
+                            if (npc.HasPlayerTarget && !Main.dayTime && !Main.player[npc.target].dead)
                             {
-                                //negating default air behaviour
-                                npc.velocity.Y -= 0.15f;
+                                int cornerX1 = (int)npc.position.X / 16 - 1;
+                                int cornerX2 = (int)(npc.position.X + npc.width) / 16 + 2;
+                                int cornerY1 = (int)npc.position.Y / 16 - 1;
+                                int cornerY2 = (int)(npc.position.Y + npc.height) / 16 + 2;
 
-                                float num14 = 16f;
-                                float num15 = 0.1f;
-                                float num16 = 0.15f;
-                                float num17 = Main.player[npc.target].Center.X;
-                                float num18 = Main.player[npc.target].Center.Y;
+                                //out of bounds checks
+                                if (cornerX1 < 0)
+                                    cornerX1 = 0;
+                                if (cornerX2 > Main.maxTilesX)
+                                    cornerX2 = Main.maxTilesX;
+                                if (cornerY1 < 0)
+                                    cornerY1 = 0;
+                                if (cornerY2 > Main.maxTilesY)
+                                    cornerY2 = Main.maxTilesY;
 
-                                float num21 = num17 - npc.Center.X;
-                                float num22 = num18 - npc.Center.Y;
-                                float num23 = (float)Math.Sqrt((double)num21 * (double)num21 + (double)num22 * (double)num22);
+                                bool isOnSolidTile = false;
 
-                                if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.4f)
+                                //for every tile this npc occupies
+                                for (int x = cornerX1; x < cornerX2; ++x)
                                 {
-                                    if (npc.velocity.X < 0f)
+                                    for (int y = cornerY1; y < cornerY2; ++y)
                                     {
-                                        npc.velocity.X += num15 * 1.1f;
-                                    }
-                                    else
-                                    {
-                                        npc.velocity.X -= num15 * 1.1f;
-                                    }
-                                }
-                                else if (npc.velocity.Y == num14)
-                                {
-                                    if (npc.velocity.X < num21)
-                                    {
-                                        npc.velocity.X -= num15;
-                                    }
-                                    else if (npc.velocity.X > num21)
-                                    {
-                                        npc.velocity.X += num15;
-                                    }
-                                }
-                                else if (npc.velocity.Y > 4f)
-                                {
-                                    if (npc.velocity.X < 0f)
-                                    {
-                                        npc.velocity.X -= num15 * 0.9f;
-                                    }
-                                    else
-                                    {
-                                        npc.velocity.X += num15 * 0.9f;
-                                    }
-                                }
-
-                                //ground movement code but it only runs when airborne
-                                float num2 = (float)Math.Sqrt(num21 * num21 + num22 * num22);
-                                float num3 = Math.Abs(num21);
-                                float num4 = Math.Abs(num22);
-
-                                float num5 = num14 / num2;
-                                float num6 = num21 * num5;
-                                float num7 = num22 * num5;
-
-                                if ((npc.velocity.X > 0f && num6 > 0f || npc.velocity.X < 0f && num6 < 0f) && (npc.velocity.Y > 0f && num7 > 0f || npc.velocity.Y < 0f && num7 < 0f))
-                                {
-                                    if (npc.velocity.X < num6)
-                                    {
-                                        npc.velocity.X += num16;
-                                    }
-                                    else if (npc.velocity.X > num6)
-                                    {
-                                        npc.velocity.X -= num16;
-                                    }
-                                    if (npc.velocity.Y < num7)
-                                    {
-                                        npc.velocity.Y += num16;
-                                    }
-                                    else if (npc.velocity.Y > num7)
-                                    {
-                                        npc.velocity.Y -= num16;
-                                    }
-                                }
-
-                                if (npc.velocity.X > 0f && num6 > 0f || npc.velocity.X < 0f && num6 < 0f || npc.velocity.Y > 0f && num7 > 0f || npc.velocity.Y < 0f && num7 < 0f)
-                                {
-                                    if (npc.velocity.X < num6)
-                                    {
-                                        npc.velocity.X += num15;
-                                    }
-                                    else if (npc.velocity.X > num6)
-                                    {
-                                        npc.velocity.X -= num15;
-                                    }
-                                    if (npc.velocity.Y < num7)
-                                    {
-                                        npc.velocity.Y += num15;
-                                    }
-                                    else if (npc.velocity.Y > num7)
-                                    {
-                                        npc.velocity.Y -= num15;
-                                    }
-
-                                    if (Math.Abs(num7) < num14 * 0.2f && (npc.velocity.X > 0f && num6 < 0f || npc.velocity.X < 0f && num6 > 0f))
-                                    {
-                                        if (npc.velocity.Y > 0f)
+                                        Tile tile = Main.tile[x, y];
+                                        if (tile != null && (tile.nactive() && (Main.tileSolid[tile.type] || Main.tileSolidTop[tile.type] && tile.frameY == 0) || tile.liquid > 64))
                                         {
-                                            npc.velocity.Y += num15 * 2f;
+                                            Vector2 tilePos = new Vector2(x * 16f, y * 16f);
+                                            if (npc.position.X + npc.width > tilePos.X && npc.position.X < tilePos.X + 16f && npc.position.Y + npc.height > tilePos.Y && npc.position.Y < tilePos.Y + 16f)
+                                            {
+                                                isOnSolidTile = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    if (isOnSolidTile)
+                                        break;
+                                }
+
+                                if (!isOnSolidTile)
+                                {
+                                    //negating default air behaviour
+                                    npc.velocity.Y -= 0.15f;
+
+                                    float num14 = 16f;
+                                    float num15 = 0.1f;
+                                    float num16 = 0.15f;
+                                    float num17 = Main.player[npc.target].Center.X;
+                                    float num18 = Main.player[npc.target].Center.Y;
+
+                                    float num21 = num17 - npc.Center.X;
+                                    float num22 = num18 - npc.Center.Y;
+                                    float num23 = (float)Math.Sqrt((double)num21 * (double)num21 + (double)num22 * (double)num22);
+
+                                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.4f)
+                                    {
+                                        if (npc.velocity.X < 0f)
+                                        {
+                                            npc.velocity.X += num15 * 1.1f;
                                         }
                                         else
                                         {
-                                            npc.velocity.Y -= num15 * 2f;
+                                            npc.velocity.X -= num15 * 1.1f;
                                         }
                                     }
-
-                                    if (Math.Abs(num6) < num14 * 0.2f && (npc.velocity.Y > 0f && num7 < 0f || npc.velocity.Y < 0f && num7 > 0f))
+                                    else if (npc.velocity.Y == num14)
                                     {
-                                        if (npc.velocity.X > 0f)
-                                        {
-                                            npc.velocity.X += num15 * 2f;
-                                        }
-                                        else
-                                        {
-                                            npc.velocity.X -= num15 * 2f;
-                                        }
-                                    }
-                                }
-                                else if (num3 > num4)
-                                {
-                                    if (npc.velocity.X < num6)
-                                    {
-                                        npc.velocity.X += num15 * 1.1f;
-                                    }
-                                    else if (npc.velocity.X > num6)
-                                    {
-                                        npc.velocity.X -= num15 * 1.1f;
-                                    }
-                                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.5f)
-                                    {
-                                        if (npc.velocity.Y > 0f)
-                                        {
-                                            npc.velocity.Y += num15;
-                                        }
-                                        else
-                                        {
-                                            npc.velocity.Y -= num15;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (npc.velocity.Y < num7)
-                                    {
-                                        npc.velocity.Y += num15 * 1.1f;
-                                    }
-                                    else if (npc.velocity.Y > num7)
-                                    {
-                                        npc.velocity.Y -= num15 * 1.1f;
-                                    }
-
-                                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.5f)
-                                    {
-                                        if (npc.velocity.X > 0f)
-                                        {
-                                            npc.velocity.X += num15;
-                                        }
-                                        else
+                                        if (npc.velocity.X < num21)
                                         {
                                             npc.velocity.X -= num15;
                                         }
+                                        else if (npc.velocity.X > num21)
+                                        {
+                                            npc.velocity.X += num15;
+                                        }
                                     }
+                                    else if (npc.velocity.Y > 4f)
+                                    {
+                                        if (npc.velocity.X < 0f)
+                                        {
+                                            npc.velocity.X -= num15 * 0.9f;
+                                        }
+                                        else
+                                        {
+                                            npc.velocity.X += num15 * 0.9f;
+                                        }
+                                    }
+
+                                    //ground movement code but it only runs when airborne
+                                    float num2 = (float)Math.Sqrt(num21 * num21 + num22 * num22);
+                                    float num3 = Math.Abs(num21);
+                                    float num4 = Math.Abs(num22);
+
+                                    float num5 = num14 / num2;
+                                    float num6 = num21 * num5;
+                                    float num7 = num22 * num5;
+
+                                    if ((npc.velocity.X > 0f && num6 > 0f || npc.velocity.X < 0f && num6 < 0f) && (npc.velocity.Y > 0f && num7 > 0f || npc.velocity.Y < 0f && num7 < 0f))
+                                    {
+                                        if (npc.velocity.X < num6)
+                                        {
+                                            npc.velocity.X += num16;
+                                        }
+                                        else if (npc.velocity.X > num6)
+                                        {
+                                            npc.velocity.X -= num16;
+                                        }
+                                        if (npc.velocity.Y < num7)
+                                        {
+                                            npc.velocity.Y += num16;
+                                        }
+                                        else if (npc.velocity.Y > num7)
+                                        {
+                                            npc.velocity.Y -= num16;
+                                        }
+                                    }
+
+                                    if (npc.velocity.X > 0f && num6 > 0f || npc.velocity.X < 0f && num6 < 0f || npc.velocity.Y > 0f && num7 > 0f || npc.velocity.Y < 0f && num7 < 0f)
+                                    {
+                                        if (npc.velocity.X < num6)
+                                        {
+                                            npc.velocity.X += num15;
+                                        }
+                                        else if (npc.velocity.X > num6)
+                                        {
+                                            npc.velocity.X -= num15;
+                                        }
+                                        if (npc.velocity.Y < num7)
+                                        {
+                                            npc.velocity.Y += num15;
+                                        }
+                                        else if (npc.velocity.Y > num7)
+                                        {
+                                            npc.velocity.Y -= num15;
+                                        }
+
+                                        if (Math.Abs(num7) < num14 * 0.2f && (npc.velocity.X > 0f && num6 < 0f || npc.velocity.X < 0f && num6 > 0f))
+                                        {
+                                            if (npc.velocity.Y > 0f)
+                                            {
+                                                npc.velocity.Y += num15 * 2f;
+                                            }
+                                            else
+                                            {
+                                                npc.velocity.Y -= num15 * 2f;
+                                            }
+                                        }
+
+                                        if (Math.Abs(num6) < num14 * 0.2f && (npc.velocity.Y > 0f && num7 < 0f || npc.velocity.Y < 0f && num7 > 0f))
+                                        {
+                                            if (npc.velocity.X > 0f)
+                                            {
+                                                npc.velocity.X += num15 * 2f;
+                                            }
+                                            else
+                                            {
+                                                npc.velocity.X -= num15 * 2f;
+                                            }
+                                        }
+                                    }
+                                    else if (num3 > num4)
+                                    {
+                                        if (npc.velocity.X < num6)
+                                        {
+                                            npc.velocity.X += num15 * 1.1f;
+                                        }
+                                        else if (npc.velocity.X > num6)
+                                        {
+                                            npc.velocity.X -= num15 * 1.1f;
+                                        }
+                                        if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.5f)
+                                        {
+                                            if (npc.velocity.Y > 0f)
+                                            {
+                                                npc.velocity.Y += num15;
+                                            }
+                                            else
+                                            {
+                                                npc.velocity.Y -= num15;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (npc.velocity.Y < num7)
+                                        {
+                                            npc.velocity.Y += num15 * 1.1f;
+                                        }
+                                        else if (npc.velocity.Y > num7)
+                                        {
+                                            npc.velocity.Y -= num15 * 1.1f;
+                                        }
+
+                                        if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.5f)
+                                        {
+                                            if (npc.velocity.X > 0f)
+                                            {
+                                                npc.velocity.X += num15;
+                                            }
+                                            else
+                                            {
+                                                npc.velocity.X -= num15;
+                                            }
+                                        }
+                                    }
+
+                                    npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X) + 1.57f;
+
+                                    npc.netUpdate = true;
+                                    npc.localAI[0] = 1f;
                                 }
-
-                                npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X) + 1.57f;
-
-                                npc.netUpdate = true;
-                                npc.localAI[0] = 1f;
                             }
-                        }
 
-                        npc.position += npc.velocity * (1f - (float)npc.life / npc.lifeMax);
+                            npc.position += npc.velocity * (1f - (float)npc.life / npc.lifeMax);
+                        }
                         break;
 
                     case 37: //fishron
@@ -2729,7 +2750,7 @@ namespace FargowiltasSouls.NPCs
 
                             Main.PlaySound(SoundID.Item34, npc.Center);
                         }
-                        break;
+                        goto case 77;
 
                     case 53: //ice queen
                         Counter++;
@@ -2795,55 +2816,122 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
-                        if (Counter == 0)
+                        if (!masoBool[0])
                         {
-                            if (!NPC.AnyNPCs(NPCID.PrimeLaser))
-                                Counter = 4;
-                            else if (!NPC.AnyNPCs(NPCID.PrimeSaw))
-                                Counter = 2;
-                            else if (!NPC.AnyNPCs(NPCID.PrimeCannon))
-                                Counter = 1;
-                            else if (!NPC.AnyNPCs(NPCID.PrimeVice))
-                                Counter = 3;
+                            if (npc.life < npc.lifeMax / 4) //enter phase 2
+                            {
+                                masoBool[0] = true;
+                                masoHurtAI = 0;
+                                npc.netUpdate = true;
+                                Counter = 0;
+
+                                if (!NPC.AnyNPCs(NPCID.PrimeLaser))
+                                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeLaser, npc.whoAmI, 1f, npc.whoAmI, 0f, 150f, npc.target);
+                                if (!NPC.AnyNPCs(NPCID.PrimeSaw))
+                                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeSaw, npc.whoAmI, 1f, npc.whoAmI, 0f, 0f, npc.target);
+                                if (!NPC.AnyNPCs(NPCID.PrimeCannon))
+                                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeCannon, npc.whoAmI, -1f, npc.whoAmI, 0f, 0f, npc.target);
+                                if (!NPC.AnyNPCs(NPCID.PrimeVice))
+                                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeVice, npc.whoAmI, -1f, npc.whoAmI, 0f, 150f, npc.target);
+
+                                int heal = npc.lifeMax * 3 / 4 - npc.life;
+                                npc.life = npc.lifeMax * 3 / 4;
+                                if (heal > 0)
+                                    CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+
+                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                                return;
+                            }
+
+                            if (Counter == 0) //this entire section becomes unnecessary at critical health (arms are basically immortal)
+                            {
+                                if (!NPC.AnyNPCs(NPCID.PrimeLaser))
+                                    Counter = 4;
+                                else if (!NPC.AnyNPCs(NPCID.PrimeSaw))
+                                    Counter = 2;
+                                else if (!NPC.AnyNPCs(NPCID.PrimeCannon))
+                                    Counter = 1;
+                                else if (!NPC.AnyNPCs(NPCID.PrimeVice))
+                                    Counter = 3;
+                            }
+                            else
+                            {
+                                Timer++;
+
+                                if (Timer >= 1500)
+                                {
+                                    Timer = 0;
+                                    int n = 200;
+
+                                    switch (Counter)
+                                    {
+                                        case 1:
+                                            n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeCannon, npc.whoAmI, -1f, npc.whoAmI, 0f, 0f, npc.target);
+                                            break;
+
+                                        case 2:
+                                            n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeSaw, npc.whoAmI, 1f, npc.whoAmI, 0f, 0f, npc.target);
+                                            break;
+
+                                        case 3:
+                                            n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeVice, npc.whoAmI, -1f, npc.whoAmI, 0f, 150f, npc.target);
+                                            break;
+
+                                        case 4:
+                                            n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeLaser, npc.whoAmI, 1f, npc.whoAmI, 0f, 150f, npc.target);
+                                            break;
+
+                                        default:
+                                            break;
+                                    }
+
+                                    if (n != 200)
+                                    {
+                                        Main.npc[n].life = Main.npc[n].lifeMax / 2;
+                                        Main.npc[n].netUpdate = true;
+                                    }
+
+                                    Counter = 0;
+                                }
+                            }
                         }
                         else
                         {
-                            Timer++;
-
-                            if (Timer >= 1800)
+                            if (!masoBool[1])
                             {
-                                Timer = 0;
-                                int n = 200;
-
-                                switch(Counter)
+                                Counter++;
+                                if (Counter >= 180)
                                 {
-                                    case 1:
-                                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeCannon, npc.whoAmI, -1f, npc.whoAmI, 0f, 0f, npc.target);
-                                        break;
-
-                                    case 2:
-                                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeSaw, npc.whoAmI, 1f, npc.whoAmI, 0f, 0f, npc.target);
-                                        break;
-
-                                    case 3:
-                                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeVice, npc.whoAmI, -1f, npc.whoAmI, 0f, 150f, npc.target);
-                                        break;
-
-                                    case 4:
-                                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeLaser, npc.whoAmI, 1f, npc.whoAmI, 0f, 150f, npc.target);
-                                        break;
-
-                                    default:
-                                        break;
+                                    masoBool[1] = true;
+                                    npc.netUpdate = true;
+                                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeLaser, npc.whoAmI, -1f, npc.whoAmI, 0f, 150f, npc.target);
+                                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeSaw, npc.whoAmI, -1f, npc.whoAmI, 0f, 0f, npc.target);
+                                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeCannon, npc.whoAmI, 1f, npc.whoAmI, 0f, 0f, npc.target);
+                                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeVice, npc.whoAmI, 1f, npc.whoAmI, 0f, 150f, npc.target);
+                                    Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                                 }
+                            }
 
-                                if (n != 200)
+                            Timer++;
+                            if (Timer >= 180)
+                            {
+                                Timer = Main.rand.Next(90);
+
+                                if (npc.HasPlayerTarget) //skeleton commando rockets LUL
                                 {
-                                    Main.npc[n].life = Main.npc[n].lifeMax / 2;
-                                    Main.npc[n].netUpdate = true;
-                                }
+                                    Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                                    speed.X += Main.rand.Next(-20, 21);
+                                    speed.Y += Main.rand.Next(-20, 21);
+                                    speed.Normalize();
 
-                                Counter = 0;
+                                    int damage = npc.damage * 2 / 7;
+
+                                    Projectile.NewProjectile(npc.Center, 4f * speed, ProjectileID.RocketSkeleton, damage, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.Center, 3f * speed.RotatedBy(MathHelper.ToRadians(10f)), ProjectileID.RocketSkeleton, damage, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.Center, 3f * speed.RotatedBy(MathHelper.ToRadians(-10f)), ProjectileID.RocketSkeleton, damage, 0f, Main.myPlayer);
+
+                                    Main.PlaySound(SoundID.Item11, npc.Center);
+                                }
                             }
                         }
                         break;
@@ -3023,6 +3111,17 @@ namespace FargowiltasSouls.NPCs
                                 npc.life = 0;
                                 npc.active = false;
                                 //npc.checkDead();
+                                return;
+                            }
+
+                            if (!masoBool[0] && Main.npc[npc.realLife].GetGlobalNPC<FargoGlobalNPC>().masoBool[0])
+                            {
+                                masoBool[0] = true;
+                                masoHurtAI = 6;
+                                int heal = Main.npc[npc.realLife].lifeMax * Main.rand.Next(100, 121) / 4 / 81 / 100; //sum 81 segments healing to regain 25% life, with up to +20% variance
+                                Main.npc[npc.realLife].life += heal;
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                             }
                         }
 
@@ -3435,6 +3534,28 @@ namespace FargowiltasSouls.NPCs
                         {
                             Counter--;
                             npc.dontTakeDamage = true;
+                        }
+                        break;
+
+                    case 77: //all prime limbs
+                        if (!masoBool[0])
+                        {
+                            if (BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && Main.npc[primeBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[0])
+                            {
+                                masoBool[0] = true;
+                                npc.defDefense = 9999;
+                                npc.defense = 9999;
+                                int heal = npc.lifeMax - npc.life;
+                                npc.life = npc.lifeMax;
+                                npc.damage = npc.damage * 3 / 2;
+                                if (heal > 0)
+                                    CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                npc.netUpdate = true;
+                            }
+                        }
+                        else
+                        {
+                            npc.position += npc.velocity;
                         }
                         break;
 
@@ -5171,9 +5292,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 6: //desu body/tail & eow
-                        if (projectile.type == ProjectileID.HallowStar || projectile.type == ProjectileID.CrystalShard || projectile.penetrate < 0)
+                        if (projectile.type == ProjectileID.HallowStar || projectile.type == ProjectileID.CrystalShard)
                         {
                             damage = 1;
+                        }
+                        else if (projectile.penetrate < 0)
+                        {
+                            damage /= 5;
                         }
                         else if (projectile.maxPenetrate > 0)
                         {
@@ -5704,12 +5829,15 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
+                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(600, 1200));
-                        goto case NPCID.Sharkron;
+                        target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
+                        break;
 
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
                         target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(300, 600));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
                         break;
 
