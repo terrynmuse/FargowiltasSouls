@@ -16,6 +16,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 You gain a shield that can reflect projectiles
 Summons an Enchanted Sword familiar that scales with minion damage
 Summons a magical fairy");
+
+//While above 20 mana, Defense is increased by 6.
+//Mana is sapped when damage is taken.
         }
 
         public override void SetDefaults()
