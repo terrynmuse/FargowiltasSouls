@@ -17,6 +17,9 @@ Allows the collection of Vine Rope from vines
 Chance to steal 5 mana with each attack
 Taking damage will release a poisoning spore explosion
 Spore damage scales with magic damage"); //no cordage with thorium
+
+//Your symphonic damage empowers all nearby allies with: Jungle's Nibble. 
+//Damage done against poisoned enemies is increased by 8%. Doubles the range of your empowerments effect radius.
         }
 
         public override void SetDefaults()
