@@ -57,6 +57,13 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
 //Immune to enemy knockback
 //Taking damage will unleash a volatile explosion all around you
 //This effect needs to recharge for 2 seconds after triggering
+
+//life quartz shield
+//Increases the rate at which you regenerate life
+//Receiving damage below 75% surrounds you in a protective bubble
+//While in the bubble, you will recover life equal to your bonus healing every second
+//Additionally, damage taken will be reduced by 15%
+//This effect needs to recharge for 1 minute after triggering
         }
 
         public override void SetDefaults()
