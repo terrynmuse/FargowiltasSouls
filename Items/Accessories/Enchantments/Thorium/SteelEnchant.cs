@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Steel Enchantment");
             Tooltip.SetDefault(
                 @"'Expertly forged by the Blacksmith'
-+10% damage reduction");
++10% damage reduction
+25% of the damage you take is also dealt to the attacker");
         }
 
         public override void SetDefaults()
@@ -51,12 +52,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         private readonly string[] items =
         {
-            "SteelPickaxe",
+            "SpikedBracer",
             "SteelAxe",
             "SteelMallet",
             "SteelBlade",
-            "SuperAnvil",
-            "WarForger"
+            "WarForger",
+            "SuperAnvil"
         };
 
         public override void AddRecipes()
