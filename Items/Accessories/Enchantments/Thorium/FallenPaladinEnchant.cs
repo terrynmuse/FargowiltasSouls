@@ -23,7 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"''
 Taking damage heals nearby allies equal to 10% of the damage taken
-Grants immunity to knockback. Defense increased by 2. Successfully healing an ally with non-radiant healing spells will recover 4 life.");
+Grants immunity to knockback. Defense increased by 2. Successfully healing an ally with non-radiant healing spells will recover 4 life
+Heals ally and player life equal to your bonus healing
+Taking fatal damage unleashes your inner spirit
+Your inner spirit will constantly release beams of healing energy towards your cursor");
         }
 
         public override void SetDefaults()
@@ -56,9 +59,9 @@ Grants immunity to knockback. Defense increased by 2. Successfully healing an al
             "FallenPaladinCuirass",
             "FallenPaladinGreaves",
             "Wynebgwrthucher",
+            "AscensionStatuette"
             "TwilightStaff",
             "HolyHammer",
-            "LightBringerWarhammer",
             "BulwarkStaff",
             "SpiritFireWand",
             "PillPopper"
