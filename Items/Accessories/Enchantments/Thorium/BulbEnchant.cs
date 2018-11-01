@@ -23,7 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"''
 Magic damage might puff hit enemies with a poisonous spore cloud
-When out of combat for 5 seconds, life recovery will increase up to 3 over time");
+When out of combat for 5 seconds, life recovery will increase up to 3 over time
+Enemies that you poison or envenom will take additional damage over time");
         }
 
         public override void SetDefaults()
@@ -56,8 +57,8 @@ When out of combat for 5 seconds, life recovery will increase up to 3 over time"
             "BulbChestplate",
             "BulbLeggings",
             "PetalShield",
+            "NightShadePetal",
             "BloomingBlade",
-            "PetalWand",
             "MoonglowButterfly"
         };
 
