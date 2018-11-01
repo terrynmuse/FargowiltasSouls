@@ -27,7 +27,11 @@ increased after hit invincibility
 grants vision of enemy positions (Hunter Potion effect), attacks apply Granite Surge to hit enemies
 +18% damage
 Your symphonic damage will empower all nearby allies with: Damage Reduction II
-16% increased critical strike chance. 10% increased critical strike damage");
+16% increased critical strike chance. 10% increased critical strike damage
+Clicking the Encase key will place you in an impenetrable shell
+While encased, you cant use items or health potions, life regeneration is heavily reduced, and damage is nearly nullified
+Leaving the shell will greatly lower your speed, damage reduction and damage briefly
+Leaving the shell will prohibit the use of the shell again for 20 seconds");
         }
 
         public override void SetDefaults()
@@ -61,11 +65,11 @@ Your symphonic damage will empower all nearby allies with: Damage Reduction II
             "TitanMask",
             "TitanBreastplate",
             "TitanGreaves",
-            "TunePlayerDamageReduction",
             "CrystalEyeMask",
+            "AbyssalShell",
+            "TunePlayerDamageReduction",
             "Executioner",
-            "KineticKnife",
-            "ArmorBane"
+            "KineticKnife"
         };
 
         public override void AddRecipes()
