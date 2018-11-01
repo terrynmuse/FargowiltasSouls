@@ -23,7 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"'Masterfully forged by the Blacksmith'
 +12% damage reduction
-Magnetizes all loose items on the screen");
+Magnetizes all loose items on the screen
+15% increased movement speed
+Landing on solid ground releases a powerful shockwave
+The damage, knockback, and range of the shock wave is increased by the fall distance");
         }
 
         public override void SetDefaults()
@@ -52,7 +55,7 @@ Magnetizes all loose items on the screen");
         
         private readonly string[] items =
         {
-            "DurasteelChainsaw",
+            "OgreSandals",
             "DurasteelRepeater",
             "SpudBomber",
             "ThiefDagger",
