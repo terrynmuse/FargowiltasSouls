@@ -30,12 +30,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Berserker Enchantment");
             Tooltip.SetDefault(
-                @"''
+                @"'-insert Berserk quote here-'
 Damage is increased by 15% at every 25% segment of life
-
-Hitting an enemy inflicts berserked, while berserked you gain attack speed and damage
+You are inflicted with Berserked below 25% HP and gain 50% attack speed
 Your symphonic damage will empower all nearby allies with: Attack Speed II");
         }
+
+        //fix berserk perma auto use
 
         public override void SetDefaults()
         {
@@ -58,12 +59,8 @@ Your symphonic damage will empower all nearby allies with: Attack Speed II");
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            //thoriumPlayer.orbital = true;
-            //Vector2 meme = Vector2.UnitY;
-            //thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(((ThoriumPlayer)player.GetModPlayer(base.mod, "ThoriumPlayer")).orbitalRotation3, -0.075000002980232239, default(Vector2));
-            //Texture2D texture9 = mod.GetTexture("Gores/Static");
-
-
+            thoriumPlayer.orbital = true;
+            thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.075000002980232239, default(Vector2));
 
             //making divers code less of a meme :scuseme:
             if (player.statLife > player.statLifeMax * 0.75)
@@ -72,7 +69,7 @@ Your symphonic damage will empower all nearby allies with: Attack Speed II");
                 player.magicDamage += 0.15f;
                 player.rangedDamage += 0.15f;
                 player.thrownDamage += 0.15f;
-                //thoriumPlayer.berserkStage = 1;
+                thoriumPlayer.berserkStage = 1;
             }
             else if (player.statLife > player.statLifeMax * 0.5)
             {
@@ -80,7 +77,7 @@ Your symphonic damage will empower all nearby allies with: Attack Speed II");
                 player.magicDamage += 0.3f;
                 player.rangedDamage += 0.3f;
                 player.thrownDamage += 0.3f;
-                //thoriumPlayer.berserkStage = 2;
+                thoriumPlayer.berserkStage = 2;
             }
             else if (player.statLife > player.statLifeMax * 0.25)
             {
@@ -88,7 +85,7 @@ Your symphonic damage will empower all nearby allies with: Attack Speed II");
                 player.magicDamage += 0.45f;
                 player.rangedDamage += 0.45f;
                 player.thrownDamage += 0.45f;
-                //thoriumPlayer.berserkStage = 3;
+                thoriumPlayer.berserkStage = 3;
             }
             else
             {
@@ -96,8 +93,15 @@ Your symphonic damage will empower all nearby allies with: Attack Speed II");
                 player.magicDamage += 0.6f;
                 player.rangedDamage += 0.6f;
                 player.thrownDamage += 0.6f;
-                //thoriumPlayer.berserkStage = 4;
+                thoriumPlayer.berserkStage = 4;
+
+                player.AddBuff(mod.BuffType("Berserked"), 2);
+                player.GetModPlayer<FargoPlayer>().AttackSpeed *= 1.5f;
             }
+
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3AttackSpeed = 2;
         }
         
         private readonly string[] items =

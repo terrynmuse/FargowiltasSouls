@@ -38,11 +38,11 @@ Summons a pet Baby Hornet"); //bring back free bee meme ECH
             
             if(hideVisual)
             {
-                player.GetModPlayer<FargoPlayer>(mod).PetsActive = false;
+               // player.GetModPlayer<FargoPlayer>(mod).PetsActive = false;
             }
             else
             {
-                AddPet();
+               // AddPet();
             }
             
             if(!Fargowiltas.Instance.ThoriumLoaded) return;

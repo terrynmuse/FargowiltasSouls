@@ -25,6 +25,7 @@ namespace FargowiltasSouls
     {
         //for convenience
         public bool IsStandingStill;
+        public float AttackSpeed;
 
         public bool Wood;
         public bool QueenStinger;
@@ -168,7 +169,6 @@ namespace FargowiltasSouls
         public bool HidePetToggle1 = true;
         public bool Kneecapped;             //disables running :v
         public bool Defenseless;            //-30 defense, no damage reduction, cross necklace and knockback prevention effects disabled
-        public bool Lethargic;              //all item speed reduced to 75%
         public bool Purified;               //purges all other buffs
         public bool Infested;               //weak DOT that grows exponentially stronger
         public int MaxInfestTime;
@@ -278,6 +278,7 @@ namespace FargowiltasSouls
         }
         public override void ResetEffects()
         {
+            AttackSpeed = 1f;
 
             Wood = false;
 
@@ -382,7 +383,6 @@ namespace FargowiltasSouls
             Asocial = false;
             Kneecapped = false;
             Defenseless = false;
-            Lethargic = false;
             Purified = false;
             Infested = false;
             Rotting = false;
@@ -415,7 +415,6 @@ namespace FargowiltasSouls
             Asocial = false;
             Kneecapped = false;
             Defenseless = false;
-            Lethargic = false;
             Purified = false;
             Infested = false;
             Rotting = false;
@@ -663,16 +662,22 @@ namespace FargowiltasSouls
 
         public override float UseTimeMultiplier(Item item)
         {
-            float multiplier = 1f;
             int useTime = item.useTime;
             int useAnimate = item.useAnimation;
 
             if (useTime == 0 || useAnimate == 0)
             {
-                return multiplier;
+                return 1f;
             }
 
-            if (Lethargic)
+
+
+
+
+
+
+            //verify these still work
+            /*if (Lethargic)
             {
                 multiplier *= .5f;
             }
@@ -680,9 +685,11 @@ namespace FargowiltasSouls
             if (Rotting)
             {
                 multiplier *= .75f;
-            }
+            }*/
 
-            if (TungstenEnchant && Soulcheck.GetValue("Tungsten Effect"))
+
+            //not fixed
+            /*if (TungstenEnchant && Soulcheck.GetValue("Tungsten Effect"))
             {
                 if (TerraForce)
                     multiplier *= .33f;
@@ -738,20 +745,20 @@ namespace FargowiltasSouls
             if (UniverseEffect && Soulcheck.GetValue("Universe Speedup"))
             {
                 multiplier *= 1.5f;
-            }
+            }*/
 
             //checks so weapons dont break
-            while (useTime / multiplier < 1)
+            while (useTime / AttackSpeed < 1)
             {
-                multiplier -= .1f;
+                AttackSpeed -= .1f;
             }
 
-            while (useAnimate / multiplier < 2)
+            while (useAnimate / AttackSpeed < 2)
             {
-                multiplier -= .1f;
+                AttackSpeed -= .1f;
             }
 
-            return multiplier;
+            return AttackSpeed;
         }
 
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
