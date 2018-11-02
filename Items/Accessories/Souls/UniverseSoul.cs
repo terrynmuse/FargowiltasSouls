@@ -48,6 +48,11 @@ All attacks inflict Flames of the Universe");
             modPlayer.AllCritUp(25);
             //use speed, velocity, debuffs, crit dmg, mana up, double knockback
             modPlayer.UniverseEffect = true;
+            
+            if (Soulcheck.GetValue("Universe Speedup"))
+            {
+                modPlayer.AttackSpeed *= 1.5f;
+            }
 
             player.maxMinions += 8;
             player.maxTurrets += 4;
