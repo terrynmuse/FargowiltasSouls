@@ -672,10 +672,6 @@ namespace FargowiltasSouls
 
 
 
-
-
-
-
             //verify these still work
             /*if (Lethargic)
             {
@@ -685,67 +681,72 @@ namespace FargowiltasSouls
             if (Rotting)
             {
                 multiplier *= .75f;
-            }*/
+            }
+            
+            if (MythrilEnchant)
+            {
+                multiplier *= 1.3f;
+            }
+            
+            if (UniverseEffect && Soulcheck.GetValue("Universe Speedup"))
+            {
+                AttackSpeed *= 1.5f;
+            }
+            
+            */
 
 
             //not fixed
             /*if (TungstenEnchant && Soulcheck.GetValue("Tungsten Effect"))
             {
                 if (TerraForce)
-                    multiplier *= .33f;
+                    AttackSpeed *= .33f;
                 else if (!TerrariaSoul)
-                    multiplier *= .125f;
+                    AttackSpeed *= .125f;
             }
 
             if (ObsidianEnchant)
             {
                 if (TerraForce)
                 {
-                    multiplier *= 1.5f;
+                    AttackSpeed *= 1.5f;
                 }
                 else
                 {
-                    multiplier *= 1.1f;
+                    AttackSpeed *= 1.1f;
                 }
             }
 
             if (RangedEssence && item.ranged)
             {
-                multiplier *= 1.05f;
+                AttackSpeed *= 1.05f;
+            }
+            
+            if(MagicSoul && item.magic)
+            {
+                AttackSpeed *= 1.2f;
             }
 
-            if (MythrilEnchant)
+            if (ThrowSoul && item.thrown)
             {
-                multiplier *= 1.3f;
+                AttackSpeed *= 1.2f;
+            }
+
+            if (RangedSoul && item.ranged)
+            {
+                AttackSpeed *= 1.2f;
             }
 
             if (NebulaEnchant && NebulaCounter >= 300)
             {
                 if (CosmoForce)
-                    multiplier *= 5f;
+                    AttackSpeed *= 5f;
                 else if (player.HeldItem.magic)
-                    multiplier *= 2f;
+                    AttackSpeed *= 2f;
             }
 
-            if(MagicSoul && item.magic)
-            {
-                multiplier *= 1.2f;
-            }
-
-            if (ThrowSoul && item.thrown)
-            {
-                multiplier *= 1.2f;
-            }
-
-            if (RangedSoul && item.ranged)
-            {
-                multiplier *= 1.2f;
-            }
-
-            if (UniverseEffect && Soulcheck.GetValue("Universe Speedup"))
-            {
-                multiplier *= 1.5f;
-            }*/
+            
+            */
 
             //checks so weapons dont break
             while (useTime / AttackSpeed < 1)
