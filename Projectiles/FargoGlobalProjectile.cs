@@ -35,12 +35,11 @@ namespace FargowiltasSouls.Projectiles
         public bool Rotate = false;
         public int RotateDist = 64;
         public int RotateDir = 1;
-        private int oriDir = 1;
 
         private bool firstTick = true;
         private bool squeakyToy = false;
         public bool masoProj = false;
-        public bool TimeFrozen = false;
+        public int TimeFrozen = 0;
 
         public override void SetDefaults(Projectile projectile)
         {
@@ -59,6 +58,12 @@ namespace FargowiltasSouls.Projectiles
                         break;
                 }
             }
+
+            if(projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
+            {
+                projectile.minionSlots = .5f;
+            }
+
         }
 
         private static int[] noSplit = { ProjectileID.CrystalShard, ProjectileID.SandnadoFriendly, ProjectileID.LastPrism, ProjectileID.LastPrismLaser, ProjectileID.FlowerPetal, ProjectileID.BabySpider, ProjectileID.CrystalLeafShot };
@@ -106,6 +111,16 @@ namespace FargowiltasSouls.Projectiles
                         projectile.timeLeft = 600;
                     }
                 }
+
+                if (projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
+                {
+                    if (!modPlayer.SpiderEnchant)
+                    {
+                        //the usual, WTF who knew
+                        projectile.minionSlots = .75f;
+                    }
+                }
+                
 
                 if (projectile.friendly && !projectile.hostile)
                 {
@@ -180,7 +195,7 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
-            if (modPlayer.SpookyEnchant && !modPlayer.TerrariaSoul && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
+            if (modPlayer.SpookyEnchant && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
             {
                 Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 62);
                 Projectile[] projs = XWay(8, projectile.Center, mod.ProjectileType<Souls.SpookyScythe>(), 5, projectile.damage / 2, 2f);
@@ -223,38 +238,13 @@ namespace FargowiltasSouls.Projectiles
                     projectile.ai[1] -= 2.5f;
                 }
 
-                //projectile.rotation = projectile.ai[1] * 0.0174f;
-
-                if (modPlayer.OriEnchant && projectile.type != ProjectileID.Blizzard && projectile.type != ProjectileID.Bone)
-                {
-                    projectile.penetrate = -1;
-
-                    if (oriDir == 1)
-                    {
-                        RotateDist++;
-                    }
-                    else
-                    {
-                        RotateDist--;
-                    }
-
-                    if (RotateDist >= 256)
-                    {
-                        oriDir = 0;
-                    }
-                    if (RotateDist <= 64)
-                    {
-                        oriDir = 1;
-                    }
-                }
-
                 if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && Soulcheck.GetValue("Frost Icicles"))
                 {
-                    //projectile.rotation = (Main.MouseWorld - projectile.Center).ToRotation() + 90;
+                    projectile.rotation = (Main.MouseWorld - projectile.Center).ToRotation() - 5;
                     projectile.timeLeft = 2;
                 }
 
-                if (modPlayer.TerrariaSoul && Soulcheck.GetValue("Orichalcum Fireballs"))
+                if (modPlayer.OriEnchant && (projectile.type == ProjectileID.BallofFire || projectile.type == ProjectileID.CursedFlameFriendly || projectile.type == ProjectileID.BallofFrost) && Soulcheck.GetValue("Orichalcum Fireballs"))
                 {
                     projectile.timeLeft = 2;
                 }
@@ -262,11 +252,12 @@ namespace FargowiltasSouls.Projectiles
                 retVal = false;
             }
 
-            if (TimeFrozen)
+            if (TimeFrozen > 0)
             {
                 projectile.position = projectile.oldPosition;
                 projectile.frameCounter--;
                 projectile.timeLeft++;
+                TimeFrozen--;
                 retVal = false;
             }
 
@@ -328,7 +319,7 @@ namespace FargowiltasSouls.Projectiles
 
             if (player.FindBuffIndex(buff) == -1)
             {
-                if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle))
+                if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle) || !modPlayer.PetsActive)
                 {
                     projectile.Kill();
                 }
@@ -529,11 +520,6 @@ namespace FargowiltasSouls.Projectiles
                     return Color.GreenYellow;
                 }
 
-                if(projectile.type == ProjectileID.SporeCloud)
-                {
-                    return Color.Blue;
-                }
-
                 if(projectile.type == ProjectileID.Bone || projectile.type == ProjectileID.BoneGloveProj)
                 {
                     return Color.SandyBrown;
@@ -553,83 +539,8 @@ namespace FargowiltasSouls.Projectiles
                 return;
             }
 
-            //spawn proj on hit
-            if (modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && CountProj(ProjectileID.SporeCloud) < 5 && modPlayer.IsStandingStill && Main.rand.Next(5) == 0)
-            {
-                Vector2 pos = new Vector2(projectile.Center.X + Main.rand.Next(-30, 30), projectile.Center.Y + Main.rand.Next(-40, 40));
-
-                Projectile spore = Projectile.NewProjectileDirect(pos, Vector2.Zero, ProjectileID.SporeCloud, (int)(projectile.damage / 3), 0f, projectile.owner);
-                spore.ranged = true;
-                spore.melee = false;
-                spore.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                spore.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
-            }
-
-            if (modPlayer.OriEnchant && !modPlayer.TerrariaSoul && !Rotate && Main.rand.Next(6) == 0)
-            {
-                int[] fireballs = { ProjectileID.BallofFire, ProjectileID.BallofFrost, ProjectileID.CursedFlameFriendly };
-                const int MAXBALLS = 10;
-
-                int ballCount = 0;
-
-                Projectile[] balls = new Projectile[MAXBALLS];
-
-                for(int i = 0; i < 1000; i++)
-                {
-                    Projectile p = Main.projectile[i];
-                    if (p.active && p.GetGlobalProjectile<FargoGlobalProjectile>().Rotate)
-                    {
-                        ballCount++;
-                        
-                        if(ballCount >= MAXBALLS)
-                        {
-                            break;
-                        }
-
-                        balls[ballCount] = p;
-                    }
-                }
-
-                ballCount++;
-
-                if(ballCount <= MAXBALLS)
-                {
-                    int dist = 63;
-
-                    for(int i = 0; i < balls.Length; i++)
-                    {
-                        if(balls[i] != null)
-                        {
-                            if(dist == 63)
-                            {
-                                dist = balls[i].GetGlobalProjectile<FargoGlobalProjectile>().RotateDist;
-                            }
-
-                            balls[i].Kill();
-                        }
-                    }
-
-                    float degree;
-                    for (int i = 0; i < ballCount; i++)
-                    {
-                        degree = (360 / ballCount) * i;
-                        Projectile fireball = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, fireballs[Main.rand.Next(3)], (int)(10 * player.magicDamage), 0f, projectile.owner, 0, degree);
-                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = dist;
-                    }
-                }
-            }
-
             if (projectile.minion && modPlayer.UniverseEffect)
             {
-                //target.AddBuff(BuffID.Ichor, 240, true);
-                //target.AddBuff(BuffID.CursedInferno, 240, true);
-                //target.AddBuff(BuffID.Confused, 120, true);
-                //target.AddBuff(BuffID.Venom, 240, true);
-                //target.AddBuff(BuffID.ShadowFlame, 240, true);
-                //target.AddBuff(BuffID.OnFire, 240, true);
-                //target.AddBuff(BuffID.Frostburn, 240, true);
-                //target.AddBuff(BuffID.Daybreak, 240, true);
                 target.AddBuff(mod.BuffType<Buffs.Masomode.FlamesoftheUniverse>(), 240, true);
             }
         }
@@ -1064,7 +975,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 default:
-                    if (modPlayer.TerrariaSoul && Rotate)
+                    if (modPlayer.OriEnchant && Rotate)
                         modPlayer.OriSpawn = false;
                     break;
             }

@@ -14,8 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'Made with real shrooms!'
 Not moving puts you in stealth
-While in stealth crits deal 4x damage and spores spawn on enemies
-Summons a pet Baby Truffle"); //screw spores honestly
+While in stealth crits deal 4x damage
+Summons a pet Baby Truffle"); 
         }
 
         public override void SetDefaults()

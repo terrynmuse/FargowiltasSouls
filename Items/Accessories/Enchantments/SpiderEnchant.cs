@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -11,13 +12,24 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spider Enchantment");
-            Tooltip.SetDefault(
-                @"'Arachniphobia is punishable by arachnid induced death'
-Summon damage may cause the enemy to be Swarmed
-Summons a pet Spider"); // free spider minion meme?
 
-//Your symphonic damage empowers all nearby allies with: Spider Bite. Damage done against envenomed enemies is increased by 8%. 
-//Doubles the range of your empowerments effect radius
+            string tooltip = 
+@"'Arachniphobia is punishable by arachnid induced death'
+You may summon nearly twice as many spider minions
+";
+
+            if(thorium != null)
+            {
+                tooltip +=
+@"Your symphonic damage empowers all nearby allies with: Spider Bite
+Damage done against envenomed enemies is increased by 8%
+Doubles the range of your empowerments effect radius
+";
+            }
+
+            tooltip += "Summons a pet Spider";
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -33,6 +45,12 @@ Summons a pet Spider"); // free spider minion meme?
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).SpiderEffect(hideVisual);
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            thoriumPlayer.subwooferVenom = true;
+            thoriumPlayer.bardRangeBoost += 450;
         }
 
         public override void AddRecipes()

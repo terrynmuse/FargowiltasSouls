@@ -12,10 +12,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Stardust Enchantment");
             Tooltip.SetDefault(
-                @"'The power of the Stand is yours' 
+@"'The power of the Stand is yours' 
 Double tap down to direct your guardian
 Press the Freeze Key to freeze time for 5 seconds
-There is a 60 second cooldown for this effect, a sound effect plays when it's back"); //debuff instead of wtf meme it is now
+There is a 60 second cooldown for this effect, a sound effect plays when it's back");
         }
 
         public override void SetDefaults()

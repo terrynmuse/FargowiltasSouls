@@ -13,8 +13,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Tiki Enchantment");
             Tooltip.SetDefault(
                 @"'Aku Aku!'
-Attacks will inflict a random debuff
-Summons a Tiki Spirit"); //attacks transform, or 10% chance for 1 dmg 10% chance for 10x damage meme
+Attacks will inflict a Infested on enemies
+Infested deals increasing damage over time
+Summons a Tiki Spirit");
         }
 
         public override void SetDefaults()
@@ -41,7 +42,6 @@ Summons a Tiki Spirit"); //attacks transform, or 10% chance for 1 dmg 10% chance
             recipe.AddIngredient(ItemID.PygmyNecklace);
             recipe.AddIngredient(ItemID.PygmyStaff);
             recipe.AddIngredient(ItemID.Blowgun);
-            
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      

@@ -11,11 +11,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Meteor Enchantment");
-            Tooltip.SetDefault(
-                @"'Cosmic power builds your magical prowess'
-A meteor shower initiates every few seconds while using magic weapons"); //look at naga skin mana spent meme hmm
 
-//Releases a strange alien creature
+            string tooltip = @"'Cosmic power builds your magical prowess'
+A meteor shower initiates every few seconds while using magic weapons";
+
+            if(thorium != null)
+            {
+                tooltip += "Releases a strange alien creature";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()

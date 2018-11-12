@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -11,15 +12,21 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Forbidden Enchantment");
-            Tooltip.SetDefault(
-                @"'Walk like an Egyptian'
+
+            string tooltip =
+@"'Walk like an Egyptian'
 Double tap down to call an ancient storm to the cursor location
 Any projectiles shot through your storm gain double pierce and 50% damage
-You are immune to the Mighty Wind debuff"); //maybe kill debuff immune lol
+";
 
-//Allows the owner to float for a few seconds
-//Your healing streak fuels an ancient crucible every 100 life up to 500 total. 
-//The crucible increases your radiant damage by 5% per 100 life in the crucible.
+            if(thorium != null)
+            {
+                tooltip +=
+                    @"Your healing streak fuels an ancient crucible every 100 life up to 500 total
+                    The crucible increases your radiant damage by 5% per 100 life in the crucible";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -35,6 +42,15 @@ You are immune to the Mighty Wind debuff"); //maybe kill debuff immune lol
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).ForbiddenEffect();
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            thoriumPlayer.karmicHolder = true;
+            if (thoriumPlayer.healStreak >= 0 && player.ownedProjectileCounts[thorium.ProjectileType("KarmicHolderPro")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("KarmicHolderPro"), 0, 0f, player.whoAmI, 0f, 0f);
+            }
         }
 
         public override void AddRecipes()

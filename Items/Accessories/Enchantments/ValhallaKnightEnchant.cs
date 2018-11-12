@@ -14,9 +14,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'Valhalla calls'
 Greatly enhances Ballista effectiveness
-You ignore enemy knockback immunity with your close range melee weapons
+Swords and spears will slowly remove enemy knockback immunity
 Shiny Stone effects
-Summons a pet Dragon"); //just remove knockback immune and forget the set default shet
+Summons a pet Dragon");
         }
 
         public override void SetDefaults()

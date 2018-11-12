@@ -6,22 +6,32 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 {
     public class CosmoForce : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Force of Cosmos");
-            Tooltip.SetDefault(
-                @"'Been around since the Big Bang'
+
+            string tooltip =
+@"'Been around since the Big Bang'
 A meteor shower initiates every few seconds while using any weapon
-Solar shield allows you to dash through enemies
-Attacks inflict the Solar Flare debuff
-Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
-You also spawn a vortex to draw in and massively damage enemies when you enter stealth
-Attacks rarely spawn a vortex to draw in and massively damage enemies
 Hurting enemies has a chance to spawn buff boosters
-Maintain maxed buff boosters for 5 seconds to gain obscene attack speed
+Reach maxed buff boosters to gain drastically increased attack speed
+Solar shield allows you to dash through enemies
+Attacks may inflict the Solar Flare debuff
 Double tap down to direct your guardian
 Press the Freeze Key to freeze time for 5 seconds
-Summons a Companion Cube Pet and a suspicious looking eye to provide light");
+There is a 60 second cooldown for this effect, a sound effect plays when it's back
+Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
+You also spawn a vortex to draw in and massively damage enemies when you enter stealth
+Summons a Companion Cube Pet";
+
+            if(thorium != null)
+            {
+                tooltip += "Releases a strange alien creature";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -37,12 +47,19 @@ Summons a Companion Cube Pet and a suspicious looking eye to provide light");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.CosmoForce = true;
+            //shower works for all, meme speed works for all, solar flare all
+            modPlayer.CosmoForce = true; //check all
+            //meteor shower
             modPlayer.MeteorEffect(75);
-            modPlayer.SolarEffect();
-            modPlayer.VortexEffect(hideVisual);
+            //boosters and meme speed
             modPlayer.NebulaEffect();
+            //solar shields and flare debuff
+            modPlayer.SolarEffect();
+            //guardian and time freeze
             modPlayer.StardustEffect();
+            //stealth, voids, pet
+            modPlayer.VortexEffect(hideVisual);
+
             modPlayer.AddPet("Suspicious Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
         }
 

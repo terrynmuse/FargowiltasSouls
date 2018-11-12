@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -11,15 +12,27 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frost Enchantment");
-            Tooltip.SetDefault(
-                @"'Let's coat the world in a deep freeze' 
+            
+            string tooltip = 
+@"'Let's coat the world in a deep freeze' 
 Icicles will start to appear around you
-When there are three, using any weapon will launch them towards the cursor, Chilling and Frostburning enemies
-Allows the ability to walk on water
-Summons a baby penguin and snowman"); //kill water walk maybe, make ice bois rotate good
+When there are three, attacking will launch them towards the cursor
+";
 
-//Your symphonic damage empowers all nearby allies with: Cold Shoulder. 
-//Damage done against frostburnt enemies is increased by 8%. Doubles the range of your empowerments effect radius.
+            if(thorium != null)
+            {
+                tooltip += 
+@"Your symphonic damage empowers all nearby allies with: Cold Shoulder
+Damage done against frostburnt enemies is increased by 8% 
+Doubles the range of your empowerments effect radius
+Summons a pet Snowman";
+            }
+            else
+            {
+                tooltip += "Summons a pet Penguin and Snowman";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -35,6 +48,12 @@ Summons a baby penguin and snowman"); //kill water walk maybe, make ice bois rot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).FrostEffect(50, hideVisual);
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            thoriumPlayer.subwooferFrost = true;
+            thoriumPlayer.bardRangeBoost += 450;
         }
 
         public override void AddRecipes()

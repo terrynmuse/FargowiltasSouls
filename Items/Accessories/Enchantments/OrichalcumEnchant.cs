@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'Nature blesses you' 
 Flower petals will cause extra damage to your target 
-Attacks may spawn fireballs to rotate around you"); //maybe just a few perma fireballs like SoT tbh
+Spawns 3 fireballs to rotate around you");
         }
 
         public override void SetDefaults()

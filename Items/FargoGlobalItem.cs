@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Items
             FargoPlayer p = (FargoPlayer) player.GetModPlayer(mod, "FargoPlayer");
             //ignore money, hearts, mana stars
             if (p.IronEnchant && item.type != 71 && item.type != 72 && item.type != 73 && item.type != 74 && item.type != 54 && item.type != 1734 && item.type != 1735 &&
-                item.type != 184) grabRange += 300;
+                item.type != 184) grabRange += 250;
         }
 
         public override void PickAmmo(Item item, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
@@ -119,70 +119,6 @@ namespace FargowiltasSouls.Items
                 player.HealEffect(30);
                 player.statLife += 30;
                 return false;
-            }
-
-            if (!p.GoldEnchant || p.TerrariaSoul) return true;
-            
-            switch (item.type)
-            {
-                case ItemID.CopperCoin:
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        float randX, randY;
-
-                        do
-                        {
-                            randX = Main.rand.Next(-10, 10);
-                        } while (randX <= 4f && randX >= -4f);
-
-                        do
-                        {
-                            randY = Main.rand.Next(-10, 10);
-                        } while (randY <= 4f && randY >= -4f);
-
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, randX, randY, ProjectileID.CopperCoin, 25, 2, Main.myPlayer);
-                    }
-
-                    return false;
-                }
-                case ItemID.SilverCoin:
-                {
-                    for (int i = 0; i < 8; i++)
-                    {
-                        float randX, randY;
-
-                        do
-                        {
-                            randX = Main.rand.Next(-10, 10);
-                        } while (randX <= 4f && randX >= -4f);
-
-                        do
-                        {
-                            randY = Main.rand.Next(-10, 10);
-                        } while (randY <= 4f && randY >= -4f);
-
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, randX, randY, ProjectileID.SilverCoin, 50, 2, Main.myPlayer);
-                    }
-
-                    return false;
-                }
-                case ItemID.GoldCoin:
-                {
-                    int x = Main.rand.Next(2);
-
-                    switch (x)
-                    {
-                        case 0:
-                            player.AddBuff(BuffID.Regeneration, 600);
-                            break;
-                        default:
-                            player.AddBuff(BuffID.Swiftness, 600);
-                            break;
-                    }
-
-                    break;
-                }
             }
 
             return true;

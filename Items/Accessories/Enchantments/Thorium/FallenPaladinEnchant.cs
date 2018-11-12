@@ -59,7 +59,7 @@ Your inner spirit will constantly release beams of healing energy towards your c
             "FallenPaladinCuirass",
             "FallenPaladinGreaves",
             "Wynebgwrthucher",
-            "AscensionStatuette"
+            "AscensionStatuette",
             "TwilightStaff",
             "HolyHammer",
             "BulwarkStaff",

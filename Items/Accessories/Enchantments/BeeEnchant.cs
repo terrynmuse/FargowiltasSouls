@@ -7,18 +7,26 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     public class BeeEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bee Enchantment");
-            Tooltip.SetDefault(
-                @"'According to all known laws of aviation, there is no way a bee should be able to fly'
+
+            string tooltip = 
+@"'According to all known laws of aviation, there is no way a bee should be able to fly'
 Increases the strength of friendly bees
 Bees ignore most enemy defense
-Summons a pet Baby Hornet"); //bring back free bee meme ECH
+";
 
+            if(thorium != null)
+            {
+                tooltip += "While running, you will periodically generate bees\n";
+            }
 
-//5% increased movement and maximum speed. While running, you will periodically generate bees
+            tooltip += "Summons a pet Baby Hornet";
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -31,23 +39,22 @@ Summons a pet Baby Hornet"); //bring back free bee meme ECH
             item.value = 50000;
         }
 
-        //meme add back free hornet minion IMO
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).BeeEffect(hideVisual);
             
-            if(hideVisual)
-            {
-               // player.GetModPlayer<FargoPlayer>(mod).PetsActive = false;
-            }
-            else
-            {
-               // AddPet();
-            }
-            
             if(!Fargowiltas.Instance.ThoriumLoaded) return;
-            
+
             //bee booties
+            if ((player.velocity.X > 1f && player.velocity.X > 0f) || (player.velocity.X < 1f && player.velocity.X < 0f))
+            {
+                timer++;
+                if (timer > 45)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeeSummonSpawn"), 0, 0f, player.whoAmI, 0f, 0f);
+                    timer = 0;
+                }
+            }
         }
 
         public override void AddRecipes()

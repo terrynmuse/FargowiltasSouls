@@ -33,8 +33,9 @@ namespace FargowiltasSouls.NPCs
         public bool SqueakyToy;
         public bool SolarFlare;
         public bool TimeFrozen;
-        public bool Chilled;
         public bool HellFire;
+        public bool Infested;
+        public float InfestedDust;
 
         public bool PillarSpawn = true;
 
@@ -70,15 +71,16 @@ namespace FargowiltasSouls.NPCs
 
         public override void ResetEffects(NPC npc)
         {
+            TimeFrozen = false;
             SBleed = false;
             Shock = false;
             Rotting = false;
             LeadPoison = false;
             SqueakyToy = false;
             SolarFlare = false;
-            Chilled = false;
             HellFire = false;
             PaladinsShield = false;
+            Infested = false;
             //BLACK SLIMES
             //npc.color = default(Color);
         }
@@ -3728,11 +3730,11 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            if (SqueakyToy)
+            if (Infested)
             {
                 if (Main.rand.Next(4) < 3)
                 {
-                    int dust = Dust.NewDust(new Vector2(npc.position.X - 2f, npc.position.Y - 2f), npc.width + 4, npc.height + 4, 44, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, Color.LimeGreen, 1f);
+                    int dust = Dust.NewDust(new Vector2(npc.position.X - 2f, npc.position.Y - 2f), npc.width + 4, npc.height + 4, 44, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, Color.LimeGreen, InfestedDust);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Dust expr_1CCF_cp_0 = Main.dust[dust];
@@ -3837,6 +3839,7 @@ namespace FargowiltasSouls.NPCs
                 }*/
             }
 
+            //20 dps
             if (SBleed)
 			{
 				if (npc.lifeRegen > 0)
@@ -3844,9 +3847,9 @@ namespace FargowiltasSouls.NPCs
 					npc.lifeRegen = 0;
 				}
 				npc.lifeRegen -= 40;
-				if (damage < 10)
+				if (damage < 20)
 				{
-					damage = 5;
+					damage = 20;
 				}
 				
 				if(Main.rand.Next(4) == 0)
@@ -3884,6 +3887,7 @@ namespace FargowiltasSouls.NPCs
                 npc.lifeRegen -= 10;
             }
 
+            //50 dps
             if(SolarFlare)
             {
                 if (npc.lifeRegen > 0)
@@ -3891,14 +3895,15 @@ namespace FargowiltasSouls.NPCs
                     npc.lifeRegen = 0;
                 }
 
-                npc.lifeRegen -= 200;
+                npc.lifeRegen -= 100;
 
-                if (damage < 20)
+                if (damage < 10)
                 {
-                    damage = 20;
+                    damage = 10;
                 }
             }
 
+            //.5% dps
             if(HellFire)
             {
                 if (npc.lifeRegen > 0)
@@ -3906,16 +3911,59 @@ namespace FargowiltasSouls.NPCs
                     npc.lifeRegen = 0;
                 }
 
-                npc.lifeRegen -= 50 * npc.lifeMax / npc.life;
+                npc.lifeRegen -= npc.lifeMax / 100;
 
-                if (damage < 4)
+                if (damage < npc.lifeMax / 1000)
                 {
-                    damage = 4;
+                    damage = npc.lifeMax / 1000;
+                }
+            }
+
+            if(Infested)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+
+                int infest = InfestedExtraDot(npc);
+                npc.lifeRegen -= infest;
+
+                if (damage < infest / 10)
+                {
+                    damage = infest / 10;
                 }
             }
 		}
-		
-		public override void EditSpawnRate (Player player, ref int spawnRate, ref int maxSpawns)
+
+        private int InfestedExtraDot(NPC npc)
+        {
+            int buffIndex = npc.FindBuffIndex(mod.BuffType<Infested>());
+            
+
+            if (buffIndex == -1)
+            {
+                return 0;
+            }
+
+            int timeLeft = npc.buffTime[buffIndex];
+            float baseVal = (float)(1800 - timeLeft) / 60;
+            //change the denominator to adjust max power of DOT
+            int dmg = (int)(baseVal * baseVal + 8);
+
+            InfestedDust = baseVal / 15 + .5f;
+
+            if (InfestedDust > 5f)
+            {
+                InfestedDust = 5f;
+            }
+
+            Main.NewText(InfestedDust);
+
+            return dmg;
+        }
+
+        public override void EditSpawnRate (Player player, ref int spawnRate, ref int maxSpawns)
 		{
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			
@@ -4517,7 +4565,7 @@ namespace FargowiltasSouls.NPCs
             {
                 bool midas = npc.HasBuff(BuffID.Midas);
                 int chance = 10;
-                int bonus = 3;
+                int bonus = 4;
 
                 if(midas)
                 {
@@ -6236,7 +6284,7 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 			
-			if(crit && modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && modPlayer.IsStandingStill)
+			if(crit && modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && player.stealth == 0)
 			{
 			    damage *= 4;
                 retValue = false;
@@ -6258,7 +6306,12 @@ namespace FargowiltasSouls.NPCs
 			
             if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
-                npc.knockBackResist += .1f;
+                npc.knockBackResist += .05f;
+
+                if(npc.knockBackResist > 1)
+                {
+                    npc.knockBackResist = 1;
+                }
             }
 		}
 
@@ -6269,14 +6322,13 @@ namespace FargowiltasSouls.NPCs
             //spears
             if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce) && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
-                npc.knockBackResist += .1f;
+                npc.knockBackResist += .05f;
+
+                if (npc.knockBackResist > 1)
+                {
+                    npc.knockBackResist = 1;
+                }
             }
-            /*else
-            {
-                NPC n = new NPC();
-                n.SetDefaults(npc.type);
-                npc.knockBackResist = n.knockBackResist;
-            }*/
         }
 
         public static bool BossIsAlive(ref int bossID, int bossType)

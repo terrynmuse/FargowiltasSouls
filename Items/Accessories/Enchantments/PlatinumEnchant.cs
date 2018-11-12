@@ -1,23 +1,32 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class PlatinumEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Platinum Enchantment");
-            Tooltip.SetDefault(
-                @"'Its value is immeasurable'
-10% chance for enemies to drop 3x loot
-If the enemy has Midas, the chance and bonus is doubled"); //drop loot on hit when?
 
-//While in combat, you generate a 17 life shield
-//Summons some living glitter to follow you around
+            string tooltip = @"'Its value is immeasurable'
+10% chance for enemies to drop 4x loot
+If the enemy has Midas, the chance and bonus is doubled";
+
+            if(thorium != null)
+            {
+                tooltip += 
+@"While in combat, you generate a 17 life shield
+Summons some living glitter to follow you around";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -33,6 +42,30 @@ If the enemy has Midas, the chance and bonus is doubled"); //drop loot on hit wh
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).PlatinumEnchant = true;
+
+            if (Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            thoriumPlayer.metallurgyShield = true;
+            if (!thoriumPlayer.outOfCombat)
+            {
+                timer++;
+                if (timer >= 30)
+                {
+                    int num = 17;
+                    if (thoriumPlayer.shieldHealth < num)
+                    {
+                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                        thoriumPlayer.shieldHealth++;
+                    }
+                    timer = 0;
+                    return;
+                }
+            }
+            else
+            {
+                timer = 0;
+            }
         }
 
         public override void AddRecipes()

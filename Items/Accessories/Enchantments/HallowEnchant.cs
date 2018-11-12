@@ -11,14 +11,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hallowed Enchantment");
+
             Tooltip.SetDefault(
                 @"'Hallowed be your sword and shield'
 You gain a shield that can reflect projectiles
 Summons an Enchanted Sword familiar that scales with minion damage
 Summons a magical fairy");
-
-//While above 20 mana, Defense is increased by 6.
-//Mana is sapped when damage is taken.
         }
 
         public override void SetDefaults()

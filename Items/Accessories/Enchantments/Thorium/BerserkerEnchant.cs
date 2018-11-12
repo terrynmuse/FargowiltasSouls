@@ -30,7 +30,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Berserker Enchantment");
             Tooltip.SetDefault(
-                @"'-insert Berserk quote here-'
+                @"'I'd rather fight for my life than live it'
 Damage is increased by 15% at every 25% segment of life
 You are inflicted with Berserked below 25% HP and gain 50% attack speed
 Your symphonic damage will empower all nearby allies with: Attack Speed II");
