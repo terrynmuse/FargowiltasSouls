@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -21,9 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Malignant Enchantment");
             Tooltip.SetDefault(
-                @"''
-Magic critical strikes inflict Light Curse & On Fire!
-Allows flight at the cost of mana. Increases mana regeneration slightly");
+@"''
+Magic critical strikes engulf enemies in a long lasting void flame
+Allows flight at the cost of mana
+Increases mana regeneration slightly");
         }
 
         public override void SetDefaults()
@@ -46,8 +48,23 @@ Allows flight at the cost of mana. Increases mana regeneration slightly");
         private void MalignantEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.malignantSet = true;
+            //mana charge rockets
+            player.manaRegen++;
+            player.manaRegenDelay -= 2;
+            if (player.statMana > 0)
+            {
+                player.rocketBoots = 1;
+                if (player.rocketFrame)
+                {
+                    if (Main.rand.Next(2) == 0)
+                    {
+                        player.statMana -= 2;
+                        Dust.NewDust(new Vector2(player.position.X, player.position.Y + 20f), player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 100, default(Color), 1.5f);
+                    }
+                    player.rocketTime = 1;
+                }
+            }
         }
         
         private readonly string[] items =

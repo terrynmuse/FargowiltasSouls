@@ -21,8 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Flight Enchantment");
             Tooltip.SetDefault(
-                @"'The sky is your playing field'
-Increased jump height
+@"'The sky is your playing field'
 You can now briefly fly
 Summons a Pet Parrot");
         }
@@ -47,12 +46,15 @@ Summons a Pet Parrot");
         private void FlightEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.flightSet = true;
         }
         
         private readonly string[] items =
         {
+            "FlightMask",
+            "FlightMail",
+            "FlightBoots",
+            "HarpyTalon",
             "ChampionWing",
             "Aerial",
             "HarpyPelter",
@@ -65,11 +67,6 @@ Summons a Pet Parrot");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-
-            recipe.AddIngredient(thorium.ItemType("FlightMask"));
-            recipe.AddIngredient(thorium.ItemType("FlightMail"));
-            recipe.AddIngredient(thorium.ItemType("FlightBoots"));
-            recipe.AddIngredient(ItemID.HarpyWings);
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
             

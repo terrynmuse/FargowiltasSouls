@@ -21,8 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Silk Enchantment");
             Tooltip.SetDefault(
-                @"''
-+7% magic damage");
+@"''
+7% increased magic damage");
         }
 
         public override void SetDefaults()
@@ -45,8 +45,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void SilkEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            player.magicDamage += 0.07f;
         }
 
         public override void AddRecipes()

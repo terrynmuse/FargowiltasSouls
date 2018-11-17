@@ -21,10 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Fallen Paladin Enchantment");
             Tooltip.SetDefault(
-                @"''
-Taking damage heals nearby allies equal to 10% of the damage taken
-Grants immunity to knockback. Defense increased by 2. Successfully healing an ally with non-radiant healing spells will recover 4 life
-Heals ally and player life equal to your bonus healing
+@"''
+Taking damage heals nearby allies equal to 15% of the damage taken
+Successfully healing an ally with a healing spell will replenish 4 life
 Taking fatal damage unleashes your inner spirit
 Your inner spirit will constantly release beams of healing energy towards your cursor");
         }
@@ -49,8 +48,12 @@ Your inner spirit will constantly release beams of healing energy towards your c
         private void PaladinEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.fallenPaladinSet = true;
+            //wyne
+            thoriumPlayer.Wynebgwrthucher = true;
+            //ascension statue
+            thoriumPlayer.ascension = true;
         }
         
         private readonly string[] items =

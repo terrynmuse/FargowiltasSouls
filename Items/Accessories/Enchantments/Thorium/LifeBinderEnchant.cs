@@ -21,8 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Life Binder Enchantment");
             Tooltip.SetDefault(
-                @"''
-Healing spells will shortly increase the healed players maximum life by 50
+@"''
+Healing spells will shortly increase the healed player's maximum life by 50
 Healing an ally grants them 2 life recovery for 10 seconds
 Summons a light infused goat to brighten up your path");
         }
@@ -47,8 +47,12 @@ Summons a light infused goat to brighten up your path");
         private void BinderEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.mistSet = true;
+            //aloe leaf
+            thoriumPlayer.aloePlant = true;
+            //goat pet
+            thoriumPlayer.goatPet = true;
         }
         
         private readonly string[] items =

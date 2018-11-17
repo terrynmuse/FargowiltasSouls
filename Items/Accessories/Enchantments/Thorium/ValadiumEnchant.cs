@@ -9,6 +9,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class ValadiumEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int lightGen;
         
         public override bool Autoload(ref string name)
         {
@@ -21,9 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Valadium Enchantment");
             Tooltip.SetDefault(
-                @"''
-Grants the ability to reverse gravity with the ▲ Up key. +12% ranged damage while gravity is reversed
-While equipped, the eye will give vision of your cursors current position.");
+@"''
+Reverse gravity by pressing UP
+While reversed, ranged damage is increased by 12%
+While equipped, the eye will give vision of your cursors current position");
         }
 
         public override void SetDefaults()
@@ -46,8 +48,27 @@ While equipped, the eye will give vision of your cursors current position.");
         private void ValadiumEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            player.gravControl = true;
+            if (player.gravDir == -1f)
+            {
+                player.rangedDamage += 0.12f;
+                player.AddBuff(thorium.BuffType("GravityDamage"), 60, true);
+            }
+            //eye of beholder
+            lightGen++;
+            if (lightGen >= 40)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze"), 0, 0f, player.whoAmI, i, 0f);
+                }
+                for (int j = 0; j < 10; j++)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze2"), 0, 0f, player.whoAmI, j, 0f);
+                }
+                lightGen = 0;
+            }
         }
         
         private readonly string[] items =

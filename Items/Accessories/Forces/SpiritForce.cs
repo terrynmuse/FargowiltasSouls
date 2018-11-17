@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Spirit");
 
-            string tooltip =
+            /*string tooltip =
 @"''
 Double tap down to call an ancient storm to the cursor location
 Any projectiles shot through your storm gain double pierce and 50% damage
@@ -39,7 +39,7 @@ The crucible increases your radiant damage by 5% per 100 life in the crucible
 While worn, taking fatal damage will instead return you to 100 life and instantly teleport you back to your home (2 minute recharge time)";
             }
 
-            Tooltip.SetDefault(tooltip);
+            Tooltip.SetDefault(tooltip);*/
         }
 
         public override void SetDefaults()

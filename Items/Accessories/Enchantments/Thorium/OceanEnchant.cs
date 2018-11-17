@@ -21,9 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Ocean Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"''
+Allows you to breathe underwater
 Grants the ability to swim
-Grants underwater breathing
 Being in water increases damage and damage reduction by 10%
 Attracts all nearby air bubbles found within the Aquatic Depths
 Doubles the duration of 'Refreshing Bubble' when held");
@@ -49,8 +49,29 @@ Doubles the duration of 'Refreshing Bubble' when held");
         private void OceanEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus, breath underwater
+            if (player.breath <= player.breathMax + 2)
+            {
+                player.breath = player.breathMax + 3;
+            }
+            //sea breeze pendant
+            player.accFlipper = true;
+            if (player.wet)
+            {
+                player.AddBuff(thorium.BuffType("AquaticAptitude"), 60, true);
+                player.meleeDamage += 0.1f;
+                player.thrownDamage += 0.1f;
+                player.rangedDamage += 0.1f;
+                player.magicDamage += 0.1f;
+                player.minionDamage += 0.1f;
+                //missing from divers nice MEME
+                thoriumPlayer.radiantBoost += 0.1f;
+                thoriumPlayer.symphonicDamage += 0.1f;
+                //from ocean set why not
+                thoriumPlayer.thoriumEndurance += 0.1f;
+            }
+            //bubble magnet
+            thoriumPlayer.bubbleMagnet = true;
         }
         
         private readonly string[] items =
@@ -59,9 +80,9 @@ Doubles the duration of 'Refreshing Bubble' when held");
             "OceanChestGuard",
             "OceanGreaves",
             "SeaBreezePendant",
+            "BubbleMagnet",
             "OceanSlasher",
-            "StarfishWand",
-            "BubbleMagnet"
+            "StarfishWand"
         };
 
         public override void AddRecipes()

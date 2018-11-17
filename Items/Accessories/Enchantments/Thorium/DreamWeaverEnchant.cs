@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -19,9 +21,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Dream Weaver Enchantment");
             Tooltip.SetDefault(
-                @"''
-Pressing the Special Ability key will activate The Dream, causing all of the player's heals to cure all debuffs and give 1 second of invulnerability to their heal target for 10 seconds
-Pressing the Special Ability key will activate Distorted Reality, slowing down all enemies, making them take more damage, and significantly increasing the attack speed of all allies for 15 seconds
+@"'Manifest your dearest dreams through your allies, Bind the enemies of your future in temporal agony'
+Pressing the 'Special Ability' key will spend 200 mana and place you within the Dream
+While in the Dream, healed allies will become briefly invulnerable and be cured of all debuffs
+Pressing the 'Special Ability' key will spend 200 mana and bend the very fabric of reality
+Enemies will be heavily slowed and take 15% more damage from all sources
+Allies will receive greatly increased movement and attack speed
 Summons a cute lil' maid to clean");
         }
 
@@ -31,8 +36,19 @@ Summons a cute lil' maid to clean");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 6; //blood orange
+            item.rare = 10;
             item.value = 400000;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 128, 0));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -45,8 +61,12 @@ Summons a cute lil' maid to clean");
         private void DreamEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //all allies invuln
+            thoriumPlayer.dreamHoodSet = true;
+            //enemies slowed and take more dmg
+            thoriumPlayer.dreamSet = true;
+            //maid pet
+            thoriumPlayer.maidPet = true;
         }
         
         private readonly string[] items =
@@ -68,8 +88,6 @@ Summons a cute lil' maid to clean");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-
-            //celestial
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 

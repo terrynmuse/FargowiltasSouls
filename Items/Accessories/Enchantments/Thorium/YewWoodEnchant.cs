@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Yew-Wood Enchantment");
             Tooltip.SetDefault(
-                @"''
+                @"'This strange wood comes from a far away land'
 After four consecutive non-critical strikes, your next ranged attack will mini-crit for 150% damage
 While standing still, defense is increased by 4 and you are immune to knockback");
         }
@@ -44,8 +44,14 @@ While standing still, defense is increased by 4 and you are immune to knockback"
         private void YewEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //yew set bonus
+            thoriumPlayer.yewCharging = true;
+            //goblin war shield
+            if (player.velocity.X == 0f)
+            {
+                player.statDefense += 4;
+                player.noKnockback = true;
+            }
         }
         
         private readonly string[] items =

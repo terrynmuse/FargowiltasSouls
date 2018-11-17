@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Will");
 
-            string tooltip =
+            /*string tooltip =
 @"''
 Shot projectiles will speed up drastically over time
 Summons a pet Minotaur
@@ -45,7 +45,7 @@ Summons some living glitter to follow you around";
                 tooltip += "Summons a pet Parrot";
             }
 
-            Tooltip.SetDefault(tooltip);
+            Tooltip.SetDefault(tooltip);*/
         }
 
         public override void SetDefaults()

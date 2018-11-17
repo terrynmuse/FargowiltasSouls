@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -22,8 +23,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Ornate Enchantment");
             Tooltip.SetDefault(
                 @"''
-Symphonic critical strikes cause the attacks empowerment to ascend to a fourth level of intensity
-Increases maximum inspiration by 2. Every nearby ally increases your inspiration regeneration by 1%");
+Symphonic critical strikes cause the attack's empowerment to ascend to a fourth level of intensity
+Increases maximum inspiration by 2
+Every nearby ally increases your inspiration regeneration by 1%");
         }
 
         public override void SetDefaults()
@@ -46,8 +48,17 @@ Increases maximum inspiration by 2. Every nearby ally increases your inspiration
         private void OrnateEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.ornateSet = true;
+            //concert tickets
+            thoriumPlayer.bardResourceMax2 += 2;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && player2 != player && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.bardResourceRecharge++;
+                }
+            }
         }
         
         private readonly string[] items =

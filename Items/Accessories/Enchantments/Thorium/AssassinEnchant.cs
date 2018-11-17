@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Assassin Enchantment");
             Tooltip.SetDefault(
-                @"'Blacken the skies and cull the weak'
+@"'Blacken the skies and cull the weak'
 Ranged damage applies Cursed Inferno and Ichor to hit enemies
 Ranged damage has a 10% chance to duplicate and become increased by 15%
 Ranged damage has a 5% chance to instantly kill the enemy
@@ -60,10 +60,14 @@ The nearest enemy is scouted and takes 10% more damage from all sources");
         private void AssassinEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.omniArcherSet = true; //damage duplicate
-            thoriumPlayer.omniArrowHat = true; //ichor and death arrows
-            thoriumPlayer.omniBulletSet = true; //insta kill
-            thoriumPlayer.omniBulletHat = true; //cursed flame
+            //damage duplicate
+            thoriumPlayer.omniArcherSet = true; 
+            //ichor and death arrows
+            thoriumPlayer.omniArrowHat = true; 
+            //insta kill
+            thoriumPlayer.omniBulletSet = true; 
+            //cursed flame
+            thoriumPlayer.omniBulletHat = true; 
             //scan nearest enemy meme
             thoriumPlayer.omniVision = true;
             if (player.ownedProjectileCounts[mod.ProjectileType("OmniVisionPro")] < 1)

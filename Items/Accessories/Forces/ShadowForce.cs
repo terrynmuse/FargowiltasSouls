@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadow Force");
-            string tooltip =
+            /*string tooltip =
 @"''
 Greatly enhances Flameburst effectiveness
 Your weapon's projectiles occasionally shoot from the shadows of where you used to be
@@ -46,7 +46,7 @@ Summons a Cursed Sapling and an eyeball spring
 
             tooltip += "Summons a Flickerwick to provide light";
 
-            Tooltip.SetDefault(tooltip);
+            Tooltip.SetDefault(tooltip);*/
         }
 
         public override void SetDefaults()

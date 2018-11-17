@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Cosmos");
 
-            string tooltip =
+            /*string tooltip =
 @"'Been around since the Big Bang'
 A meteor shower initiates every few seconds while using any weapon
 Hurting enemies has a chance to spawn buff boosters
@@ -31,7 +31,7 @@ Summons a Companion Cube Pet";
                 tooltip += "Releases a strange alien creature";
             }
 
-            Tooltip.SetDefault(tooltip);
+            Tooltip.SetDefault(tooltip);*/
         }
 
         public override void SetDefaults()

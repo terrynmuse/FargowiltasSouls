@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Life");
 
-            string tooltip =
+            /*string tooltip =
 @"'Rare is a living thing that dare disobey your will'
 Increases the strength of friendly bees
 Bees ignore most enemy defense
@@ -40,7 +40,7 @@ Doubles the range of your empowerments effect radius";
 
             tooltip += "Summons a pet Baby Hornet";
 
-            Tooltip.SetDefault(tooltip);
+            Tooltip.SetDefault(tooltip);*/
         }
 
         public override void SetDefaults()

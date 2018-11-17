@@ -21,9 +21,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Spirit Trapper Enchantment");
             Tooltip.SetDefault(
-                @"''
-Killing enemies generates soul wisps, after generating 5 wisps, you'll be healed 10 life
-After healing a nearby ally, a life spirit is released from you. This spirit seeks out your ally with the lowest life and heals them for 2 life.");
+@"''
+Killing enemies or continually damaging bosses generates soul wisps
+After generating 5 wisps, they are instantly consumed to heal you for 10 life
+After healing a nearby ally, a life spirit is released from you
+This spirit seeks out your ally with the lowest life and heals them for 2 life");
         }
 
         public override void SetDefaults()
@@ -46,8 +48,9 @@ After healing a nearby ally, a life spirit is released from you. This spirit see
         private void TrapperEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.spiritTrapper = true;
+            //inner flame
+            thoriumPlayer.spiritFlame = true;
         }
         
         private readonly string[] items =

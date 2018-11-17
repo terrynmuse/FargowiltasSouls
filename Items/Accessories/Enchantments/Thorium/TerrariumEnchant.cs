@@ -9,6 +9,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class TerrariumEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
         
         public override bool Autoload(ref string name)
         {
@@ -19,12 +20,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Terrarium Enchantment");
             Tooltip.SetDefault(
-                @"'All will fall before your might...'
-Grants night vision
-Colourful homing spirits appear that deal damage and inflict a variety of debuffs on enemies
-Your symphonic damage empowers all nearby allies with: Terrarian. Increases symphonic damage by 10%. Doubles the range of your empowerments effect radius.
-infinite terrarium mix meme");
-        }
+@"'All will fall before your might...'
+The energy of Terraria seeks to protect you
+Your symphonic damage empowers nearby ally attacks with elemental backlash
+Increases symphonic damage by 10%\nDoubles the range of your empowerments effect radius");
+        }//infinite terrarium mix meme
 
         public override void SetDefaults()
         {
@@ -46,8 +46,22 @@ infinite terrarium mix meme");
         private void TerrariumEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            timer++;
+            if (timer > 60)
+            {
+                Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraRed"), 50, 0f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X + 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraOrange"), 50, 0f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X + 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraYellow"), 50, 0f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraGreen"), 50, 0f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X - 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraBlue"), 50, 0f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X - 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraIndigo"), 50, 0f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraPurple"), 50, 0f, Main.myPlayer, 0f, 0f);
+                timer = 0;
+            }
+            //terrarium woofer
+            thoriumPlayer.subwooferTerrarium = true;
+            thoriumPlayer.bardRangeBoost += 450;
         }
         
         private readonly string[] items =

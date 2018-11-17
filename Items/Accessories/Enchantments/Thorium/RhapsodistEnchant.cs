@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -21,13 +23,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Rhapsodist Enchantment");
             Tooltip.SetDefault(
-                @"''
-+15% chance for inspiration notes to drop from enemies
-Symphonic empowerments last 6 seconds longer
-increased wind instrument homing speed, string instrument projectiles bounce an additional time
-Pressing the Special Ability key will give you endless amounts of inspiration and greatly increased symphonic damage and playing speed. This effect lasts for 10 seconds and needs to recharge for 1 minute
-dropped inspiration notes are more potent and give a random level I empowerment to all nearby allies when picked up
-Pressing the Special Ability key will overload all nearby allies with every empowerment III for 15 seconds. Using this ability requires 20 inspiration and must recharge for one minute
+@"'Allow your song to inspire an army, Prove to all that your talent is second to none'
+Inspiration notes that drop will become more potent
+Addtionally, they give a random level 1 empowerment to all nearby allies
+Pressing the 'Special Ability' key will:
+    grant you an endless amount of inspiration and greatly increased symphonic damage and playing speed for 10 seconds
+    overload all nearby allies with every empowerment III for 15 seconds
+These effects needs to recharge for 1 minute
 ");
         }
 
@@ -37,8 +39,19 @@ Pressing the Special Ability key will overload all nearby allies with every empo
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 1; //blood orange
+            item.rare = 10;
             item.value = 400000;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 128, 0));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -51,8 +64,12 @@ Pressing the Special Ability key will overload all nearby allies with every empo
         private void RhapsodistEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //notes heal more and give random empowerments
+            thoriumPlayer.inspirator = true;
+            //hotkey buff allies 
+            thoriumPlayer.rallySet = true;
+            //hotkey buff self
+            thoriumPlayer.soloistSet = true;
         }
         
         private readonly string[] items =
@@ -72,8 +89,6 @@ Pressing the Special Ability key will overload all nearby allies with every empo
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-
-            //ballader
             
             ModRecipe recipe = new ModRecipe(mod);
             

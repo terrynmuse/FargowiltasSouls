@@ -21,8 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Shade Master Enchantment");
             Tooltip.SetDefault(
-                @"'Live in the shadows, and strike with precision'
-Striking enemies with throwing weapons grants the ability to teleport to your cursor's location with the Shade Gate key
+@"'Live in the shadows, and strike with precision'
+Striking an enemy with any throwing weapon will trigger 'Shadow Dance'
+Additonally, while Shadow Dance is active you deal 15% more throwing damage
 Your symphonic damage will empower all nearby allies with: Maximum Mana II");
         }
 
@@ -46,8 +47,15 @@ Your symphonic damage will empower all nearby allies with: Maximum Mana II");
         private void ShadeEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.shadeSet = true;
+            if (thoriumPlayer.shadeTele)
+            {
+                player.thrownDamage += 0.15f;
+            }
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3MaxMana = 2;
         }
 
         public override void AddRecipes()

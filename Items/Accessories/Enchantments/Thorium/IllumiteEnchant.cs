@@ -21,8 +21,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Illumite Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"''
 Most of your ranged weapons take on special properties
+Every 5 bullets fired will unleash a multi-hit illumite bullet
+Every 4 arrows fired will unleash a barrage of illumite energy
+Every 3 rockets fired will unleash an illumite missile
 Your symphonic damage will empower all nearby allies with: Life Regeneration II
 Summons a bright little flying slime");
         }
@@ -47,8 +50,12 @@ Summons a bright little flying slime");
         private void IllumiteEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.illumiteSet = true;
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3LifeRegen = 2;
+            //slime pet
+            thoriumPlayer.PinkSlime = true;
         }
         
         private readonly string[] items =

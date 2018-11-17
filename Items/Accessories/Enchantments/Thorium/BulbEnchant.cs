@@ -9,6 +9,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class BulbEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
         
         public override bool Autoload(ref string name)
         {
@@ -21,8 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Bulb Enchantment");
             Tooltip.SetDefault(
-                @"''
-Magic damage might puff hit enemies with a poisonous spore cloud
+                @"'Has a surprisingly sweet aroma'
+Your magic damage has a chance to poison hit enemies with a spore cloud
 When out of combat for 5 seconds, life recovery will increase up to 3 over time
 Enemies that you poison or envenom will take additional damage over time");
         }
@@ -47,8 +48,35 @@ Enemies that you poison or envenom will take additional damage over time");
         private void BulbEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //bulb set bonus
+            thoriumPlayer.bulbSpore = true;
+            //petal shield
+            if (thoriumPlayer.outOfCombat)
+            {
+                timer++;
+                if (timer >= 900)
+                {
+                    thoriumPlayer.lifeRecovery += 3;
+                    timer = 900;
+                    return;
+                }
+                if (timer >= 600)
+                {
+                    thoriumPlayer.lifeRecovery += 2;
+                    return;
+                }
+                if (timer >= 300)
+                {
+                    thoriumPlayer.lifeRecovery++;
+                    return;
+                }
+            }
+            else
+            {
+                timer = 0;
+            }
+            //night shade petal
+            thoriumPlayer.nightshadeBoost = true;
         }
         
         private readonly string[] items =

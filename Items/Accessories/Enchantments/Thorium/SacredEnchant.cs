@@ -23,10 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
                 @"''
 Healing spells heal an additional 5 life
+Summons a li'l cherub to periodically heal damaged allies
 Summons a spirit composed of distant stars
 The spirit will generate healing energy that can be picked up if you are hurt
-When energy is generated, 10 mana will be spent
-Summons a li'l cherub to periodically heal damaged allies");
+When energy is generated, 10 mana will be spent");
         }
 
         public override void SetDefaults()
@@ -49,8 +49,12 @@ Summons a li'l cherub to periodically heal damaged allies");
         private void SacredEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.healBonus += 5;
+            //cherub
+            thoriumPlayer.angelMinion = true;
+            //twinkle pet
+            thoriumPlayer.lifePet = true;
         }
         
         private readonly string[] items =

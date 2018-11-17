@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Jester Enchantment");
             Tooltip.SetDefault(
                 @"''
-Symphonic critical strikes slow all nearby enemies briefly
+Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Increases max inspiration by 2");
         }
 
@@ -46,8 +46,9 @@ Increases max inspiration by 2");
         private void JesterEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.jesterSet = true;
+            //fan letter
+            thoriumPlayer.bardResourceMax2 += 2;
         }
 
         public override void AddRecipes()

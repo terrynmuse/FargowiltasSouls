@@ -21,10 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Sandstone Enchantment");
             Tooltip.SetDefault(
-                @"'Enveloped by desert winds'
-Grants Sandstorm in a Bottle effect
-Thrown attacks might refresh your jump
-10% increased chance to not consume throwing items");
+@"'Enveloped by desert winds'
+Desert winds will augment your boots, giving you a double jump
+Provides the Desert Dexterity buff");
+            //Thrown attacks might refresh your jump
         }
 
         public override void SetDefaults()
@@ -47,8 +47,14 @@ Thrown attacks might refresh your jump
         private void SandEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            player.doubleJumpSandstorm = true;
+            if (Main.rand.Next(25) == 0)
+            {
+                Projectile.NewProjectile(player.Center.X - 4f, player.Center.Y, 0f, 0f, thorium.ProjectileType("SandstoneEffect"), 0, 0f, Main.myPlayer, 0f, 0f);
+            }
+            //desert wind rune
+            player.AddBuff(thorium.BuffType("DesertDexterity"), 30, true);
         } 
 
         public override void AddRecipes()

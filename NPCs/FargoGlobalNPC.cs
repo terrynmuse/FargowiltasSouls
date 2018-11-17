@@ -112,8 +112,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.SolarSolenian: masoHurtAI = 5; npc.knockBackResist = 0f; break;
 
-                    case NPCID.EaterofWorldsBody:
-                    case NPCID.EaterofWorldsTail: masoHurtAI = 6; break;
+                    //case NPCID.EaterofWorldsBody:
+                    //case NPCID.EaterofWorldsTail: masoHurtAI = 6; break;
                     //case NPCID.TheDestroyerBody:
                     //case NPCID.TheDestroyerTail: masoHurtAI = 6; break;
 
@@ -3808,16 +3808,8 @@ namespace FargowiltasSouls.NPCs
 
         public void ResetRegenTimer(NPC npc)
         {
-            if (npc.boss)
-            {
-                //5 sec
-                RegenTimer = 300;
-            }
-            else
-            {
-                //10 sec
-                RegenTimer = 600;
-            }
+            //8 sec
+            RegenTimer = 480;
         }
 		
 		public override void UpdateLifeRegen(NPC npc, ref int damage)
@@ -3957,8 +3949,6 @@ namespace FargowiltasSouls.NPCs
             {
                 InfestedDust = 5f;
             }
-
-            Main.NewText(InfestedDust);
 
             return dmg;
         }

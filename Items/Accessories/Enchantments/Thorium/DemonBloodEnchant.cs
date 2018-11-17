@@ -22,11 +22,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Demon Blood Enchantment");
             Tooltip.SetDefault(
                 @"'Infused with Corrupt Blood'
-10% chance to negate incoming damage
-+70 maximum life, +15% damage reduction, enemies are much more likely to attack you
+Maximum life increased by 100
 Getting hit will trigger 'Sanguine', increasing defensive abilities briefly.
 Flail weapons have a chance to release rolling spike balls on hit that apply ichor to damaged enemies.
-Your symphonic damage empowers all nearby allies with: Abomination's Blood. Damage done against ichor'd enemies is increased by 5%. Doubles the range of your empowerments effect radius
+Your symphonic damage empowers all nearby allies with: Abomination's Blood
+Damage done against ichor'd enemies is increased by 5%
+Doubles the range of your empowerments effect radius
 Your symphonic damage will empower all nearby allies with: Critical Strike II");
         }
 
@@ -50,8 +51,18 @@ Your symphonic damage will empower all nearby allies with: Critical Strike II");
         private void DemonEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.demonbloodSet = true;
+            player.statLifeMax2 += 100;
+            //demon blood badge
+            thoriumPlayer.CrimsonBadge = true;
+            //vile core
+            thoriumPlayer.vileCore = true;
+            //subwoofer
+            thoriumPlayer.subwooferIchor = true;
+            thoriumPlayer.bardRangeBoost += 450;
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3CriticalStrike = 2;
         }
         
         private readonly string[] items =
@@ -73,8 +84,6 @@ Your symphonic damage will empower all nearby allies with: Critical Strike II");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-
-            //flesh
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 

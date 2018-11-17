@@ -21,8 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Ebon Enchantment");
             Tooltip.SetDefault(
-                @"''
-Your radiant powers become corrupted.");
+@"''
+Corrupts your radiant powers, causing them to take on dark forms and deal additional effects");
         }
 
         public override void SetDefaults()
@@ -45,8 +45,8 @@ Your radiant powers become corrupted.");
         private void EbonEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.darkAura = true;
         }
         
         private readonly string[] items =

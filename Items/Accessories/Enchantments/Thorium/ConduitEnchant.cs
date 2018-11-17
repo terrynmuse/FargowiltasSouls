@@ -49,6 +49,7 @@ Summons a planetary visitor and a pet probe that has offensive capabilities");
         private void ConduitEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //conduit set bonus
             thoriumPlayer.conduitSet = true;
             thoriumPlayer.orbital = true;
             thoriumPlayer.orbitalRotation1 = Utils.RotatedBy(thoriumPlayer.orbitalRotation1, -0.10000000149011612, default(Vector2));
@@ -62,6 +63,9 @@ Summons a planetary visitor and a pet probe that has offensive capabilities");
                     Main.dust[num].noGravity = true;
                 }
             }
+            //pets
+            thoriumPlayer.OmegaPet = true;
+            thoriumPlayer.lostMartianPet = true;
         }
         
         private readonly string[] items =

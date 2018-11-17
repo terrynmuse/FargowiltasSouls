@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Nature");
 
-            string tooltip =
+            /*string tooltip =
 @"'Tapped into every secret of the wilds'
 Summons a leaf crystal to shoot at nearby enemies
 Flowers grow on the grass you walk on
@@ -45,7 +45,7 @@ Doubles the range of your empowerments effect radius";
 
             tooltip += "Summons a pet Penguin and Snowman";
 
-            Tooltip.SetDefault(tooltip);
+            Tooltip.SetDefault(tooltip);*/
         }
 
         public override void SetDefaults()

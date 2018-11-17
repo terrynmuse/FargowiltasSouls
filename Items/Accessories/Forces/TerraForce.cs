@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terra Force");
-            string tooltip = "''\n";
+            /*string tooltip = "''\n";
 
             if (thorium != null)
             {
@@ -42,7 +42,7 @@ Every crit will increase it by 5%
 Getting hit drops your crit back down
 ";
 
-            Tooltip.SetDefault(tooltip);
+            Tooltip.SetDefault(tooltip);*/
         }
 
         public override void SetDefaults()

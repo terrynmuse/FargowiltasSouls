@@ -124,8 +124,6 @@ namespace FargowiltasSouls
 
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
-        private int[] tikiDebuffs = { 0, BuffID.CursedInferno, BuffID.Ichor, BuffID.ShadowFlame, BuffID.Venom, BuffID.Poisoned, BuffID.Confused, BuffID.Stinky };
-
         #endregion
 
         //soul effects
@@ -387,8 +385,6 @@ namespace FargowiltasSouls
             Bloodthirst = false;
             Atrophied = false;
             Jammed = false;
-
-            tikiDebuffs[0] = mod.BuffType<SqueakyToy>();
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -901,11 +897,6 @@ namespace FargowiltasSouls
                 target.AddBuff(mod.BuffType<LeadPoison>(), 120);
             }
 
-            if (TikiEnchant && Soulcheck.GetValue("Tiki Debuffs") && Main.rand.Next(3) == 0)
-            {
-                target.AddBuff(tikiDebuffs[Main.rand.Next(tikiDebuffs.Length)], 300);
-            }
-
             if (CosmoForce && Main.rand.Next(4) == 0)
             {
                 target.AddBuff(mod.BuffType<SolarFlare>(), 300);
@@ -993,11 +984,6 @@ namespace FargowiltasSouls
             if (SolarEnchant && Main.rand.Next(4) == 0)
             {
                 target.AddBuff(mod.BuffType<SolarFlare>(), 300);
-            }
-
-            if (TikiEnchant && Soulcheck.GetValue("Tiki Debuffs") && Main.rand.Next(3) == 0)
-            {
-                target.AddBuff(tikiDebuffs[Main.rand.Next(tikiDebuffs.Length)], 300);
             }
 
             if (RedEnchant && Soulcheck.GetValue("Red Riding Super Bleed") && Main.rand.Next(5) == 0 && ((Main.moonPhase == 0) || (WillForce)))
@@ -1415,24 +1401,6 @@ namespace FargowiltasSouls
             }
         }
 
-        /*public void KillPet(int proj)
-        {
-            if (player.ownedProjectileCounts[proj] >= 1)
-            {
-                for (int i = 0; i < 1000; i++)
-                {
-                    Projectile p = Main.projectile[i];
-
-                    if (p.type == proj && p.owner == player.whoAmI)
-                    {
-                        p.Kill();
-                        break;
-                    }
-                }
-            }
-            petsSpawned = false;
-        }*/
-
         public void AddMinion(string toggle, int proj, int damage, float knockback)
         {
             if(player.ownedProjectileCounts[proj] >= 1)
@@ -1456,8 +1424,6 @@ namespace FargowiltasSouls
 
             player.ClearBuff(petId);
             player.ClearBuff(lightPetId);
-
-
 
             //memorizes player selections
             if (!WasAsocial)

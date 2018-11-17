@@ -5,14 +5,6 @@ using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.DataStructures;
-using Terraria.GameInput;
-using Terraria.ModLoader.IO;
-
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
     public class BerserkerEnchant : ModItem
@@ -30,13 +22,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Berserker Enchantment");
             Tooltip.SetDefault(
-                @"'I'd rather fight for my life than live it'
+@"'I'd rather fight for my life than live it'
 Damage is increased by 15% at every 25% segment of life
 You are inflicted with Berserked below 25% HP and gain 50% attack speed
 Your symphonic damage will empower all nearby allies with: Attack Speed II");
         }
-
-        //fix berserk perma auto use
 
         public override void SetDefaults()
         {
@@ -123,8 +113,6 @@ Your symphonic damage will empower all nearby allies with: Attack Speed II");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-
-            //molten or magma
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 

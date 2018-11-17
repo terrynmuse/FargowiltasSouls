@@ -23,9 +23,9 @@ Your weapon's projectiles occasionally shoot from the shadows of where you used 
             if(thorium != null)
             {
                 tooltip += 
-                    @"Corrupts your radiant powers
-                    Enemies afflicted with shadowflame or light curse increase your life regeneration +
-                    ";
+@"Corrupts your radiant powers
+Enemies afflicted with shadowflame or light curse increase your life regeneration
+";
             }
 
             tooltip += "Summons a pet Flickerwick";

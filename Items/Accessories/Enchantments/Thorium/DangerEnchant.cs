@@ -19,9 +19,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Danger Enchantment");
             Tooltip.SetDefault(
-                @"'Let's get dangerous...'
-Taking damage grants +10% melee damage and +6% melee critical strike chance
-Immune to: Frostburn, Poisoned, On Fire!, Bleeding and Venom");
+@"'Let's get dangerous...'
+While in combat, your life recovery is increased by 2
+You are immune to most damage-inflicting debuffs");
         }
 
         public override void SetDefaults()
@@ -44,8 +44,16 @@ Immune to: Frostburn, Poisoned, On Fire!, Bleeding and Venom");
         private void DangerEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            if (!thoriumPlayer.outOfCombat)
+            {
+                thoriumPlayer.lifeRecovery += 2;
+            }
+
+            player.buffImmune[44] = true;
+            player.buffImmune[20] = true;
+            player.buffImmune[24] = true;
+            player.buffImmune[30] = true;
+            player.buffImmune[70] = true;
         }
         
         private readonly string[] items =

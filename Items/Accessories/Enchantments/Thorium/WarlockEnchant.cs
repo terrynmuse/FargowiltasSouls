@@ -21,10 +21,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Warlock Enchantment");
             Tooltip.SetDefault(
-                @"''
-Radiant critical strikes cause Shadow Wisps to generate 
-Pressing the Special Ability key will unleash all stored Shadow Wisps towards the cursor's position
-Corrupts your radiant powers. 12% increased radiant damage. Halves radiant life costs but not its life transferring effect
+@"''
+Radiant critical strikes will generate up to 15 shadow wisps
+Corrupts your radiant powers
+Pressing the 'Special Ability' key will unleash every stored shadow wisp towards your cursor's position
+Halves radiant life costs but not its life transferring effect
 Summons a li'l devil to attack enemies");
         }
 
@@ -42,14 +43,19 @@ Summons a li'l devil to attack enemies");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
-            EbonEffect(player);
+           WarlockEffect(player);
         }
         
-        private void EbonEffect(Player player)
+        private void WarlockEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.warlockSet = true;
+            //demon tongue
+            thoriumPlayer.darkAura = true;
+            thoriumPlayer.radiantLifeCost = 2;
+            //lil devil
+            thoriumPlayer.devilMinion = true;
         }
         
         private readonly string[] items =
@@ -68,6 +74,8 @@ Summons a li'l devil to attack enemies");
 
         public override void AddRecipes()
         {
+            //ebon 
+
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);

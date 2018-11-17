@@ -21,10 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Tide Hunter Enchantment");
             Tooltip.SetDefault(
-                @"'Not just for hunting fish'
-Allows you to breathe underwater
+@"'Not just for hunting fish'
 Ranged critical strikes release a splash of foam, slowing nearby enemies
-Brightens the area directly in front of you while in water.");
+Allows you to breathe underwater
+Brightens the area directly in front of you");
         }
 
         public override void SetDefaults()
@@ -42,13 +42,30 @@ Brightens the area directly in front of you while in water.");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             HunterEffect(player);
+            //angler bowl
+            if (!hideVisual)
+            {
+                if (player.direction > 0 && Main.rand.Next(2) == 0)
+                {
+                    Projectile.NewProjectile(player.Center.X + 56f, player.Center.Y - 10f, 0f, 0f, thorium.ProjectileType("AnglerLight"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+                if (player.direction < 0 && Main.rand.Next(2) == 0)
+                {
+                    Projectile.NewProjectile(player.Center.X - 56f, player.Center.Y - 10f, 0f, 0f, thorium.ProjectileType("AnglerLight"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
+            //breath underwater
+            if (player.breath <= player.breathMax + 2)
+            {
+                player.breath = player.breathMax + 3;
+            }
         }
         
         private void HunterEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.tideHunterSet = true;
         }
         
         private readonly string[] items =

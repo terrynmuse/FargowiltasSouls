@@ -49,9 +49,9 @@ Each unique empowerment you have increases:
         private void BalladeerEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //dmg n regen
+            //dmg, regen
             thoriumPlayer.BalladeerSet = true;
-            //speeds
+            //move speed, play speed
             thoriumPlayer.headphones = true;
         }
         

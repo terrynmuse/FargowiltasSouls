@@ -19,8 +19,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Dragon Enchantment");
             Tooltip.SetDefault(
-                @"'Made from mythical scales'
-25% chance to release a pulse of green flames on attack that applies Cursed Inferno to hit enemies
+@"'Made from mythical scales'
+Your attacks have a chance to unleash an explosion of Dragon's Flame
 Increases armor penetration by 15
 Summons a juvenile... wyvern pup?");
         }
@@ -45,8 +45,11 @@ Summons a juvenile... wyvern pup?");
         private void DragonEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.dragonSet = true;
+            //dragon tooth necklace
+            player.armorPenetration += 15;
+            //wyvern pet
+            thoriumPlayer.wyvernPet = true;
         }
         
         private readonly string[] items =

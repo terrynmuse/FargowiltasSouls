@@ -46,8 +46,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void CrierEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.bardResourceRecharge += 10;
+            //music notes
+            thoriumPlayer.bardBuffDuration += 120;
         }
         
         private readonly string[] items =

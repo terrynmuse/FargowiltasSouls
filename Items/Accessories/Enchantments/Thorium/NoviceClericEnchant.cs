@@ -3,12 +3,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
     public class NoviceClericEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
         
         public override bool Autoload(ref string name)
         {
@@ -21,8 +23,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Novice Cleric Enchantment");
             Tooltip.SetDefault(
-                @"''
-Successfully healing an ally with non-radiant healing spells will recover 2 life");
+@"''
+Every 5 seconds you generate up to 3 holy crosses
+When casting healing spells, a cross is used instead of mana");
         }
 
         public override void SetDefaults()
@@ -45,8 +48,25 @@ Successfully healing an ally with non-radiant healing spells will recover 2 life
         private void ClericEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.clericSet = true;
+            thoriumPlayer.orbital = true;
+            thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.05000000074505806, default(Vector2));
+            timer++;
+            if (thoriumPlayer.clericSetCrosses < 3)
+            {
+                if (timer > 300)
+                {
+                    thoriumPlayer.clericSetCrosses++;
+                    timer = 0;
+                    return;
+                }
+            }
+            else
+            {
+                timer = 0;
+            }
+
         }
         
         private readonly string[] items =

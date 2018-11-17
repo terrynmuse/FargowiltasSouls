@@ -19,8 +19,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Icy Enchantment");
             Tooltip.SetDefault(
-                @"'Gives your hair some frosty tips too'
-An icy aura surrounds you, which attempts to slow down approaching enemies
+@"'Gives your hair some frosty tips too'
+An icy aura surrounds you, which freezes nearby enemies after a short delay
 Summons a baby penguin");
         } //alternatively 'Ice to meet you' 
 
@@ -44,8 +44,12 @@ Summons a baby penguin");
         private void IcyEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.icySet = true;
+            if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
+            }
         }
         
         private readonly string[] items =
