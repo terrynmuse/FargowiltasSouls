@@ -2477,9 +2477,8 @@ namespace FargowiltasSouls.NPCs
                             }
                             else
                             {
-                                float ratio = (float)npc.life / npc.lifeMax;
-                                float threshold = (ratio < 0.1f) ? -20f : -2f - (float)Math.Round(18f * ratio);
-
+                                float threshold = -2f - (float)Math.Round(18f * npc.life / npc.lifeMax);
+                                
                                 if (npc.ai[1] < threshold) //jump activates at npc.ai[1] == -1
                                     npc.ai[1] = threshold;
                             }
