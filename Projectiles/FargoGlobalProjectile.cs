@@ -667,14 +667,15 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.EyeLaser:
-                    case ProjectileID.GoldenShowerHostile:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.wallBoss, NPCID.WallofFlesh))
                         {
                             target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
-                            target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(120, 240));
-                            target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(120, 240));
-                            target.velocity = Vector2.Zero;
+                            target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(120));
+                            target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(120));
                         }
+
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.retiBoss, NPCID.Retinazer))
+                            target.AddBuff(mod.BuffType<ClippedWings>(), 15);
                         break;
 
                     case ProjectileID.DeathSickle:
@@ -753,21 +754,8 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.PoisonSeedPlantera:
                     case ProjectileID.SeedPlantera:
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
-                        bool isVenomed = false;
-                        for (int i = 0; i < 22; i++)
-                        {
-                            if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
-                            {
-                                isVenomed = true;
-                                target.buffTime[i] += Main.rand.Next(60, 300);
-                                break;
-                            }
-                        }
-                        if (!isVenomed)
-                        {
-                            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 180));
-                        }
-                        target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(60, 300));
+                        target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
+                        target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
                         break;
 
                     case ProjectileID.DesertDjinnCurse:
@@ -825,10 +813,10 @@ namespace FargowiltasSouls.Projectiles
                         }
                         break;
 
-                    /*case ProjectileID.PinkLaser:
+                    case ProjectileID.PinkLaser:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer))
                             target.AddBuff(mod.BuffType<ClippedWings>(), 15);
-                        break;*/
+                        break;
 
                     case ProjectileID.LostSoulHostile:
                         target.AddBuff(mod.BuffType<Unstable>(), Main.rand.Next(30, 120));
@@ -844,12 +832,12 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1800, 3600));
                         break;
 
-                    /*case ProjectileID.DeathLaser:
+                    case ProjectileID.DeathLaser:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer) ||
                             FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.retiBoss, NPCID.Retinazer) ||
                             FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.primeBoss, NPCID.SkeletronPrime))
                             target.AddBuff(mod.BuffType<ClippedWings>(), 15);
-                        break;*/
+                        break;
 
                     case ProjectileID.PhantasmalDeathray:
                         if (Main.npc[(int)projectile.ai[1]].active)
@@ -925,11 +913,6 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.RocketSkeleton:
                         target.AddBuff(BuffID.Dazed, Main.rand.Next(30, 150));
                         target.AddBuff(BuffID.Confused, Main.rand.Next(60, 300));
-                        break;
-
-                    case ProjectileID.FlamesTrap:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.primeBoss, NPCID.SkeletronPrime) || (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem))
-                            target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
                         break;
 
                     default:
