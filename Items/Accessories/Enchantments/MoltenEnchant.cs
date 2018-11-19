@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Molten Enchantment");
             Tooltip.SetDefault(
-                @"'They shall know the fury of hell.' 
+@"'They shall know the fury of hell.' 
 Nearby enemies are ignited
 When you die, you violently explode dealing massive damage to surrounding enemies");
         }

@@ -26,7 +26,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Pressing the Special Ability key will summon a chorus of music playing ghosts
 Every three seconds the metronome will flip between tick & tock
 Tick increases your symphonic playing speed and damage
-Tock decreases your symphonic playing speed and damage");
+Tock decreases your symphonic playing speed and damage
+Your symphonic damage will empower all nearby allies with: Maximum Mana II");
         }
 
         public override void SetDefaults()
@@ -61,6 +62,9 @@ Tock decreases your symphonic playing speed and damage");
                 player.AddBuff(thorium.BuffType("MetronomeDebuff"), 179, true);
                 timer = 0;
             }
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3MaxMana = 2;
         }
         
         private readonly string[] items =
@@ -69,10 +73,10 @@ Tock decreases your symphonic playing speed and damage");
             "ConductorSuit",
             "ConductorLeggings",
             "Metronome",
+            "TunePlayerMaxMana",
             "BoneTrumpet",
             "MusicSheet4",
             "Clarinet",
-            "Bassoon",
             "FrenchHorn",
             "Saxophone"
         };

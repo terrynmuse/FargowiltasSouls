@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Fallen Paladin Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Silently, they walk the dungeon halls'
 Taking damage heals nearby allies equal to 15% of the damage taken
 Successfully healing an ally with a healing spell will replenish 4 life
 Taking fatal damage unleashes your inner spirit

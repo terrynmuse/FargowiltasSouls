@@ -122,6 +122,9 @@ namespace FargowiltasSouls
         public bool TerraForce;
         public bool WillForce;
 
+        //thorium 
+        public bool IcyEnchant;
+
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
         #endregion
@@ -225,7 +228,7 @@ namespace FargowiltasSouls
 
         public override void OnEnterWorld(Player player)
         {
-            foreach (KeyValuePair<string, Color> buff in Soulcheck._buffs)
+            foreach (KeyValuePair<string, Color> buff in Soulcheck.toggles)
             {
                 if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
                 {
@@ -344,6 +347,9 @@ namespace FargowiltasSouls
             TerraForce = false;
             ShadowForce = false;
             WillForce = false;
+
+            //thorium
+            IcyEnchant = false;
 
             #endregion
 
@@ -1941,9 +1947,6 @@ namespace FargowiltasSouls
             }
             
             AddPet("Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
-
-            if (Fargowiltas.Instance.ThoriumLoaded) return;
-
             AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
         }
 
@@ -2042,9 +2045,6 @@ namespace FargowiltasSouls
 
         public void IronEffect()
         {
-            //item attract
-            IronEnchant = true;
-
             //no need when player has brand of inferno
             if (player.inventory[player.selectedItem].type == ItemID.DD2SquireDemonSword)
             {
@@ -2110,6 +2110,8 @@ namespace FargowiltasSouls
 
         public void MeteorEffect(int damage)
         {
+            MeteorEnchant = true;
+
             if (Soulcheck.GetValue("Meteor Shower"))
             {
                 if (meteorShower)
@@ -2132,7 +2134,7 @@ namespace FargowiltasSouls
                 }
                 else
                 {
-                    if ((player.HeldItem.magic || CosmoForce) && player.controlUseItem)
+                    if (player.controlUseItem)
                     {
                         meteorCD--;
 

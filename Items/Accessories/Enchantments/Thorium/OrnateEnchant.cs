@@ -67,6 +67,7 @@ Every nearby ally increases your inspiration regeneration by 1%");
             "OrnateJerkin",
             "OrnateLeggings",
             "ConcertTickets",
+            "TunePlayerAmmoConsume",
             "GreenTambourine",
             "VuvuzelaBlue",
             "VuvuzelaGreen",

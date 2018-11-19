@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Balladeer Enchantment");
             Tooltip.SetDefault(
-                @"'You have memorized the cosmic ballad, and can play it without conscious thought'
+@"'Echoes of the cosmic ballad dance in your head'
 Each unique empowerment you have increases:
     symphonic damage by 6%
     movement speed by 3%

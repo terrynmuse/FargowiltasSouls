@@ -3,12 +3,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
     public class SteelEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
         
         public override bool Autoload(ref string name)
         {
@@ -22,7 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Steel Enchantment");
             Tooltip.SetDefault(
 @"'Expertly forged by the Blacksmith'
-Damage taken reduced by 10%
+5% damage reduction
+Allows the player to dash into the enemy
+Right Click to guard with your shield
+You attract items from a larger range
+While in combat, you generate a 22 life shield
 25% of the damage you take is also dealt to the attacker");
         }
 
@@ -39,17 +45,40 @@ Damage taken reduced by 10%
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            SteelEffect(player);
-        }
-        
-        private void SteelEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
-            thoriumPlayer.thoriumEndurance += 0.1f;
+            //steel set bonus
+            thoriumPlayer.thoriumEndurance += 0.05f;
             //spiked bracers
             player.thorns += 0.25f;
+            //iron shield raise
+            player.GetModPlayer<FargoPlayer>(mod).IronEffect();
+            //item attract
+            modPlayer.IronEnchant = true;
+            //EoC Shield
+            player.dash = 2;
+            //iron sheild
+            thoriumPlayer.metallurgyShield = true;
+            if (!thoriumPlayer.outOfCombat)
+            {
+                timer++;
+                if (timer >= 30)
+                {
+                    int num = 22;
+                    if (thoriumPlayer.shieldHealth < num)
+                    {
+                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                        thoriumPlayer.shieldHealth++;
+                    }
+                    timer = 0;
+                    return;
+                }
+            }
+            else
+            {
+                timer = 0;
+            }
         }
         
         private readonly string[] items =
@@ -68,7 +97,7 @@ Damage taken reduced by 10%
             
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(thorium.ItemType("SteelHelmet")); // better think of a way to get this meme in hardmode
+            recipe.AddIngredient(thorium.ItemType("SteelHelmet"));
             recipe.AddIngredient(thorium.ItemType("SteelChestplate"));
             recipe.AddIngredient(thorium.ItemType("SteelGreaves"));
             recipe.AddIngredient(null, "IronEnchant");

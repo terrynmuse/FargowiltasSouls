@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -12,12 +13,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Meteor Enchantment");
 
-            string tooltip = @"'Cosmic power builds your magical prowess'
-A meteor shower initiates every few seconds while using magic weapons";
+            string tooltip = 
+@"'Cosmic power builds your magical prowess'
+A meteor shower initiates every few seconds while attacking";
 
             if(thorium != null)
             {
-                tooltip += "Releases a strange alien creature";
+                tooltip += "Summons a pet Bio-Feeder";
             }
 
             Tooltip.SetDefault(tooltip);
@@ -35,7 +37,14 @@ A meteor shower initiates every few seconds while using magic weapons";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MeteorEffect(50);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            modPlayer.MeteorEffect(50);
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
+            thoriumPlayer.bioPet = true;
+            modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
         }
 
         public override void AddRecipes()

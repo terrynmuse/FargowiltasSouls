@@ -41,12 +41,7 @@ Increases mana regeneration slightly");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            MalignantEffect(player);
-        }
-        
-        private void MalignantEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.malignantSet = true;
             //mana charge rockets
@@ -69,10 +64,7 @@ Increases mana regeneration slightly");
         
         private readonly string[] items =
         {
-            "MalignantCap",
-            "MalignantRobe",
             "ManaChargedRocketeers",
-            "ThoriumStaff",
             "JellyPondWand",
             "ChampionBomberStaff",
             "GaussSpark",
@@ -85,7 +77,11 @@ Increases mana regeneration slightly");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("MalignantCap"));
+            recipe.AddIngredient(thorium.ItemType("MalignantRobe"));
+            recipe.AddIngredient(null, "SilkEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddIngredient(ItemID.PurpleEmperorButterfly);

@@ -3,19 +3,22 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace FargowiltasSouls
 {
     internal class Soulcheck : UIState
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public static bool Visible = false;
         public static string owner = "";
 
         public static readonly Dictionary<string, bool> ToggleDict = new Dictionary<string, bool>();
         public static readonly Dictionary<string, UiCheckbox> checkboxDict = new Dictionary<string, UiCheckbox>();
 
-        public static readonly Dictionary<string, Color> _buffs = new Dictionary<string, Color>
+        public static readonly Dictionary<string, Color> toggles = new Dictionary<string, Color>
         {
             #region enchantment toggles
 
@@ -61,6 +64,8 @@ namespace FargowiltasSouls
             ["Vortex Voids"] = new Color(81, 181, 113),
             ["Nebula Boosters"] = new Color(81, 181, 113),
             ["Stardust Guardian"] = new Color(81, 181, 113),
+
+
 
             #endregion
 
@@ -110,7 +115,14 @@ namespace FargowiltasSouls
             ["Truffle Pet"] = new Color(81, 181, 113),
             ["Turtle Pet"] = new Color(81, 181, 113),
             ["Wisp Pet"] = new Color(81, 181, 113),
-            ["Zephyr Fish Pet"] = new Color(81, 181, 113)
+            ["Zephyr Fish Pet"] = new Color(81, 181, 113),
+
+            //thorium
+            ["Omega Pet"] = new Color(81, 181, 113),
+            ["I.F.O. Pet"] = new Color(81, 181, 113),
+            ["Bio-Feeder Pet"] = new Color(81, 181, 113),
+            ["Blister Pet"] = new Color(81, 181, 113),
+            ["Wyvern Pet"] = new Color(81, 181, 113),
         };
 
         private readonly Color defaultColor = new Color(81, 181, 113);
@@ -132,7 +144,7 @@ namespace FargowiltasSouls
 
         private void CreateCheckbox(string name, Color color)
         {
-            if (ToggleDict.Count != _buffs.Count) ToggleDict.Add(name, true);
+            if (ToggleDict.Count != toggles.Count) ToggleDict.Add(name, true);
 
             UiCheckbox uibox = new UiCheckbox(name, "", color, _wtf);
             uibox.Left.Set(left, 0f);
@@ -171,14 +183,36 @@ namespace FargowiltasSouls
             _checklistPanel.Height.Set(600f, 0f);
             _checklistPanel.Left.Set((Main.screenWidth - 1000f) / 2f, 0f);
             _checklistPanel.Top.Set((Main.screenHeight - 600f) / 2f, 0f);
-            _checklistPanel.BackgroundColor = new Color(73, 94, 171);
+            _checklistPanel.BackgroundColor = new Color(73, 94, 171, 150);
             _checklistPanel.OnMouseDown += DragOn;
             _checklistPanel.OnMouseUp += DragOff;
             Append(_checklistPanel);
 
             UiCheckbox._checkboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
 
-            foreach (KeyValuePair<string, Color> buff in _buffs) CreateCheckbox(buff.Key, buff.Value);
+            if (thorium == null)
+            {
+                int count = 0;
+
+                foreach (KeyValuePair<string, Color> toggle in toggles)
+                {
+                    CreateCheckbox(toggle.Key, toggle.Value);
+                    count++;
+
+                    if(count >= toggles.Count - 1)
+                    {
+                        break;
+                    }
+                    
+                }
+            }
+            else
+            {
+                foreach (KeyValuePair<string, Color> toggle in toggles)
+                {
+                    CreateCheckbox(toggle.Key, toggle.Value);
+                }
+            }
         }
 
         private void DragOn(UIMouseEvent evt, UIElement listeningElement)

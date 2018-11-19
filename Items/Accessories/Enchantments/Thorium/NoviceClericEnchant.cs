@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Novice Cleric Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Cleansed of all evil'
 Every 5 seconds you generate up to 3 holy crosses
 When casting healing spells, a cross is used instead of mana");
         }

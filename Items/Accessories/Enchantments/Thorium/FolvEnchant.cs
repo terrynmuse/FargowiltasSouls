@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -25,6 +26,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Projects a mystical barrier around you
 While above 50% life, every fourth magic cast will unleash damaging mana bolts
 While below 50% life, your defensive capabilities are increased
+Magic critical strikes engulf enemies in a long lasting void flame
+Allows flight at the cost of mana
+Increases mana regeneration slightly
 Your symphonic damage will empower all nearby allies with: Defense II");
         }
 
@@ -41,12 +45,7 @@ Your symphonic damage will empower all nearby allies with: Defense II");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            FolvEffect(player);
-        }
-        
-        private void FolvEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.folvSet = true;
             Lighting.AddLight(player.position, 0.03f, 0.3f, 0.5f);
@@ -64,16 +63,25 @@ Your symphonic damage will empower all nearby allies with: Defense II");
             //music player
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3Defense = 2;
+            //malignant
+            thoriumPlayer.malignantSet = true;
+            //mana charge rockets
+            player.manaRegen++;
+            player.manaRegenDelay -= 2;
+            if (player.statMana > 0)
+            {
+                player.rocketBoots = 1;
+                if (player.rocketFrame)
+                {
+                    if (Main.rand.Next(2) == 0)
+                    {
+                        player.statMana -= 2;
+                        Dust.NewDust(new Vector2(player.position.X, player.position.Y + 20f), player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 100, default(Color), 1.5f);
+                    }
+                    player.rocketTime = 1;
+                }
+            }
         }
-        
-        private readonly string[] items =
-        {
-            "DemonBloodStaff",
-            "Legacy",
-            "AncientFrost",
-            "AncientSpark",
-            "AncientLight"
-        };
 
         public override void AddRecipes()
         {
@@ -84,10 +92,13 @@ Your symphonic damage will empower all nearby allies with: Defense II");
             recipe.AddIngredient(thorium.ItemType("FolvHat"));
             recipe.AddIngredient(thorium.ItemType("FolvRobe"));
             recipe.AddIngredient(thorium.ItemType("FolvLegging"));
+            recipe.AddIngredient(null, "MalignantEnchant");
             recipe.AddIngredient(thorium.ItemType("TunePlayerDefense"));
             recipe.AddIngredient(ItemID.UnholyTrident);
-
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+            recipe.AddIngredient(thorium.ItemType("Legacy"));
+            recipe.AddIngredient(thorium.ItemType("AncientFrost"));
+            recipe.AddIngredient(thorium.ItemType("AncientSpark"));
+            recipe.AddIngredient(thorium.ItemType("AncientLight"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

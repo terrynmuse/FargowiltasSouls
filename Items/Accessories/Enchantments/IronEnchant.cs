@@ -17,15 +17,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip = "'Strike while the iron is hot'\n";
 
-            if(thorium != null)
-            {
-                tooltip += "While in combat, you generate a 20 life shield\n";
-            }
-
             tooltip += @"
 Allows the player to dash into the enemy
 Right Click to guard with your shield
 You attract items from a larger range";
+
+            if (thorium != null)
+            {
+                tooltip += "While in combat, you generate a 20 life shield\n";
+            }
 
             Tooltip.SetDefault(tooltip); 
         }
@@ -43,13 +43,18 @@ You attract items from a larger range";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            //sheild raise
+            modPlayer.IronEffect();
+            //magnet
+            modPlayer.IronEnchant = true;
             //EoC Shield
             player.dash = 2;
-            player.GetModPlayer<FargoPlayer>(mod).IronEffect();
 
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            //iron sheild
             thoriumPlayer.metallurgyShield = true;
             if (!thoriumPlayer.outOfCombat)
             {
