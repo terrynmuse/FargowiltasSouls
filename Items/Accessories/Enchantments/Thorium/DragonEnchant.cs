@@ -19,8 +19,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Dragon Enchantment");
             Tooltip.SetDefault(
-                @"'Made from mythical scales'
-");
+@"'Made from mythical scales'
+Your attacks have a chance to unleash an explosion of Dragon's Flame
+Increases armor penetration by 15
+Summons a juvenile... wyvern pup?");
         }
 
         public override void SetDefaults()
@@ -43,8 +45,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void DragonEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.dragonSet = true;
+            //dragon tooth necklace
+            player.armorPenetration += 15;
+            //wyvern pet
+            thoriumPlayer.wyvernPet = true;
         }
         
         private readonly string[] items =
@@ -53,7 +58,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "DragonBreastplate",
             "DragonGreaves",
             "DragonWings",
-            "DragonsGaze",
+            "DragonTalonNecklace",
             "DragonsBreath",
             "EbonyTail",
             "DragonkinStaff",
@@ -66,6 +71,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
+
+            //shadow
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 

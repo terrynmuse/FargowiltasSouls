@@ -1,6 +1,8 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using FargowiltasSouls.Projectiles;
 
 namespace FargowiltasSouls.Buffs
 {
@@ -23,11 +25,35 @@ namespace FargowiltasSouls.Buffs
 
         public override void Update(int type, NPC npc, ref int buffIndex)
         {
-            if (type != BuffID.Chilled) return;
+            if (type == BuffID.Chilled)
+            {
+                npc.color = Colors.RarityBlue;
 
-            npc.color = Colors.RarityBlue;
+                if (!npc.boss) npc.velocity *= .5f;
+            }
+            else if(type == BuffID.Darkness)
+            {
+                npc.color = Color.Gray;
 
-            if (!npc.boss) npc.velocity *= .5f;
+                if(Main.rand.Next(20) == 0)
+                {
+                    for (int i = 0; i < 200; i++)
+                    {
+                        NPC target = Main.npc[i];
+                        if (target.active && Vector2.Distance(npc.Center, target.Center) < 200)
+                        {
+                            Vector2 velocity = Vector2.Normalize(target.Center - npc.Center) * 5;
+                            Projectile.NewProjectile(npc.Center, velocity, ProjectileID.ShadowFlame, npc.damage / 2, 0, Main.myPlayer);
+
+                            if(Main.rand.Next(3) == 0)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }

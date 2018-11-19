@@ -21,8 +21,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Folv's Ancient Enchantment");
             Tooltip.SetDefault(
-                @"''
-");
+@"''
+Projects a mystical barrier around you
+While above 50% life, every fourth magic cast will unleash damaging mana bolts
+While below 50% life, your defensive capabilities are increased
+Your symphonic damage will empower all nearby allies with: Defense II");
         }
 
         public override void SetDefaults()
@@ -45,8 +48,22 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void FolvEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.folvSet = true;
+            Lighting.AddLight(player.position, 0.03f, 0.3f, 0.5f);
+            if (player.statLife >= player.statLifeMax * 0.5)
+            {
+                thoriumPlayer.folvBonus = true;
+            }
+            else
+            {
+                thoriumPlayer.folvBonus2 = true;
+                player.lifeRegen += 2;
+                thoriumPlayer.thoriumEndurance += 0.1f;
+                player.noKnockback = true;
+            }
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3Defense = 2;
         }
         
         private readonly string[] items =

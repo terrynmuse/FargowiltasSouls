@@ -48,6 +48,11 @@ All attacks inflict Flames of the Universe");
             modPlayer.AllCritUp(25);
             //use speed, velocity, debuffs, crit dmg, mana up, double knockback
             modPlayer.UniverseEffect = true;
+            
+            if (Soulcheck.GetValue("Universe Speedup"))
+            {
+                modPlayer.AttackSpeed *= 1.5f;
+            }
 
             player.maxMinions += 8;
             player.maxTurrets += 4;
@@ -70,83 +75,13 @@ All attacks inflict Flames of the Universe");
 
         private void Healer(Player player)
         {
-            //general
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod"));
-
-            thoriumPlayer.radiantBoost += 0.66f; //radiant damage
-            thoriumPlayer.radiantSpeed -= 0.25f; //radiant casting speed
-            thoriumPlayer.healingSpeed += 0.25f; //healing spell casting speed
-            thoriumPlayer.radiantCrit += 25;
-
-            //archdemon's curse
-            thoriumPlayer.darkAura = true; //Dark intent purple coloring effect
-
-            //support stash
-            thoriumPlayer.quickBelt = true; //bonus movement from healing
-            thoriumPlayer.apothLife = true; //drinking health potion recovers life
-            thoriumPlayer.apothMana = true; //drinking health potion recovers mana
-
-            //ascension statuette
-            thoriumPlayer.ascension = true; //turn into healing thing on death
-
-            //wynebg..........
-            thoriumPlayer.Wynebgwrthucher = true; //heals on healing ally
-
-            //archangels heart
-            thoriumPlayer.healBonus += 5; //Bonus healing
-
-            //saving grace
-            thoriumPlayer.crossHeal = true; //bonus defense in heal
-            thoriumPlayer.healBloom = true; //bonus life regen on heal
+            
         }
 
         private void Bard(Player player)
         {
-            //general
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod"));
-
-            thoriumPlayer.symphonicDamage += 0.66f; //symphonic damage
-            thoriumPlayer.symphonicCrit += 25;
-            thoriumPlayer.symphonicSpeed += .25f;
-
-            //woofers
-            thoriumPlayer.subwooferFrost = true;
-            thoriumPlayer.subwooferVenom = true;
-            thoriumPlayer.subwooferIchor = true;
-            thoriumPlayer.subwooferCursed = true;
-            thoriumPlayer.subwooferTerrarium = true;
-
-            //type buffs
-            thoriumPlayer.bardHomingBool = true;
-            thoriumPlayer.bardHomingBonus = 5f;
-            thoriumPlayer.bardMute2 = true;
-            thoriumPlayer.tuner2 = true;
-            thoriumPlayer.bardBounceBonus = 5;
+            
         }
-
-        /*private void Gauntlet(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).eGauntlet = true;
-        }
-
-        private void Talisman(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).eTalisman = true;
-        }
-
-        private void Waifus(Player player)
-        {
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).brimstoneWaifu = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).sandBoobWaifu = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).sandWaifu = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).cloudWaifu = true;
-            player.GetModPlayer<CalamityMod.CalamityPlayer>(_calamity).sirenWaifu = true;
-        }
-
-        private void BlueMagnet(Player player)
-        {
-            player.GetModPlayer<Bluemagic.BluemagicPlayer>(ModLoader.GetMod("Bluemagic")).manaMagnet2 = true;
-        }*/
 
         public override void AddRecipes()
         {
@@ -162,17 +97,12 @@ All attacks inflict Flames of the Universe");
                 recipe.AddIngredient(null, "GuardianAngelsSoul");
                 recipe.AddIngredient(null, "BardSoul");
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TheRing"));
-
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("CrystalEyeMask"));
                 
                 /*
-                plague lords flask
                 
                 black midi - bard
                 */
             }
-
-            if (Fargowiltas.Instance.BlueMagicLoaded) recipe.AddIngredient(ModLoader.GetMod("Bluemagic").ItemType("AvengerSeal"));
 
             //recipe.AddTile(null, "CrucibleCosmosSheet");
             recipe.SetResult(this);

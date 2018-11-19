@@ -12,10 +12,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Titanium Enchantment");
             Tooltip.SetDefault(
-                @"'Hit me with your best shot' 
+@"'Hit me with your best shot' 
 Any damage you take while at full HP is reduced by 90%
-Briefly become invulnerable after striking an enemy when below 50% HP
-Increases all knockback");
+Briefly become invulnerable after striking an enemy");
         }
 
         public override void SetDefaults()

@@ -12,11 +12,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Shinobi Infiltrator Enchantment");
             Tooltip.SetDefault(
-                @"'Hidden in the Wall'
+                @"'Village Hidden in the Wall'
 Greatly enhances Lightning Aura effectiveness
 Effects of the Master Ninja Gear
 Dash into any walls, to teleport through them to the next opening
-Summons a pet gato");
+Summons a pet Gato"); //ninja material effects here
         }
 
         public override void SetDefaults()
@@ -31,6 +31,12 @@ Summons a pet gato");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.setMonkT2 = true;
+            player.setMonkT3 = true;
+            //ninja gear
+            player.blackBelt = true;
+            player.spikedBoots = 2;
+            player.dash = 1;
             player.GetModPlayer<FargoPlayer>(mod).ShinobiEffect(hideVisual);
         }
 

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -21,8 +22,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Depth Diver Enchantment");
             Tooltip.SetDefault(
-                @"'Become a selfless protector'
-");
+@"'Become a selfless protector'
+You and nearby allies gain 8% increased damage
+You and nearby allies gain 10% increased movement speed
+You and nearby allies can breathe underwater
+Your symphonic damage empowers all nearby allies with: Coral Edge. Damage done against gouged enemies is increased by 8%. Doubles the range of your empowerments effect radius
+Summons a Jellyfish in a Bubble to follow you around");
         }
 
         public override void SetDefaults()
@@ -45,8 +50,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void DepthEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //depth diver set
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && Vector2.Distance(player2.Center, player.Center) < 250f)
+                {
+                    player2.AddBuff(thorium.BuffType("DepthSpeed"), 30, false);
+                    player2.AddBuff(thorium.BuffType("DepthDamage"), 30, false);
+                    player2.AddBuff(thorium.BuffType("DepthBreath"), 30, false);
+                }
+            }
+            //depth woofer
+            thoriumPlayer.subwooferGouge = true;
+            thoriumPlayer.bardRangeBoost += 450;
         }
         
         private readonly string[] items =

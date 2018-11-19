@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Celestial Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Pressing the 'Special Ability' key will summon an incredibly powerful aura around your cursor
+Creating this aura costs 150 mana");
         }
 
         public override void SetDefaults()
@@ -45,8 +46,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void CelestialEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.celestialSet = true;
         }
         
         private readonly string[] items =

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
@@ -40,5 +41,15 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             return true;
         }*/
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.GetGlobalNPC<FargoGlobalNPC>().Infested = true;
+        }
+
+        public override bool ReApply(NPC npc, int time, int buffIndex)
+        {
+            return true;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Marching Band Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Inspiration notes that drop are twice as potent and increase your symphonic damage briefly");
         }
 
         public override void SetDefaults()
@@ -45,8 +45,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void MarchingEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //marching band set 
+            thoriumPlayer.empoweredNotes = true;
         }
         
         private readonly string[] items =

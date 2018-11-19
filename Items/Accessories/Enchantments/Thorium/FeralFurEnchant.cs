@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Feral-Fur Enchantment");
             Tooltip.SetDefault(
                 @"'Let your inner animal out'
-");
+Melee critical strikes grant Alpha's Roar, briefly increasing the damage of your summoned minions");
         }
 
         public override void SetDefaults()
@@ -43,8 +43,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void FeralEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //feral set bonus
+            thoriumPlayer.alphaRage = true;
         }
         
         private readonly string[] items =

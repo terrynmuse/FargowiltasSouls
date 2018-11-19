@@ -22,7 +22,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Demon Blood Enchantment");
             Tooltip.SetDefault(
                 @"'Infused with Corrupt Blood'
-");
+Maximum life increased by 100
+Getting hit will trigger 'Sanguine', increasing defensive abilities briefly.
+Flail weapons have a chance to release rolling spike balls on hit that apply ichor to damaged enemies.
+Your symphonic damage empowers all nearby allies with: Abomination's Blood
+Damage done against ichor'd enemies is increased by 5%
+Doubles the range of your empowerments effect radius
+Your symphonic damage will empower all nearby allies with: Critical Strike II");
         }
 
         public override void SetDefaults()
@@ -45,8 +51,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void DemonEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.demonbloodSet = true;
+            player.statLifeMax2 += 100;
+            //demon blood badge
+            thoriumPlayer.CrimsonBadge = true;
+            //vile core
+            thoriumPlayer.vileCore = true;
+            //subwoofer
+            thoriumPlayer.subwooferIchor = true;
+            thoriumPlayer.bardRangeBoost += 450;
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3CriticalStrike = 2;
         }
         
         private readonly string[] items =

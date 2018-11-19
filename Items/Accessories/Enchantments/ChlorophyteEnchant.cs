@@ -31,7 +31,11 @@ Summons a pet Seedling");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            //crystal and pet
             player.GetModPlayer<FargoPlayer>(mod).ChloroEffect(hideVisual, 100);
+            //herb double
+            player.GetModPlayer<FargoPlayer>(mod).ChloroEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).FlowerBoots();
         }
 
         public override void AddRecipes()

@@ -11,6 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hallowed Enchantment");
+
             Tooltip.SetDefault(
                 @"'Hallowed be your sword and shield'
 You gain a shield that can reflect projectiles

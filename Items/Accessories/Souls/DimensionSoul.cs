@@ -17,6 +17,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             Tooltip.SetDefault("'The dimensions of Terraria are at your fingertips'"
                                + "\nDoes various things");
+                               
+                               //omega core
+                               //Increases movement speed beyond comprehension
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 18));
         }

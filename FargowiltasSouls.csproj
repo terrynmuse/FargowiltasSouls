@@ -48,7 +48,7 @@
       <HintPath>D:\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
     <Reference Include="ThoriumMod">
-      <HintPath>..\folder for wip\Thorium\ThoriumMod.dll</HintPath>
+      <HintPath>..\folder for wip\ThoriumMod.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +89,7 @@
     <Compile Include="Buffs\Souls\ShellHide.cs" />
     <Compile Include="Buffs\Souls\Shock.cs" />
     <Compile Include="Buffs\Souls\SuperBleed.cs" />
+    <Compile Include="Buffs\Souls\TimeFrozen.cs" />
     <Compile Include="FargoPlayer.cs" />
     <Compile Include="Fargowiltas.cs" />
     <Compile Include="FargoWorld.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Items\Accessories\Essences\ApprenticesEssence.cs" />
     <Compile Include="Items\Accessories\Essences\BarbariansEssence.cs" />
     <Compile Include="Items\Accessories\Essences\BardEssence.cs" />
+    <Compile Include="Items\Accessories\Essences\HealerEssence.cs" />
     <Compile Include="Items\Accessories\Essences\OccultistsEssence.cs" />
     <Compile Include="Items\Accessories\Essences\SlingersEssence.cs" />
     <Compile Include="Items\Accessories\Essences\SnipersEssence.cs" />

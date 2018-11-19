@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Darksteel Enchantment");
             Tooltip.SetDefault(
                 @"'Light yet durable'
-");
+Grants the ability to dash, knockback immunity and Ice Skates effect");
         }
 
         public override void SetDefaults()
@@ -45,8 +45,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void DarksteelEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            player.noKnockback = true;
+            player.iceSkate = true;
+            player.dash = 1;
         }
         
         private readonly string[] items =

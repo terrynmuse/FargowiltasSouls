@@ -21,8 +21,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Geode Enchantment");
             Tooltip.SetDefault(
-                @"'Made from the most luxurious of materials'
-");
+@"'Made from the most luxurious of materials'
+Light is emitted from the player
+Can detect ore and treasures
+Summons a magic lantern, that releases a constant aura of regeneration
+Summons a money spitting treasure chest
+Every 10, 500 & 10,000 damage dealt will cause the chest to spit out a corresponding coin");
         }
 
         public override void SetDefaults()
@@ -45,8 +49,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void GeodeEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.geodeShine = true;
+            Lighting.AddLight(player.position, 1.2f, 0.8f, 1.2f);
+            //set bonus
+            player.findTreasure = true;
+            //lantern pet
+            thoriumPlayer.lanternPet = true;
+            //chest pet
+            thoriumPlayer.LockBoxPet = true;
         }
         
         private readonly string[] items =

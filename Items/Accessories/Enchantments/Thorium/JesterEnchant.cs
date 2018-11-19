@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Jester Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
+Increases max inspiration by 2");
         }
 
         public override void SetDefaults()
@@ -45,8 +46,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void JesterEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.jesterSet = true;
+            //fan letter
+            thoriumPlayer.bardResourceMax2 += 2;
         }
 
         public override void AddRecipes()
@@ -58,7 +60,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddRecipeGroup("FargowiltasSouls:AnyJesterMask");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyJesterShirt");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyJesterLeggings");
-            recipe.AddIngredient(thorium.ItemType("FanLetter"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyLetter");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyTambourine");
             recipe.AddIngredient(thorium.ItemType("Oboe"));
             recipe.AddIngredient(thorium.ItemType("SkywareLute"));

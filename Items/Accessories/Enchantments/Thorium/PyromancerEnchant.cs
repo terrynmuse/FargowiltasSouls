@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -19,8 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Pyromancer Enchantment");
             Tooltip.SetDefault(
-                @"'You're overcome with molten fury'
-");
+@"'Your magma fortified army's molten gaze shall be feared'
+Magic damage will heavily burn and damage all adjacent enemies
+Pressing the 'Special Ability' key will unleash an echo of Slag Fury's power");
         }
 
         public override void SetDefaults()
@@ -29,8 +32,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 2; //blood orange hmmm
+            item.rare = 10; 
             item.value = 400000;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 128, 0));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -43,8 +57,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void PyroEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //pyro magic set
+            thoriumPlayer.pyro = true;
+            thoriumPlayer.pyroSet = true;
+            //pyro summon bonus
+            thoriumPlayer.napalmSet = true;
+            Lighting.AddLight(player.position, 0.5f, 0.35f, 0f);
         }
         
         private readonly string[] items =
@@ -64,6 +82,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //stardust, nebula
             
             ModRecipe recipe = new ModRecipe(mod);
             

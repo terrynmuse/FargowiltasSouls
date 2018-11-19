@@ -1,6 +1,8 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -11,11 +13,24 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dark Artist Enchantment");
-            Tooltip.SetDefault(
-                @"'The shadows hold more than they seem'
+
+            string tooltip = 
+@"'The shadows hold more than they seem'
 Greatly enhances Flameburst effectiveness
-Magic weapons occasionally shoot from the shadows of where you used to be
-Summons a flickerwick to provide light");
+Your weapon's projectiles occasionally shoot from the shadows of where you used to be
+";
+
+            if(thorium != null)
+            {
+                tooltip += 
+@"Corrupts your radiant powers
+Enemies afflicted with shadowflame or light curse increase your life regeneration
+";
+            }
+
+            tooltip += "Summons a pet Flickerwick";
+
+            Tooltip.SetDefault(tooltip); 
         }
 
         public override void SetDefaults()
@@ -30,7 +45,25 @@ Summons a flickerwick to provide light");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.setApprenticeT2 = true;
+            player.setApprenticeT3 = true;
             player.GetModPlayer<FargoPlayer>(mod).DarkArtistEffect(hideVisual);
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //dark effigy
+            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            thoriumPlayer.darkAura = true;
+
+            for (int i = 0; i < 200; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.active && (npc.FindBuffIndex(153) > -1 || npc.FindBuffIndex(thorium.BuffType("lightCurse")) > -1) && Vector2.Distance(npc.Center, player.Center) < 1000f)
+                {
+                    thoriumPlayer.effigy++;
+                    player.AddBuff(thorium.BuffType("EffigyRegen"), 10, false);
+                }
+            }
         }
 
         public override void AddRecipes()

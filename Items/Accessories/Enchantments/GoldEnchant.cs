@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -10,6 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public float Damage;
+        public int timer;
 
         public override bool CloneNewInstances => true;
 
@@ -20,19 +22,37 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine[] lines = new TooltipLine[9];
+            TooltipLine[] lines = new TooltipLine[8];
+            
             lines[0] = new TooltipLine(mod, "1", "'Gold makes the world go round'");
             lines[1] = new TooltipLine(mod, "2", "Increased damage based on current coin count");
             lines[2] = new TooltipLine(mod, "3", "Current: " + (Damage * 100).ToString("0.00") + "% increased damage");
             lines[2].overrideColor = Color.LimeGreen;
-            lines[3] = new TooltipLine(mod, "4", "Picking up gold coins gives you extra life regen or movement speed for a short time");
-            lines[4] = new TooltipLine(mod, "5", "You will throw away any lesser valued coins you pick up");
-            lines[5] = new TooltipLine(mod, "6", "Increases coin pickup range and shops have lower prices");
-            lines[6] = new TooltipLine(mod, "7", "Hitting enemies will sometimes drop extra coins");
-            lines[7] = new TooltipLine(mod, "8", "Your attacks inflict Midas");
-            lines[8] = new TooltipLine(mod, "9", "Summons a Pet Parrot");
 
-            for (int i = 0; i < lines.Length; i++) tooltips.Add(lines[i]);
+            if (Fargowiltas.Instance.ThoriumLoaded)
+            {
+                lines[3] = new TooltipLine(mod, "4", "While in combat, you generate a 16 life shield");
+                lines[4] = new TooltipLine(mod, "5", "Increases coin pickup range and shops have lower prices");
+                lines[5] = new TooltipLine(mod, "6", "Enemies drop money on each successful hit");
+                lines[6] = new TooltipLine(mod, "7", "Your attacks inflict Midas");
+                lines[7] = new TooltipLine(mod, "8", "Summons a curious bag of ancient coins");
+            }
+            else
+            {
+                lines[3] = new TooltipLine(mod, "4", "Increases coin pickup range and shops have lower prices");
+                lines[4] = new TooltipLine(mod, "5", "Hitting enemies will sometimes drop extra coins");
+                lines[5] = new TooltipLine(mod, "6", "Your attacks inflict Midas");
+                lines[6] = new TooltipLine(mod, "7", "Summons a pet Parrot");
+            }
+
+            int length = lines.Length;
+
+            if(!Fargowiltas.Instance.ThoriumLoaded)
+            {
+                length--;
+            }
+
+            for (int i = 0; i < length; i++) tooltips.Add(lines[i]);
         }
 
         public override void SetDefaults()
@@ -90,6 +110,33 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.AllDamageUp(Damage);
             modPlayer.GoldEffect(hideVisual);
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            //proof of avarice
+            thoriumPlayer.avarice2 = true;
+            //gold aegis
+            thoriumPlayer.metallurgyShield = true;
+            if (!thoriumPlayer.outOfCombat)
+            {
+                timer++;
+                if (timer >= 30)
+                {
+                    int num = 16;
+                    if (thoriumPlayer.shieldHealth < num)
+                    {
+                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                        thoriumPlayer.shieldHealth++;
+                    }
+                    timer = 0;
+                    return;
+                }
+            }
+            else
+            {
+                timer = 0;
+            }
         }
 
         public override void AddRecipes()
@@ -106,15 +153,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 recipe.AddIngredient(ItemID.GreedyRing);
                 recipe.AddIngredient(ItemID.RubyStaff);
                 recipe.AddIngredient(ItemID.GoldButterfly);
+                recipe.AddIngredient(ItemID.SquirrelGold);
+                recipe.AddIngredient(thorium.ItemType("AncientDrachma"));
             }
             else
             {
                 recipe.AddIngredient(ItemID.GreedyRing);
                 recipe.AddIngredient(ItemID.RubyStaff);
+                recipe.AddIngredient(ItemID.SquirrelGold);
+                recipe.AddIngredient(ItemID.ParrotCracker);
             }
-            
-            recipe.AddIngredient(ItemID.SquirrelGold);
-            recipe.AddIngredient(ItemID.ParrotCracker);
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

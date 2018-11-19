@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Gladiator Enchantment");
             Tooltip.SetDefault(
                 @"'Are you not entertained?'
-Throwing weapons will speed up drastically over time
+Thrown projectiles will speed up drastically over time
 Summons a pet Minotaur");
         }
 

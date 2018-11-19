@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -21,7 +23,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Rhapsodist Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"'Allow your song to inspire an army, Prove to all that your talent is second to none'
+Inspiration notes that drop will become more potent
+Addtionally, they give a random level 1 empowerment to all nearby allies
+Pressing the 'Special Ability' key will:
+    grant you an endless amount of inspiration and greatly increased symphonic damage and playing speed for 10 seconds
+    overload all nearby allies with every empowerment III for 15 seconds
+These effects needs to recharge for 1 minute
 ");
         }
 
@@ -31,8 +39,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 1; //blood orange
+            item.rare = 10;
             item.value = 400000;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 128, 0));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -45,8 +64,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void RhapsodistEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //notes heal more and give random empowerments
+            thoriumPlayer.inspirator = true;
+            //hotkey buff allies 
+            thoriumPlayer.rallySet = true;
+            //hotkey buff self
+            thoriumPlayer.soloistSet = true;
         }
         
         private readonly string[] items =

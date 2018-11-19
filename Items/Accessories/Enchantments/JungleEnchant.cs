@@ -11,12 +11,26 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jungle Enchantment");
-            Tooltip.SetDefault(
-                @"'The wrath of the jungle dwells within'
-Allows the collection of Vine Rope from vines
-Chance to steal 5 mana with each attack
+
+            string tooltip = 
+@"'The wrath of the jungle dwells within'
+Chance to steal 4 mana with each attack
 Taking damage will release a poisoning spore explosion
-Spore damage scales with magic damage");
+Spore damage scales with magic damage";
+
+            if(thorium != null)
+            {
+                tooltip +=
+@"Your symphonic damage empowers all nearby allies with: Jungle's Nibble
+Damage done against poisoned enemies is increased by 8%
+Doubles the range of your empowerments effect radius";
+            }
+            else
+            {
+                tooltip += "Allows the collection of Vine Rope from vines";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()

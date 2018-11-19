@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Crier Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+ +10% inspiriation regeneration rate
+ Increases the duration of your symphonic empowerments by 2 seconds");
         }
 
         public override void SetDefaults()
@@ -45,8 +46,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void CrierEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.bardResourceRecharge += 10;
+            //music notes
+            thoriumPlayer.bardBuffDuration += 120;
         }
         
         private readonly string[] items =

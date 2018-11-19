@@ -26,6 +26,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             //inflicts DOT (8 per second) and almost every stat reduced (move speed and use time by 25%)
             player.GetModPlayer<FargoPlayer>(mod).Rotting = true;
+            player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= .75f;
 
             player.statLifeMax2 -= player.statLifeMax / 5;
             player.statDefense -= 10;
