@@ -25,14 +25,17 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Infused with souls of the damned'
 Your boots vibrate at an unreal frequency, increasing movement speed significantly
 While moving, your melee damage and critical strike chance are increased
-15% increased movement and maximum speed
+Your attacks have a chance to unleash an explosion of Dragon's Flame
+Your attacks may inflict Darkness on enemies
 Running builds up momentum and increases movement speed
 Crashing into an enemy releases all stored momentum, catapulting the enemy
 Flail weapons have a chance to release rolling spike balls on hit that apply cursed flames to damaged enemies
 Your symphonic damage empowers all nearby allies with: Vile Flames
 Damage done against curse flamed enemies is increased by 8%
 Doubles the range of your empowerments effect radius
-Your symphonic damage will empower all nearby allies with: Movement Speed II");
+Your symphonic damage will empower all nearby allies with: Movement Speed II
+Increases armor penetration by 15
+Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
         }
 
         public override void SetDefaults()
@@ -48,12 +51,8 @@ Your symphonic damage will empower all nearby allies with: Movement Speed II");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            DreadEffect(player);
-        }
-        
-        private void DreadEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //dread set bonus
             player.moveSpeed += 0.8f;
@@ -100,30 +99,33 @@ Your symphonic damage will empower all nearby allies with: Movement Speed II");
             //music player
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3MovementSpeed = 2;
+            //dragon 
+            thoriumPlayer.dragonSet = true;
+            //dragon tooth necklace
+            player.armorPenetration += 15;
+            //wyvern pet
+            modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
+            thoriumPlayer.wyvernPet = true;
+            //darkness, pets
+            modPlayer.ShadowEffect(hideVisual);
         }
-        
-        private readonly string[] items =
-        {
-            "DreadSkull",
-            "DreadChestPlate",
-            "DreadGreaves",
-            "CrashBoots",
-            "CursedCore",
-            "CorruptSubwoofer",
-            "TunePlayerMovementSpeed"
-        };
 
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
+            recipe.AddIngredient(thorium.ItemType("DreadSkull"));
+            recipe.AddIngredient(thorium.ItemType("DreadChestPlate"));
+            recipe.AddIngredient(thorium.ItemType("DreadGreaves"));
+            recipe.AddIngredient(null, "DragonEnchant");
+            recipe.AddIngredient(thorium.ItemType("CrashBoots"));
+            recipe.AddIngredient(thorium.ItemType("CursedCore"));
+            recipe.AddIngredient(thorium.ItemType("CorruptSubwoofer"));
+            recipe.AddIngredient(thorium.ItemType("TunePlayerMovementSpeed"));
             recipe.AddIngredient(ItemID.ChainGuillotines);
             recipe.AddIngredient(thorium.ItemType("ImpactDrill"));
-            recipe.AddIngredient(thorium.ItemType("DreadLauncher"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

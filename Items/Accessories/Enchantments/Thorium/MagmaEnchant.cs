@@ -11,6 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public bool allowJump = true;
+        public int timer;
         
         public override bool Autoload(ref string name)
         {
@@ -26,7 +27,7 @@ Fire surrounds your armour and melee weapons
 Enemies that you set on fire or singe will take additional damage over time
 Allows you to do a triple hop super jump
 Increases fall resistance
-15% increased movement and maximum speed. Damaging slag drops from below your boots
+Damaging slag drops from below your boots
 Spear weapons will release a flaming spear tip");
         }
 
@@ -97,6 +98,13 @@ Spear weapons will release a flaming spear tip");
                 }
                 Main.PlaySound(SoundID.Item74, player.position);
                 thoriumPlayer.jumps = 0;
+            }
+            //slag stompers
+            timer++;
+            if (timer > 20)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.1f * Main.rand.Next(-25, 25), 2f, thorium.ProjectileType("SlagPro"), 20, 1f, Main.myPlayer, 0f, 0f);
+                timer = 0;
             }
             //molten spear tip
             thoriumPlayer.spearFlame = true;

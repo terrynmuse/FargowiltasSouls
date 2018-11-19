@@ -24,7 +24,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Live in the shadows, and strike with precision'
 Striking an enemy with any throwing weapon will trigger 'Shadow Dance'
 Additonally, while Shadow Dance is active you deal 15% more throwing damage
-Your symphonic damage will empower all nearby allies with: Maximum Mana II");
+Throw a smoke bomb to teleport to it
+Standing nearby smoke gives you the First Strike buff
+Summons a pet Black Cat");
         }
 
         public override void SetDefaults()
@@ -40,22 +42,18 @@ Your symphonic damage will empower all nearby allies with: Maximum Mana II");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            ShadeEffect(player);
-        }
-        
-        private void ShadeEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
             //set bonus
             thoriumPlayer.shadeSet = true;
             if (thoriumPlayer.shadeTele)
             {
                 player.thrownDamage += 0.15f;
             }
-            //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3MaxMana = 2;
+            //ninja, smoke bombs, pet
+            modPlayer.NinjaEffect(hideVisual);
         }
 
         public override void AddRecipes()
@@ -67,7 +65,8 @@ Your symphonic damage will empower all nearby allies with: Maximum Mana II");
             recipe.AddIngredient(thorium.ItemType("ShadeMasterMask"));
             recipe.AddIngredient(thorium.ItemType("ShadeMasterGarb"));
             recipe.AddIngredient(thorium.ItemType("ShadeMasterTreads"));
-            recipe.AddIngredient(thorium.ItemType("TunePlayerMaxMana"));
+            recipe.AddIngredient(null, "NinjaEnchant");
+            recipe.AddIngredient(thorium.ItemType(""));
             recipe.AddIngredient(thorium.ItemType("ClockWorkBomb"), 300);
             recipe.AddIngredient(thorium.ItemType("BugenkaiShuriken"), 300);
             recipe.AddIngredient(thorium.ItemType("ShadeKunai"), 300);

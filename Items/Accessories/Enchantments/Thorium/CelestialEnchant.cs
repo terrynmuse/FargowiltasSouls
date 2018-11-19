@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Celestial Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"'Harmonious energy embraces you'
 Pressing the 'Special Ability' key will summon an incredibly powerful aura around your cursor
 Creating this aura costs 150 mana");
         }

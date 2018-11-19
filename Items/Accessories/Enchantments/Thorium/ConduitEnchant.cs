@@ -22,11 +22,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Conduit Enchantment");
             Tooltip.SetDefault(
-                @"'Shocked out of this world'
+@"'Shocked out of this world'
 Moving around generates up to 5 static rings, with each one generating life shielding
 When fully charged, a bubble of energy will protect you from one attack 
 When the bubble blocks an attack, an electrical discharge is released at nearby enemies
-Summons a planetary visitor and a pet probe that has offensive capabilities");
+A meteor shower initiates every few seconds while attacking
+Summons a pet Omega, I.F.O., and Bio-Feeder");
         }
 
         public override void SetDefaults()
@@ -42,13 +43,10 @@ Summons a planetary visitor and a pet probe that has offensive capabilities");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            ConduitEffect(player);
-        }
-        
-        private void ConduitEffect(Player player)
-        {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+           
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
+
             //conduit set bonus
             thoriumPlayer.conduitSet = true;
             thoriumPlayer.orbital = true;
@@ -63,33 +61,33 @@ Summons a planetary visitor and a pet probe that has offensive capabilities");
                     Main.dust[num].noGravity = true;
                 }
             }
+            //meteor effect
+            modPlayer.MeteorEffect(60);
             //pets
+            modPlayer.AddPet("Omega Pet", hideVisual, thorium.BuffType("OmegaBuff"), thorium.ProjectileType("Omega"));
+            modPlayer.AddPet("I.F.O. Pet", hideVisual, thorium.BuffType("Identified"), thorium.ProjectileType("IFO"));
+            modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
             thoriumPlayer.OmegaPet = true;
             thoriumPlayer.lostMartianPet = true;
+            thoriumPlayer.bioPet = true;
         }
-        
-        private readonly string[] items =
-        {
-            "ConduitHelmet",
-            "ConduitSuit",
-            "ConduitLeggings",
-            "UFOCommunicator", //strange communicator?
-            "VegaPhaser",
-            "SuperPlasmaCannon",
-            "LivewireCrasher",
-            "Triangle"
-        };
 
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
+            recipe.AddIngredient(thorium.ItemType("ConduitHelmet"));
+            recipe.AddIngredient(thorium.ItemType("ConduitSuit"));
+            recipe.AddIngredient(thorium.ItemType("ConduitLeggings"));
+            recipe.AddIngredient(null, "MeteorEnchant");
+            recipe.AddIngredient(thorium.ItemType("VegaPhaser"));
+            recipe.AddIngredient(thorium.ItemType("LivewireCrasher"));
+            recipe.AddIngredient(thorium.ItemType("Triangle"));
             recipe.AddIngredient(ItemID.BrainScrambler);
             recipe.AddIngredient(thorium.ItemType("OmegaDrive"));
+            recipe.AddIngredient(thorium.ItemType("UFOCommunicator"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

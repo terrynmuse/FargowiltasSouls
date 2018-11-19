@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -11,12 +12,27 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shinobi Infiltrator Enchantment");
-            Tooltip.SetDefault(
-                @"'Village Hidden in the Wall'
-Greatly enhances Lightning Aura effectiveness
-Effects of the Master Ninja Gear
+
+            string tooltip = 
+@"'Village Hidden in the Wall'
 Dash into any walls, to teleport through them to the next opening
-Summons a pet Gato"); //ninja material effects here
+Effects of the Master Ninja Gear
+Greatly enhances Lightning Aura effectiveness";
+
+            if(thorium != null)
+            {
+                tooltip +=
+@"Striking an enemy with any throwing weapon will trigger 'Shadow Dance'
+Additonally, while Shadow Dance is active you deal 15% more throwing damage";
+            }
+
+            tooltip +=
+@"Throw a smoke bomb to teleport to it
+Standing nearby smoke gives you the First Strike buff";
+
+            tooltip += "Summons a pet Gato and Black Cat";
+
+            Tooltip.SetDefault(tooltip); 
         }
 
         public override void SetDefaults()
@@ -31,13 +47,28 @@ Summons a pet Gato"); //ninja material effects here
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             player.setMonkT2 = true;
             player.setMonkT3 = true;
             //ninja gear
             player.blackBelt = true;
             player.spikedBoots = 2;
             player.dash = 1;
-            player.GetModPlayer<FargoPlayer>(mod).ShinobiEffect(hideVisual);
+            //tele thru wall
+            modPlayer.ShinobiEffect(hideVisual);
+            //ninja, smoke bombs, pet
+            modPlayer.NinjaEffect(hideVisual);
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
+            //set bonus
+            thoriumPlayer.shadeSet = true;
+            if (thoriumPlayer.shadeTele)
+            {
+                player.thrownDamage += 0.15f;
+            }
         }
 
         public override void AddRecipes()
@@ -46,19 +77,22 @@ Summons a pet Gato"); //ninja material effects here
             recipe.AddIngredient(ItemID.MonkAltHead);
             recipe.AddIngredient(ItemID.MonkAltShirt);
             recipe.AddIngredient(ItemID.MonkAltPants);
-            recipe.AddIngredient(null, "NinjaEnchant");
-            recipe.AddIngredient(ItemID.MasterNinjaGear);
-            recipe.AddIngredient(ItemID.MonkBelt);
+            
             
             if(Fargowiltas.Instance.ThoriumLoaded)
-            {      
+            {
+                recipe.AddIngredient(null, "ShadeMasterEnchant");
+                recipe.AddIngredient(ItemID.MasterNinjaGear);
+                recipe.AddIngredient(ItemID.MonkBelt);
                 recipe.AddIngredient(ItemID.DD2LightningAuraT2Popper);
                 recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
                 recipe.AddIngredient(thorium.ItemType("TotalityButterfly"));
             }
             else
             {
-                recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
+                recipe.AddIngredient(null, "NinjaEnchant");
+                recipe.AddIngredient(ItemID.MasterNinjaGear);
+                recipe.AddIngredient(ItemID.MonkBelt);
             }
             
             recipe.AddIngredient(ItemID.DD2PetGato);

@@ -24,10 +24,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Durasteel Enchantment");
             Tooltip.SetDefault(
 @"'Masterfully forged by the Blacksmith'
-Damage taken reduced by 12%
+12% damage reduction
 Landing on solid ground releases a powerful shockwave
 The damage, knockback, and range of the shock wave is increased by the fall distance
-Magnetizes all loose items on the screen");
+Grants the ability to dash into the enemy, knockback immunity and Ice Skates effect
+Right Click to guard with your shield
+Magnetizes all loose items on the screen
+50% of the damage you take is also dealt to the attacker");
         }
 
         public override void SetDefaults()
@@ -43,14 +46,9 @@ Magnetizes all loose items on the screen");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            DurasteelEffect(player);
-        }
-        
-        private void DurasteelEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
+            //durasteel set bonus
             thoriumPlayer.thoriumEndurance += 0.12f;
             //ogre sandals
             if (player.velocity.Y > 0f && thoriumPlayer.falling < 120)
@@ -111,6 +109,15 @@ Magnetizes all loose items on the screen");
                     Main.item[i].velocity.Y = (Main.item[i].velocity.Y * (num5 - 1) + num3) / num5;
                 }
             }
+            //darksteel bonuses
+            player.noKnockback = true;
+            player.iceSkate = true;
+            //EoC Shield
+            player.dash = 2;
+            //spiked bracers
+            player.thorns += 0.5f;
+            //iron shield raise
+            player.GetModPlayer<FargoPlayer>(mod).IronEffect();
         }
         
         private readonly string[] items =

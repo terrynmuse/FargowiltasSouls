@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Bulb Enchantment");
             Tooltip.SetDefault(
-                @"'Has a surprisingly sweet aroma'
+@"'Has a surprisingly sweet aroma'
 Your magic damage has a chance to poison hit enemies with a spore cloud
 When out of combat for 5 seconds, life recovery will increase up to 3 over time
 Enemies that you poison or envenom will take additional damage over time");

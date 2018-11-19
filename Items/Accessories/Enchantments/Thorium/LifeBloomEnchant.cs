@@ -61,11 +61,8 @@ Your symphonic damage will empower all nearby allies with: Ammo Consumption II")
         
         private readonly string[] items =
         {
-            "LifeBloomMask",
-            "LifeBloomMail",
-            "LifeBloomLeggings",
             "Chrysalis",
-            "TunePlayerAmmoConsume",
+            "",
             "GroundedTotemCaller",
             "ButterflyStaff5",
             "HoneyBlade",
@@ -76,11 +73,14 @@ Your symphonic damage will empower all nearby allies with: Ammo Consumption II")
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-
-            //living wood
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("LifeBloomMask"));
+            recipe.AddIngredient(thorium.ItemType("LifeBloomMail"));
+            recipe.AddIngredient(thorium.ItemType("LifeBloomLeggings"));
+            recipe.AddIngredient(null, "LivingWoodEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.CrystalBall);

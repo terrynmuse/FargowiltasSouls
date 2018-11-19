@@ -20,7 +20,9 @@ Spawns 3 fireballs to rotate around you
 Greatly increases life regeneration after striking an enemy 
 One attack gains 33% life steal every 10 seconds, capped at 100 HP
 Any damage you take while at full HP is reduced by 90%
-Briefly become invulnerable after striking an enemy");*/
+Briefly become invulnerable after striking an enemy");
+
+ */
         }
 
         public override void SetDefaults()
