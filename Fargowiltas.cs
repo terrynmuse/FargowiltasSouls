@@ -247,11 +247,14 @@ namespace FargowiltasSouls
                 group = new RecipeGroup(() => Lang.misc[37] + " Jester Shirt", thorium.ItemType("JestersShirt"), thorium.ItemType("JestersShirt2"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyJesterShirt", group);
                 //jester legging
-                group = new RecipeGroup(() => Lang.misc[37] + " Jester Leggings", thorium.ItemType("JestersLeggings"), thorium.ItemType("JestersLeggings"));
+                group = new RecipeGroup(() => Lang.misc[37] + " Jester Leggings", thorium.ItemType("JestersLeggings"), thorium.ItemType("JestersLeggings2"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyJesterLeggings", group);
                 //evil wood tambourine
                 group = new RecipeGroup(() => Lang.misc[37] + " Evil Wood Tambourine", thorium.ItemType("EbonWoodTambourine"), thorium.ItemType("ShadeWoodTambourine"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyTambourine", group);
+                //fan letter
+                group = new RecipeGroup(() => Lang.misc[37] + " Fan Letter", thorium.ItemType("FanLetter"), thorium.ItemType("FanLetter2"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyLetter", group);
             }
         }
 

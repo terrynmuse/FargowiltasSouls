@@ -21,8 +21,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Life Bloom Enchantment");
             Tooltip.SetDefault(
-                @"'You are one with nature'
-");
+@"'You are one with nature'
+Minion attacks have a 33% chance to heal you lightly
+Pressing the 'Encase' key will place you within a fragile cocoon
+You have greatly reduced damage reduction and increased aggro while within the cocoon
+If you survive the process, your attack speed and damage are briefly increased significantly
+The cocoon may be activated every 1 minute
+Your symphonic damage will empower all nearby allies with: Ammo Consumption II");
         }
 
         public override void SetDefaults()
@@ -45,8 +50,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void LifeBloomEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.lifeBloom = true;
+            //chrysalis
+            thoriumPlayer.cocoonAcc = true;
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3AmmoConsumption = 2;
         }
         
         private readonly string[] items =
@@ -54,8 +64,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "LifeBloomMask",
             "LifeBloomMail",
             "LifeBloomLeggings",
+            "Chrysalis",
             "TunePlayerAmmoConsume",
-            "TulipStaff",
             "GroundedTotemCaller",
             "ButterflyStaff5",
             "HoneyBlade",
@@ -66,6 +76,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //living wood
             
             ModRecipe recipe = new ModRecipe(mod);
             

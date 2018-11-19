@@ -33,6 +33,35 @@ Your wind instrument attacks now attempt to quickly home in on enemies
 If the attack already homes onto enemies, it does so far more quickly
 String weapon projectiles bounce five additional times
 Critical strikes caused by brass instrument attacks release a spread of energy");
+
+//band kit
+//Increases symphonic damage by 8%
+//Increases symphonic playing speed by 8%
+//Increases inspiration regeneration by 8%
+
+//digital tuner
+//10% increased symphonic damage
+//Increases maximum inspiration by 4
+//Percussion critical strikes will deal 10% more damage
+//Percussion critical strikes will briefly stun enemies
+
+//epic mouthpiece
+//10% increased symphonic damage
+//5% increased symphonic playing speed
+//Your wind instrument attacks now attempt to quickly home in on enemies
+//If the attack already homes onto enemies, it does so far more quickly
+
+//guitar pick claw
+//10% increased symphonic damage
+//5% increased symphonic critical strike chance
+//String weapon projectiles bounce three additional times
+
+//striaght mute
+//10% increased symphonic damage
+//5% increased inspiration regeneration rate
+//Critical strikes caused by brass instrument attacks release a spread of energy
+
+
         }
 
         public override void SetDefaults()

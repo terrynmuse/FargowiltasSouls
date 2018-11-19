@@ -42,16 +42,14 @@ Increases your maximum mana by 50");
                 recipe.AddIngredient(ItemID.SorcererEmblem);
                 
                 recipe.AddIngredient(ItemID.WandofSparking);
-                //spell book blizzard
-                //spell book wind gust
+
                 //grave buster
                 recipe.AddIngredient(ItemID.Vilethorn);
-                //jelly pond wand //jelly
-                //magic conch
+
                 recipe.AddIngredient(ItemID.WaterBolt);
                 recipe.AddIngredient(ItemID.BookofSkulls);
                 recipe.AddIngredient(ItemID.MagicMissile);
-                //particle whip //saucer
+
                 recipe.AddIngredient(ItemID.Flamelash);
                 //spine breaker
                 //magik staff

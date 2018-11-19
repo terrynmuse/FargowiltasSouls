@@ -21,8 +21,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Cryo Magus Enchantment");
             Tooltip.SetDefault(
-                @"''
-");
+@"''
+Magic damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies
+Damage done against slowed targets is increased by 15% and has a chance to heal you lightly
+Your symphonic damage will empower all nearby allies with: Mana Regeneration II
+Summons a Snowy Owl to watch over you");
         }
 
         public override void SetDefaults()
@@ -45,8 +48,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void CryoEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //cryo set bonus, dmg duplicate
+            thoriumPlayer.cryoSet = true;
+            //strider hide
+            thoriumPlayer.frostBonusDamage = true; 
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3ManaRegen = 2;
+
+            //PET
         }
         
         private readonly string[] items =
@@ -71,6 +81,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(ItemID.FrostStaff);
             recipe.AddIngredient(thorium.ItemType("GatewayGlass"));
             recipe.AddIngredient(thorium.ItemType("LostMail"));
+
+            //frost
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

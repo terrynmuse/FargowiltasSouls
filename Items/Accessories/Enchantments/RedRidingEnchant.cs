@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Greatly enhances Explosive Traps effectiveness
 Celestial Shell effects
 Your attacks deal increasing damage to low HP enemies
-During a Full Moon, ranged attacks cause enemies to Super Bleed
+During a Full Moon, attacks may cause enemies to Super Bleed
 Summons a Puppy");
         }
 
@@ -32,6 +32,18 @@ Summons a Puppy");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.setHuntressT2 = true;
+            player.setHuntressT3 = true;
+            //celestial shell
+            player.accMerman = true;
+            player.wolfAcc = true;
+
+            if (hideVisual)
+            {
+                player.hideMerman = true;
+                player.hideWolf = true;
+            }
+
             player.GetModPlayer<FargoPlayer>(mod).RedRidingEffect(hideVisual);
         }
 

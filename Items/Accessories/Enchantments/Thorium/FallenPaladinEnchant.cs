@@ -21,8 +21,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Fallen Paladin Enchantment");
             Tooltip.SetDefault(
-                @"''
-");
+@"''
+Taking damage heals nearby allies equal to 15% of the damage taken
+Successfully healing an ally with a healing spell will replenish 4 life
+Taking fatal damage unleashes your inner spirit
+Your inner spirit will constantly release beams of healing energy towards your cursor");
         }
 
         public override void SetDefaults()
@@ -45,8 +48,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void PaladinEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.fallenPaladinSet = true;
+            //wyne
+            thoriumPlayer.Wynebgwrthucher = true;
+            //ascension statue
+            thoriumPlayer.ascension = true;
         }
         
         private readonly string[] items =
@@ -55,9 +62,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             "FallenPaladinCuirass",
             "FallenPaladinGreaves",
             "Wynebgwrthucher",
+            "AscensionStatuette",
             "TwilightStaff",
             "HolyHammer",
-            "LightBringerWarhammer",
             "BulwarkStaff",
             "SpiritFireWand",
             "PillPopper"

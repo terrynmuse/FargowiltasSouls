@@ -28,7 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MythrilEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= 1.3f;
         }
 
         public override void AddRecipes()

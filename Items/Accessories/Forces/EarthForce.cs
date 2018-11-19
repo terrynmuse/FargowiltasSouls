@@ -9,19 +9,18 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Force of Earth");
-            Tooltip.SetDefault(
-                @"'Gaia's blessing shines upon you'
-25% chance for your projectiles to explode into shards
-Greatly increases life regeneration after striking an enemy 
-Small chance for an attack to gain 33% life steal
-30% increased weapon use speed
-Flower petals will cause extra damage to your target 
-Attacks may spawn fireballs to rotate around you
+            /*Tooltip.SetDefault(
+@"'Gaia's blessing shines upon you'
 Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split
+25% chance for your projectiles to explode into shards
+30% increased weapon use speed
+Flower petals will cause extra damage to your target 
+Spawns 3 fireballs to rotate around you
+Greatly increases life regeneration after striking an enemy 
+One attack gains 33% life steal every 10 seconds, capped at 100 HP
 Any damage you take while at full HP is reduced by 90%
-Briefly become invulnerable after striking an enemy when below 50% HP
-Increases all knockback");
+Briefly become invulnerable after striking an enemy");*/
         }
 
         public override void SetDefaults()
@@ -37,13 +36,19 @@ Increases all knockback");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.EarthForce = true;
-            modPlayer.CobaltEnchant = true;
-            modPlayer.PalladiumEffect();
-            modPlayer.MythrilEnchant = true;
-            modPlayer.OrichalcumEffect();
+            //split
             modPlayer.AdamantiteEnchant = true;
+            //shards
+            modPlayer.CobaltEnchant = true;
+            //mythril
+            modPlayer.AttackSpeed *= 1.3f;
+            //fireballs and petals
+            modPlayer.OrichalcumEffect();
+            //regen on hit, heals
+            modPlayer.PalladiumEffect();
+            //shadow dodge, full hp resistance
             modPlayer.TitaniumEffect();
+
         }
 
         public override void AddRecipes()

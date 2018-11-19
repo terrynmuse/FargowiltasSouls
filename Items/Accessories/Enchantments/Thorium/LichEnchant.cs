@@ -21,8 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Lich Enchantment");
             Tooltip.SetDefault(
-                @"'Embrace death...'
-");
+@"'Embrace death...'
+Throwing damage will decrease enemy defense
+Pressing the Special Ability key will trigger True Strikes
+Needs to recharge for 2 minutes after being activated");
         }
 
         public override void SetDefaults()
@@ -45,8 +47,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void LichEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.lichSet = true;
+            //lich gaze
+            thoriumPlayer.lichGaze = true;
         }
         
         private readonly string[] items =

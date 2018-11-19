@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -11,11 +12,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spectre Enchantment");
-            Tooltip.SetDefault(
-                @"'Their lifeforce will be their own undoing'
+
+            string tooltip = @"'Their lifeforce will be their own undoing'
 Magic damage has a chance to spawn damaging orbs
 If you crit, you get a burst of healing orbs instead
-Summons a Wisp to provide light");
+";
+
+            if(thorium != null)
+            {
+                tooltip += "While worn, taking fatal damage will instead return you to 100 life and instantly teleport you back to your home (2 minute recharge time)\n";
+            }
+
+            tooltip += "Summons a pet Wisp";
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -31,6 +41,15 @@ Summons a Wisp to provide light");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).SpectreEffect(hideVisual);
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            if (!thoriumPlayer.lifePrevent)
+            {
+                player.AddBuff(thorium.BuffType("GhastlySoul"), 60, true);
+            }
+            thoriumPlayer.soulStorage = true;
         }
 
         public override void AddRecipes()

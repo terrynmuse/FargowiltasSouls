@@ -21,8 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Thorium Enchantment");
             Tooltip.SetDefault(
-                @"'It pulses with energy'
-");
+@"'It pulses with energy'
+Damage done increased by 10%
+Taking more than three damage will replenish health and mana");
         }
 
         public override void SetDefaults()
@@ -45,8 +46,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void ThoriumEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus 
+            player.meleeDamage += 0.1f;
+            player.thrownDamage += 0.1f;
+            player.rangedDamage += 0.1f;
+            player.magicDamage += 0.1f;
+            player.minionDamage += 0.1f;
+            thoriumPlayer.radiantBoost += 0.1f;
+            thoriumPlayer.symphonicDamage += 0.1f;
+            //band of replesnishment
+            thoriumPlayer.BandofRep = true;
         }
         
         private readonly string[] items =

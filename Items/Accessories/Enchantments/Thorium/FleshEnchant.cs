@@ -19,8 +19,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Flesh Enchantment");
             Tooltip.SetDefault(
-                @"'Symbiotically attached to your body'
-");
+@"'Symbiotically attached to your body'
+Damage against enemies has a 10% chance to drop flesh, which grants bonus life and damage when picked up
+Your damage will have a 10% chance to cause an eruption of blood
+This blood can be picked up by players to heal themselves for 15% of the damage you dealt
+Healing amount cannot exceed 15 life and picking up blood causes bleeding for 5 seconds
+Summons an annoying blister to follow you around");
         }
 
         public override void SetDefaults()
@@ -43,8 +47,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void FleshEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.Symbiotic = true;
+            //vampire gland
+            thoriumPlayer.vampireGland = true;
+            //blister pet
+            thoriumPlayer.blisterPet = true;
         }
         
         private readonly string[] items =

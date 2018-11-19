@@ -14,8 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'Too hot to handle' 
 Solar shield allows you to dash through enemies
-Attacks may inflict the Solar Flare debuff
-Melee attacks inflict it for less time (which is a good thing)");
+Melee attacks may inflict the Solar Flare debuff");
         }
 
         public override void SetDefaults()

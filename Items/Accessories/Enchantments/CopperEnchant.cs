@@ -1,22 +1,34 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class CopperEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Copper Enchantment");
-            Tooltip.SetDefault(
-                @"'Behold'
-Attacks have a chance to shock enemies with lightning
+
+            string tooltip = "'Behold'";
+
+            if(thorium != null)
+            {
+                tooltip += "\nWhile in combat, you generate a 10 life shield\n";
+            }
+
+            tooltip +=
+@"Attacks have a chance to shock enemies with lightning
 If an enemy is wet, the chance and damage is increased
 Attacks that cause Wet cannot proc the lightning
-Lightning scales with magic damage");
+Lightning scales with magic damage";
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -25,13 +37,38 @@ Lightning scales with magic damage");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 2;
+            item.rare = 3;
             item.value = 40000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            
+            //copper buckler
+            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            thoriumPlayer.metallurgyShield = true;
+            if (!thoriumPlayer.outOfCombat)
+            {
+                timer++;
+                if (timer >= 30)
+                {
+                    int num = 10;
+                    if (thoriumPlayer.shieldHealth < num)
+                    {
+                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                        thoriumPlayer.shieldHealth++;
+                    }
+                    timer = 0;
+                    return;
+                }
+            }
+            else
+            {
+                timer = 0;
+            }
         }
 
         public override void AddRecipes()

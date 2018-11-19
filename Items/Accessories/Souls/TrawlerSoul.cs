@@ -19,6 +19,8 @@ Decreases chance of bait consumption
 Permanent Sonar and Crate Buffs
 Effects of the Frog Legs and Spore Sac
 ");
+
+//Allows you to see what's biting your hook
         }
 
         public override void SetDefaults()
@@ -65,6 +67,7 @@ Effects of the Frog Legs and Spore Sac
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
+            //hi tech sonar device
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AquaticSonarDevice"));
                 //CartilagedCatcher
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumFisher"));

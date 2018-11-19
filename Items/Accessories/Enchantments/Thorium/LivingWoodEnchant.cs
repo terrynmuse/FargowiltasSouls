@@ -19,8 +19,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Living Wood Enchantment");
             Tooltip.SetDefault(
-                @"''
-");
+@"''
+Your living wood sapling's attacks will home in on enemies
+Allows the collection of Vine Rope from vines");
         }
 
         public override void SetDefaults()
@@ -43,8 +44,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void WoodEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.livingWood = true;
+            //vine rope thing
+            player.cordage = true;
         }
 
         public override void AddRecipes()

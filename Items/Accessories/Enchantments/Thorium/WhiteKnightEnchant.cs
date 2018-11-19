@@ -22,8 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("White Knight Enchantment");
             Tooltip.SetDefault(
-                @"''
-");
+@"''
+Magical attacks have a 33% chance to recover some mana
+Every eighth magic cast costs no mana
+Summons a little winged friend");
         }
 
         public override void SetDefaults()
@@ -46,8 +48,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void KnightEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.whiteKnightSet = true;
+            //shade band
+            thoriumPlayer.shadeBand = true;
+            //pet
+            thoriumPlayer.mogPet = true;
         }
         
         private readonly string[] items =

@@ -21,8 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Harbinger Enchantment");
             Tooltip.SetDefault(
-                @"''
-");
+@"''
+Maximum mana increased by 50%
+While above 75% maximum mana, you become unstable
+Your symphonic damage will empower all nearby allies with: Maximum Life II");
         }
 
         public override void SetDefaults()
@@ -45,8 +47,17 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void HarbingerEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            player.statManaMax2 += (int)(player.statManaMax2 * 0.5);
+            if (player.statMana > (int)(player.statManaMax2 * 0.75) || player.statMana > 300)
+            {
+                player.AddBuff(thorium.BuffType("Overcharge"), 2, true);
+                player.magicDamage += 0.5f;
+                player.magicCrit += 26;
+            }
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3MaxLife = 2;
         }
         
         private readonly string[] items =

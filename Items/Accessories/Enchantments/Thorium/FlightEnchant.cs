@@ -21,8 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Flight Enchantment");
             Tooltip.SetDefault(
-                @"'The sky is your playing field'
-");
+@"'The sky is your playing field'
+You can now briefly fly
+Summons a Pet Parrot");
         }
 
         public override void SetDefaults()
@@ -45,14 +46,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void FlightEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.flightSet = true;
         }
         
         private readonly string[] items =
         {
+            "FlightMask",
+            "FlightMail",
+            "FlightBoots",
+            "HarpyTalon",
             "ChampionWing",
-            "Zephyr",
             "Aerial",
             "HarpyPelter",
             "WindyTotemCaller",
@@ -65,12 +68,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(thorium.ItemType("FlightMask"));
-            recipe.AddIngredient(thorium.ItemType("FlightMail"));
-            recipe.AddIngredient(thorium.ItemType("FlightBoots"));
-            recipe.AddIngredient(ItemID.HarpyWings);
-
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+            
+            recipe.AddIngredient(ItemID.ParrotCracker);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

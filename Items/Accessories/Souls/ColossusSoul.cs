@@ -20,6 +20,50 @@ Grants immunity to knockback and several debuffs
 Enemies are more likely to target you
 Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
 Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
+
+//sweet vengence
+//Increases movement speed after being damaged
+//Increases length of invincibility after taking damage
+//Causes stars to fall when damaged
+//Causes bees to appear when damaged
+
+//cape of the survivor
+//Increases defense by 4
+//Damage taken reduced by 5%
+//Provides immunity to Weakness and Broken Armor
+//Slightly increases length of invincibility after taking damage
+//While active, damage taken cannot exceed 150
+//This effect can only occur once every 15 seconds
+
+//oceans retaliation
+//Defense increased by 3
+//Taking more than 4 damage will unleash a globule of energy
+//Touching the globule will recover 35% of the damage you took
+//30% of the damage you take is also dealt to the attacker
+//Enemies that directly attack you will be poisoned and envenomed
+
+//terrarium defender
+//Grants immunity to most debuffs
+//Grants immunity to knockback and fire blocks
+//Maximum life increased by 20
+//Prolonges after hit invincibility
+//When above 25% life, absorbs 25% of damage done to nearby players on your team
+//When below 20% life, the shield will rapidly regenerate your life
+//When below 25% life, your defense is increased greatly
+
+//blast shield
+//Damage taken reduced by 10%
+//Enemies are more likely to attack you
+//Immune to enemy knockback
+//Taking damage will unleash a volatile explosion all around you
+//This effect needs to recharge for 2 seconds after triggering
+
+//life quartz shield
+//Increases the rate at which you regenerate life
+//Receiving damage below 75% surrounds you in a protective bubble
+//While in the bubble, you will recover life equal to your bonus healing every second
+//Additionally, damage taken will be reduced by 15%
+//This effect needs to recharge for 1 minute after triggering
         }
 
         public override void SetDefaults()
@@ -96,9 +140,8 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
             blast shield
             cape of the survivor
             ocean retaliation
-            ghastly carapace
             sweet vengeance
-            demon blood badge
+            
             life quartz shield
             */
             

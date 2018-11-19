@@ -21,8 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Steel Enchantment");
             Tooltip.SetDefault(
-                @"'Expertly forged by the Blacksmith'
-");
+@"'Expertly forged by the Blacksmith'
+Damage taken reduced by 10%
+25% of the damage you take is also dealt to the attacker");
         }
 
         public override void SetDefaults()
@@ -45,18 +46,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void SteelEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            //set bonus
+            thoriumPlayer.thoriumEndurance += 0.1f;
+            //spiked bracers
+            player.thorns += 0.25f;
         }
         
         private readonly string[] items =
         {
-            "SteelPickaxe",
+            "SpikedBracer",
             "SteelAxe",
             "SteelMallet",
             "SteelBlade",
-            "SuperAnvil",
-            "WarForger"
+            "WarForger",
+            "SuperAnvil"
         };
 
         public override void AddRecipes()

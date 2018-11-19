@@ -21,8 +21,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Assassin Enchantment");
             Tooltip.SetDefault(
-                @"''
-");
+@"'Blacken the skies and cull the weak'
+Ranged damage applies Cursed Inferno and Ichor to hit enemies
+Ranged damage has a 10% chance to duplicate and become increased by 15%
+Ranged damage has a 5% chance to instantly kill the enemy
+Arrow critical strikes turn into death arrows and ricochet
+The nearest enemy is scouted and takes 10% more damage from all sources");
         }
 
         public override void SetDefaults()
@@ -56,12 +60,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void AssassinEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.omniArcherSet = true;
-            thoriumPlayer.omniArrowHat = true;
-            thoriumPlayer.omniBulletSet = true;
-            thoriumPlayer.omniBulletHat = true;
-
-
+            //damage duplicate
+            thoriumPlayer.omniArcherSet = true; 
+            //ichor and death arrows
+            thoriumPlayer.omniArrowHat = true; 
+            //insta kill
+            thoriumPlayer.omniBulletSet = true; 
+            //cursed flame
+            thoriumPlayer.omniBulletHat = true; 
+            //scan nearest enemy meme
+            thoriumPlayer.omniVision = true;
+            if (player.ownedProjectileCounts[mod.ProjectileType("OmniVisionPro")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("OmniVisionPro"), 0, 0f, player.whoAmI, 0f, 0f);
+            }
         }
 
         public override void AddRecipes()

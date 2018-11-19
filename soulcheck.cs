@@ -52,7 +52,6 @@ namespace FargowiltasSouls
             ["Beetles"] = new Color(81, 181, 113),
             ["Shroomite Stealth"] = new Color(81, 181, 113),
             ["Spectre Orbs"] = new Color(81, 181, 113),
-            ["Tiki Debuffs"] = new Color(81, 181, 113),
             ["Spooky Scythes"] = new Color(81, 181, 113),
             ["Dark Artist Effect"] = new Color(81, 181, 113),
             ["Shinobi Through Walls"] = new Color(81, 181, 113),

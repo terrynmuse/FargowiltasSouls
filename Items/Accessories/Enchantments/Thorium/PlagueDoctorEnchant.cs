@@ -19,8 +19,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Plague Doctor Enchantment");
             Tooltip.SetDefault(
-                @"'What nasty concoction could you be brewing?'
-");
+@"'What nasty concoction could you be brewing?'
+Plague doctor vials have a 40% chance to become retrievable upon shattering
+Using a throwing item has a 20% chance to unleash two Blight Daggers
+Blight Daggers home in on enemies and apply a highly contagious disease");
         }
 
         public override void SetDefaults()
@@ -43,8 +45,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void PlagueEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.plagueSet = true;
+            //plague lords fask
+            thoriumPlayer.blightAcc = true;
         }
 
         public override void AddRecipes()
@@ -56,11 +59,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersMask"));
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersGarb"));
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersLeggings"));
+            recipe.AddIngredient(thorium.ItemType("PlagueLordsFlask"));
             recipe.AddIngredient(thorium.ItemType("GasContainer"), 300);
             recipe.AddIngredient(thorium.ItemType("CombustionFlask"), 300);
             recipe.AddIngredient(thorium.ItemType("NitrogenVial"), 300);
             recipe.AddIngredient(thorium.ItemType("CorrosionBeaker"), 300);
-            recipe.AddIngredient(thorium.ItemType("VileSpitter"));
             recipe.AddIngredient(thorium.ItemType("FrostPlagueStaff"));
             recipe.AddIngredient(ItemID.ToxicFlask);
 

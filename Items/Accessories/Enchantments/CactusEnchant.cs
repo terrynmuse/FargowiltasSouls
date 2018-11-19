@@ -24,13 +24,14 @@ Needles scale with melee damage");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 1;
+            item.rare = 2;
             item.value = 20000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).CactusEffect();
+            player.thorns = .5f;
         }
 
         public override void AddRecipes()

@@ -8,6 +8,8 @@ namespace FargowiltasSouls.Projectiles
 {
     public class Void : ModProjectile
     {
+        private int timer = 0;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Void");
@@ -44,17 +46,27 @@ namespace FargowiltasSouls.Projectiles
 
         public override void AI()
         {
-            for (int i = 0; i < 200; i++)
+            if(timer == 0)
             {
-                float distance = projectile.Distance(Main.npc[i].Center);
-                NPC npc = Main.npc[i];
+                for (int i = 0; i < 200; i++)
+                {
+                    float distance = projectile.Distance(Main.npc[i].Center);
+                    NPC npc = Main.npc[i];
 
-                if (!npc.active || npc.townNPC || npc.type == NPCID.TargetDummy || npc.type == NPCID.DD2EterniaCrystal || npc.type == NPCID.DD2LanePortal || npc.boss ||
-                    !(distance < 200)) continue;
+                    if (!npc.active || npc.townNPC || npc.type == NPCID.TargetDummy || npc.type == NPCID.DD2EterniaCrystal || npc.type == NPCID.DD2LanePortal || npc.boss ||
+                        (distance > 200))
+                    {
+                        continue;
+                    }
 
-                Vector2 dir = projectile.position - npc.Center;
-                npc.velocity = dir.SafeNormalize(Vector2.Zero) * 8;
+                    Vector2 dir = projectile.position - npc.Center;
+                    npc.velocity = dir.SafeNormalize(Vector2.Zero) * 8;
+                }
+
+                timer = 10;
             }
+
+            timer--;
         }
 
         public override void Kill(int timeLeft)

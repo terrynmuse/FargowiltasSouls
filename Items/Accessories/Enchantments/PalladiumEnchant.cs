@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
                 @"'You feel your wounds slowly healing' 
 Greatly increases life regeneration after striking an enemy 
-Small chance for an attack to gain 33% life steal");
+One attack gains 33% life steal every 10 seconds, capped at 100 HP");
         }
 
         public override void SetDefaults()

@@ -9,6 +9,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class ConductorEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
         
         public override bool Autoload(ref string name)
         {
@@ -22,7 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Conductor Enchantment");
             Tooltip.SetDefault(
                 @"''
-");
+Pressing the Special Ability key will summon a chorus of music playing ghosts
+Every three seconds the metronome will flip between tick & tock
+Tick increases your symphonic playing speed and damage
+Tock decreases your symphonic playing speed and damage");
         }
 
         public override void SetDefaults()
@@ -45,8 +49,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void ConductorEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.conductorSet = true;
+            //metronome
+            timer++;
+            if (timer == 180)
+            {
+                player.AddBuff(thorium.BuffType("MetronomeBuff"), 179, true);
+            }
+            if (timer == 360)
+            {
+                player.AddBuff(thorium.BuffType("MetronomeDebuff"), 179, true);
+                timer = 0;
+            }
         }
         
         private readonly string[] items =

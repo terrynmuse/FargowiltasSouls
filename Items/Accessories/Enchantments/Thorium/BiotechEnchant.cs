@@ -21,8 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Biotech Enchantment");
             Tooltip.SetDefault(
-                @"''
-");
+@"''
+A biotech probe will assist you in healing your allies
+Heals ally life equal to your bonus healing");
         }
 
         public override void SetDefaults()
@@ -45,8 +46,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private void BiotechEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+
+            thoriumPlayer.essenceSet = true;
+            if (player.ownedProjectileCounts[thorium.ProjectileType("LifeEssence")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("LifeEssence"), 0, 0f, player.whoAmI, 0f, 0f);
+            }
         }
         
         private readonly string[] items =
