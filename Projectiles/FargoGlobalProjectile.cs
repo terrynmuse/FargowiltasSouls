@@ -21,6 +21,7 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         private int counter;
         public bool CanSplit = true;
         private int numSplits = 1;
@@ -408,7 +409,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Penguin:
-                    KillPet(projectile, player, BuffID.BabyPenguin, modPlayer.FrostEnchant, "Penguin Pet");
+                    KillPet(projectile, player, BuffID.BabyPenguin, modPlayer.FrostEnchant || modPlayer.IcyEnchant, "Penguin Pet");
                     break;
 
                 case ProjectileID.BabySnowman:
@@ -492,6 +493,31 @@ namespace FargowiltasSouls.Projectiles
 
                 default:
                         break;
+            }
+
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {
+                if(projectile.type == thorium.ProjectileType("Omega"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("OmegaPet"), modPlayer.MeteorEnchant, "Omega Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("IFO"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("Identified"), modPlayer.MeteorEnchant, "I.F.O. Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("BioFeederPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("BioFeederBuff"), modPlayer.MeteorEnchant, "Bio-Feeder Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("BlisterPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("BlisterBuff"), modPlayer.CrimsonEnchant, "Blister Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("WyvernPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("WyvernPetBuff"), modPlayer.ShadowEnchant, "Wyvern Pet");
+                }
+
             }
 
             if (stormBoosted)

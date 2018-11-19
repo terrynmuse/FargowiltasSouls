@@ -12,10 +12,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Shadow Enchantment");
             Tooltip.SetDefault(
-                @"'You feel your body slip into the deepest of shadows'
+@"'You feel your body slip into the deepest of shadows'
 Your attacks may inflict Darkness on enemies
 Darkened enemies occasionally fire shadowflame tentacles at other enemies
-Summons a Baby Eater of Souls and a Shadow Orb");
+Summons a pet Eater of Souls and Shadow Orb");
         }
 
         public override void SetDefaults()

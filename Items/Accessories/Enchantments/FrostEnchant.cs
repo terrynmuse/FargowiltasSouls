@@ -21,16 +21,15 @@ When there are three, attacking will launch them towards the cursor
 
             if(thorium != null)
             {
-                tooltip += 
-@"Your symphonic damage empowers all nearby allies with: Cold Shoulder
+                tooltip +=
+@"An icy aura surrounds you, which freezes nearby enemies after a short delay
+Your symphonic damage empowers all nearby allies with: Cold Shoulder
 Damage done against frostburnt enemies is increased by 8% 
 Doubles the range of your empowerments effect radius
-Summons a pet Snowman";
+";
             }
-            else
-            {
-                tooltip += "Summons a pet Penguin and Snowman";
-            }
+
+            tooltip += "Summons a pet Penguin and Snowman";
 
             Tooltip.SetDefault(tooltip);
         }
@@ -51,9 +50,16 @@ Summons a pet Snowman";
 
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.subwooferFrost = true;
             thoriumPlayer.bardRangeBoost += 450;
+
+            //icy set bonus
+            thoriumPlayer.icySet = true;
+            if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
+            }
         }
 
         public override void AddRecipes()
@@ -64,11 +70,11 @@ Summons a pet Snowman";
             recipe.AddIngredient(ItemID.FrostLeggings);
             
             if(Fargowiltas.Instance.ThoriumLoaded)
-            {      
+            {
+                recipe.AddIngredient(null, "IcyEnchant");
                 recipe.AddIngredient(thorium.ItemType("FrostSubwoofer"));
                 recipe.AddIngredient(thorium.ItemType("Glacieor"));
                 recipe.AddIngredient(ItemID.IceBow);
-                recipe.AddIngredient(thorium.ItemType("FreezeRay"));
                 recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
                 recipe.AddIngredient(thorium.ItemType("FrozenButterfly"));
             }

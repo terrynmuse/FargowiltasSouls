@@ -40,7 +40,7 @@ All fishing rods will have 4 extra lures");
             recipe.AddIngredient(ItemID.ReinforcedFishingPole);
             recipe.AddIngredient(ItemID.FiberglassFishingPole);
             recipe.AddIngredient(ItemID.OldShoe, 5);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Sacred Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"'It glimmers with comforting power'
 Healing spells heal an additional 5 life
 Summons a li'l cherub to periodically heal damaged allies
 Summons a spirit composed of distant stars

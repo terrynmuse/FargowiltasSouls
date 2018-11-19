@@ -3477,33 +3477,28 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     for (int i = 0; i < 100; i++)
                                     {
-                                        int type = ProjectileID.Dynamite;
+                                        int type = ProjectileID.Grenade;
                                         int damage = 250;
                                         float knockback = 8f;
                                         switch (Main.rand.Next(10))
                                         {
-                                            case 0: break;
+                                            case 0: 
                                             case 1:
-                                            case 2:
-                                            case 3: type = ProjectileID.BouncyDynamite; knockback = 10f; break;
-                                            case 4: type = ProjectileID.StickyDynamite; knockback = 10f; break;
-                                            case 5: type = ProjectileID.Bomb; damage = 100; break;
-                                            case 6:
-                                            case 7:
-                                            case 8: type = ProjectileID.BouncyBomb; damage = 100; break;
-                                            case 9: type = ProjectileID.StickyBomb; damage = 100; break;
-                                            case 10: type = ProjectileID.Grenade; damage = 60; break;
-                                            case 11:
-                                            case 12:
-                                            case 13: type = ProjectileID.BouncyGrenade; damage = 60; break;
-                                            case 14: type = ProjectileID.StickyGrenade; damage = 60; break;
+                                            case 2: break;
+                                            case 3: 
+                                            case 4: 
+                                            case 5: 
+                                            case 6: type = ProjectileID.BouncyGrenade; damage = 60; break;
+                                            case 7: 
+                                            case 8: 
+                                            case 9: type = ProjectileID.StickyGrenade; damage = 60; break;
                                         }
 
                                         int p = Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-1000, 1001) / 100f, Main.rand.Next(-2000, 101) / 100f, type, damage, knockback, Main.myPlayer);
                                         Main.projectile[p].timeLeft += Main.rand.Next(180);
                                     }
 
-                                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType<NukeProj>(), 250, 20f, Main.myPlayer);
+                                    //Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType<NukeProj>(), 250, 20f, Main.myPlayer);
                                 }
 
                                 if (Main.netMode == 0)

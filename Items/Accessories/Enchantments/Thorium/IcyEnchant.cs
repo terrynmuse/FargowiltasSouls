@@ -19,10 +19,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Icy Enchantment");
             Tooltip.SetDefault(
-@"'Gives your hair some frosty tips too'
+@"'Cold to the touch'
 An icy aura surrounds you, which freezes nearby enemies after a short delay
-Summons a baby penguin");
-        } //alternatively 'Ice to meet you' 
+Summons a pet Penguin");
+        }
 
         public override void SetDefaults()
         {
@@ -37,12 +37,8 @@ Summons a baby penguin");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            IcyEffect(player);
-        }
-        
-        private void IcyEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.icySet = true;
@@ -50,6 +46,9 @@ Summons a baby penguin");
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
             }
+
+            modPlayer.IcyEnchant = true;
+            modPlayer.AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
         }
         
         private readonly string[] items =

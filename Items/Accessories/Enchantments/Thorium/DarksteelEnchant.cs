@@ -3,12 +3,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
     public class DarksteelEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
         
         public override bool Autoload(ref string name)
         {
@@ -21,8 +23,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Darksteel Enchantment");
             Tooltip.SetDefault(
-                @"'Light yet durable'
-Grants the ability to dash, knockback immunity and Ice Skates effect");
+@"'Light yet durable'
+Grants the ability to dash into the enemy, knockback immunity and Ice Skates effect
+8% damage reduction
+Right Click to guard with your shield
+You attract items from a larger range
+While in combat, you generate a 25 life shield
+35% of the damage you take is also dealt to the attacker");
         }
 
         public override void SetDefaults()
@@ -38,16 +45,43 @@ Grants the ability to dash, knockback immunity and Ice Skates effect");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            DarksteelEffect(player);
-        }
-        
-        private void DarksteelEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //darksteel bonuses
             player.noKnockback = true;
             player.iceSkate = true;
-            player.dash = 1;
+            //EoC Shield
+            player.dash = 2;
+            //steel set bonus
+            thoriumPlayer.thoriumEndurance += 0.08f;
+            //spiked bracers
+            player.thorns += 0.35f;
+            //iron shield raise
+            modPlayer.IronEffect();
+            //magnet
+            modPlayer.IronEnchant = true;
+            //iron shield
+            thoriumPlayer.metallurgyShield = true;
+            if (!thoriumPlayer.outOfCombat)
+            {
+                timer++;
+                if (timer >= 30)
+                {
+                    int num = 25;
+                    if (thoriumPlayer.shieldHealth < num)
+                    {
+                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                        thoriumPlayer.shieldHealth++;
+                    }
+                    timer = 0;
+                    return;
+                }
+            }
+            else
+            {
+                timer = 0;
+            }
         }
         
         private readonly string[] items =

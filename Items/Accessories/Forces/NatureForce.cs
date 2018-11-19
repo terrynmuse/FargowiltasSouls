@@ -35,12 +35,28 @@ Summons a pet Baby Truffle";
             if (thorium != null)
             {
                 tooltip +=
-@"Your symphonic damage empowers all nearby allies with: Cold Shoulder
+@"An icy aura surrounds you, which freezes nearby enemies after a short delay
+Your symphonic damage empowers all nearby allies with: Cold Shoulder
 Damage done against frostburnt enemies is increased by 8% 
 Doubles the range of your empowerments effect radius
 Your symphonic damage empowers all nearby allies with: Jungle's Nibble
 Damage done against poisoned enemies is increased by 8%
-Doubles the range of your empowerments effect radius";
+Doubles the range of your empowerments effect radius
+
+Maximum life increased by 100
+Getting hit will trigger 'Sanguine', increasing defensive abilities briefly.
+Flail weapons have a chance to release rolling spike balls on hit that apply ichor to damaged enemies.
+Your symphonic damage empowers all nearby allies with: Abomination's Blood
+Damage done against ichor'd enemies is increased by 5%
+Doubles the range of your empowerments effect radius
+Your symphonic damage will empower all nearby allies with: Critical Strike II
+Damage against enemies has a 10% chance to drop flesh, which grants bonus life and damage when picked up
+Greatly increases life regen
+Hearts heal for 1.5x as much
+Your damage will have a 10% chance to cause an eruption of blood
+This blood can be picked up by players to heal themselves for 15% of the damage you dealt
+Healing amount cannot exceed 15 life and picking up blood causes bleeding for 5 seconds
+Summons a pet Flying Blister, Face Monster, and Crimson Heart";
             }
 
             tooltip += "Summons a pet Penguin and Snowman";
@@ -82,6 +98,32 @@ Doubles the range of your empowerments effect radius";
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             thoriumPlayer.subwooferFrost = true;
             thoriumPlayer.bardRangeBoost += 450;
+            //icy set bonus
+            thoriumPlayer.icySet = true;
+            if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
+            }
+            //demon blood
+            thoriumPlayer.demonbloodSet = true;
+            player.statLifeMax2 += 100;
+            //demon blood badge
+            thoriumPlayer.CrimsonBadge = true;
+            //vile core
+            thoriumPlayer.vileCore = true;
+            //subwoofer
+            thoriumPlayer.subwooferIchor = true;
+            thoriumPlayer.bardRangeBoost += 450;
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3CriticalStrike = 2;
+            //flesh set bonus
+            thoriumPlayer.Symbiotic = true;
+            //vampire gland
+            thoriumPlayer.vampireGland = true;
+            //blister pet
+            modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
+            thoriumPlayer.blisterPet = true;
         }
 
         public override void AddRecipes()
