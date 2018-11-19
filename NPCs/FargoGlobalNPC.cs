@@ -4121,11 +4121,11 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     if (Main.bloodMoon)
                                     {
-                                        pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .0025f : .005f;
+                                        pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .0025f : .01f;
                                     }
                                     else
                                     {
-                                        pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .001f : .002f;
+                                        pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .001f : .004f;
                                     }
                                 }
                             }
@@ -4178,7 +4178,7 @@ namespace FargowiltasSouls.NPCs
 
                             if (normalSpawn && NPC.downedBoss3 && NPC.downedQueenBee && !underworld)
                             {
-                                pool[NPCID.EaterofWorldsHead] = BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead) ? .00125f : .00250f;
+                                pool[NPCID.EaterofWorldsHead] = BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead) ? .00125f : .005f;
                             }
                         }
                     }
@@ -4191,7 +4191,7 @@ namespace FargowiltasSouls.NPCs
 
                             if (normalSpawn && NPC.downedBoss3 && NPC.downedQueenBee && !underworld)
                             {
-                                pool[NPCID.BrainofCthulhu] = BossIsAlive(ref brainBoss, NPCID.BrainofCthulhu) ? .00125f : .00250f;
+                                pool[NPCID.BrainofCthulhu] = BossIsAlive(ref brainBoss, NPCID.BrainofCthulhu) ? .00125f : .005f;
                             }
                         }
                     }
@@ -4225,52 +4225,52 @@ namespace FargowiltasSouls.NPCs
 
                             if (noBiome)
                             {
-                                pool[NPCID.KingSlime] = BossIsAlive(ref slimeBoss, NPCID.KingSlime) ? .01f : .02f;
+                                pool[NPCID.KingSlime] = BossIsAlive(ref slimeBoss, NPCID.KingSlime) ? .01f : .04f;
                             }
 
                             if (Main.slimeRain && normalSpawn)
                             {
-                                pool[NPCID.KingSlime] = BossIsAlive(ref slimeBoss, NPCID.KingSlime) ? .025f : .05f;
+                                pool[NPCID.KingSlime] = BossIsAlive(ref slimeBoss, NPCID.KingSlime) ? .025f : .1f;
                             }
                         }
                         else //night
                         {
                             if (Main.bloodMoon)
                             {
-                                pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .0125f : .025f;
+                                pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .0125f : .05f;
 
                                 if (NPC.downedPlantBoss)
                                 {
                                     if (!BossIsAlive(ref retiBoss, NPCID.Retinazer) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref destroyBoss, NPCID.TheDestroyer))
+                                    {
+                                        pool[NPCID.Retinazer] = .05f;
+                                        pool[NPCID.Spazmatism] = .05f;
+                                        pool[NPCID.TheDestroyer] = .05f;
+                                        pool[NPCID.SkeletronPrime] = .05f;
+                                    }
+                                    else
                                     {
                                         pool[NPCID.Retinazer] = .025f;
                                         pool[NPCID.Spazmatism] = .025f;
                                         pool[NPCID.TheDestroyer] = .025f;
                                         pool[NPCID.SkeletronPrime] = .025f;
                                     }
-                                    else
-                                    {
-                                        pool[NPCID.Retinazer] = .0125f;
-                                        pool[NPCID.Spazmatism] = .0125f;
-                                        pool[NPCID.TheDestroyer] = .0125f;
-                                        pool[NPCID.SkeletronPrime] = .0125f;
-                                    }
                                 }
                                 else if (normalSpawn && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
                                 {
                                     if (!BossIsAlive(ref retiBoss, NPCID.Retinazer) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref destroyBoss, NPCID.TheDestroyer))
                                     {
+                                        pool[NPCID.Retinazer] = .005f;
+                                        pool[NPCID.Spazmatism] = .005f;
+                                        pool[NPCID.TheDestroyer] = .005f;
+                                        pool[NPCID.SkeletronPrime] = .005f;
+                                    }
+                                    else
+                                    {
                                         pool[NPCID.Retinazer] = .0025f;
                                         pool[NPCID.Spazmatism] = .0025f;
                                         pool[NPCID.TheDestroyer] = .0025f;
                                         pool[NPCID.SkeletronPrime] = .0025f;
-                                    }
-                                    else
-                                    {
-                                        pool[NPCID.Retinazer] = .00125f;
-                                        pool[NPCID.Spazmatism] = .00125f;
-                                        pool[NPCID.TheDestroyer] = .00125f;
-                                        pool[NPCID.SkeletronPrime] = .00125f;
                                     }
                                 }
                             }
@@ -4286,26 +4286,26 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         if (!BossIsAlive(ref retiBoss, NPCID.Retinazer) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref destroyBoss, NPCID.TheDestroyer))
                                         {
+                                            pool[NPCID.Retinazer] = .005f;
+                                            pool[NPCID.Spazmatism] = .005f;
+                                            pool[NPCID.TheDestroyer] = .005f;
+                                            pool[NPCID.SkeletronPrime] = .005f;
+                                        }
+                                        else
+                                        {
                                             pool[NPCID.Retinazer] = .0025f;
                                             pool[NPCID.Spazmatism] = .0025f;
                                             pool[NPCID.TheDestroyer] = .0025f;
                                             pool[NPCID.SkeletronPrime] = .0025f;
-                                        }
-                                        else
-                                        {
-                                            pool[NPCID.Retinazer] = .00125f;
-                                            pool[NPCID.Spazmatism] = .00125f;
-                                            pool[NPCID.TheDestroyer] = .00125f;
-                                            pool[NPCID.SkeletronPrime] = .00125f;
                                         }
                                     }
                                 }
 
                                 if (NPC.downedPlantBoss)
                                 {
-                                    pool[NPCID.SkeletonSniper] = .025f;
-                                    pool[NPCID.SkeletonCommando] = .025f;
-                                    pool[NPCID.TacticalSkeleton] = .025f;
+                                    pool[NPCID.SkeletonSniper] = .05f;
+                                    pool[NPCID.SkeletonCommando] = .05f;
+                                    pool[NPCID.TacticalSkeleton] = .05f;
                                 }
                             }
 
@@ -4344,7 +4344,7 @@ namespace FargowiltasSouls.NPCs
 
                                         if (NPC.downedHalloweenTree)
                                         {
-                                            pool[NPCID.MourningWood] = .0025f;
+                                            pool[NPCID.MourningWood] = .005f;
                                         }
                                     }
 
@@ -4360,12 +4360,12 @@ namespace FargowiltasSouls.NPCs
 
                                         if (NPC.downedChristmasTree)
                                         {
-                                            pool[NPCID.Everscream] = .0025f;
+                                            pool[NPCID.Everscream] = .005f;
                                         }
 
                                         if (NPC.downedChristmasSantank)
                                         {
-                                            pool[NPCID.SantaNK1] = .0025f;
+                                            pool[NPCID.SantaNK1] = .005f;
                                         }
                                     }
                                 }
@@ -4387,7 +4387,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (NPC.downedFishron)
                             {
-                                pool[NPCID.DukeFishron] = .0025f;
+                                pool[NPCID.DukeFishron] = .005f;
                             }
                         }
                         else if (desert)
@@ -4401,7 +4401,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (spawnInfo.player.ZoneDungeon && night && normalSpawn)
                             {
-                                pool[NPCID.SkeletronHead] = BossIsAlive(ref skeleBoss, NPCID.SkeletronHead) ? .00125f : .0025f;
+                                pool[NPCID.SkeletronHead] = BossIsAlive(ref skeleBoss, NPCID.SkeletronHead) ? .00125f : .005f;
                             }
 
                             if (snow && !Main.dayTime) //frost moon underground
@@ -4417,7 +4417,7 @@ namespace FargowiltasSouls.NPCs
 
                                     if (NPC.downedChristmasIceQueen)
                                     {
-                                        pool[NPCID.IceQueen] = .0025f;
+                                        pool[NPCID.IceQueen] = .005f;
                                     }
                                 }
                             }
@@ -4447,7 +4447,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (NPC.downedGolemBoss)
                         {
-                            pool[NPCID.DD2Betsy] = .0025f;
+                            pool[NPCID.DD2Betsy] = .005f;
                         }
                     }
                     else if (sky)
@@ -4479,7 +4479,7 @@ namespace FargowiltasSouls.NPCs
                     {
                         if (normalSpawn)
                         {
-                            pool[NPCID.EaterofWorldsHead] = BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead) ? .0025f : .005f;
+                            pool[NPCID.EaterofWorldsHead] = BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead) ? .0025f : .01f;
                         }
                     }
 
@@ -4487,7 +4487,7 @@ namespace FargowiltasSouls.NPCs
                     {
                         if (normalSpawn)
                         {
-                            pool[NPCID.BrainofCthulhu] = BossIsAlive(ref brainBoss, NPCID.BrainofCthulhu) ? .0025f : .005f;
+                            pool[NPCID.BrainofCthulhu] = BossIsAlive(ref brainBoss, NPCID.BrainofCthulhu) ? .0025f : .01f;
                         }
                     }
 
@@ -4497,7 +4497,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (normalSpawn && NPC.downedMechBossAny)
                             {
-                                pool[NPCID.QueenBee] = BossIsAlive(ref beeBoss, NPCID.QueenBee) ? .00125f : .0025f;
+                                pool[NPCID.QueenBee] = BossIsAlive(ref beeBoss, NPCID.QueenBee) ? .00125f : .005f;
                             }
                         }
 
@@ -4507,7 +4507,7 @@ namespace FargowiltasSouls.NPCs
 
                             if (NPC.downedGolemBoss)
                             {
-                                pool[NPCID.Plantera] = BossIsAlive(ref NPC.plantBoss, NPCID.Plantera) ? 0.00125f : .0025f;
+                                pool[NPCID.Plantera] = BossIsAlive(ref NPC.plantBoss, NPCID.Plantera) ? 0.00125f : .005f;
                             }
                         }
                     }
@@ -6029,41 +6029,40 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Spazmatism:
                         if (masoBool[1] && Main.rand.Next(3) == 0)
                             target.AddBuff(BuffID.CursedInferno, 480);
-                        break;
-                    /*case NPCID.Retinazer:
+                        goto case NPCID.Retinazer;
+                    case NPCID.Retinazer:
                         target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(120, 240));
                         target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(120, 240));
-                        break;*/
+                        break;
 
                     case NPCID.TheDestroyer:
                         target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(300, 1200));
-                        target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(300, 1200));
-                        target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 1200));
+
                         if (target.statLife <= 400)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by the Destroyer."), 9999, 0);
-                        break;
+                        goto case NPCID.TheDestroyerTail;
 
                     case NPCID.TheDestroyerBody:
                     case NPCID.TheDestroyerTail:
                         target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 1200));
-                        break;
+                        goto case NPCID.PrimeSaw;
 
                     case NPCID.SkeletronPrime:
                         target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(180, 300));
-                        break;
+                        goto case NPCID.PrimeCannon;
 
                     case NPCID.PrimeVice:
                         if (target.mount.Active)
                             target.mount.Dismount(target);
                         target.AddBuff(mod.BuffType<Stunned>(), Main.rand.Next(30, 90));
-                        break;
+                        goto case NPCID.PrimeCannon;
 
-                    /*case NPCID.PrimeCannon:
+                    case NPCID.PrimeCannon:
                     case NPCID.PrimeLaser:
                     case NPCID.PrimeSaw:
                     case NPCID.Probe:
-                        target.AddBuff(mod.BuffType<ClippedWings>(), 15);
-                        break;*/
+                        target.AddBuff(mod.BuffType<ClippedWings>(), 15); //all mech cases come here
+                        break;
 
                     case NPCID.BlackRecluse:
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(30, 300));
