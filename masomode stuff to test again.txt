@@ -240,7 +240,6 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -plantera only gains doubled defense against infested players in phase 2
 -reduced plantera phase 2 rate of fire
 -fixed plantera phase 2 seeds doing no damage
-
 -nerfed all mechs; no longer inflicts clipped wings
 -reduced boss spawn rates. again
 -spazmatism phase 3 moves at 125% speed (was 150%)
@@ -258,6 +257,14 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -lowered fishron mutant nibble duration range to same as sharkrons
 -clown instead explodes into one (1) bouncy grenade if any boss is alive
 -all bosses are worth 10 additional slots to help reduce spawn rates while they're alive
+
+-WOF EYES FIRE DEATHRAYS WHEN BELOW 50% LIFE INFINITYLUL
+-wof tongues you if you run beyond its deathray range
+-wof ichor vomit only occurs when below 50% life
+-wof ichor vomit does a lot less damage (40 -> 24)
+-destroyer max life nerfed to standard expert (fucking hell that's tanky)
+-prime limbs become invulnerable in phase 2 (emphasizes that prime already takes full damage now)
+-prime shoots rockets in phase 1 when a limb is killed
 
 
 THINGS I AM STILL TESTING (IMPORTANT TO TEST/CONFIRM THESE)
