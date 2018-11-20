@@ -62,9 +62,9 @@ Drastically increased ki regen
             //general
             DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(_dbzmod);
             
-            dbtPlayer.KiDamage += 0.35f;
-            dbtPlayer.KiCrit += 20;
-            dbtPlayer.KiSpeedAddition += 0.25f;
+            //dbtPlayer.KiDamage += 0.35f;
+            //dbtPlayer.KiCrit += 20f;
+            //dbtPlayer.KiSpeedAddition += 0.25f;
             dbtPlayer.KiKbAddition += 0.3f;
             dbtPlayer.KiDrainMulti -= 0.4f;
             dbtPlayer.KiMax = (int)(dbtPlayer.KiMax * 1.3);
