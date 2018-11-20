@@ -389,12 +389,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WallofFlesh:
                         masoAI = 35;
                         npc.defense *= 5;
+                        npc.defDefense = npc.defense;
                         break;
 
                     case NPCID.TheDestroyer:
                         masoAI = 36;
-                        npc.lifeMax = npc.lifeMax * 3 / 2;
-                        npc.life = npc.lifeMax;
                         break;
 
                     case NPCID.DukeFishron:
@@ -1961,26 +1960,58 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
-                        Timer++;
-                        if (Timer >= 600)
+                        if (!masoBool[1])
                         {
-                            Timer = Main.rand.Next(300);
-
-                            if (npc.HasPlayerTarget && Main.netMode != 1 && Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].head))
+                            if (npc.life < npc.lifeMax / 2)
                             {
-                                for (int i = 0; i < 10; i++)
+                                masoBool[1] = true;
+                                for (int i = 0; i < 200; i++)
                                 {
-                                    Vector2 speed = Main.player[npc.target].Center - npc.Center;
-                                    speed.Y -= Math.Abs(speed.X) * 0.2f; //account for gravity
-                                    speed.Normalize();
-                                    speed *= 10f;
-                                    speed.X += Main.rand.Next(-20, 21) * 0.1f;
-                                    speed.Y += Main.rand.Next(-20, 21) * 0.1f;
-                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.GoldenShowerHostile, npc.damage / 15, 0f, Main.myPlayer);
+                                    if (Main.npc[i].active && Main.npc[i].type == NPCID.WallofFleshEye && Main.npc[i].realLife == npc.whoAmI)
+                                    {
+                                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoBool[1] = true;
+                                        Main.npc[i].netUpdate = true;
+                                    }
                                 }
+                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                             }
+                        }
+                        else
+                        {
+                            Timer++;
+                            if (Timer >= 600) //ichor vomit
+                            {
+                                Timer = Main.rand.Next(300);
 
-                            npc.netUpdate = true;
+                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                {
+                                    for (int i = 0; i < 10; i++)
+                                    {
+                                        Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                                        speed.Y -= Math.Abs(speed.X) * 0.3f; //account for gravity
+                                        speed.Normalize();
+                                        speed *= 9f;
+                                        speed.X += Main.rand.Next(-20, 21) * 0.09f;
+                                        speed.Y += Main.rand.Next(-20, 21) * 0.09f;
+                                        Projectile.NewProjectile(npc.Center, speed, ProjectileID.GoldenShowerHostile, npc.damage / 25, 0f, Main.myPlayer);
+                                    }
+                                }
+
+                                npc.netUpdate = true;
+                            }
+                        }
+
+                        Counter++;
+                        if (Counter > 60) //inflict unstable on player if they're in hell, too far away, and not debuffed already
+                        {
+                            Counter = 0;
+                            if (npc.HasPlayerTarget && Main.player[npc.target].active && Main.player[npc.target].ZoneUnderworldHeight
+                                && Math.Abs(Main.player[npc.target].Center.X - npc.Center.X) > 3000
+                                && !Main.player[npc.target].HasBuff(BuffID.TheTongue))
+                            {
+                                Main.player[npc.target].AddBuff(BuffID.TheTongue, 10);
+                                Main.PlaySound(15, (int)Main.player[npc.target].position.X, (int)Main.player[npc.target].position.Y, 0);
+                            }
                         }
                         break;
 
@@ -2903,40 +2934,66 @@ namespace FargowiltasSouls.NPCs
                             {
                                 Timer++;
 
-                                if (Timer >= 1500)
+                                switch(Timer)
                                 {
-                                    Timer = 0;
-                                    int n = 200;
+                                    case 300:
+                                    case 600:
+                                    case 900:
+                                    case 1200:
+                                        if (npc.HasPlayerTarget) //skeleton commando rockets LUL
+                                        {
+                                            Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                                            speed.X += Main.rand.Next(-20, 21);
+                                            speed.Y += Main.rand.Next(-20, 21);
+                                            speed.Normalize();
 
-                                    switch (Counter)
-                                    {
-                                        case 1:
-                                            n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeCannon, npc.whoAmI, -1f, npc.whoAmI, 0f, 0f, npc.target);
-                                            break;
+                                            int damage = npc.damage * 2 / 7;
 
-                                        case 2:
-                                            n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeSaw, npc.whoAmI, 1f, npc.whoAmI, 0f, 0f, npc.target);
-                                            break;
+                                            Projectile.NewProjectile(npc.Center, 4f * speed, ProjectileID.RocketSkeleton, damage, 0f, Main.myPlayer);
+                                            Projectile.NewProjectile(npc.Center, 3f * speed.RotatedBy(MathHelper.ToRadians(5f)), ProjectileID.RocketSkeleton, damage, 0f, Main.myPlayer);
+                                            Projectile.NewProjectile(npc.Center, 3f * speed.RotatedBy(MathHelper.ToRadians(-5f)), ProjectileID.RocketSkeleton, damage, 0f, Main.myPlayer);
 
-                                        case 3:
-                                            n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeVice, npc.whoAmI, -1f, npc.whoAmI, 0f, 150f, npc.target);
-                                            break;
+                                            Main.PlaySound(SoundID.Item11, npc.Center);
+                                        }
+                                        break;
 
-                                        case 4:
-                                            n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeLaser, npc.whoAmI, 1f, npc.whoAmI, 0f, 150f, npc.target);
-                                            break;
+                                    case 1500:
+                                        Timer = 0;
+                                        int n = 200;
 
-                                        default:
-                                            break;
-                                    }
+                                        switch (Counter)
+                                        {
+                                            case 1:
+                                                n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeCannon, npc.whoAmI, -1f, npc.whoAmI, 0f, 0f, npc.target);
+                                                break;
 
-                                    if (n != 200)
-                                    {
-                                        Main.npc[n].life = Main.npc[n].lifeMax / 2;
-                                        Main.npc[n].netUpdate = true;
-                                    }
+                                            case 2:
+                                                n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeSaw, npc.whoAmI, 1f, npc.whoAmI, 0f, 0f, npc.target);
+                                                break;
 
-                                    Counter = 0;
+                                            case 3:
+                                                n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeVice, npc.whoAmI, -1f, npc.whoAmI, 0f, 150f, npc.target);
+                                                break;
+
+                                            case 4:
+                                                n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeLaser, npc.whoAmI, 1f, npc.whoAmI, 0f, 150f, npc.target);
+                                                break;
+
+                                            default:
+                                                break;
+                                        }
+
+                                        if (n != 200)
+                                        {
+                                            Main.npc[n].life = Main.npc[n].lifeMax / 2;
+                                            Main.npc[n].netUpdate = true;
+                                        }
+
+                                        Counter = 0;
+                                        goto case 1200;
+
+                                    default:
+                                        break;
                                 }
                             }
                         }
@@ -3152,7 +3209,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 61: //destroyer body/tail
-                        if (npc.realLife != -1)
+                        if (npc.realLife >= 0 && npc.realLife < 200)
                         {
                             int cap = Main.npc[npc.realLife].lifeMax / Main.npc[npc.realLife].life;
                             if (cap > 0)
@@ -3626,6 +3683,7 @@ namespace FargowiltasSouls.NPCs
                         else
                         {
                             npc.position += npc.velocity;
+                            npc.dontTakeDamage = true;
                         }
                         break;
 
@@ -3635,6 +3693,16 @@ namespace FargowiltasSouls.NPCs
                         {
                             Counter = 0;
                             masoBool[0] = !masoBool[0];
+                            if (masoBool[0] && masoBool[2]) //FIRE LASER
+                            {
+                                masoBool[2] = false;
+                                if (Main.netMode != 1)
+                                {
+                                    //Main.NewText("laser deployed");
+                                    Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[3]);
+                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathrayWOF>(), npc.damage / 4, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                }
+                            }
                             npc.netUpdate = true;
                         }
 
@@ -3642,24 +3710,59 @@ namespace FargowiltasSouls.NPCs
                         {
                             SharkCount = 4;
                             npc.dontTakeDamage = true;
-
-                            if (Main.rand.Next(4) < 3)
+                            if (Counter <= 120)
                             {
-                                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 90, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 114, default(Color), 3.5f);
-                                Main.dust[dust].noGravity = true;
-                                Main.dust[dust].velocity *= 1.8f;
-                                Main.dust[dust].velocity.Y -= 0.5f;
-                                if (Main.rand.Next(4) == 0)
-                                {
-                                    Main.dust[dust].noGravity = false;
-                                    Main.dust[dust].scale *= 0.5f;
-                                }
+                                npc.localAI[1] = 0f;
+                                npc.rotation = npc.localAI[3];
                             }
                         }
                         else
                         {
                             SharkCount = 0;
                             npc.dontTakeDamage = false;
+                            if (Counter > 420)
+                            {
+                                if (Main.rand.Next(4) < 3) //dust telegraphs switch
+                                {
+                                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 90, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 114, default(Color), 3.5f);
+                                    Main.dust[dust].noGravity = true;
+                                    Main.dust[dust].velocity *= 1.8f;
+                                    Main.dust[dust].velocity.Y -= 0.5f;
+                                    if (Main.rand.Next(4) == 0)
+                                    {
+                                        Main.dust[dust].noGravity = false;
+                                        Main.dust[dust].scale *= 0.5f;
+                                    }
+                                }
+
+                                const int stopTime = 510;
+                                if (Counter == stopTime) //stop rotating shortly before firing
+                                {
+                                    if (masoBool[1])
+                                    {
+                                        int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                        if (t != -1)
+                                        {
+                                            //Main.NewText("found target OK");
+                                            masoBool[2] = true;
+                                            npc.localAI[3] = (npc.Center - Main.player[t].Center).ToRotation();
+                                            //Main.NewText("stored rotation, warning dust");
+                                            Vector2 offset = Vector2.UnitX.RotatedBy(npc.localAI[3] + Math.PI) * 10f;
+                                            for (int i = 0; i < 240; i++) //dust warning line for laser
+                                            {
+                                                int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 112, 0f, 0f, 0, default(Color), 1.5f);
+                                                Main.dust[d].noGravity = true;
+                                                Main.dust[d].velocity *= 0.5f;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (Counter > stopTime && masoBool[2])
+                                {
+                                    npc.localAI[1] = 0f;
+                                    npc.rotation = npc.localAI[3];
+                                }
+                            }
                         }
                         break;
 

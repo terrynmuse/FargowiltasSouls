@@ -308,6 +308,8 @@
     <Compile Include="Projectiles\laserProj.cs" />
     <Compile Include="Projectiles\Masomode\DeathAura.cs" />
     <Compile Include="Projectiles\Masomode\FuseBomb.cs" />
+    <Compile Include="Projectiles\Masomode\PhantasmalDeathray.cs" />
+    <Compile Include="Projectiles\Masomode\PhantasmalDeathrayWOF.cs" />
     <Compile Include="Projectiles\Minions\BrainProj.cs" />
     <Compile Include="Projectiles\Minions\CreeperProj.cs" />
     <Compile Include="Projectiles\Minions\DestroyerBody.cs" />
@@ -524,6 +526,10 @@
     <Content Include="Projectiles\grapplehookProj.png" />
     <Content Include="Projectiles\laserProj.png" />
     <Content Include="Projectiles\Masomode\DeathAura.png" />
+    <Content Include="Projectiles\Masomode\PhantasmalDeathray.png" />
+    <Content Include="Projectiles\Masomode\PhantasmalDeathray2.png" />
+    <Content Include="Projectiles\Masomode\PhantasmalDeathray3.png" />
+    <Content Include="Projectiles\Masomode\PhantasmalDeathrayWOF.png" />
     <Content Include="Projectiles\Minions\Body22.png" />
     <Content Include="Projectiles\Minions\BrainProj.png" />
     <Content Include="Projectiles\Minions\CreeperProj.png" />
