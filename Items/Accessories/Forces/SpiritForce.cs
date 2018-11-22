@@ -36,7 +36,11 @@ Summons a Tiki Spirit
                 tooltip +=
 @"Your healing streak fuels an ancient crucible every 100 life up to 500 total
 The crucible increases your radiant damage by 5% per 100 life in the crucible
-While worn, taking fatal damage will instead return you to 100 life and instantly teleport you back to your home (2 minute recharge time)";
+While worn, taking fatal damage will instead return you to 100 life and instantly teleport you back to your home (2 minute recharge time)
+Killing enemies or continually damaging bosses generates soul wisps
+After generating 5 wisps, they are instantly consumed to heal you for 10 life
+After healing a nearby ally, a life spirit is released from you
+This spirit seeks out your ally with the lowest life and heals them for 2 life";
             }
 
             Tooltip.SetDefault(tooltip);*/
@@ -83,6 +87,10 @@ While worn, taking fatal damage will instead return you to 100 life and instantl
                 player.AddBuff(thorium.BuffType("GhastlySoul"), 60, true);
             }
             thoriumPlayer.soulStorage = true;
+            //spirit trapper set bonus
+            thoriumPlayer.spiritTrapper = true;
+            //inner flame
+            thoriumPlayer.spiritFlame = true;
         }
 
         public override void AddRecipes()

@@ -517,7 +517,14 @@ namespace FargowiltasSouls.Projectiles
                 {
                     KillPet(projectile, player, thorium.BuffType("WyvernPetBuff"), modPlayer.ShadowEnchant, "Wyvern Pet");
                 }
-
+                else if (projectile.type == thorium.ProjectileType("SupportLantern"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("SupportLanternBuff"), modPlayer.MinerEnchant, "Inspiring Lantern Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("LockBoxPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("LockBoxBuff"), modPlayer.MinerEnchant, "Lock Box Pet");
+                }
             }
 
             if (stormBoosted)

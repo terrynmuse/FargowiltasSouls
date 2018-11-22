@@ -123,6 +123,8 @@ namespace FargowiltasSouls
             ["Bio-Feeder Pet"] = new Color(81, 181, 113),
             ["Blister Pet"] = new Color(81, 181, 113),
             ["Wyvern Pet"] = new Color(81, 181, 113),
+            ["Inspiring Lantern Pet"] = new Color(81, 181, 113),
+            ["Lock Box Pet"] = new Color(81, 181, 113),
         };
 
         private readonly Color defaultColor = new Color(81, 181, 113);

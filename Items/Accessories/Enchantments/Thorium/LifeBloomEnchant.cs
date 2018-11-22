@@ -27,7 +27,8 @@ Pressing the 'Encase' key will place you within a fragile cocoon
 You have greatly reduced damage reduction and increased aggro while within the cocoon
 If you survive the process, your attack speed and damage are briefly increased significantly
 The cocoon may be activated every 1 minute
-Your symphonic damage will empower all nearby allies with: Ammo Consumption II");
+Your living wood sapling's attacks will home in on enemies
+Allows the collection of Vine Rope from vines");
         }
 
         public override void SetDefaults()
@@ -43,26 +44,21 @@ Your symphonic damage will empower all nearby allies with: Ammo Consumption II")
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            LifeBloomEffect(player);
-        }
-        
-        private void LifeBloomEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.lifeBloom = true;
             //chrysalis
             thoriumPlayer.cocoonAcc = true;
-            //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3AmmoConsumption = 2;
+            //living wood set bonus
+            thoriumPlayer.livingWood = true;
+            //vine rope thing
+            player.cordage = true;
         }
         
         private readonly string[] items =
         {
             "Chrysalis",
-            "",
             "GroundedTotemCaller",
             "ButterflyStaff5",
             "HoneyBlade",

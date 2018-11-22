@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
@@ -35,7 +36,14 @@ Summons a pet Lizard and Turtle";
 @"While running, you will periodically generate bees
 Your symphonic damage empowers all nearby allies with: Spider Bite
 Damage done against envenomed enemies is increased by 8%
-Doubles the range of your empowerments effect radius";
+Doubles the range of your empowerments effect radius
+Minion attacks have a 33% chance to heal you lightly
+Pressing the 'Encase' key will place you within a fragile cocoon
+You have greatly reduced damage reduction and increased aggro while within the cocoon
+If you survive the process, your attack speed and damage are briefly increased significantly
+The cocoon may be activated every 1 minute
+Your living wood sapling's attacks will home in on enemies
+Allows the collection of Vine Rope from vines";
             }
 
             tooltip += "Summons a pet Baby Hornet";
@@ -71,6 +79,7 @@ Doubles the range of your empowerments effect radius";
 
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //bee booties
             if ((player.velocity.X > 1f && player.velocity.X > 0f) || (player.velocity.X < 1f && player.velocity.X < 0f))
             {
@@ -81,6 +90,14 @@ Doubles the range of your empowerments effect radius";
                     timer = 0;
                 }
             }
+            //life bloom set bonus
+            thoriumPlayer.lifeBloom = true;
+            //chrysalis
+            thoriumPlayer.cocoonAcc = true;
+            //living wood set bonus
+            thoriumPlayer.livingWood = true;
+            //vine rope thing
+            player.cordage = true;
         }
 
         public override void AddRecipes()
