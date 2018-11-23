@@ -1,0 +1,29 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Users\\home\\Projects\\Terraria\\FargowiltasSouls\\FargowiltasSouls.csproj",
+    "projectName": "FargowiltasSouls",
+    "projectPath": "C:\\Users\\home\\Projects\\Terraria\\FargowiltasSouls\\FargowiltasSouls.csproj",
+    "outputPath": "C:\\Users\\home\\Projects\\Terraria\\FargowiltasSouls\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "net461"
+    ],
+    "frameworks": {
+      "net461": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "net461": {}
+  }
+}
