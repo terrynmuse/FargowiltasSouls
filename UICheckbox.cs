@@ -10,15 +10,17 @@ namespace FargowiltasSouls
     // TODO, tri-state checkbox.
     internal class UiCheckbox : UIText
     {
-        public static Texture2D _checkboxTexture;
-        private readonly bool _clickable = true;
+        public static Texture2D CheckboxTexture;
+        private readonly bool _clickable;
         private bool _selected = true;
         private readonly string _test;
-        private readonly string _tooltip = "";
+        private readonly string _tooltip;
         public Color Color;
+        // ReSharper disable once MemberCanBePrivate.Global
+        // ReSharper disable once NotAccessedField.Global
         public Color Olor;
 
-        public float Order = 0;
+        private const float ORDER = 0;
 
         public UiCheckbox(string text, string tooltip, Color main, Color threed, bool clickable = true, float textScale = 1, bool large = false) : base("", textScale, large)
         {
@@ -28,20 +30,18 @@ namespace FargowiltasSouls
             _clickable = clickable;
             _test = "   " + text;
             SetText("   ");
+            // ReSharper disable once VirtualMemberCallInConstructor
             Recalculate();
         }
 
-        public bool Selected
+        private bool Selected
         {
             get { return _selected; }
             set
             {
-                if (value != _selected)
-                {
-                    _selected = value;
-                    if (OnSelectedChanged != null) OnSelectedChanged(this, EventArgs.Empty);
-                    //OnSelectedChanged?.Invoke();
-                }
+                if (value == _selected) return;
+                _selected = value;
+                OnSelectedChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -58,24 +58,24 @@ namespace FargowiltasSouls
             CalculatedStyle innerDimensions = GetInnerDimensions();
             //Vector2 pos = new Vector2(innerDimensions.X - 20, innerDimensions.Y - 5);
             Vector2 pos = new Vector2(innerDimensions.X, innerDimensions.Y - 5);
-            Vector2 three = new Vector2(innerDimensions.X + 2, innerDimensions.Y - 3); //the positioning of the 3d part
+            // Vector2 three = new Vector2(innerDimensions.X + 2, innerDimensions.Y - 3); //the positioning of the 3d part
 
-            spriteBatch.Draw(_checkboxTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(CheckboxTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             base.DrawSelf(spriteBatch);
             //Utils.DrawBorderString(spriteBatch, this.test, three, this.olor, 1f, 0f, 0f, -1); the 3d part
             Utils.DrawBorderString(spriteBatch, _test, pos, Color);
-            if (IsMouseHovering && _tooltip.Length > 0)
-            {
-                Main.HoverItem = new Item();
-                Main.hoverItemName = _tooltip;
-            }
+            
+            if (!IsMouseHovering || _tooltip.Length <= 0) return;
+            
+            Main.HoverItem = new Item();
+            Main.hoverItemName = _tooltip;
         }
 
         public override int CompareTo(object obj)
         {
             UiCheckbox other = obj as UiCheckbox;
-            return Order.CompareTo(other.Order);
+            return ORDER.CompareTo(ORDER);
         }
     }
 }

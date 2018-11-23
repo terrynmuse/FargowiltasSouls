@@ -426,7 +426,7 @@ namespace FargowiltasSouls
         public override void PreUpdate()
         {
             IsStandingStill = Math.Abs(player.velocity.X) < 0.05 && Math.Abs(player.velocity.Y) < 0.05;
-
+            
             player.npcTypeNoAggro[0] = true;
 
             if (FargoWorld.MasochistMode)
