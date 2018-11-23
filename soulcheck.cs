@@ -125,14 +125,14 @@ namespace FargowiltasSouls
             ["Wyvern Pet"] = new Color(81, 181, 113),
         };
 
-        private readonly Color defaultColor = new Color(81, 181, 113);
+        private readonly Color _defaultColor = new Color(81, 181, 113);
         private readonly Color _wtf = new Color(173, 94, 171);
         private UIPanel _checklistPanel;
         private bool _dragging;
 
         private Vector2 _offset;
-        private float left;
-        private float top = 20f;
+        private float _left;
+        private float _top = 20f;
 
         public static bool GetValue(string buff)
         {
@@ -147,30 +147,24 @@ namespace FargowiltasSouls
             if (ToggleDict.Count != toggles.Count) ToggleDict.Add(name, true);
 
             UiCheckbox uibox = new UiCheckbox(name, "", color, _wtf);
-            uibox.Left.Set(left, 0f);
-            uibox.Top.Set(top, 0f);
-            uibox.OnSelectedChanged += (o, e) => { ToggleDict[name] = !ToggleDict[name]; };
-
+            
+            uibox.Left.Set(_left, 0f);
+            uibox.Top.Set(_top, 0f);
+            
             uibox.OnSelectedChanged += (o, e) =>
             {
-                if (uibox.Color == defaultColor)
-                {
-                    uibox.Color = Color.Gray;
-                }
-                else
-                {
-                    uibox.Color = defaultColor;
-                }
+                ToggleDict[name] = !ToggleDict[name];
+                uibox.Color = uibox.Color == _defaultColor ? Color.Gray : _defaultColor;
             };
 
             _checklistPanel.Append(uibox);
 
             checkboxDict.Add(name, uibox);
 
-            top += 25f;
-            if (!(top >= 565)) return;
-            top = 20f;
-            left += 260f;
+            _top += 25f;
+            if (!(_top >= 565)) return;
+            _top = 20f;
+            _left += 260f;
         }
 
         public override void OnInitialize()
@@ -188,7 +182,7 @@ namespace FargowiltasSouls
             _checklistPanel.OnMouseUp += DragOff;
             Append(_checklistPanel);
 
-            UiCheckbox._checkboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
+            UiCheckbox.CheckboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
 
             if (thorium == null)
             {
@@ -237,9 +231,11 @@ namespace FargowiltasSouls
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             Vector2 mousePosition = new Vector2(Main.mouseX, Main.mouseY);
+            
             if (_checklistPanel.ContainsPoint(mousePosition)) Main.LocalPlayer.mouseInterface = true;
-
+            
             if (!_dragging) return;
+            
             _checklistPanel.Left.Set(mousePosition.X - _offset.X, 0f);
             _checklistPanel.Top.Set(mousePosition.Y - _offset.Y, 0f);
             Recalculate();
