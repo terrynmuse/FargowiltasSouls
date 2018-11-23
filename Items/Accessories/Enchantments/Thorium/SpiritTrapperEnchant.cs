@@ -41,13 +41,9 @@ This spirit seeks out your ally with the lowest life and heals them for 2 life")
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            TrapperEffect(player);
-        }
-        
-        private void TrapperEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //set bonus
             thoriumPlayer.spiritTrapper = true;
             //inner flame
             thoriumPlayer.spiritFlame = true;

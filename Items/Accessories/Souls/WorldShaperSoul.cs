@@ -2,16 +2,20 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using static Terraria.ID.ItemID;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     [AutoloadEquip(EquipType.Back)]
     public class WorldShaperSoul : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("World Shaper Soul");
-            Tooltip.SetDefault(@"'Limitless possibilities'
+            Tooltip.SetDefault(
+@"'Limitless possibilities'
 Near infinite block placement and mining reach
 Increased block and wall placement speed by 25% 
 Mining speed doubled 
@@ -35,7 +39,8 @@ No enemies can spawn
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).BuilderEffect = true;
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            modPlayer.BuilderEffect = true;
 
             player.tileSpeed += 0.25f;
             player.wallSpeed += 0.25f;
@@ -55,7 +60,20 @@ No enemies can spawn
             //presserator
             player.autoActuator = true;
 
-            if (!hideVisual) player.GetModPlayer<FargoPlayer>(mod).BuilderMode = true;
+            if (!hideVisual) modPlayer.BuilderMode = true;
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
+            thoriumPlayer.geodeShine = true;
+            Lighting.AddLight(player.position, 1.2f, 0.8f, 1.2f);
+            //pets
+            modPlayer.AddPet("Inspiring Lantern Pet", hideVisual, thorium.BuffType("SupportLanternBuff"), thorium.ProjectileType("SupportLantern"));
+            thoriumPlayer.lanternPet = true;
+            modPlayer.AddPet("Lock Box Pet", hideVisual, thorium.BuffType("LockBoxBuff"), thorium.ProjectileType("LockBoxPet"));
+            thoriumPlayer.LockBoxPet = true;
+            //mining speed, spelunker, dangersense, light, hunter, pet
+            modPlayer.MinerEffect(hideVisual, .5f);
         }
 
         public override void AddRecipes()
@@ -82,7 +100,7 @@ No enemies can spawn
             }
             
             /*
-            crystalline charm
+             * geode enchant
             GnomeKingPickaxe
             impact drill
             TerrariumCanyonSplitter
