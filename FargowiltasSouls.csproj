@@ -15,6 +15,9 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FNA, Version=17.3.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>D:\Steam\steamapps\common\Terraria\ModCompile\FNA.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Game" />
     <Reference Include="Microsoft.Xna.Framework.Graphics" />
@@ -24,16 +27,17 @@
       <HintPath>D:\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
     <Reference Include="ThoriumMod">
-      <HintPath>..\folder for wip\ThoriumMod.dll</HintPath>
+      <HintPath Condition="Exists('..\folder for wip')">..\folder for wip\ThoriumMod.dll</HintPath>
+      <HintPath Condition="Exists('..\..\References')">..\..\References\ThoriumMod.dll</HintPath> 
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="**\*.png"/>
-    <Content Include="**\**\*.png"/>
-    <Content Include="**\**\**\*.png"/>
-    <Content Include="*.png"/>
-    <Content Include="Sounds\**\*.wav"/>
-    <Content Include="Sounds\*.mp3"/>
+    <Content Include="**\*.png" />
+    <Content Include="**\**\*.png" />
+    <Content Include="**\**\**\*.png" />
+    <Content Include="*.png" />
+    <Content Include="Sounds\**\*.wav" />
+    <Content Include="Sounds\*.mp3" />
     <Content Include="build.txt" />
     <Content Include="description.txt" />
   </ItemGroup>
@@ -43,5 +47,8 @@
     <Compile Remove="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Remove="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Remove="Projectiles\NukeProj.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib" />
   </ItemGroup>
 </Project>
