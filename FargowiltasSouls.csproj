@@ -18,9 +18,6 @@
     <Reference Include="FNA, Version=17.3.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>D:\Steam\steamapps\common\Terraria\ModCompile\FNA.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xna.Framework" />
-    <Reference Include="Microsoft.Xna.Framework.Game" />
-    <Reference Include="Microsoft.Xna.Framework.Graphics" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Terraria, Version=1.3.5.1, Culture=neutral, PublicKeyToken=null">
