@@ -3643,6 +3643,7 @@ namespace FargowiltasSouls.NPCs
                     case 77: //all prime limbs
                         if (!masoBool[0])
                         {
+                            RegenTimer = 2;
                             if (BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && Main.npc[primeBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[0])
                             {
                                 masoBool[0] = true;
