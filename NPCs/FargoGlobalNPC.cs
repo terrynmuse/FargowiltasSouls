@@ -418,8 +418,6 @@ namespace FargowiltasSouls.NPCs
                         npc.trapImmune = true;
                         break;
 
-                    case NPCID.GolemFistLeft:
-                    case NPCID.GolemFistRight:
                     case NPCID.GolemHead:
                         masoAI = 42;
                         npc.trapImmune = true;
@@ -582,6 +580,12 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFleshEye:
                         masoAI = 78;
+                        break;
+
+                    case NPCID.GolemFistLeft:
+                    case NPCID.GolemFistRight:
+                        masoAI = 79;
+                        npc.trapImmune = true;
                         break;
 
                     default:
@@ -1641,7 +1645,7 @@ namespace FargowiltasSouls.NPCs
                                         break;
                                 }
                             }
-                            else //cursed flamethrower when dashing
+                            else if (npc.HasPlayerTarget && Main.player[npc.target].active) //cursed flamethrower when dashing
                             {
                                 Counter++;
                                 if (Counter == 4)
@@ -1976,14 +1980,44 @@ namespace FargowiltasSouls.NPCs
                                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                             }
                         }
-                        else
+                        else //in phase 2
                         {
+                            Counter++;
+                            if (Counter >= 240)
+                            {
+                                Counter = Main.rand.Next(120);
+                                if (Main.netMode != 1 && npc.HasPlayerTarget && Main.player[npc.target].active) //vanilla spaz p1 shoot fireball code
+                                {
+                                    Vector2 Speed = Main.player[npc.target].Center - npc.Center;
+                                    double angle = Speed.ToRotation();
+                                    if (Speed.X * npc.velocity.X > 0) //don't shoot fireballs behind myself
+                                    {
+                                        Speed.Normalize();
+                                        int Damage;
+                                        Speed *= 12f;
+                                        Damage = npc.damage / 12;
+                                        Speed.X += Main.rand.Next(-40, 41) * 0.05f;
+                                        Speed.Y += Main.rand.Next(-40, 41) * 0.05f;
+                                        Projectile.NewProjectile(npc.Center + Speed * 4f, Speed, ProjectileID.CursedFlameHostile, Damage, 0f, Main.myPlayer);
+                                    }
+                                }
+                                npc.netUpdate = true;
+
+                                //tongue the player if they're in hell, too far away, and not debuffed already
+                                if (npc.HasPlayerTarget && Main.player[npc.target].active && Main.player[npc.target].ZoneUnderworldHeight
+                                && Math.Abs(Main.player[npc.target].Center.X - npc.Center.X) > 3000
+                                && !Main.player[npc.target].HasBuff(BuffID.TheTongue))
+                                {
+                                    Main.player[npc.target].AddBuff(BuffID.TheTongue, 10);
+                                    Main.PlaySound(15, (int)Main.player[npc.target].position.X, (int)Main.player[npc.target].position.Y, 0);
+                                }
+                            }
+
                             Timer++;
                             if (Timer >= 600) //ichor vomit
                             {
                                 Timer = Main.rand.Next(300);
-
-                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                if (npc.HasPlayerTarget && Main.netMode != 1 && Main.player[npc.target].active)
                                 {
                                     for (int i = 0; i < 10; i++)
                                     {
@@ -1996,21 +2030,7 @@ namespace FargowiltasSouls.NPCs
                                         Projectile.NewProjectile(npc.Center, speed, ProjectileID.GoldenShowerHostile, npc.damage / 25, 0f, Main.myPlayer);
                                     }
                                 }
-
                                 npc.netUpdate = true;
-                            }
-                        }
-
-                        Counter++;
-                        if (Counter > 60) //inflict unstable on player if they're in hell, too far away, and not debuffed already
-                        {
-                            Counter = 0;
-                            if (npc.HasPlayerTarget && Main.player[npc.target].active && Main.player[npc.target].ZoneUnderworldHeight
-                                && Math.Abs(Main.player[npc.target].Center.X - npc.Center.X) > 3000
-                                && !Main.player[npc.target].HasBuff(BuffID.TheTongue))
-                            {
-                                Main.player[npc.target].AddBuff(BuffID.TheTongue, 10);
-                                Main.PlaySound(15, (int)Main.player[npc.target].position.X, (int)Main.player[npc.target].position.Y, 0);
                             }
                         }
                         break;
@@ -2020,7 +2040,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (!masoBool[0])
                         {
-                            if (npc.life < npc.lifeMax / 2)
+                            if (npc.life < npc.lifeMax * 3 / 4)
                             {
                                 masoBool[0] = true;
                                 npc.netUpdate = true;
@@ -2042,6 +2062,8 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (npc.HasPlayerTarget && !Main.dayTime && !Main.player[npc.target].dead)
                             {
+                                npc.position -= npc.velocity;
+
                                 int cornerX1 = (int)npc.position.X / 16 - 1;
                                 int cornerX2 = (int)(npc.position.X + npc.width) / 16 + 2;
                                 int cornerY1 = (int)npc.position.Y / 16 - 1;
@@ -2080,181 +2102,127 @@ namespace FargowiltasSouls.NPCs
                                         break;
                                 }
 
+                                const float num14 = 17f;    //max speed?
+                                const float num15 = 0.12f;   //turn speed?
+                                const float num16 = 0.17f;   //acceleration?
+                                float num17 = Main.player[npc.target].Center.X;
+                                float num18 = Main.player[npc.target].Center.Y;
+
+                                float num21 = num17 - npc.Center.X;
+                                float num22 = num18 - npc.Center.Y;
+                                float num23 = (float)Math.Sqrt((double)num21 * (double)num21 + (double)num22 * (double)num22);
+
                                 if (!isOnSolidTile)
                                 {
                                     //negating default air behaviour
                                     npc.velocity.Y -= 0.15f;
 
-                                    float num14 = 16f;
-                                    float num15 = 0.1f;
-                                    float num16 = 0.15f;
-                                    float num17 = Main.player[npc.target].Center.X;
-                                    float num18 = Main.player[npc.target].Center.Y;
-
-                                    float num21 = num17 - npc.Center.X;
-                                    float num22 = num18 - npc.Center.Y;
-                                    float num23 = (float)Math.Sqrt((double)num21 * (double)num21 + (double)num22 * (double)num22);
-
                                     if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.4f)
                                     {
                                         if (npc.velocity.X < 0f)
-                                        {
                                             npc.velocity.X += num15 * 1.1f;
-                                        }
                                         else
-                                        {
                                             npc.velocity.X -= num15 * 1.1f;
-                                        }
                                     }
                                     else if (npc.velocity.Y == num14)
                                     {
                                         if (npc.velocity.X < num21)
-                                        {
                                             npc.velocity.X -= num15;
-                                        }
                                         else if (npc.velocity.X > num21)
-                                        {
                                             npc.velocity.X += num15;
-                                        }
                                     }
                                     else if (npc.velocity.Y > 4f)
                                     {
                                         if (npc.velocity.X < 0f)
-                                        {
                                             npc.velocity.X -= num15 * 0.9f;
-                                        }
                                         else
-                                        {
                                             npc.velocity.X += num15 * 0.9f;
-                                        }
                                     }
-
-                                    //ground movement code but it only runs when airborne
-                                    float num2 = (float)Math.Sqrt(num21 * num21 + num22 * num22);
-                                    float num3 = Math.Abs(num21);
-                                    float num4 = Math.Abs(num22);
-
-                                    float num5 = num14 / num2;
-                                    float num6 = num21 * num5;
-                                    float num7 = num22 * num5;
-
-                                    if ((npc.velocity.X > 0f && num6 > 0f || npc.velocity.X < 0f && num6 < 0f) && (npc.velocity.Y > 0f && num7 > 0f || npc.velocity.Y < 0f && num7 < 0f))
-                                    {
-                                        if (npc.velocity.X < num6)
-                                        {
-                                            npc.velocity.X += num16;
-                                        }
-                                        else if (npc.velocity.X > num6)
-                                        {
-                                            npc.velocity.X -= num16;
-                                        }
-                                        if (npc.velocity.Y < num7)
-                                        {
-                                            npc.velocity.Y += num16;
-                                        }
-                                        else if (npc.velocity.Y > num7)
-                                        {
-                                            npc.velocity.Y -= num16;
-                                        }
-                                    }
-
-                                    if (npc.velocity.X > 0f && num6 > 0f || npc.velocity.X < 0f && num6 < 0f || npc.velocity.Y > 0f && num7 > 0f || npc.velocity.Y < 0f && num7 < 0f)
-                                    {
-                                        if (npc.velocity.X < num6)
-                                        {
-                                            npc.velocity.X += num15;
-                                        }
-                                        else if (npc.velocity.X > num6)
-                                        {
-                                            npc.velocity.X -= num15;
-                                        }
-                                        if (npc.velocity.Y < num7)
-                                        {
-                                            npc.velocity.Y += num15;
-                                        }
-                                        else if (npc.velocity.Y > num7)
-                                        {
-                                            npc.velocity.Y -= num15;
-                                        }
-
-                                        if (Math.Abs(num7) < num14 * 0.2f && (npc.velocity.X > 0f && num6 < 0f || npc.velocity.X < 0f && num6 > 0f))
-                                        {
-                                            if (npc.velocity.Y > 0f)
-                                            {
-                                                npc.velocity.Y += num15 * 2f;
-                                            }
-                                            else
-                                            {
-                                                npc.velocity.Y -= num15 * 2f;
-                                            }
-                                        }
-
-                                        if (Math.Abs(num6) < num14 * 0.2f && (npc.velocity.Y > 0f && num7 < 0f || npc.velocity.Y < 0f && num7 > 0f))
-                                        {
-                                            if (npc.velocity.X > 0f)
-                                            {
-                                                npc.velocity.X += num15 * 2f;
-                                            }
-                                            else
-                                            {
-                                                npc.velocity.X -= num15 * 2f;
-                                            }
-                                        }
-                                    }
-                                    else if (num3 > num4)
-                                    {
-                                        if (npc.velocity.X < num6)
-                                        {
-                                            npc.velocity.X += num15 * 1.1f;
-                                        }
-                                        else if (npc.velocity.X > num6)
-                                        {
-                                            npc.velocity.X -= num15 * 1.1f;
-                                        }
-                                        if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.5f)
-                                        {
-                                            if (npc.velocity.Y > 0f)
-                                            {
-                                                npc.velocity.Y += num15;
-                                            }
-                                            else
-                                            {
-                                                npc.velocity.Y -= num15;
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (npc.velocity.Y < num7)
-                                        {
-                                            npc.velocity.Y += num15 * 1.1f;
-                                        }
-                                        else if (npc.velocity.Y > num7)
-                                        {
-                                            npc.velocity.Y -= num15 * 1.1f;
-                                        }
-
-                                        if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.5f)
-                                        {
-                                            if (npc.velocity.X > 0f)
-                                            {
-                                                npc.velocity.X += num15;
-                                            }
-                                            else
-                                            {
-                                                npc.velocity.X -= num15;
-                                            }
-                                        }
-                                    }
-
-                                    npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X) + 1.57f;
-
-                                    npc.netUpdate = true;
-                                    npc.localAI[0] = 1f;
                                 }
-                            }
 
-                            npc.position += npc.velocity * (1f - (float)npc.life / npc.lifeMax);
+                                //ground movement code but it always runs
+                                float num2 = (float)Math.Sqrt(num21 * num21 + num22 * num22);
+                                float num3 = Math.Abs(num21);
+                                float num4 = Math.Abs(num22);
+                                float num5 = num14 / num2;
+                                float num6 = num21 * num5;
+                                float num7 = num22 * num5;
+                                if ((npc.velocity.X > 0f && num6 > 0f || npc.velocity.X < 0f && num6 < 0f) && (npc.velocity.Y > 0f && num7 > 0f || npc.velocity.Y < 0f && num7 < 0f))
+                                {
+                                    if (npc.velocity.X < num6)
+                                        npc.velocity.X += num16;
+                                    else if (npc.velocity.X > num6)
+                                        npc.velocity.X -= num16;
+                                    if (npc.velocity.Y < num7)
+                                        npc.velocity.Y += num16;
+                                    else if (npc.velocity.Y > num7)
+                                        npc.velocity.Y -= num16;
+                                }
+                                if (npc.velocity.X > 0f && num6 > 0f || npc.velocity.X < 0f && num6 < 0f || npc.velocity.Y > 0f && num7 > 0f || npc.velocity.Y < 0f && num7 < 0f)
+                                {
+                                    if (npc.velocity.X < num6)
+                                        npc.velocity.X += num15;
+                                    else if (npc.velocity.X > num6)
+                                        npc.velocity.X -= num15;
+                                    if (npc.velocity.Y < num7)
+                                        npc.velocity.Y += num15;
+                                    else if (npc.velocity.Y > num7)
+                                        npc.velocity.Y -= num15;
+
+                                    if (Math.Abs(num7) < num14 * 0.2f && (npc.velocity.X > 0f && num6 < 0f || npc.velocity.X < 0f && num6 > 0f))
+                                    {
+                                        if (npc.velocity.Y > 0f)
+                                            npc.velocity.Y += num15 * 2f;
+                                        else
+                                            npc.velocity.Y -= num15 * 2f;
+                                    }
+                                    if (Math.Abs(num6) < num14 * 0.2f && (npc.velocity.Y > 0f && num7 < 0f || npc.velocity.Y < 0f && num7 > 0f))
+                                    {
+                                        if (npc.velocity.X > 0f)
+                                            npc.velocity.X += num15 * 2f;
+                                        else
+                                            npc.velocity.X -= num15 * 2f;
+                                    }
+                                }
+                                else if (num3 > num4)
+                                {
+                                    if (npc.velocity.X < num6)
+                                        npc.velocity.X += num15 * 1.1f;
+                                    else if (npc.velocity.X > num6)
+                                        npc.velocity.X -= num15 * 1.1f;
+
+                                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.5f)
+                                    {
+                                        if (npc.velocity.Y > 0f)
+                                            npc.velocity.Y += num15;
+                                        else
+                                            npc.velocity.Y -= num15;
+                                    }
+                                }
+                                else
+                                {
+                                    if (npc.velocity.Y < num7)
+                                        npc.velocity.Y += num15 * 1.1f;
+                                    else if (npc.velocity.Y > num7)
+                                        npc.velocity.Y -= num15 * 1.1f;
+
+                                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num14 * 0.5f)
+                                    {
+                                        if (npc.velocity.X > 0f)
+                                            npc.velocity.X += num15;
+                                        else
+                                            npc.velocity.X -= num15;
+                                    }
+                                }
+                                npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X) + 1.57f;
+                                npc.netUpdate = true;
+                                npc.localAI[0] = 1f;
+
+                                float ratio = (float)npc.life / npc.lifeMax;
+                                if (ratio > 0.75f)
+                                    ratio = 0.75f;
+                                npc.position += npc.velocity * (2f - ratio);
+                            }
                         }
                         break;
 
@@ -2371,10 +2339,10 @@ namespace FargowiltasSouls.NPCs
                                     if (Counter >= 6) //display healing effect
                                     {
                                         Counter = 0;
-                                        int heal = npc.lifeMax * Main.rand.Next(100, 121) / 1000;
+                                        int heal = npc.lifeMax * Main.rand.Next(100, 121) / 2000;
                                         npc.life += heal;
-                                        if (npc.life > npc.lifeMax)
-                                            npc.life = npc.lifeMax;
+                                        if (npc.life > npc.lifeMax / 2)
+                                            npc.life = npc.lifeMax / 2;
                                         CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
                                     }
                                 }
@@ -2382,7 +2350,7 @@ namespace FargowiltasSouls.NPCs
 
                             case 10: //phase 3
                                 //vanilla fishron has x1.1 damage in p3. p2 has x1.2 damage...
-                                npc.damage = (int)(npc.defDamage * 1.3 * (Main.expertMode ? 0.6f * Main.damageMultiplier : 1f));
+                                npc.damage = (int)(npc.defDamage * 1.2 * (Main.expertMode ? 0.6f * Main.damageMultiplier : 1f));
                                 npc.defense = npc.defDefense;
                                 npc.position += npc.velocity * 0.25f;
 
@@ -2581,15 +2549,25 @@ namespace FargowiltasSouls.NPCs
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                             if (t != -1 && NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                             {
-                                Counter = (short)(300 * (1f - (float)Main.npc[NPC.golemBoss].life / Main.npc[NPC.golemBoss].lifeMax));
+                                Counter = (int)(240f * (1f - (float)Main.npc[NPC.golemBoss].life / Main.npc[NPC.golemBoss].lifeMax));
 
                                 Vector2 velocity = Main.player[t].Center - npc.Center;
                                 velocity.Normalize();
                                 velocity *= 11f;
 
-                                velocity = velocity.RotatedBy(MathHelper.ToRadians(-15));
+                                int max;
+                                if (Main.rand.Next(2) == 0)
+                                {
+                                    velocity = velocity.RotatedBy(MathHelper.ToRadians(-15));
+                                    max = 4;
+                                }
+                                else
+                                {
+                                    velocity = velocity.RotatedBy(MathHelper.ToRadians(-10));
+                                    max = 3;
+                                }
 
-                                for (int i = 0; i < 4; i++)
+                                for (int i = 0; i < max; i++)
                                 {
                                     int p = Projectile.NewProjectile(npc.Center, velocity, ProjectileID.EyeBeam, 27, 0f, Main.myPlayer);
                                     Main.projectile[p].timeLeft = 300;
@@ -2604,11 +2582,10 @@ namespace FargowiltasSouls.NPCs
                         }
                         break; //invincible anyway, so no regen needed
 
-                    case 42: //all vulnerable golem parts
+                    case 42: //golem head
                         if (!npc.dontTakeDamage)
                         {
-                            bool isFist = npc.type == NPCID.GolemFistLeft || npc.type == NPCID.GolemFistRight;
-                            npc.life += isFist ? 167 : 8;
+                            npc.life += 17;
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
 
@@ -2616,8 +2593,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                int healDisplay = isFist ? 9999 : 500;
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, healDisplay, false, false);
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 1000, false, false);
                             }
                         }
                         break;
@@ -3695,12 +3671,12 @@ namespace FargowiltasSouls.NPCs
                             masoBool[0] = !masoBool[0];
                             if (masoBool[0] && masoBool[2]) //FIRE LASER
                             {
-                                masoBool[2] = false;
                                 if (Main.netMode != 1)
                                 {
                                     //Main.NewText("laser deployed");
                                     Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[3]);
-                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathrayWOF>(), npc.damage / 4, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                    float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
+                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathrayWOF>(), npc.damage / 4, 0f, Main.myPlayer, ai0, npc.whoAmI);
                                 }
                             }
                             npc.netUpdate = true;
@@ -3710,10 +3686,14 @@ namespace FargowiltasSouls.NPCs
                         {
                             SharkCount = 4;
                             npc.dontTakeDamage = true;
-                            if (Counter <= 120)
+                            if (Counter <= 120 && masoBool[2])
                             {
                                 npc.localAI[1] = 0f;
                                 npc.rotation = npc.localAI[3];
+                            }
+                            else
+                            {
+                                masoBool[2] = false;
                             }
                         }
                         else
@@ -3754,6 +3734,8 @@ namespace FargowiltasSouls.NPCs
                                                 Main.dust[d].noGravity = true;
                                                 Main.dust[d].velocity *= 0.5f;
                                             }
+                                            if (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0)
+                                                npc.localAI[3] += (float)Math.PI;
                                         }
                                     }
                                 }
@@ -3763,6 +3745,18 @@ namespace FargowiltasSouls.NPCs
                                     npc.rotation = npc.localAI[3];
                                 }
                             }
+                        }
+                        break;
+
+                    case 79: //golem fists
+                        npc.life += 167;
+                        if (npc.life > npc.lifeMax)
+                            npc.life = npc.lifeMax;
+                        Timer++;
+                        if (Timer >= 75)
+                        {
+                            Timer = Main.rand.Next(30);
+                            CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 9999, false, false);
                         }
                         break;
 
@@ -6318,8 +6312,10 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.AncientCultistSquidhead:
-                        target.AddBuff(mod.BuffType<Flipped>(), Main.rand.Next(60, 120));
-                        target.AddBuff(mod.BuffType<Unstable>(), Main.rand.Next(120, 180));
+                        if (Main.rand.Next(2) == 0)
+                            target.AddBuff(mod.BuffType<Flipped>(), Main.rand.Next(30, 60));
+                        else
+                            target.AddBuff(mod.BuffType<Unstable>(), Main.rand.Next(30, 60));
                         break;
 
                     case NPCID.SolarCrawltipedeHead:
@@ -6407,6 +6403,16 @@ namespace FargowiltasSouls.NPCs
                             if (target.inventory[i].pick != 0 || target.inventory[i].hammer != 0 || target.inventory[i].axe != 0)
                                 StealFromInventory(target, ref target.inventory[i]);
                         }
+                        break;
+
+                    case NPCID.Golem:
+                        if (!target.HasBuff(mod.BuffType<Fused>()))
+                            target.AddBuff(mod.BuffType<Fused>(), target.longInvince ? 82 : 42);
+                        break;
+
+                    case NPCID.GolemFistLeft:
+                    case NPCID.GolemFistRight:
+                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(60, 300));
                         break;
 
                     default:

@@ -2,7 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\NPCs",
-    "\\Projectiles"
+    "\\Projectiles",
+    "\\Projectiles\\Masomode"
   ],
   "SelectedNode": "\\NPCs\\FargoGlobalNPC.cs",
   "PreviewInSolutionExplorer": false
