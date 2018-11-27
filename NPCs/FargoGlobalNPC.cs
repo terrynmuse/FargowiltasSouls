@@ -1425,7 +1425,7 @@ namespace FargowiltasSouls.NPCs
                             }
 
                             //2*pi * (# of full circles) / (seconds to finish rotation) / (ticks per sec)
-                            const float rotationInterval = 2f * (float)Math.PI * 1.5f / 4f / 60f;
+                            const float rotationInterval = 2f * (float)Math.PI * 1.25f / 4f / 60f;
 
                             Counter++;
                             switch (masoState) //laser code idfk
@@ -1652,7 +1652,7 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     Counter = 0;
 
-                                    Projectile.NewProjectile(npc.Center, npc.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-2, 3))), ProjectileID.EyeFire, npc.damage / 5, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.Center, npc.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-6f, 6f))) * 0.66f, ProjectileID.EyeFire, npc.damage / 5, 0f, Main.myPlayer);
                                 }
                             }
 
@@ -2923,7 +2923,7 @@ namespace FargowiltasSouls.NPCs
                                             speed.Y += Main.rand.Next(-20, 21);
                                             speed.Normalize();
 
-                                            int damage = npc.damage * 2 / 7;
+                                            int damage = npc.damage / 4;
 
                                             Projectile.NewProjectile(npc.Center, 4f * speed, ProjectileID.RocketSkeleton, damage, 0f, Main.myPlayer);
                                             Projectile.NewProjectile(npc.Center, 3f * speed.RotatedBy(MathHelper.ToRadians(5f)), ProjectileID.RocketSkeleton, damage, 0f, Main.myPlayer);
@@ -2961,7 +2961,7 @@ namespace FargowiltasSouls.NPCs
 
                                         if (n != 200)
                                         {
-                                            Main.npc[n].life = Main.npc[n].lifeMax / 2;
+                                            Main.npc[n].life = Main.npc[n].lifeMax / 4;
                                             Main.npc[n].netUpdate = true;
                                         }
 
@@ -3024,6 +3024,9 @@ namespace FargowiltasSouls.NPCs
                                     Main.PlaySound(SoundID.Item11, npc.Center);
                                 }
                             }
+
+                            if (npc.ai[1] != 2f) //0 defense in phase 2 and not DG mode
+                                npc.defense = 0;
                         }
                         break;
 
@@ -3651,7 +3654,7 @@ namespace FargowiltasSouls.NPCs
                                 npc.defense = 9999;
                                 int heal = npc.lifeMax - npc.life;
                                 npc.life = npc.lifeMax;
-                                npc.damage = npc.damage * 3 / 2;
+                                npc.damage = npc.damage * 4 / 3;
                                 if (heal > 0)
                                     CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
                                 npc.netUpdate = true;
@@ -3659,7 +3662,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
-                            npc.position += npc.velocity;
+                            npc.position += npc.velocity / 2f;
                             npc.dontTakeDamage = true;
                         }
                         break;
@@ -5374,16 +5377,16 @@ namespace FargowiltasSouls.NPCs
                         switch (armCount)
                         {
                             case 4:
-                                damage /= 20;
+                                damage = damage / 20;
                                 break;
                             case 3:
-                                damage /= 10;
+                                damage = damage / 2;
                                 break;
                             case 2:
-                                damage /= 4;
+                                damage = damage * 3 / 4;
                                 break;
                             case 1:
-                                damage /= 2;
+                                damage = damage * 9 / 10;
                                 break;
                             default:
                                 break;
@@ -5564,16 +5567,16 @@ namespace FargowiltasSouls.NPCs
                         switch (armCount)
                         {
                             case 4:
-                                damage /= 20;
+                                damage = damage / 20;
                                 break;
                             case 3:
-                                damage /= 10;
+                                damage = damage / 2;
                                 break;
                             case 2:
-                                damage /= 4;
+                                damage = damage * 3 / 4;
                                 break;
                             case 1:
-                                damage /= 2;
+                                damage = damage * 9 / 10;
                                 break;
                             default:
                                 break;

@@ -281,6 +281,13 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -golem body inflicts fused
 -ancient vision debuff durations nerfed. can only apply one debuff per hit
 -skeletron prime limbs do not have regen.
+-nerfed skeletron prime DR a lot because everything besides daedalus cant do jack shit
+-nerfed skeletron prime rocket damage
+-nerfed skeletron prime limb life on revive to 1/4
+-nerfed skeletron prime limbs to move at 50% speed in phase 2 (was 100%)
+-nerfed skeletron prime limbs to gain 33% damage in phase 2 (was 50%)
+-nerfed skeletron prime to always have zero defense in phase 2
+-nerfed spaz p2 flamethrower range a lot
 
 THINGS I AM STILL TESTING (IMPORTANT TO TEST/CONFIRM THESE)
 -golem drawNPC error when killed?
