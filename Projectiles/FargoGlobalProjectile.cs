@@ -314,13 +314,13 @@ namespace FargowiltasSouls.Projectiles
             return true;
         }
 
-        private void KillPet(Projectile projectile, Player player, int buff, bool enchant, string toggle)
+        private void KillPet(Projectile projectile, Player player, int buff, bool enchant, string toggle, bool minion = false)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             if (player.FindBuffIndex(buff) == -1)
             {
-                if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle) || !modPlayer.PetsActive)
+                if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle) || (!modPlayer.PetsActive && !minion))
                 {
                     projectile.Kill();
                 }
@@ -524,6 +524,18 @@ namespace FargowiltasSouls.Projectiles
                 else if (projectile.type == thorium.ProjectileType("LockBoxPet"))
                 {
                     KillPet(projectile, player, thorium.BuffType("LockBoxBuff"), modPlayer.MinerEnchant, "Lock Box Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("Devil"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("DevilBuff"), modPlayer.WarlockEnchant, "Li'l Devil Minion", true);
+                }
+                else if (projectile.type == thorium.ProjectileType("Angel"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("AngelBuff"), modPlayer.SacredEnchant, "Li'l Cherub Minion", true);
+                }
+                else if (projectile.type == thorium.ProjectileType("LifeSpirit"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("LifeSpiritBuff"), modPlayer.SacredEnchant, "Life Spirit Pet");
                 }
             }
 

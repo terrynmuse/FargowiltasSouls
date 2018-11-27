@@ -124,6 +124,8 @@ namespace FargowiltasSouls
 
         //thorium 
         public bool IcyEnchant;
+        public bool WarlockEnchant;
+        public bool SacredEnchant;
 
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
@@ -131,9 +133,6 @@ namespace FargowiltasSouls
 
         //soul effects
         public bool MagicSoul;
-
-
-
 
         public bool ThrowSoul;
         public bool RangedSoul;
@@ -350,6 +349,8 @@ namespace FargowiltasSouls
 
             //thorium
             IcyEnchant = false;
+            WarlockEnchant = false;
+            SacredEnchant = false;
 
             #endregion
 

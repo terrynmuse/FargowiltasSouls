@@ -125,6 +125,9 @@ namespace FargowiltasSouls
             ["Wyvern Pet"] = new Color(81, 181, 113),
             ["Inspiring Lantern Pet"] = new Color(81, 181, 113),
             ["Lock Box Pet"] = new Color(81, 181, 113),
+            ["Li'l Devil Minion"] = new Color(81, 181, 113),
+            ["Li'l Cherub Minion"] = new Color(81, 181, 113),
+            ["Life Spirit Pet"] = new Color(81, 181, 113),
         };
 
         private readonly Color _defaultColor = new Color(81, 181, 113);

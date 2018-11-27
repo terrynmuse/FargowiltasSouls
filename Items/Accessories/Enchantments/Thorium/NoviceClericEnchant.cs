@@ -41,12 +41,7 @@ When casting healing spells, a cross is used instead of mana");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            ClericEffect(player);
-        }
-        
-        private void ClericEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.clericSet = true;
@@ -66,7 +61,6 @@ When casting healing spells, a cross is used instead of mana");
             {
                 timer = 0;
             }
-
         }
         
         private readonly string[] items =

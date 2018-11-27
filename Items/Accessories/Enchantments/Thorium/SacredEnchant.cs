@@ -3,12 +3,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
     public class SacredEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
         
         public override bool Autoload(ref string name)
         {
@@ -23,10 +25,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'It glimmers with comforting power'
 Healing spells heal an additional 5 life
-Summons a li'l cherub to periodically heal damaged allies
-Summons a spirit composed of distant stars
-The spirit will generate healing energy that can be picked up if you are hurt
-When energy is generated, 10 mana will be spent");
+Every 5 seconds you generate up to 3 holy crosses
+When casting healing spells, a cross is used instead of mana
+Summons a Li'l Cherub to periodically heal damaged allies
+Summons a Life Spirit pet that will generate healing energy");
         }
 
         public override void SetDefaults()
@@ -42,26 +44,39 @@ When energy is generated, 10 mana will be spent");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            SacredEffect(player);
-        }
-        
-        private void SacredEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
+            //sacred set bonus
             thoriumPlayer.healBonus += 5;
-            //cherub
-            thoriumPlayer.angelMinion = true;
+            //novice cleric set bonus
+            thoriumPlayer.clericSet = true;
+            thoriumPlayer.orbital = true;
+            thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.05000000074505806, default(Vector2));
+            timer++;
+            if (thoriumPlayer.clericSetCrosses < 3)
+            {
+                if (timer > 300)
+                {
+                    thoriumPlayer.clericSetCrosses++;
+                    timer = 0;
+                    return;
+                }
+            }
+            else
+            {
+                timer = 0;
+            }
+            //lil cherub
+            modPlayer.SacredEnchant = true;
+            modPlayer.AddMinion("Li'l Cherub Minion", thorium.ProjectileType("Angel"), 0, 0f);
             //twinkle pet
+            modPlayer.AddPet("Life Spirit Pet", hideVisual, thorium.BuffType("LifeSpiritBuff"), thorium.ProjectileType("LifeSpirit"));
             thoriumPlayer.lifePet = true;
         }
         
         private readonly string[] items =
         {
-            "HallowedPaladinHelmet",
-            "HallowedPaladinBreastplate",
-            "HallowedPaladinLeggings",
             "RegenStaff",
             "LightBurstWand",
             "SacredCharge",
@@ -76,7 +91,12 @@ When energy is generated, 10 mana will be spent");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("HallowedPaladinHelmet"));
+            recipe.AddIngredient(thorium.ItemType("HallowedPaladinBreastplate"));
+            recipe.AddIngredient(thorium.ItemType("HallowedPaladinLeggings"));
+            recipe.AddIngredient(null, "NoviceClericEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.CrystalBall);

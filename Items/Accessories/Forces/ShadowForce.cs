@@ -55,7 +55,12 @@ Your symphonic damage will empower all nearby allies with: Movement Speed II
 Increases armor penetration by 15
 Summons a pet Wyvern, Eater of Souls, and Shadow Orb
 Striking an enemy with any throwing weapon will trigger 'Shadow Dance'
-Additonally, while Shadow Dance is active you deal 15% more throwing damage";
+Additonally, while Shadow Dance is active you deal 15% more throwing damage
+Radiant critical strikes will generate up to 15 shadow wisps
+Pressing the 'Special Ability' key will unleash every stored shadow wisp towards your cursor's position
+Corrupts your radiant powers
+Halves radiant life costs but not its life transferring effect
+Summons a Li'l Devil to attack enemies";
             }
 
             tooltip += "Summons a Flickerwick to provide light";
@@ -173,6 +178,14 @@ Additonally, while Shadow Dance is active you deal 15% more throwing damage";
             {
                 player.thrownDamage += 0.15f;
             }
+            //warlock set bonus
+            thoriumPlayer.warlockSet = true;
+            //demon tongue
+            thoriumPlayer.darkAura = true;
+            thoriumPlayer.radiantLifeCost = 2;
+            //lil devil
+            modPlayer.WarlockEnchant = true;
+            modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);
         }
 
         public override void AddRecipes()

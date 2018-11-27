@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -40,7 +42,10 @@ While worn, taking fatal damage will instead return you to 100 life and instantl
 Killing enemies or continually damaging bosses generates soul wisps
 After generating 5 wisps, they are instantly consumed to heal you for 10 life
 After healing a nearby ally, a life spirit is released from you
-This spirit seeks out your ally with the lowest life and heals them for 2 life";
+This spirit seeks out your ally with the lowest life and heals them for 2 life
+Healing spells heal an additional 5 life
+Summons a Li'l Cherub to periodically heal damaged allies
+Summons a Life Spirit pet that will generate healing energy";
             }
 
             Tooltip.SetDefault(tooltip);*/
@@ -54,6 +59,25 @@ This spirit seeks out your ally with the lowest life and heals them for 2 life";
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 10;
             item.value = 600000;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine line in list)
+            {
+                if (line.mod == "Terraria" && line.Name == "ItemName")
+                {
+                    if(Main.rand.Next(5) == 0)
+                    {
+                        line.overrideColor = new Color(Main.DiscoR, 100, 10);
+                    }
+                    else
+                    {
+                        line.overrideColor = new Color(Main.DiscoR, 10, 200);
+                    }
+                    
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -91,6 +115,14 @@ This spirit seeks out your ally with the lowest life and heals them for 2 life";
             thoriumPlayer.spiritTrapper = true;
             //inner flame
             thoriumPlayer.spiritFlame = true;
+            //sacred set bonus
+            thoriumPlayer.healBonus += 5;
+            //lil cherub
+            modPlayer.SacredEnchant = true;
+            modPlayer.AddMinion("Li'l Cherub Minion", thorium.ProjectileType("Angel"), 0, 0f);
+            //twinkle pet
+            modPlayer.AddPet("Life Spirit Pet", hideVisual, thorium.BuffType("LifeSpiritBuff"), thorium.ProjectileType("LifeSpirit"));
+            thoriumPlayer.lifePet = true;
         }
 
         public override void AddRecipes()
