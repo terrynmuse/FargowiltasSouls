@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using FargowiltasSouls.Buffs.Masomode;
 using Microsoft.Xna.Framework.Graphics;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Projectiles
 {
@@ -421,7 +422,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Parrot:
-                    KillPet(projectile, player, BuffID.PetParrot, modPlayer.GoldEnchant, "Parrot Pet");
+                    KillPet(projectile, player, BuffID.PetParrot, modPlayer.GoldEnchant || modPlayer.FlightEnchant, "Parrot Pet");
                     break;
 
                 case ProjectileID.Puppy:
@@ -536,6 +537,14 @@ namespace FargowiltasSouls.Projectiles
                 else if (projectile.type == thorium.ProjectileType("LifeSpirit"))
                 {
                     KillPet(projectile, player, thorium.BuffType("LifeSpiritBuff"), modPlayer.SacredEnchant, "Life Spirit Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("HolyGoat"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("HolyGostBuff"), modPlayer.BinderEnchant, "Holy Goat Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("MinionSapling"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("SaplingBuff"), modPlayer.LivingWoodEnchant, "Sapling Minion", true);
                 }
             }
 
@@ -976,6 +985,50 @@ namespace FargowiltasSouls.Projectiles
             {
                 target.AddBuff(BuffID.Chilled, 300);
                 target.AddBuff(BuffID.Frostburn, 300);
+            }
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
+            //iridescent effect
+            if (modPlayer.LifeForce && Utils.NextFloat(Main.rand) < 0.15f)
+            {
+                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 100, 1f, 0f);
+                for (int i = 0; i < 20; i++)
+                {
+                    int num = Dust.NewDust(target.position, target.width, target.height, 87, Main.rand.Next(-6, 6), Main.rand.Next(-6, 6), 0, default(Color), 1.25f);
+                    Main.dust[num].noGravity = true;
+                }
+                for (int j = 0; j < 10; j++)
+                {
+                    int num2 = Dust.NewDust(target.position, target.width, target.height, 91, Main.rand.Next(-2, 2), Main.rand.Next(-2, 2), 0, default(Color), 1.15f);
+                    Main.dust[num2].noGravity = true;
+                }
+                for (int k = 0; k < 255; k++)
+                {
+                    Player player2 = Main.player[k];
+                    if (player2.active && player2 != player && player2.statLife < player2.statLifeMax2 && Vector2.Distance(player2.Center, projectile.Center) < 500f && target.type != 488)
+                    {
+                        Projectile.NewProjectile(player2.Center.X, player2.Center.Y, 0f, 0f, thorium.ProjectileType("RadiantHeal"), 0, 0f, projectile.owner, 0f, 0f);
+                    }
+                }
+                for (int l = 0; l < 200; l++)
+                {
+                    NPC npc = Main.npc[l];
+                    if (npc.active && npc.type != 488 && !npc.friendly && Vector2.Distance(npc.Center, player.Center) < 250f)
+                    {
+                        npc.AddBuff(31, 120, false);
+                    }
+                }
+            }
+
+            if (modPlayer.ShadowForce)
+            {
+                if (crit && player.ownedProjectileCounts[thorium.ProjectileType("ShadowWisp")] < 15)
+                {
+                    Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, -2f, thorium.ProjectileType("ShadowWisp"), (int)(projectile.damage * 0.75f), 0f, Main.myPlayer, 0f, 0f);
+                }
             }
         }
 

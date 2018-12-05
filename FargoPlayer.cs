@@ -16,6 +16,7 @@ using FargowiltasSouls.NPCs;
 using FargowiltasSouls.Projectiles;
 using FargowiltasSouls.Projectiles.BossWeapons;
 using FargowiltasSouls.Projectiles.Souls;
+using ThoriumMod;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -88,7 +89,6 @@ namespace FargowiltasSouls
         public bool GladEnchant;
         public bool GoldEnchant;
         public bool CactusEnchant;
-        private int cactusCD;
         public bool BeetleEnchant;
         public bool ForbiddenEnchant;
         public bool MinerEnchant;
@@ -126,6 +126,9 @@ namespace FargowiltasSouls
         public bool IcyEnchant;
         public bool WarlockEnchant;
         public bool SacredEnchant;
+        public bool BinderEnchant;
+        public bool FlightEnchant;
+        public bool LivingWoodEnchant;
 
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
@@ -179,6 +182,8 @@ namespace FargowiltasSouls
         public bool Slimed;
 
         public IList<string> disabledSouls = new List<string>();
+
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override TagCompound Save()
         {
@@ -351,6 +356,9 @@ namespace FargowiltasSouls
             IcyEnchant = false;
             WarlockEnchant = false;
             SacredEnchant = false;
+            BinderEnchant = false;
+            FlightEnchant = false;
+            LivingWoodEnchant = false;
 
             #endregion
 
@@ -713,32 +721,6 @@ namespace FargowiltasSouls
             return AttackSpeed;
         }
 
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
-        {
-            if (CactusEnchant && cactusCD == 0)
-            {
-                int dmg = 30;
-
-                if (LifeForce)
-                {
-                    dmg = 75;
-                }
-
-                Projectile[] projs = FargoGlobalProjectile.XWay(16, player.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
-
-                for (int i = 0; i < projs.Length; i++)
-                {
-                    Projectile p = projs[i];
-                    p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                    p.magic = false;
-                    p.melee = true;
-                    p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
-                }
-
-                cactusCD = 30;
-            }
-        }
-
         public override void PostUpdateRunSpeeds()
         {
             if (!SpeedEffect) return;
@@ -949,6 +931,38 @@ namespace FargowiltasSouls
             {
                 target.AddBuff(BuffID.Midas, 120, true);
             }
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
+            if (LifeForce)
+            {
+                //yew wood for all dmg type
+                if (!crit)
+                {
+                    thoriumPlayer.yewChargeTimer = 120;
+                    if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                    }
+                    if (thoriumPlayer.yewCharge < 4)
+                    {
+                        thoriumPlayer.yewCharge++;
+                    }
+                    else
+                    {
+                        crit = true;
+                        damage = (int)(damage * 0.75);
+                        thoriumPlayer.yewCharge = 0;
+                    }
+                }
+            }
+
+            if(ShadowForce)
+            {
+                player.AddBuff(thorium.BuffType("ShadowDance"), 90000, false);
+            }
         }
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
@@ -1026,6 +1040,38 @@ namespace FargowiltasSouls
             if (GoldEnchant)
             {
                 target.AddBuff(BuffID.Midas, 120, true);
+            }
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
+            if (LifeForce)
+            {
+                //yew wood for all dmg type
+                if (!crit)
+                {
+                    thoriumPlayer.yewChargeTimer = 120;
+                    if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                    }
+                    if (thoriumPlayer.yewCharge < 4)
+                    {
+                        thoriumPlayer.yewCharge++;
+                    }
+                    else
+                    {
+                        crit = true;
+                        damage = (int)(damage * 0.75);
+                        thoriumPlayer.yewCharge = 0;
+                    }
+                }
+            }
+
+            if (ShadowForce)
+            {
+                player.AddBuff(thorium.BuffType("ShadowDance"), 90000, false);
             }
         }
 
@@ -1161,6 +1207,30 @@ namespace FargowiltasSouls
                 player.HealEffect(heal);
                 palladiumCD = 600;
             }
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            if(LifeForce)
+            {
+                //tide hunter no dmg type
+                if (crit)
+                {
+                    for (int m = 0; m < 10; m++)
+                    {
+                        int num11 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
+                        Main.dust[num11].noGravity = true;
+                        Main.dust[num11].noLight = true;
+                    }
+                    for (int n = 0; n < 200; n++)
+                    {
+                        NPC npc = Main.npc[n];
+                        if (npc.active && npc.FindBuffIndex(thorium.BuffType("Oozed")) < 0 && !npc.friendly && Vector2.Distance(npc.Center, target.Center) < 80f)
+                        {
+                            npc.AddBuff(thorium.BuffType("Oozed"), 90, false);
+                        }
+                    }
+                }
+            }
         }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -1228,6 +1298,30 @@ namespace FargowiltasSouls
                 else
                 {
                     TinCrit += 4;
+                }
+            }
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            if (LifeForce)
+            {
+                //tide hunter no dmg type
+                if (crit)
+                {
+                    for (int m = 0; m < 10; m++)
+                    {
+                        int num11 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
+                        Main.dust[num11].noGravity = true;
+                        Main.dust[num11].noLight = true;
+                    }
+                    for (int n = 0; n < 200; n++)
+                    {
+                        NPC npc = Main.npc[n];
+                        if (npc.active && npc.FindBuffIndex(thorium.BuffType("Oozed")) < 0 && !npc.friendly && Vector2.Distance(npc.Center, target.Center) < 80f)
+                        {
+                            npc.AddBuff(thorium.BuffType("Oozed"), 90, false);
+                        }
+                    }
                 }
             }
         }
@@ -1382,7 +1476,7 @@ namespace FargowiltasSouls
         {
             if (BeetleEnchant)
             {
-                player.wingTimeMax = (int)(player.wingTimeMax * 1.5);
+                player.wingTimeMax = (int)(player.wingTimeMax * 2);
             }
         }
 
@@ -1717,11 +1811,6 @@ namespace FargowiltasSouls
             if(Soulcheck.GetValue("Cactus Needles"))
             {
                 CactusEnchant = true;
-
-                if (cactusCD != 0)
-                {
-                    cactusCD--;
-                }
             }
         }
 
@@ -2691,8 +2780,6 @@ namespace FargowiltasSouls
         public void TurtleEffect(bool hideVisual)
         {
             TurtleEnchant = true;
-            player.thorns = 1f;
-            player.turtleThorns = true;
             AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
             AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
 

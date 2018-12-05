@@ -24,11 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Infused with souls of the damned'
 Your boots vibrate at an unreal frequency, increasing movement speed significantly
+Running builds up momentum and increases movement speed
+Crashing into an enemy releases all stored momentum, catapulting the enemy
 While moving, your melee damage and critical strike chance are increased
 Your attacks have a chance to unleash an explosion of Dragon's Flame
 Your attacks may inflict Darkness on enemies
-Running builds up momentum and increases movement speed
-Crashing into an enemy releases all stored momentum, catapulting the enemy
 Flail weapons have a chance to release rolling spike balls on hit that apply cursed flames to damaged enemies
 Your symphonic damage empowers all nearby allies with: Vile Flames
 Damage done against curse flamed enemies is increased by 8%

@@ -20,10 +20,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Naga-Skin Enchantment");
-            Tooltip.SetDefault(@"
-''
-Allows quicker movement in water
-Every 75 mana spent will dramatically increase your magic damage and casting speed briefly");
+            Tooltip.SetDefault(
+@"''
+Every 75 mana spent will dramatically increase your magic damage and casting speed briefly
+Allows quicker movement in water");
         }
 
         public override void SetDefaults()
@@ -39,12 +39,7 @@ Every 75 mana spent will dramatically increase your magic damage and casting spe
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            NagaEffect(player);
-        }
-        
-        private void NagaEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //naga set bonus
             thoriumPlayer.nagaManaEffect = true;
@@ -53,11 +48,6 @@ Every 75 mana spent will dramatically increase your magic damage and casting spe
             if (player.wet)
             {
                 player.moveSpeed += 0.15f;
-            }
-            //breath underwater
-            if (player.breath <= player.breathMax + 2)
-            {
-                player.breath = player.breathMax + 3;
             }
         }
         

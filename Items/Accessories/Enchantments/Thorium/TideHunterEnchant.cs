@@ -23,7 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Not just for hunting fish'
 Ranged critical strikes release a splash of foam, slowing nearby enemies
-Allows you to breathe underwater
+After four consecutive non-critical strikes, your next ranged attack will mini-crit for 150% damage
+While standing still, defense is increased by 4 and you are immune to knockback
 Brightens the area directly in front of you");
         }
 
@@ -40,8 +41,10 @@ Brightens the area directly in front of you");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            HunterEffect(player);
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //tide hunter set bonus
+            thoriumPlayer.tideHunterSet = true;
             //angler bowl
             if (!hideVisual)
             {
@@ -54,30 +57,22 @@ Brightens the area directly in front of you");
                     Projectile.NewProjectile(player.Center.X - 56f, player.Center.Y - 10f, 0f, 0f, thorium.ProjectileType("AnglerLight"), 0, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
-            //breath underwater
-            if (player.breath <= player.breathMax + 2)
+            //yew set bonus
+            thoriumPlayer.yewCharging = true;
+            //goblin war shield
+            if (player.velocity.X == 0f)
             {
-                player.breath = player.breathMax + 3;
+                player.statDefense += 4;
+                player.noKnockback = true;
             }
-        }
-        
-        private void HunterEffect(Player player)
-        {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
-            thoriumPlayer.tideHunterSet = true;
         }
         
         private readonly string[] items =
         {
-            "TideHunterCap",
-            "TideHunterChestpiece",
-            "TideHunterLeggings",
             "AnglerBowl",
             "BlunderBuss",
             "PearlPike",
             "HydroCannon",
-            "NanoClamCane",
             "SharkStorm",
             "MarineLauncher"
         };
@@ -87,7 +82,12 @@ Brightens the area directly in front of you");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("TideHunterCap"));
+            recipe.AddIngredient(thorium.ItemType("TideHunterChestpiece"));
+            recipe.AddIngredient(thorium.ItemType("TideHunterLeggings"));
+            recipe.AddIngredient(null, "YewWoodEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.DemonAltar);

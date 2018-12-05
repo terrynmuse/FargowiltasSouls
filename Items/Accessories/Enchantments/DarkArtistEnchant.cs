@@ -14,10 +14,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Dark Artist Enchantment");
 
-            string tooltip = 
+            string tooltip =
 @"'The shadows hold more than they seem'
-Greatly enhances Flameburst effectiveness
 Your weapon's projectiles occasionally shoot from the shadows of where you used to be
+Greatly enhances Flameburst effectiveness
 ";
 
             if(thorium != null)

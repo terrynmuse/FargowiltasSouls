@@ -1,12 +1,17 @@
+using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items
 {
     public class FargoGlobalItem : GlobalItem
     {
+        private static Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if (item.type == ItemID.DogWhistle)
@@ -153,6 +158,25 @@ namespace FargowiltasSouls.Items
             if (modPlayer.UniverseEffect && item.damage > 0) item.shootSpeed *= 1.5f;
 
             return false;
+        }
+
+        public override bool Shoot(Item item, Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            if (modPlayer.ShadowForce && item.damage >= 1 && Main.rand.Next(5) == 0)
+            {
+                float num9 = 0.25f;
+                float num10 = (float)Math.Sqrt((speedX * speedX + speedY * speedY));
+                double num11 = Math.Atan2(speedX, speedY);
+                double num12 = num11 + (0.25f * num9);
+                double num13 = num11 - (0.25f * num9);
+                float num14 = Utils.NextFloat(Main.rand) * 0.2f + 0.95f;
+                Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num12), num10 * num14 * (float)Math.Cos(num12), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num13), num10 * num14 * (float)Math.Cos(num13), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
+            }
+
+            return true;
         }
     }
 }

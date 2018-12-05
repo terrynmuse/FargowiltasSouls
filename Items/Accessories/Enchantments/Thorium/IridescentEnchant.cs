@@ -41,13 +41,9 @@ Healing allies with more health than you increases your life recovery");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            IridescentEffect(player);
-        }
-        
-        private void IridescentEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //set bonus
             thoriumPlayer.iridescentSet = true;
             //equalizer 
             thoriumPlayer.equilibrium = true;

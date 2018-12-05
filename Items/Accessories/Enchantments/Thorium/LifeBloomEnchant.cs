@@ -27,7 +27,7 @@ Pressing the 'Encase' key will place you within a fragile cocoon
 You have greatly reduced damage reduction and increased aggro while within the cocoon
 If you survive the process, your attack speed and damage are briefly increased significantly
 The cocoon may be activated every 1 minute
-Your living wood sapling's attacks will home in on enemies
+Summons a living wood sapling and its attacks will home in on enemies
 Allows the collection of Vine Rope from vines");
         }
 
@@ -45,6 +45,7 @@ Allows the collection of Vine Rope from vines");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.lifeBloom = true;
@@ -52,6 +53,9 @@ Allows the collection of Vine Rope from vines");
             thoriumPlayer.cocoonAcc = true;
             //living wood set bonus
             thoriumPlayer.livingWood = true;
+            //free boi
+            modPlayer.LivingWoodEnchant = true;
+            modPlayer.AddMinion("Sapling Minion", thorium.ProjectileType("MinionSapling"), 25, 2f);
             //vine rope thing
             player.cordage = true;
         }

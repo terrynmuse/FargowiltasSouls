@@ -128,6 +128,8 @@ namespace FargowiltasSouls
             ["Li'l Devil Minion"] = new Color(81, 181, 113),
             ["Li'l Cherub Minion"] = new Color(81, 181, 113),
             ["Life Spirit Pet"] = new Color(81, 181, 113),
+            ["Holy Goat Pet"] = new Color(81, 181, 113),
+            ["Sapling Minion"] = new Color(81, 181, 113),
         };
 
         private readonly Color _defaultColor = new Color(81, 181, 113);

@@ -40,12 +40,7 @@ Needs to recharge for 2 minutes after being activated");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            LichEffect(player);
-        }
-        
-        private void LichEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.lichSet = true;

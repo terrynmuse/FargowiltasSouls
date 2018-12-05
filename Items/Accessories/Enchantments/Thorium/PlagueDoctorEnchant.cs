@@ -22,7 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'What nasty concoction could you be brewing?'
 Plague doctor vials have a 40% chance to become retrievable upon shattering
 Using a throwing item has a 20% chance to unleash two Blight Daggers
-Blight Daggers home in on enemies and apply a highly contagious disease");
+Blight Daggers home in on enemies and apply a highly contagious disease
+Throwing damage will decrease enemy defense
+Pressing the Special Ability key will trigger True Strikes
+Needs to recharge for 2 minutes after being activated");
         }
 
         public override void SetDefaults()
@@ -38,16 +41,15 @@ Blight Daggers home in on enemies and apply a highly contagious disease");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            PlagueEffect(player);
-        }
-        
-        private void PlagueEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.plagueSet = true;
             //plague lords fask
             thoriumPlayer.blightAcc = true;
+            //lich set bonus
+            thoriumPlayer.lichSet = true;
+            //lich gaze
+            thoriumPlayer.lichGaze = true;
         }
 
         public override void AddRecipes()
@@ -59,8 +61,8 @@ Blight Daggers home in on enemies and apply a highly contagious disease");
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersMask"));
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersGarb"));
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersLeggings"));
+            recipe.AddIngredient(null, "LichEnchant");
             recipe.AddIngredient(thorium.ItemType("PlagueLordsFlask"));
-            recipe.AddIngredient(thorium.ItemType("GasContainer"), 300);
             recipe.AddIngredient(thorium.ItemType("CombustionFlask"), 300);
             recipe.AddIngredient(thorium.ItemType("NitrogenVial"), 300);
             recipe.AddIngredient(thorium.ItemType("CorrosionBeaker"), 300);

@@ -12,9 +12,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Cactus Enchantment");
             Tooltip.SetDefault(
-                @"'It's the quenchiest!' 
+@"'It's the quenchiest!' 
 50% of contact damage is reflected
-Getting hit by a projectile causes a needle spray
+Enemies will explode into needles on death
 Needles scale with melee damage");
         }
 

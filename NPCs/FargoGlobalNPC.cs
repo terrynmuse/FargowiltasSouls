@@ -4759,6 +4759,27 @@ namespace FargowiltasSouls.NPCs
                 return false;
             }
 
+            if(modPlayer.CactusEnchant)
+            {
+                int dmg = 30;
+
+                if (modPlayer.LifeForce)
+                {
+                    dmg = 75;
+                }
+
+                Projectile[] projs = FargoGlobalProjectile.XWay(16, player.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
+
+                for (int i = 0; i < projs.Length; i++)
+                {
+                    Projectile p = projs[i];
+                    p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                    p.magic = false;
+                    p.melee = true;
+                    p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                }
+            }
+
             if (FargoWorld.MasochistMode)
             {
                 switch (masoDeathAI)
