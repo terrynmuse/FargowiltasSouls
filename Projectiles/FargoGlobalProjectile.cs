@@ -947,8 +947,15 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.FlamesTrap:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.primeBoss, NPCID.SkeletronPrime) || (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem))
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.primeBoss, NPCID.SkeletronPrime))
                             target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
+                        else if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
+                            target.AddBuff(BuffID.Burning, Main.rand.Next(60, 300));
+                        break;
+
+                    case ProjectileID.SpikyBallTrap:
+                        if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
+                            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 600));
                         break;
 
                     default:

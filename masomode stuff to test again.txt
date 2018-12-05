@@ -257,7 +257,6 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -lowered fishron mutant nibble duration range to same as sharkrons
 -clown instead explodes into one (1) bouncy grenade if any boss is alive
 -all bosses are worth 10 additional slots to help reduce spawn rates while they're alive
-
 -WOF EYES FIRE DEATHRAYS WHEN BELOW 50% LIFE INFINITYLUL
 -wof tongues you if you run beyond its deathray range
 -wof ichor vomit only occurs when below 50% life
@@ -266,6 +265,29 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -prime limbs become invulnerable in phase 2 (emphasizes that prime already takes full damage now)
 -prime shoots rockets in phase 1 when a limb is killed
 
+-wof mouth also shoots fireballs now
+-fixed bufs with wof eyes/deathrays not facing the right away
+-spaz p2 no longer has his unintended flamethrower when the player is dead
+-destroyer phase 2 movement adjusted
+-destroyer phase 2 begins at 75% life
+-nerfed fishron phase 3 heal to 50% (you're fucking welcome)
+-nerfed fishron phase 3 damage to x1.2 base damage (was x1.3), same as vanilla phase 2
+-golem flamethrower inflicts burning
+-golem spiky balls inflict venom
+-golem head can fire either 3- or 4-spreads of lasers
+-golem head fire rate increased
+-golem head regen increased from 500 to 1000
+-golem fists inflict defenseless
+-golem body inflicts fused
+-ancient vision debuff durations nerfed. can only apply one debuff per hit
+-skeletron prime limbs do not have regen.
+-nerfed skeletron prime DR a lot because everything besides daedalus cant do jack shit
+-nerfed skeletron prime rocket damage
+-nerfed skeletron prime limb life on revive to 1/4
+-nerfed skeletron prime limbs to move at 50% speed in phase 2 (was 100%)
+-nerfed skeletron prime limbs to gain 33% damage in phase 2 (was 50%)
+-nerfed skeletron prime to always have zero defense in phase 2
+-nerfed spaz p2 flamethrower range a lot
 
 THINGS I AM STILL TESTING (IMPORTANT TO TEST/CONFIRM THESE)
 -golem drawNPC error when killed?
