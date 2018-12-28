@@ -12,12 +12,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public bool allowJump = true;
         public int timer;
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magma Enchantment");
@@ -44,12 +44,7 @@ Spear weapons will release a flaming spear tip");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            MagmaEffect(player);
-        }
-        
-        private void MagmaEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             player.magmaStone = true;

@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             string tooltip = @"''
 ";
 
-            if (thorium != null)
+            /*if (thorium != null)
             {
                 tooltip +=
 @"A Dungeon Guardian will occasionally annihilate a foe when struck
@@ -40,7 +40,7 @@ Summons a Li'l Devil to attack enemies
 Summons several pets";
             }
             else
-            {
+            {*/
                 tooltip +=
 @"Your attacks may inflict Darkness on enemies
 A Dungeon Guardian will occasionally annihilate a foe when struck
@@ -51,7 +51,7 @@ Dash into any walls, to teleport through them to the next opening
 Effects of the Master Ninja Gear
 Your weapon's projectiles occasionally shoot from the shadows of where you used to be
 Summons several pets";
-            }
+            //}
 
             Tooltip.SetDefault(tooltip);
         }
@@ -88,7 +88,7 @@ Summons several pets";
             //scythe doom, pets
             modPlayer.SpookyEffect(hideVisual);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             //warlock set bonus
@@ -124,14 +124,14 @@ Summons several pets";
             //darkness, pets
             modPlayer.ShadowEffect(hideVisual);
             //lich gaze
-            thoriumPlayer.lichGaze = true;
+            thoriumPlayer.lichGaze = true;*/
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(null, "NecroEnchant");
                 recipe.AddIngredient(null, "WarlockEnchant");
@@ -142,13 +142,13 @@ Summons several pets";
                 recipe.AddIngredient(null, "PlagueDoctorEnchant");
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(null, "ShadowEnchant");
                 recipe.AddIngredient(null, "NecroEnchant");
                 recipe.AddIngredient(null, "SpookyEnchant");
                 recipe.AddIngredient(null, "ShinobiEnchant");
                 recipe.AddIngredient(null, "DarkArtistEnchant");
-            }
+            //}
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

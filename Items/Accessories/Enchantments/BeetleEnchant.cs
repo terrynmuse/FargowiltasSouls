@@ -17,10 +17,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Beetles protect you from damage
 Your wings last twice as long";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip += "\nSummons a Pet Parrot";
-            }
+            }*/
 
             Tooltip.SetDefault(tooltip);
         }
@@ -43,11 +43,11 @@ Your wings last twice as long";
             //extra wing time
             modPlayer.BeetleEnchant = true;
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             //pet
             modPlayer.AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
-            modPlayer.FlightEnchant = true;
+            modPlayer.FlightEnchant = true;*/
         }
 
         public override void AddRecipes()
@@ -57,22 +57,22 @@ Your wings last twice as long";
             recipe.AddRecipeGroup("FargowiltasSouls:AnyBeetle");
             recipe.AddIngredient(ItemID.BeetleLeggings);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(null, "FlightEnchant");
-            }
+            }*/
 
             recipe.AddIngredient(ItemID.BeetleWings);
             recipe.AddIngredient(ItemID.BeeWings);
             recipe.AddIngredient(ItemID.ButterflyWings);
             recipe.AddIngredient(ItemID.MothronWings);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.GolemFist);
                 //recipe.AddIngredient(thorium.ItemType("SolScorchedSlab"));
                 recipe.AddIngredient(thorium.ItemType("TempleButterfly"));
-            }
+            }*/
               
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

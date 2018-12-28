@@ -11,12 +11,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public bool effect;
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lodestone Enchantment");
@@ -40,12 +40,7 @@ When out of combat for 5 seconds, your next attack will generate a 25 life shiel
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            LodestoneEffect(player);
-        }
-        
-        private void LodestoneEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.orbital = true;

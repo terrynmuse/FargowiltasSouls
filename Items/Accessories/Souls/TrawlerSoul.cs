@@ -4,21 +4,19 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    [AutoloadEquip(EquipType.Back)]
+    //[AutoloadEquip(EquipType.Back)]
     public class TrawlerSoul : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Trawler Soul");
             Tooltip.SetDefault(
-                @"'The fish catch themselves'
+@"'The fish catch themselves'
 Increases fishing skill substantially
 All fishing rods will have 10 extra lures
 Fishing line will never break
 Decreases chance of bait consumption
-Permanent Sonar and Crate Buffs
-Effects of the Frog Legs and Spore Sac
-");
+Permanent Sonar and Crate Buffs");
 
 //Allows you to see what's biting your hook
         }
@@ -36,25 +34,15 @@ Effects of the Frog Legs and Spore Sac
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            //extra lures
             modPlayer.FishSoul2 = true;
-            modPlayer.AddPet("Zephyr Fish Pet", hideVisual, BuffID.ZephyrFish, ProjectileID.ZephyrFish);
-
+            //modPlayer.AddPet("Zephyr Fish Pet", hideVisual, BuffID.ZephyrFish, ProjectileID.ZephyrFish);
             player.sonarPotion = true;
             player.fishingSkill += 50;
             player.cratePotion = true;
             player.accFishingLine = true;
             player.accTackleBox = true;
             player.accFishFinder = true;
-
-            //froglegs
-            player.autoJump = true;
-            player.jumpSpeedBoost += 2.4f;
-
-            if (Soulcheck.GetValue("Spore Sac"))
-            {
-                player.SporeSac();
-                player.sporeSac = true;
-            }
         }
 
         public override void AddRecipes()
@@ -65,7 +53,7 @@ Effects of the Frog Legs and Spore Sac
             recipe.AddIngredient(ItemID.MechanicsRod);
             recipe.AddIngredient(ItemID.SittingDucksFishingRod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
             //hi tech sonar device
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AquaticSonarDevice"));
@@ -73,9 +61,9 @@ Effects of the Frog Legs and Spore Sac
                 recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumFisher"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.GoldenFishingRod);
-            }
+            //}
 
             recipe.AddIngredient(ItemID.FrogLeg);
             recipe.AddIngredient(ItemID.FinWings);
@@ -83,8 +71,7 @@ Effects of the Frog Legs and Spore Sac
             recipe.AddIngredient(ItemID.Bladetongue);
             recipe.AddIngredient(ItemID.CrystalSerpent);
             recipe.AddIngredient(ItemID.ObsidianSwordfish);
-            recipe.AddIngredient(ItemID.SporeSac);
-            recipe.AddIngredient(ItemID.ZephyrFish);
+            //recipe.AddIngredient(ItemID.ZephyrFish);
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

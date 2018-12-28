@@ -116,14 +116,13 @@ namespace FargowiltasSouls.Projectiles
 
                 if (projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
                 {
-                    if (!modPlayer.SpiderEnchant)
+                    if (!modPlayer.SpiderEnchant || modPlayer.TerrariaSoul)
                     {
                         //the usual, WTF who knew
                         projectile.minionSlots = .75f;
                     }
                 }
                 
-
                 if (projectile.friendly && !projectile.hostile)
                 {
                     if (modPlayer.ForbiddenEnchant && projectile.damage > 0 && projectile.type != ProjectileID.SandnadoFriendly && !stormBoosted)
@@ -173,7 +172,7 @@ namespace FargowiltasSouls.Projectiles
                         }
                     }
 
-                    if (modPlayer.GladEnchant && (projectile.thrown || modPlayer.WillForce) && CanSplit && projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 &&
+                    if (modPlayer.GladEnchant && !modPlayer.TerrariaSoul && (projectile.thrown || modPlayer.WillForce) && CanSplit && projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 &&
                         Soulcheck.GetValue("Gladiator Speedup") && numSpeedups > 0 && counter % 10 == 0)
                     {
                         numSpeedups--;
@@ -496,8 +495,9 @@ namespace FargowiltasSouls.Projectiles
                         break;
             }
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {
+                //switch wouldnt work because IDs not constant RIP
                 if(projectile.type == thorium.ProjectileType("Omega"))
                 {
                     KillPet(projectile, player, thorium.BuffType("OmegaPet"), modPlayer.MeteorEnchant, "Omega Pet");
@@ -546,7 +546,27 @@ namespace FargowiltasSouls.Projectiles
                 {
                     KillPet(projectile, player, thorium.BuffType("SaplingBuff"), modPlayer.LivingWoodEnchant, "Sapling Minion", true);
                 }
-            }
+                else if (projectile.type == thorium.ProjectileType("SnowyOwlPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("SnowyOwlBuff"), modPlayer.FrostEnchant, "Owl Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("JellyfishPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("JellyPet"), modPlayer.DepthEnchant, "Jellyfish Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("LilMog"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("LilMogBuff"), modPlayer.KnightEnchant, "Moogle Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("Maid1"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("MaidBuff"), modPlayer.DreamEnchant, "Maid Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("PinkSlime"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("PinkSlimeBuff"), modPlayer.IllumiteEnchant, "Pink Slime Pet");
+                }
+            }*/
 
             if (stormBoosted)
             {
@@ -987,7 +1007,7 @@ namespace FargowiltasSouls.Projectiles
                 target.AddBuff(BuffID.Frostburn, 300);
             }
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             //ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
@@ -1029,7 +1049,7 @@ namespace FargowiltasSouls.Projectiles
                 {
                     Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, -2f, thorium.ProjectileType("ShadowWisp"), (int)(projectile.damage * 0.75f), 0f, Main.myPlayer, 0f, 0f);
                 }
-            }
+            }*/
         }
 
         private static int[] noShard = { ProjectileID.CrystalShard };

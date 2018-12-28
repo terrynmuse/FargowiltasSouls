@@ -10,21 +10,25 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public int timer;
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terrarium Enchantment");
             Tooltip.SetDefault(
 @"'All will fall before your might...'
+10% increased damage
 The energy of Terraria seeks to protect you
+Taking more than three damage will replenish health and mana
+Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
+Increases max inspiration by 2
 Your symphonic damage empowers nearby ally attacks with elemental backlash
-Increases symphonic damage by 10%\nDoubles the range of your empowerments effect radius");
-        }//infinite terrarium mix meme
+Doubles the range of your empowerments effect radius");
+        }
 
         public override void SetDefaults()
         {
@@ -39,14 +43,9 @@ Increases symphonic damage by 10%\nDoubles the range of your empowerments effect
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            TerrariumEffect(player);
-        }
-        
-        private void TerrariumEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
+            //terrarium set bonus
             timer++;
             if (timer > 60)
             {
@@ -62,19 +61,29 @@ Increases symphonic damage by 10%\nDoubles the range of your empowerments effect
             //terrarium woofer
             thoriumPlayer.subwooferTerrarium = true;
             thoriumPlayer.bardRangeBoost += 450;
+            //thorium set bonus 
+            player.meleeDamage += 0.1f;
+            player.thrownDamage += 0.1f;
+            player.rangedDamage += 0.1f;
+            player.magicDamage += 0.1f;
+            player.minionDamage += 0.1f;
+            thoriumPlayer.radiantBoost += 0.1f;
+            thoriumPlayer.symphonicDamage += 0.1f;
+            //band of replenishment
+            thoriumPlayer.BandofRep = true;
+            //jester bonus
+            thoriumPlayer.jesterSet = true;
+            //fan letter
+            thoriumPlayer.bardResourceMax2 += 2;
         }
         
         private readonly string[] items =
         {
-            "TerrariumHelmet",
-            "TerrariumBreastPlate",
-            "TerrariumGreaves",
             "TerrariumSubwoofer",
             "EssenceofFlame",
             "SearingBlade",
             "TerrariumSaber",
             "SickThrow",
-            "TerrariumLongbow",
             "TerrariumBomber"
         };
 
@@ -83,7 +92,12 @@ Increases symphonic damage by 10%\nDoubles the range of your empowerments effect
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("TerrariumHelmet"));
+            recipe.AddIngredient(thorium.ItemType("TerrariumBreastPlate"));
+            recipe.AddIngredient(thorium.ItemType("TerrariumGreaves"));
+            recipe.AddIngredient(null, "ThoriumEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.CrystalBall);

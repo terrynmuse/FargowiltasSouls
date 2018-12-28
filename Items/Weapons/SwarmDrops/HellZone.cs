@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hell Zone");
-            Tooltip.SetDefault("");
+            Tooltip.SetDefault("'The reward for slaughtering many..'");
         }
 
         public override void SetDefaults()

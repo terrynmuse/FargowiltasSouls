@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,55 +14,44 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Nature");
 
-            /*string tooltip =
+            string tooltip =
 @"'Tapped into every secret of the wilds'
-Summons a leaf crystal to shoot at nearby enemies
-Flowers grow on the grass you walk on
-All herb collection is doubled
-Summons a pet Seedling
-Greatly increases life regen
+";
+
+            //if (thorium == null)
+            //{
+                tooltip +=
+@"Greatly increases life regen
 Hearts heal for 1.5x as much
-Summons a Baby Face Monster and a Crimson Heart
+Nearby enemies are ignited
+When you die, you violently explode dealing massive damage
 Icicles will start to appear around you
 When there are three, attacking will launch them towards the cursor
-Chance to steal 4 mana with each attack
 Taking damage will release a poisoning spore explosion
-Nearby enemies are ignited
-When you die, you violently explode dealing massive damage to surrounding enemies
+Summons a leaf crystal to shoot at nearby enemies
 Not moving puts you in stealth
-While in stealth crits deal 4x damage
-Summons a pet Baby Truffle";
-
-            if (thorium != null)
+While in stealth, crits deal 4x damage
+Summons several pets";
+            /*}
+            else
             {
                 tooltip +=
-@"An icy aura surrounds you, which freezes nearby enemies after a short delay
-Your symphonic damage empowers all nearby allies with: Cold Shoulder
-Damage done against frostburnt enemies is increased by 8% 
-Doubles the range of your empowerments effect radius
-Your symphonic damage empowers all nearby allies with: Jungle's Nibble
-Damage done against poisoned enemies is increased by 8%
-Doubles the range of your empowerments effect radius
-
-Maximum life increased by 100
-Getting hit will trigger 'Sanguine', increasing defensive abilities briefly.
-Flail weapons have a chance to release rolling spike balls on hit that apply ichor to damaged enemies.
-Your symphonic damage empowers all nearby allies with: Abomination's Blood
-Damage done against ichor'd enemies is increased by 5%
-Doubles the range of your empowerments effect radius
-Your symphonic damage will empower all nearby allies with: Critical Strike II
-Damage against enemies has a 10% chance to drop flesh, which grants bonus life and damage when picked up
+@"Allows you to breathe underwater and swim
+Taking or dealing damage may release a poisoning spore cloud
+Summons a leaf crystal to shoot at nearby enemies
+Not moving puts you in stealth, While in stealth, crits deal 4x damage
+Attacks inflict Fungal Growth
+An icy aura and icicles will start to appear around you
+Damage will duplicate itself for 33% of the damage and apply the Frozen debuff
 Greatly increases life regen
-Hearts heal for 1.5x as much
-Your damage will have a 10% chance to cause an eruption of blood
-This blood can be picked up by players to heal themselves for 15% of the damage you dealt
-Healing amount cannot exceed 15 life and picking up blood causes bleeding for 5 seconds
-Summons a pet Flying Blister, Face Monster, and Crimson Heart";
-            }
+Your damage has a 10% chance to cause an eruption of blood or flesh drop
+Nearby enemies are ignited
+When you die, you violently explode dealing massive damage to surrounding enemies
+Enemies that you poison, envenom, or set on fire will take extra damage over time
+Summons several pets";
+            }*/
 
-            tooltip += "Summons a pet Penguin and Snowman";
-
-            Tooltip.SetDefault(tooltip);*/
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -77,46 +67,45 @@ Summons a pet Flying Blister, Face Monster, and Crimson Heart";
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //crystal and pet
-            modPlayer.ChloroEffect(hideVisual, 100);
-            //herb double
-            modPlayer.ChloroEnchant = true;
-            modPlayer.FlowerBoots();
+            //bulb, cryo effect
+            modPlayer.NatureForce = true;
             //regen, hearts heal more, pets
             modPlayer.CrimsonEffect(hideVisual);
+            //inferno and explode
+            modPlayer.MoltenEffect(25);
             //icicles, pets
             modPlayer.FrostEffect(75, hideVisual);
-            //mana steal, spore, cordage
+            //spores
             modPlayer.JungleEffect();
-            //inferno and explode
-            modPlayer.MoltenEffect(20);
+            //crystal and pet
+            modPlayer.ChloroEffect(hideVisual, 100);
             //stealth, crits, pet
             modPlayer.ShroomiteEffect(hideVisual);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            thoriumPlayer.subwooferFrost = true;
-            thoriumPlayer.bardRangeBoost += 450;
+            //sandstone? nothin
+            //ocean/depth diver stuff
+            modPlayer.DepthEnchant = true;
+            modPlayer.AddPet("Jellyfish Pet", hideVisual, thorium.BuffType("JellyPet"), thorium.ProjectileType("JellyfishPet"));
+            //ocean set bonus, breath underwater
+            if (player.breath <= player.breathMax + 2)
+            {
+                player.breath = player.breathMax + 3;
+            }
+            player.accFlipper = true;
+            //night shade petal
+            thoriumPlayer.nightshadeBoost = true;
+            //pet
+            modPlayer.AddPet("Owl Pet", hideVisual, thorium.BuffType("SnowyOwlBuff"), thorium.ProjectileType("SnowyOwlPet"));
+            thoriumPlayer.snowyOwl = true;
             //icy set bonus
             thoriumPlayer.icySet = true;
             if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
             }
-            //demon blood
-            thoriumPlayer.demonbloodSet = true;
-            player.statLifeMax2 += 100;
-            //demon blood badge
-            thoriumPlayer.CrimsonBadge = true;
-            //vile core
-            thoriumPlayer.vileCore = true;
-            //subwoofer
-            thoriumPlayer.subwooferIchor = true;
-            thoriumPlayer.bardRangeBoost += 450;
-            //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3CriticalStrike = 2;
             //flesh set bonus
             thoriumPlayer.Symbiotic = true;
             //vampire gland
@@ -124,17 +113,32 @@ Summons a pet Flying Blister, Face Monster, and Crimson Heart";
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
             thoriumPlayer.blisterPet = true;
+            //magma set bonus
+            thoriumPlayer.magmaSet = true;*/
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "CrimsonEnchant");
-            recipe.AddIngredient(null, "JungleEnchant");
-            recipe.AddIngredient(null, "MoltenEnchant");
-            recipe.AddIngredient(null, "FrostEnchant");
-            recipe.AddIngredient(null, "ChlorophyteEnchant");
-            recipe.AddIngredient(null, "ShroomiteEnchant");
+
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            {
+                recipe.AddIngredient(null, "SandstoneEnchant");
+                recipe.AddIngredient(null, "DepthDiverEnchant");
+                recipe.AddIngredient(null, "ChlorophyteEnchant");
+                recipe.AddIngredient(null, "ShroomiteEnchant");
+                recipe.AddIngredient(null, "CryoMagusEnchant");
+                recipe.AddIngredient(null, "DemonBloodEnchant");
+                recipe.AddIngredient(null, "BerserkerEnchant"); 
+            }
+            else
+            {*/
+                recipe.AddIngredient(null, "CrimsonEnchant");
+                recipe.AddIngredient(null, "MoltenEnchant");
+                recipe.AddIngredient(null, "FrostEnchant");
+                recipe.AddIngredient(null, "ChlorophyteEnchant");
+                recipe.AddIngredient(null, "ShroomiteEnchant");
+            //}
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

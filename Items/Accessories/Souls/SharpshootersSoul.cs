@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    [AutoloadEquip(EquipType.Neck)]
+    //[AutoloadEquip(EquipType.Neck)]
     public class SharpshootersSoul : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sharpshooter's Soul");
             Tooltip.SetDefault(
-                @"'Ready, aim, fire'
+@"'Ready, aim, fire'
 30% increased range damage
 20% increased firing speed
 15% increased ranged critical chance
-Increases view range for guns (Right click to zoom out)");
+Sniper Scope Effects");
         }
 
         public override void SetDefaults()
@@ -30,8 +30,8 @@ Increases view range for guns (Right click to zoom out)");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            //attack speed
             player.GetModPlayer<FargoPlayer>(mod).RangedSoul = true;
-
             player.rangedDamage += .3f;
             player.rangedCrit += 15;
             //sniper scope
@@ -44,8 +44,7 @@ Increases view range for guns (Right click to zoom out)");
 
             recipe.AddIngredient(null, "SnipersEssence");
 
-
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ItemID.MagicQuiver);
                 //vega phaser
@@ -65,10 +64,10 @@ Increases view range for guns (Right click to zoom out)");
                  prob in SoU
                  quasar flare
                  wyrm decimator 
-                 * */
+                 * 
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.MagicQuiver);
                 recipe.AddIngredient(ItemID.SniperScope);
                 recipe.AddIngredient(ItemID.DartPistol);
@@ -82,7 +81,7 @@ Increases view range for guns (Right click to zoom out)");
                 recipe.AddIngredient(ItemID.EldMelter);
                 recipe.AddIngredient(ItemID.Xenopopper);
                 recipe.AddIngredient(ItemID.FireworksLauncher);
-            }
+            //}
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

@@ -5,6 +5,11 @@ namespace FargowiltasSouls.Items.Misc
 {
     public class FezSquirrelBanner : ModItem
     {
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetDefaults()
         {
             item.width = 14;

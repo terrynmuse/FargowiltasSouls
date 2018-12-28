@@ -18,7 +18,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 @"'Rare is a living thing that dare disobey your will'
 ";
 
-            if (thorium != null)
+            /*if (thorium != null)
             {
                 tooltip +=
 @"You leave behind a trail of fire and bees when you walk
@@ -38,7 +38,7 @@ Beetles protect you from damage and your wings last twice as long
 Summons a pet Squashling, Hornet, Spider, Holy Goat, Lizard, Turtle and Parrot";
             }
             else
-            {
+            {*/
                 tooltip +=
 @"You leave behind a trail of fire when you walk
 Eating Pumpkin Pie also heals you to full HP
@@ -50,8 +50,8 @@ You may summon nearly twice as many spider minions
 When standing still and not attacking, you gain the Shell Hide buff
 Beetles protect you from damage
 Your wings last twice as long
-Summons a pet Hornet, Spider, Squashling, Lizard and Turtle";
-            }
+Summons several pets";
+            //}
 
             Tooltip.SetDefault(tooltip);
         }
@@ -73,6 +73,8 @@ Summons a pet Hornet, Spider, Squashling, Lizard and Turtle";
             modPlayer.LifeForce = true;
             //bees ignore defense, super bees, pet
             modPlayer.BeeEffect(hideVisual);
+            //more spiders and pet
+            modPlayer.SpiderEffect(hideVisual);
             //defense beetle bois
             modPlayer.BeetleEffect();
             //extra wing time
@@ -86,7 +88,7 @@ Summons a pet Hornet, Spider, Squashling, Lizard and Turtle";
             //needle spray
             modPlayer.CactusEffect();
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //bee booties
@@ -131,7 +133,7 @@ Summons a pet Hornet, Spider, Squashling, Lizard and Turtle";
             modPlayer.FlightEnchant = true;
             modPlayer.AddPet("Holy Goat Pet", hideVisual, thorium.BuffType("HolyGoatBuff"), thorium.ProjectileType("HolyGoat"));
             modPlayer.BinderEnchant = true;
-            thoriumPlayer.goatPet = true;
+            thoriumPlayer.goatPet = true;*/
         }
 
         public override void AddRecipes()
@@ -141,7 +143,7 @@ Summons a pet Hornet, Spider, Squashling, Lizard and Turtle";
             recipe.AddIngredient(null, "PumpkinEnchant");
             recipe.AddIngredient(null, "BeeEnchant");
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(thorium.ItemType("TideHunterEnchant"));
                 recipe.AddIngredient(thorium.ItemType("NagaSkinEnchant"));
@@ -150,9 +152,9 @@ Summons a pet Hornet, Spider, Squashling, Lizard and Turtle";
                 recipe.AddIngredient(thorium.ItemType("LifeBinderEnchant")); 
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(null, "SpiderEnchant");
-            }
+            //}
 
             recipe.AddIngredient(null, "TurtleEnchant");
             recipe.AddIngredient(null, "BeetleEnchant");

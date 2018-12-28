@@ -10,6 +10,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     {
         string _tooltip = null;
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spiritualist's Soul");

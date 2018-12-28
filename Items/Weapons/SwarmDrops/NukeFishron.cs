@@ -11,6 +11,11 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             Tooltip.SetDefault("'The highly weaponized remains of a defeated foe..'");
         }
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetDefaults()
         {
             item.damage = 1;

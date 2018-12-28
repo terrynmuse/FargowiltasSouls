@@ -106,7 +106,6 @@ namespace FargowiltasSouls.Items
 
             if (p.TerrariaSoul)
             {
-                // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (item.type)
                 {
                     case ItemID.Heart:
@@ -119,7 +118,7 @@ namespace FargowiltasSouls.Items
                         return false;
                 }
             }
-            else if (p.CrimsonEnchant && item.type == ItemID.Heart)
+            else if (p.CrimsonEnchant && !p.NatureForce && item.type == ItemID.Heart)
             {
                 player.HealEffect(30);
                 player.statLife += 30;
@@ -147,7 +146,7 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            if (item.type == ItemID.PumpkinPie && modPlayer.PumpkinEnchant)
+            if (item.type == ItemID.PumpkinPie && modPlayer.PumpkinEnchant && !modPlayer.TerrariaSoul)
             {
                 int heal = player.statLifeMax2 - player.statLife;
                 player.HealEffect(heal);
@@ -164,7 +163,9 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.ShadowForce && item.damage >= 1 && Main.rand.Next(5) == 0)
+            //thorium//
+
+            /*if (modPlayer.ShadowForce && item.damage >= 1 && Main.rand.Next(5) == 0)
             {
                 float num9 = 0.25f;
                 float num10 = (float)Math.Sqrt((speedX * speedX + speedY * speedY));
@@ -174,7 +175,7 @@ namespace FargowiltasSouls.Items
                 float num14 = Utils.NextFloat(Main.rand) * 0.2f + 0.95f;
                 Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num12), num10 * num14 * (float)Math.Cos(num12), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
                 Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num13), num10 * num14 * (float)Math.Cos(num13), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
-            }
+            }*/
 
             return true;
         }

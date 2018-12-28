@@ -4768,7 +4768,7 @@ namespace FargowiltasSouls.NPCs
                     dmg = 75;
                 }
 
-                Projectile[] projs = FargoGlobalProjectile.XWay(16, player.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
+                Projectile[] projs = FargoGlobalProjectile.XWay(16, npc.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
 
                 for (int i = 0; i < projs.Length; i++)
                 {
@@ -5590,7 +5590,7 @@ namespace FargowiltasSouls.NPCs
             }
 
             //bees ignore defense
-            if (modPlayer.BeeEnchant && projectile.type == ProjectileID.GiantBee)
+            if (modPlayer.BeeEnchant && !modPlayer.TerrariaSoul && projectile.type == ProjectileID.GiantBee)
             {
                 damage = (int)(damage + npc.defense * .5);
             }
@@ -6466,7 +6466,7 @@ namespace FargowiltasSouls.NPCs
 				}
 			}
 
-            if(modPlayer.RedEnchant)
+            if(modPlayer.RedEnchant && !modPlayer.WillForce)
             {
                 switch (npc.life / npc.lifeMax * 100)
                 {

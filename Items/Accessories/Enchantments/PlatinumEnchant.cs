@@ -19,12 +19,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 10% chance for enemies to drop 4x loot
 If the enemy has Midas, the chance and bonus is doubled";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip += 
 @"While in combat, you generate a 17 life shield
 Summons some living glitter to follow you around";
-            }
+            }*/
 
             Tooltip.SetDefault(tooltip);
         }
@@ -43,7 +43,7 @@ Summons some living glitter to follow you around";
         {
             player.GetModPlayer<FargoPlayer>(mod).PlatinumEnchant = true;
 
-            if (Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             thoriumPlayer.metallurgyShield = true;
@@ -65,7 +65,7 @@ Summons some living glitter to follow you around";
             else
             {
                 timer = 0;
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -76,7 +76,7 @@ Summons some living glitter to follow you around";
             recipe.AddIngredient(ItemID.PlatinumGreaves);
             recipe.AddIngredient(ItemID.PlatinumCrown);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("PlatinumAegis"));
                 recipe.AddIngredient(ItemID.DiamondRing);
@@ -86,11 +86,11 @@ Summons some living glitter to follow you around";
                 recipe.AddIngredient(thorium.ItemType("ShinyObject"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.DiamondRing);
                 recipe.AddIngredient(ItemID.DiamondStaff);
                 recipe.AddIngredient(ItemID.WhitePhasesaber);
-            }
+            //}
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

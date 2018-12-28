@@ -20,10 +20,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Attacks may inflict enemies with Lead Poisoning
 Lead Poisoning deals damage over time and slows enemies slightly";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip += "While in combat, you generate a 13 life shield";
-            }
+            }*/
 
             Tooltip.SetDefault(tooltip);
         }
@@ -42,7 +42,7 @@ Lead Poisoning deals damage over time and slows enemies slightly";
         {
             player.GetModPlayer<FargoPlayer>(mod).LeadEnchant = true;
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = ((ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer"));
             thoriumPlayer.metallurgyShield = true;
@@ -64,7 +64,7 @@ Lead Poisoning deals damage over time and slows enemies slightly";
             else
             {
                 timer = 0;
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -74,7 +74,7 @@ Lead Poisoning deals damage over time and slows enemies slightly";
             recipe.AddIngredient(ItemID.LeadChainmail);
             recipe.AddIngredient(ItemID.LeadGreaves);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("LeadShield"));
                 recipe.AddIngredient(ItemID.LeadShortsword);
@@ -85,11 +85,11 @@ Lead Poisoning deals damage over time and slows enemies slightly";
                 recipe.AddIngredient(ItemID.SulphurButterfly);
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.LeadShortsword);
                 recipe.AddIngredient(ItemID.LeadPickaxe);
                 recipe.AddIngredient(ItemID.GrayPaint);
-            }
+            //}
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

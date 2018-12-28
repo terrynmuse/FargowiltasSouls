@@ -70,15 +70,16 @@ namespace FargowiltasSouls
             #endregion
 
             #region soul toggles
-
+            ["Universe Speedup"] = new Color(81, 181, 113),
+            ["Universe Scope"] = new Color(81, 181, 113),
+            ["Builder Mode"] = new Color(81, 181, 113),
             #endregion
 
             #region pet toggles
 
             #endregion
 
-            ["Universe Speedup"] = new Color(81, 181, 113),
-            ["Universe Scope"] = new Color(81, 181, 113),
+
 
             ["Spore Sac"] = new Color(81, 181, 113),
             ["Super Speed"] = new Color(81, 181, 113),
@@ -115,10 +116,10 @@ namespace FargowiltasSouls
             ["Truffle Pet"] = new Color(81, 181, 113),
             ["Turtle Pet"] = new Color(81, 181, 113),
             ["Wisp Pet"] = new Color(81, 181, 113),
-            ["Zephyr Fish Pet"] = new Color(81, 181, 113),
+            //["Zephyr Fish Pet"] = new Color(81, 181, 113),
 
             //thorium
-            ["Omega Pet"] = new Color(81, 181, 113),
+            /*["Omega Pet"] = new Color(81, 181, 113),
             ["I.F.O. Pet"] = new Color(81, 181, 113),
             ["Bio-Feeder Pet"] = new Color(81, 181, 113),
             ["Blister Pet"] = new Color(81, 181, 113),
@@ -130,6 +131,11 @@ namespace FargowiltasSouls
             ["Life Spirit Pet"] = new Color(81, 181, 113),
             ["Holy Goat Pet"] = new Color(81, 181, 113),
             ["Sapling Minion"] = new Color(81, 181, 113),
+            ["Owl Pet"] = new Color(81, 181, 113),
+            ["Jellyfish Pet"] = new Color(81, 181, 113),
+            ["Moogle Pet"] = new Color(81, 181, 113),
+            ["Maid Pet"] = new Color(81, 181, 113),
+            ["Pink Slime Pet"] = new Color(81, 181, 113),*/
         };
 
         private readonly Color _defaultColor = new Color(81, 181, 113);

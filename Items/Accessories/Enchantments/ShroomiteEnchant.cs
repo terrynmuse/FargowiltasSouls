@@ -11,11 +11,21 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Enchantment");
-            Tooltip.SetDefault(
-                @"'Made with real shrooms!'
+
+            string tooltip = 
+@"'Made with real shrooms!'
 Not moving puts you in stealth
-While in stealth crits deal 4x damage
-Summons a pet Baby Truffle"); 
+While in stealth, crits deal 4x damage
+";
+
+            /*if(thorium != null)
+            {
+                tooltip += "Attacks inflict Fungal Growth";
+            }*/
+
+            tooltip += "Summons a pet Truffle";
+
+            Tooltip.SetDefault(tooltip); 
         }
 
         public override void SetDefaults()
@@ -39,20 +49,22 @@ Summons a pet Baby Truffle");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyShroomHead");
             recipe.AddIngredient(ItemID.ShroomiteBreastplate);
             recipe.AddIngredient(ItemID.ShroomiteLeggings);
-            recipe.AddIngredient(ItemID.MushroomSpear);
-            recipe.AddIngredient(ItemID.Hammush);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
-            {      
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            {
+                recipe.AddIngredient(null, "FungusEnchant");
+                recipe.AddIngredient(ItemID.MushroomSpear);
                 recipe.AddIngredient(thorium.ItemType("MyceliumGattlingPulser"));
                 recipe.AddIngredient(ItemID.ChlorophyteShotbow);
                 recipe.AddIngredient(ItemID.Uzi);
                 recipe.AddIngredient(thorium.ItemType("ShroomiteButterfly"));
             }
             else
-            {
+            {*/
+                recipe.AddIngredient(ItemID.MushroomSpear);
+                recipe.AddIngredient(ItemID.Hammush);
                 recipe.AddIngredient(ItemID.Uzi);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.StrangeGlowingMushroom);
             

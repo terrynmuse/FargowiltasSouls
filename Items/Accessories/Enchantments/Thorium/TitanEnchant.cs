@@ -9,12 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class TitanEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Titan Enchantment");
             Tooltip.SetDefault(
 @"'Infused with primordial energy'
-Damage increased by 10%
+Any damage you take while at full HP is reduced by 90%
+Briefly become invulnerable after striking an enemy
 Critical strikes deal 10% more damage
 Pressing the 'Encase' key will place you in an impenetrable shell
 While encased, you can't use items or health potions, life regeneration is heavily reduced, and damage is nearly nullified
@@ -44,21 +45,10 @@ Your symphonic damage will empower all nearby allies with: Damage Reduction II")
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            TitanEffect(player);
-        }
-        
-        private void TitanEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
-            player.meleeDamage += 0.1f;
-            player.thrownDamage += 0.1f;
-            player.rangedDamage += 0.1f;
-            player.magicDamage += 0.1f;
-            player.minionDamage += 0.1f;
-            thoriumPlayer.radiantBoost += 0.1f;
-            thoriumPlayer.symphonicDamage += 0.1f;
+            //titanium
+            player.GetModPlayer<FargoPlayer>(mod).TitaniumEffect();
             //crystal eye mask
             thoriumPlayer.critDamage += 0.1f;
             //abyssal shell
@@ -67,28 +57,23 @@ Your symphonic damage will empower all nearby allies with: Damage Reduction II")
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3DamageReduction = 2;
         }
-        
-        private readonly string[] items =
-        {
-            "TitanHeadgear",
-            "TitanHelmet",
-            "TitanMask",
-            "TitanBreastplate",
-            "TitanGreaves",
-            "CrystalEyeMask",
-            "AbyssalShell",
-            "TunePlayerDamageReduction",
-            "Executioner",
-            "KineticKnife"
-        };
 
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("TitanHeadgear"));
+            recipe.AddIngredient(thorium.ItemType("TitanHelmet"));
+            recipe.AddIngredient(thorium.ItemType("TitanMask"));
+            recipe.AddIngredient(thorium.ItemType("TitanBreastplate"));
+            recipe.AddIngredient(thorium.ItemType("TitanGreaves"));
+            recipe.AddIngredient(null, "TitaniumEnchant");
+            recipe.AddIngredient(thorium.ItemType("CrystalEyeMask"));
+            recipe.AddIngredient(thorium.ItemType("AbyssalShell"));
+            recipe.AddIngredient(thorium.ItemType("TunePlayerDamageReduction"));
+            recipe.AddIngredient(thorium.ItemType("Executioner"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

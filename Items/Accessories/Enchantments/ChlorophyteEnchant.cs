@@ -1,22 +1,47 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ChlorophyteEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Chlorophyte Enchantment");
-            Tooltip.SetDefault(
-                @"'The jungle's essence crystallizes above you'
+
+            string tooltip = 
+@"'The jungle's essence crystallizes above you'
 Summons a leaf crystal to shoot at nearby enemies
-Flowers grow on the grass you walk on
+Chance to steal 4 mana with each attack
+Taking damage will release a poisoning spore explosion
+";
+
+            /*if(thorium != null)
+            {
+                tooltip +=
+@"Your magic damage has a chance to poison hit enemies with a spore cloud
+Enemies that you poison or envenom will take additional damage over time
+Your symphonic damage empowers all nearby allies with: Jungle's Nibble
+Damage done against poisoned enemies is increased by 8%
+Doubles the range of your empowerments effect radius
+When out of combat for 5 seconds, life recovery will increase up to 3 over time";
+            }
+            else
+            {*/
+                tooltip += "Allows the collection of Vine Rope from vines\n";
+            //}
+
+            tooltip +=
+@"Flowers grow on the grass you walk on
 All herb collection is doubled
-Summons a pet Seedling");
+Summons a pet Seedling";
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -31,11 +56,48 @@ Summons a pet Seedling");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //crystal and pet
-            player.GetModPlayer<FargoPlayer>(mod).ChloroEffect(hideVisual, 100);
+            modPlayer.ChloroEffect(hideVisual, 100);
             //herb double
-            player.GetModPlayer<FargoPlayer>(mod).ChloroEnchant = true;
-            player.GetModPlayer<FargoPlayer>(mod).FlowerBoots();
+            modPlayer.ChloroEnchant = true;
+            modPlayer.FlowerBoots();
+            modPlayer.JungleEffect();
+
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            thoriumPlayer.subwooferPoison = true;
+            thoriumPlayer.bardRangeBoost += 450;
+            //bulb set bonus
+            thoriumPlayer.bulbSpore = true;
+            //petal shield
+            if (thoriumPlayer.outOfCombat)
+            {
+                timer++;
+                if (timer >= 900)
+                {
+                    thoriumPlayer.lifeRecovery += 3;
+                    timer = 900;
+                    return;
+                }
+                if (timer >= 600)
+                {
+                    thoriumPlayer.lifeRecovery += 2;
+                    return;
+                }
+                if (timer >= 300)
+                {
+                    thoriumPlayer.lifeRecovery++;
+                    return;
+                }
+            }
+            else
+            {
+                timer = 0;
+            }
+            //night shade petal
+            thoriumPlayer.nightshadeBoost = true;*/
         }
 
         public override void AddRecipes()
@@ -44,20 +106,21 @@ Summons a pet Seedling");
             recipe.AddRecipeGroup("FargowiltasSouls:AnyChloroHead");
             recipe.AddIngredient(ItemID.ChlorophytePlateMail);
             recipe.AddIngredient(ItemID.ChlorophyteGreaves);
-            recipe.AddIngredient(ItemID.FlowerBoots);
-            recipe.AddIngredient(ItemID.StaffofRegrowth);
-
-            if(Fargowiltas.Instance.ThoriumLoaded)
-            {      
-                recipe.AddIngredient(thorium.ItemType("ChlorophyteStaff"));
-                recipe.AddIngredient(ItemID.FlowerPow);
+            recipe.AddIngredient(null, "JungleEnchant");
+            
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            {
+                recipe.AddIngredient(null, "BulbEnchant");
+                recipe.AddIngredient(ItemID.FlowerBoots);
+                recipe.AddIngredient(ItemID.StaffofRegrowth);
                 recipe.AddIngredient(ItemID.LeafBlower);
                 recipe.AddIngredient(thorium.ItemType("ChlorophyteButterfly"));
             }
             else
-            {
-                recipe.AddIngredient(ItemID.LeafBlower);
-            }
+            {*/
+                recipe.AddIngredient(ItemID.FlowerBoots);
+                recipe.AddIngredient(ItemID.StaffofRegrowth);
+            //}
             
             recipe.AddIngredient(ItemID.Seedling);
             

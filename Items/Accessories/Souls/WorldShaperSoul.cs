@@ -6,7 +6,7 @@ using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    [AutoloadEquip(EquipType.Back)]
+    //[AutoloadEquip(EquipType.Back)]
     public class WorldShaperSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
@@ -21,10 +21,9 @@ Increased block and wall placement speed by 25%
 Mining speed doubled 
 Auto paint and actuator effect 
 Provides light 
-Toggle vanity to enable Builder Mode:
+Grants the ability to enable Builder Mode:
 Anything that creates a tile will not be consumed 
-No enemies can spawn
-");
+No enemies can spawn");
         }
 
         public override void SetDefaults()
@@ -56,13 +55,17 @@ No enemies can spawn
             player.pickSpeed -= 0.50f;
 
             //mining helmet
-            if (Soulcheck.GetValue("Shine Buff") == false) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
+            if (Soulcheck.GetValue("Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
             player.autoActuator = true;
 
-            if (!hideVisual) modPlayer.BuilderMode = true;
+            if (Soulcheck.GetValue("Builder Mode"))
+            {
+                modPlayer.BuilderMode = true;
+            }
+                
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.geodeShine = true;
@@ -73,15 +76,15 @@ No enemies can spawn
             modPlayer.AddPet("Lock Box Pet", hideVisual, thorium.BuffType("LockBoxBuff"), thorium.ProjectileType("LockBoxPet"));
             thoriumPlayer.LockBoxPet = true;
             //mining speed, spelunker, dangersense, light, hunter, pet
-            modPlayer.MinerEffect(hideVisual, .5f);
+            modPlayer.MinerEffect(hideVisual, .5f);*/
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-            {
+            //if (!Fargowiltas.Instance.ThoriumLoaded)
+            //{
                 recipe.AddIngredient(LaserRuler);
                 recipe.AddIngredient(GravityGlobe);
                 recipe.AddIngredient(CellPhone);
@@ -97,7 +100,7 @@ No enemies can spawn
                 recipe.AddIngredient(LaserDrill);
                 recipe.AddIngredient(DrillContainmentUnit);
                 recipe.AddIngredient(RoyalGel);
-            }
+            //}
             
             /*
              * geode enchant

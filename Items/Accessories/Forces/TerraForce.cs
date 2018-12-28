@@ -17,12 +17,46 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terra Force");
-            /*string tooltip = "''\n";
+            string tooltip = "''\n";
 
-            if (thorium != null)
+            //if (thorium == null)
+            //{
+                tooltip +=
+@"Attacks have a chance to shock enemies with lightning
+Sets your critical strike chance to 10%
+Every crit will increase it by 5%
+Getting hit drops your crit back down
+Allows the player to dash into the enemy
+Right Click to guard with your shield
+You attract items from a larger range
+Attacks may inflict enemies with Lead Poisoning
+Grants immunity to fire blocks and lava";
+                
+            /*}
+            else
             {
                 tooltip +=
-@"While in combat, you generate a 25 life shield
+                @"
+Sets your critical strike chance to 10%
+Every crit will increase it by 5%
+Getting hit drops your crit back down
+Attacks may inflict enemies with Lead Poisoning
+
+
+
+
+
+Attacks have a chance to shock enemies with lightning
+Allows the player to dash into the enemy
+Right Click to guard with your shield
+You attract items from a larger range
+Grants immunity to fire blocks and lava
+
+
+
+
+
+While in combat, you generate a 25 life shield
 12% damage reduction
 Landing on solid ground releases a powerful shockwave
 The damage, knockback, and range of the shock wave is increased by the fall distance
@@ -31,26 +65,11 @@ Right Click to guard with your shield
 Magnetizes all loose items on the screen
 50% of the damage you take is also dealt to the attacker
 ";
-            }
+            }*/
 
-            tooltip +=
-@"Attacks have a chance to shock enemies with lightning
-If an enemy is wet, the chance and damage is increased
-Attacks that cause Wet cannot proc the lightning
-Lightning scales with magic damage
-Allows the player to dash into the enemy
-Right Click to guard with your shield
-You attract items from a larger range
-Attacks may inflict enemies with Lead Poisoning
-Grants immunity to fire blocks and lava
-Increases armor penetration by 10
-While standing in lava, you gain 10 more armor penetration, 15% attack speed, and your attacks ignite enemies
-Sets your critical strike chance to 10%
-Every crit will increase it by 5%
-Getting hit drops your crit back down
-";
+            
 
-            Tooltip.SetDefault(tooltip);*/
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -67,27 +86,36 @@ Getting hit drops your crit back down
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //crit effect improved, smaller tungsten effect
+            //crit effect improved
             modPlayer.TerraForce = true;
             //lightning
             modPlayer.CopperEnchant = true;
+            //crits
+            modPlayer.TinEffect();
             //EoC Shield
             player.dash = 2;
             //shield
             modPlayer.IronEffect();
             //lead poison
             modPlayer.LeadEnchant = true;
-            //lava immune, armor pen
-            modPlayer.ObsidianEffect();
-            //crits
-            modPlayer.TinEffect();
-            //slower, stronger
-            modPlayer.TungstenEffect();
-            
+            //lava immune (obsidian)
+            player.fireWalk = true;
+            player.lavaImmune = true;
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            //if (!Fargowiltas.Instance.ThoriumLoaded)
+            //{
+                //magnet
+                modPlayer.IronEnchant = true;
+                return;
+            //}
 
-            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            /*ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+
+
+
+
+
+
             //durasteel set bonus
             thoriumPlayer.thoriumEndurance += 0.12f;
             //ogre sandals
@@ -155,18 +183,34 @@ Getting hit drops your crit back down
             //EoC Shield
             player.dash = 2;
             //spiked bracers
-            player.thorns += 0.5f;
+            player.thorns += 0.5f;*/
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "CopperEnchant");
-            recipe.AddIngredient(null, "TinEnchant");
-            recipe.AddIngredient(null, "IronEnchant");
-            recipe.AddIngredient(null, "LeadEnchant");
-            recipe.AddIngredient(null, "TungstenEnchant");
-            recipe.AddIngredient(null, "ObsidianEnchant");
+
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            {
+                recipe.AddIngredient(null, "TinEnchant");
+                recipe.AddIngredient(null, "LeadEnchant");
+                recipe.AddIngredient(null, "TungstenEnchant");
+                recipe.AddIngredient(null, "DangerEnchant");
+                recipe.AddIngredient(null, "BronzeEnchant");
+                recipe.AddIngredient(null, "GraniteEnchant");
+                recipe.AddIngredient(null, "DurasteelEnchant");
+            }
+            else
+            {*/
+                recipe.AddIngredient(null, "CopperEnchant");
+                recipe.AddIngredient(null, "TinEnchant");
+                recipe.AddIngredient(null, "IronEnchant");
+                recipe.AddIngredient(null, "LeadEnchant");
+                recipe.AddIngredient(null, "TungstenEnchant");
+                recipe.AddIngredient(null, "ObsidianEnchant");
+            //}
+
+            
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

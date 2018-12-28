@@ -48,12 +48,12 @@ Summons a pet Lizard and Turtle");
             recipe.AddIngredient(null, "CactusEnchant");
             recipe.AddIngredient(ItemID.FleshKnuckles);
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("AbsintheFury"));
                 recipe.AddIngredient(ItemID.ChlorophytePartisan);
                 recipe.AddIngredient(thorium.ItemType("TurtleDrum"));
-            }
+            }*/
             
             recipe.AddIngredient(ItemID.Seaweed);
             recipe.AddIngredient(ItemID.LizardEgg);

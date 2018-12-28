@@ -4,20 +4,21 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    [AutoloadEquip(EquipType.Shoes)]
+    //[AutoloadEquip(EquipType.Shoes)]
     public class SupersonicSoul : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Supersonic Soul");
             Tooltip.SetDefault(
-                @"'Sound barriers forever broken'
-25% increased movement speed
-Allows supersonic fast running, and extra mobility on ice
-Provides lava immunity and permanent light
+@"'Sound barriers forever broken'
+8% increased movement speed
+Allows flight, supersonic fast running, and extra mobility on ice
+Allows the holder to quadruple jump when wing time is up
+Increases jump height, jump speed, and allows auto-jump
 Grants the ability to swim and greatly extends underwater breathing
-Increases jump height, allows auto jump, and negates fall damage
-Allows the player to dash into the enemy");
+Provides the ability to walk on water and lava
+Grants immunity to lava and fall damage");
 
 
 //air walkers
@@ -62,57 +63,35 @@ Allows the player to dash into the enemy");
             player.rocketBoots = 3;
             player.moveSpeed += 0.08f;
             player.iceSkate = true;
-
             //arctic diving gear
             player.arcticDivingGear = true;
             player.accFlipper = true;
             player.accDivingHelm = true;
-            player.iceSkate = true;
-
-            if (player.wet) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
-
-            //frostspark
-            /*if (Soulcheck.GetValue("Super Speed"))
-            {
-                player.GetModPlayer<FargoPlayer>(mod).SpeedEffect = true;
-                player.accRunSpeed = 2.00f;
-                player.moveSpeed += 5f;
-            }
-            else
-            {
-                player.accRunSpeed = 35.00f;
-                player.moveSpeed += 0.25f;
-            }*/
-
-
             //lava waders
             player.waterWalk = true;
             player.fireWalk = true;
             player.lavaImmune = true;
-
             //frog legs
             player.autoJump = true;
             player.jumpSpeedBoost += 2.4f;
-            player.extraFall += 15;
-
+            player.noFallDmg = true;
             //bundle
-            player.doubleJumpCloud = true;
-            player.doubleJumpSandstorm = true;
-            player.doubleJumpBlizzard = true;
+            if(player.wingTime == 0)
+            {
+                player.doubleJumpCloud = true;
+                player.doubleJumpSandstorm = true;
+                player.doubleJumpBlizzard = true;
+            }
             player.jumpBoost = true;
-
-            //player.jumpAgainBlizzard = true;
-
             //slime mount
             player.maxFallSpeed += 5f;
-            player.autoJump = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
             /*
             TerrariumParticleSprinters
@@ -122,17 +101,16 @@ Allows the player to dash into the enemy");
             WeightedWinglets
             
            
-            */
+            
             }
             else
-            {
+            {*/
                 //no others
                 recipe.AddIngredient(ItemID.FrostsparkBoots);
                 recipe.AddIngredient(ItemID.LavaWaders);
                 recipe.AddIngredient(ItemID.ArcticDivingGear);
                 recipe.AddIngredient(ItemID.FrogLeg);
                 recipe.AddIngredient(ItemID.BundleofBalloons);
-
 
                 recipe.AddIngredient(ItemID.SlimySaddle);
                 recipe.AddIngredient(ItemID.FuzzyCarrot);
@@ -141,7 +119,7 @@ Allows the player to dash into the enemy");
                 recipe.AddIngredient(ItemID.ShrimpyTruffle);
                 recipe.AddIngredient(ItemID.ReindeerBells);
                 recipe.AddIngredient(ItemID.BrainScrambler);
-            }
+            //}
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

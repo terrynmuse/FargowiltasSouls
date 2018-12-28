@@ -19,12 +19,12 @@ Double tap down to call an ancient storm to the cursor location
 Any projectiles shot through your storm gain double pierce and 50% damage
 ";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip +=
                     @"Your healing streak fuels an ancient crucible every 100 life up to 500 total
                     The crucible increases your radiant damage by 5% per 100 life in the crucible";
-            }
+            }*/
 
             Tooltip.SetDefault(tooltip);
         }
@@ -43,14 +43,14 @@ Any projectiles shot through your storm gain double pierce and 50% damage
         {
             player.GetModPlayer<FargoPlayer>(mod).ForbiddenEffect();
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             thoriumPlayer.karmicHolder = true;
             if (thoriumPlayer.healStreak >= 0 && player.ownedProjectileCounts[thorium.ProjectileType("KarmicHolderPro")] < 1)
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("KarmicHolderPro"), 0, 0f, player.whoAmI, 0f, 0f);
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -60,7 +60,7 @@ Any projectiles shot through your storm gain double pierce and 50% damage
             recipe.AddIngredient(ItemID.AncientBattleArmorShirt);
             recipe.AddIngredient(ItemID.AncientBattleArmorPants);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.FlyingCarpet);
                 recipe.AddIngredient(thorium.ItemType("KarmicHolder"));
@@ -69,10 +69,10 @@ Any projectiles shot through your storm gain double pierce and 50% damage
                 recipe.AddIngredient(ItemID.BookStaff);
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.SpiritFlame);
                 recipe.AddIngredient(ItemID.BookStaff);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.Scorpion);
             recipe.AddIngredient(ItemID.SecretoftheSands);

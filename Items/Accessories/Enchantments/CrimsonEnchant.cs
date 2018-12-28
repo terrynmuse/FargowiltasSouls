@@ -40,7 +40,7 @@ Summons a pet Face Monster and Crimson Heart");
             recipe.AddIngredient(ItemID.CrimsonScalemail);
             recipe.AddIngredient(ItemID.CrimsonGreaves);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.BloodLustCluster);
                 recipe.AddIngredient(ItemID.TheUndertaker);
@@ -49,9 +49,9 @@ Summons a pet Face Monster and Crimson Heart");
                 recipe.AddIngredient(thorium.ItemType("CrimsonButterfly"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.DeadlandComesAlive);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.BoneRattle);
             recipe.AddIngredient(ItemID.CrimsonHeart);
