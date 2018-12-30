@@ -12,9 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Supersonic Soul");
             Tooltip.SetDefault(
 @"'Sound barriers forever broken'
-8% increased movement speed
-Allows flight, supersonic fast running, and extra mobility on ice
-Allows the holder to quadruple jump when wing time is up
+Allows Supersonic running, flight, and extra mobility on ice
+Allows the holder to quadruple jump if no wings are equipped
 Increases jump height, jump speed, and allows auto-jump
 Grants the ability to swim and greatly extends underwater breathing
 Provides the ability to walk on water and lava
@@ -58,10 +57,11 @@ Grants immunity to lava and fall damage");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            //frost spark
-            player.accRunSpeed = 6.75f;
+            //frost spark plus super speed
+            player.moveSpeed += 0.5f;
+            player.maxRunSpeed += 10f;
+            player.runAcceleration += 1f;
             player.rocketBoots = 3;
-            player.moveSpeed += 0.08f;
             player.iceSkate = true;
             //arctic diving gear
             player.arcticDivingGear = true;

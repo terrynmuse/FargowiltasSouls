@@ -70,21 +70,16 @@ namespace FargowiltasSouls
             #endregion
 
             #region soul toggles
+            ["Melee Speed"] = new Color(81, 181, 113),
+            ["Spore Sac"] = new Color(81, 181, 113),
+            ["Builder Mode"] = new Color(81, 181, 113),
             ["Universe Speedup"] = new Color(81, 181, 113),
             ["Universe Scope"] = new Color(81, 181, 113),
-            ["Builder Mode"] = new Color(81, 181, 113),
             #endregion
 
             #region pet toggles
 
             #endregion
-
-
-
-            ["Spore Sac"] = new Color(81, 181, 113),
-            ["Super Speed"] = new Color(81, 181, 113),
-            ["Melee Speed"] = new Color(81, 181, 113),
-
             ["Black Cat Pet"] = new Color(81, 181, 113),
             ["Companion Cube Pet"] = new Color(81, 181, 113),
             ["Crimson Heart Pet"] = new Color(81, 181, 113),

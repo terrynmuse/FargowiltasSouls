@@ -97,13 +97,18 @@ namespace FargowiltasSouls.Items.Weapons
             return false;
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "PandorasBox");
-            recipe.AddTile(null, "CrucibleCosmosSheet");
+
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

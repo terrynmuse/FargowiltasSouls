@@ -1,27 +1,7 @@
-MOD RELEASE - v 0.1 
+MOD RELEASE - v 0.5
 This mod adds 2 main things. Masochist Mode and Soul accessories.
-Masochist mode is a high IQ difficulty mode that offers a new challenge while not relying on just boosting stats. 
+
+-Masochist mode is a high IQ difficulty mode that offers a new challenge while not relying on just boosting stats. 
 New spawns, tons of new debuffs, new attacks from enemies, and bosses have gone completely insane
-This mode is optional..
-
-Soul accessories are a massive crafting tree of thousands of items leading into one accessory. 
-Every armor set has an accessory version, blah blah
-
-
-
-removed skeleton and travelling merchant spawns from Pandora's Box and made it only usable at night again
--Infinity Relic down side changed, no longer reduces damage or regen, damages you when you attack instead
--fixed bug with bone zone not dropping from treasure bag
-
-infinity relic doesnt work with life fruits
-
-removed lava immune from molten and recipe change
-explode on death
-
-//later
-add tooltips and new effects to upgrades
-lava immune now on obsidian enchantment
-
-
-
-
+This mode is optional.
+-Soul accessories are a massive crafting tree of hundreds of items leading into one accessory. 

@@ -33,7 +33,7 @@ All attacks inflict Flames of the Universe");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.value = 2000000;
+            item.value = 5000000;
             item.rare = -12;
             item.expert = true;
 

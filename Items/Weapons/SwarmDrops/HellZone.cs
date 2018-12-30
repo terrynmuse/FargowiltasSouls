@@ -50,5 +50,18 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         {
             return new Vector2(-30, -5);
         }
+
+        public override void AddRecipes()
+        {
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(null, "Bonezone");
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerSkele"));
+                recipe.AddTile(TileID.Anvils);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
     }
 }

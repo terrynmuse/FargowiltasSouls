@@ -144,14 +144,11 @@ namespace FargowiltasSouls
         public bool ThrowSoul;
         public bool RangedSoul;
         public bool RangedEssence;
-        public bool BuilderEffect;
         public bool BuilderMode;
         public bool UniverseEffect;
         public bool UniverseStoredAutofire;
-        public bool SpeedEffect;
         public bool FishSoul1;
         public bool FishSoul2;
-        public bool DimensionSoul;
         public bool TerrariaSoul;
         public int HealTimer;
         public bool VoidSoul;
@@ -378,13 +375,10 @@ namespace FargowiltasSouls
             ThrowSoul = false;
             RangedSoul = false;
             RangedEssence = false;
-            BuilderEffect = false;
             BuilderMode = false;
             UniverseEffect = false;
-            SpeedEffect = false;
             FishSoul1 = false;
             FishSoul2 = false;
-            DimensionSoul = false;
             TerrariaSoul = false;
             VoidSoul = false;
 
@@ -727,14 +721,6 @@ namespace FargowiltasSouls
             }
 
             return AttackSpeed;
-        }
-
-        public override void PostUpdateRunSpeeds()
-        {
-            if (!SpeedEffect) return;
-            player.maxRunSpeed = 1000;
-            player.accRunSpeed = 2;
-            player.runAcceleration = 5;
         }
 
         public override void UpdateBadLifeRegen()
@@ -1543,12 +1529,6 @@ namespace FargowiltasSouls
                 {
                     TinCrit = 4;
                 }
-            }
-
-            if (DimensionSoul && Main.rand.Next(3) == 0)
-            {
-                player.statLife += Convert.ToInt32(damage * .75);
-                player.HealEffect(Convert.ToInt32(damage * .75));
             }
         }
 

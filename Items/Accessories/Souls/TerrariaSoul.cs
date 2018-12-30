@@ -47,9 +47,11 @@ When you die, you explode and revive with 200 HP");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;
-            item.value = 2000000;
+            item.value = 5000000;
             item.shieldSlot = 5;
+
+            item.rare = -12;
+            item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

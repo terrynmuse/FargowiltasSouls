@@ -16,8 +16,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("World Shaper Soul");
             Tooltip.SetDefault(
 @"'Limitless possibilities'
-Near infinite block placement and mining reach
 Increased block and wall placement speed by 25% 
+Near infinite block placement and mining reach
 Mining speed doubled 
 Auto paint and actuator effect 
 Provides light 
@@ -39,21 +39,16 @@ No enemies can spawn");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            modPlayer.BuilderEffect = true;
-
+            //placing speed up
             player.tileSpeed += 0.25f;
             player.wallSpeed += 0.25f;
-
             //toolbox
             Player.tileRangeX += 50;
             Player.tileRangeY += 50;
-
             //gizmo pack
             player.autoPaint = true;
-
-            //pick axe stuff
+            //pick speed
             player.pickSpeed -= 0.50f;
-
             //mining helmet
             if (Soulcheck.GetValue("Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
@@ -63,7 +58,20 @@ No enemies can spawn");
             {
                 modPlayer.BuilderMode = true;
             }
-                
+
+            //cell phone
+            player.accWatch = 3;
+            player.accDepthMeter = 1;
+            player.accCompass = 1;
+            player.accFishFinder = true;
+            player.accDreamCatcher = true;
+            player.accOreFinder = true;
+            player.accStopwatch = true;
+            player.accCritterGuide = true;
+            player.accJarOfSouls = true;
+            player.accThirdEye = true;
+            player.accCalendar = true;
+            player.accWeatherRadio = true;
 
             /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
@@ -85,21 +93,23 @@ No enemies can spawn");
 
             //if (!Fargowiltas.Instance.ThoriumLoaded)
             //{
-                recipe.AddIngredient(LaserRuler);
-                recipe.AddIngredient(GravityGlobe);
-                recipe.AddIngredient(CellPhone);
-                recipe.AddIngredient(PutridScent);
+
                 recipe.AddIngredient(Toolbelt);
                 recipe.AddIngredient(Toolbox);
                 recipe.AddIngredient(ArchitectGizmoPack);
                 recipe.AddIngredient(ActuationAccessory);
+                recipe.AddIngredient(LaserRuler);
+                recipe.AddIngredient(RoyalGel);
+                recipe.AddIngredient(PutridScent);
+                recipe.AddIngredient(CellPhone);
+                recipe.AddIngredient(GravityGlobe);
 
                 recipe.AddRecipeGroup("FargowiltasSouls:AnyDrax");
                 recipe.AddIngredient(ShroomiteDiggingClaw);
                 recipe.AddIngredient(Picksaw);
                 recipe.AddIngredient(LaserDrill);
                 recipe.AddIngredient(DrillContainmentUnit);
-                recipe.AddIngredient(RoyalGel);
+                
             //}
             
             /*
