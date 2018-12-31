@@ -268,7 +268,7 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 7;
                         break;
 
-                    case NPCID.ChaosElemental:
+                    case NPCID.IlluminantSlime:
                         masoAI = 8;
                         break;
 
@@ -749,7 +749,7 @@ namespace FargowiltasSouls.NPCs
                 // max of 4x hp and 2.5x damage
 
                 //pre hm get 8x and 5x
-                switch (npc.type)
+                /*switch (npc.type)
                 {
                     case NPCID.EyeofCthulhu:
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.EyeCount * .025));
@@ -934,7 +934,7 @@ namespace FargowiltasSouls.NPCs
 
                     default:
                         break;
-                }
+                }*/
                 #endregion
             }
         }
@@ -963,7 +963,7 @@ namespace FargowiltasSouls.NPCs
                 {
                     RegenTimer--;
                 }
-
+                
                 //transformations
                 if(!Transform)
                 {
@@ -1140,7 +1140,7 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 400, BuffID.Confused, true);
                         break;
 
-                    case 8: //chaos ele
+                    case 8: //illum slime
                         Aura(npc, 500, mod.BuffType<Flipped>());
                         break;
 
@@ -1403,25 +1403,10 @@ namespace FargowiltasSouls.NPCs
 
                             if (!masoBool[3] && partnerP3) //when both entering phase3
                             {
-                                npc.defense = 9999;
-                                npc.localAI[2]++;
-
-                                if (npc.localAI[2] >= 6f) //heal every 6 ticks
-                                {
-                                    npc.localAI[2] = 0f;
-
-                                    int heal = npc.lifeMax * Main.rand.Next(90, 111) / 100 / 2 / 20;
-                                    npc.life += heal;
-                                    if (npc.life > npc.lifeMax) //stop healing when fully recovered
-                                    {
-                                        npc.life = npc.lifeMax;
-                                        
-                                        //if spaz dead, OR (spaz must be alive, then is spaz at full health OR spaz done regen?) -> stop regenerating
-                                        if (!spazAlive || Main.npc[spazBoss].life >= Main.npc[spazBoss].lifeMax || Main.npc[spazBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[3])
-                                            masoBool[3] = true;
-                                    }
-                                    CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
-                                }
+                                int heal = (int)(npc.lifeMax * .25f);
+                                npc.life += heal;
+                                masoBool[3] = true;
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
                             }
 
                             //2*pi * (# of full circles) / (seconds to finish rotation) / (ticks per sec)
@@ -1583,28 +1568,10 @@ namespace FargowiltasSouls.NPCs
 
                             if (!masoBool[3] && partnerP3) //when both entering phase3
                             {
-                                npc.defense = 9999;
-                                npc.localAI[2]++;
-
-                                if (npc.buffTime[0] != 0) //cleanse debuff
-                                    npc.DelBuff(0);
-
-                                if (npc.localAI[2] >= 12f) //heal every 6 ticks
-                                {
-                                    npc.localAI[2] = 0f;
-
-                                    int heal = npc.lifeMax * Main.rand.Next(90, 111) / 100 / 2 / 20;
-                                    npc.life += heal;
-                                    if (npc.life > npc.lifeMax)
-                                    {
-                                        npc.life = npc.lifeMax;
-
-                                        //if reti dead, OR (reti must be alive, then is reti at full health OR reti already done regen?) -> stop regenerating
-                                        if (!retiAlive || Main.npc[retiBoss].life >= Main.npc[retiBoss].lifeMax || Main.npc[retiBoss].GetGlobalNPC<FargoGlobalNPC>().masoBool[3])
-                                            masoBool[3] = true;
-                                    }
-                                    CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
-                                }
+                                int heal = (int)(npc.lifeMax * .25f);
+                                npc.life += heal;
+                                masoBool[3] = true;
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
                             }
 
                             if (npc.ai[1] == 0f) //not dashing
@@ -2886,10 +2853,9 @@ namespace FargowiltasSouls.NPCs
                                 if (!NPC.AnyNPCs(NPCID.PrimeVice))
                                     NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeVice, npc.whoAmI, -1f, npc.whoAmI, 0f, 150f, npc.target);
 
-                                int heal = npc.lifeMax - npc.life;
-                                npc.life = npc.lifeMax;
-                                if (heal > 0)
-                                    CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                int heal = (int)(npc.lifeMax * .25f);
+                                npc.life += heal;
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
 
                                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                                 return;
@@ -2933,7 +2899,7 @@ namespace FargowiltasSouls.NPCs
                                         }
                                         break;
 
-                                    case 1500:
+                                    /*case 1500:
                                         Timer = 0;
                                         int n = 200;
 
@@ -2966,7 +2932,7 @@ namespace FargowiltasSouls.NPCs
                                         }
 
                                         Counter = 0;
-                                        goto case 1200;
+                                        goto case 1200;*/
 
                                     default:
                                         break;
@@ -3212,7 +3178,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 masoBool[0] = true;
                                 masoHurtAI = 6;
-                                int heal = Main.npc[npc.realLife].lifeMax * Main.rand.Next(100, 121) / 4 / 81 / 100; //sum 81 segments healing to regain 25% life, with up to +20% variance
+                                int heal = (int)(Main.npc[npc.realLife].lifeMax * .25f); //sum 81 segments healing to regain 25% life, with up to +20% variance
                                 Main.npc[npc.realLife].life += heal;
                                 CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
                                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
@@ -4012,7 +3978,7 @@ namespace FargowiltasSouls.NPCs
         public void ResetRegenTimer(NPC npc)
         {
             //8 sec
-            RegenTimer = 480;
+            npc.GetGlobalNPC<FargoGlobalNPC>().RegenTimer = 480;
         }
 		
 		public override void UpdateLifeRegen(NPC npc, ref int damage)
@@ -4789,6 +4755,27 @@ namespace FargowiltasSouls.NPCs
             {
                 npc.life = 1;
                 return false;
+            }
+
+            if(modPlayer.CactusEnchant)
+            {
+                int dmg = 30;
+
+                if (modPlayer.LifeForce)
+                {
+                    dmg = 75;
+                }
+
+                Projectile[] projs = FargoGlobalProjectile.XWay(16, npc.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
+
+                for (int i = 0; i < projs.Length; i++)
+                {
+                    Projectile p = projs[i];
+                    p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                    p.magic = false;
+                    p.melee = true;
+                    p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                }
             }
 
             if (FargoWorld.MasochistMode)
@@ -5601,7 +5588,7 @@ namespace FargowiltasSouls.NPCs
             }
 
             //bees ignore defense
-            if (modPlayer.BeeEnchant && projectile.type == ProjectileID.GiantBee)
+            if (modPlayer.BeeEnchant && !modPlayer.TerrariaSoul && projectile.type == ProjectileID.GiantBee)
             {
                 damage = (int)(damage + npc.defense * .5);
             }
@@ -6473,8 +6460,7 @@ namespace FargowiltasSouls.NPCs
             {
                 if (PaladinsShield)
                     damage /= 2;
-                
-                //basically, is this a segment?
+
                 if (npc.realLife == -1)
                     ResetRegenTimer(npc);
                 else
@@ -6490,7 +6476,7 @@ namespace FargowiltasSouls.NPCs
 				}
 			}
 
-            if(modPlayer.RedEnchant)
+            if(modPlayer.RedEnchant && !modPlayer.WillForce)
             {
                 switch (npc.life / npc.lifeMax * 100)
                 {

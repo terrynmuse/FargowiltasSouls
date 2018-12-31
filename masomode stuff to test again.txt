@@ -264,7 +264,6 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -destroyer max life nerfed to standard expert (fucking hell that's tanky)
 -prime limbs become invulnerable in phase 2 (emphasizes that prime already takes full damage now)
 -prime shoots rockets in phase 1 when a limb is killed
-
 -wof mouth also shoots fireballs now
 -fixed bufs with wof eyes/deathrays not facing the right away
 -spaz p2 no longer has his unintended flamethrower when the player is dead
