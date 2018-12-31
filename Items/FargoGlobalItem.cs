@@ -1,12 +1,17 @@
+using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items
 {
     public class FargoGlobalItem : GlobalItem
     {
+        private static Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if (item.type == ItemID.DogWhistle)
@@ -70,7 +75,7 @@ namespace FargowiltasSouls.Items
                 case ItemID.QueenBeeBossBag:
                     player.QuickSpawnItem(mod.ItemType("QueenStinger"));
                     break;
-                case ItemID.DestroyerBossBag:
+                /*case ItemID.DestroyerBossBag:
                     player.QuickSpawnItem(mod.ItemType("Probe"));
                     break;
                 case ItemID.TwinsBossBag:
@@ -78,13 +83,13 @@ namespace FargowiltasSouls.Items
                     break;
                 case ItemID.SkeletronPrimeBossBag:
                     player.QuickSpawnItem(mod.ItemType("PrimeStaff"));
-                    break;
+                    break;*/
                 case ItemID.PlanteraBossBag:
                     player.QuickSpawnItem(mod.ItemType("Dicer"));
                     break;
-                case ItemID.GolemBossBag:
-                    player.QuickSpawnItem(mod.ItemType("GolemStaff"));
-                    break;
+                //case ItemID.GolemBossBag:
+                    //player.QuickSpawnItem(mod.ItemType("GolemStaff"));
+                    //break;
                 case ItemID.FishronBossBag:
                     player.QuickSpawnItem(mod.ItemType("FishStick"));
                     break;
@@ -101,7 +106,6 @@ namespace FargowiltasSouls.Items
 
             if (p.TerrariaSoul)
             {
-                // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (item.type)
                 {
                     case ItemID.Heart:
@@ -114,7 +118,7 @@ namespace FargowiltasSouls.Items
                         return false;
                 }
             }
-            else if (p.CrimsonEnchant && item.type == ItemID.Heart)
+            else if (p.CrimsonEnchant && !p.NatureForce && item.type == ItemID.Heart)
             {
                 player.HealEffect(30);
                 player.statLife += 30;
@@ -142,7 +146,7 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            if (item.type == ItemID.PumpkinPie && modPlayer.PumpkinEnchant)
+            if (item.type == ItemID.PumpkinPie && modPlayer.PumpkinEnchant && !modPlayer.TerrariaSoul)
             {
                 int heal = player.statLifeMax2 - player.statLife;
                 player.HealEffect(heal);
@@ -153,6 +157,27 @@ namespace FargowiltasSouls.Items
             if (modPlayer.UniverseEffect && item.damage > 0) item.shootSpeed *= 1.5f;
 
             return false;
+        }
+
+        public override bool Shoot(Item item, Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            //thorium//
+
+            /*if (modPlayer.ShadowForce && item.damage >= 1 && Main.rand.Next(5) == 0)
+            {
+                float num9 = 0.25f;
+                float num10 = (float)Math.Sqrt((speedX * speedX + speedY * speedY));
+                double num11 = Math.Atan2(speedX, speedY);
+                double num12 = num11 + (0.25f * num9);
+                double num13 = num11 - (0.25f * num9);
+                float num14 = Utils.NextFloat(Main.rand) * 0.2f + 0.95f;
+                Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num12), num10 * num14 * (float)Math.Cos(num12), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num13), num10 * num14 * (float)Math.Cos(num13), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
+            }*/
+
+            return true;
         }
     }
 }

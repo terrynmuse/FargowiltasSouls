@@ -11,12 +11,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class RhapsodistEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -29,8 +29,7 @@ Addtionally, they give a random level 1 empowerment to all nearby allies
 Pressing the 'Special Ability' key will:
     grant you an endless amount of inspiration and greatly increased symphonic damage and playing speed for 10 seconds
     overload all nearby allies with every empowerment III for 15 seconds
-These effects needs to recharge for 1 minute
-");
+These effects needs to recharge for 1 minute");
         }
 
         public override void SetDefaults()
@@ -57,12 +56,7 @@ These effects needs to recharge for 1 minute
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            RhapsodistEffect(player);
-        }
-        
-        private void RhapsodistEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //notes heal more and give random empowerments
             thoriumPlayer.inspirator = true;

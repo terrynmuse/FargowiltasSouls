@@ -9,12 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class HarbingerEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -24,7 +24,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 Maximum mana increased by 50%
 While above 75% maximum mana, you become unstable
-Your symphonic damage will empower all nearby allies with: Maximum Life II");
+Magical attacks have a 33% chance to recover some mana
+Every eighth magic cast costs no mana
+Your symphonic damage will empower all nearby allies with: Maximum Life II
+Summons a Moogle pet");
         }
 
         public override void SetDefaults()
@@ -40,12 +43,8 @@ Your symphonic damage will empower all nearby allies with: Maximum Life II");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            HarbingerEffect(player);
-        }
-        
-        private void HarbingerEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             player.statManaMax2 += (int)(player.statManaMax2 * 0.5);
@@ -58,20 +57,23 @@ Your symphonic damage will empower all nearby allies with: Maximum Life II");
             //music player
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3MaxLife = 2;
+            //white knight set bonus
+            thoriumPlayer.whiteKnightSet = true;
+            //shade band
+            thoriumPlayer.shadeBand = true;
+            //pet
+            modPlayer.AddPet("Moogle Pet", hideVisual, thorium.BuffType("LilMogBuff"), thorium.ProjectileType("LilMog"));
+            modPlayer.KnightEnchant = true;
         }
         
         private readonly string[] items =
         {
-            "HarbingerHelmet",
-            "HarbingerChestGuard",
-            "HarbingerGreaves",
             "TunePlayerMaxLife",
             "NightStaff",
             "BlackholeCannon",
             "GodKiller",
             "HarbingerSpear",
-            "HarbingerBow",
-            "HarbingerSurgeWand"
+            "HarbingerBow"
         };
 
         public override void AddRecipes()
@@ -79,7 +81,12 @@ Your symphonic damage will empower all nearby allies with: Maximum Life II");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("HarbingerHelmet"));
+            recipe.AddIngredient(thorium.ItemType("HarbingerChestGuard"));
+            recipe.AddIngredient(thorium.ItemType("HarbingerGreaves"));
+            recipe.AddIngredient(null, "WhiteKnightEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.CrystalBall);

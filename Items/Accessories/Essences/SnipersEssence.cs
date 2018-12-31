@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Sniper's Essence");
             Tooltip.SetDefault(
-                @"'This is only the beginning..'
+@"'This is only the beginning..'
 18% increased ranged damage
 5% increased ranged critical chance
 5% increased ranged use time");
@@ -27,16 +27,16 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).RangedEssence = true;
-            player.rangedCrit += 5;
             player.rangedDamage += .18f;
+            player.rangedCrit += 5;
+            player.GetModPlayer<FargoPlayer>(mod).RangedEssence = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.RangerEmblem);
@@ -55,7 +55,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.HellwingBow);
             }
             else
-            {
+            {*/
                 //no others
                 recipe.AddIngredient(ItemID.RangerEmblem);
                 recipe.AddIngredient(ItemID.RedRyder);
@@ -66,7 +66,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.Boomstick);
                 recipe.AddIngredient(ItemID.BeesKnees);
                 recipe.AddIngredient(ItemID.HellwingBow);
-            }
+            //}
 
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

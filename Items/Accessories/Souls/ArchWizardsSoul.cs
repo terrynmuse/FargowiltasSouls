@@ -13,14 +13,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Arch Wizard's Soul");
             Tooltip.SetDefault(
-                @"'Arcane to the core'
+@"'Arcane to the core'
 30% increased magic damage
 20% increased spell casting speed
 15% increased magic crit chance
 Increases your maximum mana by 200
-Restores mana when damaged
-Increased pickup range for mana stars
-Automatically use mana potions when needed");
+Celestial Cuffs and Mana Flower effects");
         }
 
         public override void SetDefaults()
@@ -51,7 +49,7 @@ Automatically use mana potions when needed");
 
             recipe.AddIngredient(null, "ApprenticesEssence");
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ManaFlower);
                 recipe.AddIngredient(CelestialCuffs);
@@ -75,10 +73,10 @@ Automatically use mana potions when needed");
                     //time gate to stardust enchnt
                     wizard hat into some random thorium enchant
                     //ancient light and all ancient bois to something
-                */
+                
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ManaFlower);
                 recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
@@ -92,7 +90,7 @@ Automatically use mana potions when needed");
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);
                 recipe.AddIngredient(LastPrism);
-            }
+            //}
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

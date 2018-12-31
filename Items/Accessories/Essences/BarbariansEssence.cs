@@ -36,7 +36,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.WarriorEmblem);
@@ -56,7 +56,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 //sanguine/nocturne yoyo
             }
             else
-            {
+            {*/
                 //no others
                 recipe.AddIngredient(ItemID.WarriorEmblem);
                 recipe.AddIngredient(ItemID.ZombieArm);
@@ -67,7 +67,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.Starfury);
                 recipe.AddIngredient(ItemID.BeeKeeper);
                 recipe.AddIngredient(ItemID.Cascade);
-            }
+            //}
 
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

@@ -11,12 +11,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class DreamWeaverEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dream Weaver Enchantment");
@@ -27,7 +27,7 @@ While in the Dream, healed allies will become briefly invulnerable and be cured 
 Pressing the 'Special Ability' key will spend 200 mana and bend the very fabric of reality
 Enemies will be heavily slowed and take 15% more damage from all sources
 Allies will receive greatly increased movement and attack speed
-Summons a cute lil' maid to clean");
+Summons a pet Maid");
         }
 
         public override void SetDefaults()
@@ -54,19 +54,16 @@ Summons a cute lil' maid to clean");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            DreamEffect(player);
-        }
-        
-        private void DreamEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //all allies invuln
             thoriumPlayer.dreamHoodSet = true;
             //enemies slowed and take more dmg
             thoriumPlayer.dreamSet = true;
             //maid pet
-            thoriumPlayer.maidPet = true;
+            modPlayer.AddPet("Maid Pet", hideVisual, thorium.BuffType("MaidBuff"), thorium.ProjectileType("Maid1"));
+            modPlayer.DreamEnchant = true;
         }
         
         private readonly string[] items =

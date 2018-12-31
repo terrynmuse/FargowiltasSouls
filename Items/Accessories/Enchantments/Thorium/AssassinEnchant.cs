@@ -11,12 +11,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class AssassinEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Assassin Enchantment");
@@ -53,21 +53,16 @@ The nearest enemy is scouted and takes 10% more damage from all sources");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            AssassinEffect(player);
-        }
-        
-        private void AssassinEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //damage duplicate
-            thoriumPlayer.omniArcherSet = true; 
+            thoriumPlayer.omniArcherSet = true;
             //ichor and death arrows
-            thoriumPlayer.omniArrowHat = true; 
+            thoriumPlayer.omniArrowHat = true;
             //insta kill
-            thoriumPlayer.omniBulletSet = true; 
+            thoriumPlayer.omniBulletSet = true;
             //cursed flame
-            thoriumPlayer.omniBulletHat = true; 
+            thoriumPlayer.omniBulletHat = true;
             //scan nearest enemy meme
             thoriumPlayer.omniVision = true;
             if (player.ownedProjectileCounts[mod.ProjectileType("OmniVisionPro")] < 1)

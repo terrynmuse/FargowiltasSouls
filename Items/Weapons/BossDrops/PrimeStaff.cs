@@ -11,6 +11,11 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             Tooltip.SetDefault("'An old foe's limbs reanimated for your desires..'");
         }
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetDefaults()
         {
             item.damage = 32;

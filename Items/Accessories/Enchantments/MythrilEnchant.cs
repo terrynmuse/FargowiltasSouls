@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Mythril Enchantment");
             Tooltip.SetDefault(
-                @"'You feel the knowledge of your weapons seep into your mind'
+@"'You feel the knowledge of your weapons seep into your mind'
 30% increased weapon use speed");
         }
 
@@ -40,12 +40,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.MythrilRepeater);
             
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("MythrilPelter"));
                 recipe.AddIngredient(thorium.ItemType("MythrilStaff"));
                 recipe.AddIngredient(thorium.ItemType("DrenchedDirk"));  
-            }
+            }*/
             
             recipe.AddIngredient(ItemID.LaserRifle);
             recipe.AddIngredient(ItemID.FetidBaghnakhs);

@@ -21,10 +21,10 @@ Your weapons shoot at 1/8 the speed
 300% increased damage
 25% increased crit chance";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip += "While in combat, you generate a 15 life shield";
-            }
+            }*/
 
             Tooltip.SetDefault(tooltip);
         }
@@ -43,7 +43,7 @@ Your weapons shoot at 1/8 the speed
         {
             player.GetModPlayer<FargoPlayer>().TungstenEffect();
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             thoriumPlayer.metallurgyShield = true;
@@ -65,7 +65,7 @@ Your weapons shoot at 1/8 the speed
             else
             {
                 timer = 0;
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -75,7 +75,7 @@ Your weapons shoot at 1/8 the speed
             recipe.AddIngredient(ItemID.TungstenChainmail);
             recipe.AddIngredient(ItemID.TungstenGreaves);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("TungstenBulwark"));
                 recipe.AddIngredient(ItemID.TungstenHammer);
@@ -86,11 +86,11 @@ Your weapons shoot at 1/8 the speed
                 recipe.AddIngredient(thorium.ItemType("EmeraldButterfly"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.TungstenHammer);
                 recipe.AddIngredient(ItemID.EmeraldStaff);
                 recipe.AddIngredient(ItemID.Snail);
-            }
+            //}
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

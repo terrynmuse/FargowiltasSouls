@@ -11,10 +11,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Beetle Enchantment");
-            Tooltip.SetDefault(
-                @"'The unseen life of dung courses through your veins'
+
+            string tooltip = 
+@"'The unseen life of dung courses through your veins'
 Beetles protect you from damage
-Your wings last 1.5x as long");
+Your wings last twice as long";
+
+            /*if(thorium != null)
+            {
+                tooltip += "\nSummons a Pet Parrot";
+            }*/
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -29,10 +37,17 @@ Your wings last 1.5x as long");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //defense beetle bois
-            player.GetModPlayer<FargoPlayer>(mod).BeetleEffect();
+            modPlayer.BeetleEffect();
             //extra wing time
-            player.GetModPlayer<FargoPlayer>(mod).BeetleEnchant = true;
+            modPlayer.BeetleEnchant = true;
+
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //pet
+            modPlayer.AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
+            modPlayer.FlightEnchant = true;*/
         }
 
         public override void AddRecipes()
@@ -41,17 +56,23 @@ Your wings last 1.5x as long");
             recipe.AddIngredient(ItemID.BeetleHelmet);
             recipe.AddRecipeGroup("FargowiltasSouls:AnyBeetle");
             recipe.AddIngredient(ItemID.BeetleLeggings);
+
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            {
+                recipe.AddIngredient(null, "FlightEnchant");
+            }*/
+
             recipe.AddIngredient(ItemID.BeetleWings);
             recipe.AddIngredient(ItemID.BeeWings);
             recipe.AddIngredient(ItemID.ButterflyWings);
             recipe.AddIngredient(ItemID.MothronWings);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.GolemFist);
-                recipe.AddIngredient(thorium.ItemType("SolScorchedSlab"));
+                //recipe.AddIngredient(thorium.ItemType("SolScorchedSlab"));
                 recipe.AddIngredient(thorium.ItemType("TempleButterfly"));
-            }
+            }*/
               
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

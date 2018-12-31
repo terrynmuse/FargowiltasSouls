@@ -12,9 +12,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Fossil Enchantment");
             Tooltip.SetDefault(
-                @"'Beyond a forgotten age'
+@"'Beyond a forgotten age'
 If you reach zero HP you cheat death, returning with 20 HP
-For a few seconds after reviving, you are immune to all damage and spawn bones everywhere
+For a few seconds after reviving, you are immune to all damage and spawn bones
 Bones scale with throwing damage
 Summons a pet Baby Dino");
         }
@@ -43,14 +43,14 @@ Summons a pet Baby Dino");
             recipe.AddIngredient(ItemID.AntlionClaw);
             recipe.AddIngredient(ItemID.AmberStaff);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("AmberMinion"));
                 recipe.AddIngredient(ItemID.BoneJavelin, 300);
                 recipe.AddIngredient(thorium.ItemType("Sitar"));
                 recipe.AddIngredient(thorium.ItemType("AmberButterfly"));
             }
-
+            */
             recipe.AddIngredient(ItemID.AmberMosquito);
             
             recipe.AddTile(TileID.DemonAltar);

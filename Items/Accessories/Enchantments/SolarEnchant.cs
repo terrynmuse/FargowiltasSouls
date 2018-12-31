@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Solar Enchantment");
             Tooltip.SetDefault(
-                @"'Too hot to handle' 
+@"'Too hot to handle' 
 Solar shield allows you to dash through enemies
 Melee attacks may inflict the Solar Flare debuff");
         }
@@ -29,7 +29,11 @@ Melee attacks may inflict the Solar Flare debuff");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).SolarEffect();
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            //solar shields
+            modPlayer.SolarEffect();
+            //flare debuff
+            modPlayer.SolarEnchant = true;
         }
 
         public override void AddRecipes()
@@ -39,7 +43,7 @@ Melee attacks may inflict the Solar Flare debuff");
             recipe.AddIngredient(ItemID.SolarFlareBreastplate);
             recipe.AddIngredient(ItemID.SolarFlareLeggings);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.WingsSolar);
                 recipe.AddIngredient(ItemID.HelFire);
@@ -47,9 +51,9 @@ Melee attacks may inflict the Solar Flare debuff");
                 recipe.AddIngredient(thorium.ItemType("EruptingFlare"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.HelFire);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.SolarEruption);
             recipe.AddIngredient(ItemID.DayBreak);

@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Orichalcum Enchantment");
             Tooltip.SetDefault(
-                @"'Nature blesses you' 
+@"'Nature blesses you' 
 Flower petals will cause extra damage to your target 
 Spawns 3 fireballs to rotate around you");
         }
@@ -40,7 +40,7 @@ Spawns 3 fireballs to rotate around you");
             recipe.AddIngredient(ItemID.OrichalcumLeggings);
             recipe.AddIngredient(ItemID.OrichalcumWaraxe);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("OrichPelter"));
                 recipe.AddIngredient(thorium.ItemType("OrichalcumStaff"));
@@ -50,11 +50,11 @@ Spawns 3 fireballs to rotate around you");
                 recipe.AddIngredient(thorium.ItemType("PrismaticSpray"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.FlowerofFire);
                 recipe.AddIngredient(ItemID.FlowerofFrost);
                 recipe.AddIngredient(ItemID.CursedFlames);
-            }
+            //}
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

@@ -12,6 +12,11 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             Tooltip.SetDefault("");
         }
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetDefaults()
         {
             item.damage = 40; //The damage stat for the Weapon.

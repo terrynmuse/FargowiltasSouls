@@ -11,12 +11,12 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Big Sting");
-            Tooltip.SetDefault("''");
+            Tooltip.SetDefault("'The reward for slaughtering many..'");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 30;
+            item.damage = 48;
             item.ranged = true;
             item.width = 24;
             item.height = 24;
@@ -45,6 +45,19 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-10, 0);
+        }
+
+        public override void AddRecipes()
+        {
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(null, "QueenStinger");
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerBee"));
+                recipe.AddTile(TileID.Anvils);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
         }
     }
 }

@@ -12,14 +12,13 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Soul of the Universe");
             Tooltip.SetDefault(
-                @"'The heavens themselves bow to you'
+@"'The heavens themselves bow to you'
 66% increased all damage
 50% increased use speed for all weapons
 50% increased shoot speed
 25% increased all critical chance
 Crits deal 5x damage
 All weapons have double knockback and have auto swing
-All swords are twice as large
 Increases your maximum mana by 300
 Increases your max number of minions by 8
 Increases your max number of sentries by 4
@@ -34,7 +33,7 @@ All attacks inflict Flames of the Universe");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.value = 2000000;
+            item.value = 5000000;
             item.rare = -12;
             item.expert = true;
 
@@ -62,15 +61,15 @@ All attacks inflict Flames of the Universe");
             player.yoyoGlove = true;
             player.yoyoString = true;
             if (Soulcheck.GetValue("Universe Scope"))
-
-            player.scope = true;
+            {
+                player.scope = true;
+            }
             player.manaFlower = true;
             player.manaMagnet = true;
             player.magicCuffs = true;
 
             //if (player.controlUseItem && !player.HeldItem.autoReuse) player.HeldItem.autoReuse = true;
-
-            if (player.HeldItem.useStyle == 1) player.HeldItem.scale = 2;
+            //if (player.HeldItem.useStyle == 1) player.HeldItem.scale = 2;
         }
 
         private void Healer(Player player)
@@ -92,7 +91,7 @@ All attacks inflict Flames of the Universe");
             recipe.AddIngredient(null, "ConjuristsSoul");
             recipe.AddIngredient(null, "OlympiansSoul");
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(null, "GuardianAngelsSoul");
                 recipe.AddIngredient(null, "BardSoul");
@@ -101,10 +100,14 @@ All attacks inflict Flames of the Universe");
                 /*
                 
                 black midi - bard
-                */
-            }
+                
+            }*/
 
-            //recipe.AddTile(null, "CrucibleCosmosSheet");
+            if (Fargowiltas.Instance.FargosLoaded)
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+            else
+                recipe.AddTile(TileID.LunarCraftingStation);
+
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

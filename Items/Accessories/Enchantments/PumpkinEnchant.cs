@@ -12,11 +12,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Pumpkin Enchantment");
             Tooltip.SetDefault(
-                @"'Your sudden pumpkin craving will never be satisfied'
+@"'Your sudden pumpkin craving will never be satisfied'
 You leave behind a trail of fire when you walk
 Flames scale with magic damage
 Eating Pumpkin Pie also heals you to full HP
-Summons a pet squashling");
+Summons a pet Squashling");
         }
 
         public override void SetDefaults()
@@ -43,13 +43,13 @@ Summons a pet squashling");
             recipe.AddIngredient(ItemID.MolotovCocktail, 50);
             recipe.AddIngredient(ItemID.Sickle);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BentZombieArm"));
                 recipe.AddIngredient(ItemID.PumpkinPie);
                 recipe.AddIngredient(ItemID.JackOLantern, 5);
                 recipe.AddIngredient(ItemID.ThroughtheWindow);
-            }
+            }*/
             
             recipe.AddIngredient(ItemID.MagicalPumpkinSeed);
             

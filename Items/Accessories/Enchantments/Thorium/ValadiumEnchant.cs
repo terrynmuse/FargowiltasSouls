@@ -10,12 +10,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public int lightGen;
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -41,12 +41,7 @@ While equipped, the eye will give vision of your cursors current position");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            ValadiumEffect(player);
-        }
-        
-        private void ValadiumEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             player.gravControl = true;

@@ -12,24 +12,22 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public int timer;
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tide Turner Enchantment");
             Tooltip.SetDefault(
 @"'Become as unstoppable as the tides, Unleash aquatic wrath upon your foes'
-Produces a floating globule every 5 seconds
-Every globule increases your defense by 5%
+Produces a floating globule every 2 seconds
+Every globule increases your defense by 5% and makes your next attack a mini-crit
 Pressing the 'Special Ability' key will envelop you within an impervious bubble
 While the bubble is active, all damage taken is converted into healing
 Throwing damage overflows hit enemies with energy
-Produces a floating globule every 1 second
-Every globule makes your next attack a mini-crit, if it does not crit
 Throwing damage has a 20% chance to unleash aquatic homing daggers all around you");
         }
 
@@ -57,12 +55,7 @@ Throwing damage has a 20% chance to unleash aquatic homing daggers all around yo
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            TideEffect(player);
-        }
-        
-        private void TideEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //floating globs
             thoriumPlayer.tideHelmet = true;

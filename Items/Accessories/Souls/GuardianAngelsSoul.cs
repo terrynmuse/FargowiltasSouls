@@ -7,14 +7,14 @@ using Terraria.ID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    [AutoloadEquip(EquipType.Face)]
+    //[AutoloadEquip(EquipType.Face)]
     public class GuardianAngelsSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()

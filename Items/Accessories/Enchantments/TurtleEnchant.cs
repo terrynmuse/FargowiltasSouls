@@ -15,7 +15,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'You suddenly have the urge to hide in a shell'
 When standing still and not attacking, you gain the Shell Hide buff
 Shell Hide protects you from all projectiles, but increases contact damage
-100% of damage taken by melee attacks is reflected
+100% of contact damage is reflected
+Enemies will explode into needles on death
 Summons a pet Lizard and Turtle");
         }
 
@@ -31,7 +32,11 @@ Summons a pet Lizard and Turtle");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).TurtleEffect(hideVisual);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            modPlayer.CactusEffect();
+            modPlayer.TurtleEffect(hideVisual);
+            player.thorns = 1f;
+            player.turtleThorns = true;
         }
 
         public override void AddRecipes()
@@ -40,15 +45,15 @@ Summons a pet Lizard and Turtle");
             recipe.AddIngredient(ItemID.TurtleHelmet);
             recipe.AddIngredient(ItemID.TurtleScaleMail);
             recipe.AddIngredient(ItemID.TurtleLeggings);
+            recipe.AddIngredient(null, "CactusEnchant");
             recipe.AddIngredient(ItemID.FleshKnuckles);
-            recipe.AddIngredient(ItemID.ChlorophytePartisan);
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("AbsintheFury"));
-                recipe.AddIngredient(ItemID.Yelets);
+                recipe.AddIngredient(ItemID.ChlorophytePartisan);
                 recipe.AddIngredient(thorium.ItemType("TurtleDrum"));
-            }
+            }*/
             
             recipe.AddIngredient(ItemID.Seaweed);
             recipe.AddIngredient(ItemID.LizardEgg);

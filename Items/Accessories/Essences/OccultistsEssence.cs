@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Occultist's Essence");
             Tooltip.SetDefault(
-                @"'This is only the beginning..'
+@"'This is only the beginning..'
 18% increased summon damage
 Increases your max number of minions by 1
 Increases your max number of sentries by 1");
@@ -36,7 +36,7 @@ Increases your max number of sentries by 1");
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.SummonerEmblem);
@@ -55,7 +55,7 @@ Increases your max number of sentries by 1");
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT1Popper);
             }
             else
-            {
+            {*/
                 //no others
                 recipe.AddIngredient(ItemID.SummonerEmblem);
                 recipe.AddIngredient(ItemID.SlimeStaff);
@@ -65,7 +65,7 @@ Increases your max number of sentries by 1");
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT1Popper);
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT1Popper);
                 recipe.AddIngredient(ItemID.DD2LightningAuraT1Popper);
-            }
+            //}
 
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

@@ -7,6 +7,11 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
     {
         public override string Texture => "Terraria/NPC_139";
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetDefaults()
         {
             item.damage = 32;

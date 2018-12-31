@@ -15,7 +15,6 @@ namespace FargowiltasSouls.Items.Misc
 
         public override void SetDefaults()
         {
-            item.damage = 50;
             item.width = 10;
             item.height = 32;
             item.maxStack = 99;

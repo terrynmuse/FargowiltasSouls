@@ -9,12 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class GeodeEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -22,11 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Geode Enchantment");
             Tooltip.SetDefault(
 @"'Made from the most luxurious of materials'
+50% increased mining speed
+Shows the location of enemies, traps, and treasures
 Light is emitted from the player
-Can detect ore and treasures
-Summons a magic lantern, that releases a constant aura of regeneration
-Summons a money spitting treasure chest
-Every 10, 500 & 10,000 damage dealt will cause the chest to spit out a corresponding coin");
+Summons a pet Magic Lantern, Inspiring Lantern, and Lock Box");
         }
 
         public override void SetDefaults()
@@ -42,32 +41,26 @@ Every 10, 500 & 10,000 damage dealt will cause the chest to spit out a correspon
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            GeodeEffect(player);
-        }
-        
-        private void GeodeEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
             thoriumPlayer.geodeShine = true;
             Lighting.AddLight(player.position, 1.2f, 0.8f, 1.2f);
-            //set bonus
-            player.findTreasure = true;
-            //lantern pet
+            //pets
+            modPlayer.AddPet("Inspiring Lantern Pet", hideVisual, thorium.BuffType("SupportLanternBuff"), thorium.ProjectileType("SupportLantern"));
             thoriumPlayer.lanternPet = true;
-            //chest pet
+            modPlayer.AddPet("Lock Box Pet", hideVisual, thorium.BuffType("LockBoxBuff"), thorium.ProjectileType("LockBoxPet"));
             thoriumPlayer.LockBoxPet = true;
+            //mining speed, spelunker, dangersense, light, hunter, pet
+            modPlayer.MinerEffect(hideVisual, .5f);
         }
         
         private readonly string[] items =
         {
-            "GeodeHelmet",
-            "GeodeChestplate",
-            "GeodeGreaves",
+            "CrystallineCharm",
             "EnchantedPickaxe",
             "GeodePickaxe",
-            "DragonDrill",
-            "FleshDrill",
             "Lantern",
             "SupportLanternItem",
             "JonesLockBox"
@@ -78,7 +71,12 @@ Every 10, 500 & 10,000 damage dealt will cause the chest to spit out a correspon
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("GeodeHelmet"));
+            recipe.AddIngredient(thorium.ItemType("GeodeChestplate"));
+            recipe.AddIngredient(thorium.ItemType("GeodeGreaves"));
+            recipe.AddIngredient(null, "MinerEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.CrystalBall);

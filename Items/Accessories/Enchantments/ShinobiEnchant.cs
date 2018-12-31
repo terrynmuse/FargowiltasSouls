@@ -17,20 +17,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Village Hidden in the Wall'
 Dash into any walls, to teleport through them to the next opening
 Effects of the Master Ninja Gear
-Greatly enhances Lightning Aura effectiveness";
+";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip +=
 @"Striking an enemy with any throwing weapon will trigger 'Shadow Dance'
 Additonally, while Shadow Dance is active you deal 15% more throwing damage";
-            }
+            }*/
 
             tooltip +=
 @"Throw a smoke bomb to teleport to it
-Standing nearby smoke gives you the First Strike buff";
-
-            tooltip += "Summons a pet Gato and Black Cat";
+Standing nearby smoke gives you the First Strike buff
+Greatly enhances Lightning Aura effectiveness
+Summons a pet Gato and Black Cat";
 
             Tooltip.SetDefault(tooltip); 
         }
@@ -59,7 +59,7 @@ Standing nearby smoke gives you the First Strike buff";
             //ninja, smoke bombs, pet
             modPlayer.NinjaEffect(hideVisual);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
@@ -68,7 +68,7 @@ Standing nearby smoke gives you the First Strike buff";
             if (thoriumPlayer.shadeTele)
             {
                 player.thrownDamage += 0.15f;
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -78,8 +78,7 @@ Standing nearby smoke gives you the First Strike buff";
             recipe.AddIngredient(ItemID.MonkAltShirt);
             recipe.AddIngredient(ItemID.MonkAltPants);
             
-            
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(null, "ShadeMasterEnchant");
                 recipe.AddIngredient(ItemID.MasterNinjaGear);
@@ -89,11 +88,11 @@ Standing nearby smoke gives you the First Strike buff";
                 recipe.AddIngredient(thorium.ItemType("TotalityButterfly"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(null, "NinjaEnchant");
                 recipe.AddIngredient(ItemID.MasterNinjaGear);
                 recipe.AddIngredient(ItemID.MonkBelt);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.DD2PetGato);
             
