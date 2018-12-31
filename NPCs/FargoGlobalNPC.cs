@@ -2442,13 +2442,13 @@ namespace FargowiltasSouls.NPCs
                             case 4: dustType = 90; break;
                         }
 
-                        double MLoffset = MathHelper.ToRadians(180 * Counter / 300);
-                        for (int i = 0; i < 6; i++)
+                        double MLoffset = MathHelper.ToRadians(360 * Counter / 600);
+                        for (int i = 0; i < 5; i++)
                         {
-                            if (Main.rand.Next(4) == 0) continue;
-                            int MLdust = Dust.NewDust(npc.Center + new Vector2(120f, 0f).RotatedBy(Math.PI * 2 / 6 * i + MLoffset), 0, 0, dustType, 0f, 0f, 0, default(Color), 2.5f);
+                            if (Main.rand.Next(5) == 0) continue;
+                            int MLdust = Dust.NewDust(npc.Center + new Vector2(120f, 0f).RotatedBy(Math.PI * 2 / 5 * i + MLoffset), 0, 0, dustType, npc.velocity.X * 0.5f, npc.velocity.Y * 0.5f, 0, default(Color), 2f);
                             Main.dust[MLdust].noGravity = true;
-                            Main.dust[MLdust].velocity.Y -= 4f;
+                            Main.dust[MLdust].velocity.Y -= 3.5f;
                         }
                         goto case 80;
 
@@ -5466,15 +5466,15 @@ namespace FargowiltasSouls.NPCs
                             damage /= 2;
                         break;
 
-                    case 12:
-                        switch (masoState)
+                    case 12: //moon lord
+                        /*switch (masoState)
                         {
                             case 0: if (!item.melee) damage = 0; break;
                             case 1: if (!item.ranged) damage = 0; break;
                             case 2: if (!item.magic) damage = 0; break;
                             case 3: if (!item.summon) damage = 0; break;
                             case 4: if (!item.thrown) damage = 0; break;
-                        }
+                        }*/
                         break;
 
                     default:
@@ -5672,15 +5672,15 @@ namespace FargowiltasSouls.NPCs
                             damage /= 2;
                         break;
 
-                    case 12:
-                        switch (masoState)
+                    case 12: //moon lord
+                        /*switch (masoState)
                         {
                             case 0: if (!projectile.melee) damage = 0; break;
                             case 1: if (!projectile.ranged) damage = 0; break;
                             case 2: if (!projectile.magic) damage = 0; break;
                             case 3: if (!projectile.minion) damage = 0; break;
                             case 4: if (!projectile.thrown) damage = 0; break;
-                        }
+                        }*/
                         break;
 
                     default:
@@ -6638,6 +6638,33 @@ namespace FargowiltasSouls.NPCs
                     npc.knockBackResist = 1;
                 }
             }
+        }
+
+        public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
+        {
+            if (FargoWorld.MasochistMode && masoHurtAI == 12)
+            {
+                return masoState == 0;
+            }
+
+            return null;
+        }
+
+        public override bool? CanBeHitByProjectile(NPC npc, Projectile projectile)
+        {
+            if (FargoWorld.MasochistMode && masoHurtAI == 12)
+            {
+                switch (masoState)
+                {
+                    case 0: if (!projectile.melee) return false; break;
+                    case 1: if (!projectile.ranged) return false; break;
+                    case 2: if (!projectile.magic) return false; break;
+                    case 3: if (!projectile.minion) return false; break;
+                    case 4: if (!projectile.thrown) return false; break;
+                }
+            }
+
+            return null;
         }
 
         public static bool BossIsAlive(ref int bossID, int bossType)
