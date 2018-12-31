@@ -12,11 +12,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Miner Enchantment");
             Tooltip.SetDefault(
-                @"'The planet trembles with each swing of your pick'
-50% increased mining speed
+@"'The planet trembles with each swing of your pick'
+30% increased mining speed
 Shows the location of enemies, traps, and treasures
-You emit an aura of light
-Summons a magic lantern");
+Light is emitted from the player
+Summons a pet Magic Lantern");
         }
 
         public override void SetDefaults()
@@ -31,7 +31,7 @@ Summons a magic lantern");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MinerEffect(hideVisual, .5f);
+            player.GetModPlayer<FargoPlayer>(mod).MinerEffect(hideVisual, .3f);
         }
 
         public override void AddRecipes()
@@ -41,7 +41,7 @@ Summons a magic lantern");
             recipe.AddIngredient(ItemID.MiningShirt);
             recipe.AddIngredient(ItemID.MiningPants);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("aSandstonePickaxe"));
                 recipe.AddIngredient(ItemID.GoldPickaxe);
@@ -51,10 +51,10 @@ Summons a magic lantern");
                 recipe.AddIngredient(thorium.ItemType("BlinkrootButterfly"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.BonePickaxe);
                 recipe.AddIngredient(ItemID.MoltenPickaxe);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.MagicLantern);
 

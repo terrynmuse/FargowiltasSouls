@@ -11,12 +11,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class PyromancerEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pyromancer Enchantment");
@@ -50,12 +50,7 @@ Pressing the 'Special Ability' key will unleash an echo of Slag Fury's power");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            PyroEffect(player);
-        }
-        
-        private void PyroEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //pyro magic set
             thoriumPlayer.pyro = true;

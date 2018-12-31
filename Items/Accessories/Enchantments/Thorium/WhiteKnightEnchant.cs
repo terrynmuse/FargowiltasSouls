@@ -4,18 +4,17 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 
-
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
     public class WhiteKnightEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -25,7 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 Magical attacks have a 33% chance to recover some mana
 Every eighth magic cast costs no mana
-Summons a little winged friend");
+Summons a Moogle pet");
         }
 
         public override void SetDefaults()
@@ -41,18 +40,15 @@ Summons a little winged friend");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            KnightEffect(player);
-        }
-        
-        private void KnightEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.whiteKnightSet = true;
             //shade band
             thoriumPlayer.shadeBand = true;
             //pet
-            thoriumPlayer.mogPet = true;
+            modPlayer.AddPet("Moogle Pet", hideVisual, thorium.BuffType("LilMogBuff"), thorium.ProjectileType("LilMog"));
+            modPlayer.KnightEnchant = true;
         }
         
         private readonly string[] items =

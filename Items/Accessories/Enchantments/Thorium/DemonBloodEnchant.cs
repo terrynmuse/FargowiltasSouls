@@ -9,12 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class DemonBloodEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -83,7 +83,6 @@ Summons a pet Flying Blister, Face Monster, and Crimson Heart");
             "VileCore",
             "CrimsonSubwoofer",
             "TunePlayerCritChance",
-            "DemonBloodStaff",
             "DarkContagionBook",
             "IchorButterfly"
         };

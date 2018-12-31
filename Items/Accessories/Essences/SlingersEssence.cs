@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Slinger's Essence");
             Tooltip.SetDefault(
-                @"'This is only the beginning..'
+@"'This is only the beginning..'
 18% increased throwing damage
 5% increased throwing critical chance
 5% increased throwing velocity");
@@ -54,14 +54,14 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 //gauss flinger //saucer
 
             }
-            else if (Fargowiltas.Instance.FargosLoaded)
+            else*/ if (Fargowiltas.Instance.FargosLoaded)
             {
                 //no others
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("WoodenYoyoThrown"));
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("BloodyMacheteThrown"));
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("IceBoomerangThrown"));
                 recipe.AddIngredient(ItemID.MolotovCocktail, 99);
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("MeatballThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("TheMeatballThrown"));
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ThornChakramThrown"));
                 recipe.AddIngredient(ItemID.BoneGlove);
                 recipe.AddIngredient(ItemID.BlueMoon);
@@ -69,8 +69,16 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             }
             else
             {
+                recipe.AddIngredient(ItemID.WoodYoyo);
+                recipe.AddIngredient(ItemID.BloodyMachete);
+                recipe.AddIngredient(ItemID.IceBoomerang);
+                recipe.AddIngredient(ItemID.MolotovCocktail, 99);
+                recipe.AddIngredient(ItemID.TheMeatball);
+                recipe.AddIngredient(ItemID.ThornChakram);
+                recipe.AddIngredient(ItemID.BoneGlove);
                 recipe.AddIngredient(ItemID.BlueMoon);
-            }*/
+                recipe.AddIngredient(ItemID.Flamarang);
+            }
 
             recipe.AddIngredient(ItemID.BlueMoon);
             recipe.AddTile(TileID.TinkerersWorkbench);

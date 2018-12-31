@@ -10,12 +10,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public int timer;
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -43,12 +43,7 @@ Doubles the range of your empowerments effect radius");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            GraniteEffect(player);
-        }
-        
-        private void GraniteEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             player.fireWalk = true;

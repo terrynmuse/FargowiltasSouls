@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Conjurist's Soul");
 
             Tooltip.SetDefault(
-                @"'An army at your disposal'
+@"'An army at your disposal'
 30% increased summon damage
 Increases your max number of minions by 4
 Increases your max number of sentries by 2
@@ -44,7 +44,7 @@ Increased minion knockback");
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "OccultistsEssence");
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ItemID.PapyrusScarab);
                 //prehistoric arachnid
@@ -69,10 +69,10 @@ Increased minion knockback");
                  
             sou
             banner molten
-                 * */
+                 * 
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.PapyrusScarab);
                 recipe.AddIngredient(ItemID.PirateStaff);
                 recipe.AddIngredient(ItemID.OpticStaff);
@@ -86,7 +86,7 @@ Increased minion knockback");
                 recipe.AddIngredient(ItemID.RavenStaff);
                 recipe.AddIngredient(ItemID.XenoStaff);
                 recipe.AddIngredient(ItemID.MoonlordTurretStaff);
-            }
+            //}
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

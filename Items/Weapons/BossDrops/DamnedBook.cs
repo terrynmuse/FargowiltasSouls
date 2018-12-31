@@ -13,6 +13,11 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             Tooltip.SetDefault("");
         }
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetDefaults()
         {
             item.damage = 60;

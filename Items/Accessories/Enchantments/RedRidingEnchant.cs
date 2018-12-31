@@ -12,12 +12,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Red Riding Enchantment");
             Tooltip.SetDefault(
-                @"'Big Bad Red Riding Hood'
+@"'Big Bad Red Riding Hood'
+During a Full Moon, attacks may cause enemies to Super Bleed
+Your attacks deal increasing damage to low HP enemies
 Greatly enhances Explosive Traps effectiveness
 Celestial Shell effects
-Your attacks deal increasing damage to low HP enemies
-During a Full Moon, attacks may cause enemies to Super Bleed
-Summons a Puppy");
+Summons a pet Puppy");
         }
 
         public override void SetDefaults()
@@ -56,7 +56,7 @@ Summons a Puppy");
             recipe.AddIngredient(ItemID.HuntressBuckler);
             recipe.AddIngredient(ItemID.CelestialShell);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("EvisceratingClaw"), 300);
                 recipe.AddIngredient(thorium.ItemType("LadyLight"));
@@ -64,9 +64,9 @@ Summons a Puppy");
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.DogWhistle);
             

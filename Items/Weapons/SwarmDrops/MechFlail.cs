@@ -31,5 +31,18 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.UseSound = SoundID.Item1;
             item.melee = true;
         }
+
+        public override void AddRecipes()
+        {
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(null, "EyeFlail");
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerEye"));
+                recipe.AddTile(TileID.Anvils);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
     }
 }

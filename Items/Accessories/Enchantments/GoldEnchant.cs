@@ -22,14 +22,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine[] lines = new TooltipLine[8];
+            TooltipLine[] lines = new TooltipLine[7]; //back to 8 when thorium returns
             
             lines[0] = new TooltipLine(mod, "1", "'Gold makes the world go round'");
             lines[1] = new TooltipLine(mod, "2", "Increased damage based on current coin count");
             lines[2] = new TooltipLine(mod, "3", "Current: " + (Damage * 100).ToString("0.00") + "% increased damage");
             lines[2].overrideColor = Color.LimeGreen;
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 lines[3] = new TooltipLine(mod, "4", "While in combat, you generate a 16 life shield");
                 lines[4] = new TooltipLine(mod, "5", "Increases coin pickup range and shops have lower prices");
@@ -38,19 +38,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 lines[7] = new TooltipLine(mod, "8", "Summons a curious bag of ancient coins");
             }
             else
-            {
+            {*/
                 lines[3] = new TooltipLine(mod, "4", "Increases coin pickup range and shops have lower prices");
                 lines[4] = new TooltipLine(mod, "5", "Hitting enemies will sometimes drop extra coins");
                 lines[5] = new TooltipLine(mod, "6", "Your attacks inflict Midas");
                 lines[6] = new TooltipLine(mod, "7", "Summons a pet Parrot");
-            }
+            //}
 
             int length = lines.Length;
 
-            if(!Fargowiltas.Instance.ThoriumLoaded)
+            /*if(!Fargowiltas.Instance.ThoriumLoaded)
             {
                 length--;
-            }
+            }*/
 
             for (int i = 0; i < length; i++) tooltips.Add(lines[i]);
         }
@@ -111,7 +111,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             modPlayer.AllDamageUp(Damage);
             modPlayer.GoldEffect(hideVisual);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             //proof of avarice
@@ -136,7 +136,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             else
             {
                 timer = 0;
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -146,7 +146,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.GoldChainmail);
             recipe.AddIngredient(ItemID.GoldGreaves);
            
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("GoldAegis"));
                 recipe.AddIngredient(thorium.ItemType("ProofAvarice"));
@@ -157,12 +157,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 recipe.AddIngredient(thorium.ItemType("AncientDrachma"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.GreedyRing);
                 recipe.AddIngredient(ItemID.RubyStaff);
                 recipe.AddIngredient(ItemID.SquirrelGold);
                 recipe.AddIngredient(ItemID.ParrotCracker);
-            }
+            //}
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

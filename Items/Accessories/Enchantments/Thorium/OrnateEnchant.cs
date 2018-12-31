@@ -10,12 +10,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class OrnateEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -25,7 +25,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
                 @"''
 Symphonic critical strikes cause the attack's empowerment to ascend to a fourth level of intensity
 Increases maximum inspiration by 2
-Every nearby ally increases your inspiration regeneration by 1%");
+Every nearby ally increases your inspiration regeneration by 1%
+Your symphonic damage will empower all nearby allies with: Ammo Consumption II");
         }
 
         public override void SetDefaults()
@@ -59,6 +60,9 @@ Every nearby ally increases your inspiration regeneration by 1%");
                     thoriumPlayer.bardResourceRecharge++;
                 }
             }
+            //music player
+            thoriumPlayer.musicPlayer = true;
+            thoriumPlayer.MP3AmmoConsumption = 2;
         }
         
         private readonly string[] items =
@@ -72,8 +76,7 @@ Every nearby ally increases your inspiration regeneration by 1%");
             "VuvuzelaBlue",
             "VuvuzelaGreen",
             "VuvuzelaRed",
-            "VuvuzelaYellow",
-            "MusicSheet7"
+            "VuvuzelaYellow"
         };
 
         public override void AddRecipes()

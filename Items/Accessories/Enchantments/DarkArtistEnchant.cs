@@ -14,19 +14,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Dark Artist Enchantment");
 
-            string tooltip = 
+            string tooltip =
 @"'The shadows hold more than they seem'
-Greatly enhances Flameburst effectiveness
 Your weapon's projectiles occasionally shoot from the shadows of where you used to be
+Greatly enhances Flameburst effectiveness
 ";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip += 
 @"Corrupts your radiant powers
 Enemies afflicted with shadowflame or light curse increase your life regeneration
 ";
-            }
+            }*/
 
             tooltip += "Summons a pet Flickerwick";
 
@@ -49,7 +49,7 @@ Enemies afflicted with shadowflame or light curse increase your life regeneratio
             player.setApprenticeT3 = true;
             player.GetModPlayer<FargoPlayer>(mod).DarkArtistEffect(hideVisual);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             //dark effigy
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
@@ -63,7 +63,7 @@ Enemies afflicted with shadowflame or light curse increase your life regeneratio
                     thoriumPlayer.effigy++;
                     player.AddBuff(thorium.BuffType("EffigyRegen"), 10, false);
                 }
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -74,7 +74,7 @@ Enemies afflicted with shadowflame or light curse increase your life regeneratio
             recipe.AddIngredient(ItemID.ApprenticeAltPants);
             recipe.AddIngredient(ItemID.ApprenticeScarf);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("Effigy"));
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
@@ -83,10 +83,10 @@ Enemies afflicted with shadowflame or light curse increase your life regeneratio
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.DD2PetGhost);
             

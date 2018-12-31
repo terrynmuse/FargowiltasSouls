@@ -18,10 +18,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip = @"'Have you power enough to wield me?'
 Summons a sword familiar that scales with minion damage";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip += "\nWhile in combat, you generate a 14 life shield";
-            }
+            }*/
 
             Tooltip.SetDefault(tooltip);
         }
@@ -42,7 +42,7 @@ Summons a sword familiar that scales with minion damage";
             modPlayer.SilverEnchant = true;
             modPlayer.AddMinion("Silver Sword Familiar", mod.ProjectileType("SilverSword"), (int) (20 * player.minionDamage), 0f);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             thoriumPlayer.metallurgyShield = true;
@@ -64,7 +64,7 @@ Summons a sword familiar that scales with minion damage";
             else
             {
                 timer = 0;
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -74,7 +74,7 @@ Summons a sword familiar that scales with minion damage";
             recipe.AddIngredient(ItemID.SilverChainmail);
             recipe.AddIngredient(ItemID.SilverGreaves);
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("SilverBulwark"));
                 
@@ -86,11 +86,11 @@ Summons a sword familiar that scales with minion damage";
                 recipe.AddIngredient(thorium.ItemType("SapphireButterfly"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.SilverBroadsword);
                 recipe.AddIngredient(ItemID.SapphireStaff);
                 recipe.AddIngredient(ItemID.BluePhaseblade);
-            }
+            //}
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

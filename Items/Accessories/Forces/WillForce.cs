@@ -15,37 +15,32 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Will");
 
-            /*string tooltip =
+            string tooltip =
 @"''
-Shot projectiles will speed up drastically over time
-Summons a pet Minotaur
 Increases coin pickup range and shops have lower prices
 Hitting enemies will sometimes drop extra coins
 Your attacks inflict Midas
 10% chance for enemies to drop 4x loot
 If the enemy has Midas, the chance and bonus is doubled
-Greatly enhances Explosive Traps effectiveness
-Celestial Shell effects
-Your attacks deal increasing damage to low HP enemies
+Shot projectiles will speed up drastically over time
 Attacks may cause enemies to Super Bleed
-Summons a Puppy
-Greatly enhances Ballista effectiveness
+Celestial Shell effects
 All attacks will slowly remove enemy knockback immunity
 Shiny Stone effects
-Summons a pet Dragon";
+Summons several pets";
 
-            if (thorium != null)
+            /*if (thorium != null)
             {
                 tooltip +=
 @"Summons a curious bag of ancient coins
 Summons some living glitter to follow you around";
             }
             else
-            {
-                tooltip += "Summons a pet Parrot";
-            }
+            {*/
+                //tooltip += "Summons a pet Parrot";
+            //}
 
-            Tooltip.SetDefault(tooltip);*/
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -62,37 +57,33 @@ Summons some living glitter to follow you around";
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //makes speed up for all, super bleed on all, knockback remove for all
-            modPlayer.WillForce = true; //check all
-            //speed up and pets
-            modPlayer.GladiatorEffect(hideVisual);
+            modPlayer.WillForce = true; 
             //midas, greedy ring, pet
             modPlayer.GoldEffect(hideVisual);
             //loot multiply
             modPlayer.PlatinumEnchant = true;
-            player.setHuntressT2 = true;
-            player.setHuntressT3 = true;
+            //speed up and pets
+            modPlayer.GladiatorEffect(hideVisual);
+            //super bleed, pet
+            modPlayer.RedRidingEffect(hideVisual);
             //celestial shell
             player.accMerman = true;
             player.wolfAcc = true;
-
             if (hideVisual)
             {
                 player.hideMerman = true;
                 player.hideWolf = true;
             }
-            //super bleed, low hp dmg, pet
-            modPlayer.RedRidingEffect(hideVisual);
-            player.setSquireT2 = true;
-            player.setSquireT3 = true;
-            player.shinyStone = true;
             //knockback kill, pet
             modPlayer.ValhallaEffect(hideVisual);
+            player.shinyStone = true;
+            
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             //proof of avarice
-            thoriumPlayer.avarice2 = true;
+            thoriumPlayer.avarice2 = true;*/
         }
 
         public override void AddRecipes()

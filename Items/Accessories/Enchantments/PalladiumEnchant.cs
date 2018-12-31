@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Palladium Enchantment");
             Tooltip.SetDefault(
-                @"'You feel your wounds slowly healing' 
+@"'You feel your wounds slowly healing' 
 Greatly increases life regeneration after striking an enemy 
 One attack gains 33% life steal every 10 seconds, capped at 100 HP");
         }
@@ -40,7 +40,7 @@ One attack gains 33% life steal every 10 seconds, capped at 100 HP");
             recipe.AddIngredient(ItemID.PalladiumLeggings);
             recipe.AddIngredient(ItemID.PalladiumSword);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("PalladiumSub"));
                 recipe.AddIngredient(thorium.ItemType("PalladiumStaff"));
@@ -48,9 +48,9 @@ One attack gains 33% life steal every 10 seconds, capped at 100 HP");
                 recipe.AddIngredient(thorium.ItemType("VampireScepter"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.PalladiumRepeater);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.SoulDrain);
             recipe.AddIngredient(ItemID.VampireKnives);

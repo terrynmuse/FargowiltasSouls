@@ -5,21 +5,21 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    [AutoloadEquip(EquipType.Shield)]
+    //[AutoloadEquip(EquipType.Shield)]
     public class ColossusSoul : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Colossus Soul");
             Tooltip.SetDefault(
-                @"'Nothing can stop you'
+@"'Nothing can stop you'
 Increases HP by 100
 15% damage reduction
 Increases life regeneration by 5
 Grants immunity to knockback and several debuffs
-Enemies are more likely to target you
 Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
-Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
+Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell
+Enemies are more likely to target you");
 
 //sweet vengence
 //Increases movement speed after being damaged
@@ -98,6 +98,7 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
             player.buffImmune[BuffID.Silenced] = true;
             player.buffImmune[BuffID.Cursed] = true;
             player.buffImmune[BuffID.Darkness] = true;
+            player.buffImmune[BuffID.ChaosState] = true;
             player.noKnockback = true;
             player.fireWalk = true;
             //brain of confusion
@@ -133,7 +134,7 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
             /*
             terrarium defender
@@ -143,7 +144,7 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
             sweet vengeance
             
             life quartz shield
-            */
+            
             
                 recipe.AddIngredient(ItemID.HandWarmer);
                 //recipe.AddIngredient(ItemID.BrainOfConfusion);
@@ -151,9 +152,9 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
                 recipe.AddIngredient(ItemID.CharmofMyths);
                 recipe.AddIngredient(ItemID.SporeSac);
                 recipe.AddIngredient(ItemID.FleshKnuckles);
-            }
-            else
-            {
+            }*/
+            //else
+            //{
                 recipe.AddIngredient(ItemID.HandWarmer);
                 recipe.AddIngredient(ItemID.WormScarf);
                 recipe.AddIngredient(ItemID.BrainOfConfusion);
@@ -167,7 +168,7 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell");
                 recipe.AddIngredient(ItemID.FrozenTurtleShell);
                 recipe.AddIngredient(ItemID.PaladinsShield);
                 recipe.AddIngredient(ItemID.AnkhShield);
-            }
+            //}
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

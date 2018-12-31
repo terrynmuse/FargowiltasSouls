@@ -9,19 +9,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class MarchingBandEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Marching Band Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"''
 Inspiration notes that drop are twice as potent and increase your symphonic damage briefly");
         }
 
@@ -38,12 +38,7 @@ Inspiration notes that drop are twice as potent and increase your symphonic dama
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            MarchingEffect(player);
-        }
-        
-        private void MarchingEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //marching band set 
             thoriumPlayer.empoweredNotes = true;

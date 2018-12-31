@@ -18,14 +18,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 You may summon nearly twice as many spider minions
 ";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip +=
 @"Your symphonic damage empowers all nearby allies with: Spider Bite
 Damage done against envenomed enemies is increased by 8%
 Doubles the range of your empowerments effect radius
 ";
-            }
+            }*/
 
             tooltip += "Summons a pet Spider";
 
@@ -46,11 +46,11 @@ Doubles the range of your empowerments effect radius
         {
             player.GetModPlayer<FargoPlayer>(mod).SpiderEffect(hideVisual);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             thoriumPlayer.subwooferVenom = true;
-            thoriumPlayer.bardRangeBoost += 450;
+            thoriumPlayer.bardRangeBoost += 450;*/
         }
 
         public override void AddRecipes()
@@ -60,7 +60,7 @@ Doubles the range of your empowerments effect radius
             recipe.AddIngredient(ItemID.SpiderBreastplate);
             recipe.AddIngredient(ItemID.SpiderGreaves);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("VenomSubwoofer"));
                 recipe.AddIngredient(thorium.ItemType("Webgun"));
@@ -70,11 +70,11 @@ Doubles the range of your empowerments effect radius
                 recipe.AddIngredient(thorium.ItemType("ZereneButterfly"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.SpiderStaff);
                 recipe.AddIngredient(ItemID.QueenSpiderStaff);
                 recipe.AddIngredient(ItemID.BatScepter);
-            }   
+            //}   
             
             recipe.AddIngredient(ItemID.SpiderEgg);
             

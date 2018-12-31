@@ -10,6 +10,11 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
     {
         public override string Texture => "Terraria/Item_3475";
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Destroyer Gun");

@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Apprentice's Essence");
             Tooltip.SetDefault(
-                @"'This is only the beginning..'
+@"'This is only the beginning..'
 18% increased magic damage
 5% increased magic crit
 Increases your maximum mana by 50");
@@ -36,7 +36,7 @@ Increases your maximum mana by 50");
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.SorcererEmblem);
@@ -55,7 +55,7 @@ Increases your maximum mana by 50");
                 //magik staff
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.SorcererEmblem);
                 recipe.AddIngredient(ItemID.WandofSparking);
                 recipe.AddIngredient(ItemID.Vilethorn);
@@ -64,7 +64,7 @@ Increases your maximum mana by 50");
                 recipe.AddIngredient(ItemID.BookofSkulls);
                 recipe.AddIngredient(ItemID.MagicMissile);
                 recipe.AddIngredient(ItemID.Flamelash);
-            }
+            //}
 
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items
             item.useAnimation = 30;
             item.useTime = 30;
             item.useStyle = 4;
-            item.consumable = true;
+            item.consumable = false;
         }
 
         public override bool UseItem(Player player)

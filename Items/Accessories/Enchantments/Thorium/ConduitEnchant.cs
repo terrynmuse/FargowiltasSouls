@@ -10,12 +10,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class ConduitEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -23,10 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Conduit Enchantment");
             Tooltip.SetDefault(
 @"'Shocked out of this world'
+A meteor shower initiates every few seconds while attacking
 Moving around generates up to 5 static rings, with each one generating life shielding
 When fully charged, a bubble of energy will protect you from one attack 
 When the bubble blocks an attack, an electrical discharge is released at nearby enemies
-A meteor shower initiates every few seconds while attacking
 Summons a pet Omega, I.F.O., and Bio-Feeder");
         }
 

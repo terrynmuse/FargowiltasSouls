@@ -9,18 +9,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class LivingWoodEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Living Wood Enchantment");
             Tooltip.SetDefault(
 @"''
-Your living wood sapling's attacks will home in on enemies
+Summons a living wood sapling and its attacks will home in on enemies
 Allows the collection of Vine Rope from vines");
         }
 
@@ -37,17 +37,16 @@ Allows the collection of Vine Rope from vines");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            WoodEffect(player);
-        }
-        
-        private void WoodEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.livingWood = true;
             //vine rope thing
             player.cordage = true;
+            //free boi
+            modPlayer.LivingWoodEnchant = true;
+            modPlayer.AddMinion("Sapling Minion", thorium.ProjectileType("MinionSapling"), 10, 2f);
         }
 
         public override void AddRecipes()

@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using FargowiltasSouls.Buffs.Masomode;
 using Microsoft.Xna.Framework.Graphics;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Projectiles
 {
@@ -115,14 +116,13 @@ namespace FargowiltasSouls.Projectiles
 
                 if (projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
                 {
-                    if (!modPlayer.SpiderEnchant)
+                    if (!modPlayer.SpiderEnchant || modPlayer.TerrariaSoul)
                     {
                         //the usual, WTF who knew
                         projectile.minionSlots = .75f;
                     }
                 }
                 
-
                 if (projectile.friendly && !projectile.hostile)
                 {
                     if (modPlayer.ForbiddenEnchant && projectile.damage > 0 && projectile.type != ProjectileID.SandnadoFriendly && !stormBoosted)
@@ -172,7 +172,7 @@ namespace FargowiltasSouls.Projectiles
                         }
                     }
 
-                    if (modPlayer.GladEnchant && (projectile.thrown || modPlayer.WillForce) && CanSplit && projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 &&
+                    if (modPlayer.GladEnchant && !modPlayer.TerrariaSoul && (projectile.thrown || modPlayer.WillForce) && CanSplit && projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 &&
                         Soulcheck.GetValue("Gladiator Speedup") && numSpeedups > 0 && counter % 10 == 0)
                     {
                         numSpeedups--;
@@ -314,13 +314,13 @@ namespace FargowiltasSouls.Projectiles
             return true;
         }
 
-        private void KillPet(Projectile projectile, Player player, int buff, bool enchant, string toggle)
+        private void KillPet(Projectile projectile, Player player, int buff, bool enchant, string toggle, bool minion = false)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             if (player.FindBuffIndex(buff) == -1)
             {
-                if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle) || !modPlayer.PetsActive)
+                if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle) || (!modPlayer.PetsActive && !minion))
                 {
                     projectile.Kill();
                 }
@@ -421,7 +421,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Parrot:
-                    KillPet(projectile, player, BuffID.PetParrot, modPlayer.GoldEnchant, "Parrot Pet");
+                    KillPet(projectile, player, BuffID.PetParrot, modPlayer.GoldEnchant || modPlayer.FlightEnchant, "Parrot Pet");
                     break;
 
                 case ProjectileID.Puppy:
@@ -495,8 +495,9 @@ namespace FargowiltasSouls.Projectiles
                         break;
             }
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {
+                //switch wouldnt work because IDs not constant RIP
                 if(projectile.type == thorium.ProjectileType("Omega"))
                 {
                     KillPet(projectile, player, thorium.BuffType("OmegaPet"), modPlayer.MeteorEnchant, "Omega Pet");
@@ -517,8 +518,55 @@ namespace FargowiltasSouls.Projectiles
                 {
                     KillPet(projectile, player, thorium.BuffType("WyvernPetBuff"), modPlayer.ShadowEnchant, "Wyvern Pet");
                 }
-
-            }
+                else if (projectile.type == thorium.ProjectileType("SupportLantern"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("SupportLanternBuff"), modPlayer.MinerEnchant, "Inspiring Lantern Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("LockBoxPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("LockBoxBuff"), modPlayer.MinerEnchant, "Lock Box Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("Devil"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("DevilBuff"), modPlayer.WarlockEnchant, "Li'l Devil Minion", true);
+                }
+                else if (projectile.type == thorium.ProjectileType("Angel"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("AngelBuff"), modPlayer.SacredEnchant, "Li'l Cherub Minion", true);
+                }
+                else if (projectile.type == thorium.ProjectileType("LifeSpirit"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("LifeSpiritBuff"), modPlayer.SacredEnchant, "Life Spirit Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("HolyGoat"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("HolyGostBuff"), modPlayer.BinderEnchant, "Holy Goat Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("MinionSapling"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("SaplingBuff"), modPlayer.LivingWoodEnchant, "Sapling Minion", true);
+                }
+                else if (projectile.type == thorium.ProjectileType("SnowyOwlPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("SnowyOwlBuff"), modPlayer.FrostEnchant, "Owl Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("JellyfishPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("JellyPet"), modPlayer.DepthEnchant, "Jellyfish Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("LilMog"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("LilMogBuff"), modPlayer.KnightEnchant, "Moogle Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("Maid1"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("MaidBuff"), modPlayer.DreamEnchant, "Maid Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("PinkSlime"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("PinkSlimeBuff"), modPlayer.IllumiteEnchant, "Pink Slime Pet");
+                }
+            }*/
 
             if (stormBoosted)
             {
@@ -965,6 +1013,50 @@ namespace FargowiltasSouls.Projectiles
                 target.AddBuff(BuffID.Chilled, 300);
                 target.AddBuff(BuffID.Frostburn, 300);
             }
+
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
+            //iridescent effect
+            if (modPlayer.LifeForce && Utils.NextFloat(Main.rand) < 0.15f)
+            {
+                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 100, 1f, 0f);
+                for (int i = 0; i < 20; i++)
+                {
+                    int num = Dust.NewDust(target.position, target.width, target.height, 87, Main.rand.Next(-6, 6), Main.rand.Next(-6, 6), 0, default(Color), 1.25f);
+                    Main.dust[num].noGravity = true;
+                }
+                for (int j = 0; j < 10; j++)
+                {
+                    int num2 = Dust.NewDust(target.position, target.width, target.height, 91, Main.rand.Next(-2, 2), Main.rand.Next(-2, 2), 0, default(Color), 1.15f);
+                    Main.dust[num2].noGravity = true;
+                }
+                for (int k = 0; k < 255; k++)
+                {
+                    Player player2 = Main.player[k];
+                    if (player2.active && player2 != player && player2.statLife < player2.statLifeMax2 && Vector2.Distance(player2.Center, projectile.Center) < 500f && target.type != 488)
+                    {
+                        Projectile.NewProjectile(player2.Center.X, player2.Center.Y, 0f, 0f, thorium.ProjectileType("RadiantHeal"), 0, 0f, projectile.owner, 0f, 0f);
+                    }
+                }
+                for (int l = 0; l < 200; l++)
+                {
+                    NPC npc = Main.npc[l];
+                    if (npc.active && npc.type != 488 && !npc.friendly && Vector2.Distance(npc.Center, player.Center) < 250f)
+                    {
+                        npc.AddBuff(31, 120, false);
+                    }
+                }
+            }
+
+            if (modPlayer.ShadowForce)
+            {
+                if (crit && player.ownedProjectileCounts[thorium.ProjectileType("ShadowWisp")] < 15)
+                {
+                    Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, -2f, thorium.ProjectileType("ShadowWisp"), (int)(projectile.damage * 0.75f), 0f, Main.myPlayer, 0f, 0f);
+                }
+            }*/
         }
 
         private static int[] noShard = { ProjectileID.CrystalShard };

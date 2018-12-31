@@ -40,7 +40,7 @@ There is a 60 second cooldown for this effect, a sound effect plays when it's ba
             recipe.AddIngredient(ItemID.StardustBreastplate);
             recipe.AddIngredient(ItemID.StardustLeggings);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.WingsStardust);
                 recipe.AddIngredient(thorium.ItemType("TimeBook"));
@@ -48,9 +48,9 @@ There is a 60 second cooldown for this effect, a sound effect plays when it's ba
                 recipe.AddIngredient(thorium.ItemType("ShadowOrbStaff"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.StardustPickaxe);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.StardustCellStaff);
             recipe.AddIngredient(ItemID.StardustDragonStaff);

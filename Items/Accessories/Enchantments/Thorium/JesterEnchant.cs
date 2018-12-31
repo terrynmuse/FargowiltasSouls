@@ -9,19 +9,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class JesterEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jester Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"''
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Increases max inspiration by 2");
         }
@@ -39,12 +39,7 @@ Increases max inspiration by 2");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            JesterEffect(player);
-        }
-        
-        private void JesterEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.jesterSet = true;
             //fan letter

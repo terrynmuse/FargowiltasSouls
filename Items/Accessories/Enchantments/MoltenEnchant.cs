@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'They shall know the fury of hell.' 
 Nearby enemies are ignited
-When you die, you violently explode dealing massive damage to surrounding enemies");
+When you die, you violently explode dealing massive damage");
         }
 
         public override void SetDefaults()
@@ -39,7 +39,7 @@ When you die, you violently explode dealing massive damage to surrounding enemie
             recipe.AddIngredient(ItemID.MoltenBreastplate);
             recipe.AddIngredient(ItemID.MoltenGreaves);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("MeleeThorHammer"));
                 recipe.AddIngredient(ItemID.MoltenHamaxe);
@@ -50,11 +50,11 @@ When you die, you violently explode dealing massive damage to surrounding enemie
                 recipe.AddIngredient(thorium.ItemType("HellwingButterfly"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.Flamarang);
                 recipe.AddIngredient(ItemID.Sunfury);
                 recipe.AddIngredient(ItemID.DemonsEye);
-            }
+            //}
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

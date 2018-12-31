@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -14,11 +15,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip = 
 @"'The wrath of the jungle dwells within'
-Chance to steal 4 mana with each attack
+25% chance to steal 4 mana with each attack
 Taking damage will release a poisoning spore explosion
-Spore damage scales with magic damage";
+Spore damage scales with magic damage
+";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip +=
 @"Your symphonic damage empowers all nearby allies with: Jungle's Nibble
@@ -26,9 +28,9 @@ Damage done against poisoned enemies is increased by 8%
 Doubles the range of your empowerments effect radius";
             }
             else
-            {
+            {*/
                 tooltip += "Allows the collection of Vine Rope from vines";
-            }
+            //}
 
             Tooltip.SetDefault(tooltip);
         }
@@ -46,6 +48,12 @@ Doubles the range of your empowerments effect radius";
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).JungleEffect();
+
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            thoriumPlayer.subwooferPoison = true;
+            thoriumPlayer.bardRangeBoost += 450;*/
         }
 
         public override void AddRecipes()
@@ -55,7 +63,7 @@ Doubles the range of your empowerments effect radius";
             recipe.AddIngredient(ItemID.JungleShirt);
             recipe.AddIngredient(ItemID.JunglePants);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("PoisonSubwoofer"));
                 recipe.AddIngredient(ItemID.JungleRose);
@@ -66,12 +74,12 @@ Doubles the range of your empowerments effect radius";
                 recipe.AddIngredient(thorium.ItemType("JungleSporeButterfly"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.CordageGuide);
                 recipe.AddIngredient(ItemID.JungleRose);
                 recipe.AddIngredient(ItemID.ThornChakram);
                 recipe.AddIngredient(ItemID.DoNotStepontheGrass);
-            }
+            //}
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

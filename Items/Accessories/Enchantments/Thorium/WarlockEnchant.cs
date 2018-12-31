@@ -9,12 +9,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class WarlockEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        
+
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-        
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
@@ -23,10 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"''
 Radiant critical strikes will generate up to 15 shadow wisps
-Corrupts your radiant powers
 Pressing the 'Special Ability' key will unleash every stored shadow wisp towards your cursor's position
+Corrupts your radiant powers
 Halves radiant life costs but not its life transferring effect
-Summons a li'l devil to attack enemies");
+Summons a Li'l Devil to attack enemies");
         }
 
         public override void SetDefaults()
@@ -42,12 +42,8 @@ Summons a li'l devil to attack enemies");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-           WarlockEffect(player);
-        }
-        
-        private void WarlockEffect(Player player)
-        {
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.warlockSet = true;
@@ -55,17 +51,14 @@ Summons a li'l devil to attack enemies");
             thoriumPlayer.darkAura = true;
             thoriumPlayer.radiantLifeCost = 2;
             //lil devil
-            thoriumPlayer.devilMinion = true;
+            modPlayer.WarlockEnchant = true;
+            modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);
         }
         
         private readonly string[] items =
         {
-            "WarlockHood",
-            "WarlockGarb",
-            "WarlockLeggings",
             "DemonTongue",
             "Omen",
-            "DamageStaff",
             "ShadowStaff",
             "BloodRage",
             "NecroticStaff",
@@ -74,12 +67,15 @@ Summons a li'l devil to attack enemies");
 
         public override void AddRecipes()
         {
-            //ebon 
-
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(thorium.ItemType("WarlockHood"));
+            recipe.AddIngredient(thorium.ItemType("WarlockGarb"));
+            recipe.AddIngredient(thorium.ItemType("WarlockLeggings"));
+            recipe.AddIngredient(null, "EbonEnchant");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddTile(TileID.CrystalBall);

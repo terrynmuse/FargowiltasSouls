@@ -12,9 +12,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Necro Enchantment");
             Tooltip.SetDefault(
-                @"'Welcome to the bone zone' 
+@"'Welcome to the bone zone' 
 A Dungeon Guardian will occasionally annihilate a foe when struck by any attack
-Summons a Baby Skeletron Head");
+Summons a pet Skeletron Head");
         }
 
         public override void SetDefaults()
@@ -40,7 +40,7 @@ Summons a Baby Skeletron Head");
             recipe.AddIngredient(ItemID.NecroGreaves);
             recipe.AddIngredient(ItemID.BoneSword);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("Slugger"));
                 recipe.AddIngredient(thorium.ItemType("MarrowScepter"));
@@ -49,9 +49,9 @@ Summons a Baby Skeletron Head");
                 recipe.AddIngredient(thorium.ItemType("BoneButterfly"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.TheGuardiansGaze);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.BoneKey);
             

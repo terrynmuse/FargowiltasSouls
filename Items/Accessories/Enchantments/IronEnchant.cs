@@ -17,15 +17,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip = "'Strike while the iron is hot'\n";
 
-            tooltip += @"
-Allows the player to dash into the enemy
+            tooltip += 
+@"Allows the player to dash into the enemy
 Right Click to guard with your shield
 You attract items from a larger range";
 
-            if (thorium != null)
+            /*if (thorium != null)
             {
                 tooltip += "While in combat, you generate a 20 life shield\n";
-            }
+            }*/
 
             Tooltip.SetDefault(tooltip); 
         }
@@ -51,7 +51,7 @@ You attract items from a larger range";
             //EoC Shield
             player.dash = 2;
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             //iron sheild
@@ -74,7 +74,7 @@ You attract items from a larger range";
             else
             {
                 timer = 0;
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -84,7 +84,7 @@ You attract items from a larger range";
             recipe.AddIngredient(ItemID.IronChainmail);
             recipe.AddIngredient(ItemID.IronGreaves);
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("IronShield"));
                 recipe.AddIngredient(thorium.ItemType("ThoriumShield"));
@@ -95,11 +95,11 @@ You attract items from a larger range";
                 recipe.AddIngredient(ItemID.ZebraSwallowtailButterfly);
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.EoCShield);
                 recipe.AddIngredient(ItemID.IronBroadsword);
                 recipe.AddIngredient(ItemID.IronAnvil);
-            }
+            //}
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

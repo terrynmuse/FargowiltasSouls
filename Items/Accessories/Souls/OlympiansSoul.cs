@@ -4,14 +4,14 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    [AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
+    //[AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
     public class OlympiansSoul : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Olympian's Soul");
             Tooltip.SetDefault(
-                @"'Strike with deadly precision'
+@"'Strike with deadly precision'
 30% increased throwing damage
 20% increased throwing speed
 15% increased throwing critical chance and velocity");
@@ -29,8 +29,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            //throw speed
             player.GetModPlayer<FargoPlayer>(mod).ThrowSoul = true;
-
             player.thrownDamage += 0.3f;
             player.thrownCrit += 15;
             player.thrownVelocity += 0.15f;
@@ -42,7 +42,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             recipe.AddIngredient(null, "SlingersEssence");
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //bone grip
                 //complete set
@@ -60,7 +60,26 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             /*
             sou
             deity trefork
-            */
+            
+            }
+            else
+            {*/
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                //no others
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ChikThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("MagicDaggerThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("BananarangThrown"), 5);
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("AmarokThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ShadowflameKnifeThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlyingKnifeThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("LightDiscThrown"), 5);
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlowerPowThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ToxicFlaskThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("VampireKnivesThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("PaladinsHammerThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("PossessedHatchetThrown"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("TerrarianThrown"));
             }
             else
             {
@@ -78,6 +97,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 recipe.AddIngredient(ItemID.PossessedHatchet);
                 recipe.AddIngredient(ItemID.Terrarian);
             }
+
+            //}
 
 
             if (Fargowiltas.Instance.FargosLoaded)

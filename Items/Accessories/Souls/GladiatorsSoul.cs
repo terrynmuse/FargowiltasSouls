@@ -5,7 +5,7 @@ using static Terraria.ID.ItemID;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    [AutoloadEquip(EquipType.Waist)]
+    //[AutoloadEquip(EquipType.Waist)]
     public class GladiatorsSoul : ModItem
     {
         private Mod thorium;
@@ -14,12 +14,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Berserker's Soul");
             Tooltip.SetDefault(
-                @"'None shall live to tell the tale'
+@"'None shall live to tell the tale'
 30% increased melee damage
 20% increased melee speed
 15% increased melee crit chance
 Increased melee knockback
-Grants the effects of the Yoyo Bag");
+Fire Gauntlet and Yoyo Bag effects");
         }
 
         public override void SetDefaults()
@@ -53,7 +53,7 @@ Grants the effects of the Yoyo Bag");
 
             recipe.AddIngredient(null, "BarbariansEssence");
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            /*if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(FireGauntlet);
                 recipe.AddIngredient(YoyoBag);
@@ -73,10 +73,10 @@ Grants the effects of the Yoyo Bag");
             SoU
             terarians last knife
             ocean judgement
-                 * */
+                 * 
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(FireGauntlet);
                 recipe.AddIngredient(YoyoBag);
                 recipe.AddIngredient(Arkhalis);
@@ -90,7 +90,7 @@ Grants the effects of the Yoyo Bag");
                 recipe.AddIngredient(NorthPole);
                 recipe.AddIngredient(InfluxWaver);
                 recipe.AddIngredient(Meowmere);
-            }
+            //}
             
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

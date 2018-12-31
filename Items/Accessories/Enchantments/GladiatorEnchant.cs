@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Gladiator Enchantment");
             Tooltip.SetDefault(
-                @"'Are you not entertained?'
+@"'Are you not entertained?'
 Thrown projectiles will speed up drastically over time
 Summons a pet Minotaur");
         }
@@ -39,7 +39,7 @@ Summons a pet Minotaur");
             recipe.AddIngredient(ItemID.GladiatorBreastplate);
             recipe.AddIngredient(ItemID.GladiatorLeggings);
             
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.Javelin, 300);
                 recipe.AddIngredient(thorium.ItemType("SteelBattleAxe"), 300);
@@ -49,10 +49,10 @@ Summons a pet Minotaur");
                 recipe.AddIngredient(thorium.ItemType("RodAsclepius"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.Javelin, 300);
                 recipe.AddIngredient(ItemID.MarbleChest);
-            }
+            //}
             
             recipe.AddIngredient(ItemID.TartarSauce);
  

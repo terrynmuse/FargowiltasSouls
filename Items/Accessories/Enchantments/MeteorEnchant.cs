@@ -17,10 +17,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Cosmic power builds your magical prowess'
 A meteor shower initiates every few seconds while attacking";
 
-            if(thorium != null)
+            /*if(thorium != null)
             {
                 tooltip += "Summons a pet Bio-Feeder";
-            }
+            }*/
 
             Tooltip.SetDefault(tooltip);
         }
@@ -40,11 +40,11 @@ A meteor shower initiates every few seconds while attacking";
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             modPlayer.MeteorEffect(50);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.bioPet = true;
-            modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
+            modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));*/
         }
 
         public override void AddRecipes()
@@ -56,7 +56,7 @@ A meteor shower initiates every few seconds while attacking";
             recipe.AddIngredient(ItemID.SpaceGun);
             recipe.AddIngredient(ItemID.StarCannon);
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("CometCrossfire"));
                 recipe.AddIngredient(ItemID.MeteorStaff);
@@ -65,10 +65,10 @@ A meteor shower initiates every few seconds while attacking";
                 recipe.AddIngredient(thorium.ItemType("BioPod"));
             }
             else
-            {
+            {*/
                 recipe.AddIngredient(ItemID.MeteorStaff);
                 recipe.AddIngredient(ItemID.PlaceAbovetheClouds);
-            }
+            //}
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
