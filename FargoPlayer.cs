@@ -2186,7 +2186,8 @@ namespace FargowiltasSouls
             //gold ring
             player.goldRing = true;
             //lucky coin
-            player.coins = true;
+            if (Soulcheck.GetValue("Gold Coins on Hit"))
+                player.coins = true;
             //discount card
             player.discount = true;
             //midas

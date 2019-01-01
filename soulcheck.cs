@@ -31,6 +31,7 @@ namespace FargowiltasSouls
             ["Copper Lightning"] = new Color(81, 181, 113),
             ["Tin Crit"] = new Color(81, 181, 113),
             ["Iron Fall Speed"] = new Color(81, 181, 113),
+            ["Gold Coins on Hit"] = new Color(81, 181, 113),
             //["Lead Poisoning"] = new Color(81, 181, 113),
             ["Gladiator Speedup"] = new Color(81, 181, 113),
             ["Silver Sword Familiar"] = new Color(81, 181, 113),
