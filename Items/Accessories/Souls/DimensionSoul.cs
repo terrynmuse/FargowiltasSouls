@@ -90,8 +90,11 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
             player.panic = true;
             player.longInvince = true;
             //spore sac
-            player.SporeSac();
-            player.sporeSac = true;
+            if (Soulcheck.GetValue("Spore Sac"))
+            {
+                player.SporeSac();
+                player.sporeSac = true;
+            }
             //flesh knuckles
             player.aggro += 400;
             //frozen turtle shell
@@ -110,9 +113,20 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
 
             //SUPERSONIC
             //frost spark plus super speed
+            if (Soulcheck.GetValue("Dimension Speed Boosts"))
+            {
+                player.maxRunSpeed += 14f;
+                player.runAcceleration += 0.5f;
+
+                player.jumpSpeedBoost += 2.4f; //frog
+                player.jumpBoost = true;
+
+                //slime mount
+                player.maxFallSpeed += 5f;
+            }
             player.moveSpeed += 0.5f;
-            player.maxRunSpeed += 14f;
-            player.runAcceleration += 1f;
+            player.runAcceleration += 0.5f;
+            player.accRunSpeed = 12f;
             player.rocketBoots = 3;
             player.iceSkate = true;
             //arctic diving gear
@@ -125,10 +139,6 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
             player.lavaImmune = true;
             //frog legs
             player.autoJump = true;
-            player.jumpSpeedBoost += 2.4f;
-            player.jumpBoost = true;
-            //slime mount
-            player.maxFallSpeed += 5f;
 
             //FLIGHT MASTERY
             player.wingTimeMax = 999999;
@@ -183,16 +193,16 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            ascentWhenFalling = 0.85f;
-            ascentWhenRising = 0.15f;
+            ascentWhenFalling = 0.9f; //0.85f
+            ascentWhenRising = 0.2f; //0.15f
             maxCanAscendMultiplier = 1f;
             maxAscentMultiplier = 3f;
-            constantAscend = 0.135f;
+            constantAscend = 0.14f; //0.135f
         }
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
         {
-            speed = 25f;
+            speed = Soulcheck.GetValue("Dimension Speed Boosts") ? 25f : 15f;
             acceleration *= 3.5f;
         }
 

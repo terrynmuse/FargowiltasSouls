@@ -75,6 +75,7 @@ namespace FargowiltasSouls
             ["Builder Mode"] = new Color(81, 181, 113),
             ["Universe Speedup"] = new Color(81, 181, 113),
             ["Universe Scope"] = new Color(81, 181, 113),
+            ["Dimension Speed Boosts"] = new Color(81, 181, 113),
             #endregion
 
             #region pet toggles
