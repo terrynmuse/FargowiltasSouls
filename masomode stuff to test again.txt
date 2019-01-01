@@ -296,10 +296,17 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -nerfed golem regen again
 -golem creates fiery eruptions every time he jumps
 -all moon lord parts take 1 damage from all attacks except for a specific damage type that changes every 10 seconds
-
 -moon lord no longer inflicts random debuffs in phase 2, but head's deathray inflicts random debuffs per tick
 -nerfed golem flames
 -golem body no longer inflicts fused lmao
+-betsy's attacks inflict ichor, on fire, withered armor/weapon
+-betsy inflicts ichor, on fire, withered armor/weapon, mutant nibble, and feral bite on touch
+-etherian wyverns inflict mutant nibble and feral bite
+-kobolds and kobold fliers inflict fused
+-ogres inflict stunned, defenseless, and broken armor
+-etherian lightning bugs inflict lightning rod
+-drakin spit inflicts shadowflame
+-old one's skeletons inflict shadowflame and rotting
 
 THINGS I AM STILL TESTING (IMPORTANT TO TEST/CONFIRM THESE)
 -golem drawNPC error when killed?

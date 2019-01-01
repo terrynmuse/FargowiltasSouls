@@ -990,6 +990,18 @@ namespace FargowiltasSouls.Projectiles
                             target.AddBuff(BuffID.Venom, Main.rand.Next(60, 600));
                         break;
 
+                    case ProjectileID.DD2BetsyFireball:
+                    case ProjectileID.DD2BetsyFlameBreath:
+                        target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(60, 300));
+                        target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(60, 300));
+                        target.AddBuff(BuffID.Ichor, Main.rand.Next(600, 900));
+                        target.AddBuff(BuffID.OnFire, Main.rand.Next(900, 1800));
+                        break;
+
+                    case ProjectileID.DD2DrakinShot:
+                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        break;
+
                     default:
                         break;
                 }

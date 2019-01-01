@@ -2484,11 +2484,11 @@ namespace FargowiltasSouls.NPCs
                             {
                                 masoBool[0] = false;
 
-                                Vector2 spawnPos = new Vector2(npc.position.X - 9 * npc.width / 2, npc.position.Y);
+                                Vector2 spawnPos = new Vector2(npc.position.X - npc.width * 7, npc.Center.Y);
                                 
                                 for (int i = 0; i < 6; i++)
                                 {
-                                    int tilePosX = (int)spawnPos.X / 16 + npc.width * i / 8;
+                                    int tilePosX = (int)spawnPos.X / 16 + npc.width * i * 3 / 16;
 					                int tilePosY = (int)spawnPos.Y / 16;// + 1;
 
                                     if (Main.tile[tilePosX, tilePosY] == null)
@@ -2519,7 +2519,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 for (int i = 0; i < 8; i++)
                                 {
-                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-2, 3), Main.rand.Next(-2, 3), ProjectileID.SpikyBallTrap, 35, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-2, 3), Main.rand.Next(-2, 3), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
                                     //Main.projectile[p].friendly = false;
                                 }
                             }
@@ -6508,6 +6508,46 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight:
                         target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(60, 300));
+                        break;
+
+                    case NPCID.DD2Betsy:
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
+                        target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Ichor, Main.rand.Next(600, 900));
+                        target.AddBuff(BuffID.OnFire, Main.rand.Next(900, 1800));
+                        break;
+
+                    case NPCID.DD2WyvernT1:
+                    case NPCID.DD2WyvernT2:
+                    case NPCID.DD2WyvernT3:
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
+                        break;
+
+                    case NPCID.DD2KoboldFlyerT2:
+                    case NPCID.DD2KoboldFlyerT3:
+                    case NPCID.DD2KoboldWalkerT2:
+                    case NPCID.DD2KoboldWalkerT3:
+                        target.AddBuff(mod.BuffType<Fused>(), 1800);
+                        break;
+
+                    case NPCID.DD2OgreT2:
+                    case NPCID.DD2OgreT3:
+                        target.AddBuff(mod.BuffType<Stunned>(), Main.rand.Next(30, 60));
+                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(180, 300));
+                        target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(300, 600));
+                        break;
+
+                    case NPCID.DD2LightningBugT3:
+                        target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 600));
+                        break;
+
+                    case NPCID.DD2SkeletonT1:
+                    case NPCID.DD2SkeletonT3:
+                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1200, 2400));
                         break;
 
                     default:
