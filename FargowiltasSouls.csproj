@@ -1,63 +1,65 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <ProjectGuid>{836B9E2C-ED10-42CA-BC11-F578A7E9304A}</ProjectGuid>
-    <TargetFramework>net461</TargetFramework>
-    <LangVersion>6</LangVersion>
-    <AssemblyTitle>FargowiltasSouls</AssemblyTitle>
-    <Product>FargowiltasSouls</Product>
-    <Copyright>Copyright ©  2018</Copyright>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8298EAB6-0586-4BDA-9483-83624B66B13A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FargowiltasSouls</RootNamespace>
+    <AssemblyName>FargowiltasSouls</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FNA, Version=17.3.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>D:\Steam\steamapps\common\Terraria\ModCompile\FNA.dll</HintPath>
+    <Compile Include="**\*.cs" Exclude="obj\**\*.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xna.Framework">
-      <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.dll</HintPath>
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework.Game\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Game.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Game">
-      <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.Game.dll</HintPath>
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework.Graphics\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Graphics">
-      <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+    <Reference Include="Microsoft.Xna.Framework.Xact, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework.Xact\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Xact.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Terraria, Version=1.3.5.1, Culture=neutral, PublicKeyToken=null">
-      <HintPath>D:\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="Terraria">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terrariamod.exe</HintPath>
-    </Reference>
-    <Reference Include="ThoriumMod">
-      <HintPath Condition="Exists('..\folder for wip')">..\folder for wip\ThoriumMod.dll</HintPath>
-      <HintPath Condition="Exists('..\..\References')">..\..\References\ThoriumMod.dll</HintPath> 
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\terraria\Terraria.exe</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="**\*.png" />
-    <Content Include="**\**\*.png" />
-    <Content Include="**\**\**\*.png" />
-    <Content Include="*.png" />
-    <Content Include="Sounds\**\*.wav" />
-    <Content Include="Sounds\*.mp3" />
-    <Content Include="build.txt" />
-    <Content Include="description.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Items\Misc\Nuke.cs" />
-    <Compile Remove="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Remove="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Remove="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Remove="Projectiles\NukeProj.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="lib" />
-  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+   <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\terraria\tModLoaderServer.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
+

@@ -2501,7 +2501,7 @@ namespace FargowiltasSouls.NPCs
 							                Main.tile[tilePosX, tilePosY] = new Tile();
 					                }
 
-                                    Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, ProjectileID.GeyserTrap, npc.damage / 5, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, ProjectileID.GeyserTrap, npc.damage / 6, 0f, Main.myPlayer);
                                 }
                             }
                         }
@@ -2553,16 +2553,19 @@ namespace FargowiltasSouls.NPCs
                             {
                                 Player player = Main.player[t];
                                 Vector2 distance = player.Center - npc.Center;
-                                double angle = distance.ToRotation();
-                                if (angle > Math.PI * .25 && angle < Math.PI * .75)
+                                if (Math.Abs(distance.X) < npc.width * 2)
                                 {
-                                    distance.Normalize();
-                                    distance *= Main.rand.Next(4, 9);
+                                    double angle = distance.ToRotation();
+                                    if (angle > Math.PI * .25 && angle < Math.PI * .75)
+                                    {
+                                        distance.Normalize();
+                                        distance *= Main.rand.Next(4, 9);
 
-                                    Projectile.NewProjectile(npc.Center.X + npc.velocity.X * 5, npc.position.Y + npc.velocity.Y * 5, distance.X, distance.Y, ProjectileID.FlamesTrap, npc.damage / 4, 0f, Main.myPlayer);
-                                    //Main.projectile[p].friendly = false;
+                                        Projectile.NewProjectile(npc.Center.X + npc.velocity.X * 5, npc.position.Y + npc.velocity.Y * 5, distance.X, distance.Y, ProjectileID.FlamesTrap, npc.damage / 5, 0f, Main.myPlayer);
+                                        //Main.projectile[p].friendly = false;
 
-                                    Main.PlaySound(SoundID.Item34, npc.Center);
+                                        Main.PlaySound(SoundID.Item34, npc.Center);
+                                    }
                                 }
                             }
                         }
@@ -3790,7 +3793,7 @@ namespace FargowiltasSouls.NPCs
 
                     case 80: //all moon lord parts
                         Counter++;
-                        if (Counter > 600)
+                        if (Counter > 1200)
                         {
                             Counter = 0;
                             masoState++;
@@ -6497,10 +6500,10 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.Golem:
+                    /*case NPCID.Golem:
                         if (!target.HasBuff(mod.BuffType<Fused>()))
                             target.AddBuff(mod.BuffType<Fused>(), target.longInvince ? 82 : 42);
-                        break;
+                        break;*/
 
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight:

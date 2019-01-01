@@ -904,18 +904,21 @@ namespace FargowiltasSouls.Projectiles
                         {
                             if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordHead)
                             {
+                                int d = Main.rand.Next(Fargowiltas.DebuffIDs.Length);
+                                target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 300));
+
                                 target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(60, 600));
                                 target.AddBuff(mod.BuffType<GodEater>(), Main.expertMode ? 210 : 420);
-                                target.AddBuff(mod.BuffType<MarkedforDeath>(), 120);
+                                //target.AddBuff(mod.BuffType<MarkedforDeath>(), 120);
                             }
-                            else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
+                            /*else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
                             {
                                 goto case ProjectileID.PhantasmalSphere;
-                            }
+                            }*/
                         }
                         break;
 
-                    case ProjectileID.PhantasmalBolt:   //if ML alive, ML vulnerable
+                    /*case ProjectileID.PhantasmalBolt:   //if ML alive, ML vulnerable
                     case ProjectileID.PhantasmalEye:    //debuff once per hit normally
                     case ProjectileID.PhantasmalSphere: //debuff per tick while overlapping player if 120 MLs killed
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.moonBoss, NPCID.MoonLordCore) && !Main.npc[FargoGlobalNPC.moonBoss].dontTakeDamage && (target.hurtCooldowns[1] == 0 || FargoWorld.MoonlordCount >= 120))
@@ -923,7 +926,7 @@ namespace FargowiltasSouls.Projectiles
                             int d = Main.rand.Next(Fargowiltas.DebuffIDs.Length);
                             target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 600));
                         }
-                        break;
+                        break;*/
 
                     case ProjectileID.MeteorShot:
                         if (masoProj)

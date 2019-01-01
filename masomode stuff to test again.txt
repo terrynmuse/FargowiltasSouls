@@ -287,6 +287,7 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -nerfed skeletron prime limbs to gain 33% damage in phase 2 (was 50%)
 -nerfed skeletron prime to always have zero defense in phase 2
 -nerfed spaz p2 flamethrower range a lot
+
 -wof mouth always shoots projectiles
 -wof mouth has 10x defense (was 5x)
 -wof mouth shoots fireballs more often
@@ -295,6 +296,10 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -nerfed golem regen again
 -golem creates fiery eruptions every time he jumps
 -all moon lord parts take 1 damage from all attacks except for a specific damage type that changes every 10 seconds
+
+-moon lord no longer inflicts random debuffs in phase 2, but head's deathray inflicts random debuffs per tick
+-nerfed golem flames
+-golem body no longer inflicts fused lmao
 
 THINGS I AM STILL TESTING (IMPORTANT TO TEST/CONFIRM THESE)
 -golem drawNPC error when killed?
