@@ -116,7 +116,7 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
             if (Soulcheck.GetValue("Dimension Speed Boosts"))
             {
                 player.maxRunSpeed += 14f;
-                player.runAcceleration += 0.5f;
+                player.runAcceleration += 1f;
 
                 player.jumpSpeedBoost += 2.4f; //frog
                 player.jumpBoost = true;
@@ -125,7 +125,6 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
                 player.maxFallSpeed += 5f;
             }
             player.moveSpeed += 0.5f;
-            player.runAcceleration += 0.5f;
             player.accRunSpeed = 12f;
             player.rocketBoots = 3;
             player.iceSkate = true;
