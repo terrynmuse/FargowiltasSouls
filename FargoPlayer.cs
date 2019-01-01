@@ -2512,9 +2512,9 @@ namespace FargowiltasSouls
 
         public void OrichalcumEffect()
         {
-            player.onHitPetal = true;
-
             if (!Soulcheck.GetValue("Orichalcum Fireballs")) return;
+
+            player.onHitPetal = true;
 
             OriEnchant = true;
 
