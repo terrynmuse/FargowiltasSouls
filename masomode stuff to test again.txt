@@ -307,6 +307,7 @@ BOSS STUFF (CHECK IF THEY'RE ACTUALLY BEATABLE WITH/WITHOUT SOULS)
 -etherian lightning bugs inflict lightning rod
 -drakin spit inflicts shadowflame
 -old one's skeletons inflict shadowflame and rotting
+-moon lord causes monolith effects corresponding to his vulnerability
 
 THINGS I AM STILL TESTING (IMPORTANT TO TEST/CONFIRM THESE)
 -golem drawNPC error when killed?

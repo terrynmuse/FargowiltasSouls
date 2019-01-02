@@ -2435,11 +2435,11 @@ namespace FargowiltasSouls.NPCs
                         int dustType = 87;
                         switch (masoState)
                         {
-                            case 0: break;
-                            case 1: dustType = 89; break;
-                            case 2: dustType = 86; break;
-                            case 3: dustType = 88; break;
-                            case 4: dustType = 90; break;
+                            case 0: Main.monolithType = 3; break;
+                            case 1: Main.monolithType = 0; dustType = 89; break;
+                            case 2: Main.monolithType = 1; dustType = 86; break;
+                            case 3: Main.monolithType = 2; dustType = 88; break;
+                            case 4: dustType = 91; break;
                         }
 
                         double MLoffset = MathHelper.ToRadians(360 * Counter / 600);
