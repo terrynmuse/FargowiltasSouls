@@ -129,6 +129,12 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.IceTortoise: masoHurtAI = 10; break;
 
+                    case NPCID.WallofFleshEye: masoHurtAI = 11; break;
+
+                    case NPCID.MoonLordCore:
+                    case NPCID.MoonLordHand:
+                    case NPCID.MoonLordHead: masoHurtAI = 12; break;
+
                     case NPCID.RainbowSlime:
                         npc.scale = 3f;
                         npc.lifeMax *= 5;
@@ -388,7 +394,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                         masoAI = 35;
-                        npc.defense *= 5;
+                        npc.defense *= 10;
                         npc.defDefense = npc.defense;
                         break;
 
@@ -586,6 +592,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemFistRight:
                         masoAI = 79;
                         npc.trapImmune = true;
+                        break;
+
+                    case NPCID.MoonLordHand:
+                    case NPCID.MoonLordHead:
+                        masoAI = 80;
                         break;
 
                     default:
@@ -1947,58 +1958,56 @@ namespace FargowiltasSouls.NPCs
                                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                             }
                         }
-                        else //in phase 2
+
+                        Counter++;
+                        if (Counter >= 180)
                         {
-                            Counter++;
-                            if (Counter >= 240)
+                            Counter = Main.rand.Next(120);
+                            if (Main.netMode != 1 && npc.HasPlayerTarget && Main.player[npc.target].active) //vanilla spaz p1 shoot fireball code
                             {
-                                Counter = Main.rand.Next(120);
-                                if (Main.netMode != 1 && npc.HasPlayerTarget && Main.player[npc.target].active) //vanilla spaz p1 shoot fireball code
+                                Vector2 Speed = Main.player[npc.target].Center - npc.Center;
+                                double angle = Speed.ToRotation();
+                                if (Speed.X * npc.velocity.X > 0) //don't shoot fireballs behind myself
                                 {
-                                    Vector2 Speed = Main.player[npc.target].Center - npc.Center;
-                                    double angle = Speed.ToRotation();
-                                    if (Speed.X * npc.velocity.X > 0) //don't shoot fireballs behind myself
-                                    {
-                                        Speed.Normalize();
-                                        int Damage;
-                                        Speed *= 12f;
-                                        Damage = npc.damage / 12;
-                                        Speed.X += Main.rand.Next(-40, 41) * 0.05f;
-                                        Speed.Y += Main.rand.Next(-40, 41) * 0.05f;
-                                        Projectile.NewProjectile(npc.Center + Speed * 4f, Speed, ProjectileID.CursedFlameHostile, Damage, 0f, Main.myPlayer);
-                                    }
-                                }
-                                npc.netUpdate = true;
-
-                                //tongue the player if they're in hell, too far away, and not debuffed already
-                                if (npc.HasPlayerTarget && Main.player[npc.target].active && Main.player[npc.target].ZoneUnderworldHeight
-                                && Math.Abs(Main.player[npc.target].Center.X - npc.Center.X) > 3000
-                                && !Main.player[npc.target].HasBuff(BuffID.TheTongue))
-                                {
-                                    Main.player[npc.target].AddBuff(BuffID.TheTongue, 10);
-                                    Main.PlaySound(15, (int)Main.player[npc.target].position.X, (int)Main.player[npc.target].position.Y, 0);
+                                    Speed.Normalize();
+                                    int Damage;
+                                    Speed *= 12f;
+                                    Damage = npc.damage / 12;
+                                    Speed.X += Main.rand.Next(-40, 41) * 0.05f;
+                                    Speed.Y += Main.rand.Next(-40, 41) * 0.05f;
+                                    Projectile.NewProjectile(npc.Center + Speed * 4f, Speed, ProjectileID.CursedFlameHostile, Damage, 0f, Main.myPlayer);
                                 }
                             }
+                            npc.netUpdate = true;
 
-                            Timer++;
-                            if (Timer >= 600) //ichor vomit
+                            //tongue the player if they're in hell, too far away, and not debuffed already
+                            if (npc.HasPlayerTarget && Main.player[npc.target].active && Main.player[npc.target].ZoneUnderworldHeight
+                            && Math.Abs(Main.player[npc.target].Center.X - npc.Center.X) > 3000
+                            && !Main.player[npc.target].HasBuff(BuffID.TheTongue))
                             {
-                                Timer = Main.rand.Next(300);
-                                if (npc.HasPlayerTarget && Main.netMode != 1 && Main.player[npc.target].active)
-                                {
-                                    for (int i = 0; i < 10; i++)
-                                    {
-                                        Vector2 speed = Main.player[npc.target].Center - npc.Center;
-                                        speed.Y -= Math.Abs(speed.X) * 0.3f; //account for gravity
-                                        speed.Normalize();
-                                        speed *= 9f;
-                                        speed.X += Main.rand.Next(-20, 21) * 0.09f;
-                                        speed.Y += Main.rand.Next(-20, 21) * 0.09f;
-                                        Projectile.NewProjectile(npc.Center, speed, ProjectileID.GoldenShowerHostile, npc.damage / 25, 0f, Main.myPlayer);
-                                    }
-                                }
-                                npc.netUpdate = true;
+                                Main.player[npc.target].AddBuff(BuffID.TheTongue, 10);
+                                Main.PlaySound(15, (int)Main.player[npc.target].position.X, (int)Main.player[npc.target].position.Y, 0);
                             }
+                        }
+
+                        Timer++;
+                        if (Timer >= 600) //ichor vomit
+                        {
+                            Timer = Main.rand.Next(300);
+                            if (npc.HasPlayerTarget && Main.netMode != 1 && Main.player[npc.target].active)
+                            {
+                                for (int i = 0; i < 10; i++)
+                                {
+                                    Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                                    speed.Y -= Math.Abs(speed.X) * 0.3f; //account for gravity
+                                    speed.Normalize();
+                                    speed *= 9f;
+                                    speed.X += Main.rand.Next(-20, 21) * 0.08f;
+                                    speed.Y += Main.rand.Next(-20, 21) * 0.08f;
+                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.GoldenShowerHostile, npc.damage / 25, 0f, Main.myPlayer);
+                                }
+                            }
+                            npc.netUpdate = true;
                         }
                         break;
 
@@ -2422,7 +2431,26 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-                        break;
+
+                        int dustType = 87;
+                        switch (masoState)
+                        {
+                            case 0: break;
+                            case 1: dustType = 89; break;
+                            case 2: dustType = 86; break;
+                            case 3: dustType = 88; break;
+                            case 4: dustType = 90; break;
+                        }
+
+                        double MLoffset = MathHelper.ToRadians(360 * Counter / 600);
+                        for (int i = 0; i < 5; i++)
+                        {
+                            if (Main.rand.Next(5) == 0) continue;
+                            int MLdust = Dust.NewDust(npc.Center + new Vector2(120f, 0f).RotatedBy(Math.PI * 2 / 5 * i + MLoffset), 0, 0, dustType, npc.velocity.X * 0.5f, npc.velocity.Y * 0.5f, 0, default(Color), 2f);
+                            Main.dust[MLdust].noGravity = true;
+                            Main.dust[MLdust].velocity.Y -= 3.5f;
+                        }
+                        goto case 80;
 
                     case 39: //splinterling
                         Counter++;
@@ -2450,6 +2478,38 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
+                        if (masoBool[0])
+                        {
+                            if (npc.velocity.Y == 0f) //spawning geysers from floor
+                            {
+                                masoBool[0] = false;
+
+                                Vector2 spawnPos = new Vector2(npc.position.X - npc.width * 7, npc.Center.Y);
+                                
+                                for (int i = 0; i < 6; i++)
+                                {
+                                    int tilePosX = (int)spawnPos.X / 16 + npc.width * i * 3 / 16;
+					                int tilePosY = (int)spawnPos.Y / 16;// + 1;
+
+                                    if (Main.tile[tilePosX, tilePosY] == null)
+						            Main.tile[tilePosX, tilePosY] = new Tile();
+
+					                while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[(int)Main.tile[tilePosX, tilePosY].type]))
+					                {
+						                tilePosY++;
+						                if (Main.tile[tilePosX, tilePosY] == null)
+							                Main.tile[tilePosX, tilePosY] = new Tile();
+					                }
+
+                                    Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, ProjectileID.GeyserTrap, npc.damage / 6, 0f, Main.myPlayer);
+                                }
+                            }
+                        }
+                        else if (npc.velocity.Y > 0)
+                        {
+                            masoBool[0] = true;
+                        }
+
                         Counter++;
                         if (Counter >= 600)
                         {
@@ -2459,7 +2519,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 for (int i = 0; i < 8; i++)
                                 {
-                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-2, 3), Main.rand.Next(-2, 3), ProjectileID.SpikyBallTrap, 35, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-2, 3), Main.rand.Next(-2, 3), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
                                     //Main.projectile[p].friendly = false;
                                 }
                             }
@@ -2467,7 +2527,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (!npc.dontTakeDamage)
                         {
-                            npc.life += 17;
+                            npc.life += 8;
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
 
@@ -2475,7 +2535,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 1000, false, false);
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 500, false, false);
                             }
                         }
                         break;
@@ -2493,7 +2553,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 Player player = Main.player[t];
                                 Vector2 distance = player.Center - npc.Center;
-                                if (Math.Abs(distance.X) < npc.width)
+                                if (Math.Abs(distance.X) < npc.width * 2)
                                 {
                                     double angle = distance.ToRotation();
                                     if (angle > Math.PI * .25 && angle < Math.PI * .75)
@@ -2501,7 +2561,7 @@ namespace FargowiltasSouls.NPCs
                                         distance.Normalize();
                                         distance *= Main.rand.Next(4, 9);
 
-                                        Projectile.NewProjectile(npc.Center.X + npc.velocity.X * 5, npc.position.Y + npc.velocity.Y * 5, distance.X, distance.Y, ProjectileID.FlamesTrap, npc.damage / 4, 0f, Main.myPlayer);
+                                        Projectile.NewProjectile(npc.Center.X + npc.velocity.X * 5, npc.position.Y + npc.velocity.Y * 5, distance.X, distance.Y, ProjectileID.FlamesTrap, npc.damage / 5, 0f, Main.myPlayer);
                                         //Main.projectile[p].friendly = false;
 
                                         Main.PlaySound(SoundID.Item34, npc.Center);
@@ -2552,7 +2612,7 @@ namespace FargowiltasSouls.NPCs
                     case 42: //golem head
                         if (!npc.dontTakeDamage)
                         {
-                            npc.life += 17;
+                            npc.life += 8;
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
 
@@ -2560,7 +2620,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 1000, false, false);
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 500, false, false);
                             }
                         }
                         break;
@@ -3635,7 +3695,8 @@ namespace FargowiltasSouls.NPCs
 
                     case 78: //wall of flesh eye
                         Counter++;
-                        if (Counter >= 600)
+                        const int maxTime = 540;
+                        if (Counter >= maxTime)
                         {
                             Counter = 0;
                             masoBool[0] = !masoBool[0];
@@ -3670,7 +3731,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             SharkCount = 0;
                             npc.dontTakeDamage = false;
-                            if (Counter > 420)
+                            if (Counter > maxTime - 180)
                             {
                                 if (Main.rand.Next(4) < 3) //dust telegraphs switch
                                 {
@@ -3685,7 +3746,7 @@ namespace FargowiltasSouls.NPCs
                                     }
                                 }
 
-                                const int stopTime = 510;
+                                const int stopTime = maxTime - 90;
                                 if (Counter == stopTime) //stop rotating shortly before firing
                                 {
                                     if (masoBool[1])
@@ -3727,6 +3788,17 @@ namespace FargowiltasSouls.NPCs
                         {
                             Timer = Main.rand.Next(30);
                             CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 9999, false, false);
+                        }
+                        break;
+
+                    case 80: //all moon lord parts
+                        Counter++;
+                        if (Counter > 1200)
+                        {
+                            Counter = 0;
+                            masoState++;
+                            if (masoState > 4)
+                                masoState = 0;
                         }
                         break;
 
@@ -5392,6 +5464,22 @@ namespace FargowiltasSouls.NPCs
                         damage = (int)(damage * reduction);
                         break;
 
+                    case 11: //wof eye
+                        if (masoBool[1])
+                            damage /= 2;
+                        break;
+
+                    case 12: //moon lord
+                        /*switch (masoState)
+                        {
+                            case 0: if (!item.melee) damage = 0; break;
+                            case 1: if (!item.ranged) damage = 0; break;
+                            case 2: if (!item.magic) damage = 0; break;
+                            case 3: if (!item.summon) damage = 0; break;
+                            case 4: if (!item.thrown) damage = 0; break;
+                        }*/
+                        break;
+
                     default:
                         break;
                 }
@@ -5580,6 +5668,22 @@ namespace FargowiltasSouls.NPCs
                         if (reduction < 0.25f)
                             reduction = 0.25f;
                         damage = (int)(damage * reduction);
+                        break;
+
+                    case 11: //wof eye
+                        if (masoBool[1])
+                            damage /= 2;
+                        break;
+
+                    case 12: //moon lord
+                        /*switch (masoState)
+                        {
+                            case 0: if (!projectile.melee) damage = 0; break;
+                            case 1: if (!projectile.ranged) damage = 0; break;
+                            case 2: if (!projectile.magic) damage = 0; break;
+                            case 3: if (!projectile.minion) damage = 0; break;
+                            case 4: if (!projectile.thrown) damage = 0; break;
+                        }*/
                         break;
 
                     default:
@@ -6396,14 +6500,54 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.Golem:
+                    /*case NPCID.Golem:
                         if (!target.HasBuff(mod.BuffType<Fused>()))
                             target.AddBuff(mod.BuffType<Fused>(), target.longInvince ? 82 : 42);
-                        break;
+                        break;*/
 
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight:
                         target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(60, 300));
+                        break;
+
+                    case NPCID.DD2Betsy:
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
+                        target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Ichor, Main.rand.Next(600, 900));
+                        target.AddBuff(BuffID.OnFire, Main.rand.Next(900, 1800));
+                        break;
+
+                    case NPCID.DD2WyvernT1:
+                    case NPCID.DD2WyvernT2:
+                    case NPCID.DD2WyvernT3:
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
+                        break;
+
+                    case NPCID.DD2KoboldFlyerT2:
+                    case NPCID.DD2KoboldFlyerT3:
+                    case NPCID.DD2KoboldWalkerT2:
+                    case NPCID.DD2KoboldWalkerT3:
+                        target.AddBuff(mod.BuffType<Fused>(), 1800);
+                        break;
+
+                    case NPCID.DD2OgreT2:
+                    case NPCID.DD2OgreT3:
+                        target.AddBuff(mod.BuffType<Stunned>(), Main.rand.Next(30, 60));
+                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(180, 300));
+                        target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(300, 600));
+                        break;
+
+                    case NPCID.DD2LightningBugT3:
+                        target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 600));
+                        break;
+
+                    case NPCID.DD2SkeletonT1:
+                    case NPCID.DD2SkeletonT3:
+                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1200, 2400));
                         break;
 
                     default:
@@ -6537,6 +6681,33 @@ namespace FargowiltasSouls.NPCs
                     npc.knockBackResist = 1;
                 }
             }
+        }
+
+        public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
+        {
+            if (FargoWorld.MasochistMode && masoHurtAI == 12)
+            {
+                return masoState == 0;
+            }
+
+            return null;
+        }
+
+        public override bool? CanBeHitByProjectile(NPC npc, Projectile projectile)
+        {
+            if (FargoWorld.MasochistMode && masoHurtAI == 12)
+            {
+                switch (masoState)
+                {
+                    case 0: if (!projectile.melee) return false; break;
+                    case 1: if (!projectile.ranged) return false; break;
+                    case 2: if (!projectile.magic) return false; break;
+                    case 3: if (!projectile.minion) return false; break;
+                    case 4: if (!projectile.thrown) return false; break;
+                }
+            }
+
+            return null;
         }
 
         public static bool BossIsAlive(ref int bossID, int bossType)

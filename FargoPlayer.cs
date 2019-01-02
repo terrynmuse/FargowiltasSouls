@@ -2186,7 +2186,8 @@ namespace FargowiltasSouls
             //gold ring
             player.goldRing = true;
             //lucky coin
-            player.coins = true;
+            if (Soulcheck.GetValue("Gold Coins on Hit"))
+                player.coins = true;
             //discount card
             player.discount = true;
             //midas
@@ -2512,9 +2513,9 @@ namespace FargowiltasSouls
 
         public void OrichalcumEffect()
         {
-            player.onHitPetal = true;
-
             if (!Soulcheck.GetValue("Orichalcum Fireballs")) return;
+
+            player.onHitPetal = true;
 
             OriEnchant = true;
 

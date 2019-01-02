@@ -111,8 +111,11 @@ Enemies are more likely to target you");
             player.panic = true;
             player.longInvince = true;
             //spore sac
-            player.SporeSac();
-            player.sporeSac = true;
+            if (Soulcheck.GetValue("Spore Sac"))
+            {
+                player.SporeSac();
+                player.sporeSac = true;
+            }
             //flesh knuckles
             player.aggro += 400;
             //frozen turtle shell
