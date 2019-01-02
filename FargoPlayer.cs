@@ -1300,16 +1300,16 @@ namespace FargowiltasSouls
 
             if (PalladEnchant && palladiumCD == 0)
             {
-                int heal = damage / 3;
+                int heal = damage / 20;
 
-                if(heal > 100)
-                {
-                    heal = 100;
-                }
+                if (heal > 5)
+                    heal = 5;
+                else if (heal < 1)
+                    heal = 1;
 
                 player.statLife += heal;
                 player.HealEffect(heal);
-                palladiumCD = 600;
+                palladiumCD = 60;
             }
 
             /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
