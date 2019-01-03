@@ -58,9 +58,18 @@ Grants immunity to lava and fall damage");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             //frost spark plus super speed
+            if (Soulcheck.GetValue("Supersonic Speed Boosts"))
+            {
+                player.maxRunSpeed += 10f;
+                player.runAcceleration += .25f;
+            }
+            else
+            {
+                player.maxRunSpeed += 5f;
+                player.runAcceleration += .1f;
+            }
+
             player.moveSpeed += 0.5f;
-            player.maxRunSpeed += 10f;
-            player.runAcceleration += 1f;
             player.rocketBoots = 3;
             player.iceSkate = true;
             //arctic diving gear

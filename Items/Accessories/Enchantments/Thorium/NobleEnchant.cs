@@ -54,7 +54,7 @@ Doubles the range of your empowerments effect radius.");
             //mix tape
             thoriumPlayer.mixtapeBool = true;
             //molten woofer
-            thoriumPlayer.subwooferFire = true;
+            //thoriumPlayer.subwooferFire = true;
             thoriumPlayer.bardRangeBoost += 450;
         }
         

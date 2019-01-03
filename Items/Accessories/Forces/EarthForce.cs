@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                 tooltip +=
 @"25% chance for your projectiles to explode into shards
 Greatly increases life regeneration after striking an enemy 
-One attack gains 33% life steal every 10 seconds, capped at 100 HP
+One attack gains 5% life steal every second, capped at 5 HP
 Flower petals will cause extra damage to your target 
 Spawns 3 fireballs to rotate around you
 Every 8th projectile you shoot will split into 3

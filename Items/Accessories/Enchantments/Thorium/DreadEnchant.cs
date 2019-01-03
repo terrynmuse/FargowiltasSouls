@@ -94,7 +94,7 @@ Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
             //cursed core
             thoriumPlayer.cursedCore = true;
             //corrupt woofer
-            thoriumPlayer.subwooferCursed = true;
+            //thoriumPlayer.subwooferCursed = true;
             thoriumPlayer.bardRangeBoost += 450;
             //music player
             thoriumPlayer.musicPlayer = true;

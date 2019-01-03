@@ -21,7 +21,7 @@ Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, or
 Attacks cause increased life regen, shadow dodge, meteor showers, reduced enemy knockback immunity
 Critical chance is set to 25%, Crit to increase it by 5%, At 100% every 10th attack gains 4% life steal
 Getting hit drops your crit back down, releases a spore explosion and reflects damage
-One attack gains 33% life steal every 10 seconds, capped at 100 HP
+One attack gains 5% life steal every second, capped at 5 HP
 Projectiles may split or shatter, Hearts and Stars heal twice as much, 
 Nearby enemies are ignited, You leave behind a trail of fire when you walk
 Most other effects of material Forces

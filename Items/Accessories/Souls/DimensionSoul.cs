@@ -24,7 +24,7 @@ Grants immunity to knockback and several debuffs
 Allows Supersonic running and infinite flight
 Increases fishing skill substantially
 All fishing rods will have 10 extra lures
-Increased block and wall placement speed by 25% 
+Increased block and wall placement speed by 50% 
 Near infinite block placement and mining reach
 Mining speed doubled 
 Grants the ability to enable Builder Mode
@@ -113,17 +113,17 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
 
             //SUPERSONIC
             //frost spark plus super speed
-            if (Soulcheck.GetValue("Dimension Speed Boosts"))
+            if (Soulcheck.GetValue("Supersonic Speed Boosts"))
             {
-                player.maxRunSpeed += 14f;
-                player.runAcceleration += 1f;
-
-                player.jumpSpeedBoost += 2.4f; //frog
-                player.jumpBoost = true;
-
-                //slime mount
-                player.maxFallSpeed += 5f;
+                player.maxRunSpeed += 15f;
+                player.runAcceleration += .25f;
             }
+            else
+            {
+                player.maxRunSpeed += 5f;
+                player.runAcceleration += .1f;
+            }
+
             player.moveSpeed += 0.5f;
             player.accRunSpeed = 12f;
             player.rocketBoots = 3;
@@ -138,6 +138,10 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
             player.lavaImmune = true;
             //frog legs
             player.autoJump = true;
+            player.jumpSpeedBoost += 2.4f;
+            player.jumpBoost = true;
+            //slime mount
+            player.maxFallSpeed += 5f;
 
             //FLIGHT MASTERY
             player.wingTimeMax = 999999;
@@ -156,8 +160,8 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
 
             //WORLD SHAPER
             //placing speed up
-            player.tileSpeed += 0.25f;
-            player.wallSpeed += 0.25f;
+            player.tileSpeed += 0.5f;
+            player.wallSpeed += 0.5f;
             //toolbox
             Player.tileRangeX += 50;
             Player.tileRangeY += 50;
@@ -170,7 +174,7 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
             //presserator
             player.autoActuator = true;
             //builder mode
-            if (Soulcheck.GetValue("Builder Mode"))
+            if (!Soulcheck.GetValue("Builder Mode"))
             {
                 modPlayer.BuilderMode = true;
             }

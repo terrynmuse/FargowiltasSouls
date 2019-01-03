@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("World Shaper Soul");
             Tooltip.SetDefault(
 @"'Limitless possibilities'
-Increased block and wall placement speed by 25% 
+Increased block and wall placement speed by 50% 
 Near infinite block placement and mining reach
 Mining speed doubled 
 Auto paint and actuator effect 
@@ -40,8 +40,8 @@ No enemies can spawn");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //placing speed up
-            player.tileSpeed += 0.25f;
-            player.wallSpeed += 0.25f;
+            player.tileSpeed += 0.5f;
+            player.wallSpeed += 0.5f;
             //toolbox
             Player.tileRangeX += 50;
             Player.tileRangeY += 50;
@@ -54,7 +54,7 @@ No enemies can spawn");
             //presserator
             player.autoActuator = true;
 
-            if (Soulcheck.GetValue("Builder Mode"))
+            if (!Soulcheck.GetValue("Builder Mode"))
             {
                 modPlayer.BuilderMode = true;
             }

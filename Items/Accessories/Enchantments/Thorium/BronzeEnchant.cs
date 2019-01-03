@@ -59,12 +59,12 @@ While in combat, you generate a 10 life shield");
             //sandles
             thoriumPlayer.spartanSandle = true;
             //subwoofer
-            thoriumPlayer.subwooferMarble = true;
+            //thoriumPlayer.subwooferMarble = true;
             thoriumPlayer.bardRangeBoost += 450;
             //copper enchant
             player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
             //copper buckler
-            thoriumPlayer.metallurgyShield = true;
+            //thoriumPlayer.metallurgyShield = true;
             if (!thoriumPlayer.outOfCombat)
             {
                 timer++;

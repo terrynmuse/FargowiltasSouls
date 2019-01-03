@@ -613,9 +613,9 @@ namespace FargowiltasSouls.Projectiles
                 return;
             }
 
-            if (projectile.minion && modPlayer.UniverseEffect)
+            if (projectile.minion && (modPlayer.UniverseEffect || modPlayer.Eternity))
             {
-                target.AddBuff(mod.BuffType<Buffs.Masomode.FlamesoftheUniverse>(), 240, true);
+                target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 240, true);
             }
         }
 

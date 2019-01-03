@@ -63,7 +63,7 @@ Summons a pet Penguin, Snowman, and Owl");
             //frost effect
             modPlayer.FrostEffect(60, hideVisual);
             //subwoofer
-            thoriumPlayer.subwooferFrost = true;
+            //thoriumPlayer.subwooferFrost = true;
             thoriumPlayer.bardRangeBoost += 450;
             //icy set bonus
             thoriumPlayer.icySet = true;

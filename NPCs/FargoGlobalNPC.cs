@@ -749,6 +749,10 @@ namespace FargowiltasSouls.NPCs
                         masoDeathAI = 36;
                         break;
 
+                    case NPCID.Shark:
+                        masoDeathAI = 37;
+                        break;
+
                     default:
                         break;
                 }
@@ -1114,8 +1118,6 @@ namespace FargowiltasSouls.NPCs
                     {
                         npc.Transform(npcType);
                     }
-                    
-                    Transform = true;
                 }
 
                 switch (masoAI)
@@ -3862,6 +3864,13 @@ namespace FargowiltasSouls.NPCs
                         break;
                 }
             }
+
+            if(!Transform && (npc.type == NPCID.Squirrel || npc.type == NPCID.SquirrelRed) && Main.rand.Next(8) == 0)
+            {
+                npc.Transform(mod.NPCType("TophatSquirrel"));
+            }
+
+            Transform = true;
         }
 
         private void Aura(NPC npc, float distance, int buff, bool reverse = false)
@@ -4792,7 +4801,7 @@ namespace FargowiltasSouls.NPCs
 			Player player = Main.player[Main.myPlayer];
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if(modPlayer.PlatinumEnchant && firstLoot)
+            if(modPlayer.PlatinumEnchant && !npc.boss && firstLoot)
             {
                 bool midas = npc.HasBuff(BuffID.Midas);
                 int chance = 10;
@@ -4807,7 +4816,7 @@ namespace FargowiltasSouls.NPCs
                 if(Main.rand.Next(chance) == 0)
                 {
                     firstLoot = false;
-                    for (int i = 0; i < bonus; i++)
+                    for (int i = 1; i < bonus; i++)
                     {
                         npc.NPCLoot();
                         NPC.killCount[Item.NPCtoBanner(npc.BannerID())]--;
@@ -5321,6 +5330,13 @@ namespace FargowiltasSouls.NPCs
                         {
                             int p = Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-500, 501) / 100f, Main.rand.Next(-1000, 101) / 100f, ProjectileID.BouncyGrenade, 200, 8f, Main.myPlayer);
                             Main.projectile[p].timeLeft -= Main.rand.Next(120);
+                        }
+                        break;
+
+                    case 37: //shark
+                        if(Main.hardMode && Main.rand.Next(4) == 0)
+                        {
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.Cthulunado, npc.damage * 2, 0f, Main.myPlayer, 16, 11);
                         }
                         break;
 			
@@ -6611,7 +6627,15 @@ namespace FargowiltasSouls.NPCs
                     ResetRegenTimer(Main.npc[npc.realLife]);
             }
 
-			if(modPlayer.UniverseEffect)
+            if(modPlayer.Eternity)
+            {
+                if (crit)
+                {
+                    damage *= 10;
+                    retValue = false;
+                }
+            }
+			else if(modPlayer.UniverseEffect)
 			{
 				if(crit)
 				{

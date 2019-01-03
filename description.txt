@@ -1,4 +1,13 @@
-MOD RELEASE - v 0.5
+NEW UPDATE - v 0.5.1
+-Added an item
+-Added several more features that shall not be named to Masochist Mode
+-Added Toggle for Super speed and made Super speed more manageable
+-Changed how Top Hat Squirrels spawn
+-Increased World Shaper Soul's tile placing speed boost
+-Made Builder Mode toggle off by default (kind of a meme fix for now)
+-removed extra Blue Moon in Slinger's Essence recipe
+-fixed Platinum Enchantment's extra loot multiplier being off by one, and it doesn't work on bosses anymore
+
 This mod adds 2 main things. Masochist Mode and Soul accessories.
 
 -Masochist mode is a high IQ difficulty mode that offers a new challenge while not relying on just boosting stats. 
