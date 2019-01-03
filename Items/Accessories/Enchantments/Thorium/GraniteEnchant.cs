@@ -70,7 +70,7 @@ Doubles the range of your empowerments effect radius");
                 }
             }
             //granite woofer
-            thoriumPlayer.subwooferGranite = true;
+            //thoriumPlayer.subwooferGranite = true;
             thoriumPlayer.bardRangeBoost += 450;
         }
         

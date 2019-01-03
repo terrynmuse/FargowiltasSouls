@@ -63,7 +63,7 @@ Summons a pet Jellyfish");
                 }
             }
             //depth woofer
-            thoriumPlayer.subwooferGouge = true;
+            //thoriumPlayer.subwooferGouge = true;
             thoriumPlayer.bardRangeBoost += 450;
             modPlayer.DepthEnchant = true;
             modPlayer.AddPet("Jellyfish Pet", hideVisual, thorium.BuffType("JellyPet"), thorium.ProjectileType("JellyfishPet"));

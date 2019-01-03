@@ -140,7 +140,6 @@ namespace FargowiltasSouls
 
         //soul effects
         public bool MagicSoul;
-
         public bool ThrowSoul;
         public bool RangedSoul;
         public bool RangedEssence;
@@ -152,6 +151,8 @@ namespace FargowiltasSouls
         public bool TerrariaSoul;
         public int HealTimer;
         public bool VoidSoul;
+        public bool Eternity;
+        private float eternityDamage = 0;
 
         //debuffs
         public bool Hexed;
@@ -371,7 +372,6 @@ namespace FargowiltasSouls
 
             //souls
             MagicSoul = false;
-
             ThrowSoul = false;
             RangedSoul = false;
             RangedEssence = false;
@@ -381,6 +381,7 @@ namespace FargowiltasSouls
             FishSoul2 = false;
             TerrariaSoul = false;
             VoidSoul = false;
+            Eternity = false;
 
             //debuffs
             Hexed = false;
@@ -529,7 +530,11 @@ namespace FargowiltasSouls
                 FirstInfection = true;
             }
 
-            if(TerrariaSoul && TinCrit < 25)
+            if(Eternity && TinCrit < 50)
+            {
+                TinCrit = 50;
+            }
+            else if(TerrariaSoul && TinCrit < 25)
             {
                 TinCrit = 25;
             }
@@ -657,7 +662,11 @@ namespace FargowiltasSouls
                 player.meleeCrit = 0;
             }
 
-            if(UniverseEffect)
+            if(Eternity)
+            {
+                player.statManaMax2 = 999;
+            }
+            else if(UniverseEffect)
             {
                 player.statManaMax2 += 300;
             }
@@ -916,9 +925,9 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.OnFire, 600);
             }
 
-            if (UniverseEffect && !target.townNPC)
+            if ((UniverseEffect || Eternity) && !target.townNPC)
             {
-                target.AddBuff(mod.BuffType<Buffs.Masomode.FlamesoftheUniverse>(), 240, true);
+                target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 240, true);
             }
 
             if (GoldEnchant)
@@ -1084,9 +1093,9 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.OnFire, 600);
             }
 
-            if (UniverseEffect)
+            if (UniverseEffect || Eternity)
             {
-                target.AddBuff(mod.BuffType<Buffs.Masomode.FlamesoftheUniverse>(), 240, true);
+                target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 240, true);
             }
 
             if (GoldEnchant)
@@ -1266,7 +1275,20 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (TerrariaSoul)
+            if(Eternity)
+            {
+                if (crit && TinCrit < 100)
+                {
+                    TinCrit += 10;
+                }
+                else if (TinCrit >= 100)
+                {
+                    player.statLife += damage / 10;
+                    player.HealEffect(damage / 10);
+                    eternityDamage += .1f;
+                }
+            }
+            else if (TerrariaSoul)
             {
                 if (crit && TinCrit < 100)
                 {
@@ -1397,7 +1419,20 @@ namespace FargowiltasSouls
                 SpectreHeal(target, p);
             }
 
-            if (TerrariaSoul)
+            if (Eternity)
+            {
+                if (crit && TinCrit < 100)
+                {
+                    TinCrit += 10;
+                }
+                else if (TinCrit >= 100)
+                {
+                    player.statLife += damage / 10;
+                    player.HealEffect(damage / 10);
+                    eternityDamage += .1f;
+                }
+            }
+            else if (TerrariaSoul)
             {
                 if (crit && TinCrit < 100)
                 {
@@ -1517,7 +1552,12 @@ namespace FargowiltasSouls
 
             if(TinEnchant)
             {
-                if (TerrariaSoul && TinCrit != 25)
+                if(Eternity)
+                {
+                    TinCrit = 50;
+                    eternityDamage = 0;
+                }
+                else if (TerrariaSoul && TinCrit != 25)
                 {
                     TinCrit = 25;
                 }
@@ -1554,7 +1594,17 @@ namespace FargowiltasSouls
 
             if(player.FindBuffIndex(mod.BuffType<Revived>()) == -1)
             {
-                if (TerrariaSoul)
+                if(Eternity)
+                {
+                    player.statLife = player.statLifeMax2;
+                    player.HealEffect(player.statLifeMax2);
+                    player.immune = true;
+                    player.immuneTime = player.longInvince ? 180 : 120;
+                    Main.NewText("You've been revived!", 175, 75);
+                    player.AddBuff(mod.BuffType<Revived>(), 7200);
+                    retVal = false;
+                }
+                else if (TerrariaSoul)
                 {
                     player.statLife = 200;
                     player.HealEffect(200);
@@ -1728,10 +1778,11 @@ namespace FargowiltasSouls
             player.minionDamage += dmg;
             player.thrownDamage += dmg;
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
-            {
-                ///
-            }
+            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            thoriumPlayer.radiantBoost += dmg;
+            thoriumPlayer.symphonicDamage += dmg;*/
         }
 
         public void AllCritUp(int crit)
@@ -2524,12 +2575,18 @@ namespace FargowiltasSouls
                 int[] fireballs = { ProjectileID.BallofFire, ProjectileID.BallofFrost, ProjectileID.CursedFlameFriendly };
 
                 int ballAmt = 3;
+
+                if(Eternity)
+                {
+                    ballAmt = 60;
+                }
+
                 float degree;
 
                 for (int i = 0; i < ballAmt; i++)
                 {
                     degree = (360 / ballAmt) * i;
-                    Projectile fireball = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, fireballs[i], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
+                    Projectile fireball = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, fireballs[i % 3], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
                     fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
                     fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
                     fireball.timeLeft = 2;
@@ -2543,6 +2600,10 @@ namespace FargowiltasSouls
         public void PalladiumEffect()
         {
             player.onHitRegen = true;
+
+            //no lifesteal needed here for SoE
+            if (Eternity) return;
+
             PalladEnchant = true;
 
             if(palladiumCD != 0)
@@ -2890,6 +2951,11 @@ namespace FargowiltasSouls
 
             TinEnchant = true;
             AllCritEquals(TinCrit);
+
+            if (!Eternity) return;
+
+            AllDamageUp(eternityDamage);
+            player.statDefense += (int)(eternityDamage * 100); //10 defense per .1 damage
         }
 
         public void TitaniumEffect()
@@ -2974,7 +3040,7 @@ namespace FargowiltasSouls
 
         public override bool PreItemCheck()
         {
-            if (UniverseEffect)
+            if (UniverseEffect || Eternity)
             {
                 UniverseStoredAutofire = player.HeldItem.autoReuse;
                 player.HeldItem.autoReuse = true;
@@ -2985,7 +3051,7 @@ namespace FargowiltasSouls
 
         public override void PostItemCheck()
         {
-            if (UniverseEffect)
+            if (UniverseEffect || Eternity)
             {
                 player.HeldItem.autoReuse = UniverseStoredAutofire;
             }

@@ -73,10 +73,10 @@ namespace FargowiltasSouls
             #region soul toggles
             ["Melee Speed"] = new Color(81, 181, 113),
             ["Spore Sac"] = new Color(81, 181, 113),
-            ["Builder Mode"] = new Color(81, 181, 113),
+            ["No Builder Mode"] = new Color(81, 181, 113),
             ["Universe Speedup"] = new Color(81, 181, 113),
             ["Universe Scope"] = new Color(81, 181, 113),
-            ["Dimension Speed Boosts"] = new Color(81, 181, 113),
+            ["Supersonic Speed Boosts"] = new Color(81, 181, 113),
             #endregion
 
             #region pet toggles
@@ -194,29 +194,29 @@ namespace FargowiltasSouls
 
             UiCheckbox.CheckboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
 
-            if (thorium == null)
-            {
-                int count = 0;
+            //if (thorium == null)
+            //{
+                //int count = 0;
 
                 foreach (KeyValuePair<string, Color> toggle in toggles)
                 {
                     CreateCheckbox(toggle.Key, toggle.Value);
-                    count++;
+                    //count++;
 
-                    if(count >= toggles.Count - 1)
-                    {
-                        break;
-                    }
+                    //if(count >= toggles.Count - 1)
+                    //{
+                    //    break;
+                    //}
                     
                 }
-            }
+            /*}
             else
             {
                 foreach (KeyValuePair<string, Color> toggle in toggles)
                 {
                     CreateCheckbox(toggle.Key, toggle.Value);
                 }
-            }
+            }*/
         }
 
         private void DragOn(UIMouseEvent evt, UIElement listeningElement)

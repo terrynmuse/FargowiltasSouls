@@ -132,7 +132,7 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            if (modPlayer.UniverseEffect) knockback *= 2;
+            if (modPlayer.UniverseEffect || modPlayer.Eternity) knockback *= 2;
         }
 
         public override bool CanUseItem(Item item, Player player)
@@ -155,6 +155,8 @@ namespace FargowiltasSouls.Items
             }
 
             if (modPlayer.UniverseEffect && item.damage > 0) item.shootSpeed *= 1.5f;
+
+            if (modPlayer.Eternity && item.damage > 0) item.shootSpeed *= 2f;
 
             return false;
         }

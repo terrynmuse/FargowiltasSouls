@@ -62,7 +62,7 @@ While in combat, you generate a 25 life shield
             //magnet
             modPlayer.IronEnchant = true;
             //iron shield
-            thoriumPlayer.metallurgyShield = true;
+            //thoriumPlayer.metallurgyShield = true;
             if (!thoriumPlayer.outOfCombat)
             {
                 timer++;

@@ -59,7 +59,7 @@ Doubles the range of your empowerments effect radius");
                 timer = 0;
             }
             //terrarium woofer
-            thoriumPlayer.subwooferTerrarium = true;
+            //thoriumPlayer.subwooferTerrarium = true;
             thoriumPlayer.bardRangeBoost += 450;
             //thorium set bonus 
             player.meleeDamage += 0.1f;

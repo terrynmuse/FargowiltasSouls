@@ -81,7 +81,7 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
 
         private void Bard(Player player)
         {
-            //general
+            /*//general
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
@@ -101,7 +101,7 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
             thoriumPlayer.bardHomingBonus = 5f;
             thoriumPlayer.bardMute2 = true;
             thoriumPlayer.tuner2 = true;
-            thoriumPlayer.bardBounceBonus = 5;
+            thoriumPlayer.bardBounceBonus = 5;*/
         }
         
         private readonly string[] _items =

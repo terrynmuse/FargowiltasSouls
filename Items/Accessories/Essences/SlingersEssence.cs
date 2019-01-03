@@ -80,7 +80,6 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.Flamarang);
             }
 
-            recipe.AddIngredient(ItemID.BlueMoon);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();

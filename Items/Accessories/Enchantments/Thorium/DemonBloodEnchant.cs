@@ -61,7 +61,7 @@ Summons a pet Flying Blister, Face Monster, and Crimson Heart");
             //vile core
             thoriumPlayer.vileCore = true;
             //subwoofer
-            thoriumPlayer.subwooferIchor = true;
+            //thoriumPlayer.subwooferIchor = true;
             thoriumPlayer.bardRangeBoost += 450;
             //music player
             thoriumPlayer.musicPlayer = true;

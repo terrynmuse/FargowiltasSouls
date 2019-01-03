@@ -59,7 +59,6 @@ While in combat, you generate a 22 life shield
             //EoC Shield
             player.dash = 2;
             //iron sheild
-            thoriumPlayer.metallurgyShield = true;
             if (!thoriumPlayer.outOfCombat)
             {
                 timer++;
