@@ -2385,6 +2385,8 @@ namespace FargowiltasSouls.NPCs
 
                     case 38: //moon lord core
                         moonBoss = npc.whoAmI;
+                        if (Main.player[Main.myPlayer].active)
+                            Main.player[Main.myPlayer].AddBuff(mod.BuffType<NullificationCurse>(), 2);
 
                         if (!masoBool[0])
                         {

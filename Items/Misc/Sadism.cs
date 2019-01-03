@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sadism");
-            Tooltip.SetDefault( "Grants immunity to all Masochist Mode debuffs");
+            Tooltip.SetDefault( "Grants immunity to almost all Masochist Mode debuffs");
 		}
 
 		public override void SetDefaults()
