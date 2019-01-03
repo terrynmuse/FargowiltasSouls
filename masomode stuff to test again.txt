@@ -13,6 +13,9 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-moon lord has attacks corresponding to each vulnerability except throwing in phase 2
+-ancient light is immune to inferno potion
+
 THINGS I HAVE TESTED (YOU NEED TO TEST THEM ANYWAY)
 -SAVING
 -SOUL 
@@ -75,7 +78,7 @@ THINGS I HAVE TESTED (YOU NEED TO TEST THEM ANYWAY)
 
 -solar fragments shot out by solar pillar go through blocks, slightly home in on players, and ignore inferno potion
 -crawltipede tail is actually a flamethrower
--crawltipedes can eat you, killing you instantly below 250 life
+-crawltipedes can eat you, killing you instantly below 200 life
 -drakanians throw their spears (daybreak) and become selenians when killed
 -selenians are immune to knockback, gain basically infinite defense when spinning, and getting hit during a spin makes them spin again
 -corites have meteor heads' burning aura
@@ -516,3 +519,29 @@ NOTE: most debuffs have 33% chance to proc by default and a random duration
 -ancient light = purified
 -cultist clone = hexed
 -fishron = defenseless, mutant nibble
+
+
+
+
+
+
+
+==Pre-Hardmode Enemy Spawns==
+* Evil Bunny spawns in night Surface Purity, Evil Penguin spawns in night Surface Snow, Evil Goldfish spawns in night Oceans.
+* Fire Imp and Lava Slime spawn near lava underground.
+* Medusa spawns in Marble biomes when Eater of Worlds or Brain of Cthulhu are defeated.
+* Dark Caster spawns in Underground when Skeletron is defeated.
+* Leech spawns in Underworld.
+* Angry Nimbus spawns in Sky.
+* World Feeder spawns in Corruption when Eater of Worlds or Brain of Cthulhu are defeated.
+* Ichor Sticker spawns in Crimson when Eater of Worlds or Brain of Cthulhu are defeated.
+* Hardmode Mushroom enemies spawn in Underground Mushroom biomes.
+
+==Hardmode Enemy Spawns==
+* Evil critters no longer spawn.
+* Clowns can spawn on any night.
+* White Cultist Archer spawns when any Mechanical Boss is defeated.
+* Most Pumpkin Moon enemies spawn in night Purity when any Mechanical Boss is defeated.
+* Most Frost Moon enemies spawn in night Snow when any Mechanical Boss is defeated.
+* Tactical Skeleton, Skeleton Sniper, and Skeleton Commando spawn in night Surface Purity when Plantera is defeated.
+* Ragged Caster, 
