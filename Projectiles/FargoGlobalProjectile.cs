@@ -923,15 +923,14 @@ namespace FargowiltasSouls.Projectiles
                         }
                         break;
 
-                    /*case ProjectileID.PhantasmalBolt:   //if ML alive, ML vulnerable
+                    case ProjectileID.PhantasmalBolt:   //if ML alive, ML vulnerable
                     case ProjectileID.PhantasmalEye:    //debuff once per hit normally
                     case ProjectileID.PhantasmalSphere: //debuff per tick while overlapping player if 120 MLs killed
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.moonBoss, NPCID.MoonLordCore) && !Main.npc[FargoGlobalNPC.moonBoss].dontTakeDamage && (target.hurtCooldowns[1] == 0 || FargoWorld.MoonlordCount >= 120))
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.moonBoss, NPCID.MoonLordCore) && !Main.npc[FargoGlobalNPC.moonBoss].dontTakeDamage && target.hurtCooldowns[1] == 0)
                         {
-                            int d = Main.rand.Next(Fargowiltas.DebuffIDs.Length);
-                            target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 600));
+                            target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(15, 31));
                         }
-                        break;*/
+                        break;
 
                     case ProjectileID.MeteorShot:
                         if (masoProj)

@@ -2392,6 +2392,8 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
+                            Counter++; //phases transition twice as fast when core is exposed
+
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                             if (t != -1)
                             {
@@ -3943,13 +3945,15 @@ namespace FargowiltasSouls.NPCs
 
                     case 80: //all moon lord parts
                         Counter++;
-                        if (Counter > 1200)
+                        if (Counter > 1800)
                         {
                             Counter = 0;
                             masoState++;
                             if (masoState > 4)
                                 masoState = 0;
                         }
+                        if (npc.type != NPCID.MoonLordCore)
+                            RegenTimer = 2;
                         break;
 
                     case 81: //ancient light when moon lord is alive
@@ -5880,6 +5884,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 12: //moon lord
+                        if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.CrystalShard)
+                            damage = 1;
                         /*switch (masoState)
                         {
                             case 0: if (!projectile.melee) damage = 0; break;
