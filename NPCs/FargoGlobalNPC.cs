@@ -599,6 +599,13 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 80;
                         break;
 
+                    case NPCID.AncientLight:
+                        npc.buffImmune[BuffID.OnFire] = true;
+                        npc.lavaImmune = true;
+                        if (BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
+                            masoAI = 81;
+                        break;
+
                     default:
                         break;
                 }
@@ -2407,12 +2414,105 @@ namespace FargowiltasSouls.NPCs
                             }
 
                             Timer++;
-                            if (Timer >= 1200)
+                            if (Timer >= 360)
                             {
-                                Timer = 0;
+                                Timer = Main.rand.Next(180);
 
+                                switch (masoState)
+                                {
+                                    case 0: //melee
+                                        for (int i = 0; i < 3; i++)
+                                        {
+                                            NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+
+                                            if (bodyPart.active &&
+                                                ((i == 2 && bodyPart.type == NPCID.MoonLordHead) ||
+                                                bodyPart.type == NPCID.MoonLordHand))
+                                            {
+                                                Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
+                                                speed.Normalize();
+                                                speed *= 6f;
+                                                for (int j = 0; j < 3; j++)
+                                                {
+                                                    Projectile.NewProjectile(bodyPart.Center, speed, ProjectileID.CultistBossFireBall, 20, 0f, Main.myPlayer);
+                                                    speed = speed.RotatedBy(Math.PI * 2 / 3);
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    case 1: //ranged
+                                        for (int i = 0; i < 10; i++) //spawn lightning
+                                        {
+                                            Point tileCoordinates = Main.player[npc.target].Top.ToTileCoordinates();
+
+                                            if (Main.rand.Next(2) == 0)
+                                            {
+                                                tileCoordinates.X += Main.rand.Next(-40, 41);
+                                                tileCoordinates.Y += Main.rand.Next(30, 41) * (Main.rand.Next(2) == 0 ? 1 : -1);
+                                            }
+                                            else
+                                            {
+                                                tileCoordinates.X += Main.rand.Next(30, 41) * (Main.rand.Next(2) == 0 ? 1 : -1);
+                                                tileCoordinates.Y += Main.rand.Next(-40, 41);
+                                            }
+
+                                            for (int index = 0; index < 10 && !WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) && tileCoordinates.Y > 10; ++index)
+                                                tileCoordinates.Y -= 1;
+
+                                            Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
+                                        }
+                                        break;
+                                    case 2: //magic
+                                        for (int i = 0; i < 3; i++)
+                                        {
+                                            NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+
+                                            if (bodyPart.active &&
+                                                ((i == 2 && bodyPart.type == NPCID.MoonLordHead) ||
+                                                bodyPart.type == NPCID.MoonLordHand))
+                                            {
+                                                Vector2 speed = new Vector2(0, -8f);
+                                                speed = speed.RotatedBy(MathHelper.ToRadians(-60));
+                                                for (int j = 0; j < 4; j++)
+                                                {
+                                                    Projectile.NewProjectile(bodyPart.Center, speed, ProjectileID.NebulaBolt, 45, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                                    speed = speed.RotatedBy(MathHelper.ToRadians(40));
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    case 3: //summoner
+                                        for (int i = 0; i < 3; i++)
+                                        {
+                                            NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+
+                                            if (bodyPart.active &&
+                                                ((i == 2 && bodyPart.type == NPCID.MoonLordHead) ||
+                                                bodyPart.type == NPCID.MoonLordHand))
+                                            {
+                                                Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
+                                                speed.Normalize();
+                                                speed *= 9f;
+                                                speed = speed.RotatedBy(-Math.PI / 2);
+                                                for (int j = 0; j < 7; j++)
+                                                {
+                                                    int n = NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientLight, 0, 0f, (Main.rand.NextFloat() - 0.5f) * 0.3f * 6.28318548202515f / 60f, speed.X, speed.Y);
+                                                    if (n < 200)
+                                                    {
+                                                        Main.npc[n].velocity = speed;
+                                                        if (Main.netMode == 2)
+                                                            NetMessage.SendData(23, -1, -1, null, n);
+                                                    }
+                                                    speed = speed.RotatedBy(Math.PI / 7);
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    case 4: //throwing
+                                        break;
+                                }
                                 //spawn visions from hands, dragon from head
-                                for (int i = 0; i < 3; i++)
+                                /*for (int i = 0; i < 3; i++)
                                 {
                                     NPC bodyPart = Main.npc[(int)npc.localAI[i]];
 
@@ -2430,9 +2530,9 @@ namespace FargowiltasSouls.NPCs
                                             NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
                                         }
                                     }
+                                }*/
                                 }
                             }
-                        }
 
                         int dustType = 87;
                         switch (masoState)
@@ -2513,9 +2613,28 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         Counter++;
+                        if (npc.HasPlayerTarget)
+                        {
+                            Player player = Main.player[npc.target];
+                            if (!(player.active && !player.dead && player.Center.Y < npc.position.Y && npc.Distance(player.Center) < 2000f))
+                            {
+                                masoBool[1] = true; //true means player is okay, don't enrage
+                            }
+                        }
                         if (Counter >= 600)
                         {
+                            if (!masoBool[1] && !masoBool[2]) //player never went back to safe zone, enrage
+                            {
+                                masoBool[2] = true;
+                                SharkCount = 1;
+                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                                npc.defDamage *= 20;
+                                npc.defDefense *= 999;
+                                npc.netUpdate = true;
+                            }
+
                             Counter = 0;
+                            masoBool[1] = false;
 
                             if (!npc.dontTakeDamage) //p2 spiky balls
                             {
@@ -2527,9 +2646,38 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
+                        if (masoBool[2])
+                        {
+                            npc.damage = npc.defDamage;
+                            npc.defense = npc.defDefense;
+
+                            if (npc.HasPlayerTarget)
+                            {
+                                Player p = Main.player[npc.target];
+
+                                masoState++;
+                                if (masoState >= 3) //spray random slime spikes
+                                {
+                                    masoState = 0;
+                                    Vector2 speed = p.Center - npc.Center;
+                                    speed.Normalize();
+                                    speed *= 20f + Main.rand.Next(-50, 51) * 0.025f;
+                                    speed = speed.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-10, 11)));
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), speed.X, speed.Y, ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
+                                }
+
+                                if (p.mount.Active)
+                                    p.mount.Dismount(p);
+
+                                p.AddBuff(BuffID.Dazed, 2);
+                                p.AddBuff(mod.BuffType<Crippled>(), 2);
+                                p.AddBuff(mod.BuffType<ClippedWings>(), 2);
+                            }
+                        }
+
                         if (!npc.dontTakeDamage)
                         {
-                            npc.life += 8;
+                            npc.life += masoBool[2] ? 167 : 8;
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
 
@@ -2537,7 +2685,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 500, false, false);
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, masoBool[2] ? 9999 : 500, false, false);
                             }
                         }
                         break;
@@ -3804,6 +3952,41 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case 81: //ancient light when moon lord is alive
+                        if (npc.HasPlayerTarget)
+                        {
+                            Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                            speed.Normalize();
+                            speed *= 12f;
+
+                            npc.ai[2] += speed.X / 100f;
+                            if (npc.ai[2] > 9f)
+                                npc.ai[2] = 9f;
+                            if (npc.ai[2] < -9f)
+                                npc.ai[2] = -9f;
+                            npc.ai[3] += speed.Y / 100f;
+                            if (npc.ai[3] > 9f)
+                                npc.ai[3] = 9f;
+                            if (npc.ai[3] < -9f)
+                                npc.ai[3] = -9f;
+                        }
+                        else
+                        {
+                            npc.TargetClosest(false);
+                        }
+
+                        Counter++;
+                        if (Counter > 240)
+                        {
+                            npc.HitEffect(0, 9999);
+                            npc.active = false;
+                        }
+
+                        npc.velocity.X = npc.ai[2];
+                        npc.velocity.Y = npc.ai[3];
+                        npc.dontTakeDamage = true;
+                        break;
+
                     /* pseudo memes
 
                     case unicorn
@@ -4825,6 +5008,11 @@ namespace FargowiltasSouls.NPCs
             }
 
             firstLoot = false;
+
+            if (FargoWorld.MasochistMode && npc.type == NPCID.DukeFishron)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Sadism"));
+            }
         }
 		
 		public override bool CheckDead(NPC npc)
