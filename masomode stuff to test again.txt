@@ -13,6 +13,8 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-spending >10sec completely above golem enrages him. 
+
 -moon lord has attacks corresponding to each vulnerability except throwing in phase 2
 -ancient light is immune to inferno potion
 

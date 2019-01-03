@@ -2613,9 +2613,28 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         Counter++;
+                        if (npc.HasPlayerTarget)
+                        {
+                            Player player = Main.player[npc.target];
+                            if (!(player.active && !player.dead && player.Center.Y < npc.position.Y && npc.Distance(player.Center) < 2000f))
+                            {
+                                masoBool[1] = true; //true means player is okay, don't enrage
+                            }
+                        }
                         if (Counter >= 600)
                         {
+                            if (!masoBool[1] && !masoBool[2]) //player never went back to safe zone, enrage
+                            {
+                                masoBool[2] = true;
+                                SharkCount = 1;
+                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                                npc.defDamage *= 20;
+                                npc.defDefense *= 999;
+                                npc.netUpdate = true;
+                            }
+
                             Counter = 0;
+                            masoBool[1] = false;
 
                             if (!npc.dontTakeDamage) //p2 spiky balls
                             {
@@ -2627,9 +2646,38 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
+                        if (masoBool[2])
+                        {
+                            npc.damage = npc.defDamage;
+                            npc.defense = npc.defDefense;
+
+                            if (npc.HasPlayerTarget)
+                            {
+                                Player p = Main.player[npc.target];
+
+                                masoState++;
+                                if (masoState >= 3) //spray random slime spikes
+                                {
+                                    masoState = 0;
+                                    Vector2 speed = p.Center - npc.Center;
+                                    speed.Normalize();
+                                    speed *= 20f + Main.rand.Next(-50, 51) * 0.025f;
+                                    speed = speed.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-10, 11)));
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), speed.X, speed.Y, ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
+                                }
+
+                                if (p.mount.Active)
+                                    p.mount.Dismount(p);
+
+                                p.AddBuff(BuffID.Dazed, 2);
+                                p.AddBuff(mod.BuffType<Crippled>(), 2);
+                                p.AddBuff(mod.BuffType<ClippedWings>(), 2);
+                            }
+                        }
+
                         if (!npc.dontTakeDamage)
                         {
-                            npc.life += 8;
+                            npc.life += masoBool[2] ? 167 : 8;
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
 
@@ -2637,7 +2685,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 500, false, false);
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, masoBool[2] ? 9999 : 500, false, false);
                             }
                         }
                         break;
