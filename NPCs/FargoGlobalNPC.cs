@@ -4951,6 +4951,11 @@ namespace FargowiltasSouls.NPCs
             }
 
             firstLoot = false;
+
+            if (FargoWorld.MasochistMode && npc.type == NPCID.DukeFishron)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Sadism"));
+            }
         }
 		
 		public override bool CheckDead(NPC npc)
