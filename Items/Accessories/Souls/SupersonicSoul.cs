@@ -62,12 +62,16 @@ Grants immunity to lava and fall damage");
             {
                 player.maxRunSpeed += 10f;
                 player.runAcceleration += .25f;
+                player.autoJump = true;
+                player.jumpSpeedBoost += 2.4f;
+                player.maxFallSpeed += 5f;
+                player.jumpBoost = true;
             }
-            else
+            /*else
             {
                 player.maxRunSpeed += 5f;
                 player.runAcceleration += .1f;
-            }
+            }*/
 
             player.moveSpeed += 0.5f;
             player.rocketBoots = 3;
@@ -81,8 +85,8 @@ Grants immunity to lava and fall damage");
             player.fireWalk = true;
             player.lavaImmune = true;
             //frog legs
-            player.autoJump = true;
-            player.jumpSpeedBoost += 2.4f;
+            //player.autoJump = true;
+            //player.jumpSpeedBoost += 2.4f;
             player.noFallDmg = true;
             //bundle
             if(player.wingTime == 0)
@@ -91,9 +95,9 @@ Grants immunity to lava and fall damage");
                 player.doubleJumpSandstorm = true;
                 player.doubleJumpBlizzard = true;
             }
-            player.jumpBoost = true;
+            //player.jumpBoost = true;
             //slime mount
-            player.maxFallSpeed += 5f;
+            //player.maxFallSpeed += 5f;
         }
 
         public override void AddRecipes()

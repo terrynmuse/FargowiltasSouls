@@ -8,7 +8,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Sadism");
-            Description.SetDefault("Immune to all Masochist Mode debuffs");
+            Description.SetDefault("Immune to almost all Masochist Mode debuffs");
             Main.buffNoSave[Type] = false;
         }
 

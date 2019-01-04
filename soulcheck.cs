@@ -73,7 +73,7 @@ namespace FargowiltasSouls
             #region soul toggles
             ["Melee Speed"] = new Color(81, 181, 113),
             ["Spore Sac"] = new Color(81, 181, 113),
-            ["No Builder Mode"] = new Color(81, 181, 113),
+            ["Builder Mode"] = new Color(81, 181, 113),
             ["Universe Speedup"] = new Color(81, 181, 113),
             ["Universe Scope"] = new Color(81, 181, 113),
             ["Supersonic Speed Boosts"] = new Color(81, 181, 113),

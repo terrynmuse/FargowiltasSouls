@@ -13,7 +13,19 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
--spending >10sec completely above golem enrages him. 
+-moon lord eyes take 33% increased damage, core takes 33% reduced damage
+
+-buffed duration of golem fist defenseless
+-golem fist inflicts broken armor too
+-golem geysers/flamethrowers are nerfed in the temple (less geyser damage, neither inflict burning)
+-moon lord, lunatic cultist, wof can all natural spawn
+
+-spending >10sec completely above golem enrages him.
+-moon lord segments no longer have regeneration (the core still does)
+-did a thing to make jungle enchant not glitch
+-moon lord's original attacks inflict flames of the universe in phase 2
+-moon lord is immune to phantasm secondary arrows
+-made moon lord vulnerability phases longer in phase 1, but change twice as fast in phase 2
 
 -moon lord has attacks corresponding to each vulnerability except throwing in phase 2
 -ancient light is immune to inferno potion

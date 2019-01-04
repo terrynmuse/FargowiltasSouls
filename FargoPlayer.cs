@@ -1543,11 +1543,11 @@ namespace FargowiltasSouls
                 Projectile[] projs = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType<SporeBoom>(), 5, (int)(dmg * player.magicDamage), 5f);
                 Projectile[] projs2 = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType<SporeBoom>(), 2.5f, 0, 0f);
 
-                for(int i = 0; i < projs.Length; i++)
+                /*for(int i = 0; i < projs.Length; i++)
                 {
                     projs[i].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                     projs2[i].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
-                }
+                }*/
             }
 
             if(TinEnchant)

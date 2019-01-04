@@ -117,12 +117,16 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
             {
                 player.maxRunSpeed += 15f;
                 player.runAcceleration += .25f;
+                player.autoJump = true;
+                player.jumpSpeedBoost += 2.4f;
+                player.jumpBoost = true;
+                player.maxFallSpeed += 5f;
             }
-            else
+            /*else
             {
                 player.maxRunSpeed += 5f;
                 player.runAcceleration += .1f;
-            }
+            }*/
 
             player.moveSpeed += 0.5f;
             player.accRunSpeed = 12f;
@@ -137,11 +141,11 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
             player.fireWalk = true;
             player.lavaImmune = true;
             //frog legs
-            player.autoJump = true;
-            player.jumpSpeedBoost += 2.4f;
-            player.jumpBoost = true;
+            //player.autoJump = true;
+            //player.jumpSpeedBoost += 2.4f;
+            //player.jumpBoost = true;
             //slime mount
-            player.maxFallSpeed += 5f;
+            //player.maxFallSpeed += 5f;
 
             //FLIGHT MASTERY
             player.wingTimeMax = 999999;
@@ -174,7 +178,7 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
             //presserator
             player.autoActuator = true;
             //builder mode
-            if (!Soulcheck.GetValue("Builder Mode"))
+            if (Soulcheck.GetValue("Builder Mode"))
             {
                 modPlayer.BuilderMode = true;
             }
