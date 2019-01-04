@@ -2590,24 +2590,50 @@ namespace FargowiltasSouls.NPCs
                             {
                                 masoBool[0] = false;
 
-                                Vector2 spawnPos = new Vector2(npc.position.X - npc.width * 7, npc.Center.Y);
-                                
-                                for (int i = 0; i < 6; i++)
+                                Vector2 spawnPos = new Vector2(npc.position.X, npc.Center.Y);
+
+                                if (Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16] != null && //in temple
+                                    Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].wall == WallID.LihzahrdBrickUnsafe)
                                 {
-                                    int tilePosX = (int)spawnPos.X / 16 + npc.width * i * 3 / 16;
-					                int tilePosY = (int)spawnPos.Y / 16;// + 1;
+                                    spawnPos.X -= npc.width * 2;
+                                    for (int i = 0; i < 2; i++)
+                                    {
+                                        int tilePosX = (int)spawnPos.X / 16 + npc.width * i * 5 / 16;
+                                        int tilePosY = (int)spawnPos.Y / 16;// + 1;
 
-                                    if (Main.tile[tilePosX, tilePosY] == null)
-						            Main.tile[tilePosX, tilePosY] = new Tile();
+                                        if (Main.tile[tilePosX, tilePosY] == null)
+                                            Main.tile[tilePosX, tilePosY] = new Tile();
 
-					                while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[(int)Main.tile[tilePosX, tilePosY].type]))
-					                {
-						                tilePosY++;
-						                if (Main.tile[tilePosX, tilePosY] == null)
-							                Main.tile[tilePosX, tilePosY] = new Tile();
-					                }
+                                        while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[(int)Main.tile[tilePosX, tilePosY].type]))
+                                        {
+                                            tilePosY++;
+                                            if (Main.tile[tilePosX, tilePosY] == null)
+                                                Main.tile[tilePosX, tilePosY] = new Tile();
+                                        }
 
-                                    Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, ProjectileID.GeyserTrap, npc.damage / 6, 0f, Main.myPlayer);
+                                        Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, ProjectileID.GeyserTrap, npc.damage / 6, 0f, Main.myPlayer);
+                                    }
+                                }
+                                else //outside temple
+                                {
+                                    spawnPos.X -= npc.width * 7;
+                                    for (int i = 0; i < 6; i++)
+                                    {
+                                        int tilePosX = (int)spawnPos.X / 16 + npc.width * i * 3 / 16;
+                                        int tilePosY = (int)spawnPos.Y / 16;// + 1;
+
+                                        if (Main.tile[tilePosX, tilePosY] == null)
+                                            Main.tile[tilePosX, tilePosY] = new Tile();
+
+                                        while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[(int)Main.tile[tilePosX, tilePosY].type]))
+                                        {
+                                            tilePosY++;
+                                            if (Main.tile[tilePosX, tilePosY] == null)
+                                                Main.tile[tilePosX, tilePosY] = new Tile();
+                                        }
+
+                                        Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, ProjectileID.GeyserTrap, npc.damage / 5, 0f, Main.myPlayer);
+                                    }
                                 }
                             }
                         }
@@ -4838,7 +4864,7 @@ namespace FargowiltasSouls.NPCs
                     {
                         if (NPC.downedMechBossAny)
                         {
-                            if (spawnInfo.player.ZoneDungeon && night && normalSpawn)
+                            if (dungeon && night && normalSpawn)
                             {
                                 pool[NPCID.SkeletronHead] = BossIsAlive(ref skeleBoss, NPCID.SkeletronHead) ? .00125f : .0025f;
                             }
@@ -4871,9 +4897,19 @@ namespace FargowiltasSouls.NPCs
                             pool[NPCID.RaggedCaster] = .004f;
                             pool[NPCID.RaggedCasterOpenCoat] = .004f;
                         }
+
+                        if (NPC.downedAncientCultist && dungeon && !BossIsAlive(ref cultBoss, NPCID.CultistBoss))
+                        {
+                            pool[NPCID.CultistBoss] = 0.001f;
+                        }
                     }
                     else if (underworld)
                     {
+                        if (Main.hardMode && !BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
+                        {
+                            pool[NPCID.WallofFlesh] = .005f;
+                        }
+
                         if (NPC.downedPlantBoss)
                         {
                             pool[NPCID.DiabolistRed] = .004f;
@@ -4908,6 +4944,10 @@ namespace FargowiltasSouls.NPCs
                                 pool[NPCID.VortexHornetQueen] = .01f;
                                 pool[NPCID.NebulaBrain] = .01f;
                                 pool[NPCID.StardustJellyfishBig] = .01f;
+                            }
+                            if (NPC.downedMoonlord && !BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
+                            {
+                                pool[NPCID.MoonLordCore] = 0.001f;
                             }
                         }
                     }
@@ -6719,7 +6759,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight:
-                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(60, 300));
+                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(60, 300));
                         break;
 
                     case NPCID.DD2Betsy:
