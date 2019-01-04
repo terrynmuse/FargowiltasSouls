@@ -213,7 +213,7 @@ and most of SoT not mentioned because meme tooltip length
             //presserator
             player.autoActuator = true;
             //builder mode
-            if (!Soulcheck.GetValue("Builder Mode"))
+            if (Soulcheck.GetValue("Builder Mode"))
             {
                 modPlayer.BuilderMode = true;
             }

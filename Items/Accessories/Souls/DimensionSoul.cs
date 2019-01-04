@@ -178,7 +178,7 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
             //presserator
             player.autoActuator = true;
             //builder mode
-            if (!Soulcheck.GetValue("Builder Mode"))
+            if (Soulcheck.GetValue("Builder Mode"))
             {
                 modPlayer.BuilderMode = true;
             }

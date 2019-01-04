@@ -23,7 +23,8 @@ Auto paint and actuator effect
 Provides light 
 Grants the ability to enable Builder Mode:
 Anything that creates a tile will not be consumed 
-No enemies can spawn");
+No enemies can spawn
+Effect can be disabled in Soul Toggles menu");
         }
 
         public override void SetDefaults()
@@ -54,7 +55,7 @@ No enemies can spawn");
             //presserator
             player.autoActuator = true;
 
-            if (!Soulcheck.GetValue("Builder Mode"))
+            if (Soulcheck.GetValue("Builder Mode"))
             {
                 modPlayer.BuilderMode = true;
             }
