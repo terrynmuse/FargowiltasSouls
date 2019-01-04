@@ -13,6 +13,8 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-moon lord eyes take 33% increased damage, core takes 33% reduced damage
+
 -buffed duration of golem fist defenseless
 -golem fist inflicts broken armor too
 -golem geysers/flamethrowers are nerfed in the temple (less geyser damage, neither inflict burning)

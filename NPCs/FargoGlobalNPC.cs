@@ -5720,6 +5720,10 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 12: //moon lord
+                        if (npc.type == NPCID.MoonLordCore)
+                            damage = damage * 2 / 3;
+                        else
+                            damage = damage * 3 / 2;
                         /*switch (masoState)
                         {
                             case 0: if (!item.melee) damage = 0; break;
@@ -5928,6 +5932,10 @@ namespace FargowiltasSouls.NPCs
                     case 12: //moon lord
                         if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.CrystalShard)
                             damage = 1;
+                        else if (npc.type == NPCID.MoonLordCore)
+                            damage = damage * 2 / 3;
+                        else
+                            damage = damage * 4 / 3;
                         /*switch (masoState)
                         {
                             case 0: if (!projectile.melee) damage = 0; break;
