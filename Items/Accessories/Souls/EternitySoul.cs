@@ -22,13 +22,9 @@ Crits deal 10x damage
 Crit chance is set to 50%, Crit to increase it by 10% 
 At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense
 This stacks forever until you get hit
-All weapons have double knockback and have auto swing
 Increases your maximum mana to 999, minions by 20, sentries by 10
-All attacks inflict Flames of the Universe
 400% increased HP, 40% damage reduction, 15 life regeneration
 Grants immunity to knockback and most debuffs
-Allows Supersonic running and infinite flight
-Increases fishing skill substantially, All rods will have 10 extra lures
 Summon an impenatrable ring of death around you
 When you die, you explode and revive with full HP
 All other effects of material Souls");
@@ -322,7 +318,7 @@ and most of SoT not mentioned because meme tooltip length
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
             ascentWhenFalling = 0.9f; //0.85f
-            ascentWhenRising = 0.2f; //0.15f
+            ascentWhenRising = 0.3f; //0.15f
             maxCanAscendMultiplier = 1f;
             maxAscentMultiplier = 3f;
             constantAscend = 0.14f; //0.135f

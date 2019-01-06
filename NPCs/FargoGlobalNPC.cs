@@ -36,6 +36,7 @@ namespace FargowiltasSouls.NPCs
         public bool HellFire;
         public bool Infested;
         public float InfestedDust;
+        public bool Needles;
 
         public bool PillarSpawn = true;
 
@@ -81,6 +82,7 @@ namespace FargowiltasSouls.NPCs
             HellFire = false;
             PaladinsShield = false;
             Infested = false;
+            Needles = false;
             //BLACK SLIMES
             //npc.color = default(Color);
         }
@@ -4702,6 +4704,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (Main.bloodMoon)
                             {
+                                pool[NPCID.ChatteringTeethBomb] = .1f;
                                 pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .0125f : .025f;
 
                                 if (NPC.downedPlantBoss)
@@ -4846,6 +4849,9 @@ namespace FargowiltasSouls.NPCs
                         if (snow)
                         {
                             pool[NPCID.IceGolem] = .01f;
+                            pool[NPCID.SnowBalla] = .05f;
+                            pool[NPCID.MisterStabby] = .05f;
+                            pool[NPCID.SnowmanGangsta] = .05f;
                         }
 
                         if (ocean)
@@ -5072,7 +5078,7 @@ namespace FargowiltasSouls.NPCs
                 return false;
             }
 
-            if(modPlayer.CactusEnchant)
+            if (Needles)
             {
                 int dmg = 30;
 
@@ -5605,6 +5611,13 @@ namespace FargowiltasSouls.NPCs
 
         public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+
+            if (modPlayer.CactusEnchant)
+            {
+                Needles = true;
+            }
+
             if (FargoWorld.MasochistMode)
             {
                 switch (masoHurtAI)
@@ -5734,6 +5747,10 @@ namespace FargowiltasSouls.NPCs
                         }*/
                         break;
 
+                    case 13: //tortoise
+                        player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was impaled by a Giant Tortoise."), damage / 2, 0);
+                        break;
+
                     default:
                         break;
                 }
@@ -5793,6 +5810,11 @@ namespace FargowiltasSouls.NPCs
 		{
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            if (modPlayer.CactusEnchant)
+            {
+                Needles = true;
+            }
 
             if (FargoWorld.MasochistMode)
             {

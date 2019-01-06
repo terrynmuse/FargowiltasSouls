@@ -22,11 +22,9 @@ Increases HP by 300
 Increases life regeneration by 8
 Grants immunity to knockback and several debuffs
 Allows Supersonic running and infinite flight
-Increases fishing skill substantially
-All fishing rods will have 10 extra lures
+Increases fishing skill substantially, All fishing rods will have 10 extra lures
 Increased block and wall placement speed by 50% 
-Near infinite block placement and mining reach
-Mining speed doubled 
+Near infinite block placement and mining reach, Mining speed doubled 
 Grants the ability to enable Builder Mode
 Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
 Effects of Spore Sac, Paladin's Shield, Frozen Turtle Shell, and Arctic Diving Gear
@@ -200,11 +198,11 @@ Effects of Frog Legs, Lava Waders, Angler Tackle Bag");
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            ascentWhenFalling = 0.9f; //0.85f
-            ascentWhenRising = 0.2f; //0.15f
+            ascentWhenFalling = 0.9f; 
+            ascentWhenRising = 0.3f; 
             maxCanAscendMultiplier = 1f;
             maxAscentMultiplier = 3f;
-            constantAscend = 0.14f; //0.135f
+            constantAscend = 0.14f; 
         }
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)

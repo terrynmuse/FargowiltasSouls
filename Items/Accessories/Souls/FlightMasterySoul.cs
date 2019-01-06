@@ -35,7 +35,7 @@ Allows for very long lasting flight");
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
             ascentWhenFalling = 0.85f;
-            ascentWhenRising = 0.15f;
+            ascentWhenRising = 0.25f;
             maxCanAscendMultiplier = 1f;
             maxAscentMultiplier = 3f;
             constantAscend = 0.135f;

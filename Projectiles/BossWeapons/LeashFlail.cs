@@ -100,8 +100,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
         {
             //smaller tile hitbox
-            width = 30;
-            height = 30;
+            width = 25;
+            height = 25;
             return true;
         }
 
