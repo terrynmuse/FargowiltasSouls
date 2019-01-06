@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -30,6 +31,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             item.buffType = mod.BuffType("BrainMinion");
             item.buffTime = 3600;
             item.autoReuse = true;
+            item.value = Item.sellPrice(0, 2);
         }
     }
 }

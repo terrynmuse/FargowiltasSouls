@@ -401,7 +401,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.StardustGuardian:
-                    KillPet(projectile, player, BuffID.StardustGuardianMinion, modPlayer.StardustEnchant, "Stardust Guardian");
+                    KillPet(projectile, player, BuffID.StardustGuardianMinion, modPlayer.StardustEnchant, "Stardust Guardian", true);
                     break;
 
                 case ProjectileID.TikiSpirit:
@@ -584,17 +584,17 @@ namespace FargowiltasSouls.Projectiles
                     return Color.Brown;
                 }
 
-                if (projectile.type == ProjectileID.SpikyBall)
+                else if (projectile.type == ProjectileID.SpikyBall)
                 {
-                    return Color.LimeGreen;
+                    return Color.Red;
                 }
 
-                if (projectile.type == ProjectileID.PineNeedleFriendly)
+                else if (projectile.type == ProjectileID.PineNeedleFriendly)
                 {
                     return Color.GreenYellow;
                 }
 
-                if(projectile.type == ProjectileID.Bone || projectile.type == ProjectileID.BoneGloveProj)
+                else if(projectile.type == ProjectileID.Bone || projectile.type == ProjectileID.BoneGloveProj)
                 {
                     return Color.SandyBrown;
                 }

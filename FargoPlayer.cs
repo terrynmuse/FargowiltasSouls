@@ -2591,6 +2591,7 @@ namespace FargowiltasSouls
                     fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
                     fireball.timeLeft = 2;
                     fireball.penetrate = -1;
+                    fireball.ignoreWater = true;
                 }
 
                 OriSpawn = true;
@@ -2651,7 +2652,7 @@ namespace FargowiltasSouls
         public void ShinobiEffect(bool hideVisual)
         {
             //tele through wall until open space on dash into wall
-            if (Soulcheck.GetValue("Shinobi Through Walls") && player.dashDelay > 0 && player.velocity.X == 0)
+            if (Soulcheck.GetValue("Shinobi Through Walls") && player.dashDelay > 0 && !player.controlMount && player.velocity.X == 0)
             {
                 var teleportPos = new Vector2();
                 int direction = player.direction;
