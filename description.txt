@@ -1,16 +1,5 @@
-NEW UPDATE - v 0.5.2
--Added a few more features that shall not be named to Masochist Mode
--Reduced tooltip lengths for Soul of Dimensions and Eternity (less chance of crashing)
--Increased vertical wing speed for Flight Mastery Soul and beyond
--Added a value to Mind Break
--Reduced tile hitbox on Leash of Cthulhu
--Fixed Cactus Enchant working for everyone in multiplayer
--Fixed Orichalcum balls dying in water and causing mayhem
--Fixed Stardust Guardian going away on vanity toggle
--Fixed teleport through walls being weird on a mount
--Fixed Jungle Enchantment breaking 
--Fixed World Shaper Soul toggle not working again
-
+NEW UPDATE - v 0.5.3
+-Added several Masochist Mode features and fixes that shall not be named
 
 This mod adds 2 main things. Masochist Mode and Soul accessories.
 

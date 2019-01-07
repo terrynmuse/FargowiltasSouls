@@ -157,7 +157,7 @@ namespace FargowiltasSouls
         //debuffs
         public bool Hexed;
         public bool Unstable;
-        private int _unstableCd;
+        private int unstableCD;
         public bool Fused;
         public bool Shadowflame;
 
@@ -178,7 +178,6 @@ namespace FargowiltasSouls
         public float InfestedDust;
         public bool Rotting;                //inflicts DOT and almost every stat reduced
         public bool SqueakyToy;             //all attacks do one damage and make squeaky noises
-        public bool Bloodthirst;
         public bool Atrophied;              //melee speed and damage reduced. maybe player cannot fire melee projectiles?
         public bool Jammed;                 //ranged damage and speed reduced, all non-custom ammo set to baseline ammos
         public bool Slimed;
@@ -258,7 +257,6 @@ namespace FargowiltasSouls
             disabledSouls.Clear();
         }
 
-
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
             if (Fargowiltas.CheckListKey.JustPressed)
@@ -281,6 +279,7 @@ namespace FargowiltasSouls
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/ZaWarudo").WithVolume(1f).WithPitchVariance(.5f), player.Center);
             }
         }
+
         public override void ResetEffects()
         {
             AttackSpeed = 1f;
@@ -401,7 +400,6 @@ namespace FargowiltasSouls
             Infested = false;
             Rotting = false;
             SqueakyToy = false;
-            Bloodthirst = false;
             Atrophied = false;
             Jammed = false;
         }
@@ -431,7 +429,6 @@ namespace FargowiltasSouls
             Infested = false;
             Rotting = false;
             SqueakyToy = false;
-            Bloodthirst = false;
             Atrophied = false;
             Jammed = false;
         }
@@ -453,15 +450,6 @@ namespace FargowiltasSouls
                 //falling gives you dazed and confused even with protection. wings save you
                 if (player.velocity.Y == 0f)
                 {
-                    //bool wings = false;
-                    //for (int n = 3; n < 10; n++)
-                    //{
-                    //    if (player.armor[n].stack > 0 && player.armor[n].wingSlot > -1)
-                    //    {
-                    //        wings = true;
-                    //        break;
-                    //    }
-                    //}
 
                     if(player.wings == 0)
                     {
@@ -490,8 +478,9 @@ namespace FargowiltasSouls
                             {
                                 dmg = (int)(dmg * player.mount.FallDamage);
                             }
-                            player.AddBuff(BuffID.Dazed, dmg);
-                            player.AddBuff(BuffID.Confused, dmg);
+                            player.Hurt(PlayerDeathReason.ByOther(0), dmg, 0);
+                            player.AddBuff(BuffID.Dazed, dmg * 2);
+                            player.AddBuff(BuffID.Confused, dmg * 2);
                         }
                         player.fallStart = (int)(player.position.Y / 16f);
                     } 
@@ -500,6 +489,21 @@ namespace FargowiltasSouls
                 if (player.ZoneUnderworldHeight && !player.fireWalk)
                 {
                     player.AddBuff(BuffID.OnFire, 2);
+                }
+
+                if (player.ZoneCorrupt)
+                {
+                    player.AddBuff(BuffID.Darkness, 2);
+                }
+
+                if (player.ZoneCrimson)
+                {
+                    player.AddBuff(BuffID.Bleeding, 2);
+                }
+
+                if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight))
+                {
+                    player.AddBuff(mod.BuffType("Flipped"), 2);
                 }
 
                 if (player.wet && !(player.accFlipper || player.gills))
@@ -556,27 +560,27 @@ namespace FargowiltasSouls
 
             if (Unstable)
             {
-                if (_unstableCd >= 60)
+                if (unstableCD >= 60)
                 {
-                    /*Vector2 pos = Main.screenPosition;
+                    Vector2 pos = player.position;
 
-                    int x = Main.rand.Next((int)pos.X, (int)pos.X + Main.screenWidth);
-                    int y = Main.rand.Next((int)pos.Y, (int)pos.Y + Main.screenHeight);
+                    int x = Main.rand.Next((int)pos.X - 500, (int)pos.X + 500);
+                    int y = Main.rand.Next((int)pos.Y - 500, (int)pos.Y + 500);
                     Vector2 teleportPos = new Vector2(x, y);
 
                     while (Collision.SolidCollision(teleportPos, player.width, player.height) && teleportPos.X > 50 && teleportPos.X < (double)(Main.maxTilesX * 16 - 50) && teleportPos.Y > 50 && teleportPos.Y < (double)(Main.maxTilesY * 16 - 50))
                     {
-                        x = Main.rand.Next((int)pos.X, (int)pos.X + Main.screenWidth);
-                        y = Main.rand.Next((int)pos.Y, (int)pos.Y + Main.screenHeight);
+                        x = Main.rand.Next((int)pos.X - 500, (int)pos.X + 500);
+                        y = Main.rand.Next((int)pos.Y - 500, (int)pos.Y + 500);
                         teleportPos = new Vector2(x, y);
                     }
 
                     player.Teleport(teleportPos, 1);
                     NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, teleportPos.X, teleportPos.Y, 1);
 
-                    _unstableCd = 0;*/
+                    unstableCD = 0;
                 }
-                _unstableCd++;
+                unstableCD++;
             }
         }
 

@@ -267,9 +267,9 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 4;
                         break;
 
-                    /*case NPCID.Ghost:
+                    case NPCID.Ghost:
                         masoAI = 5;
-                        break;*/
+                        break;
 
                     case NPCID.Mummy:
                     case NPCID.DarkMummy:
@@ -1155,8 +1155,8 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 400, BuffID.WitheredWeapon);
                         break;
 
-                    case 5: //DEPRECATED - ghost
-                        Aura(npc, 400, BuffID.Cursed);
+                    case 5: //ghost
+                        Aura(npc, 300, BuffID.Cursed);
                         break;
 
                     case 6: //mummies
@@ -1168,7 +1168,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 8: //illum slime
-                        Aura(npc, 100, mod.BuffType<Flipped>());
+                        Counter++;
+                        if (Counter >= 600 && npc.velocity.Y == 0)
+                        {
+                            int slime = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.IlluminantSlime);
+                            Main.npc[slime].velocity.Y = -5f;
+                            Counter = 0;
+                        }
                         break;
 
                     case 9: //meteor head
@@ -4472,7 +4478,7 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            if (modPlayer.Bloodthirst)
+            if (FargoWorld.Bloodthirsty)
             {
                 //20x spawn rate
                 spawnRate = (int)(spawnRate * 0.05);
@@ -4480,9 +4486,9 @@ namespace FargowiltasSouls.NPCs
                 maxSpawns = (int)(maxSpawns * 20f);
             }
 
-            if (modPlayer.BuilderMode)
+            if (FargoWorld.BuilderMode)
 			{
-				maxSpawns = (int)(maxSpawns * 0f);
+				maxSpawns = 0;
 			}
 		}
 		
@@ -6225,8 +6231,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.IlluminantBat:
-                        target.AddBuff(mod.BuffType<Flipped>(), Main.rand.Next(180, 1800));
-                        target.AddBuff(BuffID.Rabies, Main.rand.Next(7200));
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(1800, 3600));
                         break;
 
                     case NPCID.GiantFlyingFox:
@@ -6861,10 +6866,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DD2SkeletonT3:
                         target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1200, 2400));
-                        break;
-
-                    case NPCID.Ghost:
-                        target.AddBuff(BuffID.Cursed, Main.rand.Next(60, 300));
                         break;
 
                     default:

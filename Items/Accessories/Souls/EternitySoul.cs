@@ -211,6 +211,7 @@ and most of SoT not mentioned because meme tooltip length
             //builder mode
             if (Soulcheck.GetValue("Builder Mode"))
             {
+                FargoWorld.BuilderMode = true;
                 modPlayer.BuilderMode = true;
             }
             //cell phone

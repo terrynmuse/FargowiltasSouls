@@ -57,6 +57,7 @@ Effect can be disabled in Soul Toggles menu");
 
             if (Soulcheck.GetValue("Builder Mode"))
             {
+                FargoWorld.BuilderMode = true;
                 modPlayer.BuilderMode = true;
             }
 

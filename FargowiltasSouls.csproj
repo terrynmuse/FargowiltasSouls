@@ -15,10 +15,6 @@
         <DebugType>pdbonly</DebugType>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="FNA, Version=17.3.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath Condition="Exists('D:\Steam\Steamapps\common\Terraria\ModCompile')">D:\Steam\steamapps\common\Terraria\ModCompile\FNA.dll</HintPath>
-            <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria/Terrariamod.exe')">C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile\FNA.dll</HintPath>
-        </Reference>
         <Reference Include="Microsoft.Xna.Framework">
             <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.dll</HintPath>
         </Reference>
