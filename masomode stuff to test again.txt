@@ -13,6 +13,18 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-fixed lightning rod spawning way too much lightning in MP
+-changed how wof fires his laser to be more MP friendly
+-changed how reti fires his laser to be more MP friendly
+-reti deathray inflicts burning just because it can
+-phantasmal dragon body is now antipierce instead of invulnerable
+-nerfed fire imp/lava slime spawns outside hell
+-nerfed rainbow slime spawn rate
+-nerfed flames of universe duration for rune wizard proj, rainbow slime, phantasmal dragon
+-temporarily disabled unstable
+-ghost now inflicts cursed on hit, not aura
+-nerfed illuminant slime flipped aura range a lot
+
 -moon lord eyes take 33% increased damage, core takes 33% reduced damage
 
 -buffed duration of golem fist defenseless

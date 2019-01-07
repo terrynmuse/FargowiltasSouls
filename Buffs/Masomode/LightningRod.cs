@@ -39,8 +39,12 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             //spawns lightning once per second with a 1/60 chance of spawning another every tick
-            if (player.buffTime[buffIndex] % 60 == 0)
+            player.GetModPlayer<FargoPlayer>(mod).lightningRodTimer++;
+            if (player.GetModPlayer<FargoPlayer>(mod).lightningRodTimer >= 60)
+            {
+                player.GetModPlayer<FargoPlayer>(mod).lightningRodTimer = 0;
                 SpawnLightning(player);
+            }
 
             if (Main.rand.Next(60) == 1)
                 SpawnLightning(player);

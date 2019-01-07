@@ -794,7 +794,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.RuneBlast:
-                        target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(300));
+                        target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(30, 120));
                         break;
 
                     case ProjectileID.ThornBall:

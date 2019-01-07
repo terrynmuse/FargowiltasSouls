@@ -12,11 +12,11 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class PhantasmalDeathrayWOF : ModProjectile
     {
-        private const float maxTime = 120;
+        private const float maxTime = 90;
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Phantasmal Deathray");
+			DisplayName.SetDefault("Dark Deathray");
 		}
     	
         public override void SetDefaults()

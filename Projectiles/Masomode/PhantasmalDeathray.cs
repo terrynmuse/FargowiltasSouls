@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Phantasmal Deathray");
+			DisplayName.SetDefault("Blazing Deathray");
 		}
     	
         public override void SetDefaults()
@@ -187,6 +187,11 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 return true;
             }
             return false;
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.Burning, 300);
         }
     }
 }
