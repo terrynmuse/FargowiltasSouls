@@ -182,6 +182,7 @@ namespace FargowiltasSouls
         public bool Atrophied;              //melee speed and damage reduced. maybe player cannot fire melee projectiles?
         public bool Jammed;                 //ranged damage and speed reduced, all non-custom ammo set to baseline ammos
         public bool Slimed;
+        public byte lightningRodTimer;
 
         public IList<string> disabledSouls = new List<string>();
 
@@ -557,7 +558,7 @@ namespace FargowiltasSouls
             {
                 if (_unstableCd >= 60)
                 {
-                    Vector2 pos = Main.screenPosition;
+                    /*Vector2 pos = Main.screenPosition;
 
                     int x = Main.rand.Next((int)pos.X, (int)pos.X + Main.screenWidth);
                     int y = Main.rand.Next((int)pos.Y, (int)pos.Y + Main.screenHeight);
@@ -573,7 +574,7 @@ namespace FargowiltasSouls
                     player.Teleport(teleportPos, 1);
                     NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, teleportPos.X, teleportPos.Y, 1);
 
-                    _unstableCd = 0;
+                    _unstableCd = 0;*/
                 }
                 _unstableCd++;
             }

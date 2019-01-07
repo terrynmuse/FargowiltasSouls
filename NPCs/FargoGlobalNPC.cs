@@ -121,6 +121,11 @@ namespace FargowiltasSouls.NPCs
                     //case NPCID.EaterofWorldsTail: masoHurtAI = 6; break;
                     //case NPCID.TheDestroyerBody:
                     //case NPCID.TheDestroyerTail: masoHurtAI = 6; break;
+                    case NPCID.CultistDragonBody1:
+                    case NPCID.CultistDragonBody2:
+                    case NPCID.CultistDragonBody3:
+                    case NPCID.CultistDragonBody4:
+                    case NPCID.CultistDragonTail: masoHurtAI = 6; break;
 
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight: masoHurtAI = 7; npc.scale += 0.5f; break;
@@ -262,9 +267,9 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 4;
                         break;
 
-                    case NPCID.Ghost:
+                    /*case NPCID.Ghost:
                         masoAI = 5;
-                        break;
+                        break;*/
 
                     case NPCID.Mummy:
                     case NPCID.DarkMummy:
@@ -444,13 +449,13 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 45;
                         break;
 
-                    case NPCID.CultistDragonBody1:
+                    /*case NPCID.CultistDragonBody1:
                     case NPCID.CultistDragonBody2:
                     case NPCID.CultistDragonBody3:
                     case NPCID.CultistDragonBody4:
                     case NPCID.CultistDragonTail:
                         masoAI = 46;
-                        break;
+                        break;*/
 
                     case NPCID.MothronSpawn:
                         masoAI = 47;
@@ -1150,7 +1155,7 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 400, BuffID.WitheredWeapon);
                         break;
 
-                    case 5: //ghost
+                    case 5: //DEPRECATED - ghost
                         Aura(npc, 400, BuffID.Cursed);
                         break;
 
@@ -1163,7 +1168,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 8: //illum slime
-                        Aura(npc, 500, mod.BuffType<Flipped>());
+                        Aura(npc, 100, mod.BuffType<Flipped>());
                         break;
 
                     case 9: //meteor head
@@ -1432,31 +1437,33 @@ namespace FargowiltasSouls.NPCs
                             }
 
                             //2*pi * (# of full circles) / (seconds to finish rotation) / (ticks per sec)
-                            const float rotationInterval = 2f * (float)Math.PI * 1.25f / 4f / 60f;
+                            const float rotationInterval = 2f * (float)Math.PI * 1f / 4f / 60f;
 
-                            Counter++;
-                            switch (masoState) //laser code idfk
+                            npc.ai[0]++; //base value is 3
+                            switch ((int)npc.ai[3]) //laser code idfk
                             {
                                 case 0:
-                                    if (Counter >= 600)
+                                    if (npc.ai[0] > 603f)
                                     {
-                                        Counter = 0;
+                                        npc.ai[0] = 3f;
                                         if (npc.HasPlayerTarget)
                                         {
-                                            masoState++;
-                                            npc.localAI[3] = npc.rotation;
+                                            npc.ai[3]++;
+                                            npc.ai[2] = npc.rotation - 1;
                                             masoBool[2] = (Main.player[npc.target].Center.X - npc.Center.X < 0);
                                         }
+                                        npc.netUpdate = true;
                                     }
                                     break;
 
                                 case 1: //slowing down, beginning rotation
-                                    npc.velocity *= (1f - Counter / 120f);
+                                    npc.velocity *= 1f - (npc.ai[0] - 3f) / 120f;
                                     npc.localAI[1] = 0f;
-                                    npc.localAI[3] += Counter / 120f * rotationInterval * (masoBool[2] ? 1f : -1f);
-                                    npc.rotation = npc.localAI[3];
+                                    npc.ai[2]--; //negate vanilla counting up
+                                    npc.ai[2] -= (npc.ai[0] - 3f) / 120f * rotationInterval * (masoBool[2] ? 1f : -1f);
+                                    npc.rotation = -npc.ai[2];
 
-                                    if (Counter >= 120) //FIRE LASER
+                                    if (npc.ai[0] >= 123f) //FIRE LASER
                                     {
                                         if (Main.netMode != 1)
                                         {
@@ -1464,40 +1471,46 @@ namespace FargowiltasSouls.NPCs
                                             Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathray>(), npc.damage / 2, 0f, Main.myPlayer, 0f, npc.whoAmI);
                                         }
 
-                                        masoState++;
-                                        Counter = 0;
+                                        npc.ai[3]++;
+                                        npc.ai[0] = 3f;
+                                        npc.netUpdate = true;
                                     }
                                     break;
 
                                 case 2: //spinning full speed
                                     npc.velocity = Vector2.Zero;
                                     npc.localAI[1] = 0f;
-                                    npc.localAI[3] += rotationInterval * (masoBool[2] ? 1f : -1f);
-                                    npc.rotation = npc.localAI[3];
+                                    npc.ai[2]--;
+                                    npc.ai[2] -= rotationInterval * (masoBool[2] ? 1f : -1f);
+                                    npc.rotation = -npc.ai[2];
 
-                                    if (Counter >= 240)
+                                    if (npc.ai[0] >= 243f)
                                     {
-                                        masoState++;
-                                        Counter = 0;
+                                        npc.ai[3]++;
+                                        npc.ai[0] = 3f;
+                                        npc.netUpdate = true;
                                     }
                                     break;
 
                                 case 3: //laser done, slowing down spin, moving again
-                                    npc.velocity *= Counter / 60f;
+                                    npc.velocity *= (npc.ai[0] - 3f) / 60f;
                                     npc.localAI[1] = 0f;
-                                    npc.localAI[3] += (1f - Counter / 60f) * rotationInterval * (masoBool[2] ? 1f : -1f);
-                                    npc.rotation = npc.localAI[3];
+                                    npc.ai[2]--;
+                                    npc.ai[2] -= (1f - Counter / 60f) * rotationInterval * (masoBool[2] ? 1f : -1f);
+                                    npc.rotation = -npc.ai[2];
 
-                                    if (Counter >= 60)
+                                    if (npc.ai[0] >= 63)
                                     {
-                                        masoState = 0;
-                                        Counter = 0;
+                                        npc.ai[3] = 0f;
+                                        npc.ai[0] = 3f;
+                                        npc.netUpdate = true;
                                     }
                                     break;
 
                                 default:
-                                    masoState = 0;
-                                    Counter = 0;
+                                    npc.ai[3] = 0f;
+                                    npc.ai[0] = 3f;
+                                    npc.netUpdate = true;
                                     break;
                             }
 
@@ -1545,6 +1558,8 @@ namespace FargowiltasSouls.NPCs
                                 Timer = 600;
                             }
                         }
+
+                        //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         break;
 
                     case 25: //spazmatism
@@ -1940,13 +1955,14 @@ namespace FargowiltasSouls.NPCs
                     case 35: //wall of flesh mouth
                         wallBoss = npc.whoAmI;
 
-                        if (!masoBool[0])
+                        if (!masoBool[0]) //when spawned in, make one eye invul
                         {
                             for (int i = 0; i < 200; i++)
                             {
                                 if (Main.npc[i].active && Main.npc[i].type == NPCID.WallofFleshEye && Main.npc[i].realLife == npc.whoAmI)
                                 {
-                                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
+                                    Main.npc[i].ai[2] = -1f;
+                                    Main.npc[i].netUpdate = true;
                                     masoBool[0] = true;
                                     break;
                                 }
@@ -1962,7 +1978,10 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     if (Main.npc[i].active && Main.npc[i].type == NPCID.WallofFleshEye && Main.npc[i].realLife == npc.whoAmI)
                                     {
-                                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoBool[1] = true;
+                                        if (Main.npc[i].ai[0] <= 0f)
+                                            Main.npc[i].ai[0] = -2f;
+                                        else
+                                            Main.npc[i].ai[0] = 2f;
                                         Main.npc[i].netUpdate = true;
                                     }
                                 }
@@ -2858,7 +2877,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case 46: //phantasm dragon non-head segments
+                    case 46: //DEPRECATED - phantasm dragon non-head segments
                         npc.dontTakeDamage = true;
                         break;
 
@@ -3398,9 +3417,9 @@ namespace FargowiltasSouls.NPCs
                     case 61: //destroyer body/tail
                         if (npc.realLife >= 0 && npc.realLife < 200)
                         {
-                            int cap = Main.npc[npc.realLife].lifeMax / Main.npc[npc.realLife].life;
-                            if (cap > 0)
+                            if (Main.npc[npc.realLife].life > 0)
                             {
+                                int cap = Main.npc[npc.realLife].lifeMax / Main.npc[npc.realLife].life;
                                 Counter += Main.rand.Next(2 + cap);
                                 if (Counter >= Main.rand.Next(1400, 26000))
                                 {
@@ -3876,44 +3895,52 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 78: //wall of flesh eye
-                        Counter++;
-                        const int maxTime = 540;
-                        if (Counter >= maxTime)
+                        npc.ai[1]++;
+                        const float maxTime = 540f;
+                        if (npc.ai[1] >= maxTime)
                         {
-                            Counter = 0;
-                            masoBool[0] = !masoBool[0];
-                            if (masoBool[0] && masoBool[2]) //FIRE LASER
+                            npc.ai[1] = 0f;
+                            if (npc.ai[2] == 0f)
+                                npc.ai[2] = 1f;
+                            else
+                                npc.ai[2] *= -1f;
+                            if (npc.ai[2] == 2f) //FIRE LASER
                             {
                                 if (Main.netMode != 1)
                                 {
-                                    //Main.NewText("laser deployed");
-                                    Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[3]);
-                                    float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
-                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathrayWOF>(), npc.damage / 4, 0f, Main.myPlayer, ai0, npc.whoAmI);
+                                    int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                    if (t != -1)
+                                    {
+                                        //Main.NewText("laser deployed");
+                                        Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
+                                        float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
+                                        if (Main.netMode != 1)
+                                            Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathrayWOF>(), npc.damage / 4, 0f, Main.myPlayer, ai0, npc.whoAmI);
+                                    }
                                 }
                             }
                             npc.netUpdate = true;
                         }
 
-                        if (masoBool[0])
+                        if (npc.ai[2] >= 0f)
                         {
                             SharkCount = 4;
                             npc.dontTakeDamage = true;
-                            if (Counter <= 120 && masoBool[2])
+                            if (npc.ai[1] <= 90 && npc.ai[2] == 2f)
                             {
                                 npc.localAI[1] = 0f;
-                                npc.rotation = npc.localAI[3];
+                                npc.rotation = npc.ai[3];
                             }
                             else
                             {
-                                masoBool[2] = false;
+                                npc.ai[2] = 1f;
                             }
                         }
                         else
                         {
                             SharkCount = 0;
                             npc.dontTakeDamage = false;
-                            if (Counter > maxTime - 180)
+                            if (npc.ai[1] > maxTime - 180f)
                             {
                                 if (Main.rand.Next(4) < 3) //dust telegraphs switch
                                 {
@@ -3928,19 +3955,19 @@ namespace FargowiltasSouls.NPCs
                                     }
                                 }
 
-                                const int stopTime = maxTime - 90;
-                                if (Counter == stopTime) //stop rotating shortly before firing
+                                const float stopTime = maxTime - 90f;
+                                if (npc.ai[1] == stopTime) //shoot warning dust
                                 {
-                                    if (masoBool[1])
+                                    if (npc.ai[0] == 2f || npc.ai[0] == -2f)
                                     {
                                         int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                                         if (t != -1)
                                         {
                                             //Main.NewText("found target OK");
-                                            masoBool[2] = true;
-                                            npc.localAI[3] = (npc.Center - Main.player[t].Center).ToRotation();
+                                            npc.ai[2] = -2f;
+                                            npc.ai[3] = (npc.Center - Main.player[t].Center).ToRotation();
                                             //Main.NewText("stored rotation, warning dust");
-                                            Vector2 offset = Vector2.UnitX.RotatedBy(npc.localAI[3] + Math.PI) * 10f;
+                                            Vector2 offset = Vector2.UnitX.RotatedBy(npc.ai[3] + Math.PI) * 10f;
                                             for (int i = 0; i < 240; i++) //dust warning line for laser
                                             {
                                                 int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 112, 0f, 0f, 0, default(Color), 1.5f);
@@ -3948,17 +3975,20 @@ namespace FargowiltasSouls.NPCs
                                                 Main.dust[d].velocity *= 0.5f;
                                             }
                                             if (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0)
-                                                npc.localAI[3] += (float)Math.PI;
+                                                npc.ai[3] += (float)Math.PI;
                                         }
                                     }
+                                    npc.netUpdate = true;
                                 }
-                                else if (Counter > stopTime && masoBool[2])
+                                else if (npc.ai[1] > stopTime && npc.ai[2] == -2f)
                                 {
                                     npc.localAI[1] = 0f;
-                                    npc.rotation = npc.localAI[3];
+                                    npc.rotation = npc.ai[3];
                                 }
                             }
                         }
+
+                        //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         break;
 
                     case 79: //golem fists
@@ -4602,8 +4632,8 @@ namespace FargowiltasSouls.NPCs
                     {
                         if (nearLava)
                         {
-                            pool[NPCID.FireImp] = .1f;
-                            pool[NPCID.LavaSlime] = .1f;
+                            pool[NPCID.FireImp] = .05f;
+                            pool[NPCID.LavaSlime] = .05f;
                         }
 
                         if (marble && NPC.downedBoss2)
@@ -4843,7 +4873,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (hallow)
                         {
-                            pool[NPCID.RainbowSlime] = .01f;
+                            pool[NPCID.RainbowSlime] = .001f;
                         }
 
                         if (snow)
@@ -6070,7 +6100,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.RainbowSlime:
                         target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
-                        target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(120, 600));
+                        target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(30, 120));
                         break;
 
                     case NPCID.DemonEye:
@@ -6631,7 +6661,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.TheDestroyer:
                         target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(300, 1200));
                         target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(300, 1200));
-                        if (target.statLife <= 400)
+                        if (target.statLife < 400)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by the Destroyer."), 9999, 0);
                         goto case NPCID.TheDestroyerTail;
 
@@ -6677,7 +6707,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.CultistDragonHead:
-                        target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 300);
+                        target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(30, 90));
                         goto case NPCID.CultistDragonTail;
 
                     case NPCID.CultistDragonBody1:
@@ -6831,6 +6861,10 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DD2SkeletonT3:
                         target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1200, 2400));
+                        break;
+
+                    case NPCID.Ghost:
+                        target.AddBuff(BuffID.Cursed, Main.rand.Next(60, 300));
                         break;
 
                     default:
