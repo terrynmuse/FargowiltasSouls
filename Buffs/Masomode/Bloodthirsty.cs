@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             //crazy spawn rate
-            player.GetModPlayer<FargoPlayer>(mod).Bloodthirst = true;
+            FargoWorld.Bloodthirsty = true;
         }
     }
 }

@@ -13,6 +13,17 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-underground hallow always flipped
+-crimson always bleed, corrupt always darkness
+-Illuminant Slimes now multiply, no aura
+-Ghost Aura is back and shorter range
+-Illuminant Bats now inflict Mutant Nibble
+-fixed Unstable and Fall Damage
+
+-added snowman and chattering teeth bomb spawns
+-attacking tortoise with swords reflcts 50% damage back to you
+-made goblin spiky balls red instead of green
+
 -fixed lightning rod spawning way too much lightning in MP
 -changed how wof fires his laser to be more MP friendly
 -changed how reti fires his laser to be more MP friendly

@@ -11,6 +11,8 @@ namespace FargowiltasSouls
     {
         private static bool _downedBetsy;
         private static bool _downedBoss;
+        public static bool Bloodthirsty;
+        public static bool BuilderMode;
 
         //masomode
         public static bool MasochistMode;
@@ -34,6 +36,7 @@ namespace FargowiltasSouls
         {
             _downedBetsy = false;
             _downedBoss = false;
+            Bloodthirsty = false;
 
             //masomode
             MasochistMode = false;
@@ -81,7 +84,7 @@ namespace FargowiltasSouls
 
             //masomode
             if (MasochistMode) downed.Add("masochist");
-	    
+
             return new TagCompound
             {
                 {"downed", downed}, {"count", count}
@@ -171,6 +174,8 @@ namespace FargowiltasSouls
 
         public override void PostUpdate()
         {
+            //Main.NewText(BuilderMode);
+
             #region commented
 
             //right when day starts
@@ -286,6 +291,42 @@ namespace FargowiltasSouls
             // }
 
             #endregion
+
+            if (Bloodthirsty)
+            {
+                CheckBloodThirsty();
+            }
+
+            if (BuilderMode)
+            {
+                CheckBuilderMode();
+            }
+        }
+
+        private void CheckBloodThirsty()
+        {
+            foreach (Player p in Main.player)
+            {
+                if (p.active && p.HasBuff(mod.BuffType("Bloodthirsty")))
+                {
+                    return;
+                }
+            }
+
+            Bloodthirsty = false;
+        }
+
+        private void CheckBuilderMode()
+        {
+            foreach (Player p in Main.player)
+            {
+                if (p.active && p.GetModPlayer<FargoPlayer>().BuilderMode)
+                {
+                    return;
+                }
+            }
+
+            BuilderMode = false;
         }
     }
 }
