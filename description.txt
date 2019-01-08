@@ -1,6 +1,12 @@
 NEW UPDATE - v 0.5.3
 -Added several Masochist Mode features and fixes that shall not be named
 
+-Valhall Knockback no longer works on WoF
+
+All masomode dudes that shoot new projectiles (shoot method) only fire if facing player
+Dr Bones is immune to traps
+Vultures do not fire until they are in the air
+
 This mod adds 2 main things. Masochist Mode and Soul accessories.
 
 -Masochist mode is a high IQ difficulty mode that offers a new challenge while not relying on just boosting stats. 

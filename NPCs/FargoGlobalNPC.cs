@@ -47,6 +47,7 @@ namespace FargowiltasSouls.NPCs
         public byte masoState = 0;
         public bool[] masoBool = new bool[4];
         public bool Transform = false;
+        private int Stop = 0;
         public bool dropLoot = true;
         public bool PaladinsShield = false;
         public int RegenTimer = 0;
@@ -238,6 +239,10 @@ namespace FargowiltasSouls.NPCs
                         npc.lifeMax *= 4;
                         npc.life = npc.lifeMax;
                         npc.knockBackResist = 0f;
+                        break;
+
+                    case NPCID.DoctorBones:
+                        npc.trapImmune = true;
                         break;
 
                     default:
@@ -981,6 +986,14 @@ namespace FargowiltasSouls.NPCs
                 return false;
             }
 
+            if (Stop > 0)
+            {
+                Stop--;
+                npc.position = npc.oldPosition;
+                npc.frameCounter = 0;
+            }
+
+
             return true;
         }
 
@@ -1208,10 +1221,14 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 11: //vulture
-                        Counter++;
-                        if (Counter >= 300)
+                        //in the air
+                        if (npc.ai[0] != 0f)
                         {
-                            Shoot(npc, 500, 10, ProjectileID.HarpyFeather, npc.damage / 2, 1, true);
+                            Counter++;
+                            if (Counter >= 300)
+                            {
+                                Shoot(npc, 30, 500, 10, ProjectileID.HarpyFeather, npc.damage / 2, 1, true);
+                            }
                         }
                         break;
 
@@ -1219,15 +1236,16 @@ namespace FargowiltasSouls.NPCs
                         Counter++;
                         if (Counter >= 600)
                         {
-                            Shoot(npc, 1000, 14, ProjectileID.Boulder, npc.damage * 4, 2);
+                            Shoot(npc, 120, 1000, 14, ProjectileID.Boulder, npc.damage * 4, 2);
                         }
+                        
                         break;
 
                     case 13: //crab
                         Counter++;
                         if (Counter >= 300)
                         {
-                            Shoot(npc, 800, 14, ProjectileID.Bubble, npc.damage / 2, 1, false, true);
+                            Shoot(npc, 30, 800, 14, ProjectileID.Bubble, npc.damage / 2, 1, false, true);
                         }
                         break;
 
@@ -1235,7 +1253,7 @@ namespace FargowiltasSouls.NPCs
                         Counter++;
                         if (Counter >= 10)
                         {
-                            Shoot(npc, 200, 10, ProjectileID.IceSickle, npc.damage / 2, 1, false, true);
+                            Shoot(npc, 0, 200, 10, ProjectileID.IceSickle, npc.damage / 2, 1, false, true);
                         }
                         break;
 
@@ -1264,7 +1282,7 @@ namespace FargowiltasSouls.NPCs
                         Counter++;
                         if (Counter >= 600)
                         {
-                            Shoot(npc, 400, 14, ProjectileID.WebSpit, npc.damage / 4, 0);
+                            Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, npc.damage / 4, 0);
                         }
                         break;
 
@@ -2946,7 +2964,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (npc.ai[0] != 5f) //if not latched on player
                             {
-                                Shoot(npc, 1000, 9, ProjectileID.NebulaLaser, (int)(npc.damage * 0.4f), 0);
+                                Shoot(npc, 60, 1000, 9, ProjectileID.NebulaLaser, (int)(npc.damage * 0.4f), 0);
                             }
 
                             Counter = (short)Main.rand.Next(120);
@@ -4137,32 +4155,59 @@ namespace FargowiltasSouls.NPCs
             }
         }
 
-        private void Shoot(NPC npc, float distance, int speed, int proj, int dmg, float kb, bool recolor = false, bool hostile = false)
+        private void Shoot(NPC npc, int delay, float distance, int speed, int proj, int dmg, float kb, bool recolor = false, bool hostile = false)
         {
             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
             if (t == -1)
                 return;
 
             Player player = Main.player[t];
-
-            if (npc.Distance(player.Center) < distance)
+            //npc facing player target or if already started attack
+            if (npc.direction == (Math.Sign(player.position.X - npc.position.X)) || Stop > 0)
             {
-                Vector2 velocity = Vector2.Normalize(player.Center - npc.Center) * speed;
-                Projectile p = Projectile.NewProjectileDirect(npc.Center, velocity, proj, dmg, kb, Main.myPlayer);
-
-                if(recolor)
+                //start the pause
+                if (delay != 0 && Stop == 0)
                 {
-                    p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                    Stop = delay;
                 }
-
-                if(hostile)
+                //half way through start attack
+                else if (delay == 0 || Stop == delay / 2)
                 {
-                    p.friendly = false;
-                    p.hostile = true;
+                    Vector2 velocity = Vector2.Normalize(player.Center - npc.Center) * speed;
+
+                    if (npc.Distance(player.Center) < distance)
+                    {
+                        velocity = Vector2.Normalize(player.Center - npc.Center) * speed;
+                        
+                    }
+                    //player too far away now, just shoot straight ahead
+                    else
+                    {
+                        velocity = new Vector2(npc.direction * speed, 0);
+                    }
+
+                    Projectile p = Projectile.NewProjectileDirect(npc.Center, velocity, proj, dmg, kb, Main.myPlayer);
+
+                    if (recolor)
+                    {
+                        p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                    }
+
+                    if (hostile)
+                    {
+                        p.friendly = false;
+                        p.hostile = true;
+                    }
+
+                    Counter = 0;
                 }
             }
 
-            Counter = 0;
+
+
+
+
+            
         }
 
         public override Color? GetAlpha(NPC npc, Color drawColor)
@@ -6982,7 +7027,7 @@ namespace FargowiltasSouls.NPCs
 		{
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			
-            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
+            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && npc.type != NPCID.WallofFlesh && npc.type != NPCID.WallofFleshEye && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
                 npc.knockBackResist += .05f;
 
