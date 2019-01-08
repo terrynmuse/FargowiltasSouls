@@ -13,6 +13,21 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-DEBUFF ICONS!!!!!
+-golem spiky balls are weaker in temple and much stronger outside
+-nerfed overall spawn rates
+-prime arms can respawn every 20sec with 20% life
+-fixed prime arms sometimes being vulnerable in multiplayer phase 2, i think
+-nerfed prime limb phase 2 speed slightly
+-buffed prime DR
+-twins regain full HP when entering phase 3
+-both twins move at 133% speed in phase 3
+-twins no longer spawn the other twin if you're dead
+-fixed twins not healing in multiplayer
+-fixed wof eyes not taking halved damage in phase 2
+-nerfed destroyer speed in phase 2
+-nerfed destroyer instakill to trigger below 350 (was 400)
+
 -underground hallow always flipped
 -crimson always bleed, corrupt always darkness
 -Illuminant Slimes now multiply, no aura
