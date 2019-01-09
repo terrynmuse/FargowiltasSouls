@@ -29,14 +29,10 @@
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Terraria, Version=1.3.5.1, Culture=neutral, PublicKeyToken=null">
-      <HintPath>D:\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-    </Reference>
     <Reference Include="Terraria">
-      <HintPath Condition="Exists('..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\')">..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terrariamod.exe</HintPath>
-      <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria/Terrariamod.exe')">C:\Program Files (x86)\Steam\steamapps\common\Terraria/Terrariamod.exe</HintPath>
-      <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe')">C:\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terrariamod.exe</HintPath>
     </Reference>
+
     <Reference Include="ThoriumMod">
       <HintPath Condition="Exists('..\folder for wip')">..\folder for wip\ThoriumMod.dll</HintPath>
       <HintPath Condition="Exists('..\..\References')">..\..\References\ThoriumMod.dll</HintPath>

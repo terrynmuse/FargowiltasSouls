@@ -30,7 +30,7 @@ Allows the player to dash into the enemy
 Right Click to guard with your shield
 You attract items from a larger range
 Attacks may inflict enemies with Lead Poisoning
-Grants immunity to fire blocks and lava";
+Grants immunity to fire and lava";
                 
             /*}
             else

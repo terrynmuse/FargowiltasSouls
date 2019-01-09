@@ -1,11 +1,25 @@
 NEW UPDATE - v 0.5.3
 -Added several Masochist Mode features and fixes that shall not be named
 
--Valhall Knockback no longer works on WoF
+-Valhalla Knockback no longer works on WoF
+-nerfed Cactus Enchantment damage
 
-All masomode dudes that shoot new projectiles (shoot method) only fire if facing player
-Dr Bones is immune to traps
-Vultures do not fire until they are in the air
+-All masomode dudes that shoot new projectiles (shoot method) only fire if facing player
+-Dr Bones is immune to traps
+-Vultures do not fire until they are in the air
+-Sand Poachers now inflict Marked for Death
+-fixed fall damage happening with fall immune
+
+
+
+
+
+
+
+
+
+
+
 
 This mod adds 2 main things. Masochist Mode and Soul accessories.
 

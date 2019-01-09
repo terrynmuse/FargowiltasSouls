@@ -1064,22 +1064,72 @@ namespace FargowiltasSouls.NPCs
                             break;
 
                         case NPCID.Zombie:
-                            if (NPC.downedBoss1 && Main.rand.Next(5) == 0) //zombie horde
+                            if (NPC.downedBoss1 && Main.rand.Next(5) == 0)
                             {
-                                for (int i = 0; i < 6; i++)
-                                {
-                                    Vector2 pos = new Vector2(npc.Center.X + Main.rand.Next(-20, 20), npc.Center.Y);
+                                Horde(npc, 6);
+                            }
+                            break;
 
-                                    if (!Collision.SolidCollision(pos, npc.width, npc.height))
-                                    {
-                                        int j = NPC.NewNPC((int)pos.X, (int)pos.Y, NPCID.Zombie);
-                                        if (j != 200)
-                                        {
-                                            NPC zombie = Main.npc[j];
-                                            zombie.GetGlobalNPC<FargoGlobalNPC>().Transform = true;
-                                        }
-                                    }
-                                }
+                        case NPCID.EaterofSouls:
+                            if (NPC.downedBoss1 && Main.rand.Next(5) == 0)
+                            {
+                                Horde(npc, 3);
+                            }
+                            break;
+
+                        case NPCID.Crimera:
+                            if (NPC.downedBoss1 && Main.rand.Next(5) == 0)
+                            {
+                                Horde(npc, 3);
+                            }
+                            break;
+
+                        case NPCID.CaveBat:
+                            if (NPC.downedBoss1 && Main.rand.Next(5) == 0)
+                            {
+                                Horde(npc, 5);
+                            }
+                            break;
+
+                        case NPCID.Shark:
+                            if (Main.rand.Next(4) == 0)
+                            {
+                                Horde(npc, 2);
+                            }
+                            break;
+
+                        case NPCID.WyvernHead:
+                            if (Main.rand.Next(4) == 0)
+                            {
+                                Horde(npc, 2);
+                            }
+                            break;
+
+                        case NPCID.Wolf:
+                            if (Main.rand.Next(3) == 0)
+                            {
+                                Horde(npc, 5);
+                            }
+                            break;
+
+                        case NPCID.FlyingFish:
+                            if (NPC.downedBoss1 && Main.rand.Next(4) == 0)
+                            {
+                                Horde(npc, 5);
+                            }
+                            break;
+
+                        case NPCID.Ghost:
+                            if (Main.rand.Next(5) == 0)
+                            {
+                                Horde(npc, 3);
+                            }
+                            break;
+
+                        case NPCID.GreekSkeleton:
+                            if (Main.rand.Next(3) == 0)
+                            {
+                                Horde(npc, 2);
                             }
                             break;
 
@@ -1145,6 +1195,8 @@ namespace FargowiltasSouls.NPCs
                                 case 10: npcType = NPCID.LittleHornetStingy; break;
                             }
                             break;
+
+                        
 
                         default:
                             break;
@@ -4104,6 +4156,24 @@ namespace FargowiltasSouls.NPCs
             Transform = true;
         }
 
+        private void Horde(NPC npc, int size)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                Vector2 pos = new Vector2(npc.Center.X + Main.rand.Next(-20, 20), npc.Center.Y);
+
+                if (!Collision.SolidCollision(pos, npc.width, npc.height))
+                {
+                    int j = NPC.NewNPC((int)pos.X, (int)pos.Y, npc.type);
+                    if (j != 200)
+                    {
+                        NPC newNPC = Main.npc[j];
+                        newNPC.GetGlobalNPC<FargoGlobalNPC>().Transform = true;
+                    }
+                }
+            }
+        }
+
         private void Aura(NPC npc, float distance, int buff, bool reverse = false)
         {
             foreach (Player p in Main.player.Where(x => x.active && !x.dead))
@@ -4675,8 +4745,6 @@ namespace FargowiltasSouls.NPCs
                         pool[NPCID.AngryNimbus] = .05f;
                     }
 
-
-
                     //height-independent biomes
                     if (corruption)
                     {
@@ -5060,9 +5128,6 @@ namespace FargowiltasSouls.NPCs
                     }
                 }
             }
-		
-			
-		
 		}
 		
 		public override bool PreNPCLoot (NPC npc)
@@ -5121,11 +5186,11 @@ namespace FargowiltasSouls.NPCs
 
             if (Needles)
             {
-                int dmg = 30;
+                int dmg = 15;
 
                 if (modPlayer.LifeForce)
                 {
-                    dmg = 75;
+                    dmg = 50;
                 }
 
                 Projectile[] projs = FargoGlobalProjectile.XWay(16, npc.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
@@ -6880,6 +6945,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.SolarSpearman:
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(300, 600));
                         target.AddBuff(BuffID.Burning, Main.rand.Next(30, 120));
+                        break;
+
+                    case NPCID.DesertScorpionWalk:
+                    case NPCID.DesertScorpionWall:
+                        target.AddBuff(mod.BuffType<MarkedforDeath>(), Main.rand.Next(1200, 2400));
                         break;
 
                     default:
