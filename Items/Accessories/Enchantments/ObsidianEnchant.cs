@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Obsidian Enchantment");
             Tooltip.SetDefault(
 @"'The earth calls'
-Grants immunity to fire blocks and lava
+Grants immunity to fire and lava
 Increases armor penetration by 10
 While standing in lava, you gain 10 more armor penetration, 15% attack speed, and your attacks ignite enemies");
         }

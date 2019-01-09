@@ -448,42 +448,43 @@ namespace FargowiltasSouls
                 }
 
                 //falling gives you dazed and confused even with protection. wings save you
-                if (player.velocity.Y == 0f)
+                if (player.velocity.Y == 0f && player.wings == 0)
                 {
-
-                    if(player.wings == 0)
+                    int num21 = 25;
+                    num21 += player.extraFall;
+                    int num22 = (int)(player.position.Y / 16f) - player.fallStart;
+                    if (player.mount.CanFly)
                     {
-                        int num21 = 25;
-                        num21 += player.extraFall;
-                        int num22 = (int)(player.position.Y / 16f) - player.fallStart;
-                        if (player.mount.CanFly)
-                        {
-                            num22 = 0;
-                        }
-                        if (player.mount.Cart && Minecart.OnTrack(player.position, player.width, player.height))
-                        {
-                            num22 = 0;
-                        }
-                        if (player.mount.Type == 1)
-                        {
-                            num22 = 0;
-                        }
-                        player.mount.FatigueRecovery();
+                        num22 = 0;
+                    }
+                    if (player.mount.Cart && Minecart.OnTrack(player.position, player.width, player.height))
+                    {
+                        num22 = 0;
+                    }
+                    if (player.mount.Type == 1)
+                    {
+                        num22 = 0;
+                    }
+                    player.mount.FatigueRecovery();
 
-                        if (((player.gravDir == 1f && num22 > num21) || (player.gravDir == -1f && num22 < -num21)))
+                    if (((player.gravDir == 1f && num22 > num21) || (player.gravDir == -1f && num22 < -num21)))
+                    {
+                        player.immune = false;
+                        int dmg = (int)(num22 * player.gravDir - num21) * 10;
+                        if (player.mount.Active)
                         {
-                            player.immune = false;
-                            int dmg = (int)(num22 * player.gravDir - num21) * 10;
-                            if (player.mount.Active)
-                            {
-                                dmg = (int)(dmg * player.mount.FallDamage);
-                            }
-                            player.Hurt(PlayerDeathReason.ByOther(0), dmg, 0);
-                            player.AddBuff(BuffID.Dazed, dmg * 2);
-                            player.AddBuff(BuffID.Confused, dmg * 2);
+                            dmg = (int)(dmg * player.mount.FallDamage);
                         }
-                        player.fallStart = (int)(player.position.Y / 16f);
-                    } 
+
+                        if (!player.noFallDmg)
+                        {
+                            player.Hurt(PlayerDeathReason.ByOther(0), dmg, 0);
+                        }
+                        
+                        player.AddBuff(BuffID.Dazed, dmg * 2);
+                        player.AddBuff(BuffID.Confused, dmg * 2);
+                    }
+                    player.fallStart = (int)(player.position.Y / 16f);
                 }
 
                 if (player.ZoneUnderworldHeight && !player.fireWalk)
@@ -2554,6 +2555,8 @@ namespace FargowiltasSouls
 
         public void ObsidianEffect()
         {
+            player.buffImmune[BuffID.OnFire] = true;
+            player.buffImmune[BuffID.Burning] = true;
             player.fireWalk = true;
             player.lavaImmune = true;
             player.armorPenetration += 10;
