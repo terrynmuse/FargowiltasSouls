@@ -13,6 +13,45 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-nerfed destroyer instant death threshold again to 300
+-nerfed destroyer speed rampup as life decreases
+-nerfed destroyer overall flying speed
+-removed destroyer pierce resistance
+-fixed retinazer rotating weird when beginning a deathray spin
+-all prime limbs have zero defense
+
+-masomode debuffs actually use their icons now
+-adjusted most debuff tooltips
+-nerfed rotting attack speed reduction
+-made the following enemies' projectiles work in multiplayer:
+	-elf copter
+	-tactical skeleton
+	-skeleton sniper
+	-skeleton archer
+	-elf archer
+	-storm diver
+	-pirate crossbower
+	-pirate deadeye
+	-drakanian
+-changed elf archer to firing frostburn arrows that inflict frostburn & chilled
+-lihzahrds and flying snakes are immune to traps
+-drakanian and projectile daybreak inflict on fire and burning
+
+-DEBUFF ICONS!!!!!
+-golem spiky balls are weaker in temple and much stronger outside
+-nerfed overall spawn rates
+-prime arms can respawn every 20sec with 20% life
+-fixed prime arms sometimes being vulnerable in multiplayer phase 2, i think
+-nerfed prime limb phase 2 speed slightly
+-buffed prime DR
+-twins regain full HP when entering phase 3
+-both twins move at 133% speed in phase 3
+-twins no longer spawn the other twin if you're dead
+-fixed twins not healing in multiplayer
+-fixed wof eyes not taking halved damage in phase 2
+-nerfed destroyer speed in phase 2
+-nerfed destroyer instakill to trigger below 350 (was 400)
+
 -underground hallow always flipped
 -crimson always bleed, corrupt always darkness
 -Illuminant Slimes now multiply, no aura

@@ -8,18 +8,11 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Defenseless");
-            Description.SetDefault("Your guard is completely broken.");
+            Description.SetDefault("Your guard is completely broken");
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
-        }
-
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-
-            return true;
         }
 
         public override void Update(Player player, ref int buffIndex)
