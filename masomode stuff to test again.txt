@@ -13,6 +13,13 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-nerfed destroyer instant death threshold again to 300
+-nerfed destroyer speed rampup as life decreases
+-nerfed destroyer overall flying speed
+-removed destroyer pierce resistance
+-fixed retinazer rotating weird when beginning a deathray spin
+-all prime limbs have zero defense
+
 -masomode debuffs actually use their icons now
 -adjusted most debuff tooltips
 -nerfed rotting attack speed reduction

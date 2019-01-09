@@ -1461,7 +1461,7 @@ namespace FargowiltasSouls.NPCs
                             npc.dontTakeDamage = spazAlive && Main.npc[spazBoss].ai[0] < 4f; //if twin not in phase 3
 
                             //2*pi * (# of full circles) / (seconds to finish rotation) / (ticks per sec)
-                            const float rotationInterval = 2f * (float)Math.PI * 1.2f / 4f / 60f;
+                            const float rotationInterval = 2f * (float)Math.PI * 1f / 4f / 60f;
 
                             npc.ai[0]++; //base value is 4
                             switch ((int)npc.ai[3]) //laser code idfk
@@ -1475,7 +1475,7 @@ namespace FargowiltasSouls.NPCs
                                         if (npc.HasPlayerTarget)
                                         {
                                             npc.ai[3]++;
-                                            npc.ai[2] = npc.rotation - 1;
+                                            npc.ai[2] = -npc.rotation;
                                             masoBool[2] = (Main.player[npc.target].Center.X - npc.Center.X < 0);
                                         }
                                         npc.netUpdate = true;
@@ -1522,7 +1522,7 @@ namespace FargowiltasSouls.NPCs
                                     npc.velocity *= (npc.ai[0] - 4f) / 60f;
                                     npc.localAI[1] = 0f;
                                     npc.ai[2]--;
-                                    npc.ai[2] -= (1f - Counter / 60f) * rotationInterval * (masoBool[2] ? 1f : -1f);
+                                    npc.ai[2] -= (1f - (npc.ai[0] - 4f) / 60f) * rotationInterval * (masoBool[2] ? 1f : -1f);
                                     npc.rotation = -npc.ai[2];
 
                                     if (npc.ai[0] >= 64f)
@@ -1540,7 +1540,7 @@ namespace FargowiltasSouls.NPCs
                                     break;
                             }
 
-                            npc.position += npc.velocity / 3f;
+                            npc.position += npc.velocity / 4f;
 
                             //if (Counter == 600 && Main.netMode != 1 && npc.HasPlayerTarget)
                             //{
@@ -1624,7 +1624,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
-                            npc.position += npc.velocity / 3f;
+                            npc.position += npc.velocity / 4f;
                             npc.dontTakeDamage = retiAlive && Main.npc[retiBoss].ai[0] < 4f; //if twin not in phase3
 
                             if (npc.ai[1] == 0f) //not dashing
@@ -2128,7 +2128,7 @@ namespace FargowiltasSouls.NPCs
                                 }
 
                                 const float num14 = 16f;    //max speed?
-                                const float num15 = 0.12f;   //turn speed?
+                                const float num15 = 0.1f;   //turn speed?
                                 const float num16 = 0.15f;   //acceleration?
                                 float num17 = Main.player[npc.target].Center.X;
                                 float num18 = Main.player[npc.target].Center.Y;
@@ -2246,7 +2246,7 @@ namespace FargowiltasSouls.NPCs
                                 float ratio = (float)npc.life / npc.lifeMax;
                                 if (ratio > 0.75f)
                                     ratio = 0.75f;
-                                npc.position += npc.velocity * (2f - ratio);
+                                npc.position += npc.velocity * (3f - ratio) / 2f;
                             }
                         }
                         break;
@@ -3153,7 +3153,7 @@ namespace FargowiltasSouls.NPCs
                             if (npc.ai[0] != 1f) //limb is dead and needs reviving
                             {
                                 npc.ai[3]++;
-                                if (npc.ai[3] > 1200f) //revive limb
+                                if (npc.ai[3] > 1200f) //revive a dead limb
                                 {
                                     npc.ai[3] = 0;
                                     npc.netUpdate = true;
@@ -3856,6 +3856,7 @@ namespace FargowiltasSouls.NPCs
                     case 77: //all prime limbs
                         if (!masoBool[0])
                         {
+                            npc.defense = 0;
                             RegenTimer = 2;
                             if (Main.npc[(int)npc.ai[1]].type == NPCID.SkeletronPrime && Main.npc[(int)npc.ai[1]].ai[0] == 2f)
                             {
@@ -5940,14 +5941,6 @@ namespace FargowiltasSouls.NPCs
                         {
                             damage = 1;
                         }
-                        else if (projectile.penetrate < 0)
-                        {
-                            damage /= 5;
-                        }
-                        else if (projectile.maxPenetrate > 0)
-                        {
-                            damage /= projectile.maxPenetrate;
-                        }
                         break;
 
                     case 7: //golem fists
@@ -6682,7 +6675,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.TheDestroyer:
                         target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(300, 1200));
                         target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(300, 1200));
-                        if (target.statLife < 350)
+                        if (target.statLife < 300)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by the Destroyer."), 9999, 0);
                         goto case NPCID.TheDestroyerTail;
 
