@@ -40,7 +40,6 @@ namespace FargowiltasSouls.Projectiles
 
         private bool firstTick = true;
         private bool squeakyToy = false;
-        public bool masoProj = false;
         public int TimeFrozen = 0;
 
         public override void SetDefaults(Projectile projectile)
@@ -932,51 +931,6 @@ namespace FargowiltasSouls.Projectiles
                         }
                         break;
 
-                    case ProjectileID.MeteorShot:
-                        if (masoProj)
-                        {
-                            int buffTime = Main.rand.Next(120, 600);
-                            target.AddBuff(BuffID.OnFire, buffTime / 2);
-                            target.AddBuff(BuffID.Burning, buffTime);
-                        }
-                        break;
-
-                    case ProjectileID.SniperBullet:
-                    case ProjectileID.CrystalShard:
-                        if (masoProj)
-                        {
-                            target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(1200, 3600));
-
-                            int buffTime = Main.rand.Next(300, 600);
-                            target.AddBuff(mod.BuffType<Crippled>(), buffTime);
-                            target.AddBuff(mod.BuffType<ClippedWings>(), buffTime);
-                        }
-                        break;
-
-                    case ProjectileID.VenomArrow:
-                        if (masoProj)
-                        {
-                            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 480));
-                        }
-                        break;
-
-                    case ProjectileID.ChlorophyteArrow:
-                        if (masoProj)
-                        {
-                            target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
-                            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
-                            target.AddBuff(mod.BuffType<Infested>(), Main.rand.Next(180, 360));
-                        }
-                        break;
-
-                    case ProjectileID.MoonlordBullet:
-                        if (masoProj)
-                        {
-                            target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(60, 600));
-                            target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(30, 300));
-                        }
-                        break;
-
                     case ProjectileID.RocketSkeleton:
                         target.AddBuff(BuffID.Dazed, Main.rand.Next(30, 150));
                         target.AddBuff(BuffID.Confused, Main.rand.Next(60, 300));
@@ -1116,31 +1070,6 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Bone:
-                    break;
-
-                case ProjectileID.SniperBullet:
-                    Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
-
-                    for (int index1 = 0; index1 < 40; ++index1)
-                    {
-                        int index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 68, 0f, 0f, 0, new Color(), 1f);
-                        Main.dust[index2].noGravity = true;
-                        Main.dust[index2].velocity *= 1.5f;
-                        Main.dust[index2].scale *= 0.9f;
-                    }
-
-                    if (projectile.owner == Main.myPlayer)
-                    {
-                        for (int index = 0; index < 24; ++index)
-                        {
-                            float SpeedX = -projectile.velocity.X * Main.rand.Next(30, 60) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-                            float SpeedY = -projectile.velocity.Y * Main.rand.Next(30, 60) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-                            int p = Projectile.NewProjectile(projectile.position.X + SpeedX, projectile.position.Y + SpeedY, SpeedX, SpeedY, ProjectileID.CrystalShard, projectile.damage / 2, 0f, projectile.owner, 0f, 0f);
-                            Main.projectile[p].hostile = true;
-                            Main.projectile[p].friendly = false;
-                            Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().masoProj = true;
-                        }
-                    }
                     break;
 
                 default:

@@ -10,19 +10,12 @@ namespace FargowiltasSouls.Buffs.Masomode
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Marked for Death");
-			Description.SetDefault("You will die when time runs out.");
+			Description.SetDefault("On death's doorstep when time runs out");
 			Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
 		}
-		
-		public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-
-            return true;
-        }
 
 		//note: clearing this buff (i.e. nurse) will remove it without killing the player
 		public override void Update(Player player, ref int buffIndex)

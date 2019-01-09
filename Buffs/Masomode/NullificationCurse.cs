@@ -10,11 +10,11 @@ namespace FargowiltasSouls.Buffs.Masomode
             DisplayName.SetDefault("Nullification Curse");
             Description.SetDefault("Moon Lord is only vulnerable to one damage type!");
             Main.debuff[Type] = true;
-            Main.pvpBuff[Type] = true;
+            Main.pvpBuff[Type] = false;
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
-            longerExpertDebuff = true;
-            canBeCleared = true;
+            longerExpertDebuff = false;
+            canBeCleared = false;
         }
 
         public override bool Autoload(ref string name, ref string texture)

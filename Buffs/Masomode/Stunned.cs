@@ -14,12 +14,6 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.debuff[Type] = true;
         }
 
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-            return true;
-        }
-
         public override void Update(Player player, ref int buffIndex)
         {
             player.controlLeft = false;

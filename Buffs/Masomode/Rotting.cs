@@ -9,24 +9,18 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Rotting");
-            Description.SetDefault("Your body is wasting away.");
+            Description.SetDefault("Your body is wasting away");
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
         }
 
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-            return true;
-        }
-
         public override void Update(Player player, ref int buffIndex)
         {
-            //inflicts DOT (8 per second) and almost every stat reduced (move speed and use time by 25%)
+            //inflicts DOT (8 per second) and almost every stat reduced (move speed by 25%, use time by 10%)
             player.GetModPlayer<FargoPlayer>(mod).Rotting = true;
-            player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= .75f;
+            player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= .9f;
 
             player.statLifeMax2 -= player.statLifeMax / 5;
             player.statDefense -= 10;

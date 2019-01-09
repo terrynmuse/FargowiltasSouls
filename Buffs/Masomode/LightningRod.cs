@@ -16,13 +16,6 @@ namespace FargowiltasSouls.Buffs.Masomode
             canBeCleared = true;
         }
 
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-
-            return true;
-        }
-
         private void SpawnLightning(Player player)
         {
             //tends to spawn in ceilings if the player goes indoors/underground

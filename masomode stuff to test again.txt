@@ -13,6 +13,23 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-masomode debuffs actually use their icons now
+-adjusted most debuff tooltips
+-nerfed rotting attack speed reduction
+-made the following enemies' projectiles work in multiplayer:
+	-elf copter
+	-tactical skeleton
+	-skeleton sniper
+	-skeleton archer
+	-elf archer
+	-storm diver
+	-pirate crossbower
+	-pirate deadeye
+	-drakanian
+-changed elf archer to firing frostburn arrows that inflict frostburn & chilled
+-lihzahrds and flying snakes are immune to traps
+-drakanian and projectile daybreak inflict on fire and burning
+
 -DEBUFF ICONS!!!!!
 -golem spiky balls are weaker in temple and much stronger outside
 -nerfed overall spawn rates
