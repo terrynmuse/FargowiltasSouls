@@ -13,6 +13,13 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 
+-All masomode dudes that shoot new projectiles (shoot method) only fire if facing player
+-Dr Bones is immune to traps
+-Vultures do not fire until they are in the air
+-Sand Poachers now inflict Marked for Death
+-fixed fall damage happening with fall immune
+-added a few more hordes
+
 -nerfed destroyer instant death threshold again to 300
 -nerfed destroyer speed rampup as life decreases
 -nerfed destroyer overall flying speed
