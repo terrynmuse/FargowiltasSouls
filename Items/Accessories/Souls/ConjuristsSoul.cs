@@ -1,23 +1,31 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class ConjuristsSoul : ModItem
     {
-        private Mod thorium;
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Conjurist's Soul");
 
-            Tooltip.SetDefault(
+            string tooltip =
 @"'An army at your disposal'
 30% increased summon damage
 Increases your max number of minions by 4
 Increases your max number of sentries by 2
-Increased minion knockback");
+Increased minion knockback";
+
+            if (thorium != null)
+            {
+                tooltip += "\nEffects of Phylactery, Crystal Scorpion, and Yuma's Pendant";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -37,6 +45,23 @@ Increased minion knockback");
             player.maxMinions += 4;
             player.maxTurrets += 2;
             player.minionKB += 3f;
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //phylactery
+            if (!thoriumPlayer.lichPrevent)
+            {
+                player.AddBuff(thorium.BuffType("LichActive"), 60, true);
+            }
+            //crystal scorpion
+            thoriumPlayer.crystalScorpion = true;
+            if (player.ownedProjectileCounts[thorium.ProjectileType("CrystalScorpionMinion")] > 0)
+            {
+                thoriumPlayer.flatSummonDamage += 3;
+            }
+            //yumas pendant
+            thoriumPlayer.yuma = true;
         }
 
         public override void AddRecipes()
@@ -44,35 +69,24 @@ Increased minion knockback");
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "OccultistsEssence");
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
+                recipe.AddIngredient(thorium.ItemType("Phylactery"));
+                recipe.AddIngredient(thorium.ItemType("CrystalScorpion"));
                 recipe.AddIngredient(ItemID.PapyrusScarab);
-                //prehistoric arachnid
-                // phylactery
-                // yumas pendent
-                
-                //the butterfly staff
-                //hail bomber//
+                recipe.AddIngredient(thorium.ItemType("YumasPendant"));
+                recipe.AddIngredient(thorium.ItemType("ButterflyStaff5"));
+                recipe.AddIngredient(thorium.ItemType("HailBomber"));
+                recipe.AddIngredient(ItemID.PirateStaff);
                 recipe.AddIngredient(ItemID.OpticStaff);
-                //true silver fang//
-                recipe.AddIngredient(ItemID.StaffoftheFrostHydra);//
-                //black cane//
-                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper); //do an any
-                recipe.AddIngredient(ItemID.RavenStaff);//
-                recipe.AddIngredient(ItemID.MoonlordTurretStaff);//
-
-                /*
-                 rip deadly sphere 
-                 incubator
-                 pirate staff
-                 mortar staff
-                 
-            sou
-            banner molten
-                 * 
+                recipe.AddIngredient(thorium.ItemType("TrueSilversBlade"));
+                recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
+                recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
+                recipe.AddIngredient(ItemID.RavenStaff);
+                recipe.AddIngredient(ItemID.MoonlordTurretStaff);
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.PapyrusScarab);
                 recipe.AddIngredient(ItemID.PirateStaff);
                 recipe.AddIngredient(ItemID.OpticStaff);
@@ -86,7 +100,7 @@ Increased minion knockback");
                 recipe.AddIngredient(ItemID.RavenStaff);
                 recipe.AddIngredient(ItemID.XenoStaff);
                 recipe.AddIngredient(ItemID.MoonlordTurretStaff);
-            //}
+            }
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

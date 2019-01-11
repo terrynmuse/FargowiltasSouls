@@ -7,6 +7,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     //[AutoloadEquip(EquipType.Neck)]
     public class SharpshootersSoul : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sharpshooter's Soul");
@@ -44,30 +46,24 @@ Sniper Scope Effects");
 
             recipe.AddIngredient(null, "SnipersEssence");
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ItemID.MagicQuiver);
-                //vega phaser
-                //scorn
-                //spine buster
-                //destroyers rage
-                //terra bow
+                recipe.AddIngredient(thorium.ItemType("VegaPhaser"));
+                recipe.AddIngredient(thorium.ItemType("Scorn"));
+                recipe.AddIngredient(thorium.ItemType("SpineBuster"));
+                recipe.AddIngredient(thorium.ItemType("DestroyersRage"));
+                recipe.AddIngredient(thorium.ItemType("TerraBow"));
                 recipe.AddIngredient(ItemID.PiranhaGun);
-                //launch jumper
-                //nova rifle
+                recipe.AddIngredient(thorium.ItemType("LaunchJumper"));
+                recipe.AddIngredient(thorium.ItemType("NovaRifle"));
                 recipe.AddIngredient(ItemID.Tsunami);
                 recipe.AddIngredient(ItemID.StakeLauncher);
                 recipe.AddIngredient(ItemID.EldMelter);
                 recipe.AddIngredient(ItemID.FireworksLauncher);
-
-                /*
-                 prob in SoU
-                 quasar flare
-                 wyrm decimator 
-                 * 
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.MagicQuiver);
                 recipe.AddIngredient(ItemID.SniperScope);
                 recipe.AddIngredient(ItemID.DartPistol);
@@ -81,7 +77,7 @@ Sniper Scope Effects");
                 recipe.AddIngredient(ItemID.EldMelter);
                 recipe.AddIngredient(ItemID.Xenopopper);
                 recipe.AddIngredient(ItemID.FireworksLauncher);
-            //}
+            }
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

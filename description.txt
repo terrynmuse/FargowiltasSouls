@@ -1,10 +1,6 @@
-NEW UPDATE - v 0.5.4
--Added several Masochist Mode features and fixes that shall not be named
--Except one: DEBUFF SPRITES
--Valhalla Knockback no longer works on WoF
--Nerfed Cactus Enchantment damage
--Added On Fire and Burning immunity to Obsidian Enchantment
--Fixed bug with Hallow Shield dust not always disappearing when it should
+NEW UPDATE - v 0.5.5
+-Fixed bug in Slinger Essence recipe
+-Added back Thorium support for all Essences and Class Souls including effects and recipes
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

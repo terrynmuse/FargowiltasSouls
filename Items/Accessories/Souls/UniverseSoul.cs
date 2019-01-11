@@ -8,6 +8,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class UniverseSoul : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of the Universe");
@@ -22,7 +24,7 @@ All weapons have double knockback and have auto swing
 Increases your maximum mana by 300
 Increases your max number of minions by 8
 Increases your max number of sentries by 4
-Grants the effects of the Yoyo Bag, Sniper Scope, Celestial Cuffs, and Mana Flower
+Grants all other effects of material Souls
 All attacks inflict Flames of the Universe");
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(12, 5));
@@ -67,6 +69,26 @@ All attacks inflict Flames of the Universe");
             player.manaFlower = true;
             player.manaMagnet = true;
             player.magicCuffs = true;
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //phylactery
+            if (!thoriumPlayer.lichPrevent)
+            {
+                player.AddBuff(thorium.BuffType("LichActive"), 60, true);
+            }
+            //crystal scorpion
+            thoriumPlayer.crystalScorpion = true;
+            if (player.ownedProjectileCounts[thorium.ProjectileType("CrystalScorpionMinion")] > 0)
+            {
+                thoriumPlayer.flatSummonDamage += 3;
+            }
+            //yumas pendant
+            thoriumPlayer.yuma = true;
+
+            //complete set
+            thoriumPlayer.throwGuide4 = true;
         }
 
         private void Healer(Player player)

@@ -49,34 +49,24 @@ Celestial Cuffs and Mana Flower effects");
 
             recipe.AddIngredient(null, "ApprenticesEssence");
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ManaFlower);
                 recipe.AddIngredient(CelestialCuffs);
-                //shade band
-                //twins ire //
-                //terra staff//
-                recipe.AddIngredient(RainbowGun); 
-                //spectral blade
-                //lightning staff
+                recipe.AddIngredient(thorium.ItemType("TwinsIre"));
+                recipe.AddIngredient(thorium.ItemType("TerraStaff"));
+                recipe.AddIngredient(RainbowGun);
+                recipe.AddIngredient(thorium.ItemType("SpectrelBlade"));
+                recipe.AddIngredient(thorium.ItemType("LightningStaff"));
                 recipe.AddIngredient(ApprenticeStaffT3);
-                //nuclear fury
+                recipe.AddIngredient(thorium.ItemType("NuclearFury"));
+                recipe.AddIngredient(BatScepter);
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);
-                recipe.AddIngredient(LastPrism);
-
-                /*
-                    SoU
-                    northern light
-                    almanac of fury
-                    
-                    //time gate to stardust enchnt
-                    wizard hat into some random thorium enchant
-                    //ancient light and all ancient bois to something
-                
+                recipe.AddIngredient(LastPrism);              
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ManaFlower);
                 recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
@@ -90,7 +80,7 @@ Celestial Cuffs and Mana Flower effects");
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);
                 recipe.AddIngredient(LastPrism);
-            //}
+            }
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

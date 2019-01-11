@@ -134,6 +134,7 @@ namespace FargowiltasSouls
             RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Drax", ItemID.Drax, ItemID.PickaxeAxe);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyDrax", group);
 
+            //does this mod even exist anymore tbh
             if (Instance.TerraCompLoaded)
             {
                 //cobalt
@@ -151,7 +152,6 @@ namespace FargowiltasSouls
                     ModLoader.GetMod("TerraCompilation").ItemType("AdamantiteComp"), ModLoader.GetMod("TerraCompilation").ItemType("TitaniumComp"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
             }
-
             else
             {
                 //cobalt
@@ -165,6 +165,15 @@ namespace FargowiltasSouls
                 //adamantite
                 group = new RecipeGroup(() => Lang.misc[37] + " Adamantite Repeater", ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater);
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
+            }
+
+            if (Instance.ThoriumLoaded)
+            {
+                Mod thorium = ModLoader.GetMod("ThoriumMod");
+
+                //combo yoyos
+                group = new RecipeGroup(() => Lang.misc[37] + " Combination Yoyo", thorium.ItemType("Nocturnal"), thorium.ItemType("Sanguine"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyThoriumYoyo", group);
             }
 
             //evil wood

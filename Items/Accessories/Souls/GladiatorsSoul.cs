@@ -8,7 +8,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     //[AutoloadEquip(EquipType.Waist)]
     public class GladiatorsSoul : ModItem
     {
-        private Mod thorium;
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
@@ -53,30 +53,24 @@ Fire Gauntlet and Yoyo Bag effects");
 
             recipe.AddIngredient(null, "BarbariansEssence");
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(FireGauntlet);
                 recipe.AddIngredient(YoyoBag);
-                //crystal spear tip
-                //cursed flail core
-                
                 recipe.AddIngredient(Arkhalis);
-                //poseidon charge
-                //surtrs sword
-                //prime fury
+                recipe.AddIngredient(thorium.ItemType("PoseidonCharge"));
+                recipe.AddIngredient(thorium.ItemType("SurtrsSword"));
+                recipe.AddIngredient(thorium.ItemType("PrimesFury"));
+                recipe.AddIngredient(MonkStaffT2);
                 recipe.AddIngredient(TerraBlade);
                 recipe.AddIngredient(ScourgeoftheCorruptor);
-                //spearmint
+                recipe.AddIngredient(thorium.ItemType("Spearmint"));
+                recipe.AddIngredient(NorthPole);
                 recipe.AddIngredient(InfluxWaver);
                 recipe.AddIngredient(Meowmere);
-                /*
-            SoU
-            terarians last knife
-            ocean judgement
-                 * 
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(FireGauntlet);
                 recipe.AddIngredient(YoyoBag);
                 recipe.AddIngredient(Arkhalis);
@@ -90,7 +84,7 @@ Fire Gauntlet and Yoyo Bag effects");
                 recipe.AddIngredient(NorthPole);
                 recipe.AddIngredient(InfluxWaver);
                 recipe.AddIngredient(Meowmere);
-            //}
+            }
             
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

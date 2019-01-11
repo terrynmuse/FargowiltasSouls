@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 {
     public class ApprenticesEssence : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Apprentice's Essence");
@@ -36,26 +38,23 @@ Increases your maximum mana by 50");
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.SorcererEmblem);
-                
                 recipe.AddIngredient(ItemID.WandofSparking);
-
-                //grave buster
+                recipe.AddIngredient(thorium.ItemType("GraveBuster"));
                 recipe.AddIngredient(ItemID.Vilethorn);
-
+                recipe.AddIngredient(ItemID.CrimsonRod);
                 recipe.AddIngredient(ItemID.WaterBolt);
                 recipe.AddIngredient(ItemID.BookofSkulls);
                 recipe.AddIngredient(ItemID.MagicMissile);
-
                 recipe.AddIngredient(ItemID.Flamelash);
-                //spine breaker
-                //magik staff
+                recipe.AddIngredient(thorium.ItemType("SpineBreaker"));
+                recipe.AddIngredient(thorium.ItemType("MagikStaff"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.SorcererEmblem);
                 recipe.AddIngredient(ItemID.WandofSparking);
                 recipe.AddIngredient(ItemID.Vilethorn);
@@ -64,7 +63,7 @@ Increases your maximum mana by 50");
                 recipe.AddIngredient(ItemID.BookofSkulls);
                 recipe.AddIngredient(ItemID.MagicMissile);
                 recipe.AddIngredient(ItemID.Flamelash);
-            //}
+            }
 
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

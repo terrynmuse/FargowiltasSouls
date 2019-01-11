@@ -3,6 +3,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -10,6 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     public class EternitySoul : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
@@ -313,6 +315,26 @@ and most of SoT not mentioned because meme tooltip length
             modPlayer.NebulaEffect(); //boosters
             modPlayer.StardustEffect(); //guardian and time freeze
             modPlayer.AddPet("Suspicious Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //phylactery
+            if (!thoriumPlayer.lichPrevent)
+            {
+                player.AddBuff(thorium.BuffType("LichActive"), 60, true);
+            }
+            //crystal scorpion
+            thoriumPlayer.crystalScorpion = true;
+            if (player.ownedProjectileCounts[thorium.ProjectileType("CrystalScorpionMinion")] > 0)
+            {
+                thoriumPlayer.flatSummonDamage += 3;
+            }
+            //yumas pendant
+            thoriumPlayer.yuma = true;
+
+            //complete set
+            thoriumPlayer.throwGuide4 = true;
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
