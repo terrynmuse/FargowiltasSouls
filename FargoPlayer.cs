@@ -154,6 +154,8 @@ namespace FargowiltasSouls
         public bool Eternity;
         private float eternityDamage = 0;
 
+        public bool GroundStick;
+
         //debuffs
         public bool Hexed;
         public bool Unstable;
@@ -382,6 +384,8 @@ namespace FargowiltasSouls
             TerrariaSoul = false;
             VoidSoul = false;
             Eternity = false;
+
+            GroundStick = false;
 
             //debuffs
             Hexed = false;
@@ -939,6 +943,11 @@ namespace FargowiltasSouls
             if (GoldEnchant)
             {
                 target.AddBuff(BuffID.Midas, 120, true);
+            }
+
+            if (GroundStick && Main.rand.Next(20) == 0)
+            {
+                target.AddBuff(BuffID.Electrified, 240);
             }
 
             /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
