@@ -2265,7 +2265,7 @@ namespace FargowiltasSouls
             {
                 const int focusRadius = 50;
 
-                if (player.velocity.X < 1.5f && player.velocity.Y < 1.5f)
+                if (Math.Abs(player.velocity.X) < 1.5f && Math.Abs(player.velocity.Y) < 1.5f)
                 {
                     for (int i = 0; i < 25; i++)
                     {

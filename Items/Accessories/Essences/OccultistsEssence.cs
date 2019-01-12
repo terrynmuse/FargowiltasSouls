@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 {
     public class OccultistsEssence : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Occultist's Essence");
@@ -36,26 +38,26 @@ Increases your max number of sentries by 1");
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.SummonerEmblem);
-                //hive mind
-                //living wood acorn
-                //rosy slime staff
-                //hatchling staff //thunder bird
-                //meatball staff
-                //prehistoric amber staff
-                //nano clam cane
-                //viscount cane //viscount
+                recipe.AddIngredient(thorium.ItemType("HiveMind"));
+                recipe.AddIngredient(thorium.ItemType("LivingWoodSprout"));
+                recipe.AddIngredient(thorium.ItemType("RosySlimeStaff"));
+                recipe.AddIngredient(thorium.ItemType("HatchlingStaff"));
+                recipe.AddIngredient(thorium.ItemType("MeatBallStaff"));
+                recipe.AddIngredient(thorium.ItemType("AmberMinion"));
+                recipe.AddIngredient(thorium.ItemType("NanoClamCane"));
+                recipe.AddIngredient(thorium.ItemType("ViscountCane"));
                 recipe.AddIngredient(ItemID.HornetStaff);
-                //taboo wand
+                recipe.AddIngredient(thorium.ItemType("TabooWand"));
                 recipe.AddIngredient(ItemID.ImpStaff);
                 recipe.AddIngredient(ItemID.DD2BallistraTowerT1Popper);
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT1Popper);
             }
             else
-            {*/
+            {
                 //no others
                 recipe.AddIngredient(ItemID.SummonerEmblem);
                 recipe.AddIngredient(ItemID.SlimeStaff);
@@ -65,7 +67,7 @@ Increases your max number of sentries by 1");
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT1Popper);
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT1Popper);
                 recipe.AddIngredient(ItemID.DD2LightningAuraT1Popper);
-            //}
+            }
 
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

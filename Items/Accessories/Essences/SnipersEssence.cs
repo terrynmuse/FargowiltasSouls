@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 {
     public class SnipersEssence : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sniper's Essence");
@@ -36,26 +38,26 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.RangerEmblem);
                 recipe.AddIngredient(ItemID.PainterPaintballGun);
                 recipe.AddIngredient(ItemID.SnowballCannon);
-                //web gun
+                recipe.AddIngredient(thorium.ItemType("Webgun"));
                 recipe.AddIngredient(ItemID.Harpoon);
                 recipe.AddIngredient(ItemID.Musket);
-                //guano gunner //viscount
-                //the zapper
-                //shark storm
-                //slugger
+                recipe.AddIngredient(thorium.ItemType("GuanoGunner"));
+                recipe.AddIngredient(thorium.ItemType("Zapper"));
+                recipe.AddIngredient(thorium.ItemType("SharkStorm"));
+                recipe.AddIngredient(thorium.ItemType("Slugger"));
                 recipe.AddIngredient(ItemID.BeesKnees);
-                //marine launcher
-                //champion trifecta //champion
+                recipe.AddIngredient(thorium.ItemType("MarineLauncher"));
+                recipe.AddIngredient(thorium.ItemType("HeroTripleBow"));
                 recipe.AddIngredient(ItemID.HellwingBow);
             }
             else
-            {*/
+            {
                 //no others
                 recipe.AddIngredient(ItemID.RangerEmblem);
                 recipe.AddIngredient(ItemID.RedRyder);
@@ -66,7 +68,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.Boomstick);
                 recipe.AddIngredient(ItemID.BeesKnees);
                 recipe.AddIngredient(ItemID.HellwingBow);
-            //}
+            }
 
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

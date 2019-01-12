@@ -75,6 +75,8 @@ namespace FargowiltasSouls.Projectiles
             FargoPlayer modPlayer = Main.LocalPlayer.GetModPlayer<FargoPlayer>();
             counter++;
 
+
+
             if (projectile.owner == Main.myPlayer)
             {
                 if (firstTick)
@@ -110,6 +112,21 @@ namespace FargowiltasSouls.Projectiles
                     if (Rotate && !modPlayer.TerrariaSoul)
                     {
                         projectile.timeLeft = 600;
+                    }
+
+                    if (modPlayer.UniverseEffect)
+                    {
+                        projectile.melee = true;
+                        projectile.ranged = true;
+                        projectile.magic = true;
+                        projectile.minion = true;
+                        projectile.thrown = true;
+
+                        /*if (Fargowiltas.Instance.ThoriumLoaded)
+                        {
+
+
+                        }*/
                     }
                 }
 

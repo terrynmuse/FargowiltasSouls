@@ -6,6 +6,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 {
     public class SlingersEssence : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod fargos = ModLoader.GetMod("Fargowiltas");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slinger's Essence");
@@ -37,47 +40,35 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                //ninja emblem
-                //desert wind rune
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("WoodenYoyoThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("BloodyMacheteThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("IceBoomerangThrown"));
-                //goblin war spear
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("MeatballThrown"));
-                //sea ninja star
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ThornChakramThrown"));
+                recipe.AddIngredient(thorium.ItemType("NinjaEmblem"));
+                recipe.AddIngredient(thorium.ItemType("DesertWindRune"));
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("WoodenYoyoThrown") : ItemID.WoodYoyo);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("BloodyMacheteThrown") : ItemID.BloodyMachete);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("IceBoomerangThrown") : ItemID.IceBoomerang);
+                recipe.AddIngredient(thorium.ItemType("GoblinWarSpear"), 300);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("TheMeatballThrown") : ItemID.TheMeatball);
+                recipe.AddIngredient(thorium.ItemType("StarfishSlicer"), 300);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("ThornChakramThrown") : ItemID.ThornChakram);
                 recipe.AddIngredient(ItemID.BoneGlove);
-                recipe.AddIngredient(ItemID.BlueMoon);
-                //champion god hand // champion
-                //gauss flinger //saucer
-
-            }
-            else*/ if (Fargowiltas.Instance.FargosLoaded)
-            {
-                //no others
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("WoodenYoyoThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("BloodyMacheteThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("IceBoomerangThrown"));
-                recipe.AddIngredient(ItemID.MolotovCocktail, 99);
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("TheMeatballThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ThornChakramThrown"));
-                recipe.AddIngredient(ItemID.BoneGlove);
-                recipe.AddIngredient(ItemID.BlueMoon);
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlamarangThrown"));
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("BlueMoonThrown") : ItemID.BlueMoon);
+                recipe.AddIngredient(thorium.ItemType("ChampionsGodHand"));
+                recipe.AddIngredient(thorium.ItemType("GaussKnife"));
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("FlamarangThrown") : ItemID.Flamarang);
             }
             else
             {
-                recipe.AddIngredient(ItemID.WoodYoyo);
-                recipe.AddIngredient(ItemID.BloodyMachete);
-                recipe.AddIngredient(ItemID.IceBoomerang);
+                //no others
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("WoodenYoyoThrown") : ItemID.WoodYoyo);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("BloodyMacheteThrown") : ItemID.BloodyMachete);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("IceBoomerangThrown") : ItemID.IceBoomerang);
                 recipe.AddIngredient(ItemID.MolotovCocktail, 99);
-                recipe.AddIngredient(ItemID.TheMeatball);
-                recipe.AddIngredient(ItemID.ThornChakram);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("TheMeatballThrown") : ItemID.TheMeatball);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("ThornChakramThrown") : ItemID.ThornChakram);
                 recipe.AddIngredient(ItemID.BoneGlove);
-                recipe.AddIngredient(ItemID.BlueMoon);
-                recipe.AddIngredient(ItemID.Flamarang);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("BlueMoonThrown") : ItemID.BlueMoon);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("FlamarangThrown") : ItemID.Flamarang);
             }
 
             recipe.AddTile(TileID.TinkerersWorkbench);

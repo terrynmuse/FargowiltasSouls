@@ -1,20 +1,32 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     //[AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
     public class OlympiansSoul : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod fargos = ModLoader.GetMod("Fargowiltas");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Olympian's Soul");
-            Tooltip.SetDefault(
+
+            string tooltip =
 @"'Strike with deadly precision'
 30% increased throwing damage
 20% increased throwing speed
-15% increased throwing critical chance and velocity");
+15% increased throwing critical chance and velocity";
+
+            if (thorium != null)
+            {
+                tooltip += "\nEffects of The Complete Set";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -34,6 +46,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.thrownDamage += 0.3f;
             player.thrownCrit += 15;
             player.thrownVelocity += 0.15f;
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //complete set
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            thoriumPlayer.throwGuide4 = true;
         }
 
         public override void AddRecipes()
@@ -42,64 +60,38 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             recipe.AddIngredient(null, "SlingersEssence");
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                //bone grip
-                //complete set
-                recipe.AddIngredient(ItemID.Bananarang, 5);
-                //cryo fang //borean
-                recipe.AddIngredient(ItemID.ShadowFlameKnife);
-                //hot pot
-                //volt tomahawk
-                //spark taser
-                //pharoahs slab
-                recipe.AddIngredient(ItemID.VampireKnives);
-                recipe.AddIngredient(ItemID.PaladinsHammer);
-                //cosmic dagger
-                recipe.AddIngredient(ItemID.Terrarian);
-            /*
-            sou
-            deity trefork
-            
-            }
-            else
-            {*/
-            if (Fargowiltas.Instance.FargosLoaded)
-            {
-                //no others
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ChikThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("MagicDaggerThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("BananarangThrown"), 5);
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("AmarokThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ShadowflameKnifeThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlyingKnifeThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("LightDiscThrown"), 5);
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("FlowerPowThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("ToxicFlaskThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("VampireKnivesThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("PaladinsHammerThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("PossessedHatchetThrown"));
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("TerrarianThrown"));
+                recipe.AddIngredient(thorium.ItemType("BoneGrip"));
+                recipe.AddIngredient(thorium.ItemType("TheCompleteSet"));
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("BananarangThrown") : ItemID.Bananarang, 5);
+                recipe.AddIngredient(thorium.ItemType("CryoFang"));
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("ShadowflameKnifeThrown") : ItemID.ShadowFlameKnife);
+                recipe.AddIngredient(thorium.ItemType("HotPot"));
+                recipe.AddIngredient(thorium.ItemType("VoltTomahawk"));
+                recipe.AddIngredient(thorium.ItemType("SparkTaser"));
+                recipe.AddIngredient(thorium.ItemType("PharaohsSlab"));
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("VampireKnivesThrown") : ItemID.VampireKnives);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("PaladinsHammerThrown") : ItemID.PaladinsHammer);
+                recipe.AddIngredient(thorium.ItemType("CosmicDagger"));
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("TerrarianThrown") : ItemID.Terrarian);
             }
             else
             {
-                recipe.AddIngredient(ItemID.Chik);
-                recipe.AddIngredient(ItemID.MagicDagger);
-                recipe.AddIngredient(ItemID.Bananarang, 5);
-                recipe.AddIngredient(ItemID.Amarok);
-                recipe.AddIngredient(ItemID.ShadowFlameKnife);
-                recipe.AddIngredient(ItemID.FlyingKnife);
-                recipe.AddIngredient(ItemID.LightDisc, 5);
-                recipe.AddIngredient(ItemID.FlowerPow);
-                recipe.AddIngredient(ItemID.ToxicFlask);
-                recipe.AddIngredient(ItemID.VampireKnives);
-                recipe.AddIngredient(ItemID.PaladinsHammer);
-                recipe.AddIngredient(ItemID.PossessedHatchet);
-                recipe.AddIngredient(ItemID.Terrarian);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("ChikThrown") : ItemID.Chik);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("MagicDaggerThrown") : ItemID.MagicDagger);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("BananarangThrown") : ItemID.Bananarang, 5);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("AmarokThrown") : ItemID.Amarok);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("ShadowflameKnifeThrown") : ItemID.ShadowFlameKnife);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("FlyingKnifeThrown") : ItemID.FlyingKnife);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("LightDiscThrown") : ItemID.LightDisc, 5);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("FlowerPowThrown") : ItemID.FlowerPow);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("ToxicFlaskThrown") : ItemID.ToxicFlask);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("VampireKnivesThrown") : ItemID.VampireKnives);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("PaladinsHammerThrown") : ItemID.PaladinsHammer);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("PossessedHatchetThrown") : ItemID.PossessedHatchet);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("TerrarianThrown") : ItemID.Terrarian);
             }
-
-            //}
-
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

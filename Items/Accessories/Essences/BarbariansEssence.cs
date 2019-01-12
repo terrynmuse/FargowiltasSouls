@@ -6,11 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 {
     public class BarbariansEssence : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Barbarian's Essence");
             Tooltip.SetDefault(
-                @"'This is only the beginning..' 
+@"'This is only the beginning..' 
 18% increased melee damage 
 10% increased melee speed 
 5% increased melee crit chance");
@@ -36,27 +38,26 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.WarriorEmblem);
-
                 recipe.AddIngredient(ItemID.ZombieArm);
                 recipe.AddIngredient(ItemID.Trident);
                 recipe.AddIngredient(ItemID.ChainKnife);
-                //red hourglass
+                recipe.AddIngredient(thorium.ItemType("RedHourglass"));
                 recipe.AddIngredient(ItemID.StylistKilLaKillScissorsIWish);
                 recipe.AddIngredient(ItemID.IceBlade);
-                //bellerose
+                recipe.AddIngredient(thorium.ItemType("Bellerose"));
                 recipe.AddIngredient(ItemID.Starfury);
-                //drenched dirk
-                //whip
+                recipe.AddIngredient(thorium.ItemType("DrenchedDirk"));
+                recipe.AddIngredient(thorium.ItemType("Whip"));
                 recipe.AddIngredient(ItemID.BeeKeeper);
-                //energy storm partizan //energy storm
-                //sanguine/nocturne yoyo
+                recipe.AddIngredient(thorium.ItemType("EnergyStormPartisan"));
+                recipe.AddRecipeGroup("FargowiltasSouls:AnyThoriumYoyo");
             }
             else
-            {*/
+            {
                 //no others
                 recipe.AddIngredient(ItemID.WarriorEmblem);
                 recipe.AddIngredient(ItemID.ZombieArm);
@@ -67,7 +68,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.Starfury);
                 recipe.AddIngredient(ItemID.BeeKeeper);
                 recipe.AddIngredient(ItemID.Cascade);
-            //}
+            }
 
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

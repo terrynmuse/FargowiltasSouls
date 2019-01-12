@@ -1,29 +1,10 @@
-NEW UPDATE - v 0.5.3
--Added several Masochist Mode features and fixes that shall not be named
+NEW UPDATE - v 0.5.5
+-Fixed bug in Slinger Essence recipe
+-Added back Thorium support for all Essences and Class Souls including effects and recipes
 
--Valhalla Knockback no longer works on WoF
--nerfed Cactus Enchantment damage
+This mod adds 2 main things. Souls and Masochist Mode.
 
--All masomode dudes that shoot new projectiles (shoot method) only fire if facing player
--Dr Bones is immune to traps
--Vultures do not fire until they are in the air
--Sand Poachers now inflict Marked for Death
--fixed fall damage happening with fall immune
-
-
-
-
-
-
-
-
-
-
-
-
-This mod adds 2 main things. Masochist Mode and Soul accessories.
-
+-Souls are a massive crafting tree of hundreds of items leading into one accessory. 
 -Masochist mode is a high IQ difficulty mode that offers a new challenge while not relying on just boosting stats. 
 New spawns, tons of new debuffs, new attacks from enemies, and bosses have gone completely insane
 This mode is optional.
--Soul accessories are a massive crafting tree of hundreds of items leading into one accessory. 
