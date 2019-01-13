@@ -1777,8 +1777,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (p.active && npc.Distance(p.Center) < 5000)
                             {
-                                p.buffImmune[BuffID.Silenced] = false;
-                                p.AddBuff(BuffID.Silenced, 2);
+                                p.AddBuff(mod.BuffType<ReverseManaFlow>(), 2);
                                 p.AddBuff(mod.BuffType<Jammed>(), 2);
                                 p.AddBuff(mod.BuffType<Antisocial>(), 2);
                             }
@@ -1792,8 +1791,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 p.AddBuff(mod.BuffType<Atrophied>(), 2);
                                 p.AddBuff(mod.BuffType<Jammed>(), 2);
-                                p.buffImmune[BuffID.Silenced] = false;
-                                p.AddBuff(BuffID.Silenced, 2);
+                                p.AddBuff(mod.BuffType<ReverseManaFlow>(), 2);
                             }
                         }
                         break;
@@ -1804,8 +1802,7 @@ namespace FargowiltasSouls.NPCs
                             if (p.active && npc.Distance(p.Center) < 5000)
                             {
                                 p.AddBuff(mod.BuffType<Atrophied>(), 2);
-                                p.buffImmune[BuffID.Silenced] = false;
-                                p.AddBuff(BuffID.Silenced, 2);
+                                p.AddBuff(mod.BuffType<ReverseManaFlow>(), 2);
                                 p.AddBuff(mod.BuffType<Antisocial>(), 2);
                             }
                         }
@@ -3659,7 +3656,8 @@ namespace FargowiltasSouls.NPCs
                                     Vector2 vector2_5 = spinningpoint.RotatedBy(num3 * num8);
                                     if (!flag4)
                                         vector2_5 -= spinningpoint;
-                                    Projectile.NewProjectile(npc.Center + vector2_5, speed, mod.ProjectileType("ElfArcherArrow"), damage, 0f, Main.myPlayer);
+                                    int p = Projectile.NewProjectile(npc.Center + vector2_5, speed, mod.ProjectileType("ElfArcherArrow"), damage, 0f, Main.myPlayer);
+                                    Main.projectile[p].noDropItem = true;
                                 }
                             }
                             Main.PlaySound(SoundID.Item5, npc.Center);
@@ -5202,6 +5200,20 @@ namespace FargowiltasSouls.NPCs
             {
                 switch (npc.type)
                 {
+                    case NPCID.CaveBat:
+                    case NPCID.GiantBat:
+                    case NPCID.IceBat:
+                    case NPCID.IlluminantBat:
+                    case NPCID.JungleBat:
+                    case NPCID.Vampire:
+                    case NPCID.VampireBat:
+                    case NPCID.GiantFlyingFox:
+                    case NPCID.Hellbat:
+                    case NPCID.Lavabat:
+                        if (Main.rand.Next(100) == 0)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RabiesShot"));
+                        break;
+
                     case NPCID.Retinazer:
                         if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FusedLens"));
@@ -5222,6 +5234,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DukeFishron:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Sadism"));
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RabiesShot"));
                         break;
 
                     default:
@@ -5682,9 +5695,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 31: //alien hornet
-                        Main.PlaySound(npc.DeathSound, npc.Center); //die without contributing to pillar shield
-                        npc.active = false;
-                        return false;
+                        if (Main.rand.Next(10) != 0)
+                        {
+                            Main.PlaySound(npc.DeathSound, npc.Center); //die without contributing to pillar shield
+                            npc.active = false;
+                            return false;
+                        }
+                        break;
 
                     case 32: //brain suckler
                         if (npc.ai[0] == 5f) //latched on player

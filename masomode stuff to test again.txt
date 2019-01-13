@@ -12,10 +12,14 @@ ai notes: skeleton archer and friends
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.8
-0.5.5
+0.5.6
 -added fused lens, ground stick, reinforced plating
 -golem also enrages if you spend too long under him
 -sharkrons inflict mutant nibble for same duration as fishron again
+-added reverse mana flow
+-elf archer frostburn arrows can no longer be collected by players
+-added rabies shot
+-tried fixing the pillar aura glitch
 
 0.5.4
 -All masomode dudes that shoot new projectiles (shoot method) only fire if facing player
@@ -64,6 +68,7 @@ ai notes: skeleton archer and friends
 -nerfed destroyer speed in phase 2
 -nerfed destroyer instakill to trigger below 350 (was 400)
 
+0.5.3 or earlier
 -underground hallow always flipped
 -crimson always bleed, corrupt always darkness
 -Illuminant Slimes now multiply, no aura
