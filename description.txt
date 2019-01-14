@@ -1,6 +1,10 @@
 NEW UPDATE - v 0.5.5
--Fixed bug in Slinger Essence recipe
--Added back Thorium support for all Essences and Class Souls including effects and recipes
+
+
+jungle water poisons and venoms
+hard mode corrupt water cursed flames
+crimson water ichor
+hard mode night snow chilled
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

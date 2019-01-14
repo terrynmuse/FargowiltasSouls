@@ -492,14 +492,41 @@ namespace FargowiltasSouls
                     player.AddBuff(BuffID.OnFire, 2);
                 }
 
-                if (player.ZoneCorrupt)
+                if (player.ZoneJungle && player.wet)
                 {
-                    player.AddBuff(BuffID.Darkness, 2);
+                    if (Main.hardMode)
+                    {
+                        player.AddBuff(BuffID.Venom, 300);
+                    }
+                    else
+                    {
+                        player.AddBuff(BuffID.Poisoned, 300);
+                    }
                 }
 
-                if (player.ZoneCrimson)
+                if (player.ZoneSnow && Main.hardMode && !Main.dayTime)
+                {
+                    player.AddBuff(BuffID.Chilled, 2);
+                }
+
+                if (player.ZoneCorrupt && Main.hardMode)
+                {
+                    player.AddBuff(BuffID.Darkness, 2);
+
+                    if(player.wet)
+                    {
+                        player.AddBuff(BuffID.CursedInferno, 300);
+                    }
+                }
+
+                if (player.ZoneCrimson && Main.hardMode)
                 {
                     player.AddBuff(BuffID.Bleeding, 2);
+
+                    if (player.wet)
+                    {
+                        player.AddBuff(BuffID.Ichor, 300);
+                    }
                 }
 
                 if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight))
