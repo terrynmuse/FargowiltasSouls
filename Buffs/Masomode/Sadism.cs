@@ -34,6 +34,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
             player.buffImmune[mod.BuffType("Purified")] = true;
+            player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;
             player.buffImmune[mod.BuffType("Rotting")] = true;
             player.buffImmune[mod.BuffType("SqueakyToy")] = true;
             player.buffImmune[mod.BuffType("Stunned")] = true;

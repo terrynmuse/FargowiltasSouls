@@ -53,6 +53,10 @@ namespace FargowiltasSouls.Buffs
                     }
                 }
             }
+            else if (type == BuffID.Electrified)
+            {
+                npc.GetGlobalNPC<FargowiltasSouls.NPCs.FargoGlobalNPC>().Electrified = true;
+            }
             
         }
     }

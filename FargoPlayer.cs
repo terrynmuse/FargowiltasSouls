@@ -154,6 +154,8 @@ namespace FargowiltasSouls
         public bool Eternity;
         private float eternityDamage = 0;
 
+        public bool GroundStick;
+
         //debuffs
         public bool Hexed;
         public bool Unstable;
@@ -182,6 +184,7 @@ namespace FargowiltasSouls
         public bool Jammed;                 //ranged damage and speed reduced, all non-custom ammo set to baseline ammos
         public bool Slimed;
         public byte lightningRodTimer;
+        public bool ReverseManaFlow;
 
         public IList<string> disabledSouls = new List<string>();
 
@@ -255,6 +258,21 @@ namespace FargowiltasSouls
             Soulcheck.owner = player.name;
 
             disabledSouls.Clear();
+
+            /*if (NPC.LunarApocalypseIsUp) //tried fixing pillars losing aura, doesn't work in multi
+            {
+                for (int i = 0; i < 200; i++)
+                {
+                    if (Main.npc[i].type == NPCID.LunarTowerSolar)
+                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 27;
+                    if (Main.npc[i].type == NPCID.LunarTowerVortex)
+                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 29;
+                    if (Main.npc[i].type == NPCID.LunarTowerNebula)
+                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 26;
+                    if (Main.npc[i].type == NPCID.LunarTowerStardust)
+                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 28;
+                }
+            }*/
         }
 
         public override void ProcessTriggers(TriggersSet triggersSet)
@@ -383,6 +401,8 @@ namespace FargowiltasSouls
             VoidSoul = false;
             Eternity = false;
 
+            GroundStick = false;
+
             //debuffs
             Hexed = false;
             Unstable = false;
@@ -402,6 +422,7 @@ namespace FargowiltasSouls
             SqueakyToy = false;
             Atrophied = false;
             Jammed = false;
+            ReverseManaFlow = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -966,6 +987,11 @@ namespace FargowiltasSouls
             if (GoldEnchant)
             {
                 target.AddBuff(BuffID.Midas, 120, true);
+            }
+
+            if (GroundStick && Main.rand.Next(20) == 0)
+            {
+                target.AddBuff(BuffID.Electrified, 240);
             }
 
             /*if (!Fargowiltas.Instance.ThoriumLoaded) return;

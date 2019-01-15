@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
@@ -138,6 +139,8 @@ namespace FargowiltasSouls.Items
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.type == ItemID.PumpkinPie && player.HasBuff(BuffID.PotionSickness)) return false;
+
+            if (item.magic && player.GetModPlayer<FargoPlayer>().ReverseManaFlow) return false;
 
             return true;
         }
