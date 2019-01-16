@@ -783,16 +783,15 @@ namespace FargowiltasSouls.Projectiles
 
                     //CULTIST OP
                     case ProjectileID.CultistBossLightningOrb:
-                        target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 900));
-                        break;
-
                     case ProjectileID.CultistBossLightningOrbArc:
+                        target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(60, 300));
                         target.AddBuff(BuffID.Electrified, Main.rand.Next(60, 300));
                         break;
 
                     case ProjectileID.CultistBossIceMist:
                         if (!target.HasBuff(BuffID.Frozen))
-                            target.AddBuff(BuffID.Frozen, Main.rand.Next(30, 120));
+                            target.AddBuff(BuffID.Frozen, Main.rand.Next(30, 90));
+                        target.AddBuff(BuffID.Chilled, Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.CultistBossFireBall:

@@ -23,6 +23,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("Defenseless")] = true;
             player.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
             player.buffImmune[mod.BuffType("Flipped")] = true;
+            player.buffImmune[mod.BuffType("FlippedHallow")] = true;
             player.buffImmune[mod.BuffType("Fused")] = true;
             player.buffImmune[mod.BuffType("GodEater")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;

@@ -4,15 +4,15 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class ReinforcedPlating : ModItem
+    public class LihzahrdTreasureBox : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Reinforced Plating");
-            Tooltip.SetDefault(@"Grants immunity to Defenseless
-Reduces damage taken by 6%");
+            DisplayName.SetDefault("Lihzahrd Treasure Box");
+            Tooltip.SetDefault(@"Grants immunity to Burning and Fused
+You erupt into spiky balls when injured");
         }
 
         public override void SetDefaults()
@@ -20,15 +20,16 @@ Reduces damage taken by 6%");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 5;
-            item.value = Item.sellPrice(0, 4);
-            item.defense = 6;
+            item.rare = 8;
+            item.value = Item.sellPrice(0, 6);
+            item.defense = 8;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[mod.BuffType("Defenseless")] = true;
-            player.endurance += 0.06f;
+            player.buffImmune[BuffID.Burning] = true;
+            player.buffImmune[mod.BuffType("Fused")] = true;
+            player.GetModPlayer<FargoPlayer>().LihzahrdTreasureBox = true;
         }
     }
 }

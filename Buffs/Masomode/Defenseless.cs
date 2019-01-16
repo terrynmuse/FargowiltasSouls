@@ -19,6 +19,11 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             //-30 defense, no damage reduction, cross necklace and knockback prevention effects disabled
             player.GetModPlayer<FargoPlayer>(mod).Defenseless = true;
+            if (player.beetleDefense)
+            {
+                player.beetleOrbs = 0;
+                player.beetleCounter = 0;
+            }
         }
     }
 }

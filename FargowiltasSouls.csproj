@@ -57,6 +57,9 @@
     <Compile Remove="Projectiles\NukeProj.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Buffs\Masomode\FlippedHallow.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="lib" />
   </ItemGroup>
   <PropertyGroup>
