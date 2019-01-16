@@ -1883,11 +1883,53 @@ namespace FargowiltasSouls.NPCs
                                 npc.netUpdate = true;
                             }
                         }
-                        else if (npc.ai[3] == 5f)
+                        else //if (npc.ai[3] == 5f)
                         {
-                            if (npc.ai[0] == 4f && npc.ai[1] == 19f) //spawn extra lightning portals from clones
+                            if (npc.ai[0] == 2f) //ice mist supported with frost waves
                             {
-                                if (Main.netMode != 1)
+                                if (npc.ai[1] == 3f && Main.netMode != 1)
+                                {
+                                    int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                    if (t != -1 && Main.player[t].active)
+                                    {
+                                        for (int i = 0; i < 200; i++)
+                                        {
+                                            if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                            {
+                                                Vector2 distance = Main.player[t].Center - Main.npc[i].Center;
+                                                distance.Normalize();
+                                                distance = distance.RotatedByRandom(Math.PI / 6);
+                                                distance *= Main.rand.NextFloat(8f, 12f);
+                                                //distance += Main.player[t].velocity * Main.rand.NextFloat() / 3f;
+                                                Projectile.NewProjectile(Main.npc[i].Center, distance, ProjectileID.FrostWave, 30, 0f, Main.myPlayer);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (npc.ai[0] == 3f) //extra fireballs
+                            {
+                                if (npc.ai[1] == 3f && Main.netMode != 1)
+                                {
+                                    for (int i = 0; i < 200; i++)
+                                    {
+                                        if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                        {
+                                            int n = NPC.NewNPC((int)Main.npc[i].Center.X, (int)Main.npc[i].Center.Y, NPCID.SolarFlare);
+                                            if (n < 200)
+                                            {
+                                                Main.npc[n].velocity.X = Main.rand.Next(-10, 11);//(-6, 7);
+                                                Main.npc[n].velocity.Y = Main.rand.Next(-10, 11);//(-15, -4);
+                                                if (Main.netMode == 2)
+                                                    NetMessage.SendData(23, -1, -1, null, n);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (npc.ai[0] == 4f) //spawn extra lightning portals from clones
+                            {
+                                if (npc.ai[1] == 19f && Main.netMode != 1)
                                 {
                                     for (int i = 0; i < 200; i++)
                                     {
@@ -1904,6 +1946,46 @@ namespace FargowiltasSouls.NPCs
                                     distance = distance.RotatedBy(MathHelper.ToRadians(120));
                                     Projectile.NewProjectile(Main.player[t].Center.X + distance.X, Main.player[t].Center.Y + distance.Y - 100f, 0f, 0f, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
                                 }*/
+                            }
+                            else if (npc.ai[0] == 7f) //ancient light supported by phantasmal eyes
+                            {
+                                if (npc.ai[1] == 3f && Main.netMode != 1)
+                                {
+                                    for (int i = 0; i < 200; i++)
+                                    {
+                                        if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                        {
+                                            Vector2 speed = Vector2.UnitX.RotatedByRandom(Math.PI);
+                                            speed *= 8f;
+                                            Projectile.NewProjectile(Main.npc[i].Center, speed, ProjectileID.PhantasmalEye, 30, 0f, Main.myPlayer);
+                                            Projectile.NewProjectile(Main.npc[i].Center, -speed, ProjectileID.PhantasmalEye, 30, 0f, Main.myPlayer);
+                                        }
+                                    }
+                                }
+                            }
+                            else if (npc.ai[0] == 8f) //ancient doom supported with phantasmal bolts
+                            {
+                                if (npc.ai[1] == 3f)
+                                {
+                                    int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                    if (t != -1 && Main.player[t].active)
+                                    {
+                                        for (int i = 0; i < 200; i++)
+                                        {
+                                            if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                            {
+                                                Main.PlaySound(4, (int)Main.npc[i].position.X, (int)Main.npc[i].position.Y, 6);
+                                                if (Main.netMode != 1)
+                                                {
+                                                    Vector2 distance = Main.player[t].Center + Main.player[t].velocity * Main.rand.NextFloat(10f, 20f) - Main.npc[i].Center;
+                                                    distance.Normalize();
+                                                    distance *= 8f;
+                                                    Projectile.NewProjectile(Main.npc[i].Center, distance, ProjectileID.PhantasmalBolt, 30, 0f, Main.myPlayer);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
 
