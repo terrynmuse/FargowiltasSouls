@@ -495,16 +495,32 @@ namespace FargowiltasSouls.Projectiles
 
                 case ProjectileID.JavelinHostile:
                 case ProjectileID.FlamingWood:
-                    projectile.position += projectile.velocity * .5f;
+                    if (FargoWorld.MasochistMode)
+                        projectile.position += projectile.velocity * .5f;
                     break;
 
                 case ProjectileID.VortexAcid:
-                    projectile.position += projectile.velocity * .25f;
+                    if (FargoWorld.MasochistMode)
+                        projectile.position += projectile.velocity * .25f;
                     break;
 
                 case ProjectileID.BombSkeletronPrime:
-                    projectile.damage = 40;
-                    projectile.Damage();
+                    if (FargoWorld.MasochistMode)
+                    {
+                        projectile.damage = 40;
+                        //projectile.Damage();
+                    }
+                    break;
+
+                case ProjectileID.CultistRitual:
+                    if (FargoWorld.MasochistMode)
+                    {
+                        if (projectile.ai[0] > 120f && projectile.ai[0] < 299f)
+                        {
+                            projectile.ai[0] = 299f;
+                            projectile.netUpdate = true;
+                        }
+                    }
                     break;
 
                 default:
@@ -798,10 +814,12 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType<Berserked>(), Main.rand.Next(60, 300));
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(90, 900));
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(120, 600));
+                        damage = damage * 3 / 2;
                         break;
 
                     case ProjectileID.CultistBossFireBallClone:
                         target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        damage = damage * 3 / 2;
                         break;
 
                     case ProjectileID.PaladinsHammerHostile:

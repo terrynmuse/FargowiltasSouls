@@ -140,6 +140,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead: masoHurtAI = 12; break;
 
+                    case NPCID.CultistDragonHead: npc.lifeMax *= 2; npc.life = npc.lifeMax; break;
                     case NPCID.CultistDragonBody1:
                     case NPCID.CultistDragonBody2:
                     case NPCID.CultistDragonBody3:
@@ -248,6 +249,10 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Lihzahrd:
                     case NPCID.FlyingSnake:
                         npc.trapImmune = true;
+                        break;
+
+                    case NPCID.CultistBossClone:
+                        npc.damage = 75;
                         break;
 
                     default:
@@ -391,7 +396,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.CultistBoss:
                         masoAI = 30;
-                        npc.lifeMax = npc.lifeMax * 3 / 2;
+                        npc.lifeMax *= 2;
                         npc.life = npc.lifeMax;
                         break;
 
@@ -623,6 +628,8 @@ namespace FargowiltasSouls.NPCs
                         npc.lavaImmune = true;
                         if (BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
                             masoAI = 81;
+                        else
+                            masoAI = 82;
                         break;
 
                     default:
@@ -1823,7 +1830,7 @@ namespace FargowiltasSouls.NPCs
 
                     case 30: //lunatic cultist
                         cultBoss = npc.whoAmI;
-                        foreach (Player p in Main.player.Where(x => x.active && !x.dead))
+                        /*foreach (Player p in Main.player.Where(x => x.active && !x.dead))
                         {
                             if (npc.Distance(p.Center) < 2000)
                             {
@@ -1832,45 +1839,60 @@ namespace FargowiltasSouls.NPCs
                                 if (p.mount.Active)
                                     p.mount.Dismount(p);
                             }
-                        }
+                        }*/
 
                         Counter++;
                         if (Counter >= 240)
                         {
                             int maxTimeShorten = (int)(210 * (1f - (float)npc.life / npc.lifeMax));
-                            Counter = (short)Main.rand.Next(maxTimeShorten, maxTimeShorten + 30);
+                            Counter = Main.rand.Next(maxTimeShorten, maxTimeShorten + 30);
 
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                             if (t != -1 && Main.player[t].active)
                             {
                                 Point tileCoordinates = Main.rand.Next(2) == 0 ? npc.Top.ToTileCoordinates() : Main.player[t].Top.ToTileCoordinates();
-
                                 tileCoordinates.X += Main.rand.Next(-25, 25);
                                 tileCoordinates.Y -= 15 + Main.rand.Next(-5, 5);
-
                                 for (int index = 0; index < 10 && !WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) && tileCoordinates.Y > 10; ++index)
-                                {
-                                    tileCoordinates.Y -= 1;
-                                }
-
+                                    tileCoordinates.Y--;
                                 Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
                             }
                         }
 
                         Timer++;
-                        if (Timer >= 1200)
+                        if (Timer >= 900)
                         {
                             Timer = 0;
 
-                            int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                            if (t != -1 && Main.player[t].active)
+                            if (NPC.CountNPCS(NPCID.AncientCultistSquidhead) < 4)
+                                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientDoom, 0, 0f, 0f, 0f, 0f, npc.target);
+                        }
+
+                        if (npc.ai[3] == -1f)
+                        {
+                            if (npc.ai[1] >= 120f && npc.ai[1] < 419f) //skip summoning ritual LMAO
                             {
-                                if (!NPC.AnyNPCs(NPCID.AncientCultistSquidhead))
-                                    NPC.SpawnOnPlayer(t, NPCID.AncientCultistSquidhead);
-                                if (npc.life < npc.lifeMax / 2 && !NPC.AnyNPCs(NPCID.CultistDragonHead))
-                                    NPC.SpawnOnPlayer(t, NPCID.CultistDragonHead);
+                                npc.ai[1] = 419f;
+                                npc.netUpdate = true;
                             }
                         }
+                        /*else if (npc.ai[3] == 5f)
+                        {
+                            if (npc.ai[0] == 4f && npc.ai[1] == 19f) //spawn extra lightning orbs, relative to player (forms triangle)
+                            {
+                                int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                if (t != -1 && Main.player[t].active)
+                                {
+                                    Vector2 distance = npc.Center - Main.player[t].Center;
+                                    distance = distance.RotatedBy(MathHelper.ToRadians(-60));
+                                    Projectile.NewProjectile(Main.player[t].Center.X + distance.X, Main.player[t].Center.Y + distance.Y - 100f, 0f, 0f, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
+                                    distance = distance.RotatedBy(MathHelper.ToRadians(120));
+                                    Projectile.NewProjectile(Main.player[t].Center.X + distance.X, Main.player[t].Center.Y + distance.Y - 100f, 0f, 0f, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
+                                }
+                            }
+                        }*/
+
+                        Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         break;
 
                     case 31: //king slime
@@ -4127,6 +4149,10 @@ namespace FargowiltasSouls.NPCs
                         npc.dontTakeDamage = true;
                         break;
 
+                    case 82:
+                        npc.dontTakeDamage = true;
+                        break;
+
                     /* pseudo memes
 
                     case unicorn
@@ -6224,10 +6250,14 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 13: //phantasmal dragon
-                        if (projectile.maxPenetrate > 1)
+                        if (projectile.type == ProjectileID.CrystalShard)
+                            damage = 1;
+                        else if (projectile.maxPenetrate > 1)
                             damage /= projectile.maxPenetrate;
                         else if (projectile.maxPenetrate < 0)
                             damage /= 5;
+
+                        damage /= 2;
                         break;
 
                     default:
@@ -6693,12 +6723,14 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.AncientDoom:
                         if (Main.rand.Next(3) == 0 && !target.HasBuff(mod.BuffType<MarkedforDeath>()))
                             target.AddBuff(mod.BuffType<MarkedforDeath>(), 1200);
+                        damage *= 3;
                         break;
                     case NPCID.AncientLight:
                         target.AddBuff(mod.BuffType<Purified>(), Main.rand.Next(60, 180));
                         break;
                     case NPCID.CultistBossClone:
-                        target.AddBuff(mod.BuffType<Hexed>(), Main.rand.Next(60, 180));
+                        target.AddBuff(mod.BuffType<Hexed>(), Main.rand.Next(60, 120));
+                        target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1800, 3600));
                         break;
 
                     case NPCID.MossHornet:

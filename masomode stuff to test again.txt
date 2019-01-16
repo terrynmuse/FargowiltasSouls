@@ -13,6 +13,12 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 0.5.6
+-phantasmal dragon resists crystal bullet shards & takes halved damage always
+-buffed cultist damage
+-buffed ancient light, always immortal
+-cultist ritual is instantaneous
+-cultist clones deal damage now and also inflict rotting/hexed
+
 -added pungent eyeball, skull charm, lihzahrd treasure box, gravity globe EX, mutant antibodies, volatile energy
 -moon lord hands take normal damage
 -moon lord head takes double damage
