@@ -114,7 +114,7 @@ namespace FargowiltasSouls.Projectiles
                         projectile.timeLeft = 600;
                     }
 
-                    if (modPlayer.UniverseEffect)
+                    /*if (modPlayer.UniverseEffect)
                     {
                         projectile.melee = true;
                         projectile.ranged = true;
@@ -126,8 +126,8 @@ namespace FargowiltasSouls.Projectiles
                         {
 
 
-                        }*/
-                    }
+                        }
+                    }*/
                 }
 
                 if (projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)

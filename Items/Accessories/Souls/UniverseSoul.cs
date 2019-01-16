@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -13,7 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of the Universe");
-            Tooltip.SetDefault(
+
+            string tooltip =
 @"'The heavens themselves bow to you'
 66% increased all damage
 50% increased use speed for all weapons
@@ -22,10 +24,20 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 Crits deal 5x damage
 All weapons have double knockback and have auto swing
 Increases your maximum mana by 300
-Increases your max number of minions by 8
+";
+
+            if (thorium != null)
+            {
+                tooltip += "Increases maximum inspiration by 30\n";
+            }
+
+            tooltip += 
+@"Increases your max number of minions by 8
 Increases your max number of sentries by 4
-Grants all other effects of material Souls
-All attacks inflict Flames of the Universe");
+All attacks inflict Flames of the Universe
+Grants all other effects of material Souls";
+
+            Tooltip.SetDefault(tooltip);
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(12, 5));
         }
@@ -70,8 +82,11 @@ All attacks inflict Flames of the Universe");
             player.manaMagnet = true;
             player.magicCuffs = true;
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
+        private void Thorium(Player player)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //phylactery
             if (!thoriumPlayer.lichPrevent)
@@ -80,26 +95,77 @@ All attacks inflict Flames of the Universe");
             }
             //crystal scorpion
             thoriumPlayer.crystalScorpion = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("CrystalScorpionMinion")] > 0)
-            {
-                thoriumPlayer.flatSummonDamage += 3;
-            }
             //yumas pendant
             thoriumPlayer.yuma = true;
-
             //complete set
             thoriumPlayer.throwGuide4 = true;
+
+            //HEALER
+            thoriumPlayer.radiantBoost += 0.4f;
+            thoriumPlayer.radiantSpeed -= 0.25f;
+            thoriumPlayer.healingSpeed += 0.25f;
+            thoriumPlayer.radiantCrit += 20;
+            //support stash
+            thoriumPlayer.supportSash = true;
+            thoriumPlayer.quickBelt = true;
+            //saving grace
+            thoriumPlayer.crossHeal = true;
+            thoriumPlayer.healBloom = true;
+            //soul guard
+            thoriumPlayer.graveGoods = true;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && player2 != player && Vector2.Distance(player2.Center, player.Center) < 400f)
+                {
+                    player2.AddBuff(thorium.BuffType("AegisAura"), 30, false);
+                }
+            }
+            //archdemon's curse
+            thoriumPlayer.darkAura = true;
+            //archangels heart
+            thoriumPlayer.healBonus += 5;
+            //medical bag
+            thoriumPlayer.medicalAcc = true;
+            float num = 0f;
+            int num2 = player.whoAmI;
+            for (int i = 0; i < 255; i++)
+            {
+                if (Main.player[i].active && Main.player[i] != player && !Main.player[i].dead && (Main.player[i].statLifeMax2 - Main.player[i].statLife) > num)
+                {
+                    num = (Main.player[i].statLifeMax2 - Main.player[i].statLife);
+                    num2 = i;
+                }
+            }
+            if (player.ownedProjectileCounts[thorium.ProjectileType("HealerSymbol")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("HealerSymbol"), 0, 0f, player.whoAmI, 0f, 0f);
+            }
+            for (int j = 0; j < 1000; j++)
+            {
+                Projectile projectile = Main.projectile[j];
+                if (projectile.active && projectile.owner == player.whoAmI && projectile.type == thorium.ProjectileType("HealerSymbol"))
+                {
+                    projectile.timeLeft = 2;
+                    projectile.ai[1] = num2;
+                }
+            }
+            //BARD
+            thoriumPlayer.symphonicDamage += 0.3f;
+            thoriumPlayer.symphonicSpeed += .2f;
+            thoriumPlayer.symphonicCrit += 15;
+            thoriumPlayer.bardResourceMax2 += 30;
+            //epic mouthpiece
+            thoriumPlayer.bardHomingBool = true;
+            thoriumPlayer.bardHomingBonus = 5f;
+            //straight mute
+            thoriumPlayer.bardMute2 = true;
+            //digital tuner
+            thoriumPlayer.tuner2 = true;
+            //guitar pick claw
+            thoriumPlayer.bardBounceBonus = 5;
         }
 
-        private void Healer(Player player)
-        {
-            
-        }
-
-        private void Bard(Player player)
-        {
-            
-        }
 
         public override void AddRecipes()
         {

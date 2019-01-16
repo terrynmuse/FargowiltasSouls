@@ -1837,11 +1837,14 @@ namespace FargowiltasSouls
             player.minionDamage += dmg;
             player.thrownDamage += dmg;
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumDamage(dmg);
+        }
 
+        private void ThoriumDamage(float dmg)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.radiantBoost += dmg;
-            thoriumPlayer.symphonicDamage += dmg;*/
+            thoriumPlayer.symphonicDamage += dmg;
         }
 
         public void AllCritUp(int crit)
@@ -1851,7 +1854,14 @@ namespace FargowiltasSouls
             player.magicCrit += crit;
             player.thrownCrit += crit;
 
-            //thorium meme
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumCrit(crit);
+        }
+
+        private void ThoriumCrit(int crit)
+        {
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            thoriumPlayer.radiantCrit += crit;
+            thoriumPlayer.symphonicCrit += crit;
         }
 
         public void AllCritEquals(int crit)

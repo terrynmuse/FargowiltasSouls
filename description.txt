@@ -1,4 +1,11 @@
-NEW UPDATE - v 0.5.5
+NEW UPDATE - v 0.5.6
+-Re-added Guardian Angel's Soul and Bard's Soul
+-Gave souls custom rarity that matches their color
+-All Forces are now Rarity 11 instead of 10
+-Fixed bug that would freeze you in place wearing certain Souls
+
+-Any item that increases all damage or all crit will now work for thorium's classes
+
 
 
 jungle water poisons and venoms

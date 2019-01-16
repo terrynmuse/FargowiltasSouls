@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using static Terraria.ID.ItemID;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -28,8 +30,18 @@ Fire Gauntlet and Yoyo Bag effects");
             item.height = 20;
             item.accessory = true;
             item.value = 1000000;
-            item.rare = -12;
-            item.expert = true;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 111, 6));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

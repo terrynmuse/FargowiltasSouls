@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,8 +28,18 @@ Sniper Scope Effects");
             item.height = 20;
             item.accessory = true;
             item.value = 1000000;
-            item.rare = -12;
-            item.expert = true;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(188, 253, 68));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

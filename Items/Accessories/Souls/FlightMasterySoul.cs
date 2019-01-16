@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,8 +23,18 @@ Allows for very long lasting flight");
             item.height = 20;
             item.accessory = true;
             item.value = 1000000;
-            item.expert = true;
-            item.rare = -12;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(56, 134, 255));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

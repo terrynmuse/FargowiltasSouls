@@ -52,27 +52,9 @@ Summons several pets";
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;
+            item.rare = 11;
             item.value = 600000;
         }
-
-        /*public override void ModifyTooltips(List<TooltipLine> list)
-        {
-            foreach (TooltipLine line in list)
-            {
-                if (line.mod == "Terraria" && line.Name == "ItemName")
-                {
-                    if(Main.rand.Next(5) == 0)
-                    {
-                        line.overrideColor = new Color(Main.DiscoR, 100, 10);
-                    }
-                    else
-                    {
-                        line.overrideColor = new Color(Main.DiscoR, 10, 200);
-                    }
-                }
-            }
-        }*/
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

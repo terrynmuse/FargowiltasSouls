@@ -49,7 +49,7 @@ Summons some living glitter to follow you around";
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;
+            item.rare = 11;
             item.value = 600000;
         }
 
