@@ -4,15 +4,17 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class ReinforcedPlating : ModItem
+    public class PungentEyeball : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Reinforced Plating");
-            Tooltip.SetDefault(@"Grants immunity to Defenseless
-Reduces damage taken by 6%");
+            DisplayName.SetDefault("Pungent Eyeball");
+            Tooltip.SetDefault(@"Grants immunity to Rotting
+Increases your max number of minions by 2
+Increases your max number of sentries by 2
+'It's fermenting...'");
         }
 
         public override void SetDefaults()
@@ -20,15 +22,15 @@ Reduces damage taken by 6%");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 5;
+            item.rare = 4;
             item.value = Item.sellPrice(0, 4);
-            item.defense = 6;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[mod.BuffType("Defenseless")] = true;
-            player.endurance += 0.06f;
+            player.buffImmune[mod.BuffType("Rotting")] = true;
+            player.maxMinions += 2;
+            player.maxTurrets += 2;
         }
     }
 }

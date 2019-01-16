@@ -13,6 +13,43 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 0.5.6
+-phantasmal dragon resists crystal bullet shards & takes halved damage always
+-buffed cultist damage
+-buffed ancient light, always immortal
+-cultist ritual is instantaneous
+-cultist clones deal damage now and also inflict rotting/hexed
+
+-added pungent eyeball, skull charm, lihzahrd treasure box, gravity globe EX, mutant antibodies, volatile energy
+-moon lord hands take normal damage
+-moon lord head takes double damage
+-defenseless disables beetle endurance
+-fixed phantasmal dragons not having pierce resistance
+-increased cultist life by 50%
+-cultist lightning always inflicts lightning rod & electrified
+-cultist summons phantasmal dragons when below 50% life
+-ancient vision inflicts defenseless now
+-phantasmal dragon inflicts mutant nibble
+-blood zombies also inflict long cursed w/ bloodthirsty
+-lihzahrds inflict infested w/ bloodthirsty
+-crimslime inflict super long bleeding w/ bloodthirsty
+-giant flying fox inflict squeaky toy w/ bloodthirsty
+-removed burning immune from obsidian enchantment haha gottam
+-tried making a lot of things not spawn during events
+-nerfed mage skeleton spawn rates
+-moon lord always causes lunar enemy spawns
+-cultist archers spawn only in purity
+-maso spawns won't occur near pillars
+-dr manfly death flasks no longer do three ghjkphillion damage
+-hallow inflicts flipped for 2 seconds when you enter (mitigates wack ass flipping per tick)
+-illum slimes don't split anymore, illum bats do instead
+-buffed fishron to regain 100% life in phase 3 hahaaa
+-wof/twins deathrays use standard i-frames
+-fixed reinforced plating not giving damage reduction smh
+-moon lord doesn't apply mutant nibble if you have immunity
+-mutant's gift doesnt work if a boss is alive
+-fishron has new dash bubbles in phase 3
+-fishron creates non homing sharknado bolts when teleporting
+
 -added fused lens, ground stick, reinforced plating
 -golem also enrages if you spend too long under him
 -sharkrons inflict mutant nibble for same duration as fishron again

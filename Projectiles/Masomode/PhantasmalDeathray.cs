@@ -28,7 +28,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.timeLeft = 600;
-            cooldownSlot = 1;
+            //cooldownSlot = 1;
         }
 
         public override void AI()

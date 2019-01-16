@@ -154,7 +154,11 @@ namespace FargowiltasSouls
         public bool Eternity;
         private float eternityDamage = 0;
 
+        //maso items
         public bool GroundStick;
+        public bool SkullCharm;
+        public bool LihzahrdTreasureBox;
+        public bool GravityGlobeEX;
 
         //debuffs
         public bool Hexed;
@@ -401,7 +405,11 @@ namespace FargowiltasSouls
             VoidSoul = false;
             Eternity = false;
 
+            //maso
             GroundStick = false;
+            SkullCharm = false;
+            LihzahrdTreasureBox = false;
+            GravityGlobeEX = false;
 
             //debuffs
             Hexed = false;
@@ -552,7 +560,7 @@ namespace FargowiltasSouls
 
                 if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight))
                 {
-                    player.AddBuff(mod.BuffType("Flipped"), 2);
+                    player.AddBuff(mod.BuffType("FlippedHallow"), 120);
                 }
 
                 if (player.wet && !(player.accFlipper || player.gills))
@@ -1629,6 +1637,14 @@ namespace FargowiltasSouls
                     TinCrit = 4;
                 }
             }
+
+            if (LihzahrdTreasureBox)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11), mod.ProjectileType("LihzahrdSpikyBallFriendly"), 80, 2f, player.whoAmI);
+                }
+            }
         }
 
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -1726,6 +1742,11 @@ namespace FargowiltasSouls
             if (BeetleEnchant)
             {
                 player.wingTimeMax = (int)(player.wingTimeMax * 2);
+            }
+
+            if (GravityGlobeEX)
+            {
+                player.wingTimeMax *= 2;
             }
         }
 
@@ -2619,7 +2640,6 @@ namespace FargowiltasSouls
         public void ObsidianEffect()
         {
             player.buffImmune[BuffID.OnFire] = true;
-            player.buffImmune[BuffID.Burning] = true;
             player.fireWalk = true;
             player.lavaImmune = true;
             player.armorPenetration += 10;
