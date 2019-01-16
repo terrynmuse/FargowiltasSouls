@@ -140,12 +140,19 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead: masoHurtAI = 12; break;
 
-                    case NPCID.CultistDragonHead: npc.lifeMax *= 2; npc.life = npc.lifeMax; break;
                     case NPCID.CultistDragonBody1:
                     case NPCID.CultistDragonBody2:
                     case NPCID.CultistDragonBody3:
                     case NPCID.CultistDragonBody4:
                     case NPCID.CultistDragonTail: masoHurtAI = 13; break;
+
+                    case NPCID.CultistDragonHead:
+                    case NPCID.AncientCultistSquidhead:
+                        npc.lifeMax *= 2;
+                        if (BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
+                            npc.lifeMax *= 2;
+                        npc.life = npc.lifeMax;
+                        break;
 
                     case NPCID.RainbowSlime:
                         npc.scale = 3f;
@@ -1865,7 +1872,7 @@ namespace FargowiltasSouls.NPCs
                             Timer = 0;
 
                             if (NPC.CountNPCS(NPCID.AncientCultistSquidhead) < 4)
-                                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientDoom, 0, 0f, 0f, 0f, 0f, npc.target);
+                                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
                         }
 
                         if (npc.ai[3] == -1f)
@@ -1876,11 +1883,19 @@ namespace FargowiltasSouls.NPCs
                                 npc.netUpdate = true;
                             }
                         }
-                        /*else if (npc.ai[3] == 5f)
+                        else if (npc.ai[3] == 5f)
                         {
-                            if (npc.ai[0] == 4f && npc.ai[1] == 19f) //spawn extra lightning orbs, relative to player (forms triangle)
+                            if (npc.ai[0] == 4f && npc.ai[1] == 19f) //spawn extra lightning portals from clones
                             {
-                                int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                if (Main.netMode != 1)
+                                {
+                                    for (int i = 0; i < 200; i++)
+                                    {
+                                        if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                            Projectile.NewProjectile(Main.npc[i].Center, Vector2.Zero, ProjectileID.VortexVortexLightning, 0, 1f, Main.myPlayer);
+                                    }
+                                }
+                                /*int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                                 if (t != -1 && Main.player[t].active)
                                 {
                                     Vector2 distance = npc.Center - Main.player[t].Center;
@@ -1888,9 +1903,9 @@ namespace FargowiltasSouls.NPCs
                                     Projectile.NewProjectile(Main.player[t].Center.X + distance.X, Main.player[t].Center.Y + distance.Y - 100f, 0f, 0f, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
                                     distance = distance.RotatedBy(MathHelper.ToRadians(120));
                                     Projectile.NewProjectile(Main.player[t].Center.X + distance.X, Main.player[t].Center.Y + distance.Y - 100f, 0f, 0f, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
-                                }
+                                }*/
                             }
-                        }*/
+                        }
 
                         Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         break;
@@ -2666,6 +2681,31 @@ namespace FargowiltasSouls.NPCs
                                         }
                                         break;
                                     case 4: //throwing
+                                        bool makeVisions = NPC.CountNPCS(NPCID.AncientCultistSquidhead) < 4;
+                                        for (int i = 0; i < 3; i++)
+                                        {
+                                            NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+
+                                            if (bodyPart.active)
+                                            {
+                                                if (bodyPart.type == NPCID.MoonLordHand)
+                                                {
+                                                    if (makeVisions)
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                            NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
+                                                    }
+                                                }
+                                                else if (i == 2 && bodyPart.type == NPCID.MoonLordHead)
+                                                {
+                                                    if (!NPC.AnyNPCs(NPCID.CultistDragonHead))
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                            NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.CultistDragonHead, 0, 0f, 0f, 0f, 0f, npc.target);
+                                                    }
+                                                }
+                                            }
+                                        }
                                         break;
                                 }
                                 //spawn visions from hands, dragon from head
@@ -5278,7 +5318,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GiantFlyingFox:
                     case NPCID.Hellbat:
                     case NPCID.Lavabat:
-                        if (Main.rand.Next(100) == 0)
+                        if (Main.rand.Next(20) == 0)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RabiesShot"));
                         break;
 

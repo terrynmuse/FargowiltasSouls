@@ -904,7 +904,7 @@ namespace FargowiltasSouls.Projectiles
                             damage *= 3;
                             target.AddBuff(BuffID.Electrified, Main.rand.Next(300, 600));
                         }
-                        else if (NPC.downedGolemBoss)
+                        else
                         {
                             damage *= 2;
                             target.AddBuff(BuffID.Electrified, Main.rand.Next(30, 300));
