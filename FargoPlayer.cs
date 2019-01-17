@@ -157,6 +157,7 @@ namespace FargowiltasSouls
         //maso items
         public bool GroundStick;
         public bool SkullCharm;
+        public bool LumpOfFlesh;
         public bool LihzahrdTreasureBox;
         public bool GravityGlobeEX;
 
@@ -408,6 +409,7 @@ namespace FargowiltasSouls
             //maso
             GroundStick = false;
             SkullCharm = false;
+            LumpOfFlesh = false;
             LihzahrdTreasureBox = false;
             GravityGlobeEX = false;
 
@@ -973,6 +975,12 @@ namespace FargowiltasSouls
             if (GroundStick && Main.rand.Next(20) == 0)
             {
                 target.AddBuff(BuffID.Electrified, 240);
+            }
+
+            if (LumpOfFlesh && proj.minion)
+            {
+                if (Main.rand.Next(2) == 0)
+                    target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
             }
 
             /*if (!Fargowiltas.Instance.ThoriumLoaded) return;

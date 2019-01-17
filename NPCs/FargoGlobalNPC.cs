@@ -580,6 +580,7 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 70;
                         npc.noTileCollide = true;
                         npc.buffImmune[BuffID.OnFire] = true;
+                        npc.lavaImmune = true;
                         break;
                         
                     case NPCID.BrainofCthulhu:
@@ -2676,23 +2677,43 @@ namespace FargowiltasSouls.NPCs
                                         {
                                             NPC bodyPart = Main.npc[(int)npc.localAI[i]];
 
-                                            if (bodyPart.active &&
-                                                ((i == 2 && bodyPart.type == NPCID.MoonLordHead) ||
-                                                bodyPart.type == NPCID.MoonLordHand))
+                                            if (bodyPart.active)
                                             {
-                                                Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
-                                                speed.Normalize();
-                                                speed *= 6f;
-                                                for (int j = 0; j < 3; j++)
+                                                if (i == 2 && bodyPart.type == NPCID.MoonLordHead)
                                                 {
-                                                    Projectile.NewProjectile(bodyPart.Center, speed, ProjectileID.CultistBossFireBall, 20, 0f, Main.myPlayer);
-                                                    speed = speed.RotatedBy(Math.PI * 2 / 3);
+                                                    Vector2 speed = new Vector2(0f, -12f).RotatedBy(MathHelper.ToRadians(-60));
+                                                    for (int j = 0; j < 6; j++)
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                        {
+                                                            int n = NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.SolarGoop);
+                                                            if (n < 200)
+                                                            {
+                                                                Main.npc[n].velocity = speed;
+                                                                if (Main.netMode == 2)
+                                                                    NetMessage.SendData(23, -1, -1, null, n);
+                                                            }
+                                                        }
+                                                        speed = speed.RotatedBy(MathHelper.ToRadians(20));
+                                                    }
+                                                }
+                                                else if (bodyPart.type == NPCID.MoonLordHand)
+                                                {
+                                                    Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
+                                                    speed.Normalize();
+                                                    speed *= 6f;
+                                                    for (int j = 0; j < 4; j++)
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                            Projectile.NewProjectile(bodyPart.Center, speed, ProjectileID.CultistBossFireBall, 20, 0f, Main.myPlayer);
+                                                        speed = speed.RotatedBy(Math.PI / 2);
+                                                    }
                                                 }
                                             }
                                         }
                                         break;
                                     case 1: //ranged
-                                        for (int i = 0; i < 10; i++) //spawn lightning
+                                        for (int i = 0; i < 12; i++) //spawn lightning
                                         {
                                             Point tileCoordinates = Main.player[npc.target].Top.ToTileCoordinates();
 
@@ -2767,20 +2788,25 @@ namespace FargowiltasSouls.NPCs
 
                                             if (bodyPart.active)
                                             {
-                                                if (bodyPart.type == NPCID.MoonLordHand)
-                                                {
-                                                    if (makeVisions)
-                                                    {
-                                                        if (Main.netMode != 1)
-                                                            NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
-                                                    }
-                                                }
-                                                else if (i == 2 && bodyPart.type == NPCID.MoonLordHead)
+                                                if (i == 2 && bodyPart.type == NPCID.MoonLordHead)
                                                 {
                                                     if (!NPC.AnyNPCs(NPCID.CultistDragonHead))
                                                     {
                                                         if (Main.netMode != 1)
-                                                            NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.CultistDragonHead, 0, 0f, 0f, 0f, 0f, npc.target);
+                                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.CultistDragonHead, 0, 0f, 0f, 0f, 0f, npc.target);
+                                                    }
+                                                    else if (makeVisions)
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
+                                                    }
+                                                }
+                                                else if (bodyPart.type == NPCID.MoonLordHand)
+                                                {
+                                                    if (makeVisions)
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
                                                     }
                                                 }
                                             }
@@ -3944,6 +3970,8 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.TargetClosest(false);
                         }
+
+                        npc.dontTakeDamage = true;
                         break;
 
                     case 71: //brain of cthulhu
@@ -6431,6 +6459,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 12: //moon lord
+                        if (projectile.type == ProjectileID.DD2BetsyArrow)
+                            damage = damage * 3 / 4;
                         if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.CrystalShard)
                             damage = 1;
                         else if (npc.type == NPCID.MoonLordCore)
@@ -6452,8 +6482,8 @@ namespace FargowiltasSouls.NPCs
                             damage = 1;
                         else if (projectile.maxPenetrate > 1)
                             damage /= projectile.maxPenetrate;
-                        else if (projectile.maxPenetrate < 0)
-                            damage /= 5;
+                        else if (projectile.maxPenetrate < 0 || projectile.type == ProjectileID.DD2BetsyArrow)
+                            damage /= 3;
 
                         damage /= 2;
                         break;

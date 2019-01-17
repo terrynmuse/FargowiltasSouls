@@ -13,6 +13,11 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 0.5.6
+-added lump of flesh
+-moon lord/phantasmal dragon resist aerial bane
+-moon lord solar attacks buffed
+-fixed moon lord spawning for throwing
+
 -cultist attacks also have clone support
 -bosses drop potions
 
