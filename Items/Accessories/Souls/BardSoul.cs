@@ -86,14 +86,14 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
             "GuitarPickClaw",
             "StraightMute",
             "BandKit",
-            "FishBone",
-            "PrimesRoar",
+            "RiffWeaver",
+            "PrimeRoar",
             "EskimoBanjo",
-            "SoundSagesLament",
-            "ChronoOcarina",
+            "Fishbone",
+            "Accordion",
+            "Ocarina",
             "TheMaw",
-            "SonicAmplifier",
-            "TheSet"   
+            "SonicAmplifier" 
         };
         
         public override void AddRecipes()

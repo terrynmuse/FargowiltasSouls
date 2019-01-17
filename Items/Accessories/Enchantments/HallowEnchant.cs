@@ -43,7 +43,7 @@ Summons a magical fairy");
             recipe.AddIngredient(ItemID.HallowedGreaves);
             recipe.AddIngredient(null, "SilverEnchant");
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("EnchantedShield"));
                 recipe.AddIngredient(ItemID.Excalibur);
@@ -52,10 +52,10 @@ Summons a magical fairy");
                 recipe.AddIngredient(thorium.ItemType("HallowedButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.Excalibur);
                 recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
-            //}
+            }
                       
             recipe.AddIngredient(ItemID.FairyBell);
             

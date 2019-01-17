@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Penetrator");
-            Tooltip.SetDefault("'The reward from slaughtering many..'");
+            Tooltip.SetDefault("'The reward for slaughtering many..'");
         }
 
         public override void SetDefaults()

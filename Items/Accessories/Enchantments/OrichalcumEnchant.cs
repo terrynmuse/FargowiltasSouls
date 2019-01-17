@@ -40,7 +40,7 @@ Spawns 3 fireballs to rotate around you");
             recipe.AddIngredient(ItemID.OrichalcumLeggings);
             recipe.AddIngredient(ItemID.OrichalcumWaraxe);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("OrichPelter"));
                 recipe.AddIngredient(thorium.ItemType("OrichalcumStaff"));
@@ -50,11 +50,11 @@ Spawns 3 fireballs to rotate around you");
                 recipe.AddIngredient(thorium.ItemType("PrismaticSpray"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.FlowerofFire);
                 recipe.AddIngredient(ItemID.FlowerofFrost);
                 recipe.AddIngredient(ItemID.CursedFlames);
-            //}
+            }
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

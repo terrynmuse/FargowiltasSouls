@@ -39,7 +39,7 @@ Any secondary projectiles may also split");
             recipe.AddIngredient(ItemID.AdamantiteBreastplate);
             recipe.AddIngredient(ItemID.AdamantiteLeggings);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.AdamantiteGlaive);
                 recipe.AddIngredient(thorium.ItemType("AdamantiteStaff"));
@@ -48,10 +48,10 @@ Any secondary projectiles may also split");
                 recipe.AddIngredient(thorium.ItemType("OgreSnotGun"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.DarkLance);
                 recipe.AddIngredient(ItemID.AdamantiteGlaive);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.Shotgun);
             recipe.AddIngredient(ItemID.VenomStaff);

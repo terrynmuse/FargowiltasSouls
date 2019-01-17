@@ -39,7 +39,7 @@ Reach maxed buff boosters to gain drastically increased magic attack speed");
             recipe.AddIngredient(ItemID.NebulaBreastplate);
             recipe.AddIngredient(ItemID.NebulaLeggings);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.WingsNebula);
                 recipe.AddIngredient(thorium.ItemType("BlackStaff"));
@@ -47,9 +47,9 @@ Reach maxed buff boosters to gain drastically increased magic attack speed");
                 recipe.AddIngredient(thorium.ItemType("NebulaReflection"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.ShadowbeamStaff);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.NebulaArcanum);
             recipe.AddIngredient(ItemID.NebulaBlaze);

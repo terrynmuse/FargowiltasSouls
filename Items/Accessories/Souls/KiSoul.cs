@@ -8,11 +8,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class KiSoul : ModItem
     {
-        string _tooltip = null;
+        string tooltip = null;
 
         public override bool Autoload(ref string name)
         {
-            return false;
+            return false;// ModLoader.GetLoadedMods().Contains("DBZMOD");
         }
 
         public override void SetStaticDefaults()

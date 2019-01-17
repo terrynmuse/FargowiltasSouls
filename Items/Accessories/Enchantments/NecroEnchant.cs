@@ -40,7 +40,7 @@ Summons a pet Skeletron Head");
             recipe.AddIngredient(ItemID.NecroGreaves);
             recipe.AddIngredient(ItemID.BoneSword);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("Slugger"));
                 recipe.AddIngredient(thorium.ItemType("MarrowScepter"));
@@ -49,9 +49,9 @@ Summons a pet Skeletron Head");
                 recipe.AddIngredient(thorium.ItemType("BoneButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.TheGuardiansGaze);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.BoneKey);
             

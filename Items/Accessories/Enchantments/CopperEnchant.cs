@@ -15,18 +15,17 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Copper Enchantment");
 
-            string tooltip = "'Behold'\n";
-
-            /*if(thorium != null)
-            {
-                tooltip += "\nWhile in combat, you generate a 10 life shield\n";
-            }*/
-
-            tooltip +=
-@"Attacks have a chance to shock enemies with lightning
+            string tooltip = 
+@"'Behold'
+Attacks have a chance to shock enemies with lightning
 If an enemy is wet, the chance and damage is increased
 Attacks that cause Wet cannot proc the lightning
 Lightning scales with magic damage";
+
+            if(thorium != null)
+            {
+                tooltip += "You constantly generate a 10 life shield\n";
+            }
 
             Tooltip.SetDefault(tooltip);
         }
@@ -45,30 +44,28 @@ Lightning scales with magic damage";
         {
             player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            //copper buckler
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
+
+        private void Thorium(Player player)
+        {
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            thoriumPlayer.metallurgyShield = true;
-            if (!thoriumPlayer.outOfCombat)
+            timer++;
+            if (timer >= 30)
             {
-                timer++;
-                if (timer >= 30)
+                int num = 10;
+                if (thoriumPlayer.shieldHealth <= num)
                 {
-                    int num = 10;
-                    if (thoriumPlayer.shieldHealth < num)
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                        thoriumPlayer.shieldHealth++;
-                    }
-                    timer = 0;
-                    return;
+                    thoriumPlayer.shieldHealthTimerStop = true;
                 }
-            }
-            else
-            {
+                if (thoriumPlayer.shieldHealth < num)
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                    thoriumPlayer.shieldHealth++;
+                    player.statLife++;
+                }
                 timer = 0;
-            }*/
+            }
         }
 
         public override void AddRecipes()
@@ -78,7 +75,7 @@ Lightning scales with magic damage";
             recipe.AddIngredient(ItemID.CopperChainmail);
             recipe.AddIngredient(ItemID.CopperGreaves);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("CopperBuckler"));
                 recipe.AddIngredient(ItemID.CopperShortsword);
@@ -89,11 +86,11 @@ Lightning scales with magic damage";
                 recipe.AddIngredient(thorium.ItemType("AmethystButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.CopperShortsword);
                 recipe.AddIngredient(ItemID.AmethystStaff);
                 recipe.AddIngredient(ItemID.Wire, 20);
-            //}
+            }
                        
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

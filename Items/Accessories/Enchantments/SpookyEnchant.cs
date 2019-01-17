@@ -42,12 +42,12 @@ Summons a pet Cursed Sapling and Eyeball Spring");
             recipe.AddIngredient(ItemID.DeathSickle);
             
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BeholderStaff"));
                 recipe.AddIngredient(thorium.ItemType("CryptWand"));
                 recipe.AddIngredient(thorium.ItemType("PaganGrasp"));
-            }*/
+            }
             
             recipe.AddIngredient(ItemID.CursedSapling);
             recipe.AddIngredient(ItemID.EyeSpring);

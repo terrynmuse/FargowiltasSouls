@@ -3,24 +3,34 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
+using ThoriumMod.Items.Misc;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     //[AutoloadEquip(EquipType.Back)]
     public class TrawlerSoul : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Trawler Soul");
-            Tooltip.SetDefault(
+
+            string tooltip = 
 @"'The fish catch themselves'
 Increases fishing skill substantially
 All fishing rods will have 10 extra lures
 Fishing line will never break
 Decreases chance of bait consumption
-Permanent Sonar and Crate Buffs");
+Permanent Sonar and Crate Buffs";
 
-//Allows you to see what's biting your hook
+            if (thorium != null)
+            {
+                tooltip += "Allows any fishing pole to catch loot in lava";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -48,13 +58,21 @@ Permanent Sonar and Crate Buffs");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //extra lures
             modPlayer.FishSoul2 = true;
-            //modPlayer.AddPet("Zephyr Fish Pet", hideVisual, BuffID.ZephyrFish, ProjectileID.ZephyrFish);
+            modPlayer.AddPet("Zephyr Fish Pet", hideVisual, BuffID.ZephyrFish, ProjectileID.ZephyrFish);
             player.sonarPotion = true;
             player.fishingSkill += 50;
             player.cratePotion = true;
             player.accFishingLine = true;
             player.accTackleBox = true;
             player.accFishFinder = true;
+
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
+
+        private void Thorium(Player player)
+        {
+            MagmaBoundFishingLineMP magmaPlayer = player.GetModPlayer<MagmaBoundFishingLineMP>();
+            magmaPlayer.magmaLine = true;
         }
 
         public override void AddRecipes()
@@ -62,28 +80,29 @@ Permanent Sonar and Crate Buffs");
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "AnglerEnchantment");
             recipe.AddIngredient(ItemID.AnglerTackleBag);
-            recipe.AddIngredient(ItemID.MechanicsRod);
-            recipe.AddIngredient(ItemID.SittingDucksFishingRod);
-
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-            //hi tech sonar device
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("AquaticSonarDevice"));
-                //CartilagedCatcher
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TerrariumFisher"));
+                recipe.AddIngredient(thorium.ItemType("MagmaBoundFishingLine"));
+                recipe.AddIngredient(thorium.ItemType("AquaticSonarDevice"));
+                recipe.AddIngredient(ItemID.MechanicsRod);
+                recipe.AddIngredient(ItemID.SittingDucksFishingRod);
+                recipe.AddIngredient(thorium.ItemType("CartlidgedCatcher"));
+                recipe.AddIngredient(thorium.ItemType("TerrariumFisher"));
             }
             else
-            {*/
+            {
+                recipe.AddIngredient(ItemID.MechanicsRod);
+                recipe.AddIngredient(ItemID.SittingDucksFishingRod);
                 recipe.AddIngredient(ItemID.GoldenFishingRod);
-            //}
+            }
 
-            recipe.AddIngredient(ItemID.FrogLeg);
             recipe.AddIngredient(ItemID.FinWings);
             recipe.AddIngredient(ItemID.Toxikarp);
             recipe.AddIngredient(ItemID.Bladetongue);
             recipe.AddIngredient(ItemID.CrystalSerpent);
             recipe.AddIngredient(ItemID.ObsidianSwordfish);
-            //recipe.AddIngredient(ItemID.ZephyrFish);
+            recipe.AddIngredient(ItemID.ZephyrFish);
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

@@ -38,12 +38,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.CobaltBreastplate);
             recipe.AddIngredient(ItemID.CobaltLeggings);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("CobaltPopper"));
                 recipe.AddIngredient(thorium.ItemType("CobaltStaff"));
                 recipe.AddIngredient(thorium.ItemType("CrystalPhaser"));
-            }*/
+            }
             
             recipe.AddIngredient(ItemID.Chik);
             recipe.AddIngredient(ItemID.CrystalDart, 300);

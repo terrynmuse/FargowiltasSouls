@@ -20,10 +20,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Attacks may inflict enemies with Lead Poisoning
 Lead Poisoning deals damage over time and slows enemies slightly";
 
-            /*if(thorium != null)
+            if(thorium != null)
             {
-                tooltip += "While in combat, you generate a 13 life shield";
-            }*/
+                tooltip += "You constantly generate a 13 life shield";
+            }
 
             Tooltip.SetDefault(tooltip);
         }
@@ -42,29 +42,28 @@ Lead Poisoning deals damage over time and slows enemies slightly";
         {
             player.GetModPlayer<FargoPlayer>(mod).LeadEnchant = true;
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
-            ThoriumPlayer thoriumPlayer = ((ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer"));
-            thoriumPlayer.metallurgyShield = true;
-            if (!thoriumPlayer.outOfCombat)
+        private void Thorium(Player player)
+        {
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            timer++;
+            if (timer >= 30)
             {
-                timer++;
-                if (timer >= 30)
+                int num = 13;
+                if (thoriumPlayer.shieldHealth <= num)
                 {
-                    int num = 13;
-                    if (thoriumPlayer.shieldHealth < num)
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                        thoriumPlayer.shieldHealth++;
-                    }
-                    timer = 0;
-                    return;
+                    thoriumPlayer.shieldHealthTimerStop = true;
                 }
-            }
-            else
-            {
+                if (thoriumPlayer.shieldHealth < num)
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                    thoriumPlayer.shieldHealth++;
+                    player.statLife++;
+                }
                 timer = 0;
-            }*/
+            }
         }
 
         public override void AddRecipes()
@@ -74,7 +73,7 @@ Lead Poisoning deals damage over time and slows enemies slightly";
             recipe.AddIngredient(ItemID.LeadChainmail);
             recipe.AddIngredient(ItemID.LeadGreaves);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("LeadShield"));
                 recipe.AddIngredient(ItemID.LeadShortsword);
@@ -85,11 +84,11 @@ Lead Poisoning deals damage over time and slows enemies slightly";
                 recipe.AddIngredient(ItemID.SulphurButterfly);
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.LeadShortsword);
                 recipe.AddIngredient(ItemID.LeadPickaxe);
                 recipe.AddIngredient(ItemID.GrayPaint);
-            //}
+            }
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

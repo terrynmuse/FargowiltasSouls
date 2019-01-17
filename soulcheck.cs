@@ -114,9 +114,10 @@ namespace FargowiltasSouls
             ["Truffle Pet"] = new Color(81, 181, 113),
             ["Turtle Pet"] = new Color(81, 181, 113),
             ["Wisp Pet"] = new Color(81, 181, 113),
-            //["Zephyr Fish Pet"] = new Color(81, 181, 113),
+            ["Zephyr Fish Pet"] = new Color(81, 181, 113),
 
-            //thorium
+            #region thorium
+            ["Air Walkers"] = new Color(81, 181, 113),
             /*["Omega Pet"] = new Color(81, 181, 113),
             ["I.F.O. Pet"] = new Color(81, 181, 113),
             ["Bio-Feeder Pet"] = new Color(81, 181, 113),
@@ -134,6 +135,7 @@ namespace FargowiltasSouls
             ["Moogle Pet"] = new Color(81, 181, 113),
             ["Maid Pet"] = new Color(81, 181, 113),
             ["Pink Slime Pet"] = new Color(81, 181, 113),*/
+            #endregion
         };
 
         private readonly Color _defaultColor = new Color(81, 181, 113);
@@ -195,29 +197,28 @@ namespace FargowiltasSouls
 
             UiCheckbox.CheckboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
 
-            //if (thorium == null)
-            //{
-                //int count = 0;
+            if (thorium == null)
+            {
+                int count = 0;
 
                 foreach (KeyValuePair<string, Color> toggle in toggles)
                 {
                     CreateCheckbox(toggle.Key, toggle.Value);
-                    //count++;
+                    count++;
 
-                    //if(count >= toggles.Count - 1)
-                    //{
-                    //    break;
-                    //}
-                    
+                    if(count >= toggles.Count - 1) // monus num of thorium toggles so far
+                    {
+                        break;
+                    }
                 }
-            /*}
+            }
             else
             {
                 foreach (KeyValuePair<string, Color> toggle in toggles)
                 {
                     CreateCheckbox(toggle.Key, toggle.Value);
                 }
-            }*/
+            }
         }
 
         private void DragOn(UIMouseEvent evt, UIElement listeningElement)

@@ -39,21 +39,18 @@ One attack gains 5% life steal every second, capped at 5 HP");
             recipe.AddIngredient(ItemID.PalladiumBreastplate);
             recipe.AddIngredient(ItemID.PalladiumLeggings);
             recipe.AddIngredient(ItemID.PalladiumSword);
-            
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            recipe.AddIngredient(ItemID.PalladiumRepeater);
+
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("PalladiumSub"));
                 recipe.AddIngredient(thorium.ItemType("PalladiumStaff"));
                 recipe.AddIngredient(thorium.ItemType("eeeLifeLeech")); //um WTF
                 recipe.AddIngredient(thorium.ItemType("VampireScepter"));
             }
-            else
-            {*/
-                recipe.AddIngredient(ItemID.PalladiumRepeater);
-            //}
             
             recipe.AddIngredient(ItemID.SoulDrain);
-            //recipe.AddIngredient(ItemID.VampireKnives);
+            recipe.AddIngredient(ItemID.HeartLantern, 5);
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

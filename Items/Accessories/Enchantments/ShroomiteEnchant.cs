@@ -50,9 +50,9 @@ While in stealth, crits deal 4x damage
             recipe.AddIngredient(ItemID.ShroomiteBreastplate);
             recipe.AddIngredient(ItemID.ShroomiteLeggings);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(null, "FungusEnchant");
+                //recipe.AddIngredient(null, "FungusEnchant");
                 recipe.AddIngredient(ItemID.MushroomSpear);
                 recipe.AddIngredient(thorium.ItemType("MyceliumGattlingPulser"));
                 recipe.AddIngredient(ItemID.ChlorophyteShotbow);
@@ -60,11 +60,11 @@ While in stealth, crits deal 4x damage
                 recipe.AddIngredient(thorium.ItemType("ShroomiteButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.MushroomSpear);
                 recipe.AddIngredient(ItemID.Hammush);
                 recipe.AddIngredient(ItemID.Uzi);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.StrangeGlowingMushroom);
             

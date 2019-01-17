@@ -78,9 +78,10 @@ Summons a pet Gato and Black Cat";
             recipe.AddIngredient(ItemID.MonkAltShirt);
             recipe.AddIngredient(ItemID.MonkAltPants);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(null, "ShadeMasterEnchant");
+                recipe.AddIngredient(null, "NinjaEnchant");
+                //recipe.AddIngredient(null, "ShadeMasterEnchant");
                 recipe.AddIngredient(ItemID.MasterNinjaGear);
                 recipe.AddIngredient(ItemID.MonkBelt);
                 recipe.AddIngredient(ItemID.DD2LightningAuraT2Popper);
@@ -88,11 +89,11 @@ Summons a pet Gato and Black Cat";
                 recipe.AddIngredient(thorium.ItemType("TotalityButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(null, "NinjaEnchant");
                 recipe.AddIngredient(ItemID.MasterNinjaGear);
                 recipe.AddIngredient(ItemID.MonkBelt);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.DD2PetGato);
             

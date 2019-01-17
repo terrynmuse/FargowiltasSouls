@@ -127,9 +127,9 @@ Nearby allies that die drop a wisp of spirit energy");
             "MoonlightStaff",
             "TerrariumHolyScythe",
             "TerraScythe",
-            "PhoenixStaff", 
+            "PheonixStaff", 
             "ShieldDroneBeacon", 
-            "LifeandDeath" 
+            "LifeAndDeath" 
         };
 
         public override void AddRecipes()

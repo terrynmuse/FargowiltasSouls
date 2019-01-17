@@ -176,17 +176,17 @@ Grants all other effects of material Souls";
             recipe.AddIngredient(null, "ConjuristsSoul");
             recipe.AddIngredient(null, "OlympiansSoul");
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(null, "GuardianAngelsSoul");
                 recipe.AddIngredient(null, "BardSoul");
-                recipe.AddIngredient(ModLoader.GetMod("ThoriumMod").ItemType("TheRing"));
+                recipe.AddIngredient(thorium.ItemType("TheRing"));
                 
                 /*
                 
-                black midi - bard
+                black midi - bard*/
                 
-            }*/
+            }
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
