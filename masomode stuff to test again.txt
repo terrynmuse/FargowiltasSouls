@@ -1,4 +1,4 @@
-ai notes: skeleton archer and friends
+﻿ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)
 //if (npc.ai[1] == num3 / 2), num3 is 70 by default
 //	ai[2] = 0f, ai[1] = 0f, shoot
@@ -12,7 +12,10 @@ ai notes: skeleton archer and friends
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.8
-0.5.6
+-added magical bulb
+-golem fists dont kill minions
+
+0.5.6.5
 -Eternia Crystal doesnt regen in Masochist Mode anymore
 jungle water poisons and venoms
 hard mode corrupt water cursed flames
@@ -27,6 +30,7 @@ hard mode night snow chilled
 -cultist attacks also have clone support
 -bosses drop potions
 
+0.5.6
 -buffed ancient vision life
 -ancient vision and phantasm dragon have even more life when moon lord is alive
 -fixed cultist spawning ancient dooms, not ancient visions

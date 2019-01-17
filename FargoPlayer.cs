@@ -155,9 +155,10 @@ namespace FargowiltasSouls
         private float eternityDamage = 0;
 
         //maso items
-        public bool GroundStick;
-        public bool SkullCharm;
         public bool LumpOfFlesh;
+        public bool GroundStick;
+        public bool MagicalBulb;
+        public bool SkullCharm;
         public bool LihzahrdTreasureBox;
         public bool GravityGlobeEX;
 
@@ -407,9 +408,10 @@ namespace FargowiltasSouls
             Eternity = false;
 
             //maso
-            GroundStick = false;
-            SkullCharm = false;
             LumpOfFlesh = false;
+            GroundStick = false;
+            MagicalBulb = false;
+            SkullCharm = false;
             LihzahrdTreasureBox = false;
             GravityGlobeEX = false;
 
@@ -796,6 +798,14 @@ namespace FargowiltasSouls
             }
 
             return AttackSpeed;
+        }
+
+        public override void UpdateLifeRegen()
+        {
+            if (MagicalBulb)
+            {
+                player.lifeRegen += 2;
+            }
         }
 
         public override void UpdateBadLifeRegen()

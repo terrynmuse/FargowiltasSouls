@@ -5537,6 +5537,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Plantera:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MagicalBulb"));
                         int maxPlant = Main.rand.Next(6) + 1;
                         for (int i = 0; i < maxPlant; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CalmingPotion);
@@ -6406,7 +6407,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 7: //golem fists
-                        if (projectile.maxPenetrate != 1)
+                        if (projectile.maxPenetrate != 1 && !projectile.minion)
                             projectile.active = false;
                         break;
 
