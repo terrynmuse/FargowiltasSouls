@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,10 +36,19 @@ Increased minion knockback";
             item.height = 20;
             item.accessory = true;
             item.value = 1000000;
-            item.rare = -12;
-            item.expert = true;
+            item.rare = 11;
         }
 
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(0, 255, 255));
+                }
+            }
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -48,6 +59,11 @@ Increased minion knockback";
 
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            Thorium(player);
+        }
+
+        private void Thorium(Player player)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //phylactery
             if (!thoriumPlayer.lichPrevent)

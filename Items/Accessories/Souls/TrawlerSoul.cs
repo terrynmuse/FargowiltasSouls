@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,8 +29,18 @@ Permanent Sonar and Crate Buffs");
             item.height = 20;
             item.accessory = true;
             item.value = 750000;
-            item.rare = -12;
-            item.expert = true;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(0, 238, 125));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

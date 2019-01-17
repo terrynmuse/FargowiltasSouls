@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -73,10 +74,19 @@ Enemies are more likely to target you");
             item.accessory = true;
             item.defense = 10;
             item.value = 1000000;
-            item.expert = true;
-            item.rare = -12;
+            item.rare = 11;
+            item.shieldSlot = 4;
+        }
 
-            //item.shieldSlot = 4;
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(252, 59, 0));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

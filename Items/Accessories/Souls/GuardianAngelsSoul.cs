@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
 using Terraria.ID;
+using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -14,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -23,50 +24,15 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             Tooltip.SetDefault(
 @"'Divine Intervention'
-40% increased radiant damage
-25% increased healing and radiant casting speed
-20% increased radiant critical strike chance
+30% increased radiant damage
+20% increased healing and radiant casting speed
+15% increased radiant critical strike chance
 Healing spells will heal an additional 5 life
+Points you towards the ally with the least health
 Healing an ally will increase your movement speed and increase their life regen and defense
-Upon drinking a healing potion, all allies will recover 25 life and 40 mana
-You and nearby allies will take 8% reduced damage
-Taking fatal damage unleashes your inner spirit");
-
-//archangels heart
-//Maximum life increased by 20
-//Maximum mana increased by 20
-//5% increased radiant damage
-//15% increased healing speed
-//Healing spells will heal an additional 1 life
-
-//archdemons curse
-//Corrupts your radiant powers
-//Maximum life increased by 20
-//10% increased radiant casting speed
-//20% increased radiant damage
-//12% increased radiant critical strike chance
-
-//medical bag
-//Points you towards the ally with the least health
-//That ally will receive 1 additional healing
-//Healing allies that are in combat grants them 1 life recovery for 10 seconds
-
-//support sash
-//Healing an ally will significantly increase your movement speed
-//Upon drinking a healing potion, all nearby players recover 25 life and 50 mana
-//Aditionally, allies will receive increased healing for 30 seconds
-
-//saving grace
-//5% increased healing speed
-//Healing an ally increases their life regeneration and regeneration rate
-//Healing spells will increase the healed targets defense by 20 for 15 seconds
-//Increased length of invincibility after taking damage
-
-//soul guard
-//Enemies are less likely to target you
-//You and nearby allies take 10% reduced damage
-//Nearby allies that die drop a wisp of spirit energy
-//Players that touch the wisp replenish health equal to 15% of the allies max health
+Upon drinking a healing potion, all allies will recover 25 life and 50 mana
+Nearby allies take 10% reduced damage
+Nearby allies that die drop a wisp of spirit energy");
         }
 
         public override void SetDefaults()
@@ -75,58 +41,78 @@ Taking fatal damage unleashes your inner spirit");
             item.height = 20;
             item.accessory = true;
             item.value = 750000;
-            item.expert = true;
-            item.rare = -12;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 30, 247));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
-
-            //Turn undead
-            player.aggro -= 50;
-            player.AddBuff(ModLoader.GetMod("ThoriumMod").BuffType("AegisAura"), 30, false);
-
-            for (int k = 0; k < 255; k++)
-            {
-                Player target = Main.player[k];
-
-                if (target.active && target != player && Vector2.Distance(target.Center, player.Center) < 275)
-                    target.AddBuff(ModLoader.GetMod("ThoriumMod").BuffType("AegisAura"), 30, false);
-            }
-
-            //the rest
-            Healer(player);
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
 
-        private static void Healer(Player player)
+        private void Thorium(Player player)
         {
             //general
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).radiantBoost += 0.4f; //radiant damage
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).radiantSpeed -= 0.25f; //radiant casting speed
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).healingSpeed += 0.25f; //healing spell casting speed
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).radiantCrit += 20;
-
-            //archdemon's curse
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).darkAura = true; //Dark intent purple coloring effect
-
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            thoriumPlayer.radiantBoost += 0.4f;
+            thoriumPlayer.radiantSpeed -= 0.25f;
+            thoriumPlayer.healingSpeed += 0.25f;
+            thoriumPlayer.radiantCrit += 20;
             //support stash
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).quickBelt = true; //bonus movement from healing
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).apothLife = true; //drinking health potion recovers life
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).apothMana = true; //drinking health potion recovers mana
-
-            //ascension statuette
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).ascension = true; //turn into healing thing on death
-
-            //wynebg..........
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).Wynebgwrthucher = true; //heals on healing ally
-
-            //archangels heart
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).healBonus += 5; //Bonus healing
-
+            thoriumPlayer.supportSash = true;
+            thoriumPlayer.quickBelt = true;
             //saving grace
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).crossHeal = true; //bonus defense in heal
-            player.GetModPlayer<ThoriumPlayer>(ModLoader.GetMod("ThoriumMod")).healBloom = true; //bonus life regen on heal
+            thoriumPlayer.crossHeal = true;
+            thoriumPlayer.healBloom = true;
+            //soul guard
+            thoriumPlayer.graveGoods = true;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && player2 != player && Vector2.Distance(player2.Center, player.Center) < 400f)
+                {
+                    player2.AddBuff(thorium.BuffType("AegisAura"), 30, false);
+                }
+            }
+            //archdemon's curse
+            thoriumPlayer.darkAura = true;
+            //archangels heart
+            thoriumPlayer.healBonus += 5;
+            //medical bag
+            thoriumPlayer.medicalAcc = true;
+            float num = 0f;
+            int num2 = player.whoAmI;
+            for (int i = 0; i < 255; i++)
+            {
+                if (Main.player[i].active && Main.player[i] != player && !Main.player[i].dead && (Main.player[i].statLifeMax2 - Main.player[i].statLife) > num)
+                {
+                    num = (Main.player[i].statLifeMax2 - Main.player[i].statLife);
+                    num2 = i;
+                }
+            }
+            if (player.ownedProjectileCounts[thorium.ProjectileType("HealerSymbol")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("HealerSymbol"), 0, 0f, player.whoAmI, 0f, 0f);
+            }
+            for (int j = 0; j < 1000; j++)
+            {
+                Projectile projectile = Main.projectile[j];
+                if (projectile.active && projectile.owner == player.whoAmI && projectile.type == thorium.ProjectileType("HealerSymbol"))
+                {
+                    projectile.timeLeft = 2;
+                    projectile.ai[1] = num2;
+                }
+            }
         }
         
         private readonly string[] items =
@@ -137,15 +123,13 @@ Taking fatal damage unleashes your inner spirit");
             "ArchDemonCurse",
             "ArchangelHeart",
             "MedicalBag",
-            
-            
-            "TeslaDefibrillator - frankensteins drop",
-            "MoonlightStaff - drop lycan",
+            "TeslaDefibrillator",
+            "MoonlightStaff",
             "TerrariumHolyScythe",
             "TerraScythe",
-            "PhoenixStaff", //biome chest
+            "PhoenixStaff", 
             "ShieldDroneBeacon", 
-            "LifeandDeath" //ml drop
+            "LifeandDeath" 
         };
 
         public override void AddRecipes()
@@ -153,9 +137,9 @@ Taking fatal damage unleashes your inner spirit");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ModRecipe recipe = new ModRecipe(mod);
-            
-            //essence
-            
+
+            //recipe.AddIngredient(null, "BardEssence");
+
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             if (Fargowiltas.Instance.FargosLoaded)

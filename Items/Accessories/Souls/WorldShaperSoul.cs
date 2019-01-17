@@ -3,6 +3,8 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using static Terraria.ID.ItemID;
 using ThoriumMod;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -33,8 +35,18 @@ Effect can be disabled in Soul Toggles menu");
             item.height = 20;
             item.accessory = true;
             item.value = 750000;
-            item.expert = true;
-            item.rare = -12;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 239, 2));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -95,7 +107,7 @@ Effect can be disabled in Soul Toggles menu");
 
             //if (!Fargowiltas.Instance.ThoriumLoaded)
             //{
-
+                recipe.AddIngredient(null, "MinerEnchant");
                 recipe.AddIngredient(Toolbelt);
                 recipe.AddIngredient(Toolbox);
                 recipe.AddIngredient(ArchitectGizmoPack);
@@ -108,7 +120,6 @@ Effect can be disabled in Soul Toggles menu");
 
                 recipe.AddRecipeGroup("FargowiltasSouls:AnyDrax");
                 recipe.AddIngredient(ShroomiteDiggingClaw);
-                recipe.AddIngredient(Picksaw);
                 recipe.AddIngredient(LaserDrill);
                 recipe.AddIngredient(DrillContainmentUnit);
                 

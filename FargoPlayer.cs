@@ -437,8 +437,10 @@ namespace FargowiltasSouls
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
-            //remove this after testing you fool
-            //player.respawnTimer = (int)(player.respawnTimer * .01);
+            if (Eternity)
+            {
+                player.respawnTimer = (int)(player.respawnTimer * .1);
+            }
         }
 
         public override void UpdateDead()
@@ -523,14 +525,41 @@ namespace FargowiltasSouls
                     player.AddBuff(BuffID.OnFire, 2);
                 }
 
-                if (player.ZoneCorrupt)
+                if (player.ZoneJungle && player.wet)
                 {
-                    player.AddBuff(BuffID.Darkness, 2);
+                    if (Main.hardMode)
+                    {
+                        player.AddBuff(BuffID.Venom, 300);
+                    }
+                    else
+                    {
+                        player.AddBuff(BuffID.Poisoned, 300);
+                    }
                 }
 
-                if (player.ZoneCrimson)
+                if (player.ZoneSnow && Main.hardMode && !Main.dayTime)
+                {
+                    player.AddBuff(BuffID.Chilled, 2);
+                }
+
+                if (player.ZoneCorrupt && Main.hardMode)
+                {
+                    player.AddBuff(BuffID.Darkness, 2);
+
+                    if(player.wet)
+                    {
+                        player.AddBuff(BuffID.CursedInferno, 300);
+                    }
+                }
+
+                if (player.ZoneCrimson && Main.hardMode)
                 {
                     player.AddBuff(BuffID.Bleeding, 2);
+
+                    if (player.wet)
+                    {
+                        player.AddBuff(BuffID.Ichor, 300);
+                    }
                 }
 
                 if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight))
@@ -721,7 +750,7 @@ namespace FargowiltasSouls
             int useTime = item.useTime;
             int useAnimate = item.useAnimation;
 
-            if (useTime == 0 || useAnimate == 0)
+            if (useTime == 0 || useAnimate == 0 || item.damage <= 0)
             {
                 return 1f;
             }
@@ -1839,11 +1868,14 @@ namespace FargowiltasSouls
             player.minionDamage += dmg;
             player.thrownDamage += dmg;
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumDamage(dmg);
+        }
 
+        private void ThoriumDamage(float dmg)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.radiantBoost += dmg;
-            thoriumPlayer.symphonicDamage += dmg;*/
+            thoriumPlayer.symphonicDamage += dmg;
         }
 
         public void AllCritUp(int crit)
@@ -1853,7 +1885,14 @@ namespace FargowiltasSouls
             player.magicCrit += crit;
             player.thrownCrit += crit;
 
-            //thorium meme
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumCrit(crit);
+        }
+
+        private void ThoriumCrit(int crit)
+        {
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            thoriumPlayer.radiantCrit += crit;
+            thoriumPlayer.symphonicCrit += crit;
         }
 
         public void AllCritEquals(int crit)
@@ -3064,7 +3103,7 @@ namespace FargowiltasSouls
             //portal spawn
             VortexEnchant = true;
             //stealth memes
-            if ((player.controlDown && player.releaseDown))
+            if (Soulcheck.GetValue("Vortex Stealth") && (player.controlDown && player.releaseDown))
             {
                 if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15)
                 {

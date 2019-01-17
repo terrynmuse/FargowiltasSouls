@@ -50,8 +50,7 @@ Drastically increased ki regen
             item.height = 20;
             item.accessory = true;
             item.value = 1000000;
-            item.expert = true;
-            item.rare = -12;
+            item.rare = 11;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -1,6 +1,18 @@
-NEW UPDATE - v 0.5.5
--Fixed bug in Slinger Essence recipe
--Added back Thorium support for all Essences and Class Souls including effects and recipes
+NEW UPDATE - v 0.5.6
+-Masochist Mode changes that may not be named
+-Except one: A few Masomode exclusive drops
+-Re-added Guardian Angel's Soul and Bard's Soul
+-Soul of Eternity now makes you respawn 10x faster
+-Gave souls custom rarity that matches their color
+-All Forces are now Rarity 11 instead of 10
+-Fixed bug that would freeze you in place while wearing certain Souls
+-Any item that increases all damage or all crit will now work for thorium's classes
+-Added Miner Enchantment to World Shaper Soul recipe where it belongs
+-Added Vortex Stealth and Palladium Healing toggle, removed Iron Fall Speed toggle
+-Renamed Universe Speedup toggle to Universe Attack Speed
+-Soul of the Universe and Eternity attack speed no longer effects items that don't deal damage, like blocks and boss summons
+-Added dust to Leash of Cthulhu projectiles
+-The Big Sting projectiles now count as ranged damage
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

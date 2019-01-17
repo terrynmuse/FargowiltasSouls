@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -51,8 +53,18 @@ Grants immunity to lava and fall damage");
             item.defense = 4;
             item.accessory = true;
             item.value = 750000;
-            item.expert = true;
-            item.rare = -12;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(238, 0, 69));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
