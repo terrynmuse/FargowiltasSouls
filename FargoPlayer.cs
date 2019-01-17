@@ -435,8 +435,10 @@ namespace FargowiltasSouls
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
-            //remove this after testing you fool
-            //player.respawnTimer = (int)(player.respawnTimer * .01);
+            if (Eternity)
+            {
+                player.respawnTimer = (int)(player.respawnTimer * .1);
+            }
         }
 
         public override void UpdateDead()
@@ -746,7 +748,7 @@ namespace FargowiltasSouls
             int useTime = item.useTime;
             int useAnimate = item.useAnimation;
 
-            if (useTime == 0 || useAnimate == 0)
+            if (useTime == 0 || useAnimate == 0 || item.damage <= 0)
             {
                 return 1f;
             }
@@ -3093,7 +3095,7 @@ namespace FargowiltasSouls
             //portal spawn
             VortexEnchant = true;
             //stealth memes
-            if ((player.controlDown && player.releaseDown))
+            if (Soulcheck.GetValue("Vortex Stealth") && (player.controlDown && player.releaseDown))
             {
                 if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15)
                 {

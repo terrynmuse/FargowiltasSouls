@@ -107,7 +107,7 @@ Effect can be disabled in Soul Toggles menu");
 
             //if (!Fargowiltas.Instance.ThoriumLoaded)
             //{
-
+                recipe.AddIngredient(null, "MinerEnchant");
                 recipe.AddIngredient(Toolbelt);
                 recipe.AddIngredient(Toolbox);
                 recipe.AddIngredient(ArchitectGizmoPack);
@@ -120,7 +120,6 @@ Effect can be disabled in Soul Toggles menu");
 
                 recipe.AddRecipeGroup("FargowiltasSouls:AnyDrax");
                 recipe.AddIngredient(ShroomiteDiggingClaw);
-                recipe.AddIngredient(Picksaw);
                 recipe.AddIngredient(LaserDrill);
                 recipe.AddIngredient(DrillContainmentUnit);
                 

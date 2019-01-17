@@ -632,6 +632,12 @@ namespace FargowiltasSouls.NPCs
                             masoAI = 82;
                         break;
 
+                    /*case NPCID.DemonEye:
+                    case NPCID.DemonEyeOwl:
+                    case NPCID.DemonEyeSpaceship:
+                        masoAI = 83;
+                        break;*/
+
                     default:
                         break;
                 }
@@ -4153,6 +4159,23 @@ namespace FargowiltasSouls.NPCs
                         npc.dontTakeDamage = true;
                         break;
 
+                    /*SOON TM, dont fell like fiixng right now
+                     * case 83: //demon eye
+
+                        Counter++;
+                        if (Counter >= 300)
+                        {
+                            Shoot(npc, 60, 500, 10, ProjectileID.ShadowFlame, npc.damage * 2, 0, false, true);
+                            //electric bolt 435
+                            //shadowflame hex doll
+                            //toxic cloud
+                            //stardust laser
+                            //solar flare
+
+                        }
+
+                        break;*/
+
                     /* pseudo memes
 
                     case unicorn
@@ -4162,36 +4185,18 @@ namespace FargowiltasSouls.NPCs
                      case moth:
                     Shoot(Spores)
 
-                    case flying fish:
-                    swarm spawn
-
                     case umbrealla slime:
                     fall slow and explodes water EVERYWHERE instantly flooding a world
 
                     case nimbus:
                     Shoot(Lightning)
 
-                    case bats: swarm spawn
-
-                    case vulture: 
-                    swarm if player.life < 25%
-
                     case spike ball: 
                     some AI = faster speed ?
-
-
-                    case harpy:
-                    summon tornado, cthulunado recolor without shark spawn
 
                     case jellyfish:
                     if ai == electric thing && player.same water
                     player.AddBuff(BuffID.Electrocute);
-
-                    case demon eye
-                    if counter == blah
-                    pre AI return false for a few frames 
-                    Shoot(petrify beam) new projectile or could use an existing one with special property or could steal medusa code and see wtf happens there
-                    npc.velocity go backward a bit (beam knockback )
 
                     case fire imp fire ball:
                     if fire imp is within like 2 pixels 
@@ -4481,15 +4486,10 @@ namespace FargowiltasSouls.NPCs
 
             if (FargoWorld.MasochistMode)
             {
-                if(!npc.dontTakeDamage && RegenTimer <= 0)
+                if(!npc.dontTakeDamage && npc.type != NPCID.DD2EterniaCrystal && RegenTimer <= 0)
                 {
                     npc.lifeRegen += 1 + npc.lifeMax / 25;
                 }
-
-                /*if(npc.type == NPCID.Golem || npc.type == NPCID.GolemFistLeft || npc.type == NPCID.GolemFistRight || npc.type == NPCID.GolemHead)
-                {
-                    npc.lifeRegen += npc.lifeMax / 15;
-                }*/
             }
 
             //20 dps

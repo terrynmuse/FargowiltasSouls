@@ -62,7 +62,7 @@ Grants all other effects of material Souls";
             //use speed, velocity, debuffs, crit dmg, mana up, double knockback
             modPlayer.UniverseEffect = true;
             
-            if (Soulcheck.GetValue("Universe Speedup"))
+            if (Soulcheck.GetValue("Universe Attack Speed"))
             {
                 modPlayer.AttackSpeed *= 1.5f;
             }

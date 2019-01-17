@@ -13,6 +13,12 @@ ai notes: skeleton archer and friends
 //	default damage = 35
 //	default expertmode damage: *= 0.8
 0.5.6
+-Eternia Crystal doesnt regen in Masochist Mode anymore
+jungle water poisons and venoms
+hard mode corrupt water cursed flames
+crimson water ichor
+hard mode night snow chilled
+
 -phantasmal dragon resists crystal bullet shards & takes halved damage always
 -buffed cultist damage
 -buffed ancient light, always immortal
