@@ -140,12 +140,19 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead: masoHurtAI = 12; break;
 
-                    case NPCID.CultistDragonHead: npc.lifeMax *= 2; npc.life = npc.lifeMax; break;
                     case NPCID.CultistDragonBody1:
                     case NPCID.CultistDragonBody2:
                     case NPCID.CultistDragonBody3:
                     case NPCID.CultistDragonBody4:
                     case NPCID.CultistDragonTail: masoHurtAI = 13; break;
+
+                    case NPCID.CultistDragonHead:
+                    case NPCID.AncientCultistSquidhead:
+                        npc.lifeMax *= 2;
+                        if (BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
+                            npc.lifeMax *= 2;
+                        npc.life = npc.lifeMax;
+                        break;
 
                     case NPCID.RainbowSlime:
                         npc.scale = 3f;
@@ -573,6 +580,7 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 70;
                         npc.noTileCollide = true;
                         npc.buffImmune[BuffID.OnFire] = true;
+                        npc.lavaImmune = true;
                         break;
                         
                     case NPCID.BrainofCthulhu:
@@ -1847,7 +1855,7 @@ namespace FargowiltasSouls.NPCs
                             }
                         }*/
 
-                        Counter++;
+                        /*Counter++;
                         if (Counter >= 240)
                         {
                             int maxTimeShorten = (int)(210 * (1f - (float)npc.life / npc.lifeMax));
@@ -1863,15 +1871,15 @@ namespace FargowiltasSouls.NPCs
                                     tileCoordinates.Y--;
                                 Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
                             }
-                        }
+                        }*/
 
                         Timer++;
-                        if (Timer >= 900)
+                        if (Timer >= 1200)
                         {
                             Timer = 0;
 
                             if (NPC.CountNPCS(NPCID.AncientCultistSquidhead) < 4)
-                                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientDoom, 0, 0f, 0f, 0f, 0f, npc.target);
+                                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
                         }
 
                         if (npc.ai[3] == -1f)
@@ -1882,23 +1890,110 @@ namespace FargowiltasSouls.NPCs
                                 npc.netUpdate = true;
                             }
                         }
-                        /*else if (npc.ai[3] == 5f)
+                        else
                         {
-                            if (npc.ai[0] == 4f && npc.ai[1] == 19f) //spawn extra lightning orbs, relative to player (forms triangle)
+                            switch((int)npc.ai[0])
                             {
-                                int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                                if (t != -1 && Main.player[t].active)
-                                {
-                                    Vector2 distance = npc.Center - Main.player[t].Center;
-                                    distance = distance.RotatedBy(MathHelper.ToRadians(-60));
-                                    Projectile.NewProjectile(Main.player[t].Center.X + distance.X, Main.player[t].Center.Y + distance.Y - 100f, 0f, 0f, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
-                                    distance = distance.RotatedBy(MathHelper.ToRadians(120));
-                                    Projectile.NewProjectile(Main.player[t].Center.X + distance.X, Main.player[t].Center.Y + distance.Y - 100f, 0f, 0f, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
-                                }
-                            }
-                        }*/
+                                case -1:
+                                    if (npc.ai[1] == 419f)
+                                    {
+                                        npc.ai[0] = 0f;
+                                        npc.ai[1] = 0f;
+                                        npc.ai[3] = 11f;
+                                        npc.netUpdate = true;
+                                    }
+                                    break;
 
-                        Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
+                                case 2:
+                                    if (npc.ai[1] == 3f && Main.netMode != 1) //ice mist, frost wave support
+                                    {
+                                        int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                        if (t != -1 && Main.player[t].active)
+                                        {
+                                            for (int i = 0; i < 200; i++)
+                                            {
+                                                if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                                {
+                                                    Vector2 distance = Main.player[t].Center - Main.npc[i].Center;
+                                                    distance.Normalize();
+                                                    distance = distance.RotatedByRandom(Math.PI / 12);
+                                                    distance *= Main.rand.NextFloat(6f, 9f);
+                                                    Projectile.NewProjectile(Main.npc[i].Center, distance, ProjectileID.FrostWave, 25, 0f, Main.myPlayer);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                case 3:
+                                    if (npc.ai[1] == 3f && Main.netMode != 1) //fireballs, solar goop support
+                                    {
+                                        for (int i = 0; i < 200; i++)
+                                        {
+                                            if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                            {
+                                                int n = NPC.NewNPC((int)Main.npc[i].Center.X, (int)Main.npc[i].Center.Y, NPCID.SolarGoop);
+                                                if (n < 200)
+                                                {
+                                                    Main.npc[n].velocity.X = Main.rand.Next(-10, 11);
+                                                    Main.npc[n].velocity.Y = Main.rand.Next(-15, -4);
+                                                    if (Main.netMode == 2)
+                                                        NetMessage.SendData(23, -1, -1, null, n);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                case 4:
+                                    if (npc.ai[1] == 19f && Main.netMode != 1) //lightning orb, lightning portal support
+                                    {
+                                        for (int i = 0; i < 200; i++)
+                                        {
+                                            if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                                Projectile.NewProjectile(Main.npc[i].Center, Vector2.Zero, ProjectileID.VortexVortexLightning, 0, 1f, Main.myPlayer);
+                                        }
+                                    }
+                                    break;
+
+                                case 7:
+                                    if (npc.ai[1] == 3f && Main.netMode != 1) //ancient light, phantasmal eye support
+                                    {
+                                        for (int i = 0; i < 200; i++)
+                                        {
+                                            if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                            {
+                                                Vector2 speed = Vector2.UnitX.RotatedByRandom(Math.PI);
+                                                speed *= 6f;
+                                                Projectile.NewProjectile(Main.npc[i].Center, speed, ProjectileID.PhantasmalEye, 30, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(Main.npc[i].Center, speed.RotatedBy(Math.PI * 2 / 3), ProjectileID.PhantasmalEye, 25, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(Main.npc[i].Center, speed.RotatedBy(-Math.PI * 2 / 3), ProjectileID.PhantasmalEye, 25, 0f, Main.myPlayer);
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                case 8:
+                                    if (npc.ai[1] == 3f) //ancient doom, nebula sphere support
+                                    {
+                                        int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                        if (t != -1 && Main.player[t].active)
+                                        {
+                                            for (int i = 0; i < 200; i++)
+                                            {
+                                                if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
+                                                    Projectile.NewProjectile(Main.npc[i].Center, Vector2.Zero, ProjectileID.NebulaSphere, 30, 0f, Main.myPlayer);
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
+
+                        //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         break;
 
                     case 31: //king slime
@@ -2588,23 +2683,43 @@ namespace FargowiltasSouls.NPCs
                                         {
                                             NPC bodyPart = Main.npc[(int)npc.localAI[i]];
 
-                                            if (bodyPart.active &&
-                                                ((i == 2 && bodyPart.type == NPCID.MoonLordHead) ||
-                                                bodyPart.type == NPCID.MoonLordHand))
+                                            if (bodyPart.active)
                                             {
-                                                Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
-                                                speed.Normalize();
-                                                speed *= 6f;
-                                                for (int j = 0; j < 3; j++)
+                                                if (i == 2 && bodyPart.type == NPCID.MoonLordHead)
                                                 {
-                                                    Projectile.NewProjectile(bodyPart.Center, speed, ProjectileID.CultistBossFireBall, 20, 0f, Main.myPlayer);
-                                                    speed = speed.RotatedBy(Math.PI * 2 / 3);
+                                                    Vector2 speed = new Vector2(0f, -12f).RotatedBy(MathHelper.ToRadians(-60));
+                                                    for (int j = 0; j < 6; j++)
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                        {
+                                                            int n = NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.SolarGoop);
+                                                            if (n < 200)
+                                                            {
+                                                                Main.npc[n].velocity = speed;
+                                                                if (Main.netMode == 2)
+                                                                    NetMessage.SendData(23, -1, -1, null, n);
+                                                            }
+                                                        }
+                                                        speed = speed.RotatedBy(MathHelper.ToRadians(20));
+                                                    }
+                                                }
+                                                else if (bodyPart.type == NPCID.MoonLordHand)
+                                                {
+                                                    Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
+                                                    speed.Normalize();
+                                                    speed *= 6f;
+                                                    for (int j = 0; j < 4; j++)
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                            Projectile.NewProjectile(bodyPart.Center, speed, ProjectileID.CultistBossFireBall, 20, 0f, Main.myPlayer);
+                                                        speed = speed.RotatedBy(Math.PI / 2);
+                                                    }
                                                 }
                                             }
                                         }
                                         break;
                                     case 1: //ranged
-                                        for (int i = 0; i < 10; i++) //spawn lightning
+                                        for (int i = 0; i < 12; i++) //spawn lightning
                                         {
                                             Point tileCoordinates = Main.player[npc.target].Top.ToTileCoordinates();
 
@@ -2672,6 +2787,36 @@ namespace FargowiltasSouls.NPCs
                                         }
                                         break;
                                     case 4: //throwing
+                                        bool makeVisions = NPC.CountNPCS(NPCID.AncientCultistSquidhead) < 4;
+                                        for (int i = 0; i < 3; i++)
+                                        {
+                                            NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+
+                                            if (bodyPart.active)
+                                            {
+                                                if (i == 2 && bodyPart.type == NPCID.MoonLordHead)
+                                                {
+                                                    if (!NPC.AnyNPCs(NPCID.CultistDragonHead))
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.CultistDragonHead, 0, 0f, 0f, 0f, 0f, npc.target);
+                                                    }
+                                                    else if (makeVisions)
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
+                                                    }
+                                                }
+                                                else if (bodyPart.type == NPCID.MoonLordHand)
+                                                {
+                                                    if (makeVisions)
+                                                    {
+                                                        if (Main.netMode != 1)
+                                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
+                                                    }
+                                                }
+                                            }
+                                        }
                                         break;
                                 }
                                 //spawn visions from hands, dragon from head
@@ -3831,6 +3976,8 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.TargetClosest(false);
                         }
+
+                        npc.dontTakeDamage = true;
                         break;
 
                     case 71: //brain of cthulhu
@@ -5278,35 +5425,13 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GiantFlyingFox:
                     case NPCID.Hellbat:
                     case NPCID.Lavabat:
-                        if (Main.rand.Next(100) == 0)
+                        if (Main.rand.Next(20) == 0)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RabiesShot"));
-                        break;
-
-                    case NPCID.WallofFlesh:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PungentEyeball"));
                         break;
 
                     case NPCID.ChaosElemental:
                         if (Main.rand.Next(5) == 0)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VolatileEnergy"));
-                        break;
-
-                    case NPCID.Retinazer:
-                        if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FusedLens"));
-                        break;
-
-                    case NPCID.Spazmatism:
-                        if (!BossIsAlive(ref retiBoss, NPCID.Retinazer))
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FusedLens"));
-                        break;
-
-                    case NPCID.TheDestroyer:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GroundStick"));
-                        break;
-
-                    case NPCID.SkeletronPrime:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ReinforcedPlating"));
                         break;
 
                     case NPCID.SkeletonSniper:
@@ -5322,13 +5447,114 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SkullCharm"));
                         break;
 
+                    case NPCID.KingSlime:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HerbBag);
+                        break;
+
+                    case NPCID.EyeofCthulhu:
+                        int maxEOC = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxEOC; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ThornsPotion);
+                        break;
+
+                    case NPCID.EaterofWorldsHead:
+                    case NPCID.EaterofWorldsBody:
+                    case NPCID.EaterofWorldsTail:
+                        bool dropPotions = true;
+                        for (int i = 0; i < 200; i++)
+                        {
+                            if (Main.npc[i].active && i != npc.whoAmI && (Main.npc[i].type == 13 || Main.npc[i].type == 14 || Main.npc[i].type == 15))
+                            {
+                                dropPotions = false;
+                                break;
+                            }
+                        }
+                        if (dropPotions)
+                        {
+                            int max = Main.rand.Next(6) + 1;
+                            for (int i = 0; i < max; i++)
+                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RagePotion);
+                        }
+                        break;
+
+                    case NPCID.BrainofCthulhu:
+                        int maxBOC = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxBOC; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.WrathPotion);
+                        break;
+
+                    case NPCID.SkeletronHead:
+                        int maxSkel = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxSkel; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TitanPotion);
+                        break;
+
+                    case NPCID.QueenBee:
+                        int maxQB = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxQB; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SummoningPotion);
+                        break;
+
+                    case NPCID.WallofFlesh:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PungentEyeball"));
+                        int maxWOF = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxWOF; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.InfernoPotion);
+                        break;
+
+                    case NPCID.Retinazer:
+                        if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
+                        {
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FusedLens"));
+                            int max = Main.rand.Next(6) + 1;
+                            for (int i = 0; i < max; i++)
+                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicPowerPotion);
+                        }
+                        break;
+
+                    case NPCID.Spazmatism:
+                        if (!BossIsAlive(ref retiBoss, NPCID.Retinazer))
+                        {
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FusedLens"));
+                            int max = Main.rand.Next(6) + 1;
+                            for (int i = 0; i < max; i++)
+                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicPowerPotion);
+                        }
+                        break;
+
+                    case NPCID.TheDestroyer:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GroundStick"));
+                        int maxDes = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxDes; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GravitationPotion);
+                        break;
+
+                    case NPCID.SkeletronPrime:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ReinforcedPlating"));
+                        int maxSP = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxSP; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EndurancePotion);
+                        break;
+
+                    case NPCID.Plantera:
+                        int maxPlant = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxPlant; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CalmingPotion);
+                        break;
+
                     case NPCID.Golem:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LihzahrdTreasureBox"));
+                        int maxGolem = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxGolem; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LifeforcePotion);
                         break;
 
                     case NPCID.DukeFishron:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Sadism"));
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MutantAntibodies"));
+                        int maxDF = Main.rand.Next(6) + 1;
+                        for (int i = 0; i < maxDF; i++)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bacon);
                         break;
 
                     case NPCID.MoonLordCore:
@@ -6024,8 +6250,8 @@ namespace FargowiltasSouls.NPCs
                     case 12: //moon lord
                         if (npc.type == NPCID.MoonLordCore)
                             damage = damage * 2 / 3;
-                        else
-                            damage = damage * 3 / 2;
+                        else if (npc.type == NPCID.MoonLordHead)
+                            damage = damage * 2;
                         /*switch (masoState)
                         {
                             case 0: if (!item.melee) damage = 0; break;
@@ -6233,6 +6459,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 12: //moon lord
+                        if (projectile.type == ProjectileID.DD2BetsyArrow)
+                            damage = damage * 3 / 4;
                         if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.CrystalShard)
                             damage = 1;
                         else if (npc.type == NPCID.MoonLordCore)
@@ -6254,8 +6482,8 @@ namespace FargowiltasSouls.NPCs
                             damage = 1;
                         else if (projectile.maxPenetrate > 1)
                             damage /= projectile.maxPenetrate;
-                        else if (projectile.maxPenetrate < 0)
-                            damage /= 5;
+                        else if (projectile.maxPenetrate < 0 || projectile.type == ProjectileID.DD2BetsyArrow)
+                            damage /= 3;
 
                         damage /= 2;
                         break;

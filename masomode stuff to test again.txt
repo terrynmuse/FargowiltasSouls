@@ -19,6 +19,21 @@ hard mode corrupt water cursed flames
 crimson water ichor
 hard mode night snow chilled
 
+-added lump of flesh
+-moon lord/phantasmal dragon resist aerial bane
+-moon lord solar attacks buffed
+-fixed moon lord spawning for throwing
+
+-cultist attacks also have clone support
+-bosses drop potions
+
+-buffed ancient vision life
+-ancient vision and phantasm dragon have even more life when moon lord is alive
+-fixed cultist spawning ancient dooms, not ancient visions
+-moon lord spawns visions/dragons when in throwing core phase
+-lightning bolts always do double damage and inflict electrified (no longer post golem)
+-increased rabies shot drop rate to 5%
+
 -phantasmal dragon resists crystal bullet shards & takes halved damage always
 -buffed cultist damage
 -buffed ancient light, always immortal
@@ -465,7 +480,7 @@ THINGS I AM STILL IMPLEMENTING (DON'T BOTHER TESTING THESE THEY'RE NOT IN-GAME)
 -jellyfish electrocute you when they do that one attack and you're in the same body of water
 
 THINGS I HAVE NOT YET DONE (IGNORE THIS BLOCK)
--Nuke Fishron’s bullets simply despawn upon hitting the ground and don’t explode
+-Nuke FishronÂ’s bullets simply despawn upon hitting the ground and donÂ’t explode
 -king slime makes slimes every jump
 -fishron shadow clone
 -sand elementals shoot sand balls when not casting ancient storms
