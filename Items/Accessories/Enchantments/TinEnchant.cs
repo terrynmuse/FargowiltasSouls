@@ -21,10 +21,10 @@ Sets your critical strike chance to 4%
 Every crit will increase it by 4%
 Getting hit drops your crit back down";
 
-            /*if(thorium != null)
+            if(thorium != null)
             {
-                tooltip += "While in combat, you generate a 11 life shield";
-            }*/
+                tooltip += "You constantly generate a 11 life shield";
+            }
 
             Tooltip.SetDefault(tooltip);
         }
@@ -43,29 +43,28 @@ Getting hit drops your crit back down";
         {
             player.GetModPlayer<FargoPlayer>(mod).TinEffect();
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
-            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            thoriumPlayer.metallurgyShield = true;
-            if (!thoriumPlayer.outOfCombat)
+        private void Thorium(Player player)
+        {
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            timer++;
+            if (timer >= 30)
             {
-                timer++;
-                if (timer >= 30)
+                int num = 11;
+                if (thoriumPlayer.shieldHealth <= num)
                 {
-                    int num = 11;
-                    if (thoriumPlayer.shieldHealth < num)
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                        thoriumPlayer.shieldHealth++;
-                    }
-                    timer = 0;
-                    return;
+                    thoriumPlayer.shieldHealthTimerStop = true;
                 }
-            }
-            else
-            {
+                if (thoriumPlayer.shieldHealth < num)
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                    thoriumPlayer.shieldHealth++;
+                    player.statLife++;
+                }
                 timer = 0;
-            }*/
+            }
         }
 
         public override void AddRecipes()
@@ -75,7 +74,7 @@ Getting hit drops your crit back down";
             recipe.AddIngredient(ItemID.TinChainmail);
             recipe.AddIngredient(ItemID.TinGreaves);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("TinBuckler"));
                 recipe.AddIngredient(ItemID.TinShortsword);
@@ -86,11 +85,11 @@ Getting hit drops your crit back down";
                 recipe.AddIngredient(thorium.ItemType("TopazButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.TinBow);
                 recipe.AddIngredient(ItemID.TopazStaff);
                 recipe.AddIngredient(ItemID.Daylight);
-            //}
+            }
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

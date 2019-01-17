@@ -43,7 +43,7 @@ Summons a pet Dragon");
             recipe.AddIngredient(ItemID.SquireShield);
             recipe.AddIngredient(ItemID.ShinyStone);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BlobhornCoralStaff"));
                 recipe.AddIngredient(ItemID.DD2BallistraTowerT2Popper);
@@ -51,9 +51,9 @@ Summons a pet Dragon");
                 recipe.AddIngredient(thorium.ItemType("CloudwingButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.DD2PetDragon);
             

@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,17 +22,19 @@ Chance to steal 4 mana with each attack
 Taking damage will release a poisoning spore explosion
 ";
 
-            /*if(thorium != null)
+            if(thorium != null)
             {
+                //bulb stuff
+                //Your magic damage has a chance to poison hit enemies with a spore cloud
+                //Enemies that you poison or envenom will take additional damage over time
+                //When out of combat for 5 seconds, life recovery will increase up to 3 over time
+
                 tooltip +=
-@"Your magic damage has a chance to poison hit enemies with a spore cloud
-Enemies that you poison or envenom will take additional damage over time
-Your symphonic damage empowers all nearby allies with: Jungle's Nibble
-Damage done against poisoned enemies is increased by 8%
+@"You and nearby allies have a chance to poison enemies when attacking
 Doubles the range of your empowerments effect radius
-When out of combat for 5 seconds, life recovery will increase up to 3 over time";
+";
             }
-            else
+            /*else
             {*/
                 tooltip += "Allows the collection of Vine Rope from vines\n";
             //}
@@ -64,11 +67,23 @@ Summons a pet Seedling";
             modPlayer.FlowerBoots();
             modPlayer.JungleEffect();
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
+        private void Thorium(Player player)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.subwooferPoison = true;
+            //subwoofer
             thoriumPlayer.bardRangeBoost += 450;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerPoison = true;
+                }
+            }
+            /*
             //bulb set bonus
             thoriumPlayer.bulbSpore = true;
             //petal shield
@@ -108,19 +123,19 @@ Summons a pet Seedling";
             recipe.AddIngredient(ItemID.ChlorophyteGreaves);
             recipe.AddIngredient(null, "JungleEnchant");
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(null, "BulbEnchant");
+                //recipe.AddIngredient(null, "BulbEnchant");
                 recipe.AddIngredient(ItemID.FlowerBoots);
                 recipe.AddIngredient(ItemID.StaffofRegrowth);
                 recipe.AddIngredient(ItemID.LeafBlower);
                 recipe.AddIngredient(thorium.ItemType("ChlorophyteButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.FlowerBoots);
                 recipe.AddIngredient(ItemID.StaffofRegrowth);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.Seedling);
             

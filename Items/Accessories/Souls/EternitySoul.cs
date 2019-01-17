@@ -4,6 +4,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using ThoriumMod;
+using System;
+using ThoriumMod.Items.Misc;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -12,6 +14,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public bool jumped;
+        public bool canHover;
+        public int hoverTimer;
+        public int jumpTimer;
 
         public override void SetStaticDefaults()
         {
@@ -52,6 +58,7 @@ and most of SoT not mentioned because meme tooltip length
             item.rare = 10;
             item.value = 100000000;
             item.shieldSlot = 5;
+            item.defense = 50;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -403,6 +410,151 @@ and most of SoT not mentioned because meme tooltip length
             thoriumPlayer.tuner2 = true;
             //guitar pick claw
             thoriumPlayer.bardBounceBonus = 5;
+            //COLOSSUS
+            //terrarium defender
+            if (player.statLife < player.statLifeMax * 0.2f)
+            {
+                player.AddBuff(thorium.BuffType("TerrariumRegen"), 10, true);
+                player.lifeRegen += 20;
+            }
+            if (player.statLife < player.statLifeMax * 0.25f)
+            {
+                player.AddBuff(thorium.BuffType("TerrariumDefense"), 10, true);
+                player.statDefense += 20;
+            }
+            //blast shield
+            thoriumPlayer.blastHurt = true;
+            //cape of the survivor
+            if (player.FindBuffIndex(thorium.BuffType("Corporeal")) < 0)
+            {
+                thoriumPlayer.spiritBand2 = true;
+            }
+            //sweet vengeance
+            thoriumPlayer.sweetVengeance = true;
+            //oceans retaliation
+            thoriumPlayer.turtleShield2 = true;
+            thoriumPlayer.SpinyShield = true;
+            //TRAWLER
+            MagmaBoundFishingLineMP magmaPlayer = player.GetModPlayer<MagmaBoundFishingLineMP>();
+            magmaPlayer.magmaLine = true;
+            //SUPERSONIC
+            //terrarium particle sprinters dust
+            if (Collision.SolidCollision(player.position, player.width, player.height + 4) && Math.Abs(player.velocity.X) >= 2)
+            {
+                for (int i = 0; i < 1; i++)
+                {
+                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 57, 0f, 0f, 100, default(Color), 1.4f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].noLight = true;
+                    Dust dust1 = Main.dust[dust];
+                    dust1.velocity *= 0f;
+                }
+                for (int j = 0; j < 1; j++)
+                {
+                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 61, 0f, 0f, 100, default(Color), 1.35f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].noLight = true;
+                    Dust dust2 = Main.dust[dust];
+                    dust2.velocity *= 0f;
+                }
+                for (int k = 0; k < 1; k++)
+                {
+                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 229, 0f, 0f, 100, default(Color), 1.15f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].noLight = true;
+                    Dust dust3 = Main.dust[dust];
+                    dust3.velocity *= 0f;
+                }
+                for (int l = 0; l < 1; l++)
+                {
+                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 60, 0f, 0f, 100, default(Color), 1.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].noLight = true;
+                    Dust dust4 = Main.dust[dust];
+                    dust4.velocity *= 0f;
+                }
+                for (int m = 0; m < 1; m++)
+                {
+                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 127, 0f, 0f, 100, default(Color), 1.75f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].noLight = true;
+                    Dust dust5 = Main.dust[dust];
+                    dust5.velocity *= 0f;
+                }
+                for (int n = 0; n < 1; n++)
+                {
+                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 59, 0f, 0f, 100, default(Color), 1.4f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].noLight = true;
+                    Dust dust6 = Main.dust[dust];
+                    dust6.velocity *= 0f;
+                }
+                for (int num7 = 0; num7 < 1; num7++)
+                {
+                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 62, 0f, 0f, 100, default(Color), 1.35f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].noLight = true;
+                    Dust dust7 = Main.dust[dust];
+                    dust7.velocity *= 0f;
+                }
+            }
+            //air walkers
+            if (Soulcheck.GetValue("Air Walkers"))
+            {
+                if (player.controlDown)
+                {
+                    jumped = true;
+                }
+                else
+                {
+                    jumped = false;
+                }
+                if (!Collision.SolidCollision(player.position, player.width, player.height + 4))
+                {
+                    hoverTimer++;
+                }
+                else
+                {
+                    hoverTimer = 0;
+                }
+                if (hoverTimer >= 1000)
+                {
+                    canHover = false;
+                }
+                else
+                {
+                    canHover = true;
+                }
+                if (canHover && !jumped && !Collision.SolidCollision(player.position, player.width, player.height + 4))
+                {
+                    player.maxFallSpeed = 0f;
+                    player.fallStart = (int)(player.position.Y / 16f);
+                    int dust1 = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 229, 0f, 0f, 100, default(Color), 1.25f);
+                    Main.dust[dust1].noGravity = true;
+                    Main.dust[dust1].noLight = true;
+                    Dust dust = Main.dust[dust1];
+                    dust.velocity *= 0f;
+                }
+            }
+            //survivalist boots
+            if (Math.Abs(player.velocity.X) > 2f)
+            {
+                player.lifeRegen += 2;
+                player.lifeRegenTime++;
+                player.manaRegenBonus += 2;
+                player.manaRegenDelayBonus++;
+                thoriumPlayer.bardResourceRecharge += 2;
+            }
+            //weighted winglets
+            if (player.controlDown && !player.controlUp)
+            {
+                player.maxFallSpeed *= (player.wet ? 2.4f : 1.6f);
+            }
+            if (player.controlUp && !player.controlDown)
+            {
+                player.maxFallSpeed *= 0.4f;
+                player.fallStart = (int)(player.position.Y / 16f);
+            }
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,

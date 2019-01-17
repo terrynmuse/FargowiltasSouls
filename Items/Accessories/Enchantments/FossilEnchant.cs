@@ -43,14 +43,14 @@ Summons a pet Baby Dino");
             recipe.AddIngredient(ItemID.AntlionClaw);
             recipe.AddIngredient(ItemID.AmberStaff);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("AmberMinion"));
                 recipe.AddIngredient(ItemID.BoneJavelin, 300);
                 recipe.AddIngredient(thorium.ItemType("Sitar"));
                 recipe.AddIngredient(thorium.ItemType("AmberButterfly"));
             }
-            */
+            
             recipe.AddIngredient(ItemID.AmberMosquito);
             
             recipe.AddTile(TileID.DemonAltar);

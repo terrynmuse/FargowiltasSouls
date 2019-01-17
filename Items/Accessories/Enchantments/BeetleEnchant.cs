@@ -67,12 +67,12 @@ Your wings last twice as long";
             recipe.AddIngredient(ItemID.ButterflyWings);
             recipe.AddIngredient(ItemID.MothronWings);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.GolemFist);
-                //recipe.AddIngredient(thorium.ItemType("SolScorchedSlab"));
+                recipe.AddIngredient(thorium.ItemType("SolScorchedSlab"));
                 recipe.AddIngredient(thorium.ItemType("TempleButterfly"));
-            }*/
+            }
               
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

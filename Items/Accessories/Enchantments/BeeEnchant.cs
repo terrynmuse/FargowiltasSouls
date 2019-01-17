@@ -19,10 +19,10 @@ Increases the strength of friendly bees
 Bees ignore most enemy defense
 ";
 
-            /*if(thorium != null)
+            if(thorium != null)
             {
                 tooltip += "While running, you will periodically generate bees\n";
-            }*/
+            }
 
             tooltip += "Summons a pet Baby Hornet";
 
@@ -43,9 +43,11 @@ Bees ignore most enemy defense
         {
             player.GetModPlayer<FargoPlayer>(mod).BeeEffect(hideVisual);
             
-            /*if(!Fargowiltas.Instance.ThoriumLoaded) return;
+            if(Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
-            //bee booties
+        private void Thorium(Player player)
+        {
             if ((player.velocity.X > 1f && player.velocity.X > 0f) || (player.velocity.X < 1f && player.velocity.X < 0f))
             {
                 timer++;
@@ -54,7 +56,7 @@ Bees ignore most enemy defense
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeeSummonSpawn"), 0, 0f, player.whoAmI, 0f, 0f);
                     timer = 0;
                 }
-            }*/
+            }
         }
 
         public override void AddRecipes()
@@ -65,7 +67,7 @@ Bees ignore most enemy defense
             recipe.AddIngredient(ItemID.BeeGreaves);
             recipe.AddIngredient(ItemID.HiveBackpack);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BeeBoots"));
                 recipe.AddIngredient(ItemID.BeeKeeper);
@@ -74,9 +76,9 @@ Bees ignore most enemy defense
                 recipe.AddIngredient(thorium.ItemType("SweetWingButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.BeeGun);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.Nectar);
             

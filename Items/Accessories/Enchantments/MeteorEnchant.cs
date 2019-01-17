@@ -47,6 +47,11 @@ A meteor shower initiates every few seconds while attacking";
             modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));*/
         }
 
+        private void Thorium(Player player)
+        {
+
+        }
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -56,7 +61,7 @@ A meteor shower initiates every few seconds while attacking";
             recipe.AddIngredient(ItemID.SpaceGun);
             recipe.AddIngredient(ItemID.StarCannon);
 
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("CometCrossfire"));
                 recipe.AddIngredient(ItemID.MeteorStaff);
@@ -65,10 +70,10 @@ A meteor shower initiates every few seconds while attacking";
                 recipe.AddIngredient(thorium.ItemType("BioPod"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.MeteorStaff);
                 recipe.AddIngredient(ItemID.PlaceAbovetheClouds);
-            //}
+            }
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

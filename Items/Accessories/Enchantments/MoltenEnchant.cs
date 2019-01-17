@@ -39,7 +39,7 @@ When you die, you violently explode dealing massive damage");
             recipe.AddIngredient(ItemID.MoltenBreastplate);
             recipe.AddIngredient(ItemID.MoltenGreaves);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("MeleeThorHammer"));
                 recipe.AddIngredient(ItemID.MoltenHamaxe);
@@ -50,11 +50,11 @@ When you die, you violently explode dealing massive damage");
                 recipe.AddIngredient(thorium.ItemType("HellwingButterfly"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.Flamarang);
                 recipe.AddIngredient(ItemID.Sunfury);
                 recipe.AddIngredient(ItemID.DemonsEye);
-            //}
+            }
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

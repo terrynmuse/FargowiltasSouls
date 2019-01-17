@@ -56,7 +56,7 @@ Summons a pet Puppy");
             recipe.AddIngredient(ItemID.HuntressBuckler);
             recipe.AddIngredient(ItemID.CelestialShell);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("EvisceratingClaw"), 300);
                 recipe.AddIngredient(thorium.ItemType("LadyLight"));
@@ -64,9 +64,9 @@ Summons a pet Puppy");
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.DogWhistle);
             

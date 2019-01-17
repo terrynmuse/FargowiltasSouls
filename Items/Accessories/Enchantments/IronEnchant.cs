@@ -22,10 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Right Click to guard with your shield
 You attract items from a larger range";
 
-            /*if (thorium != null)
+            if (thorium != null)
             {
-                tooltip += "While in combat, you generate a 20 life shield\n";
-            }*/
+                tooltip += "You constantly generate a 12 life shield\n";
+            }
 
             Tooltip.SetDefault(tooltip); 
         }
@@ -51,30 +51,28 @@ You attract items from a larger range";
             //EoC Shield
             player.dash = 2;
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
+        private void Thorium(Player player)
+        {
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            //iron sheild
-            thoriumPlayer.metallurgyShield = true;
-            if (!thoriumPlayer.outOfCombat)
+            timer++;
+            if (timer >= 30)
             {
-                timer++;
-                if (timer >= 30)
+                int num = 12;
+                if (thoriumPlayer.shieldHealth <= num)
                 {
-                    int num = 20;
-                    if (thoriumPlayer.shieldHealth < num)
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                        thoriumPlayer.shieldHealth++;
-                    }
-                    timer = 0;
-                    return;
+                    thoriumPlayer.shieldHealthTimerStop = true;
                 }
-            }
-            else
-            {
+                if (thoriumPlayer.shieldHealth < num)
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                    thoriumPlayer.shieldHealth++;
+                    player.statLife++;
+                }
                 timer = 0;
-            }*/
+            }
         }
 
         public override void AddRecipes()
@@ -84,7 +82,7 @@ You attract items from a larger range";
             recipe.AddIngredient(ItemID.IronChainmail);
             recipe.AddIngredient(ItemID.IronGreaves);
 
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("IronShield"));
                 recipe.AddIngredient(thorium.ItemType("ThoriumShield"));
@@ -95,11 +93,11 @@ You attract items from a larger range";
                 recipe.AddIngredient(ItemID.ZebraSwallowtailButterfly);
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.EoCShield);
                 recipe.AddIngredient(ItemID.IronBroadsword);
                 recipe.AddIngredient(ItemID.IronAnvil);
-            //}
+            }
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

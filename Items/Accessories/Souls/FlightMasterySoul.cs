@@ -9,6 +9,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     [AutoloadEquip(EquipType.Wings)]
     public class FlightMasterySoul : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Flight Mastery Soul");
@@ -68,28 +70,29 @@ Allows for very long lasting flight");
             recipe.AddIngredient(ItemID.LeafWings);
             recipe.AddIngredient(ItemID.FrozenWings);
             recipe.AddIngredient(ItemID.FlameWings);
-            recipe.AddIngredient(ItemID.TatteredFairyWings);
-            recipe.AddIngredient(ItemID.FestiveWings);
-            recipe.AddIngredient(ItemID.BetsyWings);
-            recipe.AddIngredient(ItemID.FishronWings);
-            recipe.AddIngredient(ItemID.WingsStardust);
-            recipe.AddIngredient(ItemID.WingsVortex);
-            recipe.AddIngredient(ItemID.WingsNebula);
-            recipe.AddIngredient(ItemID.WingsSolar);
             
-            /*if (Fargowiltas.Instance.ThoriumLoaded)
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
-            /*
-            TerrariumWings
-            DridersGrace
-            DemonBloodWings
-            DreadWings
-            HarbingerWings
-            TitanWings
-            PhonicWings
-            
-            }*/
-            
+                recipe.AddIngredient(thorium.ItemType("DridersGrace"));
+                recipe.AddIngredient(thorium.ItemType("TitanWings"));
+                recipe.AddIngredient(ItemID.TatteredFairyWings);
+                recipe.AddIngredient(ItemID.FestiveWings);
+                recipe.AddIngredient(ItemID.BetsyWings);
+                recipe.AddIngredient(ItemID.FishronWings);
+                recipe.AddIngredient(thorium.ItemType("TerrariumWings"));
+                recipe.AddIngredient(thorium.ItemType("PhonicWings"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.TatteredFairyWings);
+                recipe.AddIngredient(ItemID.FestiveWings);
+                recipe.AddIngredient(ItemID.BetsyWings);
+                recipe.AddIngredient(ItemID.FishronWings);
+                recipe.AddIngredient(ItemID.WingsStardust);
+                recipe.AddIngredient(ItemID.WingsVortex);
+                recipe.AddIngredient(ItemID.WingsNebula);
+                recipe.AddIngredient(ItemID.WingsSolar);
+            }
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

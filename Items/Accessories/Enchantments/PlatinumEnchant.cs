@@ -19,12 +19,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 10% chance for enemies to drop 4x loot
 If the enemy has Midas, the chance and bonus is doubled";
 
-            /*if(thorium != null)
+            if(thorium != null)
             {
-                tooltip += 
-@"While in combat, you generate a 17 life shield
-Summons some living glitter to follow you around";
-            }*/
+                tooltip +=
+@"You constantly generate a 17 life shield";
+//Summons some living glitter to follow you around";
+            }
 
             Tooltip.SetDefault(tooltip);
         }
@@ -43,29 +43,28 @@ Summons some living glitter to follow you around";
         {
             player.GetModPlayer<FargoPlayer>(mod).PlatinumEnchant = true;
 
-            /*if (Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
+        private void Thorium(Player player)
+        {
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            thoriumPlayer.metallurgyShield = true;
-            if (!thoriumPlayer.outOfCombat)
+            timer++;
+            if (timer >= 30)
             {
-                timer++;
-                if (timer >= 30)
+                int num = 17;
+                if (thoriumPlayer.shieldHealth <= num)
                 {
-                    int num = 17;
-                    if (thoriumPlayer.shieldHealth < num)
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                        thoriumPlayer.shieldHealth++;
-                    }
-                    timer = 0;
-                    return;
+                    thoriumPlayer.shieldHealthTimerStop = true;
                 }
-            }
-            else
-            {
+                if (thoriumPlayer.shieldHealth < num)
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                    thoriumPlayer.shieldHealth++;
+                    player.statLife++;
+                }
                 timer = 0;
-            }*/
+            }
         }
 
         public override void AddRecipes()
@@ -76,7 +75,7 @@ Summons some living glitter to follow you around";
             recipe.AddIngredient(ItemID.PlatinumGreaves);
             recipe.AddIngredient(ItemID.PlatinumCrown);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("PlatinumAegis"));
                 recipe.AddIngredient(ItemID.DiamondRing);
@@ -86,11 +85,11 @@ Summons some living glitter to follow you around";
                 recipe.AddIngredient(thorium.ItemType("ShinyObject"));
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.DiamondRing);
                 recipe.AddIngredient(ItemID.DiamondStaff);
                 recipe.AddIngredient(ItemID.WhitePhasesaber);
-            //}
+            }
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

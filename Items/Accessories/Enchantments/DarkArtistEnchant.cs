@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using ThoriumMod.NPCs;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -20,13 +21,10 @@ Your weapon's projectiles occasionally shoot from the shadows of where you used 
 Greatly enhances Flameburst effectiveness
 ";
 
-            /*if(thorium != null)
+            if(thorium != null)
             {
-                tooltip += 
-@"Corrupts your radiant powers
-Enemies afflicted with shadowflame or light curse increase your life regeneration
-";
-            }*/
+                tooltip += "Enemies afflicted with shadowflame or light curse increase your life regeneration\n";
+            }
 
             tooltip += "Summons a pet Flickerwick";
 
@@ -49,21 +47,26 @@ Enemies afflicted with shadowflame or light curse increase your life regeneratio
             player.setApprenticeT3 = true;
             player.GetModPlayer<FargoPlayer>(mod).DarkArtistEffect(hideVisual);
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
+        private void Thorium(Player player)
+        {
             //dark effigy
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            thoriumPlayer.darkAura = true;
 
             for (int i = 0; i < 200; i++)
             {
                 NPC npc = Main.npc[i];
-                if (npc.active && (npc.FindBuffIndex(153) > -1 || npc.FindBuffIndex(thorium.BuffType("lightCurse")) > -1) && Vector2.Distance(npc.Center, player.Center) < 1000f)
+                if (npc.active && !npc.friendly && (npc.shadowFlame || npc.GetGlobalNPC<ThoriumGlobalNPC>().lightLament) && npc.DistanceSQ(player.Center) < 1000000f)
                 {
                     thoriumPlayer.effigy++;
-                    player.AddBuff(thorium.BuffType("EffigyRegen"), 10, false);
                 }
-            }*/
+            }
+            if (thoriumPlayer.effigy > 0)
+            {
+                player.AddBuff(thorium.BuffType("EffigyRegen"), 2, true);
+            }
         }
 
         public override void AddRecipes()
@@ -74,7 +77,7 @@ Enemies afflicted with shadowflame or light curse increase your life regeneratio
             recipe.AddIngredient(ItemID.ApprenticeAltPants);
             recipe.AddIngredient(ItemID.ApprenticeScarf);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("Effigy"));
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
@@ -83,10 +86,10 @@ Enemies afflicted with shadowflame or light curse increase your life regeneratio
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
-            //}
+            }
             
             recipe.AddIngredient(ItemID.DD2PetGhost);
             
