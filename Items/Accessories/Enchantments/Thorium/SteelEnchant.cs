@@ -55,7 +55,10 @@ While in combat, you generate a 22 life shield
             //iron shield raise
             player.GetModPlayer<FargoPlayer>(mod).IronEffect();
             //item attract
-            modPlayer.IronEnchant = true;
+            if (Soulcheck.GetValue("Iron Magnet"))
+            {
+                modPlayer.IronEnchant = true;
+            }
             //EoC Shield
             player.dash = 2;
             //iron sheild

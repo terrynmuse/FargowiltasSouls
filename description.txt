@@ -1,11 +1,8 @@
-NEW UPDATE - v 0.5.6.5
--Masochist Mode changes that may not be named
--Fixed Thorium soul recipes
--Made Soul of the Universe actually use the Thorium Souls in its recipe
--Added Thorium recipes and effects to all current Enchantments and Utility Souls
--and yes the Air Walker effect has a toggle, if you ask you will be destroyed
--Gave SoE 50 defense 
--Added Zephyr Fish to Trawler Soul, removed Frog Legs
+NEW UPDATE - v 0.5.7
+-Masochist Mode changes that shall not be named
+-Galactic Reformer now lags way less when going off
+-Added several new toggles for some Thorium effects and Iron Magnet
+-Fixed some tooltip issues
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

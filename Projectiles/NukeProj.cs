@@ -66,21 +66,14 @@ namespace FargowiltasSouls.Projectiles
 
                     if (Math.Sqrt(x * x + y * y) <= radius + 0.5)   //change the shape
                     {
-                        WorldGen.KillTile(xPosition, yPosition);  //tile ded
-                        WorldGen.KillWall(xPosition, yPosition);
-
                         Tile tile = Main.tile[xPosition, yPosition];
+                        if (tile == null) continue;
+                        
+                        FargoGlobalTile.ClearTile(tile);
+                        FargoGlobalTile.ClearWall(tile);
+                        FargoGlobalTile.ClearLiquid(tile, xPosition, yPosition);
+                        FargoGlobalTile.SquareUpdate(xPosition, yPosition);
 
-                        if (tile != null)
-                        {
-                            tile.liquid = 0;
-                            tile.lava(false);
-                            tile.honey(false);
-                            if (Main.netMode == 2)
-                            {
-                                NetMessage.sendWater(xPosition, yPosition);
-                            }
-                        }
                     }
                 }
             }

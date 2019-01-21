@@ -104,9 +104,12 @@ Magnetizes all loose items on the screen
 
             //if (!Fargowiltas.Instance.ThoriumLoaded)
             //{
-                //magnet
+            //magnet
+            if (Soulcheck.GetValue("Iron Magnet"))
+            {
                 modPlayer.IronEnchant = true;
-                return;
+            }
+            return;
             //}
 
             /*ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");

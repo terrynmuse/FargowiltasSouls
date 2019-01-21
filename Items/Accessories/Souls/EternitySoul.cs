@@ -248,7 +248,10 @@ and most of SoT not mentioned because meme tooltip length
             modPlayer.TinEffect(); //crits
             player.dash = 2;
             modPlayer.IronEffect(); //shield
-            modPlayer.IronEnchant = true; //magnet
+            if (Soulcheck.GetValue("Iron Magnet"))
+            {
+                modPlayer.IronEnchant = true;
+            }
             player.fireWalk = true;
             player.lavaImmune = true;
 
@@ -336,13 +339,15 @@ and most of SoT not mentioned because meme tooltip length
                 player.AddBuff(thorium.BuffType("LichActive"), 60, true);
             }
             //crystal scorpion
-            thoriumPlayer.crystalScorpion = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("CrystalScorpionMinion")] > 0)
+            if (Soulcheck.GetValue("Crystal Scorpion"))
             {
-                thoriumPlayer.flatSummonDamage += 3;
+                thoriumPlayer.crystalScorpion = true;
             }
             //yumas pendant
-            thoriumPlayer.yuma = true;
+            if (Soulcheck.GetValue("Yuma's Pendant"))
+            {
+                thoriumPlayer.yuma = true;
+            }
             //complete set
             thoriumPlayer.throwGuide4 = true;
 
@@ -373,27 +378,31 @@ and most of SoT not mentioned because meme tooltip length
             thoriumPlayer.healBonus += 5;
             //medical bag
             thoriumPlayer.medicalAcc = true;
-            float num = 0f;
-            int num2 = player.whoAmI;
-            for (int i = 0; i < 255; i++)
+            //head mirror arrow 
+            if (Soulcheck.GetValue("Head Mirror"))
             {
-                if (Main.player[i].active && Main.player[i] != player && !Main.player[i].dead && (Main.player[i].statLifeMax2 - Main.player[i].statLife) > num)
+                float num = 0f;
+                int num2 = player.whoAmI;
+                for (int i = 0; i < 255; i++)
                 {
-                    num = (Main.player[i].statLifeMax2 - Main.player[i].statLife);
-                    num2 = i;
+                    if (Main.player[i].active && Main.player[i] != player && !Main.player[i].dead && (Main.player[i].statLifeMax2 - Main.player[i].statLife) > num)
+                    {
+                        num = (Main.player[i].statLifeMax2 - Main.player[i].statLife);
+                        num2 = i;
+                    }
                 }
-            }
-            if (player.ownedProjectileCounts[thorium.ProjectileType("HealerSymbol")] < 1)
-            {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("HealerSymbol"), 0, 0f, player.whoAmI, 0f, 0f);
-            }
-            for (int j = 0; j < 1000; j++)
-            {
-                Projectile projectile = Main.projectile[j];
-                if (projectile.active && projectile.owner == player.whoAmI && projectile.type == thorium.ProjectileType("HealerSymbol"))
+                if (player.ownedProjectileCounts[thorium.ProjectileType("HealerSymbol")] < 1)
                 {
-                    projectile.timeLeft = 2;
-                    projectile.ai[1] = num2;
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("HealerSymbol"), 0, 0f, player.whoAmI, 0f, 0f);
+                }
+                for (int j = 0; j < 1000; j++)
+                {
+                    Projectile projectile = Main.projectile[j];
+                    if (projectile.active && projectile.owner == player.whoAmI && projectile.type == thorium.ProjectileType("HealerSymbol"))
+                    {
+                        projectile.timeLeft = 2;
+                        projectile.ai[1] = num2;
+                    }
                 }
             }
             //BARD

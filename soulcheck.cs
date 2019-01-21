@@ -30,6 +30,7 @@ namespace FargowiltasSouls
             ["Pumpkin Fire"] = new Color(81, 181, 113),
             ["Copper Lightning"] = new Color(81, 181, 113),
             ["Tin Crit"] = new Color(81, 181, 113),
+            ["Iron Magnet"] = new Color(81, 181, 113),
             ["Gold Coins on Hit"] = new Color(81, 181, 113),
             //["Lead Poisoning"] = new Color(81, 181, 113),
             ["Gladiator Speedup"] = new Color(81, 181, 113),
@@ -118,6 +119,9 @@ namespace FargowiltasSouls
 
             #region thorium
             ["Air Walkers"] = new Color(81, 181, 113),
+            ["Crystal Scorpion"] = new Color(81, 181, 113),
+            ["Yuma's Pendant"] = new Color(81, 181, 113),
+            ["Head Mirror"] = new Color(81, 181, 113),
             /*["Omega Pet"] = new Color(81, 181, 113),
             ["I.F.O. Pet"] = new Color(81, 181, 113),
             ["Bio-Feeder Pet"] = new Color(81, 181, 113),
@@ -206,7 +210,7 @@ namespace FargowiltasSouls
                     CreateCheckbox(toggle.Key, toggle.Value);
                     count++;
 
-                    if(count >= toggles.Count - 1) // monus num of thorium toggles so far
+                    if(count >= toggles.Count - 4) // minus num of thorium toggles so far
                     {
                         break;
                     }

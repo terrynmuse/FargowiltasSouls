@@ -278,6 +278,20 @@ namespace FargowiltasSouls.Projectiles
                 retVal = false;
             }
 
+            //masomode unicorn meme
+            if (FargoWorld.MasochistMode && projectile.type == ProjectileID.RainbowBack && projectile.hostile)
+            {
+                counter++;
+                if (counter >= 5)
+                {
+                    projectile.velocity = Vector2.Zero;
+                }
+                if (counter >= 60)
+                {
+                    projectile.Kill();
+                }
+            }
+
             return retVal;
         }
 
@@ -1000,6 +1014,10 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.DD2DrakinShot:
                         target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        break;
+
+                    case ProjectileID.RainbowBack:
+                        target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(300, 600));
                         break;
 
                     default:

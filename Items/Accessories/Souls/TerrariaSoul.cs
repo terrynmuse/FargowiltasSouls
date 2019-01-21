@@ -66,7 +66,10 @@ When you die, you explode and revive with 200 HP");
             modPlayer.TinEffect(); //crits
             player.dash = 2;
             modPlayer.IronEffect(); //shield
-            modPlayer.IronEnchant = true; //magnet
+            if (Soulcheck.GetValue("Iron Magnet"))
+            {
+                modPlayer.IronEnchant = true;
+            }
             player.fireWalk = true;
             player.lavaImmune = true;
 

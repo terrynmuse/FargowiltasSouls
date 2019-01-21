@@ -71,13 +71,15 @@ Increased minion knockback";
                 player.AddBuff(thorium.BuffType("LichActive"), 60, true);
             }
             //crystal scorpion
-            thoriumPlayer.crystalScorpion = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("CrystalScorpionMinion")] > 0)
+            if (Soulcheck.GetValue("Crystal Scorpion"))
             {
-                thoriumPlayer.flatSummonDamage += 3;
+                thoriumPlayer.crystalScorpion = true;
             }
             //yumas pendant
-            thoriumPlayer.yuma = true;
+            if (Soulcheck.GetValue("Yuma's Pendant"))
+            {
+                thoriumPlayer.yuma = true;
+            }
         }
 
         public override void AddRecipes()
