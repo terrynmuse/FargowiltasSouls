@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class AtaxiaEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,17 +19,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("Ataxia Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'Not be confused with Ataraxia Enchantment'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
+Permanent Inferno potion effect.
+You have a 20% chance to emit a blazing explosion on hit. 
++20 max life and mana.
+Melee attacks spawn Chaos Flames.
+You have a 50% chance to fire a homing chaos flare when firing a ranged weapon.
+Magic attacks summon damaging and healing flame orbs on hit.
+Summons a floating Chaos Spirit.
+Throwing attacks have a 10% chance to unleash a volley of flames.
 ");
         }
 
@@ -47,7 +48,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +57,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Ataxia armor, all Ataxia helmets, Hellfire Flamberge, Exsanguination Lance, Chaoswarped Slashaxe, Flame Scythe and Greatbow of Turmoil.
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));

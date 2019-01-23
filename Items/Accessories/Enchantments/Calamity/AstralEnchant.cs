@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class AstralEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,17 +19,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("Astral Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'The Astral Infection has consumed you...'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
++20 max life and mana.
++2 max minions.
+Creature, Treasure, Ore and Danger detection.
+Every 2 seconds, your next crit will cause stars ti rain from the sky.
+35% increased movement speed.
+22% increased damage.
 ");
         }
 
@@ -47,7 +46,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +55,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Astral Armor, Astral Blade, Astral Blaster, Star Cannon EX, Astral Pike, Astral Bow, Astral Staff and Ethereal Core.
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));

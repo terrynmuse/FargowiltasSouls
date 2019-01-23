@@ -29,7 +29,7 @@ Maximum use speed for all weapons
 Crits deal 10x damage
 Crit chance is set to 50%, Crit to increase it by 10% 
 At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense
-This stacks forever until you get hit
+This stacks up to 200,000 times until you get hit
 Increases your maximum mana to 999, minions by 20, sentries by 10
 400% increased HP, 40% damage reduction, 15 life regeneration
 Grants immunity to knockback and most debuffs

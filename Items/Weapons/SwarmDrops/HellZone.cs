@@ -15,6 +15,10 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override void SetDefaults()
         {
+            item.damage = 180; //
+            item.knockBack = 0.5f;
+            item.shootSpeed = 10f; //
+
             item.useStyle = 5;
             item.autoReuse = true;
             item.useAnimation = 30; //
@@ -24,12 +28,10 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.shoot = mod.ProjectileType("HellFlame");
             item.useAmmo = AmmoID.Gel;
             item.UseSound = SoundID.Item34; //
-            item.damage = 240; //
-            item.knockBack = 0.5f;
-            item.shootSpeed = 10f; //
+            
             item.noMelee = true;
             item.value = Item.sellPrice(0, 15); //
-            item.rare = 10; //
+            item.rare = 6; //
             item.ranged = true;
         }
 

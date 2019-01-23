@@ -27,7 +27,7 @@ Permanent Sonar and Crate Buffs";
 
             if (thorium != null)
             {
-                tooltip += "Allows any fishing pole to catch loot in lava";
+                tooltip += "\nAllows any fishing pole to catch loot in lava";
             }
 
             Tooltip.SetDefault(tooltip);

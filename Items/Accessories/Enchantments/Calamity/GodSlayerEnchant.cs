@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class GodSlayerEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,17 +19,25 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("God Slayer Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'The power to slay gods resides within you...'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
+If you are killed, you revive with 150 hp. Cooldown is 45 seconds, and while this ability is on cooldown, you gain 10% increased damage.
+Taking over 80 damage in one hit releases a swarm of godslayer darts that deal 900 damage each.
+Taking 80 or less damage in a single hit reduces it to 1.
+Enemies that touch you take 2.5x their contact damage.
+Ranged crits have a 1 in (100 - ranged crit chance) to deal 4 times as much damage.
+When firing ranged weapons, the weapon has a 5% chance to fire a god-killer shrapnel round that deals 210% of the projectile that triggered it. It explodes into shrapnel that deals 30% of the round's damage.
+Enemies release godslayer and healing flames upon being hit by a magic attack. The godslayer flames deal 50% more damage of the projectile that triggered it, and the healing flames heal you for 6% of the projectile's damage.
+Taking damage releases a godslayer explosion, dealing 1200 damage.
+Summons a mechworm. 
+Hitting enemies summons godslayer phantoms.
+If the wearer takes more than 80 damage in one hit, they get extra invincibility frames.
+Grants immunity to fire blocks and knockback.
++40 max life.
+Grants a dash that can ram enemies.
+Press N to cut your speed but increase damage and crit chance by 10%, and defense by 25
 ");
         }
 
@@ -47,7 +55,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +64,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Godslayer leggings, chestplate, all Godslayer helmets, Excelsus, Deathwind, Eradidator, Deathhail staff, Staff of the Mechworm, Cleansing blaze, Essence Flayer, the Enforcer, Executioner's blade, Stream Gouge, Soul Piercer, Magnetic Meltdown, Asgardian Aegis and Cosmic Discharge. 
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));

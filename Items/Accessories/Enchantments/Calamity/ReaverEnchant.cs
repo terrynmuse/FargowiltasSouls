@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class ReaverEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,17 +19,21 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("Reaver Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'A thorny death awaits your enemies...'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
++20 max life.
+10% increased movement speed.
+Free movement through liquids.
+Projectiles explode on hit.
+Rage activates when you are damaged.
+Magic projectiles explode into poison gas.
+15% chance for ranged weapons to fire a rocket.
+Summons a Reaver Orb above you.
+Permanent Reaver Thorns effect.
+You emit a cloud of spores on hit.
+
 ");
         }
 
@@ -47,7 +51,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +60,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Reaver armor, all Reaver helmets, Feralthorn Claymore, Hellion Flower Spear, Mangrove Chakram, Hellkite, Bladedge Rainbow, Everglade Spray and Grax
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));

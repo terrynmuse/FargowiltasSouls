@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class DaedalusEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,17 +19,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("Daedalus Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'cy magic envelopes you...'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
+Immunity to Cursed.
+Gives you control over gravity.
+Gives a 10% chance to absorb a physical attack, healing you.
+Grants a 33% chance to reflect a projectile, healing you.
+You emit a blast of crystal shards when hit.
++2 max minions.
+Summons a Daedalus Crystal above you.
+Thrown projectiles split into shards when hitting an enemy.
 ");
         }
 
@@ -47,7 +48,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +57,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Daedalus armor, all Daedalus helmets, Starnight Lance, Darklight Greatsword, Darkecho Greatbow and Shadecrystal Barrage
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));

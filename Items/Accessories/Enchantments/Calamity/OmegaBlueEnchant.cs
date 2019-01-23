@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class OmegaBlueEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,17 +19,17 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("Omega Blue Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'The darkness of the Abyss has overwhelmed you...'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
+Armor penetration increased by 50.
+All attacks inflict Crush Depth.
+You can move freely through liquids.
+Positive life regen is unaffected.
++2 minions.
+Several abyssal tentacles sprout from your back. The tentacles latch to foes and steal their life.
+Pressing Y gives you Abyssal Madness, which increases damage and crit chance by 10%, and increases your tentacles' range and damage.
 ");
         }
 
@@ -47,7 +47,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +56,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Omega Blue armor, Soul Edge, Eidolic Wail, Reaper Tooth Necklace, Calamari's Lament, Valediction, Abyssal Diving Suit, Halibut Cannon and Strange Orb
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));

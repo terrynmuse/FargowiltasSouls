@@ -3073,6 +3073,8 @@ namespace FargowiltasSouls
 
             if (!Eternity) return;
 
+            if (eternityDamage > 20000) eternityDamage = 20000;
+
             AllDamageUp(eternityDamage);
             player.statDefense += (int)(eternityDamage * 100); //10 defense per .1 damage
         }

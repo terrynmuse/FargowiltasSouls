@@ -1267,9 +1267,7 @@ namespace FargowiltasSouls.NPCs
                     }
                 }
 
-                Main.moonPhase = 0;
-
-                if (npc.townNPC && !Main.dayTime && Main.moonPhase == 0 && Main.rand.Next(60) == 0)
+                if (npc.townNPC && !Main.dayTime && Main.moonPhase == 0 && Main.rand.Next(1800) == 0)
                 {
                     Main.PlaySound(SoundID.Roar);
                     Main.NewText(npc.GivenName + " has succumbed to the curse..", new Color(255, 0, 0));
@@ -1310,22 +1308,25 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 8: //illum bat
-                        Counter++;
-                        if (Counter >= 600)
+                        npc.TargetClosest();
+                        if (Main.player[npc.target] != null && npc.Distance(Main.player[npc.target].Center) < 1000)
                         {
-                            if (Main.netMode != 1)
+                            if (++Counter >= 600)
                             {
-                                int bat = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.IlluminantBat);
-                                if (bat < 200)
+                                if (Main.netMode != 1 && NPC.CountNPCS(NPCID.IlluminantBat) < 20)
                                 {
-                                    Main.npc[bat].velocity.X = Main.rand.Next(-5, 6);
-                                    Main.npc[bat].velocity.Y = Main.rand.Next(-5, 6);
-                                    Main.npc[bat].netUpdate = true;
-                                    if (Main.netMode == 2)
-                                        NetMessage.SendData(23, -1, -1, null, bat);
+                                    int bat = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.IlluminantBat);
+                                    if (bat < 200)
+                                    {
+                                        Main.npc[bat].velocity.X = Main.rand.Next(-5, 6);
+                                        Main.npc[bat].velocity.Y = Main.rand.Next(-5, 6);
+                                        Main.npc[bat].netUpdate = true;
+                                        if (Main.netMode == 2)
+                                            NetMessage.SendData(23, -1, -1, null, bat);
+                                    }
                                 }
+                                Counter = 0;
                             }
-                            Counter = 0;
                         }
                         break;
 
@@ -4371,7 +4372,6 @@ namespace FargowiltasSouls.NPCs
                     //ok lets make them dash instead
                     case 83: //demon eye
                         Counter++;
-                        Main.NewText(npc.velocity);
                         if (Counter >= 420)
                         {
                             npc.TargetClosest();

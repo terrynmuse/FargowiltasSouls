@@ -78,6 +78,15 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
+            for(int i = 0; i < 200; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.active && !npc.boss)
+                {
+                    npc.StrikeNPC(npc.lifeMax, 0, 0, true);
+                }
+            }
+
             // Play explosion sound
             Main.PlaySound(SoundID.Item15, projectile.position);
         }

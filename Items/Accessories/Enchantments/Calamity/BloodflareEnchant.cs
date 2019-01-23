@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class BloodflareEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,18 +19,26 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("Bloodflare Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'The souls of the fallen are at your disposal...'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
-");
+
+
+Enemies have a 50% chance to drop a mana star and a heart on hit.
+Enemies killed during a Blood Moon have a very high chance of dropping a blood orb.
+Greatly increased life regen.
+True Melee Strikes heal you.
+After striking an enemy 15 times, you will enter a blood frenzy for 5 seconds. During this time, you gain 25% increased damage/crit chance, and contact damage is halved.
+Press Y to unleash lost souls.
+Ranged and Magic projectiles often fire ghostly bolts.
+For every magic crit, you gain a small magic damage boost. Stacks to 15%.
+Being over 80% life boosts your defense by 30 and your throwing critical strike chance by 5%.
+Being below 80% life will boost your throwing damage by 15%. Every throwing critical strike will heal you.
+Summons Polterghast's mines to orbit you.
+Striking an enemy that is under 20% health will trigger a bloodsplosion that drops hearts.
+Gives the effects of the Core of the Blood God.
+Enemies close to you will have their life drained");
         }
 
         public override void SetDefaults()
@@ -47,7 +55,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +64,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Bloodflare cuisses, body armor, all Bloodflare helmets, the Mutilator, the Core of the Blood God, the Lacerator, the Sanguine Flare, the Viscera, the Claret Cannon, and the Arterial Assault
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));

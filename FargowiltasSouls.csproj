@@ -15,6 +15,9 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fargowiltas">
+      <HintPath>..\folder for wip\Fargowiltas.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework">
       <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.dll</HintPath>
       <HintPath Condition="Exists('C:\Users\dariu\Documents\Microsoft Xna Framework')">C:\Users\dariu\Documents\Microsoft Xna Framework\Microsoft.Xna.Framework.dll</HintPath>

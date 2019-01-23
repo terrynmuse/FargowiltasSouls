@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class DemonShadeEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,17 +19,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("Demon Shade Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'Demonic power emanates from you…'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
+50% increased melee damage and crit chance.
++10 max minions.
++200 max life and mana.
+Enemies that touch you take 100x their contact damage.
+Standing still regens your life crazy fast.
+All attacks inflict Demon Flames.
+Shadowbeams and Demon Scythes fall from the sky on hit.
+You have a friendly Red Devil following you.
+Pressing Y gives you Enraged, which makes enemies take twice as much damage, but you also take more damage.
 ");
         }
 
@@ -47,7 +49,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +58,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Demonshade armor, Animus, Earth, Draconic Destruction, Red Sun, Illustrious Knives, Triactis’ True Paladinian Mage-Hammer of Might, Staff of Blushie, Fabstaff, Voidragon, Apotheosis and Svantechnical.
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));

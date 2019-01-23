@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class VictideEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,17 +19,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("Victide Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'The former seas have energized you…'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
+When using any weapon, you have a chance to throw a returning seashell projectile.
+Increased life regen and damage when submerged in liquid.
++50% movement speed when submerged in liquid.
++5% damage reduction.
++10% damage reduction when submerged in liquid.
++2 defense.
++5 defense when submerged in liquid.
++5% damage.
+Summons a sea urchin minion.
 ");
         }
 
@@ -47,7 +49,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +58,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Victide armor, all Victide helmets, Redtide Sword, Urchin Spear, Cindarian, Coral Spout, Seashell Boomerang, Shield of the Ocean and Seabow.
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));

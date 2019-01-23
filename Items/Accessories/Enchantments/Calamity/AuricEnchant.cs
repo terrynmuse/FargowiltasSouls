@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
-    public class AerospecEnchant : ModItem
+    public class AuricEnchant : ModItem
     {
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -19,17 +19,22 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aerospec Enchantment");
+            DisplayName.SetDefault("Auric Enchantment");
             Tooltip.SetDefault(
-@"'The sky comes to your aid…'
+@"'Your strength rivals that of the Jungle Tyrant...'
 
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
+
+
++100 max life and mana.
++20% increased damage.
++75% increased movement speed.
++25% damage reduction, calculated separately.
+2% chance to take 0 damage from an attack.
+Enemies are frozen when running into you.
+All attacks spawn healing auric orbs.
+You have a magic carpet.
+Not moving increases all stats.
+All effects from Tarragon, Bloodflare, Godslayer and Silva armor.
 ");
         }
 
@@ -47,7 +52,7 @@ Summons a Valkyrie minion to assist you.
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+
         }
 
         public override void AddRecipes()
@@ -56,7 +61,7 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            //Auric Tesla Cuisses, Body Armor, all Auric Tesla Helmets, True Tyrant's Ultisword, Drataliornus, Yharim's Crystal, Dragon Rage, The Burning Sky, Phoenix Flame Barrage, Chicken Cannon, Yharon Kindle Staff, Infernal Spear, Yharim's Gift, and The Wand. 
 
             recipe.AddIngredient(calamity.ItemType(""));
             recipe.AddIngredient(calamity.ItemType(""));
