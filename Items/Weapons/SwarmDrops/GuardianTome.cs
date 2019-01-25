@@ -31,5 +31,14 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.shoot = mod.ProjectileType("DungeonGuardian");
             item.shootSpeed = 18f;
         }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BoneKey, 100);
+            recipe.AddTile(TileID.BoneWelder);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

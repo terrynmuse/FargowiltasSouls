@@ -6,13 +6,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class MoltenEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Molten Enchantment");
             Tooltip.SetDefault(
-                @"'They shall know the fury of hell.' 
+@"'They shall know the fury of hell.' 
 Nearby enemies are ignited
-When you die, you violently explode dealing massive damage to surrounding enemies");
+When you die, you violently explode dealing massive damage");
         }
 
         public override void SetDefaults()
@@ -36,9 +38,24 @@ When you die, you violently explode dealing massive damage to surrounding enemie
             recipe.AddIngredient(ItemID.MoltenHelmet);
             recipe.AddIngredient(ItemID.MoltenBreastplate);
             recipe.AddIngredient(ItemID.MoltenGreaves);
-            recipe.AddIngredient(ItemID.FieryGreatsword);
-            recipe.AddIngredient(ItemID.Sunfury);
-            recipe.AddIngredient(ItemID.DemonsEye);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("MeleeThorHammer"));
+                recipe.AddIngredient(ItemID.MoltenHamaxe);
+                recipe.AddIngredient(ItemID.Flamarang);
+                recipe.AddIngredient(ItemID.Sunfury);
+                recipe.AddIngredient(ItemID.DarkLance);
+                recipe.AddIngredient(ItemID.DemonsEye);
+                recipe.AddIngredient(thorium.ItemType("HellwingButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.Flamarang);
+                recipe.AddIngredient(ItemID.Sunfury);
+                recipe.AddIngredient(ItemID.DemonsEye);
+            }
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -56,6 +57,12 @@ namespace FargowiltasSouls
                 Soulcheck.Visible = false;
                 CustomResources.SetState(SoulCheck);
             }
+        }
+
+        public override void Unload()
+        {
+            Soulcheck.ToggleDict.Clear();
+            Soulcheck.checkboxDict.Clear();
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -127,6 +134,7 @@ namespace FargowiltasSouls
             RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Drax", ItemID.Drax, ItemID.PickaxeAxe);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyDrax", group);
 
+            //does this mod even exist anymore tbh
             if (Instance.TerraCompLoaded)
             {
                 //cobalt
@@ -144,7 +152,6 @@ namespace FargowiltasSouls
                     ModLoader.GetMod("TerraCompilation").ItemType("AdamantiteComp"), ModLoader.GetMod("TerraCompilation").ItemType("TitaniumComp"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
             }
-
             else
             {
                 //cobalt
@@ -158,6 +165,15 @@ namespace FargowiltasSouls
                 //adamantite
                 group = new RecipeGroup(() => Lang.misc[37] + " Adamantite Repeater", ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater);
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
+            }
+
+            if (Instance.ThoriumLoaded)
+            {
+                Mod thorium = ModLoader.GetMod("ThoriumMod");
+
+                //combo yoyos
+                group = new RecipeGroup(() => Lang.misc[37] + " Combination Yoyo", thorium.ItemType("Nocturnal"), thorium.ItemType("Sanguine"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyThoriumYoyo", group);
             }
 
             //evil wood
@@ -229,6 +245,27 @@ namespace FargowiltasSouls
             group = new RecipeGroup(() => Lang.misc[37] + " Phasesaber", ItemID.RedPhasesaber, ItemID.BluePhasesaber, ItemID.GreenPhasesaber, ItemID.PurplePhasesaber, ItemID.WhitePhasesaber,
                 ItemID.YellowPhasesaber);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyPhasesaber", group);
+
+            if(ThoriumLoaded)
+            {
+                Mod thorium = ModLoader.GetMod("ThoriumMod");
+
+                //jester mask
+                group = new RecipeGroup(() => Lang.misc[37] + " Jester Mask", thorium.ItemType("JestersMask"), thorium.ItemType("JestersMask2"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyJesterMask", group);
+                //jester shirt
+                group = new RecipeGroup(() => Lang.misc[37] + " Jester Shirt", thorium.ItemType("JestersShirt"), thorium.ItemType("JestersShirt2"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyJesterShirt", group);
+                //jester legging
+                group = new RecipeGroup(() => Lang.misc[37] + " Jester Leggings", thorium.ItemType("JestersLeggings"), thorium.ItemType("JestersLeggings2"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyJesterLeggings", group);
+                //evil wood tambourine
+                group = new RecipeGroup(() => Lang.misc[37] + " Evil Wood Tambourine", thorium.ItemType("EbonWoodTambourine"), thorium.ItemType("ShadeWoodTambourine"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyTambourine", group);
+                //fan letter
+                group = new RecipeGroup(() => Lang.misc[37] + " Fan Letter", thorium.ItemType("FanLetter"), thorium.ItemType("FanLetter2"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyLetter", group);
+            }
         }
 
         public static bool NoInvasion(NPCSpawnInfo spawnInfo)

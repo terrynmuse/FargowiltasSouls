@@ -6,14 +6,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class NinjaEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ninja Enchantment");
             Tooltip.SetDefault(
-                @"'Now you see me, now you don’t'
+@"'Now you see me, now you don’t'
 Throw a smoke bomb to teleport to it
 Standing nearby smoke gives you the First Strike buff
-Summons a pet Black cat");
+Summons a pet Black Cat");
         }
 
         public override void SetDefaults()
@@ -37,10 +39,25 @@ Summons a pet Black cat");
             recipe.AddIngredient(ItemID.NinjaHood);
             recipe.AddIngredient(ItemID.NinjaShirt);
             recipe.AddIngredient(ItemID.NinjaPants);
-            recipe.AddIngredient(ItemID.Shuriken, 100);
-            recipe.AddIngredient(ItemID.SmokeBomb, 50);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {   
+                recipe.AddIngredient(ItemID.ThrowingKnife, 300);
+                recipe.AddIngredient(ItemID.Shuriken, 300);
+                recipe.AddIngredient(thorium.ItemType("StarfishSlicer"), 300);
+                recipe.AddIngredient(ItemID.SmokeBomb, 50);
+                recipe.AddIngredient(thorium.ItemType("Scorpain"));
+                recipe.AddIngredient(thorium.ItemType("AmphibianEgg"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.Shuriken, 100);
+                recipe.AddIngredient(ItemID.SmokeBomb, 50);
+            }
+            
             recipe.AddIngredient(ItemID.UnluckyYarn);
-            recipe.AddTile(TileID.CrystalBall);
+            
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

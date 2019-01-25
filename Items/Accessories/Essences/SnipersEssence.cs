@@ -6,11 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 {
     public class SnipersEssence : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sniper's Essence");
             Tooltip.SetDefault(
-                @"'This is only the beginning..'
+@"'This is only the beginning..'
 18% increased ranged damage
 5% increased ranged critical chance
 5% increased ranged use time");
@@ -27,9 +29,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).RangedEssence = true;
-            player.rangedCrit += 5;
             player.rangedDamage += .18f;
+            player.rangedCrit += 5;
+            player.GetModPlayer<FargoPlayer>(mod).RangedEssence = true;
         }
 
         public override void AddRecipes()
@@ -40,18 +42,19 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.RangerEmblem);
-                recipe.AddIngredient(ItemID.RedRyder);
                 recipe.AddIngredient(ItemID.PainterPaintballGun);
                 recipe.AddIngredient(ItemID.SnowballCannon);
+                recipe.AddIngredient(thorium.ItemType("Webgun"));
                 recipe.AddIngredient(ItemID.Harpoon);
                 recipe.AddIngredient(ItemID.Musket);
-                recipe.AddIngredient(ItemID.Boomstick);
+                recipe.AddIngredient(thorium.ItemType("GuanoGunner"));
+                recipe.AddIngredient(thorium.ItemType("Zapper"));
+                recipe.AddIngredient(thorium.ItemType("SharkStorm"));
+                recipe.AddIngredient(thorium.ItemType("Slugger"));
                 recipe.AddIngredient(ItemID.BeesKnees);
+                recipe.AddIngredient(thorium.ItemType("MarineLauncher"));
+                recipe.AddIngredient(thorium.ItemType("HeroTripleBow"));
                 recipe.AddIngredient(ItemID.HellwingBow);
-
-                /*
-                 * 
-                 * */
             }
             else
             {

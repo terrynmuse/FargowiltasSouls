@@ -1,26 +1,49 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
     public class SpiritForce : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Force of Spirit");
-            Tooltip.SetDefault(
-                @"'The strength of your spirit amazes even the Mutant'
-If you reach zero HP you cheat death, returning with 20 HP
-For a few seconds after reviving, you are immune to all damage and spawn bones everywhere
+
+            string tooltip =
+@"''
+";
+
+            /*if (thorium != null)
+            {
+                tooltip +=
+@"If you reach zero HP you cheat death, returning with 100 HP and spawning bones
 Double tap down to call an ancient storm to the cursor location
-Any projectiles shot through your storm gain double pierce and 50% damage
-You are immune to the Mighty Wind debuff
 You gain a shield that can reflect projectiles
-Summons an Enchanted Sword familiar that scales with minion damage
-Attacks will inflict a random debuff
-All damage can spawn damaging orbs and healing orbs
-Summons a pet Baby Dino, Magical Fairy, Tiki Spirit, and Wisp");
+Attacks will inflict a Infested and spawn damaging and healing orbs
+Killing enemies or continually damaging bosses generates soul wisps
+Pressing the Special Ability key will summon a chorus of music playing ghosts
+Taking damage heals nearby allies equal to 15% of the damage taken
+Summons an Enchanted Sword and Li'l Cherub familiar
+Summons several pets";
+            }
+            else
+            {*/
+                tooltip +=
+@"If you reach zero HP you cheat death, returning with 100 HP and spawning bones
+Double tap down to call an ancient storm to the cursor location
+You gain a shield that can reflect projectiles
+Attacks will inflict a Infested and spawn damaging and healing orbs
+Summons an Enchanted Sword familiar
+Summons several pets";
+            //}
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -29,29 +52,68 @@ Summons a pet Baby Dino, Magical Fairy, Tiki Spirit, and Wisp");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;
+            item.rare = 11;
             item.value = 600000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            //spectre works for all, spirit trapper works for all
             modPlayer.SpiritForce = true;
-            modPlayer.FossilEffect(20, hideVisual);
+            //revive, bone zone, pet
+            modPlayer.FossilEffect(25, hideVisual);
+            //storm
             modPlayer.ForbiddenEffect();
-            modPlayer.HallowEffect(hideVisual, 80);
-            modPlayer.TikiEnchant = true;
+            //sword, shield, pet
+            modPlayer.HallowEffect(hideVisual, 100);
+            //infested debuff, pet
+            modPlayer.TikiEffect(hideVisual);
+            //pet
             modPlayer.SpectreEffect(hideVisual);
+
+           /* if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            //lil cherub
+            modPlayer.SacredEnchant = true;
+            modPlayer.AddMinion("Li'l Cherub Minion", thorium.ProjectileType("Angel"), 0, 0f);
+            //twinkle pet
+            modPlayer.AddPet("Life Spirit Pet", hideVisual, thorium.BuffType("LifeSpiritBuff"), thorium.ProjectileType("LifeSpirit"));
+            thoriumPlayer.lifePet = true;
+            //pet
+            modPlayer.AddPet("Moogle Pet", hideVisual, thorium.BuffType("LilMogBuff"), thorium.ProjectileType("LilMog"));
+            modPlayer.KnightEnchant = true;
+            //conductor set bonus
+            thoriumPlayer.conductorSet = true;
+            //paladin set bonus
+            thoriumPlayer.fallenPaladinSet = true;*/
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "FossilEnchant");
-            recipe.AddIngredient(null, "ForbiddenEnchant");
-            recipe.AddIngredient(null, "HallowEnchant");
-            recipe.AddIngredient(null, "TikiEnchant");
-            recipe.AddIngredient(null, "SpectreEnchant");
+
+            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            {
+                recipe.AddIngredient(null, "FossilEnchant");
+                recipe.AddIngredient(null, "SacredEnchant");
+                recipe.AddIngredient(null, "ForbiddenEnchant");
+                recipe.AddIngredient(null, "HallowEnchant");
+                recipe.AddIngredient(null, "TikiEnchant");
+                recipe.AddIngredient(null, "SpectreEnchant");
+                recipe.AddIngredient(null, "HarbingerEnchant");
+                recipe.AddIngredient(null, "FallenPaladinEnchant");
+                recipe.AddIngredient(null, "ConductorEnchant");
+            }
+            else
+            {*/
+                recipe.AddIngredient(null, "FossilEnchant");
+                recipe.AddIngredient(null, "ForbiddenEnchant");
+                recipe.AddIngredient(null, "HallowEnchant");
+                recipe.AddIngredient(null, "TikiEnchant");
+                recipe.AddIngredient(null, "SpectreEnchant");
+            //}
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

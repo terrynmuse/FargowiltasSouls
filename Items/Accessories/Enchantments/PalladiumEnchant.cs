@@ -6,13 +6,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class PalladiumEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Palladium Enchantment");
             Tooltip.SetDefault(
-                @"'You feel your wounds slowly healing' 
+@"'You feel your wounds slowly healing' 
 Greatly increases life regeneration after striking an enemy 
-Small chance for an attack to gain 33% life steal");
+One attack gains 5% life steal every second, capped at 5 HP");
         }
 
         public override void SetDefaults()
@@ -38,8 +40,18 @@ Small chance for an attack to gain 33% life steal");
             recipe.AddIngredient(ItemID.PalladiumLeggings);
             recipe.AddIngredient(ItemID.PalladiumSword);
             recipe.AddIngredient(ItemID.PalladiumRepeater);
+
+            if (Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("PalladiumSub"));
+                recipe.AddIngredient(thorium.ItemType("PalladiumStaff"));
+                recipe.AddIngredient(thorium.ItemType("eeeLifeLeech")); //um WTF
+                recipe.AddIngredient(thorium.ItemType("VampireScepter"));
+            }
+            
             recipe.AddIngredient(ItemID.SoulDrain);
-            recipe.AddIngredient(ItemID.VampireKnives);
+            recipe.AddIngredient(ItemID.HeartLantern, 5);
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

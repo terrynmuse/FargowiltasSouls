@@ -6,16 +6,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class RedRidingEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Red Riding Enchantment");
             Tooltip.SetDefault(
-                @"'Big Bad Red Riding Hood'
+@"'Big Bad Red Riding Hood'
+During a Full Moon, attacks may cause enemies to Super Bleed
+Your attacks deal increasing damage to low HP enemies
 Greatly enhances Explosive Traps effectiveness
 Celestial Shell effects
-Your attacks deal increasing damage to low HP enemies
-During a Full Moon, ranged attacks cause enemies to Super Bleed
-Summons a Puppy");
+Summons a pet Puppy");
         }
 
         public override void SetDefaults()
@@ -30,6 +32,18 @@ Summons a Puppy");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.setHuntressT2 = true;
+            player.setHuntressT3 = true;
+            //celestial shell
+            player.accMerman = true;
+            player.wolfAcc = true;
+
+            if (hideVisual)
+            {
+                player.hideMerman = true;
+                player.hideWolf = true;
+            }
+
             player.GetModPlayer<FargoPlayer>(mod).RedRidingEffect(hideVisual);
         }
 
@@ -41,8 +55,21 @@ Summons a Puppy");
             recipe.AddIngredient(ItemID.HuntressAltPants);
             recipe.AddIngredient(ItemID.HuntressBuckler);
             recipe.AddIngredient(ItemID.CelestialShell);
-            recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("EvisceratingClaw"), 300);
+                recipe.AddIngredient(thorium.ItemType("LadyLight"));
+                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT2Popper);
+                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
+            }
+            
             recipe.AddIngredient(ItemID.DogWhistle);
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

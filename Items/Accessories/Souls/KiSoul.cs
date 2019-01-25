@@ -8,7 +8,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class KiSoul : ModItem
     {
-        string _tooltip = null;
+        string tooltip = null;
+
+        public override bool Autoload(ref string name)
+        {
+            return false;// ModLoader.GetLoadedMods().Contains("DBZMOD");
+        }
 
         public override void SetStaticDefaults()
         {
@@ -22,8 +27,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 40% reduced ki usage
 20% increased ki critical strike chance
 30% increased ki knockback
+25% increased cast speed
 +5 Charge limit for all beams
-Increased ki cast speed
 Drasctically increases the range of ki orb pickups
 Increased ki orb heal rate
 Drastically increased ki regen
@@ -45,8 +50,7 @@ Drastically increased ki regen
             item.height = 20;
             item.accessory = true;
             item.value = 1000000;
-            item.expert = true;
-            item.rare = -12;
+            item.rare = 11;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -62,9 +66,9 @@ Drastically increased ki regen
             //general
             DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(_dbzmod);
             
-            dbtPlayer.KiDamage += 0.35f;
-            dbtPlayer.KiCrit += 20;
-            dbtPlayer.KiSpeedAddition += 4;
+            //dbtPlayer.KiDamage += 0.35f;
+            //dbtPlayer.KiCrit += 20f;
+            //dbtPlayer.KiSpeedAddition += 0.25f;
             dbtPlayer.KiKbAddition += 0.3f;
             dbtPlayer.KiDrainMulti -= 0.4f;
             dbtPlayer.KiMax = (int)(dbtPlayer.KiMax * 1.3);
@@ -94,6 +98,7 @@ Drastically increased ki regen
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.DBTLoaded) return;
+            
             ModRecipe recipe = new ModRecipe(mod);
 
             foreach (string i in _items)

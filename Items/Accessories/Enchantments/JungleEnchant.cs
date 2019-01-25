@@ -1,20 +1,38 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class JungleEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jungle Enchantment");
-            Tooltip.SetDefault(
-                @"'The wrath of the jungle dwells within'
-Allows the collection of Vine Rope from vines
-Chance to steal 5 mana with each attack
+
+            string tooltip = 
+@"'The wrath of the jungle dwells within'
+25% chance to steal 4 mana with each attack
 Taking damage will release a poisoning spore explosion
-Spore damage scales with magic damage");
+Spore damage scales with magic damage
+";
+
+            if(thorium != null)
+            {
+                tooltip +=
+@"You and nearby allies have a chance to poison enemies when attacking
+Doubles the range of your empowerments effect radius";
+            }
+            /*else
+            {*/
+            tooltip += "Allows the collection of Vine Rope from vines";
+            //}
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -30,6 +48,22 @@ Spore damage scales with magic damage");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).JungleEffect();
+
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
+
+        private void Thorium(Player player)
+        {
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            thoriumPlayer.bardRangeBoost += 450;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerPoison = true;
+                }
+            }
         }
 
         public override void AddRecipes()
@@ -38,9 +72,25 @@ Spore damage scales with magic damage");
             recipe.AddIngredient(ItemID.JungleHat);
             recipe.AddIngredient(ItemID.JungleShirt);
             recipe.AddIngredient(ItemID.JunglePants);
-            recipe.AddIngredient(ItemID.CordageGuide);
-            recipe.AddIngredient(ItemID.JungleRose);
-            recipe.AddIngredient(ItemID.DoNotStepontheGrass);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("PoisonSubwoofer"));
+                recipe.AddIngredient(ItemID.JungleRose);
+                recipe.AddIngredient(ItemID.ThornChakram);
+                recipe.AddIngredient(ItemID.Boomstick);
+                recipe.AddIngredient(ItemID.DoNotStepontheGrass);
+                recipe.AddIngredient(ItemID.Frog);
+                recipe.AddIngredient(thorium.ItemType("JungleSporeButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.CordageGuide);
+                recipe.AddIngredient(ItemID.JungleRose);
+                recipe.AddIngredient(ItemID.ThornChakram);
+                recipe.AddIngredient(ItemID.DoNotStepontheGrass);
+            }
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

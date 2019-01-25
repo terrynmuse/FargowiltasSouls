@@ -54,5 +54,17 @@ namespace FargowiltasSouls.Items.Weapons
 
             return false;
         }
+
+        public override void AddRecipes()
+        {
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(null, "SlimeSword", 10);
+                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
     }
 }

@@ -1,12 +1,18 @@
+using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items
 {
     public class FargoGlobalItem : GlobalItem
     {
+        private static Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if (item.type == ItemID.DogWhistle)
@@ -26,7 +32,7 @@ namespace FargowiltasSouls.Items
             FargoPlayer p = (FargoPlayer) player.GetModPlayer(mod, "FargoPlayer");
             //ignore money, hearts, mana stars
             if (p.IronEnchant && item.type != 71 && item.type != 72 && item.type != 73 && item.type != 74 && item.type != 54 && item.type != 1734 && item.type != 1735 &&
-                item.type != 184) grabRange += 300;
+                item.type != 184) grabRange += 250;
         }
 
         public override void PickAmmo(Item item, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
@@ -70,7 +76,7 @@ namespace FargowiltasSouls.Items
                 case ItemID.QueenBeeBossBag:
                     player.QuickSpawnItem(mod.ItemType("QueenStinger"));
                     break;
-                case ItemID.DestroyerBossBag:
+                /*case ItemID.DestroyerBossBag:
                     player.QuickSpawnItem(mod.ItemType("Probe"));
                     break;
                 case ItemID.TwinsBossBag:
@@ -78,13 +84,13 @@ namespace FargowiltasSouls.Items
                     break;
                 case ItemID.SkeletronPrimeBossBag:
                     player.QuickSpawnItem(mod.ItemType("PrimeStaff"));
-                    break;
+                    break;*/
                 case ItemID.PlanteraBossBag:
                     player.QuickSpawnItem(mod.ItemType("Dicer"));
                     break;
-                case ItemID.GolemBossBag:
-                    player.QuickSpawnItem(mod.ItemType("GolemStaff"));
-                    break;
+                //case ItemID.GolemBossBag:
+                    //player.QuickSpawnItem(mod.ItemType("GolemStaff"));
+                    //break;
                 case ItemID.FishronBossBag:
                     player.QuickSpawnItem(mod.ItemType("FishStick"));
                     break;
@@ -101,10 +107,11 @@ namespace FargowiltasSouls.Items
 
             if (p.TerrariaSoul)
             {
-                // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (item.type)
                 {
                     case ItemID.Heart:
+                    case ItemID.CandyApple:
+                    case ItemID.CandyCane:
                         player.HealEffect(40);
                         player.statLife += 40;
                         return false;
@@ -114,75 +121,11 @@ namespace FargowiltasSouls.Items
                         return false;
                 }
             }
-            else if (p.CrimsonEnchant && item.type == ItemID.Heart)
+            else if (p.CrimsonEnchant && !p.NatureForce && (item.type == ItemID.Heart || item.type == ItemID.CandyApple || item.type == ItemID.CandyCane))
             {
                 player.HealEffect(30);
                 player.statLife += 30;
                 return false;
-            }
-
-            if (!p.GoldEnchant || p.TerrariaSoul) return true;
-            
-            switch (item.type)
-            {
-                case ItemID.CopperCoin:
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        float randX, randY;
-
-                        do
-                        {
-                            randX = Main.rand.Next(-10, 10);
-                        } while (randX <= 4f && randX >= -4f);
-
-                        do
-                        {
-                            randY = Main.rand.Next(-10, 10);
-                        } while (randY <= 4f && randY >= -4f);
-
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, randX, randY, ProjectileID.CopperCoin, 25, 2, Main.myPlayer);
-                    }
-
-                    return false;
-                }
-                case ItemID.SilverCoin:
-                {
-                    for (int i = 0; i < 8; i++)
-                    {
-                        float randX, randY;
-
-                        do
-                        {
-                            randX = Main.rand.Next(-10, 10);
-                        } while (randX <= 4f && randX >= -4f);
-
-                        do
-                        {
-                            randY = Main.rand.Next(-10, 10);
-                        } while (randY <= 4f && randY >= -4f);
-
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, randX, randY, ProjectileID.SilverCoin, 50, 2, Main.myPlayer);
-                    }
-
-                    return false;
-                }
-                case ItemID.GoldCoin:
-                {
-                    int x = Main.rand.Next(2);
-
-                    switch (x)
-                    {
-                        case 0:
-                            player.AddBuff(BuffID.Regeneration, 600);
-                            break;
-                        default:
-                            player.AddBuff(BuffID.Swiftness, 600);
-                            break;
-                    }
-
-                    break;
-                }
             }
 
             return true;
@@ -192,12 +135,14 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            if (modPlayer.UniverseEffect) knockback *= 2;
+            if (modPlayer.UniverseEffect || modPlayer.Eternity) knockback *= 2;
         }
 
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.type == ItemID.PumpkinPie && player.HasBuff(BuffID.PotionSickness)) return false;
+
+            if (item.magic && player.GetModPlayer<FargoPlayer>().ReverseManaFlow) return false;
 
             return true;
         }
@@ -206,7 +151,7 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            if (item.type == ItemID.PumpkinPie && modPlayer.PumpkinEnchant)
+            if (item.type == ItemID.PumpkinPie && modPlayer.PumpkinEnchant && !modPlayer.TerrariaSoul)
             {
                 int heal = player.statLifeMax2 - player.statLife;
                 player.HealEffect(heal);
@@ -216,7 +161,30 @@ namespace FargowiltasSouls.Items
 
             if (modPlayer.UniverseEffect && item.damage > 0) item.shootSpeed *= 1.5f;
 
+            if (modPlayer.Eternity && item.damage > 0) item.shootSpeed *= 2f;
+
             return false;
+        }
+
+        public override bool Shoot(Item item, Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            //thorium//
+
+            /*if (modPlayer.ShadowForce && item.damage >= 1 && Main.rand.Next(5) == 0)
+            {
+                float num9 = 0.25f;
+                float num10 = (float)Math.Sqrt((speedX * speedX + speedY * speedY));
+                double num11 = Math.Atan2(speedX, speedY);
+                double num12 = num11 + (0.25f * num9);
+                double num13 = num11 - (0.25f * num9);
+                float num14 = Utils.NextFloat(Main.rand) * 0.2f + 0.95f;
+                Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num12), num10 * num14 * (float)Math.Cos(num12), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num13), num10 * num14 * (float)Math.Cos(num13), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
+            }*/
+
+            return true;
         }
     }
 }

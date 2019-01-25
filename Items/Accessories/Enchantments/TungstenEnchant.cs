@@ -1,19 +1,32 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class TungstenEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tungsten Enchantment");
-            Tooltip.SetDefault(
-                @"'Juggernaut'
+
+            string tooltip = 
+@"'Juggernaut'
 Your weapons shoot at 1/8 the speed
 300% increased damage
-25% increased crit chance");
+25% increased crit chance";
+
+            if(thorium != null)
+            {
+                tooltip += "You constantly generate a 15 life shield";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -28,7 +41,30 @@ Your weapons shoot at 1/8 the speed
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>().TungstenEffect(3);
+            player.GetModPlayer<FargoPlayer>().TungstenEffect();
+
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
+
+        private void Thorium(Player player)
+        {
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            timer++;
+            if (timer >= 30)
+            {
+                int num = 15;
+                if (thoriumPlayer.shieldHealth <= num)
+                {
+                    thoriumPlayer.shieldHealthTimerStop = true;
+                }
+                if (thoriumPlayer.shieldHealth < num)
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                    thoriumPlayer.shieldHealth++;
+                    player.statLife++;
+                }
+                timer = 0;
+            }
         }
 
         public override void AddRecipes()
@@ -37,9 +73,24 @@ Your weapons shoot at 1/8 the speed
             recipe.AddIngredient(ItemID.TungstenHelmet);
             recipe.AddIngredient(ItemID.TungstenChainmail);
             recipe.AddIngredient(ItemID.TungstenGreaves);
-            recipe.AddIngredient(ItemID.TungstenHammer);
-            recipe.AddIngredient(ItemID.EmeraldStaff);
-            recipe.AddIngredient(ItemID.Snail);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("TungstenBulwark"));
+                recipe.AddIngredient(ItemID.TungstenHammer);
+                recipe.AddIngredient(ItemID.EmeraldStaff);
+                recipe.AddIngredient(ItemID.GreenPhaseblade);
+                recipe.AddIngredient(ItemID.Snail);
+                recipe.AddIngredient(ItemID.Sluggy);
+                recipe.AddIngredient(thorium.ItemType("EmeraldButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.TungstenHammer);
+                recipe.AddIngredient(ItemID.EmeraldStaff);
+                recipe.AddIngredient(ItemID.Snail);
+            }
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -8,17 +8,10 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Fused");
-            Description.SetDefault("A bomb is gonna go off soon in you...");
+            Description.SetDefault("You're going out with a bang");
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
             Main.debuff[Type] = true;
-        }
-
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-
-            return true;
         }
 
         public override void Update(Player player, ref int buffIndex)

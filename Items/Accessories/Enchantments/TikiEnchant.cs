@@ -6,13 +6,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class TikiEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tiki Enchantment");
             Tooltip.SetDefault(
-                @"'Aku Aku!'
-Attacks will inflict a random debuff
-Summons a Tiki Spirit");
+@"'Aku Aku!'
+Attacks will inflict a Infested on enemies
+Infested deals increasing damage over time
+Summons a pet Tiki Spirit");
         }
 
         public override void SetDefaults()
@@ -39,7 +42,16 @@ Summons a Tiki Spirit");
             recipe.AddIngredient(ItemID.PygmyNecklace);
             recipe.AddIngredient(ItemID.PygmyStaff);
             recipe.AddIngredient(ItemID.Blowgun);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("HexWand"));
+                recipe.AddIngredient(thorium.ItemType("TheIncubator"));
+                recipe.AddIngredient(ItemID.GoldFrog);
+            }
+            
             recipe.AddIngredient(ItemID.TikiTotem);
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

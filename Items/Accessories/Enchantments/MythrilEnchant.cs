@@ -6,11 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class MythrilEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mythril Enchantment");
             Tooltip.SetDefault(
-                @"'You feel the knowledge of your weapons seep into your mind'
+@"'You feel the knowledge of your weapons seep into your mind'
 30% increased weapon use speed");
         }
 
@@ -26,7 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MythrilEnchant = true;
+            player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= 1.3f;
         }
 
         public override void AddRecipes()
@@ -36,9 +38,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.MythrilChainmail);
             recipe.AddIngredient(ItemID.MythrilGreaves);
             recipe.AddIngredient(ItemID.MythrilRepeater);
+            
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("MythrilPelter"));
+                recipe.AddIngredient(thorium.ItemType("MythrilStaff"));
+                recipe.AddIngredient(thorium.ItemType("DrenchedDirk"));  
+            }
+            
+            recipe.AddIngredient(ItemID.LaserRifle);
             recipe.AddIngredient(ItemID.FetidBaghnakhs);
             recipe.AddIngredient(ItemID.Megashark);
-            recipe.AddIngredient(ItemID.LaserRifle);
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

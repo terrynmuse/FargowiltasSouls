@@ -8,18 +8,11 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Living Wasteland");
-            Description.SetDefault("Everyone around you turns to rot.");
+            Description.SetDefault("Everyone around you turns to rot");
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = false;
-        }
-
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-
-            return true;
         }
 
         public override void Update(Player player, ref int buffIndex)

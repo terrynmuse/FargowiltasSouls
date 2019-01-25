@@ -1,19 +1,32 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class TinEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tin Enchantment");
-            Tooltip.SetDefault(
-                @"'Return of the Crit'
+
+            string tooltip = 
+@"'Return of the Crit'
 Sets your critical strike chance to 4%
 Every crit will increase it by 4%
-Getting hit drops your crit back down");
+Getting hit drops your crit back down";
+
+            if(thorium != null)
+            {
+                tooltip += "\nYou constantly generate a 11 life shield";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -29,6 +42,29 @@ Getting hit drops your crit back down");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).TinEffect();
+
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
+
+        private void Thorium(Player player)
+        {
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            timer++;
+            if (timer >= 30)
+            {
+                int num = 11;
+                if (thoriumPlayer.shieldHealth <= num)
+                {
+                    thoriumPlayer.shieldHealthTimerStop = true;
+                }
+                if (thoriumPlayer.shieldHealth < num)
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                    thoriumPlayer.shieldHealth++;
+                    player.statLife++;
+                }
+                timer = 0;
+            }
         }
 
         public override void AddRecipes()
@@ -37,9 +73,24 @@ Getting hit drops your crit back down");
             recipe.AddIngredient(ItemID.TinHelmet);
             recipe.AddIngredient(ItemID.TinChainmail);
             recipe.AddIngredient(ItemID.TinGreaves);
-            recipe.AddIngredient(ItemID.TinBow);
-            recipe.AddIngredient(ItemID.TopazStaff);
-            recipe.AddIngredient(ItemID.Daylight);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("TinBuckler"));
+                recipe.AddIngredient(ItemID.TinShortsword);
+                recipe.AddIngredient(ItemID.TinBow);
+                recipe.AddIngredient(ItemID.TopazStaff);
+                recipe.AddIngredient(ItemID.YellowPhaseblade);
+                recipe.AddIngredient(ItemID.Daylight);
+                recipe.AddIngredient(thorium.ItemType("TopazButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.TinBow);
+                recipe.AddIngredient(ItemID.TopazStaff);
+                recipe.AddIngredient(ItemID.Daylight);
+            }
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

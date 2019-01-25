@@ -10,11 +10,15 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hell Zone");
-            Tooltip.SetDefault("");
+            Tooltip.SetDefault("'The reward for slaughtering many..'");
         }
 
         public override void SetDefaults()
         {
+            item.damage = 180; //
+            item.knockBack = 0.5f;
+            item.shootSpeed = 10f; //
+
             item.useStyle = 5;
             item.autoReuse = true;
             item.useAnimation = 30; //
@@ -24,12 +28,10 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.shoot = mod.ProjectileType("HellFlame");
             item.useAmmo = AmmoID.Gel;
             item.UseSound = SoundID.Item34; //
-            item.damage = 240; //
-            item.knockBack = 0.5f;
-            item.shootSpeed = 10f; //
+            
             item.noMelee = true;
             item.value = Item.sellPrice(0, 15); //
-            item.rare = 10; //
+            item.rare = 6; //
             item.ranged = true;
         }
 
@@ -49,6 +51,19 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-30, -5);
+        }
+
+        public override void AddRecipes()
+        {
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(null, "Bonezone");
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerSkele"));
+                recipe.AddTile(TileID.Anvils);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
         }
     }
 }

@@ -6,11 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 {
     public class ApprenticesEssence : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Apprentice's Essence");
             Tooltip.SetDefault(
-                @"'This is only the beginning..'
+@"'This is only the beginning..'
 18% increased magic damage
 5% increased magic crit
 Increases your maximum mana by 50");
@@ -41,19 +43,15 @@ Increases your maximum mana by 50");
                 //just thorium
                 recipe.AddIngredient(ItemID.SorcererEmblem);
                 recipe.AddIngredient(ItemID.WandofSparking);
+                recipe.AddIngredient(thorium.ItemType("GraveBuster"));
                 recipe.AddIngredient(ItemID.Vilethorn);
                 recipe.AddIngredient(ItemID.CrimsonRod);
                 recipe.AddIngredient(ItemID.WaterBolt);
                 recipe.AddIngredient(ItemID.BookofSkulls);
                 recipe.AddIngredient(ItemID.MagicMissile);
                 recipe.AddIngredient(ItemID.Flamelash);
-
-                /*
-                 * magik staff
-                 * magic conch
-                 * grave buster
-                 * dark tome
-                 * */
+                recipe.AddIngredient(thorium.ItemType("SpineBreaker"));
+                recipe.AddIngredient(thorium.ItemType("MagikStaff"));
             }
             else
             {

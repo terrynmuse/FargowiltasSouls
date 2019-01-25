@@ -6,14 +6,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ShadowEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadow Enchantment");
             Tooltip.SetDefault(
-                @"'You feel your body slip into the deepest of shadows'
-You will recieve escalating Darkness debuffs while hitting enemies
-Surrounding enemies will take rapid damage when it is the darkest
-Summons a Baby Eater of Souls and a Shadow Orb");
+@"'You feel your body slip into the deepest of shadows'
+Your attacks may inflict Darkness on enemies
+Darkened enemies occasionally fire shadowflame tentacles at other enemies
+Summons a pet Eater of Souls and Shadow Orb");
         }
 
         public override void SetDefaults()
@@ -37,9 +39,23 @@ Summons a Baby Eater of Souls and a Shadow Orb");
             recipe.AddIngredient(ItemID.ShadowHelmet);
             recipe.AddIngredient(ItemID.ShadowScalemail);
             recipe.AddIngredient(ItemID.ShadowGreaves);
-            recipe.AddIngredient(ItemID.LightlessChasms);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.WarAxeoftheNight);
+                recipe.AddIngredient(ItemID.BallOHurt);
+                recipe.AddIngredient(ItemID.PurpleClubberfish);
+                recipe.AddIngredient(ItemID.LightlessChasms);
+                recipe.AddIngredient(thorium.ItemType("CorruptButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.LightlessChasms);
+            }
+            
             recipe.AddIngredient(ItemID.EatersBone);
             recipe.AddIngredient(ItemID.ShadowOrb);
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

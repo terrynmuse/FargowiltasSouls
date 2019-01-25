@@ -6,11 +6,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class HallowEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hallowed Enchantment");
+
             Tooltip.SetDefault(
-                @"'Hallowed be your sword and shield'
+@"'Hallowed be your sword and shield'
 You gain a shield that can reflect projectiles
 Summons an Enchanted Sword familiar that scales with minion damage
 Summons a magical fairy");
@@ -34,13 +37,28 @@ Summons a magical fairy");
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            
             recipe.AddRecipeGroup("FargowiltasSouls:AnyHallowHead");
             recipe.AddIngredient(ItemID.HallowedPlateMail);
             recipe.AddIngredient(ItemID.HallowedGreaves);
-            recipe.AddIngredient(ItemID.Excalibur);
             recipe.AddIngredient(null, "SilverEnchant");
-            recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("EnchantedShield"));
+                recipe.AddIngredient(ItemID.Excalibur);
+                recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
+                recipe.AddIngredient(thorium.ItemType("FuschiaButterfly"));
+                recipe.AddIngredient(thorium.ItemType("HallowedButterfly"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.Excalibur);
+                recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
+            }
+                      
             recipe.AddIngredient(ItemID.FairyBell);
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

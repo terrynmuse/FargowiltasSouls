@@ -6,13 +6,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class OrichalcumEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Orichalcum Enchantment");
             Tooltip.SetDefault(
-                @"'Nature blesses you' 
+@"'Nature blesses you' 
 Flower petals will cause extra damage to your target 
-Attacks may spawn fireballs to rotate around you");
+Spawns 3 fireballs to rotate around you");
         }
 
         public override void SetDefaults()
@@ -37,9 +39,23 @@ Attacks may spawn fireballs to rotate around you");
             recipe.AddIngredient(ItemID.OrichalcumBreastplate);
             recipe.AddIngredient(ItemID.OrichalcumLeggings);
             recipe.AddIngredient(ItemID.OrichalcumWaraxe);
-            recipe.AddIngredient(ItemID.FlowerofFire);
-            recipe.AddIngredient(ItemID.FlowerofFrost);
-            recipe.AddIngredient(ItemID.CursedFlames);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(thorium.ItemType("OrichPelter"));
+                recipe.AddIngredient(thorium.ItemType("OrichalcumStaff"));
+                recipe.AddIngredient(ItemID.FlowerofFire);
+                recipe.AddIngredient(ItemID.FlowerofFrost);
+                recipe.AddIngredient(ItemID.CursedFlames);
+                recipe.AddIngredient(thorium.ItemType("PrismaticSpray"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.FlowerofFire);
+                recipe.AddIngredient(ItemID.FlowerofFrost);
+                recipe.AddIngredient(ItemID.CursedFlames);
+            }
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

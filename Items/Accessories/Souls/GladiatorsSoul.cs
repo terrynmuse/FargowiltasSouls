@@ -2,24 +2,26 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using static Terraria.ID.ItemID;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
-    [AutoloadEquip(EquipType.Waist)]
+    //[AutoloadEquip(EquipType.Waist)]
     public class GladiatorsSoul : ModItem
     {
-        private Mod thorium;
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Berserker's Soul");
             Tooltip.SetDefault(
-                @"'None shall live to tell the tale'
+@"'None shall live to tell the tale'
 30% increased melee damage
 20% increased melee speed
 15% increased melee crit chance
 Increased melee knockback
-Grants the effects of the Yoyo Bag");
+Fire Gauntlet and Yoyo Bag effects");
         }
 
         public override void SetDefaults()
@@ -28,8 +30,18 @@ Grants the effects of the Yoyo Bag");
             item.height = 20;
             item.accessory = true;
             item.value = 1000000;
-            item.rare = -12;
-            item.expert = true;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 111, 6));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -58,20 +70,16 @@ Grants the effects of the Yoyo Bag");
                 recipe.AddIngredient(FireGauntlet);
                 recipe.AddIngredient(YoyoBag);
                 recipe.AddIngredient(Arkhalis);
-                recipe.AddIngredient(IceSickle);
+                recipe.AddIngredient(thorium.ItemType("PoseidonCharge"));
+                recipe.AddIngredient(thorium.ItemType("SurtrsSword"));
+                recipe.AddIngredient(thorium.ItemType("PrimesFury"));
                 recipe.AddIngredient(MonkStaffT2);
                 recipe.AddIngredient(TerraBlade);
                 recipe.AddIngredient(ScourgeoftheCorruptor);
-                recipe.AddIngredient(Kraken);
-                recipe.AddIngredient(Flairon);
-                recipe.AddIngredient(TheHorsemansBlade);
+                recipe.AddIngredient(thorium.ItemType("Spearmint"));
                 recipe.AddIngredient(NorthPole);
                 recipe.AddIngredient(InfluxWaver);
                 recipe.AddIngredient(Meowmere);
-
-                /*
-                 * 
-                 * */
             }
             else
             {

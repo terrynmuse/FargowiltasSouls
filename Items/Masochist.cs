@@ -22,18 +22,31 @@ namespace FargowiltasSouls.Items
             item.useAnimation = 30;
             item.useTime = 30;
             item.useStyle = 4;
-            item.consumable = true;
+            item.consumable = false;
         }
 
         public override bool UseItem(Player player)
         {
-            FargoWorld.MasochistMode = !FargoWorld.MasochistMode;
+            bool bossExists = false;
+            for (int i = 0; i < 200; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].boss)
+                {
+                    bossExists = true;
+                    break;
+                }
+            }
 
-            Main.NewText(FargoWorld.MasochistMode 
-                ? "Masochist Mode initiated!" 
-                : "Masochist Mode deactivated!", 175, 75);
+            if (!bossExists)
+            {
+                FargoWorld.MasochistMode = !FargoWorld.MasochistMode;
 
-            Main.PlaySound(15, (int) player.position.X, (int) player.position.Y, 0);
+                Main.NewText(FargoWorld.MasochistMode
+                    ? "Masochist Mode initiated!"
+                    : "Masochist Mode deactivated!", 175, 75);
+
+                Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
+            }
             return true;
         }
     }

@@ -5,6 +5,12 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
     public class FishStick : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Fish Stick");
+            Tooltip.SetDefault("'The carcass of a defeated foe shoved violently on a stick..'");
+        }
+
         public override void SetDefaults()
         {
             item.damage = 66;

@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override void SetDefaults()
         {
-            item.damage = 50;
+            item.damage = 45;
             item.width = 30;
             item.height = 10;
             item.value = Item.sellPrice(0, 10);
@@ -30,6 +30,19 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.shootSpeed = 25f;
             item.UseSound = SoundID.Item1;
             item.melee = true;
+        }
+
+        public override void AddRecipes()
+        {
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(null, "EyeFlail");
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerEye"));
+                recipe.AddTile(TileID.Anvils);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
         }
     }
 }

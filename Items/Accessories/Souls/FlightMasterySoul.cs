@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,14 +9,14 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     [AutoloadEquip(EquipType.Wings)]
     public class FlightMasterySoul : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Flight Mastery Soul");
             Tooltip.SetDefault(
-                @"'Ascend'
-Acts as wings
-Allows for very long lasting flight
-Releases bees when damaged");
+@"'Ascend'
+Allows for very long lasting flight");
         }
 
         public override void SetDefaults()
@@ -23,8 +25,18 @@ Releases bees when damaged");
             item.height = 20;
             item.accessory = true;
             item.value = 1000000;
-            item.expert = true;
-            item.rare = -12;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(56, 134, 255));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -37,7 +49,7 @@ Releases bees when damaged");
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
             ascentWhenFalling = 0.85f;
-            ascentWhenRising = 0.15f;
+            ascentWhenRising = 0.25f;
             maxCanAscendMultiplier = 1f;
             maxAscentMultiplier = 3f;
             constantAscend = 0.135f;
@@ -49,13 +61,6 @@ Releases bees when damaged");
             acceleration *= 3.5f;
         }
 
-        /*public override void WingUpdate(Player player, bool inUse)
-    {
-    	if (inUse)
-    		Dust.NewDust(player.position, player.width, player.height, 107, 0, 0, 0, Color.Green);
-    	base.WingUpdate(player, inUse);
-    }*/ //add when you have actual wings
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -65,14 +70,29 @@ Releases bees when damaged");
             recipe.AddIngredient(ItemID.LeafWings);
             recipe.AddIngredient(ItemID.FrozenWings);
             recipe.AddIngredient(ItemID.FlameWings);
-            recipe.AddIngredient(ItemID.TatteredFairyWings);
-            recipe.AddIngredient(ItemID.FestiveWings);
-            recipe.AddIngredient(ItemID.BetsyWings);
-            recipe.AddIngredient(ItemID.FishronWings);
-            recipe.AddIngredient(ItemID.WingsStardust);
-            recipe.AddIngredient(ItemID.WingsVortex);
-            recipe.AddIngredient(ItemID.WingsNebula);
-            recipe.AddIngredient(ItemID.WingsSolar);
+            
+            if (Fargowiltas.Instance.ThoriumLoaded)
+            {
+                recipe.AddIngredient(thorium.ItemType("DridersGrace"));
+                recipe.AddIngredient(thorium.ItemType("TitanWings"));
+                recipe.AddIngredient(ItemID.TatteredFairyWings);
+                recipe.AddIngredient(ItemID.FestiveWings);
+                recipe.AddIngredient(ItemID.BetsyWings);
+                recipe.AddIngredient(ItemID.FishronWings);
+                recipe.AddIngredient(thorium.ItemType("TerrariumWings"));
+                recipe.AddIngredient(thorium.ItemType("PhonicWings"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.TatteredFairyWings);
+                recipe.AddIngredient(ItemID.FestiveWings);
+                recipe.AddIngredient(ItemID.BetsyWings);
+                recipe.AddIngredient(ItemID.FishronWings);
+                recipe.AddIngredient(ItemID.WingsStardust);
+                recipe.AddIngredient(ItemID.WingsVortex);
+                recipe.AddIngredient(ItemID.WingsNebula);
+                recipe.AddIngredient(ItemID.WingsSolar);
+            }
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

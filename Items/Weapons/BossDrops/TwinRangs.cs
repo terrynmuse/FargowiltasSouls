@@ -9,6 +9,11 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
     {
         private int shoot;
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Twin Rangs");

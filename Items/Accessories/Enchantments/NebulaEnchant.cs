@@ -6,13 +6,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class NebulaEnchant : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Nebula Enchantment");
             Tooltip.SetDefault(
-                @"'The pillars of creation have shined upon you'
+@"'The pillars of creation have shined upon you'
 Hurting enemies has a chance to spawn buff boosters
-Once you get to the last tier with each booster type, your magic power hits obscene levels");
+Reach maxed buff boosters to gain drastically increased magic attack speed");
         }
 
         public override void SetDefaults()
@@ -36,10 +38,23 @@ Once you get to the last tier with each booster type, your magic power hits obsc
             recipe.AddIngredient(ItemID.NebulaHelmet);
             recipe.AddIngredient(ItemID.NebulaBreastplate);
             recipe.AddIngredient(ItemID.NebulaLeggings);
-            recipe.AddIngredient(ItemID.ShadowbeamStaff);
+            
+            if(Fargowiltas.Instance.ThoriumLoaded)
+            {      
+                recipe.AddIngredient(ItemID.WingsNebula);
+                recipe.AddIngredient(thorium.ItemType("BlackStaff"));
+                recipe.AddIngredient(thorium.ItemType("CatsEye"));
+                recipe.AddIngredient(thorium.ItemType("NebulaReflection"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.ShadowbeamStaff);
+            }
+            
             recipe.AddIngredient(ItemID.NebulaArcanum);
             recipe.AddIngredient(ItemID.NebulaBlaze);
             recipe.AddIngredient(ItemID.LunarFlareBook);
+
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

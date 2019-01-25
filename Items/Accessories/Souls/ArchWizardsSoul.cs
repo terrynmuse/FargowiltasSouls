@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using static Terraria.ID.ItemID;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -13,14 +15,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Arch Wizard's Soul");
             Tooltip.SetDefault(
-                @"'Arcane to the core'
+@"'Arcane to the core'
 30% increased magic damage
 20% increased spell casting speed
 15% increased magic crit chance
 Increases your maximum mana by 200
-Restores mana when damaged
-Increased pickup range for mana stars
-Automatically use mana potions when needed");
+Celestial Cuffs and Mana Flower effects");
         }
 
         public override void SetDefaults()
@@ -29,8 +29,18 @@ Automatically use mana potions when needed");
             item.height = 20;
             item.accessory = true;
             item.value = 1000000;
-            item.rare = -12;
-            item.expert = true;
+            item.rare = 11;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 83, 255));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -54,22 +64,18 @@ Automatically use mana potions when needed");
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(ManaFlower);
-                recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
-                recipe.AddIngredient(CelestialEmblem);
-                recipe.AddIngredient(GoldenShower);
+                recipe.AddIngredient(thorium.ItemType("TwinsIre"));
+                recipe.AddIngredient(thorium.ItemType("TerraStaff"));
                 recipe.AddIngredient(RainbowGun);
-                recipe.AddIngredient(MagnetSphere);
+                recipe.AddIngredient(thorium.ItemType("SpectrelBlade"));
+                recipe.AddIngredient(thorium.ItemType("LightningStaff"));
                 recipe.AddIngredient(ApprenticeStaffT3);
-                recipe.AddIngredient(RazorbladeTyphoon);
+                recipe.AddIngredient(thorium.ItemType("NuclearFury"));
                 recipe.AddIngredient(BatScepter);
                 recipe.AddIngredient(BlizzardStaff);
                 recipe.AddIngredient(LaserMachinegun);
-                recipe.AddIngredient(LastPrism);
-
-                /*
-                 * 
-                 * */
+                recipe.AddIngredient(LastPrism);              
             }
             else
             {

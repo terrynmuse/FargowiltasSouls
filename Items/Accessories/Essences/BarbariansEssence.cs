@@ -6,11 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 {
     public class BarbariansEssence : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Barbarian's Essence");
             Tooltip.SetDefault(
-                @"'This is only the beginning..' 
+@"'This is only the beginning..' 
 18% increased melee damage 
 10% increased melee speed 
 5% increased melee crit chance");
@@ -43,15 +45,16 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.ZombieArm);
                 recipe.AddIngredient(ItemID.Trident);
                 recipe.AddIngredient(ItemID.ChainKnife);
+                recipe.AddIngredient(thorium.ItemType("RedHourglass"));
                 recipe.AddIngredient(ItemID.StylistKilLaKillScissorsIWish);
                 recipe.AddIngredient(ItemID.IceBlade);
+                recipe.AddIngredient(thorium.ItemType("Bellerose"));
                 recipe.AddIngredient(ItemID.Starfury);
+                recipe.AddIngredient(thorium.ItemType("DrenchedDirk"));
+                recipe.AddIngredient(thorium.ItemType("Whip"));
                 recipe.AddIngredient(ItemID.BeeKeeper);
-                recipe.AddIngredient(ItemID.Cascade);
-
-                /*
-                 * 
-                 * */
+                recipe.AddIngredient(thorium.ItemType("EnergyStormPartisan"));
+                recipe.AddRecipeGroup("FargowiltasSouls:AnyThoriumYoyo");
             }
             else
             {

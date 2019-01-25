@@ -8,19 +8,12 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Purified");
-            Description.SetDefault("You are cleansed.");
+            Description.SetDefault("You are cleansed");
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             longerExpertDebuff = true;
             canBeCleared = true;
-        }
-
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-
-            return true;
         }
 
         public override void Update(Player player, ref int buffIndex)

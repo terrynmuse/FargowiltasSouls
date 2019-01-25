@@ -8,17 +8,10 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Flipped");
-            Description.SetDefault("Your gravity has reversed.");
+            Description.SetDefault("Your gravity is reversed");
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
             Main.debuff[Type] = true;
-        }
-
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-
-            return true;
         }
 
         public override void Update(Player player, ref int buffIndex)
