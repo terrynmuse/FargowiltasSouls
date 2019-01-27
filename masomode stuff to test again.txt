@@ -12,10 +12,22 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.8
--added magical bulb
--golem fists dont kill minions
+0.5.7
+-freeze in snow biome hard mode night after 5 seconds, 10 seconds with freeze immune
+-antlion chargers take some knockback, angry tumblers take much less
+-burning spheres drop flames every so often like pumpkin enchant
+-wolves cripple
+-town npcs may become werewolves on a full moon 
+-demon eyes no longer need to be post EoW/BoC to stone, instead they dash at you every few seconds and can only stone you when they are dashing
+-ant lions have a gravitational field
+-added red devil horde
+-mister stabby inflicts marked for death 
+-vampires life steal and gain damage when they hit you, no longer inflict living wasteland
+-angry nimbus shoots a lot of lightning 
+-unicorn rainbow 
+-king slime makes slime fall from the sky when he lands
 
-0.5.6.5
+0.5.6
 -Eternia Crystal doesnt regen in Masochist Mode anymore
 jungle water poisons and venoms
 hard mode corrupt water cursed flames
@@ -30,7 +42,6 @@ hard mode night snow chilled
 -cultist attacks also have clone support
 -bosses drop potions
 
-0.5.6
 -buffed ancient vision life
 -ancient vision and phantasm dragon have even more life when moon lord is alive
 -fixed cultist spawning ancient dooms, not ancient visions
