@@ -51,6 +51,7 @@ namespace FargowiltasSouls.NPCs
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(BuffID.Wet, 420);
+            target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(60, 180));
         }
 
         public override Color? GetAlpha(Color drawColor)

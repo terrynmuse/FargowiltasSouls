@@ -12,6 +12,31 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.8
+-destroyer phase 2 triggers at 50% life (was 75%)
+-skeletron prime limbs have full defense
+-skeletron prime has full defense in phase 2
+-moon lord attacks always inflict curse of the moon
+-phantasm dragon head inflicts curse of the moon, mutant nibble, longer clipped wings
+-phantasm dragon body no longer inflicts debuffs
+-golem immune to holy stars and crystal shards
+-detonating bubble inflict squeaky toy
+
+-fixed electrified killing mobs without drops, probably
+-fixed hallow flipping dead players, probably
+-crawltipede inflicts defenseless
+-selenian inflicts on fire, ichor
+-sroller & drakanian inflict on fire, burning
+-drakomire inflict feral bite
+-nebula headcrab inflict unstable/flipped
+-nebula laser inflict hexed
+-nebula bolt inflict lethargic
+-nebula sphere inflict distorted
+-star cell inflict squeaky toy
+-flow invader inflict frostburn
+-stargazer laser inflict withered armor/weapon
+-milkyway weaver inflict berserked
+-twink inflict frostburn
+
 0.5.7
 -freeze in snow biome hard mode night after 5 seconds, 10 seconds with freeze immune
 -antlion chargers take some knockback, angry tumblers take much less

@@ -191,6 +191,7 @@ namespace FargowiltasSouls
         public bool Slimed;
         public byte lightningRodTimer;
         public bool ReverseManaFlow;
+        public bool CurseoftheMoon;
 
         public IList<string> disabledSouls = new List<string>();
 
@@ -435,6 +436,7 @@ namespace FargowiltasSouls
             Atrophied = false;
             Jammed = false;
             ReverseManaFlow = false;
+            CurseoftheMoon = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -466,6 +468,7 @@ namespace FargowiltasSouls
             SqueakyToy = false;
             Atrophied = false;
             Jammed = false;
+            CurseoftheMoon = false;
         }
 
         public override void PreUpdate()
@@ -564,7 +567,7 @@ namespace FargowiltasSouls
                     }
                 }
 
-                if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight))
+                if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) && player.active)
                 {
                     player.AddBuff(mod.BuffType("FlippedHallow"), 120);
                 }
@@ -863,6 +866,16 @@ namespace FargowiltasSouls
 
                 player.lifeRegen -= 12;
             }
+
+            if (CurseoftheMoon)
+            {
+                if (player.lifeRegen > 0)
+                    player.lifeRegen = 0;
+
+                player.lifeRegenTime = 0;
+
+                player.lifeRegen -= 6;
+            }
         }
 
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
@@ -930,6 +943,15 @@ namespace FargowiltasSouls
 
                 fullBright = true;
 
+            }
+
+            if (CurseoftheMoon)
+            {
+                int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, 229, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 1.8f;
+                Main.dust[dust].velocity.Y -= 0.5f;
+                Main.playerDrawDust.Add(dust);
             }
         }
 
@@ -1739,7 +1761,7 @@ namespace FargowiltasSouls
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " rotted away.");
             }
 
-            if ((GodEater || FlamesoftheUniverse) && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
+            if ((GodEater || FlamesoftheUniverse || CurseoftheMoon) && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
             {
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " was annihilated by divine wrath.");
             }

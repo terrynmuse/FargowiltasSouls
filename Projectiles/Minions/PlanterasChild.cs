@@ -51,7 +51,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 
                 if (npc.CanBeChasedBy(projectile))
                 {
-                    Vector2 target = npc.Center + npc.velocity * 15f - projectile.Center;
+                    Vector2 target = npc.Center - projectile.Center;
                     float length = target.Length();
                     if (length > 1000f) //too far, lose target
                     {

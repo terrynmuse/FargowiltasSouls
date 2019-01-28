@@ -1,0 +1,30 @@
+using Terraria;
+using Terraria.ModLoader;
+
+namespace FargowiltasSouls.Buffs.Masomode
+{
+    public class CurseoftheMoon : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Curse of the Moon");
+            Description.SetDefault("The moon's wrath consumes you");
+            Main.debuff[Type] = true;
+            Main.buffNoSave[Type] = true;
+            canBeCleared = true;
+        }
+
+        public override bool Autoload(ref string name, ref string texture)
+        {
+            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
+            return true;
+        }
+
+        public override void Update(Player player, ref int buffIndex)
+        {
+            player.statDefense -= 30;
+            player.endurance -= 0.3f;
+            player.GetModPlayer<FargoPlayer>(mod).CurseoftheMoon = true;
+        }
+    }
+}
