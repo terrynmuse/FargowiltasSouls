@@ -23,7 +23,7 @@ Getting hit drops your crit back down";
 
             if(thorium != null)
             {
-                tooltip += "You constantly generate a 11 life shield";
+                tooltip += "\nYou constantly generate a 11 life shield";
             }
 
             Tooltip.SetDefault(tooltip);

@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override void SetDefaults()
         {
-            item.damage = 32;
+            item.damage = 30;
             item.melee = true;
             item.width = 40;
             item.height = 40;
@@ -33,7 +33,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockback)
         {
-            int numberProjectiles = 3 + Main.rand.Next(4); // 3 to 6 shots
+            int numberProjectiles = 2 + Main.rand.Next(5); // 2 to 6 shots
             for (int i = 0; i < numberProjectiles; i++)
             {
                 Vector2 velocity = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(45)); // 45 degree spread.

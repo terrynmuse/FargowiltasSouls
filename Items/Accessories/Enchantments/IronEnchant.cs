@@ -47,7 +47,10 @@ You attract items from a larger range";
             //sheild raise
             modPlayer.IronEffect();
             //magnet
-            modPlayer.IronEnchant = true;
+            if (Soulcheck.GetValue("Iron Magnet"))
+            {
+                modPlayer.IronEnchant = true;
+            }
             //EoC Shield
             player.dash = 2;
 

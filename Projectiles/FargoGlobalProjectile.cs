@@ -278,6 +278,20 @@ namespace FargowiltasSouls.Projectiles
                 retVal = false;
             }
 
+            //masomode unicorn meme
+            if (FargoWorld.MasochistMode && projectile.type == ProjectileID.RainbowBack && projectile.hostile)
+            {
+                counter++;
+                if (counter >= 5)
+                {
+                    projectile.velocity = Vector2.Zero;
+                }
+                if (counter >= 60)
+                {
+                    projectile.Kill();
+                }
+            }
+
             return retVal;
         }
 
@@ -1102,14 +1116,12 @@ namespace FargowiltasSouls.Projectiles
 
             if (modPlayer.CobaltEnchant && CanSplit && Soulcheck.GetValue("Cobalt Shards") && Array.IndexOf(noShard, projectile.type) <= -1 && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
             {
-                int damage = 50;
+                int damage = 40;
 
                 if(modPlayer.EarthForce)
                 {
-                    damage = 100;
+                    damage = 80;
                 }
-
-                //Main.NewText(projectile.Name);
 
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 27);
                 XWay(8, projectile.Center, ProjectileID.CrystalShard, 5, damage, 2f);

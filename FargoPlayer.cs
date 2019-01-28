@@ -193,6 +193,8 @@ namespace FargowiltasSouls
         public bool ReverseManaFlow;
         public bool CurseoftheMoon;
 
+        public int MasomodeFreezeTimer = 0;
+
         public IList<string> disabledSouls = new List<string>();
 
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
@@ -479,12 +481,6 @@ namespace FargowiltasSouls
 
             if (FargoWorld.MasochistMode)
             {
-                if (Main.bloodMoon)
-                {
-                    player.buffImmune[BuffID.Bleeding] = false;
-                    player.AddBuff(BuffID.Bleeding, 2);
-                }
-
                 //falling gives you dazed and confused even with protection. wings save you
                 if (player.velocity.Y == 0f && player.wings == 0)
                 {
@@ -545,6 +541,27 @@ namespace FargowiltasSouls
                 if (player.ZoneSnow && Main.hardMode && !Main.dayTime)
                 {
                     player.AddBuff(BuffID.Chilled, 2);
+
+                    if (player.wet)
+                    {
+                        player.AddBuff(BuffID.Frostburn, 120);
+                        MasomodeFreezeTimer++;
+
+                        if (MasomodeFreezeTimer >= (player.buffImmune[BuffID.Frozen] ? 600:300))
+                        {
+                            player.buffImmune[BuffID.Frozen] = false;
+                            player.AddBuff(BuffID.Frozen, 120);
+                            MasomodeFreezeTimer = -300;
+                        }
+                    }
+                    else
+                    {
+                        MasomodeFreezeTimer = 0;
+                    }
+                }
+                else
+                {
+                    MasomodeFreezeTimer = 0;
                 }
 
                 if (player.ZoneCorrupt && Main.hardMode)
@@ -3087,6 +3104,8 @@ namespace FargowiltasSouls
             AllCritEquals(TinCrit);
 
             if (!Eternity) return;
+
+            if (eternityDamage > 20000) eternityDamage = 20000;
 
             AllDamageUp(eternityDamage);
             player.statDefense += (int)(eternityDamage * 100); //10 defense per .1 damage

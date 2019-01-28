@@ -60,7 +60,10 @@ While in combat, you generate a 25 life shield
             //iron shield raise
             modPlayer.IronEffect();
             //magnet
-            modPlayer.IronEnchant = true;
+            if (Soulcheck.GetValue("Iron Magnet"))
+            {
+                modPlayer.IronEnchant = true;
+            }
             //iron shield
             //thoriumPlayer.metallurgyShield = true;
             if (!thoriumPlayer.outOfCombat)
