@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Terraria;
@@ -27,15 +28,16 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 40% reduced ki usage
 20% increased ki critical strike chance
 30% increased ki knockback
-25% increased cast speed
+Massively increased speed while charging
+Drastically increased flight speed
+Drastically reduced flight ki usage
 +5 Charge limit for all beams
+Zenkai charm effects
 Drasctically increases the range of ki orb pickups
 Increased ki orb heal rate
 Drastically increased ki regen
 30% increased max Ki");
-
-                //at a later date
-                // Increases beam charge speed by 25%		
+	
             }
             else
             {
@@ -66,31 +68,40 @@ Drastically increased ki regen
             //general
             DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(_dbzmod);
             
-            //dbtPlayer.KiDamage += 0.35f;
-            //dbtPlayer.KiCrit += 20f;
-            //dbtPlayer.KiSpeedAddition += 0.25f;
-            dbtPlayer.KiKbAddition += 0.3f;
-            dbtPlayer.KiDrainMulti -= 0.4f;
-            dbtPlayer.KiMax = (int)(dbtPlayer.KiMax * 1.3);
-            dbtPlayer.KiRegen += 4;
-            dbtPlayer.OrbGrabRange += 6;
-            dbtPlayer.OrbHealAmount += 100;
-            dbtPlayer.ChargeLimitAdd += 5;
+            dbtPlayer.kiDamage += 0.35f;
+            dbtPlayer.kiCrit += 20;
+            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 3f);
+            dbtPlayer.kiKbAddition += 0.3f;
+            dbtPlayer.kiDrainMulti -= 0.4f;
+            dbtPlayer.kiMaxMult += 0.3f;
+            dbtPlayer.kiRegen += 4;
+            dbtPlayer.orbGrabRange += 6;
+            dbtPlayer.orbHealAmount += 100;
+            dbtPlayer.chargeLimitAdd += 5;
+            dbtPlayer.flightSpeedAdd += 0.5f;
+            dbtPlayer.flightUsageAdd += 2;
+            dbtPlayer.zenkaiCharm = true;
         }
 
         private readonly string[] _items = 
         {
-            "SpiritBomb",
-            "DragonGemNecklace",
+            "CrystalliteAlleviate",
+            "BlackDiamondShell",
+            "BlackBlitz",
+            "BuldariumSigmite",
+            "CandyLaser",
+            "DirtyFireworks",
+            "InfuserRainbow",
+            "EarthenArcanium",
+            "FinalShine",
+            "HolyWrath",
+            "KaioCrystal",
+            "MajinNucleus",
             "SenzuBag",
+            "SpiritCharm",
+            "SuperSpiritBomb",
             "ScouterT6",
-            "SpiritualEmblem",
-            "LargeTurtleShell",
-            "WornGloves",
-            "NimbusWhistle",
-            "KaioFragment4",
-            "KiFragment5",
-            "NebulaTotem"
+            "ZenkaiCharm"
         };
 
         private readonly Mod _dbzmod = ModLoader.GetMod("DBZMOD");
