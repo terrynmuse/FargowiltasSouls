@@ -1,9 +1,7 @@
 NEW UPDATE - v 0.5.8
--Made Soul of Eternity's stacking not infinite, but a very high limit of 200,000
--Crimson Enchantment now works with Candy Apples and Candy Canes
--Galactic Reformer now insta kills all non boss npcs
--Nerfed all swarm weapons and Cobalt Enchantment slighlty
--Fixed some Masomode and tooltip bugs
+
+
+
 
 This mod adds 2 main things. Souls and Masochist Mode.
 
