@@ -959,24 +959,22 @@ namespace FargowiltasSouls.Projectiles
                                 int d = Main.rand.Next(Fargowiltas.DebuffIDs.Length);
                                 target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 300));
 
-                                target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(60, 600));
+                                target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 600);
+                                target.AddBuff(mod.BuffType<CurseoftheMoon>(), 600);
                                 target.AddBuff(mod.BuffType<GodEater>(), Main.expertMode ? 210 : 420);
                                 //target.AddBuff(mod.BuffType<MarkedforDeath>(), 120);
                             }
-                            /*else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
+                            else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
                             {
                                 goto case ProjectileID.PhantasmalSphere;
-                            }*/
+                            }
                         }
                         break;
 
-                    case ProjectileID.PhantasmalBolt:   //if ML alive, ML vulnerable
-                    case ProjectileID.PhantasmalEye:    //debuff once per hit normally
-                    case ProjectileID.PhantasmalSphere: //debuff per tick while overlapping player if 120 MLs killed
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.moonBoss, NPCID.MoonLordCore) && !Main.npc[FargoGlobalNPC.moonBoss].dontTakeDamage && target.hurtCooldowns[1] == 0)
-                        {
-                            target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(15, 31));
-                        }
+                    case ProjectileID.PhantasmalBolt:
+                    case ProjectileID.PhantasmalEye:
+                    case ProjectileID.PhantasmalSphere:
+                        target.AddBuff(mod.BuffType<CurseoftheMoon>(), Main.rand.Next(240, 360));
                         break;
 
                     case ProjectileID.RocketSkeleton:
@@ -1016,8 +1014,25 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         break;
 
-                    case ProjectileID.RainbowBack:
-                        target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(300, 600));
+                    case ProjectileID.NebulaSphere:
+                        target.AddBuff(BuffID.VortexDebuff, Main.rand.Next(300, 540));
+                        break;
+
+                    case ProjectileID.NebulaLaser:
+                        target.AddBuff(mod.BuffType<Hexed>(), Main.rand.Next(60, 120));
+                        break;
+
+                    case ProjectileID.NebulaBolt:
+                        target.AddBuff(mod.BuffType<Lethargic>(), Main.rand.Next(300, 600));
+                        break;
+
+                    case ProjectileID.StardustJellyfishSmall:
+                        target.AddBuff(BuffID.Frostburn, Main.rand.Next(300, 600));
+                        break;
+
+                    case ProjectileID.StardustSoldierLaser:
+                        target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
                         break;
 
                     default:

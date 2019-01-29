@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Buffs\Masomode\FlippedHallow.png" />
+    <None Remove="Buffs\PlanterasChild.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib" />
