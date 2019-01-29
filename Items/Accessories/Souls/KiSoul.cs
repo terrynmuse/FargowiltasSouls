@@ -66,7 +66,7 @@ Drastically increased ki regen
         private void Ki(Player player)
         {
             //general
-            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(_dbzmod);
+            /*DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(_dbzmod);
             
             dbtPlayer.kiDamage += 0.35f;
             dbtPlayer.kiCrit += 20;
@@ -80,7 +80,7 @@ Drastically increased ki regen
             dbtPlayer.chargeLimitAdd += 5;
             dbtPlayer.flightSpeedAdd += 0.5f;
             dbtPlayer.flightUsageAdd += 2;
-            dbtPlayer.zenkaiCharm = true;
+            dbtPlayer.zenkaiCharm = true;*/
         }
 
         private readonly string[] _items = 

@@ -126,6 +126,11 @@ namespace FargowiltasSouls.NPCs
                     //case NPCID.TheDestroyerTail: masoHurtAI = 6; break;
 
                     case NPCID.Golem:
+                        masoHurtAI = 6;
+                        npc.lifeMax *= 2;
+                        npc.life = npc.lifeMax;
+                        break;
+
                     case NPCID.GolemHead: masoHurtAI = 6; break;
 
                     case NPCID.GolemFistLeft:
@@ -189,11 +194,6 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.noTileCollide = false;
                         }
-                        break;
-
-                    case NPCID.Golem:
-                        npc.lifeMax *= 2;
-                        npc.life = npc.lifeMax;
                         break;
 
                     case NPCID.PrimeCannon:
@@ -5551,7 +5551,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.IlluminantBat:
                         if (Main.rand.Next(20) == 0)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RabiesShot"));
-                        goto case NPCID.IlluminantSlime:
+                        goto case NPCID.IlluminantSlime;
 
                     case NPCID.IlluminantSlime:
                     case NPCID.EnchantedSword:
