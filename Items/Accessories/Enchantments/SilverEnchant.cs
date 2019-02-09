@@ -15,12 +15,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Silver Enchantment");
 
-            string tooltip = @"'Have you power enough to wield me?'
+            string tooltip = 
+@"'Have you power enough to wield me?'
 Summons a sword familiar that scales with minion damage";
 
             if(thorium != null)
             {
-                tooltip += "\nYou constantly generate a 14 life shield";
+                tooltip += "\nEffects of Silver Bulwark";
             }
 
             Tooltip.SetDefault(tooltip);

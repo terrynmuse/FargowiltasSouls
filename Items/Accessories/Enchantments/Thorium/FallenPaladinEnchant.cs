@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -23,10 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Silently, they walk the dungeon halls'
 Taking damage heals nearby allies equal to 15% of the damage taken
-Successfully healing an ally with a healing spell will replenish 4 life
 If an ally is below half health, you will gain increased healing abilities
-Taking fatal damage unleashes your inner spirit
-Your inner spirit will constantly release beams of healing energy towards your cursor");
+Effects of Wynebgwrthucher and Ascension Statuette");
         }
 
         public override void SetDefaults()

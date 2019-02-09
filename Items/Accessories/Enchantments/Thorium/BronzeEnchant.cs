@@ -14,27 +14,17 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bronze Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"''
 Attacks have a chance to shock enemies with chain lightning
 Thrown damage has a chance to cause a lightning bolt to strike
-Throwing damage increases your movement speed by 1% up to 25%
-Throwing damage increases your throwing speed by 0.4% up to 10%
-These effects will fade after 3 seconds of not dealing throwing damage
-The damage you take is stored into your next attack.
-The bonus damage is stored until it is expended
-Your symphonic damage empowers all nearby allies with: Medusa's Gaze
-Damage done against petrified enemies is increased by 8%
-Doubles the range of your empowerments effect radius
-While in combat, you generate a 10 life shield");
+Effects of Champion's Rebuttal, Spartan Sadals, and Spartan's Subwoofer");
         }
 
         public override void SetDefaults()
@@ -59,31 +49,17 @@ While in combat, you generate a 10 life shield");
             //sandles
             thoriumPlayer.spartanSandle = true;
             //subwoofer
-            //thoriumPlayer.subwooferMarble = true;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerMarble = true;
+                }
+            }
             thoriumPlayer.bardRangeBoost += 450;
             //copper enchant
             player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
-            //copper buckler
-            //thoriumPlayer.metallurgyShield = true;
-            if (!thoriumPlayer.outOfCombat)
-            {
-                timer++;
-                if (timer >= 30)
-                {
-                    int num = 10;
-                    if (thoriumPlayer.shieldHealth < num)
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                        thoriumPlayer.shieldHealth++;
-                    }
-                    timer = 0;
-                    return;
-                }
-            }
-            else
-            {
-                timer = 0;
-            }
         }
 
         public override void AddRecipes()

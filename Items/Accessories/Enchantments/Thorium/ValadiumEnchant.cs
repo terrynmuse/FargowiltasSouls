@@ -13,10 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -25,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 Reverse gravity by pressing UP
 While reversed, ranged damage is increased by 12%
-While equipped, the eye will give vision of your cursors current position");
+Effects of Eye of the Beholder");
         }
 
         public override void SetDefaults()

@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -21,11 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'What nasty concoction could you be brewing?'
 Plague doctor vials have a 40% chance to become retrievable upon shattering
-Using a throwing item has a 20% chance to unleash two Blight Daggers
-Blight Daggers home in on enemies and apply a highly contagious disease
 Throwing damage will decrease enemy defense
-Pressing the Special Ability key will trigger True Strikes
-Needs to recharge for 2 minutes after being activated");
+Effects of Lich's Gaze and Plague Lord's Flask");
         }
 
         public override void SetDefaults()

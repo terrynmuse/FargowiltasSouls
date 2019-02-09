@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,10 +24,19 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             aiType = ProjectileID.Bullet;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            damage = target.lifeMax / 10;
-            if (damage < 50) damage = 50;
+            if ((target.lifeMax / 25) > projectile.damage)
+                damage = target.lifeMax / 25;
+
+            Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType<Explosion>(), damage, 5f, Main.myPlayer);
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType<Explosion>(), projectile.damage, 5f, Main.myPlayer);
+
+            return true;
         }
     }
 }

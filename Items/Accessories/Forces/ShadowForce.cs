@@ -10,8 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Forces
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadow Force");

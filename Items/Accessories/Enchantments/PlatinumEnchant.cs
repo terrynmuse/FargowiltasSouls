@@ -22,7 +22,7 @@ If the enemy has Midas, the chance and bonus is doubled";
             if(thorium != null)
             {
                 tooltip +=
-@"You constantly generate a 17 life shield";
+@"Effects of Platinum Aegis";
 //Summons some living glitter to follow you around";
             }
 

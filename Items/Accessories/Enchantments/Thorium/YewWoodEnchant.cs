@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'This strange wood comes from a far away land'
 After four consecutive non-critical strikes, your next ranged attack will mini-crit for 150% damage
-While standing still, defense is increased by 4 and you are immune to knockback");
+Effects of Goblin War Shield");
         }
 
         public override void SetDefaults()

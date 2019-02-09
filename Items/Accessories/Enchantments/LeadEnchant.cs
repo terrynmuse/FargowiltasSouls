@@ -22,7 +22,7 @@ Lead Poisoning deals damage over time and slows enemies slightly";
 
             if(thorium != null)
             {
-                tooltip += "You constantly generate a 13 life shield";
+                tooltip += "Effects of Lead Shield";
             }
 
             Tooltip.SetDefault(tooltip);

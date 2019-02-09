@@ -55,7 +55,7 @@ namespace FargowiltasSouls.NPCs
         public int Counter = 0;
         public int Timer = 600;
         public byte SharkCount = 0;
-        private static MethodInfo _startSandstormMethod;
+        private static bool werewolfTime;
 
         public static int slimeBoss = -1;
         public static int eyeBoss = -1;
@@ -1271,11 +1271,16 @@ namespace FargowiltasSouls.NPCs
                     }
                 }
 
-                if (npc.townNPC && !Main.dayTime && Main.moonPhase == 0 && Main.rand.Next(1800) == 0)
+                if (npc.townNPC && Main.hardMode && !Main.dayTime && Main.moonPhase == 0 && werewolfTime)
                 {
+                    werewolfTime = false;
                     Main.PlaySound(SoundID.Roar);
                     Main.NewText(npc.GivenName + " has succumbed to the curse..", new Color(255, 0, 0));
                     npc.Transform(NPCID.Werewolf);
+                }
+                else if (Main.moonPhase != 0)
+                {
+                    werewolfTime = true;
                 }
 
                 switch (masoAI)
@@ -5688,6 +5693,10 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bacon);
                         break;
 
+                    case NPCID.CultistBoss:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CelestialRune"));
+                        break;
+
                     case NPCID.MoonLordCore:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GravityGlobeEX"));
                         break;
@@ -6633,6 +6642,11 @@ namespace FargowiltasSouls.NPCs
             if (modPlayer.BeeEnchant && !modPlayer.TerrariaSoul && projectile.type == ProjectileID.GiantBee)
             {
                 damage = (int)(damage + npc.defense * .5);
+            }
+
+            if (projectile.type == ProjectileID.EyeFire)
+            {
+                npc.AddBuff(BuffID.CursedInferno, 300);
             }
 		}
 

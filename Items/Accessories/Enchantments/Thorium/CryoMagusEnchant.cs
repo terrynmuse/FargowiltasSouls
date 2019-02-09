@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -12,10 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -26,11 +25,7 @@ Magic damage will duplicate itself for 33% of the damage and apply the Frozen de
 Icicles will start to appear around you
 When there are three, attacking will launch them towards the cursor
 An icy aura surrounds you, which freezes nearby enemies after a short delay
-Damage done against slowed targets is increased by 15% and has a chance to heal you lightly
-Your symphonic damage will empower all nearby allies with: Mana Regeneration II
-Your symphonic damage empowers all nearby allies with: Cold Shoulder
-Damage done against frostburnt enemies is increased by 8% 
-Doubles the range of your empowerments effect radius
+Effects of Ice Bound Strider Hide, Blue Music Player, and Sub-Zero Subwoofer
 Summons a pet Penguin, Snowman, and Owl");
         }
 
@@ -63,8 +58,15 @@ Summons a pet Penguin, Snowman, and Owl");
             //frost effect
             modPlayer.FrostEffect(60, hideVisual);
             //subwoofer
-            //thoriumPlayer.subwooferFrost = true;
             thoriumPlayer.bardRangeBoost += 450;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerFrost = true;
+                }
+            }
             //icy set bonus
             thoriumPlayer.icySet = true;
             if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)

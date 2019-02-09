@@ -5,6 +5,7 @@ using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -14,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetLoadedMods().Contains("CalamityMod");
         }
 
         public override void SetStaticDefaults()
@@ -22,21 +23,30 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Tarragon Enchantment");
             Tooltip.SetDefault(
 @"'Braelor's undying might flows through you...'
+Increased heart pickup range
+Enemies have a chance to drop extra hearts on death
+You have a 25% chance to regen health quickly when you take damage
+Press Y to cloak yourself in life energy that heavily reduces enemy contact damage for 10 seconds
+Ranged critical strikes will cause an explosion of leaves
+Ranged projectiles have a chance to split into life energy on death
+On every 5th critical strike you will fire a leaf storm
+Magic projectiles have a 50% chance to heal you on enemy hits
+At full health you gain +2 max minions and 10% increased minion damage
+Summons a life aura around you that damages nearby enemies
+After every 25 rogue critical hits you will gain 5 seconds of damage immunity
+While under the effects of a debuff you gain 10% increased rogue damage
+Effects of the Profaned Soul Artifact");
+        }
 
-Increased heart pickup range.
-Enemies have a higher chance to drop hearts on death.
-Taking damage gives you a 25% chance to get the Tarra Life buff for 6 seconds.
-Pressing Y reduces contact damage by 75% for 10 seconds.
-Ranged projectiles have a 13% chance to split into 3 life energies on impact, dealing 33% of the projectile's original damage.
-Every ranged crit gives a small ranged damage boost. Stacks up to 10%.
-On every 5th crit, the player fires 10 leaf projectiles. The leaves deal 20% of the attack that summoned them.
-Magic projectiles have a 50% chance to heal the player every 1.5 seconds. The projectile heals you for 2% of the projectile's damage.
-50% more summon damage.
-+2 max minions.
-+10% summon damage while at full health.
-Summons a life aura around the player that deals 300 damage per frame.
-After every 25th throwing crit, the player becomes invincible for 5 seconds. This occurs once every 30 seconds.
-");
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(0, 255, 200));
+                }
+            }
         }
 
         public override void SetDefaults()
@@ -45,15 +55,28 @@ After every 25th throwing crit, the player becomes invincible for 5 seconds. Thi
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;//
-            item.value = 400000;//
+            item.rare = 10;
+            item.value = 3000000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.tarraSet = true;
+            //melee
+            modPlayer.tarraMelee = true;
+            //range
+            modPlayer.tarraRanged = true;
+            //magic
+            modPlayer.tarraMage = true;
+            //summon
+            modPlayer.tarraSummon = true;
+            //throw
+            modPlayer.tarraThrowing = true;
+            //profaned soul artifact
+            modPlayer.pArtifact = true;
         }
 
         public override void AddRecipes()
@@ -62,19 +85,22 @@ After every 25th throwing crit, the player becomes invincible for 5 seconds. Thi
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Tarragon leggings, breastplate, all Tarragon helmets, Dark Sun Ring, 100 Tarra throwing darts, biofusillade, nettlevine greatbow, verdant, spyker, mistlestorm, badge of bravery, divine retribution, and lifehunt scythe.
+            recipe.AddIngredient(calamity.ItemType("TarragonHelm"));
+            recipe.AddIngredient(calamity.ItemType("TarragonVisage"));
+            recipe.AddIngredient(calamity.ItemType("TarragonMask"));
+            recipe.AddIngredient(calamity.ItemType("TarragonHornedHelm"));
+            recipe.AddIngredient(calamity.ItemType("TarragonHelmet"));
+            recipe.AddIngredient(calamity.ItemType("TarragonBreastplate"));
+            recipe.AddIngredient(calamity.ItemType("TarragonLeggings"));
+            recipe.AddIngredient(calamity.ItemType("ProfanedSoulArtifact"));
+            recipe.AddIngredient(calamity.ItemType("AquaticDissolution"));
+            recipe.AddIngredient(calamity.ItemType("TrueTyrantYharimsUltisword"));
+            recipe.AddIngredient(calamity.ItemType("Spyker"));
+            recipe.AddIngredient(calamity.ItemType("DivineRetribution"));
+            recipe.AddIngredient(calamity.ItemType("PlasmaRifle"));
+            recipe.AddIngredient(calamity.ItemType("Mistlestorm"));
 
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-
-            recipe.AddTile(TileID.LunarCraftingStation);//
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

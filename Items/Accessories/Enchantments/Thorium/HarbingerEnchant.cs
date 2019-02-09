@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -25,8 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Maximum mana increased by 50%
 While above 75% maximum mana, you become unstable
 Magical attacks have a 33% chance to recover some mana
-Every eighth magic cast costs no mana
-Your symphonic damage will empower all nearby allies with: Maximum Life II
+Effects of Shade Band and White Music Player
 Summons a Moogle pet");
         }
 

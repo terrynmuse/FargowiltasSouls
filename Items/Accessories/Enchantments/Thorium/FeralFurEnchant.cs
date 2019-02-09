@@ -12,15 +12,17 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Feral-Fur Enchantment");
             Tooltip.SetDefault(
-                @"'Let your inner animal out'
+@"'Let your inner animal out'
 Melee critical strikes grant Alpha's Roar, briefly increasing the damage of your summoned minions");
+
+            //sacrificial dagger on all hits?
         }
 
         public override void SetDefaults()
@@ -36,12 +38,7 @@ Melee critical strikes grant Alpha's Roar, briefly increasing the damage of your
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            FeralEffect(player);
-        }
-        
-        private void FeralEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //feral set bonus
             thoriumPlayer.alphaRage = true;

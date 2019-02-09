@@ -1,3 +1,5 @@
+using CalamityMod;
+using CalamityMod.Items.CalamityCustomThrowingDamage;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -12,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         private readonly Mod fargos = ModLoader.GetMod("Fargowiltas");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public override void SetStaticDefaults()
         {
@@ -26,6 +29,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             if (thorium != null)
             {
                 tooltip += "\nEffects of The Complete Set";
+            }
+
+            if (calamity != null)
+            {
+                tooltip += "\nEffects of Nanotech\nBonuses also effect rogue damage";
             }
 
             Tooltip.SetDefault(tooltip);
@@ -59,9 +67,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.thrownCrit += 15;
             player.thrownVelocity += 0.15f;
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
 
-            Thorium(player);
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
         }
 
         private void Thorium(Player player)
@@ -69,6 +77,15 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             //complete set
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.throwGuide4 = true;
+        }
+
+        private void Calamity(Player player)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.nanotech = true;
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += 0.3f;
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += 15;
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingVelocity += 0.15f;
         }
 
         public override void AddRecipes()
@@ -79,7 +96,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(thorium.ItemType("BoneGrip"));
+                recipe.AddIngredient(Fargowiltas.Instance.CalamityLoaded ? calamity.ItemType("Nanotech") : thorium.ItemType("BoneGrip"));
                 recipe.AddIngredient(thorium.ItemType("TheCompleteSet"));
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BananarangThrown") : ItemID.Bananarang, 5);
                 recipe.AddIngredient(thorium.ItemType("CryoFang"));
@@ -95,7 +112,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             }
             else
             {
-                recipe.AddIngredient(fargos != null ? fargos.ItemType("ChikThrown") : ItemID.Chik);
+                if(Fargowiltas.Instance.CalamityLoaded)
+                    recipe.AddIngredient( calamity.ItemType("Nanotech"));
+                else
+                    recipe.AddIngredient(fargos != null ? fargos.ItemType("ChikThrown") : ItemID.Chik);
+
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("MagicDaggerThrown") : ItemID.MagicDagger);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BananarangThrown") : ItemID.Bananarang, 5);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("AmarokThrown") : ItemID.Amarok);

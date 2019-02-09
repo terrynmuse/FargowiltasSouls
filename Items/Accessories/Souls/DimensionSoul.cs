@@ -1,7 +1,9 @@
+using CalamityMod;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
@@ -13,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     public class DimensionSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        private readonly Mod _calamity = ModLoader.GetMod("CalamityMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
         //air walker meme'
         public bool jumped;
         public bool canHover;
@@ -208,6 +210,8 @@ All other effects of material Souls");
             player.accWeatherRadio = true;
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player, hideVisual);
         }
 
         private void Thorium(Player player)
@@ -360,14 +364,34 @@ All other effects of material Souls");
             }
         }
 
+        private void Calamity(Player player, bool hideVisual)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            //tank soul
+            //rampart of dieties
+            modPlayer.dAmulet = true;
+            //becase calamity made it itself for some reason no duplicate
+            player.starCloak = false;
+            //asgardian aegis
+            modPlayer.dashMod = 4;
+            modPlayer.elysianAegis = true;
+            player.buffImmune[calamity.BuffType("BrimstoneFlames")] = true;
+            player.buffImmune[calamity.BuffType("HolyLight")] = true;
+            player.buffImmune[calamity.BuffType("GlacialState")] = true;
+            //celestial tracers
+            modPlayer.IBoots = !hideVisual;
+            modPlayer.elysianFire = !hideVisual;
+            modPlayer.cTracers = true;
+        }
+
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            ascentWhenFalling = 0.9f; 
+            ascentWhenFalling = 1f; 
             ascentWhenRising = 0.3f; 
-            maxCanAscendMultiplier = 1f;
+            maxCanAscendMultiplier = 1.5f;
             maxAscentMultiplier = 3f;
-            constantAscend = 0.14f; 
+            constantAscend = 0.15f; 
         }
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
@@ -385,10 +409,11 @@ All other effects of material Souls");
             recipe.AddIngredient(null, "FlightMasterySoul");
             recipe.AddIngredient(null, "TrawlerSoul");
             recipe.AddIngredient(null, "WorldShaperSoul");
-            
-            /*
-            omega core
-            */
+
+            if (Fargowiltas.Instance.CalamityLoaded)
+            {
+                recipe.AddIngredient(calamity.ItemType("CelestialTracers"));
+            }
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

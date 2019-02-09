@@ -4,13 +4,13 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class GravityGlobeEX : ModItem
+    public class GalacticGlobe : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Globe of the Cosmos");
+            DisplayName.SetDefault("Galactic Globe");
             Tooltip.SetDefault(@"Grants immunity to Flipped, Unstable, and Distorted
 Allows the holder to control gravity
 Increases flight time by 100%");

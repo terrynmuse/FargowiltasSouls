@@ -14,10 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -28,7 +26,7 @@ Healing spells heal an additional 5 life
 Every 5 seconds you generate up to 3 holy crosses
 When casting healing spells, a cross is used instead of mana
 Summons a Li'l Cherub to periodically heal damaged allies
-Summons a Life Spirit pet that will generate healing energy");
+Summons a pet Life Spirit");
         }
 
         public override void SetDefaults()

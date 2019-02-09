@@ -25,7 +25,6 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 1.5f;
-            item.UseSound = new LegacySoundStyle(4, 13);
             item.value = 50000;
             item.rare = 5;
             item.autoReuse = true;

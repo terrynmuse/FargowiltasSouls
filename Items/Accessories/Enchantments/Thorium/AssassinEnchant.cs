@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -25,8 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Ranged damage applies Cursed Inferno and Ichor to hit enemies
 Ranged damage has a 10% chance to duplicate and become increased by 15%
 Ranged damage has a 5% chance to instantly kill the enemy
-Arrow critical strikes turn into death arrows and ricochet
-The nearest enemy is scouted and takes 10% more damage from all sources");
+Arrow critical strikes turn into death arrows and ricochet");
         }
 
         public override void SetDefaults()
@@ -63,12 +62,6 @@ The nearest enemy is scouted and takes 10% more damage from all sources");
             thoriumPlayer.omniBulletSet = true;
             //cursed flame
             thoriumPlayer.omniBulletHat = true;
-            //scan nearest enemy meme
-            thoriumPlayer.omniVision = true;
-            if (player.ownedProjectileCounts[mod.ProjectileType("OmniVisionPro")] < 1)
-            {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("OmniVisionPro"), 0, 0f, player.whoAmI, 0f, 0f);
-            }
         }
 
         public override void AddRecipes()

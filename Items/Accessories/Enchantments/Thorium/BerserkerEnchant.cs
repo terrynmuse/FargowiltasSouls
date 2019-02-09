@@ -15,10 +15,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
        
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -27,14 +25,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'I'd rather fight for my life than live it'
 Damage is increased by 15% at every 25% segment of life
 Fire surrounds your armour and melee weapons
-Nearby enemies are ignited
 Enemies that you set on fire or singe will take additional damage over time
-Spear weapons will release a flaming spear tip
+Nearby enemies are ignited
 When you die, you violently explode dealing massive damage to surrounding enemies
-Damaging slag drops from below your boots
-Allows you to do a triple hop super jump
-Increases fall resistance
-Your symphonic damage will empower all nearby allies with: Attack Speed II");
+Effects of Spring Steps and Slag Stompers
+Effects of Molten Spear Tip and Orange Music Player");
         }
 
         public override void SetDefaults()
@@ -51,44 +46,30 @@ Your symphonic damage will empower all nearby allies with: Attack Speed II");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.orbital = true;
             thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.075000002980232239, default(Vector2));
             //making divers code less of a meme :scuseme:
             if (player.statLife > player.statLifeMax * 0.75)
             {
-                player.meleeDamage += 0.15f;
-                player.magicDamage += 0.15f;
-                player.rangedDamage += 0.15f;
-                player.thrownDamage += 0.15f;
+                modPlayer.AllDamageUp(.15f);
                 thoriumPlayer.berserkStage = 1;
             }
             else if (player.statLife > player.statLifeMax * 0.5)
             {
-                player.meleeDamage += 0.3f;
-                player.magicDamage += 0.3f;
-                player.rangedDamage += 0.3f;
-                player.thrownDamage += 0.3f;
+                modPlayer.AllDamageUp(.3f);
                 thoriumPlayer.berserkStage = 2;
             }
             else if (player.statLife > player.statLifeMax * 0.25)
             {
-                player.meleeDamage += 0.45f;
-                player.magicDamage += 0.45f;
-                player.rangedDamage += 0.45f;
-                player.thrownDamage += 0.45f;
+                modPlayer.AllDamageUp(.45f);
                 thoriumPlayer.berserkStage = 3;
             }
             else
             {
-                player.meleeDamage += 0.6f;
-                player.magicDamage += 0.6f;
-                player.rangedDamage += 0.6f;
-                player.thrownDamage += 0.6f;
+                modPlayer.AllDamageUp(.6f);
                 thoriumPlayer.berserkStage = 4;
-
-                //player.AddBuff(mod.BuffType("Berserked"), 2);
-                //player.GetModPlayer<FargoPlayer>().AttackSpeed *= 1.5f;
             }
             //music player
             thoriumPlayer.musicPlayer = true;
@@ -151,7 +132,7 @@ Your symphonic damage will empower all nearby allies with: Attack Speed II");
             //molten spear tip
             thoriumPlayer.spearFlame = true;
             //molten explode and inferno
-            player.GetModPlayer<FargoPlayer>(mod).MoltenEffect(20);
+            modPlayer.MoltenEffect(20);
         }
         
         private readonly string[] items =

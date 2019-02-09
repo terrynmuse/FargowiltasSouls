@@ -13,10 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -25,10 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 Pressing the Special Ability key will summon a chorus of music playing ghosts
 Inspiration notes that drop are twice as potent and increase your symphonic damage briefly
-Every three seconds the metronome will flip between tick & tock
-Tick increases your symphonic playing speed and damage
-Tock decreases your symphonic playing speed and damage
-Your symphonic damage will empower all nearby allies with: Maximum Mana II");
+Effects of Metronome and Purple Music Player");
         }
 
         public override void SetDefaults()

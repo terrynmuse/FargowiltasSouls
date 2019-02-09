@@ -4,19 +4,17 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-// ReSharper disable CompareOfFloatsByEqualityOperator
-
 namespace FargowiltasSouls.Projectiles
 {
     public class FargoBulletProj : ModProjectile
     {
-        private int _bounce = 10;
+        private int _bounce = 6;
+        private int[] dusts = new int[] { 130, 55, 133, 131, 132 };
+        private int currentDust = 0;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fargo Bullet");
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 5; //The length of old position to be recorded
-            ProjectileID.Sets.TrailingMode[projectile.type] = 0; //The recording mode
         }
 
         public override void SetDefaults()
@@ -25,16 +23,15 @@ namespace FargowiltasSouls.Projectiles
             projectile.height = 12;
             projectile.aiStyle = 1;
             projectile.friendly = true;
-            projectile.hostile = false;
             projectile.ranged = true;
             projectile.penetrate = -1; //same as luminite
-            projectile.timeLeft = 300;
-            projectile.alpha = 255; //The transparency of the projectile, 255 for completely transparent. (aiStyle 1 quickly fades the projectile in)
-            projectile.light = 0.5f; //How much light emit around the projectile
+            projectile.timeLeft = 200;
+            projectile.alpha = 255; 
+            projectile.light = 0.5f; 
             projectile.ignoreWater = true;
-            projectile.tileCollide = true; //maybe..     
+            projectile.tileCollide = true;    
             projectile.extraUpdates = 1;
-            aiType = ProjectileID.Bullet; //Act exactly like default Bullet
+            aiType = ProjectileID.Bullet; 
 
             projectile.usesLocalNPCImmunity = true;
             projectile.localNPCHitCooldown = 2;
@@ -44,28 +41,24 @@ namespace FargowiltasSouls.Projectiles
         public override void AI()
         {
             //chloro
-            // if (projectile.alpha < 170)
-            // {
-            // for (int i = 0; i < 10; i++)
-            // {
-            // float x2 = projectile.position.X - projectile.velocity.X / 10f * (float)i;
-            // float y2 = projectile.position.Y - projectile.velocity.Y / 10f * (float)i;
-            // int num164 = Dust.NewDust(new Vector2(x2, y2), 1, 1, 75, 0f, 0f, 0, default(Color), 1f);
-            // Main.dust[num164].alpha = projectile.alpha;
-            // Main.dust[num164].position.X = x2;
-            // Main.dust[num164].position.Y = y2;
-            // Main.dust[num164].velocity *= 0f;
-            // Main.dust[num164].noGravity = true;
-            // }
-            // }
+            for (int i = 0; i < 6; i++)
+            {
+                float x2 = projectile.position.X - projectile.velocity.X / 10f * (float)i;
+                float y2 = projectile.position.Y - projectile.velocity.Y / 10f * (float)i;
+                int num164 = Dust.NewDust(new Vector2(x2, y2), 1, 1, dusts[currentDust], 0f, 0f, 0, default(Color), 1f);
+                Main.dust[num164].alpha = projectile.alpha;
+                Main.dust[num164].position.X = x2;
+                Main.dust[num164].position.Y = y2;
+                Main.dust[num164].velocity *= 0f;
+                Main.dust[num164].noGravity = true;
+            }
+            currentDust++;
+            if (currentDust > 4)
+            {
+                currentDust = 0;
+            }
 
-            //dust
-            // int DustID = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
-            // Main.dust[DustID].noGravity = true;
-            // int DustID3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
-            // Main.dust[DustID3].noGravity = true;
-
-            float num165 = (float) Math.Sqrt(projectile.velocity.X * projectile.velocity.X + projectile.velocity.Y * projectile.velocity.Y);
+            float num165 = (float)Math.Sqrt(projectile.velocity.X * projectile.velocity.X + projectile.velocity.Y * projectile.velocity.Y);
             float num166 = projectile.localAI[0];
             if (num166 == 0f)
             {
@@ -165,22 +158,22 @@ namespace FargowiltasSouls.Projectiles
             OnHit();
 
             //cursed
-            target.AddBuff(39, 420);
+            target.AddBuff(BuffID.CursedInferno, 600);
 
             //ichor
-            target.AddBuff(69, 600);
+            target.AddBuff(BuffID.Ichor, 600);
 
             //venom
-            target.AddBuff(70, 600);
+            target.AddBuff(BuffID.Venom, 600);
 
             //nano
             if (Main.rand.Next(3) == 0)
-                target.AddBuff(31, 180);
+                target.AddBuff(BuffID.Confused, 180);
             else
-                target.AddBuff(31, 60);
+                target.AddBuff(BuffID.Confused, 60);
 
             //golden
-            target.AddBuff(72, 120);
+            target.AddBuff(BuffID.Midas, 120);
         }
 
         public void OnHit()
@@ -199,7 +192,7 @@ namespace FargowiltasSouls.Projectiles
             {
                 float num492 = -projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
                 float num493 = -projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-                Projectile.NewProjectile(projectile.position.X + num492, projectile.position.Y + num493, num492, num493, ProjectileID.CrystalBullet, projectile.damage, 0f, projectile.owner);
+                Projectile.NewProjectile(projectile.position.X + num492, projectile.position.Y + num493, num492, num493, ProjectileID.CrystalShard, projectile.damage, 0f, projectile.owner);
             }
 
             //explosion
@@ -236,6 +229,8 @@ namespace FargowiltasSouls.Projectiles
 
         public override void Kill(int timeleft)
         {
+            OnHit();
+
             //venom dust
             Main.PlaySound(SoundID.Item10, projectile.position);
             for (int i = 0; i < 10; i++)

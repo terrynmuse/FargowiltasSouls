@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 Damage reduction is increased by 10% at every 25% segment of life
 Maximum damage reduction is reached at 30% while below 50% life
-When out of combat for 5 seconds, your next attack will generate a 25 life shield");
+Effects of Astro-Beetle Husk");
         }
 
         public override void SetDefaults()

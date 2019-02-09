@@ -9,20 +9,18 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class KiSoul : ModItem
     {
-        string tooltip = null;
+        private readonly Mod dbzMod = ModLoader.GetMod("DBZMOD");
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("DBZMOD");
+            return ModLoader.GetLoadedMods().Contains("DBZMOD");
         }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spiritualist's Soul");
 
-            if (ModLoader.GetLoadedMods().Contains("DBZMOD"))
-            {
-                Tooltip.SetDefault(
+            Tooltip.SetDefault(
 @"'The world's spirit resonates within you.'
 35% increased ki damage
 40% reduced ki usage
@@ -37,13 +35,6 @@ Drasctically increases the range of ki orb pickups
 Increased ki orb heal rate
 Drastically increased ki regen
 30% increased max Ki");
-	
-            }
-            else
-            {
-                Tooltip.SetDefault("'The world's spirit resonates within you.'\n" +
-                                   "-Enable Dragon Ball Terraria for this soul to do anything-");
-            }
         }
 
         public override void SetDefaults()
@@ -57,17 +48,11 @@ Drastically increased ki regen
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (Fargowiltas.Instance.DBTLoaded)
-            {
-                Ki(player);
-            }
-        }
+            if (!Fargowiltas.Instance.DBTLoaded) return;
 
-        private void Ki(Player player)
-        {
             //general
-            /*DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(_dbzmod);
-            
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+
             dbtPlayer.kiDamage += 0.35f;
             dbtPlayer.kiCrit += 20;
             dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 3f);
@@ -80,7 +65,7 @@ Drastically increased ki regen
             dbtPlayer.chargeLimitAdd += 5;
             dbtPlayer.flightSpeedAdd += 0.5f;
             dbtPlayer.flightUsageAdd += 2;
-            dbtPlayer.zenkaiCharm = true;*/
+            dbtPlayer.zenkaiCharm = true;
         }
 
         private readonly string[] _items = 
@@ -90,21 +75,16 @@ Drastically increased ki regen
             "BlackBlitz",
             "BuldariumSigmite",
             "CandyLaser",
-            "DirtyFireworks",
             "InfuserRainbow",
             "EarthenArcanium",
             "FinalShine",
-            "HolyWrath",
             "KaioCrystal",
             "MajinNucleus",
-            "SenzuBag",
             "SpiritCharm",
             "SuperSpiritBomb",
             "ScouterT6",
             "ZenkaiCharm"
         };
-
-        private readonly Mod _dbzmod = ModLoader.GetMod("DBZMOD");
 
         public override void AddRecipes()
         {
@@ -114,10 +94,10 @@ Drastically increased ki regen
 
             foreach (string i in _items)
             {
-                recipe.AddIngredient(_dbzmod.ItemType(i));
+                recipe.AddIngredient(dbzMod.ItemType(i));
             }
             
-            recipe.AddIngredient(_dbzmod.ItemType("RadiantKiCrystal"), 250);
+            //recipe.AddIngredient(_dbzmod.ItemType("RadiantKiCrystal"), 250);
             
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

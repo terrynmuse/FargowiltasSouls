@@ -2,9 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
-using ThoriumMod;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -14,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetLoadedMods().Contains("CalamityMod");
         }
 
         public override void SetStaticDefaults()
@@ -22,17 +20,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Xeroc Enchantment");
             Tooltip.SetDefault(
 @"'The power of an ancient god at your command…'
-
-+20 max life and mana.
-Immunity to lava, On Fire!, Cursed Inferno and Chilled.
-Grants Xeroc Wrath and Xeroc Rage upon taking damage.
-Grants Xeroc Wrath and Xeroc Rage permanently while under half health.
-All attacks inflicts On Fire!, and Cursed Inferno.
-Melee and Throwing attacks create Xeroc Explosions on hit.
-Magic attacks create homing Xeroc orbs that home in on enemies, or heal you.
-Minion attacks create Xeroc bubbles.
-Rogue Throwing attacks create Xeroc Stars.
-");
+All attacks have a chance to inflict On Fire! and Cursed Inferno
+Melee attacks create Xeroc Blast explosions
+Ranged attacks spawn Xeroc Fire sparks
+Magic attacks spawn Xeroc Orbs
+Minion attacks spawn Xeroc Bubbles
+Rogue attacks spawn Xeroc Stars");
         }
 
         public override void SetDefaults()
@@ -41,15 +34,16 @@ Rogue Throwing attacks create Xeroc Stars.
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;//
-            item.value = 400000;//
+            item.rare = 9;
+            item.value = 1000000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.xerocSet = true;
         }
 
         public override void AddRecipes()
@@ -58,19 +52,22 @@ Rogue Throwing attacks create Xeroc Stars.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Xeroc Armor, 100 Xeroc Pitchforks, the Empyrean, Xeroc Greatsword, Tome of Fates, and Gallant Pickaxe.
+            recipe.AddIngredient(calamity.ItemType("XerocMask"));
+            recipe.AddIngredient(calamity.ItemType("XerocPlateMail"));
+            recipe.AddIngredient(calamity.ItemType("XerocCuisses"));
+            recipe.AddIngredient(calamity.ItemType("BrinyBaron"));
+            recipe.AddIngredient(calamity.ItemType("StormRuler"));
+            recipe.AddIngredient(calamity.ItemType("Scorpion"));
+            recipe.AddIngredient(calamity.ItemType("Interfacer"));
+            recipe.AddIngredient(calamity.ItemType("ElephantKiller"));
+            recipe.AddIngredient(calamity.ItemType("OnyxChainBlaster"));
+            recipe.AddIngredient(calamity.ItemType("PlagueKeeper"));
+            recipe.AddIngredient(calamity.ItemType("UltraLiquidator"));
+            recipe.AddIngredient(calamity.ItemType("Shredder"));
+            recipe.AddIngredient(calamity.ItemType("SpatialLance"));
+            recipe.AddIngredient(calamity.ItemType("ElementalBlaster"));
 
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-
-            recipe.AddTile(TileID.LunarCraftingStation);//
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

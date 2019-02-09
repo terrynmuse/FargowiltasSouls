@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -23,7 +21,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Live in the shadows, and strike with precision'
 Striking an enemy with any throwing weapon will trigger 'Shadow Dance'
-Additonally, while Shadow Dance is active you deal 15% more throwing damage
 Throw a smoke bomb to teleport to it
 Standing nearby smoke gives you the First Strike buff
 Summons a pet Black Cat");
@@ -45,13 +42,8 @@ Summons a pet Black Cat");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-
             //set bonus
             thoriumPlayer.shadeSet = true;
-            if (thoriumPlayer.shadeTele)
-            {
-                player.thrownDamage += 0.15f;
-            }
             //ninja, smoke bombs, pet
             modPlayer.NinjaEffect(hideVisual);
         }
@@ -66,7 +58,6 @@ Summons a pet Black Cat");
             recipe.AddIngredient(thorium.ItemType("ShadeMasterGarb"));
             recipe.AddIngredient(thorium.ItemType("ShadeMasterTreads"));
             recipe.AddIngredient(null, "NinjaEnchant");
-            recipe.AddIngredient(thorium.ItemType(""));
             recipe.AddIngredient(thorium.ItemType("ClockWorkBomb"), 300);
             recipe.AddIngredient(thorium.ItemType("BugenkaiShuriken"), 300);
             recipe.AddIngredient(thorium.ItemType("ShadeKunai"), 300);

@@ -23,7 +23,7 @@ Your weapons shoot at 1/8 the speed
 
             if(thorium != null)
             {
-                tooltip += "You constantly generate a 15 life shield";
+                tooltip += "\nEffects of Tungsten Bulwark";
             }
 
             Tooltip.SetDefault(tooltip);

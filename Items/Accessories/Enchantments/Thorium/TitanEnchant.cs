@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -24,12 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Infused with primordial energy'
 Any damage you take while at full HP is reduced by 90%
 Briefly become invulnerable after striking an enemy
-Critical strikes deal 10% more damage
-Pressing the 'Encase' key will place you in an impenetrable shell
-While encased, you can't use items or health potions, life regeneration is heavily reduced, and damage is nearly nullified
-Leaving the shell will greatly lower your speed, damage reduction and damage briefly
-Leaving the shell will prohibit the use of the shell again for 20 seconds
-Your symphonic damage will empower all nearby allies with: Damage Reduction II");
+Effects of Mask of the Crystal Eye, Abyssal Shell, and Cyan Music Player");
         }
 
         public override void SetDefaults()

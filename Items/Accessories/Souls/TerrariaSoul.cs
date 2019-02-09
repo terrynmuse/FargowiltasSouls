@@ -144,6 +144,9 @@ When you die, you explode and revive with 200 HP");
             modPlayer.NebulaEffect(); //boosters
             modPlayer.StardustEffect(); //guardian and time freeze
             modPlayer.AddPet("Suspicious Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
+
+            if (Fargowiltas.Instance.CalamityLoaded)
+                mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()
@@ -157,6 +160,9 @@ When you die, you explode and revive with 200 HP");
             recipe.AddIngredient(null, "ShadowForce");
             recipe.AddIngredient(null, "WillForce");
             recipe.AddIngredient(null, "CosmoForce");
+
+            if (Fargowiltas.Instance.CalamityLoaded)
+                recipe.AddIngredient(null, "CalamityForce");
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

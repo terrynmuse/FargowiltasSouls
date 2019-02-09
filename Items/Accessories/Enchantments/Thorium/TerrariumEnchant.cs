@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -13,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -21,13 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Terrarium Enchantment");
             Tooltip.SetDefault(
 @"'All will fall before your might...'
-10% increased damage
 The energy of Terraria seeks to protect you
-Taking more than three damage will replenish health and mana
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
-Increases max inspiration by 2
-Your symphonic damage empowers nearby ally attacks with elemental backlash
-Doubles the range of your empowerments effect radius");
+Effects of Crietz and Band of Replenishment
+Effects of Fan Letter and Terrarium Surround Sound");
         }
 
         public override void SetDefaults()
@@ -59,16 +57,17 @@ Doubles the range of your empowerments effect radius");
                 timer = 0;
             }
             //terrarium woofer
-            //thoriumPlayer.subwooferTerrarium = true;
             thoriumPlayer.bardRangeBoost += 450;
-            //thorium set bonus 
-            player.meleeDamage += 0.1f;
-            player.thrownDamage += 0.1f;
-            player.rangedDamage += 0.1f;
-            player.magicDamage += 0.1f;
-            player.minionDamage += 0.1f;
-            thoriumPlayer.radiantBoost += 0.1f;
-            thoriumPlayer.symphonicDamage += 0.1f;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerTerrarium = true;
+                }
+            }
+            //crietz
+            thoriumPlayer.crietzAcc = true;
             //band of replenishment
             thoriumPlayer.BandofRep = true;
             //jester bonus

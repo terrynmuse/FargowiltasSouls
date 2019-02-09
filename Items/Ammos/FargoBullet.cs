@@ -5,11 +5,11 @@ namespace FargowiltasSouls.Items.Ammos
 {
     public class FargoBullet : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
+        Mod fargos = ModLoader.GetMod("Fargowiltas");
 
         public override bool Autoload(ref string name)
         {
-            return false;
+            return ModLoader.GetMod("Fargowiltas") != null;
         }
 
         public override void SetStaticDefaults()
@@ -17,13 +17,13 @@ namespace FargowiltasSouls.Items.Ammos
             DisplayName.SetDefault("Amalgamated Bullet Pouch");
             Tooltip.SetDefault("Chases after your enemy\n" +
                                "Bounces several times\n" +
-                               "Each impact causes an explosion of crystal bullets\n" +
+                               "Each impact causes an explosion of crystal shards\n" +
                                "Inflicts several debuffs");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 32;
+            item.damage = 25;
             item.ranged = true;
             item.width = 26;
             item.height = 26;
@@ -34,15 +34,26 @@ namespace FargowiltasSouls.Items.Ammos
             item.ammo = AmmoID.Bullet;
         }
 
-        //do later
-        // public override void AddRecipes()
-        // {
-        // ModRecipe recipe = new ModRecipe(mod);
-        // recipe.AddIngredient(ItemID.MusketBall, 50);
-        // recipe.AddIngredient(null, "ExampleItem", 1);
-        // recipe.AddTile(null, "ExampleWorkbench");
-        // recipe.SetResult(this, 50);
-        // recipe.AddRecipe();
-        // }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.EndlessMusketPouch);
+            recipe.AddIngredient(fargos, "SilverPouch");
+            recipe.AddIngredient(fargos, "MeteorPouch");
+            recipe.AddIngredient(fargos, "CursedPouch");
+            recipe.AddIngredient(fargos, "IchorPouch");
+            recipe.AddIngredient(fargos, "CrystalPouch");
+            recipe.AddIngredient(fargos, "VelocityPouch");
+            recipe.AddIngredient(fargos, "VenomPouch");
+            recipe.AddIngredient(fargos, "ExplosivePouch");
+            recipe.AddIngredient(fargos, "GoldenPouch");
+            recipe.AddIngredient(fargos, "PartyPouch");
+            recipe.AddIngredient(fargos, "ChlorophytePouch");
+            recipe.AddIngredient(fargos, "NanoPouch");
+            recipe.AddIngredient(fargos, "LuminitePouch");
+            recipe.AddTile(fargos, "CrucibleCosmosSheet");
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

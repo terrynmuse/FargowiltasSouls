@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using ThoriumMod;
 using System;
 using ThoriumMod.Items.Misc;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -14,6 +15,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
+        private readonly Mod dbzMod = ModLoader.GetMod("DBZMOD");
         public bool jumped;
         public bool canHover;
         public int hoverTimer;
@@ -24,12 +27,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of Eternity");
             Tooltip.SetDefault(
 @"''
-200% increased all damage, 100% increased shoot speed
-Maximum use speed for all weapons
+200% increased all damage and attack speed, 100% increased shoot speed
 Crits deal 10x damage
 Crit chance is set to 50%, Crit to increase it by 10% 
 At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense
 This stacks up to 200,000 times until you get hit
+You never use ammo, mana, or consumables
 Increases your maximum mana to 999, minions by 20, sentries by 10
 400% increased HP, 40% damage reduction, 15 life regeneration
 Grants immunity to knockback and most debuffs
@@ -71,7 +74,7 @@ and most of SoT not mentioned because meme tooltip length
             modPlayer.AllDamageUp(2f);
             if (Soulcheck.GetValue("Universe Attack Speed"))
             {
-                modPlayer.AttackSpeed *= 100f;
+                modPlayer.AttackSpeed *= 2;
             }
             player.maxMinions += 20;
             player.maxTurrets += 10;
@@ -327,7 +330,17 @@ and most of SoT not mentioned because meme tooltip length
             modPlayer.StardustEffect(); //guardian and time freeze
             modPlayer.AddPet("Suspicious Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
 
+            //MASOCHIST
+            mod.GetItem("MasochistSoul").UpdateAccessory(player, hideVisual);
+
+            //INFINITY
+            modPlayer.Infinity = true;
+
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player, hideVisual);
+
+            if (Fargowiltas.Instance.DBTLoaded) DBT(player);
         }
 
         private void Thorium(Player player)
@@ -566,6 +579,65 @@ and most of SoT not mentioned because meme tooltip length
             }
         }
 
+        private void Calamity(Player player, bool hideVisual)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            //UNIVERSE
+            //melee
+            modPlayer.eGauntlet = true;
+            //removing the extra boosts it adds because meme calamity
+            player.meleeDamage -= .15f;
+            player.meleeSpeed -= .15f;
+            player.meleeCrit -= 5;
+            //range
+            modPlayer.eQuiver = true;
+            //magic
+            modPlayer.eTalisman = true;
+            //summon
+            modPlayer.statisBeltOfCurses = true;
+            modPlayer.shadowMinions = true;
+            modPlayer.tearMinions = true;
+            //throw
+            modPlayer.nanotech = true;
+            //DIMENSIONS
+            //tank soul
+            //rampart of dieties
+            modPlayer.dAmulet = true;
+            //becase calamity made it itself for some reason no duplicate
+            player.starCloak = false;
+            //asgardian aegis
+            modPlayer.dashMod = 4;
+            modPlayer.elysianAegis = true;
+            player.buffImmune[calamity.BuffType("BrimstoneFlames")] = true;
+            player.buffImmune[calamity.BuffType("HolyLight")] = true;
+            player.buffImmune[calamity.BuffType("GlacialState")] = true;
+            //celestial tracers
+            modPlayer.IBoots = !hideVisual;
+            modPlayer.elysianFire = !hideVisual;
+            modPlayer.cTracers = true;
+            //TERRARIA
+            mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
+            //TYRANT
+            mod.GetItem("CalamitySoul").UpdateAccessory(player, hideVisual);
+        }
+
+        private void DBT(Player player)
+        {
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+
+            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 3f);
+            dbtPlayer.kiKbAddition += 0.4f;
+            dbtPlayer.kiDrainMulti -= 0.5f;
+            dbtPlayer.kiMaxMult += 0.4f;
+            dbtPlayer.kiRegen += 5;
+            dbtPlayer.orbGrabRange += 6;
+            dbtPlayer.orbHealAmount += 150;
+            dbtPlayer.chargeLimitAdd += 8;
+            dbtPlayer.flightSpeedAdd += 0.6f;
+            dbtPlayer.flightUsageAdd += 3;
+            dbtPlayer.zenkaiCharm = true;
+        }
+
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
@@ -588,6 +660,12 @@ and most of SoT not mentioned because meme tooltip length
             recipe.AddIngredient(null, "UniverseSoul");
             recipe.AddIngredient(null, "DimensionSoul");
             recipe.AddIngredient(null, "TerrariaSoul");
+            recipe.AddIngredient(null, "MasochistSoul");
+
+            if (Fargowiltas.Instance.CalamityLoaded)
+                recipe.AddIngredient(null, "CalamitySoul");
+
+            recipe.AddIngredient(null, "Infinity");
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

@@ -1,3 +1,4 @@
+using CalamityMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -10,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     //[AutoloadEquip(EquipType.Shield)]
     public class ColossusSoul : ModItem
     {
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod"); 
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public override void SetStaticDefaults()
         {
@@ -23,22 +25,20 @@ Increases HP by 100
 Increases life regeneration by 5
 Grants immunity to knockback and several debuffs
 Enemies are more likely to target you
-Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
-Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
+Effects of Brain of Confusion, Star Veil, and Sweetheart Necklace
+Effects of Bee Cloak, Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
 
             if (thorium != null)
             {
-                tooltip += "\nEffects of Ocean's Retaliation, Cape of the Survivor, Blast Shield, and Terrarium Defender";
+                tooltip += "\nEffects of Ocean's Retaliation and Cape of the Survivor\n Effects of Blast Shield and Terrarium Defender";
+            }
+
+            if (calamity != null)
+            {
+                tooltip += "\nEffects of Asgardian Aegis";
             }
 
             Tooltip.SetDefault(tooltip);
-
-//life quartz shield
-//Increases the rate at which you regenerate life
-//Receiving damage below 75% surrounds you in a protective bubble
-//While in the bubble, you will recover life equal to your bonus healing every second
-//Additionally, damage taken will be reduced by 15%
-//This effect needs to recharge for 1 minute after triggering
         }
 
         public override void SetDefaults()
@@ -116,8 +116,12 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
                 }
             }
 
-            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player); 
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
         }
+
+        
 
         private void Thorium(Player player)
         {
@@ -147,13 +151,34 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
             thoriumPlayer.SpinyShield = true;
         }
 
+        private void Calamity(Player player)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            //rampart of dieties
+            modPlayer.dAmulet = true;
+            if ((double)player.statLife <= (double)player.statLifeMax2 * 0.15)
+            {
+                player.endurance += 0.05f;
+                player.statDefense += 10;
+            }
+            //becase calamity made it itself for some reason no duplicate
+            player.starCloak = false;
+            //asgardian aegis
+            modPlayer.dashMod = 4;
+            modPlayer.elysianAegis = true;
+            player.buffImmune[calamity.BuffType("BrimstoneFlames")] = true;
+            player.buffImmune[calamity.BuffType("HolyLight")] = true;
+            player.buffImmune[calamity.BuffType("GlacialState")] = true;
+        }
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
+            recipe.AddIngredient(ItemID.HandWarmer);
+
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(ItemID.HandWarmer);
                 recipe.AddIngredient(ItemID.BrainOfConfusion);
                 recipe.AddIngredient(ItemID.PocketMirror);
                 recipe.AddIngredient(ItemID.CharmofMyths);
@@ -164,14 +189,9 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
                 recipe.AddIngredient(ItemID.SporeSac);
                 recipe.AddIngredient(thorium.ItemType("BlastShield"));
                 recipe.AddIngredient(thorium.ItemType("TerrariumDefender"));
-
-                /*
-                life quartz shield?
-                */
             }
             else
             {
-                recipe.AddIngredient(ItemID.HandWarmer);
                 recipe.AddIngredient(ItemID.WormScarf);
                 recipe.AddIngredient(ItemID.BrainOfConfusion);
                 recipe.AddIngredient(ItemID.PocketMirror);
@@ -180,10 +200,20 @@ Effects of Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
                 recipe.AddIngredient(ItemID.SweetheartNecklace);
                 recipe.AddIngredient(ItemID.StarVeil);
                 recipe.AddIngredient(ItemID.FleshKnuckles);
-                recipe.AddIngredient(ItemID.FrozenTurtleShell);
                 recipe.AddIngredient(ItemID.SporeSac);
-                recipe.AddIngredient(ItemID.PaladinsShield);
-                recipe.AddIngredient(ItemID.AnkhShield);
+
+                if (!Fargowiltas.Instance.CalamityLoaded)
+                {
+                    recipe.AddIngredient(ItemID.FrozenTurtleShell);
+                    recipe.AddIngredient(ItemID.PaladinsShield);
+                    recipe.AddIngredient(ItemID.AnkhShield);
+                }
+            }
+
+            if (Fargowiltas.Instance.CalamityLoaded)
+            {
+                recipe.AddIngredient(calamity.ItemType("RampartofDeities"));
+                recipe.AddIngredient(calamity.ItemType("AsgardianAegis"));
             }
 
             if (Fargowiltas.Instance.FargosLoaded)

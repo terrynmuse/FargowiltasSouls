@@ -13,10 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -24,8 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Has a surprisingly sweet aroma'
 Your magic damage has a chance to poison hit enemies with a spore cloud
-When out of combat for 5 seconds, life recovery will increase up to 3 over time
-Enemies that you poison or envenom will take additional damage over time");
+Effects of Night Shade Petal and Petal Shield");
         }
 
         public override void SetDefaults()

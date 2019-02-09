@@ -13,19 +13,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cyber Punk Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"''
 Pressing the 'Special Ability' key will cycle you through four states
-Symphonic damage has a 10% chance to increase its empowerment level
-Your symphonic damage will empower all nearby allies with: Damage II");
+Effects of Auto Tuner and Red Music Player");
         }
 
         public override void SetDefaults()
@@ -41,12 +38,7 @@ Your symphonic damage will empower all nearby allies with: Damage II");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            CyberEffect(player);
-        }
-        
-        private void CyberEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //cyber set bonus, good lord
             thoriumPlayer.cyberBard = true;
@@ -163,7 +155,7 @@ Your symphonic damage will empower all nearby allies with: Damage II");
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3Damage = 2;
         }
-        
+       
         private readonly string[] items =
         {
             "CyberPunkHeadset",

@@ -22,11 +22,9 @@ When there are three, attacking will launch them towards the cursor
 
             if(thorium != null)
             {
-            //An icy aura surrounds you, which freezes nearby enemies after a short delay
-
                 tooltip +=
-@"You and nearby allies have a chance to frostburn enemies when attacking
-Doubles the range of your empowerments effect radius
+@"An icy aura surrounds you, which freezes nearby enemies after a short delay
+Effects of Sub-Zero Subwoofer
 ";
             }
 
@@ -65,15 +63,12 @@ Doubles the range of your empowerments effect radius
                     thoriumPlayer.empowerFrost = true;
                 }
             }
-
-            /*
-             //icy set bonus
+            //icy set bonus
             thoriumPlayer.icySet = true;
             if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
             }
-             * */
         }
 
         public override void AddRecipes()
@@ -85,7 +80,7 @@ Doubles the range of your empowerments effect radius
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                //recipe.AddIngredient(null, "IcyEnchant");
+                recipe.AddIngredient(null, "IcyEnchant");
                 recipe.AddIngredient(thorium.ItemType("FrostSubwoofer"));
                 recipe.AddIngredient(thorium.ItemType("Glacieor"));
                 recipe.AddIngredient(ItemID.IceBow);

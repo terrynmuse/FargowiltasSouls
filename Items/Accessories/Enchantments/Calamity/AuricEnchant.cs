@@ -39,7 +39,7 @@ You have a magic carpet");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;//
+            item.rare = 10;
             item.value = 10000000;
         }
 
@@ -244,7 +244,6 @@ You have a magic carpet");
             recipe.AddIngredient(calamity.ItemType("Celestus"));
 
             recipe.AddTile(calamity, "DraedonsForge");
-
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

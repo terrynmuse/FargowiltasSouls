@@ -26,8 +26,7 @@ namespace FargowiltasSouls.Projectiles
         private int counter;
         public bool CanSplit = true;
         private int numSplits = 1;
-        private static int adamantiteCD = 0;
-
+        private int adamantiteCD = 0;
         private int numSpeedups = 3;
         private bool ninjaTele;
         public bool IsRecolor = false;
@@ -541,7 +540,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
             }
 
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {
                 //switch wouldnt work because IDs not constant RIP
                 if(projectile.type == thorium.ProjectileType("Omega"))
@@ -612,7 +611,7 @@ namespace FargowiltasSouls.Projectiles
                 {
                     KillPet(projectile, player, thorium.BuffType("PinkSlimeBuff"), modPlayer.IllumiteEnchant, "Pink Slime Pet");
                 }
-            }*/
+            }
 
             if (stormBoosted)
             {
@@ -1107,14 +1106,12 @@ namespace FargowiltasSouls.Projectiles
             }*/
         }
 
-        private static int[] noShard = { ProjectileID.CrystalShard };
-
         public override void Kill(Projectile projectile, int timeLeft)
         {
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.CobaltEnchant && CanSplit && Soulcheck.GetValue("Cobalt Shards") && Array.IndexOf(noShard, projectile.type) <= -1 && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
+            if (modPlayer.CobaltEnchant && Soulcheck.GetValue("Cobalt Shards") && modPlayer.CobaltCD == 0 && CanSplit && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
             {
                 int damage = 40;
 
@@ -1124,7 +1121,17 @@ namespace FargowiltasSouls.Projectiles
                 }
 
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 27);
-                XWay(8, projectile.Center, ProjectileID.CrystalShard, 5, damage, 2f);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    float velX = -projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                    float velY = -projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                    int p = Projectile.NewProjectile(projectile.position.X + velX, projectile.position.Y + velY, velX, velY, ProjectileID.CrystalShard, damage, 0f, projectile.owner);
+
+                    Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                }
+
+                modPlayer.CobaltCD = 120;
             }
 
             switch (projectile.type)

@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -26,7 +24,7 @@ Most of your ranged weapons take on special properties
 Every 5 bullets fired will unleash a multi-hit illumite bullet
 Every 4 arrows fired will unleash a barrage of illumite energy
 Every 3 rockets fired will unleash an illumite missile
-Your symphonic damage will empower all nearby allies with: Life Regeneration II
+Effects of Pink Music Player
 Summons a pet Pink Slime");
         }
 

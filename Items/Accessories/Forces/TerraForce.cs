@@ -12,8 +12,6 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public int timer;
 
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terra Force");

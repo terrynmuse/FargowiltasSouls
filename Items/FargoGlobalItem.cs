@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using ThoriumMod.Items;
 
 namespace FargowiltasSouls.Items
 {
@@ -78,11 +79,11 @@ namespace FargowiltasSouls.Items
                     break;
                 /*case ItemID.DestroyerBossBag:
                     player.QuickSpawnItem(mod.ItemType("Probe"));
-                    break;
+                    break;*/
                 case ItemID.TwinsBossBag:
-                    player.QuickSpawnItem(mod.ItemType("TwinBoomerangs"));
+                    player.QuickSpawnItem(mod.ItemType("TwinRangs"));
                     break;
-                case ItemID.SkeletronPrimeBossBag:
+                /*case ItemID.SkeletronPrimeBossBag:
                     player.QuickSpawnItem(mod.ItemType("PrimeStaff"));
                     break;*/
                 case ItemID.PlanteraBossBag:
@@ -140,9 +141,21 @@ namespace FargowiltasSouls.Items
 
         public override bool CanUseItem(Item item, Player player)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+
             if (item.type == ItemID.PumpkinPie && player.HasBuff(BuffID.PotionSickness)) return false;
 
             if (item.magic && player.GetModPlayer<FargoPlayer>().ReverseManaFlow) return false;
+
+            if (modPlayer.Infinity && !modPlayer.Eternity && (item.useAmmo != AmmoID.None || item.mana > 0 || item.consumable))
+            {
+                modPlayer.InfinityCounter++;
+
+                if (modPlayer.InfinityCounter >= 4)
+                {
+                    modPlayer.InfinityHurt();
+                }
+            }
 
             return true;
         }
@@ -172,19 +185,19 @@ namespace FargowiltasSouls.Items
 
             //thorium//
 
-            /*if (modPlayer.ShadowForce && item.damage >= 1 && Main.rand.Next(5) == 0)
-            {
-                float num9 = 0.25f;
-                float num10 = (float)Math.Sqrt((speedX * speedX + speedY * speedY));
-                double num11 = Math.Atan2(speedX, speedY);
-                double num12 = num11 + (0.25f * num9);
-                double num13 = num11 - (0.25f * num9);
-                float num14 = Utils.NextFloat(Main.rand) * 0.2f + 0.95f;
-                Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num12), num10 * num14 * (float)Math.Cos(num12), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
-                Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num13), num10 * num14 * (float)Math.Cos(num13), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
-            }*/
+                /*if (modPlayer.ShadowForce && item.damage >= 1 && Main.rand.Next(5) == 0)
+                {
+                    float num9 = 0.25f;
+                    float num10 = (float)Math.Sqrt((speedX * speedX + speedY * speedY));
+                    double num11 = Math.Atan2(speedX, speedY);
+                    double num12 = num11 + (0.25f * num9);
+                    double num13 = num11 - (0.25f * num9);
+                    float num14 = Utils.NextFloat(Main.rand) * 0.2f + 0.95f;
+                    Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num12), num10 * num14 * (float)Math.Cos(num12), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(position.X, position.Y, num10 * num14 * (float)Math.Sin(num13), num10 * num14 * (float)Math.Cos(num13), thorium.ProjectileType("BlightDagger"), damage, knockBack, player.whoAmI, 0f, 0f);
+                }*/
 
-            return true;
+                return true;
         }
     }
 }

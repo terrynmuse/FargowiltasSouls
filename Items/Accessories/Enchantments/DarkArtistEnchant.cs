@@ -23,7 +23,7 @@ Greatly enhances Flameburst effectiveness
 
             if(thorium != null)
             {
-                tooltip += "Enemies afflicted with shadowflame or light curse increase your life regeneration\n";
+                tooltip += "Effects of Dark Effigy\n";
             }
 
             tooltip += "Summons a pet Flickerwick";

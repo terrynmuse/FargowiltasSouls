@@ -17,6 +17,7 @@ using FargowiltasSouls.Projectiles;
 using FargowiltasSouls.Projectiles.BossWeapons;
 using FargowiltasSouls.Projectiles.Souls;
 using ThoriumMod;
+using CalamityMod.Items.CalamityCustomThrowingDamage;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -30,7 +31,6 @@ namespace FargowiltasSouls
 
         public bool Wood;
         public bool QueenStinger;
-        public bool Infinity;
 
         //minions
         public bool BrainMinion;
@@ -57,6 +57,7 @@ namespace FargowiltasSouls
         public bool ElementEnchant;
         public bool ShroomEnchant;
         public bool CobaltEnchant;
+        public int CobaltCD = 0;
         public bool SpookyEnchant;
         public bool HallowEnchant;
         public bool ChloroEnchant;
@@ -78,6 +79,7 @@ namespace FargowiltasSouls
         private bool meteorShower = false;
         public bool MoltenEnchant;
         public bool CopperEnchant;
+        private int copperCD = 0;
         public bool NinjaEnchant;
         public bool FirstStrike;
         public bool NearSmoke;
@@ -139,6 +141,9 @@ namespace FargowiltasSouls
         #endregion
 
         //soul effects
+        public bool Infinity;
+        public int InfinityCounter = 0;
+
         public bool MagicSoul;
         public bool ThrowSoul;
         public bool RangedSoul;
@@ -161,6 +166,8 @@ namespace FargowiltasSouls
         public bool SkullCharm;
         public bool LihzahrdTreasureBox;
         public bool GravityGlobeEX;
+        public bool CelestialRune;
+        public bool MoonChalice;
 
         //debuffs
         public bool Hexed;
@@ -198,6 +205,7 @@ namespace FargowiltasSouls
         public IList<string> disabledSouls = new List<string>();
 
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private Mod dbzMod = ModLoader.GetMod("DBZMOD");
 
         public override TagCompound Save()
         {
@@ -417,6 +425,8 @@ namespace FargowiltasSouls
             SkullCharm = false;
             LihzahrdTreasureBox = false;
             GravityGlobeEX = false;
+            CelestialRune = false;
+            MoonChalice = false;
 
             //debuffs
             Hexed = false;
@@ -665,6 +675,16 @@ namespace FargowiltasSouls
                 }
                 unstableCD++;
             }
+
+            if (CopperEnchant && copperCD > 0)
+            {
+                copperCD--;
+            }
+
+            if (CobaltEnchant && CobaltCD > 0)
+            {
+                CobaltCD--;
+            }
         }
 
         public override void PostUpdateMiscEffects()
@@ -750,6 +770,11 @@ namespace FargowiltasSouls
                 player.meleeCrit = 0;
             }
 
+            if (Infinity)
+            {
+                player.manaCost -= 1f;
+            }
+
             if(Eternity)
             {
                 player.statManaMax2 = 999;
@@ -818,14 +843,6 @@ namespace FargowiltasSouls
             }
 
             return AttackSpeed;
-        }
-
-        public override void UpdateLifeRegen()
-        {
-            if (MagicalBulb)
-            {
-                player.lifeRegen += 2;
-            }
         }
 
         public override void UpdateBadLifeRegen()
@@ -1330,15 +1347,9 @@ namespace FargowiltasSouls
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
+            if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0 && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
             {
                 CopperEffect(target);
-            }
-
-            if (Infinity && (player.HeldItem.ranged || player.HeldItem.magic || player.HeldItem.thrown))
-            {
-                player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " self destructed."), player.HeldItem.damage / 33, 0);
-                player.immune = false;
             }
 
             if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian") && proj.type != mod.ProjectileType<DungeonGuardian>())
@@ -1511,7 +1522,7 @@ namespace FargowiltasSouls
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (CopperEnchant && Soulcheck.GetValue("Copper Lightning"))
+            if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
             {
                 CopperEffect(target);
             }
@@ -1697,12 +1708,25 @@ namespace FargowiltasSouls
                 }
             }
 
+            if (MoonChalice)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11), mod.ProjectileType("AncientVision"), 80, 2f, player.whoAmI);
+                }
+            }
+
             if (LihzahrdTreasureBox)
             {
                 for (int i = 0; i < 9; i++)
                 {
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11), mod.ProjectileType("LihzahrdSpikyBallFriendly"), 80, 2f, player.whoAmI);
                 }
+            }
+
+            if (CelestialRune)
+            {
+                Projectile.NewProjectile(player.Center, new Vector2(0, -10), mod.ProjectileType("AncientVision"), 50, 0, player.whoAmI);
             }
         }
 
@@ -1817,6 +1841,13 @@ namespace FargowiltasSouls
             }
         }
 
+        public void InfinityHurt()
+        {
+            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " self destructed."), Main.rand.Next(2, 6), 0);
+            player.immune = false;
+            InfinityCounter = 0;
+        }
+
         public void AddPet(string toggle, bool vanityToggle, int buff, int proj)
         {
             if(vanityToggle)
@@ -1918,6 +1949,10 @@ namespace FargowiltasSouls
             player.thrownDamage += dmg;
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumDamage(dmg);
+
+            if (Fargowiltas.Instance.CalamityLoaded) CalamityDamage(dmg);
+
+            if (Fargowiltas.Instance.DBTLoaded) DBTDamage(dmg);
         }
 
         private void ThoriumDamage(float dmg)
@@ -1925,6 +1960,17 @@ namespace FargowiltasSouls
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.radiantBoost += dmg;
             thoriumPlayer.symphonicDamage += dmg;
+        }
+
+        private void CalamityDamage(float dmg)
+        {
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += dmg;
+        }
+
+        private void DBTDamage(float dmg)
+        {
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            dbtPlayer.kiDamage += dmg;
         }
 
         public void AllCritUp(int crit)
@@ -1935,6 +1981,10 @@ namespace FargowiltasSouls
             player.thrownCrit += crit;
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumCrit(crit);
+
+            if (Fargowiltas.Instance.CalamityLoaded) CalamityCrit(crit);
+
+            if (Fargowiltas.Instance.DBTLoaded) DBTCrit(crit);
         }
 
         private void ThoriumCrit(int crit)
@@ -1944,12 +1994,47 @@ namespace FargowiltasSouls
             thoriumPlayer.symphonicCrit += crit;
         }
 
+        private void CalamityCrit(int crit)
+        {
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += crit;
+        }
+
+        private void DBTCrit(int crit)
+        {
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            dbtPlayer.kiCrit += crit;
+        }
+
         public void AllCritEquals(int crit)
         {
             player.meleeCrit = crit;
             player.rangedCrit = crit;
             player.magicCrit = crit;
             player.thrownCrit = crit;
+
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumCritEquals(crit);
+
+            if (Fargowiltas.Instance.CalamityLoaded) CalamityCritEquals(crit);
+
+            if (Fargowiltas.Instance.DBTLoaded) DBTCritEquals(crit);
+        }
+
+        private void ThoriumCritEquals(int crit)
+        {
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            thoriumPlayer.radiantCrit = crit;
+            thoriumPlayer.symphonicCrit = crit;
+        }
+
+        private void CalamityCritEquals(int crit)
+        {
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit = crit;
+        }
+
+        private void DBTCritEquals(int crit)
+        {
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            dbtPlayer.kiCrit = crit;
         }
 
         public void FlowerBoots()
@@ -2213,6 +2298,8 @@ namespace FargowiltasSouls
                     target = closestNPC;
                 }
             }
+
+            copperCD = 300;
         }
 
         public void CrimsonEffect(bool hideVisual)
@@ -2393,7 +2480,7 @@ namespace FargowiltasSouls
             //midas
             GoldEnchant = true;
 
-            //if (Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) return;
 
             AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
         }
@@ -2529,7 +2616,7 @@ namespace FargowiltasSouls
         {
             JungleEnchant = true;
 
-            if (/*Fargowiltas.Instance.ThoriumLoaded || */NatureForce) return;
+            if (Fargowiltas.Instance.ThoriumLoaded || NatureForce) return;
 
             player.cordage = true;
         }

@@ -2,9 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
-using ThoriumMod;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
@@ -23,13 +21,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Ataxia Enchantment");
             Tooltip.SetDefault(
 @"'Not be confused with Ataraxia Enchantment'
-Inferno effect when below 50% life
 You have a 20% chance to emit a blazing explosion on hit
 Melee attacks and projectiles cause chaos flames to erupt on enemy hits
 You have a 50% chance to fire a homing chaos flare when using ranged weapons
 Magic attacks summon damaging and healing flare orbs on hit
 Summons a chaos spirit to protect you
-Rogue weapons have a 10% chance to unleash a volley of chaos flames around the player that chase enemies when used");
+Rogue weapons have a 10% chance to unleash a volley of chaos flames around the player
+Effects of the Plague Hive");
         }
 
         public override void SetDefaults()
@@ -39,7 +37,7 @@ Rogue weapons have a 10% chance to unleash a volley of chaos flames around the p
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 8;
-            item.value = 600000;
+            item.value = 1000000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -47,13 +45,8 @@ Rogue weapons have a 10% chance to unleash a volley of chaos flames around the p
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-
             //all
             modPlayer.ataxiaBlaze = true;
-            if (player.statLife <= player.statLifeMax2 * 0.5f)
-            {
-                player.AddBuff(116, 2, true);
-            }
             //melee
             modPlayer.ataxiaGeyser = true;
             //range
@@ -75,6 +68,41 @@ Rogue weapons have a 10% chance to unleash a volley of chaos flames around the p
             }
             //throw
             modPlayer.ataxiaVolley = true;
+            //plague hive
+            player.buffImmune[calamity.BuffType("Plague")] = true;
+            modPlayer.uberBees = true;
+            player.strongBees = true;
+            modPlayer.alchFlask = true;
+            int num = 0;
+            Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.1f, 2f, 0.2f);
+            int num2 = calamity.BuffType("Plague");
+            float num3 = 300f;
+            bool flag = num % 60 == 0;
+            int num4 = 60;
+            int num5 = Main.rand.Next(10);
+            if (player.whoAmI == Main.myPlayer && num5 == 0)
+            {
+                for (int i = 0; i < 200; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.active && !npc.friendly && npc.damage > 0 && !npc.dontTakeDamage && !npc.buffImmune[num2] && Vector2.Distance(player.Center, npc.Center) <= num3)
+                    {
+                        if (npc.FindBuffIndex(num2) == -1)
+                        {
+                            npc.AddBuff(num2, 120, false);
+                        }
+                        if (flag)
+                        {
+                            npc.StrikeNPC(num4, 0f, 0, false, false, false);
+                            if (Main.netMode != 0)
+                            {
+                                NetMessage.SendData(28, -1, -1, null, i, (float)num4, 0f, 0f, 0, 0, 0);
+                            }
+                        }
+                    }
+                }
+            }
+            num++;
         }
 
         public override void AddRecipes()
@@ -83,20 +111,6 @@ Rogue weapons have a 10% chance to unleash a volley of chaos flames around the p
 
             ModRecipe recipe = new ModRecipe(mod);
 
-/*Vesuvius
-Omniblade
-Tumbleweed
-Sand Sharknado Staff
-Forbidden Sun
-Barracuda Gun
-Impaler
-Lucrecia
-Holiday Halberd
-Soul Harvester
-Plague Hive
-The Hive*/
-
-
             recipe.AddIngredient(calamity.ItemType("AtaxiaHelm"));
             recipe.AddIngredient(calamity.ItemType("AtaxiaHeadgear"));
             recipe.AddIngredient(calamity.ItemType("AtaxiaMask"));
@@ -104,15 +118,15 @@ The Hive*/
             recipe.AddIngredient(calamity.ItemType("AtaxiaHood"));
             recipe.AddIngredient(calamity.ItemType("AtaxiaArmor"));
             recipe.AddIngredient(calamity.ItemType("AtaxiaSubligar"));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-
-            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddIngredient(calamity.ItemType("PlagueHive"));
+            recipe.AddIngredient(calamity.ItemType("BarracudaGun"));
+            recipe.AddIngredient(calamity.ItemType("Vesuvius"));
+            recipe.AddIngredient(calamity.ItemType("SoulHarvester"));
+            recipe.AddIngredient(calamity.ItemType("Malachite"));
+            recipe.AddIngredient(calamity.ItemType("Impaler"));
+            recipe.AddIngredient(calamity.ItemType("HolidayHalberd"));
+            
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

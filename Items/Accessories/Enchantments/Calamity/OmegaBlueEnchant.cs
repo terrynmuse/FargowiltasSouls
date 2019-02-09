@@ -2,9 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
-using ThoriumMod;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -14,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetLoadedMods().Contains("CalamityMod");
         }
 
         public override void SetStaticDefaults()
@@ -22,15 +21,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Omega Blue Enchantment");
             Tooltip.SetDefault(
 @"'The darkness of the Abyss has overwhelmed you...'
-
-Armor penetration increased by 50.
-All attacks inflict Crush Depth.
-You can move freely through liquids.
-Positive life regen is unaffected.
-+2 minions.
-Several abyssal tentacles sprout from your back. The tentacles latch to foes and steal their life.
-Pressing Y gives you Abyssal Madness, which increases damage and crit chance by 10%, and increases your tentacles' range and damage.
-");
+Increases armor penetration by 100
+Short-ranged tentacles heal you by sucking enemy life
+Press Y to activate abyssal madness for 5 seconds
+Abyssal madness increases damage, critical strike chance, and tentacle aggression/range
+This effect has a 30 second cooldown
+Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
         }
 
         public override void SetDefaults()
@@ -39,15 +35,60 @@ Pressing Y gives you Abyssal Madness, which increases damage and crit chance by 
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;//
-            item.value = 400000;//
+            item.rare = 13;
+            item.value = 1000000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            player.ignoreWater = true;
+            modPlayer.omegaBlueSet = true;
+            if (modPlayer.omegaBlueCooldown > 0)
+            {
+                if (modPlayer.omegaBlueCooldown == 1)
+                {
+                    for (int i = 0; i < 66; i++)
+                    {
+                        int num = Dust.NewDust(player.position, player.width, player.height, 20, 0f, 0f, 100, Color.Transparent, 2.6f);
+                        Main.dust[num].noGravity = true;
+                        Main.dust[num].noLight = true;
+                        Main.dust[num].fadeIn = 1f;
+                        Main.dust[num].velocity *= 6.6f;
+                    }
+                }
+                modPlayer.omegaBlueCooldown--;
+            }
+            if (modPlayer.omegaBlueCooldown > 1500)
+            {
+                modPlayer.omegaBlueHentai = true;
+                int num2 = Dust.NewDust(player.position, player.width, player.height, 20, 0f, 0f, 100, Color.Transparent, 1.6f);
+                Main.dust[num2].noGravity = true;
+                Main.dust[num2].noLight = true;
+                Main.dust[num2].fadeIn = 1f;
+                Main.dust[num2].velocity *= 3f;
+            }
+            //abyssal diving suit
+            //because screw that slow speed out of water ech
+            if (!Collision.DrownCollision(player.position, player.width, player.height, player.gravDir))
+            {
+                player.runAcceleration *= 2.5f;
+                player.maxRunSpeed *= 2.5f;
+            }
+            modPlayer.abyssalDivingSuit = true;
+            if (hideVisual)
+            {
+                modPlayer.abyssalDivingSuitHide = true;
+            }
+            //lumenous amulet
+            modPlayer.abyssalAmulet = true;
+            modPlayer.lumenousAmulet = true;
+            //reaper tooth necklace
+            player.armorPenetration += 100;
+            //aquatic emblem
+            modPlayer.aquaticEmblem = true;
         }
 
         public override void AddRecipes()
@@ -56,19 +97,23 @@ Pressing Y gives you Abyssal Madness, which increases damage and crit chance by 
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Omega Blue armor, Soul Edge, Eidolic Wail, Reaper Tooth Necklace, Calamari's Lament, Valediction, Abyssal Diving Suit, Halibut Cannon and Strange Orb
+            //Strange Orb one day
+            recipe.AddIngredient(calamity.ItemType("OmegaBlueHelmet"));
+            recipe.AddIngredient(calamity.ItemType("OmegaBlueChestplate"));
+            recipe.AddIngredient(calamity.ItemType("OmegaBlueLeggings"));
+            recipe.AddIngredient(calamity.ItemType("AbyssalDivingSuit"));
+            recipe.AddIngredient(calamity.ItemType("LumenousAmulet"));
+            recipe.AddIngredient(calamity.ItemType("ReaperToothNecklace"));
+            recipe.AddIngredient(calamity.ItemType("AquaticEmblem"));
+            recipe.AddIngredient(calamity.ItemType("HalibutCannon"));
+            recipe.AddIngredient(calamity.ItemType("CalamarisLament"));
+            recipe.AddIngredient(calamity.ItemType("Valediction"));
+            recipe.AddIngredient(calamity.ItemType("SulphuricAcidCannon"));
+            recipe.AddIngredient(calamity.ItemType("EidolicWail"));
+            recipe.AddIngredient(calamity.ItemType("SDFMG"));
+            recipe.AddIngredient(calamity.ItemType("NeptunesBounty"));
 
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-
-            recipe.AddTile(TileID.LunarCraftingStation);//
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -13,20 +13,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ornate Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"''
 Symphonic critical strikes cause the attack's empowerment to ascend to a fourth level of intensity
-Increases maximum inspiration by 2
-Every nearby ally increases your inspiration regeneration by 1%
-Your symphonic damage will empower all nearby allies with: Ammo Consumption II");
+Effects of Concert Tickets and Brown Music Player");
         }
 
         public override void SetDefaults()
@@ -42,16 +38,10 @@ Your symphonic damage will empower all nearby allies with: Ammo Consumption II")
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            OrnateEffect(player);
-        }
-        
-        private void OrnateEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.ornateSet = true;
             //concert tickets
-            thoriumPlayer.bardResourceMax2 += 2;
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];

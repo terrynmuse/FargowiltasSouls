@@ -35,8 +35,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 lines[4] = new TooltipLine(mod, "5", "Increases coin pickup range and shops have lower prices");
                 lines[5] = new TooltipLine(mod, "6", "Enemies drop money on each successful hit");
                 lines[6] = new TooltipLine(mod, "7", "Your attacks inflict Midas");
-                lines[7] = new TooltipLine(mod, "8", "Summons a pet Parrot");
-                //lines[7] = new TooltipLine(mod, "8", "Summons a curious bag of ancient coins");
+                lines[7] = new TooltipLine(mod, "8", "Summons a pet Parrot and Coin Bag");
             }
             else
             {

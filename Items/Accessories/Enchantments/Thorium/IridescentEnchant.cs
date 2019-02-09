@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -24,8 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 Your radiant damage has a 15% chance to release a blinding flash of light
 The flash heals nearby allies equal to your bonus healing and confuses enemies
-Healing allies with less health than you increases their life recovery
-Healing allies with more health than you increases your life recovery");
+Effects of Equalizer");
         }
 
         public override void SetDefaults()

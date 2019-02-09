@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -77,8 +77,6 @@ Pressing the 'Special Ability' key will unleash an echo of Slag Fury's power");
         public override void AddRecipes()
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-
-            //stardust, nebula
             
             ModRecipe recipe = new ModRecipe(mod);
             

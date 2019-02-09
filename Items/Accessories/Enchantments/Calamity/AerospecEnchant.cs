@@ -2,9 +2,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
-using ThoriumMod;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
@@ -23,7 +20,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Aerospec Enchantment");
             Tooltip.SetDefault(
 @"'The sky comes to your aid…'
-Allows you to fall more quickly and disables fall damage
 Taking over 25 damage in one hit causes several homing feathers to fall
 Summons a Valkyrie minion to protect you");
         }
@@ -43,8 +39,6 @@ Summons a Valkyrie minion to protect you");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            player.noFallDmg = true;
-            player.moveSpeed += 0.05f;
             modPlayer.aeroSet = true;
             modPlayer.valkyrie = true;
             if (player.whoAmI == Main.myPlayer)

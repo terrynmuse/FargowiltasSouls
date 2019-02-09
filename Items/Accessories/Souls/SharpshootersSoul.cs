@@ -1,3 +1,4 @@
+using CalamityMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -10,16 +11,29 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     public class SharpshootersSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sharpshooter's Soul");
-            Tooltip.SetDefault(
+
+            string tooltip = 
 @"'Ready, aim, fire'
 30% increased range damage
 20% increased firing speed
 15% increased ranged critical chance
-Sniper Scope Effects");
+";
+
+            if (calamity == null)
+            {
+                tooltip += "Effects of Sniper Scope";
+            }
+            else
+            {
+                tooltip += "Effects of Elemental Quiver and Sniper Scope";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -50,6 +64,14 @@ Sniper Scope Effects");
             player.rangedCrit += 15;
             //sniper scope
             player.scope = true;
+
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
+        }
+
+        private void Calamity(Player player)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.eQuiver = true;
         }
 
         public override void AddRecipes()
@@ -57,10 +79,10 @@ Sniper Scope Effects");
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(null, "SnipersEssence");
+            recipe.AddIngredient(Fargowiltas.Instance.CalamityLoaded ? calamity.ItemType("ElementalQuiver") : ItemID.MagicQuiver);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(ItemID.MagicQuiver);
                 recipe.AddIngredient(thorium.ItemType("VegaPhaser"));
                 recipe.AddIngredient(thorium.ItemType("Scorn"));
                 recipe.AddIngredient(thorium.ItemType("SpineBuster"));
@@ -76,7 +98,6 @@ Sniper Scope Effects");
             }
             else
             {
-                recipe.AddIngredient(ItemID.MagicQuiver);
                 recipe.AddIngredient(ItemID.SniperScope);
                 recipe.AddIngredient(ItemID.DartPistol);
                 recipe.AddIngredient(ItemID.Megashark);
