@@ -20,15 +20,16 @@ Icicles will start to appear around you
 When there are three, attacking will launch them towards the cursor
 ";
 
-            if(thorium != null)
+            if (thorium != null)
             {
                 tooltip +=
-@"An icy aura surrounds you, which freezes nearby enemies after a short delay
-Effects of Sub-Zero Subwoofer
-";
+@"Effects of Sub-Zero Subwoofer
+Summons a pet Snowman";
             }
-
-            tooltip += "Summons a pet Penguin and Snowman";
+            else
+            {
+                tooltip += "Summons a pet Penguin and Snowman";
+            }
 
             Tooltip.SetDefault(tooltip);
         }
@@ -63,12 +64,6 @@ Effects of Sub-Zero Subwoofer
                     thoriumPlayer.empowerFrost = true;
                 }
             }
-            //icy set bonus
-            thoriumPlayer.icySet = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
-            {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
-            }
         }
 
         public override void AddRecipes()
@@ -80,8 +75,8 @@ Effects of Sub-Zero Subwoofer
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(null, "IcyEnchant");
                 recipe.AddIngredient(thorium.ItemType("FrostSubwoofer"));
+                recipe.AddIngredient(thorium.ItemType("BlizzardsEdge"));
                 recipe.AddIngredient(thorium.ItemType("Glacieor"));
                 recipe.AddIngredient(ItemID.IceBow);
                 recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);

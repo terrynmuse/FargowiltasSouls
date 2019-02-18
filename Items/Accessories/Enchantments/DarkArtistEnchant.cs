@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip =
 @"'The shadows hold more than they seem'
-Your weapon's projectiles occasionally shoot from the shadows of where you used to be
+While attacking, Flameburst shots manifest themselves from your shadows
 Greatly enhances Flameburst effectiveness
 ";
 
@@ -43,8 +43,6 @@ Greatly enhances Flameburst effectiveness
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.setApprenticeT2 = true;
-            player.setApprenticeT3 = true;
             player.GetModPlayer<FargoPlayer>(mod).DarkArtistEffect(hideVisual);
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
@@ -53,7 +51,7 @@ Greatly enhances Flameburst effectiveness
         private void Thorium(Player player)
         {
             //dark effigy
-            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             for (int i = 0; i < 200; i++)
             {
@@ -80,8 +78,8 @@ Greatly enhances Flameburst effectiveness
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("Effigy"));
+                recipe.AddIngredient(thorium.ItemType("DarkMageStaff"));
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
-                recipe.AddIngredient(thorium.ItemType("WhisperingDagger"));
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT2Popper);
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
             }

@@ -21,9 +21,7 @@ You may summon nearly twice as many spider minions
 
             if(thorium != null)
             {
-                tooltip +=
-@"Effects of Arachnid's Subwoofer
-";
+                tooltip += "Effects of Arachnid's Subwoofer\n";
             }
 
             tooltip += "Summons a pet Spider";

@@ -86,8 +86,6 @@ namespace FargowiltasSouls.NPCs
             Infested = false;
             Needles = false;
             Electrified = false;
-            //BLACK SLIMES
-            //npc.color = default(Color);
         }
 
         public override void SetDefaults(NPC npc)
@@ -4810,6 +4808,16 @@ namespace FargowiltasSouls.NPCs
                 }
 
                 npc.lifeRegen -= 10;
+
+                for (int i = 0; i < 200; i++)
+                {
+                    NPC spread = Main.npc[i];
+
+                    if (spread.active && Vector2.Distance(npc.Center, spread.Center) < 100)
+                    {
+                        spread.AddBuff(mod.BuffType("LeadPoison"), 120);
+                    }
+                }
             }
 
             //50 dps
@@ -7691,7 +7699,7 @@ namespace FargowiltasSouls.NPCs
             FargoPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<FargoPlayer>(mod);
 
             //spears
-            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce) && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
+            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce) && npc.type != NPCID.WallofFlesh && npc.type != NPCID.WallofFleshEye && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
                 npc.knockBackResist += .05f;
 

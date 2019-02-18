@@ -41,6 +41,9 @@ Effects of Auto Tuner and Red Music Player");
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //cyber set bonus, good lord
+            thoriumPlayer.cyberHeadAllowed = false;
+            thoriumPlayer.cyberBodyAllowed = false;
+            thoriumPlayer.cyberLegsAllowed = false;
             thoriumPlayer.cyberBard = true;
             for (int i = 0; i < 255; i++)
             {
@@ -133,22 +136,7 @@ Effects of Auto Tuner and Red Music Player");
                     }
                 }
             }
-            if (thoriumPlayer.cyberBardValue == 0)
-            {
-                Lighting.AddLight(player.position, 0.45f, 0.1f, 0.1f);
-            }
-            if (thoriumPlayer.cyberBardValue == 1)
-            {
-                Lighting.AddLight(player.position, 0.55f, 0.4f, 0.1f);
-            }
-            if (thoriumPlayer.cyberBardValue == 2)
-            {
-                Lighting.AddLight(player.position, 0.15f, 0.45f, 0.15f);
-            }
-            if (thoriumPlayer.cyberBardValue == 3)
-            {
-                Lighting.AddLight(player.position, 0.1f, 0.2f, 0.65f);
-            }
+            
             //auto tuner
             thoriumPlayer.autoTunerBool = true;
             //music player

@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Tiki Enchantment");
             Tooltip.SetDefault(
 @"'Aku Aku!'
-Attacks will inflict a Infested on enemies
+Attacks will inflict Infested on enemies
 Infested deals increasing damage over time
 Summons a pet Tiki Spirit");
         }

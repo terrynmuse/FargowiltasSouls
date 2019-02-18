@@ -52,7 +52,7 @@ Corrupts your radiant powers, causing them to take on dark forms and deal additi
             "DarkHeart",
             "PoisonPrickler",
             "EaterOfPain",
-            "DarkMageStaff",
+            "BrainCoral",
             "BloodiedButterfly"
         };
 

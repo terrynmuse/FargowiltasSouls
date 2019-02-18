@@ -37,6 +37,7 @@ Effects of Iron Shield and Spiked Bracers");
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 1;
             item.value = 40000;
+            item.shieldSlot = 5;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

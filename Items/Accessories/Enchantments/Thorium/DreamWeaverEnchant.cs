@@ -22,9 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Dream Weaver Enchantment");
             Tooltip.SetDefault(
 @"'Manifest your dearest dreams through your allies, Bind the enemies of your future in temporal agony'
-Pressing the 'Special Ability' key will spend 200 mana and place you within the Dream
+Pressing the 'Special Ability' key will spend 400 mana and place you within the Dream and bend the very fabric of reality
 While in the Dream, healed allies will become briefly invulnerable and be cured of all debuffs
-Pressing the 'Special Ability' key will spend 200 mana and bend the very fabric of reality
 Enemies will be heavily slowed and take 15% more damage from all sources
 Allies will receive greatly increased movement and attack speed
 Summons a pet Maid");
@@ -57,9 +56,9 @@ Summons a pet Maid");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //all allies invuln
+            //all allies invuln hot key
             thoriumPlayer.dreamHoodSet = true;
-            //enemies slowed and take more dmg
+            //enemies slowed and take more dmg hot key
             thoriumPlayer.dreamSet = true;
             //maid pet
             modPlayer.AddPet("Maid Pet", hideVisual, thorium.BuffType("MaidBuff"), thorium.ProjectileType("Maid1"));

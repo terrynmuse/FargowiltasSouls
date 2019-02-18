@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Crier Enchantment");
             Tooltip.SetDefault(
 @"''
- +10% inspiriation regeneration rate
+10% increased inspiration regeneration
 Effects of Music Notes");
         }
 

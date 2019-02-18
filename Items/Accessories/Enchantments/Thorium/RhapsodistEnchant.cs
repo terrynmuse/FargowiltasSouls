@@ -24,9 +24,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Allow your song to inspire an army, Prove to all that your talent is second to none'
 Inspiration notes that drop will become more potent
 Addtionally, they give a random level 1 empowerment to all nearby allies
-Pressing the 'Special Ability' key will:
-    grant you an endless amount of inspiration and greatly increased symphonic damage and playing speed for 10 seconds
-    overload all nearby allies with every empowerment III for 15 seconds
+Pressing the 'Special Ability' key wil grant you infinite inspiration and increased symphonic damage and playing speed
+It also overloads all nearby allies with every empowerment III for 15 seconds
 These effects needs to recharge for 1 minute");
         }
 
@@ -73,9 +72,9 @@ These effects needs to recharge for 1 minute");
             "MusicSheet6",
             "SirensAllure",
             "TerrariumAutoharp",
-            "Holophonor",
             "Sousaphone",
-            "EdgeofImagination"
+            "EdgeofImagination",
+            "BlackMIDI"
         };
 
         public override void AddRecipes()

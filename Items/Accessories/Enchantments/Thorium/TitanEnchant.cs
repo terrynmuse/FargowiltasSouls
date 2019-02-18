@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Titan Enchantment");
             Tooltip.SetDefault(
 @"'Infused with primordial energy'
+15% increased damage
 Any damage you take while at full HP is reduced by 90%
 Briefly become invulnerable after striking an enemy
 Effects of Mask of the Crystal Eye, Abyssal Shell, and Cyan Music Player");
@@ -40,6 +41,8 @@ Effects of Mask of the Crystal Eye, Abyssal Shell, and Cyan Music Player");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //set bonus
+            player.GetModPlayer<FargoPlayer>().AllDamageUp(.15f);
             //titanium
             player.GetModPlayer<FargoPlayer>(mod).TitaniumEffect();
             //crystal eye mask

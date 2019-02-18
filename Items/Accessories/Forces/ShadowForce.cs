@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using ThoriumMod.NPCs;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
@@ -15,41 +16,28 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             DisplayName.SetDefault("Shadow Force");
 
             string tooltip = @"''
-";
-
-            /*if (thorium != null)
-            {
-                tooltip +=
-@"A Dungeon Guardian will occasionally annihilate a foe when struck
-Critical strikes will generate up to 15 shadow wisps
-Pressing the 'Special Ability' key will unleash every stored shadow wisp towards your cursor's position
-Halves radiant life costs but not its life transferring effect
-Running builds up momentum, Crashing into an enemy releases all stored momentum
-Your attacks have a chance to unleash an explosion of Dragon's Flame and inflict Darkness
-All of your minions may occasionally spew massive scythes everywhere
-Throw a smoke bomb to teleport to it, Standing nearby smoke gives you the First Strike buff
-Dash into any walls, to teleport through them
-Effects of the Master Ninja Gear
-Striking an enemy with any weapon will trigger 'Shadow Dance'
-Your weapon's projectiles occasionally shoot from the shadows
-Using any weapon item has a 20% chance to unleash two Blight Daggers
-Pressing the Special Ability key will trigger True Strikes
-Summons a Li'l Devil to attack enemies
-Summons several pets";
-            }
-            else
-            {*/
-                tooltip +=
-@"Your attacks may inflict Darkness on enemies
+Your attacks may inflict Darkness on enemies
 A Dungeon Guardian will occasionally annihilate a foe when struck
 All of your minions may occasionally spew massive scythes everywhere
 Throw a smoke bomb to teleport to it
 Standing nearby smoke gives you the First Strike buff
 Dash into any walls, to teleport through them to the next opening
-Effects of the Master Ninja Gear
-Your weapon's projectiles occasionally shoot from the shadows of where you used to be
+While attacking, Flameburst shots manifest themselves from your shadows
+Greatly enhances Flameburst effectiveness
+";
+
+            if (thorium == null)
+            {
+                tooltip +=
+@"Effects of Master Ninja Gear
 Summons several pets";
-            //}
+            }
+            else
+            {
+                tooltip +=
+@"Effects of Master Ninja Gear and Dark Effigy
+Summons several pets";
+            }
 
             Tooltip.SetDefault(tooltip);
         }
@@ -86,67 +74,41 @@ Summons several pets";
             //scythe doom, pets
             modPlayer.SpookyEffect(hideVisual);
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
-            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            //warlock set bonus
-            thoriumPlayer.warlockSet = true;
-            //demon tongue
-            thoriumPlayer.radiantLifeCost = 2;
-            //lil devil
-            modPlayer.WarlockEnchant = true;
-            modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);
-            //crash boots
-            player.moveSpeed += 0.0015f * thoriumPlayer.momentum;
-            player.maxRunSpeed += 0.0025f * thoriumPlayer.momentum;
-            if (player.velocity.X > 0f || player.velocity.X < 0f)
+        private void Thorium(Player player)
+        {
+            //dark effigy
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
+            for (int i = 0; i < 200; i++)
             {
-                if (thoriumPlayer.momentum < 180)
+                NPC npc = Main.npc[i];
+                if (npc.active && !npc.friendly && (npc.shadowFlame || npc.GetGlobalNPC<ThoriumGlobalNPC>().lightLament) && npc.DistanceSQ(player.Center) < 1000000f)
                 {
-                    thoriumPlayer.momentum++;
-                }
-                if (thoriumPlayer.momentum > 60 && Collision.SolidCollision(player.position, player.width, player.height + 4))
-                {
-                    int num = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + player.height - 2f), player.width + 4, 4, 6, 0f, 0f, 100, default(Color), 0.625f + 0.0075f * thoriumPlayer.momentum);
-                    Main.dust[num].noGravity = true;
-                    Main.dust[num].noLight = true;
-                    Dust dust = Main.dust[num];
-                    dust.velocity *= 0f;
+                    thoriumPlayer.effigy++;
                 }
             }
-            //dragon 
-            thoriumPlayer.dragonSet = true;
-            //wyvern pet
-            modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
-            thoriumPlayer.wyvernPet = true;
-            //darkness, pets
-            modPlayer.ShadowEffect(hideVisual);
-            //lich gaze
-            thoriumPlayer.lichGaze = true;*/
+            if (thoriumPlayer.effigy > 0)
+            {
+                player.AddBuff(thorium.BuffType("EffigyRegen"), 2, true);
+            }
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(!Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(null, "NecroEnchant");
-                recipe.AddIngredient(null, "WarlockEnchant");
-                recipe.AddIngredient(null, "DreadEnchant");
-                recipe.AddIngredient(null, "SpookyEnchant");
-                recipe.AddIngredient(null, "ShinobiEnchant");
-                recipe.AddIngredient(null, "DarkArtistEnchant");
-                recipe.AddIngredient(null, "PlagueDoctorEnchant");
-            }
-            else
-            {*/
                 recipe.AddIngredient(null, "ShadowEnchant");
-                recipe.AddIngredient(null, "NecroEnchant");
-                recipe.AddIngredient(null, "SpookyEnchant");
-                recipe.AddIngredient(null, "ShinobiEnchant");
-                recipe.AddIngredient(null, "DarkArtistEnchant");
-            //}
+            }
+
+            recipe.AddIngredient(null, "NecroEnchant");
+            recipe.AddIngredient(null, "SpookyEnchant");
+            recipe.AddIngredient(null, "ShinobiEnchant");
+            recipe.AddIngredient(null, "DarkArtistEnchant");
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

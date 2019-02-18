@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"''
 Projects a mystical barrier around you
-While above 50% life, every fourth magic cast will unleash damaging mana bolts
+While above 50% life, every seventh magic cast will unleash damaging mana bolts
 While below 50% life, your defensive capabilities are increased
 Magic critical strikes engulf enemies in a long lasting void flame
 Effects of Mana-Charged Rocketeers and Gray Music Player");

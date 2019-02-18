@@ -111,9 +111,9 @@ namespace FargowiltasSouls
         public bool ValhallaEnchant;
         public bool DarkEnchant;
         private int darkCD = 0;
-        Item prevWeapon = new Item();
         Vector2 prevPosition;
         public bool RedEnchant;
+        public bool TungstenEnchant;
 
         public bool CosmoForce;
         public bool EarthForce;
@@ -135,6 +135,15 @@ namespace FargowiltasSouls
         public bool KnightEnchant;
         public bool DreamEnchant;
         public bool IllumiteEnchant;
+
+        public bool AsgardForce;
+        public bool MidgardForce;
+        public bool SvartalfheimForce;
+        public bool HelheimForce;
+        public bool VanaheimForce;
+        public bool MuspelheimForce;
+        public bool JotunheimForce;
+        public bool ThoriumSoul;
 
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
@@ -379,6 +388,7 @@ namespace FargowiltasSouls
             DarkEnchant = false;
             RedEnchant = false;
             NebulaEnchant = false;
+            TungstenEnchant = false;
 
             CosmoForce = false;
             EarthForce = false;
@@ -400,6 +410,15 @@ namespace FargowiltasSouls
             KnightEnchant = false;
             DreamEnchant = false;
             IllumiteEnchant = false;
+
+            AsgardForce = false;
+            MidgardForce = false;
+            SvartalfheimForce = false;
+            HelheimForce = false;
+            VanaheimForce = false;
+            MuspelheimForce = false;
+            JotunheimForce = false;
+            ThoriumSoul = false;
 
             #endregion
 
@@ -783,6 +802,21 @@ namespace FargowiltasSouls
             {
                 player.statManaMax2 += 300;
             }
+
+            Item item = player.HeldItem;
+
+            if (!Soulcheck.GetValue("Tungsten Effect") || !TungstenEnchant)
+            {
+                item.scale = 1;
+            }
+
+            if (TungstenEnchant && !TerraForce)
+            {
+                if (item.melee && (item.useStyle == 1 || item.useStyle == 3) && item.damage > 0)
+                {
+                    item.scale = 2.5f;
+                }
+            }
         }
 
         public override void SetupStartInventory(IList<Item> items)
@@ -1078,74 +1112,54 @@ namespace FargowiltasSouls
                     target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
             }
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (LifeForce)
+            if (ShroomEnchant && !TerrariaSoul && Main.rand.Next(5) == 0)
             {
-                //yew wood for all dmg type
-                if (!crit)
-                {
-                    thoriumPlayer.yewChargeTimer = 120;
-                    if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
-                    }
-                    if (thoriumPlayer.yewCharge < 4)
-                    {
-                        thoriumPlayer.yewCharge++;
-                    }
-                    else
-                    {
-                        crit = true;
-                        damage = (int)(damage * 0.75);
-                        thoriumPlayer.yewCharge = 0;
-                    }
-                }
+                target.AddBuff(thorium.BuffType("Mycelium"), 120);
             }
 
-            if(ShadowForce)
+            if (AsgardForce)
             {
-                player.AddBuff(thorium.BuffType("ShadowDance"), 90000, false);
-            }
-
-            if(ShroomEnchant)
-            {
-                target.AddBuff(thorium.BuffType("Mycelium"), 120, true);
-            }
-
-            if(NatureForce)
-            {
-                if (proj.type != thorium.ProjectileType("CryoDamage"))
-                {
-                    Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), proj.damage / 3, 5f, Main.myPlayer, 0f, 0f);
-                }
-            }
-
-            if(CosmoForce)
-            {
-                //white dwarf
-                if (crit)
-                {
-                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
-                    Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)(target.lifeMax * 0.005f), 0f, Main.myPlayer, 0f, 0f);
-                }
-                //tide turner
+                //tide turner daggers
                 if (player.ownedProjectileCounts[thorium.ProjectileType("TideDagger")] < 24 && proj.type != thorium.ProjectileType("ThrowingGuideFollowup") && proj.type != thorium.ProjectileType("TideDagger") && target.type != 488 && Main.rand.Next(5) == 0)
                 {
-                    //diver meme code, I could simplify but meh
+                    FargoGlobalProjectile.XWay(4, player.position, thorium.ProjectileType("TideDagger"), 3, (int)(proj.damage * 0.75), 3);
                     Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 43, 1f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), 3f, 0f, thorium.ProjectileType("TideDagger"), (int)(proj.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), -3f, 0f, thorium.ProjectileType("TideDagger"), (int)(proj.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), -1.5f, -2.15f, thorium.ProjectileType("TideDagger"), (int)(proj.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), 1.5f, -2.15f, thorium.ProjectileType("TideDagger"), (int)(proj.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), -1.5f, 2.15f, thorium.ProjectileType("TideDagger"), (int)(proj.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), 1.5f, 2.15f, thorium.ProjectileType("TideDagger"), (int)(proj.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
                 }
-                //assassin
-                if (target.type != 488 && Utils.NextFloat(Main.rand) < 0.05f)
+                //mini crits
+                if (thoriumPlayer.tideOrb > 0 && !crit)
+                {
+                    float num = 30f;
+                    int num2 = 0;
+                    while ((float)num2 < num)
+                    {
+                        Vector2 vector = Vector2.UnitX * 0f;
+                        vector += -Utils.RotatedBy(Vector2.UnitY, (double)((float)num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(12f, 12f);
+                        vector = Utils.RotatedBy(vector, (double)Utils.ToRotation(target.velocity), default(Vector2));
+                        int num3 = Dust.NewDust(target.Center, 0, 0, 176, 0f, 0f, 0, default(Color), 1f);
+                        Main.dust[num3].scale = 1.5f;
+                        Main.dust[num3].noGravity = true;
+                        Main.dust[num3].position = target.Center + vector;
+                        Main.dust[num3].velocity = target.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
+                        int num4 = num2;
+                        num2 = num4 + 1;
+                    }
+                    crit = true;
+                    damage = (int)((double)damage * 0.75);
+                    thoriumPlayer.tideOrb--;
+                }
+                //assassin duplicate damage
+                if (Utils.NextFloat(Main.rand) < 0.1f)
+                {
+                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasmaDamage"), (int)((float)proj.damage * 1.15f), 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasma"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+                //insta kill
+                if (target.type != 488 && target.lifeMax < 100000 && Utils.NextFloat(Main.rand) < 0.05f)
                 {
                     if ((target.boss || NPCID.Sets.BossHeadTextures[target.type] > -1) && target.life < target.lifeMax * 0.05)
                     {
@@ -1160,13 +1174,88 @@ namespace FargowiltasSouls
                         Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasma"), 0, 0f, Main.myPlayer, 0f, 0f);
                     }
                 }
+
                 //pyro
+                target.AddBuff(24, 300, true);
+                target.AddBuff(thorium.BuffType("Singed"), 300, true);
+
                 if (proj.type != thorium.ProjectileType("PyroBurst"))
                 {
                     Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("PyroBurst"), 100, 1f, Main.myPlayer, 0f, 0f);
                     Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("PyroExplosion2"), 0, 0f, Main.myPlayer, 0f, 0f);
                 }
-            }*/
+            }
+
+            if (SvartalfheimForce && Main.rand.Next(5) == 0 && proj.type != thorium.ProjectileType("LightStrike") && proj.type != thorium.ProjectileType("ThrowingGuideFollowup"))
+            {
+                target.immune[proj.owner] = 5;
+                Projectile.NewProjectile(target.Center.X, target.Center.Y - 600f, 0f, 15f, thorium.ProjectileType("LightStrike"), (int)(proj.damage / 4), 1f, proj.owner, 0f, 0f);
+            }
+
+            if (VanaheimForce)
+            {
+                //malignant
+                if (crit)
+                {
+                    target.AddBuff(24, 900, true);
+                    target.AddBuff(thorium.BuffType("lightCurse"), 900, true);
+                    for (int i = 0; i < 8; i++)
+                    {
+                        int num5 = Dust.NewDust(target.position, target.width, target.height, 127, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
+                        Main.dust[num5].noGravity = true;
+                    }
+                    for (int j = 0; j < 8; j++)
+                    {
+                        int num6 = Dust.NewDust(target.position, target.width, target.height, 65, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
+                        Main.dust[num6].noGravity = true;
+                    }
+                }
+                //white dwarf
+                if (crit)
+                {
+                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)((float)target.lifeMax * 0.001f), 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
+
+            if (JotunheimForce)
+            {
+                //yew wood
+                if (!crit)
+                {
+                    thoriumPlayer.yewChargeTimer = 120;
+                    if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                    }
+                    if (thoriumPlayer.yewCharge < 4)
+                    {
+                        thoriumPlayer.yewCharge++;
+                    }
+                    else
+                    {
+                        crit = true;
+                        damage = (int)((double)damage * 0.75);
+                        thoriumPlayer.yewCharge = 0;
+                    }
+                }
+                
+                //cryo
+                if (proj.type != thorium.ProjectileType("CryoDamage"))
+                {
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), proj.damage / 3, 5f, Main.myPlayer, 0f, 0f);
+                }
+            }
+
+            if (ThoriumSoul)
+            {
+                //warlock
+                if (crit && player.ownedProjectileCounts[thorium.ProjectileType("ShadowWisp")] < 15)
+                {
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, -2f, thorium.ProjectileType("ShadowWisp"), (int)((float)proj.damage * 0.75f), 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
         }
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
@@ -1204,6 +1293,11 @@ namespace FargowiltasSouls
             if (LeadEnchant && Main.rand.Next(5) == 0)
             {
                 target.AddBuff(mod.BuffType<LeadPoison>(), 180);
+            }
+
+            if (TungstenEnchant && Main.rand.Next(10) == 0)
+            {
+                target.AddBuff(mod.BuffType<Stunned>(), 60);
             }
 
             if (SolarEnchant && Main.rand.Next(4) == 0)
@@ -1246,71 +1340,54 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.Midas, 120, true);
             }
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (LifeForce)
+            if (ShroomEnchant && !TerrariaSoul && Main.rand.Next(5) == 0)
             {
-                //yew wood for all dmg type
-                if (!crit)
-                {
-                    thoriumPlayer.yewChargeTimer = 120;
-                    if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
-                    }
-                    if (thoriumPlayer.yewCharge < 4)
-                    {
-                        thoriumPlayer.yewCharge++;
-                    }
-                    else
-                    {
-                        crit = true;
-                        damage = (int)(damage * 0.75);
-                        thoriumPlayer.yewCharge = 0;
-                    }
-                }
+                target.AddBuff(thorium.BuffType("Mycelium"), 120);
             }
 
-            if (ShadowForce)
+            if (AsgardForce)
             {
-                player.AddBuff(thorium.BuffType("ShadowDance"), 90000, false);
-            }
-
-            if (ShroomEnchant)
-            {
-                target.AddBuff(thorium.BuffType("Mycelium"), 120, true);
-            }
-
-            if (NatureForce)
-            {
-                Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), damage / 3, 5f, Main.myPlayer, 0f, 0f);
-            }
-
-            if (CosmoForce)
-            {
-                //white dwarf
-                if (crit)
-                {
-                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
-                    Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)(target.lifeMax * 0.005f), 0f, Main.myPlayer, 0f, 0f);
-                }
-                //tide turner
+                //tide turner daggers
                 if (player.ownedProjectileCounts[thorium.ProjectileType("TideDagger")] < 24 && target.type != 488 && Main.rand.Next(5) == 0)
                 {
-                    //diver meme code, I could simplify but meh
+                    FargoGlobalProjectile.XWay(4, player.position, thorium.ProjectileType("TideDagger"), 3, (int)(item.damage * 0.75), 3);
                     Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 43, 1f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), 3f, 0f, thorium.ProjectileType("TideDagger"), (int)(item.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), -3f, 0f, thorium.ProjectileType("TideDagger"), (int)(item.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), -1.5f, -2.15f, thorium.ProjectileType("TideDagger"), (int)(item.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), 1.5f, -2.15f, thorium.ProjectileType("TideDagger"), (int)(item.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), -1.5f, 2.15f, thorium.ProjectileType("TideDagger"), (int)(item.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(((int)player.Center.X), ((int)player.Center.Y), 1.5f, 2.15f, thorium.ProjectileType("TideDagger"), (int)(item.damage * 0.75), 3f, player.whoAmI, 0f, 0f);
                 }
-                //assassin
-                if (target.type != 488 && Utils.NextFloat(Main.rand) < 0.05f)
+                //mini crits
+                if (thoriumPlayer.tideOrb > 0 && !crit)
+                {
+                    float num = 30f;
+                    int num2 = 0;
+                    while ((float)num2 < num)
+                    {
+                        Vector2 vector = Vector2.UnitX * 0f;
+                        vector += -Utils.RotatedBy(Vector2.UnitY, (double)((float)num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(12f, 12f);
+                        vector = Utils.RotatedBy(vector, (double)Utils.ToRotation(target.velocity), default(Vector2));
+                        int num3 = Dust.NewDust(target.Center, 0, 0, 176, 0f, 0f, 0, default(Color), 1f);
+                        Main.dust[num3].scale = 1.5f;
+                        Main.dust[num3].noGravity = true;
+                        Main.dust[num3].position = target.Center + vector;
+                        Main.dust[num3].velocity = target.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
+                        int num4 = num2;
+                        num2 = num4 + 1;
+                    }
+                    crit = true;
+                    damage = (int)((double)damage * 0.75);
+                    thoriumPlayer.tideOrb--;
+                }
+                //assassin duplicate damage
+                if (Utils.NextFloat(Main.rand) < 0.1f)
+                {
+                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasmaDamage"), (int)((float)item.damage * 1.15f), 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasma"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+                //insta kill
+                if (target.type != 488 && target.lifeMax < 100000 && Utils.NextFloat(Main.rand) < 0.05f)
                 {
                     if ((target.boss || NPCID.Sets.BossHeadTextures[target.type] > -1) && target.life < target.lifeMax * 0.05)
                     {
@@ -1325,10 +1402,82 @@ namespace FargowiltasSouls
                         Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasma"), 0, 0f, Main.myPlayer, 0f, 0f);
                     }
                 }
+
                 //pyro
+                target.AddBuff(24, 300, true);
+                target.AddBuff(thorium.BuffType("Singed"), 300, true);
+
                 Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("PyroBurst"), 100, 1f, Main.myPlayer, 0f, 0f);
                 Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("PyroExplosion2"), 0, 0f, Main.myPlayer, 0f, 0f);
-            }*/
+            }
+
+            if (SvartalfheimForce && Main.rand.Next(5) == 0)
+            {
+                target.immune[player.whoAmI] = 5;
+                Projectile.NewProjectile(target.Center.X, target.Center.Y - 600f, 0f, 15f, thorium.ProjectileType("LightStrike"), (int)(item.damage / 4), 1f, player.whoAmI, 0f, 0f);
+            }
+
+            if (VanaheimForce)
+            {
+                //malignant
+                if (crit)
+                {
+                    target.AddBuff(24, 900, true);
+                    target.AddBuff(thorium.BuffType("lightCurse"), 900, true);
+                    for (int i = 0; i < 8; i++)
+                    {
+                        int num5 = Dust.NewDust(target.position, target.width, target.height, 127, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
+                        Main.dust[num5].noGravity = true;
+                    }
+                    for (int j = 0; j < 8; j++)
+                    {
+                        int num6 = Dust.NewDust(target.position, target.width, target.height, 65, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
+                        Main.dust[num6].noGravity = true;
+                    }
+                }
+                //white dwarf
+                if (crit)
+                {
+                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)((float)target.lifeMax * 0.001f), 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
+
+            if (JotunheimForce)
+            {
+                //yew wood
+                if (!crit)
+                {
+                    thoriumPlayer.yewChargeTimer = 120;
+                    if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                    }
+                    if (thoriumPlayer.yewCharge < 4)
+                    {
+                        thoriumPlayer.yewCharge++;
+                    }
+                    else
+                    {
+                        crit = true;
+                        damage = (int)((double)damage * 0.75);
+                        thoriumPlayer.yewCharge = 0;
+                    }
+                }
+
+                //cryo
+                Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), item.damage / 3, 5f, Main.myPlayer, 0f, 0f);
+            }
+
+            if (ThoriumSoul)
+            {
+                //warlock
+                if (crit && player.ownedProjectileCounts[thorium.ProjectileType("ShadowWisp")] < 15)
+                {
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, -2f, thorium.ProjectileType("ShadowWisp"), (int)((float)item.damage * 0.75f), 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
         }
 
         public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
@@ -1471,24 +1620,43 @@ namespace FargowiltasSouls
                 palladiumCD = 60;
             }
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (LifeForce)
+            if (ChloroEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
             {
-                //tide hunter no dmg type
+                Main.PlaySound(2, (int)proj.position.X, (int)proj.position.Y, 34, 1f, 0f);
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloud"), 0, 0f, proj.owner, 0f, 0f);
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, proj.owner, 0f, 0f);
+            }
+
+            if (SpiritForce)
+            {
+                if (target.life < 0 && target.value > 0f)
+                {
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, -2f, thorium.ProjectileType("SpiritTrapperSpirit"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+                if (target.boss || NPCID.Sets.BossHeadTextures[target.type] > -1)
+                {
+                    thoriumPlayer.spiritTrapperHit++;
+                }
+            }
+
+            if (JotunheimForce)
+            {
+                //tide hunter
                 if (crit)
                 {
-                    for (int m = 0; m < 10; m++)
+                    for (int n = 0; n < 10; n++)
                     {
-                        int num11 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
-                        Main.dust[num11].noGravity = true;
-                        Main.dust[num11].noLight = true;
+                        int num10 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
+                        Main.dust[num10].noGravity = true;
+                        Main.dust[num10].noLight = true;
                     }
-                    for (int n = 0; n < 200; n++)
+                    for (int num11 = 0; num11 < 200; num11++)
                     {
-                        NPC npc = Main.npc[n];
+                        NPC npc = Main.npc[num11];
                         if (npc.active && npc.FindBuffIndex(thorium.BuffType("Oozed")) < 0 && !npc.friendly && Vector2.Distance(npc.Center, target.Center) < 80f)
                         {
                             npc.AddBuff(thorium.BuffType("Oozed"), 90, false);
@@ -1497,27 +1665,47 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (NatureForce)
+            if (MuspelheimForce)
             {
-                if (Main.rand.Next(4) == 0)
+                //feral fure
+                if (!ThoriumSoul && crit)
                 {
-                    Main.PlaySound(2, (int)proj.position.X, (int)proj.position.Y, 34, 1f, 0f);
-                    Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloud"), 0, 0f, proj.owner, 0f, 0f);
-                    Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, proj.owner, 0f, 0f);
+                    for (int m = 0; m < 5; m++)
+                    {
+                        int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
+                        Main.dust[num9].noGravity = true;
+                    }
+                    Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
+                    player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
+                }
+                //life bloom
+                if (target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+                {
+                    for (int l = 0; l < 10; l++)
+                    {
+                        int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
+                        Main.dust[num7].noGravity = true;
+                    }
+                    int num8 = Main.rand.Next(1, 4);
+                    player.statLife += num8;
+                    player.HealEffect(num8, true);
+                    thoriumPlayer.lifeBloomMax += num8;
                 }
             }
 
-            if(SpiritForce)
+            if (ThoriumSoul)
             {
-                if (target.life < 0 && target.value > 0f)
+                //mixtape
+                if (crit && proj.type != thorium.ProjectileType("MixtapeNote"))
                 {
-                    Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, -2f, thorium.ProjectileType("SpiritTrapperSpirit"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    int num23 = Main.rand.Next(3);
+                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 73, 1f, 0f);
+                    for (int n = 0; n < 5; n++)
+                    {
+                        Projectile.NewProjectile(target.Center.X, target.Center.Y, Utils.NextFloat(Main.rand, -5f, 5f), Utils.NextFloat(Main.rand, -5f, 5f), thorium.ProjectileType("MixtapeNote"), (int)((float)proj.damage * 0.25f), 2f, proj.owner, (float)num23, 0f);
+                    }
                 }
-                if (target.boss || NPCID.Sets.BossHeadTextures[target.type] > -1)
-                {
-                    thoriumPlayer.spiritTrapperHit++;
-                }
-            }*/
+            }
         }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -1601,22 +1789,43 @@ namespace FargowiltasSouls
                 }
             }
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            if (LifeForce)
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
+            if (ChloroEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
             {
-                //tide hunter no dmg type
+                Main.PlaySound(2, (int)player.Center.X, (int)player.Center.Y, 34, 1f, 0f);
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloud"), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, player.whoAmI, 0f, 0f);
+            }
+
+            if (SpiritForce)
+            {
+                if (target.life < 0 && target.value > 0f)
+                {
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, -2f, thorium.ProjectileType("SpiritTrapperSpirit"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+                if (target.boss || NPCID.Sets.BossHeadTextures[target.type] > -1)
+                {
+                    thoriumPlayer.spiritTrapperHit++;
+                }
+            }
+
+            if (JotunheimForce)
+            {
+                //tide hunter
                 if (crit)
                 {
-                    for (int m = 0; m < 10; m++)
+                    for (int n = 0; n < 10; n++)
                     {
-                        int num11 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
-                        Main.dust[num11].noGravity = true;
-                        Main.dust[num11].noLight = true;
+                        int num10 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
+                        Main.dust[num10].noGravity = true;
+                        Main.dust[num10].noLight = true;
                     }
-                    for (int n = 0; n < 200; n++)
+                    for (int num11 = 0; num11 < 200; num11++)
                     {
-                        NPC npc = Main.npc[n];
+                        NPC npc = Main.npc[num11];
                         if (npc.active && npc.FindBuffIndex(thorium.BuffType("Oozed")) < 0 && !npc.friendly && Vector2.Distance(npc.Center, target.Center) < 80f)
                         {
                             npc.AddBuff(thorium.BuffType("Oozed"), 90, false);
@@ -1625,15 +1834,47 @@ namespace FargowiltasSouls
                 }
             }
 
-            if(NatureForce)
+            if (MuspelheimForce)
             {
-                if (Main.rand.Next(4) == 0)
+                //feral fure
+                if (!ThoriumSoul && crit)
                 {
-                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 34, 1f, 0f);
-                    Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloud"), 0, 0f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, player.whoAmI, 0f, 0f);
+                    for (int m = 0; m < 5; m++)
+                    {
+                        int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
+                        Main.dust[num9].noGravity = true;
+                    }
+                    Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
+                    player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
                 }
-            }*/
+                //life bloom
+                if (target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+                {
+                    for (int l = 0; l < 10; l++)
+                    {
+                        int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
+                        Main.dust[num7].noGravity = true;
+                    }
+                    int num8 = Main.rand.Next(1, 4);
+                    player.statLife += num8;
+                    player.HealEffect(num8, true);
+                    thoriumPlayer.lifeBloomMax += num8;
+                }
+            }
+
+            if (ThoriumSoul)
+            {
+                //mixtape
+                if (crit )
+                {
+                    int num23 = Main.rand.Next(3);
+                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 73, 1f, 0f);
+                    for (int n = 0; n < 5; n++)
+                    {
+                        Projectile.NewProjectile(target.Center.X, target.Center.Y, Utils.NextFloat(Main.rand, -5f, 5f), Utils.NextFloat(Main.rand, -5f, 5f), thorium.ProjectileType("MixtapeNote"), (int)((float)item.damage * 0.25f), 2f, player.whoAmI, (float)num23, 0f);
+                    }
+                }
+            }
         }
 
         public override bool CanBeHitByProjectile(Projectile proj)
@@ -2313,26 +2554,21 @@ namespace FargowiltasSouls
 
         public void DarkArtistEffect(bool hideVisual)
         {
+            player.setApprenticeT2 = true;
+            player.setApprenticeT3 = true;
+
             //shadow shoot meme
             if (Soulcheck.GetValue("Dark Artist Effect"))
             {
                 Item heldItem = player.HeldItem;
-                Projectile proj = new Projectile();
-                proj.SetDefaults(heldItem.shoot);
 
-                if (darkCD == 0 && !heldItem.summon && heldItem.shoot > 0 && heldItem.damage > 0 && !heldItem.channel && proj.aiStyle != 19 && player.controlUseItem && Vector2.Distance(prevPosition, player.position) > 25)
+                if (darkCD == 0 && heldItem.shoot > 0 && heldItem.damage > 0 && player.controlUseItem && prevPosition != null)
                 {
                     if (prevPosition != null)
                     {
                         Vector2 vel = (Main.MouseWorld - prevPosition).SafeNormalize(-Vector2.UnitY);
 
-                        if (prevWeapon.useAmmo > 0)
-                        {
-                            bool canShoot = true;
-                            player.PickAmmo(heldItem, ref heldItem.shoot, ref heldItem.shootSpeed, ref canShoot, ref heldItem.damage, ref heldItem.knockBack);
-                        }
-
-                        Projectile p = Projectile.NewProjectileDirect(prevPosition, vel * prevWeapon.shootSpeed, prevWeapon.shoot, prevWeapon.damage / 2, prevWeapon.knockBack, player.whoAmI);
+                        Projectile p = Projectile.NewProjectileDirect(prevPosition, vel * heldItem.shootSpeed, ProjectileID.DD2FlameBurstTowerT3Shot, heldItem.damage / 2, 1, player.whoAmI);
 
                         for (int i = 0; i < 5; i++)
                         {
@@ -2342,15 +2578,12 @@ namespace FargowiltasSouls
                     }
 
                     prevPosition = player.position;
-                    prevWeapon = player.HeldItem;
-                    darkCD = 60;
+                    darkCD = 20;
                 }
 
-                darkCD--;
-
-                if (darkCD < 0)
+                if (darkCD > 0)
                 {
-                    darkCD = 0;
+                    darkCD--;
                 }
             }
 
@@ -2459,7 +2692,9 @@ namespace FargowiltasSouls
             }
             
             AddPet("Snowman Pet", hideVisual, BuffID.BabySnowman, ProjectileID.BabySnowman);
-            AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
+
+            if(!Fargowiltas.Instance.ThoriumLoaded)
+                AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
         }
 
         public void GladiatorEffect(bool hideVisual)
@@ -2873,9 +3108,10 @@ namespace FargowiltasSouls
 
         public void RedRidingEffect(bool hideVisual)
         {
+            player.setHuntressT2 = true;
+            player.setHuntressT3 = true;
             //super bleed, low hp dmg
             RedEnchant = true;
-
             AddPet("Puppy Pet", hideVisual, BuffID.Puppy, ProjectileID.Puppy);
         }
         
@@ -2888,6 +3124,8 @@ namespace FargowiltasSouls
 
         public void ShinobiEffect(bool hideVisual)
         {
+            player.setMonkT2 = true;
+            player.setMonkT3 = true;
             //tele through wall until open space on dash into wall
             if (Soulcheck.GetValue("Shinobi Through Walls") && player.dashDelay > 0 && !player.controlMount && player.velocity.X == 0)
             {
@@ -3200,21 +3438,12 @@ namespace FargowiltasSouls
 
         public void TitaniumEffect()
         {
-            if(!TerrariaSoul && player.statLife == player.statLifeMax2)
+            if(!TerrariaSoul && !ThoriumSoul && player.statLife == player.statLifeMax2)
             {
                 player.endurance = .9f;
             }
 
             player.onHitDodge = true;
-        }
-
-        public void TungstenEffect()
-        {
-            if (!Soulcheck.GetValue("Tungsten Effect")) return;
-
-            AllDamageUp(3);
-            AllCritUp(25);
-            AttackSpeed *= .125f;
         }
 
         public void TurtleEffect(bool hideVisual)
@@ -3231,6 +3460,8 @@ namespace FargowiltasSouls
 
         public void ValhallaEffect(bool hideVisual)
         {
+            player.setSquireT2 = true;
+            player.setSquireT3 = true;
             //knockback memes
             ValhallaEnchant = true;
             AddPet("Dragon Pet", hideVisual, BuffID.PetDD2Dragon, ProjectileID.DD2PetDragon);

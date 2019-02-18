@@ -56,8 +56,7 @@ Effects of Inner Flame");
             "SpiritBlastWand",
             "StrangeSkull",
             "CalmingSpirit",
-            "AntagonizingSpirit",
-            "BlueDungeonButterfly" //any
+            "AntagonizingSpirit"
         };
 
         public override void AddRecipes()
@@ -67,6 +66,8 @@ Effects of Inner Flame");
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyDungeonButterfly");
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

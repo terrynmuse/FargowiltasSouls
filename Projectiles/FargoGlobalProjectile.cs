@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Projectiles
         private int counter;
         public bool CanSplit = true;
         private int numSplits = 1;
-        private int adamantiteCD = 0;
+        private static int adamantiteCD = 0;
         private int numSpeedups = 3;
         private bool ninjaTele;
         public bool IsRecolor = false;
@@ -593,7 +593,7 @@ namespace FargowiltasSouls.Projectiles
                 }
                 else if (projectile.type == thorium.ProjectileType("SnowyOwlPet"))
                 {
-                    KillPet(projectile, player, thorium.BuffType("SnowyOwlBuff"), modPlayer.FrostEnchant, "Owl Pet");
+                    KillPet(projectile, player, thorium.BuffType("SnowyOwlBuff"), modPlayer.IcyEnchant, "Owl Pet");
                 }
                 else if (projectile.type == thorium.ProjectileType("JellyfishPet"))
                 {
@@ -610,6 +610,14 @@ namespace FargowiltasSouls.Projectiles
                 else if (projectile.type == thorium.ProjectileType("PinkSlime"))
                 {
                     KillPet(projectile, player, thorium.BuffType("PinkSlimeBuff"), modPlayer.IllumiteEnchant, "Pink Slime Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("ShinyPet"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("ShineDust"), modPlayer.PlatinumEnchant, "Glitter Pet");
+                }
+                else if (projectile.type == thorium.ProjectileType("DrachmaBag"))
+                {
+                    KillPet(projectile, player, thorium.BuffType("DrachmaBuff"), modPlayer.GoldEnchant, "Coin Bag Pet");
                 }
             }
 
@@ -661,6 +669,24 @@ namespace FargowiltasSouls.Projectiles
             if (projectile.minion && (modPlayer.UniverseEffect || modPlayer.Eternity))
             {
                 target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 240, true);
+            }
+
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+
+            //jester effect
+            if (modPlayer.MidgardForce && crit)
+            {
+                for (int m = 0; m < 1000; m++)
+                {
+                    Projectile projectile2 = Main.projectile[m];
+                    if (projectile2.active && projectile2.type == thorium.ProjectileType("JestersBell"))
+                    {
+                        return;
+                    }
+                }
+                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 35, 1f, 0f);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y - 50f, 0f, 0f, thorium.ProjectileType("JestersBell"), 0, 0f, projectile.owner, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("JestersBell2"), 0, 0f, projectile.owner, 0f, 0f);
             }
         }
 

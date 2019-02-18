@@ -33,9 +33,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             {
                 lines[3] = new TooltipLine(mod, "4", "You constantly generate a 16 life shield");
                 lines[4] = new TooltipLine(mod, "5", "Increases coin pickup range and shops have lower prices");
-                lines[5] = new TooltipLine(mod, "6", "Enemies drop money on each successful hit");
-                lines[6] = new TooltipLine(mod, "7", "Your attacks inflict Midas");
-                lines[7] = new TooltipLine(mod, "8", "Summons a pet Parrot and Coin Bag");
+                lines[5] = new TooltipLine(mod, "6", "Your attacks inflict Midas");
+                lines[6] = new TooltipLine(mod, "7", "Effects of Proof of Avarice");
+                lines[7] = new TooltipLine(mod, "8", "Summons a pet Coin Bag");
             }
             else
             {
@@ -111,10 +111,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             modPlayer.AllDamageUp(Damage);
             modPlayer.GoldEffect(hideVisual);
 
-            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
         }
 
-        private void Thorium(Player player)
+        private void Thorium(Player player, bool hideVisual)
         {
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             //proof of avarice
@@ -136,6 +136,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 }
                 timer = 0;
             }
+
+            player.GetModPlayer<FargoPlayer>(mod).AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
         }
 
         public override void AddRecipes()

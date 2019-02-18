@@ -26,7 +26,10 @@ All herb collection is doubled
 
             if(thorium != null)
             {
-                tooltip += "Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer\n";
+                tooltip +=
+@"Your attacks have a chance to poison hit enemies with a spore cloud
+Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer
+";
             }
             else
             {
@@ -53,7 +56,7 @@ All herb collection is doubled
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //crystal and pet
             modPlayer.ChloroEffect(hideVisual, 100);
-            //herb double
+            //herb double and bulb effect with thorium
             modPlayer.ChloroEnchant = true;
             modPlayer.FlowerBoots();
             modPlayer.JungleEffect();
@@ -74,9 +77,6 @@ All herb collection is doubled
                     thoriumPlayer.empowerPoison = true;
                 }
             }
-            
-            //bulb set bonus
-            thoriumPlayer.bulbSpore = true;
             //petal shield
             if (thoriumPlayer.outOfCombat)
             {

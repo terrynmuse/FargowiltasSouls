@@ -15,11 +15,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Tungsten Enchantment");
 
-            string tooltip = 
+            string tooltip =
 @"'Juggernaut'
-Your weapons shoot at 1/8 the speed
-300% increased damage
-25% increased crit chance";
+150% increased sword size
+10% decreased movement and melee speed
+Sword attacks may stun enemies";
 
             if(thorium != null)
             {
@@ -41,7 +41,9 @@ Your weapons shoot at 1/8 the speed
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>().TungstenEffect();
+            player.GetModPlayer<FargoPlayer>().TungstenEnchant = true;
+            player.meleeSpeed -= .1f;
+            player.moveSpeed -= .1f;
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }

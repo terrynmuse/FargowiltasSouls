@@ -20,9 +20,7 @@ Dash into any walls, to teleport through them to the next opening
 
             if(thorium != null)
             {
-                tooltip +=
-@"Striking an enemy with any throwing weapon will trigger 'Shadow Dance'
-";
+                tooltip += "Striking an enemy with any throwing weapon will trigger 'Shadow Dance'\n";
             }
 
             tooltip +=
@@ -48,8 +46,6 @@ Summons a pet Gato and Black Cat";
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            player.setMonkT2 = true;
-            player.setMonkT3 = true;
             //ninja gear
             player.blackBelt = true;
             player.spikedBoots = 2;
@@ -75,10 +71,10 @@ Summons a pet Gato and Black Cat";
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(null, "NinjaEnchant");
                 recipe.AddIngredient(null, "ShadeMasterEnchant");
                 recipe.AddIngredient(ItemID.MasterNinjaGear);
                 recipe.AddIngredient(ItemID.MonkBelt);
+                recipe.AddIngredient(ItemID.DD2LightningAuraT2Popper);
                 recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
                 recipe.AddIngredient(thorium.ItemType("TotalityButterfly"));
             }

@@ -20,11 +20,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Balladeer Enchantment");
             Tooltip.SetDefault(
 @"'Echoes of the cosmic ballad dance in your head'
-Each unique empowerment you have increases:
-    symphonic damage by 6%
-    movement speed by 3%
-    your inspiration regeneration by 2%
-    playing speed by 1%.");
+Each unique empowerment you have grants you:
+8% increased symphonic damage,
+3% increased movement speed,
+2% increased inspiration regeneration,
+1% increased playing speed");
         }
 
         public override void SetDefaults()

@@ -32,8 +32,6 @@ Summons a pet Puppy");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.setHuntressT2 = true;
-            player.setHuntressT3 = true;
             //celestial shell
             player.accMerman = true;
             player.wolfAcc = true;

@@ -209,13 +209,14 @@ All other effects of material Souls");
             player.accCalendar = true;
             player.accWeatherRadio = true;
 
-            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
 
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player, hideVisual);
         }
 
-        private void Thorium(Player player)
+        private void Thorium(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //COLOSSUS
             //terrarium defender
@@ -362,6 +363,11 @@ All other effects of material Souls");
                 player.maxFallSpeed *= 0.4f;
                 player.fallStart = (int)(player.position.Y / 16f);
             }
+
+            //WORLD SHAPER
+            //pets
+            modPlayer.AddPet("Inspiring Lantern Pet", hideVisual, thorium.BuffType("SupportLanternBuff"), thorium.ProjectileType("SupportLantern"));
+            modPlayer.AddPet("Lock Box Pet", hideVisual, thorium.BuffType("LockBoxBuff"), thorium.ProjectileType("LockBoxPet"));
         }
 
         private void Calamity(Player player, bool hideVisual)

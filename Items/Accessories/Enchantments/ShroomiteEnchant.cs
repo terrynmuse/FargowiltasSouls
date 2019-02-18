@@ -20,7 +20,7 @@ While in stealth, crits deal 4x damage
 
             if(thorium != null)
             {
-                tooltip += "Attacks inflict Fungal Growth";
+                tooltip += "Attacks may inflict Fungal Growth\n";
             }
 
             tooltip += "Summons a pet Truffle";

@@ -51,12 +51,12 @@ Heals ally life equal to your bonus healing");
             "LifeWeaverHood",
             "LifeWeaverGarment",
             "LifeWeaverLeggings",
+            "LustrousBaton",
             "NullZoneStaff",
             "VoidPlanter",
             "LifeEssenceApparatus",
             "PocketGaurdian", //....
             "LifePulseStaff",
-            "MindMelter",
             "BarrierGenerator"
         };
 

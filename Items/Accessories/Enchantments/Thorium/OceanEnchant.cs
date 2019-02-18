@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 Allows you to breathe underwater
 Grants the ability to swim
-Effects of Bubble Magnet");
+Effects of Sea Breeze Pendant and Bubble Magnet");
         }
 
         public override void SetDefaults()
@@ -47,6 +47,13 @@ Effects of Bubble Magnet");
             }
             //sea breeze pendant
             player.accFlipper = true;
+
+            if (player.wet || thoriumPlayer.drownedDoubloon)
+            {
+                player.AddBuff(thorium.BuffType("AquaticAptitude"), 60, true);
+                player.GetModPlayer<FargoPlayer>().AllDamageUp(.1f);
+            }
+
             //bubble magnet
             thoriumPlayer.bubbleMagnet = true;
         }

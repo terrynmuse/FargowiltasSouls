@@ -22,5 +22,12 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.controlDown = false;
             player.controlUseItem = false;
         }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.velocity.X *= 0;
+            npc.velocity.Y *= 0;
+            npc.frameCounter = 0;
+        }
     }
 }

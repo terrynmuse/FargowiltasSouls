@@ -23,10 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Tide Turner Enchantment");
             Tooltip.SetDefault(
 @"'Become as unstoppable as the tides, Unleash aquatic wrath upon your foes'
-Produces a floating globule every 2 seconds
-Every globule increases your defense by 5% and makes your next attack a mini-crit
 Pressing the 'Special Ability' key will envelop you within an impervious bubble
 While the bubble is active, all damage taken is converted into healing
+Produces a floating globule every half second
+Every globule increases defense and makes your next thrown attack a mini-crit
 Throwing damage overflows hit enemies with energy
 Throwing damage has a 20% chance to unleash aquatic homing daggers all around you");
         }
@@ -57,12 +57,12 @@ Throwing damage has a 20% chance to unleash aquatic homing daggers all around yo
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //floating globs
+            //floating globs and defense
             thoriumPlayer.tideHelmet = true;
-            if (thoriumPlayer.tideOrb < 5)
+            if (thoriumPlayer.tideOrb < 8)
             {
                 timer++;
-                if (timer > 120)
+                if (timer > 30)
                 {
                     float num = 30f;
                     int num2 = 0;
@@ -100,9 +100,9 @@ Throwing damage has a 20% chance to unleash aquatic homing daggers all around yo
             "PoseidonCharge", 
             "MantisPunch",
             "QuakeGauntlet",
-            "TidalWave",
             "OceansJudgment",
-            "Trefork"
+            "Trefork",
+            "TerrariansKnife"
         };
 
         public override void AddRecipes()
@@ -110,8 +110,6 @@ Throwing damage has a 20% chance to unleash aquatic homing daggers all around yo
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-
-            //SolarEnchant, white dward
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 

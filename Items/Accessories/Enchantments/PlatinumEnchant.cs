@@ -22,8 +22,8 @@ If the enemy has Midas, the chance and bonus is doubled";
             if(thorium != null)
             {
                 tooltip +=
-@"Effects of Platinum Aegis";
-//Summons some living glitter to follow you around";
+@"Effects of Platinum Aegis
+Summons a pet Glitter";
             }
 
             Tooltip.SetDefault(tooltip);
@@ -43,10 +43,10 @@ If the enemy has Midas, the chance and bonus is doubled";
         {
             player.GetModPlayer<FargoPlayer>(mod).PlatinumEnchant = true;
 
-            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
         }
 
-        private void Thorium(Player player)
+        private void Thorium(Player player, bool hideVisual)
         {
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
             timer++;
@@ -65,6 +65,8 @@ If the enemy has Midas, the chance and bonus is doubled";
                 }
                 timer = 0;
             }
+
+            player.GetModPlayer<FargoPlayer>().AddPet("Glitter Pet", hideVisual, thorium.BuffType("ShineDust"), thorium.ProjectileType("ShinyPet"));
         }
 
         public override void AddRecipes()

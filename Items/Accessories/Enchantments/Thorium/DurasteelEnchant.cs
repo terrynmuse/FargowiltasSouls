@@ -36,6 +36,7 @@ Effects of the Ogre Sandals, Spiked Bracers, and Greedy Magnet");
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 3;
             item.value = 80000;
+            item.shieldSlot = 5;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -18,7 +18,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip = 
 @"'Not recommended for eating'
 Attacks may inflict enemies with Lead Poisoning
-Lead Poisoning deals damage over time and slows enemies slightly";
+Lead Poisoning deals damage over time and slows enemies slightly
+It also spreads to nearby enemies";
 
             if(thorium != null)
             {

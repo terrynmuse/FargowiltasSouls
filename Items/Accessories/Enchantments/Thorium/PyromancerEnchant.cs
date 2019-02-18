@@ -57,7 +57,6 @@ Pressing the 'Special Ability' key will unleash an echo of Slag Fury's power");
             thoriumPlayer.pyroSet = true;
             //pyro summon bonus
             thoriumPlayer.napalmSet = true;
-            Lighting.AddLight(player.position, 0.5f, 0.35f, 0f);
         }
         
         private readonly string[] items =
@@ -68,10 +67,10 @@ Pressing the 'Special Ability' key will unleash an echo of Slag Fury's power");
             "PyromancerLeggings",
             "StalagmiteBook",
             "DevilDagger",
-            "TrueSilversBlade",
             "AncientFlame",
             "MoltenBanner",
-            "DevilsClaw"
+            "AlmanacofDespair",
+            "NorthLight"
         };
 
         public override void AddRecipes()

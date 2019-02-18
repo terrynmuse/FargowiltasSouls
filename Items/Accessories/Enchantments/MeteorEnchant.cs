@@ -19,7 +19,7 @@ A meteor shower initiates every few seconds while attacking";
 
             if(thorium != null)
             {
-                tooltip += "Summons a pet Bio-Feeder";
+                tooltip += "\nSummons a pet Bio-Feeder";
             }
 
             Tooltip.SetDefault(tooltip);

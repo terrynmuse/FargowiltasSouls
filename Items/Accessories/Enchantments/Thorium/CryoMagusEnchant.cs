@@ -18,15 +18,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cryo Magus Enchantment");
+            DisplayName.SetDefault("Cryo-Magus Enchantment");
             Tooltip.SetDefault(
 @"''
 Magic damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies
-Icicles will start to appear around you
-When there are three, attacking will launch them towards the cursor
 An icy aura surrounds you, which freezes nearby enemies after a short delay
-Effects of Ice Bound Strider Hide, Blue Music Player, and Sub-Zero Subwoofer
-Summons a pet Penguin, Snowman, and Owl");
+Effects of Ice Bound Strider Hide and Blue Music Player
+Summons a pet Penguin and Owl");
         }
 
         public override void SetDefaults()
@@ -52,21 +50,10 @@ Summons a pet Penguin, Snowman, and Owl");
             //music player
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3ManaRegen = 2;
-            //pet
+            //pets
+            modPlayer.IcyEnchant = true;
+            modPlayer.AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
             modPlayer.AddPet("Owl Pet", hideVisual, thorium.BuffType("SnowyOwlBuff"), thorium.ProjectileType("SnowyOwlPet"));
-            thoriumPlayer.snowyOwl = true;
-            //frost effect
-            modPlayer.FrostEffect(60, hideVisual);
-            //subwoofer
-            thoriumPlayer.bardRangeBoost += 450;
-            for (int i = 0; i < 255; i++)
-            {
-                Player player2 = Main.player[i];
-                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
-                {
-                    thoriumPlayer.empowerFrost = true;
-                }
-            }
             //icy set bonus
             thoriumPlayer.icySet = true;
             if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
@@ -81,6 +68,8 @@ Summons a pet Penguin, Snowman, and Owl");
             "TunePlayerManaRegen",
             "IceFairyStaff",
             "FrostBurntTongue",
+            "Cryotherapy",
+            "LostMail"
         };
 
         public override void AddRecipes()
@@ -92,12 +81,9 @@ Summons a pet Penguin, Snowman, and Owl");
             recipe.AddIngredient(thorium.ItemType("CryoMagusSpark"));
             recipe.AddIngredient(thorium.ItemType("CryoMagusTabard"));
             recipe.AddIngredient(thorium.ItemType("CryoMagusLeggings"));
-            recipe.AddIngredient(null, "FrostEnchant");
+            recipe.AddIngredient(null, "IcyEnchant");
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
-
-            recipe.AddIngredient(ItemID.FrostStaff);
-            recipe.AddIngredient(thorium.ItemType("LostMail"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

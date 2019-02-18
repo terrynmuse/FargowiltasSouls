@@ -24,8 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Blacken the skies and cull the weak'
 Ranged damage applies Cursed Inferno and Ichor to hit enemies
 Ranged damage has a 10% chance to duplicate and become increased by 15%
-Ranged damage has a 5% chance to instantly kill the enemy
-Arrow critical strikes turn into death arrows and ricochet");
+Ranged damage has a 5% chance to instantly kill the enemy");
         }
 
         public override void SetDefaults()
@@ -56,7 +55,7 @@ Arrow critical strikes turn into death arrows and ricochet");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //damage duplicate
             thoriumPlayer.omniArcherSet = true;
-            //ichor and death arrows
+            //ichor and death arrows 2hich dont work I guess
             thoriumPlayer.omniArrowHat = true;
             //insta kill
             thoriumPlayer.omniBulletSet = true;
@@ -78,8 +77,8 @@ Arrow critical strikes turn into death arrows and ricochet");
             recipe.AddIngredient(thorium.ItemType("DMR"));
             recipe.AddIngredient(thorium.ItemType("KillCounter"));
             recipe.AddIngredient(thorium.ItemType("OmniBow"));
-            recipe.AddIngredient(thorium.ItemType("OmniCannon"));
-            recipe.AddIngredient(thorium.ItemType("TheJavelin"));
+            recipe.AddIngredient(thorium.ItemType("WyrmDecimator"));
+            recipe.AddIngredient(thorium.ItemType("CelestialBow"));
             
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);

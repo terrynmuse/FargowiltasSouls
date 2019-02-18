@@ -62,8 +62,8 @@ Summons a pet Pink Slime");
             "CupidString",
             "ShusWrath",
             "HandCannon",
+            "IllumiteBlaster",
             "IllumiteBarrage",
-            "TrenchSpitter",
             "PinkSludge"
         };
 

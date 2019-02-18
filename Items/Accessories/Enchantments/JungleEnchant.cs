@@ -23,8 +23,7 @@ Spore damage scales with magic damage
 
             if(thorium != null)
             {
-                tooltip +=
-@"Effects of Toxic Subwoofer";
+                tooltip += "Effects of Toxic Subwoofer";
             }
             else
             {

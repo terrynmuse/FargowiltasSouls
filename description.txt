@@ -1,9 +1,15 @@
 NEW UPDATE - v 0.6
 -Added Calamity Enchantments, Force of Calamities, Soul of the Tyrant, and some calamity support to other Souls
--Added Thorium Enchantments, Thorium Forces, Thorium Soul, and Ki Soul
+-Added Thorium Enchantments, Thorium Forces, Soul of Yggdrasil, and Ki Soul
 -Added recipe for all Thorium Steel items
 -Added Amalgamated Bullet Pouch and Amalgamated Arrow Quiver
--new Dicer sprite
+-new Dicer sprite, Force Sprites
+-Valkyrie Enchantment knockback does not work on WoF
+-Lead Poisoning will now spread to nearby enemies
+
+-reworked Tungsten and Dark Artist Enchantments
+-Valhalla correctly buffs Ballistas
+-Terra Force now has the full Obsidian Enchantment effect 
 
 -Infinity Relic has a new recipe and an altered effect, now required for Soul of Eternity
 

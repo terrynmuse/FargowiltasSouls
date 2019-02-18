@@ -58,7 +58,7 @@ Summons a pet Magic Lantern, Inspiring Lantern, and Lock Box");
         {
             "CrystalineCharm",
             "EnchantedPickaxe",
-            "GeodePickaxe",
+            "GnomePick",
             "Lantern",
             "SupportLanternItem",
             "JonesLockBox"
