@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -20,12 +20,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Flesh Enchantment");
             Tooltip.SetDefault(
 @"'Symbiotically attached to your body'
-Damage against enemies has a 10% chance to drop flesh, which grants bonus life and damage when picked up
+Consecutive attacks against enemies might drop flesh, which grants bonus life and damage
 Greatly increases life regen
 Hearts heal for 1.5x as much
-Your damage will have a 10% chance to cause an eruption of blood
-This blood can be picked up by players to heal themselves for 15% of the damage you dealt
-Healing amount cannot exceed 15 life and picking up blood causes bleeding for 5 seconds
+Effects of Vampire Gland
 Summons a pet Flying Blister, Face Monster, and Crimson Heart");
         }
 

@@ -13,10 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -25,13 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Become a selfless protector'
 Allows you and nearby allies to breathe underwater
 Grants the ability to swim
-Being in water increases damage and damage reduction by 10%
-Attracts all nearby air bubbles found within the Aquatic Depths
-Doubles the duration of 'Refreshing Bubble' when held
 You and nearby allies gain 10% increased damage and movement speed
-Your symphonic damage empowers all nearby allies with: Coral Edge
-Damage done against gouged enemies is increased by 8%
-Doubles the range of your empowerments effect radius
+Effects of Sea Breeze Pendant, Bubble Magnet, and Deep Dark Subwoofer
 Summons a pet Jellyfish");
         }
 
@@ -63,28 +56,29 @@ Summons a pet Jellyfish");
                 }
             }
             //depth woofer
-            //thoriumPlayer.subwooferGouge = true;
             thoriumPlayer.bardRangeBoost += 450;
-            modPlayer.DepthEnchant = true;
-            modPlayer.AddPet("Jellyfish Pet", hideVisual, thorium.BuffType("JellyPet"), thorium.ProjectileType("JellyfishPet"));
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerGouge = true;
+                }
+            }
+
             //sea breeze pendant
             player.accFlipper = true;
-            if (player.wet)
+
+            if (player.wet || thoriumPlayer.drownedDoubloon)
             {
                 player.AddBuff(thorium.BuffType("AquaticAptitude"), 60, true);
-                player.meleeDamage += 0.1f;
-                player.thrownDamage += 0.1f;
-                player.rangedDamage += 0.1f;
-                player.magicDamage += 0.1f;
-                player.minionDamage += 0.1f;
-                //missing from divers nice MEME
-                thoriumPlayer.radiantBoost += 0.1f;
-                thoriumPlayer.symphonicDamage += 0.1f;
-                //from ocean set why not
-                thoriumPlayer.thoriumEndurance += 0.1f;
+                player.GetModPlayer<FargoPlayer>().AllDamageUp(.1f);
             }
+
             //bubble magnet
             thoriumPlayer.bubbleMagnet = true;
+            modPlayer.DepthEnchant = true;
+            modPlayer.AddPet("Jellyfish Pet", hideVisual, thorium.BuffType("JellyPet"), thorium.ProjectileType("JellyfishPet"));
         }
         
         private readonly string[] items =

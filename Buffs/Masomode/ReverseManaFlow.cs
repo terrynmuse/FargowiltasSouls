@@ -8,7 +8,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Reverse Mana Flow");
-            Description.SetDefault("Your magic weapons are useless");
+            Description.SetDefault("Your magic weapons cost life instead of mana");
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = false;
             Main.buffNoSave[Type] = true;

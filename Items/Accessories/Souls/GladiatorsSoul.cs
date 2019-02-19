@@ -4,6 +4,7 @@ using Terraria.ID;
 using static Terraria.ID.ItemID;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -11,17 +12,30 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     public class GladiatorsSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Berserker's Soul");
-            Tooltip.SetDefault(
+
+            string tooltip = 
 @"'None shall live to tell the tale'
 30% increased melee damage
 20% increased melee speed
 15% increased melee crit chance
 Increased melee knockback
-Fire Gauntlet and Yoyo Bag effects");
+";
+
+            if (calamity == null)
+            {
+                tooltip += "Effects of the Fire Gauntlet and Yoyo Bag";
+            }
+            else
+            {
+                tooltip += "Effects of the Elemental Gauntlet and Yoyo Bag";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -57,6 +71,18 @@ Fire Gauntlet and Yoyo Bag effects");
             player.counterWeight = 556 + Main.rand.Next(6);
             player.yoyoGlove = true;
             player.yoyoString = true;
+
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
+        }
+
+        private void Calamity(Player player)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.eGauntlet = true;
+            //removing the extra boosts it adds because meme calamity
+            player.meleeDamage -= .15f;
+            player.meleeSpeed -= .15f;
+            player.meleeCrit -= 5;
         }
 
         public override void AddRecipes()
@@ -64,12 +90,12 @@ Fire Gauntlet and Yoyo Bag effects");
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(null, "BarbariansEssence");
+            recipe.AddIngredient(Fargowiltas.Instance.CalamityLoaded ? calamity.ItemType("ElementalGauntlet") : FireGauntlet);
+            recipe.AddIngredient(YoyoBag);
+            recipe.AddIngredient(Arkhalis);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(FireGauntlet);
-                recipe.AddIngredient(YoyoBag);
-                recipe.AddIngredient(Arkhalis);
                 recipe.AddIngredient(thorium.ItemType("PoseidonCharge"));
                 recipe.AddIngredient(thorium.ItemType("SurtrsSword"));
                 recipe.AddIngredient(thorium.ItemType("PrimesFury"));
@@ -77,15 +103,9 @@ Fire Gauntlet and Yoyo Bag effects");
                 recipe.AddIngredient(TerraBlade);
                 recipe.AddIngredient(ScourgeoftheCorruptor);
                 recipe.AddIngredient(thorium.ItemType("Spearmint"));
-                recipe.AddIngredient(NorthPole);
-                recipe.AddIngredient(InfluxWaver);
-                recipe.AddIngredient(Meowmere);
             }
             else
             {
-                recipe.AddIngredient(FireGauntlet);
-                recipe.AddIngredient(YoyoBag);
-                recipe.AddIngredient(Arkhalis);
                 recipe.AddIngredient(IceSickle);
                 recipe.AddIngredient(MonkStaffT2);
                 recipe.AddIngredient(TerraBlade);
@@ -93,11 +113,12 @@ Fire Gauntlet and Yoyo Bag effects");
                 recipe.AddIngredient(Kraken);
                 recipe.AddIngredient(Flairon);
                 recipe.AddIngredient(TheHorsemansBlade);
-                recipe.AddIngredient(NorthPole);
-                recipe.AddIngredient(InfluxWaver);
-                recipe.AddIngredient(Meowmere);
             }
-            
+
+            recipe.AddIngredient(NorthPole);
+            recipe.AddIngredient(InfluxWaver);
+            recipe.AddIngredient(Meowmere);
+
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
             else

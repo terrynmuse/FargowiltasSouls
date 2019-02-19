@@ -1,4 +1,6 @@
+using CalamityMod;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -10,6 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     public class UniverseSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
+        private readonly Mod dbzMod = ModLoader.GetMod("DBZMOD");
 
         public override void SetStaticDefaults()
         {
@@ -83,6 +87,10 @@ Grants all other effects of material Souls";
             player.magicCuffs = true;
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
+
+            if (Fargowiltas.Instance.DBTLoaded) DBT(player);
         }
 
         private void Thorium(Player player)
@@ -176,6 +184,43 @@ Grants all other effects of material Souls";
             thoriumPlayer.bardBounceBonus = 5;
         }
 
+        private void Calamity(Player player)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            //melee
+            modPlayer.eGauntlet = true;
+            //removing the extra boosts it adds because meme calamity
+            player.meleeDamage -= .15f;
+            player.meleeSpeed -= .15f;
+            player.meleeCrit -= 5;
+            //range
+            modPlayer.eQuiver = true;
+            //magic
+            modPlayer.eTalisman = true;
+            //summon
+            modPlayer.statisBeltOfCurses = true;
+            modPlayer.shadowMinions = true;
+            modPlayer.tearMinions = true;
+            //throw
+            modPlayer.nanotech = true;
+        }
+
+        private void DBT(Player player)
+        {
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+
+            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 3f);
+            dbtPlayer.kiKbAddition += 0.4f;
+            dbtPlayer.kiDrainMulti -= 0.5f;
+            dbtPlayer.kiMaxMult += 0.4f;
+            dbtPlayer.kiRegen += 5;
+            dbtPlayer.orbGrabRange += 6;
+            dbtPlayer.orbHealAmount += 150;
+            dbtPlayer.chargeLimitAdd += 8;
+            dbtPlayer.flightSpeedAdd += 0.6f;
+            dbtPlayer.flightUsageAdd += 3;
+            dbtPlayer.zenkaiCharm = true;
+        }
 
         public override void AddRecipes()
         {
@@ -190,12 +235,12 @@ Grants all other effects of material Souls";
             {
                 recipe.AddIngredient(null, "GuardianAngelsSoul");
                 recipe.AddIngredient(null, "BardSoul");
-                recipe.AddIngredient(thorium.ItemType("TheRing"));
-                
-                /*
-                
-                black midi - bard*/
-                
+                recipe.AddIngredient(thorium.ItemType("TheRing"));              
+            }
+
+            if (Fargowiltas.Instance.DBTLoaded)
+            {
+                recipe.AddIngredient(null, "KiSoul");
             }
 
             if (Fargowiltas.Instance.FargosLoaded)

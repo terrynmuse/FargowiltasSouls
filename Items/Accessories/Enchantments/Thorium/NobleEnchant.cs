@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -12,21 +13,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Noble Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"''
 Your symphonic empowerments will last an additional 5 seconds
-Your symphonic damage will briefly singe hit enemies. Symphonic critical strikes cause an eruption of molten music notes
-Increases damage by 1. Increases damage by additional 1 for every nearby player who wears it
-Your symphonic damage empowers all nearby allies with: Burning Soul. Damage done against burning enemies is increased by 8%. 
-Doubles the range of your empowerments effect radius.");
+Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
         }
 
         public override void SetDefaults()
@@ -42,20 +38,40 @@ Doubles the range of your empowerments effect radius.");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            NobleEffect(player);
-        }
-        
-        private void NobleEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //noble set bonus
             thoriumPlayer.bardBuffDuration += 300;
+            //ring of unity
+            thoriumPlayer.brother = true;
+            byte b = 1;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && player2 != player && thoriumPlayer.brother && player2.DistanceSQ(player.Center) < 160000f)
+                {
+                    b += 1;
+                }
+            }
+            thoriumPlayer.flatMeleeDamage += (int)b;
+            thoriumPlayer.flatRangedDamage += (int)b;
+            thoriumPlayer.flatMagicDamage += (int)b;
+            thoriumPlayer.flatThrownDamage += (int)b;
+            thoriumPlayer.flatSummonDamage += (int)b;
+            thoriumPlayer.flatRadiantDamage += (int)b;
+            thoriumPlayer.flatSymphonicDamage += (int)b;
             //mix tape
             thoriumPlayer.mixtapeBool = true;
             //molten woofer
-            //thoriumPlayer.subwooferFire = true;
             thoriumPlayer.bardRangeBoost += 450;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerFire = true;
+                }
+            }
         }
         
         private readonly string[] items =

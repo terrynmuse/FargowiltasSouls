@@ -1,9 +1,33 @@
-NEW UPDATE - v 0.5.8
--Made Soul of Eternity's stacking not infinite, but a very high limit of 200,000
--Crimson Enchantment now works with Candy Apples and Candy Canes
--Galactic Reformer now insta kills all non boss npcs
--Nerfed all swarm weapons and Cobalt Enchantment slighlty
--Fixed some Masomode and tooltip bugs
+NEW UPDATE - v 0.6
+-Added Calamity Enchantments, Force of Calamities, Soul of the Tyrant, and some calamity support to other Souls
+-Added Thorium Enchantments, Thorium Forces, Soul of Yggdrasil, and Ki Soul
+-Added recipe for all Thorium Steel items
+-Added Amalgamated Bullet Pouch and Amalgamated Arrow Quiver
+-new Dicer sprite, Force Sprites
+-Valkyrie Enchantment knockback does not work on WoF
+-Lead Poisoning will now spread to nearby enemies
+
+-reworked Tungsten and Dark Artist Enchantments
+-Valhalla correctly buffs Ballistas
+-Terra Force now has the full Obsidian Enchantment effect 
+
+-Infinity Relic has a new recipe and an altered effect, now required for Soul of Eternity
+
+-Added Celestial Rune, Chalice of the Moon and Soul of the Masochist
+-Soul of the Masochist is now required for Soul of Eternity
+-Soul of Eternity now increases attack speed by 200% instead of infinite
+-Added Nuke Fishron and The Twins (weapon)
+
+-Big Sting and Fish Stick have an actual good use sound now
+
+-Added a cooldown between Copper Enchantment lightning
+-Cobalt Enchantment splits into 3 random shards instead of 8 and has a 2 second cooldown
+
+
+
+
+
+
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

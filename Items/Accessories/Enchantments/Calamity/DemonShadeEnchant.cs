@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
-using ThoriumMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetLoadedMods().Contains("CalamityMod");
         }
 
         public override void SetStaticDefaults()
@@ -22,17 +22,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Demon Shade Enchantment");
             Tooltip.SetDefault(
 @"'Demonic power emanates from you…'
-
-50% increased melee damage and crit chance.
-+10 max minions.
-+200 max life and mana.
-Enemies that touch you take 100x their contact damage.
-Standing still regens your life crazy fast.
-All attacks inflict Demon Flames.
-Shadowbeams and Demon Scythes fall from the sky on hit.
-You have a friendly Red Devil following you.
-Pressing Y gives you Enraged, which makes enemies take twice as much damage, but you also take more damage.
-");
+All attacks inflict the Demon Flames
+Shadowbeams and Demon Scythes fall from the sky on hit
+A friendly red devil follows you around
+Enemies take ungodly damage when they touch you
+Standing still lets you absorb the shadows and boost your life regen
+Press Y to enrage nearby enemies with a dark magic spell for 10 seconds
+This makes them do 1.5 times more damage but they also take five times as much damage");
         }
 
         public override void SetDefaults()
@@ -41,15 +37,45 @@ Pressing Y gives you Enraged, which makes enemies take twice as much damage, but
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;//
-            item.value = 400000;//
+            item.rare = 10;
+            item.value = 50000000;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 0, 255));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            //body
+            modPlayer.shadeRegen = true;
+            player.thorns = 100f;
+            //legs
+            modPlayer.shadowSpeed = true;
+            //set bonus
+            modPlayer.dsSetBonus = true;
+            modPlayer.redDevil = true;
+            if (player.whoAmI == Main.myPlayer)
+            {
+                if (player.FindBuffIndex(calamity.BuffType("RedDevil")) == -1)
+                {
+                    player.AddBuff(calamity.BuffType("RedDevil"), 3600, true);
+                }
+                if (player.ownedProjectileCounts[calamity.ProjectileType("RedDevil")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("RedDevil"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
         }
 
         public override void AddRecipes()
@@ -57,20 +83,21 @@ Pressing Y gives you Enraged, which makes enemies take twice as much damage, but
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             ModRecipe recipe = new ModRecipe(mod);
-
-            //Demonshade armor, Animus, Earth, Draconic Destruction, Red Sun, Illustrious Knives, Triactis’ True Paladinian Mage-Hammer of Might, Staff of Blushie, Fabstaff, Voidragon, Apotheosis and Svantechnical.
-
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-
-            recipe.AddTile(TileID.LunarCraftingStation);//
+            recipe.AddIngredient(calamity.ItemType("DemonshadeHelm"));
+            recipe.AddIngredient(calamity.ItemType("DemonshadeBreastplate"));
+            recipe.AddIngredient(calamity.ItemType("DemonshadeGreaves"));
+            recipe.AddIngredient(calamity.ItemType("Animus"));
+            recipe.AddIngredient(calamity.ItemType("Earth"));
+            recipe.AddIngredient(calamity.ItemType("Azathoth"));
+            recipe.AddIngredient(calamity.ItemType("CrystylCrusher"));
+            recipe.AddIngredient(calamity.ItemType("Contagion"));
+            recipe.AddIngredient(calamity.ItemType("Megafleet"));
+            recipe.AddIngredient(calamity.ItemType("SomaPrime"));
+            recipe.AddIngredient(calamity.ItemType("Judgement"));
+            recipe.AddIngredient(calamity.ItemType("Apotheosis"));
+            recipe.AddIngredient(calamity.ItemType("RoyalKnives"));
+            recipe.AddIngredient(calamity.ItemType("TriactisTruePaladinianMageHammerofMight"));
+            recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -52,6 +52,8 @@ Effect can be disabled in Soul Toggles menu");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            //mining speed, spelunker, dangersense, light, hunter, pet
+            modPlayer.MinerEffect(hideVisual, .5f);
             //placing speed up
             player.tileSpeed += 0.5f;
             player.wallSpeed += 0.5f;
@@ -60,10 +62,6 @@ Effect can be disabled in Soul Toggles menu");
             Player.tileRangeY += 50;
             //gizmo pack
             player.autoPaint = true;
-            //pick speed
-            player.pickSpeed -= 0.50f;
-            //mining helmet
-            if (Soulcheck.GetValue("Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
             player.autoActuator = true;
 
@@ -87,50 +85,32 @@ Effect can be disabled in Soul Toggles menu");
             player.accCalendar = true;
             player.accWeatherRadio = true;
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
-            thoriumPlayer.geodeShine = true;
-            Lighting.AddLight(player.position, 1.2f, 0.8f, 1.2f);
             //pets
             modPlayer.AddPet("Inspiring Lantern Pet", hideVisual, thorium.BuffType("SupportLanternBuff"), thorium.ProjectileType("SupportLantern"));
-            thoriumPlayer.lanternPet = true;
             modPlayer.AddPet("Lock Box Pet", hideVisual, thorium.BuffType("LockBoxBuff"), thorium.ProjectileType("LockBoxPet"));
-            thoriumPlayer.LockBoxPet = true;
-            //mining speed, spelunker, dangersense, light, hunter, pet
-            modPlayer.MinerEffect(hideVisual, .5f);*/
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            //if (!Fargowiltas.Instance.ThoriumLoaded)
-            //{
-                recipe.AddIngredient(null, "MinerEnchant");
-                recipe.AddIngredient(Toolbelt);
-                recipe.AddIngredient(Toolbox);
-                recipe.AddIngredient(ArchitectGizmoPack);
-                recipe.AddIngredient(ActuationAccessory);
-                recipe.AddIngredient(LaserRuler);
-                recipe.AddIngredient(RoyalGel);
-                recipe.AddIngredient(PutridScent);
-                recipe.AddIngredient(CellPhone);
-                recipe.AddIngredient(GravityGlobe);
+            recipe.AddIngredient(null, Fargowiltas.Instance.ThoriumLoaded ? "GeodeEnchant" : "MinerEnchant");
+            recipe.AddIngredient(Toolbelt);
+            recipe.AddIngredient(Toolbox);
+            recipe.AddIngredient(ArchitectGizmoPack);
+            recipe.AddIngredient(ActuationAccessory);
+            recipe.AddIngredient(LaserRuler);
+            recipe.AddIngredient(RoyalGel);
+            recipe.AddIngredient(PutridScent);
+            recipe.AddIngredient(CellPhone);
+            recipe.AddIngredient(GravityGlobe);
 
-                recipe.AddRecipeGroup("FargowiltasSouls:AnyDrax");
-                recipe.AddIngredient(ShroomiteDiggingClaw);
-                recipe.AddIngredient(LaserDrill);
-                recipe.AddIngredient(DrillContainmentUnit);
-                
-            //}
-            
-            /*
-             * geode enchant
-            GnomeKingPickaxe
-            impact drill
-            TerrariumCanyonSplitter
-            */
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyDrax");
+            recipe.AddIngredient(ShroomiteDiggingClaw);
+            recipe.AddIngredient(LaserDrill);
+            recipe.AddIngredient(DrillContainmentUnit);
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

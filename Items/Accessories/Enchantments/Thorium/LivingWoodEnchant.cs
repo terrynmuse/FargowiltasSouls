@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"''
 Summons a living wood sapling and its attacks will home in on enemies
-Allows the collection of Vine Rope from vines");
+Effects of Guide to Plant Fiber Cordage");
         }
 
         public override void SetDefaults()

@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -23,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Enveloped by desert winds'
 Desert winds will augment your boots, giving you a double jump
-Provides the Desert Dexterity buff");
+Effects of Desert Wind Rune");
             //Thrown attacks might refresh your jump
         }
 

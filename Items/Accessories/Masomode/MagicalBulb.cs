@@ -29,6 +29,7 @@ Attracts a legendary plant's offspring which flourishes in combat");
         {
             player.buffImmune[BuffID.Venom] = true;
             player.AddBuff(mod.BuffType("PlanterasChild"), 5);
+            player.lifeRegen += 2;
         }
     }
 }

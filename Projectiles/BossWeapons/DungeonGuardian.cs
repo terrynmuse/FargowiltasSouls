@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 		public override void SetDefaults()
 		{
 			projectile.width = 40;
-			projectile.height = 40;
+			projectile.height = 50;
 			projectile.aiStyle = 0;
 			aiType = ProjectileID.Bullet;
 			projectile.friendly = true;
@@ -27,7 +27,6 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 			//ignore immune frame
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 1;
-			
 		}
 		
         public override void AI()

@@ -2,9 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
-using ThoriumMod;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -14,24 +12,22 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetLoadedMods().Contains("CalamityMod");
         }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Daedalus Enchantment");
             Tooltip.SetDefault(
-@"'cy magic envelopes you...'
-
-Immunity to Cursed.
-Gives you control over gravity.
-Gives a 10% chance to absorb a physical attack, healing you.
-Grants a 33% chance to reflect a projectile, healing you.
-You emit a blast of crystal shards when hit.
-+2 max minions.
-Summons a Daedalus Crystal above you.
-Thrown projectiles split into shards when hitting an enemy.
-");
+@"'Icy magic envelopes you...'
+You have a 33% chance to reflect projectiles back at enemies
+If you reflect a projectile you are also healed for 1/5 of that projectile's damage
+Getting hit causes you to emit a blast of crystal shards
+You have a 10% chance to absorb physical attacks and projectiles when hit
+If you absorb an attack you are healed for 1/2 of that attack's damage
+A daedalus crystal floats above you to protect you
+Rogue projectiles throw out crystal shards as they travel
+Effects of Permafrost's Concoction");
         }
 
         public override void SetDefaults()
@@ -40,15 +36,33 @@ Thrown projectiles split into shards when hitting an enemy.
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;//
-            item.value = 400000;//
+            item.rare = 5;
+            item.value = 500000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.daedalusReflect = true;
+            modPlayer.daedalusShard = true;
+            modPlayer.daedalusAbsorb = true;
+            modPlayer.daedalusCrystal = true;
+            if (player.whoAmI == Main.myPlayer)
+            {
+                if (player.FindBuffIndex(calamity.BuffType("DaedalusCrystal")) == -1)
+                {
+                    player.AddBuff(calamity.BuffType("DaedalusCrystal"), 3600, true);
+                }
+                if (player.ownedProjectileCounts[calamity.ProjectileType("DaedalusCrystal")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("DaedalusCrystal"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
+            modPlayer.daedalusSplit = true;
+            //permafrost concoction
+            modPlayer.permafrostsConcoction = true;
         }
 
         public override void AddRecipes()
@@ -57,19 +71,22 @@ Thrown projectiles split into shards when hitting an enemy.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Daedalus armor, all Daedalus helmets, Starnight Lance, Darklight Greatsword, Darkecho Greatbow and Shadecrystal Barrage
+            recipe.AddIngredient(calamity.ItemType("DaedalusHelm"));
+            recipe.AddIngredient(calamity.ItemType("DaedalusHelmet"));
+            recipe.AddIngredient(calamity.ItemType("DaedalusHat"));
+            recipe.AddIngredient(calamity.ItemType("DaedalusHeadgear"));
+            recipe.AddIngredient(calamity.ItemType("DaedalusVisor"));
+            recipe.AddIngredient(calamity.ItemType("DaedalusBreastplate"));
+            recipe.AddIngredient(calamity.ItemType("DaedalusLeggings"));
+            recipe.AddIngredient(calamity.ItemType("FrostFlare"));
+            recipe.AddIngredient(calamity.ItemType("PermafrostsConcoction"));
+            recipe.AddIngredient(calamity.ItemType("CrystalBlade"));
+            recipe.AddIngredient(calamity.ItemType("CrystalFlareStaff"));
+            recipe.AddIngredient(calamity.ItemType("SlagMagnum"));
+            recipe.AddIngredient(calamity.ItemType("ProporsePistol"));
+            recipe.AddIngredient(calamity.ItemType("SHPC"));
 
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-
-            recipe.AddTile(TileID.LunarCraftingStation);//
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

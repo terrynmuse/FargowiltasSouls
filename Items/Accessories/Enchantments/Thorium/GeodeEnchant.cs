@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -58,9 +56,9 @@ Summons a pet Magic Lantern, Inspiring Lantern, and Lock Box");
         
         private readonly string[] items =
         {
-            "CrystallineCharm",
+            "CrystalineCharm",
             "EnchantedPickaxe",
-            "GeodePickaxe",
+            "GnomePick",
             "Lantern",
             "SupportLanternItem",
             "JonesLockBox"

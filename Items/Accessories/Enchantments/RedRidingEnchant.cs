@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 During a Full Moon, attacks may cause enemies to Super Bleed
 Your attacks deal increasing damage to low HP enemies
 Greatly enhances Explosive Traps effectiveness
-Celestial Shell effects
+Effects of Celestial Shell
 Summons a pet Puppy");
         }
 
@@ -32,8 +32,6 @@ Summons a pet Puppy");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.setHuntressT2 = true;
-            player.setHuntressT3 = true;
             //celestial shell
             player.accMerman = true;
             player.wolfAcc = true;

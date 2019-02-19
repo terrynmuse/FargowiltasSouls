@@ -14,22 +14,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Darksteel Enchantment");
             Tooltip.SetDefault(
 @"'Light yet durable'
-Grants the ability to dash into the enemy, knockback immunity and Ice Skates effect
 8% damage reduction
+Grants the ability to dash into the enemy
 Right Click to guard with your shield
 You attract items from a larger range
-While in combat, you generate a 25 life shield
-35% of the damage you take is also dealt to the attacker");
+Effects of Iron Shield and Spiked Bracer");
         }
 
         public override void SetDefaults()
@@ -40,6 +37,7 @@ While in combat, you generate a 25 life shield
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 3;
             item.value = 80000;
+            item.shieldSlot = 5;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -65,24 +63,20 @@ While in combat, you generate a 25 life shield
                 modPlayer.IronEnchant = true;
             }
             //iron shield
-            //thoriumPlayer.metallurgyShield = true;
-            if (!thoriumPlayer.outOfCombat)
+            timer++;
+            if (timer >= 30)
             {
-                timer++;
-                if (timer >= 30)
+                int num = 12;
+                if (thoriumPlayer.shieldHealth <= num)
                 {
-                    int num = 25;
-                    if (thoriumPlayer.shieldHealth < num)
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                        thoriumPlayer.shieldHealth++;
-                    }
-                    timer = 0;
-                    return;
+                    thoriumPlayer.shieldHealthTimerStop = true;
                 }
-            }
-            else
-            {
+                if (thoriumPlayer.shieldHealth < num)
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                    thoriumPlayer.shieldHealth++;
+                    player.statLife++;
+                }
                 timer = 0;
             }
         }

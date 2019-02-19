@@ -2,9 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
-using ThoriumMod;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -14,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetLoadedMods().Contains("CalamityMod");
         }
 
         public override void SetStaticDefaults()
@@ -22,14 +20,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Astral Enchantment");
             Tooltip.SetDefault(
 @"'The Astral Infection has consumed you...'
-
-+20 max life and mana.
-+2 max minions.
-Creature, Treasure, Ore and Danger detection.
-Every 2 seconds, your next crit will cause stars ti rain from the sky.
-35% increased movement speed.
-22% increased damage.
-");
+Whenever you crit an enemy fallen, hallowed, and astral stars will rain down
+This effect has a 1 second cooldown before it can trigger again
+Effects of the Astral Arcanum");
         }
 
         public override void SetDefaults()
@@ -38,15 +31,21 @@ Every 2 seconds, your next crit will cause stars ti rain from the sky.
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;//
-            item.value = 400000;//
+            item.rare = 7;
+            item.value = 1000000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.astralStarRain = true;
+            //astral arcanum
+            modPlayer.astralArcanum = true;
+            modPlayer.aBulwark = true;
+            modPlayer.projRef = true;
+            player.buffImmune[calamity.BuffType("GodSlayerInferno")] = true;
         }
 
         public override void AddRecipes()
@@ -55,19 +54,22 @@ Every 2 seconds, your next crit will cause stars ti rain from the sky.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Astral Armor, Astral Blade, Astral Blaster, Star Cannon EX, Astral Pike, Astral Bow, Astral Staff and Ethereal Core.
+            recipe.AddIngredient(calamity.ItemType("AstralHelm"));
+            recipe.AddIngredient(calamity.ItemType("AstralBreastplate"));
+            recipe.AddIngredient(calamity.ItemType("AstralLeggings"));
+            recipe.AddIngredient(calamity.ItemType("AstralArcanum"));
+            recipe.AddIngredient(calamity.ItemType("LunicEye"));
+            recipe.AddIngredient(calamity.ItemType("Starfall"));
+            recipe.AddIngredient(calamity.ItemType("Nebulash"));
+            recipe.AddIngredient(calamity.ItemType("TitanArm"));
+            recipe.AddIngredient(calamity.ItemType("HivePod"));
+            recipe.AddIngredient(calamity.ItemType("AstralStaff"));
+            recipe.AddIngredient(calamity.ItemType("AegisBlade"));
+            recipe.AddIngredient(calamity.ItemType("Omniblade"));
+            recipe.AddIngredient(calamity.ItemType("Lazhar"));
+            recipe.AddIngredient(calamity.ItemType("SolsticeClaymore"));
 
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-
-            recipe.AddTile(TileID.LunarCraftingStation);//
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

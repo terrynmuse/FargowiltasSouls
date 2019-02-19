@@ -13,10 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -24,17 +22,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Infused with souls of the damned'
 Your boots vibrate at an unreal frequency, increasing movement speed significantly
-Running builds up momentum and increases movement speed
-Crashing into an enemy releases all stored momentum, catapulting the enemy
 While moving, your melee damage and critical strike chance are increased
 Your attacks have a chance to unleash an explosion of Dragon's Flame
 Your attacks may inflict Darkness on enemies
-Flail weapons have a chance to release rolling spike balls on hit that apply cursed flames to damaged enemies
-Your symphonic damage empowers all nearby allies with: Vile Flames
-Damage done against curse flamed enemies is increased by 8%
-Doubles the range of your empowerments effect radius
-Your symphonic damage will empower all nearby allies with: Movement Speed II
-Increases armor penetration by 15
+Effects of Crash Boots, Dragon Talon Necklace, and Cursed Flail-Core
+Effects of Grim Subwoofer and Green Music Player
 Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
         }
 
@@ -94,8 +86,15 @@ Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
             //cursed core
             thoriumPlayer.cursedCore = true;
             //corrupt woofer
-            //thoriumPlayer.subwooferCursed = true;
             thoriumPlayer.bardRangeBoost += 450;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerCursed = true;
+                }
+            }
             //music player
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3MovementSpeed = 2;

@@ -10,9 +10,10 @@ namespace FargowiltasSouls.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Infinity Relic");
-            Tooltip.SetDefault("'Is it really worth it?'\n" +
-                               "You consume no ammo, mana, or consumables \n" +
-                               "There is of course a catch (^:");
+            Tooltip.SetDefault(
+@"'Is it really worth it?
+You consume no ammo, mana, or consumables
+Every few attacks damage you slightly");
         }
 
         public override void SetDefaults()
@@ -27,11 +28,6 @@ namespace FargowiltasSouls.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            //nothing used son
-            player.GetModPlayer<FargoPlayer>(mod).Infinity = true;
-            player.manaCost -= 1f;
-
-            //the price
             player.AddBuff(mod.BuffType("InfinityDebuff"), 7200, false);
         }
 
@@ -39,16 +35,20 @@ namespace FargowiltasSouls.Items.Accessories
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(EndlessQuiver);
-            recipe.AddIngredient(HolyArrow, 999);
-            recipe.AddIngredient(VenomArrow, 999);
-            recipe.AddIngredient(EndlessMusketPouch);
-            recipe.AddIngredient(PartyBullet, 999);
-            recipe.AddIngredient(ChlorophyteBullet, 999);
-            recipe.AddIngredient(RocketIII, 999);
+            recipe.AddIngredient(Gel, 999);
+            recipe.AddIngredient(Seed, 999);
+            recipe.AddIngredient(Flare, 999);
+            recipe.AddIngredient(Snowball, 999);
+            recipe.AddIngredient(PoisonDart, 999);
+            recipe.AddIngredient(CursedDart, 999);
+            recipe.AddIngredient(IchorDart, 999);
             recipe.AddIngredient(CrystalDart, 999);
-            recipe.AddIngredient(ManaCrystal, 10);
-            recipe.AddIngredient(LifeCrystal, 10);
+            recipe.AddIngredient(RocketIII, 999);
+            recipe.AddIngredient(Nail, 999);
+            recipe.AddIngredient(StyngerBolt, 999);
+            recipe.AddIngredient(CandyCorn, 999);
+            recipe.AddIngredient(Stake, 999);
+            recipe.AddIngredient(ManaCrystal, 20);
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

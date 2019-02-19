@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
@@ -9,8 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Forces
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Force of Will");
@@ -19,26 +18,20 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 @"''
 Increases coin pickup range and shops have lower prices
 Hitting enemies will sometimes drop extra coins
-Your attacks inflict Midas
+Your attacks inflict Midas and Super Bleed
 10% chance for enemies to drop 4x loot
 If the enemy has Midas, the chance and bonus is doubled
 Shot projectiles will speed up drastically over time
-Attacks may cause enemies to Super Bleed
-Celestial Shell effects
 All attacks will slowly remove enemy knockback immunity
-Shiny Stone effects
-Summons several pets";
+Effects of Celestial Shell and Shiny Stone effects
+";
 
-            /*if (thorium != null)
+            if (thorium != null)
             {
-                tooltip +=
-@"Summons a curious bag of ancient coins
-Summons some living glitter to follow you around";
+                tooltip += "Effects of Proof of Avarice\n";
             }
-            else
-            {*/
-                //tooltip += "Summons a pet Parrot";
-            //}
+
+            tooltip += "Summons several pets";
 
             Tooltip.SetDefault(tooltip);
         }
@@ -79,11 +72,19 @@ Summons some living glitter to follow you around";
             player.shinyStone = true;
             
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
+        }
 
-            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+        public void Thorium(Player player, bool hideVisual)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
             //proof of avarice
-            thoriumPlayer.avarice2 = true;*/
+            thoriumPlayer.avarice2 = true;
+
+            modPlayer.AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
+            modPlayer.AddPet("Glitter Pet", hideVisual, thorium.BuffType("ShineDust"), thorium.ProjectileType("ShinyPet"));
         }
 
         public override void AddRecipes()

@@ -13,10 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -24,8 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"''
 Magic critical strikes engulf enemies in a long lasting void flame
-Allows flight at the cost of mana
-Increases mana regeneration slightly");
+Effects of Mana-Charged Rocketeers");
         }
 
         public override void SetDefaults()

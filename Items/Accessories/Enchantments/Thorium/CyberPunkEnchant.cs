@@ -13,19 +13,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cyber Punk Enchantment");
             Tooltip.SetDefault(
-                @"''
+@"''
 Pressing the 'Special Ability' key will cycle you through four states
-Symphonic damage has a 10% chance to increase its empowerment level
-Your symphonic damage will empower all nearby allies with: Damage II");
+Effects of Auto Tuner and Red Music Player");
         }
 
         public override void SetDefaults()
@@ -41,14 +38,12 @@ Your symphonic damage will empower all nearby allies with: Damage II");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            CyberEffect(player);
-        }
-        
-        private void CyberEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //cyber set bonus, good lord
+            thoriumPlayer.cyberHeadAllowed = false;
+            thoriumPlayer.cyberBodyAllowed = false;
+            thoriumPlayer.cyberLegsAllowed = false;
             thoriumPlayer.cyberBard = true;
             for (int i = 0; i < 255; i++)
             {
@@ -141,29 +136,14 @@ Your symphonic damage will empower all nearby allies with: Damage II");
                     }
                 }
             }
-            if (thoriumPlayer.cyberBardValue == 0)
-            {
-                Lighting.AddLight(player.position, 0.45f, 0.1f, 0.1f);
-            }
-            if (thoriumPlayer.cyberBardValue == 1)
-            {
-                Lighting.AddLight(player.position, 0.55f, 0.4f, 0.1f);
-            }
-            if (thoriumPlayer.cyberBardValue == 2)
-            {
-                Lighting.AddLight(player.position, 0.15f, 0.45f, 0.15f);
-            }
-            if (thoriumPlayer.cyberBardValue == 3)
-            {
-                Lighting.AddLight(player.position, 0.1f, 0.2f, 0.65f);
-            }
+            
             //auto tuner
             thoriumPlayer.autoTunerBool = true;
             //music player
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3Damage = 2;
         }
-        
+       
         private readonly string[] items =
         {
             "CyberPunkHeadset",

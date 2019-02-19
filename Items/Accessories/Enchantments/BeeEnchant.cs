@@ -21,7 +21,7 @@ Bees ignore most enemy defense
 
             if(thorium != null)
             {
-                tooltip += "While running, you will periodically generate bees\n";
+                tooltip += "Effects of Bee Booties\n";
             }
 
             tooltip += "Summons a pet Baby Hornet";
@@ -48,6 +48,7 @@ Bees ignore most enemy defense
 
         private void Thorium(Player player)
         {
+            //bee booties
             if ((player.velocity.X > 1f && player.velocity.X > 0f) || (player.velocity.X < 1f && player.velocity.X < 0f))
             {
                 timer++;

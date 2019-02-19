@@ -16,20 +16,18 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip = 
 @"'Village Hidden in the Wall'
 Dash into any walls, to teleport through them to the next opening
-Effects of the Master Ninja Gear
 ";
 
-            /*if(thorium != null)
+            if(thorium != null)
             {
-                tooltip +=
-@"Striking an enemy with any throwing weapon will trigger 'Shadow Dance'
-Additonally, while Shadow Dance is active you deal 15% more throwing damage";
-            }*/
+                tooltip += "Striking an enemy with any throwing weapon will trigger 'Shadow Dance'\n";
+            }
 
             tooltip +=
 @"Throw a smoke bomb to teleport to it
 Standing nearby smoke gives you the First Strike buff
 Greatly enhances Lightning Aura effectiveness
+Effects of Master Ninja Gear
 Summons a pet Gato and Black Cat";
 
             Tooltip.SetDefault(tooltip); 
@@ -48,8 +46,6 @@ Summons a pet Gato and Black Cat";
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            player.setMonkT2 = true;
-            player.setMonkT3 = true;
             //ninja gear
             player.blackBelt = true;
             player.spikedBoots = 2;
@@ -59,16 +55,11 @@ Summons a pet Gato and Black Cat";
             //ninja, smoke bombs, pet
             modPlayer.NinjaEffect(hideVisual);
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-
             //set bonus
             thoriumPlayer.shadeSet = true;
-            if (thoriumPlayer.shadeTele)
-            {
-                player.thrownDamage += 0.15f;
-            }*/
         }
 
         public override void AddRecipes()
@@ -80,8 +71,7 @@ Summons a pet Gato and Black Cat";
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(null, "NinjaEnchant");
-                //recipe.AddIngredient(null, "ShadeMasterEnchant");
+                recipe.AddIngredient(null, "ShadeMasterEnchant");
                 recipe.AddIngredient(ItemID.MasterNinjaGear);
                 recipe.AddIngredient(ItemID.MonkBelt);
                 recipe.AddIngredient(ItemID.DD2LightningAuraT2Popper);

@@ -12,6 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     public class TrawlerSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public override void SetStaticDefaults()
         {
@@ -59,8 +60,8 @@ Permanent Sonar and Crate Buffs";
             //extra lures
             modPlayer.FishSoul2 = true;
             modPlayer.AddPet("Zephyr Fish Pet", hideVisual, BuffID.ZephyrFish, ProjectileID.ZephyrFish);
+            player.fishingSkill += 60;
             player.sonarPotion = true;
-            player.fishingSkill += 50;
             player.cratePotion = true;
             player.accFishingLine = true;
             player.accTackleBox = true;
@@ -79,7 +80,7 @@ Permanent Sonar and Crate Buffs";
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "AnglerEnchantment");
-            recipe.AddIngredient(ItemID.AnglerTackleBag);
+            recipe.AddIngredient(Fargowiltas.Instance.CalamityLoaded ? calamity.ItemType("SupremeBaitTackleBoxFishingStation") : ItemID.AnglerTackleBag);
             
             if (Fargowiltas.Instance.ThoriumLoaded)
             {

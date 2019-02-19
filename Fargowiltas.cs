@@ -22,17 +22,16 @@ namespace FargowiltasSouls
         };
 
         internal static Fargowiltas Instance;
-        internal bool BlueMagicLoaded;
-        internal bool CalamityLoaded;
-        public UserInterface CustomResources;
-        internal bool DBTLoaded;
-
         //loaded
         internal bool FargosLoaded;
-
-        internal Soulcheck SoulCheck;
         internal bool TerraCompLoaded;
         internal bool ThoriumLoaded;
+        internal bool BlueMagicLoaded;
+        internal bool CalamityLoaded;
+        internal bool DBTLoaded;
+
+        public UserInterface CustomResources;
+        internal Soulcheck SoulCheck; 
 
         public Fargowiltas()
         {
@@ -125,6 +124,75 @@ namespace FargowiltasSouls
             catch (Exception e)
             {
                 ErrorLogger.Log("FargowiltasSouls PostSetupContent Error: " + e.StackTrace + e.Message);
+            }
+        }
+
+        public override void AddRecipes()
+        {
+            if (ThoriumLoaded)
+            {
+                Mod thorium = ModLoader.GetMod("ThoriumMod");
+                ModRecipe recipe = new ModRecipe(this);
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelArrow"));
+                recipe.AddRecipe();
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelAxe"));
+                recipe.AddRecipe();
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelBattleAxe"));
+                recipe.AddRecipe();
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelBlade"));
+                recipe.AddRecipe();
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelBow"));
+                recipe.AddRecipe();
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelChestplate"));
+                recipe.AddRecipe();
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelGreaves"));
+                recipe.AddRecipe();
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelHelmet"));
+                recipe.AddRecipe();
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelMallet"));
+                recipe.AddRecipe();
+
+                recipe = new ModRecipe(this);
+                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
+                recipe.AddTile(thorium, "ArcaneArmorFabricator");
+                recipe.SetResult(thorium.ItemType("SteelPickaxe"));
+                recipe.AddRecipe();
             }
         }
 
@@ -265,6 +333,10 @@ namespace FargowiltasSouls
                 //fan letter
                 group = new RecipeGroup(() => Lang.misc[37] + " Fan Letter", thorium.ItemType("FanLetter"), thorium.ItemType("FanLetter2"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyLetter", group);
+
+                //butterflies
+                group = new RecipeGroup(() => Lang.misc[37] + " Dungeon Butterfly", thorium.ItemType("BlueDungeonButterfly"), thorium.ItemType("GreenDungeonButterfly"), thorium.ItemType("PinkDungeonButterfly"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyDungeonButterfly", group);
             }
         }
 

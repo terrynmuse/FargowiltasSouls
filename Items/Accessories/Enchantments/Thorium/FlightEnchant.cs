@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -52,8 +50,8 @@ Summons a Pet Parrot");
             "FlightMask",
             "FlightMail",
             "FlightBoots",
-            "HarpyTalon",
             "ChampionWing",
+            "HarpyTalon",
             "Aerial",
             "HarpyPelter",
             "WindyTotemCaller",

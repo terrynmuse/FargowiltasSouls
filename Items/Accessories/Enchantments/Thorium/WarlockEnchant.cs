@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -24,8 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 Radiant critical strikes will generate up to 15 shadow wisps
 Pressing the 'Special Ability' key will unleash every stored shadow wisp towards your cursor's position
-Corrupts your radiant powers
-Halves radiant life costs but not its life transferring effect
+Effects of Demon Tongue
 Summons a Li'l Devil to attack enemies");
         }
 

@@ -24,7 +24,7 @@ Lightning scales with magic damage";
 
             if(thorium != null)
             {
-                tooltip += "You constantly generate a 10 life shield\n";
+                tooltip += "\nEffects of the Copper Buckler";
             }
 
             Tooltip.SetDefault(tooltip);
@@ -50,6 +50,7 @@ Lightning scales with magic damage";
         private void Thorium(Player player)
         {
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            //copper shield
             timer++;
             if (timer >= 30)
             {

@@ -1,3 +1,4 @@
+using CalamityMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -10,6 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     public class ConjuristsSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public override void SetStaticDefaults()
         {
@@ -25,6 +27,11 @@ Increased minion knockback";
             if (thorium != null)
             {
                 tooltip += "\nEffects of Phylactery, Crystal Scorpion, and Yuma's Pendant";
+            }
+
+            if (calamity != null)
+            {
+                tooltip += "\nEffects of Statis' Belt of Curses";
             }
 
             Tooltip.SetDefault(tooltip);
@@ -57,9 +64,9 @@ Increased minion knockback";
             player.maxTurrets += 2;
             player.minionKB += 3f;
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
 
-            Thorium(player);
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
         }
 
         private void Thorium(Player player)
@@ -82,16 +89,24 @@ Increased minion knockback";
             }
         }
 
+        private void Calamity(Player player)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.statisBeltOfCurses = true;
+            modPlayer.shadowMinions = true;
+            modPlayer.tearMinions = true;
+        }
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "OccultistsEssence");
+            recipe.AddIngredient(Fargowiltas.Instance.CalamityLoaded ? calamity.ItemType("StatisBeltOfCurses") : ItemID.PapyrusScarab);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(thorium.ItemType("Phylactery"));
                 recipe.AddIngredient(thorium.ItemType("CrystalScorpion"));
-                recipe.AddIngredient(ItemID.PapyrusScarab);
                 recipe.AddIngredient(thorium.ItemType("YumasPendant"));
                 recipe.AddIngredient(thorium.ItemType("ButterflyStaff5"));
                 recipe.AddIngredient(thorium.ItemType("HailBomber"));
@@ -101,11 +116,9 @@ Increased minion knockback";
                 recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
                 recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
                 recipe.AddIngredient(ItemID.RavenStaff);
-                recipe.AddIngredient(ItemID.MoonlordTurretStaff);
             }
             else
             {
-                recipe.AddIngredient(ItemID.PapyrusScarab);
                 recipe.AddIngredient(ItemID.PirateStaff);
                 recipe.AddIngredient(ItemID.OpticStaff);
                 recipe.AddIngredient(ItemID.DeadlySphereStaff);
@@ -117,8 +130,9 @@ Increased minion knockback";
                 recipe.AddIngredient(ItemID.TempestStaff);
                 recipe.AddIngredient(ItemID.RavenStaff);
                 recipe.AddIngredient(ItemID.XenoStaff);
-                recipe.AddIngredient(ItemID.MoonlordTurretStaff);
             }
+
+            recipe.AddIngredient(ItemID.MoonlordTurretStaff);
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

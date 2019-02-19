@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -23,12 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'You are one with nature'
 Minion attacks have a 33% chance to heal you lightly
-Pressing the 'Encase' key will place you within a fragile cocoon
-You have greatly reduced damage reduction and increased aggro while within the cocoon
-If you survive the process, your attack speed and damage are briefly increased significantly
-The cocoon may be activated every 1 minute
 Summons a living wood sapling and its attacks will home in on enemies
-Allows the collection of Vine Rope from vines");
+Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
         }
 
         public override void SetDefaults()

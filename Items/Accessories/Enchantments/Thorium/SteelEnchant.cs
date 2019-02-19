@@ -14,10 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -28,8 +26,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Allows the player to dash into the enemy
 Right Click to guard with your shield
 You attract items from a larger range
-While in combat, you generate a 22 life shield
-25% of the damage you take is also dealt to the attacker");
+Effects of Iron Shield and Spiked Bracers");
         }
 
         public override void SetDefaults()
@@ -40,6 +37,7 @@ While in combat, you generate a 22 life shield
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 1;
             item.value = 40000;
+            item.shieldSlot = 5;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

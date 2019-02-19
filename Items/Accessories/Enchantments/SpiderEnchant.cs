@@ -21,10 +21,7 @@ You may summon nearly twice as many spider minions
 
             if(thorium != null)
             {
-                tooltip +=
-@"You and nearby allies have a chance to envenom enemies when attacking
-Doubles the range of your empowerments effect radius
-";
+                tooltip += "Effects of Arachnid's Subwoofer\n";
             }
 
             tooltip += "Summons a pet Spider";

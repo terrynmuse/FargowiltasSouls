@@ -55,7 +55,7 @@ namespace FargowiltasSouls.NPCs
         public int Counter = 0;
         public int Timer = 600;
         public byte SharkCount = 0;
-        private static MethodInfo _startSandstormMethod;
+        private static bool werewolfTime;
 
         public static int slimeBoss = -1;
         public static int eyeBoss = -1;
@@ -86,8 +86,6 @@ namespace FargowiltasSouls.NPCs
             Infested = false;
             Needles = false;
             Electrified = false;
-            //BLACK SLIMES
-            //npc.color = default(Color);
         }
 
         public override void SetDefaults(NPC npc)
@@ -126,6 +124,11 @@ namespace FargowiltasSouls.NPCs
                     //case NPCID.TheDestroyerTail: masoHurtAI = 6; break;
 
                     case NPCID.Golem:
+                        masoHurtAI = 6;
+                        npc.lifeMax *= 2;
+                        npc.life = npc.lifeMax;
+                        break;
+
                     case NPCID.GolemHead: masoHurtAI = 6; break;
 
                     case NPCID.GolemFistLeft:
@@ -189,11 +192,6 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.noTileCollide = false;
                         }
-                        break;
-
-                    case NPCID.Golem:
-                        npc.lifeMax *= 2;
-                        npc.life = npc.lifeMax;
                         break;
 
                     case NPCID.PrimeCannon:
@@ -1271,11 +1269,16 @@ namespace FargowiltasSouls.NPCs
                     }
                 }
 
-                if (npc.townNPC && !Main.dayTime && Main.moonPhase == 0 && Main.rand.Next(1800) == 0)
+                if (npc.townNPC && Main.hardMode && !Main.dayTime && Main.moonPhase == 0 && werewolfTime)
                 {
+                    werewolfTime = false;
                     Main.PlaySound(SoundID.Roar);
                     Main.NewText(npc.GivenName + " has succumbed to the curse..", new Color(255, 0, 0));
                     npc.Transform(NPCID.Werewolf);
+                }
+                else if (Main.moonPhase != 0)
+                {
+                    werewolfTime = true;
                 }
 
                 switch (masoAI)
@@ -4805,6 +4808,16 @@ namespace FargowiltasSouls.NPCs
                 }
 
                 npc.lifeRegen -= 10;
+
+                for (int i = 0; i < 200; i++)
+                {
+                    NPC spread = Main.npc[i];
+
+                    if (spread.active && Vector2.Distance(npc.Center, spread.Center) < 100)
+                    {
+                        spread.AddBuff(mod.BuffType("LeadPoison"), 120);
+                    }
+                }
             }
 
             //50 dps
@@ -5551,7 +5564,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.IlluminantBat:
                         if (Main.rand.Next(20) == 0)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RabiesShot"));
-                        goto case NPCID.IlluminantSlime:
+                        goto case NPCID.IlluminantSlime;
 
                     case NPCID.IlluminantSlime:
                     case NPCID.EnchantedSword:
@@ -5686,6 +5699,10 @@ namespace FargowiltasSouls.NPCs
                         int maxDF = Main.rand.Next(6) + 1;
                         for (int i = 0; i < maxDF; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bacon);
+                        break;
+
+                    case NPCID.CultistBoss:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CelestialRune"));
                         break;
 
                     case NPCID.MoonLordCore:
@@ -6633,6 +6650,11 @@ namespace FargowiltasSouls.NPCs
             if (modPlayer.BeeEnchant && !modPlayer.TerrariaSoul && projectile.type == ProjectileID.GiantBee)
             {
                 damage = (int)(damage + npc.defense * .5);
+            }
+
+            if (projectile.type == ProjectileID.EyeFire)
+            {
+                npc.AddBuff(BuffID.CursedInferno, 300);
             }
 		}
 
@@ -7677,7 +7699,7 @@ namespace FargowiltasSouls.NPCs
             FargoPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<FargoPlayer>(mod);
 
             //spears
-            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce) && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
+            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce) && npc.type != NPCID.WallofFlesh && npc.type != NPCID.WallofFleshEye && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
                 npc.knockBackResist += .05f;
 

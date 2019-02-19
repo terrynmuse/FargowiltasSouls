@@ -23,7 +23,7 @@ Getting hit drops your crit back down";
 
             if(thorium != null)
             {
-                tooltip += "\nYou constantly generate a 11 life shield";
+                tooltip += "\nEffects of Tin Buckler";
             }
 
             Tooltip.SetDefault(tooltip);

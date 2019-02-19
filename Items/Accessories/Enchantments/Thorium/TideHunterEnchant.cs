@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -24,8 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Not just for hunting fish'
 Ranged critical strikes release a splash of foam, slowing nearby enemies
 After four consecutive non-critical strikes, your next ranged attack will mini-crit for 150% damage
-While standing still, defense is increased by 4 and you are immune to knockback
-Brightens the area directly in front of you");
+Effects of Goblin War Shield and Agnor's Bowl");
         }
 
         public override void SetDefaults()

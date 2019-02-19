@@ -2,9 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
-using ThoriumMod;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -14,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetLoadedMods().Contains("CalamityMod");
         }
 
         public override void SetStaticDefaults()
@@ -22,19 +20,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Reaver Enchantment");
             Tooltip.SetDefault(
 @"'A thorny death awaits your enemies...'
-
-+20 max life.
-10% increased movement speed.
-Free movement through liquids.
-Projectiles explode on hit.
-Rage activates when you are damaged.
-Magic projectiles explode into poison gas.
-15% chance for ranged weapons to fire a rocket.
-Summons a Reaver Orb above you.
-Permanent Reaver Thorns effect.
-You emit a cloud of spores on hit.
-
-");
+Melee projectiles explode on hit
+While using a ranged weapon you have a 10% chance to fire a powerful rocket
+Your magic projectiles emit a burst of spore gas on enemy hits
+Summons a reaver orb that emits spore gas when enemies are near
+You emit a cloud of spores when you are hit
+Rage activates when you are damaged");
         }
 
         public override void SetDefaults()
@@ -43,15 +34,36 @@ You emit a cloud of spores on hit.
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;//
-            item.value = 400000;//
+            item.rare = 7;
+            item.value = 400000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            //melee
+            modPlayer.reaverBlast = true;
+            //range
+            modPlayer.reaverDoubleTap = true;
+            //magic
+            modPlayer.reaverBurst = true;
+            //summon
+            modPlayer.reaverOrb = true;
+            if (player.whoAmI == Main.myPlayer)
+            {
+                if (player.FindBuffIndex(calamity.BuffType("ReaverOrb")) == -1)
+                {
+                    player.AddBuff(calamity.BuffType("ReaverOrb"), 3600, true);
+                }
+                if (player.ownedProjectileCounts[calamity.ProjectileType("ReaverOrb")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ReaverOrb"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
+            //throw
+            modPlayer.reaverSpore = true;
         }
 
         public override void AddRecipes()
@@ -60,19 +72,22 @@ You emit a cloud of spores on hit.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Reaver armor, all Reaver helmets, Feralthorn Claymore, Hellion Flower Spear, Mangrove Chakram, Hellkite, Bladedge Rainbow, Everglade Spray and Grax
-
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-
-            recipe.AddTile(TileID.LunarCraftingStation);//
+            recipe.AddIngredient(calamity.ItemType("ReaverHelm"));
+            recipe.AddIngredient(calamity.ItemType("ReaverVisage"));
+            recipe.AddIngredient(calamity.ItemType("ReaverMask"));
+            recipe.AddIngredient(calamity.ItemType("ReaverHelmet"));
+            recipe.AddIngredient(calamity.ItemType("ReaverCap"));
+            recipe.AddIngredient(calamity.ItemType("ReaverScaleMail"));
+            recipe.AddIngredient(calamity.ItemType("ReaverCuisses"));
+            recipe.AddIngredient(calamity.ItemType("Animosity"));
+            recipe.AddIngredient(calamity.ItemType("BlossomFlux"));
+            recipe.AddIngredient(calamity.ItemType("Tumbleweed"));
+            recipe.AddIngredient(calamity.ItemType("Leviatitan"));
+            recipe.AddIngredient(calamity.ItemType("Triploon"));
+            recipe.AddIngredient(calamity.ItemType("Aeries"));
+            recipe.AddIngredient(calamity.ItemType("MagnaStriker"));
+            
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

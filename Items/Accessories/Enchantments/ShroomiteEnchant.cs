@@ -18,10 +18,10 @@ Not moving puts you in stealth
 While in stealth, crits deal 4x damage
 ";
 
-            /*if(thorium != null)
+            if(thorium != null)
             {
-                tooltip += "Attacks inflict Fungal Growth";
-            }*/
+                tooltip += "Attacks may inflict Fungal Growth\n";
+            }
 
             tooltip += "Summons a pet Truffle";
 
@@ -52,7 +52,7 @@ While in stealth, crits deal 4x damage
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                //recipe.AddIngredient(null, "FungusEnchant");
+                recipe.AddIngredient(null, "FungusEnchant");
                 recipe.AddIngredient(ItemID.MushroomSpear);
                 recipe.AddIngredient(thorium.ItemType("MyceliumGattlingPulser"));
                 recipe.AddIngredient(ItemID.ChlorophyteShotbow);

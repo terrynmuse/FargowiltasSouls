@@ -9,20 +9,15 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
     {
         private int shoot;
 
-        public override bool Autoload(ref string name)
-        {
-            return false;
-        }
-
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Twin Rangs");
-            Tooltip.SetDefault("");
+            DisplayName.SetDefault("The Twins");
+            Tooltip.SetDefault("The compressed forms of defeated foes..");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 30;
+            item.damage = 60;
             item.melee = true;
             item.width = 30;
             item.height = 30;
@@ -31,9 +26,9 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             item.noUseGraphic = true;
             item.useStyle = 1;
             item.knockBack = 3;
-            item.value = 8;
-            item.rare = 6;
-            item.shootSpeed = 12f;
+            item.value = 100000;
+            item.rare = 5;
+            item.shootSpeed = 20;
             item.shoot = 1;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
@@ -43,12 +38,12 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             if (shoot == 0)
             {
-                type = ProjectileID.IceBoomerang;
+                type = mod.ProjectileType("Retirang");
                 shoot = 1;
             }
             else
             {
-                type = ProjectileID.EnchantedBoomerang;
+                type = mod.ProjectileType("Spazmarang");
                 shoot = 0;
             }
 

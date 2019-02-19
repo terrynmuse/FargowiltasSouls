@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -24,9 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 Allows you to breathe underwater
 Grants the ability to swim
-Being in water increases damage and damage reduction by 10%
-Attracts all nearby air bubbles found within the Aquatic Depths
-Doubles the duration of 'Refreshing Bubble' when held");
+Effects of Sea Breeze Pendant and Bubble Magnet");
         }
 
         public override void SetDefaults()
@@ -51,20 +47,13 @@ Doubles the duration of 'Refreshing Bubble' when held");
             }
             //sea breeze pendant
             player.accFlipper = true;
-            if (player.wet)
+
+            if (player.wet || thoriumPlayer.drownedDoubloon)
             {
                 player.AddBuff(thorium.BuffType("AquaticAptitude"), 60, true);
-                player.meleeDamage += 0.1f;
-                player.thrownDamage += 0.1f;
-                player.rangedDamage += 0.1f;
-                player.magicDamage += 0.1f;
-                player.minionDamage += 0.1f;
-                //missing from divers nice MEME
-                thoriumPlayer.radiantBoost += 0.1f;
-                thoriumPlayer.symphonicDamage += 0.1f;
-                //from ocean set why not
-                thoriumPlayer.thoriumEndurance += 0.1f;
+                player.GetModPlayer<FargoPlayer>().AllDamageUp(.1f);
             }
+
             //bubble magnet
             thoriumPlayer.bubbleMagnet = true;
         }

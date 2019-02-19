@@ -1,18 +1,30 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class TerrariaSoul : ModItem
     {
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
+        public bool allowJump = true;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of Terraria");
-            Tooltip.SetDefault(
+
+            string tooltip = 
 @"'A true master of Terraria'
-Summons fireballs, icicles, a leaf crystal, Hallowed sword and shield, Beetles, and every pet
+";
+
+            if (thorium == null)
+            {
+                tooltip +=
+@"Summons fireballs, icicles, a leaf crystal, Hallowed sword and shield, Beetles, and lots of pets
 Toggle vanity to remove all Pets, Right Click to Guard
 Double tap down to call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
 Press the Freeze Key to freeze time for 5 seconds, minions spew scythes 
@@ -22,10 +34,31 @@ Attacks cause increased life regen, shadow dodge, meteor showers, reduced enemy 
 Critical chance is set to 25%, Crit to increase it by 5%, At 100% every 10th attack gains 4% life steal
 Getting hit drops your crit back down, releases a spore explosion and reflects damage
 One attack gains 5% life steal every second, capped at 5 HP
-Projectiles may split or shatter, Hearts and Stars heal twice as much, 
+Projectiles may split or shatter, Hearts and Stars heal twice as much";
+            }
+            else
+            {
+                tooltip +=
+@"Summons fireballs, icicles, a leaf crystal, Hallowed sword and shield, Beetles, and lots of pets
+Toggle vanity to remove all Pets
+Double tap down to call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Press the Freeze Key to freeze time for 5 seconds, minions spew scythes 
+Solar shield allows you to dash, Dash into any walls, to teleport through them
+Attacks may spawn flower petals, spectre orbs, a Dungeon Guardian, or buff boosters
+Attacks cause increased life regen and reduced enemy knockback immunity
+Critical chance is set to 25%, Crit to increase it by 5%, At 100% every 10th attack gains 4% life steal
+Getting hit drops your crit back down, releases a spore explosion and reflects damage
+One attack gains 5% life steal every second, capped at 5 HP
+Projectiles may split or shatter, Stars heal twice as much";
+            }
+
+            tooltip += 
+@"
 Nearby enemies are ignited, You leave behind a trail of fire when you walk
 Most other effects of material Forces
-When you die, you explode and revive with 200 HP");
+When you die, you explode and revive with 200 HP";
+
+            Tooltip.SetDefault(tooltip);
 
             /*
              -not listed
@@ -35,7 +68,17 @@ When you die, you explode and revive with 200 HP");
             If the enemy has Midas, the chance and bonus is doubled
             Effects of Hive Pack, Flower Boots, Master Ninja Gear, Celestial Shell, Shiny Stone, and Greedy Ring
             Your weapon's projectiles occasionally shoot from the shadows of where you used to be
-            Enemies will explode into needles on death            
+            Enemies will explode into needles on death  
+            
+            THORIUM
+            Effects of Proof of Avarice
+            Killing enemies or continually damaging bosses generates soul wisps
+            After generating 5 wisps, they are instantly consumed to heal you for 10 life
+
+            Attack speed is increased by 5% at every 25% segment of life
+            Effects of Spring Steps and Slag Stompers
+
+
              * */
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 24));
@@ -62,14 +105,20 @@ When you die, you explode and revive with 200 HP");
 
             //TERRA
             modPlayer.TerraForce = true; //crit effect improved
-            modPlayer.CopperEnchant = true; //lightning
-            modPlayer.TinEffect(); //crits
-            player.dash = 2;
-            modPlayer.IronEffect(); //shield
-            if (Soulcheck.GetValue("Iron Magnet"))
+
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                modPlayer.IronEnchant = true;
+                modPlayer.CopperEnchant = true; //lightning
+                player.dash = 2;
+                modPlayer.IronEffect(); //shield
+                if (Soulcheck.GetValue("Iron Magnet"))
+                {
+                    modPlayer.IronEnchant = true;
+                }
             }
+
+            modPlayer.TinEffect(); //crits
+            //obsidian
             player.fireWalk = true;
             player.lavaImmune = true;
 
@@ -78,11 +127,18 @@ When you die, you explode and revive with 200 HP");
             modPlayer.PalladiumEffect(); //regen on hit, heals
             modPlayer.OrichalcumEffect(); //fireballs and petals
             modPlayer.AdamantiteEnchant = true; //split
-            modPlayer.TitaniumEffect(); //shadow dodge, full hp resistance
+
+            if (!Fargowiltas.Instance.ThoriumLoaded)
+                modPlayer.TitaniumEffect(); //shadow dodge, full hp resistance
 
             //NATURE
-            modPlayer.NatureForce = true; //bulb, cryo effect
-            modPlayer.CrimsonEffect(hideVisual); //regen, hearts heal more, pets
+            modPlayer.NatureForce = true;
+
+            if (!Fargowiltas.Instance.ThoriumLoaded)
+            {
+                modPlayer.CrimsonEffect(hideVisual); //regen, hearts heal more, pets
+            }
+
             modPlayer.MoltenEffect(25); //inferno and explode
             modPlayer.FrostEffect(75, hideVisual); //icicles, pets
             modPlayer.JungleEffect(); //spores
@@ -90,7 +146,7 @@ When you die, you explode and revive with 200 HP");
             modPlayer.ShroomiteEffect(hideVisual); //pet
 
             //LIFE
-            modPlayer.LifeForce = true; //tide hunter, yew wood, iridescent effects
+            modPlayer.LifeForce = true; 
             modPlayer.BeeEffect(hideVisual); //bees ignore defense, super bees, pet
             modPlayer.SpiderEffect(hideVisual); //pet
             modPlayer.BeetleEffect(); //defense beetle bois
@@ -109,7 +165,7 @@ When you die, you explode and revive with 200 HP");
             modPlayer.SpectreEffect(hideVisual); //pet
 
             //SHADOW
-            modPlayer.ShadowForce = true; //warlock, shade, plague accessory effect for all
+            modPlayer.ShadowForce = true; 
             modPlayer.DarkArtistEffect(hideVisual); //shoot from where you were meme, pet
             modPlayer.NecroEffect(hideVisual); //DG meme, pet
             modPlayer.ShadowEffect(hideVisual); //pets
@@ -137,13 +193,119 @@ When you die, you explode and revive with 200 HP");
             player.shinyStone = true;
 
             //COSMOS
-            modPlayer.CosmoForce = true; //white dwarf flames, tide turner daggers, pyro bursts, assassin insta kill
-            modPlayer.MeteorEffect(75); //meteor shower
+            modPlayer.CosmoForce = true; 
+
+            if (!Fargowiltas.Instance.ThoriumLoaded)
+            {
+                //meteor shower
+                modPlayer.MeteorEffect(75);
+            }
+
             modPlayer.SolarEffect(); //solar shields
             modPlayer.VortexEffect(hideVisual); //stealth, voids, pet
             modPlayer.NebulaEffect(); //boosters
             modPlayer.StardustEffect(); //guardian and time freeze
             modPlayer.AddPet("Suspicious Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
+
+            if(Fargowiltas.Instance.ThoriumLoaded)
+
+
+            if (Fargowiltas.Instance.CalamityLoaded)
+                mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
+        }
+
+        private void Thorium(Player player, bool hideVisual)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
+            //NATURE
+
+            thoriumPlayer.orbital = true;
+            thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.075000002980232239, default(Vector2));
+            //making divers code less of a meme :scuseme:
+            if (player.statLife > player.statLifeMax * 0.75)
+            {
+                thoriumPlayer.berserkStage = 1;
+            }
+            else if (player.statLife > player.statLifeMax * 0.5)
+            {
+                modPlayer.AttackSpeed *= 1.05f;
+                thoriumPlayer.berserkStage = 2;
+            }
+            else if (player.statLife > player.statLifeMax * 0.25)
+            {
+                modPlayer.AttackSpeed *= 1.1f;
+                thoriumPlayer.berserkStage = 3;
+            }
+            else
+            {
+                modPlayer.AttackSpeed *= 1.15f;
+                thoriumPlayer.berserkStage = 4;
+            }
+
+            //spring steps
+            player.extraFall += 10;
+            if (player.velocity.Y < 0f && allowJump)
+            {
+                allowJump = false;
+                thoriumPlayer.jumps++;
+            }
+            if (player.velocity.Y > 0f || player.sliding || player.justJumped)
+            {
+                allowJump = true;
+            }
+            if (thoriumPlayer.jumps == 0)
+            {
+                player.jumpSpeedBoost += 5f;
+            }
+            if (thoriumPlayer.jumps == 1)
+            {
+                player.jumpSpeedBoost += 1f;
+            }
+            if (thoriumPlayer.jumps == 2)
+            {
+                player.jumpSpeedBoost += 1.75f;
+            }
+            if (thoriumPlayer.jumps >= 3)
+            {
+                float num = 16f;
+                int num2 = 0;
+                while (num2 < num)
+                {
+                    Vector2 vector = Vector2.UnitX * 0f;
+                    vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(5f, 20f);
+                    vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
+                    int num3 = Dust.NewDust(player.Center, 0, 0, 127, 0f, 0f, 0, default(Color), 1f);
+                    Main.dust[num3].scale = 1.35f;
+                    Main.dust[num3].noGravity = true;
+                    Main.dust[num3].position = player.Center + vector;
+                    Dust dust = Main.dust[num3];
+                    dust.position.Y = dust.position.Y + 12f;
+                    Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
+                    int num4 = num2;
+                    num2 = num4 + 1;
+                }
+                Main.PlaySound(SoundID.Item74, player.position);
+                thoriumPlayer.jumps = 0;
+            }
+            //slag stompers
+            timer++;
+            if (timer > 20)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.1f * Main.rand.Next(-25, 25), 2f, thorium.ProjectileType("SlagPro"), 20, 1f, Main.myPlayer, 0f, 0f);
+                timer = 0;
+            }
+
+
+            //WILL
+            //proof of avarice
+            thoriumPlayer.avarice2 = true;
+            modPlayer.AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
+            modPlayer.AddPet("Glitter Pet", hideVisual, thorium.BuffType("ShineDust"), thorium.ProjectileType("ShinyPet"));
+
+            //COSMOS
+
         }
 
         public override void AddRecipes()
@@ -157,6 +319,9 @@ When you die, you explode and revive with 200 HP");
             recipe.AddIngredient(null, "ShadowForce");
             recipe.AddIngredient(null, "WillForce");
             recipe.AddIngredient(null, "CosmoForce");
+
+            if (Fargowiltas.Instance.CalamityLoaded)
+                recipe.AddIngredient(null, "CalamityForce");
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

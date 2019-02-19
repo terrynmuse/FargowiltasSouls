@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     public class SupersonicSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
+
         //air walker meme'
         public bool jumped;
         public bool canHover;
@@ -33,7 +35,7 @@ Grants immunity to lava and fall damage";
 
             if (thorium != null)
             {
-                tooltip += "Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
+                tooltip += "\nEffects of Air Walkers, Survivalist Boots, and Weighted Winglets";
             }
 
             Tooltip.SetDefault(tooltip);
@@ -237,35 +239,32 @@ Grants immunity to lava and fall damage";
                 recipe.AddIngredient(thorium.ItemType("AirWalkers"));
                 recipe.AddIngredient(thorium.ItemType("SurvivalistBoots"));
                 recipe.AddIngredient(thorium.ItemType("WeightedWinglets"));
-                recipe.AddIngredient(thorium.ItemType("Boots"));
                 recipe.AddIngredient(ItemID.ArcticDivingGear);
-                recipe.AddIngredient(ItemID.FrogLeg);
-                recipe.AddIngredient(ItemID.BundleofBalloons);
-
-                recipe.AddIngredient(ItemID.SlimySaddle);
-                recipe.AddIngredient(ItemID.BlessedApple);
-                recipe.AddIngredient(ItemID.AncientHorn);
-                recipe.AddIngredient(ItemID.ShrimpyTruffle);
-                recipe.AddIngredient(ItemID.ReindeerBells);
-                recipe.AddIngredient(ItemID.BrainScrambler);
             }
             else
             {
-                //no others
                 recipe.AddIngredient(ItemID.FrostsparkBoots);
                 recipe.AddIngredient(ItemID.LavaWaders);
                 recipe.AddIngredient(ItemID.ArcticDivingGear);
+            }
+
+            if (Fargowiltas.Instance.CalamityLoaded)
+            {
+                recipe.AddIngredient(calamity.ItemType("MOAB"));
+            }
+            else
+            {
                 recipe.AddIngredient(ItemID.FrogLeg);
                 recipe.AddIngredient(ItemID.BundleofBalloons);
-
-                recipe.AddIngredient(ItemID.SlimySaddle);
-                recipe.AddIngredient(ItemID.FuzzyCarrot);
-                recipe.AddIngredient(ItemID.BlessedApple);
-                recipe.AddIngredient(ItemID.AncientHorn);
-                recipe.AddIngredient(ItemID.ShrimpyTruffle);
-                recipe.AddIngredient(ItemID.ReindeerBells);
-                recipe.AddIngredient(ItemID.BrainScrambler);
             }
+            
+            recipe.AddIngredient(ItemID.SlimySaddle);
+            recipe.AddIngredient(ItemID.FuzzyCarrot);
+            recipe.AddIngredient(ItemID.BlessedApple);
+            recipe.AddIngredient(ItemID.AncientHorn);
+            recipe.AddIngredient(ItemID.ShrimpyTruffle);
+            recipe.AddIngredient(ItemID.ReindeerBells);
+            recipe.AddIngredient(ItemID.BrainScrambler);
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

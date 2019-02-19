@@ -9,6 +9,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces
     public class NatureForce : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
+        public bool allowJump = true;
 
         public override void SetStaticDefaults()
         {
@@ -18,8 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 @"'Tapped into every secret of the wilds'
 ";
 
-            //if (thorium == null)
-            //{
+            if (thorium == null)
+            {
                 tooltip +=
 @"Greatly increases life regen
 Hearts heal for 1.5x as much
@@ -32,24 +34,25 @@ Summons a leaf crystal to shoot at nearby enemies
 Not moving puts you in stealth
 While in stealth, crits deal 4x damage
 Summons several pets";
-            /*}
+            }
             else
             {
                 tooltip +=
-@"Allows you to breathe underwater and swim
-Taking or dealing damage may release a poisoning spore cloud
+@"Greatly increases life regen and Hearts heal for 1.5x as much
+Nearby enemies are ignited
+When you die, you violently explode dealing massive damage
+Attack speed is increased by 5% at every 25% segment of life
+Enemies that you set on fire or singe will take additional damage over time
+Icicles will start to appear around you
+When there are three, attacking will launch them towards the cursor
+Taking and dealing damage will release a poisoning spore explosion
 Summons a leaf crystal to shoot at nearby enemies
 Not moving puts you in stealth, While in stealth, crits deal 4x damage
-Attacks inflict Fungal Growth
-An icy aura and icicles will start to appear around you
-Damage will duplicate itself for 33% of the damage and apply the Frozen debuff
-Greatly increases life regen
-Your damage has a 10% chance to cause an eruption of blood or flesh drop
-Nearby enemies are ignited
-When you die, you violently explode dealing massive damage to surrounding enemies
-Enemies that you poison, envenom, or set on fire will take extra damage over time
+Attacks may inflict Fungal Growth
+Effects of Night Shade Petal, Sub-Zero Subwoofer, and Toxic Subwoofer 
+Effects of Spring Steps and Slag Stompers
 Summons several pets";
-            }*/
+            }
 
             Tooltip.SetDefault(tooltip);
         }
@@ -69,8 +72,13 @@ Summons several pets";
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //bulb, cryo effect
             modPlayer.NatureForce = true;
-            //regen, hearts heal more, pets
-            modPlayer.CrimsonEffect(hideVisual);
+
+            if (!Fargowiltas.Instance.ThoriumLoaded)
+            {
+                //regen, hearts heal more, pets
+                modPlayer.CrimsonEffect(hideVisual);
+            }
+            
             //inferno and explode
             modPlayer.MoltenEffect(25);
             //icicles, pets
@@ -82,63 +90,125 @@ Summons several pets";
             //stealth, crits, pet
             modPlayer.ShroomiteEffect(hideVisual);
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual); ;
+        }
 
-            ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            //sandstone? nothin
-            //ocean/depth diver stuff
-            modPlayer.DepthEnchant = true;
-            modPlayer.AddPet("Jellyfish Pet", hideVisual, thorium.BuffType("JellyPet"), thorium.ProjectileType("JellyfishPet"));
-            //ocean set bonus, breath underwater
-            if (player.breath <= player.breathMax + 2)
+        private void Thorium(Player player, bool hideVisual)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //subwoofer
+            thoriumPlayer.bardRangeBoost += 450;
+            for (int i = 0; i < 255; i++)
             {
-                player.breath = player.breathMax + 3;
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerPoison = true;
+                    thoriumPlayer.empowerFrost = true;
+                }
             }
-            player.accFlipper = true;
             //night shade petal
             thoriumPlayer.nightshadeBoost = true;
-            //pet
-            modPlayer.AddPet("Owl Pet", hideVisual, thorium.BuffType("SnowyOwlBuff"), thorium.ProjectileType("SnowyOwlPet"));
-            thoriumPlayer.snowyOwl = true;
-            //icy set bonus
-            thoriumPlayer.icySet = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
+
+            thoriumPlayer.orbital = true;
+            thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.075000002980232239, default(Vector2));
+            //making divers code less of a meme :scuseme:
+            if (player.statLife > player.statLifeMax * 0.75)
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
+                thoriumPlayer.berserkStage = 1;
             }
-            //flesh set bonus
-            thoriumPlayer.Symbiotic = true;
-            //vampire gland
-            thoriumPlayer.vampireGland = true;
-            //blister pet
-            modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
-            thoriumPlayer.blisterPet = true;
-            //magma set bonus
-            thoriumPlayer.magmaSet = true;*/
+            else if (player.statLife > player.statLifeMax * 0.5)
+            {
+                modPlayer.AttackSpeed *= 1.05f;
+                thoriumPlayer.berserkStage = 2;
+            }
+            else if (player.statLife > player.statLifeMax * 0.25)
+            {
+                modPlayer.AttackSpeed *= 1.1f;
+                thoriumPlayer.berserkStage = 3;
+            }
+            else
+            {
+                modPlayer.AttackSpeed *= 1.15f;
+                thoriumPlayer.berserkStage = 4;
+            }
+
+            //magma
+            thoriumPlayer.magmaSet = true;
+            //spring steps
+            player.extraFall += 10;
+            if (player.velocity.Y < 0f && allowJump)
+            {
+                allowJump = false;
+                thoriumPlayer.jumps++;
+            }
+            if (player.velocity.Y > 0f || player.sliding || player.justJumped)
+            {
+                allowJump = true;
+            }
+            if (thoriumPlayer.jumps == 0)
+            {
+                player.jumpSpeedBoost += 5f;
+            }
+            if (thoriumPlayer.jumps == 1)
+            {
+                player.jumpSpeedBoost += 1f;
+            }
+            if (thoriumPlayer.jumps == 2)
+            {
+                player.jumpSpeedBoost += 1.75f;
+            }
+            if (thoriumPlayer.jumps >= 3)
+            {
+                float num = 16f;
+                int num2 = 0;
+                while (num2 < num)
+                {
+                    Vector2 vector = Vector2.UnitX * 0f;
+                    vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(5f, 20f);
+                    vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
+                    int num3 = Dust.NewDust(player.Center, 0, 0, 127, 0f, 0f, 0, default(Color), 1f);
+                    Main.dust[num3].scale = 1.35f;
+                    Main.dust[num3].noGravity = true;
+                    Main.dust[num3].position = player.Center + vector;
+                    Dust dust = Main.dust[num3];
+                    dust.position.Y = dust.position.Y + 12f;
+                    Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
+                    int num4 = num2;
+                    num2 = num4 + 1;
+                }
+                Main.PlaySound(SoundID.Item74, player.position);
+                thoriumPlayer.jumps = 0;
+            }
+            //slag stompers
+            timer++;
+            if (timer > 20)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.1f * Main.rand.Next(-25, 25), 2f, thorium.ProjectileType("SlagPro"), 20, 1f, Main.myPlayer, 0f, 0f);
+                timer = 0;
+            }
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            /*if(Fargowiltas.Instance.ThoriumLoaded)
+            if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(null, "SandstoneEnchant");
-                recipe.AddIngredient(null, "DepthDiverEnchant");
+                recipe.AddIngredient(null, "FrostEnchant");
                 recipe.AddIngredient(null, "ChlorophyteEnchant");
                 recipe.AddIngredient(null, "ShroomiteEnchant");
-                recipe.AddIngredient(null, "CryoMagusEnchant");
-                recipe.AddIngredient(null, "DemonBloodEnchant");
                 recipe.AddIngredient(null, "BerserkerEnchant"); 
             }
             else
-            {*/
+            {
                 recipe.AddIngredient(null, "CrimsonEnchant");
                 recipe.AddIngredient(null, "MoltenEnchant");
                 recipe.AddIngredient(null, "FrostEnchant");
                 recipe.AddIngredient(null, "ChlorophyteEnchant");
                 recipe.AddIngredient(null, "ShroomiteEnchant");
-            //}
+            }
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

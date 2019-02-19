@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -23,7 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Harmonious energy embraces you'
 Pressing the 'Special Ability' key will summon an incredibly powerful aura around your cursor
-Creating this aura costs 150 mana");
+Creating this aura costs 150 mana
+Effects of Ascension Statuette");
         }
 
         public override void SetDefaults()
@@ -42,6 +41,8 @@ Creating this aura costs 150 mana");
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.celestialSet = true;
+            //ascension statue
+            thoriumPlayer.ascension = true;
         }
         
         private readonly string[] items =
@@ -50,8 +51,8 @@ Creating this aura costs 150 mana");
             "CelestialVestment",
             "CelestialLeggings",
             "CelestialTrinity",
-            "HealingRain",
             "AscensionStatuette",
+            "HealingRain",
             "AncientTome",
             "BlackScythe",
             "CelestialNova",

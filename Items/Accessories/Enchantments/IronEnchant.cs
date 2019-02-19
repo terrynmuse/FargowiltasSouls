@@ -24,7 +24,7 @@ You attract items from a larger range";
 
             if (thorium != null)
             {
-                tooltip += "You constantly generate a 12 life shield\n";
+                tooltip += "Effects of Iron Shield\n";
             }
 
             Tooltip.SetDefault(tooltip); 

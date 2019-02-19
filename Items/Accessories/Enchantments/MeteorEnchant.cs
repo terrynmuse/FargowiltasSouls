@@ -17,10 +17,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Cosmic power builds your magical prowess'
 A meteor shower initiates every few seconds while attacking";
 
-            /*if(thorium != null)
+            if(thorium != null)
             {
-                tooltip += "Summons a pet Bio-Feeder";
-            }*/
+                tooltip += "\nSummons a pet Bio-Feeder";
+            }
 
             Tooltip.SetDefault(tooltip);
         }
@@ -40,16 +40,11 @@ A meteor shower initiates every few seconds while attacking";
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             modPlayer.MeteorEffect(50);
 
-            /*if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.bioPet = true;
-            modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));*/
-        }
-
-        private void Thorium(Player player)
-        {
-
+            modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
         }
 
         public override void AddRecipes()

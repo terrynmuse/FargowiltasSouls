@@ -13,9 +13,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Valhalla Knight Enchantment");
             Tooltip.SetDefault(
 @"'Valhalla calls'
-Greatly enhances Ballista effectiveness
 Swords and spears will slowly remove enemy knockback immunity
-Shiny Stone effects
+Greatly enhances Ballista effectiveness
+Effects of Shiny Stone
 Summons a pet Dragon");
         }
 

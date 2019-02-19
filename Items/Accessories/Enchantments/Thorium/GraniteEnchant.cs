@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -13,10 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -24,10 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Defensively energized'
 Immune to intense heat and enemy knockback, but your movement speed is slowed down greatly
-While equipped, energy will slowly seep out and attack nearby enemies
-Your symphonic damage empowers nearby ally attacks with energy overflow
-Damage done against overflowed enemies is increased by 8%
-Doubles the range of your empowerments effect radius");
+Effects of Eye of the Storm and Energized Subwoofer");
         }
 
         public override void SetDefaults()
@@ -70,8 +66,15 @@ Doubles the range of your empowerments effect radius");
                 }
             }
             //granite woofer
-            //thoriumPlayer.subwooferGranite = true;
             thoriumPlayer.bardRangeBoost += 450;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerGranite = true;
+                }
+            }
         }
         
         private readonly string[] items =

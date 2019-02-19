@@ -15,34 +15,28 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Chlorophyte Enchantment");
 
-            string tooltip = 
+            string tooltip =
 @"'The jungle's essence crystallizes above you'
 Summons a leaf crystal to shoot at nearby enemies
 Chance to steal 4 mana with each attack
 Taking damage will release a poisoning spore explosion
+Flowers grow on the grass you walk on
+All herb collection is doubled
 ";
 
             if(thorium != null)
             {
-                //bulb stuff
-                //Your magic damage has a chance to poison hit enemies with a spore cloud
-                //Enemies that you poison or envenom will take additional damage over time
-                //When out of combat for 5 seconds, life recovery will increase up to 3 over time
-
                 tooltip +=
-@"You and nearby allies have a chance to poison enemies when attacking
-Doubles the range of your empowerments effect radius
+@"Your attacks have a chance to poison hit enemies with a spore cloud
+Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer
 ";
             }
-            /*else
-            {*/
-                tooltip += "Allows the collection of Vine Rope from vines\n";
-            //}
+            else
+            {
+                tooltip += "Effects of Guide to Plant Fiber Cordage\n";
+            }
 
-            tooltip +=
-@"Flowers grow on the grass you walk on
-All herb collection is doubled
-Summons a pet Seedling";
+            tooltip += "Summons a pet Seedling";
 
             Tooltip.SetDefault(tooltip);
         }
@@ -62,7 +56,7 @@ Summons a pet Seedling";
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //crystal and pet
             modPlayer.ChloroEffect(hideVisual, 100);
-            //herb double
+            //herb double and bulb effect with thorium
             modPlayer.ChloroEnchant = true;
             modPlayer.FlowerBoots();
             modPlayer.JungleEffect();
@@ -83,9 +77,6 @@ Summons a pet Seedling";
                     thoriumPlayer.empowerPoison = true;
                 }
             }
-            /*
-            //bulb set bonus
-            thoriumPlayer.bulbSpore = true;
             //petal shield
             if (thoriumPlayer.outOfCombat)
             {
@@ -112,7 +103,7 @@ Summons a pet Seedling";
                 timer = 0;
             }
             //night shade petal
-            thoriumPlayer.nightshadeBoost = true;*/
+            thoriumPlayer.nightshadeBoost = true;
         }
 
         public override void AddRecipes()
@@ -125,7 +116,7 @@ Summons a pet Seedling";
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {
-                //recipe.AddIngredient(null, "BulbEnchant");
+                recipe.AddIngredient(null, "BulbEnchant");
                 recipe.AddIngredient(ItemID.FlowerBoots);
                 recipe.AddIngredient(ItemID.StaffofRegrowth);
                 recipe.AddIngredient(ItemID.LeafBlower);

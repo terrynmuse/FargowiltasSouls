@@ -12,18 +12,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crier Enchantment");
             Tooltip.SetDefault(
-                @"''
- +10% inspiriation regeneration rate
- Increases the duration of your symphonic empowerments by 2 seconds");
+@"''
+10% increased inspiration regeneration
+Effects of Music Notes");
         }
 
         public override void SetDefaults()
@@ -39,12 +37,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            CrierEffect(player);
-        }
-        
-        private void CrierEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.bardResourceRecharge += 10;
             //music notes

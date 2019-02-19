@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Made from mythical scales'
 Your attacks have a chance to unleash an explosion of Dragon's Flame
 Your attacks may inflict Darkness on enemies
-Increases armor penetration by 15
+Effects of Dragon Talon Necklace
 Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
         }
 

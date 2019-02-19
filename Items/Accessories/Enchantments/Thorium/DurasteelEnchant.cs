@@ -14,10 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -25,12 +23,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Masterfully forged by the Blacksmith'
 12% damage reduction
-Landing on solid ground releases a powerful shockwave
-The damage, knockback, and range of the shock wave is increased by the fall distance
-Grants the ability to dash into the enemy, knockback immunity and Ice Skates effect
+Grants the ability to dash into the enemy
 Right Click to guard with your shield
-Magnetizes all loose items on the screen
-50% of the damage you take is also dealt to the attacker");
+Effects of the Ogre Sandals, Spiked Bracers, and Greedy Magnet");
         }
 
         public override void SetDefaults()
@@ -41,6 +36,7 @@ Magnetizes all loose items on the screen
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 3;
             item.value = 80000;
+            item.shieldSlot = 5;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -109,13 +105,10 @@ Magnetizes all loose items on the screen
                     Main.item[i].velocity.Y = (Main.item[i].velocity.Y * (num5 - 1) + num3) / num5;
                 }
             }
-            //darksteel bonuses
-            player.noKnockback = true;
-            player.iceSkate = true;
             //EoC Shield
             player.dash = 2;
             //spiked bracers
-            player.thorns += 0.5f;
+            player.thorns += 0.25f;
             //iron shield raise
             player.GetModPlayer<FargoPlayer>(mod).IronEffect();
         }

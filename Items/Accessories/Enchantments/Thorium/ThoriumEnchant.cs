@@ -3,19 +3,19 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
     public class ThoriumEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        public int timer;
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -23,9 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'It pulses with energy'
 10% increased damage
-Taking more than three damage will replenish health and mana
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
-Increases max inspiration by 2");
+Effects of Thorium Shield, Crietz, and Fan Letter");
         }
 
         public override void SetDefaults()
@@ -44,15 +43,26 @@ Increases max inspiration by 2");
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //thorium set bonus 
-            player.meleeDamage += 0.1f;
-            player.thrownDamage += 0.1f;
-            player.rangedDamage += 0.1f;
-            player.magicDamage += 0.1f;
-            player.minionDamage += 0.1f;
-            thoriumPlayer.radiantBoost += 0.1f;
-            thoriumPlayer.symphonicDamage += 0.1f;
-            //band of replenishment
-            thoriumPlayer.BandofRep = true;
+            player.GetModPlayer<FargoPlayer>().AllDamageUp(.1f);
+            //thorium shield
+            timer++;
+            if (timer >= 30)
+            {
+                int num = 18;
+                if (thoriumPlayer.shieldHealth <= num)
+                {
+                    thoriumPlayer.shieldHealthTimerStop = true;
+                }
+                if (thoriumPlayer.shieldHealth < num)
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
+                    thoriumPlayer.shieldHealth++;
+                    player.statLife++;
+                }
+                timer = 0;
+            }
+            //crietz
+            thoriumPlayer.crietzAcc = true;
             //jester bonus
             thoriumPlayer.jesterSet = true;
             //fan letter
@@ -78,8 +88,8 @@ Increases max inspiration by 2");
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddIngredient(null, "JesterEnchant");
-            recipe.AddIngredient(thorium.ItemType("BandofReplenishment"));
-            recipe.AddIngredient(thorium.ItemType("WhirlpoolSaber"));
+            recipe.AddIngredient(thorium.ItemType("ThoriumShield"));
+            recipe.AddIngredient(thorium.ItemType("Crietz"));
             recipe.AddIngredient(thorium.ItemType("ThoriumCube"));
 
             recipe.AddTile(TileID.DemonAltar);

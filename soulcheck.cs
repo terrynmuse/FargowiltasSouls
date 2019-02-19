@@ -36,7 +36,6 @@ namespace FargowiltasSouls
             ["Gladiator Speedup"] = new Color(81, 181, 113),
             ["Silver Sword Familiar"] = new Color(81, 181, 113),
             ["Tungsten Effect"] = new Color(81, 181, 113),
-            //["Gold Coin Trashing"] = new Color(81, 181, 113),
             ["Shadow Darkness"] = new Color(81, 181, 113),
             ["Jungle Spores"] = new Color(81, 181, 113),
             ["Meteor Shower"] = new Color(81, 181, 113),
@@ -67,7 +66,6 @@ namespace FargowiltasSouls
             ["Vortex Voids"] = new Color(81, 181, 113),
             ["Nebula Boosters"] = new Color(81, 181, 113),
             ["Stardust Guardian"] = new Color(81, 181, 113),
-
 
 
             #endregion
@@ -122,23 +120,29 @@ namespace FargowiltasSouls
             ["Crystal Scorpion"] = new Color(81, 181, 113),
             ["Yuma's Pendant"] = new Color(81, 181, 113),
             ["Head Mirror"] = new Color(81, 181, 113),
-            /*["Omega Pet"] = new Color(81, 181, 113),
+
+            ["Li'l Devil Minion"] = new Color(81, 181, 113),
+            ["Li'l Cherub Minion"] = new Color(81, 181, 113),
+            ["Sapling Minion"] = new Color(81, 181, 113),
+
+
+
+            ["Omega Pet"] = new Color(81, 181, 113),
             ["I.F.O. Pet"] = new Color(81, 181, 113),
             ["Bio-Feeder Pet"] = new Color(81, 181, 113),
             ["Blister Pet"] = new Color(81, 181, 113),
             ["Wyvern Pet"] = new Color(81, 181, 113),
             ["Inspiring Lantern Pet"] = new Color(81, 181, 113),
             ["Lock Box Pet"] = new Color(81, 181, 113),
-            ["Li'l Devil Minion"] = new Color(81, 181, 113),
-            ["Li'l Cherub Minion"] = new Color(81, 181, 113),
             ["Life Spirit Pet"] = new Color(81, 181, 113),
             ["Holy Goat Pet"] = new Color(81, 181, 113),
-            ["Sapling Minion"] = new Color(81, 181, 113),
             ["Owl Pet"] = new Color(81, 181, 113),
             ["Jellyfish Pet"] = new Color(81, 181, 113),
             ["Moogle Pet"] = new Color(81, 181, 113),
             ["Maid Pet"] = new Color(81, 181, 113),
-            ["Pink Slime Pet"] = new Color(81, 181, 113),*/
+            ["Pink Slime Pet"] = new Color(81, 181, 113),
+            ["Glitter Pet"] = new Color(81, 181, 113),
+            ["Coin Bag Pet"] = new Color(81, 181, 113),
             #endregion
         };
 
@@ -210,7 +214,7 @@ namespace FargowiltasSouls
                     CreateCheckbox(toggle.Key, toggle.Value);
                     count++;
 
-                    if(count >= toggles.Count - 4) // minus num of thorium toggles so far
+                    if(count >= toggles.Count - 21) // minus num of thorium toggles so far
                     {
                         break;
                     }

@@ -4,23 +4,37 @@ using Terraria.ID;
 using static Terraria.ID.ItemID;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class ArchWizardsSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Arch Wizard's Soul");
-            Tooltip.SetDefault(
+
+            string tooltip = 
 @"'Arcane to the core'
 30% increased magic damage
 20% increased spell casting speed
 15% increased magic crit chance
 Increases your maximum mana by 200
-Celestial Cuffs and Mana Flower effects");
+";
+
+            if (calamity == null)
+            {
+                tooltip += "Effects of Celestial Cuffs and Mana Flower";
+            }
+            else
+            {
+                tooltip += "Effects of Celestial Cuffs and Ethereal Talisman";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -53,6 +67,14 @@ Celestial Cuffs and Mana Flower effects");
             player.manaFlower = true;
             player.manaMagnet = true;
             player.magicCuffs = true;
+
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
+        }
+
+        private void Calamity(Player player)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.eTalisman = true;
         }
 
         public override void AddRecipes()
@@ -60,10 +82,10 @@ Celestial Cuffs and Mana Flower effects");
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(null, "ApprenticesEssence");
+            recipe.AddIngredient(Fargowiltas.Instance.CalamityLoaded ? calamity.ItemType("EtherealTalisman") : ManaFlower);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(ManaFlower);
                 recipe.AddIngredient(CelestialCuffs);
                 recipe.AddIngredient(thorium.ItemType("TwinsIre"));
                 recipe.AddIngredient(thorium.ItemType("TerraStaff"));
@@ -71,15 +93,10 @@ Celestial Cuffs and Mana Flower effects");
                 recipe.AddIngredient(thorium.ItemType("SpectrelBlade"));
                 recipe.AddIngredient(thorium.ItemType("LightningStaff"));
                 recipe.AddIngredient(ApprenticeStaffT3);
-                recipe.AddIngredient(thorium.ItemType("NuclearFury"));
-                recipe.AddIngredient(BatScepter);
-                recipe.AddIngredient(BlizzardStaff);
-                recipe.AddIngredient(LaserMachinegun);
-                recipe.AddIngredient(LastPrism);              
+                recipe.AddIngredient(thorium.ItemType("NuclearFury"));            
             }
             else
             {
-                recipe.AddIngredient(ManaFlower);
                 recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
                 recipe.AddIngredient(CelestialEmblem);
@@ -88,11 +105,12 @@ Celestial Cuffs and Mana Flower effects");
                 recipe.AddIngredient(MagnetSphere);
                 recipe.AddIngredient(ApprenticeStaffT3);
                 recipe.AddIngredient(RazorbladeTyphoon);
-                recipe.AddIngredient(BatScepter);
-                recipe.AddIngredient(BlizzardStaff);
-                recipe.AddIngredient(LaserMachinegun);
-                recipe.AddIngredient(LastPrism);
             }
+
+            recipe.AddIngredient(BatScepter);
+            recipe.AddIngredient(BlizzardStaff);
+            recipe.AddIngredient(LaserMachinegun);
+            recipe.AddIngredient(LastPrism);
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");

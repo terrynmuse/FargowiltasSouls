@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -25,10 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Bursting with heat'
 Fire surrounds your armour and melee weapons
 Enemies that you set on fire or singe will take additional damage over time
-Allows you to do a triple hop super jump
-Increases fall resistance
-Damaging slag drops from below your boots
-Spear weapons will release a flaming spear tip");
+Effects of Spring Steps, Slag Stompers, and Molten Spear Tip");
         }
 
         public override void SetDefaults()

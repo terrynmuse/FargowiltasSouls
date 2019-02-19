@@ -2,9 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
-using ThoriumMod;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -14,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetLoadedMods().Contains("CalamityMod");
         }
 
         public override void SetStaticDefaults()
@@ -22,15 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Aerospec Enchantment");
             Tooltip.SetDefault(
 @"'The sky comes to your aid…'
-
-+20 max mana.
-Taking over 25 damage in one hit causes several homing feathers to fall.
-Allows you to fall faster.
-You take no falling damage.
-5% increased damage and crit chance.
-+12% movement speed.
-Summons a Valkyrie minion to assist you.
-");
+Taking over 25 damage in one hit causes several homing feathers to fall
+Summons a Valkyrie minion to protect you");
         }
 
         public override void SetDefaults()
@@ -39,15 +30,28 @@ Summons a Valkyrie minion to assist you.
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;//
-            item.value = 400000;//
+            item.rare = 3;
+            item.value = 200000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.aeroSet = true;
+            modPlayer.valkyrie = true;
+            if (player.whoAmI == Main.myPlayer)
+            {
+                if (player.FindBuffIndex(calamity.BuffType("Valkyrie")) == -1)
+                {
+                    player.AddBuff(calamity.BuffType("Valkyrie"), 3600, true);
+                }
+                if (player.ownedProjectileCounts[calamity.ProjectileType("Valkyrie")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("Valkyrie"), 25, 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
         }
 
         public override void AddRecipes()
@@ -56,19 +60,22 @@ Summons a Valkyrie minion to assist you.
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Aerospec armor, all Aerospec helmets, Wind Blade, Galeforce, Tradewinds, Skyline Wings, Storm Surge and Harpy Ring
+            recipe.AddIngredient(calamity.ItemType("AerospecHelm"));
+            recipe.AddIngredient(calamity.ItemType("AerospecHood"));
+            recipe.AddIngredient(calamity.ItemType("AerospecHat"));
+            recipe.AddIngredient(calamity.ItemType("AerospecHelmet"));
+            recipe.AddIngredient(calamity.ItemType("AerospecHeadgear"));
+            recipe.AddIngredient(calamity.ItemType("AerospecBreastplate"));
+            recipe.AddIngredient(calamity.ItemType("AerospecLeggings"));
+            recipe.AddIngredient(calamity.ItemType("Galeforce"));
+            recipe.AddIngredient(calamity.ItemType("StormSurge"));
+            recipe.AddIngredient(calamity.ItemType("SkyGlaze"));
+            recipe.AddIngredient(calamity.ItemType("PerfectDark"));
+            recipe.AddIngredient(calamity.ItemType("Shadethrower"));
+            recipe.AddIngredient(calamity.ItemType("SausageMaker"));
+            recipe.AddIngredient(calamity.ItemType("BloodClotStaff"));
 
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-            recipe.AddIngredient(calamity.ItemType(""));
-
-            recipe.AddTile(TileID.LunarCraftingStation);//
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

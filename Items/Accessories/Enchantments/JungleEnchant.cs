@@ -23,14 +23,12 @@ Spore damage scales with magic damage
 
             if(thorium != null)
             {
-                tooltip +=
-@"You and nearby allies have a chance to poison enemies when attacking
-Doubles the range of your empowerments effect radius";
+                tooltip += "Effects of Toxic Subwoofer";
             }
-            /*else
-            {*/
-            tooltip += "Allows the collection of Vine Rope from vines";
-            //}
+            else
+            {
+                tooltip += "Effects of Guide to Plant Fiber Cordage";
+            }
 
             Tooltip.SetDefault(tooltip);
         }

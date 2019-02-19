@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -23,11 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"''
 Healing spells will shortly increase the healed player's maximum life by 50
-Healing an ally grants them 2 life recovery for 10 seconds
 Your radiant damage has a 15% chance to release a blinding flash of light
 The flash heals nearby allies equal to your bonus healing and confuses enemies
-Healing allies with less health than you increases their life recovery
-Healing allies with more health than you increases your life recovery
+Effects of Aloe Leaf and Equalizer
 Summons a pet Holy Goat");
         }
 

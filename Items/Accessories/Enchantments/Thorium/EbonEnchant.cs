@@ -12,10 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
@@ -38,12 +36,7 @@ Corrupts your radiant powers, causing them to take on dark forms and deal additi
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
-            
-            EbonEffect(player);
-        }
-        
-        private void EbonEffect(Player player)
-        {
+
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.darkAura = true;
@@ -59,7 +52,7 @@ Corrupts your radiant powers, causing them to take on dark forms and deal additi
             "DarkHeart",
             "PoisonPrickler",
             "EaterOfPain",
-            "DarkMageStaff",
+            "BrainCoral",
             "BloodiedButterfly"
         };
 

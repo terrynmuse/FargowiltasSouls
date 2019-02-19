@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override void SetStaticDefaults()
@@ -44,11 +44,11 @@ You are immune to most damage-inflicting debuffs");
                 thoriumPlayer.lifeRecovery += 2;
             }
 
-            player.buffImmune[44] = true;
-            player.buffImmune[20] = true;
-            player.buffImmune[24] = true;
-            player.buffImmune[30] = true;
-            player.buffImmune[70] = true;
+            player.buffImmune[BuffID.Frostburn] = true;
+            player.buffImmune[BuffID.Poisoned] = true;
+            player.buffImmune[BuffID.OnFire] = true;
+            player.buffImmune[BuffID.Bleeding] = true;
+            player.buffImmune[BuffID.Venom] = true;
         }
         
         private readonly string[] items =

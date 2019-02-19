@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using ThoriumMod;
 using System;
 using ThoriumMod.Items.Misc;
+using CalamityMod;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -14,6 +15,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
+        private readonly Mod dbzMod = ModLoader.GetMod("DBZMOD");
         public bool jumped;
         public bool canHover;
         public int hoverTimer;
@@ -24,12 +27,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of Eternity");
             Tooltip.SetDefault(
 @"''
-200% increased all damage, 100% increased shoot speed
-Maximum use speed for all weapons
+200% increased all damage and attack speed, 100% increased shoot speed
 Crits deal 10x damage
 Crit chance is set to 50%, Crit to increase it by 10% 
 At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense
 This stacks up to 200,000 times until you get hit
+You never use ammo, mana, or consumables
 Increases your maximum mana to 999, minions by 20, sentries by 10
 400% increased HP, 40% damage reduction, 15 life regeneration
 Grants immunity to knockback and most debuffs
@@ -71,7 +74,7 @@ and most of SoT not mentioned because meme tooltip length
             modPlayer.AllDamageUp(2f);
             if (Soulcheck.GetValue("Universe Attack Speed"))
             {
-                modPlayer.AttackSpeed *= 100f;
+                modPlayer.AttackSpeed *= 2;
             }
             player.maxMinions += 20;
             player.maxTurrets += 10;
@@ -239,99 +242,24 @@ and most of SoT not mentioned because meme tooltip length
             player.accWeatherRadio = true;
 
             //TERRARIA
-            //includes revive, both spectres, adamantite, heart and star heal
-            modPlayer.TerrariaSoul = true;
+            mod.GetItem("TerrariaSoul").UpdateAccessory(player, hideVisual);
 
-            //TERRA
-            modPlayer.TerraForce = true; //crit effect improved
-            modPlayer.CopperEnchant = true; //lightning
-            modPlayer.TinEffect(); //crits
-            player.dash = 2;
-            modPlayer.IronEffect(); //shield
-            if (Soulcheck.GetValue("Iron Magnet"))
-            {
-                modPlayer.IronEnchant = true;
-            }
-            player.fireWalk = true;
-            player.lavaImmune = true;
+            //MASOCHIST
+            mod.GetItem("MasochistSoul").UpdateAccessory(player, hideVisual);
 
-            //EARTH
-            modPlayer.CobaltEnchant = true; //shards
-            modPlayer.PalladiumEffect(); //regen on hit, heals
-            modPlayer.OrichalcumEffect(); //fireballs and petals
-            modPlayer.AdamantiteEnchant = true; //split
-            modPlayer.TitaniumEffect(); //shadow dodge, full hp resistance
+            //INFINITY
+            modPlayer.Infinity = true;
 
-            //NATURE
-            modPlayer.NatureForce = true; //bulb, cryo effect
-            modPlayer.CrimsonEffect(hideVisual); //regen, hearts heal more, pets
-            modPlayer.MoltenEffect(25); //inferno and explode
-            modPlayer.FrostEffect(75, hideVisual); //icicles, pets
-            modPlayer.JungleEffect(); //spores
-            modPlayer.ChloroEffect(hideVisual, 100); //crystal and pet
-            modPlayer.ShroomiteEffect(hideVisual); //pet
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
 
-            //LIFE
-            modPlayer.LifeForce = true; //tide hunter, yew wood, iridescent effects
-            modPlayer.BeeEffect(hideVisual); //bees ignore defense, super bees, pet
-            modPlayer.SpiderEffect(hideVisual); //pet
-            modPlayer.BeetleEffect(); //defense beetle bois
-            modPlayer.PumpkinEffect(50, hideVisual); //flame trail, pie heal, pet
-            modPlayer.TurtleEffect(hideVisual); //thorns, pets
-            player.thorns = 1f;
-            player.turtleThorns = true;
-            modPlayer.CactusEffect(); //needle spray
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player, hideVisual);
 
-            //SPIRIT
-            modPlayer.SpiritForce = true; //spectre works for all, spirit trapper works for all
-            modPlayer.FossilEffect(40, hideVisual); //revive, bone zone, pet
-            modPlayer.ForbiddenEffect(); //storm
-            modPlayer.HallowEffect(hideVisual, 100); //sword, shield, pet
-            modPlayer.TikiEffect(hideVisual); //pet
-            modPlayer.SpectreEffect(hideVisual); //pet
-
-            //SHADOW
-            modPlayer.ShadowForce = true; //warlock, shade, plague accessory effect for all
-            modPlayer.DarkArtistEffect(hideVisual); //shoot from where you were meme, pet
-            modPlayer.NecroEffect(hideVisual); //DG meme, pet
-            modPlayer.ShadowEffect(hideVisual); //pets
-            player.blackBelt = true;
-            player.spikedBoots = 2;
-            player.dash = 1;
-            modPlayer.ShinobiEffect(hideVisual); //tele thru walls, pet
-            modPlayer.NinjaEffect(hideVisual); //smoke bomb nonsense, pet
-            modPlayer.SpookyEffect(hideVisual); //scythe doom, pets
-
-            //WILL
-            modPlayer.WillForce = true; //knockback remove for all
-            modPlayer.GoldEffect(hideVisual); //midas, greedy ring, pet
-            modPlayer.PlatinumEnchant = true; //loot multiply
-            modPlayer.GladiatorEffect(hideVisual); //pet
-            modPlayer.RedRidingEffect(hideVisual); //pet
-            player.accMerman = true;
-            player.wolfAcc = true;
-            if (hideVisual)
-            {
-                player.hideMerman = true;
-                player.hideWolf = true;
-            }
-            modPlayer.ValhallaEffect(hideVisual); //knockback remove
-            player.shinyStone = true;
-
-            //COSMOS
-            modPlayer.CosmoForce = true; //white dwarf flames, tide turner daggers, pyro bursts, assassin insta kill
-            modPlayer.MeteorEffect(75); //meteor shower
-            modPlayer.SolarEffect(); //solar shields
-            modPlayer.VortexEffect(hideVisual); //stealth, voids, pet
-            modPlayer.NebulaEffect(); //boosters
-            modPlayer.StardustEffect(); //guardian and time freeze
-            modPlayer.AddPet("Suspicious Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
-
-            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+            if (Fargowiltas.Instance.DBTLoaded) DBT(player);
         }
 
-        private void Thorium(Player player)
+        private void Thorium(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //phylactery
             if (!thoriumPlayer.lichPrevent)
@@ -564,6 +492,72 @@ and most of SoT not mentioned because meme tooltip length
                 player.maxFallSpeed *= 0.4f;
                 player.fallStart = (int)(player.position.Y / 16f);
             }
+            //WORLD SHAPER
+            //pets
+            modPlayer.AddPet("Inspiring Lantern Pet", hideVisual, thorium.BuffType("SupportLanternBuff"), thorium.ProjectileType("SupportLantern"));
+            modPlayer.AddPet("Lock Box Pet", hideVisual, thorium.BuffType("LockBoxBuff"), thorium.ProjectileType("LockBoxPet"));
+
+            //THORIUM SOUL
+            mod.GetItem("ThoriumSoul").UpdateAccessory(player, hideVisual);
+        }
+
+        private void Calamity(Player player, bool hideVisual)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            //UNIVERSE
+            //melee
+            modPlayer.eGauntlet = true;
+            //removing the extra boosts it adds because meme calamity
+            player.meleeDamage -= .15f;
+            player.meleeSpeed -= .15f;
+            player.meleeCrit -= 5;
+            //range
+            modPlayer.eQuiver = true;
+            //magic
+            modPlayer.eTalisman = true;
+            //summon
+            modPlayer.statisBeltOfCurses = true;
+            modPlayer.shadowMinions = true;
+            modPlayer.tearMinions = true;
+            //throw
+            modPlayer.nanotech = true;
+            //DIMENSIONS
+            //tank soul
+            //rampart of dieties
+            modPlayer.dAmulet = true;
+            //becase calamity made it itself for some reason no duplicate
+            player.starCloak = false;
+            //asgardian aegis
+            modPlayer.dashMod = 4;
+            modPlayer.elysianAegis = true;
+            player.buffImmune[calamity.BuffType("BrimstoneFlames")] = true;
+            player.buffImmune[calamity.BuffType("HolyLight")] = true;
+            player.buffImmune[calamity.BuffType("GlacialState")] = true;
+            //celestial tracers
+            modPlayer.IBoots = !hideVisual;
+            modPlayer.elysianFire = !hideVisual;
+            modPlayer.cTracers = true;
+            //TERRARIA
+            mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
+            //TYRANT
+            mod.GetItem("CalamitySoul").UpdateAccessory(player, hideVisual);
+        }
+
+        private void DBT(Player player)
+        {
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+
+            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 3f);
+            dbtPlayer.kiKbAddition += 0.4f;
+            dbtPlayer.kiDrainMulti -= 0.5f;
+            dbtPlayer.kiMaxMult += 0.4f;
+            dbtPlayer.kiRegen += 5;
+            dbtPlayer.orbGrabRange += 6;
+            dbtPlayer.orbHealAmount += 150;
+            dbtPlayer.chargeLimitAdd += 8;
+            dbtPlayer.flightSpeedAdd += 0.6f;
+            dbtPlayer.flightUsageAdd += 3;
+            dbtPlayer.zenkaiCharm = true;
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
@@ -588,6 +582,15 @@ and most of SoT not mentioned because meme tooltip length
             recipe.AddIngredient(null, "UniverseSoul");
             recipe.AddIngredient(null, "DimensionSoul");
             recipe.AddIngredient(null, "TerrariaSoul");
+            recipe.AddIngredient(null, "MasochistSoul");
+
+            if (Fargowiltas.Instance.ThoriumLoaded)
+                recipe.AddIngredient(null, "ThoriumSoul");
+
+            if (Fargowiltas.Instance.CalamityLoaded)
+                recipe.AddIngredient(null, "CalamitySoul");
+
+            recipe.AddIngredient(null, "Infinity");
 
             if (Fargowiltas.Instance.FargosLoaded)
                 recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
