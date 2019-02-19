@@ -21,6 +21,10 @@
     <Reference Include="Fargowiltas">
       <HintPath>..\folder for wip\Fargowiltas.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xna.Framework">
+      <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.dll</HintPath>
+      <HintPath Condition="Exists('C:\Users\dariu\Documents\Microsoft Xna Framework')">C:\Users\dariu\Documents\Microsoft Xna Framework\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework.Game">
       <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.Game.dll</HintPath>
       <HintPath Condition="Exists('C:\Users\dariu\Documents\Microsoft Xna Framework')">C:\Users\dariu\Documents\Microsoft Xna Framework\Microsoft.Xna.Framework.Game.dll</HintPath>
@@ -31,10 +35,6 @@
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="FNA">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile\FNA.dll</HintPath>
-      <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile')">C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile\FNA.dll</HintPath>
-    </Reference>
     <Reference Include="Terraria">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terrariamod.exe</HintPath>
       <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria')">C:\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>

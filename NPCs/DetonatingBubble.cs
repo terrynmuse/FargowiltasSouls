@@ -51,7 +51,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (BossIsAlive(ref fishBoss, NPCID.DukeFishron))
+            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
                 target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(600, 900));
             target.AddBuff(BuffID.Wet, 420);
             target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(60, 180));
