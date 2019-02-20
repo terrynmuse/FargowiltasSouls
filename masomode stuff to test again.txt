@@ -11,7 +11,30 @@
 
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
-//	default expertmode damage: *= 0.8
+//	default expertmode damage: *= 0.80
+0.6:
+-doubled moon lord SUCC hook speed
+-plantera has protective crystal leaf ring in phase 2
+-plantera phase 2 defense halved to compensate for above
+
+-fishron phase 3 bubbles spawn at higher frequency 
+-replace phase 2 bubble spin sharkrons with p3 bubbles 
+-increase fishron health to 200% 
+-increase fishron mutant nibble duration to basically permanent after a single hit 
+-fishron inflict broken armor, withered armor on hit too 
+-bubbles inflict defenseless 
+-two sharknados per teleport in phase 3 
+-fishron immune to electrified and infested
+-fishron resists bane and phantasm
+
+-removed most boss crystal shard resistance
+-phantasm dragon body no longer takes halved damage from literally everything
+
+-golem always sprays spiky balls and always jumps fast
+-golem flames do more damage
+
+
+previous updates:
 -destroyer phase 2 triggers at 50% life (was 75%)
 -skeletron prime limbs have full defense
 -skeletron prime has full defense in phase 2

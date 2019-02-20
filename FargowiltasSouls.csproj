@@ -41,6 +41,7 @@
     </Reference>
 
     <Reference Include="ThoriumMod">
+      <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile')">C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile\ThoriumMod.dll</HintPath>
       <HintPath Condition="Exists('..\folder for wip')">..\folder for wip\ThoriumMod.dll</HintPath>
       <HintPath Condition="Exists('..\..\References')">..\..\References\ThoriumMod.dll</HintPath>
     </Reference>
