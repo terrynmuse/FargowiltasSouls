@@ -7700,11 +7700,11 @@ namespace FargowiltasSouls.NPCs
 			
             if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && npc.type != NPCID.WallofFlesh && npc.type != NPCID.WallofFleshEye && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
-                npc.knockBackResist += .05f;
+                npc.knockBackResist += .02f;
 
-                if(npc.knockBackResist > 1)
+                if(npc.knockBackResist > .5f)
                 {
-                    npc.knockBackResist = 1;
+                    npc.knockBackResist = .5f;
                 }
             }
 		}
@@ -7716,11 +7716,11 @@ namespace FargowiltasSouls.NPCs
             //spears
             if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce) && npc.type != NPCID.WallofFlesh && npc.type != NPCID.WallofFleshEye && npc.type != NPCID.TargetDummy && npc.knockBackResist < 1)
             {
-                npc.knockBackResist += .05f;
+                npc.knockBackResist += .02f;
 
-                if (npc.knockBackResist > 1)
+                if (npc.knockBackResist > .5f)
                 {
-                    npc.knockBackResist = 1;
+                    npc.knockBackResist = .5f;
                 }
             }
         }

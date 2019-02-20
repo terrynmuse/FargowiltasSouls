@@ -1112,8 +1112,11 @@ namespace FargowiltasSouls
                     target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
             }
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumModifyProj(proj, target, damage, crit);
+        }
 
+        private void ThoriumModifyProj(Projectile proj, NPC target, int damage, bool crit)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             if (ShroomEnchant && !TerrariaSoul && Main.rand.Next(5) == 0)
@@ -1244,7 +1247,7 @@ namespace FargowiltasSouls
                         thoriumPlayer.yewCharge = 0;
                     }
                 }
-                
+
                 //cryo
                 if (proj.type != thorium.ProjectileType("CryoDamage"))
                 {
@@ -1345,8 +1348,11 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.Midas, 120, true);
             }
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumModifyNPC(target, item, damage, crit);
+        }
 
+        private void ThoriumModifyNPC(NPC target, Item item, int damage, bool crit)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             if (ShroomEnchant && !TerrariaSoul && Main.rand.Next(5) == 0)
@@ -1625,8 +1631,11 @@ namespace FargowiltasSouls
                 palladiumCD = 60;
             }
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumHitProj(proj, target, damage, crit);
+        }
 
+        private void ThoriumHitProj(Projectile proj, NPC target, int damage, bool crit)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             if (ChloroEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
@@ -1799,8 +1808,11 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumHitNPC(target, item, crit);
+        }
 
+        private void ThoriumHitNPC(NPC target, Item item, bool crit)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             if (ChloroEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
@@ -1875,7 +1887,7 @@ namespace FargowiltasSouls
             if (ThoriumSoul)
             {
                 //mixtape
-                if (crit )
+                if (crit)
                 {
                     int num23 = Main.rand.Next(3);
                     Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 73, 1f, 0f);
