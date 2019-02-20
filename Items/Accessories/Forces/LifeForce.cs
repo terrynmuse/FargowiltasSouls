@@ -109,10 +109,7 @@ Your wings last twice as long
             recipe.AddIngredient(null, "TurtleEnchant");
             recipe.AddIngredient(null, "BeetleEnchant");
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();

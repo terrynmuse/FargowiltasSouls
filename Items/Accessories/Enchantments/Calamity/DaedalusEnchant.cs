@@ -49,6 +49,12 @@ Effects of Permafrost's Concoction");
             modPlayer.daedalusShard = true;
             modPlayer.daedalusAbsorb = true;
             modPlayer.daedalusCrystal = true;
+            modPlayer.daedalusSplit = true;
+            //permafrost concoction
+            modPlayer.permafrostsConcoction = true;
+
+            if (player.GetModPlayer<FargoPlayer>().Eternity) return;
+
             if (player.whoAmI == Main.myPlayer)
             {
                 if (player.FindBuffIndex(calamity.BuffType("DaedalusCrystal")) == -1)
@@ -60,9 +66,6 @@ Effects of Permafrost's Concoction");
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("DaedalusCrystal"), 0, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
-            modPlayer.daedalusSplit = true;
-            //permafrost concoction
-            modPlayer.permafrostsConcoction = true;
         }
 
         public override void AddRecipes()

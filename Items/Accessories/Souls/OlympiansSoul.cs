@@ -131,10 +131,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("TerrarianThrown") : ItemID.Terrarian);
             }
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
                 
             recipe.SetResult(this);
             recipe.AddRecipe();

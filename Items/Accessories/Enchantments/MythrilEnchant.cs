@@ -39,16 +39,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.MythrilGreaves);
             recipe.AddIngredient(ItemID.MythrilRepeater);
             
-            
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("MythrilPelter"));
                 recipe.AddIngredient(thorium.ItemType("MythrilStaff"));
-                recipe.AddIngredient(thorium.ItemType("DrenchedDirk"));  
+                recipe.AddIngredient(ItemID.LaserRifle);
+                recipe.AddIngredient(thorium.ItemType("Trigun"));  
+                recipe.AddIngredient(thorium.ItemType("BloodyHighClaws"));  
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.LaserRifle);
+                recipe.AddIngredient(ItemID.FetidBaghnakhs);
             }
             
-            recipe.AddIngredient(ItemID.LaserRifle);
-            recipe.AddIngredient(ItemID.FetidBaghnakhs);
             recipe.AddIngredient(ItemID.Megashark);
 
             recipe.AddTile(TileID.CrystalBall);

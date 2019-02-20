@@ -53,19 +53,6 @@ Effects of the Plague Hive");
             modPlayer.ataxiaBolt = true;
             //magic
             modPlayer.ataxiaMage = true;
-            //summon
-            modPlayer.chaosSpirit = true;
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (player.FindBuffIndex(calamity.BuffType("ChaosSpirit")) == -1)
-                {
-                    player.AddBuff(calamity.BuffType("ChaosSpirit"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("ChaosSpirit")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ChaosSpirit"), 0, 0f, Main.myPlayer, 0f, 0f);
-                }
-            }
             //throw
             modPlayer.ataxiaVolley = true;
             //plague hive
@@ -103,6 +90,22 @@ Effects of the Plague Hive");
                 }
             }
             num++;
+
+            if (player.GetModPlayer<FargoPlayer>().Eternity) return;
+
+            //summon
+            modPlayer.chaosSpirit = true;
+            if (player.whoAmI == Main.myPlayer)
+            {
+                if (player.FindBuffIndex(calamity.BuffType("ChaosSpirit")) == -1)
+                {
+                    player.AddBuff(calamity.BuffType("ChaosSpirit"), 3600, true);
+                }
+                if (player.ownedProjectileCounts[calamity.ProjectileType("ChaosSpirit")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ChaosSpirit"), 0, 0f, Main.myPlayer, 0f, 0f);
+                }
+            }
         }
 
         public override void AddRecipes()

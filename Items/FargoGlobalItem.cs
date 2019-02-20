@@ -161,8 +161,14 @@ namespace FargowiltasSouls.Items
                 }
             }
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return true;
+            if (Fargowiltas.Instance.ThoriumLoaded) ThoriumCanUse(player, item);
 
+            return true;
+        }
+
+        private void ThoriumCanUse(Player player, Item item)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             //illumite effect
@@ -173,7 +179,7 @@ namespace FargowiltasSouls.Items
                 {
                     Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed * 1.5f;
 
-                    Projectile.NewProjectile(player.Center,  velocity, thorium.ProjectileType("IllumiteMissile"), item.damage, item.knockBack, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.Center, velocity, thorium.ProjectileType("IllumiteMissile"), item.damage, item.knockBack, player.whoAmI, 0f, 0f);
                     thoriumPlayer.rocketsFired = 0;
                     Main.PlaySound(SoundID.Item14, player.position);
                 }
@@ -224,8 +230,6 @@ namespace FargowiltasSouls.Items
                     thoriumPlayer.magicCast = 0;
                 }
             }
-
-            return true;
         }
 
         public override bool UseItem(Item item, Player player)

@@ -115,6 +115,12 @@ namespace FargowiltasSouls
             ["Wisp Pet"] = new Color(81, 181, 113),
             ["Zephyr Fish Pet"] = new Color(81, 181, 113),
 
+
+            //["Slime God Minion"] = new Color(81, 181, 113),
+            //["Profaned Minions"] = new Color(81, 181, 113),
+
+
+
             #region thorium
             ["Air Walkers"] = new Color(81, 181, 113),
             ["Crystal Scorpion"] = new Color(81, 181, 113),
@@ -124,8 +130,6 @@ namespace FargowiltasSouls
             ["Li'l Devil Minion"] = new Color(81, 181, 113),
             ["Li'l Cherub Minion"] = new Color(81, 181, 113),
             ["Sapling Minion"] = new Color(81, 181, 113),
-
-
 
             ["Omega Pet"] = new Color(81, 181, 113),
             ["I.F.O. Pet"] = new Color(81, 181, 113),
@@ -144,6 +148,8 @@ namespace FargowiltasSouls
             ["Glitter Pet"] = new Color(81, 181, 113),
             ["Coin Bag Pet"] = new Color(81, 181, 113),
             #endregion
+
+
         };
 
         private readonly Color _defaultColor = new Color(81, 181, 113);

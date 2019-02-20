@@ -52,7 +52,11 @@ Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
             //TARRAGON
             //profaned soul artifact
-            modPlayer.pArtifact = true;
+            if (Soulcheck.GetValue("Profaned Minions"))
+            {
+                modPlayer.pArtifact = true;
+            }
+            
             //BLOOD FLARE
             //core of the blood god
             modPlayer.coreOfTheBloodGod = true;

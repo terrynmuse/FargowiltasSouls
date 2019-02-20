@@ -84,10 +84,7 @@ Allows the holder to control gravity");
             recipe.AddIngredient(mod.ItemType("ChaliceoftheMoon"));
             recipe.AddIngredient(mod.ItemType("GalacticGlobe"));
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();

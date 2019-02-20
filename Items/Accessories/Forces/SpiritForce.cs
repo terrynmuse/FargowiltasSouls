@@ -75,10 +75,7 @@ Summons several pets";
             recipe.AddIngredient(null, "TikiEnchant");
             recipe.AddIngredient(null, "SpectreEnchant");
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();

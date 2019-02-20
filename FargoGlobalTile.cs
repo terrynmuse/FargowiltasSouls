@@ -207,5 +207,17 @@ namespace FargowiltasSouls
             return !TileIsNull(x, y) && tile.active() && Main.tileSolid[tile.type] && !Main.tileSolidTop[tile.type] && !tile.halfBrick()
                 && tile.slope() == 0 && !tile.inActive();
         }
+        
+        public override int[] AdjTiles(int type)
+        {
+            if (type == mod.TileType("CrucibleCosmosSheet"))
+            {
+                Main.LocalPlayer.adjHoney = true;
+                Main.LocalPlayer.adjLava = true;
+            }
+
+            return base.AdjTiles(type);
+        }
+
     }
 }

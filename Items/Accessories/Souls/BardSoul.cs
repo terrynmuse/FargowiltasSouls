@@ -106,10 +106,7 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
 
             foreach (string i in _items) recipe.AddIngredient(thorium.ItemType(i));
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
                 
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -117,11 +117,9 @@ Summons a pet Maid");
             recipe.AddIngredient(null, "PyromancerEnchant");
             recipe.AddIngredient(null, "DreamWeaverEnchant");
             recipe.AddIngredient(null, "RhapsodistEnchant");
+            recipe.AddIngredient(thorium.ItemType("BowofLight"));
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();

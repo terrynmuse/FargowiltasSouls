@@ -79,10 +79,7 @@ Summons a pet Life Spirit and Holy Goat");
             recipe.AddIngredient(null, "LifeBinderEnchant");
             recipe.AddIngredient(null, "FallenPaladinEnchant");
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();

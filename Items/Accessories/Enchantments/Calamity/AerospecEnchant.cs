@@ -40,6 +40,9 @@ Summons a Valkyrie minion to protect you");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
             modPlayer.aeroSet = true;
+
+            if (player.GetModPlayer<FargoPlayer>().Eternity) return;
+
             modPlayer.valkyrie = true;
             if (player.whoAmI == Main.myPlayer)
             {

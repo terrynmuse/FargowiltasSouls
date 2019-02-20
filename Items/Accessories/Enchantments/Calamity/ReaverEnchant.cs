@@ -49,6 +49,11 @@ Rage activates when you are damaged");
             modPlayer.reaverDoubleTap = true;
             //magic
             modPlayer.reaverBurst = true;
+            //throw
+            modPlayer.reaverSpore = true;
+
+            if (player.GetModPlayer<FargoPlayer>().Eternity) return;
+
             //summon
             modPlayer.reaverOrb = true;
             if (player.whoAmI == Main.myPlayer)
@@ -62,8 +67,6 @@ Rage activates when you are damaged");
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ReaverOrb"), 0, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
-            //throw
-            modPlayer.reaverSpore = true;
         }
 
         public override void AddRecipes()

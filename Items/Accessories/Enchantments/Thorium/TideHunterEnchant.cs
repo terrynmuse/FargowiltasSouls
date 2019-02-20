@@ -67,10 +67,10 @@ Effects of Goblin War Shield and Agnor's Bowl");
         private readonly string[] items =
         {
             "AnglerBowl",
+            "ThoriumBow",
             "BlunderBuss",
             "PearlPike",
             "HydroCannon",
-            "SharkStorm",
             "MarineLauncher"
         };
 

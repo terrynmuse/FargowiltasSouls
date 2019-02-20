@@ -323,10 +323,7 @@ When you die, you explode and revive with 200 HP";
             if (Fargowiltas.Instance.CalamityLoaded)
                 recipe.AddIngredient(null, "CalamityForce");
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();
