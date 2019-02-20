@@ -3320,7 +3320,25 @@ namespace FargowiltasSouls.NPCs
                     case 51: //plantera
                         if (npc.life < npc.lifeMax / 2) //phase 2
                         {
-                            npc.defense += 42;
+                            if (!masoBool[0]) //spawn protective crystal ring once
+                            {
+                                masoBool[0] = true;
+                                if (Main.netMode != 1)
+                                {
+                                    const int max = 5;
+                                    const float distance = 130f;
+                                    float rotation = 2f * (float)Math.PI / max;
+                                    for (int i = 0; i < max; i++)
+                                    {
+                                        Vector2 spawnPos = npc.Center + new Vector2(distance, 0f).RotatedBy(rotation * i);
+                                        int n = NPC.NewNPC((int)spawnPos.X, (int)spawnPos.Y, mod.NPCType("CrystalLeaf"), 0, npc.whoAmI, distance, Main.rand.Next(240), rotation * i);
+                                        if (Main.netMode == 2 && n < 200)
+                                            NetMessage.SendData(23, -1, -1, null, n);
+                                    }
+                                }
+                            }
+
+                            npc.defense += 21;
 
                             Counter++;
                             if (Counter >= 30)
