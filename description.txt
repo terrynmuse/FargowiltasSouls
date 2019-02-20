@@ -30,6 +30,8 @@ NEW UPDATE - v 0.6
 
 reduced number of fireballs on SoE
 
+-Valhalla Enchantment now reduces knockback less overall and less per hit
+
 
 FIX GALACTIC WTF?
 
