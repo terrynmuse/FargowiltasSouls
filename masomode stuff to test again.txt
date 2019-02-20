@@ -13,6 +13,8 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 0.6:
+-doubled moon lord SUCC hook speed
+
 -fishron phase 3 bubbles spawn at higher frequency 
 -replace phase 2 bubble spin sharkrons with p3 bubbles 
 -increase fishron health to 200% 

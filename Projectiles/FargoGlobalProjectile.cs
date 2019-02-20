@@ -536,6 +536,15 @@ namespace FargowiltasSouls.Projectiles
                     }
                     break;
 
+                case ProjectileID.MoonLeech:
+                    if (projectile.ai[0] > 0f)
+                    {
+                        Vector2 distance = Main.player[(int)projectile.ai[1]].Center - projectile.Center - projectile.velocity;
+                        if (distance != Vector2.Zero)
+                            projectile.position += Vector2.Normalize(distance) * Math.Min(16f, distance.Length());
+                    }
+                    break;
+
                 default:
                         break;
             }
