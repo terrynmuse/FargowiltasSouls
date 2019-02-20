@@ -71,8 +71,8 @@ Bees ignore most enemy defense
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BeeBoots"));
-                recipe.AddIngredient(ItemID.BeeKeeper);
                 recipe.AddIngredient(ItemID.BeeGun);
+                recipe.AddIngredient(thorium.ItemType("HoneySuckle"));
                 recipe.AddIngredient(thorium.ItemType("HoneyRecorder"));
                 recipe.AddIngredient(thorium.ItemType("SweetWingButterfly"));
             }

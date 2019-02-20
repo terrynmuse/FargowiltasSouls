@@ -84,8 +84,8 @@ Effects of Molten Spear Tip and Orange Music Player");
         private readonly string[] items =
         {
             "TunePlayerAttackSpeed",
+            "BerserkBreaker",
             "SurtrsSword",
-            "BloodyHighClaws",
             "ThermogenicImpaler",
             "WyvernSlayer"
         };

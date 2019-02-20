@@ -94,10 +94,7 @@ Allows for very long lasting flight");
                 recipe.AddIngredient(ItemID.WingsSolar);
             }
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
                 
             recipe.SetResult(this);
             recipe.AddRecipe();

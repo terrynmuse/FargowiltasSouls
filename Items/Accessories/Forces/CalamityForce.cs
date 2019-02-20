@@ -42,36 +42,20 @@ Effects of the Permafrost's Concoction, Astral Arcanum, Plague Hive");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
             //WULFRUM
             //spirit glyph
-            modPlayer.sGenerator = true;
+            calamityPlayer.sGenerator = true;
             //raiders talisman
-            modPlayer.raiderTalisman = true;
+            calamityPlayer.raiderTalisman = true;
             //VICTIDE
             mod.GetItem("VictideEnchant").UpdateAccessory(player, hideVisual);
             //AEROSPEC
             mod.GetItem("AerospecEnchant").UpdateAccessory(player, hideVisual);
             //STATIGEL
-            modPlayer.statigelSet = true;
-            //summon
-            modPlayer.slimeGod = true;
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (player.FindBuffIndex(calamity.BuffType("SlimeGod")) == -1)
-                {
-                    player.AddBuff(calamity.BuffType("SlimeGod"), 3600, true);
-                }
-                if (WorldGen.crimson && player.ownedProjectileCounts[calamity.ProjectileType("SlimeGodAlt")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SlimeGodAlt"), 33, 0f, Main.myPlayer, 0f, 0f);
-                    return;
-                }
-                if (!WorldGen.crimson && player.ownedProjectileCounts[calamity.ProjectileType("SlimeGod")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SlimeGod"), 33, 0f, Main.myPlayer, 0f, 0f);
-                }
-            }
+            calamityPlayer.statigelSet = true;
+
             //DAEDALUS
             mod.GetItem("DaedalusEnchant").UpdateAccessory(player, hideVisual);
             //REAVER
@@ -79,15 +63,15 @@ Effects of the Permafrost's Concoction, Astral Arcanum, Plague Hive");
             //ASTRAL
             mod.GetItem("AstralEnchant").UpdateAccessory(player, hideVisual);
             //ATAXIA
-            modPlayer.ataxiaBlaze = true;
+            calamityPlayer.ataxiaBlaze = true;
             //melee
-            modPlayer.ataxiaGeyser = true;
+            calamityPlayer.ataxiaGeyser = true;
             //range
-            modPlayer.ataxiaBolt = true;
+            calamityPlayer.ataxiaBolt = true;
             //magic
-            modPlayer.ataxiaMage = true;
+            calamityPlayer.ataxiaMage = true;
             //summon
-            modPlayer.chaosSpirit = true;
+            calamityPlayer.chaosSpirit = true;
             if (player.whoAmI == Main.myPlayer)
             {
                 if (player.FindBuffIndex(calamity.BuffType("ChaosSpirit")) == -1)
@@ -100,14 +84,14 @@ Effects of the Permafrost's Concoction, Astral Arcanum, Plague Hive");
                 }
             }
             //throw
-            modPlayer.ataxiaVolley = true;
+            calamityPlayer.ataxiaVolley = true;
             //plague hive
             player.buffImmune[calamity.BuffType("Plague")] = true;
-            modPlayer.uberBees = true;
+            calamityPlayer.uberBees = true;
             player.strongBees = true;
-            modPlayer.alchFlask = true;
+            calamityPlayer.alchFlask = true;
             //XEROC
-            modPlayer.xerocSet = true;
+            calamityPlayer.xerocSet = true;
         }
 
 

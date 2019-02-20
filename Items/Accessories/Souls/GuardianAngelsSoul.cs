@@ -147,10 +147,7 @@ Nearby allies that die drop a wisp of spirit energy");
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
                 
             recipe.SetResult(this);
             recipe.AddRecipe();

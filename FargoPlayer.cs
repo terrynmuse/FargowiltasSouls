@@ -1121,6 +1121,11 @@ namespace FargowiltasSouls
                 target.AddBuff(thorium.BuffType("Mycelium"), 120);
             }
 
+            if (proj.type == thorium.ProjectileType("MeteorPlasmaDamage") || proj.type == thorium.ProjectileType("PyroBurst") || proj.type == thorium.ProjectileType("LightStrike") || proj.type == thorium.ProjectileType("WhiteFlare") || proj.type == thorium.ProjectileType("CryoDamage") || proj.type == thorium.ProjectileType("MixtapeNote"))
+            {
+                return;
+            }
+
             if (AsgardForce)
             {
                 //tide turner daggers
@@ -1691,6 +1696,11 @@ namespace FargowiltasSouls
                     player.HealEffect(num8, true);
                     thoriumPlayer.lifeBloomMax += num8;
                 }
+            }
+
+            if (proj.type == thorium.ProjectileType("MeteorPlasmaDamage") || proj.type == thorium.ProjectileType("PyroBurst") || proj.type == thorium.ProjectileType("LightStrike") || proj.type == thorium.ProjectileType("WhiteFlare") || proj.type == thorium.ProjectileType("CryoDamage") || proj.type == thorium.ProjectileType("MixtapeNote"))
+            {
+                return;
             }
 
             if (ThoriumSoul)
@@ -3050,7 +3060,7 @@ namespace FargowiltasSouls
 
                 if(Eternity)
                 {
-                    ballAmt = 60;
+                    ballAmt = 30;
                 }
 
                 float degree;

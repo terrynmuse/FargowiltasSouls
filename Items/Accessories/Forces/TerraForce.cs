@@ -120,10 +120,7 @@ While standing in lava, you gain 10 more armor penetration, 15% attack speed, an
             recipe.AddIngredient(null, "TungstenEnchant");
             recipe.AddIngredient(null, "ObsidianEnchant");
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();

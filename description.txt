@@ -11,6 +11,11 @@ NEW UPDATE - v 0.6
 -Valhalla correctly buffs Ballistas
 -Terra Force now has the full Obsidian Enchantment effect 
 
+-reverse mana flow changed
+
+-Galactic Reformer now only does 1000 damage to all enemies when it goes off
+-it also updates the map instantly in the explosion area
+
 -Infinity Relic has a new recipe and an altered effect, now required for Soul of Eternity
 
 -Added Celestial Rune, Chalice of the Moon and Soul of the Masochist
@@ -23,7 +28,10 @@ NEW UPDATE - v 0.6
 -Added a cooldown between Copper Enchantment lightning
 -Cobalt Enchantment splits into 3 random shards instead of 8 and has a 2 second cooldown
 
+reduced number of fireballs on SoE
 
+
+FIX GALACTIC WTF?
 
 
 

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles
 {
-    public class NukeProj : ModProjectile
+    public class NukeProj2 : ModProjectile
     {
         public int countdown = 4;
 
@@ -23,23 +23,25 @@ namespace FargowiltasSouls.Projectiles
             projectile.aiStyle = 16; //explosives AI
             projectile.friendly = true;
             projectile.penetrate = -1;
-            projectile.timeLeft = 800;
+            projectile.timeLeft = 2400;
             Main.projFrames[projectile.type] = 4;
         }
 
         public override void AI()
         {
-            if (projectile.timeLeft % 200 == 0)
+            if (projectile.timeLeft % 600 == 0)
             {
                 Main.NewText(countdown.ToString(), 51, 102, 0);
                 countdown--;
             }
+            
+            projectile.scale += .01f;            
         }
 
         public override bool PreDraw(SpriteBatch sb, Color lightColor)
         {
             projectile.frameCounter++;   //Making the timer go up.
-            if (projectile.frameCounter >= 200)  //how fast animation is
+            if (projectile.frameCounter >= 600)  //how fast animation is
             {
                 projectile.frame++; //Making the frame go up...
                 projectile.frameCounter = 0; //Resetting the timer.
@@ -54,35 +56,21 @@ namespace FargowiltasSouls.Projectiles
 
         public override void Kill(int timeLeft)
         {
-            Vector2 position = projectile.Center;
-            int radius = 300;     //bigger = boomer
-            
-            for (int x = -radius; x <= radius; x++)
+            for (int i = 0; i < Main.maxTilesX; i++)
             {
-                for (int y = -radius; y <= radius; y++)
+                for (int j = 0; j < Main.maxTilesY; j++)
                 {
-                    int xPosition = (int)(x + position.X / 16.0f);
-                    int yPosition = (int)(y + position.Y / 16.0f);
-
-                    if (Math.Sqrt(x * x + y * y) <= radius + 0.5)   //change the shape
-                    {
-                        //Tile tile = Main.tile[xPosition, yPosition];
-                        //if (tile == null) continue;
-                        
-                        FargoGlobalTile.ClearTileWithNet(xPosition, yPosition);
-                        FargoGlobalTile.ClearWallWithNet(xPosition, yPosition);
-                        FargoGlobalTile.ClearLiquid(xPosition, yPosition);
-                        FargoGlobalTile.SquareUpdate(xPosition, yPosition);
-                    }                    
+                    FargoGlobalTile.ClearEverythingWithNet(i, j);
                     
-                    if (WorldGen.InWorld(xPosition, yPosition))
-                        Main.Map.Update(xPosition, yPosition, 255);
+                    if (WorldGen.InWorld(i, j))
+                        Main.Map.Update(i, j, 255);
                 }
             }
             
             Main.refreshMap = true;
-            // Play explosion sound
-            Main.PlaySound(SoundID.Item15, projectile.position);           
+            
+            //custom sound when
+            Main.PlaySound(SoundID.Item15, projectile.position);
         }
     }
 }

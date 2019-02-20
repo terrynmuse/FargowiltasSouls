@@ -112,10 +112,7 @@ Increases your maximum mana by 200
             recipe.AddIngredient(LaserMachinegun);
             recipe.AddIngredient(LastPrism);
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
                 
             recipe.SetResult(this);
             recipe.AddRecipe();

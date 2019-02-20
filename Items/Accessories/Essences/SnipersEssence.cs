@@ -50,10 +50,10 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(thorium.ItemType("GuanoGunner"));
                 recipe.AddIngredient(thorium.ItemType("Zapper"));
                 recipe.AddIngredient(thorium.ItemType("SharkStorm"));
-                recipe.AddIngredient(thorium.ItemType("Slugger"));
                 recipe.AddIngredient(ItemID.BeesKnees);
-                recipe.AddIngredient(thorium.ItemType("MarineLauncher"));
+                recipe.AddIngredient(thorium.ItemType("EnergyStormBolter"));
                 recipe.AddIngredient(thorium.ItemType("HeroTripleBow"));
+                recipe.AddIngredient(thorium.ItemType("HitScanner"));
                 recipe.AddIngredient(ItemID.HellwingBow);
             }
             else

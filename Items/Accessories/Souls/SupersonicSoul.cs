@@ -266,10 +266,7 @@ Grants immunity to lava and fall damage";
             recipe.AddIngredient(ItemID.ReindeerBells);
             recipe.AddIngredient(ItemID.BrainScrambler);
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
                 
             recipe.SetResult(this);
             recipe.AddRecipe();

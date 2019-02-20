@@ -112,10 +112,7 @@ Effect can be disabled in Soul Toggles menu");
             recipe.AddIngredient(LaserDrill);
             recipe.AddIngredient(DrillContainmentUnit);
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
                 
             recipe.SetResult(this);
             recipe.AddRecipe();

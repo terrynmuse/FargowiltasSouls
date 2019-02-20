@@ -42,6 +42,9 @@ Summons a sea urchin to protect you");
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
             //all
             modPlayer.victideSet = true;
+            
+            if (player.GetModPlayer<FargoPlayer>().Eternity) return;
+
             //summon
             modPlayer.urchin = true;
             if (player.whoAmI == Main.myPlayer)

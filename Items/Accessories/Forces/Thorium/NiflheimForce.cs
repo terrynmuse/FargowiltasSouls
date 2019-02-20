@@ -76,10 +76,7 @@ Effects of Red, Brown, and Purple Music Players");
             recipe.AddIngredient(null, "OrnateEnchant");
             recipe.AddIngredient(null, "ConductorEnchant");
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();

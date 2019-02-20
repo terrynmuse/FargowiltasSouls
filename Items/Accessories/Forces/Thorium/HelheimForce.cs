@@ -153,10 +153,7 @@ Summons several pets");
             recipe.AddIngredient(null, "HarbingerEnchant");
             recipe.AddIngredient(null, "PlagueDoctorEnchant");
 
-            if (Fargowiltas.Instance.FargosLoaded)
-                recipe.AddTile(ModLoader.GetMod("Fargowiltas"), "CrucibleCosmosSheet");
-            else
-                recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();

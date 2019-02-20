@@ -35,6 +35,8 @@ namespace FargowiltasSouls.Items.Ammos
 
         public override void AddRecipes()
         {
+            if (!Fargowiltas.Instance.FargosLoaded) return;
+            
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.EndlessQuiver);
             recipe.AddIngredient(fargos, "FlameQuiver");
@@ -49,7 +51,7 @@ namespace FargowiltasSouls.Items.Ammos
             recipe.AddIngredient(fargos, "VenomQuiver");
             recipe.AddIngredient(fargos, "ChlorophyteQuiver");
             recipe.AddIngredient(fargos, "LuminiteQuiver");
-            recipe.AddTile(fargos, "CrucibleCosmosSheet");
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
