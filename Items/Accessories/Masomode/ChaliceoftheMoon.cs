@@ -12,8 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Chalice of the Moon");
             Tooltip.SetDefault(
-@"
-Increases life regeneration
+@"Increases life regeneration
 Grants immunity to Venom, Burning, and Fused
 Grants immunity to Marked for Death, Clipped Wings, and Hexed
 Grants immunity to Atrophied, Jammed, Reverse Mana Flow, and Antisocial
