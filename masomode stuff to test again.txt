@@ -24,6 +24,7 @@
 -fishron special bubbles look exactly like regular bubbles :hahayes:
 -fishron p3 buffed to make bubble rings when teleporting
 -sharknados inflict debuffs now
+-fishron special bubbles use ML invul timers
 
 -doubled moon lord SUCC hook speed
 -plantera has protective crystal leaf ring

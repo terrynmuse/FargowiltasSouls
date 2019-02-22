@@ -59,6 +59,12 @@ namespace FargowiltasSouls.NPCs
             }
         }
 
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
+        {
+            cooldownSlot = 1;
+            return true;
+        }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
