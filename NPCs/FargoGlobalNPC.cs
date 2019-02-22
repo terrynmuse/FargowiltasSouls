@@ -3318,26 +3318,27 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 51: //plantera
-                        if (npc.life < npc.lifeMax / 2) //phase 2
+                        if (!masoBool[0]) //spawn protective crystal ring once
                         {
-                            if (!masoBool[0]) //spawn protective crystal ring once
+                            masoBool[0] = true;
+                            if (Main.netMode != 1)
                             {
-                                masoBool[0] = true;
-                                if (Main.netMode != 1)
+                                const int max = 5;
+                                const float distance = 130f;
+                                float rotation = 2f * (float)Math.PI / max;
+                                for (int i = 0; i < max; i++)
                                 {
-                                    const int max = 5;
-                                    const float distance = 130f;
-                                    float rotation = 2f * (float)Math.PI / max;
-                                    for (int i = 0; i < max; i++)
-                                    {
-                                        Vector2 spawnPos = npc.Center + new Vector2(distance, 0f).RotatedBy(rotation * i);
-                                        int n = NPC.NewNPC((int)spawnPos.X, (int)spawnPos.Y, mod.NPCType("CrystalLeaf"), 0, npc.whoAmI, distance, Main.rand.Next(240), rotation * i);
-                                        if (Main.netMode == 2 && n < 200)
-                                            NetMessage.SendData(23, -1, -1, null, n);
-                                    }
+                                    Vector2 spawnPos = npc.Center + new Vector2(distance, 0f).RotatedBy(rotation * i);
+                                    int n = NPC.NewNPC((int)spawnPos.X, (int)spawnPos.Y, mod.NPCType("CrystalLeaf"), 0, npc.whoAmI, distance, 300, rotation * i);
+                                    if (Main.netMode == 2 && n < 200)
+                                        NetMessage.SendData(23, -1, -1, null, n);
                                 }
                             }
+                        }
 
+                        if (npc.life <= npc.lifeMax / 2) //phase 2
+                        {
+                            masoBool[1] = true;
                             npc.defense += 21;
 
                             Counter++;
@@ -3408,9 +3409,16 @@ namespace FargowiltasSouls.NPCs
                                     Counter++;
                                     SharkCount = 1;
 
-                                    if (RegenTimer > 60)
-                                        RegenTimer = 60;
+                                    if (RegenTimer > 120)
+                                        RegenTimer = 120;
                                 }
+                            }
+                            
+                            if (RegenTimer <= 2 && npc.life + 1 + npc.lifeMax / 25 >= npc.lifeMax / 2)
+                            {
+                                npc.life = npc.lifeMax / 2;
+                                npc.lifeRegen = 0;
+                                RegenTimer = 2;
                             }
                         }
                         break;
