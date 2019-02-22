@@ -208,6 +208,8 @@ namespace FargowiltasSouls
         public byte lightningRodTimer;
         public bool ReverseManaFlow;
         public bool CurseoftheMoon;
+        public bool OceanicMaul;
+        public int MaxLifeReduction;
 
         public int MasomodeFreezeTimer = 0;
 
@@ -468,6 +470,7 @@ namespace FargowiltasSouls
             Jammed = false;
             ReverseManaFlow = false;
             CurseoftheMoon = false;
+            OceanicMaul = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -500,6 +503,9 @@ namespace FargowiltasSouls
             Atrophied = false;
             Jammed = false;
             CurseoftheMoon = false;
+            OceanicMaul = false;
+
+            MaxLifeReduction = 0;
         }
 
         public override void PreUpdate()
@@ -787,6 +793,23 @@ namespace FargowiltasSouls
                 //just in case
                 player.meleeDamage = 0.01f;
                 player.meleeCrit = 0;
+            }
+
+            if (OceanicMaul)
+            {
+                player.statDefense -= 45;
+                player.endurance = 0;
+                player.longInvince = false;
+                player.noKnockback = false;
+
+                player.statLifeMax2 -= MaxLifeReduction;
+                if (player.statLifeMax2 < 100)
+                    player.statLifeMax2 = 100;
+                //if (player.statLife > player.statLifeMax2) player.statLife = player.statLifeMax2;
+            }
+            else
+            {
+                MaxLifeReduction = 0;
             }
 
             if (Infinity)

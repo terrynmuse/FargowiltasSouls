@@ -2539,9 +2539,28 @@ namespace FargowiltasSouls.NPCs
                                 break;
 
                             case 2: //p1 bubbles
+                                if (npc.ai[2] == 0f && Main.netMode != 1)
+                                    Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);
                                 break;
 
                             case 3: //p1 drop nados
+                                if (npc.ai[2] == 60f && Main.netMode != 1)
+                                {
+                                    const int max = 32;
+                                    float rotation = 2f * (float)Math.PI / max;
+                                    for (int i = 0; i < max; i++)
+                                    {
+                                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("DetonatingBubble"));
+                                        if (n < 200)
+                                        {
+                                            Main.npc[n].velocity = Vector2.UnitY.RotatedBy(rotation * i);
+                                            Main.npc[n].velocity.Normalize();
+                                            Main.npc[n].netUpdate = true;
+                                            if (Main.netMode == 2)
+                                                NetMessage.SendData(23, -1, -1, null, n);
+                                        }
+                                    }
+                                }
                                 break;
 
                             case 4: //phase 2 transition
@@ -2614,6 +2633,7 @@ namespace FargowiltasSouls.NPCs
                                     spawnPos += npc.Center;
                                     Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * 2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
                                     Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(spawnPos.X, spawnPos.Y, 0f, 0f, ProjectileID.SharknadoBolt, 0, 2f, Main.myPlayer);
                                 }
                                 break;
 
@@ -2657,9 +2677,7 @@ namespace FargowiltasSouls.NPCs
                                     Timer = 0;
 
                                     if (Main.netMode != 1)
-                                    {
                                         Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);
-                                    }
                                 }
                                 break;
 
@@ -2693,7 +2711,27 @@ namespace FargowiltasSouls.NPCs
                                 goto case 10;
 
                             case 12: //p3 *teleports behind you*
-                                if (npc.ai[2] == 16f)
+                                if (npc.ai[2] == 15f)
+                                {
+                                    if (Main.netMode != 1)
+                                    {
+                                        const int max = 24;
+                                        float rotation = 2f * (float)Math.PI / max;
+                                        for (int i = 0; i < max; i++)
+                                        {
+                                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("DetonatingBubble"));
+                                            if (n < 200)
+                                            {
+                                                Main.npc[n].velocity = npc.velocity.RotatedBy(rotation * i);
+                                                Main.npc[n].velocity.Normalize();
+                                                Main.npc[n].netUpdate = true;
+                                                if (Main.netMode == 2)
+                                                    NetMessage.SendData(23, -1, -1, null, n);
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (npc.ai[2] == 16f)
                                 {
                                     if (Main.netMode != 1)
                                     {
@@ -2706,9 +2744,6 @@ namespace FargowiltasSouls.NPCs
                                         Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
                                     }
                                 }
-                                goto case 10;
-
-                            case 13: //p3 ???
                                 goto case 10;
 
                             default:
@@ -7165,23 +7200,28 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
-                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(600, 900));
+                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
+                        target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(3600, 7200));
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(600, 900));
-                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(1800, 3600));
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
                         break;
 
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
-                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(600, 900));
-                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(600, 900));
+                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
+                        target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(300, 600));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
                         break;
 
                     case NPCID.DetonatingBubble:
                         if (BossIsAlive(ref fishBoss, NPCID.DukeFishron))
-                            target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(600, 900));
+                        {
+                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 25;
+                            target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(900, 1800));
+                        }
                         target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(60, 180));
                         break;
 

@@ -18,6 +18,13 @@
 -plantera p2 no longer regenerates back into p1
 -plantera crystal ring can shoot leaves
 
+-fishron and attacks inflict oceanic maul now
+-changed fishron debuff durations
+-fishron p1 buffed to shoot bubble ring and cthulhunados
+-fishron special bubbles look exactly like regular bubbles :hahayes:
+-fishron p3 buffed to make bubble rings when teleporting
+-sharknados inflict debuffs now
+
 -doubled moon lord SUCC hook speed
 -plantera has protective crystal leaf ring
 -plantera phase 2 defense halved to compensate for above

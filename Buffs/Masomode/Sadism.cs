@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("Bloodthirsty")] = true;
             player.buffImmune[mod.BuffType("ClippedWings")] = true;
             player.buffImmune[mod.BuffType("Crippled")] = true;
+            player.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
             player.buffImmune[mod.BuffType("Defenseless")] = true;
             player.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
             player.buffImmune[mod.BuffType("Flipped")] = true;
@@ -34,6 +35,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("LivingWasteland")] = true;
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
+            player.buffImmune[mod.BuffType("OceanicMaul")] = true;
             player.buffImmune[mod.BuffType("Purified")] = true;
             player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;
             player.buffImmune[mod.BuffType("Rotting")] = true;

@@ -68,7 +68,7 @@ namespace FargowiltasSouls.NPCs
                     {
                         Vector2 distance = Main.player[npc.target].Center - npc.Center + Main.player[npc.target].velocity * 30f;
                         distance.Normalize();
-                        distance *= 14f;
+                        distance *= 16f;
                         int damage = 24;
                         if (!Main.player[npc.target].ZoneJungle)
                             damage = damage * 2;
@@ -96,7 +96,7 @@ namespace FargowiltasSouls.NPCs
             npc.position = plantera.Center + new Vector2(npc.ai[1], 0f).RotatedBy(npc.ai[3]);
             npc.position.X -= npc.width / 2;
             npc.position.Y -= npc.height / 2;
-            float rotation = 0.0237f;
+            float rotation = 0.03f;
             npc.ai[3] += rotation;
             if (npc.ai[3] > (float)Math.PI)
             {

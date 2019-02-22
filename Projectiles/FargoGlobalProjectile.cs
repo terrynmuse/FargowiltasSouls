@@ -1074,6 +1074,14 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
                         break;
 
+                    case ProjectileID.Sharknado:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
+                        {
+                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
+                            target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
+                        }
+                        break;
+
                     default:
                         break;
                 }
