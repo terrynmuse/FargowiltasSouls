@@ -40,6 +40,7 @@
 -special bubbles have 500 life and 200 damage in expert
 -special bubbles aren't chaseable
 -special bubbles are immune to crits
+-special bubbles aren't affected by cactus enchant
 -oceanic maul is -60 defense (was 45)
 -oceanic maul duration extended
 -oceanic maul has more life reduction

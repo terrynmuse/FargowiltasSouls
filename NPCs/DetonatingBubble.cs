@@ -72,6 +72,12 @@ namespace FargowiltasSouls.NPCs
             return true;
         }
 
+        public override bool CheckDead()
+        {
+            npc.GetGlobalNPC<FargoGlobalNPC>().Needles = false;
+            return true;
+        }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (target.hurtCooldowns[1] == 0)
