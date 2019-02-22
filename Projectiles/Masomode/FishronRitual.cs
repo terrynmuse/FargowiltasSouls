@@ -62,40 +62,37 @@ namespace FargowiltasSouls.Projectiles.Masomode
                         scale *= 0.42f;
                         num *= -0.75f;
                     }
-                    Vector2 vector2 = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 11));
-                    vector2.Normalize();
-                    int index2 = Dust.NewDust(projectile.Center, 0, 0, 135, 0f, 0f, 100, new Color(), 2f);
-                    Main.dust[index2].noGravity = true;
-                    Main.dust[index2].noLight = true;
-                    Main.dust[index2].position += vector2 * 204f * scale;
-                    Main.dust[index2].velocity = vector2 * -num;
+                    Vector2 vector21 = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 11));
+                    vector21.Normalize();
+                    int index21 = Dust.NewDust(projectile.Center, 0, 0, 135, 0f, 0f, 100, new Color(), 2f);
+                    Main.dust[index21].noGravity = true;
+                    Main.dust[index21].noLight = true;
+                    Main.dust[index21].position += vector21 * 204f * scale;
+                    Main.dust[index21].velocity = vector21 * -num;
                     if (Main.rand.Next(8) == 0)
                     {
-                        Main.dust[index2].velocity *= 2f;
-                        Main.dust[index2].scale += 0.5f;
+                        Main.dust[index21].velocity *= 2f;
+                        Main.dust[index21].scale += 0.5f;
                     }
                 }
             }
 
             projectile.ai[0]++;
-            if (projectile.ai[0] < 75f)
+            int num1 = (int)projectile.ai[0] / 60;
+            float num2 = projectile.scale * 0.4f;
+            float num3 = Main.rand.Next(1, 3);
+            Vector2 vector2 = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 11));
+            vector2.Normalize();
+            int index2 = Dust.NewDust(projectile.Center, 0, 0, 135, 0f, 0f, 100, new Color(), 2f);
+            Main.dust[index2].noGravity = true;
+            Main.dust[index2].noLight = true;
+            Main.dust[index2].velocity = vector2 * num3;
+            if (Main.rand.Next(2) == 0)
             {
-                int num1 = (int)projectile.ai[0] / 60;
-                float num2 = projectile.scale * 0.4f;
-                float num3 = Main.rand.Next(1, 3);
-                Vector2 vector2 = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 11));
-                vector2.Normalize();
-                int index2 = Dust.NewDust(projectile.Center, 0, 0, 135, 0f, 0f, 100, new Color(), 2f);
-                Main.dust[index2].noGravity = true;
-                Main.dust[index2].noLight = true;
-                Main.dust[index2].velocity = vector2 * num3;
-                if (Main.rand.Next(2) == 0)
-                {
-                    Main.dust[index2].velocity *= 2f;
-                    Main.dust[index2].scale += 0.5f;
-                }
-                Main.dust[index2].fadeIn = 2f;
+                Main.dust[index2].velocity *= 2f;
+                Main.dust[index2].scale += 0.5f;
             }
+            Main.dust[index2].fadeIn = 2f;
 
             Lighting.AddLight(projectile.Center, 0.4f, 0.9f, 1.1f);
         }
