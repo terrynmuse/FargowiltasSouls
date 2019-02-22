@@ -797,7 +797,7 @@ namespace FargowiltasSouls
 
             if (OceanicMaul)
             {
-                player.statDefense -= 45;
+                player.statDefense -= 60;
                 player.endurance = 0;
                 player.longInvince = false;
                 player.noKnockback = false;

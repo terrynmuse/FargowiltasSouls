@@ -24,7 +24,28 @@
 -fishron special bubbles look exactly like regular bubbles :hahayes:
 -fishron p3 buffed to make bubble rings when teleporting
 -sharknados inflict debuffs now
+
+-maso ML is immune to valhalla knockback
+-maso ML no longer increases spawns in phase 2
 -fishron special bubbles use ML invul timers
+-fishron, sharkron, special bubbles are immune to valhalla knockback
+-fishron and sharkron resist soul of universe x5 crit damage
+-fishron has 400% life now
+-fishron has 200% defense
+-fishron has 150% contact damage
+-fishron resists crystal shards again
+-fishron is immune to amalgamated bullet pouch
+-fishron always has an extra +25% speed when charging
+-sharkron has 1000% life (was 500%)
+-special bubbles have 500 life and 200 damage in expert
+-special bubbles aren't chaseable
+-special bubbles are immune to crits
+-oceanic maul is -60 defense (was 45)
+-oceanic maul duration extended
+-oceanic maul has more life reduction
+-oceanic maul disables regular lifesteal
+-mutant antibodies gives immunity to oceanic maul
+-added fishron ritual
 
 -doubled moon lord SUCC hook speed
 -plantera has protective crystal leaf ring

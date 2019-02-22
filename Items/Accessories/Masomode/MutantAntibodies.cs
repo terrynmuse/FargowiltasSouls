@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mutant Antibodies");
-            Tooltip.SetDefault(@"Grants immunity to Feral Bite and Mutant Nibble
+            Tooltip.SetDefault(@"Grants immunity to Feral Bite, Mutant Nibble, and Oceanic Maul
 Increases damage by 20%");
         }
 
@@ -28,6 +28,7 @@ Increases damage by 20%");
         {
             player.buffImmune[BuffID.Rabies] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
+            player.buffImmune[mod.BuffType("OceanicMaul")] = true;
             player.meleeDamage += 0.2f;
             player.rangedDamage += 0.2f;
             player.magicDamage += 0.2f;

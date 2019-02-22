@@ -21,8 +21,7 @@ namespace FargowiltasSouls.NPCs
             npc.width = 36;
             npc.height = 36;
             npc.damage = 100;
-            npc.defense = 0;
-            npc.lifeMax = 1;
+            npc.lifeMax = 250;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.noGravity = true;
@@ -32,17 +31,19 @@ namespace FargowiltasSouls.NPCs
             npc.lavaImmune = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.aiStyle = -1;
-        }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            npc.damage = 150;
-            npc.lifeMax = 1;
-            npc.life = 1;
+            npc.chaseable = false;
+            npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune = true;
+            //if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron)) npc.damage = npc.damage * 3 / 2;
         }
 
         public override void AI()
         {
+            if (npc.buffTime[0] != 0)
+            {
+                npc.buffImmune[npc.buffType[0]] = true;
+                npc.DelBuff(0);
+            }
+
             if (npc.alpha > 50)
                 npc.alpha -= 30;
             else
@@ -65,20 +66,31 @@ namespace FargowiltasSouls.NPCs
             return true;
         }
 
+        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        {
+            crit = false;
+            return true;
+        }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
+            if (target.hurtCooldowns[1] == 0)
             {
-                target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 25;
-                target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(900, 1800));
+                target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
+                target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
+                target.AddBuff(BuffID.Wet, 420);
+                target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(60, 180));
             }
-            target.AddBuff(BuffID.Wet, 420);
-            target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(60, 180));
         }
 
         public override void FindFrame(int frameHeight)
         {
             npc.frame.Y = Main.npcTexture[npc.type].Height / 2;
+        }
+
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
         }
     }
 }
