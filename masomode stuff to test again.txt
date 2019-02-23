@@ -19,6 +19,8 @@
 -golem sprays spiky balls/checks for enrage slightly more often (9sec, was 10)
 -golem regen increased to 750
 -plantera spawn rate reduced
+-nerfed shark's death cthulhunado damage (160, was 640)
+-sharkrons only inflict their debuffs when fishron is alive
 
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players

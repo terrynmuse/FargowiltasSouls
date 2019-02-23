@@ -3096,18 +3096,12 @@ namespace FargowiltasSouls.NPCs
                                 Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].wall == WallID.LihzahrdBrickUnsafe)
                             {
                                 for (int i = 0; i < 8; i++)
-                                {
-                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-2, 3), Main.rand.Next(-2, 3), ProjectileID.SpikyBallTrap, npc.damage / 5, 0f, Main.myPlayer);
-                                    //Main.projectile[p].friendly = false;
-                                }
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), 0, Main.rand.Next(-15, -5), ProjectileID.SpikyBallTrap, npc.damage / 5, 0f, Main.myPlayer);
                             }
                             else //outside temple
                             {
                                 for (int i = 0; i < 16; i++)
-                                {
-                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-2, 3), Main.rand.Next(-20, -10), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
-                                    //Main.projectile[p].friendly = false;
-                                }
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), 0, Main.rand.Next(-20, -15), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
                             }
                         }
 
@@ -6300,7 +6294,7 @@ namespace FargowiltasSouls.NPCs
                     case 37: //shark
                         if(Main.hardMode && Main.rand.Next(4) == 0)
                         {
-                            Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.Cthulunado, npc.damage * 2, 0f, Main.myPlayer, 16, 11);
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.Cthulunado, npc.damage / 2, 0f, Main.myPlayer, 16, 11);
                         }
                         break;
 
@@ -7232,10 +7226,13 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
-                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
-                        target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
-                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(300, 600));
-                        target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
+                        if (BossIsAlive(ref fishBoss, NPCID.DukeFishron))
+                        {
+                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
+                            target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
+                            target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(300, 600));
+                            target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
+                        }
                         break;
 
                     case NPCID.DetonatingBubble:
