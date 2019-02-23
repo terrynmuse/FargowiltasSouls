@@ -13,6 +13,9 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 0.6:
+-splinterling greek fire doesn't shoot as high or as often
+-pumpking greek fire damage slightly reduced
+
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players
 -plantera p2 no longer regenerates back into p1

@@ -2985,11 +2985,11 @@ namespace FargowiltasSouls.NPCs
 
                     case 39: //splinterling
                         Counter++;
-                        if (Counter >= 24)
+                        if (Counter >= 60)
                         {
                             Counter = 0;
 
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Main.rand.Next(-3, 4), Main.rand.Next(-10, 0), Main.rand.Next(326, 329), (int)(npc.damage * .4), 0f, Main.myPlayer);
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Main.rand.Next(-3, 4), Main.rand.Next(-5, 0), Main.rand.Next(326, 329), npc.damage / 4, 0f, Main.myPlayer);
                         }
                         break;
 
@@ -3337,7 +3337,7 @@ namespace FargowiltasSouls.NPCs
                                 Vector2 distance = player.Center - npc.Center;
                                 if (Math.Abs(distance.X) < npc.width) //flame rain if player roughly below me
                                 {
-                                    Projectile.NewProjectile(npc.Center.X, npc.position.Y, Main.rand.Next(-3, 4), Main.rand.Next(-4, 0), Main.rand.Next(326, 329), 40, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.Center.X, npc.position.Y, Main.rand.Next(-3, 4), Main.rand.Next(-4, 0), Main.rand.Next(326, 329), npc.damage * 2 / 5, 0f, Main.myPlayer);
                                 }
                             }
                         }
