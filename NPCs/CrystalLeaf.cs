@@ -19,7 +19,7 @@ namespace FargowiltasSouls.NPCs
         {
             npc.width = 32;
             npc.height = 32;
-            npc.damage = 60;
+            npc.damage = 0;
             npc.defense = 9999;
             npc.lifeMax = 9999;
             npc.HitSound = SoundID.NPCHit1;
@@ -36,7 +36,6 @@ namespace FargowiltasSouls.NPCs
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.damage = 120;
             npc.lifeMax = 9999;
             npc.life = 9999;
         }
@@ -57,6 +56,39 @@ namespace FargowiltasSouls.NPCs
                 return;
             }
 
+            if (npc.HasPlayerTarget && Main.player[npc.target].active)
+            {
+                npc.ai[2]++;
+                if (npc.ai[2] > 240f) //projectile timer
+                {
+                    npc.ai[2] = 0;
+                    npc.netUpdate = true;
+                    Main.PlaySound(6, (int)npc.position.X, (int)npc.position.Y);
+                    if (Main.netMode != -1)
+                    {
+                        Vector2 distance = Main.player[npc.target].Center - npc.Center + Main.player[npc.target].velocity * 30f;
+                        distance.Normalize();
+                        distance *= 16f;
+                        int damage = 24;
+                        if (!Main.player[npc.target].ZoneJungle)
+                            damage = damage * 2;
+                        else if (Main.expertMode)
+                            damage = damage * 9 / 10;
+                        Projectile.NewProjectile(npc.Center, distance, mod.ProjectileType("CrystalLeafShot"), damage, 0f, Main.myPlayer);
+                    }
+                    for (int index1 = 0; index1 < 30; ++index1)
+                    {
+                        int index2 = Dust.NewDust(npc.position, npc.width, npc.height, 157, 0f, 0f, 0, new Color(), 2f);
+                        Main.dust[index2].noGravity = true;
+                        Main.dust[index2].velocity *= 5f;
+                    }
+                }
+            }
+            else
+            {
+                npc.TargetClosest(false);
+            }
+
             Lighting.AddLight(npc.Center, 0.1f, 0.4f, 0.2f);
             npc.scale = (Main.mouseTextColor / 200f - 0.35f) * 0.2f + 0.95f;
             npc.life = npc.lifeMax;
@@ -64,38 +96,14 @@ namespace FargowiltasSouls.NPCs
             npc.position = plantera.Center + new Vector2(npc.ai[1], 0f).RotatedBy(npc.ai[3]);
             npc.position.X -= npc.width / 2;
             npc.position.Y -= npc.height / 2;
-            float rotation = 0.0237f;
+            float rotation = 0.03f;
             npc.ai[3] += rotation;
             if (npc.ai[3] > (float)Math.PI)
             {
                 npc.ai[3] -= 2f * (float)Math.PI;
                 npc.netUpdate = true;
             }
-        }
-
-        public override void OnHitPlayer(Player player, int damage, bool crit)
-        {
-            player.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
-            player.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
-            bool isVenomed = false;
-            for (int i = 0; i < 22; i++)
-            {
-                if (player.buffType[i] == BuffID.Venom && player.buffTime[i] > 1)
-                {
-                    isVenomed = true;
-                    player.buffTime[i] += Main.rand.Next(60, 300);
-                    if (player.buffTime[i] > 1200)
-                    {
-                        player.AddBuff(mod.BuffType("Infested"), player.buffTime[i]);
-                        Main.PlaySound(15, (int)player.Center.X, (int)player.Center.Y, 0);
-                    }
-                    break;
-                }
-            }
-            if (!isVenomed)
-            {
-                player.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
-            }
+            npc.rotation = npc.ai[3] + (float)Math.PI / 2f;
         }
 
         public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)

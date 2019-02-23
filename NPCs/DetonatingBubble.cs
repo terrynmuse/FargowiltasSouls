@@ -8,9 +8,12 @@ namespace FargowiltasSouls.NPCs
 {
     public class DetonatingBubble : ModNPC
     {
+        public override string Texture => "Terraria/NPC_371";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Detonating Bubble");
+            Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
@@ -18,26 +21,34 @@ namespace FargowiltasSouls.NPCs
             npc.width = 36;
             npc.height = 36;
             npc.damage = 100;
-            npc.defense = 0;
-            npc.lifeMax = 1;
+            npc.lifeMax = 250;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.knockBackResist = 0f;
-            //npc.alpha = 255;
+            npc.alpha = 255;
             npc.lavaImmune = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.aiStyle = -1;
-        }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            npc.damage = 150;
+            npc.chaseable = false;
+            npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune = true;
+            //if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron)) npc.damage = npc.damage * 3 / 2;
         }
 
         public override void AI()
         {
+            if (npc.buffTime[0] != 0)
+            {
+                npc.buffImmune[npc.buffType[0]] = true;
+                npc.DelBuff(0);
+            }
+
+            if (npc.alpha > 50)
+                npc.alpha -= 30;
+            else
+                npc.alpha = 50;
+
             npc.velocity *= 1.04f;
 
             npc.ai[0]++;
@@ -49,17 +60,43 @@ namespace FargowiltasSouls.NPCs
             }
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {
-            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
-                target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(600, 900));
-            target.AddBuff(BuffID.Wet, 420);
-            target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(60, 180));
+            cooldownSlot = 1;
+            return true;
         }
 
-        public override Color? GetAlpha(Color drawColor)
+        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
         {
-            return new Color(255, 255, 255);
+            crit = false;
+            return true;
+        }
+
+        public override bool CheckDead()
+        {
+            npc.GetGlobalNPC<FargoGlobalNPC>().Needles = false;
+            return true;
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (target.hurtCooldowns[1] == 0)
+            {
+                target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
+                target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
+                target.AddBuff(BuffID.Wet, 420);
+                target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(60, 180));
+            }
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            npc.frame.Y = Main.npcTexture[npc.type].Height / 2;
+        }
+
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
         }
     }
 }
