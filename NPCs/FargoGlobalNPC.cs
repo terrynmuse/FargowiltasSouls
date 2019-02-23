@@ -442,9 +442,10 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DukeFishron:
                         masoAI = 37;
-                        npc.lifeMax *= 4;
+                        //npc.lifeMax *= 4;
                         npc.damage = npc.damage * 3 / 2;
                         npc.defense *= 2;
+                        npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
                         ValhallaImmune = true;
                         break;
 
@@ -1594,7 +1595,7 @@ namespace FargowiltasSouls.NPCs
 
                                 int heal = npc.lifeMax - npc.life;
                                 npc.life += heal;
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
                             }
                         }
                         else
@@ -1753,7 +1754,7 @@ namespace FargowiltasSouls.NPCs
 
                                 int heal = npc.lifeMax - npc.life;
                                 npc.life += heal;
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
 
                                 int index = npc.FindBuffIndex(BuffID.CursedInferno);
                                 if (index != -1)
@@ -2519,24 +2520,32 @@ namespace FargowiltasSouls.NPCs
                     case 37: //fishron
                         fishBoss = npc.whoAmI;
                         npc.position += npc.velocity * 0.25f;
-
+                        //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         switch ((int)npc.ai[0])
                         {
                             case -1: //just spawned
-                                npc.dontTakeDamage = true;
+                                npc.defense = 99999;
                                 if (npc.ai[2] == 1 && Main.netMode != 1)
-                                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                {
+                                    int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax, npc.whoAmI);
+                                    if (p < 0 || p >= 1000) //failed to spawn projectile
+                                    {
+                                        npc.lifeMax *= 4;
+                                        npc.life = npc.lifeMax;
+                                        npc.netUpdate = true;
+                                    }
+                                }
+                                masoBool[2] = true;
                                 break;
 
                             case 0: //phase 1
-                                if (!masoBool[1])
-                                    npc.dontTakeDamage = false;
+                                masoBool[2] = false;
                                 break;
 
                             case 1: //p1 dash
                                 npc.position += npc.velocity * 0.25f;
                                 Counter++;
-                                if (Counter >= 6)
+                                if (Counter > 5)
                                 {
                                     Counter = 0;
 
@@ -2571,24 +2580,26 @@ namespace FargowiltasSouls.NPCs
                                 break;
 
                             case 4: //phase 2 transition
-                                npc.dontTakeDamage = true;
+                                npc.defense = 99999;
 
                                 masoBool[1] = false;
+                                masoBool[2] = true;
 
                                 if (npc.buffTime[0] != 0)
                                     npc.DelBuff(0);
-
-                                if (npc.ai[2] >= 120)
+                                if (npc.ai[2] == 1 && Main.netMode != 1)
+                                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax / 4, npc.whoAmI);
+                                if (npc.ai[2] >= 114)
                                 {
                                     Counter++;
-                                    if (Counter >= 6) //display healing effect
+                                    if (Counter > 6) //display healing effect
                                     {
                                         Counter = 0;
-                                        int heal = npc.lifeMax * Main.rand.Next(100, 121) / 1000;
+                                        int heal = (int)(npc.lifeMax * Main.rand.NextFloat(0.1f, 0.12f));
                                         npc.life += heal;
                                         if (npc.life > npc.lifeMax)
                                             npc.life = npc.lifeMax;
-                                        CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                        CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
                                     }
                                 }
                                 break;
@@ -2596,6 +2607,7 @@ namespace FargowiltasSouls.NPCs
                             case 5: //phase 2
                                 if (!masoBool[1])
                                     npc.dontTakeDamage = false;
+                                masoBool[2] = false;
                                 break;
 
                             case 6: //p2 dash
@@ -2603,7 +2615,7 @@ namespace FargowiltasSouls.NPCs
 
                             case 7: //p2 spin & bubbles
                                 Counter++;
-                                if (Counter >= 2)
+                                if (Counter > 1)
                                 {
                                     Counter = 0;
                                     if (Main.netMode != 1)
@@ -2645,12 +2657,12 @@ namespace FargowiltasSouls.NPCs
                                 break;
 
                             case 9: //phase 3 transition
-                                npc.dontTakeDamage = true;
-
+                                masoBool[2] = true;
                                 if (npc.buffTime[0] != 0)
                                     npc.DelBuff(0);
-
-                                if (npc.ai[2] >= 120)
+                                if (npc.ai[2] == 1 && Main.netMode != 1)
+                                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax / 4, npc.whoAmI);
+                                if (npc.ai[2] >= 114)
                                 {
                                     if (!masoBool[0])
                                     {
@@ -2660,14 +2672,14 @@ namespace FargowiltasSouls.NPCs
                                     }
 
                                     Counter++;
-                                    if (Counter >= 6) //display healing effect
+                                    if (Counter > 6) //display healing effect
                                     {
                                         Counter = 0;
-                                        int heal = npc.lifeMax * Main.rand.Next(100, 121) / 1000;
+                                        int heal = (int)(npc.lifeMax * Main.rand.NextFloat(0.1f, 0.12f));
                                         npc.life += heal;
                                         if (npc.life > npc.lifeMax)
                                             npc.life = npc.lifeMax;
-                                        CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                        CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
                                     }
                                 }
                                 break;
@@ -2677,6 +2689,7 @@ namespace FargowiltasSouls.NPCs
                                 npc.damage = (int)(npc.defDamage * 1.2f * (Main.expertMode ? 0.6f * Main.damageMultiplier : 1f));
                                 npc.defense = npc.defDefense;
                                 npc.position += npc.velocity * 0.25f;
+                                masoBool[2] = false;
 
                                 Timer++;
                                 if (Timer >= 30 + 570 * npc.life / npc.lifeMax) //spawn cthulhunado
@@ -2691,7 +2704,7 @@ namespace FargowiltasSouls.NPCs
                             case 11: //p3 dash
                                 npc.position += npc.velocity * 0.25f;
                                 Counter++;
-                                if (Counter >= 2)
+                                if (Counter > 1)
                                 {
                                     Counter = 0;
                                     if (Main.netMode != 1)
@@ -3096,12 +3109,12 @@ namespace FargowiltasSouls.NPCs
                                 Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].wall == WallID.LihzahrdBrickUnsafe)
                             {
                                 for (int i = 0; i < 8; i++)
-                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), 0, Main.rand.Next(-15, -5), ProjectileID.SpikyBallTrap, npc.damage / 5, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), 0, Main.rand.Next(-15, -4), ProjectileID.SpikyBallTrap, npc.damage / 5, 0f, Main.myPlayer);
                             }
                             else //outside temple
                             {
                                 for (int i = 0; i < 16; i++)
-                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), 0, Main.rand.Next(-20, -15), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.NextFloat(-2f, 2f), Main.rand.Next(-20, -9), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
                             }
                         }
 
@@ -3144,7 +3157,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, masoBool[2] ? 9999 : 750, false, false);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, masoBool[2] ? 9999 : 750);
                             }
                         }
                         break;
@@ -3229,7 +3242,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 500, false, false);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 500);
                             }
                         }
                         break;
@@ -3548,7 +3561,7 @@ namespace FargowiltasSouls.NPCs
 
                                 int heal = npc.lifeMax - npc.life; //full heal
                                 npc.life += heal;
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
 
                                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                                 return;
@@ -3870,7 +3883,7 @@ namespace FargowiltasSouls.NPCs
                                 masoHurtAI = 6;
                                 int heal = (int)(Main.npc[npc.realLife].lifeMax * .25f); //sum 81 segments healing to regain 25% life, with up to +20% variance
                                 Main.npc[npc.realLife].life += heal;
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
                                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                             }*/
                         }
@@ -4270,7 +4283,7 @@ namespace FargowiltasSouls.NPCs
                                 npc.life = npc.lifeMax;
                                 npc.damage = npc.damage * 4 / 3;
                                 if (heal > 0)
-                                    CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, heal, false, false);
+                                    CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
                                 npc.netUpdate = true;
                             }
                         }
@@ -4386,7 +4399,7 @@ namespace FargowiltasSouls.NPCs
                         if (Timer >= 75)
                         {
                             Timer = Main.rand.Next(30);
-                            CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, 9999, false, false);
+                            CombatText.NewText(npc.Hitbox, CombatText.HealLife, 9999);
                         }
                         break;
 
@@ -6541,6 +6554,8 @@ namespace FargowiltasSouls.NPCs
                     case 15: //fishron
                         if (modPlayer.UniverseEffect && crit)
                             damage /= 5;
+                        if (masoBool[2])
+                            damage = 0;
                         break;
 
                     default:
@@ -6629,7 +6644,7 @@ namespace FargowiltasSouls.NPCs
                     case 6: //desu body/tail, golem
                         if (projectile.type == ProjectileID.HallowStar)
                         {
-                            damage = 1;
+                            damage = 0;
                         }
                         break;
 
@@ -6690,7 +6705,7 @@ namespace FargowiltasSouls.NPCs
                         if (projectile.type == ProjectileID.DD2BetsyArrow)
                             damage = damage * 3 / 4;
                         if (projectile.type == ProjectileID.PhantasmArrow)
-                            damage = 1;
+                            damage = 0;
                         else if (npc.type == NPCID.MoonLordCore)
                             damage = damage * 2 / 3;
                         else if (npc.type == NPCID.MoonLordHead)
@@ -6724,9 +6739,11 @@ namespace FargowiltasSouls.NPCs
                             else if (projectile.type == mod.ProjectileType("FargoBulletProj"))
                             {
                                 projectile.active = false;
-                                damage = 1;
+                                damage = 0;
                             }
                         }
+                        if (masoBool[2])
+                            damage = 0;
                         break;
 
                     default:

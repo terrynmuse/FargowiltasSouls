@@ -21,6 +21,9 @@
 -plantera spawn rate reduced
 -nerfed shark's death cthulhunado damage (160, was 640)
 -sharkrons only inflict their debuffs when fishron is alive
+-fishron's health is increased by the magic spell when spawning now
+-fishron uses the spell to heal himself between phases
+-fishron takes zero damage between phases instead of invulnerability
 
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players
