@@ -3573,5 +3573,30 @@ namespace FargowiltasSouls
             }
         }
 
+        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+        {
+            if (bait.type == mod.ItemType("TruffleWormEX"))
+            {
+                for (int i = 0; i < 1000; i++) //cut fishing lines
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].owner == bait.owner && Main.projectile[i].bobber && bait.owner == Main.myPlayer)
+                    {
+                        Main.projectile[i].ai[0] = 2f;
+                    }
+                }
+                if (FargoWorld.MasochistMode && bait.owner == Main.myPlayer && !NPC.AnyNPCs(NPCID.DukeFishron))
+                {
+                    FargoGlobalNPC.spawnFishronEX = true;
+                    if (Main.netMode != 1)
+                        NPC.SpawnOnPlayer(bait.owner, NPCID.DukeFishron);
+                    else
+                        NetMessage.SendData(61, -1, -1, null, bait.owner);
+                }
+                bait.stack--;
+                if (bait.stack <= 0)
+                    bait.SetDefaults(0);
+            }
+        }
+
     }
 }

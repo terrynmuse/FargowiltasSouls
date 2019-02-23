@@ -25,6 +25,24 @@
 -fishron uses the spell to heal himself between phases
 -fishron takes zero damage between phases instead of invulnerability
 
+-mutant antibody resistance to oceanic maul removed
+-fishron EX chains dashes a lot faster
+-split fishron into pre-ML fishron and post-ML fishron EX
+-fishron and attacks always inflict defenseless (except non-EX bubbles)
+-removed from pre-ML fishron:
+	-oceanic maul
+	-speedup when charging
+	-extra p1 bubble/nado attacks
+	-p2 bubble spin ring simplified
+	-p2 extra nados reduced to 1
+	-debuff cleanse between phases
+	-p3 debuff immunity and stat buffs
+	-p3 dash bubble spawn rate reduced
+	-p3 teleport ring
+	-p3 cthulhunado is on fixed timer
+	-p3 tele nados reduced to 1
+-added truffle worm EX, dropped by moon lord
+
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players
 -plantera p2 no longer regenerates back into p1

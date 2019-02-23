@@ -1081,7 +1081,8 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.Sharknado:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
+                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(600, 900));
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBossEX, NPCID.DukeFishron))
                         {
                             target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
                             target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
