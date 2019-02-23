@@ -15,6 +15,10 @@
 0.6:
 -splinterling greek fire doesn't shoot as high or as often
 -pumpking greek fire damage slightly reduced
+-golem outside temple shoots more spiky balls and more vertically
+-golem sprays spiky balls/checks for enrage slightly more often (9sec, was 10)
+-golem regen increased to 750
+-plantera spawn rate reduced
 
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players

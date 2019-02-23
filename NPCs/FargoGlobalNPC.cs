@@ -3076,7 +3076,7 @@ namespace FargowiltasSouls.NPCs
                                 masoBool[1] = true; //true means player is okay, don't enrage
                             }
                         }
-                        if (Counter >= 600)
+                        if (Counter >= 540)
                         {
                             if (!masoBool[1] && !masoBool[2]) //player never went back to safe zone, enrage
                             {
@@ -3103,15 +3103,15 @@ namespace FargowiltasSouls.NPCs
                             }
                             else //outside temple
                             {
-                                for (int i = 0; i < 12; i++)
+                                for (int i = 0; i < 16; i++)
                                 {
-                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-3, 4), Main.rand.Next(-20, 9), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.Next(-2, 3), Main.rand.Next(-20, -10), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
                                     //Main.projectile[p].friendly = false;
                                 }
                             }
                         }
 
-                        if (masoBool[2])
+                        if (masoBool[2]) //enraged
                         {
                             npc.damage = npc.defDamage;
                             npc.defense = npc.defDefense;
@@ -3142,7 +3142,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (!npc.dontTakeDamage)
                         {
-                            npc.life += masoBool[2] ? 167 : 8;
+                            npc.life += masoBool[2] ? 167 : 13;
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
 
@@ -3150,7 +3150,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, masoBool[2] ? 9999 : 500, false, false);
+                                CombatText.NewText(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), CombatText.HealLife, masoBool[2] ? 9999 : 750, false, false);
                             }
                         }
                         break;
@@ -3222,7 +3222,7 @@ namespace FargowiltasSouls.NPCs
                                 Counter = 0; //failsafe
                             }
                         }
-                        break; //invincible anyway, so no regen needed
+                        break;
 
                     case 42: //golem head
                         if (!npc.dontTakeDamage)
@@ -5556,9 +5556,9 @@ namespace FargowiltasSouls.NPCs
                         {
                             pool[NPCID.BigMimicJungle] = .01f;
 
-                            if (NPC.downedGolemBoss)
+                            if (NPC.downedGolemBoss && !BossIsAlive(ref NPC.plantBoss, NPCID.Plantera))
                             {
-                                pool[NPCID.Plantera] = BossIsAlive(ref NPC.plantBoss, NPCID.Plantera) ? 0.00125f : .0025f;
+                                pool[NPCID.Plantera] = .00125f;
                             }
                         }
                     }
