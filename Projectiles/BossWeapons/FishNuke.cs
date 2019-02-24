@@ -26,9 +26,18 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if ((target.lifeMax / 25) > projectile.damage)
+            if (FargoWorld.MasochistMode && NPCs.FargoGlobalNPC.BossIsAlive(ref NPCs.FargoGlobalNPC.fishBossEX, NPCID.DukeFishron))
+            {
+                target.life += damage + target.lifeMax / 25;
+                if (target.life > target.lifeMax)
+                    target.life = target.lifeMax;
+                CombatText.NewText(target.Hitbox, CombatText.HealLife, damage);
+                damage = 0;
+            }
+            else if (target.lifeMax / 25 > damage)
+            {
                 damage = target.lifeMax / 25;
-
+            }
             Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType<Explosion>(), damage, 5f, Main.myPlayer);
         }
 

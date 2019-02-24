@@ -62,6 +62,7 @@
 -adjusted how oceanic maul life reduction is tracked internally
 -nerfed fishron EX oceanic maul slightly
 -lifesteals only activate when at least 1hp is recovered
+-nuke fishron heals duke fishron EX
 
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players
