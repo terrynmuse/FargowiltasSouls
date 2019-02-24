@@ -904,7 +904,7 @@ namespace FargowiltasSouls.Projectiles
                             if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
                             {
                                 isVenomed = true;
-                                target.buffTime[i] += Main.rand.Next(60, 300);
+                                target.buffTime[i] += Main.rand.Next(60, 180);
                                 break;
                             }
                         }

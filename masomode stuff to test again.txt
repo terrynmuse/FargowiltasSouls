@@ -49,6 +49,13 @@
 -removed wof DR, gave 67% bee resistance
 -cultist clone shadowflame fireballs die
 -cultist hp nerfed from 200% to 150%
+-non-EX fishron inflicts weaker oceanic maul on contact
+-plantera max venom time reduced a lot
+-adjusted curse of the moon dust and stats
+-ancient vision life increase removed
+-moon lord throwing phase fucking removed
+-fixed moon lord not actually dropping galactic globe
+-moon lord sockets inflict curse of the moon too
 
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players

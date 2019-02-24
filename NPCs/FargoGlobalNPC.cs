@@ -162,13 +162,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.TargetDummy: ValhallaImmune = true; break;
 
-                    case NPCID.CultistDragonHead:
-                    case NPCID.AncientCultistSquidhead:
-                        npc.lifeMax *= 2;
-                        if (BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
-                            npc.lifeMax *= 2;
-                        break;
-
                     case NPCID.RainbowSlime:
                         npc.scale = 3f;
                         npc.lifeMax *= 5;
@@ -2827,7 +2820,9 @@ namespace FargowiltasSouls.NPCs
                                         }
                                         break;
                                     case 4: //throwing
-                                        bool makeVisions = NPC.CountNPCS(NPCID.AncientCultistSquidhead) < 4;
+                                        /*Timer = 0;
+                                        bool makeDragon = !NPC.AnyNPCs(NPCID.CultistDragonHead);
+                                        bool makeVisions = !NPC.AnyNPCs(NPCID.AncientCultistSquidhead);
                                         for (int i = 0; i < 3; i++)
                                         {
                                             NPC bodyPart = Main.npc[(int)npc.localAI[i]];
@@ -2836,51 +2831,26 @@ namespace FargowiltasSouls.NPCs
                                             {
                                                 if (i == 2 && bodyPart.type == NPCID.MoonLordHead)
                                                 {
-                                                    if (!NPC.AnyNPCs(NPCID.CultistDragonHead))
-                                                    {
-                                                        if (Main.netMode != 1)
-                                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.CultistDragonHead, 0, 0f, 0f, 0f, 0f, npc.target);
-                                                    }
-                                                    else if (makeVisions)
-                                                    {
-                                                        if (Main.netMode != 1)
-                                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
-                                                    }
+                                                    if (makeDragon && Main.netMode != 1)
+                                                        NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.CultistDragonHead, 0, 0f, 0f, 0f, 0f, npc.target);
                                                 }
                                                 else if (bodyPart.type == NPCID.MoonLordHand)
                                                 {
-                                                    if (makeVisions)
-                                                    {
-                                                        if (Main.netMode != 1)
-                                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
-                                                    }
+                                                    if (makeVisions && Main.netMode != 1)
+                                                        NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
                                                 }
                                             }
-                                        }
+                                        }*/
                                         break;
                                 }
-                                //spawn visions from hands, dragon from head
-                                /*for (int i = 0; i < 3; i++)
-                                {
-                                    NPC bodyPart = Main.npc[(int)npc.localAI[i]];
-
-                                    if (i == 2)
-                                    {
-                                        if (bodyPart.active && bodyPart.type == NPCID.MoonLordHead)
-                                        {
-                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.CultistDragonHead, 0, 0f, 0f, 0f, 0f, npc.target);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (bodyPart.active && bodyPart.type == NPCID.MoonLordHand)
-                                        {
-                                            NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0f, npc.target);
-                                        }
-                                    }
-                                }*/
-                                }
                             }
+                        }
+
+                        if (npc.ai[0] == 2f)
+                        {
+                            Counter = 0;
+                            masoState = 4;
+                        }
 
                         int dustType = 87;
                         switch (masoState)
@@ -3019,7 +2989,7 @@ namespace FargowiltasSouls.NPCs
                             else //outside temple
                             {
                                 for (int i = 0; i < 16; i++)
-                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.NextFloat(-2f, 2f), Main.rand.Next(-20, -9), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), Main.rand.NextFloat(-1f, 1f), Main.rand.Next(-20, -9), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
                             }
                         }
 
@@ -4303,7 +4273,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             Counter = 0;
                             masoState++;
-                            if (masoState > 4)
+                            if (masoState > 3)
                                 masoState = 0;
                         }
                         if (npc.type != NPCID.MoonLordCore)
@@ -5922,7 +5892,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MoonLordCore:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GravityGlobeEX"));
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GalacticGlobe"));
                         int maxML = Main.rand.Next(3) + 1;
                         for (int i = 0; i < maxML; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TruffleWormEX"));
@@ -7374,11 +7344,8 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
-                        if (npc.whoAmI == fishBossEX)
-                        {
-                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 150;
-                            target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(3600, 7200));
-                        }
+                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += (npc.whoAmI == fishBossEX) ? 150 : 50;
+                        target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(3600, 7200));
                         break;
 
                     case NPCID.Sharkron:
@@ -7456,7 +7423,7 @@ namespace FargowiltasSouls.NPCs
                             if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
                             {
                                 isVenomed = true;
-                                target.buffTime[i] += Main.rand.Next(60, 300);
+                                target.buffTime[i] += Main.rand.Next(60, 180);
                                 if (target.buffTime[i] > 1200)
                                 {
                                     target.AddBuff(mod.BuffType<Infested>(), target.buffTime[i]);
@@ -7828,6 +7795,12 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.Frostburn, Main.rand.Next(300, 600));
                         break;
 
+                    case NPCID.MoonLordFreeEye:
+                    case NPCID.MoonLordHand:
+                    case NPCID.MoonLordHead:
+                        target.AddBuff(mod.BuffType<CurseoftheMoon>(), Main.rand.Next(240, 360));
+                        break;
+
                     default:
                         break;
                 }
@@ -7993,7 +7966,8 @@ namespace FargowiltasSouls.NPCs
                     case 1: if (!projectile.ranged) return false; break;
                     case 2: if (!projectile.magic) return false; break;
                     case 3: if (!projectile.minion) return false; break;
-                    case 4: if (!projectile.thrown) return false; break;
+                    //case 4: if (!projectile.thrown) return false; break;
+                    default: break;
                 }
             }
 
