@@ -1465,9 +1465,7 @@ namespace FargowiltasSouls.NPCs
 
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                             if (t != -1 && npc.Distance(Main.player[t].Center) < 800)
-                            {
                                 FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 1, npc.damage / 2, .5f);
-                            }
                         }
                         break;
 
@@ -4369,12 +4367,8 @@ namespace FargowiltasSouls.NPCs
                         Counter++;
                         if (Counter >= 360)
                         {
-                            Projectile p = Projectile.NewProjectileDirect(new Vector2(npc.Center.X + 100, npc.Center.Y), Vector2.Zero, ProjectileID.VortexVortexLightning, npc.damage * 2, 1, Main.myPlayer, 0, 1);
-                            p.friendly = false;
-                            p.hostile = true;
-                            p = Projectile.NewProjectileDirect(new Vector2(npc.Center.X - 100, npc.Center.Y), Vector2.Zero, ProjectileID.VortexVortexLightning, npc.damage * 2, 1, Main.myPlayer, 0, 1);
-                            p.friendly = false;
-                            p.hostile = true;
+                            Projectile.NewProjectile(new Vector2(npc.Center.X + 100, npc.Center.Y), Vector2.Zero, ProjectileID.VortexVortexLightning, 0, 1, Main.myPlayer, 0, 1);
+                            Projectile.NewProjectile(new Vector2(npc.Center.X - 100, npc.Center.Y), Vector2.Zero, ProjectileID.VortexVortexLightning, 0, 1, Main.myPlayer, 0, 1);
                             Counter = 0;
                         }
                         break;
@@ -4385,9 +4379,12 @@ namespace FargowiltasSouls.NPCs
                         if (Math.Abs(npc.velocity.X) > 1 && Counter >= 3)
                         {
                             int direction = npc.velocity.X > 0 ? 1 : -1;
-                            Projectile p = Projectile.NewProjectileDirect(new Vector2(npc.Center.X - direction * ( npc.width / 2), npc.Center.Y), npc.velocity, ProjectileID.RainbowBack, npc.damage / 3, 1);
-                            p.friendly = false;
-                            p.hostile = true;
+                            int p = Projectile.NewProjectile(new Vector2(npc.Center.X - direction * ( npc.width / 2), npc.Center.Y), npc.velocity, ProjectileID.RainbowBack, npc.damage / 3, 1);
+                            if (p < 1000)
+                            {
+                                Main.projectile[p].friendly = false;
+                                Main.projectile[p].hostile = true;
+                            }
                             Counter = 0;
                         }
                         break;
@@ -4715,39 +4712,22 @@ namespace FargowiltasSouls.NPCs
                 else if (delay == 0 || Stop == delay / 2)
                 {
                     Vector2 velocity = Vector2.Normalize(player.Center - npc.Center) * speed;
-
                     if (npc.Distance(player.Center) < distance)
-                    {
                         velocity = Vector2.Normalize(player.Center - npc.Center) * speed;
-                        
-                    }
-                    //player too far away now, just shoot straight ahead
-                    else
-                    {
+                    else //player too far away now, just shoot straight ahead
                         velocity = new Vector2(npc.direction * speed, 0);
-                    }
 
-                    Projectile p = Projectile.NewProjectileDirect(npc.Center, velocity, proj, dmg, kb, Main.myPlayer);
-
+                    int p = Projectile.NewProjectile(npc.Center, velocity, proj, dmg, kb, Main.myPlayer);
                     if (recolor)
-                    {
-                        p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                    }
-
+                        Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     if (hostile)
                     {
-                        p.friendly = false;
-                        p.hostile = true;
+                        Main.projectile[p].friendly = false;
+                        Main.projectile[p].hostile = true;
                     }
-
                     Counter = 0;
                 }
             }
-
-
-
-
-
             
         }
 
@@ -5928,6 +5908,7 @@ namespace FargowiltasSouls.NPCs
 
                 for (int i = 0; i < projs.Length; i++)
                 {
+                    if (projs[i] == null) continue;
                     Projectile p = projs[i];
                     p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     p.magic = false;
@@ -5957,10 +5938,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 2: //goblins
-                        Projectile ball = Projectile.NewProjectileDirect(npc.Center, new Vector2(Main.rand.Next(-5, 6), -5), ProjectileID.SpikyBall, 15, 0, Main.myPlayer);
-                        ball.hostile = true;
-                        ball.friendly = false;
-                        ball.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                        int ball = Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.Next(-5, 6), -5), ProjectileID.SpikyBall, 15, 0, Main.myPlayer);
+                        if (ball < 1000)
+                        {
+                            Main.projectile[ball].hostile = true;
+                            Main.projectile[ball].friendly = false;
+                            Main.projectile[ball].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                        }
                         break;
 
                     case 3: //angry bones
@@ -6395,10 +6379,13 @@ namespace FargowiltasSouls.NPCs
                     case 35: //goblin summoner
                         for (int i = 0; i < 50; i++)
                         {
-                            Projectile balls = Projectile.NewProjectileDirect(npc.Center, new Vector2(Main.rand.Next(-500, 501) / 100f, Main.rand.Next(-1000, 1) / 100f), ProjectileID.SpikyBall, npc.damage / 8, 0, Main.myPlayer);
-                            balls.hostile = true;
-                            balls.friendly = false;
-                            balls.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true; 
+                            int balls = Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.Next(-500, 501) / 100f, Main.rand.Next(-1000, 1) / 100f), ProjectileID.SpikyBall, npc.damage / 8, 0, Main.myPlayer);
+                            if (balls < 1000)
+                            {
+                                Main.projectile[balls].hostile = true;
+                                Main.projectile[balls].friendly = false;
+                                Main.projectile[balls].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                            }
                         }
                         break;
 
@@ -6628,9 +6615,9 @@ namespace FargowiltasSouls.NPCs
                         damage = (int)(damage * reduction);
                         break;
 
-                    case 11: //wof eye
+                    case 11: //wof
                         if (npc.ai[0] == 2f || npc.ai[0] == -2f)
-                            damage /= 2;
+                            damage = (int)(damage * 0.75);
                         break;
 
                     case 12: //moon lord
@@ -6803,6 +6790,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 11: //wof
+                        if (npc.ai[0] == 2f || npc.ai[0] == -2f)
+                            damage = (int)(damage * 0.75);
                         if (projectile.type == ProjectileID.Bee || projectile.type == ProjectileID.GiantBee)
                             damage /= 3;
                         break;
@@ -6838,14 +6827,25 @@ namespace FargowiltasSouls.NPCs
                             damage /= 5;
                         if (projectile.ranged)
                         {
-                            if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.DD2BetsyArrow || projectile.type == ProjectileID.CrystalShard)
+                            if (projectile.arrow)
                             {
-                                damage /= 3;
+                                if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.DD2BetsyArrow)
+                                    damage /= 3;
+                                if (projectile.type == mod.ProjectileType("FargoArrowProj"))
+                                {
+                                    projectile.active = false;
+                                    damage = 0;
+                                }
                             }
-                            else if (projectile.type == mod.ProjectileType("FargoBulletProj"))
+                            else
                             {
-                                projectile.active = false;
-                                damage = 0;
+                                if (projectile.type == ProjectileID.CrystalShard)
+                                    damage /= 3;
+                                if (projectile.type == mod.ProjectileType("FargoBulletProj"))
+                                {
+                                    projectile.active = false;
+                                    damage = 0;
+                                }
                             }
                         }
                         if (masoBool[2])
@@ -7344,7 +7344,7 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
-                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += (npc.whoAmI == fishBossEX) ? 150 : 50;
+                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += (npc.whoAmI == fishBossEX) ? 100 : 50;
                         target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(3600, 7200));
                         break;
 
@@ -7355,7 +7355,7 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
                         if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
-                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
+                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 75;
                             target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
                         }
                         break;

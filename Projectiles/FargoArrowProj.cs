@@ -26,6 +26,7 @@ namespace FargowiltasSouls.Projectiles
             projectile.aiStyle = 1;
             projectile.friendly = true;
             projectile.ranged = true;
+            projectile.arrow = true;
             projectile.penetrate = -1; //same as luminite
             projectile.timeLeft = 200;
             projectile.light = 1f;

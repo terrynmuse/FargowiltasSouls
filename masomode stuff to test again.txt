@@ -56,6 +56,12 @@
 -moon lord throwing phase fucking removed
 -fixed moon lord not actually dropping galactic globe
 -moon lord sockets inflict curse of the moon too
+-wof has 25% DR in phase 2
+-fishron is immune to amalgamated arrows too
+-a LOT of changing NewProjectileDirect() and some safety checks
+-adjusted how oceanic maul life reduction is tracked internally
+-nerfed fishron EX oceanic maul slightly
+-lifesteals only activate when at least 1hp is recovered
 
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players
