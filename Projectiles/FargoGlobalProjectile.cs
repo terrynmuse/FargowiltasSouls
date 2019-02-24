@@ -55,6 +55,11 @@ namespace FargowiltasSouls.Projectiles
                         projectile.hostile = true;
                         break;
 
+                    case ProjectileID.CultistBossFireBallClone:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss))
+                            projectile.timeLeft = 1;
+                        break;
+
                     /*case ProjectileID.Sharknado:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
                             projectile.damage = projectile.damage * 3 / 2;

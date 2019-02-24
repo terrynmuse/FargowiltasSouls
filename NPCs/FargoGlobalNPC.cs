@@ -143,6 +143,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.IceTortoise: masoHurtAI = 10; break;
 
+                    case NPCID.WallofFlesh:
                     case NPCID.WallofFleshEye: masoHurtAI = 11; break;
 
                     case NPCID.MoonLordCore:
@@ -438,7 +439,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                         masoAI = 35;
-                        npc.defense *= 10;
+                        npc.defense *= 5;
                         npc.defDefense = npc.defense;
                         ValhallaImmune = true;
                         break;
@@ -1605,9 +1606,9 @@ namespace FargowiltasSouls.NPCs
                                 npc.netUpdate = true;
                                 Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
 
-                                int heal = npc.lifeMax - npc.life;
+                                /*int heal = npc.lifeMax - npc.life;
                                 npc.life += heal;
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);*/
                             }
                         }
                         else
@@ -1764,9 +1765,9 @@ namespace FargowiltasSouls.NPCs
                                 npc.netUpdate = true;
                                 Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
 
-                                int heal = npc.lifeMax - npc.life;
+                                /*int heal = npc.lifeMax - npc.life;
                                 npc.life += heal;
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);*/
 
                                 int index = npc.FindBuffIndex(BuffID.CursedInferno);
                                 if (index != -1)
@@ -1774,6 +1775,8 @@ namespace FargowiltasSouls.NPCs
 
                                 npc.buffImmune[BuffID.CursedInferno] = true;
                                 npc.buffImmune[BuffID.OnFire] = true;
+                                npc.buffImmune[BuffID.ShadowFlame] = true;
+                                npc.buffImmune[BuffID.Frostburn] = true;
                             }
                         }
                         else
@@ -1825,7 +1828,6 @@ namespace FargowiltasSouls.NPCs
                                 if (Counter == 4)
                                 {
                                     Counter = 0;
-
                                     Projectile.NewProjectile(npc.Center, npc.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-6f, 6f))) * 0.66f, ProjectileID.EyeFire, npc.damage / 5, 0f, Main.myPlayer);
                                 }
                             }
@@ -3331,7 +3333,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
 
-                            Timer++;
+                            /*Timer++;
                             if (Timer >= 300)
                             {
                                 Timer = 0;
@@ -3349,7 +3351,7 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PlanterasTentacle, npc.whoAmI);
                                 }
-                            }
+                            }*/
 
                             SharkCount = 0;
 
@@ -3357,7 +3359,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 if (Main.player[npc.target].venom)
                                 {
-                                    npc.position += npc.velocity / 2f;
+                                    npc.position += npc.velocity / 3f;
                                     npc.defense *= 2;
                                     Counter++;
                                     SharkCount = 1;
@@ -3462,9 +3464,9 @@ namespace FargowiltasSouls.NPCs
                                 if (!NPC.AnyNPCs(NPCID.PrimeVice))
                                     NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeVice, npc.whoAmI, -1f, npc.whoAmI, 0f, 0f, npc.target);
 
-                                int heal = npc.lifeMax - npc.life; //full heal
+                                /*int heal = npc.lifeMax - npc.life; //full heal
                                 npc.life += heal;
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);*/
 
                                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                                 return;
@@ -3601,7 +3603,6 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-
                         //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         break;
 
@@ -3779,16 +3780,6 @@ namespace FargowiltasSouls.NPCs
                                 //npc.checkDead();
                                 return;
                             }
-
-                            /*if (!masoBool[0] && Main.npc[npc.realLife].GetGlobalNPC<FargoGlobalNPC>().masoBool[0])
-                            {
-                                masoBool[0] = true;
-                                masoHurtAI = 6;
-                                int heal = (int)(Main.npc[npc.realLife].lifeMax * .25f); //sum 81 segments healing to regain 25% life, with up to +20% variance
-                                Main.npc[npc.realLife].life += heal;
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
-                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
-                            }*/
                         }
 
                         if (npc.ai[2] != 0) //if probe is released
@@ -6841,9 +6832,9 @@ namespace FargowiltasSouls.NPCs
                         damage = (int)(damage * reduction);
                         break;
 
-                    case 11: //wof eye
-                        if (npc.ai[0] == 2f || npc.ai[0] == -2f)
-                            damage /= 2;
+                    case 11: //wof
+                        if (projectile.type == ProjectileID.Bee || projectile.type == ProjectileID.GiantBee)
+                            damage /= 3;
                         break;
 
                     case 12: //moon lord
