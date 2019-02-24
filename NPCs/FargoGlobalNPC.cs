@@ -418,7 +418,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.CultistBoss:
                         masoAI = 30;
-                        npc.lifeMax *= 2;
+                        npc.lifeMax = (int)(npc.lifeMax * 1.5);
                         break;
 
                     case NPCID.KingSlime:

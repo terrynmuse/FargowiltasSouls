@@ -48,6 +48,7 @@
 -removed plantera p2 tentacle spam, nerfed p2 enraged speed
 -removed wof DR, gave 67% bee resistance
 -cultist clone shadowflame fireballs die
+-cultist hp nerfed from 200% to 150%
 
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players
