@@ -802,9 +802,9 @@ namespace FargowiltasSouls
                 player.longInvince = false;
                 player.noKnockback = false;
 
+                if (MaxLifeReduction > player.statLifeMax2 - 100)
+                    MaxLifeReduction = player.statLifeMax2 - 100;
                 player.statLifeMax2 -= MaxLifeReduction;
-                if (player.statLifeMax2 < 100)
-                    player.statLifeMax2 = 100;
                 //if (player.statLife > player.statLifeMax2) player.statLife = player.statLifeMax2;
             }
             else
@@ -1036,7 +1036,7 @@ namespace FargowiltasSouls
 
             }
 
-            if (CurseoftheMoon)
+            if (CurseoftheMoon && Main.rand.Next(3) > 0)
             {
                 int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, 229, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
                 Main.dust[dust].noGravity = true;
@@ -1555,9 +1555,12 @@ namespace FargowiltasSouls
                 num6 = num5 / num6;
                 velocityX *= num6;
                 velocityY *= num6;
-                Projectile p = Projectile.NewProjectileDirect(new Vector2(screenX, screenY), new Vector2(velocityX, velocityY), mod.ProjectileType<DungeonGuardian>(), 500, 0f, player.whoAmI, 0, 120);
-                p.penetrate = 1;
-                p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(new Vector2(screenX, screenY), new Vector2(velocityX, velocityY), mod.ProjectileType<DungeonGuardian>(), 500, 0f, player.whoAmI, 0, 120);
+                if (p != null)
+                {
+                    p.penetrate = 1;
+                    p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                }
             }
 
             if (JungleEnchant && !NatureForce && Main.rand.Next(4) == 0)
@@ -1603,8 +1606,11 @@ namespace FargowiltasSouls
                 }
                 else if (TinCrit >= 100)
                 {
-                    player.statLife += damage / 10;
-                    player.HealEffect(damage / 10);
+                    if (damage / 10 > 0)
+                    {
+                        player.statLife += damage / 10;
+                        player.HealEffect(damage / 10);
+                    }
                     eternityDamage += .1f;
                 }
             }
@@ -1616,7 +1622,7 @@ namespace FargowiltasSouls
                 }
                 else if (TinCrit >= 100)
                 {
-                    if (HealTimer == 0)
+                    if (HealTimer <= 0 && damage / 25 > 0)
                     {
                         player.statLife += damage / 25;
                         player.HealEffect(damage / 25);
@@ -1759,16 +1765,16 @@ namespace FargowiltasSouls
 
             if (PalladEnchant && palladiumCD == 0)
             {
-                int heal = damage / 3;
+                int heal = damage / 20;
 
-                if (heal > 100)
-                {
-                    heal = 100;
-                }
+                if (heal > 5)
+                    heal = 5;
+                else if (heal < 1)
+                    heal = 1;
 
                 player.statLife += heal;
                 player.HealEffect(heal);
-                palladiumCD = 600;
+                palladiumCD = 60;
             }
 
             if (Soulcheck.GetValue("Spectre Orbs") && (SpiritForce || TerrariaSoul))
@@ -1781,9 +1787,9 @@ namespace FargowiltasSouls
                 num2 = num / num2;
                 speedX *= num2;
                 speedY *= num2;
-                Projectile p = Projectile.NewProjectileDirect(target.position, new Vector2(speedX, speedY), ProjectileID.SpectreWrath, damage / 2, 0, player.whoAmI, target.whoAmI);
-
-                SpectreHeal(target, p);
+                Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.position, new Vector2(speedX, speedY), ProjectileID.SpectreWrath, damage / 2, 0, player.whoAmI, target.whoAmI);
+                if (p != null)
+                    SpectreHeal(target, p);
             }
 
             if (Eternity)
@@ -1794,8 +1800,11 @@ namespace FargowiltasSouls
                 }
                 else if (TinCrit >= 100)
                 {
-                    player.statLife += damage / 10;
-                    player.HealEffect(damage / 10);
+                    if (damage / 10 > 0)
+                    {
+                        player.statLife += damage / 10;
+                        player.HealEffect(damage / 10);
+                    }
                     eternityDamage += .1f;
                 }
             }
@@ -1807,7 +1816,7 @@ namespace FargowiltasSouls
                 }
                 else if (TinCrit >= 100)
                 {
-                    if (HealTimer == 0)
+                    if (HealTimer <= 0 && damage / 25 > 0)
                     {
                         player.statLife += damage / 25;
                         player.HealEffect(damage / 25);
@@ -2031,9 +2040,9 @@ namespace FargowiltasSouls
 
             if (MoltenEnchant)
             {
-                Projectile p = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, mod.ProjectileType<Explosion>(), (int)(500 * player.meleeDamage), 0f, Main.myPlayer);
-
-                p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, mod.ProjectileType<Explosion>(), (int)(500 * player.meleeDamage), 0f, Main.myPlayer);
+                if (p != null)
+                    p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
 
             if(player.FindBuffIndex(mod.BuffType<Revived>()) == -1)
@@ -2060,14 +2069,9 @@ namespace FargowiltasSouls
                 }
                 else if (FossilEnchant)
                 {
-                    player.statLife = 20;
-
-                    if(SpiritForce)
-                    {
-                        player.statLife = 100;
-                    }
-
-                    player.HealEffect(20);
+                    int heal = SpiritForce ? 100 : 20;
+                    player.statLife = heal;
+                    player.HealEffect(heal);
                     player.immune = true;
                     player.immuneTime = player.longInvince ? 300 : 200;
                     FossilBones = true;
@@ -2567,13 +2571,15 @@ namespace FargowiltasSouls
                         float ai2 = Main.rand.Next(100);
                         Vector2 velocity = Vector2.Normalize(ai) * 20;
 
-                        Projectile p = Projectile.NewProjectileDirect(target.Center, velocity, ProjectileID.CultistBossLightningOrbArc, (int)(dmg * player.magicDamage), 0f, player.whoAmI, ai.ToRotation(), ai2);
-                        p.friendly = true;
-                        p.hostile = false;
-                        p.penetrate = -1;
-                        p.timeLeft = 60;
-                        p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
-
+                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, ProjectileID.CultistBossLightningOrbArc, (int)(dmg * player.magicDamage), 0f, player.whoAmI, ai.ToRotation(), ai2);
+                        if (p != null)
+                        {
+                            p.friendly = true;
+                            p.hostile = false;
+                            p.penetrate = -1;
+                            p.timeLeft = 60;
+                            p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                        }
                         target.AddBuff(mod.BuffType<Shock>(), 60);
                     }
                     else
@@ -2613,7 +2619,7 @@ namespace FargowiltasSouls
                     {
                         Vector2 vel = (Main.MouseWorld - prevPosition).SafeNormalize(-Vector2.UnitY);
 
-                        Projectile p = Projectile.NewProjectileDirect(prevPosition, vel * heldItem.shootSpeed, ProjectileID.DD2FlameBurstTowerT3Shot, heldItem.damage / 2, 1, player.whoAmI);
+                        Projectile.NewProjectile(prevPosition, vel * heldItem.shootSpeed, ProjectileID.DD2FlameBurstTowerT3Shot, heldItem.damage / 2, 1, player.whoAmI);
 
                         for (int i = 0; i < 5; i++)
                         {
@@ -2670,16 +2676,20 @@ namespace FargowiltasSouls
                             randY = Main.rand.Next(-10, 10);
                         } while (randY <= 4f && randY >= -4f);
 
-                        Projectile p = Projectile.NewProjectileDirect(player.Center, new Vector2(randX, randY), ProjectileID.BoneGloveProj, (int)(dmg * player.thrownDamage), 2, Main.myPlayer);
-                        p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, new Vector2(randX, randY), ProjectileID.BoneGloveProj, (int)(dmg * player.thrownDamage), 2, Main.myPlayer);
+                        if (p != null)
+                            p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     }
 
-                    Projectile p2 = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, ProjectileID.Bone, (int)(dmg * 1.5 * player.thrownDamage), 0f, player.whoAmI);
-                    p2.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                    p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = Main.rand.Next(32, 128);
-                    p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDir = Main.rand.Next(2);
-                    p2.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                    p2.noDropItem = true;
+                    Projectile p2 = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, ProjectileID.Bone, (int)(dmg * 1.5 * player.thrownDamage), 0f, player.whoAmI);
+                    if (p2 != null)
+                    {
+                        p2.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                        p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = Main.rand.Next(32, 128);
+                        p2.GetGlobalProjectile<FargoGlobalProjectile>().RotateDir = Main.rand.Next(2);
+                        p2.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                        p2.noDropItem = true;
+                    }
 
                     boneCD = 20;
                 }
@@ -2703,12 +2713,14 @@ namespace FargowiltasSouls
             {
                 if (icicleCD == 0 && IcicleCount < 3)
                 {
-                    Projectile p = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, ProjectileID.Blizzard, 0, 0, player.whoAmI);
-                    p.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                    p.width = 10;
-                    p.height = 10;
-                    p.timeLeft = 2;
-
+                    Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, ProjectileID.Blizzard, 0, 0, player.whoAmI);
+                    if (p != null)
+                    {
+                        p.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                        p.width = 10;
+                        p.height = 10;
+                        p.timeLeft = 2;
+                    }
                     icicles[IcicleCount] = p;
                     IcicleCount++;
                     icicleCD = 120;
@@ -3103,12 +3115,15 @@ namespace FargowiltasSouls
                 for (int i = 0; i < ballAmt; i++)
                 {
                     degree = (360 / ballAmt) * i;
-                    Projectile fireball = Projectile.NewProjectileDirect(player.Center, Vector2.Zero, fireballs[i % 3], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
-                    fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                    fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
-                    fireball.timeLeft = 2;
-                    fireball.penetrate = -1;
-                    fireball.ignoreWater = true;
+                    Projectile fireball = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, fireballs[i % 3], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
+                    if (fireball != null)
+                    {
+                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
+                        fireball.timeLeft = 2;
+                        fireball.penetrate = -1;
+                        fireball.ignoreWater = true;
+                    }
                 }
 
                 OriSpawn = true;
@@ -3570,6 +3585,31 @@ namespace FargowiltasSouls
             if (UniverseEffect || Eternity)
             {
                 player.HeldItem.autoReuse = UniverseStoredAutofire;
+            }
+        }
+
+        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+        {
+            if (bait.type == mod.ItemType("TruffleWormEX"))
+            {
+                for (int i = 0; i < 1000; i++) //cut fishing lines
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].owner == bait.owner && Main.projectile[i].bobber && bait.owner == Main.myPlayer)
+                    {
+                        Main.projectile[i].ai[0] = 2f;
+                    }
+                }
+                if (FargoWorld.MasochistMode && bait.owner == Main.myPlayer && !NPC.AnyNPCs(NPCID.DukeFishron))
+                {
+                    FargoGlobalNPC.spawnFishronEX = true;
+                    if (Main.netMode != 1)
+                        NPC.SpawnOnPlayer(bait.owner, NPCID.DukeFishron);
+                    else
+                        NetMessage.SendData(61, -1, -1, null, bait.owner);
+                }
+                bait.stack--;
+                if (bait.stack <= 0)
+                    bait.SetDefaults(0);
             }
         }
 

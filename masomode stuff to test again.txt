@@ -13,6 +13,57 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 0.6:
+-splinterling greek fire doesn't shoot as high or as often
+-pumpking greek fire damage slightly reduced
+-golem outside temple shoots more spiky balls and more vertically
+-golem sprays spiky balls/checks for enrage slightly more often (9sec, was 10)
+-golem regen increased to 750
+-plantera spawn rate reduced
+-nerfed shark's death cthulhunado damage (160, was 640)
+-sharkrons only inflict their debuffs when fishron is alive
+-fishron's health is increased by the magic spell when spawning now
+-fishron uses the spell to heal himself between phases
+-fishron takes zero damage between phases instead of invulnerability
+
+-mutant antibody resistance to oceanic maul removed
+-fishron EX chains dashes a lot faster
+-split fishron into pre-ML fishron and post-ML fishron EX
+-fishron and attacks always inflict defenseless (except non-EX bubbles)
+-removed from pre-ML fishron:
+	-oceanic maul
+	-speedup when charging
+	-extra p1 bubble/nado attacks
+	-p2 bubble spin ring simplified
+	-p2 extra nados reduced to 1
+	-debuff cleanse between phases
+	-p3 debuff immunity and stat buffs
+	-p3 dash bubble spawn rate reduced
+	-p3 teleport ring
+	-p3 cthulhunado is on fixed timer
+	-p3 tele nados reduced to 1
+-added truffle worm EX, dropped by moon lord
+
+-removed mech health recovery
+-nerfed destroyer p2 acceleration
+-removed plantera p2 tentacle spam, nerfed p2 enraged speed
+-removed wof DR, gave 67% bee resistance
+-cultist clone shadowflame fireballs die
+-cultist hp nerfed from 200% to 150%
+-non-EX fishron inflicts weaker oceanic maul on contact
+-plantera max venom time reduced a lot
+-adjusted curse of the moon dust and stats
+-ancient vision life increase removed
+-moon lord throwing phase fucking removed
+-fixed moon lord not actually dropping galactic globe
+-moon lord sockets inflict curse of the moon too
+-wof has 25% DR in phase 2
+-fishron is immune to amalgamated arrows too
+-a LOT of changing NewProjectileDirect() and some safety checks
+-adjusted how oceanic maul life reduction is tracked internally
+-nerfed fishron EX oceanic maul slightly
+-lifesteals only activate when at least 1hp is recovered
+-nuke fishron heals duke fishron EX
+
 -plantera ring spawns at beginning of fight (was phase 2)
 -plantera p2 takes 2 seconds to regenerate instead of 1 when fighting venomed players
 -plantera p2 no longer regenerates back into p1

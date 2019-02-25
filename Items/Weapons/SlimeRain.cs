@@ -48,8 +48,9 @@ namespace FargowiltasSouls.Items.Weapons
             for (int i = 0; i < 5; i++)
             {
                 x = player.Center.X + 2f * Main.rand.Next(-400, 401);
-                Projectile p = Projectile.NewProjectileDirect(new Vector2(x, y), new Vector2(Main.rand.Next(-4, 4), 12f), type, damage, knockBack, player.whoAmI);
-                p.timeLeft = 60;
+                int p = Projectile.NewProjectile(new Vector2(x, y), new Vector2(Main.rand.Next(-4, 4), 12f), type, damage, knockBack, player.whoAmI);
+                if (p < 1000)
+                    Main.projectile[p].timeLeft = 60;
             }
 
             return false;

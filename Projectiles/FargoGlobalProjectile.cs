@@ -55,6 +55,11 @@ namespace FargowiltasSouls.Projectiles
                         projectile.hostile = true;
                         break;
 
+                    case ProjectileID.CultistBossFireBallClone:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss))
+                            projectile.timeLeft = 1;
+                        break;
+
                     /*case ProjectileID.Sharknado:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
                             projectile.damage = projectile.damage * 3 / 2;
@@ -223,8 +228,9 @@ namespace FargowiltasSouls.Projectiles
                 Projectile[] projs = XWay(8, projectile.Center, mod.ProjectileType<Souls.SpookyScythe>(), 5, projectile.damage / 2, 2f);
                 counter = 0;
 
-                for(int i = 0; i < 8; i++)
+                for (int i = 0; i < 8; i++)
                 {
+                    if (projs[i] == null) continue;
                     projs[i].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                 }
             }
@@ -327,9 +333,12 @@ namespace FargowiltasSouls.Projectiles
                         factor = -1;
                     }
 
-                    split = Projectile.NewProjectileDirect(projectile.Center, projectile.velocity.RotatedBy(factor * spread * (i + 1)), projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
-                    split.GetGlobalProjectile<FargoGlobalProjectile>().numSplits = projectile.GetGlobalProjectile<FargoGlobalProjectile>().numSplits;
-                    split.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = projectile.GetGlobalProjectile<FargoGlobalProjectile>().firstTick;
+                    split = FargoGlobalProjectile.NewProjectileDirectSafe(projectile.Center, projectile.velocity.RotatedBy(factor * spread * (i + 1)), projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
+                    if (split != null)
+                    {
+                        split.GetGlobalProjectile<FargoGlobalProjectile>().numSplits = projectile.GetGlobalProjectile<FargoGlobalProjectile>().numSplits;
+                        split.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = projectile.GetGlobalProjectile<FargoGlobalProjectile>().firstTick;
+                    }
                 }
 
             }
@@ -899,7 +908,7 @@ namespace FargowiltasSouls.Projectiles
                             if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
                             {
                                 isVenomed = true;
-                                target.buffTime[i] += Main.rand.Next(60, 300);
+                                target.buffTime[i] += Main.rand.Next(60, 180);
                                 break;
                             }
                         }
@@ -1081,9 +1090,10 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.Sharknado:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
+                        target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(600, 900));
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBossEX, NPCID.DukeFishron))
                         {
-                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
+                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 75;
                             target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
                         }
                         break;
@@ -1169,10 +1179,7 @@ namespace FargowiltasSouls.Projectiles
             Projectile[] projs = new Projectile[16];
 
             for (int i = 0; i < num; i++)
-            {
-                Projectile p = Projectile.NewProjectileDirect(pos, new Vector2(_x[i], _y[i]), type, damage, knockback, Main.myPlayer);
-                projs[i] = p;
-            }
+                projs[i] = FargoGlobalProjectile.NewProjectileDirectSafe(pos, new Vector2(_x[i], _y[i]), type, damage, knockback, Main.myPlayer);
 
             return projs;
         }
@@ -1190,6 +1197,12 @@ namespace FargowiltasSouls.Projectiles
             }
 
             return count;
+        }
+
+        public static Projectile NewProjectileDirectSafe(Vector2 pos, Vector2 vel, int type, int damage, float knockback, int owner = 255, float ai0 = 0f, float ai1 = 0f)
+        {
+            int p = Projectile.NewProjectile(pos, vel, type, damage, knockback, owner, ai0, ai1);
+            return (p < 1000) ? Main.projectile[p] : null;
         }
     }
 }

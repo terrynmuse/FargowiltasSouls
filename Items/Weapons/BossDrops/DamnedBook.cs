@@ -52,11 +52,13 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             else
                 shoot = ProjectileID.CultistBossFireBallClone;
 
-            Projectile p = Projectile.NewProjectileDirect(position, new Vector2(speedX, speedY), shoot, damage, knockBack, player.whoAmI);
-            p.hostile = false;
-            p.friendly = true;
-            //p.playerImmune[player.whoAmI] = 1;
-
+            int p = Projectile.NewProjectile(position, new Vector2(speedX, speedY), shoot, damage, knockBack, player.whoAmI);
+            if (p < 1000)
+            {
+                Main.projectile[p].hostile = false;
+                Main.projectile[p].friendly = true;
+                //Main.projectile[p].playerImmune[player.whoAmI] = 1;
+            }
             return false;
         }
     }

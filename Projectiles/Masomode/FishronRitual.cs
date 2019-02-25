@@ -40,11 +40,24 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 return;
             }
 
-            projectile.alpha = (Main.npc[ai1].ai[0] < 0f) ? projectile.alpha - 17 : projectile.alpha + 9;
+            NPC fishron = Main.npc[ai1];
+
+            if (projectile.localAI[1] == 0f)
+            {
+                projectile.alpha -= 17;
+                if (fishron.ai[0] % 5 == 1f)
+                    projectile.localAI[1] = 1f;
+            }
+            else
+            {
+                projectile.alpha += 9;
+            }
+
             if (projectile.alpha < 0)
                 projectile.alpha = 0;
-            if (projectile.alpha > 255)
+            if (projectile.alpha > 255)// && fishron.lifeMax == projectile.ai[0] * 4)
             {
+                //Main.NewText(projectile.timeLeft.ToString());
                 projectile.Kill();
                 return;
             }
@@ -77,8 +90,21 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 }
             }
 
-            projectile.ai[0]++;
-            int num1 = (int)projectile.ai[0] / 60;
+            //while fishron is first spawning, has made the noise, and every 6 ticks
+            //increase hp by 300% over the course of 1 second
+            if (fishron.ai[0] < 4f && projectile.timeLeft <= 240 && projectile.timeLeft > 180 && projectile.timeLeft % 6 == 0)
+            {
+                int heal = 3 * (int)(projectile.ai[0] * 0.1f);// Main.rand.NextFloat(0.1f, 0.12f));
+                fishron.lifeMax += heal;
+                int max = (int)(projectile.ai[0] * 4f);
+                if (fishron.lifeMax > max)
+                    fishron.lifeMax = max;
+                fishron.life = fishron.lifeMax;
+                CombatText.NewText(fishron.Hitbox, CombatText.HealLife, heal);
+                fishron.netUpdate = true;
+            }
+            
+            int num1 = (300 - projectile.timeLeft) / 60;
             float num2 = projectile.scale * 0.4f;
             float num3 = Main.rand.Next(1, 3);
             Vector2 vector2 = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 11));

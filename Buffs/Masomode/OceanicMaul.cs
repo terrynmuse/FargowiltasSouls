@@ -24,6 +24,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             player.GetModPlayer<FargoPlayer>(mod).OceanicMaul = true;
             player.bleed = true;
+            player.onFrostBurn = true;
             player.moonLeech = true;
         }
     }

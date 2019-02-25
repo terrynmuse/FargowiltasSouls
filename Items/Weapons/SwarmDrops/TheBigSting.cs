@@ -35,10 +35,12 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile p = Projectile.NewProjectileDirect(new Vector2(position.X, position.Y), new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
-            p.ranged = true;
-            p.minion = false;
-
+            int p = Projectile.NewProjectile(new Vector2(position.X, position.Y), new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
+            if (p < 1000)
+            {
+                Main.projectile[p].ranged = true;
+                Main.projectile[p].minion = false;
+            }
             return false;
         }
 

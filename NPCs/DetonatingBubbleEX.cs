@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.NPCs
 {
-    public class DetonatingBubble : ModNPC
+    public class DetonatingBubbleEX : ModNPC
     {
         public override string Texture => "Terraria/NPC_371";
 
@@ -21,7 +21,7 @@ namespace FargowiltasSouls.NPCs
             npc.width = 36;
             npc.height = 36;
             npc.damage = 100;
-            npc.lifeMax = 1;
+            npc.lifeMax = 250;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.noGravity = true;
@@ -32,12 +32,7 @@ namespace FargowiltasSouls.NPCs
             npc.buffImmune[BuffID.OnFire] = true;
             npc.aiStyle = -1;
             npc.chaseable = false;
-        }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            npc.damage = (int)(npc.damage * 0.75);
-            npc.lifeMax = 1;
+            npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune = true;
         }
 
         public override void AI()
@@ -64,6 +59,18 @@ namespace FargowiltasSouls.NPCs
             }
         }
 
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
+        {
+            cooldownSlot = 1;
+            return true;
+        }
+
+        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        {
+            crit = false;
+            return true;
+        }
+
         public override bool CheckDead()
         {
             npc.GetGlobalNPC<FargoGlobalNPC>().Needles = false;
@@ -72,8 +79,14 @@ namespace FargowiltasSouls.NPCs
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.Wet, 420);
-            target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(60, 180));
+            if (target.hurtCooldowns[1] == 0)
+            {
+                target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(600, 900));
+                target.AddBuff(BuffID.Wet, 420);
+                target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(60, 180));
+                target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
+                target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
+            }
         }
 
         public override void FindFrame(int frameHeight)

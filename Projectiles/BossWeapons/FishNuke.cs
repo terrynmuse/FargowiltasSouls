@@ -24,17 +24,29 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             aiType = ProjectileID.Bullet;
         }
 
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (target.whoAmI == NPCs.FargoGlobalNPC.fishBossEX)
+            {
+                target.life += damage;
+                if (target.life > target.lifeMax)
+                    target.life = target.lifeMax;
+                CombatText.NewText(target.Hitbox, CombatText.HealLife, damage);
+                damage = 0;
+                crit = false;
+            }
+        }
+
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if ((target.lifeMax / 25) > projectile.damage)
+            if (damage < target.lifeMax / 25)
                 damage = target.lifeMax / 25;
-
-            Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType<Explosion>(), damage, 5f, Main.myPlayer);
+            Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType<FishNukeExplosion>(), damage, 5f, Main.myPlayer);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType<Explosion>(), projectile.damage, 5f, Main.myPlayer);
+            Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType<FishNukeExplosion>(), projectile.damage, 5f, Main.myPlayer);
 
             return true;
         }

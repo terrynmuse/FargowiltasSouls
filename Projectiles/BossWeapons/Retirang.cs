@@ -39,7 +39,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                     {
                         Vector2 velocity = (npc.Center - projectile.Center) * 20;
 
-                        Projectile p = Projectile.NewProjectileDirect(projectile.Center, velocity, ProjectileID.PurpleLaser, projectile.damage / 2, 0, projectile.owner);
+                        Projectile.NewProjectile(projectile.Center, velocity, ProjectileID.PurpleLaser, projectile.damage / 2, 0, projectile.owner);
                         break;
                     }
                 }
