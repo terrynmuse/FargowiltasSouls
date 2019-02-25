@@ -43,14 +43,14 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(thorium.ItemType("NinjaEmblem"));
-                recipe.AddIngredient(thorium.ItemType("DesertWindRune"));
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("WoodenYoyoThrown") : ItemID.WoodYoyo);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BloodyMacheteThrown") : ItemID.BloodyMachete);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("IceBoomerangThrown") : ItemID.IceBoomerang);
-                recipe.AddIngredient(thorium.ItemType("GoblinWarSpear"), 300);
+                recipe.AddIngredient(ItemID.AleTosser);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("TheMeatballThrown") : ItemID.TheMeatball);
                 recipe.AddIngredient(thorium.ItemType("StarfishSlicer"), 300);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("ThornChakramThrown") : ItemID.ThornChakram);
+                recipe.AddIngredient(ItemID.Beenade, 300);
                 recipe.AddIngredient(ItemID.BoneGlove);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BlueMoonThrown") : ItemID.BlueMoon);
                 recipe.AddIngredient(thorium.ItemType("ChampionsGodHand"));
@@ -63,9 +63,11 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("WoodenYoyoThrown") : ItemID.WoodYoyo);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BloodyMacheteThrown") : ItemID.BloodyMachete);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("IceBoomerangThrown") : ItemID.IceBoomerang);
+                recipe.AddIngredient(ItemID.AleTosser);
                 recipe.AddIngredient(ItemID.MolotovCocktail, 99);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("TheMeatballThrown") : ItemID.TheMeatball);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("ThornChakramThrown") : ItemID.ThornChakram);
+                recipe.AddIngredient(ItemID.Beenade, 300);
                 recipe.AddIngredient(ItemID.BoneGlove);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BlueMoonThrown") : ItemID.BlueMoon);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("FlamarangThrown") : ItemID.Flamarang);

@@ -63,10 +63,10 @@ Effects of Mana-Charged Rocketeers");
         {
             "ManaChargedRocketeers",
             "JellyPondWand",
+            "DarkTome",
             "ChampionBomberStaff",
             "GaussSpark",
-            "MagicThorHammer",
-            "SpineBreaker"
+            "MagicThorHammer"
         };
 
         public override void AddRecipes()

@@ -44,7 +44,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.RangerEmblem);
                 recipe.AddIngredient(ItemID.PainterPaintballGun);
                 recipe.AddIngredient(ItemID.SnowballCannon);
-                recipe.AddIngredient(thorium.ItemType("Webgun"));
+                recipe.AddIngredient(ItemID.RedRyder);
                 recipe.AddIngredient(ItemID.Harpoon);
                 recipe.AddIngredient(ItemID.Musket);
                 recipe.AddIngredient(thorium.ItemType("GuanoGunner"));
@@ -60,9 +60,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             {
                 //no others
                 recipe.AddIngredient(ItemID.RangerEmblem);
-                recipe.AddIngredient(ItemID.RedRyder);
                 recipe.AddIngredient(ItemID.PainterPaintballGun);
                 recipe.AddIngredient(ItemID.SnowballCannon);
+                recipe.AddIngredient(ItemID.RedRyder);
                 recipe.AddIngredient(ItemID.Harpoon);
                 recipe.AddIngredient(ItemID.Musket);
                 recipe.AddIngredient(ItemID.Boomstick);

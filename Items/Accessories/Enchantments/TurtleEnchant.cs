@@ -46,12 +46,12 @@ Summons a pet Lizard and Turtle"); //shell hide no happen with SoE
             recipe.AddIngredient(ItemID.TurtleScaleMail);
             recipe.AddIngredient(ItemID.TurtleLeggings);
             recipe.AddIngredient(null, "CactusEnchant");
-            recipe.AddIngredient(ItemID.FleshKnuckles);
+            recipe.AddIngredient(ItemID.ChlorophytePartisan);
 
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
+                recipe.AddIngredient(ItemID.Seedler);
                 recipe.AddIngredient(thorium.ItemType("AbsintheFury"));
-                recipe.AddIngredient(ItemID.ChlorophytePartisan);
                 recipe.AddIngredient(thorium.ItemType("TurtleDrum"));
             }
             

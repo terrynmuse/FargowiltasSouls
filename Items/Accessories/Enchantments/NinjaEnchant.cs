@@ -44,7 +44,7 @@ Summons a pet Black Cat");
             {   
                 recipe.AddIngredient(ItemID.ThrowingKnife, 300);
                 recipe.AddIngredient(ItemID.Shuriken, 300);
-                recipe.AddIngredient(thorium.ItemType("StarfishSlicer"), 300);
+                recipe.AddIngredient(ItemID.StarAnise, 300);
                 recipe.AddIngredient(ItemID.SmokeBomb, 50);
                 recipe.AddIngredient(thorium.ItemType("Scorpain"));
                 recipe.AddIngredient(thorium.ItemType("AmphibianEgg"));

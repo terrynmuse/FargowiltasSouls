@@ -96,8 +96,8 @@ Increased melee knockback
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(thorium.ItemType("PoseidonCharge"));
-                recipe.AddIngredient(thorium.ItemType("SurtrsSword"));
+                recipe.AddIngredient(KOCannon);
+                recipe.AddIngredient(IceSickle);
                 recipe.AddIngredient(thorium.ItemType("PrimesFury"));
                 recipe.AddIngredient(MonkStaffT2);
                 recipe.AddIngredient(TerraBlade);

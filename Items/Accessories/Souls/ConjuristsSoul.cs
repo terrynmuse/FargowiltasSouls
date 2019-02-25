@@ -108,14 +108,14 @@ Increased minion knockback";
                 recipe.AddIngredient(thorium.ItemType("Phylactery"));
                 recipe.AddIngredient(thorium.ItemType("CrystalScorpion"));
                 recipe.AddIngredient(thorium.ItemType("YumasPendant"));
-                recipe.AddIngredient(thorium.ItemType("ButterflyStaff5"));
+                recipe.AddIngredient(thorium.ItemType("MastersLibram"));
                 recipe.AddIngredient(thorium.ItemType("HailBomber"));
                 recipe.AddIngredient(ItemID.PirateStaff);
                 recipe.AddIngredient(ItemID.OpticStaff);
                 recipe.AddIngredient(thorium.ItemType("TrueSilversBlade"));
                 recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
-                recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
                 recipe.AddIngredient(ItemID.RavenStaff);
+                recipe.AddIngredient(ItemID.XenoStaff);
             }
             else
             {
