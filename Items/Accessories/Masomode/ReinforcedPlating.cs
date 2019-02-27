@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Reinforced Plating");
             Tooltip.SetDefault(@"Grants immunity to Defenseless
-Reduces damage taken by 6%");
+Reduces damage taken by 10%");
         }
 
         public override void SetDefaults()
@@ -22,13 +22,13 @@ Reduces damage taken by 6%");
             item.accessory = true;
             item.rare = 5;
             item.value = Item.sellPrice(0, 4);
-            item.defense = 6;
+            item.defense = 10;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[mod.BuffType("Defenseless")] = true;
-            player.endurance += 0.06f;
+            player.endurance += 0.1f;
         }
     }
 }

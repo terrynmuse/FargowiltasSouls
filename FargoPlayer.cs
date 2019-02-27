@@ -170,6 +170,7 @@ namespace FargowiltasSouls
 
         //maso items
         public bool LumpOfFlesh;
+        public bool FusedLens;
         public bool GroundStick;
         public bool MagicalBulb;
         public bool SkullCharm;
@@ -441,6 +442,7 @@ namespace FargowiltasSouls
 
             //maso
             LumpOfFlesh = false;
+            FusedLens = false;
             GroundStick = false;
             MagicalBulb = false;
             SkullCharm = false;
@@ -1129,10 +1131,9 @@ namespace FargowiltasSouls
                 target.AddBuff(BuffID.Electrified, 240);
             }
 
-            if (LumpOfFlesh && proj.minion)
+            if (FusedLens)
             {
-                if (Main.rand.Next(2) == 0)
-                    target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
+                target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
             }
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumModifyProj(proj, target, damage, crit);

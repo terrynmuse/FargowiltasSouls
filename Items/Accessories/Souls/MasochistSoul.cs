@@ -13,12 +13,12 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of the Masochist");
             Tooltip.SetDefault(
 @"'Embrace suffering'
-Increases damage by 20%
+Increases damage by 20%, increases damage reduction by 10%
 Increases max number of minions and sentries by 2
 Grants immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
+Your attacks inflict Cursed Inferno and Ichor
 Your attacks have a small chance to inflict Electrified
-Your minions can inflict Cursed Inferno and Ichor
 You erupt into Spiky Balls and Ancient Visions when injured
 Summons a friendly plant's offspring and Cultist
 Allows the holder to control gravity");
@@ -54,7 +54,9 @@ Allows the holder to control gravity");
             player.buffImmune[BuffID.CursedInferno] = true;
             player.buffImmune[BuffID.Ichor] = true;
             player.buffImmune[BuffID.Electrified] = true;
+            player.GetModPlayer<FargoPlayer>().FusedLens = true;
             player.GetModPlayer<FargoPlayer>().GroundStick = true;
+            player.endurance += 0.1f;
 
             //magical bulb
             player.buffImmune[BuffID.Venom] = true;
