@@ -13,6 +13,11 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 0.6:
+-buffed reinforced plating to 10 defense, 10% DR
+-buffed fused lens so all attacks inflict cursed flame/ichor
+-removed lump of flesh minion cursed flame/ichor
+-updated dubious circuitry and soul of maso
+
 -splinterling greek fire doesn't shoot as high or as often
 -pumpking greek fire damage slightly reduced
 -golem outside temple shoots more spiky balls and more vertically
