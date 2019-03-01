@@ -79,8 +79,11 @@ namespace FargowiltasSouls.Projectiles
                 {
                     num274++;
                 }
-                Projectile.NewProjectile(projectile.localAI[0], projectile.localAI[1], velocity.X, velocity.Y, 640, projectile.damage, projectile.knockBack, projectile.owner, 0f, (float)num274);
+                int luminiteArrow = Projectile.NewProjectile(projectile.localAI[0], projectile.localAI[1], velocity.X, velocity.Y, 640, projectile.damage, projectile.knockBack, projectile.owner, 0f, (float)num274);
                 timer = 0;
+
+                Main.projectile[luminiteArrow].localNPCHitCooldown = 5;
+                Main.projectile[luminiteArrow].usesLocalNPCImmunity = true;
             }
         }
 
@@ -150,6 +153,9 @@ namespace FargowiltasSouls.Projectiles
             int num488 = Projectile.NewProjectile(x, y, num483, num484, 92, num487, projectile.knockBack, projectile.owner, 0f, 0f);
             Main.projectile[num488].ai[1] = projectile.position.Y;
             Main.projectile[num488].ai[0] = 1f;
+
+            Main.projectile[num488].localNPCHitCooldown = 2;
+            Main.projectile[num488].usesLocalNPCImmunity = true;
 
             //hellfire explode
             Main.PlaySound(SoundID.Item14, projectile.position);

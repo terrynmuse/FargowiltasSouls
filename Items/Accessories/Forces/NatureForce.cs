@@ -210,7 +210,7 @@ Summons several pets";
                 recipe.AddIngredient(null, "ShroomiteEnchant");
             }
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

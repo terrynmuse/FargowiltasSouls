@@ -90,7 +90,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 recipe.AddIngredient(ItemID.PiranhaGun);
                 recipe.AddIngredient(thorium.ItemType("LaunchJumper"));
                 recipe.AddIngredient(thorium.ItemType("NovaRifle"));
-                recipe.AddIngredient(ItemID.AerialBane);
+                recipe.AddIngredient(ItemID.DD2BetsyBow);
                 recipe.AddIngredient(ItemID.Tsunami);
                 recipe.AddIngredient(ItemID.StakeLauncher);
                 recipe.AddIngredient(ItemID.EldMelter);

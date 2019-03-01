@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
@@ -18,7 +19,14 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             player.GetModPlayer<FargoPlayer>().Fused = true;
 
-            if (player.buffTime[buffIndex] < 3) Projectile.NewProjectile(player.position, player.velocity * 0, mod.ProjectileType("FusionBomb"), 150, 4f);
+            if (player.buffTime[buffIndex] < 3)
+            {
+                Projectile.NewProjectile(player.position, player.velocity * 0, mod.ProjectileType("FusionBomb"), 0, 4f);
+
+                int damage = (player.statLifeMax2 / 2) + Main.rand.Next(-player.statLifeMax2 / 8, player.statLifeMax2 / 4);
+
+                player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was blown to bits."), damage, 0, false, false, true);
+            }
         }
 
         public override bool ReApply(Player player, int time, int buffIndex)

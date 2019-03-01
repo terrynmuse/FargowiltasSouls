@@ -75,7 +75,7 @@ Summons several pets";
             recipe.AddIngredient(null, "TikiEnchant");
             recipe.AddIngredient(null, "SpectreEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

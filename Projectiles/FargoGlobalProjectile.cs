@@ -826,11 +826,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.DeathSickle:
-                        if (!target.HasBuff(mod.BuffType<MarkedforDeath>()))
-                        {
-                            target.AddBuff(mod.BuffType<MarkedforDeath>(), 1800);
-                            target.AddBuff(mod.BuffType<LivingWasteland>(), 1800);
-                        }
+                        target.AddBuff(mod.BuffType<MarkedforDeath>(), 300);
                         break;
 
                     case ProjectileID.DrManFlyFlask:
@@ -947,7 +943,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.UFOLaser:
                     case ProjectileID.SaucerDeathray:
-                        target.AddBuff(mod.BuffType<MarkedforDeath>(), 600);
+                        target.AddBuff(mod.BuffType<MarkedforDeath>(), 180);
                         break;
 
                     case ProjectileID.FlamingWood:
@@ -1016,7 +1012,6 @@ namespace FargowiltasSouls.Projectiles
                                 target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 600);
                                 target.AddBuff(mod.BuffType<CurseoftheMoon>(), 600);
                                 target.AddBuff(mod.BuffType<GodEater>(), Main.expertMode ? 210 : 420);
-                                //target.AddBuff(mod.BuffType<MarkedforDeath>(), 120);
                             }
                             else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
                             {

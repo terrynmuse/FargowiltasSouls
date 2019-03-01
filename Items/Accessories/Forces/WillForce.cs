@@ -96,7 +96,7 @@ Effects of Celestial Shell and Shiny Stone effects
             recipe.AddIngredient(null, "RedRidingEnchant");
             recipe.AddIngredient(null, "ValhallaKnightEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

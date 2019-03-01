@@ -145,7 +145,7 @@ Summons several pets");
             recipe.AddIngredient(null, "CryoMagusEnchant");
             recipe.AddIngredient(null, "WhisperingEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

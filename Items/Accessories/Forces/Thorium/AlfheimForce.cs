@@ -79,7 +79,7 @@ Summons a pet Life Spirit and Holy Goat");
             recipe.AddIngredient(null, "LifeBinderEnchant");
             recipe.AddIngredient(null, "FallenPaladinEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -181,9 +181,10 @@ namespace FargowiltasSouls
         //debuffs
         public bool Hexed;
         public bool Unstable;
-        private int unstableCD;
+        private int unstableCD = 0;
         public bool Fused;
         public bool Shadowflame;
+        public bool DeathMarked;
 
         public bool GodEater;               //defense removed, endurance removed, colossal DOT
         public bool FlamesoftheUniverse;    //activates various vanilla debuffs
@@ -471,6 +472,7 @@ namespace FargowiltasSouls
             ReverseManaFlow = false;
             CurseoftheMoon = false;
             OceanicMaul = false;
+            DeathMarked = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -486,6 +488,7 @@ namespace FargowiltasSouls
             //debuffs
             Hexed = false;
             Unstable = false;
+            unstableCD = 0;
             Fused = false;
             Shadowflame = false;
             Slimed = false;
@@ -504,6 +507,7 @@ namespace FargowiltasSouls
             Jammed = false;
             CurseoftheMoon = false;
             OceanicMaul = false;
+            DeathMarked = false;
 
             MaxLifeReduction = 0;
         }
@@ -678,7 +682,7 @@ namespace FargowiltasSouls
 
             if (Unstable)
             {
-                if (unstableCD >= 60)
+                if (unstableCD == 0)
                 {
                     Vector2 pos = player.position;
 
@@ -696,9 +700,9 @@ namespace FargowiltasSouls
                     player.Teleport(teleportPos, 1);
                     NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, teleportPos.X, teleportPos.Y, 1);
 
-                    unstableCD = 0;
+                    unstableCD = 60;
                 }
-                unstableCD++;
+                unstableCD--;
             }
 
             if (CopperEnchant && copperCD > 0)
@@ -2097,6 +2101,11 @@ namespace FargowiltasSouls
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " was annihilated by divine wrath.");
             }
 
+            if (DeathMarked)
+            {
+                damageSource = PlayerDeathReason.ByCustomReason(player.name + " was reaped by the cold hand of death.");
+            }
+
             return retVal;
         }
 
@@ -3187,7 +3196,7 @@ namespace FargowiltasSouls
             player.setMonkT2 = true;
             player.setMonkT3 = true;
             //tele through wall until open space on dash into wall
-            if (Soulcheck.GetValue("Shinobi Through Walls") && player.dashDelay > 0 && !player.controlMount && player.velocity.X == 0)
+            if (Soulcheck.GetValue("Shinobi Through Walls") && player.dashDelay > 0 && player.mount.Type == -1 && player.velocity.X == 0)
             {
                 var teleportPos = new Vector2();
                 int direction = player.direction;

@@ -684,6 +684,28 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 88;
                         break;
 
+                        //////////////////
+
+                    case NPCID.Reaper:
+                        masoAI = 90;
+                        break;
+
+                    case NPCID.Werewolf:
+                        masoAI = 91;
+                        break; 
+
+                    case NPCID.BloodZombie:
+                        masoAI = 92;
+                        break;
+
+                    case NPCID.PossessedArmor:
+                        masoAI = 93;
+                        break;
+
+                    case NPCID.ShadowFlameApparition:
+                        masoAI = 94;
+                        break;
+
                     default:
                         break;
                 }
@@ -1297,7 +1319,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 1: //tim
-                        Aura(npc, 800, BuffID.Silenced);
+                        Aura(npc, 400, BuffID.Silenced, false, 15);
                         break;
 
                     case 2: //runewizard
@@ -1305,23 +1327,23 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 3: //beetles
-                        Aura(npc, 400, mod.BuffType<Lethargic>());
+                        Aura(npc, 400, mod.BuffType<Lethargic>(), false, 60);
                         break;
 
                     case 4: //enchanted sword family
-                        Aura(npc, 400, BuffID.WitheredWeapon);
+                        Aura(npc, 400, BuffID.WitheredWeapon, false, 14);
                         break;
 
                     case 5: //ghost
-                        Aura(npc, 300, BuffID.Cursed);
+                        Aura(npc, 100, BuffID.Cursed, false, 20);
                         break;
 
                     case 6: //mummies
-                        Aura(npc, 500, BuffID.Slow);
+                        Aura(npc, 500, BuffID.Slow, false, 0);
                         break;
 
                     case 7: //derpling
-                        Aura(npc, 400, BuffID.Confused, true);
+                        Aura(npc, 400, BuffID.Confused, true, 15);
                         break;
 
                     case 8: //illum bat
@@ -1360,7 +1382,7 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
-                        Aura(npc, 100, BuffID.Burning);
+                        Aura(npc, 100, BuffID.Burning, false, DustID.Fire);
                         break;
 
                     case 10: //bone serpent head
@@ -1854,7 +1876,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 26: //nebula pill
-                        foreach (Player p in Main.player)
+
+                        Aura(npc, 5000, mod.BuffType<Atrophied>(), false, 58);
+                        Aura(npc, 5000, mod.BuffType<Jammed>());
+                        Aura(npc, 5000, mod.BuffType<Antisocial>());
+
+                        /*foreach (Player p in Main.player)
                         {
                             if (p.active && npc.Distance(p.Center) < 5000)
                             {
@@ -1862,11 +1889,16 @@ namespace FargowiltasSouls.NPCs
                                 p.AddBuff(mod.BuffType<Jammed>(), 2);
                                 p.AddBuff(mod.BuffType<Antisocial>(), 2);
                             }
-                        }
+                        }*/
                         break;
 
                     case 27: //solar pill
-                        foreach (Player p in Main.player)
+
+                        Aura(npc, 5000, mod.BuffType<ReverseManaFlow>(), false, DustID.SolarFlare);
+                        Aura(npc, 5000, mod.BuffType<Jammed>());
+                        Aura(npc, 5000, mod.BuffType<Antisocial>());
+
+                        /*foreach (Player p in Main.player)
                         {
                             if (p.active && npc.Distance(p.Center) < 5000)
                             {
@@ -1874,11 +1906,16 @@ namespace FargowiltasSouls.NPCs
                                 p.AddBuff(mod.BuffType<Jammed>(), 2);
                                 p.AddBuff(mod.BuffType<Antisocial>(), 2);
                             }
-                        }
+                        }*/
                         break;
 
                     case 28: //stardust pill
-                        foreach (Player p in Main.player)
+
+                        Aura(npc, 5000, mod.BuffType<Atrophied>(), false, 20);
+                        Aura(npc, 5000, mod.BuffType<Jammed>());
+                        Aura(npc, 5000, mod.BuffType<ReverseManaFlow>());
+
+                        /*foreach (Player p in Main.player)
                         {
                             if (p.active && npc.Distance(p.Center) < 5000)
                             {
@@ -1886,11 +1923,16 @@ namespace FargowiltasSouls.NPCs
                                 p.AddBuff(mod.BuffType<Jammed>(), 2);
                                 p.AddBuff(mod.BuffType<ReverseManaFlow>(), 2);
                             }
-                        }
+                        }*/
                         break;
 
                     case 29: //vortex pill
-                        foreach (Player p in Main.player)
+
+                        Aura(npc, 5000, mod.BuffType<Atrophied>(), false, DustID.Vortex);
+                        Aura(npc, 5000, mod.BuffType<ReverseManaFlow>());
+                        Aura(npc, 5000, mod.BuffType<Antisocial>());
+
+                        /*foreach (Player p in Main.player)
                         {
                             if (p.active && npc.Distance(p.Center) < 5000)
                             {
@@ -1898,7 +1940,7 @@ namespace FargowiltasSouls.NPCs
                                 p.AddBuff(mod.BuffType<ReverseManaFlow>(), 2);
                                 p.AddBuff(mod.BuffType<Antisocial>(), 2);
                             }
-                        }
+                        }*/
                         break;
 
                     case 30: //lunatic cultist
@@ -3224,7 +3266,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 49: //corite
-                        Aura(npc, 250, BuffID.Burning);
+                        Aura(npc, 250, BuffID.Burning, false, DustID.Fire);
                         break;
 
                     case 50: //brain suckler
@@ -4619,6 +4661,62 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case 90: //reaper
+                        Aura(npc, 40, mod.BuffType<MarkedforDeath>(), false, 199);
+
+                        Counter++;
+                        if (Counter >= 420)
+                        {
+                            npc.TargetClosest();
+
+                            Vector2 velocity = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 10;
+                            npc.velocity = velocity;
+                            Counter = 0;
+                            masoBool[0] = true;
+                            masoState = 5;
+                        }
+
+                        if (masoBool[0] & Main.rand.Next(10) == 0)
+                        {
+                            int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.DeathSickle, (int)(npc.damage / 2), 1f, Main.myPlayer);
+                            Main.projectile[p].hostile = true;
+                            Main.projectile[p].friendly = false;
+
+                            masoState--;
+
+                            if (masoState <= 0)
+                            {
+                                masoBool[0] = false;
+                            }
+                        }
+
+                        /*Counter++;
+
+                        if (Counter >= 300)
+                        {
+                            int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.DeathSickle, (int)(npc.damage / 2), 1f, Main.myPlayer);
+                            Main.projectile[p].hostile = true;
+                            Main.projectile[p].friendly = false;
+                            Counter = 0;
+                        }*/
+                        break;
+
+                    case 91: //werewolf
+                        Aura(npc, 200, mod.BuffType<Berserked>(), false, 60);
+                        break;
+
+                    case 92: //blood zombie
+                        Aura(npc, 50, mod.BuffType<Bloodthirsty>(), false, 5);
+                        break;
+
+                    case 93: //possessed armor
+                        Aura(npc, 400, BuffID.BrokenArmor, false, 37);
+                        break;
+
+                    case 94: //shadowflame apparation
+                        Aura(npc, 60, BuffID.ShadowFlame, false, DustID.Shadowflame);
+                        break;
+
                     //psycho wtf why wont this work ech
                     /*case 88:
                         Counter++;
@@ -4630,7 +4728,6 @@ namespace FargowiltasSouls.NPCs
 
 
                     /* pseudo memes
-
 
                      case moth:
                     Shoot(Spores)
@@ -4682,7 +4779,7 @@ namespace FargowiltasSouls.NPCs
             }
         }
 
-        private void Aura(NPC npc, float distance, int buff, bool reverse = false)
+        private void Aura(NPC npc, float distance, int buff, bool reverse = false, int dustid = DustID.GoldFlame)
         {
             foreach (Player p in Main.player.Where(x => x.active && !x.dead))
             {
@@ -4690,6 +4787,20 @@ namespace FargowiltasSouls.NPCs
                 {
                     p.AddBuff(buff, 2);
                 }
+            }
+
+            for (int i = 0; i < 20; i++)
+            {
+                Vector2 offset = new Vector2();
+                double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                offset.X += (float)(Math.Sin(angle) * distance);
+                offset.Y += (float)(Math.Cos(angle) * distance);
+                Dust dust = Main.dust[Dust.NewDust(
+                    npc.Center + offset - new Vector2(4, 4), 0, 0,
+                    dustid, 0, 0, 100, Color.White, 1f
+                    )];
+                dust.velocity = npc.velocity;
+                dust.noGravity = true;
             }
         }
 
@@ -6915,7 +7026,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.LavaSlime:
-                        target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
+                        target.AddBuff(BuffID.Oiled, Main.rand.Next(900, 1800));
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(120, 600));
                         break;
 
@@ -7171,7 +7282,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BloodZombie:
-                        target.AddBuff(mod.BuffType<Bloodthirsty>(), Main.rand.Next(60, 180));
                         target.AddBuff(BuffID.Cursed, Main.rand.Next(240, 480));
                         break;
 
@@ -7260,16 +7370,6 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(60, 600));
                         break;
 
-                    case NPCID.Reaper:
-                        if (Main.rand.Next(4) == 0 && !target.HasBuff(mod.BuffType<MarkedforDeath>()))
-                        {
-                            target.AddBuff(mod.BuffType<MarkedforDeath>(), 1800);
-                            target.AddBuff(mod.BuffType<LivingWasteland>(), 1800);
-                        }
-
-                        target.AddBuff(mod.BuffType<LivingWasteland>(), Main.rand.Next(300, 900));
-                        break;
-
                     case NPCID.Butcher:
                         target.AddBuff(mod.BuffType<Berserked>(), Main.rand.Next(300, 600));
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(900, 1800));
@@ -7314,12 +7414,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     //CULTIST OP
-                    case NPCID.CultistBoss:
-                        target.AddBuff(mod.BuffType<MarkedforDeath>(), 600);
-                        break;
                     case NPCID.AncientDoom:
-                        if (Main.rand.Next(3) == 0 && !target.HasBuff(mod.BuffType<MarkedforDeath>()))
-                            target.AddBuff(mod.BuffType<MarkedforDeath>(), 1200);
+                        target.AddBuff(mod.BuffType<MarkedforDeath>(), 120);
                         damage *= 3;
                         break;
                     case NPCID.AncientLight:
@@ -7377,16 +7473,19 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Mimic:
                     case NPCID.PresentMimic:
+                        target.AddBuff(mod.BuffType<Purified>(), Main.rand.Next(120));
+                        break;
+
                     case NPCID.BigMimicCorruption:
                     case NPCID.BigMimicCrimson:
                     case NPCID.BigMimicHallow:
                     case NPCID.BigMimicJungle:
-                        target.AddBuff(mod.BuffType<Purified>(), Main.rand.Next(120));
-                        break;
+                        target.AddBuff(mod.BuffType<Berserked>(), 300);
+                        goto case NPCID.Mimic;
 
                     case NPCID.RuneWizard:
-                        target.AddBuff(mod.BuffType<MarkedforDeath>(), 1800);
-                        target.AddBuff(mod.BuffType<Unstable>(), 1800);
+                        target.AddBuff(mod.BuffType<MarkedforDeath>(), 120);
+                        target.AddBuff(mod.BuffType<Unstable>(), 30);
                         break;
 
                     case NPCID.Nutcracker:
@@ -7690,8 +7789,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.UndeadMiner:
                         int length = Main.rand.Next(3600, 7200);
                         target.AddBuff(mod.BuffType<Lethargic>(), length * 2);
-                        target.AddBuff(BuffID.Darkness, length);
                         target.AddBuff(BuffID.Blackout, length);
+                        target.AddBuff(BuffID.NoBuilding, length);
 
                         for (int i = 0; i < 59; i++)
                         {
@@ -7771,7 +7870,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DesertScorpionWalk:
                     case NPCID.DesertScorpionWall:
                     case NPCID.MisterStabby:
-                        target.AddBuff(mod.BuffType<MarkedforDeath>(), Main.rand.Next(1200, 2400));
+                        target.AddBuff(mod.BuffType<MarkedforDeath>(), Main.rand.Next(60, 180));
                         break;
 
                     case NPCID.NebulaHeadcrab:
@@ -7816,6 +7915,14 @@ namespace FargowiltasSouls.NPCs
                 damage = 1;
                 modPlayer.Squeak(target.Center);
             }
+
+            if (modPlayer.DeathMarked)
+            {
+                damage *= 10;
+                crit = true;
+            }
+
+
         }
 
         private bool StealFromInventory(Player target, ref Item item)
