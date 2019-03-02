@@ -16,6 +16,8 @@ NEW UPDATE - v 0.6
 -Galactic Reformer now only does 1000 damage to all enemies when it goes off
 -it also updates the map instantly in the explosion area
 
+-jellyfish electrified aura only when theyre shocking
+
 -Infinity Relic has a new recipe and an altered effect, now required for Soul of Eternity
 
 -Added Celestial Rune, Chalice of the Moon and Soul of the Masochist

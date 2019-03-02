@@ -35,7 +35,25 @@ namespace FargowiltasSouls.Items.Misc
 
         public override bool UseItem(Player player)
         {
-            occur = (Main.rand.Next(44));
+            int totalNPCs = NPCLoader.NPCCount;
+
+            for (int i = 0; i < 5; i++)
+            {
+                NPC npc = new NPC();
+                npc.SetDefaults(Main.rand.Next(totalNPCs));
+
+                if (npc.townNPC || npc.dontTakeDamage)
+                {
+                    i--;
+                }
+                else
+                {
+                    NPC.NewNPC((int)player.position.X + Main.rand.Next(-800, 800), (int)player.position.Y + Main.rand.Next(-1000, -250), npc.type);
+                }
+            }
+
+
+            /*occur = (Main.rand.Next(44));
             switch (occur)
             {
                 //bosses
@@ -252,7 +270,7 @@ namespace FargowiltasSouls.Items.Misc
                     NPC.NewNPC((int)player.position.X - 50, (int)player.position.Y - 220, NPCID.DuckWhite);
                     NPC.NewNPC((int)player.position.X - 150, (int)player.position.Y - 220, NPCID.DuckWhite);
                     break;
-            }
+            }*/
 
             Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
             return true;

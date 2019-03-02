@@ -706,6 +706,13 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 94;
                         break;
 
+                    case NPCID.BlueJellyfish:
+                    case NPCID.PinkJellyfish:
+                    case NPCID.GreenJellyfish:
+                    case NPCID.BloodJelly:
+                        masoAI = 95;
+                        break;
+
                     default:
                         break;
                 }
@@ -4717,6 +4724,41 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 60, BuffID.ShadowFlame, false, DustID.Shadowflame);
                         break;
 
+                    case 95: //jellyfish
+                        //when they be electrocuting
+                        if (npc.wet && npc.ai[1] == 1f)
+                        {
+                            foreach (Player p in Main.player.Where(x => x.active && !x.dead))
+                            {
+                                if (npc.Distance(p.Center) < 200 && p.wet && Collision.CanHitLine(p.Center, 2, 2, npc.Center, 2, 2))
+                                {
+                                    p.AddBuff(BuffID.Electrified, 2);
+                                }
+                            }
+
+                            for (int i = 0; i < 10; i++)
+                            {
+                                Vector2 offset = new Vector2();
+                                double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                                offset.X += (float)(Math.Sin(angle) * 200);
+                                offset.Y += (float)(Math.Cos(angle) * 200);
+                                Dust dust = Main.dust[Dust.NewDust(
+                                    npc.Center + offset - new Vector2(4, 4), 0, 0,
+                                    DustID.Electric, 0, 0, 100, Color.White, 1f
+                                    )];
+                                dust.velocity = npc.velocity;
+                                dust.noGravity = true;
+                            }
+                        }
+
+                        /*
+                         * case turtles: frame 8 or 7 ree
+                    if frame = in shell 
+                    reflect the proj
+                         * */
+
+                        break;
+
                     //psycho wtf why wont this work ech
                     /*case 88:
                         Counter++;
@@ -4737,15 +4779,6 @@ namespace FargowiltasSouls.NPCs
 
                     case spike ball: 
                     some AI = faster speed ?
-
-                    case jellyfish:
-                    if ai == electric thing && player.same water
-                    player.AddBuff(BuffID.Electrocute);
-
-                    case turtles: 
-                    if frame = in shell 
-                    reflect the proj
-
                     */
 
                     default:
@@ -7241,14 +7274,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.SandsharkCrimson:
                     case NPCID.SandsharkHallow:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(60, 300));
-                        break;
-
-                    case NPCID.BlueJellyfish:
-                    case NPCID.PinkJellyfish:
-                    case NPCID.GreenJellyfish:
-                    case NPCID.BloodJelly:
-                        if (target.wet)
-                            target.AddBuff(BuffID.Electrified, Main.rand.Next(120, 240));
                         break;
 
                     case NPCID.GraniteFlyer:
