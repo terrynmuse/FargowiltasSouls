@@ -1044,7 +1044,7 @@ namespace FargowiltasSouls
 
             if (CurseoftheMoon && Main.rand.Next(3) > 0)
             {
-                int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, 229, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
+                int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, 229, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 1.75f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 1.8f;
                 Main.dust[dust].velocity.Y -= 0.5f;

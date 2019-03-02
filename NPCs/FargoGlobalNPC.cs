@@ -4219,15 +4219,10 @@ namespace FargowiltasSouls.NPCs
                             {
                                 if (Main.netMode != 1)
                                 {
-                                    int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                                    if (t != -1)
-                                    {
-                                        //Main.NewText("laser deployed");
-                                        Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
-                                        float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
-                                        if (Main.netMode != 1)
-                                            Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathrayWOF>(), npc.damage / 4, 0f, Main.myPlayer, ai0, npc.whoAmI);
-                                    }
+                                    Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
+                                    float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
+                                    if (Main.netMode != 1)
+                                        Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType<Projectiles.Masomode.PhantasmalDeathrayWOF>(), npc.damage / 4, 0f, Main.myPlayer, ai0, npc.whoAmI);
                                 }
                             }
                             npc.netUpdate = true;
@@ -4267,13 +4262,14 @@ namespace FargowiltasSouls.NPCs
                                 }
 
                                 const float stopTime = maxTime - 90f;
-                                if (npc.ai[1] == stopTime) //shoot warning dust
+                                if (npc.ai[1] == stopTime) //shoot warning dust in phase 2
                                 {
                                     if (npc.ai[0] == 2f || npc.ai[0] == -2f)
                                     {
                                         int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                                         if (t != -1)
                                         {
+                                            Main.PlaySound(15, (int)Main.player[t].position.X, (int)Main.player[t].position.Y, 0);
                                             //Main.NewText("found target OK");
                                             npc.ai[2] = -2f;
                                             npc.ai[3] = (npc.Center - Main.player[t].Center).ToRotation();
@@ -4324,7 +4320,45 @@ namespace FargowiltasSouls.NPCs
                                 masoState = 0;
                         }
                         if (npc.type != NPCID.MoonLordCore)
+                        {
                             RegenTimer = 2;
+                            if (npc.ai[0] == -2f) //eye socket is empty
+                            {
+                                if (npc.ai[1] == 0f) //happens every 32 ticks
+                                {
+                                    Timer++;
+                                    if (Timer >= 29) //warning dust, reset timer
+                                    {
+                                        Timer = 0;
+                                        int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                        if (t != -1)
+                                        {
+                                            //Main.PlaySound(15, (int)Main.player[t].position.X, (int)Main.player[t].position.Y, 0);
+                                            npc.localAI[0] = (Main.player[t].Center - npc.Center).ToRotation();
+                                            Vector2 offset = Vector2.UnitX.RotatedBy(npc.localAI[0]) * 10f;
+                                            for (int i = 0; i < 240; i++) //dust warning line for laser
+                                            {
+                                                int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 111, 0f, 0f, 0, default(Color), 1.5f);
+                                                Main.dust[d].noGravity = true;
+                                                Main.dust[d].velocity *= 0.5f;
+                                            }
+                                        }
+                                    }
+                                    if (Timer == 3) //FIRE LASER
+                                    {
+                                        if (Main.netMode != 1)
+                                        {
+                                            Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[0]);
+                                            if (Main.netMode != 1)
+                                                Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayML"), 75, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                        }
+                                    }
+                                    npc.netUpdate = true;
+                                }
+                                //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
+                                //Main.NewText("L0 " + npc.localAI[0].ToString() + ", L1 " + npc.localAI[1].ToString() + ", L2 " + npc.localAI[2].ToString() + ", L3 " + npc.localAI[3].ToString());
+                            }
+                        }
                         break;
 
                     case 81: //ancient light when moon lord is alive
@@ -6019,7 +6053,7 @@ namespace FargowiltasSouls.NPCs
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GalacticGlobe"));
                         int maxML = Main.rand.Next(3) + 1;
                         for (int i = 0; i < maxML; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TruffleWormEX"));
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LunarCrystal"));
                         break;
 
                     default:
@@ -6760,8 +6794,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 11: //wof
-                        if (npc.ai[0] == 2f || npc.ai[0] == -2f)
-                            damage = (int)(damage * 0.75);
+                        /*if (npc.ai[0] == 2f || npc.ai[0] == -2f)
+                            damage = (int)(damage * 0.75);*/
                         break;
 
                     case 12: //moon lord
@@ -6934,10 +6968,10 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 11: //wof
-                        if (npc.ai[0] == 2f || npc.ai[0] == -2f)
-                            damage = (int)(damage * 0.75);
+                        /*if (npc.ai[0] == 2f || npc.ai[0] == -2f)
+                            damage = (int)(damage * 0.75);*/
                         if (projectile.type == ProjectileID.Bee || projectile.type == ProjectileID.GiantBee)
-                            damage /= 3;
+                            damage /= 5;
                         break;
 
                     case 12: //moon lord
