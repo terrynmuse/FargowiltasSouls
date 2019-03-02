@@ -12,6 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Dubious Circuitry");
             Tooltip.SetDefault(@"Grants immunity to Cursed Inferno, Ichor, Electrified, and Defenseless
+Your attacks inflict Cursed Inferno and Ichor
 Your attacks have a small chance to inflict Electrified
 Reduces damage taken by 6%");
         }
@@ -32,6 +33,7 @@ Reduces damage taken by 6%");
             player.buffImmune[BuffID.Ichor] = true;
             player.buffImmune[BuffID.Electrified] = true;
             player.buffImmune[mod.BuffType("Defenseless")] = true;
+            player.GetModPlayer<FargoPlayer>().FusedLens = true;
             player.GetModPlayer<FargoPlayer>().GroundStick = true;
             player.endurance += 0.06f;
         }

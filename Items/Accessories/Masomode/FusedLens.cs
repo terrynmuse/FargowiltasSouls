@@ -11,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fused Lens");
-            Tooltip.SetDefault("Grants immunity to Cursed Inferno and Ichor");
+            Tooltip.SetDefault(@"Grants immunity to Cursed Inferno and Ichor
+Your attacks inflict Cursed Inferno and Ichor");
         }
 
         public override void SetDefaults()
@@ -27,6 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             player.buffImmune[BuffID.CursedInferno] = true;
             player.buffImmune[BuffID.Ichor] = true;
+            player.GetModPlayer<FargoPlayer>().FusedLens = true;
         }
     }
 }
