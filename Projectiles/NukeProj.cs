@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -56,33 +56,46 @@ namespace FargowiltasSouls.Projectiles
         {
             Vector2 position = projectile.Center;
             int radius = 300;     //bigger = boomer
-            
-            for (int x = -radius; x <= radius; x++)
-            {
-                for (int y = -radius; y <= radius; y++)
-                {
-                    int xPosition = (int)(x + position.X / 16.0f);
-                    int yPosition = (int)(y + position.Y / 16.0f);
 
-                    if (Math.Sqrt(x * x + y * y) <= radius + 0.5)   //change the shape
+            for (int x = -radius; x <= (radius); x++)
+            {
+                for (int y = -radius; y <= (radius); y++)
+                {
+                    if (Math.Sqrt(x * x + y * y) <= radius)   //circle
                     {
-                        //Tile tile = Main.tile[xPosition, yPosition];
-                        //if (tile == null) continue;
-                        
+                        int xPosition = (int)(x + position.X / 16.0f);
+                        int yPosition = (int)(y + position.Y / 16.0f);
+                        Tile tile = Main.tile[xPosition, yPosition];
+
+                        if (tile == null) continue;
+
                         FargoGlobalTile.ClearTileWithNet(xPosition, yPosition);
                         FargoGlobalTile.ClearWallWithNet(xPosition, yPosition);
                         FargoGlobalTile.ClearLiquid(xPosition, yPosition);
                         FargoGlobalTile.SquareUpdate(xPosition, yPosition);
-                    }                    
-                    
-                    if (WorldGen.InWorld(xPosition, yPosition))
-                        Main.Map.Update(xPosition, yPosition, 255);
+
+
+                        if (WorldGen.InWorld(xPosition, yPosition))
+                            Main.Map.Update(xPosition, yPosition, 255);
+                    }
+
+                    //NetMessage.SendTileSquare(-1, xPosition, yPosition, 1);
                 }
             }
-            
+
+            for (int i = 0; i < 200; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.active && !npc.boss)
+                {
+                    npc.StrikeNPC(1000, 0, 0, true);
+                }
+            }
+
             Main.refreshMap = true;
             // Play explosion sound
-            Main.PlaySound(SoundID.Item15, projectile.position);           
+            Main.PlaySound(SoundID.Item15, projectile.position);
+            Main.PlaySound(SoundID.Item14, (int)position.X, (int)position.Y);
         }
     }
 }

@@ -107,7 +107,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 recipe.AddIngredient(thorium.ItemType("PharaohsSlab"));
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("VampireKnivesThrown") : ItemID.VampireKnives);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("PaladinsHammerThrown") : ItemID.PaladinsHammer);
-                recipe.AddIngredient(thorium.ItemType("CosmicDagger"));
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("PossessedHatchetThrown") : ItemID.PossessedHatchet);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("TerrarianThrown") : ItemID.Terrarian);
             }
             else

@@ -79,7 +79,7 @@ Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
             recipe.AddIngredient(null, "FeralFurEnchant");
             recipe.AddIngredient(null, "LifeBloomEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

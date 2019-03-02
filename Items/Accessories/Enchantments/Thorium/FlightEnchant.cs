@@ -68,7 +68,7 @@ Summons a Pet Parrot");
             
             recipe.AddIngredient(ItemID.ParrotCracker);
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

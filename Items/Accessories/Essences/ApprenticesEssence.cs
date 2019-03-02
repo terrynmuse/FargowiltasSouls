@@ -42,10 +42,10 @@ Increases your maximum mana by 50");
             {
                 //just thorium
                 recipe.AddIngredient(ItemID.SorcererEmblem);
-                recipe.AddIngredient(ItemID.WandofSparking);
                 recipe.AddIngredient(thorium.ItemType("GraveBuster"));
                 recipe.AddIngredient(ItemID.Vilethorn);
                 recipe.AddIngredient(ItemID.CrimsonRod);
+                recipe.AddIngredient(thorium.ItemType("DetachedUFOBlaster"));
                 recipe.AddIngredient(ItemID.WaterBolt);
                 recipe.AddIngredient(ItemID.BookofSkulls);
                 recipe.AddIngredient(ItemID.MagicMissile);

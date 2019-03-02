@@ -39,16 +39,16 @@ Every few attacks damage you slightly");
             recipe.AddIngredient(Seed, 999);
             recipe.AddIngredient(Flare, 999);
             recipe.AddIngredient(Snowball, 999);
+            recipe.AddIngredient(Bone, 999);
             recipe.AddIngredient(PoisonDart, 999);
             recipe.AddIngredient(CursedDart, 999);
             recipe.AddIngredient(IchorDart, 999);
-            recipe.AddIngredient(CrystalDart, 999);
             recipe.AddIngredient(RocketIII, 999);
             recipe.AddIngredient(Nail, 999);
             recipe.AddIngredient(StyngerBolt, 999);
             recipe.AddIngredient(CandyCorn, 999);
             recipe.AddIngredient(Stake, 999);
-            recipe.AddIngredient(ManaCrystal, 20);
+            recipe.AddIngredient(ManaCrystal, 100);
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

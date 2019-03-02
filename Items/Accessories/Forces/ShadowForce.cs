@@ -110,7 +110,7 @@ Summons several pets";
             recipe.AddIngredient(null, "ShinobiEnchant");
             recipe.AddIngredient(null, "DarkArtistEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

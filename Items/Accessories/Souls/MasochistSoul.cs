@@ -6,8 +6,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class MasochistSoul : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of the Masochist");

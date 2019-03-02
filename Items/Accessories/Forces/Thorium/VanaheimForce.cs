@@ -150,7 +150,7 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
             recipe.AddIngredient(null, "CelestialEnchant");
             recipe.AddIngredient(null, "BalladeerEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -48,7 +48,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(thorium.ItemType("RedHourglass"));
                 recipe.AddIngredient(ItemID.StylistKilLaKillScissorsIWish);
                 recipe.AddIngredient(ItemID.IceBlade);
-                recipe.AddIngredient(thorium.ItemType("Bellerose"));
+                recipe.AddIngredient(ItemID.FalconBlade);
                 recipe.AddIngredient(ItemID.Starfury);
                 recipe.AddIngredient(thorium.ItemType("DrenchedDirk"));
                 recipe.AddIngredient(thorium.ItemType("Whip"));
@@ -65,6 +65,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.ChainKnife);
                 recipe.AddIngredient(ItemID.StylistKilLaKillScissorsIWish);
                 recipe.AddIngredient(ItemID.IceBlade);
+                recipe.AddIngredient(ItemID.FalconBlade);
                 recipe.AddIngredient(ItemID.Starfury);
                 recipe.AddIngredient(ItemID.BeeKeeper);
                 recipe.AddIngredient(ItemID.Cascade);

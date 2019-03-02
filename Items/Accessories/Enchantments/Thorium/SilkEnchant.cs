@@ -55,7 +55,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             recipe.AddIngredient(thorium.ItemType("EighthPlagueStaff")); //nice diver, dam memer
             recipe.AddIngredient(thorium.ItemType("WindGust"));
             recipe.AddIngredient(thorium.ItemType("Cure"));
-            recipe.AddIngredient(ItemID.ZebraSwallowtailButterfly);
+            recipe.AddIngredient(ItemID.UlyssesButterfly);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

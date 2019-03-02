@@ -124,7 +124,7 @@ Summons a pet Pink Slime");
             recipe.AddIngredient(null, "IllumiteEnchant");
             recipe.AddIngredient(null, "TerrariumEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

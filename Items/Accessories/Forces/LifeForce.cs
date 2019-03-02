@@ -109,7 +109,7 @@ Your wings last twice as long
             recipe.AddIngredient(null, "TurtleEnchant");
             recipe.AddIngredient(null, "BeetleEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

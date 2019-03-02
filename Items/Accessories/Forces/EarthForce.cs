@@ -77,7 +77,7 @@ Briefly become invulnerable after striking an enemy";
                 recipe.AddIngredient(null, "TitaniumEnchant");
             }
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

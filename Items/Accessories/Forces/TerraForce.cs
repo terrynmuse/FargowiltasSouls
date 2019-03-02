@@ -120,7 +120,7 @@ While standing in lava, you gain 10 more armor penetration, 15% attack speed, an
             recipe.AddIngredient(null, "TungstenEnchant");
             recipe.AddIngredient(null, "ObsidianEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

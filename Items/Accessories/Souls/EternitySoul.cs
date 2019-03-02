@@ -13,7 +13,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     [AutoloadEquip(EquipType.Wings)]
     public class EternitySoul : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
         private readonly Mod dbzMod = ModLoader.GetMod("DBZMOD");

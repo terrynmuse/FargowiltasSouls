@@ -32,8 +32,25 @@ reduced number of fireballs on SoE
 
 -Valhalla Enchantment now reduces knockback less overall and less per hit
 
+-actually fixed shinobi through wall on mount bug
 
-FIX GALACTIC WTF?
+-Most Forces crafted at Ancient Manipulator
+
+
+
+
+
+
+-nerfed fused debuff
+-changed marked for death and adjusted everything that inflicts it
+-halfed tims aura radius
+-massively reduced rune wizard unstable duration
+-adjusted unstable to teleport you instantly
+ghost aura even smaller
+-visible aura hype
+-many new auras
+-reapers leave scythes behind
+
 
 
 

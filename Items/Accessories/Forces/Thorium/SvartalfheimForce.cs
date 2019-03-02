@@ -124,7 +124,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             recipe.AddIngredient(null, "TitanEnchant");
             recipe.AddIngredient(null, "ConduitEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

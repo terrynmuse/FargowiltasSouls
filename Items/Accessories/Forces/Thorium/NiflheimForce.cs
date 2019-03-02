@@ -76,7 +76,7 @@ Effects of Red, Brown, and Purple Music Players");
             recipe.AddIngredient(null, "OrnateEnchant");
             recipe.AddIngredient(null, "ConductorEnchant");
 
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.AddTile(TileID.LunarCraftingStation);
 
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -82,8 +82,8 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             recipe.AddIngredient(null, "MeteorEnchant");
             recipe.AddIngredient(thorium.ItemType("VegaPhaser"));
             recipe.AddIngredient(thorium.ItemType("LivewireCrasher"));
+            recipe.AddIngredient(thorium.ItemType("SuperPlasmaCannon"));
             recipe.AddIngredient(thorium.ItemType("Triangle"));
-            recipe.AddIngredient(ItemID.BrainScrambler);
             recipe.AddIngredient(thorium.ItemType("OmegaDrive"));
             recipe.AddIngredient(thorium.ItemType("UFOCommunicator"));
 
