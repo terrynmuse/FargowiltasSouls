@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Dark Deathray");
+			DisplayName.SetDefault("Demonic Deathray");
 		}
     	
         public override void SetDefaults()
@@ -28,7 +28,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.timeLeft = 600;
-            //cooldownSlot = 1;
+            cooldownSlot = 1;
         }
 
         public override void AI()
@@ -93,7 +93,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 samplingPoint = vector78.Value;
             }
             float[] array3 = new float[(int)num805];
-            Collision.LaserScan(samplingPoint, projectile.velocity, num806 * projectile.scale, 3000f, array3);
+            //Collision.LaserScan(samplingPoint, projectile.velocity, num806 * projectile.scale, 3000f, array3);
+            for (int i = 0; i < array3.Length; i++)
+                array3[i] = 3000f;
             float num807 = 0f;
             int num3;
             for (int num808 = 0; num808 < array3.Length; num808 = num3 + 1)

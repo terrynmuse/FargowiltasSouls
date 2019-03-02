@@ -4260,13 +4260,14 @@ namespace FargowiltasSouls.NPCs
                                 }
 
                                 const float stopTime = maxTime - 90f;
-                                if (npc.ai[1] == stopTime) //shoot warning dust
+                                if (npc.ai[1] == stopTime) //shoot warning dust in phase 2
                                 {
                                     if (npc.ai[0] == 2f || npc.ai[0] == -2f)
                                     {
                                         int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                                         if (t != -1)
                                         {
+                                            Main.PlaySound(15, (int)Main.player[t].position.X, (int)Main.player[t].position.Y, 0);
                                             //Main.NewText("found target OK");
                                             npc.ai[2] = -2f;
                                             npc.ai[3] = (npc.Center - Main.player[t].Center).ToRotation();
@@ -6727,8 +6728,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 11: //wof
-                        if (npc.ai[0] == 2f || npc.ai[0] == -2f)
-                            damage = (int)(damage * 0.75);
+                        /*if (npc.ai[0] == 2f || npc.ai[0] == -2f)
+                            damage = (int)(damage * 0.75);*/
                         break;
 
                     case 12: //moon lord
@@ -6901,10 +6902,10 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 11: //wof
-                        if (npc.ai[0] == 2f || npc.ai[0] == -2f)
-                            damage = (int)(damage * 0.75);
+                        /*if (npc.ai[0] == 2f || npc.ai[0] == -2f)
+                            damage = (int)(damage * 0.75);*/
                         if (projectile.type == ProjectileID.Bee || projectile.type == ProjectileID.GiantBee)
-                            damage /= 3;
+                            damage /= 5;
                         break;
 
                     case 12: //moon lord
