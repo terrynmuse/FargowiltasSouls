@@ -36,5 +36,17 @@ namespace FargowiltasSouls.Items
                 }
             }
         }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+
+            recipe.AddIngredient(ItemID.TruffleWorm);
+            recipe.AddIngredient(mod.ItemType("LunarCrystal"));
+
+            recipe.AddTile(mod.TileType("CrucibleCosmosSheet"));
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

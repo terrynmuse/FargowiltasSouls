@@ -13,6 +13,10 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 0.6:
+-added lunar crystals
+-truffle worm EX changed to crafted from truffle worm + crystal
+-maso ML drops crystals
+
 -buffed reinforced plating to 10 defense, 10% DR
 -buffed fused lens so all attacks inflict cursed flame/ichor
 -removed lump of flesh minion cursed flame/ichor

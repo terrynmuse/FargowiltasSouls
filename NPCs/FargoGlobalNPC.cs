@@ -5986,7 +5986,7 @@ namespace FargowiltasSouls.NPCs
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GalacticGlobe"));
                         int maxML = Main.rand.Next(3) + 1;
                         for (int i = 0; i < maxML; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TruffleWormEX"));
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LunarCrystal"));
                         break;
 
                     default:
