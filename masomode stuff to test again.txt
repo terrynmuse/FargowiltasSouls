@@ -19,6 +19,8 @@
 -wof deathray ignores tiles
 -wof roars before firing deathray
 -wof takes full damage even in phase 2, but has 80% DR against bees
+-reduced curse of the moon dust size a bit, wow its large
+-MOON LORD HAS HIS BONUS LASERS
 
 -buffed reinforced plating to 10 defense, 10% DR
 -buffed fused lens so all attacks inflict cursed flame/ichor
