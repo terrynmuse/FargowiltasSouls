@@ -7474,7 +7474,7 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
-                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += (npc.whoAmI == fishBossEX) ? 100 : 50;
+                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += (npc.whoAmI == fishBossEX) ? 150 : 100;
                         target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(3600, 7200));
                         break;
 
@@ -7485,7 +7485,7 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
                         if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
-                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 75;
+                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
                             target.AddBuff(mod.BuffType<OceanicMaul>(), Main.rand.Next(1800, 3600));
                         }
                         break;
