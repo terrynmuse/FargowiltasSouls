@@ -175,6 +175,7 @@ namespace FargowiltasSouls
         public bool MagicalBulb;
         public bool SkullCharm;
         public bool LihzahrdTreasureBox;
+        public int GroundPound;
         public bool GravityGlobeEX;
         public bool CelestialRune;
         public bool MoonChalice;
@@ -495,6 +496,8 @@ namespace FargowiltasSouls
             Shadowflame = false;
             Slimed = false;
 
+            GroundPound = 0;
+
             GodEater = false;
             FlamesoftheUniverse = false;
             MutantNibble = false;
@@ -715,6 +718,59 @@ namespace FargowiltasSouls
             if (CobaltEnchant && CobaltCD > 0)
             {
                 CobaltCD--;
+            }
+
+            if (LihzahrdTreasureBox)
+            {
+                if (player.controlDown && !player.mount.Active)
+                {
+                    if (player.velocity.Y != 0f)
+                    {
+                        if (player.velocity.Y < 15f)
+                            player.velocity.Y = 15f;
+                        if (GroundPound <= 0)
+                            GroundPound = 1;
+                    }
+                }
+                if (GroundPound > 0)
+                {
+                    if (player.velocity.Y < 0f || player.mount.Active)
+                    {
+                        GroundPound = 0;
+                    }
+                    else if (player.velocity.Y == 0f)
+                    {
+                        int x = (int)(player.Center.X) / 16;
+                        int y = (int)(player.position.Y + player.height + 8) / 16;
+                        if (GroundPound > 15 && Main.tile[x, y] != null && Main.tile[x, y].nactive() && Main.tileSolid[Main.tile[x, y].type])
+                        {
+                            Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("ExplosionSmall"), 160, 12f, player.whoAmI);
+                            y -= 2;
+                            for (int i = -3; i <= 3; i++)
+                            {
+                                if (i == 0)
+                                    continue;
+                                int tilePosX = x + 16 * i;
+                                int tilePosY = y;
+                                if (Main.tile[tilePosX, tilePosY] == null)
+                                    Main.tile[tilePosX, tilePosY] = new Tile();
+                                while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[Main.tile[tilePosX, tilePosY].type]))
+                                {
+                                    tilePosY++;
+                                    if (Main.tile[tilePosX, tilePosY] == null)
+                                        Main.tile[tilePosX, tilePosY] = new Tile();
+                                }
+                                Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, mod.ProjectileType("GeyserFriendly"), 80, 8f, player.whoAmI);
+                            }
+                        }
+                        GroundPound = 0;
+                    }
+                    else
+                    {
+                        player.maxFallSpeed = 15f;
+                        GroundPound++;
+                    }
+                }
             }
         }
 
