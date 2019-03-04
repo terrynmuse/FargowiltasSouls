@@ -12,7 +12,9 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Lihzahrd Treasure Box");
             Tooltip.SetDefault(@"Grants immunity to Burning and Fused
-You erupt into spiky balls when injured");
+You erupt into spiky balls when injured
+Press down in the air to fastfall
+Fastfall will create a fiery eruption on impact after falling a certain distance");
         }
 
         public override void SetDefaults()
