@@ -77,7 +77,21 @@ namespace FargowiltasSouls.Projectiles
 
         }
 
-        private static int[] noSplit = { ProjectileID.CrystalShard, ProjectileID.SandnadoFriendly, ProjectileID.LastPrism, ProjectileID.LastPrismLaser, ProjectileID.FlowerPetal, ProjectileID.BabySpider, ProjectileID.CrystalLeafShot };
+        private static int[] noSplit = {
+            ProjectileID.CrystalShard,
+            ProjectileID.SandnadoFriendly,
+            ProjectileID.LastPrism,
+            ProjectileID.LastPrismLaser,
+            ProjectileID.FlowerPetal,
+            ProjectileID.BabySpider,
+            ProjectileID.CrystalLeafShot,
+            ProjectileID.Phantasm,
+            ProjectileID.VortexBeater,
+            ProjectileID.ChargedBlasterCannon,
+            ProjectileID.MedusaHead,
+            ProjectileID.WireKite,
+            ProjectileID.DD2PhoenixBow
+        };
 
         public override bool PreAI(Projectile projectile)
         {
@@ -93,7 +107,9 @@ namespace FargowiltasSouls.Projectiles
                 {
                     firstTick = false;
 
-                    if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && Soulcheck.GetValue("Adamantite Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
+                    if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
+                        && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99
+                        && Soulcheck.GetValue("Adamantite Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
                     {
                         if (adamantiteCD != 0)
                         {

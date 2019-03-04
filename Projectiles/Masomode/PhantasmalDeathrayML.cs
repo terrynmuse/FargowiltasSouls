@@ -10,13 +10,13 @@ using FargowiltasSouls.Buffs.Masomode;
 
 namespace FargowiltasSouls.Projectiles.Masomode
 {
-    public class PhantasmalDeathrayWOF : ModProjectile
+    public class PhantasmalDeathrayML : ModProjectile
     {
         private const float maxTime = 90;
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Demonic Deathray");
+			DisplayName.SetDefault("Phantasmal Deathray II");
 		}
     	
         public override void SetDefaults()
@@ -38,18 +38,10 @@ namespace FargowiltasSouls.Projectiles.Masomode
             {
                 projectile.velocity = -Vector2.UnitY;
             }
-            if (Main.npc[(int)projectile.ai[1]].active && Main.npc[(int)projectile.ai[1]].type == NPCID.WallofFleshEye)
+            int ai1 = (int)projectile.ai[1];
+            if (Main.npc[ai1].active && (Main.npc[ai1].type == NPCID.MoonLordHand || Main.npc[ai1].type == NPCID.MoonLordHead))
             {
-                //Vector2 value21 = new Vector2(27f, 59f);
-                //Vector2 fireFrom = new Vector2(Main.npc[(int)projectile.ai[1]].Center.X, Main.npc[(int)projectile.ai[1]].Center.Y);
-                //Vector2 value22 = Utils.Vector2FromElipse(Main.npc[(int)projectile.ai[1]].localAI[2].ToRotationVector2(), value21 * Main.npc[(int)projectile.ai[1]].localAI[3]);
-                //projectile.position = fireFrom + value22 - new Vector2(projectile.width, projectile.height) / 2f;
-                Vector2 offset;
-                if (projectile.ai[0] == 0f)
-                    offset = new Vector2(Main.npc[(int)projectile.ai[1]].width - 36, 6).RotatedBy(Main.npc[(int)projectile.ai[1]].rotation + Math.PI);
-                else
-                    offset = new Vector2(Main.npc[(int)projectile.ai[1]].width - 36, -6).RotatedBy(Main.npc[(int)projectile.ai[1]].rotation);
-                projectile.Center = Main.npc[(int)projectile.ai[1]].Center + offset;
+                projectile.Center = Main.npc[ai1].Center;
             }
             else
             {
@@ -73,18 +65,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
             }
             projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 10f * num801;
             if (projectile.scale > num801)
-            {
                 projectile.scale = num801;
-            }
-            //float num804 = projectile.velocity.ToRotation();
-            //num804 += projectile.ai[0];
-            //projectile.rotation = num804 - 1.57079637f;
-            float num804 = Main.npc[(int)projectile.ai[1]].rotation + 1.57079637f;
-            if (projectile.ai[0] != 0f)
-                num804 -= (float)Math.PI;
-            projectile.rotation = num804;
-            num804 += 1.57079637f;
-            projectile.velocity = num804.ToRotationVector2();
+            float num804 = projectile.velocity.ToRotation();
+            projectile.rotation = num804 - 1.57079637f;
             float num805 = 3f;
             float num806 = (float)projectile.width;
             Vector2 samplingPoint = projectile.Center;
@@ -136,8 +119,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 return false;
             }
             Texture2D texture2D19 = Main.projectileTexture[projectile.type];
-            Texture2D texture2D20 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayWOF2");
-            Texture2D texture2D21 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayWOF3");
+            Texture2D texture2D20 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayML2");
+            Texture2D texture2D21 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayML3");
             float num223 = projectile.localAI[1];
             Microsoft.Xna.Framework.Color color44 = new Microsoft.Xna.Framework.Color(255, 255, 255, 0) * 0.9f;
             SpriteBatch arg_ABD8_0 = Main.spriteBatch;
@@ -199,11 +182,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.Dazed, Main.rand.Next(30, 90));
-            target.AddBuff(BuffID.OnFire, Main.rand.Next(300, 600));
-            target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(300, 600));
-            target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(300, 600));
-            target.velocity = Vector2.Zero;
+            target.AddBuff(mod.BuffType<CurseoftheMoon>(), Main.rand.Next(240, 360));
         }
     }
 }
