@@ -40,6 +40,7 @@ namespace FargowiltasSouls.Items
             if (!bossExists)
             {
                 FargoWorld.MasochistMode = !FargoWorld.MasochistMode;
+                Main.expertMode = true;
 
                 Main.NewText(FargoWorld.MasochistMode
                     ? "Masochist Mode initiated!"

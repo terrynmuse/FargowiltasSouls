@@ -47,5 +47,10 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         {
             target.AddBuff(BuffID.Slimed, 240);
         }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.Slimed, 240);
+        }
     }
 }

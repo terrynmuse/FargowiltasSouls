@@ -321,10 +321,15 @@ When you die, you explode and revive with 200 HP";
             recipe.AddIngredient(null, "CosmoForce");
 
             if (Fargowiltas.Instance.CalamityLoaded)
+            {
                 recipe.AddIngredient(null, "CalamityForce");
-
-            recipe.AddTile(mod, "CrucibleCosmosSheet");
-
+                recipe.AddTile(ModLoader.GetMod("CalamityMod"), "DraedonsForge");
+            }
+            else
+            {
+                recipe.AddTile(mod, "CrucibleCosmosSheet");
+            }
+                
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

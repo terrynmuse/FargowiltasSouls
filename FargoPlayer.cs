@@ -555,9 +555,11 @@ namespace FargowiltasSouls
                         {
                             player.Hurt(PlayerDeathReason.ByOther(0), dmg, 0);
                         }
+
+                        int buffTime = (int)(dmg * (player.noFallDmg ? .5 : 2));
                         
-                        player.AddBuff(BuffID.Dazed, dmg * 2);
-                        player.AddBuff(BuffID.Confused, dmg * 2);
+                        player.AddBuff(BuffID.Dazed, buffTime);
+                        player.AddBuff(BuffID.Confused, buffTime);
                     }
                     player.fallStart = (int)(player.position.Y / 16f);
                 }
@@ -588,9 +590,8 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Frostburn, 120);
                         MasomodeFreezeTimer++;
 
-                        if (MasomodeFreezeTimer >= (player.buffImmune[BuffID.Frozen] ? 600:300))
+                        if (MasomodeFreezeTimer >= 300)
                         {
-                            player.buffImmune[BuffID.Frozen] = false;
                             player.AddBuff(BuffID.Frozen, 120);
                             MasomodeFreezeTimer = -300;
                         }
@@ -628,6 +629,28 @@ namespace FargowiltasSouls
                 if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) && player.active)
                 {
                     player.AddBuff(mod.BuffType("FlippedHallow"), 120);
+                }
+
+                if (Main.hardMode && Main.raining && !(player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight || player.ZoneUnderworldHeight))
+                {
+                    Point tileCoordinates = player.Top.ToTileCoordinates();
+                    bool lightning = true;
+
+                    for (int i = 0; i < 30; i++)
+                    {
+                        if (WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) || tileCoordinates.Y < 10)
+                        {
+                            lightning = false;
+                            break;
+                        }
+
+                        tileCoordinates.Y--;
+                    }
+
+                    if (lightning)
+                    {
+                        player.AddBuff(mod.BuffType("LightningRod"), 2);
+                    } 
                 }
 
                 if (player.wet && !(player.accFlipper || player.gills))
@@ -772,6 +795,7 @@ namespace FargowiltasSouls
             {
                 KillPets();
                 player.maxMinions = 0;
+                player.maxTurrets = 0;
                 player.minionDamage -= .5f;
             }
             else if (WasAsocial) //should only occur when above debuffs end

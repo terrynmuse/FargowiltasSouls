@@ -17,6 +17,13 @@ NEW UPDATE - v 0.6
 -it also updates the map instantly in the explosion area
 
 -jellyfish electrified aura only when theyre shocking
+-perma lightning rod whil raining, surface, hard mode, not under cover
+-SoT at draedons forge with calamity
+-Antisocial also kills all sentries
+-much shorter fall debuff lengths when you ignore fall damage
+-several new auras, eyes have dust when they can stone
+
+-Pandoras Box totally reworked, spawns a random selection of any mob in any mod, during the day, only weaker enemies can spawn and any critters summoned have 99 defense (thorium butterfly memes cease)
 
 -Infinity Relic has a new recipe and an altered effect, now required for Soul of Eternity
 
@@ -26,6 +33,20 @@ NEW UPDATE - v 0.6
 -Added Nuke Fishron and The Twins (weapon)
 
 -Big Sting and Fish Stick have an actual good use sound now
+
+-DD2 spawns- kohbold in the underground, lighting bug surface rain, etherian goblin, goblin bomber, javelin in goblin army, wyverns and drakins in the underworld, wither beast in hallow
+
+-giant tortoise and ice tortoise reflect projectiles while shell spinning, and have even more defense
+-masomode always activates expert mode 
+-EoC spawns servants a little bit less often, EoC leaves a trail of blood scythes
+-slime spiked inflict slimed
+-king slimes spike rain is now a spike burst thing?
+-also shoots slime balls at half hp
+-werewolf meme removed for now
+-bee to hornet upgrade only 50% chance
+-queen bee spawns a royal guard mini queen bee at 60% and 30% HP with 1/4 the life, 1/2 the attack, 
+-nail guns while a minion is alive and in stationary form
+
 
 -Added a cooldown between Copper Enchantment lightning
 -Cobalt Enchantment splits into 3 random shards instead of 8 and has a 2 second cooldown

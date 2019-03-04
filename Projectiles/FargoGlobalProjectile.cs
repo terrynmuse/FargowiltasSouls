@@ -675,6 +675,11 @@ namespace FargowiltasSouls.Projectiles
                 {
                     return Color.SandyBrown;
                 }
+
+                else if (projectile.type == ProjectileID.DemonSickle)
+                {
+                    return Color.Red;
+                }
             }
 
             return null;
@@ -859,6 +864,10 @@ namespace FargowiltasSouls.Projectiles
                         }
 
                         target.AddBuff(BuffID.Stinky, Main.rand.Next(900, 1200));
+                        break;
+
+                    case ProjectileID.SpikedSlimeSpike:
+                        target.AddBuff(BuffID.Slimed, 120);
                         break;
 
                     //CULTIST OP
