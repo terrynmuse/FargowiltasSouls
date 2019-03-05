@@ -1,4 +1,25 @@
 NEW UPDATE - v 0.6
+
+-blazing wheels spawn in hell
+-buffed blazing wheels and spiked balls in temple
+-roughly 3x damage and spikes inflict defenseless, wheels inflict flames of the universe
+-eskimo zombies inflict chilled instead of rotting
+-hoppin jack leaves trail of flames, burning spheres do not
+-granite golems reflect projectiles while guarding
+-biome mimics create a shockwave when they land after their mega jump
+-paladin hammers inflict stunned instead of lethargic
+
+
+
+
+
+
+
+
+
+
+
+
 -Added Calamity Enchantments, Force of Calamities, Soul of the Tyrant, and some calamity support to other Souls
 -Added Thorium Enchantments, Thorium Forces, Soul of Yggdrasil, and Ki Soul
 -Added recipe for all Thorium Steel items
@@ -16,14 +37,45 @@ NEW UPDATE - v 0.6
 -Galactic Reformer now only does 1000 damage to all enemies when it goes off
 -it also updates the map instantly in the explosion area
 
+
+
 -jellyfish electrified aura only when theyre shocking
 -perma lightning rod whil raining, surface, hard mode, not under cover
 -SoT at draedons forge with calamity
 -Antisocial also kills all sentries
 -much shorter fall debuff lengths when you ignore fall damage
 -several new auras, eyes have dust when they can stone
-
+-DD2 spawns- kohbold in the underground, lighting bug surface rain, etherian goblin, goblin bomber, javelin in goblin army, wyverns and drakins in the underworld, wither beast in hallow
+-giant tortoise and ice tortoise reflect projectiles while shell spinning
+-masomode always activates expert mode 
+-EoC spawns servants a little bit less often, EoC leaves a trail of blood scythes
+-slime spiked inflict slimed
+-king slimes spike rain is now a spike burst thing?
+-also shoots slime balls at half hp
+-werewolf meme removed for now
+-bee to hornet upgrade only 50% chance
+-queen bee spawns a royal guard mini queen bee at 60% and 30% HP with 1/4 the life, 1/2 the attack, 
+-nail guns while a minion is alive and in stationary form
+-nerfed fused debuff
+-changed marked for death and adjusted everything that inflicts it
+-halfed tims aura radius
+-massively reduced rune wizard unstable duration
+-adjusted unstable to teleport you instantly
+ghost aura even smaller
+-visible aura hype
+-many new auras
+-reapers leave scythes behind
+-Valhalla Enchantment now reduces knockback less overall and less per hit
+-actually fixed shinobi through wall on mount bug
+-Most Forces crafted at Ancient Manipulator
 -Pandoras Box totally reworked, spawns a random selection of any mob in any mod, during the day, only weaker enemies can spawn and any critters summoned have 99 defense (thorium butterfly memes cease)
+
+
+
+
+
+
+
 
 -Infinity Relic has a new recipe and an altered effect, now required for Soul of Eternity
 
@@ -34,49 +86,10 @@ NEW UPDATE - v 0.6
 
 -Big Sting and Fish Stick have an actual good use sound now
 
--DD2 spawns- kohbold in the underground, lighting bug surface rain, etherian goblin, goblin bomber, javelin in goblin army, wyverns and drakins in the underworld, wither beast in hallow
-
--giant tortoise and ice tortoise reflect projectiles while shell spinning, and have even more defense
--masomode always activates expert mode 
--EoC spawns servants a little bit less often, EoC leaves a trail of blood scythes
--slime spiked inflict slimed
--king slimes spike rain is now a spike burst thing?
--also shoots slime balls at half hp
--werewolf meme removed for now
--bee to hornet upgrade only 50% chance
--queen bee spawns a royal guard mini queen bee at 60% and 30% HP with 1/4 the life, 1/2 the attack, 
--nail guns while a minion is alive and in stationary form
-
-
 -Added a cooldown between Copper Enchantment lightning
 -Cobalt Enchantment splits into 3 random shards instead of 8 and has a 2 second cooldown
 
 reduced number of fireballs on SoE
-
--Valhalla Enchantment now reduces knockback less overall and less per hit
-
--actually fixed shinobi through wall on mount bug
-
--Most Forces crafted at Ancient Manipulator
-
-
-
-
-
-
--nerfed fused debuff
--changed marked for death and adjusted everything that inflicts it
--halfed tims aura radius
--massively reduced rune wizard unstable duration
--adjusted unstable to teleport you instantly
-ghost aura even smaller
--visible aura hype
--many new auras
--reapers leave scythes behind
-
-
-
-
 
 
 This mod adds 2 main things. Souls and Masochist Mode.

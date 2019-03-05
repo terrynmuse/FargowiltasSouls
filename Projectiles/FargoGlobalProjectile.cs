@@ -912,7 +912,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.PaladinsHammerHostile:
-                        target.AddBuff(mod.BuffType<Lethargic>(), Main.rand.Next(480, 720));
+                        target.AddBuff(mod.BuffType<Stunned>(), Main.rand.Next(60));
                         break;
 
                     case ProjectileID.RuneBlast:

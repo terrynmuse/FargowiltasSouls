@@ -1,31 +1,20 @@
 NOT IMPLEMENTED
 **********************************************************************************************************
 
+-insanely buffed spike balls and blazing wheels spawn in temple also normal ones spawn in hell
+
 -psycho constantly becomes more transparent but becomes fully visible whenever hit (should take like two seconds to become full invis)
 
-
--EoC bleeds in phase 2 and does more damage the lower hp you have 
 -skeletons explode into bones 
 -the groom and bride go insanely fast if they both spawn and heal each other constantly when close enough 
 -snow flinx knocks you into the next dimension 
 -etherian spawns
 -red devil trident velocity increases per tick
-- moss hornets spawn in packs
-corites spawning in meteorite post golem tbh
-and strollers because they are both part minerals
+-moss hornets spawn in packs
 -angler fish invisible with light, appears in ocean always bleed
 blood feeder - increase stats, heals on damage 
 
-
-
-
 -eater of souls and Crimea’s try to pick you up and drop you 
--king slime spawns pinky’s and a slime rain 
--the jellyfish electrify in water thing 
-
--insanely buffed spike balls and blazing wheels spawn in temple also normal ones spawn in hell
-
--enchanted sword and fridns attack way quicker 
 
 -moths spawn spores everywhere 
 -icy merman shoots twice as fast if he’s in water 
@@ -36,7 +25,6 @@ blood feeder - increase stats, heals on damage
 
 -town npcs will never spawn naturally if they do they succumb to a quick painful death, you just find them in other ways, ones you normally find are the same
 
-
 -scale projectiles
 
 - Skeletron's hands can grab you for a moment, dealing damage every second
@@ -44,18 +32,9 @@ blood feeder - increase stats, heals on damage
 
 -sand elementals shoot sand balls when not casting ancient storms
 
-- King Slime shoots Slimy Balls that go through walls occasionally
-
 -using rod of discord during chaos state also inflicts 5sec berserked and unstable
--lava charm effect runs out faster
--player starts drowning faster in water
-
--wyverns inflict purified, phantasmal dragons inflict flames of the universe
 
 -enchanted sword family inflict defenseless, have way more knockback resist and don't take five years to attack again when hit
-
--nailhead constantly sheds spikes
--eyezor shoots a cursed flamethrower if you get too close
 
 -biome ghouls can spit projectiles (cursed flamethrower for corrupt, ichor sticker spit for crimson, uhhh smth for hallowed idk)
 
@@ -63,28 +42,15 @@ blood feeder - increase stats, heals on damage
 
 -ice queens spawn flockos constantly
 
-anomura fungus - spore debuff or someshit? attacking it makes spores poof out 
-eater of souls shoot vile spit and inflict rotting
-
--additional high-probability roll for solar eclipses and blood moons every day/night
--hugely increased chances of invasion events every morning
--a solid chance for a pumpkin or frost moon event to start on its own every night
-
-Jellyfish can have a chance to cause paralysis if zapped in water 
 Zombies can always open doors like in blood moons
-
--post-plantera physical skeletons (hell armored bones and cousins) all inflict bloodthirsty for 2 seconds on contact
--paladins and the post-plantera mages inflict lethargic with all attacks for 4 seconds
 
 -Top Hat Squirrels become hostile during bloodmoons
 -Wraiths can fly without needing to be 3 blocks below
--Wraiths have a very small chance to spawn PreHM
 -Mothron can shoot multiple fireballs while airborne
 -Martian Officer has two shields to pop in order to damage them
 
 -Fire Imp, Dark Caster, Tim, and Goblin Sorcerer "panic" when attacked (they fire projectiles 3x as fast and can still shoot after getting damaged)
 
--Flow Invader fires mini flow invaders in a spread even when it isn't dead
 -Martian Engineers create Tesla Turrets twice as often
 -Dungeon Spirit is immune to knockback and has more health
 -Paladins can throw hammers without having to not be currently attacked

@@ -664,7 +664,7 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 83;
                         break;
 
-                    case NPCID.BurningSphere:
+                    case NPCID.HoppinJack:
                         masoAI = 84;
                         break;
 
@@ -728,8 +728,24 @@ namespace FargowiltasSouls.NPCs
                         masoAI = 99;
                         break;
 
-                    case NPCID.UmbrellaSlime:
+                    case NPCID.SpikeBall:
+                    case NPCID.BlazingWheel:
                         masoAI = 100;
+                        break;
+
+                    case NPCID.FloatyGross:
+                        masoAI = 101;
+                        break;
+
+                    case NPCID.GraniteGolem:
+                        masoAI = 102;
+                        break;
+
+                    case NPCID.BigMimicCorruption:
+                    case NPCID.BigMimicCrimson:
+                    case NPCID.BigMimicHallow:
+                    case NPCID.BigMimicJungle:
+                        masoAI = 103;
                         break;
 
                     default:
@@ -4546,11 +4562,11 @@ namespace FargowiltasSouls.NPCs
 
                         break;
                     
-                    //burning sphere
+                    //hoppin jack
                     case 84:
                         Counter++;
 
-                        if (Counter >= 20)
+                        if (Counter >= 20 && npc.velocity.X != 0)
                         {
                             int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.MolotovFire, (int)(npc.damage / 2), 1f, Main.myPlayer);
                             Main.projectile[p].hostile = true;
@@ -4935,17 +4951,79 @@ namespace FargowiltasSouls.NPCs
                         //while shell spinning
                         if (npc.ai[0] == 6f)
                         {
-                            npc.defense *= 2;
-                            npc.ReflectProjectiles(npc.Hitbox);
-                            npc.reflectingProjectiles = true;
+                            CustomReflect(npc, DustID.Sandstorm);
                         }
                         break;
 
-                    case 100: //
+                    case 100: //spike ball, blazing wheel
+                        //in temple
+                        if (Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16] != null && Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].wall == WallID.LihzahrdBrickUnsafe)
+                        {
+                            npc.damage = 150;
+                            masoBool[0] = true;
+                        }
+                        break;
+
+                    //
+                    case 101:
+                        
 
                         break;
 
-                        //drakin possible meme tm
+                    case 102: //granite golem
+                        //while shielding, reflect
+                        if (npc.ai[2] < 0f)
+                        {
+                            CustomReflect(npc, DustID.Granite, 2);
+                        }
+                        break;
+
+                    case 103: // biome mimics
+
+                        if (masoBool[0])
+                        {
+                            if (npc.velocity.Y == 0f) //spawn smash
+                            {
+                                masoBool[0] = false;
+
+                                Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.DD2OgreSmash, npc.damage / 2, 4, Main.myPlayer);
+                            }
+                        }
+                        else if (npc.velocity.Y > 0 && npc.noTileCollide) //mega jump
+                        {
+                            masoBool[0] = true;
+                        }
+
+
+
+
+
+                        /*Vector2 vector3 = npc.Center + new Vector2((float)(-(float)this.direction * 20), (float)(this.height / 2 - 1));
+                        Vector2 v = targetData.Center - vector3;
+                        v.Y -= Math.Abs(v.X) * num14;
+                        Vector2 vector4 = v.SafeNormalize(-Vector2.UnitY) * scaleFactor;
+                        for (int num44 = 0; num44 < num16; num44++)
+                        {
+                            Vector2 vector5 = vector4;
+                            Vector2 vector6 = vector3;
+                            if (vector.HasValue)
+                            {
+                                vector5 += vector.Value;
+                            }
+                            else
+                            {
+                                vector5 += Utils.RandomVector2(Main.rand, -num15, num15);
+                            }
+                            vector6 += vector4 * scaleFactor2;
+                            if (Main.netMode != 1)
+                            {
+                                Projectile.NewProjectile(vector6, vector5, num11, num10, 0f, Main.myPlayer, 0f, 0f);
+                            }
+                        }*/
+                        break;
+
+
+                    //drakin possible meme tm
                     /*if (!DD2Event.Ongoing)
                     {
                         npc.ai[0] = 1;
@@ -4965,19 +5043,6 @@ namespace FargowiltasSouls.NPCs
                             npc.Opacity -= .01f;
                         }
                         break;*/
-
-
-                    /* pseudo memes
-
-                     case moth:
-                    Shoot(Spores)
-
-                    case umbrealla slime:
-                    fall slow and explodes water EVERYWHERE instantly flooding a world
-
-                    case spike ball: 
-                    some AI = faster speed ?
-                    */
 
                     default:
                         break;
@@ -5071,6 +5136,46 @@ namespace FargowiltasSouls.NPCs
                 }
             }
             
+        }
+
+        private void CustomReflect(NPC npc, int dustID, int ratio = 1)
+        {
+            float distance = 2f * 16;
+
+            Main.projectile.Where(x => x.active && x.friendly).ToList().ForEach(x =>
+            {
+                if (Vector2.Distance(x.Center, npc.Center) <= distance)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int dustId = Dust.NewDust(new Vector2(x.position.X, x.position.Y + 2f), x.width, x.height + 5, dustID, x.velocity.X * 0.2f, x.velocity.Y * 0.2f, 100, default(Color), 1.5f);
+                        Main.dust[dustId].noGravity = true;
+                    }
+
+                    // Set ownership
+                    x.hostile = true;
+                    x.friendly = false;
+                    x.owner = Main.myPlayer;
+                    x.damage /= ratio;
+
+                    // Turn around
+                    x.velocity *= -1f;
+
+                    // Flip sprite
+                    if (x.Center.X > npc.Center.X * 0.5f)
+                    {
+                        x.direction = 1;
+                        x.spriteDirection = 1;
+                    }
+                    else
+                    {
+                        x.direction = -1;
+                        x.spriteDirection = -1;
+                    }
+
+                    //x.netUpdate = true;
+                }
+            });
         }
 
         public override Color? GetAlpha(NPC npc, Color drawColor)
@@ -5621,6 +5726,7 @@ namespace FargowiltasSouls.NPCs
                     {
                         pool[NPCID.LeechHead] = .05f;
                         pool[NPCID.DD2WyvernT1] = .05f;
+                        pool[NPCID.BlazingWheel] = .1f;
                     }
                     else if (sky)
                     {
@@ -5990,7 +6096,6 @@ namespace FargowiltasSouls.NPCs
                         }
                     }
 
-
                     //height-independent biomes
                     if (corruption)
                     {
@@ -6032,6 +6137,12 @@ namespace FargowiltasSouls.NPCs
                     if (meteor && NPC.downedGolemBoss)
                     {
                         pool[NPCID.SolarCorite] = .025f;
+                    }
+
+                    if (spawnInfo.lihzahrd)
+                    {
+                        pool[NPCID.BlazingWheel] = .1f;
+                        pool[NPCID.SpikeBall] = .1f;
                     }
                 }
 
@@ -7503,10 +7614,20 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.SpikeBall:
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(300, 1200));
+
+                        if (masoBool[0])
+                        {
+                            target.AddBuff(mod.BuffType<Defenseless>(), Main.rand.Next(300, 1200));
+                        }
                         break;
 
                     case NPCID.BlazingWheel:
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
+
+                        if (masoBool[0])
+                        {
+                            target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), Main.rand.Next(300));
+                        }
                         break;
 
                     case NPCID.Shark:
@@ -7856,7 +7977,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Zombie:
                     case NPCID.ArmedZombie:
                     case NPCID.ArmedZombieCenx:
-                    case NPCID.ArmedZombieEskimo:
                     case NPCID.ArmedZombiePincussion:
                     case NPCID.ArmedZombieSlimed:
                     case NPCID.ArmedZombieSwamp:
@@ -7866,7 +7986,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PincushionZombie:
                     case NPCID.SlimedZombie:
                     case NPCID.TwiggyZombie:
-                    case NPCID.ZombieEskimo:
                     case NPCID.ZombiePixie:
                     case NPCID.ZombieRaincoat:
                     case NPCID.ZombieSuperman:
@@ -7879,6 +7998,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.BigSwampZombie:
                     case NPCID.ZombieDoctor:
                         target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(60, 600));
+                        break;
+
+                    case NPCID.ZombieEskimo:
+                    case NPCID.ArmedZombieEskimo:
+                        target.AddBuff(BuffID.Chilled, Main.rand.Next(300));
                         break;
 
                     case NPCID.Corruptor:
