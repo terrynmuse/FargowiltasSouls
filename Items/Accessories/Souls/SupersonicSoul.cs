@@ -31,7 +31,8 @@ Allows the holder to quadruple jump if no wings are equipped
 Increases jump height, jump speed, and allows auto-jump
 Grants the ability to swim and greatly extends underwater breathing
 Provides the ability to walk on water and lava
-Grants immunity to lava and fall damage";
+Grants immunity to lava and fall damage
+Effects of Flying Carpet";
 
             if (thorium != null)
             {
@@ -101,6 +102,9 @@ Grants immunity to lava and fall damage";
                 player.doubleJumpSandstorm = true;
                 player.doubleJumpBlizzard = true;
             }
+            //magic carpet
+             player.carpet = true;
+            
             //slime mount
             //player.maxFallSpeed += 5f;
 
@@ -258,11 +262,11 @@ Grants immunity to lava and fall damage";
                 recipe.AddIngredient(ItemID.BundleofBalloons);
             }
             
+            recipe.AddIngredient(ItemID.FlyingCarpet);
             recipe.AddIngredient(ItemID.SlimySaddle);
             recipe.AddIngredient(ItemID.FuzzyCarrot);
             recipe.AddIngredient(ItemID.BlessedApple);
             recipe.AddIngredient(ItemID.AncientHorn);
-            recipe.AddIngredient(ItemID.ShrimpyTruffle);
             recipe.AddIngredient(ItemID.ReindeerBells);
             recipe.AddIngredient(ItemID.BrainScrambler);
 

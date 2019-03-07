@@ -42,9 +42,9 @@ Getting hit drops your crit back down
 
             tooltip +=
 @"Attacks may inflict enemies with Lead Poisoning or Stunned
-Grants immunity to fire and lava
-Increases armor penetration by 10
-While standing in lava, you gain 10 more armor penetration, 15% attack speed, and your attacks ignite enemies";
+Grants immunity to fire, fall damage, and lava
+Increases armor penetration by 5
+While standing in lava, you gain 15 more armor penetration, 15% attack speed, and your attacks ignite enemies";
                 
             Tooltip.SetDefault(tooltip);
 

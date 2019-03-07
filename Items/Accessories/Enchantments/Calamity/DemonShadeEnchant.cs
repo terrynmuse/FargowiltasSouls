@@ -19,10 +19,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Demon Shade Enchantment");
+            DisplayName.SetDefault("Demonshade Enchantment");
             Tooltip.SetDefault(
 @"'Demonic power emanates from you…'
-All attacks inflict the Demon Flames
+All attacks inflict Demon Flames
 Shadowbeams and Demon Scythes fall from the sky on hit
 A friendly red devil follows you around
 Enemies take ungodly damage when they touch you

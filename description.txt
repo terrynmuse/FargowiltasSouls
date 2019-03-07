@@ -8,8 +8,18 @@ NEW UPDATE - v 0.6
 -granite golems reflect projectiles while guarding
 -biome mimics create a shockwave when they land after their mega jump
 -paladin hammers inflict stunned instead of lethargic
+-Added DG mode to skeletron 
+-martian drones spawn in hard mode desert surface
+-probes spawn naturally at night, surface, post any mech. getting hit by one spawns a random mech
+-hungries and WoF laser quarter your speed on contact instead of making it zero reee
+-dark mages spawn in blood moons in hard mode
+-hungries spawn naturally in hard mode, get hit spawn WOF, removed WOF natural spawn cuz its a meme
+-spore zombies and anomura fungus burst into spores on death
 
-
+-soul and essence also benefit rogue damage
+-added magic carpet effects to supersonic soul
+-rebalanced obsidian enchantment, 5 seconds of lava immune instead of full immunity, 5 armor pen down from 10, but +15 instead of 10 in lava, also added fall immune
+-SoE reflects all projeciles
 
 
 

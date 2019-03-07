@@ -1232,7 +1232,7 @@ namespace FargowiltasSouls
                 target.AddBuff(thorium.BuffType("Mycelium"), 120);
             }
 
-            if (proj.type == thorium.ProjectileType("MeteorPlasmaDamage") || proj.type == thorium.ProjectileType("PyroBurst") || proj.type == thorium.ProjectileType("LightStrike") || proj.type == thorium.ProjectileType("WhiteFlare") || proj.type == thorium.ProjectileType("CryoDamage") || proj.type == thorium.ProjectileType("MixtapeNote"))
+            if (proj.type == thorium.ProjectileType("MeteorPlasmaDamage") || proj.type == thorium.ProjectileType("PyroBurst") || proj.type == thorium.ProjectileType("LightStrike") || proj.type == thorium.ProjectileType("WhiteFlare") || proj.type == thorium.ProjectileType("CryoDamage") || proj.type == thorium.ProjectileType("MixtapeNote") || proj.type == thorium.ProjectileType("DragonPulse"))
             {
                 return;
             }
@@ -1821,7 +1821,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (proj.type == thorium.ProjectileType("MeteorPlasmaDamage") || proj.type == thorium.ProjectileType("PyroBurst") || proj.type == thorium.ProjectileType("LightStrike") || proj.type == thorium.ProjectileType("WhiteFlare") || proj.type == thorium.ProjectileType("CryoDamage") || proj.type == thorium.ProjectileType("MixtapeNote"))
+            if (proj.type == thorium.ProjectileType("MeteorPlasmaDamage") || proj.type == thorium.ProjectileType("PyroBurst") || proj.type == thorium.ProjectileType("LightStrike") || proj.type == thorium.ProjectileType("WhiteFlare") || proj.type == thorium.ProjectileType("CryoDamage") || proj.type == thorium.ProjectileType("MixtapeNote") || proj.type == thorium.ProjectileType("DragonPulse"))
             {
                 return;
             }
@@ -2898,7 +2898,7 @@ namespace FargowiltasSouls
 
                 Main.projectile.Where(x => x.active && x.hostile).ToList().ForEach(x =>
                 {
-                    if (Main.rand.Next(5) == 0 && Vector2.Distance(x.Center, player.Center) <= distance)
+                    if ((Eternity || Main.rand.Next(5) == 0) && Vector2.Distance(x.Center, player.Center) <= distance)
                     {
                         for (int i = 0; i < 5; i++)
                         {
@@ -3169,13 +3169,23 @@ namespace FargowiltasSouls
         {
             player.buffImmune[BuffID.OnFire] = true;
             player.fireWalk = true;
-            player.lavaImmune = true;
-            player.armorPenetration += 10;
+
+            if (TerraForce)
+            {
+                player.lavaImmune = true;
+            }
+            else
+            {
+                player.lavaMax += 300;
+            }
+            
+            player.armorPenetration += 5;
+            player.noFallDmg = true;
 
             //in lava effects
             if (player.lavaWet)
             {
-                player.armorPenetration += 10;
+                player.armorPenetration += 15;
                 AttackSpeed *= 1.15f;
                 ObsidianEnchant = true;
             }

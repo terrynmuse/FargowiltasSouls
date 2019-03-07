@@ -55,8 +55,11 @@ Summons a pet Gato and Black Cat";
             //ninja, smoke bombs, pet
             modPlayer.NinjaEffect(hideVisual);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+        }
 
+        private void Thorium(Player player)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             thoriumPlayer.shadeSet = true;

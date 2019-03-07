@@ -909,6 +909,13 @@ namespace FargowiltasSouls.NPCs
                         masoDeathAI = 38;
                         break;
 
+                    case NPCID.ZombieMushroom:
+                    case NPCID.ZombieMushroomHat:
+                    case NPCID.AnomuraFungus:
+                        masoDeathAI = 39;
+                        break;
+
+
                     default:
                         break;
                 }
@@ -2388,8 +2395,6 @@ namespace FargowiltasSouls.NPCs
                                         Counter = 2;
                                     else
                                         Counter = 1;
-
-                                    //Main.NewText("reviving other hand");
                                 }
                                 else
                                 {
@@ -5055,6 +5060,8 @@ namespace FargowiltasSouls.NPCs
             }
 
             Transform = true;
+
+
         }
 
         private void Horde(NPC npc, int size)
@@ -5309,6 +5316,35 @@ namespace FargowiltasSouls.NPCs
                             }
                             break;
 
+                        case NPCID.TheHungryII:
+                            if (!BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
+                            {
+                                NPC.SpawnWOF(target.Center);
+                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                            }
+                            break;
+
+                        case NPCID.Probe:
+                            if (!BossIsAlive(ref destroyBoss, NPCID.TheDestroyer) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref retiBoss, NPCID.Retinazer))
+                            {
+                                int[] mechs = new int[] { NPCID.TheDestroyer, NPCID.SkeletronPrime, NPCID.Spazmatism, NPCID.Retinazer};
+                                int spawn = mechs[Main.rand.Next(mechs.Length)];
+
+                                npc.Transform(spawn);
+                                npc.velocity.Y = -5f;
+                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+
+                                if (spawn == NPCID.Spazmatism)
+                                {
+                                    NPC.SpawnOnPlayer(target.whoAmI, NPCID.Retinazer);
+                                }
+                                else if (spawn == NPCID.Retinazer)
+                                {
+                                    NPC.SpawnOnPlayer(target.whoAmI, NPCID.Spazmatism);
+                                }
+                            }
+                            break;
+
                         case NPCID.PigronCorruption:
                         case NPCID.PigronCrimson:
                         case NPCID.PigronHallow:
@@ -5417,7 +5453,7 @@ namespace FargowiltasSouls.NPCs
                 {
                     NPC spread = Main.npc[i];
 
-                    if (spread.active && Vector2.Distance(npc.Center, spread.Center) < 100)
+                    if (spread.active && !spread.townNPC && !spread.friendly && Vector2.Distance(npc.Center, spread.Center) < 100)
                     {
                         spread.AddBuff(mod.BuffType("LeadPoison"), 120);
                     }
@@ -5807,6 +5843,15 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (Main.bloodMoon)
                             {
+                                if (NPC.downedGolemBoss)
+                                {
+                                    pool[NPCID.DD2DarkMageT3] = .05f;
+                                }
+                                else
+                                {
+                                    pool[NPCID.DD2DarkMageT1] = .05f;
+                                }
+
                                 pool[NPCID.ChatteringTeethBomb] = .1f;
                                 pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .0125f : .025f;
 
@@ -5852,6 +5897,11 @@ namespace FargowiltasSouls.NPCs
                                 if (normalSpawn)
                                 {
                                     pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .005f : .02f;
+
+                                    if (NPC.downedMechBossAny)
+                                    {
+                                        pool[NPCID.Probe] = 0.2f;
+                                    }
 
                                     if (NPC.downedPlantBoss) //GODLUL
                                     {
@@ -5967,6 +6017,7 @@ namespace FargowiltasSouls.NPCs
                         else if (desert)
                         {
                             pool[NPCID.DesertBeast] = .05f;
+                            pool[NPCID.MartianDrone] = .05f;
                         }
 
                         if (goblinArmy)
@@ -6017,7 +6068,10 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
 
-                            pool[NPCID.DD2KoboldWalkerT2] = .1f;
+                            if (noBiome)
+                            {
+                                pool[NPCID.DD2KoboldWalkerT2] = .1f;
+                            }
                         }
 
                         if (NPC.downedPlantBoss && !Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().SkullCharm)
@@ -6030,7 +6084,7 @@ namespace FargowiltasSouls.NPCs
                             pool[NPCID.RaggedCasterOpenCoat] = .002f;
                         }
 
-                        if (NPC.downedGolemBoss)
+                        if (NPC.downedGolemBoss && noBiome)
                         {
                             pool[NPCID.DD2KoboldWalkerT3] = .1f;
                         }
@@ -6039,12 +6093,24 @@ namespace FargowiltasSouls.NPCs
                         {
                             pool[NPCID.CultistBoss] = 0.001f;
                         }
+
+                        if (hallow)
+                        {
+                            if (NPC.downedGolemBoss)
+                            {
+                                pool[NPCID.DD2WitherBeastT3] = .1f;
+                            }
+                            else
+                            {
+                                pool[NPCID.DD2WitherBeastT2] = .1f;
+                            }
+                        }
                     }
                     else if (underworld)
                     {
-                        if (Main.hardMode && !BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
+                        if (!BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
                         {
-                            pool[NPCID.WallofFlesh] = .005f;
+                            pool[NPCID.TheHungryII] = .03f;
                         }
 
                         if (NPC.downedPlantBoss && !Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().SkullCharm)
@@ -6570,7 +6636,28 @@ namespace FargowiltasSouls.NPCs
                         {
                             FargoWorld.SkeletronCount++;
                         }
-                        break;
+
+                        masoDeathAI = 0;
+
+                        for (int k = 0; k < npc.buffImmune.Length; k++)
+                        {
+                            npc.buffImmune[k] = true;
+                        }
+
+                        while (npc.buffTime[0] != 0)
+                        {
+                            npc.DelBuff(0);
+                        }
+
+                        npc.netUpdate = true;
+
+                        if (npc.life < 100)
+                            npc.life = 100;
+
+                        Main.dayTime = true;
+                        Main.time = 0;
+                        Main.NewText("The Sun Rises..", 175, 75, 255);
+                        return false;
 
                     case 15: //wall of flesh
                         if (FargoWorld.WallCount < 280)
@@ -6912,6 +6999,14 @@ namespace FargowiltasSouls.NPCs
                                 default: break;
                             }
                             Main.npc[(int)npc.ai[1]].netUpdate = true;
+                        }
+                        break;
+
+                    case 39: //shroom zombies, anomura
+                        for (int i = 0; i < 10; i++)
+                        {
+                            int spore = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.FungiSpore);
+                            Main.npc[spore].velocity = new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5));
                         }
                         break;
 			
@@ -7494,7 +7589,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.TheHungry:
                     case NPCID.TheHungryII:
                         target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(300, 600));
-                        target.velocity = Vector2.Zero;
+                        target.velocity = target.velocity / 4;
                         break;
 
                     case NPCID.EaterofWorldsHead:

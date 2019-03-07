@@ -36,6 +36,7 @@ Increases your maximum mana to 999, minions by 20, sentries by 10
 400% increased HP, 40% damage reduction, 15 life regeneration
 Grants immunity to knockback and most debuffs
 Summon an impenatrable ring of death around you
+You reflect all projectiles
 When you die, you explode and revive with full HP
 You respawn 10x as fast
 All other effects of material Souls");
@@ -183,6 +184,8 @@ and most of SoT not mentioned because meme tooltip length
             player.waterWalk = true;
             player.fireWalk = true;
             player.lavaImmune = true;
+            //magic carpet
+            player.carpet = true;
             //frog legs
             //player.autoJump = true;
             //player.jumpSpeedBoost += 2.4f;
