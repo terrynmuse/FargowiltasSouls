@@ -181,12 +181,15 @@ Summons several pets";
                 Main.PlaySound(SoundID.Item74, player.position);
                 thoriumPlayer.jumps = 0;
             }
-            //slag stompers
-            timer++;
-            if (timer > 20)
+            if (Soulcheck.GetValue("Slag Stompers"))
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.1f * Main.rand.Next(-25, 25), 2f, thorium.ProjectileType("SlagPro"), 20, 1f, Main.myPlayer, 0f, 0f);
-                timer = 0;
+                //slag stompers
+                timer++;
+                if (timer > 20)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.1f * Main.rand.Next(-25, 25), 2f, thorium.ProjectileType("SlagPro"), 20, 1f, Main.myPlayer, 0f, 0f);
+                    timer = 0;
+                }
             }
         }
 

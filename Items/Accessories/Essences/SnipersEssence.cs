@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 @"'This is only the beginning..'
 18% increased ranged damage
 5% increased ranged critical chance
-5% increased ranged use time");
+5% increased firing speed");
         }
 
         public override void SetDefaults()

@@ -49,7 +49,7 @@ Bees ignore most enemy defense
         private void Thorium(Player player)
         {
             //bee booties
-            if ((player.velocity.X > 1f && player.velocity.X > 0f) || (player.velocity.X < 1f && player.velocity.X < 0f))
+            if (Soulcheck.GetValue("Bee Booties") && (player.velocity.X > 1f && player.velocity.X > 0f) || (player.velocity.X < 1f && player.velocity.X < 0f))
             {
                 timer++;
                 if (timer > 45)

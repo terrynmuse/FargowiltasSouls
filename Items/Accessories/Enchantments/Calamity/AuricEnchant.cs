@@ -90,130 +90,141 @@ You have a magic carpet");
             modPlayer.silvaMage = true;
             //summon head
             modPlayer.tarraSummon = true;
-            modPlayer.bloodflareSummon = true;
-            modPlayer.godSlayerSummon = true;
-            modPlayer.silvaSummon = true;
+            if (Soulcheck.GetValue("Polterghast Mines"))
+            {
+                modPlayer.bloodflareSummon = true;
+            }
+
             if (player.whoAmI == Main.myPlayer)
             {
-                if (player.FindBuffIndex(calamity.BuffType("SilvaCrystal")) == -1)
+                if (Soulcheck.GetValue("Silva Crystal Minion"))
                 {
-                    player.AddBuff(calamity.BuffType("SilvaCrystal"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("SilvaCrystal")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SilvaCrystal"), (int)(3000.0 * (double)player.minionDamage), 0f, Main.myPlayer, 0f, 0f);
-                }
-                if (player.FindBuffIndex(calamity.BuffType("Mechworm")) == -1)
-                {
-                    player.AddBuff(calamity.BuffType("Mechworm"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("MechwormHead")] < 1)
-                {
-                    int whoAmI = player.whoAmI;
-                    int num = calamity.ProjectileType("MechwormHead");
-                    int num2 = calamity.ProjectileType("MechwormBody");
-                    int num3 = calamity.ProjectileType("MechwormBody2");
-                    int num4 = calamity.ProjectileType("MechwormTail");
-                    for (int i = 0; i < 1000; i++)
+                    modPlayer.silvaSummon = true;
+                    if (player.FindBuffIndex(calamity.BuffType("SilvaCrystal")) == -1)
                     {
-                        if (Main.projectile[i].active && Main.projectile[i].owner == whoAmI && (Main.projectile[i].type == num || Main.projectile[i].type == num4 || Main.projectile[i].type == num2 || Main.projectile[i].type == num3))
+                        player.AddBuff(calamity.BuffType("SilvaCrystal"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("SilvaCrystal")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SilvaCrystal"), (int)(3000.0 * (double)player.minionDamage), 0f, Main.myPlayer, 0f, 0f);
+                    }
+                }
+
+                if (Soulcheck.GetValue("Mechworm Minion"))
+                {
+                    modPlayer.godSlayerSummon = true;
+                    if (player.FindBuffIndex(calamity.BuffType("Mechworm")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("Mechworm"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("MechwormHead")] < 1)
+                    {
+                        int whoAmI = player.whoAmI;
+                        int num = calamity.ProjectileType("MechwormHead");
+                        int num2 = calamity.ProjectileType("MechwormBody");
+                        int num3 = calamity.ProjectileType("MechwormBody2");
+                        int num4 = calamity.ProjectileType("MechwormTail");
+                        for (int i = 0; i < 1000; i++)
                         {
-                            Main.projectile[i].Kill();
-                        }
-                    }
-                    int num5 = player.maxMinions;
-                    if (num5 > 10)
-                    {
-                        num5 = 10;
-                    }
-                    int num6 = (int)(35f * (player.minionDamage * 5f / 3f + player.minionDamage * 0.46f * (num5 - 1)));
-                    Vector2 value = player.RotatedRelativePoint(player.MountedCenter, true);
-                    Vector2 value2 = Utils.RotatedBy(Vector2.UnitX, player.fullRotation, default(Vector2));
-                    Vector2 value3 = Main.MouseWorld - value;
-                    float num7 = Main.mouseX + Main.screenPosition.X - value.X;
-                    float num8 = Main.mouseY + Main.screenPosition.Y - value.Y;
-                    if (player.gravDir == -1f)
-                    {
-                        num8 = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - value.Y;
-                    }
-                    float num9 = (float)Math.Sqrt((num7 * num7 + num8 * num8));
-                    if ((float.IsNaN(num7) && float.IsNaN(num8)) || (num7 == 0f && num8 == 0f))
-                    {
-                        num7 = player.direction;
-                        num8 = 0f;
-                        num9 = 10f;
-                    }
-                    else
-                    {
-                        num9 = 10f / num9;
-                    }
-                    num7 *= num9;
-                    num8 *= num9;
-                    int num10 = -1;
-                    int num11 = -1;
-                    for (int j = 0; j < 1000; j++)
-                    {
-                        if (Main.projectile[j].active && Main.projectile[j].owner == whoAmI)
-                        {
-                            if (num10 == -1 && Main.projectile[j].type == num)
+                            if (Main.projectile[i].active && Main.projectile[i].owner == whoAmI && (Main.projectile[i].type == num || Main.projectile[i].type == num4 || Main.projectile[i].type == num2 || Main.projectile[i].type == num3))
                             {
-                                num10 = j;
-                            }
-                            else if (num11 == -1 && Main.projectile[j].type == num4)
-                            {
-                                num11 = j;
-                            }
-                            if (num10 != -1 && num11 != -1)
-                            {
-                                break;
+                                Main.projectile[i].Kill();
                             }
                         }
-                    }
-                    if (num10 == -1 && num11 == -1)
-                    {
-                        float num12 = Vector2.Dot(value2, value3);
-                        if (num12 > 0f)
+                        int num5 = player.maxMinions;
+                        if (num5 > 10)
                         {
-                            player.ChangeDir(1);
+                            num5 = 10;
+                        }
+                        int num6 = (int)(35f * (player.minionDamage * 5f / 3f + player.minionDamage * 0.46f * (num5 - 1)));
+                        Vector2 value = player.RotatedRelativePoint(player.MountedCenter, true);
+                        Vector2 value2 = Utils.RotatedBy(Vector2.UnitX, player.fullRotation, default(Vector2));
+                        Vector2 value3 = Main.MouseWorld - value;
+                        float num7 = Main.mouseX + Main.screenPosition.X - value.X;
+                        float num8 = Main.mouseY + Main.screenPosition.Y - value.Y;
+                        if (player.gravDir == -1f)
+                        {
+                            num8 = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - value.Y;
+                        }
+                        float num9 = (float)Math.Sqrt((num7 * num7 + num8 * num8));
+                        if ((float.IsNaN(num7) && float.IsNaN(num8)) || (num7 == 0f && num8 == 0f))
+                        {
+                            num7 = player.direction;
+                            num8 = 0f;
+                            num9 = 10f;
                         }
                         else
                         {
-                            player.ChangeDir(-1);
+                            num9 = 10f / num9;
                         }
-                        num7 = 0f;
-                        num8 = 0f;
-                        value.X = Main.mouseX + Main.screenPosition.X;
-                        value.Y = Main.mouseY + Main.screenPosition.Y;
-                        int num13 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormHead"), num6, 1f, whoAmI, 0f, 0f);
-                        int num14 = num13;
-                        num13 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormBody"), num6, 1f, whoAmI, num14, 0f);
-                        num14 = num13;
-                        num13 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormBody2"), num6, 1f, whoAmI, num14, 0f);
-                        Main.projectile[num14].localAI[1] = num13;
-                        Main.projectile[num14].netUpdate = true;
-                        num14 = num13;
-                        num13 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormTail"), num6, 1f, whoAmI, num14, 0f);
-                        Main.projectile[num14].localAI[1] = num13;
-                        Main.projectile[num14].netUpdate = true;
-                        return;
+                        num7 *= num9;
+                        num8 *= num9;
+                        int num10 = -1;
+                        int num11 = -1;
+                        for (int j = 0; j < 1000; j++)
+                        {
+                            if (Main.projectile[j].active && Main.projectile[j].owner == whoAmI)
+                            {
+                                if (num10 == -1 && Main.projectile[j].type == num)
+                                {
+                                    num10 = j;
+                                }
+                                else if (num11 == -1 && Main.projectile[j].type == num4)
+                                {
+                                    num11 = j;
+                                }
+                                if (num10 != -1 && num11 != -1)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        if (num10 == -1 && num11 == -1)
+                        {
+                            float num12 = Vector2.Dot(value2, value3);
+                            if (num12 > 0f)
+                            {
+                                player.ChangeDir(1);
+                            }
+                            else
+                            {
+                                player.ChangeDir(-1);
+                            }
+                            num7 = 0f;
+                            num8 = 0f;
+                            value.X = Main.mouseX + Main.screenPosition.X;
+                            value.Y = Main.mouseY + Main.screenPosition.Y;
+                            int num13 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormHead"), num6, 1f, whoAmI, 0f, 0f);
+                            int num14 = num13;
+                            num13 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormBody"), num6, 1f, whoAmI, num14, 0f);
+                            num14 = num13;
+                            num13 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormBody2"), num6, 1f, whoAmI, num14, 0f);
+                            Main.projectile[num14].localAI[1] = num13;
+                            Main.projectile[num14].netUpdate = true;
+                            num14 = num13;
+                            num13 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormTail"), num6, 1f, whoAmI, num14, 0f);
+                            Main.projectile[num14].localAI[1] = num13;
+                            Main.projectile[num14].netUpdate = true;
+                            return;
+                        }
+                        if (num10 != -1 && num11 != -1)
+                        {
+                            int num15 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormBody"), num6, 1f, whoAmI, Main.projectile[num11].ai[0], 0f);
+                            int num16 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormBody2"), num6, 1f, whoAmI, (float)num15, 0f);
+                            Main.projectile[num15].localAI[1] = num16;
+                            Main.projectile[num15].ai[1] = 1f;
+                            Main.projectile[num15].minionSlots = 0f;
+                            Main.projectile[num15].netUpdate = true;
+                            Main.projectile[num16].localAI[1] = num11;
+                            Main.projectile[num16].netUpdate = true;
+                            Main.projectile[num16].minionSlots = 0f;
+                            Main.projectile[num16].ai[1] = 1f;
+                            Main.projectile[num11].ai[0] = num16;
+                            Main.projectile[num11].netUpdate = true;
+                            Main.projectile[num11].ai[1] = 1f;
+                        }
                     }
-                    if (num10 != -1 && num11 != -1)
-                    {
-                        int num15 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormBody"), num6, 1f, whoAmI, Main.projectile[num11].ai[0], 0f);
-                        int num16 = Projectile.NewProjectile(value.X, value.Y, num7, num8, calamity.ProjectileType("MechwormBody2"), num6, 1f, whoAmI, (float)num15, 0f);
-                        Main.projectile[num15].localAI[1] = num16;
-                        Main.projectile[num15].ai[1] = 1f;
-                        Main.projectile[num15].minionSlots = 0f;
-                        Main.projectile[num15].netUpdate = true;
-                        Main.projectile[num16].localAI[1] = num11;
-                        Main.projectile[num16].netUpdate = true;
-                        Main.projectile[num16].minionSlots = 0f;
-                        Main.projectile[num16].ai[1] = 1f;
-                        Main.projectile[num11].ai[0] = num16;
-                        Main.projectile[num11].netUpdate = true;
-                        Main.projectile[num11].ai[1] = 1f;
-                    }
-                }
+                }      
             }
             //throw head
             modPlayer.tarraThrowing = true;

@@ -63,13 +63,13 @@ Effects of the Spirit Glyph and Raider's Talisman");
             recipe.AddIngredient(calamity.ItemType("WulfrumMask"));
             recipe.AddIngredient(calamity.ItemType("WulfrumArmor"));
             recipe.AddIngredient(calamity.ItemType("WulfrumLeggings"));
+            recipe.AddIngredient(calamity.ItemType("SpiritGenerator"));
+            recipe.AddIngredient(calamity.ItemType("RaidersTalisman"));
             recipe.AddIngredient(calamity.ItemType("WulfrumBlade"));
             recipe.AddIngredient(calamity.ItemType("IcicleStaff"));
             recipe.AddIngredient(calamity.ItemType("MandibleBow"));
             recipe.AddIngredient(calamity.ItemType("MarniteSpear"));
             recipe.AddIngredient(calamity.ItemType("Pumpler"));
-            recipe.AddIngredient(calamity.ItemType("SpiritGenerator"));
-            recipe.AddIngredient(calamity.ItemType("RaidersTalisman"));
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

@@ -42,8 +42,12 @@ Summons a Li'l Devil to attack enemies");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
-            thoriumPlayer.warlockSet = true;
+            if (Soulcheck.GetValue("Warlock Wisps"))
+            {
+                //set bonus
+                thoriumPlayer.warlockSet = true;
+            }
+            
             //demon tongue
             thoriumPlayer.darkAura = true;
             thoriumPlayer.radiantLifeCost = 2;

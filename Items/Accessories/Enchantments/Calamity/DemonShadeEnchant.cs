@@ -64,16 +64,20 @@ This makes them do 1.5 times more damage but they also take five times as much d
             modPlayer.shadowSpeed = true;
             //set bonus
             modPlayer.dsSetBonus = true;
-            modPlayer.redDevil = true;
-            if (player.whoAmI == Main.myPlayer)
+
+            if (Soulcheck.GetValue("Red Devil Minion"))
             {
-                if (player.FindBuffIndex(calamity.BuffType("RedDevil")) == -1)
+                modPlayer.redDevil = true;
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    player.AddBuff(calamity.BuffType("RedDevil"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("RedDevil")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("RedDevil"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    if (player.FindBuffIndex(calamity.BuffType("RedDevil")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("RedDevil"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("RedDevil")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("RedDevil"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    }
                 }
             }
         }

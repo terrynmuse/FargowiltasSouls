@@ -110,7 +110,10 @@ When you die, you explode and revive with 200 HP";
             {
                 modPlayer.CopperEnchant = true; //lightning
                 player.dash = 2;
-                modPlayer.IronEffect(); //shield
+                if (Soulcheck.GetValue("Iron Shield"))
+                {
+                    modPlayer.IronEffect();
+                }
                 if (Soulcheck.GetValue("Iron Magnet"))
                 {
                     modPlayer.IronEnchant = true;
@@ -118,6 +121,8 @@ When you die, you explode and revive with 200 HP";
             }
 
             modPlayer.TinEffect(); //crits
+            //tungsten
+            modPlayer.TungstenEnchant = true;
             //obsidian
             player.fireWalk = true;
             player.lavaImmune = true;
@@ -209,7 +214,6 @@ When you die, you explode and revive with 200 HP";
 
             if(Fargowiltas.Instance.ThoriumLoaded)
 
-
             if (Fargowiltas.Instance.CalamityLoaded)
                 mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
         }
@@ -299,8 +303,11 @@ When you die, you explode and revive with 200 HP";
 
 
             //WILL
-            //proof of avarice
-            thoriumPlayer.avarice2 = true;
+            if (Soulcheck.GetValue("Proof of Avarice"))
+            {
+                //proof of avarice
+                thoriumPlayer.avarice2 = true;
+            }
             modPlayer.AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
             modPlayer.AddPet("Glitter Pet", hideVisual, thorium.BuffType("ShineDust"), thorium.ProjectileType("ShinyPet"));
 

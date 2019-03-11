@@ -75,8 +75,12 @@ Effects of the Profaned Soul Artifact");
             modPlayer.tarraSummon = true;
             //throw
             modPlayer.tarraThrowing = true;
-            //profaned soul artifact
-            modPlayer.pArtifact = true;
+
+            if (Soulcheck.GetValue("Profaned Soul Artifact"))
+            {
+                //profaned soul artifact
+                modPlayer.pArtifact = true;
+            }
         }
 
         public override void AddRecipes()

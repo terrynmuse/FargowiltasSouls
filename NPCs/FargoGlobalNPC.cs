@@ -6457,7 +6457,7 @@ namespace FargowiltasSouls.NPCs
                 return false;
             }
 
-            if (Needles)
+            if (Needles && Main.rand.Next(2) == 0)
             {
                 int dmg = 15;
 
@@ -8029,7 +8029,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.GoblinThief:
-                        if (target.whoAmI == Main.myPlayer)
+                        if (target.whoAmI == Main.myPlayer && Main.rand.Next(2) == 0)
                         {
                             //try stealing mouse item, then selected item
                             if (!StealFromInventory(target, ref Main.mouseItem))

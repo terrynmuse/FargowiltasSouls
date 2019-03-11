@@ -50,12 +50,16 @@ Effects of Permafrost's Concoction");
             modPlayer.daedalusAbsorb = true;
             modPlayer.daedalusCrystal = true;
             modPlayer.daedalusSplit = true;
-            //permafrost concoction
-            modPlayer.permafrostsConcoction = true;
 
+            if (Soulcheck.GetValue("Permafrost's Concoction"))
+            {
+                //permafrost concoction
+                modPlayer.permafrostsConcoction = true;
+            }
+            
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            if (player.whoAmI == Main.myPlayer)
+            if (Soulcheck.GetValue("Daedalus Crystal Minion") && player.whoAmI == Main.myPlayer)
             {
                 if (player.FindBuffIndex(calamity.BuffType("DaedalusCrystal")) == -1)
                 {

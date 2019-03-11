@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Shadow Force");
 
-            string tooltip = @"''
+            string tooltip = @"'Dark, Darker, Yet Darker'
 Your attacks may inflict Darkness on enemies
 A Dungeon Guardian will occasionally annihilate a foe when struck
 All of your minions may occasionally spew massive scythes everywhere

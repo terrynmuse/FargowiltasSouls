@@ -60,8 +60,13 @@ Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
             thoriumPlayer.flatSummonDamage += (int)b;
             thoriumPlayer.flatRadiantDamage += (int)b;
             thoriumPlayer.flatSymphonicDamage += (int)b;
-            //mix tape
-            thoriumPlayer.mixtapeBool = true;
+
+            if (Soulcheck.GetValue("Mix Tape"))
+            {
+                //mix tape
+                thoriumPlayer.mixtapeBool = true;
+            }
+            
             //molten woofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)

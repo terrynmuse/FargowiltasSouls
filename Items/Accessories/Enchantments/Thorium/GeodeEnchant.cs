@@ -47,9 +47,7 @@ Summons a pet Magic Lantern, Inspiring Lantern, and Lock Box");
             Lighting.AddLight(player.position, 1.2f, 0.8f, 1.2f);
             //pets
             modPlayer.AddPet("Inspiring Lantern Pet", hideVisual, thorium.BuffType("SupportLanternBuff"), thorium.ProjectileType("SupportLantern"));
-            thoriumPlayer.lanternPet = true;
             modPlayer.AddPet("Lock Box Pet", hideVisual, thorium.BuffType("LockBoxBuff"), thorium.ProjectileType("LockBoxPet"));
-            thoriumPlayer.LockBoxPet = true;
             //mining speed, spelunker, dangersense, light, hunter, pet
             modPlayer.MinerEffect(hideVisual, .5f);
         }

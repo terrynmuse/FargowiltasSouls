@@ -42,17 +42,22 @@ Effects of Metronome and Purple Music Player");
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.conductorSet = true;
-            //metronome
-            timer++;
-            if (timer == 180)
+
+            if (Soulcheck.GetValue("Metronome"))
             {
-                player.AddBuff(thorium.BuffType("MetronomeBuff"), 179, true);
+                //metronome
+                timer++;
+                if (timer == 180)
+                {
+                    player.AddBuff(thorium.BuffType("MetronomeBuff"), 179, true);
+                }
+                if (timer == 360)
+                {
+                    player.AddBuff(thorium.BuffType("MetronomeDebuff"), 179, true);
+                    timer = 0;
+                }
             }
-            if (timer == 360)
-            {
-                player.AddBuff(thorium.BuffType("MetronomeDebuff"), 179, true);
-                timer = 0;
-            }
+            
             //music player
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3MaxMana = 2;

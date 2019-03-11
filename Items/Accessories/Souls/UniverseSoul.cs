@@ -78,7 +78,7 @@ Grants all other effects of material Souls";
             player.counterWeight = 556 + Main.rand.Next(6);
             player.yoyoGlove = true;
             player.yoyoString = true;
-            if (Soulcheck.GetValue("Universe Scope"))
+            if (Soulcheck.GetValue("Sniper Scope"))
             {
                 player.scope = true;
             }

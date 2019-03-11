@@ -45,7 +45,7 @@ Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //feral fure buff, life bloom heals
+            //feral fur buff, life bloom heals
             modPlayer.MuspelheimForce = true;
             //sandstone
             player.doubleJumpSandstorm = true;

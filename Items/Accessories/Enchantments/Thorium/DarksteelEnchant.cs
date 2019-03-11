@@ -55,8 +55,11 @@ Effects of Iron Shield and Spiked Bracer");
             thoriumPlayer.thoriumEndurance += 0.08f;
             //spiked bracers
             player.thorns += 0.35f;
-            //iron shield raise
-            modPlayer.IronEffect();
+            if (Soulcheck.GetValue("Iron Shield"))
+            {
+                //iron shield raise
+                modPlayer.IronEffect();
+            }
             //magnet
             if (Soulcheck.GetValue("Iron Magnet"))
             {

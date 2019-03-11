@@ -65,40 +65,47 @@ Summons a pet Pink Slime");
             {
                 modPlayer.AllDamageUp(.12f);
             }
-            //eye of beholder
-            lightGen++;
-            if (lightGen >= 40)
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze"), 0, 0f, player.whoAmI, i, 0f);
-                }
-                for (int j = 0; j < 10; j++)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze2"), 0, 0f, player.whoAmI, j, 0f);
-                }
-                lightGen = 0;
-            }
 
+            if (Soulcheck.GetValue("Eye of the Beholder"))
+            {
+                //eye of beholder
+                lightGen++;
+                if (lightGen >= 40)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze"), 0, 0f, player.whoAmI, i, 0f);
+                    }
+                    for (int j = 0; j < 10; j++)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze2"), 0, 0f, player.whoAmI, j, 0f);
+                    }
+                    lightGen = 0;
+                }
+            }
+            
             //illumite
             //slime pet
             modPlayer.AddPet("Pink Slime Pet", hideVisual, thorium.BuffType("PinkSlimeBuff"), thorium.ProjectileType("PinkSlime"));
             modPlayer.IllumiteEnchant = true;
 
-            //terrarium
-            //terrarium set bonus
-            timer++;
-            if (timer > 60)
+            if (Soulcheck.GetValue("Terrarium Spirits"))
             {
-                Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraRed"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X + 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraOrange"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X + 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraYellow"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraGreen"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X - 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraBlue"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X - 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraIndigo"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraPurple"), 50, 0f, Main.myPlayer, 0f, 0f);
-                timer = 0;
+                //terrarium set bonus
+                timer++;
+                if (timer > 60)
+                {
+                    Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraRed"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X + 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraOrange"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X + 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraYellow"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraGreen"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X - 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraBlue"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X - 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraIndigo"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraPurple"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    timer = 0;
+                }
             }
+            
             //terrarium woofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
@@ -109,8 +116,12 @@ Summons a pet Pink Slime");
                     thoriumPlayer.empowerTerrarium = true;
                 }
             }
-            //crietz
-            thoriumPlayer.crietzAcc = true;
+
+            if (Soulcheck.GetValue("Crietz"))
+            {
+                //crietz
+                thoriumPlayer.crietzAcc = true;
+            }
         }
 
         public override void AddRecipes()

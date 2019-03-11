@@ -75,60 +75,73 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
             modPlayer.silvaRanged = true;
             //magic
             modPlayer.silvaMage = true;
-            //summon
-            modPlayer.silvaSummon = true;
-            if (player.whoAmI == Main.myPlayer)
+
+            if (Soulcheck.GetValue("Silva Crystal Minion"))
             {
-                if (player.FindBuffIndex(calamity.BuffType("SilvaCrystal")) == -1)
+                //summon
+                modPlayer.silvaSummon = true;
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    player.AddBuff(calamity.BuffType("SilvaCrystal"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("SilvaCrystal")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SilvaCrystal"), (int)(1500.0 * (double)player.minionDamage), 0f, Main.myPlayer, 0f, 0f);
+                    if (player.FindBuffIndex(calamity.BuffType("SilvaCrystal")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("SilvaCrystal"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("SilvaCrystal")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SilvaCrystal"), (int)(1500.0 * (double)player.minionDamage), 0f, Main.myPlayer, 0f, 0f);
+                    }
                 }
             }
+            
             //throw
             modPlayer.silvaThrowing = true;
-            //godly soul artifact
-            modPlayer.gArtifact = true;
-            //yharims gift
-            if (player.velocity.X > 0.0 || player.velocity.Y > 0.0 || player.velocity.X < -0.1 || player.velocity.Y < -0.1)
+
+            if (Soulcheck.GetValue("Godly Soul Artifact"))
             {
-                dragonTimer--;
-                if (dragonTimer <= 0)
+                //godly soul artifact
+                modPlayer.gArtifact = true;
+            }
+
+            if (Soulcheck.GetValue("Yharim's Gift"))
+            {
+                //yharims gift
+                if (player.velocity.X > 0.0 || player.velocity.Y > 0.0 || player.velocity.X < -0.1 || player.velocity.Y < -0.1)
                 {
-                    if (player.whoAmI == Main.myPlayer)
+                    dragonTimer--;
+                    if (dragonTimer <= 0)
                     {
-                        int num = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, calamity.ProjectileType("DragonDust"), 350, 5f, player.whoAmI, 0f, 0f);
-                        Main.projectile[num].timeLeft = 60;
+                        if (player.whoAmI == Main.myPlayer)
+                        {
+                            int num = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, calamity.ProjectileType("DragonDust"), 350, 5f, player.whoAmI, 0f, 0f);
+                            Main.projectile[num].timeLeft = 60;
+                        }
+                        dragonTimer = 60;
                     }
+                }
+                else
+                {
                     dragonTimer = 60;
                 }
-            }
-            else
-            {
-                dragonTimer = 60;
-            }
-            if (player.immune && Main.rand.Next(8) == 0 && player.whoAmI == Main.myPlayer)
-            {
-                for (int i = 0; i < 1; i++)
+                if (player.immune && Main.rand.Next(8) == 0 && player.whoAmI == Main.myPlayer)
                 {
-                    float num2 = player.position.X + Main.rand.Next(-400, 400);
-                    float num3 = player.position.Y - Main.rand.Next(500, 800);
-                    Vector2 vector = new Vector2(num2, num3);
-                    float num4 = player.position.X + (player.width / 2) - vector.X;
-                    float num5 = player.position.Y + (player.height / 2) - vector.Y;
-                    num4 += Main.rand.Next(-100, 101);
-                    int num6 = 22;
-                    float num7 = (float)Math.Sqrt((num4 * num4 + num5 * num5));
-                    num7 = num6 / num7;
-                    num4 *= num7;
-                    num5 *= num7;
-                    int num8 = Projectile.NewProjectile(num2, num3, num4, num5, calamity.ProjectileType("SkyFlareFriendly"), 750, 9f, player.whoAmI, 0f, 0f);
-                    Main.projectile[num8].ai[1] = player.position.Y;
-                    Main.projectile[num8].hostile = false;
-                    Main.projectile[num8].friendly = true;
+                    for (int i = 0; i < 1; i++)
+                    {
+                        float num2 = player.position.X + Main.rand.Next(-400, 400);
+                        float num3 = player.position.Y - Main.rand.Next(500, 800);
+                        Vector2 vector = new Vector2(num2, num3);
+                        float num4 = player.position.X + (player.width / 2) - vector.X;
+                        float num5 = player.position.Y + (player.height / 2) - vector.Y;
+                        num4 += Main.rand.Next(-100, 101);
+                        int num6 = 22;
+                        float num7 = (float)Math.Sqrt((num4 * num4 + num5 * num5));
+                        num7 = num6 / num7;
+                        num4 *= num7;
+                        num5 *= num7;
+                        int num8 = Projectile.NewProjectile(num2, num3, num4, num5, calamity.ProjectileType("SkyFlareFriendly"), 750, 9f, player.whoAmI, 0f, 0f);
+                        Main.projectile[num8].ai[1] = player.position.Y;
+                        Main.projectile[num8].hostile = false;
+                        Main.projectile[num8].friendly = true;
+                    }
                 }
             }
         }

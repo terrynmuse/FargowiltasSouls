@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 When standing still and not attacking, you gain the Shell Hide buff
 Shell Hide protects you from all projectiles, but increases contact damage
 100% of contact damage is reflected
-Enemies will explode into needles on death
+Enemies may explode into needles on death
 Summons a pet Lizard and Turtle"); //shell hide no happen with SoE
         }
 

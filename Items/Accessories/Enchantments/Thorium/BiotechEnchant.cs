@@ -38,11 +38,14 @@ Heals ally life equal to your bonus healing");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.essenceSet = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("LifeEssence")] < 1)
+            if (Soulcheck.GetValue("Biotech Probe"))
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("LifeEssence"), 0, 0f, player.whoAmI, 0f, 0f);
+                ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+                thoriumPlayer.essenceSet = true;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("LifeEssence")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("LifeEssence"), 0, 0f, player.whoAmI, 0f, 0f);
+                }
             }
         }
         

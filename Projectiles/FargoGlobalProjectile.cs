@@ -74,7 +74,6 @@ namespace FargowiltasSouls.Projectiles
             {
                 projectile.minionSlots = .5f;
             }
-
         }
 
         private static int[] noSplit = {
@@ -235,28 +234,21 @@ namespace FargowiltasSouls.Projectiles
                         projectile.position = new Vector2(Main.maxTilesX);
                         projectile.Kill();
                     }
+
+                    if (modPlayer.SpookyEnchant && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
+                    {
+                        Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 62);
+                        Projectile[] projs = XWay(8, projectile.Center, mod.ProjectileType<Souls.SpookyScythe>(), 5, projectile.damage / 2, 2f);
+                        counter = 0;
+
+                        for (int i = 0; i < 8; i++)
+                        {
+                            if (projs[i] == null) continue;
+                            projs[i].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                        }
+                    }
                 }
             }
-
-            if (modPlayer.SpookyEnchant && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
-            {
-                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 62);
-                Projectile[] projs = XWay(8, projectile.Center, mod.ProjectileType<Souls.SpookyScythe>(), 5, projectile.damage / 2, 2f);
-                counter = 0;
-
-                for (int i = 0; i < 8; i++)
-                {
-                    if (projs[i] == null) continue;
-                    projs[i].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
-                }
-            }
-
-            //projectile.owner usually means Main.myPlayer, doesn't apply to npc arrayyyyyy
-            /*if(projectile.hostile && Main.npc[projectile.owner].active && Main.npc[projectile.owner].GetGlobalNPC<FargoGlobalNPC>().SqueakyToy)
-            {
-                projectile.damage = 1;
-                squeakyToy = true;
-            }*/
 
             if(Rotate)
             {
@@ -723,20 +715,24 @@ namespace FargowiltasSouls.Projectiles
         {
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //jester effect
-            if (modPlayer.MidgardForce && crit)
+
+            if (Soulcheck.GetValue("Jester Bell"))
             {
-                for (int m = 0; m < 1000; m++)
+                //jester effect
+                if (modPlayer.MidgardForce && crit)
                 {
-                    Projectile projectile2 = Main.projectile[m];
-                    if (projectile2.active && projectile2.type == thorium.ProjectileType("JestersBell"))
+                    for (int m = 0; m < 1000; m++)
                     {
-                        return;
+                        Projectile projectile2 = Main.projectile[m];
+                        if (projectile2.active && projectile2.type == thorium.ProjectileType("JestersBell"))
+                        {
+                            return;
+                        }
                     }
+                    Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 35, 1f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 50f, 0f, 0f, thorium.ProjectileType("JestersBell"), 0, 0f, projectile.owner, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("JestersBell2"), 0, 0f, projectile.owner, 0f, 0f);
                 }
-                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 35, 1f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y - 50f, 0f, 0f, thorium.ProjectileType("JestersBell"), 0, 0f, projectile.owner, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("JestersBell2"), 0, 0f, projectile.owner, 0f, 0f);
             }
         }
 

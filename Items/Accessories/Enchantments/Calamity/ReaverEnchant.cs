@@ -54,17 +54,20 @@ Rage activates when you are damaged");
 
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            //summon
-            modPlayer.reaverOrb = true;
-            if (player.whoAmI == Main.myPlayer)
+            if (Soulcheck.GetValue("Reaver Orb Minion"))
             {
-                if (player.FindBuffIndex(calamity.BuffType("ReaverOrb")) == -1)
+                //summon
+                modPlayer.reaverOrb = true;
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    player.AddBuff(calamity.BuffType("ReaverOrb"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("ReaverOrb")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ReaverOrb"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    if (player.FindBuffIndex(calamity.BuffType("ReaverOrb")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("ReaverOrb"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("ReaverOrb")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ReaverOrb"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    }
                 }
             }
         }

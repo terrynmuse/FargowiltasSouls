@@ -8,7 +8,6 @@ NOT IMPLEMENTED
 -skeletons explode into bones 
 -the groom and bride go insanely fast if they both spawn and heal each other constantly when close enough 
 -snow flinx knocks you into the next dimension 
--etherian spawns
 -red devil trident velocity increases per tick
 -moss hornets spawn in packs
 -angler fish invisible with light, appears in ocean always bleed

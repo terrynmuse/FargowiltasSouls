@@ -102,7 +102,7 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
             
             ModRecipe recipe = new ModRecipe(mod);
 
-            //recipe.AddIngredient(null, "BardEssence");
+            recipe.AddIngredient(null, "BardEssence");
 
             foreach (string i in _items) recipe.AddIngredient(thorium.ItemType(i));
 

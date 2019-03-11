@@ -100,8 +100,11 @@ Summons several pets");
                     thoriumPlayer.empowerIchor = true;
                 }
             }
-            //dragon 
-            thoriumPlayer.dragonSet = true;
+            if (Soulcheck.GetValue("Dragon Flames"))
+            {
+                //dragon 
+                thoriumPlayer.dragonSet = true;
+            }
             //dragon tooth necklace
             player.armorPenetration += 15;
             //wyvern pet
@@ -114,21 +117,30 @@ Summons several pets");
             thoriumPlayer.demonbloodSet = true;
             //demon blood badge
             thoriumPlayer.CrimsonBadge = true;
-            //flesh set bonus
-            thoriumPlayer.Symbiotic = true;
-            //vampire gland
-            thoriumPlayer.vampireGland = true;
+            if (Soulcheck.GetValue("Flesh Drops"))
+            {
+                //flesh set bonus
+                thoriumPlayer.Symbiotic = true;
+            }
+            if (Soulcheck.GetValue("Vampire Gland"))
+            {
+                //vampire gland
+                thoriumPlayer.vampireGland = true;
+            }
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
             thoriumPlayer.blisterPet = true;
             //crimson regen, pets
             modPlayer.CrimsonEffect(hideVisual);
 
-            //harbinger
-            if (player.statLife > (int)(player.statLifeMax2 * 0.75))
+            if (Soulcheck.GetValue("Harbinger Overcharge"))
             {
-                thoriumPlayer.overCharge = true;
-                modPlayer.AllDamageUp(.5f);
+                //harbinger
+                if (player.statLife > (int)(player.statLifeMax2 * 0.75))
+                {
+                    thoriumPlayer.overCharge = true;
+                    modPlayer.AllDamageUp(.5f);
+                }
             }
             //shade band
             thoriumPlayer.shadeBand = true;

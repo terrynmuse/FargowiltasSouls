@@ -20,6 +20,18 @@ NEW UPDATE - v 0.6
 -added magic carpet effects to supersonic soul
 -rebalanced obsidian enchantment, 5 seconds of lava immune instead of full immunity, 5 armor pen down from 10, but +15 instead of 10 in lava, also added fall immune
 -SoE reflects all projeciles
+-several recipes altered
+-goblin steal 50% chance now
+-added more tooltips, fixed some MP bugs
+-fixed timestop CD being 10x too short lol
+-added a bunch more toggles and fixed some that weren't working
+-nerfed lead poisons slow, mythril attack speed
+-terra force gained tungsten weapon size
+-cactus enchant needles now a 50% chance instead of 100% on enemy death
+-warlock effect actually works on thorium soul
+-added Bard Essence and Healer Essence (feel free to suggest better names )
+-fixed slime god minion
+-added The Rock to SoE recipe (calameme)
 
 
 

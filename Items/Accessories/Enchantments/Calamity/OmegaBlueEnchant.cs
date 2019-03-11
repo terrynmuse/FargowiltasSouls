@@ -45,31 +45,36 @@ Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
             player.ignoreWater = true;
-            modPlayer.omegaBlueSet = true;
-            if (modPlayer.omegaBlueCooldown > 0)
+
+            if (Soulcheck.GetValue("Omega Blue Tentacles"))
             {
-                if (modPlayer.omegaBlueCooldown == 1)
+                modPlayer.omegaBlueSet = true;
+                if (modPlayer.omegaBlueCooldown > 0)
                 {
-                    for (int i = 0; i < 66; i++)
+                    if (modPlayer.omegaBlueCooldown == 1)
                     {
-                        int num = Dust.NewDust(player.position, player.width, player.height, 20, 0f, 0f, 100, Color.Transparent, 2.6f);
-                        Main.dust[num].noGravity = true;
-                        Main.dust[num].noLight = true;
-                        Main.dust[num].fadeIn = 1f;
-                        Main.dust[num].velocity *= 6.6f;
+                        for (int i = 0; i < 66; i++)
+                        {
+                            int num = Dust.NewDust(player.position, player.width, player.height, 20, 0f, 0f, 100, Color.Transparent, 2.6f);
+                            Main.dust[num].noGravity = true;
+                            Main.dust[num].noLight = true;
+                            Main.dust[num].fadeIn = 1f;
+                            Main.dust[num].velocity *= 6.6f;
+                        }
                     }
+                    modPlayer.omegaBlueCooldown--;
                 }
-                modPlayer.omegaBlueCooldown--;
+                if (modPlayer.omegaBlueCooldown > 1500)
+                {
+                    modPlayer.omegaBlueHentai = true;
+                    int num2 = Dust.NewDust(player.position, player.width, player.height, 20, 0f, 0f, 100, Color.Transparent, 1.6f);
+                    Main.dust[num2].noGravity = true;
+                    Main.dust[num2].noLight = true;
+                    Main.dust[num2].fadeIn = 1f;
+                    Main.dust[num2].velocity *= 3f;
+                }
             }
-            if (modPlayer.omegaBlueCooldown > 1500)
-            {
-                modPlayer.omegaBlueHentai = true;
-                int num2 = Dust.NewDust(player.position, player.width, player.height, 20, 0f, 0f, 100, Color.Transparent, 1.6f);
-                Main.dust[num2].noGravity = true;
-                Main.dust[num2].noLight = true;
-                Main.dust[num2].fadeIn = 1f;
-                Main.dust[num2].velocity *= 3f;
-            }
+            
             //abyssal diving suit
             //because screw that slow speed out of water ech
             if (!Collision.DrownCollision(player.position, player.width, player.height, player.gravDir))

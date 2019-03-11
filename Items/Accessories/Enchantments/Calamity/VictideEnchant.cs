@@ -45,17 +45,20 @@ Summons a sea urchin to protect you");
             
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            //summon
-            modPlayer.urchin = true;
-            if (player.whoAmI == Main.myPlayer)
+            if (Soulcheck.GetValue("Victide Sea Urchin"))
             {
-                if (player.FindBuffIndex(calamity.BuffType("Urchin")) == -1)
+                //summon
+                modPlayer.urchin = true;
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    player.AddBuff(calamity.BuffType("Urchin"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("Urchin")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("Urchin"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    if (player.FindBuffIndex(calamity.BuffType("Urchin")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("Urchin"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("Urchin")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("Urchin"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    }
                 }
             }
         }

@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Soul of Eternity");
             Tooltip.SetDefault(
-@"''
+@"'Mortal or Immortal, all things acknowledge your claim to divinity'
 200% increased all damage and attack speed, 100% increased shoot speed
 Crits deal 10x damage
 Crit chance is set to 50%, Crit to increase it by 10% 
@@ -590,7 +590,11 @@ and most of SoT not mentioned because meme tooltip length
                 recipe.AddIngredient(null, "ThoriumSoul");
 
             if (Fargowiltas.Instance.CalamityLoaded)
+            {
                 recipe.AddIngredient(null, "CalamitySoul");
+                recipe.AddIngredient(calamity.ItemType("Rock"));
+            }
+                
 
             recipe.AddIngredient(null, "Infinity");
 

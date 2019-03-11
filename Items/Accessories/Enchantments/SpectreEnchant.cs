@@ -25,8 +25,6 @@ If you crit, you get a burst of healing orbs instead
 @"Killing enemies or continually damaging bosses generates soul wisps
 After generating 5 wisps, they are instantly consumed to heal you for 10 life
 Effects of Ghastly Carapace and Inner Flame";
-
-
             }
 
             tooltip += "Summons a pet Wisp";
@@ -54,14 +52,22 @@ Effects of Ghastly Carapace and Inner Flame";
         private void Thorium(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //ghastly carapace
-            if (!thoriumPlayer.lifePrevent)
+            if (Soulcheck.GetValue("Ghastly Carapace"))
             {
-                player.AddBuff(thorium.BuffType("GhastlySoul"), 60, true);
+                //ghastly carapace
+                if (!thoriumPlayer.lifePrevent)
+                {
+                    player.AddBuff(thorium.BuffType("GhastlySoul"), 60, true);
+                }
+                thoriumPlayer.soulStorage = true;
             }
-            thoriumPlayer.soulStorage = true;
-            //spirit trapper set bonus
-            thoriumPlayer.spiritTrapper = true;
+
+            if(Soulcheck.GetValue("Spirit Trapper Wisps"))
+            {
+                //spirit trapper set bonus
+                thoriumPlayer.spiritTrapper = true;
+            }
+            
             //inner flame
             thoriumPlayer.spiritFlame = true;
         }
