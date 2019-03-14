@@ -42,6 +42,7 @@ Allows the holder to control gravity");
             player.thrownDamage += 0.2f;
 
             //lump of flesh
+            player.buffImmune[BuffID.TheTongue] = true;
             player.buffImmune[BuffID.Dazed] = true;
             player.GetModPlayer<FargoPlayer>().SkullCharm = true;
             player.GetModPlayer<FargoPlayer>().LumpOfFlesh = true;

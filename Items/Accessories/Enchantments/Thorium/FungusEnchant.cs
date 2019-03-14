@@ -53,9 +53,9 @@ Dealing damage to enemies infected with mycelium briefly increases throwing spee
             recipe.AddIngredient(thorium.ItemType("FungusLeggings"));
             recipe.AddIngredient(thorium.ItemType("Chum"), 300);
             recipe.AddIngredient(thorium.ItemType("VenomKunai"), 300);
-            recipe.AddIngredient(thorium.ItemType("FungalPopper"), 300);
             recipe.AddIngredient(thorium.ItemType("MorelGrenade"), 300);
             recipe.AddIngredient(thorium.ItemType("MyceliumWhip"));
+            recipe.AddIngredient(thorium.ItemType("SporeBook"));
             recipe.AddIngredient(thorium.ItemType("LegionOrnament"), 300);
             recipe.AddIngredient(thorium.ItemType("MushroomButterfly"));
             

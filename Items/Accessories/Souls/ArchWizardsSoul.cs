@@ -87,10 +87,10 @@ Increases your maximum mana by 200
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(CelestialCuffs);
+                recipe.AddIngredient(MedusaHead);
                 recipe.AddIngredient(thorium.ItemType("TwinsIre"));
                 recipe.AddIngredient(thorium.ItemType("TerraStaff"));
                 recipe.AddIngredient(RainbowGun);
-                recipe.AddIngredient(thorium.ItemType("SporeBook"));
                 recipe.AddIngredient(thorium.ItemType("SpectrelBlade"));
                 recipe.AddIngredient(thorium.ItemType("LightningStaff"));
                 recipe.AddIngredient(ApprenticeStaffT3);
@@ -101,12 +101,12 @@ Increases your maximum mana by 200
                 recipe.AddIngredient(WizardHat);
                 recipe.AddIngredient(CelestialCuffs);
                 recipe.AddIngredient(CelestialEmblem);
+                recipe.AddIngredient(MedusaHead);
                 recipe.AddIngredient(GoldenShower);
                 recipe.AddIngredient(RainbowGun);
                 recipe.AddIngredient(MagnetSphere);
                 recipe.AddIngredient(ApprenticeStaffT3);
                 recipe.AddIngredient(RazorbladeTyphoon);
-                recipe.AddIngredient(BatScepter);
             }
 
             recipe.AddIngredient(BlizzardStaff);

@@ -88,9 +88,10 @@ Sword attacks may stun enemies";
             }
             else
             {
-                recipe.AddIngredient(ItemID.TungstenHammer);
+                recipe.AddIngredient(ItemID.GreenPhaseblade);
                 recipe.AddIngredient(ItemID.EmeraldStaff);
                 recipe.AddIngredient(ItemID.Snail);
+                recipe.AddIngredient(ItemID.Sluggy);
             }
 
             recipe.AddTile(TileID.DemonAltar);

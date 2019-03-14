@@ -88,6 +88,7 @@ Getting hit drops your crit back down";
             {
                 recipe.AddIngredient(ItemID.TinBow);
                 recipe.AddIngredient(ItemID.TopazStaff);
+                recipe.AddIngredient(ItemID.YellowPhaseblade);
                 recipe.AddIngredient(ItemID.Daylight);
             }
 

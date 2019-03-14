@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Healer Essence");
+            DisplayName.SetDefault("Crusader's Essence");
             Tooltip.SetDefault(
 @"''This is only the beginning..''
 18% increased radiant damage

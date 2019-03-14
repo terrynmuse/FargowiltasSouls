@@ -1167,7 +1167,7 @@ namespace FargowiltasSouls.Projectiles
                     Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                 }
 
-                modPlayer.CobaltCD = 120;
+                modPlayer.CobaltCD = 60;
             }
 
             switch (projectile.type)

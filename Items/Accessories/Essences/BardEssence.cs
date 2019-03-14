@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bard Essence");
+            DisplayName.SetDefault("Musician's Essence");
             Tooltip.SetDefault(
 @"''This is only the beginning..''
 18% increased symphonic damage

@@ -58,12 +58,12 @@ Summons a pet Puppy");
             {      
                 recipe.AddIngredient(thorium.ItemType("EvisceratingClaw"), 300);
                 recipe.AddIngredient(thorium.ItemType("LadyLight"));
-                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT2Popper);
+                recipe.AddIngredient(ItemID.DD2PhoenixBow);
                 recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
             }
             else
             {
-                recipe.AddIngredient(ItemID.DD2ExplosiveTrapT3Popper);
+                recipe.AddIngredient(ItemID.DD2PhoenixBow);
             }
             
             recipe.AddIngredient(ItemID.DogWhistle);

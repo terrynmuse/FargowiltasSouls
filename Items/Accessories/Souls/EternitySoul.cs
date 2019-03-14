@@ -595,7 +595,6 @@ and most of SoT not mentioned because meme tooltip length
                 recipe.AddIngredient(calamity.ItemType("Rock"));
             }
                 
-
             recipe.AddIngredient(null, "Infinity");
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");

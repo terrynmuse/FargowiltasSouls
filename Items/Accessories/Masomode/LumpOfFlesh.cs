@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lump of Flesh");
-            Tooltip.SetDefault(@"Grants immunity to Rotting and Dazed
+            Tooltip.SetDefault(@"Grants immunity to Rotting, the Tongue, and Dazed
 Increases minion damage by 16% but slightly decreases defense
 Increases your max number of minions by 2
 Increases your max number of sentries by 2
@@ -33,6 +33,7 @@ Makes armed and magic skeletons less hostile outside the Dungeon
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[mod.BuffType("Rotting")] = true;
+            player.buffImmune[BuffID.TheTongue] = true;
             player.buffImmune[BuffID.Dazed] = true;
             player.minionDamage += 0.16f;
             player.statDefense -= 6;

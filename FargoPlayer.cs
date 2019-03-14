@@ -1715,6 +1715,8 @@ namespace FargowiltasSouls
                 }
             }
 
+            if (target.type == NPCID.TargetDummy) return;
+
             if (JungleEnchant && !NatureForce && Main.rand.Next(4) == 0)
             {
                 player.ManaEffect(5);

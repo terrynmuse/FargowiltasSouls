@@ -143,7 +143,7 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            if (item.type == ItemID.PumpkinPie && player.HasBuff(BuffID.PotionSickness)) return false;
+            if (item.type == ItemID.PumpkinPie && player.statLife != player.statLifeMax2 && player.HasBuff(BuffID.PotionSickness)) return false;
 
             if (item.magic && player.GetModPlayer<FargoPlayer>().ReverseManaFlow)
             {
@@ -242,7 +242,7 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            if (item.type == ItemID.PumpkinPie && modPlayer.PumpkinEnchant && !modPlayer.TerrariaSoul)
+            if (item.type == ItemID.PumpkinPie && player.statLife != player.statLifeMax2 && modPlayer.PumpkinEnchant && !modPlayer.TerrariaSoul)
             {
                 int heal = player.statLifeMax2 - player.statLife;
                 player.HealEffect(heal);

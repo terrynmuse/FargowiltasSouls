@@ -1,5 +1,39 @@
 NEW UPDATE - v 0.6
 
+-fixed Crucible recipe bug
+-fixed more tooltips
+-added more tooltips
+-altered calamity enchant recipes to include some of the new items, also mollusk enchant added officially
+-cactus nerf part 5, only 8 needles until force of life where its back to 16, also no needles on 1 HP enemeies like chaos ball etc
+-heal essence actually in soul
+-lead poison spread radius much lower, and should lag less
+-masomemes reflcting projs does not work on minions
+-cobalt CD halved
+-added names to healer/bard essece
+-added tongue immunity to WoF masomode drop
+-maso KS shoots slime balls half as often
+-maso QB summons minions at 50% and 45% instead of 60 and 30, they also have more HP
+-pumpkin pie doesn't give potion sickness at full HP
+-fixed more recipe memes
+-many effects including tin crit stacking and palladium lifesteal dont work on dummies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -blazing wheels spawn in hell
 -buffed blazing wheels and spiked balls in temple
 -roughly 3x damage and spikes inflict defenseless, wheels inflict flames of the universe
@@ -27,7 +61,7 @@ NEW UPDATE - v 0.6
 -added a bunch more toggles and fixed some that weren't working
 -nerfed lead poisons slow, mythril attack speed
 -terra force gained tungsten weapon size
--cactus enchant needles now a 50% chance instead of 100% on enemy death
+-cactus enchant needles now a 50% chance instead of 100% on enemy death, also less thorns damage
 -warlock effect actually works on thorium soul
 -added Bard Essence and Healer Essence (feel free to suggest better names )
 -fixed slime god minion

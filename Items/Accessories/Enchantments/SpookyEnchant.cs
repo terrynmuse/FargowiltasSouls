@@ -41,7 +41,6 @@ Summons a pet Cursed Sapling and Eyeball Spring");
             recipe.AddIngredient(ItemID.DemonScythe);
             recipe.AddIngredient(ItemID.DeathSickle);
             
-            
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BeholderStaff"));

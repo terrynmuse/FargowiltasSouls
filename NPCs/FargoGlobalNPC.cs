@@ -2190,7 +2190,7 @@ namespace FargowiltasSouls.NPCs
                             Player p = Main.player[npc.target];
 
                             Counter++;
-                            if (Counter >= 60) //spray random slime balls
+                            if (Counter >= 120) //spray random slime balls
                             {
                                 Counter = 0;
 
@@ -2296,7 +2296,7 @@ namespace FargowiltasSouls.NPCs
                     case 33: //queen bee
                         beeBoss = npc.whoAmI;
 
-                        if (npc.life < npc.lifeMax * .6f && !masoBool[0])
+                        if (npc.life < npc.lifeMax * .5f && !masoBool[0])
                         {
                             masoBool[0] = true;
 
@@ -2308,12 +2308,12 @@ namespace FargowiltasSouls.NPCs
                             minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[1] = true;
                             minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = true;
                             minion.GetGlobalNPC<FargoGlobalNPC>().dropLoot = false;
-                            minion.lifeMax = npc.lifeMax / 4;
+                            minion.lifeMax = npc.lifeMax / 3;
                             minion.life = minion.lifeMax;
                             minion.damage = npc.damage / 2;
                         }
 
-                        if (npc.life < npc.lifeMax * .3f && !masoBool[1])
+                        if (npc.life < npc.lifeMax * .45f && !masoBool[1])
                         {
                             masoBool[1] = true;
 
@@ -2325,7 +2325,7 @@ namespace FargowiltasSouls.NPCs
                             minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[1] = true;
                             minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = true;
                             minion.GetGlobalNPC<FargoGlobalNPC>().dropLoot = false;
-                            minion.lifeMax = npc.lifeMax / 4;
+                            minion.lifeMax = npc.lifeMax / 3;
                             minion.life = minion.lifeMax;
                             minion.damage = npc.damage / 2;
                         }
@@ -5149,7 +5149,7 @@ namespace FargowiltasSouls.NPCs
         {
             float distance = 2f * 16;
 
-            Main.projectile.Where(x => x.active && x.friendly).ToList().ForEach(x =>
+            Main.projectile.Where(x => x.active && x.friendly && x.minionSlots <= 0).ToList().ForEach(x =>
             {
                 if (Vector2.Distance(x.Center, npc.Center) <= distance)
                 {
@@ -5453,7 +5453,7 @@ namespace FargowiltasSouls.NPCs
                 {
                     NPC spread = Main.npc[i];
 
-                    if (spread.active && !spread.townNPC && !spread.friendly && Vector2.Distance(npc.Center, spread.Center) < 100)
+                    if (spread.active && !spread.townNPC && !spread.friendly && !spread.HasBuff(mod.BuffType("LeadPoison")) && Vector2.Distance(npc.Center, spread.Center) < 50)
                     {
                         spread.AddBuff(mod.BuffType("LeadPoison"), 120);
                     }
@@ -6457,16 +6457,18 @@ namespace FargowiltasSouls.NPCs
                 return false;
             }
 
-            if (Needles && Main.rand.Next(2) == 0)
+            if (Needles && npc.lifeMax > 1 && Main.rand.Next(2) == 0)
             {
                 int dmg = 15;
+                int numNeedles = 8;
 
                 if (modPlayer.LifeForce)
                 {
                     dmg = 50;
+                    numNeedles = 16;
                 }
 
-                Projectile[] projs = FargoGlobalProjectile.XWay(16, npc.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
+                Projectile[] projs = FargoGlobalProjectile.XWay(numNeedles, npc.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
 
                 for (int i = 0; i < projs.Length; i++)
                 {

@@ -37,24 +37,25 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddRecipeGroup("FargowiltasSouls:AnyMythrilHead");
             recipe.AddIngredient(ItemID.MythrilChainmail);
             recipe.AddIngredient(ItemID.MythrilGreaves);
-            recipe.AddIngredient(ItemID.MythrilRepeater);
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(thorium.ItemType("MythrilPelter"));
                 recipe.AddIngredient(thorium.ItemType("MythrilStaff"));
                 recipe.AddIngredient(ItemID.LaserRifle);
+                recipe.AddIngredient(ItemID.ClockworkAssaultRifle);
+                recipe.AddIngredient(ItemID.Gatligator);
+                recipe.AddIngredient(ItemID.Megashark);
                 recipe.AddIngredient(thorium.ItemType("Trigun"));  
                 recipe.AddIngredient(thorium.ItemType("BloodyHighClaws"));  
             }
             else
             {
                 recipe.AddIngredient(ItemID.LaserRifle);
+                recipe.AddIngredient(ItemID.ClockworkAssaultRifle);
+                recipe.AddIngredient(ItemID.Gatligator);
                 recipe.AddIngredient(ItemID.FetidBaghnakhs);
             }
             
-            recipe.AddIngredient(ItemID.Megashark);
-
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

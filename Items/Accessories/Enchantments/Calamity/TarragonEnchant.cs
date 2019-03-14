@@ -101,7 +101,7 @@ Effects of the Profaned Soul Artifact");
             recipe.AddIngredient(calamity.ItemType("TrueTyrantYharimsUltisword"));
             recipe.AddIngredient(calamity.ItemType("Spyker"));
             recipe.AddIngredient(calamity.ItemType("DivineRetribution"));
-            recipe.AddIngredient(calamity.ItemType("PlasmaRifle"));
+            recipe.AddIngredient(calamity.ItemType("HandheldTank"));
             recipe.AddIngredient(calamity.ItemType("Mistlestorm"));
 
             recipe.AddTile(TileID.LunarCraftingStation);

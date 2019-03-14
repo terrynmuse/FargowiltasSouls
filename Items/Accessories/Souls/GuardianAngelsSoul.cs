@@ -143,7 +143,7 @@ Nearby allies that die drop a wisp of spirit energy");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(null, "BardEssence");
+            recipe.AddIngredient(null, "HealerEssence");
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
