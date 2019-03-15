@@ -71,7 +71,11 @@ Effects of the Core of the Blood God and Affliction");
             modPlayer.bloodflareMelee = true;
             modPlayer.bloodflareRanged = true;
             modPlayer.bloodflareMage = true;
-            modPlayer.bloodflareSummon = true;
+            if (Soulcheck.GetValue("Polterghast Mines"))
+            {
+                modPlayer.bloodflareSummon = true;
+            }
+            
             modPlayer.bloodflareThrowing = true;
             //core of the blood god
             modPlayer.coreOfTheBloodGod = true;

@@ -114,21 +114,28 @@ Summons several pets");
             modPlayer.IcyEnchant = true;
             modPlayer.AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
             modPlayer.AddPet("Owl Pet", hideVisual, thorium.BuffType("SnowyOwlBuff"), thorium.ProjectileType("SnowyOwlPet"));
-            //icy set bonus
-            thoriumPlayer.icySet = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
-            {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
-            }
 
-            thoriumPlayer.whisperingSet = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle")] + player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle2")] < 6 && player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacleSpawn")] < 1)
+            if (Soulcheck.GetValue("Icy Barrier"))
             {
-                timer++;
-                if (timer > 30)
+                //icy set bonus
+                thoriumPlayer.icySet = true;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
                 {
-                    Projectile.NewProjectile(player.Center.X + (float)Main.rand.Next(-300, 300), player.Center.Y, 0f, 0f, thorium.ProjectileType("WhisperingTentacleSpawn"), 50, 0f, player.whoAmI, 0f, 0f);
-                    timer = 0;
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
+                }
+            }
+            
+            if (Soulcheck.GetValue("Whispering Tentacles"))
+            {
+                thoriumPlayer.whisperingSet = true;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle")] + player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle2")] < 6 && player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacleSpawn")] < 1)
+                {
+                    timer++;
+                    if (timer > 30)
+                    {
+                        Projectile.NewProjectile(player.Center.X + (float)Main.rand.Next(-300, 300), player.Center.Y, 0f, 0f, thorium.ProjectileType("WhisperingTentacleSpawn"), 50, 0f, player.whoAmI, 0f, 0f);
+                        timer = 0;
+                    }
                 }
             }
         }

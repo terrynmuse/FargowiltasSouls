@@ -152,6 +152,8 @@ All other effects of material Souls");
             player.waterWalk = true;
             player.fireWalk = true;
             player.lavaImmune = true;
+            //magic carpet
+            player.carpet = true;
             //frog legs
             //player.autoJump = true;
             //player.jumpSpeedBoost += 2.4f;

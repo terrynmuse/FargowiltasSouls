@@ -80,13 +80,13 @@ Greatly enhances Flameburst effectiveness
                 recipe.AddIngredient(thorium.ItemType("Effigy"));
                 recipe.AddIngredient(thorium.ItemType("DarkMageStaff"));
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
-                recipe.AddIngredient(ItemID.DD2FlameburstTowerT2Popper);
+                recipe.AddIngredient(ItemID.InfernoFork);
                 recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
             }
             else
             {
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
-                recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
+                recipe.AddIngredient(ItemID.InfernoFork);
             }
             
             recipe.AddIngredient(ItemID.DD2PetGhost);

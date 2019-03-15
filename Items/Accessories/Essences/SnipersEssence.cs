@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 @"'This is only the beginning..'
 18% increased ranged damage
 5% increased ranged critical chance
-5% increased ranged use time");
+5% increased firing speed");
         }
 
         public override void SetDefaults()
@@ -48,12 +48,12 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.Harpoon);
                 recipe.AddIngredient(ItemID.Musket);
                 recipe.AddIngredient(thorium.ItemType("GuanoGunner"));
-                recipe.AddIngredient(thorium.ItemType("Zapper"));
                 recipe.AddIngredient(thorium.ItemType("SharkStorm"));
                 recipe.AddIngredient(ItemID.BeesKnees);
                 recipe.AddIngredient(thorium.ItemType("EnergyStormBolter"));
                 recipe.AddIngredient(thorium.ItemType("HeroTripleBow"));
                 recipe.AddIngredient(thorium.ItemType("HitScanner"));
+                recipe.AddIngredient(thorium.ItemType("RangedThorHammer"));
                 recipe.AddIngredient(ItemID.HellwingBow);
             }
             else

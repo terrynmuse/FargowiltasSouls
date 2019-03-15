@@ -40,11 +40,14 @@ A meteor shower initiates every few seconds while attacking";
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             modPlayer.MeteorEffect(50);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
+        }
 
+        private void Thorium(Player player, bool hideVisual)
+        {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.bioPet = true;
-            modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
+            player.GetModPlayer<FargoPlayer>().AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
         }
 
         public override void AddRecipes()

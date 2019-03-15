@@ -23,7 +23,7 @@ It also spreads to nearby enemies";
 
             if(thorium != null)
             {
-                tooltip += "Effects of Lead Shield";
+                tooltip += "\nEffects of Lead Shield";
             }
 
             Tooltip.SetDefault(tooltip);

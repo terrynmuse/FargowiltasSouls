@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Weapons.SwarmDrops
@@ -35,6 +36,19 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-12, 0);
+        }
+
+        public override void AddRecipes()
+        {
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(null, "FishStick");
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerFish"));
+                recipe.AddTile(TileID.Anvils);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
         }
     }
 }

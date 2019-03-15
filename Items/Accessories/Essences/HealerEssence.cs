@@ -12,17 +12,19 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
 
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Healer Essence");
+            DisplayName.SetDefault("Crusader's Essence");
             Tooltip.SetDefault(
-                @"''
-");
+@"''This is only the beginning..''
+18% increased radiant damage
+5% increased healing and radiant casting speed
+5% increased radiant critical strike chance");
         }
 
         public override void SetDefaults()
@@ -30,9 +32,8 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            ItemID.Sets.ItemNoGravity[item.type] = true; //
-            item.rare = 2; //
-            item.value = 60000; //
+            item.rare = 4;
+            item.value = 150000; 
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -45,26 +46,28 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         private void HealEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.radiantBoost += 0.18f;
+            thoriumPlayer.radiantSpeed -= 0.05f;
+            thoriumPlayer.healingSpeed += 0.05f;
+            thoriumPlayer.radiantCrit += 5;
         }
         
         private readonly string[] items =
         {
             "ClericEmblem",
-            "RottenCod - corrupt fishing",
-            "BrainCoral",
-            "lifes gift - jungle spores",
-            "bat scythe - viscount",
-            "feather barrier rod - avian",
-            "energy manipulator - granite boss",
-            "deep staff - scarlet chest",
-            "life quartz claymore - heart crystal",
-            "war forger - sold by blackmsith",
-            "star rod - star scouter",
-            "divine lotus - travel merch after skele",
-            "sentinels wand - sold by heal guy",
-            "MarrowScepter"
+            "HeartWand",
+            "LifeQuartzClaymore",
+            "FeatherBarrierRod",
+            "TulipStaff",
+            "LargePopcorn",
+            "BatScythe",
+            "DivineLotus",
+            "EnergyManipulator",
+            "SentinelsWand",
+            "LifeDisperser",
+            "RedeemersStaff",
+            "DeepStaff",
+            "StarRod"
         };
 
         public override void AddRecipes()

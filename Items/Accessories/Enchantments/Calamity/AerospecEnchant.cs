@@ -43,16 +43,19 @@ Summons a Valkyrie minion to protect you");
 
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            modPlayer.valkyrie = true;
-            if (player.whoAmI == Main.myPlayer)
+            if (Soulcheck.GetValue("Valkyrie Minion"))
             {
-                if (player.FindBuffIndex(calamity.BuffType("Valkyrie")) == -1)
+                modPlayer.valkyrie = true;
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    player.AddBuff(calamity.BuffType("Valkyrie"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("Valkyrie")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("Valkyrie"), 25, 0f, Main.myPlayer, 0f, 0f);
+                    if (player.FindBuffIndex(calamity.BuffType("Valkyrie")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("Valkyrie"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("Valkyrie")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("Valkyrie"), 25, 0f, Main.myPlayer, 0f, 0f);
+                    }
                 }
             }
         }

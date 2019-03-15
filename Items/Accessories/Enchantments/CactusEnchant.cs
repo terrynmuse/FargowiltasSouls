@@ -13,8 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Cactus Enchantment");
             Tooltip.SetDefault(
 @"'It's the quenchiest!' 
-50% of contact damage is reflected
-Enemies will explode into needles on death
+25% of contact damage is reflected
+Enemies may explode into needles on death
 Needles scale with melee damage");
         }
 
@@ -31,7 +31,7 @@ Needles scale with melee damage");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).CactusEffect();
-            player.thorns = .5f;
+            player.thorns = .25f;
         }
 
         public override void AddRecipes()

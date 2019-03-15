@@ -42,24 +42,28 @@ Effects of Astro-Beetle Husk");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
-            thoriumPlayer.orbital = true;
-            thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.05000000074505806, default(Vector2));
-            if (player.statLife > player.statLifeMax * 0.75)
+            if (Soulcheck.GetValue("Lodestone Resistance"))
             {
-                thoriumPlayer.thoriumEndurance += 0.1f;
-                thoriumPlayer.lodestoneStage = 1;
+                //set bonus
+                thoriumPlayer.orbital = true;
+                thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.05000000074505806, default(Vector2));
+                if (player.statLife > player.statLifeMax * 0.75)
+                {
+                    thoriumPlayer.thoriumEndurance += 0.1f;
+                    thoriumPlayer.lodestoneStage = 1;
+                }
+                if (player.statLife <= player.statLifeMax * 0.75 && player.statLife > player.statLifeMax * 0.5)
+                {
+                    thoriumPlayer.thoriumEndurance += 0.2f;
+                    thoriumPlayer.lodestoneStage = 2;
+                }
+                if (player.statLife <= player.statLifeMax * 0.5)
+                {
+                    thoriumPlayer.thoriumEndurance += 0.3f;
+                    thoriumPlayer.lodestoneStage = 3;
+                }
             }
-            if (player.statLife <= player.statLifeMax * 0.75 && player.statLife > player.statLifeMax * 0.5)
-            {
-                thoriumPlayer.thoriumEndurance += 0.2f;
-                thoriumPlayer.lodestoneStage = 2;
-            }
-            if (player.statLife <= player.statLifeMax * 0.5)
-            {
-                thoriumPlayer.thoriumEndurance += 0.3f;
-                thoriumPlayer.lodestoneStage = 3;
-            }
+            
             //astro beetle husk
             if (thoriumPlayer.shieldHealth > 0)
             {

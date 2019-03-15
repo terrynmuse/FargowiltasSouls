@@ -22,7 +22,8 @@ If the enemy has Midas, the chance and bonus is doubled";
             if(thorium != null)
             {
                 tooltip +=
-@"Effects of Platinum Aegis
+@"
+Effects of Platinum Aegis
 Summons a pet Glitter";
             }
 

@@ -203,7 +203,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             target.AddBuff(BuffID.OnFire, Main.rand.Next(300, 600));
             target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(300, 600));
             target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(300, 600));
-            target.velocity = Vector2.Zero;
+            target.velocity = target.velocity / 4;
         }
     }
 }

@@ -12,17 +12,19 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         
         public override bool Autoload(ref string name)
         {
-            return false;// ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
         }
         
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bard Essence");
+            DisplayName.SetDefault("Musician's Essence");
             Tooltip.SetDefault(
-                @"''
-");
+@"''This is only the beginning..''
+18% increased symphonic damage
+5% increased symphonic playing speed
+5% increased symphonic critical strike chance");
         }
 
         public override void SetDefaults()
@@ -30,9 +32,8 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            ItemID.Sets.ItemNoGravity[item.type] = true; //
-            item.rare = 2; //
-            item.value = 60000; //
+            item.rare = 4;
+            item.value = 150000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -45,26 +46,27 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         private void BardEffect(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            
-            
+            thoriumPlayer.symphonicDamage += 0.18f;
+            thoriumPlayer.symphonicSpeed += .05f;
+            thoriumPlayer.symphonicCrit += 5;
         }
         
         private readonly string[] items =
         {
             "BardEmblem",
-            "SongofIceandFire",
-            "BagPipe",
+            "AntlionMaraca",
             "SeashellCastanets",
             "Didgeridoo",
+            "BagPipe",
             "YewWoodLute",
-            "AntlionMaraca",
-            "MusicSheetCongas",
-            "MusicSheetSteelDrum",
-            "BronzeTuningFork",
-            "GraniteBoombox",
             "ForestOcarina",
+            "AquamarineWineGlass",
+            "SonarCannon",
+            "MusicSheetCongas",
+            "GraniteBoombox",
+            "BronzeTuningFork",
             "HotHorn",
-            "SonarCannon"
+            "SongofIceandFire"
         };
 
         public override void AddRecipes()

@@ -1,3 +1,5 @@
+using CalamityMod;
+using CalamityMod.Items.CalamityCustomThrowingDamage;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,15 +10,24 @@ namespace FargowiltasSouls.Items.Accessories.Essences
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         private readonly Mod fargos = ModLoader.GetMod("Fargowiltas");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slinger's Essence");
-            Tooltip.SetDefault(
+
+            string tooltip = 
 @"'This is only the beginning..'
 18% increased throwing damage
 5% increased throwing critical chance
-5% increased throwing velocity");
+5% increased throwing velocity";
+
+            if (calamity != null)
+            {
+                tooltip += "\nBonuses also effect rogue damage";
+            }
+
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -33,6 +44,17 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             player.thrownDamage += 0.18f;
             player.thrownCrit += 5;
             player.thrownVelocity += 0.05f;
+
+            if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
+        }
+
+        private void Calamity(Player player)
+        {
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            modPlayer.nanotech = true;
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += 0.18f;
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += 5;
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingVelocity += 0.05f;
         }
 
 
@@ -49,7 +71,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(ItemID.AleThrowingGlove);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("TheMeatballThrown") : ItemID.TheMeatball);
                 recipe.AddIngredient(thorium.ItemType("StarfishSlicer"), 300);
-                recipe.AddIngredient(fargos != null ? fargos.ItemType("ThornChakramThrown") : ItemID.ThornChakram);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("AmazonThrown") : ItemID.JungleYoyo);
                 recipe.AddIngredient(ItemID.Beenade, 300);
                 recipe.AddIngredient(ItemID.BoneGlove);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BlueMoonThrown") : ItemID.BlueMoon);
@@ -64,9 +86,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BloodyMacheteThrown") : ItemID.BloodyMachete);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("IceBoomerangThrown") : ItemID.IceBoomerang);
                 recipe.AddIngredient(ItemID.AleThrowingGlove);
-                recipe.AddIngredient(ItemID.MolotovCocktail, 99);
+                recipe.AddIngredient(ItemID.FrostDaggerfish, 300);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("TheMeatballThrown") : ItemID.TheMeatball);
-                recipe.AddIngredient(fargos != null ? fargos.ItemType("ThornChakramThrown") : ItemID.ThornChakram);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("AmazonThrown") : ItemID.JungleYoyo);
                 recipe.AddIngredient(ItemID.Beenade, 300);
                 recipe.AddIngredient(ItemID.BoneGlove);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BlueMoonThrown") : ItemID.BlueMoon);

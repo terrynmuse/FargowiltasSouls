@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             DisplayName.SetDefault("Force of Spirit");
 
             string tooltip =
-@"''
+@"'Ascend from this mortal realm'
 If you reach zero HP you cheat death, returning with 100 HP and spawning bones
 Double tap down to call an ancient storm to the cursor location
 You gain a shield that can reflect projectiles

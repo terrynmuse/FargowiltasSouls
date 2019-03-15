@@ -55,55 +55,62 @@ Effects of the Plague Hive");
             modPlayer.ataxiaMage = true;
             //throw
             modPlayer.ataxiaVolley = true;
-            //plague hive
-            player.buffImmune[calamity.BuffType("Plague")] = true;
-            modPlayer.uberBees = true;
-            player.strongBees = true;
-            modPlayer.alchFlask = true;
-            int num = 0;
-            Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.1f, 2f, 0.2f);
-            int num2 = calamity.BuffType("Plague");
-            float num3 = 300f;
-            bool flag = num % 60 == 0;
-            int num4 = 60;
-            int num5 = Main.rand.Next(10);
-            if (player.whoAmI == Main.myPlayer && num5 == 0)
+
+            if (Soulcheck.GetValue("Plague Hive"))
             {
-                for (int i = 0; i < 200; i++)
+                //plague hive
+                player.buffImmune[calamity.BuffType("Plague")] = true;
+                modPlayer.uberBees = true;
+                player.strongBees = true;
+                modPlayer.alchFlask = true;
+                int num = 0;
+                Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.1f, 2f, 0.2f);
+                int num2 = calamity.BuffType("Plague");
+                float num3 = 300f;
+                bool flag = num % 60 == 0;
+                int num4 = 60;
+                int num5 = Main.rand.Next(10);
+                if (player.whoAmI == Main.myPlayer && num5 == 0)
                 {
-                    NPC npc = Main.npc[i];
-                    if (npc.active && !npc.friendly && npc.damage > 0 && !npc.dontTakeDamage && !npc.buffImmune[num2] && Vector2.Distance(player.Center, npc.Center) <= num3)
+                    for (int i = 0; i < 200; i++)
                     {
-                        if (npc.FindBuffIndex(num2) == -1)
+                        NPC npc = Main.npc[i];
+                        if (npc.active && !npc.friendly && npc.damage > 0 && !npc.dontTakeDamage && !npc.buffImmune[num2] && Vector2.Distance(player.Center, npc.Center) <= num3)
                         {
-                            npc.AddBuff(num2, 120, false);
-                        }
-                        if (flag)
-                        {
-                            npc.StrikeNPC(num4, 0f, 0, false, false, false);
-                            if (Main.netMode != 0)
+                            if (npc.FindBuffIndex(num2) == -1)
                             {
-                                NetMessage.SendData(28, -1, -1, null, i, (float)num4, 0f, 0f, 0, 0, 0);
+                                npc.AddBuff(num2, 120, false);
+                            }
+                            if (flag)
+                            {
+                                npc.StrikeNPC(num4, 0f, 0, false, false, false);
+                                if (Main.netMode != 0)
+                                {
+                                    NetMessage.SendData(28, -1, -1, null, i, (float)num4, 0f, 0f, 0, 0, 0);
+                                }
                             }
                         }
                     }
                 }
+                num++;
             }
-            num++;
-
+            
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            //summon
-            modPlayer.chaosSpirit = true;
-            if (player.whoAmI == Main.myPlayer)
+            if (Soulcheck.GetValue("Chaos Spirit Minion"))
             {
-                if (player.FindBuffIndex(calamity.BuffType("ChaosSpirit")) == -1)
+                //summon
+                modPlayer.chaosSpirit = true;
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    player.AddBuff(calamity.BuffType("ChaosSpirit"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("ChaosSpirit")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ChaosSpirit"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    if (player.FindBuffIndex(calamity.BuffType("ChaosSpirit")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("ChaosSpirit"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("ChaosSpirit")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ChaosSpirit"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    }
                 }
             }
         }

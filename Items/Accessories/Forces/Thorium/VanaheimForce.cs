@@ -54,28 +54,39 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
             thoriumPlayer.folvSet = true;
             Lighting.AddLight(player.position, 0.03f, 0.3f, 0.5f);
             thoriumPlayer.folvBonus2 = true;
-            //mana charge rockets
-            player.manaRegen++;
-            player.manaRegenDelay -= 2;
-            if (player.statMana > 0)
+
+            if (Soulcheck.GetValue("Mana-Charged Rocketeers"))
             {
-                player.rocketBoots = 1;
-                if (player.rocketFrame)
+                //mana charge rockets
+                player.manaRegen++;
+                player.manaRegenDelay -= 2;
+                if (player.statMana > 0)
                 {
-                    if (Main.rand.Next(2) == 0)
+                    player.rocketBoots = 1;
+                    if (player.rocketFrame)
                     {
-                        player.statMana -= 2;
-                        Dust.NewDust(new Vector2(player.position.X, player.position.Y + 20f), player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 100, default(Color), 1.5f);
+                        if (Main.rand.Next(2) == 0)
+                        {
+                            player.statMana -= 2;
+                            Dust.NewDust(new Vector2(player.position.X, player.position.Y + 20f), player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 100, default(Color), 1.5f);
+                        }
+                        player.rocketTime = 1;
                     }
-                    player.rocketTime = 1;
                 }
             }
+            
+            if (Soulcheck.GetValue("Celestial Aura"))
+            {
+                //celestial
+                thoriumPlayer.celestialSet = true;
+            }
 
-            //celestial
-            thoriumPlayer.celestialSet = true;
-            //ascension statue
-            thoriumPlayer.ascension = true;
-
+            if (Soulcheck.GetValue("Ascension Statuette"))
+            {
+                //ascension statue
+                thoriumPlayer.ascension = true;
+            }
+            
             //balladeer meme hell
             if (thoriumPlayer.empowerDamage > 0)
             {

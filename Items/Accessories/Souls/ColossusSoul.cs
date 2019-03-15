@@ -30,7 +30,7 @@ Effects of Bee Cloak, Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
 
             if (thorium != null)
             {
-                tooltip += "\nEffects of Ocean's Retaliation and Cape of the Survivor\n Effects of Blast Shield and Terrarium Defender";
+                tooltip += "\nEffects of Ocean's Retaliation and Cape of the Survivor\nEffects of Blast Shield and Terrarium Defender";
             }
 
             if (calamity != null)

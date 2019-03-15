@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Soul of Eternity");
             Tooltip.SetDefault(
-@"''
+@"'Mortal or Immortal, all things acknowledge your claim to divinity'
 200% increased all damage and attack speed, 100% increased shoot speed
 Crits deal 10x damage
 Crit chance is set to 50%, Crit to increase it by 10% 
@@ -36,6 +36,7 @@ Increases your maximum mana to 999, minions by 20, sentries by 10
 400% increased HP, 40% damage reduction, 15 life regeneration
 Grants immunity to knockback and most debuffs
 Summon an impenatrable ring of death around you
+You reflect all projectiles
 When you die, you explode and revive with full HP
 You respawn 10x as fast
 All other effects of material Souls");
@@ -183,6 +184,8 @@ and most of SoT not mentioned because meme tooltip length
             player.waterWalk = true;
             player.fireWalk = true;
             player.lavaImmune = true;
+            //magic carpet
+            player.carpet = true;
             //frog legs
             //player.autoJump = true;
             //player.jumpSpeedBoost += 2.4f;
@@ -587,8 +590,11 @@ and most of SoT not mentioned because meme tooltip length
                 recipe.AddIngredient(null, "ThoriumSoul");
 
             if (Fargowiltas.Instance.CalamityLoaded)
+            {
                 recipe.AddIngredient(null, "CalamitySoul");
-
+                recipe.AddIngredient(calamity.ItemType("Rock"));
+            }
+                
             recipe.AddIngredient(null, "Infinity");
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");

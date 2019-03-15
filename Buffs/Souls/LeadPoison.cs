@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Buffs.Souls
 
             if (!npc.boss)
             {
-                npc.velocity.X *= .7f;
+                npc.velocity.X *= .9f;
                 npc.velocity.Y *= .9f;
             }
         }

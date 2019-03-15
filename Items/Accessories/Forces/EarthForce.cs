@@ -14,10 +14,9 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Earth");
 
-            string tooltip = "'Gaia's blessing shines upon you'\n";
-
-                tooltip +=
-@"25% chance for your projectiles to explode into shards
+            string tooltip = 
+@"'Gaia's blessing shines upon you'
+25% chance for your projectiles to explode into shards
 Greatly increases life regeneration after striking an enemy 
 One attack gains 5% life steal every second, capped at 5 HP
 Flower petals will cause extra damage to your target 

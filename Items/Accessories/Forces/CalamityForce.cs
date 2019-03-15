@@ -23,7 +23,6 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 All armor bonuses from Victide, Aerospec, and Statigel
 All armor bonuses from Daedalus, Reaver, and Astral
 All armor bonuses from Ataxia and Xeroc
-Effects of the Spirit Glyph and Raider's Talisman
 Effects of the Permafrost's Concoction, Astral Arcanum, Plague Hive");
 
         }
@@ -44,18 +43,43 @@ Effects of the Permafrost's Concoction, Astral Arcanum, Plague Hive");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            //WULFRUM
-            //spirit glyph
-            calamityPlayer.sGenerator = true;
-            //raiders talisman
-            calamityPlayer.raiderTalisman = true;
+
+            if (!modPlayer.TerrariaSoul)
+            {
+                //WULFRUM
+                //spirit glyph
+                calamityPlayer.sGenerator = true;
+                //raiders talisman
+                calamityPlayer.raiderTalisman = true;
+            }
+            
             //VICTIDE
             mod.GetItem("VictideEnchant").UpdateAccessory(player, hideVisual);
             //AEROSPEC
             mod.GetItem("AerospecEnchant").UpdateAccessory(player, hideVisual);
             //STATIGEL
             calamityPlayer.statigelSet = true;
-
+            if (Soulcheck.GetValue("Slime God Minion"))
+            {
+                //summon
+                calamityPlayer.slimeGod = true;
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    if (player.FindBuffIndex(calamity.BuffType("SlimeGod")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("SlimeGod"), 3600, true);
+                    }
+                    if (WorldGen.crimson && player.ownedProjectileCounts[calamity.ProjectileType("SlimeGodAlt")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SlimeGodAlt"), 33, 0f, Main.myPlayer, 0f, 0f);
+                        return;
+                    }
+                    if (!WorldGen.crimson && player.ownedProjectileCounts[calamity.ProjectileType("SlimeGod")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SlimeGod"), 33, 0f, Main.myPlayer, 0f, 0f);
+                    }
+                }
+            }
             //DAEDALUS
             mod.GetItem("DaedalusEnchant").UpdateAccessory(player, hideVisual);
             //REAVER
@@ -70,26 +94,36 @@ Effects of the Permafrost's Concoction, Astral Arcanum, Plague Hive");
             calamityPlayer.ataxiaBolt = true;
             //magic
             calamityPlayer.ataxiaMage = true;
-            //summon
-            calamityPlayer.chaosSpirit = true;
-            if (player.whoAmI == Main.myPlayer)
+
+            if (Soulcheck.GetValue("Chaos Spirit Minion"))
             {
-                if (player.FindBuffIndex(calamity.BuffType("ChaosSpirit")) == -1)
+                //summon
+                calamityPlayer.chaosSpirit = true;
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    player.AddBuff(calamity.BuffType("ChaosSpirit"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("ChaosSpirit")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ChaosSpirit"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    if (player.FindBuffIndex(calamity.BuffType("ChaosSpirit")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("ChaosSpirit"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("ChaosSpirit")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ChaosSpirit"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    }
                 }
             }
+            
             //throw
             calamityPlayer.ataxiaVolley = true;
-            //plague hive
-            player.buffImmune[calamity.BuffType("Plague")] = true;
-            calamityPlayer.uberBees = true;
-            player.strongBees = true;
-            calamityPlayer.alchFlask = true;
+
+            if (Soulcheck.GetValue("Plague Hive"))
+            {
+                //plague hive
+                player.buffImmune[calamity.BuffType("Plague")] = true;
+                calamityPlayer.uberBees = true;
+                player.strongBees = true;
+                calamityPlayer.alchFlask = true;
+            }
+            
             //XEROC
             calamityPlayer.xerocSet = true;
         }

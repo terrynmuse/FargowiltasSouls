@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             DisplayName.SetDefault("Force of Will");
 
             string tooltip =
-@"''
+@"'A mind of unbreakable determination'
 Increases coin pickup range and shops have lower prices
 Hitting enemies will sometimes drop extra coins
 Your attacks inflict Midas and Super Bleed
@@ -80,8 +80,11 @@ Effects of Celestial Shell and Shiny Stone effects
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            //proof of avarice
-            thoriumPlayer.avarice2 = true;
+            if (Soulcheck.GetValue("Proof of Avarice"))
+            {
+                //proof of avarice
+                thoriumPlayer.avarice2 = true;
+            }
 
             modPlayer.AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
             modPlayer.AddPet("Glitter Pet", hideVisual, thorium.BuffType("ShineDust"), thorium.ProjectileType("ShinyPet"));

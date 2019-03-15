@@ -24,7 +24,7 @@ You attract items from a larger range";
 
             if (thorium != null)
             {
-                tooltip += "Effects of Iron Shield\n";
+                tooltip += "\nEffects of Iron Shield";
             }
 
             Tooltip.SetDefault(tooltip); 

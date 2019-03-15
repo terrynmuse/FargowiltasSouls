@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 You leave behind a trail of fire when you walk
 Eating Pumpkin Pie also heals you to full HP
 100% of contact damage is reflected
-Enemies will explode into needles on death
+Enemies may explode into needles on death
 Increases the strength of friendly bees
 Bees ignore most enemy defense
 You may summon nearly twice as many spider minions
@@ -78,7 +78,7 @@ Your wings last twice as long
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //bee booties
-            if ((player.velocity.X > 1f && player.velocity.X > 0f) || (player.velocity.X < 1f && player.velocity.X < 0f))
+            if (Soulcheck.GetValue("Bee Booties") && (player.velocity.X > 1f && player.velocity.X > 0f) || (player.velocity.X < 1f && player.velocity.X < 0f))
             {
                 timer++;
                 if (timer > 45)

@@ -75,8 +75,12 @@ Effects of the Profaned Soul Artifact");
             modPlayer.tarraSummon = true;
             //throw
             modPlayer.tarraThrowing = true;
-            //profaned soul artifact
-            modPlayer.pArtifact = true;
+
+            if (Soulcheck.GetValue("Profaned Soul Artifact"))
+            {
+                //profaned soul artifact
+                modPlayer.pArtifact = true;
+            }
         }
 
         public override void AddRecipes()
@@ -97,7 +101,7 @@ Effects of the Profaned Soul Artifact");
             recipe.AddIngredient(calamity.ItemType("TrueTyrantYharimsUltisword"));
             recipe.AddIngredient(calamity.ItemType("Spyker"));
             recipe.AddIngredient(calamity.ItemType("DivineRetribution"));
-            recipe.AddIngredient(calamity.ItemType("PlasmaRifle"));
+            recipe.AddIngredient(calamity.ItemType("HandheldTank"));
             recipe.AddIngredient(calamity.ItemType("Mistlestorm"));
 
             recipe.AddTile(TileID.LunarCraftingStation);

@@ -43,16 +43,16 @@ When you die, you violently explode dealing massive damage");
             {      
                 recipe.AddIngredient(thorium.ItemType("MeleeThorHammer"));
                 recipe.AddIngredient(ItemID.MoltenHamaxe);
-                recipe.AddIngredient(ItemID.Flamarang);
                 recipe.AddIngredient(ItemID.Sunfury);
                 recipe.AddIngredient(ItemID.DarkLance);
+                recipe.AddIngredient(ItemID.PhoenixBlaster);
                 recipe.AddIngredient(ItemID.DemonsEye);
                 recipe.AddIngredient(thorium.ItemType("HellwingButterfly"));
             }
             else
             {
-                recipe.AddIngredient(ItemID.Flamarang);
                 recipe.AddIngredient(ItemID.Sunfury);
+                recipe.AddIngredient(ItemID.PhoenixBlaster);
                 recipe.AddIngredient(ItemID.DemonsEye);
             }
             

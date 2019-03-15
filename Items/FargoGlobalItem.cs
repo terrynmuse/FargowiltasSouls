@@ -143,7 +143,7 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            if (item.type == ItemID.PumpkinPie && player.HasBuff(BuffID.PotionSickness)) return false;
+            if (item.type == ItemID.PumpkinPie && player.statLife != player.statLifeMax2 && player.HasBuff(BuffID.PotionSickness)) return false;
 
             if (item.magic && player.GetModPlayer<FargoPlayer>().ReverseManaFlow)
             {
@@ -171,35 +171,41 @@ namespace FargowiltasSouls.Items
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            //illumite effect
-            if (modPlayer.MidgardForce)
+            if (Soulcheck.GetValue("Illumite Rocket"))
             {
-                thoriumPlayer.rocketsFired++;
-                if (thoriumPlayer.rocketsFired >= 3)
+                //illumite effect
+                if (modPlayer.MidgardForce)
                 {
-                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed * 1.5f;
+                    thoriumPlayer.rocketsFired++;
+                    if (thoriumPlayer.rocketsFired >= 3)
+                    {
+                        Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed * 1.5f;
 
-                    Projectile.NewProjectile(player.Center, velocity, thorium.ProjectileType("IllumiteMissile"), item.damage, item.knockBack, player.whoAmI, 0f, 0f);
-                    thoriumPlayer.rocketsFired = 0;
-                    Main.PlaySound(SoundID.Item14, player.position);
+                        Projectile.NewProjectile(player.Center, velocity, thorium.ProjectileType("IllumiteMissile"), item.damage, item.knockBack, player.whoAmI, 0f, 0f);
+                        thoriumPlayer.rocketsFired = 0;
+                        Main.PlaySound(SoundID.Item14, player.position);
+                    }
                 }
             }
 
-            //plague flask
-            if (modPlayer.HelheimForce && item.damage >= 1 && Main.rand.Next(5) == 0)
+            if (Soulcheck.GetValue("Plague Lord's Flask"))
             {
-                Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed;
+                //plague flask
+                if (modPlayer.HelheimForce && item.damage >= 1 && Main.rand.Next(5) == 0)
+                {
+                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed;
 
-                float num9 = 0.25f;
-                float num10 = (float)Math.Sqrt((velocity.X * velocity.X + velocity.Y * velocity.Y));
-                double num11 = Math.Atan2(velocity.X, velocity.Y);
-                double num12 = num11 + (0.25f * num9);
-                double num13 = num11 - (0.25f * num9);
-                float num14 = Utils.NextFloat(Main.rand) * 0.2f + 0.95f;
-                Projectile.NewProjectile(player.Center, new Vector2(num10 * num14 * (float)Math.Sin(num12), num10 * num14 * (float)Math.Cos(num12)), thorium.ProjectileType("BlightDagger"), item.damage, (int)item.knockBack, player.whoAmI);
-                Projectile.NewProjectile(player.Center, new Vector2(num10 * num14 * (float)Math.Sin(num13), num10 * num14 * (float)Math.Cos(num13)), thorium.ProjectileType("BlightDagger"), item.damage, (int)item.knockBack, player.whoAmI);
+                    float num9 = 0.25f;
+                    float num10 = (float)Math.Sqrt((velocity.X * velocity.X + velocity.Y * velocity.Y));
+                    double num11 = Math.Atan2(velocity.X, velocity.Y);
+                    double num12 = num11 + (0.25f * num9);
+                    double num13 = num11 - (0.25f * num9);
+                    float num14 = Utils.NextFloat(Main.rand) * 0.2f + 0.95f;
+                    Projectile.NewProjectile(player.Center, new Vector2(num10 * num14 * (float)Math.Sin(num12), num10 * num14 * (float)Math.Cos(num12)), thorium.ProjectileType("BlightDagger"), item.damage, (int)item.knockBack, player.whoAmI);
+                    Projectile.NewProjectile(player.Center, new Vector2(num10 * num14 * (float)Math.Sin(num13), num10 * num14 * (float)Math.Cos(num13)), thorium.ProjectileType("BlightDagger"), item.damage, (int)item.knockBack, player.whoAmI);
+                }
             }
-
+            
             //folv effect
             if (modPlayer.VanaheimForce)
             {
@@ -236,7 +242,7 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            if (item.type == ItemID.PumpkinPie && modPlayer.PumpkinEnchant && !modPlayer.TerrariaSoul)
+            if (item.type == ItemID.PumpkinPie && player.statLife != player.statLifeMax2 && modPlayer.PumpkinEnchant && !modPlayer.TerrariaSoul)
             {
                 int heal = player.statLifeMax2 - player.statLife;
                 player.HealEffect(heal);

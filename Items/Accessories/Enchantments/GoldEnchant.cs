@@ -117,8 +117,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         private void Thorium(Player player, bool hideVisual)
         {
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            //proof of avarice
-            thoriumPlayer.avarice2 = true;
+            if (Soulcheck.GetValue("Proof of Avarice"))
+            {
+                //proof of avarice
+                thoriumPlayer.avarice2 = true;
+            }
+            
             //shield
             timer++;
             if (timer >= 30)

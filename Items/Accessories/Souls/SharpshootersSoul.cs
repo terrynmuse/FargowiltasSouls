@@ -62,8 +62,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.GetModPlayer<FargoPlayer>(mod).RangedSoul = true;
             player.rangedDamage += .3f;
             player.rangedCrit += 15;
-            //sniper scope
-            player.scope = true;
+
+            if (Soulcheck.GetValue("Sniper Scope"))
+            {
+                player.scope = true;
+            }
 
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
         }

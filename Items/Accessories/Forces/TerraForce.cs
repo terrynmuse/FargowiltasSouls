@@ -15,9 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terra Force");
-            string tooltip = "''";
-
-                
+            string tooltip = "'The land lends it's strength\n'";
 
             if (thorium == null)
             {
@@ -41,10 +39,11 @@ Getting hit drops your crit back down
             }
 
             tooltip +=
-@"Attacks may inflict enemies with Lead Poisoning or Stunned
-Grants immunity to fire and lava
-Increases armor penetration by 10
-While standing in lava, you gain 10 more armor penetration, 15% attack speed, and your attacks ignite enemies";
+@"150% increased weapon size
+Attacks may inflict enemies with Lead Poisoning
+Grants immunity to fire, fall damage, and lava
+Increases armor penetration by 5
+While standing in lava, you gain 15 more armor penetration, 15% attack speed, and your attacks ignite enemies";
                 
             Tooltip.SetDefault(tooltip);
 
@@ -84,8 +83,11 @@ While standing in lava, you gain 10 more armor penetration, 15% attack speed, an
                 modPlayer.CopperEnchant = true;
                 //EoC Shield
                 player.dash = 2;
-                //shield
-                modPlayer.IronEffect();
+                if (Soulcheck.GetValue("Iron Shield"))
+                {
+                    //shield
+                    modPlayer.IronEffect();
+                }
                 //magnet
                 if (Soulcheck.GetValue("Iron Magnet"))
                 {

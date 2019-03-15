@@ -64,10 +64,10 @@ Nearby allies that die drop a wisp of spirit energy");
         {
             //general
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.radiantBoost += 0.4f;
-            thoriumPlayer.radiantSpeed -= 0.25f;
-            thoriumPlayer.healingSpeed += 0.25f;
-            thoriumPlayer.radiantCrit += 20;
+            thoriumPlayer.radiantBoost += 0.3f;
+            thoriumPlayer.radiantSpeed -= 0.2f;
+            thoriumPlayer.healingSpeed += 0.2f;
+            thoriumPlayer.radiantCrit += 15;
             //support stash
             thoriumPlayer.supportSash = true;
             thoriumPlayer.quickBelt = true;
@@ -143,7 +143,7 @@ Nearby allies that die drop a wisp of spirit energy");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //recipe.AddIngredient(null, "BardEssence");
+            recipe.AddIngredient(null, "HealerEssence");
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 

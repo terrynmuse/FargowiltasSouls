@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pungent Eyeball");
-            Tooltip.SetDefault(@"Grants immunity to Rotting
+            Tooltip.SetDefault(@"Grants immunity to Rotting and the Tongue
 Increases your max number of minions by 2
 Increases your max number of sentries by 2
 'It's fermenting...'");
@@ -29,6 +29,7 @@ Increases your max number of sentries by 2
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[mod.BuffType("Rotting")] = true;
+            player.buffImmune[BuffID.TheTongue] = true;
             player.maxMinions += 2;
             player.maxTurrets += 2;
         }

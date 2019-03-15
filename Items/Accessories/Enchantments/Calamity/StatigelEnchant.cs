@@ -44,9 +44,28 @@ Summons a mini slime god to fight for you, the type depends on what world evil y
             calamityPlayer.statigelSet = true;
             player.doubleJumpSail = true;
             player.jumpBoost = true;
-            //summon
-            calamityPlayer.slimeGod = true;
-            modPlayer.AddMinion("Slime God Minion", calamity.ProjectileType("SlimeGod"), 33, 0);
+
+            if (Soulcheck.GetValue("Slime God Minion"))
+            {
+                //summon
+                calamityPlayer.slimeGod = true;
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    if (player.FindBuffIndex(calamity.BuffType("SlimeGod")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("SlimeGod"), 3600, true);
+                    }
+                    if (WorldGen.crimson && player.ownedProjectileCounts[calamity.ProjectileType("SlimeGodAlt")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SlimeGodAlt"), 33, 0f, Main.myPlayer, 0f, 0f);
+                        return;
+                    }
+                    if (!WorldGen.crimson && player.ownedProjectileCounts[calamity.ProjectileType("SlimeGod")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SlimeGod"), 33, 0f, Main.myPlayer, 0f, 0f);
+                    }
+                }
+            }
         }
 
         public override void AddRecipes()

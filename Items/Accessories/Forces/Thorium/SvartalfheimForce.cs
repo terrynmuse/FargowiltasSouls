@@ -60,23 +60,28 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             player.fireWalk = true;
             player.lavaImmune = true;
             player.buffImmune[24] = true;
-            //eye of the storm
-            timer++;
-            if (timer > 60)
+
+            if (Soulcheck.GetValue("Eye of the Storm"))
             {
-                if (player.direction > 0)
+                //eye of the storm
+                timer++;
+                if (timer > 60)
                 {
-                    Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    timer = 0;
-                }
-                if (player.direction < 0)
-                {
-                    Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    timer = 0;
+                    if (player.direction > 0)
+                    {
+                        Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
+                        timer = 0;
+                    }
+                    if (player.direction < 0)
+                    {
+                        Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
+                        timer = 0;
+                    }
                 }
             }
+            
             //woofers
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)

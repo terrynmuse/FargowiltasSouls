@@ -46,7 +46,6 @@ You occasionally birth a tentacle of abyssal energy that attacks nearby enemies
 Critical strikes will generate up to 15 shadow wisps
 Pressing the 'Special Ability' key will unleash them towards your cursor's position
 A biotech probe will assist you in healing your allies
-Your attacks have a 15% chance to release a blinding flash of light
 Summons a Li'l Cherub and Li'l Devil
 
 Pressing the 'Special Ability' key will summon a chorus of music playing ghosts
@@ -148,24 +147,30 @@ Summons several pets
             modPlayer.IcyEnchant = true;
             modPlayer.AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
             modPlayer.AddPet("Owl Pet", hideVisual, thorium.BuffType("SnowyOwlBuff"), thorium.ProjectileType("SnowyOwlPet"));
-            //icy set bonus
-            thoriumPlayer.icySet = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
+            if (Soulcheck.GetValue("Icy Barrier"))
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
-            }
-            //whispering
-            thoriumPlayer.whisperingSet = true;
-            if (player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle")] + player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle2")] < 6 && player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacleSpawn")] < 1)
-            {
-                whisperingTimer++;
-                if (whisperingTimer > 30)
+                //icy set bonus
+                thoriumPlayer.icySet = true;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)
                 {
-                    Projectile.NewProjectile(player.Center.X + (float)Main.rand.Next(-300, 300), player.Center.Y, 0f, 0f, thorium.ProjectileType("WhisperingTentacleSpawn"), 50, 0f, player.whoAmI, 0f, 0f);
-                    whisperingTimer = 0;
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
                 }
             }
-
+            if (Soulcheck.GetValue("Whispering Tentacles"))
+            {
+                //whispering
+                thoriumPlayer.whisperingSet = true;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle")] + player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle2")] < 6 && player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacleSpawn")] < 1)
+                {
+                    whisperingTimer++;
+                    if (whisperingTimer > 30)
+                    {
+                        Projectile.NewProjectile(player.Center.X + (float)Main.rand.Next(-300, 300), player.Center.Y, 0f, 0f, thorium.ProjectileType("WhisperingTentacleSpawn"), 50, 0f, player.whoAmI, 0f, 0f);
+                        whisperingTimer = 0;
+                    }
+                }
+            }
+            
             //ALFHEIM
             //lil cherub
             modPlayer.SacredEnchant = true;
@@ -177,6 +182,8 @@ Summons several pets
             modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);
             //biotech
             mod.GetItem("BiotechEnchant").UpdateAccessory(player, hideVisual);
+            //warlock
+            thoriumPlayer.warlockSet = true;
             //goat pet
             modPlayer.BinderEnchant = true;
             modPlayer.AddPet("Holy Goat Pet", hideVisual, thorium.BuffType("HolyGoatBuff"), thorium.ProjectileType("HolyGoat"));
@@ -189,108 +196,124 @@ Summons several pets
             //SVARTALFHEIM
             //includes bronze lightning
             modPlayer.SvartalfheimForce = true;
-            //eye of the storm
-            stormTimer++;
-            if (stormTimer > 60)
+            if (Soulcheck.GetValue("Eye of the Storm"))
             {
-                if (player.direction > 0)
+                //eye of the storm
+                stormTimer++;
+                if (stormTimer > 60)
                 {
-                    Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    stormTimer = 0;
-                }
-                if (player.direction < 0)
-                {
-                    Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    stormTimer = 0;
+                    if (player.direction > 0)
+                    {
+                        Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
+                        stormTimer = 0;
+                    }
+                    if (player.direction < 0)
+                    {
+                        Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
+                        stormTimer = 0;
+                    }
                 }
             }
             //rebuttal
             thoriumPlayer.championShield = true;
             //copper enchant
             player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
-            //ogre sandals
-            if (player.velocity.Y > 0f && thoriumPlayer.falling < 120)
+            if (Soulcheck.GetValue("Ogre Sandals"))
             {
-                thoriumPlayer.falling += 3;
-            }
-            if (player.velocity.Y < 0f)
-            {
-                thoriumPlayer.falling = 0;
-            }
-            if (player.velocity.Y == 0f && Collision.SolidCollision(player.position, player.width, player.height + 4) && thoriumPlayer.falling > 50)
-            {
-                if (thoriumPlayer.falling >= 100)
+                //ogre sandals
+                if (player.velocity.Y > 0f && thoriumPlayer.falling < 120)
                 {
-                    Main.PlaySound(SoundID.Item70, player.position);
-                    Main.PlaySound(SoundID.Item69, player.position);
-                    float num = 16f;
-                    int num2 = 0;
-                    while (num2 < num)
+                    thoriumPlayer.falling += 3;
+                }
+                if (player.velocity.Y < 0f)
+                {
+                    thoriumPlayer.falling = 0;
+                }
+                if (player.velocity.Y == 0f && Collision.SolidCollision(player.position, player.width, player.height + 4) && thoriumPlayer.falling > 50)
+                {
+                    if (thoriumPlayer.falling >= 100)
                     {
-                        Vector2 vector = Vector2.UnitX * 0f;
-                        vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(20f, 5f);
-                        vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
-                        int num3 = Dust.NewDust(player.Center, 0, 0, 0, 0f, 0f, 0, default(Color), 1f);
-                        Main.dust[num3].scale = 1.35f;
-                        Main.dust[num3].noGravity = true;
-                        Main.dust[num3].position = player.Center + vector;
-                        Dust dust = Main.dust[num3];
-                        dust.position.Y = dust.position.Y + 12f;
-                        Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
-                        int num4 = num2;
-                        num2 = num4 + 1;
+                        Main.PlaySound(SoundID.Item70, player.position);
+                        Main.PlaySound(SoundID.Item69, player.position);
+                        float num = 16f;
+                        int num2 = 0;
+                        while (num2 < num)
+                        {
+                            Vector2 vector = Vector2.UnitX * 0f;
+                            vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(20f, 5f);
+                            vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
+                            int num3 = Dust.NewDust(player.Center, 0, 0, 0, 0f, 0f, 0, default(Color), 1f);
+                            Main.dust[num3].scale = 1.35f;
+                            Main.dust[num3].noGravity = true;
+                            Main.dust[num3].position = player.Center + vector;
+                            Dust dust = Main.dust[num3];
+                            dust.position.Y = dust.position.Y + 12f;
+                            Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
+                            int num4 = num2;
+                            num2 = num4 + 1;
+                        }
+                    }
+                    Main.PlaySound(SoundID.Item69, player.position);
+                    float num5 = 6f + 0.05f * thoriumPlayer.falling;
+                    int num6 = (int)(50.0 + thoriumPlayer.falling * 0.25);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 8f, 5f + thoriumPlayer.falling * 0.035f, 0f, thorium.ProjectileType("CrashSurge"), num6, num5, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 8f, -5f - thoriumPlayer.falling * 0.035f, 0f, thorium.ProjectileType("CrashSurge"), num6, num5, Main.myPlayer, 0f, 0f);
+                    thoriumPlayer.falling = 0;
+                }
+            }
+            if (Soulcheck.GetValue("Greedy Magnet"))
+            {
+                //greedy magnet
+                for (int i = 0; i < 400; i++)
+                {
+                    if (Main.item[i].active && Main.item[i].noGrabDelay == 0 && Vector2.Distance(player.Center, Main.item[i].position) < 700f)
+                    {
+                        Main.item[i].beingGrabbed = true;
+                        float num = 10f;
+                        Vector2 vector = new Vector2(Main.item[i].position.X + (Main.item[i].width / 2), Main.item[i].position.Y + (Main.item[i].height / 2));
+                        float num2 = player.Center.X - vector.X;
+                        float num3 = player.Center.Y - vector.Y;
+                        float num4 = (float)Math.Sqrt((num2 * num2 + num3 * num3));
+                        num4 = num / num4;
+                        num2 *= num4;
+                        num3 *= num4;
+                        int num5 = 5;
+                        Main.item[i].velocity.X = (Main.item[i].velocity.X * (num5 - 1) + num2) / num5;
+                        Main.item[i].velocity.Y = (Main.item[i].velocity.Y * (num5 - 1) + num3) / num5;
                     }
                 }
-                Main.PlaySound(SoundID.Item69, player.position);
-                float num5 = 6f + 0.05f * thoriumPlayer.falling;
-                int num6 = (int)(50.0 + thoriumPlayer.falling * 0.25);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y + 8f, 5f + thoriumPlayer.falling * 0.035f, 0f, thorium.ProjectileType("CrashSurge"), num6, num5, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y + 8f, -5f - thoriumPlayer.falling * 0.035f, 0f, thorium.ProjectileType("CrashSurge"), num6, num5, Main.myPlayer, 0f, 0f);
-                thoriumPlayer.falling = 0;
-            }
-            //greedy magnet
-            for (int i = 0; i < 400; i++)
-            {
-                if (Main.item[i].active && Main.item[i].noGrabDelay == 0 && Vector2.Distance(player.Center, Main.item[i].position) < 700f)
-                {
-                    Main.item[i].beingGrabbed = true;
-                    float num = 10f;
-                    Vector2 vector = new Vector2(Main.item[i].position.X + (Main.item[i].width / 2), Main.item[i].position.Y + (Main.item[i].height / 2));
-                    float num2 = player.Center.X - vector.X;
-                    float num3 = player.Center.Y - vector.Y;
-                    float num4 = (float)Math.Sqrt((num2 * num2 + num3 * num3));
-                    num4 = num / num4;
-                    num2 *= num4;
-                    num3 *= num4;
-                    int num5 = 5;
-                    Main.item[i].velocity.X = (Main.item[i].velocity.X * (num5 - 1) + num2) / num5;
-                    Main.item[i].velocity.Y = (Main.item[i].velocity.Y * (num5 - 1) + num3) / num5;
-                }
-            }
+            }  
             //EoC Shield
             player.dash = 2;
-            //iron shield raise
-            player.GetModPlayer<FargoPlayer>(mod).IronEffect();
+            if (Soulcheck.GetValue("Iron Shield"))
+            {
+                //iron shield raise
+                modPlayer.IronEffect();
+            }
             //titanium
-            player.GetModPlayer<FargoPlayer>(mod).TitaniumEffect();
+            modPlayer.TitaniumEffect();
             //abyssal shell
             thoriumPlayer.AbyssalShell = true;
-            //conduit set bonus
-            thoriumPlayer.conduitSet = true;
-            thoriumPlayer.orbital = true;
-            thoriumPlayer.orbitalRotation1 = Utils.RotatedBy(thoriumPlayer.orbitalRotation1, -0.10000000149011612, default(Vector2));
-            Lighting.AddLight(player.position, 0.2f, 0.35f, 0.7f);
-            if ((player.velocity.X > 0f || player.velocity.X < 0f) && thoriumPlayer.circuitStage < 6)
+            if (Soulcheck.GetValue("Conduit Shield"))
             {
-                thoriumPlayer.circuitCharge++;
-                for (int i = 0; i < 1; i++)
+                //conduit set bonus
+                thoriumPlayer.conduitSet = true;
+                thoriumPlayer.orbital = true;
+                thoriumPlayer.orbitalRotation1 = Utils.RotatedBy(thoriumPlayer.orbitalRotation1, -0.10000000149011612, default(Vector2));
+                Lighting.AddLight(player.position, 0.2f, 0.35f, 0.7f);
+                if ((player.velocity.X > 0f || player.velocity.X < 0f) && thoriumPlayer.circuitStage < 6)
                 {
-                    int num = Dust.NewDust(new Vector2(player.position.X, player.position.Y) - player.velocity * 0.5f, player.width, player.height, 185, 0f, 0f, 100, default(Color), 1f);
-                    Main.dust[num].noGravity = true;
+                    thoriumPlayer.circuitCharge++;
+                    for (int i = 0; i < 1; i++)
+                    {
+                        int num = Dust.NewDust(new Vector2(player.position.X, player.position.Y) - player.velocity * 0.5f, player.width, player.height, 185, 0f, 0f, 100, default(Color), 1f);
+                        Main.dust[num].noGravity = true;
+                    }
                 }
             }
+            
             //meteor effect
             modPlayer.MeteorEffect(60);
             //pets
@@ -301,57 +324,68 @@ Summons several pets
             //MIDGARD
             //includes illumite rocket and jester bell
             modPlayer.MidgardForce = true;
-
-            //lodestone
-            thoriumPlayer.orbital = true;
-            thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.05000000074505806, default(Vector2));
-            if (player.statLife > player.statLifeMax * 0.75)
+            if (Soulcheck.GetValue("Lodestone Resistance"))
             {
-                thoriumPlayer.thoriumEndurance += 0.1f;
-                thoriumPlayer.lodestoneStage = 1;
-            }
-            if (player.statLife <= player.statLifeMax * 0.75 && player.statLife > player.statLifeMax * 0.5)
-            {
-                thoriumPlayer.thoriumEndurance += 0.2f;
-                thoriumPlayer.lodestoneStage = 2;
-            }
-            if (player.statLife <= player.statLifeMax * 0.5)
-            {
-                thoriumPlayer.thoriumEndurance += 0.3f;
-                thoriumPlayer.lodestoneStage = 3;
-            }
-            //eye of beholder
-            lightGen++;
-            if (lightGen >= 40)
-            {
-                for (int i = 0; i < 10; i++)
+                //lodestone
+                thoriumPlayer.orbital = true;
+                thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.05000000074505806, default(Vector2));
+                if (player.statLife > player.statLifeMax * 0.75)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze"), 0, 0f, player.whoAmI, i, 0f);
+                    thoriumPlayer.thoriumEndurance += 0.1f;
+                    thoriumPlayer.lodestoneStage = 1;
                 }
-                for (int j = 0; j < 10; j++)
+                if (player.statLife <= player.statLifeMax * 0.75 && player.statLife > player.statLifeMax * 0.5)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze2"), 0, 0f, player.whoAmI, j, 0f);
+                    thoriumPlayer.thoriumEndurance += 0.2f;
+                    thoriumPlayer.lodestoneStage = 2;
                 }
-                lightGen = 0;
+                if (player.statLife <= player.statLifeMax * 0.5)
+                {
+                    thoriumPlayer.thoriumEndurance += 0.3f;
+                    thoriumPlayer.lodestoneStage = 3;
+                }
+            }
+            if (Soulcheck.GetValue("Eye of the Beholder"))
+            {
+                //eye of beholder
+                lightGen++;
+                if (lightGen >= 40)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze"), 0, 0f, player.whoAmI, i, 0f);
+                    }
+                    for (int j = 0; j < 10; j++)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze2"), 0, 0f, player.whoAmI, j, 0f);
+                    }
+                    lightGen = 0;
+                }
             }
             //slime pet
             modPlayer.AddPet("Pink Slime Pet", hideVisual, thorium.BuffType("PinkSlimeBuff"), thorium.ProjectileType("PinkSlime"));
             modPlayer.IllumiteEnchant = true;
-            //terrarium set bonus
-            terrariumTimer++;
-            if (terrariumTimer > 60)
+            if (Soulcheck.GetValue("Terrarium Spirits"))
             {
-                Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraRed"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X + 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraOrange"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X + 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraYellow"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraGreen"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X - 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraBlue"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X - 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraIndigo"), 50, 0f, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraPurple"), 50, 0f, Main.myPlayer, 0f, 0f);
-                terrariumTimer = 0;
+                //terrarium set bonus
+                terrariumTimer++;
+                if (terrariumTimer > 60)
+                {
+                    Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraRed"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X + 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraOrange"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X + 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraYellow"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraGreen"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X - 4f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraBlue"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X - 9f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraIndigo"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, 0f, 2f, thorium.ProjectileType("TerraPurple"), 50, 0f, Main.myPlayer, 0f, 0f);
+                    terrariumTimer = 0;
+                }
             }
-            //crietz
-            thoriumPlayer.crietzAcc = true;
+            if (Soulcheck.GetValue("Crietz"))
+            {
+                //crietz
+                thoriumPlayer.crietzAcc = true;
+            }
 
             //VANAHEIM
             //includes malignant debuff, folv bolts, white dwarf flares
@@ -359,20 +393,24 @@ Summons several pets
             //folv
             thoriumPlayer.folvSet = true;
             thoriumPlayer.folvBonus2 = true;
-            //mana charge rockets
-            player.manaRegen++;
-            player.manaRegenDelay -= 2;
-            if (player.statMana > 0)
+
+            if (Soulcheck.GetValue("Mana-Charged Rocketeers"))
             {
-                player.rocketBoots = 1;
-                if (player.rocketFrame)
+                //mana charge rockets
+                player.manaRegen++;
+                player.manaRegenDelay -= 2;
+                if (player.statMana > 0)
                 {
-                    if (Main.rand.Next(2) == 0)
+                    player.rocketBoots = 1;
+                    if (player.rocketFrame)
                     {
-                        player.statMana -= 2;
-                        Dust.NewDust(new Vector2(player.position.X, player.position.Y + 20f), player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 100, default(Color), 1.5f);
+                        if (Main.rand.Next(2) == 0)
+                        {
+                            player.statMana -= 2;
+                            Dust.NewDust(new Vector2(player.position.X, player.position.Y + 20f), player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 100, default(Color), 1.5f);
+                        }
+                        player.rocketTime = 1;
                     }
-                    player.rocketTime = 1;
                 }
             }
 
@@ -397,18 +435,27 @@ Summons several pets
                     dust.velocity *= 0f;
                 }
             }
-            //dragon 
-            thoriumPlayer.dragonSet = true;
+            if (Soulcheck.GetValue("Dragon Flames"))
+            {
+                //dragon 
+                thoriumPlayer.dragonSet = true;
+            }
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
             //darkness, pets
             modPlayer.ShadowEffect(hideVisual);
             //demon blood badge
             thoriumPlayer.CrimsonBadge = true;
-            //flesh set bonus
-            thoriumPlayer.Symbiotic = true;
-            //vampire gland
-            thoriumPlayer.vampireGland = true;
+            if (Soulcheck.GetValue("Flesh Drops"))
+            {
+                //flesh set bonus
+                thoriumPlayer.Symbiotic = true;
+            }
+            if (Soulcheck.GetValue("Vampire Gland"))
+            {
+                //vampire gland
+                thoriumPlayer.vampireGland = true;
+            }
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
             //crimson regen, pets
