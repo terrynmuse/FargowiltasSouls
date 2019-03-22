@@ -278,8 +278,6 @@ and most of SoT not mentioned because meme tooltip length
             {
                 thoriumPlayer.yuma = true;
             }
-            //complete set
-            thoriumPlayer.throwGuide4 = true;
 
             //HEALER
             thoriumPlayer.radiantBoost += 0.4f;

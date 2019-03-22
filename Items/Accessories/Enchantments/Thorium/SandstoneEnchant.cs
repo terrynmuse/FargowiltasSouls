@@ -20,8 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Sandstone Enchantment");
             Tooltip.SetDefault(
 @"'Enveloped by desert winds'
-Desert winds will augment your boots, giving you a double jump
-Effects of Desert Wind Rune");
+Desert winds will augment your boots, giving you a double jump");
             //Thrown attacks might refresh your jump
         }
 
@@ -46,8 +45,6 @@ Effects of Desert Wind Rune");
             {
                 Projectile.NewProjectile(player.Center.X - 4f, player.Center.Y, 0f, 0f, thorium.ProjectileType("SandstoneEffect"), 0, 0f, Main.myPlayer, 0f, 0f);
             }
-            //desert wind rune
-            player.AddBuff(thorium.BuffType("DesertDexterity"), 30, true);
         }
 
         public override void AddRecipes()
@@ -60,7 +57,7 @@ Effects of Desert Wind Rune");
             recipe.AddIngredient(thorium.ItemType("iSandStoneMail"));
             recipe.AddIngredient(thorium.ItemType("jSandStoneGreaves"));
             recipe.AddIngredient(thorium.ItemType("Wreath"));
-            recipe.AddIngredient(thorium.ItemType("DesertWindRune"));
+            recipe.AddIngredient(thorium.ItemType("BaseballBat"));
             recipe.AddIngredient(thorium.ItemType("StoneThrowingSpear"), 300);
             recipe.AddIngredient(thorium.ItemType("OceanThrowingAxe"), 300);
             recipe.AddIngredient(thorium.ItemType("gSandStoneThrowingKnife"), 300);

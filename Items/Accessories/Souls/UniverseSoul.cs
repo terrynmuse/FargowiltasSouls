@@ -111,8 +111,6 @@ Grants all other effects of material Souls";
             {
                 thoriumPlayer.yuma = true;
             }
-            //complete set
-            thoriumPlayer.throwGuide4 = true;
 
             //HEALER
             thoriumPlayer.radiantBoost += 0.4f;

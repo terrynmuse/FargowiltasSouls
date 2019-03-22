@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
         {
             DisplayName.SetDefault("Force of Svartalfheim");
             Tooltip.SetDefault(
-@"''
+@"'Behold the craftsmanship of the Dark Elves...'
 10% increased damage and damage reduction
 Immune to intense heat
 Attacks have a chance to shock enemies with chain lightning and a lightning bolt

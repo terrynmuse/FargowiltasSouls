@@ -19,8 +19,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
         {
             DisplayName.SetDefault("Mollusk Enchantment");
             Tooltip.SetDefault(
-@"''
-soon TM");
+@"'The world is your oyster'
+
+");
         }
 
         public override void SetDefaults()
@@ -29,8 +30,8 @@ soon TM");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 9;//
-            item.value = 1000000;//
+            item.rare = 5;
+            item.value = 150000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -53,7 +54,7 @@ soon TM");
             recipe.AddIngredient(calamity.ItemType("GiantPearl"));
             recipe.AddIngredient(calamity.ItemType("AmidiasPendant"));
             recipe.AddIngredient(calamity.ItemType("SeafoamBomb"));
-            recipe.AddIngredient(calamity.ItemType("Riptide"));
+            recipe.AddIngredient(calamity.ItemType("AquamarineStaff"));
             recipe.AddIngredient(calamity.ItemType("MagicalConch"));
             recipe.AddIngredient(calamity.ItemType("Waywasher"));
             recipe.AddIngredient(calamity.ItemType("AmidiasTrident"));

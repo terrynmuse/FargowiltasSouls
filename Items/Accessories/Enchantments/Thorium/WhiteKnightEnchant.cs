@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("White Knight Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Protect e-girls at all costs'
 Magical attacks have a 33% chance to recover some mana
 Effects of Shade Band
 Summons a Moogle pet");

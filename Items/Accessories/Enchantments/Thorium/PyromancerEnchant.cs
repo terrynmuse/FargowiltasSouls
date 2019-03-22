@@ -67,7 +67,7 @@ Pressing the 'Special Ability' key will unleash an echo of Slag Fury's power");
             "PyromancerLeggings",
             "StalagmiteBook",
             "DevilDagger",
-            "AncientFlame",
+            "MortarStaff",
             "MoltenBanner",
             "AlmanacofDespair",
             "NorthLight"

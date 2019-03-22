@@ -38,11 +38,8 @@ Summons a Pet Parrot");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.flightSet = true;
-            modPlayer.AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
-            modPlayer.FlightEnchant = true;
         }
         
         private readonly string[] items =
@@ -54,7 +51,8 @@ Summons a Pet Parrot");
             "HarpyTalon",
             "Aerial",
             "HarpyPelter",
-            "WindyTotemCaller",
+            "PetalBloom",
+            "PetalWand",
             "AvianButterfly"
         };
 
@@ -65,10 +63,8 @@ Summons a Pet Parrot");
             ModRecipe recipe = new ModRecipe(mod);
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
-            
-            recipe.AddIngredient(ItemID.ParrotCracker);
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

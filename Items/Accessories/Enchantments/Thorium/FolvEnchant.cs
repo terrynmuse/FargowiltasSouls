@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Folv's Ancient Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'A man of mystery...'
 Projects a mystical barrier around you
 While above 50% life, every seventh magic cast will unleash damaging mana bolts
 While below 50% life, your defensive capabilities are increased
@@ -91,7 +91,7 @@ Effects of Mana-Charged Rocketeers and Gray Music Player");
             recipe.AddIngredient(null, "MalignantEnchant");
             recipe.AddIngredient(thorium.ItemType("TunePlayerDefense"));
             recipe.AddIngredient(ItemID.UnholyTrident);
-            recipe.AddIngredient(thorium.ItemType("Legacy"));
+            recipe.AddIngredient(thorium.ItemType("AncientFlame"));
             recipe.AddIngredient(thorium.ItemType("AncientFrost"));
             recipe.AddIngredient(thorium.ItemType("AncientSpark"));
             recipe.AddIngredient(thorium.ItemType("AncientLight"));

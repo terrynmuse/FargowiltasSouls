@@ -38,14 +38,18 @@ Summons a pet Cursed Sapling and Eyeball Spring");
             recipe.AddIngredient(ItemID.SpookyHelmet);
             recipe.AddIngredient(ItemID.SpookyBreastplate);
             recipe.AddIngredient(ItemID.SpookyLeggings);
-            recipe.AddIngredient(ItemID.DemonScythe);
             recipe.AddIngredient(ItemID.DeathSickle);
-            
-            if(Fargowiltas.Instance.ThoriumLoaded)
+
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BeholderStaff"));
                 recipe.AddIngredient(thorium.ItemType("CryptWand"));
+                recipe.AddIngredient(ItemID.ButchersChainsaw);
                 recipe.AddIngredient(thorium.ItemType("PaganGrasp"));
+            }
+            else
+            {
+                recipe.AddIngredient(ItemID.ButchersChainsaw);
             }
             
             recipe.AddIngredient(ItemID.CursedSapling);

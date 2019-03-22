@@ -9,6 +9,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class ShadeMasterEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod fargos = ModLoader.GetMod("Fargowiltas");
 
         public override bool Autoload(ref string name)
         {
@@ -59,9 +60,9 @@ Summons a pet Black Cat");
             recipe.AddIngredient(thorium.ItemType("ShadeMasterTreads"));
             recipe.AddIngredient(null, "NinjaEnchant");
             recipe.AddIngredient(thorium.ItemType("ClockWorkBomb"), 300);
+            recipe.AddIngredient(fargos != null ? fargos.ItemType("KrakenThrown") : ItemID.Kraken);
             recipe.AddIngredient(thorium.ItemType("BugenkaiShuriken"), 300);
             recipe.AddIngredient(thorium.ItemType("ShadeKunai"), 300);
-            recipe.AddIngredient(thorium.ItemType("ShadeDagger"));
             recipe.AddIngredient(thorium.ItemType("Soulslasher"), 300);
             recipe.AddIngredient(thorium.ItemType("LihzahrdKukri"), 300);
 

@@ -98,8 +98,6 @@ namespace FargowiltasSouls.Projectiles
             FargoPlayer modPlayer = Main.LocalPlayer.GetModPlayer<FargoPlayer>();
             counter++;
 
-
-
             if (projectile.owner == Main.myPlayer)
             {
                 if (firstTick)
@@ -153,6 +151,16 @@ namespace FargowiltasSouls.Projectiles
 
                         }
                     }*/
+
+                    if (modPlayer.BeeEnchant && (projectile.type == ProjectileID.GiantBee || projectile.type == ProjectileID.Bee) && Main.rand.Next(3) == 0)
+                    {
+                        projectile.usesLocalNPCImmunity = true;
+                        projectile.localNPCHitCooldown = 5;
+                        projectile.penetrate *= 2;
+                        projectile.timeLeft *= 2;
+                        projectile.scale *= 3;
+                        projectile.damage = (int)(projectile.damage * 1.5);
+                    }
                 }
 
                 if (projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
@@ -473,7 +481,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Parrot:
-                    KillPet(projectile, player, BuffID.PetParrot, modPlayer.GoldEnchant || modPlayer.FlightEnchant, "Parrot Pet");
+                    KillPet(projectile, player, BuffID.PetParrot, modPlayer.GoldEnchant, "Parrot Pet");
                     break;
 
                 case ProjectileID.Puppy:

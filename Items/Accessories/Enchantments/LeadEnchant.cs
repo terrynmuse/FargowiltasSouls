@@ -88,7 +88,7 @@ It also spreads to nearby enemies";
             {
                 recipe.AddIngredient(ItemID.LeadShortsword);
                 recipe.AddIngredient(ItemID.LeadPickaxe);
-                recipe.AddIngredient(ItemID.GrayPaint);
+                recipe.AddIngredient(ItemID.GrayPaint, 100);
             }
             
             recipe.AddTile(TileID.DemonAltar);

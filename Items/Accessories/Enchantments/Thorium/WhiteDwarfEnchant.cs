@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("White Dwarf Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Throw with the force of nuclear fusion'
 Critical strikes will unleash ivory flares from the cosmos
 Ivory flares deal 0.5% of the hit target's maximum life as damage");
         }

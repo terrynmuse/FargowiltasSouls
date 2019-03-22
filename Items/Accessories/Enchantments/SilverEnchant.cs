@@ -82,14 +82,14 @@ Summons a sword familiar that scales with minion damage";
                 recipe.AddIngredient(ItemID.SilverBow);
                 recipe.AddIngredient(ItemID.SapphireStaff);
                 recipe.AddIngredient(ItemID.BluePhaseblade);
-                recipe.AddIngredient(thorium.ItemType("ArcaneDust"), 10); 
+                recipe.AddIngredient(ItemID.AquaScepter);
                 recipe.AddIngredient(thorium.ItemType("SapphireButterfly"));
             }
             else
             {
                 recipe.AddIngredient(ItemID.SilverBroadsword);
                 recipe.AddIngredient(ItemID.SapphireStaff);
-                recipe.AddIngredient(ItemID.BluePhaseblade);
+                recipe.AddIngredient(ItemID.AquaScepter);
             }
 
             recipe.AddTile(TileID.DemonAltar);

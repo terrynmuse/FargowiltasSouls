@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Calamities");
             Tooltip.SetDefault(
-@"''
+@"'Take only lives, leave only wastelands'
 All armor bonuses from Victide, Aerospec, and Statigel
 All armor bonuses from Daedalus, Reaver, and Astral
 All armor bonuses from Ataxia and Xeroc

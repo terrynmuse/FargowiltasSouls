@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Bronze Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'You have the favor of Zeus'
 Attacks have a chance to shock enemies with chain lightning
 Thrown damage has a chance to cause a lightning bolt to strike
 Effects of Champion's Rebuttal, Spartan Sadals, and Spartan's Subwoofer");

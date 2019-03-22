@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Illumite Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'As if you weren't pink enough'
 Most of your ranged weapons take on special properties
 Every 5 bullets fired will unleash a multi-hit illumite bullet
 Every 4 arrows fired will unleash a barrage of illumite energy

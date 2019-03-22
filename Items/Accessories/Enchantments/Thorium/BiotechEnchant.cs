@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Biotech Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Anyways, that's how I lost my medical license'
 A biotech probe will assist you in healing your allies
 Heals ally life equal to your bonus healing");
         }

@@ -29,7 +29,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Soul of Yggdrasil");
 
-            Tooltip.SetDefault(@"''
+            Tooltip.SetDefault(@"'The true might of the 9 realms is yours!'
 Does a ton of things, tooltip coming soon TM");
 
             /*

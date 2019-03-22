@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
         {
             DisplayName.SetDefault("Force of Jotunheim");
             Tooltip.SetDefault(
-@"''
+@"'A bitter cold, the power of the Jotuns...'
 Allows you to breathe underwater
 Grants the ability to swim and quicker movement in water
 Critical strikes release a splash of foam, slowing nearby enemies

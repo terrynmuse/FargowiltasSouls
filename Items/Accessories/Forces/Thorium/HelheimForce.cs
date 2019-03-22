@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
         {
             DisplayName.SetDefault("Force of Helheim");
             Tooltip.SetDefault(
-@"''
+@"'From the halls of Hel, a vision of the end...'
 Your boots vibrate at an unreal frequency, increasing movement speed significantly
 While moving, all damage is increased
 Your attacks have a chance to unleash an explosion of Dragon's Flame

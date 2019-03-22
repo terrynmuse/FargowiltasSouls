@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
         {
             DisplayName.SetDefault("Force of Asgard");
             Tooltip.SetDefault(
-@"''
+@"'What's this about Ragnarok?'
 Produces a floating globule every half second
 Every globule increases defense and makes your next attack a mini-crit
 Attacks have a 20% chance to unleash aquatic homing daggers all around you

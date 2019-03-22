@@ -8,13 +8,6 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 {
     public class DestroyerGun : ModItem
     {
-        public override string Texture => "Terraria/Item_3475";
-
-        public override bool Autoload(ref string name)
-        {
-            return false;
-        }
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Destroyer Gun");
@@ -36,7 +29,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.value = 50000;
             item.rare = 5;
             item.autoReuse = true;
-            item.shoot = ProjectileID.HornetStinger;
+            item.shoot = 1;
             item.shootSpeed = 10f;
         }
 

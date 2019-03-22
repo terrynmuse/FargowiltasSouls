@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Iridescent Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'All the colors of the rainbow'
 Your radiant damage has a 15% chance to release a blinding flash of light
 The flash heals nearby allies equal to your bonus healing and confuses enemies
 Effects of Equalizer");

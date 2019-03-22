@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Jester Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Clowning around'
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Fan Letter");
         }

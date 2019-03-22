@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Lodestone Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Sturdy'
 Damage reduction is increased by 10% at every 25% segment of life
 Maximum damage reduction is reached at 30% while below 50% life
 Effects of Astro-Beetle Husk");

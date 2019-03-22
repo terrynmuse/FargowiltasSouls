@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
         {
             DisplayName.SetDefault("Force of Vanaheim");
             Tooltip.SetDefault(
-@"''
+@"'Holds a glimpse of the future...'
 Projects a mystical barrier around you
 Every seventh attack will unleash damaging mana bolts
 Critical strikes engulf enemies in a long lasting void flame and unleash ivory flares

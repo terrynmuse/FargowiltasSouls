@@ -15,8 +15,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip = 
 @"'According to all known laws of aviation, there is no way a bee should be able to fly'
-Increases the strength of friendly bees
-Bees ignore most enemy defense
+50% increased bee damage
+33% chance for any friendly bee to become a Mega Bee
+Mega Bees ignore most enemy defense, immune frames, and last twice as long
 ";
 
             if(thorium != null)
@@ -72,18 +73,19 @@ Bees ignore most enemy defense
             {      
                 recipe.AddIngredient(thorium.ItemType("BeeBoots"));
                 recipe.AddIngredient(ItemID.BeeGun);
-                recipe.AddIngredient(thorium.ItemType("HoneySuckle"));
                 recipe.AddIngredient(thorium.ItemType("HoneyRecorder"));
+                recipe.AddIngredient(ItemID.WaspGun);
                 recipe.AddIngredient(thorium.ItemType("SweetWingButterfly"));
             }
             else
             {
                 recipe.AddIngredient(ItemID.BeeGun);
+                recipe.AddIngredient(ItemID.WaspGun);
             }
             
             recipe.AddIngredient(ItemID.Nectar);
             
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

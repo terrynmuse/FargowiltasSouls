@@ -16,7 +16,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip = 
 @"'Arachniphobia is punishable by arachnid induced death'
-Your spider minions ignore enemy immunity frames
 You may summon nearly twice as many spider minions
 ";
 

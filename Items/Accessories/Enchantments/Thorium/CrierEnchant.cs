@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Crier Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Nothing to cry about'
 10% increased inspiration regeneration
 Effects of Music Notes");
         }

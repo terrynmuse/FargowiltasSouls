@@ -90,6 +90,8 @@ namespace FargowiltasSouls
         public bool LeadEnchant;
         public bool GladEnchant;
         public bool GoldEnchant;
+        public bool GoldShell;
+        private int goldCD = 0;
         public bool CactusEnchant;
         public bool BeetleEnchant;
         public bool ForbiddenEnchant;
@@ -129,7 +131,6 @@ namespace FargowiltasSouls
         public bool WarlockEnchant;
         public bool SacredEnchant;
         public bool BinderEnchant;
-        public bool FlightEnchant;
         public bool LivingWoodEnchant;
         public bool DepthEnchant;
         public bool KnightEnchant;
@@ -366,6 +367,12 @@ namespace FargowiltasSouls
 
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/ZaWarudo").WithVolume(1f).WithPitchVariance(.5f), player.Center);
             }
+
+            if (Fargowiltas.GoldKey.JustPressed && GoldEnchant && goldCD == 0)
+            {
+                player.AddBuff(mod.BuffType("GoldenStasis"), 150);
+                goldCD = 2;//7350;
+            }
         }
 
         public override void ResetEffects()
@@ -415,6 +422,7 @@ namespace FargowiltasSouls
             LeadEnchant = false;
             GladEnchant = false;
             GoldEnchant = false;
+            GoldShell = false;
             CactusEnchant = false;
             BeetleEnchant = false;
             ForbiddenEnchant = false;
@@ -448,7 +456,6 @@ namespace FargowiltasSouls
             WarlockEnchant = false;
             SacredEnchant = false;
             BinderEnchant = false;
-            FlightEnchant = false;
             LivingWoodEnchant = false;
             DepthEnchant = false;
             KnightEnchant = false;
@@ -783,6 +790,39 @@ namespace FargowiltasSouls
             if (CopperEnchant && copperCD > 0)
             {
                 copperCD--;
+            }
+
+            if (GoldEnchant && goldCD > 0)
+            {
+                goldCD--;
+            }
+
+            if (GoldShell)
+            {
+                player.controlJump = false;
+                player.controlDown = false;
+                player.controlLeft = false;
+                player.controlRight = false;
+                player.controlUp = false;
+                player.controlUseItem = false;
+                player.controlUseTile = false;
+                player.controlThrow = false;
+                player.gravDir = 1f;
+
+                player.immune = true;
+                player.immuneTime = 2;
+
+                if (player.lifeRegen < 0)
+                {
+                    player.lifeRegen = 0;
+                }
+
+                if (player.ownedProjectileCounts[mod.ProjectileType("GoldShellProj")] <= 0)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("GoldShellProj"), 0, 0, Main.myPlayer);
+                }
+
+                //AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType<Chlorofuck>(), dmg, 10f);
             }
 
             if (CobaltEnchant && CobaltCD > 0)
@@ -2706,7 +2746,7 @@ namespace FargowiltasSouls
 
         public void CopperEffect(NPC target)
         {
-            int dmg = 5;
+            int dmg = 20;
             int chance = 20;
 
             if (target.FindBuffIndex(BuffID.Wet) != -1)
@@ -2944,8 +2984,6 @@ namespace FargowiltasSouls
             player.discount = true;
             //midas
             GoldEnchant = true;
-
-            if (Fargowiltas.Instance.ThoriumLoaded) return;
 
             AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
         }

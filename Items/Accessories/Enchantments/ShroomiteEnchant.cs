@@ -55,15 +55,15 @@ While in stealth, crits deal 4x damage
                 recipe.AddIngredient(null, "FungusEnchant");
                 recipe.AddIngredient(ItemID.MushroomSpear);
                 recipe.AddIngredient(thorium.ItemType("MyceliumGattlingPulser"));
-                recipe.AddIngredient(ItemID.ChlorophyteShotbow);
                 recipe.AddIngredient(ItemID.Uzi);
+                recipe.AddIngredient(ItemID.TacticalShotgun);
                 recipe.AddIngredient(thorium.ItemType("ShroomiteButterfly"));
             }
             else
             {
                 recipe.AddIngredient(ItemID.MushroomSpear);
-                recipe.AddIngredient(ItemID.Hammush);
                 recipe.AddIngredient(ItemID.Uzi);
+                recipe.AddIngredient(ItemID.TacticalShotgun);
             }
             
             recipe.AddIngredient(ItemID.StrangeGlowingMushroom);
