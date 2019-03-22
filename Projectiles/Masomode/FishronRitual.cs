@@ -55,7 +55,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
             if (projectile.alpha < 0)
                 projectile.alpha = 0;
-            if (projectile.alpha > 255)// && fishron.lifeMax == projectile.ai[0] * 4)
+            if (projectile.alpha > 255)// && fishron.lifeMax == projectile.ai[0] * 5)
             {
                 //Main.NewText(projectile.timeLeft.ToString());
                 projectile.Kill();
@@ -91,12 +91,12 @@ namespace FargowiltasSouls.Projectiles.Masomode
             }
 
             //while fishron is first spawning, has made the noise, and every 6 ticks
-            //increase hp by 300% over the course of 1 second
+            //increase hp by 400% over the course of 1 second
             if (fishron.ai[0] < 4f && projectile.timeLeft <= 240 && projectile.timeLeft > 180 && projectile.timeLeft % 6 == 0)
             {
-                int heal = 3 * (int)(projectile.ai[0] * 0.1f);// Main.rand.NextFloat(0.1f, 0.12f));
+                int heal = 4 * (int)(projectile.ai[0] * Main.rand.NextFloat(0.1f, 0.12f));
                 fishron.lifeMax += heal;
-                int max = (int)(projectile.ai[0] * 4f);
+                int max = (int)projectile.ai[0] * 5;
                 if (fishron.lifeMax > max)
                     fishron.lifeMax = max;
                 fishron.life = fishron.lifeMax;

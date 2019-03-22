@@ -12,6 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Mutant Antibodies");
             Tooltip.SetDefault(@"Grants immunity to Feral Bite and Mutant Nibble
+Grants immunity to most debuffs caused by entering water
 Increases damage by 20%");
         }
 
@@ -28,6 +29,7 @@ Increases damage by 20%");
         {
             player.buffImmune[BuffID.Rabies] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
+            player.GetModPlayer<FargoPlayer>().MutantAntibodies = true;
             player.meleeDamage += 0.2f;
             player.rangedDamage += 0.2f;
             player.magicDamage += 0.2f;

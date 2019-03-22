@@ -32,6 +32,8 @@ namespace FargowiltasSouls
         public static int CultistCount;
         public static int MoonlordCount;
 
+        public static bool FishronEX;
+
         public override void Initialize()
         {
             _downedBetsy = false;
@@ -84,6 +86,7 @@ namespace FargowiltasSouls
 
             //masomode
             if (MasochistMode) downed.Add("masochist");
+            if (FishronEX) downed.Add("fishronEX");
 
             return new TagCompound
             {
@@ -117,6 +120,7 @@ namespace FargowiltasSouls
             _downedBetsy = downed.Contains("betsy");
             _downedBoss = downed.Contains("boss");
             MasochistMode = downed.Contains("masochist");
+            FishronEX = downed.Contains("fishronEX");
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -141,6 +145,7 @@ namespace FargowiltasSouls
             _downedBetsy = flags[0];
             _downedBoss = flags[1];
             MasochistMode = flags[2];
+            FishronEX = flags[3];
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -165,7 +170,8 @@ namespace FargowiltasSouls
             {
                 [0] = _downedBetsy,
                 [1] = _downedBoss,
-                [2] = MasochistMode
+                [2] = MasochistMode,
+                [3] = FishronEX
             };
 
 

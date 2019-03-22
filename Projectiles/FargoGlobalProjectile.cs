@@ -1031,7 +1031,7 @@ namespace FargowiltasSouls.Projectiles
                                 target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 300));
 
                                 target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 600);
-                                target.AddBuff(mod.BuffType<CurseoftheMoon>(), 600);
+                                target.AddBuff(mod.BuffType<CurseoftheMoon>(), 1800);
                                 target.AddBuff(mod.BuffType<GodEater>(), Main.expertMode ? 210 : 420);
                             }
                             else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
@@ -1044,7 +1044,7 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.PhantasmalBolt:
                     case ProjectileID.PhantasmalEye:
                     case ProjectileID.PhantasmalSphere:
-                        target.AddBuff(mod.BuffType<CurseoftheMoon>(), Main.rand.Next(240, 360));
+                        target.AddBuff(mod.BuffType<CurseoftheMoon>(), Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.RocketSkeleton:
@@ -1140,6 +1140,33 @@ namespace FargowiltasSouls.Projectiles
                 target.AddBuff(BuffID.Chilled, 300);
                 target.AddBuff(BuffID.Frostburn, 300);
             }
+        }
+
+        public override bool PreKill(Projectile projectile, int timeLeft)
+        {
+            if (FargoWorld.MasochistMode && projectile.type == ProjectileID.CrystalBullet && projectile.owner == Main.myPlayer)
+            {
+                if (Main.player[projectile.owner].GetModPlayer<FargoPlayer>().MasomodeCrystalTimer <= 0)
+                {
+                    Main.player[projectile.owner].GetModPlayer<FargoPlayer>().MasomodeCrystalTimer = 15;
+                    return true;
+                }
+                else
+                {
+                    Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0.0f);
+                    for (int index1 = 0; index1 < 5; ++index1) //vanilla dusts
+                    {
+                        int index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 68, 0.0f, 0.0f, 0, new Color(), 1f);
+                        Main.dust[index2].noGravity = true;
+                        Dust dust1 = Main.dust[index2];
+                        dust1.velocity = dust1.velocity * 1.5f;
+                        Dust dust2 = Main.dust[index2];
+                        dust2.scale = dust2.scale * 0.9f;
+                    }
+                    return false;
+                }
+            }
+            return true;
         }
 
         public override void Kill(Projectile projectile, int timeLeft)

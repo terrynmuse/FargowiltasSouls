@@ -176,9 +176,12 @@ namespace FargowiltasSouls
         public bool SkullCharm;
         public bool LihzahrdTreasureBox;
         public int GroundPound;
+        public bool BetsysHeart;
+        public bool MutantAntibodies;
         public bool GravityGlobeEX;
         public bool CelestialRune;
         public bool MoonChalice;
+        public bool LunarCultist;
 
         //debuffs
         public bool Hexed;
@@ -214,6 +217,7 @@ namespace FargowiltasSouls
         public bool OceanicMaul;
         public int MaxLifeReduction;
 
+        public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
 
         public IList<string> disabledSouls = new List<string>();
@@ -328,20 +332,17 @@ namespace FargowiltasSouls
 
             disabledSouls.Clear();
 
-            /*if (NPC.LunarApocalypseIsUp) //tried fixing pillars losing aura, doesn't work in multi
+            for (int i = 0; i < 200; i++)
             {
-                for (int i = 0; i < 200; i++)
-                {
-                    if (Main.npc[i].type == NPCID.LunarTowerSolar)
-                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 27;
-                    if (Main.npc[i].type == NPCID.LunarTowerVortex)
-                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 29;
-                    if (Main.npc[i].type == NPCID.LunarTowerNebula)
-                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 26;
-                    if (Main.npc[i].type == NPCID.LunarTowerStardust)
-                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 28;
-                }
-            }*/
+                if (Main.npc[i].type == NPCID.LunarTowerSolar)
+                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 27;
+                if (Main.npc[i].type == NPCID.LunarTowerVortex)
+                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 29;
+                if (Main.npc[i].type == NPCID.LunarTowerNebula)
+                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 26;
+                if (Main.npc[i].type == NPCID.LunarTowerStardust)
+                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 28;
+            }
         }
 
         public override void ProcessTriggers(TriggersSet triggersSet)
@@ -487,9 +488,12 @@ namespace FargowiltasSouls
             MagicalBulb = false;
             SkullCharm = false;
             LihzahrdTreasureBox = false;
+            BetsysHeart = false;
+            MutantAntibodies = false;
             GravityGlobeEX = false;
             CelestialRune = false;
             MoonChalice = false;
+            LunarCultist = false;
 
             //debuffs
             Hexed = false;
@@ -535,6 +539,8 @@ namespace FargowiltasSouls
             Slimed = false;
 
             GroundPound = 0;
+            MagicalBulb = false;
+            LunarCultist = false;
 
             GodEater = false;
             FlamesoftheUniverse = false;
@@ -610,7 +616,7 @@ namespace FargowiltasSouls
                     player.AddBuff(BuffID.OnFire, 2);
                 }
 
-                if (player.ZoneJungle && player.wet)
+                if (player.ZoneJungle && player.wet && !MutantAntibodies)
                 {
                     if (Main.hardMode)
                     {
@@ -626,7 +632,7 @@ namespace FargowiltasSouls
                 {
                     player.AddBuff(BuffID.Chilled, 2);
 
-                    if (player.wet)
+                    if (player.wet && !MutantAntibodies)
                     {
                         player.AddBuff(BuffID.Frostburn, 120);
                         MasomodeFreezeTimer++;
@@ -651,7 +657,7 @@ namespace FargowiltasSouls
                 {
                     player.AddBuff(BuffID.Darkness, 2);
 
-                    if(player.wet)
+                    if(player.wet && !MutantAntibodies)
                     {
                         player.AddBuff(BuffID.CursedInferno, 300);
                     }
@@ -661,7 +667,7 @@ namespace FargowiltasSouls
                 {
                     player.AddBuff(BuffID.Bleeding, 2);
 
-                    if (player.wet)
+                    if (player.wet && !MutantAntibodies)
                     {
                         player.AddBuff(BuffID.Ichor, 300);
                     }
@@ -694,7 +700,7 @@ namespace FargowiltasSouls
                     } 
                 }
 
-                if (player.wet && !(player.accFlipper || player.gills))
+                if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                 {
                     player.AddBuff(mod.BuffType<Lethargic>(), 2);
                 }
@@ -716,6 +722,9 @@ namespace FargowiltasSouls
                         NetMessage.SendData(17, -1, -1, null, 0, (float)num3, (float)num4, 0f, 0, 0, 0);
                     }
                 }
+
+                if (MasomodeCrystalTimer > 0)
+                    MasomodeCrystalTimer--;
             }
 
             if (!Infested && !FirstInfection)
@@ -1097,12 +1106,9 @@ namespace FargowiltasSouls
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
 
-                if (player.lifeRegenCount > 0)
-                    player.lifeRegenCount = 0;
-
                 player.lifeRegenTime = 0;
 
-                player.lifeRegen -= 12;
+                player.lifeRegen -= 6;
             }
 
             if (CurseoftheMoon)
@@ -1110,9 +1116,12 @@ namespace FargowiltasSouls
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
 
+                if (player.lifeRegenCount > 0)
+                    player.lifeRegenCount = 0;
+
                 player.lifeRegenTime = 0;
 
-                player.lifeRegen -= 6;
+                player.lifeRegen -= 12;
             }
         }
 
@@ -1183,7 +1192,7 @@ namespace FargowiltasSouls
 
             }
 
-            if (CurseoftheMoon && Main.rand.Next(3) > 0)
+            if (CurseoftheMoon && Main.rand.Next(3) == 0)
             {
                 int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, 229, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 1.75f);
                 Main.dust[dust].noGravity = true;
@@ -1814,6 +1823,9 @@ namespace FargowiltasSouls
                 palladiumCD = 60;
             }
 
+            if (BetsysHeart && crit)
+                target.AddBuff(BuffID.BetsysCurse, 300);
+
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumHitProj(proj, target, damage, crit);
         }
 
@@ -1993,6 +2005,9 @@ namespace FargowiltasSouls
                     TinCrit += 4;
                 }
             }
+
+            if (BetsysHeart && crit)
+                target.AddBuff(BuffID.BetsysCurse, 300);
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumHitNPC(target, item, crit);
         }
@@ -3756,31 +3771,6 @@ namespace FargowiltasSouls
             if (UniverseEffect || Eternity)
             {
                 player.HeldItem.autoReuse = UniverseStoredAutofire;
-            }
-        }
-
-        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
-        {
-            if (bait.type == mod.ItemType("TruffleWormEX"))
-            {
-                for (int i = 0; i < 1000; i++) //cut fishing lines
-                {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == bait.owner && Main.projectile[i].bobber && bait.owner == Main.myPlayer)
-                    {
-                        Main.projectile[i].ai[0] = 2f;
-                    }
-                }
-                if (FargoWorld.MasochistMode && bait.owner == Main.myPlayer && !NPC.AnyNPCs(NPCID.DukeFishron))
-                {
-                    FargoGlobalNPC.spawnFishronEX = true;
-                    if (Main.netMode != 1)
-                        NPC.SpawnOnPlayer(bait.owner, NPCID.DukeFishron);
-                    else
-                        NetMessage.SendData(61, -1, -1, null, bait.owner);
-                }
-                bait.stack--;
-                if (bait.stack <= 0)
-                    bait.SetDefaults(0);
             }
         }
 
