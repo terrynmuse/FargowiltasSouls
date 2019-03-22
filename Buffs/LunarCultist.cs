@@ -4,12 +4,12 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs
 {
-    public class PlanterasChild : ModBuff
+    public class LunarCultist : ModBuff
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Plantera's Child");
-            Description.SetDefault("The child of Plantera will protect you");
+            DisplayName.SetDefault("Lunar Cultist");
+            Description.SetDefault("The Lunar Cultist will protect you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
         }
@@ -22,10 +22,10 @@ namespace FargowiltasSouls.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<FargoPlayer>().MagicalBulb = true;
+            player.GetModPlayer<FargoPlayer>().LunarCultist = true;
 
-            if (player.whoAmI == Main.myPlayer && player.ownedProjectileCounts[mod.ProjectileType("PlanterasChild")] < 1)
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -0.15f, -0.1f, mod.ProjectileType("PlanterasChild"), (int)(60f * player.minionDamage), 3f, player.whoAmI);
+            if (player.whoAmI == Main.myPlayer && player.ownedProjectileCounts[mod.ProjectileType("LunarCultist")] < 1)
+                Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("LunarCultist"), (int)(80f * player.minionDamage), 2f, player.whoAmI);
         }
     }
 }

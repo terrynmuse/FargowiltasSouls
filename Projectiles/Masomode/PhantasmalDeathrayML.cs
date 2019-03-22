@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class PhantasmalDeathrayML : ModProjectile
     {
-        private const float maxTime = 90;
+        private const float maxTime = 120;
 
         public override void SetStaticDefaults()
 		{
@@ -67,7 +67,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
             if (projectile.scale > num801)
                 projectile.scale = num801;
             float num804 = projectile.velocity.ToRotation();
+            num804 += projectile.ai[0];
             projectile.rotation = num804 - 1.57079637f;
+            projectile.velocity = num804.ToRotationVector2();
             float num805 = 3f;
             float num806 = (float)projectile.width;
             Vector2 samplingPoint = projectile.Center;
@@ -182,7 +184,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(mod.BuffType<CurseoftheMoon>(), Main.rand.Next(240, 360));
+            target.AddBuff(mod.BuffType<CurseoftheMoon>(), 1800);
         }
     }
 }

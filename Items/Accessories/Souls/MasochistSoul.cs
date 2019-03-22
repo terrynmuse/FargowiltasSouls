@@ -15,8 +15,8 @@ Increases damage by 20%, increases damage reduction by 10%
 Increases max number of minions and sentries by 2
 Grants immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
-Your attacks inflict Cursed Inferno and Ichor
-Your attacks have a small chance to inflict Electrified
+Your attacks can inflict Cursed Inferno, Ichor, and Electrified
+Your critical strikes inflict Betsy's Curse
 You erupt into Spiky Balls and Ancient Visions when injured
 Summons a friendly plant's offspring and Cultist
 Allows the holder to control gravity");
@@ -35,6 +35,7 @@ Allows the holder to control gravity");
         {
             //mutant antibodies
             player.buffImmune[BuffID.Rabies] = true;
+            player.GetModPlayer<FargoPlayer>().MutantAntibodies = true;
             player.meleeDamage += 0.2f;
             player.rangedDamage += 0.2f;
             player.magicDamage += 0.2f;
@@ -63,14 +64,21 @@ Allows the holder to control gravity");
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
             player.GetModPlayer<FargoPlayer>().LihzahrdTreasureBox = true;
+            //betsy's heart
+            player.buffImmune[BuffID.WitheredWeapon] = true;
+            player.buffImmune[BuffID.WitheredArmor] = true;
+            player.GetModPlayer<FargoPlayer>().BetsysHeart = true;
             //celestial rune
 
             //chalice
             player.GetModPlayer<FargoPlayer>().MoonChalice = true;
+            player.AddBuff(mod.BuffType("LunarCultist"), 5);
 
             //galactic globe
             player.buffImmune[BuffID.VortexDebuff] = true;
+            player.buffImmune[BuffID.ChaosState] = true;
             player.gravControl = true;
+            player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
 
             //sadism
             player.buffImmune[mod.BuffType("Antisocial")] = true;
@@ -110,6 +118,7 @@ Allows the holder to control gravity");
             recipe.AddIngredient(mod.ItemType("MutantAntibodies"));
             recipe.AddIngredient(mod.ItemType("LumpOfFlesh"));
             recipe.AddIngredient(mod.ItemType("DubiousCircuitry"));
+            recipe.AddIngredient(mod.ItemType("BetsysHeart"));
             recipe.AddIngredient(mod.ItemType("ChaliceoftheMoon"));
             recipe.AddIngredient(mod.ItemType("GalacticGlobe"));
             recipe.AddIngredient(mod.ItemType("Sadism"));

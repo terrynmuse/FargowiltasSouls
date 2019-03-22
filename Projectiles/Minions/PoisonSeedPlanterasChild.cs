@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargowiltasSouls.Projectiles.Minion
+namespace FargowiltasSouls.Projectiles.Minions
 {
     public class PoisonSeedPlanterasChild : ModProjectile
     {

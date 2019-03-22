@@ -18,7 +18,7 @@ Grants immunity to Marked for Death, Clipped Wings, and Hexed
 Grants immunity to Atrophied, Jammed, Reverse Mana Flow, and Antisocial
 Attracts a legendary plant's offspring which flourishes in combat
 You erupt into Ancient Visions when injured
-Summons a friendly Cultist");
+Summons a friendly Cultist to fight at your side");
         }
 
         public override void SetDefaults()
@@ -49,6 +49,7 @@ Summons a friendly Cultist");
             player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;
             player.buffImmune[mod.BuffType("Antisocial")] = true;
             player.GetModPlayer<FargoPlayer>().MoonChalice = true;
+            player.AddBuff(mod.BuffType("LunarCultist"), 5);
         }
 
         public override void AddRecipes()

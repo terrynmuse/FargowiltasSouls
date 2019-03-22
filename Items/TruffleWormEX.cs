@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +14,7 @@ namespace FargowiltasSouls.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Truffle Worm EX");
-            Tooltip.SetDefault("Only usable in Masochist Mode");
+            Tooltip.SetDefault("Only usable in Masochist Mode\nOrdinary Truffle Worm recommended");
         }
 
         public override void SetDefaults()
@@ -22,8 +23,33 @@ namespace FargowiltasSouls.Items
             item.rare = 1;
             item.width = 12;
             item.height = 12;
-            item.bait = 777;
+            item.consumable = true;
+            item.useAnimation = 30;
+            item.useTime = 30;
+            item.useStyle = 4;
             item.value = Item.sellPrice(0, 15, 0, 0);
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            return FargoWorld.MasochistMode;
+        }
+
+        public override bool UseItem(Player player)
+        {
+            FargoWorld.FishronEX = !FargoWorld.FishronEX;
+            string text = FargoWorld.FishronEX ? "The ocean stirs..." : "The ocean settles.";
+            Color color = new Color(0, 100, 200);
+            if (Main.netMode == 0)
+            {
+                Main.NewText(text, color);
+            }
+            else if (Main.netMode == 2)
+            {
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(text), color);
+                NetMessage.SendData(7);
+            }
+            return true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)
@@ -41,8 +67,8 @@ namespace FargowiltasSouls.Items
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(ItemID.TruffleWorm);
-            recipe.AddIngredient(mod.ItemType("LunarCrystal"));
+            recipe.AddIngredient(ItemID.TruffleWorm, 5);
+            recipe.AddIngredient(mod.ItemType("LunarCrystal"), 5);
 
             recipe.AddTile(mod.TileType("CrucibleCosmosSheet"));
             recipe.SetResult(this);

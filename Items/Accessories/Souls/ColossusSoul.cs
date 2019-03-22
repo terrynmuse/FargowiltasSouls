@@ -82,7 +82,7 @@ Effects of Bee Cloak, Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
             player.buffImmune[BuffID.Silenced] = true;
             player.buffImmune[BuffID.Cursed] = true;
             player.buffImmune[BuffID.Darkness] = true;
-            player.buffImmune[BuffID.ChaosState] = true;
+            //player.buffImmune[BuffID.ChaosState] = true;
             player.noKnockback = true;
             player.fireWalk = true;
             //brain of confusion

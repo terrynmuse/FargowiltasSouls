@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Galactic Globe");
-            Tooltip.SetDefault(@"Grants immunity to Flipped, Unstable, and Distorted
+            Tooltip.SetDefault(@"Grants immunity to Flipped, Unstable, Distorted, and Chaos State
 Allows the holder to control gravity
 Increases flight time by 100%");
         }
@@ -31,6 +31,7 @@ Increases flight time by 100%");
             player.buffImmune[mod.BuffType("FlippedHallow")] = true;
             player.buffImmune[mod.BuffType("Unstable")] = true;
             player.buffImmune[BuffID.VortexDebuff] = true;
+            player.buffImmune[BuffID.ChaosState] = true;
             player.gravControl = true;
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
         }

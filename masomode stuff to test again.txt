@@ -13,6 +13,35 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 0.6:
+-dimension/colossus soul chaos state immune moved to masochist/galactic globe
+-golem head breathes fire more aggressively, more damage
+-golem head moves faster vertically
+-added betsy's heart
+-selenians have 66% DR when spinning instead of always taking 0 damage
+-mutant antibodies prevents water debuffs
+-brain sucklers have a 10% chance of dying when killed
+-all mechs are immune to hallowed stars
+-removed fishron crystal shard resist, increased phantasm/bane resist
+-crystal bullets are throttled in masomode, 15ticks per break
+-fused uses the explosives explosion haHAAAAA
+-voodoo demons scream while they're on fire
+-voodoo demons are immune to on fire until they actually touch lava (inferno potion no longer triggers them)
+-voodoo demons spend longer on fire before spawning wof
+-fishron EX buffed from 240k to 300k max life
+-nerfed rotting, why does it disable life regen, for god's sake ZOMBIES inflict this
+-moon lord memes all players with his mutant nibble, not just target
+-ML applies water candle/battle to everyone again
+-ML fires p2 lasers more quickly after telegraph
+-buffed curse of the moon duration and effect, disables life regen now
+-adjusted curse of the moon dust again...
+-buffed ML fireballs
+-changed ML magic attack to multi v-spread of nebula lasers
+-ML phase 2 socket lasers can rotate
+-BUFFED FISHRON EX
+-added fishron ex's razor rings
+-changed truffle worm EX to hopefully work in multiplayer
+-ADDED THE CULTIST BUDDY
+
 -added lunar crystals
 -truffle worm EX changed to crafted from truffle worm + crystal
 -maso ML drops crystals
