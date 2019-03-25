@@ -60,10 +60,11 @@ You attract items from a larger range";
         private void Thorium(Player player)
         {
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
+            //thorium shield
             timer++;
             if (timer >= 30)
             {
-                int num = 12;
+                int num = 18;
                 if (thoriumPlayer.shieldHealth <= num)
                 {
                     thoriumPlayer.shieldHealthTimerStop = true;

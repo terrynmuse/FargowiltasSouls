@@ -84,9 +84,9 @@ Summons a pet Jellyfish");
         private readonly string[] items =
         {
             "DepthSubwoofer",
+            "FrostPelter",
             "MagicConch",
             "GeyserStaff",
-            "MistyTotemCaller",
             "AnglerBulb",
             "JellyFishIdol"
         };

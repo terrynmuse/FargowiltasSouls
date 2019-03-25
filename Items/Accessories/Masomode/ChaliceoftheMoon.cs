@@ -35,7 +35,12 @@ Summons a friendly Cultist to fight at your side");
             //magical bulb
             player.lifeRegen += 2;
             player.buffImmune[BuffID.Venom] = true;
-            player.AddBuff(mod.BuffType("PlanterasChild"), 5);
+
+            if (Soulcheck.GetValue("Plantera Minion"))
+            {
+                player.AddBuff(mod.BuffType("PlanterasChild"), 5);
+            }
+            
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
             player.buffImmune[mod.BuffType("Fused")] = true;
@@ -49,7 +54,11 @@ Summons a friendly Cultist to fight at your side");
             player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;
             player.buffImmune[mod.BuffType("Antisocial")] = true;
             player.GetModPlayer<FargoPlayer>().MoonChalice = true;
-            player.AddBuff(mod.BuffType("LunarCultist"), 5);
+
+            if (Soulcheck.GetValue("Cultist Minion"))
+            {
+                player.AddBuff(mod.BuffType("LunarCultist"), 5);
+            }
         }
 
         public override void AddRecipes()

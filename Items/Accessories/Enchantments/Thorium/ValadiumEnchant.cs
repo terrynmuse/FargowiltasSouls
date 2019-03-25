@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Valadium Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Which way is up?'
 Reverse gravity by pressing UP
 While reversed, ranged damage is increased by 12%
 Effects of Eye of the Beholder");

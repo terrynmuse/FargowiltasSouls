@@ -42,12 +42,6 @@ Your wings last twice as long";
             modPlayer.BeetleEffect();
             //extra wing time
             modPlayer.BeetleEnchant = true;
-
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
-
-            //pet
-            modPlayer.AddPet("Parrot Pet", hideVisual, BuffID.PetParrot, ProjectileID.Parrot);
-            modPlayer.FlightEnchant = true;
         }
 
         public override void AddRecipes()

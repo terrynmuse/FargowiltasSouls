@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
         {
             DisplayName.SetDefault("Force of Niflheim");
             Tooltip.SetDefault(
-@"''
+@"'A world of mist, a sign of the dead...'
 10% increased inspiration regeneration
 Your symphonic empowerments will last an additional 5 seconds
 Symphonic critical strikes cause the attack's empowerment to ascend to a fourth level of intensity

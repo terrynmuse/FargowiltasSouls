@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Ocean Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'For swimming with the fishes'
 Allows you to breathe underwater
 Grants the ability to swim
 Effects of Sea Breeze Pendant and Bubble Magnet");

@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Warlock Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Better than a wizard'
 Radiant critical strikes will generate up to 15 shadow wisps
 Pressing the 'Special Ability' key will unleash every stored shadow wisp towards your cursor's position
 Effects of Demon Tongue

@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Templar Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'For the church!'
 If an ally is below half health, you will gain increased healing abilities");
         }
 

@@ -27,7 +27,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 @"Summons fireballs, icicles, a leaf crystal, Hallowed sword and shield, Beetles, and lots of pets
 Toggle vanity to remove all Pets, Right Click to Guard
 Double tap down to call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
-Press the Freeze Key to freeze time for 5 seconds, minions spew scythes 
+Gold Key to be encased in a Gold, Freeze Key to freeze time for 5 seconds, minions spew scythes 
 Solar shield allows you to dash, Dash into any walls, to teleport through them
 Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, or buff boosters
 Attacks cause increased life regen, shadow dodge, meteor showers, reduced enemy knockback immunity
@@ -42,7 +42,7 @@ Projectiles may split or shatter, Hearts and Stars heal twice as much";
 @"Summons fireballs, icicles, a leaf crystal, Hallowed sword and shield, Beetles, and lots of pets
 Toggle vanity to remove all Pets
 Double tap down to call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
-Press the Freeze Key to freeze time for 5 seconds, minions spew scythes 
+Gold Key to be encased in a Gold, Freeze Key to freeze time for 5 seconds, minions spew scythes 
 Solar shield allows you to dash, Dash into any walls, to teleport through them
 Attacks may spawn flower petals, spectre orbs, a Dungeon Guardian, or buff boosters
 Attacks cause increased life regen and reduced enemy knockback immunity
@@ -64,8 +64,7 @@ When you die, you explode and revive with 200 HP";
              -not listed
              Throw a smoke bomb to teleport to it
              Your attacks inflict Midas
-            10% chance for enemies to drop 4x loot
-            If the enemy has Midas, the chance and bonus is doubled
+            20% chance for enemies to drop 8x loot
             Effects of Hive Pack, Flower Boots, Master Ninja Gear, Celestial Shell, Shiny Stone, and Greedy Ring
             Your weapon's projectiles occasionally shoot from the shadows of where you used to be
             Enemies will explode into needles on death  
@@ -183,7 +182,7 @@ When you die, you explode and revive with 200 HP";
 
             //WILL
             modPlayer.WillForce = true; //knockback remove for all
-            modPlayer.GoldEffect(hideVisual); //midas, greedy ring, pet
+            modPlayer.GoldEffect(hideVisual); //midas, greedy ring, pet, zhonyas
             modPlayer.PlatinumEnchant = true; //loot multiply
             modPlayer.GladiatorEffect(hideVisual); //pet
             modPlayer.RedRidingEffect(hideVisual); //pet

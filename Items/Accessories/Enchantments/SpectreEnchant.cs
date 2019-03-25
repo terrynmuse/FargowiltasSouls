@@ -84,8 +84,8 @@ Effects of Ghastly Carapace and Inner Flame";
                 recipe.AddIngredient(ItemID.SpectrePants);
                 recipe.AddIngredient(null, "SpiritTrapperEnchant");
                 recipe.AddIngredient(thorium.ItemType("GhastlyCarapace"));
+                recipe.AddIngredient(ItemID.Keybrand);
                 recipe.AddIngredient(ItemID.SpectreStaff);
-                recipe.AddIngredient(thorium.ItemType("MusicSheet5"));
                 recipe.AddIngredient(thorium.ItemType("EctoplasmicButterfly"));
             }
             else
@@ -93,7 +93,7 @@ Effects of Ghastly Carapace and Inner Flame";
                 recipe.AddRecipeGroup("FargowiltasSouls:AnySpectreHead");
                 recipe.AddIngredient(ItemID.SpectreRobe);
                 recipe.AddIngredient(ItemID.SpectrePants);
-                recipe.AddIngredient(ItemID.SpectreHamaxe);
+                recipe.AddIngredient(ItemID.Keybrand);
                 recipe.AddIngredient(ItemID.SpectreStaff);
                 recipe.AddIngredient(ItemID.UnholyTrident);
             }

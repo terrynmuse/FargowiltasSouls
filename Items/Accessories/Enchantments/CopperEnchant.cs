@@ -37,7 +37,7 @@ Lightning scales with magic damage";
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 3;
-            item.value = 40000;
+            item.value = 100000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -83,17 +83,18 @@ Lightning scales with magic damage";
                 recipe.AddIngredient(ItemID.AmethystStaff);
                 recipe.AddIngredient(thorium.ItemType("ThunderTalon"));
                 recipe.AddIngredient(thorium.ItemType("Zapper"));
-                recipe.AddIngredient(ItemID.Wire, 20);
+                recipe.AddIngredient(ItemID.NimbusRod);
                 recipe.AddIngredient(thorium.ItemType("AmethystButterfly"));
             }
             else
             {
                 recipe.AddIngredient(ItemID.CopperShortsword);
                 recipe.AddIngredient(ItemID.AmethystStaff);
+                recipe.AddIngredient(ItemID.NimbusRod);
                 recipe.AddIngredient(ItemID.Wire, 20);
             }
                        
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

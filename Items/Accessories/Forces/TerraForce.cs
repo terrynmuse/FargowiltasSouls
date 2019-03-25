@@ -75,9 +75,8 @@ While standing in lava, you gain 15 more armor penetration, 15% attack speed, an
             //lava immune (obsidian)
             modPlayer.ObsidianEffect();
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
-                Thorium(player, hideVisual);
-            else //because iron absorbed somewhere else
+            //because absorbed somewhere else with thorium
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
                 //lightning
                 modPlayer.CopperEnchant = true;
@@ -94,13 +93,6 @@ While standing in lava, you gain 15 more armor penetration, 15% attack speed, an
                     modPlayer.IronEnchant = true;
                 }
             }
-        }
-
-        private void Thorium(Player player, bool hideVisual)
-        {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-
-            
         }
 
         public override void AddRecipes()

@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Harbinger Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Doom comes next'
 Maximum mana increased by 50%
 While above 75% maximum mana, you become unstable
 Magical attacks have a 33% chance to recover some mana

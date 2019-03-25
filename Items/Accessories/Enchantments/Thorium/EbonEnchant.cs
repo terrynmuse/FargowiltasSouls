@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Ebon Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Great for brooding'
 Corrupts your radiant powers, causing them to take on dark forms and deal additional effects");
         }
 

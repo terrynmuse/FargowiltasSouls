@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Naga-Skin Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Extreme danger noodle'
 Every 75 mana spent will dramatically increase your magic damage and casting speed briefly
 Allows quicker movement in water");
         }

@@ -10,7 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     public class GoldEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        public float Damage;
         public int timer;
 
         public override bool CloneNewInstances => true;
@@ -18,41 +17,28 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gold Enchantment");
-        }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            TooltipLine[] lines = new TooltipLine[8]; 
-            
-            lines[0] = new TooltipLine(mod, "1", "'Gold makes the world go round'");
-            lines[1] = new TooltipLine(mod, "2", "Increased damage based on current coin count");
-            lines[2] = new TooltipLine(mod, "3", "Current: " + (Damage * 100).ToString("0.00") + "% increased damage");
-            lines[2].overrideColor = Color.LimeGreen;
+            string tooltip =
+@"'Gold makes the world go round'
+Your attacks inflict Midas
+Press the Gold hotkey to be encased in a Golden Shell
+You will not be able to move or attack, but will be immune to all damage
+";
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
+            if (thorium != null)
             {
-                lines[3] = new TooltipLine(mod, "4", "You constantly generate a 16 life shield");
-                lines[4] = new TooltipLine(mod, "5", "Increases coin pickup range and shops have lower prices");
-                lines[5] = new TooltipLine(mod, "6", "Your attacks inflict Midas");
-                lines[6] = new TooltipLine(mod, "7", "Effects of Proof of Avarice");
-                lines[7] = new TooltipLine(mod, "8", "Summons a pet Coin Bag");
+                tooltip += 
+@"Effects of Gold Aegis, Proof of Avarice, and Greedy Ring
+Summons a pet Parrot and Coin Bag";
             }
             else
             {
-                lines[3] = new TooltipLine(mod, "4", "Increases coin pickup range and shops have lower prices");
-                lines[4] = new TooltipLine(mod, "5", "Hitting enemies will sometimes drop extra coins");
-                lines[5] = new TooltipLine(mod, "6", "Your attacks inflict Midas");
-                lines[6] = new TooltipLine(mod, "7", "Summons a pet Parrot");
+                tooltip +=
+@"Effects of Greedy Ring
+Summons a pet Parrot";
             }
 
-            int length = lines.Length;
-
-            if(!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                length--;
-            }
-
-            for (int i = 0; i < length; i++) tooltips.Add(lines[i]);
+            Tooltip.SetDefault(tooltip);
         }
 
         public override void SetDefaults()
@@ -65,50 +51,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             item.value = 150000;
         }
 
-        public static long GetCoins(Player player)
-        {
-            bool overflowing;
-            long inventoryCoins = Utils.CoinsCount(out overflowing, player.inventory, 58, 57, 56, 55, 54);
-            long piggyBankCoins = Utils.CoinsCount(out overflowing, player.bank.item);
-            long safeCoins = Utils.CoinsCount(out overflowing, player.bank2.item);
-            long defendersForgeCoins = Utils.CoinsCount(out overflowing, player.bank3.item);
-            long totalCoins = Utils.CoinsCombineStacks(out overflowing, inventoryCoins, piggyBankCoins, safeCoins, defendersForgeCoins);
-            return totalCoins;
-        }
-
-        public void UpdateDamage(Player player)
-        {
-            long totalCoins = GetCoins(player);
-            int[] coins = Utils.CoinsSplit(totalCoins);
-            int plat = coins[3];
-            int gold = coins[2];
-
-            if (plat <= 0)
-                Damage = coins[2] * .0004f;
-            else if (plat < 5) // 1-4 plat
-                Damage = .05f;
-            else if (plat < 15) // 5-14 plat
-                Damage = .10f;
-            else if (plat < 30) // 15-29 plat 
-                Damage = .15f;
-            else if (plat < 50) // 30-49 plat
-                Damage = .20f;
-            else if (plat < 75) // 50-74 plat
-                Damage = .25f;
-            else // 75+ plat
-                Damage = .30f;
-        }
-
-        public override void UpdateInventory(Player player)
-        {
-            UpdateDamage(player);
-        }
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            UpdateDamage(player);
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.AllDamageUp(Damage);
             modPlayer.GoldEffect(hideVisual);
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
@@ -156,15 +101,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 recipe.AddIngredient(thorium.ItemType("GoldAegis"));
                 recipe.AddIngredient(thorium.ItemType("ProofAvarice"));
                 recipe.AddIngredient(ItemID.GreedyRing);
-                recipe.AddIngredient(ItemID.RubyStaff);
-                recipe.AddIngredient(ItemID.GoldButterfly);
+                recipe.AddIngredient(ItemID.CoinGun);
                 recipe.AddIngredient(ItemID.SquirrelGold);
+                recipe.AddIngredient(ItemID.ParrotCracker);
                 recipe.AddIngredient(thorium.ItemType("AncientDrachma"));
             }
             else
             {
                 recipe.AddIngredient(ItemID.GreedyRing);
-                recipe.AddIngredient(ItemID.RubyStaff);
+                recipe.AddIngredient(ItemID.CoinGun);
                 recipe.AddIngredient(ItemID.SquirrelGold);
                 recipe.AddIngredient(ItemID.ParrotCracker);
             }

@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Malignant Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'How evil is too evil?'
 Magic critical strikes engulf enemies in a long lasting void flame
 Effects of Mana-Charged Rocketeers");
         }

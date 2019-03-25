@@ -21,8 +21,7 @@ You leave behind a trail of fire when you walk
 Eating Pumpkin Pie also heals you to full HP
 100% of contact damage is reflected
 Enemies may explode into needles on death
-Increases the strength of friendly bees
-Bees ignore most enemy defense
+33% chance for any friendly bee to become a Mega Bee
 You may summon nearly twice as many spider minions
 When standing still and not attacking, you gain the Shell Hide buff
 Beetles protect you from damage

@@ -77,7 +77,7 @@ Summons a pet Gato and Black Cat";
                 recipe.AddIngredient(null, "ShadeMasterEnchant");
                 recipe.AddIngredient(ItemID.MasterNinjaGear);
                 recipe.AddIngredient(ItemID.MonkBelt);
-                recipe.AddIngredient(ItemID.DD2LightningAuraT2Popper);
+                recipe.AddIngredient(thorium.ItemType("ShadeKusarigama"));
                 recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
                 recipe.AddIngredient(thorium.ItemType("TotalityButterfly"));
             }

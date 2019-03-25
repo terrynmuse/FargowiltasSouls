@@ -207,7 +207,7 @@ namespace FargowiltasSouls.Items
             }
             
             //folv effect
-            if (modPlayer.VanaheimForce)
+            if (modPlayer.VanaheimForce && Soulcheck.GetValue("Folv's Bolts"))
             {
                 thoriumPlayer.magicCast++;
                 if (thoriumPlayer.magicCast >= 7)

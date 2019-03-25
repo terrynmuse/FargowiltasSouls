@@ -41,7 +41,7 @@ Briefly become invulnerable after striking an enemy");
 
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.TitaniumSword);
+                recipe.AddIngredient(ItemID.Cutlass);
                 recipe.AddIngredient(thorium.ItemType("TitaniumStaff"));
                 recipe.AddIngredient(ItemID.SlapHand);
                 recipe.AddIngredient(ItemID.Anchor);
@@ -51,7 +51,7 @@ Briefly become invulnerable after striking an enemy");
             }
             else
             {
-                recipe.AddIngredient(ItemID.TitaniumSword);
+                recipe.AddIngredient(ItemID.Cutlass);
                 recipe.AddIngredient(ItemID.SlapHand);
                 recipe.AddIngredient(ItemID.Anchor);
                 recipe.AddIngredient(ItemID.MonkStaffT1);

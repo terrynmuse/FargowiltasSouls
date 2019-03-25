@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Life Binder Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Vegetation grows from your fingertips'
 Healing spells will shortly increase the healed player's maximum life by 50
 Your radiant damage has a 15% chance to release a blinding flash of light
 The flash heals nearby allies equal to your bonus healing and confuses enemies

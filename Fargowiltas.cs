@@ -12,6 +12,7 @@ namespace FargowiltasSouls
     {
         internal static ModHotKey CheckListKey;
         internal static ModHotKey FreezeKey;
+        internal static ModHotKey GoldKey;
 
         //stoned (ID 156) is placeholder for modded debuffs
         //add more 156s after the currently existing ones (not at the actual end of array) and then overwrite them in PostSetupContent when adding buffs
@@ -48,6 +49,7 @@ namespace FargowiltasSouls
             Instance = this;
             CheckListKey = RegisterHotKey("Soul Toggles", "L");
             FreezeKey = RegisterHotKey("Freeze Time", "P");
+            GoldKey = RegisterHotKey("Turn Gold", "O");
 
             if (!Main.dedServ)
             {

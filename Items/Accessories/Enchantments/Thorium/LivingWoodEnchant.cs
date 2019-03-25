@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Living Wood Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Become one with nature'
 Summons a living wood sapling and its attacks will home in on enemies
 Effects of Guide to Plant Fiber Cordage");
         }

@@ -44,16 +44,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 recipe.AddIngredient(ItemID.LaserRifle);
                 recipe.AddIngredient(ItemID.ClockworkAssaultRifle);
                 recipe.AddIngredient(ItemID.Gatligator);
+                recipe.AddIngredient(ItemID.OnyxBlaster);
                 recipe.AddIngredient(ItemID.Megashark);
                 recipe.AddIngredient(thorium.ItemType("Trigun"));  
-                recipe.AddIngredient(thorium.ItemType("BloodyHighClaws"));  
             }
             else
             {
                 recipe.AddIngredient(ItemID.LaserRifle);
                 recipe.AddIngredient(ItemID.ClockworkAssaultRifle);
                 recipe.AddIngredient(ItemID.Gatligator);
-                recipe.AddIngredient(ItemID.FetidBaghnakhs);
+                recipe.AddIngredient(ItemID.OnyxBlaster);
             }
             
             recipe.AddTile(TileID.CrystalBall);

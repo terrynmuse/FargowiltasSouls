@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Silk Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'You feel silky-smooth'
 6% increased magic damage");
         }
 

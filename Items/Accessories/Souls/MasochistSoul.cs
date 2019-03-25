@@ -60,7 +60,10 @@ Allows the holder to control gravity");
 
             //magical bulb
             player.buffImmune[BuffID.Venom] = true;
-            player.AddBuff(mod.BuffType("PlanterasChild"), 5);
+            if (Soulcheck.GetValue("Plantera Minion"))
+            {
+                player.AddBuff(mod.BuffType("PlanterasChild"), 5);
+            }
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
             player.GetModPlayer<FargoPlayer>().LihzahrdTreasureBox = true;
@@ -72,7 +75,10 @@ Allows the holder to control gravity");
 
             //chalice
             player.GetModPlayer<FargoPlayer>().MoonChalice = true;
-            player.AddBuff(mod.BuffType("LunarCultist"), 5);
+            if (Soulcheck.GetValue("Cultist Minion"))
+            {
+                player.AddBuff(mod.BuffType("LunarCultist"), 5);
+            }
 
             //galactic globe
             player.buffImmune[BuffID.VortexDebuff] = true;

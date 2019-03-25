@@ -608,6 +608,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Mimic:
+                    case NPCID.PresentMimic:
                         masoAI = 76;
                         break;
 
@@ -1634,10 +1635,20 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
-                        //during dashes in phase 2 
-                        if (npc.ai[1] == 3f)
+                        //during dashes in phase 2
+                        if (npc.ai[1] == 3f && npc.life < npc.lifeMax * .4f)
                         {
                             Counter2 = 30;
+
+                            Projectile[] projs = new Projectile[8];
+                            projs = FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 2, npc.damage / 4, 1f);
+
+                            for (int i = 0; i < 8; i++)
+                            {
+                                projs[i].hostile = true;
+                                projs[i].friendly = false;
+                                projs[i].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                            }
                         }
 
                         if (Counter2 > 0 && Counter2 % 5 == 0)
@@ -2179,11 +2190,19 @@ namespace FargowiltasSouls.NPCs
                             Player p = Main.player[npc.target];
 
                             Counter++;
-                            if (Counter >= 120) //spray random slime balls
+                            if (Counter >= 5) //spray random slime balls
                             {
                                 Counter = 0;
 
-                                for (int i = 0; i < 3; i++)
+                                Vector2 speed = new Vector2(Main.rand.Next(-2, 2), 5);
+                                speed.Normalize();
+
+                                int proj = Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-1000, 1000), npc.Center.Y - 1000), speed, mod.ProjectileType("SlimeBall"), npc.damage / 4, 0f, Main.myPlayer);
+                                Main.projectile[proj].friendly = false;
+                                Main.projectile[proj].hostile = true;
+                                Main.projectile[proj].timeLeft = 480;
+
+                                /*for (int i = 0; i < 3; i++)
                                 {
                                     Vector2 speed = p.Center - npc.Center;
                                     speed.Normalize();
@@ -2196,7 +2215,7 @@ namespace FargowiltasSouls.NPCs
                                     Main.projectile[proj].friendly = false;
                                     Main.projectile[proj].hostile = true;
                                     Main.projectile[proj].timeLeft = 480;
-                                }
+                                }*/
                             }
                         }
 
@@ -2504,6 +2523,11 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                             npc.netUpdate = true;
+                        }
+
+                        if (npc.HasPlayerTarget && Main.player[npc.target].dead)// Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 2000)
+                        {
+                            npc.velocity *= 20;
                         }
 
                         //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
@@ -4928,29 +4952,25 @@ namespace FargowiltasSouls.NPCs
                             masoState = 5;
                         }
 
-                        if (masoBool[0] & Main.rand.Next(10) == 0)
+                        if (masoBool[0])
                         {
-                            int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.DeathSickle, (int)(npc.damage / 2), 1f, Main.myPlayer);
-                            Main.projectile[p].hostile = true;
-                            Main.projectile[p].friendly = false;
+                            Counter2++;
 
-                            masoState--;
-
-                            if (masoState <= 0)
+                            if (Counter2 >= 10)
                             {
-                                masoBool[0] = false;
+                                int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.DeathSickle, (int)(npc.damage / 2), 1f, Main.myPlayer);
+                                Main.projectile[p].hostile = true;
+                                Main.projectile[p].friendly = false;
+
+                                Counter2 = 0;
+                                masoState--;
+
+                                if (masoState <= 0)
+                                {
+                                    masoBool[0] = false;
+                                }
                             }
                         }
-
-                        /*Counter++;
-
-                        if (Counter >= 300)
-                        {
-                            int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.DeathSickle, (int)(npc.damage / 2), 1f, Main.myPlayer);
-                            Main.projectile[p].hostile = true;
-                            Main.projectile[p].friendly = false;
-                            Counter = 0;
-                        }*/
                         break;
 
                     case 91: //werewolf

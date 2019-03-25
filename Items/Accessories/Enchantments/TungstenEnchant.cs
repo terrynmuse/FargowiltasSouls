@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Tungsten Enchantment");
 
             string tooltip =
-@"'Juggernaut'
+@"'Bigger is always better'
 150% increased sword size
 10% decreased movement and melee speed
 Sword attacks may stun enemies";

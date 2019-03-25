@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Cyber Punk Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Techno rave!'
 Pressing the 'Special Ability' key will cycle you through four states
 Effects of Auto Tuner and Red Music Player");
         }

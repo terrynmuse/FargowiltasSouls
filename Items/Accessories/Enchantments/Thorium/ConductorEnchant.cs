@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Conductor Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'I'll be Bach'
 Pressing the Special Ability key will summon a chorus of music playing ghosts
 Inspiration notes that drop are twice as potent and increase your symphonic damage briefly
 Effects of Metronome and Purple Music Player");

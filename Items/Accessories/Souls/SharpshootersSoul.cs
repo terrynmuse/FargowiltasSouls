@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             string tooltip = 
 @"'Ready, aim, fire'
-30% increased range damage
+30% increased ranged damage
 20% increased firing speed
 15% increased ranged critical chance
 ";

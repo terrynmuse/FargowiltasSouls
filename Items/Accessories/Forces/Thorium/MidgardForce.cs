@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
         {
             DisplayName.SetDefault("Force of Midgard");
             Tooltip.SetDefault(
-@"''
+@"'Behold the power of Mankind...'
 Damage reduction is increased by 10% at every 25% segment of life
 Maximum damage reduction is reached at 30% while below 50% life
 Reverse gravity by pressing UP

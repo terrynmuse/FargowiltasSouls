@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Noble Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Rich with culture'
 Your symphonic empowerments will last an additional 5 seconds
 Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
         }
@@ -87,9 +87,9 @@ Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
             "MixTape",
             "RingofUnity",
             "MoltenSubwoofer",
+            "GoldenBugleHorn",
             "Microphone",
             "Bongos",
-            "FieryTotemCaller",
             "FireblossomButterfly"
         };
 

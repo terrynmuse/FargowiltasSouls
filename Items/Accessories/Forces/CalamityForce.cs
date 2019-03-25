@@ -19,11 +19,12 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Calamities");
             Tooltip.SetDefault(
-@"''
+@"'Take only lives, leave only wastelands'
 All armor bonuses from Victide, Aerospec, and Statigel
 All armor bonuses from Daedalus, Reaver, and Astral
-All armor bonuses from Ataxia and Xeroc
-Effects of the Permafrost's Concoction, Astral Arcanum, Plague Hive");
+All armor bonuses from Mollusk, Ataxia, and Xeroc
+Effects of Permafrost's Concoction, Astral Arcanum, Plague Hive
+Effects of Giant Pearl and Amidias' Pendant");
 
         }
 
@@ -86,6 +87,8 @@ Effects of the Permafrost's Concoction, Astral Arcanum, Plague Hive");
             mod.GetItem("ReaverEnchant").UpdateAccessory(player, hideVisual);
             //ASTRAL
             mod.GetItem("AstralEnchant").UpdateAccessory(player, hideVisual);
+            //MOLLUSK
+            mod.GetItem("MolluskEnchant").UpdateAccessory(player, hideVisual);
             //ATAXIA
             calamityPlayer.ataxiaBlaze = true;
             //melee
@@ -142,10 +145,11 @@ Effects of the Permafrost's Concoction, Astral Arcanum, Plague Hive");
             recipe.AddIngredient(null, "DaedalusEnchant");
             recipe.AddIngredient(null, "ReaverEnchant");
             recipe.AddIngredient(null, "AstralEnchant");
+            recipe.AddIngredient(null, "MolluskEnchant");
             recipe.AddIngredient(null, "AtaxiaEnchant");
             recipe.AddIngredient(null, "XerocEnchant");
 
-            recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

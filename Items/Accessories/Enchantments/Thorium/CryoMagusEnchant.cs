@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Cryo-Magus Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'What killed the dinosaurs? The ice age!'
 Magic damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies
 An icy aura surrounds you, which freezes nearby enemies after a short delay
 Effects of Ice Bound Strider Hide and Blue Music Player
@@ -61,16 +61,6 @@ Summons a pet Penguin and Owl");
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
-        
-        private readonly string[] items =
-        {
-            "IceBoundStriderHide",
-            "TunePlayerManaRegen",
-            "IceFairyStaff",
-            "FrostBurntTongue",
-            "Cryotherapy",
-            "LostMail"
-        };
 
         public override void AddRecipes()
         {
@@ -82,8 +72,12 @@ Summons a pet Penguin and Owl");
             recipe.AddIngredient(thorium.ItemType("CryoMagusTabard"));
             recipe.AddIngredient(thorium.ItemType("CryoMagusLeggings"));
             recipe.AddIngredient(null, "IcyEnchant");
-
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+            recipe.AddIngredient(thorium.ItemType("IceBoundStriderHide"));
+            recipe.AddIngredient(thorium.ItemType("TunePlayerManaRegen"));
+            recipe.AddIngredient(thorium.ItemType("IceFairyStaff"));
+            recipe.AddIngredient(ItemID.FrostStaff);
+            recipe.AddIngredient(thorium.ItemType("Cryotherapy"));
+            recipe.AddIngredient(thorium.ItemType("LostMail"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

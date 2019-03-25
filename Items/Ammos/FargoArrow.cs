@@ -15,8 +15,8 @@ namespace FargowiltasSouls.Items.Ammos
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Amalgamated Arrow Quiver");
-            Tooltip.SetDefault("Bounces several times" +
-                "Each impact explodes, summons falling stars, and fires laser arrows" +
+            Tooltip.SetDefault("Bounces several times\n" +
+                "Each impact explodes, summons falling stars, and fires laser arrows\n" +
                 "Inflicts several debuffs");
         }
 

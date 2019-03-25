@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         {
             DisplayName.SetDefault("Spirit Trapper Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'So many lost souls...'
 Killing enemies or continually damaging bosses generates soul wisps
 After generating 5 wisps, they are instantly consumed to heal you for 10 life
 Effects of Inner Flame");

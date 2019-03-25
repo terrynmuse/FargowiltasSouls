@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
         {
             DisplayName.SetDefault("Force of Muspelheim");
             Tooltip.SetDefault(
-@"''
+@"'A blazing heat, the mark of Surtr...'
 Desert winds will augment your boots, giving you a double jump
 You are immune to several damage-inflicting debuffs
 Critical strikes grant Alpha's Roar, briefly increasing the damage of your summoned minions

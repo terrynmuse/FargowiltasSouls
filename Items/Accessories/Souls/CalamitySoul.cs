@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Soul of the Tyrant");
             Tooltip.SetDefault(
-@"''
+@"'And the land grew quiet once more...'
 All armor bonuses from Omega Blue, Auric Tesla, and Demon Shade
 Effects of Profaned Soul Artifact, Core of the Blood God, and Affliction
 Effects of Nebulous Core, Godly Soul Artifact, and Yharim's Gift

@@ -57,11 +57,11 @@ Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
         private readonly string[] items =
         {
             "Chrysalis",
-            "GroundedTotemCaller",
+            "HiveMind",
             "ButterflyStaff5",
             "HoneyBlade",
-            "OdinsEye",
-            "HiveMind"
+            "MushymenStaff",
+            "OdinsEye"
         };
 
         public override void AddRecipes()

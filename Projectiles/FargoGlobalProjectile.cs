@@ -98,8 +98,6 @@ namespace FargowiltasSouls.Projectiles
             FargoPlayer modPlayer = Main.LocalPlayer.GetModPlayer<FargoPlayer>();
             counter++;
 
-
-
             if (projectile.owner == Main.myPlayer)
             {
                 if (firstTick)
@@ -153,6 +151,16 @@ namespace FargowiltasSouls.Projectiles
 
                         }
                     }*/
+
+                    if (modPlayer.BeeEnchant && (projectile.type == ProjectileID.GiantBee || projectile.type == ProjectileID.Bee) && Main.rand.Next(3) == 0)
+                    {
+                        projectile.usesLocalNPCImmunity = true;
+                        projectile.localNPCHitCooldown = 5;
+                        projectile.penetrate *= 2;
+                        projectile.timeLeft *= 2;
+                        projectile.scale *= 3;
+                        projectile.damage = (int)(projectile.damage * 1.5);
+                    }
                 }
 
                 if (projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
@@ -473,7 +481,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Parrot:
-                    KillPet(projectile, player, BuffID.PetParrot, modPlayer.GoldEnchant || modPlayer.FlightEnchant, "Parrot Pet");
+                    KillPet(projectile, player, BuffID.PetParrot, modPlayer.GoldEnchant, "Parrot Pet");
                     break;
 
                 case ProjectileID.Puppy:
@@ -575,11 +583,11 @@ namespace FargowiltasSouls.Projectiles
             if(Fargowiltas.Instance.ThoriumLoaded)
             {
                 //switch wouldnt work because IDs not constant RIP
-                if(projectile.type == thorium.ProjectileType("Omega"))
+                /*if(projectile.type == thorium.ProjectileType("Omega"))
                 {
-                    KillPet(projectile, player, thorium.BuffType("OmegaPet"), modPlayer.MeteorEnchant, "Omega Pet");
+                    KillPet(projectile, player, thorium.BuffType("OmegaBuff"), modPlayer.MeteorEnchant, "Omega Pet");
                 }
-                else if (projectile.type == thorium.ProjectileType("IFO"))
+                else */if (projectile.type == thorium.ProjectileType("IFO"))
                 {
                     KillPet(projectile, player, thorium.BuffType("Identified"), modPlayer.MeteorEnchant, "I.F.O. Pet");
                 }
@@ -1222,7 +1230,7 @@ namespace FargowiltasSouls.Projectiles
             Projectile[] projs = new Projectile[16];
 
             for (int i = 0; i < num; i++)
-                projs[i] = FargoGlobalProjectile.NewProjectileDirectSafe(pos, new Vector2(_x[i], _y[i]), type, damage, knockback, Main.myPlayer);
+                projs[i] = NewProjectileDirectSafe(pos, new Vector2(_x[i], _y[i]), type, damage, knockback, Main.myPlayer);
 
             return projs;
         }
