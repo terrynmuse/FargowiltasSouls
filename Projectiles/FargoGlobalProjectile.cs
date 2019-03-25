@@ -583,11 +583,11 @@ namespace FargowiltasSouls.Projectiles
             if(Fargowiltas.Instance.ThoriumLoaded)
             {
                 //switch wouldnt work because IDs not constant RIP
-                if(projectile.type == thorium.ProjectileType("Omega"))
+                /*if(projectile.type == thorium.ProjectileType("Omega"))
                 {
-                    KillPet(projectile, player, thorium.BuffType("OmegaPet"), modPlayer.MeteorEnchant, "Omega Pet");
+                    KillPet(projectile, player, thorium.BuffType("OmegaBuff"), modPlayer.MeteorEnchant, "Omega Pet");
                 }
-                else if (projectile.type == thorium.ProjectileType("IFO"))
+                else */if (projectile.type == thorium.ProjectileType("IFO"))
                 {
                     KillPet(projectile, player, thorium.BuffType("Identified"), modPlayer.MeteorEnchant, "I.F.O. Pet");
                 }
@@ -1230,7 +1230,7 @@ namespace FargowiltasSouls.Projectiles
             Projectile[] projs = new Projectile[16];
 
             for (int i = 0; i < num; i++)
-                projs[i] = FargoGlobalProjectile.NewProjectileDirectSafe(pos, new Vector2(_x[i], _y[i]), type, damage, knockback, Main.myPlayer);
+                projs[i] = NewProjectileDirectSafe(pos, new Vector2(_x[i], _y[i]), type, damage, knockback, Main.myPlayer);
 
             return projs;
         }

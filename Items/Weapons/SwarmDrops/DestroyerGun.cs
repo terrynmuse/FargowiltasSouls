@@ -8,6 +8,11 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 {
     public class DestroyerGun : ModItem
     {
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Destroyer Gun");

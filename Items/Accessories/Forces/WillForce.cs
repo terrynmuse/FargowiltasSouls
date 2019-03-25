@@ -16,14 +16,12 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 
             string tooltip =
 @"'A mind of unbreakable determination'
-Increases coin pickup range and shops have lower prices
-Hitting enemies will sometimes drop extra coins
 Your attacks inflict Midas and Super Bleed
-10% chance for enemies to drop 4x loot
-If the enemy has Midas, the chance and bonus is doubled
+Press the Gold hotkey to be encased in a Golden Shell
+20% chance for enemies to drop 8x loot
 Shot projectiles will speed up drastically over time
 All attacks will slowly remove enemy knockback immunity
-Effects of Celestial Shell and Shiny Stone effects
+Effects of Greedy Ring, Celestial Shell, and Shiny Stone
 ";
 
             if (thorium != null)
@@ -51,7 +49,7 @@ Effects of Celestial Shell and Shiny Stone effects
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //makes speed up for all, super bleed on all, knockback remove for all
             modPlayer.WillForce = true; 
-            //midas, greedy ring, pet
+            //midas, greedy ring, pet, zhonyas
             modPlayer.GoldEffect(hideVisual);
             //loot multiply
             modPlayer.PlatinumEnchant = true;

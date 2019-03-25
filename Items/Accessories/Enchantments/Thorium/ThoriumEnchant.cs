@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'It pulses with energy'
 10% increased damage
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
-Effects of Thorium Shield, Crietz, and Fan Letter");
+Effects of Crietz and Fan Letter");
         }
 
         public override void SetDefaults()
@@ -44,23 +44,6 @@ Effects of Thorium Shield, Crietz, and Fan Letter");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //thorium set bonus 
             player.GetModPlayer<FargoPlayer>().AllDamageUp(.1f);
-            //thorium shield
-            timer++;
-            if (timer >= 30)
-            {
-                int num = 18;
-                if (thoriumPlayer.shieldHealth <= num)
-                {
-                    thoriumPlayer.shieldHealthTimerStop = true;
-                }
-                if (thoriumPlayer.shieldHealth < num)
-                {
-                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                    thoriumPlayer.shieldHealth++;
-                    player.statLife++;
-                }
-                timer = 0;
-            }
             //crietz
             thoriumPlayer.crietzAcc = true;
             //jester bonus
@@ -88,8 +71,8 @@ Effects of Thorium Shield, Crietz, and Fan Letter");
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddIngredient(null, "JesterEnchant");
-            recipe.AddIngredient(thorium.ItemType("ThoriumShield"));
             recipe.AddIngredient(thorium.ItemType("Crietz"));
+            recipe.AddIngredient(thorium.ItemType("ThoriumSpear"));
             recipe.AddIngredient(thorium.ItemType("ThoriumCube"));
 
             recipe.AddTile(TileID.DemonAltar);

@@ -13,6 +13,55 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 0.6:
+-eoc spawns scythes like crazy, 8 way at the beginning of a dash and a trail afterward
+-king slime spews spikes on every landing and rains slime constanlty below half HP
+-Wof light speed in maso after target is dead
+-blazing wheels spawn in hell
+-buffed blazing wheels and spiked balls in temple
+-roughly 3x damage and spikes inflict defenseless, wheels inflict flames of the universe
+-eskimo zombies inflict chilled instead of rotting
+-hoppin jack leaves trail of flames, burning spheres do not
+-granite golems reflect projectiles while guarding
+-biome mimics create a shockwave when they land after their mega jump
+-paladin hammers inflict stunned instead of lethargic
+-Added DG mode to skeletron 
+-martian drones spawn in hard mode desert surface
+-probes spawn naturally at night, surface, post any mech. getting hit by one spawns a random mech
+-hungries and WoF laser quarter your speed on contact instead of making it zero reee
+-dark mages spawn in blood moons in hard mode
+-hungries spawn naturally in hard mode, get hit spawn WOF, removed WOF natural spawn cuz its a meme
+-spore zombies and anomura fungus burst into spores on death
+-jellyfish electrified aura only when theyre shocking
+-perma lightning rod whil raining, surface, hard mode, not under cover
+-Antisocial also kills all sentries
+-much shorter fall debuff lengths when you ignore fall damage
+-several new auras, eyes have dust when they can stone
+-DD2 spawns- kohbold in the underground, lighting bug surface rain, etherian goblin, goblin bomber, javelin in goblin army, wyverns and drakins in the underworld, wither beast in hallow
+-giant tortoise and ice tortoise reflect projectiles while shell spinning
+-masomode always activates expert mode 
+-EoC spawns servants a little bit less often, EoC leaves a trail of blood scythes
+-slime spiked inflict slimed
+-king slimes spike rain is now a spike burst thing?
+-also shoots slime balls at half hp
+-werewolf meme removed for now
+-bee to hornet upgrade only 50% chance
+-queen bee spawns a royal guard mini queen bee at 60% and 30% HP with 1/4 the life, 1/2 the attack, 
+-nail guns while a minion is alive and in stationary form
+-nerfed fused debuff
+-changed marked for death and adjusted everything that inflicts it
+-halfed tims aura radius
+-massively reduced rune wizard unstable duration
+-adjusted unstable to teleport you instantly
+ghost aura even smaller
+-visible aura hype
+-many new auras
+-reapers leave scythes behind
+-reverse mana flow changed
+
+
+
+
+
 -dimension/colossus soul chaos state immune moved to masochist/galactic globe
 -golem head breathes fire more aggressively, more damage
 -golem head moves faster vertically

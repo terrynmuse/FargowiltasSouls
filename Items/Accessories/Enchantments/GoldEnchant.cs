@@ -10,7 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     public class GoldEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        public float Damage;
         public int timer;
 
         public override bool CloneNewInstances => true;
@@ -55,7 +54,6 @@ Summons a pet Parrot";
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            modPlayer.AllDamageUp(Damage);
             modPlayer.GoldEffect(hideVisual);
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);

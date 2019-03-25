@@ -53,24 +53,29 @@ Summons several pets");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //plague lord flask effect
             modPlayer.HelheimForce = true;
-            //dread
-            player.moveSpeed += 0.8f;
-            player.maxRunSpeed += 10f;
-            player.runAcceleration += 0.05f;
-            if (player.velocity.X > 0f || player.velocity.X < 0f)
-            {
-                modPlayer.AllDamageUp(.25f);
 
-                for (int i = 0; i < 2; i++)
+            if (Soulcheck.GetValue("Dread Speed"))
+            {
+                //dread
+                player.moveSpeed += 0.8f;
+                player.maxRunSpeed += 10f;
+                player.runAcceleration += 0.05f;
+                if (player.velocity.X > 0f || player.velocity.X < 0f)
                 {
-                    int num = Dust.NewDust(new Vector2(player.position.X, player.position.Y) - player.velocity * 0.5f, player.width, player.height, 65, 0f, 0f, 0, default(Color), 1.75f);
-                    int num2 = Dust.NewDust(new Vector2(player.position.X, player.position.Y) - player.velocity * 0.5f, player.width, player.height, 75, 0f, 0f, 0, default(Color), 1f);
-                    Main.dust[num].noGravity = true;
-                    Main.dust[num2].noGravity = true;
-                    Main.dust[num].noLight = true;
-                    Main.dust[num2].noLight = true;
+                    modPlayer.AllDamageUp(.25f);
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        int num = Dust.NewDust(new Vector2(player.position.X, player.position.Y) - player.velocity * 0.5f, player.width, player.height, 65, 0f, 0f, 0, default(Color), 1.75f);
+                        int num2 = Dust.NewDust(new Vector2(player.position.X, player.position.Y) - player.velocity * 0.5f, player.width, player.height, 75, 0f, 0f, 0, default(Color), 1f);
+                        Main.dust[num].noGravity = true;
+                        Main.dust[num2].noGravity = true;
+                        Main.dust[num].noLight = true;
+                        Main.dust[num2].noLight = true;
+                    }
                 }
             }
+                
             //crash boots
             player.moveSpeed += 0.0015f * thoriumPlayer.momentum;
             player.maxRunSpeed += 0.0025f * thoriumPlayer.momentum;

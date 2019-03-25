@@ -59,7 +59,7 @@ Effects of Lich's Gaze and Plague Lord's Flask");
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersGarb"));
             recipe.AddIngredient(thorium.ItemType("PlagueDoctersLeggings"));
             recipe.AddIngredient(null, "LichEnchant");
-            recipe.AddIngredient(thorium.ItemType("PlagueLordsFlask"));
+            recipe.AddIngredient(thorium.ItemType("PlagueLordFlask"));
             recipe.AddIngredient(thorium.ItemType("CombustionFlask"), 300);
             recipe.AddIngredient(thorium.ItemType("NitrogenVial"), 300);
             recipe.AddIngredient(thorium.ItemType("CorrosionBeaker"), 300);

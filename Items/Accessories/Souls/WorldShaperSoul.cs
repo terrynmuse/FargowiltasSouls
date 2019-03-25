@@ -22,7 +22,7 @@ Increased block and wall placement speed by 50%
 Near infinite block placement and mining reach
 Mining speed doubled 
 Auto paint and actuator effect 
-Provides light 
+Provides light and allows gravity control
 Grants the ability to enable Builder Mode:
 Anything that creates a tile will not be consumed 
 No enemies can spawn
@@ -47,6 +47,23 @@ Effect can be disabled in Soul Toggles menu");
                     tooltipLine.overrideColor = new Color?(new Color(255, 239, 2));
                 }
             }
+        }
+
+        public override void UpdateInventory(Player player)
+        {
+            //cell phone
+            player.accWatch = 3;
+            player.accDepthMeter = 1;
+            player.accCompass = 1;
+            player.accFishFinder = true;
+            player.accDreamCatcher = true;
+            player.accOreFinder = true;
+            player.accStopwatch = true;
+            player.accCritterGuide = true;
+            player.accJarOfSouls = true;
+            player.accThirdEye = true;
+            player.accCalendar = true;
+            player.accWeatherRadio = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

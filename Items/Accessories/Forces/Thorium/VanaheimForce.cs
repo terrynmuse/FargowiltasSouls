@@ -50,10 +50,14 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //includes malignant debuff, folv bolts, white dwarf flares
             modPlayer.VanaheimForce = true;
-            //folv
-            thoriumPlayer.folvSet = true;
-            Lighting.AddLight(player.position, 0.03f, 0.3f, 0.5f);
-            thoriumPlayer.folvBonus2 = true;
+
+            if (Soulcheck.GetValue("Folv's Aura"))
+            {
+                //folv
+                thoriumPlayer.folvSet = true;
+                Lighting.AddLight(player.position, 0.03f, 0.3f, 0.5f);
+                thoriumPlayer.folvBonus2 = true;
+            }
 
             if (Soulcheck.GetValue("Mana-Charged Rocketeers"))
             {
@@ -161,7 +165,7 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
             recipe.AddIngredient(null, "CelestialEnchant");
             recipe.AddIngredient(null, "BalladeerEnchant");
 
-            recipe.AddTile(TileID.LunarCraftingStation);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);
             recipe.AddRecipe();

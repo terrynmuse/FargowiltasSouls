@@ -37,7 +37,7 @@ Lightning scales with magic damage";
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
             item.rare = 3;
-            item.value = 40000;
+            item.value = 100000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

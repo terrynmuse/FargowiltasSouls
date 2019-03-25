@@ -77,7 +77,6 @@ Summons a pet Life Spirit");
         {
             "RegenStaff",
             "LightBurstWand",
-            "SacredCharge",
             "HallowedBludgeon",
             "AngelStaff",
             "Liberation",

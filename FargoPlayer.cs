@@ -92,6 +92,7 @@ namespace FargowiltasSouls
         public bool GoldEnchant;
         public bool GoldShell;
         private int goldCD = 0;
+        private int goldHP;
         public bool CactusEnchant;
         public bool BeetleEnchant;
         public bool ForbiddenEnchant;
@@ -371,7 +372,9 @@ namespace FargowiltasSouls
             if (Fargowiltas.GoldKey.JustPressed && GoldEnchant && goldCD == 0)
             {
                 player.AddBuff(mod.BuffType("GoldenStasis"), 150);
-                goldCD = 2;//7350;
+                goldCD = 7350;
+                goldHP = player.statLife;
+                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Zhonyas").WithVolume(1f), player.Center);
             }
         }
 
@@ -812,9 +815,10 @@ namespace FargowiltasSouls
                 player.immune = true;
                 player.immuneTime = 2;
 
-                if (player.lifeRegen < 0)
+                //immune to DoT
+                if (player.statLife < goldHP)
                 {
-                    player.lifeRegen = 0;
+                    player.statLife = goldHP;
                 }
 
                 if (player.ownedProjectileCounts[mod.ProjectileType("GoldShellProj")] <= 0)
@@ -1005,8 +1009,7 @@ namespace FargowiltasSouls
             {
                 item.scale = 1;
             }
-
-            if (TungstenEnchant)
+            else if (TungstenEnchant)
             {
                 if (((item.melee && (item.useStyle == 1 || item.useStyle == 3)) || TerraForce) && item.damage > 0)
                 {

@@ -30,60 +30,44 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of Yggdrasil");
 
             Tooltip.SetDefault(@"'The true might of the 9 realms is yours!'
-Does a ton of things, tooltip coming soon TM");
+An icy aura surrounds you, which freezes nearby enemies after a short delay
+You occasionally birth a tentacle of abyssal energy that attacks nearby enemies
+Summons a living wood sapling, a biotech probe, a Li'l Cherub, a and Li'l Devil
+Grants the ability to dash into the enemy, Right Click to guard with your shield
+The energy of Terraria seeks to protect you, A meteor shower initiates every few seconds while attacking
+Attacks have a chance to unleash aquatic homing daggers, duplicate, or instantly kill the enemy
+Pressing the 'Special Ability' key will unleash shadow wisps, summon ghosts, put you in a bubble, and unleash Slag Fury,
+Effects of Flawless Chrysalis, Guide to Plant Fiber Cordage, and Agnor's Bowl
+Effects of Ice Bound Strider Hide, Mix Tape, and Eye of the Storm
+Effects of Champion's Rebuttal, Ogre Sandals, Greedy Magnet, and Abyssal Shell
+Effects of Eye of the Beholder, Crietz, Mana-Charged Rocketeers, and Crash Boots
+Effects of Vampire Gland, Demon Blood Badge, Lich's Gaze, and Plague Lord's Flask
+Lots of other effects from material Forces, Summons several pets");
 
             /*
              -not listed
-Attacks have a 33% chance to heal you lightly
-Summons a living wood sapling and its attacks will home in on enemies
 
-Critical strikes release a splash of foam, slowing nearby enemies
-After four consecutive non-critical strikes, your next attack will mini-crit for 150% damage
+            Moving around generates up to 5 static rings, then a bubble of energy will protect you from one attack
+            Attacks have a 33% chance to heal you lightly
 Damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies
-An icy aura surrounds you, which freezes nearby enemies after a short delay
-You occasionally birth a tentacle of abyssal energy that attacks nearby enemies
-
-Critical strikes will generate up to 15 shadow wisps
-Pressing the 'Special Ability' key will unleash them towards your cursor's position
-A biotech probe will assist you in healing your allies
-Summons a Li'l Cherub and Li'l Devil
-
-Pressing the 'Special Ability' key will summon a chorus of music playing ghosts
-
-Attacks have a chance to shock enemies with chain lightning and a lightning bolt
-Grants the ability to dash into the enemy
-Right Click to guard with your shield
-Briefly become invulnerable after striking an enemy
-A meteor shower initiates every few seconds while attacking
-Moving around generates up to 5 static rings, then a bubble of energy will protect you from one attack
-
-Damage reduction is increased by 10% at every 25% segment of life
-Every third attack will unleash an illumite missile
-The energy of Terraria seeks to protect you
-Critical strikes ring a bell over your head, slowing all nearby enemies briefly
-
-Every seventh attack will unleash damaging mana bolts
-Critical strikes engulf enemies in a long lasting void flame and unleash ivory flares
-
-Your attacks have a chance to unleash an explosion of Dragon's Flame
+            Attacks have a chance to shock enemies with chain lightning and a lightning bolt
+            Attacks will heavily burn and damage all adjacent enemies
+            Every third attack will unleash an illumite missile
+            Your attacks have a chance to unleash an explosion of Dragon's Flame
 Your attacks may inflict Darkness on enemies
 Consecutive attacks against enemies might drop flesh
-Greatly increases life regen
+            Every seventh attack will unleash damaging mana bolts
+Critical strikes engulf enemies in a long lasting void flame and unleash ivory flares
+            Damage reduction is increased by 10% at every 25% segment of life
+            Briefly become invulnerable after striking an enemy
+
+            Critical strikes release a splash of foam, slowing nearby enemies
+After four consecutive non-critical strikes, your next attack will mini-crit for 150% damage
+            Greatly increases life regen
 Hearts heal for 1.5x as much
-
-Produces a floating globule every half second
+             Critical strikes ring a bell over your head, slowing all nearby enemies briefly
+             Produces a floating globule every half second
 Every globule increases defense and makes your next attack a mini-crit
-Attacks have a chance to unleash aquatic homing daggers, duplicate, or instantly kill the enemy
-Attacks will heavily burn and damage all adjacent enemies
-Pressing the 'Special Ability' key will envelop you within an impervious bubble and unleash an echo of Slag Fury's power,
-
-Effects of Flawless Chrysalis, Guide to Plant Fiber Cordage, and Agnor's Bowl
-Effects of Ice Bound Strider Hide, Mix Tape, and Eye of the Storm
-Effects of Champion's Rebuttal, Ogre Sandals, and Greedy Magnet
-Effects of Abyssal Shell, Eye of the Beholder, and Crietz
-Effects of Mana-Charged Rocketeers, Crash Boots, and Vampire Gland
-Effects of Demon Blood Badge, Lich's Gaze, and Plague Lord's Flask
-Summons several pets           
 
              * */
         }
@@ -98,7 +82,6 @@ Summons several pets
             item.shieldSlot = 5;
 
             item.rare = -12;
-            item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -317,7 +300,7 @@ Summons several pets
             //meteor effect
             modPlayer.MeteorEffect(60);
             //pets
-            modPlayer.AddPet("Omega Pet", hideVisual, thorium.BuffType("OmegaBuff"), thorium.ProjectileType("Omega"));
+            //modPlayer.AddPet("Omega Pet", hideVisual, thorium.BuffType("OmegaBuff"), thorium.ProjectileType("Omega"));
             modPlayer.AddPet("I.F.O. Pet", hideVisual, thorium.BuffType("Identified"), thorium.ProjectileType("IFO"));
             modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
 
@@ -390,9 +373,13 @@ Summons several pets
             //VANAHEIM
             //includes malignant debuff, folv bolts, white dwarf flares
             modPlayer.VanaheimForce = true;
-            //folv
-            thoriumPlayer.folvSet = true;
-            thoriumPlayer.folvBonus2 = true;
+
+            if (Soulcheck.GetValue("Folv's Aura"))
+            {
+                //folv
+                thoriumPlayer.folvSet = true;
+                thoriumPlayer.folvBonus2 = true;
+            }
 
             if (Soulcheck.GetValue("Mana-Charged Rocketeers"))
             {
@@ -417,6 +404,25 @@ Summons several pets
             //HELHEIM
             //plague lord flask effect
             modPlayer.HelheimForce = true;
+            if (Soulcheck.GetValue("Dread Speed"))
+            {
+                //dread
+                player.moveSpeed += 0.8f;
+                player.maxRunSpeed += 10f;
+                player.runAcceleration += 0.05f;
+                if (player.velocity.X > 0f || player.velocity.X < 0f)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        int num = Dust.NewDust(new Vector2(player.position.X, player.position.Y) - player.velocity * 0.5f, player.width, player.height, 65, 0f, 0f, 0, default(Color), 1.75f);
+                        int num2 = Dust.NewDust(new Vector2(player.position.X, player.position.Y) - player.velocity * 0.5f, player.width, player.height, 75, 0f, 0f, 0, default(Color), 1f);
+                        Main.dust[num].noGravity = true;
+                        Main.dust[num2].noGravity = true;
+                        Main.dust[num].noLight = true;
+                        Main.dust[num2].noLight = true;
+                    }
+                }
+            }
             //crash boots
             player.moveSpeed += 0.0015f * thoriumPlayer.momentum;
             player.maxRunSpeed += 0.0025f * thoriumPlayer.momentum;
@@ -470,30 +476,33 @@ Summons several pets
             //includes tide turner daggers, assassin duplicate and insta kill, pyro burst
             modPlayer.AsgardForce = true;
             //tide turner
-            //floating globs and defense
-            thoriumPlayer.tideHelmet = true;
-            if (thoriumPlayer.tideOrb < 8)
+            if (Soulcheck.GetValue("Tide Turner Globules"))
             {
-                tideTimer++;
-                if (tideTimer > 30)
+                //floating globs and defense
+                thoriumPlayer.tideHelmet = true;
+                if (thoriumPlayer.tideOrb < 8)
                 {
-                    float num = 30f;
-                    int num2 = 0;
-                    while (num2 < num)
+                    tideTimer++;
+                    if (tideTimer > 30)
                     {
-                        Vector2 vector = Vector2.UnitX * 0f;
-                        vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(25f, 25f);
-                        vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
-                        int num3 = Dust.NewDust(player.Center, 0, 0, 113, 0f, 0f, 0, default(Color), 1f);
-                        Main.dust[num3].scale = 1.6f;
-                        Main.dust[num3].noGravity = true;
-                        Main.dust[num3].position = player.Center + vector;
-                        Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
-                        int num4 = num2;
-                        num2 = num4 + 1;
+                        float num = 30f;
+                        int num2 = 0;
+                        while (num2 < num)
+                        {
+                            Vector2 vector = Vector2.UnitX * 0f;
+                            vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(25f, 25f);
+                            vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
+                            int num3 = Dust.NewDust(player.Center, 0, 0, 113, 0f, 0f, 0, default(Color), 1f);
+                            Main.dust[num3].scale = 1.6f;
+                            Main.dust[num3].noGravity = true;
+                            Main.dust[num3].position = player.Center + vector;
+                            Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
+                            int num4 = num2;
+                            num2 = num4 + 1;
+                        }
+                        thoriumPlayer.tideOrb++;
+                        tideTimer = 0;
                     }
-                    thoriumPlayer.tideOrb++;
-                    tideTimer = 0;
                 }
             }
             //set bonus damage to healing hot key

@@ -68,6 +68,23 @@ All other effects of material Souls");
             item.expert = true;
         }
 
+        public override void UpdateInventory(Player player)
+        {
+            //cell phone
+            player.accWatch = 3;
+            player.accDepthMeter = 1;
+            player.accCompass = 1;
+            player.accFishFinder = true;
+            player.accDreamCatcher = true;
+            player.accOreFinder = true;
+            player.accStopwatch = true;
+            player.accCritterGuide = true;
+            player.accJarOfSouls = true;
+            player.accThirdEye = true;
+            player.accCalendar = true;
+            player.accWeatherRadio = true;
+        }
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();

@@ -37,7 +37,7 @@ namespace FargowiltasSouls.Items.Misc
 
                 if (Main.dayTime)
                 {
-                    if (npc.lifeMax > 400 || npc.boss || npc.townNPC || npc.dontTakeDamage)
+                    if (npc.lifeMax > 400 || npc.boss || npc.townNPC || npc.dontTakeDamage || npc.type == NPCID.BoundGoblin || npc.type == NPCID.BoundMechanic || npc.type == NPCID.BoundWizard || npc.type == NPCID.BartenderUnconscious || npc.type == NPCID.WebbedStylist)
                     {
                         i--;
                     }
@@ -54,7 +54,7 @@ namespace FargowiltasSouls.Items.Misc
                 //night
                 else
                 {
-                    if (npc.townNPC || npc.dontTakeDamage)
+                    if (npc.townNPC || npc.dontTakeDamage || npc.type == NPCID.BoundGoblin || npc.type == NPCID.BoundMechanic || npc.type == NPCID.BoundWizard || npc.type == NPCID.BartenderUnconscious || npc.type == NPCID.WebbedStylist)
                     {
                         i--;
                     }

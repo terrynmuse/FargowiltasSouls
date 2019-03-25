@@ -65,12 +65,9 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             //meteor effect
             modPlayer.MeteorEffect(60);
             //pets
-            modPlayer.AddPet("Omega Pet", hideVisual, thorium.BuffType("OmegaBuff"), thorium.ProjectileType("Omega"));
+            //modPlayer.AddPet("Omega Pet", hideVisual, thorium.BuffType("OmegaBuff"), thorium.ProjectileType("Omega"));
             modPlayer.AddPet("I.F.O. Pet", hideVisual, thorium.BuffType("Identified"), thorium.ProjectileType("IFO"));
             modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
-            thoriumPlayer.OmegaPet = true;
-            thoriumPlayer.lostMartianPet = true;
-            thoriumPlayer.bioPet = true;
         }
 
         public override void AddRecipes()

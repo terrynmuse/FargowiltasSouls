@@ -62,10 +62,10 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             "LargePopcorn",
             "BatScythe",
             "DivineLotus",
-            "EnergyManipulator",
-            "SentinelsWand",
+            "GraniteEnergyStaff",
+            "SentinelWand",
             "LifeDisperser",
-            "RedeemersStaff",
+            "RedeemerStaff",
             "DeepStaff",
             "StarRod"
         };

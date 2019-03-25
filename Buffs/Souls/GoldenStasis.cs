@@ -17,12 +17,5 @@ namespace FargowiltasSouls.Buffs.Souls
         {
             player.GetModPlayer<FargoPlayer>(mod).GoldShell = true;
         }
-
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderBuff";
-
-            return true;
-        }
     }
 }

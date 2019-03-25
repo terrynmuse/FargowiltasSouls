@@ -77,6 +77,8 @@ namespace FargowiltasSouls
             ["Universe Attack Speed"] = new Color(81, 181, 113),
             ["Sniper Scope"] = new Color(81, 181, 113),
             ["Supersonic Speed Boosts"] = new Color(81, 181, 113),
+            ["Plantera Minion"] = new Color(81, 181, 113),
+            ["Cultist Minion"] = new Color(81, 181, 113),
             #endregion
 
             #region pet toggles
@@ -138,7 +140,10 @@ namespace FargowiltasSouls
             ["Whispering Tentacles"] = new Color(81, 181, 113),
             ["Icy Barrier"] = new Color(81, 181, 113),
             ["Plague Lord's Flask"] = new Color(81, 181, 113),
+            ["Tide Turner Globules"] = new Color(81, 181, 113),
             ["Tide Turner Daggers"] = new Color(81, 181, 113),
+            ["Folv's Aura"] = new Color(81, 181, 113),
+            ["Folv's Bolts"] = new Color(81, 181, 113),
             ["Vampire Gland"] = new Color(81, 181, 113),
             ["Flesh Drops"] = new Color(81, 181, 113),
             ["Dragon Flames"] = new Color(81, 181, 113),
@@ -159,6 +164,8 @@ namespace FargowiltasSouls
             ["Ghastly Carapace"] = new Color(81, 181, 113),
             ["Spirit Trapper Wisps"] = new Color(81, 181, 113),
             ["Warlock Wisps"] = new Color(81, 181, 113),
+            ["Dread Speed"] = new Color(81, 181, 113),
+
 
             ["Li'l Devil Minion"] = new Color(81, 181, 113),
             ["Li'l Cherub Minion"] = new Color(81, 181, 113),
@@ -203,9 +210,9 @@ namespace FargowiltasSouls
             ["Yharim's Gift"] = new Color(81, 181, 113),
             ["Fungal Clump Minion"] = new Color(81, 181, 113),
             ["Elemental Waifus"] = new Color(81, 181, 113),
-            [""] = new Color(81, 181, 113),
-            [""] = new Color(81, 181, 113),
-            [""] = new Color(81, 181, 113),
+            ["Shellfish Minions"] = new Color(81, 181, 113),
+            ["Amidias' Pendant"] = new Color(81, 181, 113),
+            ["Giant Pearl"] = new Color(81, 181, 113),
             [""] = new Color(81, 181, 113),
             [""] = new Color(81, 181, 113),
         };

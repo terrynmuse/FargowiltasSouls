@@ -55,18 +55,18 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             "BardEmblem",
             "AntlionMaraca",
-            "SeashellCastanets",
+            "SeashellCastanettes",
             "Didgeridoo",
-            "BagPipe",
-            "YewWoodLute",
+            "Bagpipe",
+            "Lute",
             "ForestOcarina",
             "AquamarineWineGlass",
             "SonarCannon",
-            "MusicSheetCongas",
-            "GraniteBoombox",
-            "BronzeTuningFork",
+            "MusicSheet2",
+            "GraniteBoomBox",
+            "TuningFork",
             "HotHorn",
-            "SongofIceandFire"
+            "SongFireAndIce"
         };
 
         public override void AddRecipes()
