@@ -55,7 +55,7 @@ Drastically increased ki regen
 
             dbtPlayer.kiDamage += 0.35f;
             dbtPlayer.kiCrit += 20;
-            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 3f);
+            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 2f);
             dbtPlayer.kiKbAddition += 0.3f;
             dbtPlayer.kiDrainMulti -= 0.4f;
             dbtPlayer.kiMaxMult += 0.3f;

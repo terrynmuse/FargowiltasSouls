@@ -1,12 +1,11 @@
 ﻿using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using ThoriumMod;
 using System;
-using ThoriumMod.Items.Misc;
 using CalamityMod;
+using ThoriumMod.Items.Misc;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -147,8 +146,14 @@ and most of SoT not mentioned because meme tooltip length
             //charm of myths
             player.pStone = true;
             //bee cloak, sweet heart necklace, star veil
-            player.starCloak = true;
-            player.bee = true;
+            if (Soulcheck.GetValue("Stars On Hit"))
+            {
+                player.starCloak = true;
+            }
+            if (Soulcheck.GetValue("Bees On Hit"))
+            {
+                player.bee = true;
+            }
             player.panic = true;
             player.longInvince = true;
             //spore sac
@@ -564,7 +569,7 @@ and most of SoT not mentioned because meme tooltip length
         {
             DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
 
-            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 3f);
+            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 2f);
             dbtPlayer.kiKbAddition += 0.4f;
             dbtPlayer.kiDrainMulti -= 0.5f;
             dbtPlayer.kiMaxMult += 0.4f;
