@@ -253,6 +253,10 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CultistBossClone:
                         npc.damage = 75;
                         break;
+			
+		case NPCOD.SkeletronHead:
+			npc.lifeMax += 1000;
+			break;
 
                     default:
                         break;
@@ -430,6 +434,7 @@ namespace FargowiltasSouls.NPCs
                         if (FargoWorld.FishronEX)
                         {
                             masoAI = 89;
+			    npc.Name = "Duke Fishron EX";
                             //npc.lifeMax *= 5;
                             npc.damage = npc.damage * 3 / 2;
                             npc.defense *= 2;
@@ -2400,6 +2405,30 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
+			
+			if(npc.life < 1000 && npc.lifeMax > 1000)
+			{
+
+                        	for (int k = 0; k < npc.buffImmune.Length; k++)
+                        	{
+                        	    npc.buffImmune[k] = true;
+                        	}
+	
+                        	while (npc.buffTime[0] != 0)
+                        	{
+                        	    npc.DelBuff(0);
+                        	}
+	
+                        	npc.netUpdate = true;
+				npc.lifeMax = 100;
+				
+                        	if (npc.life < 100)
+                        	    npc.life = 100;
+	
+                        	Main.dayTime = true;
+                        	Main.time = 0;
+                        	Main.NewText("The Sun Rises..", 175, 75, 255);
+			}
                         break;
 
                     case 35: //wall of flesh mouth
@@ -4538,11 +4567,11 @@ namespace FargowiltasSouls.NPCs
                     //ok lets make them dash instead
                     case 83: //demon eye
                         Counter++;
-                        if (Counter >= 420)
+                        if (Counter >= 420 && Main.rand.Next(60) == 0)
                         {
                             npc.TargetClosest();
 
-                            Vector2 velocity = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 15;
+                            Vector2 velocity = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 12;
                             npc.velocity = velocity;
                             Counter = 0;
                         }
@@ -6689,28 +6718,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             FargoWorld.SkeletronCount++;
                         }
-
-                        masoDeathAI = 0;
-
-                        for (int k = 0; k < npc.buffImmune.Length; k++)
-                        {
-                            npc.buffImmune[k] = true;
-                        }
-
-                        while (npc.buffTime[0] != 0)
-                        {
-                            npc.DelBuff(0);
-                        }
-
-                        npc.netUpdate = true;
-
-                        if (npc.life < 100)
-                            npc.life = 100;
-
-                        Main.dayTime = true;
-                        Main.time = 0;
-                        Main.NewText("The Sun Rises..", 175, 75, 255);
-                        return false;
+			break;
 
                     case 15: //wall of flesh
                         if (FargoWorld.WallCount < 280)
@@ -7250,7 +7258,10 @@ namespace FargowiltasSouls.NPCs
 
                     case 9: //brain of cthulhu
                         if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
-                            player.AddBuff(BuffID.Confused, Main.rand.Next(30));
+			{
+                            player.AddBuff(BuffID.Confused, Main.rand.Next(300));
+			    Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainofConfusion);
+			 }
                         break;
 
                     case 10: //ice tortoise
@@ -7405,17 +7416,17 @@ namespace FargowiltasSouls.NPCs
 
                         switch (armCount)
                         {
-                            case 4: //100% DR
-                                damage = 0;
+                            case 4:
+                                damage = damage / 20;
                                 break;
-                            case 3: //50% DR
+                            case 3:
                                 damage = damage / 2;
                                 break;
-                            case 2: //25% DR
+                            case 2:
                                 damage = damage * 3 / 4;
                                 break;
-                            case 1: //12.5% DR
-                                damage = damage * 7 / 8;
+                            case 1:
+                                damage = damage * 9 / 10;
                                 break;
                             default:
                                 break;
@@ -7424,7 +7435,10 @@ namespace FargowiltasSouls.NPCs
 
                     case 9: //brain of cthulhu
                         if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
-                            player.AddBuff(BuffID.Confused, Main.rand.Next(30));
+			{
+                            player.AddBuff(BuffID.Confused, Main.rand.Next(300));
+			    Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainofConfusion);
+			 }
                         break;
 
                     case 10: //ice tortoise
@@ -7584,7 +7598,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Crimslime:
                         target.AddBuff(BuffID.Slimed, Main.rand.Next(60, 600));
-                        target.AddBuff(BuffID.Bleeding, Main.rand.Next(600, 1800));
                         target.AddBuff(mod.BuffType<Bloodthirsty>(), Main.rand.Next(30, 240));
                         break;
 
@@ -7704,7 +7717,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.IceBat:
-                        target.AddBuff(BuffID.Frostburn, Main.rand.Next(300, 600));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(7200));
 
                         if (target.HasBuff(BuffID.Chilled) && !target.HasBuff(BuffID.Frozen))
@@ -7729,7 +7741,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.GiantFlyingFox:
-                        target.AddBuff(mod.BuffType<SqueakyToy>(), Main.rand.Next(30, 300));
+                        target.AddBuff(mod.BuffType<MutantNibble>(), Main.rand.Next(600, 1200));
                         target.AddBuff(mod.BuffType<Bloodthirsty>(), Main.rand.Next(30, 300));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(7200));
                         break;
@@ -7784,7 +7796,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.GraniteFlyer:
                     case NPCID.GraniteGolem:
-                        if (!target.HasBuff(BuffID.Stoned))
+                        if (!target.HasBuff(BuffID.Stoned) && Main.rand.Next(2) == 0)
                             target.AddBuff(BuffID.Stoned, Main.rand.Next(120));
                         break;
 
@@ -7792,7 +7804,6 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(300, 900));
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 900));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(300, 900));
-                        target.velocity = Vector2.Zero;
                         break;
 
                     case NPCID.AnomuraFungus:
