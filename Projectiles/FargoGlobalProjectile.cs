@@ -360,20 +360,6 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
-        public override bool PreDraw(Projectile projectile, SpriteBatch spriteBatch, Color lightColor)
-        {
-            if(FargoWorld.MasochistMode)
-            {
-                if(projectile.type == ProjectileID.HappyBomb)
-                {
-                    //something something draw galactic reformer sprite idk
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
         private void KillPet(Projectile projectile, Player player, int buff, bool enchant, string toggle, bool minion = false)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
@@ -674,6 +660,7 @@ namespace FargowiltasSouls.Projectiles
             {
                 if (projectile.type == ProjectileID.HarpyFeather)
                 {
+                    projectile.Name = "Vulture Feather";
                     return Color.Brown;
                 }
 
@@ -694,6 +681,7 @@ namespace FargowiltasSouls.Projectiles
 
                 else if (projectile.type == ProjectileID.DemonSickle)
                 {
+                    projectile.Name = "Blood Scythe";
                     return Color.Red;
                 }
             }
@@ -813,8 +801,17 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.DemonSickle:
-                        target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
-                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        if(IsRecolor)
+                        {
+                            target.AddBuff(BuffID.ShadowFlame, 300);
+                            target.AddBuff(BuffID.Bleeding, 600);
+                        }
+                        else
+                        {
+                            target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
+                            target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        }
+                        
                         break;
 
                     case ProjectileID.HarpyFeather:
