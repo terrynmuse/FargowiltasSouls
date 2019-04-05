@@ -5906,6 +5906,24 @@ namespace FargowiltasSouls.NPCs
                             else //not blood moon
                             {
                                 pool[NPCID.Clown] = 0.01f;
+				
+				if (noBiome)
+                            {
+                                pool[NPCID.CorruptBunny] = .05f;
+                                pool[NPCID.CrimsonBunny] = .05f;
+                            }
+
+                            if (snow)
+                            {
+                                pool[NPCID.CorruptPenguin] = .05f;
+                                pool[NPCID.CrimsonPenguin] = .05f;
+                            }
+
+                            if (ocean || rain)
+                            {
+                                pool[NPCID.CorruptGoldfish] = .05f;
+                                pool[NPCID.CrimsonGoldfish] = .05f;
+                            }
 
                                 if (normalSpawn)
                                 {
@@ -6056,6 +6074,19 @@ namespace FargowiltasSouls.NPCs
                     }
                     else if (wideUnderground)
                     {
+		    if (nearLava)
+                        {
+                            pool[NPCID.FireImp] = .02f;
+                            pool[NPCID.LavaSlime] = .02f;
+                        }
+
+                        if (cavern)
+                        {
+                            if (noBiome && NPC.downedBoss3)
+                            {
+                                pool[NPCID.DarkCaster] = .05f;
+                            }
+                        }
 		    
 		    	if (dungeon && night && normalSpawn)
                             {
@@ -6122,6 +6153,9 @@ namespace FargowiltasSouls.NPCs
                     }
                     else if (underworld)
                     {
+		    pool[NPCID.LeechHead] = .025f;
+                        pool[NPCID.BlazingWheel] = .05f;
+		    
                         if (!BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
                         {
                             pool[NPCID.TheHungryII] = .03f;
@@ -6153,6 +6187,8 @@ namespace FargowiltasSouls.NPCs
                     {
                         if (normalSpawn)
                         {
+			pool[NPCID.AngryNimbus] = .05f;
+			
                             if (NPC.downedGolemBoss)
                             {
                                 pool[NPCID.SolarCrawltipedeHead] = .03f;
