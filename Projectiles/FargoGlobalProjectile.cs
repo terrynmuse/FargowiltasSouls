@@ -1007,7 +1007,7 @@ namespace FargowiltasSouls.Projectiles
                         break;*/
 
                     case ProjectileID.LostSoulHostile:
-                        target.AddBuff(mod.BuffType<Unstable>(), Main.rand.Next(30, 120));
+                        target.AddBuff(mod.BuffType<Hexed>(), Main.rand.Next(30, 240));
                         break;
 
                     case ProjectileID.InfernoHostileBlast:
@@ -1018,6 +1018,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.ShadowBeamHostile:
                         target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1800, 3600));
+                        target.AddBuff(BuffID.Shadowflame, Main.rand.Next(300, 600));
                         break;
 
                     /*case ProjectileID.DeathLaser:
