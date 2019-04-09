@@ -837,8 +837,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.RainbowSlime:
-                        masoDeathAI = 25;
+                        masoDeathAI = 40;
                         break;
+			
+		case NPCID.Pinky:
+			masoDeathAI = 25;
+			break;
 
                     case NPCID.FlyingSnake:
                         masoDeathAI = 26;
@@ -4279,7 +4283,7 @@ namespace FargowiltasSouls.NPCs
                                             {
                                                 case 0: 
                                                 case 1:
-                                                case 2: break;
+                                                case 2: type = ProjectileID.HappyBomb; damage = 100; break;
                                                 case 3: 
                                                 case 4: 
                                                 case 5: 
@@ -4973,7 +4977,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 92: //blood zombie
-                        Aura(npc, 50, mod.BuffType<Bloodthirsty>(), false, 5);
+                        Aura(npc, 80, mod.BuffType<Bloodthirsty>(), false, 5);
                         break;
 
                     case 93: //possessed armor
@@ -5344,7 +5348,7 @@ namespace FargowiltasSouls.NPCs
                     switch (npc.type)
                     {
                         case NPCID.SlimeSpiked:
-                            if (BossIsAlive(ref slimeBoss, NPCID.KingSlime))
+                            if (!BossIsAlive(ref slimeBoss, NPCID.KingSlime))
                             {
                                 npc.Transform(NPCID.KingSlime);
                                 npc.velocity.Y = -20f;
@@ -6873,38 +6877,25 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case 25: //rainbow slime
-                        masoDeathAI = 0;
-                        npc.active = false;
-                        Main.PlaySound(npc.DeathSound);
-
-                        for (int i = 0; i < 4; i++)
+                    case 25: //pinky
+		    	for (int i = 0; i < 3; i++)
                         {
-                            int slimeIndex = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), NPCID.RainbowSlime);
-                            NPC slime = Main.npc[slimeIndex];
+                            int spawn = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), 1);
 
-                            Vector2 center = slime.Center;
-                            slime.width = (int)(slime.width / slime.scale);
-                            slime.height = (int)(slime.height / slime.scale);
-                            slime.scale = 1f;
-                            slime.Center = center;
+                            if (spawn != 200)
+                            {
+                                Main.npc[spawn].SetDefaults(i < 2 ? NPCID.YellowSlime : NPCID.MotherSlime);
+                                Main.npc[spawn].velocity.X = npc.velocity.X * 2f;
+                                Main.npc[spawn].velocity.Y = npc.velocity.Y;
 
-                            slime.lifeMax /= 5;
-                            slime.life = slime.lifeMax;
-
-                            slime.GetGlobalNPC<FargoGlobalNPC>().masoDeathAI = 0;
-                            slime.velocity = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 1));
+                                NPC spawn2 = Main.npc[spawn];
+                                spawn2.velocity.X = spawn2.velocity.X + (Main.rand.Next(-20, 20) * 0.1f + i * npc.direction * 0.3f);
+                                NPC spawn3 = Main.npc[spawn];
+                                spawn3.velocity.Y = spawn3.velocity.Y - (Main.rand.Next(0, 10) * 0.1f + i);
+                                Main.npc[spawn].ai[0] = -1000 * Main.rand.Next(3);
+                            }
                         }
-
-                        for (int i = 0; i < 20; i++)
-                        {
-                            int num469 = Dust.NewDust(new Vector2(npc.Center.X, npc.Center.Y), npc.width, npc.height, DustID.RainbowMk2, -npc.velocity.X * 0.2f, -npc.velocity.Y * 0.2f, 100, default(Color), 5f);
-                            Main.dust[num469].noGravity = true;
-                            Main.dust[num469].velocity *= 2f;
-                            num469 = Dust.NewDust(new Vector2(npc.Center.X, npc.Center.Y), npc.width, npc.height, DustID.RainbowMk2, -npc.velocity.X * 0.2f, -npc.velocity.Y * 0.2f, 100, default(Color), 2f);
-                            Main.dust[num469].velocity *= 2f;
-                        }
-                        return false;
+                        
 
                     case 26: //flying snake
                         masoDeathAI = 0;
@@ -7072,6 +7063,59 @@ namespace FargowiltasSouls.NPCs
                             Main.npc[spore].velocity = new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5));
                         }
                         break;
+			
+		case 40: //rainbow slime 1
+			masoDeathAI = 0;
+                        npc.active = false;
+                        Main.PlaySound(npc.DeathSound);
+
+                        for (int i = 0; i < 4; i++)
+                        {
+                            int slimeIndex = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), NPCID.RainbowSlime);
+                            NPC slime = Main.npc[slimeIndex];
+
+                            Vector2 center = slime.Center;
+                            slime.width = (int)(slime.width / slime.scale);
+                            slime.height = (int)(slime.height / slime.scale);
+                            slime.scale = 1f;
+                            slime.Center = center;
+
+                            slime.lifeMax /= 5;
+                            slime.life = slime.lifeMax;
+
+                            slime.GetGlobalNPC<FargoGlobalNPC>().masoDeathAI = 41;
+                            slime.velocity = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 1));
+                        }
+
+                        for (int i = 0; i < 20; i++)
+                        {
+                            int num469 = Dust.NewDust(new Vector2(npc.Center.X, npc.Center.Y), npc.width, npc.height, DustID.RainbowMk2, -npc.velocity.X * 0.2f, -npc.velocity.Y * 0.2f, 100, default(Color), 5f);
+                            Main.dust[num469].noGravity = true;
+                            Main.dust[num469].velocity *= 2f;
+                            num469 = Dust.NewDust(new Vector2(npc.Center.X, npc.Center.Y), npc.width, npc.height, DustID.RainbowMk2, -npc.velocity.X * 0.2f, -npc.velocity.Y * 0.2f, 100, default(Color), 2f);
+                            Main.dust[num469].velocity *= 2f;
+                        }
+                        return false;
+			
+		case 41: //rainbow slime 2
+			for (int i = 0; i < 10; i++)
+                        {
+                            int spawn = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), 1);
+
+                            if (spawn != 200)
+                            {
+                                Main.npc[spawn].SetDefaults(i < 5 ? NPCID.Pinky : NPCID.Gastropod);
+                                Main.npc[spawn].velocity.X = npc.velocity.X * 2f;
+                                Main.npc[spawn].velocity.Y = npc.velocity.Y;
+
+                                NPC spawn2 = Main.npc[spawn];
+                                spawn2.velocity.X = spawn2.velocity.X + (Main.rand.Next(-20, 20) * 0.1f + i * npc.direction * 0.3f);
+                                NPC spawn3 = Main.npc[spawn];
+                                spawn3.velocity.Y = spawn3.velocity.Y - (Main.rand.Next(0, 10) * 0.1f + i);
+                                Main.npc[spawn].ai[0] = -1000 * Main.rand.Next(3);
+                            }
+                        }
+			break;
 			
 			/* pseudo memes
 			case: slime zombie
@@ -7393,7 +7437,7 @@ namespace FargowiltasSouls.NPCs
                     case 6: //all mechs
                         if (projectile.type == ProjectileID.HallowStar)
                         {
-                            damage = 0;
+                            damage /= 4;
                         }
                         break;
 
@@ -7456,10 +7500,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 12: //moon lord
-                        if (projectile.type == ProjectileID.DD2BetsyArrow)
+                        if (projectile.type == ProjectileID.DD2BetsyArrow || projectile.type == ProjectileID.PhantasmArrow)
                             damage = damage * 3 / 4;
-                        if (projectile.type == ProjectileID.PhantasmArrow)
-                            damage = 0;
                         else if (npc.type == NPCID.MoonLordCore)
                             damage = damage * 2 / 3;
                         else if (npc.type == NPCID.MoonLordHead)
@@ -7544,7 +7586,8 @@ namespace FargowiltasSouls.NPCs
                                 break;
 
                             case NPCID.Pinky:
-                                target.AddBuff(BuffID.Slimed, Main.rand.Next(60, 600));
+                                target.AddBuff(BuffID.Slimed, Main.rand.Next(300, 600));
+				target.AddBuff(mod.BuffType("Stunned"), Main.rand.Next(120));
                                 break;
 
                             default:
@@ -7812,6 +7855,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WaterSphere:
                         target.AddBuff(mod.BuffType<Flipped>(), Main.rand.Next(600));
+			target.AddBuff(BuffID.Wet, Main.rand.Next(1200));
                         break;
 
                     case NPCID.GiantShelly:
@@ -7965,7 +8009,7 @@ namespace FargowiltasSouls.NPCs
                         break;
                     case NPCID.CultistBossClone:
                         target.AddBuff(mod.BuffType<Hexed>(), Main.rand.Next(60, 120));
-                        target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1800, 3600));
+                        target.AddBuff(mod.BuffType<CurseoftheMoon>(), Main.rand.Next(600, 900));
                         break;
 
                     case NPCID.MossHornet:
@@ -8162,6 +8206,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Corruptor:
                         target.AddBuff(BuffID.Weak, Main.rand.Next(60, 7200));
+			target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(300, 3600));
                         break;
 
                     case NPCID.Mummy:
@@ -8386,7 +8431,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DD2LightningBugT3:
-                        target.AddBuff(mod.BuffType<LightningRod>(), Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Electrified, Main.rand.Next(300, 600));
                         break;
 
                     case NPCID.DD2SkeletonT1:
