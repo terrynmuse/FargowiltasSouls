@@ -1260,6 +1260,13 @@ namespace FargowiltasSouls.NPCs
                                 Horde(npc, 5);
                             }
                             break;
+			    
+			   case NPCID.MossHornet?:
+                            if (Main.rand.Next(4) == 0)
+                            {
+                                Horde(npc, 5);
+                            }
+                            break;
 
                         case NPCID.Crawdad:
                         case NPCID.GiantShelly:
@@ -1305,6 +1312,16 @@ namespace FargowiltasSouls.NPCs
                         case NPCID.VortexLarva:
 			    if (Main.rand.Next(2) == 0)
                             	npcType = NPCID.VortexHornet;
+                            break;
+			    
+			case NPCID.IceSlime:
+			    if (Main.rand.Next(5) == 0)
+                            	npcType = NPCID.SpikedIceSlime;
+                            break;
+			    
+			case NPCID.JungleSlime:
+			    if (Main.rand.Next(5) == 0)
+                            	npcType = NPCID.SpikedJungleSlime;
                             break;
 
                         case NPCID.Bee:
@@ -5409,7 +5426,7 @@ namespace FargowiltasSouls.NPCs
                         case NPCID.Vampire:
                         case NPCID.VampireBat:
                             npc.life += damage / 2;
-                            npc.HealEffect(damage / 2);
+                            CombatText.NewText(npc.Hitbox, CombatText.HealLife, damage / 2);
                             npc.damage = (int)(npc.damage * 1.1f);
                             break;
 
@@ -8489,6 +8506,26 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHead:
                         target.AddBuff(mod.BuffType<CurseoftheMoon>(), 600);
                         break;
+			
+		case NPCID.BoneSerpentHead:
+			target.AddBuff(BuffID.Burning, Main.rand.Next(300, 600));
+			break;
+			
+		case NPCID.Salamander:
+                    case NPCID.Salamander2:
+                    case NPCID.Salamander3:
+                    case NPCID.Salamander4:
+                    case NPCID.Salamander5:
+                    case NPCID.Salamander6:
+                    case NPCID.Salamander7:
+                    case NPCID.Salamander8:
+                    case NPCID.Salamander9:
+			target.AddBuff(BuffID.Poisoned, Main.rand.Next(600, 900));
+			break;
+			
+		case NPCID.VileSpit:
+			target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(240, 360));
+			break;
 
                     default:
                         break;
