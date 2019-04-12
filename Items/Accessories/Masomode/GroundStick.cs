@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ground Stick");
+            DisplayName.SetDefault("Remote Control");
             Tooltip.SetDefault(@"Grants immunity to Electrified
 Your attacks have a small chance to inflict Electrified");
         }
