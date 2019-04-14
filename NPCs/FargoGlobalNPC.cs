@@ -253,10 +253,10 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CultistBossClone:
                         npc.damage = 75;
                         break;
-			
-		case NPCOD.SkeletronHead:
-			npc.lifeMax += 1000;
-			break;
+
+                    case NPCID.SkeletronHead:
+                        npc.lifeMax += 1000;
+                        break;
 
                     default:
                         break;
