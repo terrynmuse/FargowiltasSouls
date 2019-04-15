@@ -42,6 +42,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.Bunny);
             recipe.AddIngredient(ItemID.Squirrel);
             recipe.AddIngredient(ItemID.Bird);
+            
+            LeafWand
+            daybloom 
+            grasshopper
+            
+            fireblossom to obsidian when
+            all painter paintings when
+            all vanilla buteflie swhen
+            
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
