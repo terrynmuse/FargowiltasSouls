@@ -1,43 +1,15 @@
-NEW UPDATE - v 0.6
--Added 68 Thorium Enchantments, 9 Thorium Forces, 17 Calamity Enchantments, Force of Calamities, Soul of Yggdrasil, Soul of the Tyrant, Spirtualist's Soul, and some Calamity recipe and effect support to class Souls
--Added Crusader's Essence and Musician's Essence
--Added Celestial Rune, Chalice of the Moon, and Soul of the Masochist
--Added Nuke Fishron and The Twins (weapon), and Universal Collapse
--Added Amalgamated Bullet Pouch and Amalgamated Arrow Quiver
+NEW UPDATE - v 0.6.2
 
--Olympian's Soul and Slinger Essence now also benefit Calamity's Rogue damage
--Added Magic Carpet effects to Supersonic Soul
--World Shaper Soul now has Cell Phone effects while in your inventory
--Reworked Gold Enchantments: No longer gain damage based on coin count, instead a hotkey to turn golden and ignore damage
--Reworked Bee Enchantment: Bees no longer always ignore defense, now bees may become Mega Bees, also moved to post Plantera
--Reworked Lead Enchantment: Lead Poisoning now spreads to nearby enemies
--Reworked Obsidian Enchantment: 5 seconds of lava immune instead of full immunity, 5 armor pen down from 10, but +15 instead of +10 in lava, also added fall immune
--Reworked Tungsten Enchantment: Completely new effect, increases sword size and sword attacks inflict Stunned 
--Reworked Dark Artist Enchantment: Flameburst shots fire from your shadows instead of whatever you are using
--Reworked Infinity Relic: Works for all weapon types now and damages you every few attacks as opposed to everytime you hit an enemy
--Reworked Pandora's Box: spawns a random selection of mobs from any mod, during the day, only weaker enemies can spawn and any critters summoned have 99 defense
--Nerfed Cactus Enchantment: Enemies only shoot 8 needles instead of 16 and only 50% of the time
--Nerfed Copper Enchantment: Added a cooldown between chain lightnings, moved to Hard Mode, and damage of lightning increased
--Nerfed Cobalt Enchantment: Cooldown between crystal shards now and there are fewer of them
--Nerfed Mythril Enchantment: attack speed reduced
--Nerfed Valhalla Enchantment: reduces knockback less overall and less per hit
--Pumpkin pie doesn't give potion sickness at full HP with Pumpkin Enchantment
--Terra Force now has the full Obsidian Enchantment effect 
--Many effects including tin crit stacking and palladium lifesteal don't work on dummies anymore
--Added recipes for all Thorium Steel items
--Added Tongue immunity to WoF masomode drop
--Soul of Eternity now reflects all projeciles, gives less attack speed, less orbiting fireballs, and also you have to beat Masomode to get it haha
--Galactic Reformer now only does 1000 damage to all enemies, it also updates the map instantly in its explosion radius
+-add to wiki: ice and jungle slimes may become spiked, skeletons may become throwing skeles
 
--An obscene amount of Masochist Mode features including more changes to PreHard Mode bosses, buffs and nerfs everywhere, new effects for several enemeis, and Duke Fishron EX
--Tons of recipes changed
--Added several missing tooltips and sprites
--Added tons of toggles and fixed some that weren't working
--Fixed Valhalla Enchantment knockback working on WoF and not buffing Ballistas
--Fixed Shinobi Enchantment through wall on mount bug
--Fixed Stardust timestop cooldown being 10x too short
--Fixed Big Sting and Fish Stick having incorrect sound effects
--Fixed several multiplayer bugs
+-reworked spider enchant to minion crits
+-aerospec enchant has fall immune now
+-fixed Terra Force tooltip error
+-skeletron DG mode now only 50 HP
+-removed the slow from Lead Poison
+-lead poison no longer works on projectile NPCs like water spheres, vile spit etc
+-unicorn rainbows now ignore tiles
+-goblin spike balls now die after one hit
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

@@ -69,11 +69,6 @@ namespace FargowiltasSouls.Projectiles
                         break;
                 }
             }
-
-            if(projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
-            {
-                projectile.minionSlots = .5f;
-            }
         }
 
         private static int[] noSplit = {
@@ -160,15 +155,6 @@ namespace FargowiltasSouls.Projectiles
                         projectile.timeLeft *= 2;
                         projectile.scale *= 3;
                         projectile.damage = (int)(projectile.damage * 1.5);
-                    }
-                }
-
-                if (projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
-                {
-                    if (!modPlayer.SpiderEnchant || modPlayer.TerrariaSoul)
-                    {
-                        //the usual, WTF who knew
-                        projectile.minionSlots = .75f;
                     }
                 }
                 
@@ -308,6 +294,8 @@ namespace FargowiltasSouls.Projectiles
             //masomode unicorn meme
             if (FargoWorld.MasochistMode && projectile.type == ProjectileID.RainbowBack && projectile.hostile)
             {
+                projectile.tileCollide = false;
+
                 counter++;
                 if (counter >= 5)
                 {
@@ -358,20 +346,6 @@ namespace FargowiltasSouls.Projectiles
                 }
 
             }
-        }
-
-        public override bool PreDraw(Projectile projectile, SpriteBatch spriteBatch, Color lightColor)
-        {
-            if(FargoWorld.MasochistMode)
-            {
-                if(projectile.type == ProjectileID.HappyBomb)
-                {
-                    //something something draw galactic reformer sprite idk
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         private void KillPet(Projectile projectile, Player player, int buff, bool enchant, string toggle, bool minion = false)
@@ -674,6 +648,7 @@ namespace FargowiltasSouls.Projectiles
             {
                 if (projectile.type == ProjectileID.HarpyFeather)
                 {
+                    projectile.Name = "Vulture Feather";
                     return Color.Brown;
                 }
 
@@ -694,6 +669,7 @@ namespace FargowiltasSouls.Projectiles
 
                 else if (projectile.type == ProjectileID.DemonSickle)
                 {
+                    projectile.Name = "Blood Scythe";
                     return Color.Red;
                 }
             }
@@ -711,9 +687,12 @@ namespace FargowiltasSouls.Projectiles
                 return;
             }
 
-            if (projectile.minion && (modPlayer.UniverseEffect || modPlayer.Eternity))
+            if (projectile.minion)
             {
-                target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 240, true);
+                if (modPlayer.UniverseEffect || modPlayer.Eternity)
+                {
+                    target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 240, true);
+                }
             }
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumOnHit(projectile, crit);
@@ -813,8 +792,17 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.DemonSickle:
-                        target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
-                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        if(IsRecolor)
+                        {
+                            target.AddBuff(BuffID.ShadowFlame, 300);
+                            target.AddBuff(BuffID.Bleeding, 600);
+                        }
+                        else
+                        {
+                            target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
+                            target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        }
+                        
                         break;
 
                     case ProjectileID.HarpyFeather:
@@ -1010,7 +998,7 @@ namespace FargowiltasSouls.Projectiles
                         break;*/
 
                     case ProjectileID.LostSoulHostile:
-                        target.AddBuff(mod.BuffType<Unstable>(), Main.rand.Next(30, 120));
+                        target.AddBuff(mod.BuffType<Hexed>(), Main.rand.Next(30, 240));
                         break;
 
                     case ProjectileID.InfernoHostileBlast:
@@ -1021,6 +1009,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.ShadowBeamHostile:
                         target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1800, 3600));
+                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         break;
 
                     /*case ProjectileID.DeathLaser:

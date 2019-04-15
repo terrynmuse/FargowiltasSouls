@@ -23,12 +23,6 @@ namespace FargowiltasSouls.Buffs.Souls
         public override void Update(NPC npc, ref int buffIndex)
         {
             npc.GetGlobalNPC<FargoGlobalNPC>().LeadPoison = true;
-
-            if (!npc.boss)
-            {
-                npc.velocity.X *= .9f;
-                npc.velocity.Y *= .9f;
-            }
         }
     }
 }

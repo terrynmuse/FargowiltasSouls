@@ -32,7 +32,12 @@ Increases flight time by 100%");
             player.buffImmune[mod.BuffType("Unstable")] = true;
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.ChaosState] = true;
-            player.gravControl = true;
+
+            if (Soulcheck.GetValue("Gravity Control"))
+            {
+                player.gravControl = true;
+            }
+            
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
         }
     }

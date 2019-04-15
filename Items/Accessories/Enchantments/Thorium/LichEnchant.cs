@@ -52,9 +52,7 @@ Effects of Lich's Gaze");
             "LichTalon",
             "LichGaze",
             "RocketFist",
-            "SoulCleaver",
-            "DeathGrip",
-            "CadaverCornet"
+            "SoulCleaver"
         };
 
         public override void AddRecipes()
@@ -64,7 +62,9 @@ Effects of Lich's Gaze");
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
-            
+
+            recipe.AddIngredient(thorium.ItemType("DeathGripPro"), 300);
+            recipe.AddIngredient(thorium.ItemType("CadaverCornet"));
             recipe.AddIngredient(thorium.ItemType("TitanJavelin"), 300);
             recipe.AddIngredient(thorium.ItemType("PumpkinPaint"));
             

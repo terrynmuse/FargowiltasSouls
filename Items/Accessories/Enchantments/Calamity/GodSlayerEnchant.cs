@@ -27,9 +27,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 Attacks have a 2% chance to do no damage to you
 You will survive fatal damage and will be healed 150 HP if an attack would have killed you
 This effect can only occur once every 45 seconds
-While the cooldown for this effect is active you gain a 10% increase to all damage
 Taking over 80 damage in one hit will cause you to release a swarm of high-damage god killer darts
-Enemies take a lot of damage when they hit you
 An attack that would deal 80 damage or less will have its damage reduced to 1
 Your ranged critical hits have a chance to critically hit, causing 4 times the damage
 You have a chance to fire a god killer shrapnel round while firing ranged weapons

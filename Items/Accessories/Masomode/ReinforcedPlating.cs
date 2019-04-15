@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Reinforced Plating");
-            Tooltip.SetDefault(@"Grants immunity to Defenseless
+            Tooltip.SetDefault(@"Grants immunity to Defenseless and Stunned
 Reduces damage taken by 10%");
         }
 
@@ -28,6 +28,7 @@ Reduces damage taken by 10%");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[mod.BuffType("Defenseless")] = true;
+            player.buffImmune[mod.BuffType("Stunned")] = true;
             player.endurance += 0.1f;
         }
     }

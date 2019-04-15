@@ -1,5 +1,5 @@
 author = Fargowilta
-version = 0.6
+version = 0.6.2
 displayName = Fargo's Soul Mod
 homepage = http://forums.terraria.org/index.php?threads/fargos-mutant-mod-summons-and-souls.42291/
 weakReferences = ThoriumMod@1.2.13.3, CalamityMod@1.1.6.14, SpiritMod@1.1.1.6, Bluemagic@1.1, DBZMOD@0.1

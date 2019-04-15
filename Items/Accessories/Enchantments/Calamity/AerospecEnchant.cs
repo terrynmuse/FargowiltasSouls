@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             DisplayName.SetDefault("Aerospec Enchantment");
             Tooltip.SetDefault(
 @"'The sky comes to your aid…'
+You fall quicker and are immune to fall damage
 Taking over 25 damage in one hit causes several homing feathers to fall
 Summons a Valkyrie minion to protect you");
         }
@@ -40,6 +41,7 @@ Summons a Valkyrie minion to protect you");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
             modPlayer.aeroSet = true;
+            player.noFallDmg = true;
 
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 

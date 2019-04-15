@@ -233,7 +233,7 @@ Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
                 }
             }
             
-            if ((player.velocity.X > 0.0 || player.velocity.Y > 0.0 || player.velocity.X < -0.1 || player.velocity.Y < -0.1) && player.whoAmI == Main.myPlayer)
+            if (Soulcheck.GetValue("Poisonous Sea Water") && (player.velocity.X > 0.0 || player.velocity.Y > 0.0 || player.velocity.X < -0.1 || player.velocity.Y < -0.1) && player.whoAmI == Main.myPlayer)
             {
                 int p = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, calamity.ProjectileType("PoisonousSeawater"), 500, 5f, player.whoAmI, 0f, 0f);
                 Main.projectile[p].timeLeft = 10;

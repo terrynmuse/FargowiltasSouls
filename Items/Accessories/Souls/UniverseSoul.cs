@@ -207,7 +207,7 @@ Grants all other effects of material Souls";
         {
             DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
 
-            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 3f);
+            dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 2f);
             dbtPlayer.kiKbAddition += 0.4f;
             dbtPlayer.kiDrainMulti -= 0.5f;
             dbtPlayer.kiMaxMult += 0.4f;

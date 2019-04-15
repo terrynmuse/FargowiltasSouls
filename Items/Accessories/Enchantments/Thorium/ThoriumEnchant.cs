@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'It pulses with energy'
 10% increased damage
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
-Effects of Crietz and Fan Letter");
+Effects of Crietz, Band of Replenishment, and Fan Letter");
         }
 
         public override void SetDefaults()
@@ -46,6 +46,8 @@ Effects of Crietz and Fan Letter");
             player.GetModPlayer<FargoPlayer>().AllDamageUp(.1f);
             //crietz
             thoriumPlayer.crietzAcc = true;
+            //band of replenish
+            thoriumPlayer.BandofRep = true;
             //jester bonus
             thoriumPlayer.jesterSet = true;
             //fan letter
@@ -72,7 +74,7 @@ Effects of Crietz and Fan Letter");
 
             recipe.AddIngredient(null, "JesterEnchant");
             recipe.AddIngredient(thorium.ItemType("Crietz"));
-            recipe.AddIngredient(thorium.ItemType("ThoriumSpear"));
+            recipe.AddIngredient(thorium.ItemType("BandofReplenishment"));
             recipe.AddIngredient(thorium.ItemType("ThoriumCube"));
 
             recipe.AddTile(TileID.DemonAltar);
