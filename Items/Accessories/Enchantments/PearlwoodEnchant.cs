@@ -11,11 +11,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Adamantite Enchantment");
+            DisplayName.SetDefault("Pearlwood Enchantment");
             Tooltip.SetDefault(
-@"'Who needs to aim?'
-Every 8th projectile you shoot will split into 3
-Any secondary projectiles may also split");
+@"''
+");
         }
 
         public override void SetDefaults()
@@ -30,32 +29,21 @@ Any secondary projectiles may also split");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).AdamantiteEnchant = true;
+            
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddRecipeGroup("FargowiltasSouls:AnyAdamHead");
-            recipe.AddIngredient(ItemID.AdamantiteBreastplate);
-            recipe.AddIngredient(ItemID.AdamantiteLeggings);
+            recipe.AddIngredient(ItemID.);
 
-            if (Fargowiltas.Instance.ThoriumLoaded)
-            {
-                recipe.AddIngredient(ItemID.AdamantiteGlaive);
-                recipe.AddIngredient(thorium.ItemType("AdamantiteStaff"));
-                recipe.AddIngredient(thorium.ItemType("DynastyWarFan"));
-                recipe.AddIngredient(thorium.ItemType("Scorn"));
-                recipe.AddIngredient(thorium.ItemType("OgreSnotGun"));
-            }
-            else
-            {
-                recipe.AddIngredient(ItemID.DarkLance);
-                recipe.AddIngredient(ItemID.AdamantiteGlaive);
-            }
-
-            recipe.AddIngredient(ItemID.Shotgun);
-            recipe.AddIngredient(ItemID.VenomStaff);
+            Unicorn on a stick
+            Lightning Bug
+            Prismite
+            Chaos Fish
+            Princess Fish
+            hallow painting
+            Pearlwood Sword, Bow
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
