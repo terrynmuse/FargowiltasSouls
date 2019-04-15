@@ -1,11 +1,15 @@
-NEW UPDATE - v 0.6.1
--Slinger Essence no longer has Nanotech effects
--Altered Lich and Thorium Enchantments recipe
--Added Band of Replenishment effect to Thorium Enchantment
--Reduced Spirtualist's Soul speed while charging
--Added several new Toggles
--Fixed the Calamity Toggle page not always showing up
--Fixed several tooltip typos and tooltips being too long
+NEW UPDATE - v 0.6.2
+
+-add to wiki: ice and jungle slimes may become spiked, skeletons may become throwing skeles
+
+-reworked spider enchant to minion crits
+-aerospec enchant has fall immune now
+-fixed Terra Force tooltip error
+-skeletron DG mode now only 50 HP
+-removed the slow from Lead Poison
+-lead poison no longer works on projectile NPCs like water spheres, vile spit etc
+-unicorn rainbows now ignore tiles
+-goblin spike balls now die after one hit
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

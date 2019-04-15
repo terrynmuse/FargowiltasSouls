@@ -31,7 +31,7 @@ You spawn mini eaters to seek out enemies every few attacks");
             player.buffImmune[mod.BuffType("Rotting")] = true;
             player.moveSpeed += 0.1f;
             
-            modPlayer.CorruptHeart = true;
+            //modPlayer.CorruptHeart = true;
         }
     }
 }

@@ -31,12 +31,12 @@ While Dashing or running quickly you will create a trail of blood scythes");
         {
             player.buffImmune[mod.BuffType("Berserked")] = true;
             
-            if(player.life < 0player.lifeMax / 2)
+            if(player.statLife < player.statLifeMax2 / 2)
             {
-              player.AllDamageUp(.10f);
+              player.GetModPlayer<FargoPlayer>().AllDamageUp(.10f);
             }
             
-            if(player.speed.X ABS > 10? || player.dashing)
+            /*if(player.speed.X ABS > 10? || player.dashing)
             {
               counter++;
               
@@ -46,7 +46,7 @@ While Dashing or running quickly you will create a trail of blood scythes");
                 
                 spawn Blood Scythe
               }
-            }
+            }*/
         }
     }
 }

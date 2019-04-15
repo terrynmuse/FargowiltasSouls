@@ -16,12 +16,5 @@ namespace FargowiltasSouls.Buffs.Masomode
             longerExpertDebuff = false;
             canBeCleared = false;
         }
-
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
-
-            return true;
-        }
     }
 }

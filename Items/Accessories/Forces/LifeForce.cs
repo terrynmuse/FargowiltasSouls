@@ -22,7 +22,7 @@ Eating Pumpkin Pie also heals you to full HP
 100% of contact damage is reflected
 Enemies may explode into needles on death
 33% chance for any friendly bee to become a Mega Bee
-You may summon nearly twice as many spider minions
+10% chance for minions to crit
 When standing still and not attacking, you gain the Shell Hide buff
 Beetles protect you from damage
 Your wings last twice as long
@@ -55,7 +55,7 @@ Your wings last twice as long
             modPlayer.LifeForce = true;
             //bees ignore defense, super bees, pet
             modPlayer.BeeEffect(hideVisual);
-            //more spiders and pet
+            //minion crits and pet
             modPlayer.SpiderEffect(hideVisual);
             //defense beetle bois
             modPlayer.BeetleEffect();

@@ -6,6 +6,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class GuttedHeart : ModItem
     {
+        int timer;
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
         public override void SetStaticDefaults()
@@ -25,20 +26,19 @@ A new Creeper appears every X seconds, and 5 can exist at once");
             item.accessory = true;
             item.rare = 4;
             item.value = Item.sellPrice(0, 4);
-            item.defense = 2;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[mod.BuffType("Bloodthirsty")] = true;
-            player.maxLife2 *= 1.1f;
+            player.statLifeMax2 = (int)(player.statLifeMax2 * 1.1f);
+
+            timer++;
             
-            Timer++
-            
-            if(Timer >= && creeperCount < 5)
+            /*if(timer >= && creeperCount < 5)
             {
             spawn creeper
-            }
+            }*/
         }
     }
 }

@@ -69,11 +69,6 @@ namespace FargowiltasSouls.Projectiles
                         break;
                 }
             }
-
-            if(projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
-            {
-                projectile.minionSlots = .5f;
-            }
         }
 
         private static int[] noSplit = {
@@ -160,15 +155,6 @@ namespace FargowiltasSouls.Projectiles
                         projectile.timeLeft *= 2;
                         projectile.scale *= 3;
                         projectile.damage = (int)(projectile.damage * 1.5);
-                    }
-                }
-
-                if (projectile.type == ProjectileID.DangerousSpider || projectile.type == ProjectileID.JumperSpider || projectile.type == ProjectileID.VenomSpider)
-                {
-                    if (!modPlayer.SpiderEnchant || modPlayer.TerrariaSoul)
-                    {
-                        //the usual, WTF who knew
-                        projectile.minionSlots = .75f;
                     }
                 }
                 
@@ -308,6 +294,8 @@ namespace FargowiltasSouls.Projectiles
             //masomode unicorn meme
             if (FargoWorld.MasochistMode && projectile.type == ProjectileID.RainbowBack && projectile.hostile)
             {
+                projectile.tileCollide = false;
+
                 counter++;
                 if (counter >= 5)
                 {
@@ -699,9 +687,12 @@ namespace FargowiltasSouls.Projectiles
                 return;
             }
 
-            if (projectile.minion && (modPlayer.UniverseEffect || modPlayer.Eternity))
+            if (projectile.minion)
             {
-                target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 240, true);
+                if (modPlayer.UniverseEffect || modPlayer.Eternity)
+                {
+                    target.AddBuff(mod.BuffType<FlamesoftheUniverse>(), 240, true);
+                }
             }
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumOnHit(projectile, crit);
@@ -1018,7 +1009,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.ShadowBeamHostile:
                         target.AddBuff(mod.BuffType<Rotting>(), Main.rand.Next(1800, 3600));
-                        target.AddBuff(BuffID.Shadowflame, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         break;
 
                     /*case ProjectileID.DeathLaser:
