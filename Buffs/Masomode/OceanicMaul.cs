@@ -8,7 +8,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Oceanic Maul");
-            Description.SetDefault("Defensive stats and max life have been savaged, no lifesteal");
+            Description.SetDefault("Defensive stats and max life are savaged, no lifesteal, no dodging");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;

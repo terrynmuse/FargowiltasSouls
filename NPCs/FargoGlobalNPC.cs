@@ -262,6 +262,10 @@ namespace FargowiltasSouls.NPCs
                         npc.lifeMax += 1000;
                         break;
 
+                    case NPCID.SandElemental:
+                        npc.lifeMax *= 2;
+                        break;
+
                     default:
                         break;
                 }
@@ -2023,24 +2027,6 @@ namespace FargowiltasSouls.NPCs
                     case 30: //lunatic cultist
                         cultBoss = npc.whoAmI;
 
-                        /*Counter++;
-                        if (Counter >= 240)
-                        {
-                            int maxTimeShorten = (int)(210 * (1f - (float)npc.life / npc.lifeMax));
-                            Counter = Main.rand.Next(maxTimeShorten, maxTimeShorten + 30);
-
-                            int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                            if (t != -1 && Main.player[t].active)
-                            {
-                                Point tileCoordinates = Main.rand.Next(2) == 0 ? npc.Top.ToTileCoordinates() : Main.player[t].Top.ToTileCoordinates();
-                                tileCoordinates.X += Main.rand.Next(-25, 25);
-                                tileCoordinates.Y -= 15 + Main.rand.Next(-5, 5);
-                                for (int index = 0; index < 10 && !WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) && tileCoordinates.Y > 10; ++index)
-                                    tileCoordinates.Y--;
-                                Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
-                            }
-                        }*/
-
                         Timer++;
                         if (Timer >= 1200)
                         {
@@ -2114,12 +2100,17 @@ namespace FargowiltasSouls.NPCs
                                     break;
 
                                 case 4:
-                                    if (npc.ai[1] == 19f && Main.netMode != 1) //lightning orb, lightning portal support
+                                    if (npc.ai[1] == 19f && npc.HasPlayerTarget && Main.netMode != 1) //lightning orb, lightning support
                                     {
                                         for (int i = 0; i < 200; i++)
                                         {
                                             if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
-                                                Projectile.NewProjectile(Main.npc[i].Center, Vector2.Zero, ProjectileID.VortexVortexLightning, 0, 1f, Main.myPlayer);
+                                            {
+                                                Vector2 dir = Main.player[npc.target].Center - npc.Center;
+                                                float ai1New = Main.rand.Next(100);
+                                                Vector2 vel = Vector2.Normalize(dir.RotatedByRandom(Math.PI / 4)) * 7f;
+                                                Projectile.NewProjectile(Main.npc[i].Center, vel, ProjectileID.CultistBossLightningOrbArc, 30, 0, Main.myPlayer, dir.ToRotation(), ai1New);
+                                            }
                                         }
                                     }
                                     break;
@@ -2987,6 +2978,8 @@ namespace FargowiltasSouls.NPCs
 
                                             Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
                                         }
+
+                                        Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
                                         break;
                                     case 2: //magic
                                         for (int i = 0; i < 3; i++)
@@ -3023,17 +3016,16 @@ namespace FargowiltasSouls.NPCs
                                                 Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
                                                 speed.Normalize();
                                                 speed *= 9f;
-                                                speed = speed.RotatedBy(-Math.PI / 2);
-                                                for (int j = 0; j < 7; j++)
+                                                for (int j = -3; j <= 3; j++)
                                                 {
-                                                    int n = NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientLight, 0, 0f, (Main.rand.NextFloat() - 0.5f) * 0.3f * 6.28318548202515f / 60f, speed.X, speed.Y);
+                                                    Vector2 vel = speed.RotatedBy(Math.PI / 6 * j);
+                                                    int n = NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientLight, 0, 0f, (Main.rand.NextFloat() - 0.5f) * 0.3f * 6.28318548202515f / 60f, vel.X, vel.Y);
                                                     if (n < 200)
                                                     {
-                                                        Main.npc[n].velocity = speed;
+                                                        Main.npc[n].velocity = vel;
                                                         if (Main.netMode == 2)
                                                             NetMessage.SendData(23, -1, -1, null, n);
                                                     }
-                                                    speed = speed.RotatedBy(Math.PI / 7);
                                                 }
                                             }
                                         }
@@ -4559,7 +4551,7 @@ namespace FargowiltasSouls.NPCs
                                                     difference -= 2f * PI;
                                                 if (difference < 0f)
                                                     rotationDirection *= -1f;
-                                                Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[0] - rotationDirection * 60f);
+                                                Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[0]);
                                                 if (Main.netMode != 1)
                                                     Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayML"),
                                                         75, 0f, Main.myPlayer, rotationDirection, npc.whoAmI);
@@ -4579,7 +4571,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             Vector2 speed = Main.player[npc.target].Center - npc.Center;
                             speed.Normalize();
-                            speed *= 12f;
+                            speed *= 9f;
 
                             npc.ai[2] += speed.X / 100f;
                             if (npc.ai[2] > 9f)
@@ -4699,7 +4691,7 @@ namespace FargowiltasSouls.NPCs
 
                     case 89: //fishron EX
                         fishBoss = fishBossEX = npc.whoAmI;
-                        npc.position += npc.velocity * 0.25f;
+                        npc.position += npc.velocity * 0.5f;
                         //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         switch ((int)npc.ai[0])
                         {
@@ -4849,8 +4841,6 @@ namespace FargowiltasSouls.NPCs
                             case 10: //phase 3
                                 //vanilla fishron has x1.1 damage in p3. p2 has x1.2 damage...
                                 npc.damage = (int)(npc.defDamage * 1.2f * (Main.expertMode ? 0.6f * Main.damageMultiplier : 1f));
-                                npc.defense = npc.defDefense;
-                                npc.position += npc.velocity * 0.25f;
                                 masoBool[2] = false;
                                 Timer++;
                                 if (Timer >= 30 + (int)(570.0 * npc.life / npc.lifeMax)) //yes that needs to be a double
@@ -4862,7 +4852,6 @@ namespace FargowiltasSouls.NPCs
                                 break;
 
                             case 11: //p3 dash
-                                npc.position += npc.velocity * 0.25f;
                                 Counter++;
                                 if (Counter > 1)
                                 {
@@ -5059,7 +5048,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 103: // biome mimics
-
                         if (masoBool[0])
                         {
                             if (npc.velocity.Y == 0f) //spawn smash
@@ -5073,7 +5061,6 @@ namespace FargowiltasSouls.NPCs
                         {
                             masoBool[0] = true;
                         }
-
                         break;
 
 

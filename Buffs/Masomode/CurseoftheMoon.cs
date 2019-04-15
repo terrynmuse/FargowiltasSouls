@@ -8,7 +8,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Curse of the Moon");
-            Description.SetDefault("The moon's wrath consumes you");
+            Description.SetDefault("The moon's wrath consumes you, no dodging");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -67,6 +68,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
 
             Lighting.AddLight(projectile.Center, 1.1f, 0.9f, 0.4f);
+            projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
 
             ++projectile.localAI[0];
             if ((double)projectile.localAI[0] == 12.0) //loads of vanilla dust :echprime:

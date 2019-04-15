@@ -550,6 +550,21 @@ namespace FargowiltasSouls.Projectiles
                     }
                     break;
 
+                case ProjectileID.SandnadoHostile:
+                    if (projectile.timeLeft == 1199 && Main.netMode != 1)
+                    {
+                        int n = NPC.NewNPC((int)projectile.Center.X, (int)projectile.Center.Y, NPCID.SandShark);
+                        if (n < 200)
+                        {
+                            Main.npc[n].velocity.X = Main.rand.NextFloat(-10, 10);
+                            Main.npc[n].velocity.Y = Main.rand.NextFloat(-20, -10);
+                            Main.npc[n].netUpdate = true;
+                            if (Main.netMode == 2)
+                                NetMessage.SendData(23, -1, -1, null, n);
+                        }
+                    }
+                    break;
+
                 default:
                         break;
             }
