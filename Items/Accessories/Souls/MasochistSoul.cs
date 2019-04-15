@@ -11,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of the Masochist");
             Tooltip.SetDefault(
 @"'Embrace suffering'
-Increases damage by 20%, increases damage reduction by 10%
+Increases damage by 20%, damage reduction by 10%
+Increases max life by 100 and wing time by 150%
 Increases max number of minions and sentries by 2
 Grants immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
@@ -50,6 +51,10 @@ Allows the holder to control gravity");
             player.GetModPlayer<FargoPlayer>().LumpOfFlesh = true;
             player.maxMinions += 2;
             player.maxTurrets += 2;
+
+            //tribal charm buffed
+            player.statLifeMax2 += 100;
+            player.GetModPlayer<FargoPlayer>().wingTimeModifier += 0.5f;
 
             //dubious circuitry
             player.buffImmune[BuffID.CursedInferno] = true;
@@ -91,6 +96,7 @@ Allows the holder to control gravity");
                 player.gravControl = true;
             }
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
+            player.GetModPlayer<FargoPlayer>().wingTimeModifier += 1f;
 
             //sadism
             player.buffImmune[mod.BuffType("Antisocial")] = true;
@@ -129,6 +135,7 @@ Allows the holder to control gravity");
 
             recipe.AddIngredient(mod.ItemType("MutantAntibodies"));
             recipe.AddIngredient(mod.ItemType("LumpOfFlesh"));
+            recipe.AddIngredient(mod.ItemType("TribalCharm"));
             recipe.AddIngredient(mod.ItemType("DubiousCircuitry"));
             recipe.AddIngredient(mod.ItemType("BetsysHeart"));
             recipe.AddIngredient(mod.ItemType("ChaliceoftheMoon"));

@@ -28,6 +28,7 @@ namespace FargowiltasSouls
         //for convenience
         public bool IsStandingStill;
         public float AttackSpeed;
+        public float wingTimeModifier;
 
         public bool Wood;
         public bool QueenStinger;
@@ -385,6 +386,8 @@ namespace FargowiltasSouls
 
             Wood = false;
 
+            wingTimeModifier = 1f;
+
             QueenStinger = false;
             Infinity = false;
 
@@ -541,6 +544,8 @@ namespace FargowiltasSouls
 
         public override void UpdateDead()
         {
+            wingTimeModifier = 1f;
+
             //debuffs
             Hexed = false;
             Unstable = false;
@@ -2373,15 +2378,7 @@ namespace FargowiltasSouls
 
         public override void PostUpdateEquips()
         {
-            if (BeetleEnchant)
-            {
-                player.wingTimeMax = (int)(player.wingTimeMax * 2);
-            }
-
-            if (GravityGlobeEX)
-            {
-                player.wingTimeMax *= 2;
-            }
+            player.wingTimeMax = (int)(player.wingTimeMax * wingTimeModifier);
 
             if (CurseoftheMoon || OceanicMaul)
             {

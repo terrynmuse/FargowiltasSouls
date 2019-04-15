@@ -39,6 +39,7 @@ Increases flight time by 100%");
             }
             
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
+            player.GetModPlayer<FargoPlayer>().wingTimeModifier += 1f;
         }
     }
 }

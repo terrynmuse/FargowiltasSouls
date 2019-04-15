@@ -12,10 +12,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Beetle Enchantment");
 
-            string tooltip = 
+            string tooltip =
 @"'The unseen life of dung courses through your veins'
 Beetles protect you from damage
-Your wings last twice as long";
+Increases flight time by 100%";
 
             if(thorium != null)
             {
@@ -42,6 +42,7 @@ Your wings last twice as long";
             modPlayer.BeetleEffect();
             //extra wing time
             modPlayer.BeetleEnchant = true;
+            modPlayer.wingTimeModifier += 1f;
         }
 
         public override void AddRecipes()
