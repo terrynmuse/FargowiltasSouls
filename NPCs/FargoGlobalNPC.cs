@@ -5132,12 +5132,11 @@ namespace FargowiltasSouls.NPCs
 
         private void Aura(NPC npc, float distance, int buff, bool reverse = false, int dustid = DustID.GoldFlame)
         {
-            foreach (Player p in Main.player.Where(x => x.active && !x.dead))
+            //works because buffs are client side anyway :ech:
+            Player p = Main.player[Main.myPlayer];
+            if ((reverse && npc.Distance(p.Center) > distance) || (!reverse && npc.Distance(p.Center) < distance))
             {
-                if((reverse && npc.Distance(p.Center) > distance) || (!reverse && npc.Distance(p.Center) < distance))
-                {
-                    p.AddBuff(buff, 2);
-                }
+                p.AddBuff(buff, 2);
             }
 
             for (int i = 0; i < 20; i++)
