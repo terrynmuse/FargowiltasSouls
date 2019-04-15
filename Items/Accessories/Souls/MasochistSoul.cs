@@ -16,6 +16,7 @@ Increases max number of minions and sentries by 2
 Grants immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks can inflict Cursed Inferno, Ichor, and Electrified
+You periodically fire additional attacks depending on weapon type
 Your critical strikes inflict Betsy's Curse
 You erupt into Spiky Balls and Ancient Visions when injured
 Summons a friendly plant's offspring and Cultist
@@ -72,7 +73,9 @@ Allows the holder to control gravity");
             player.buffImmune[BuffID.WitheredArmor] = true;
             player.GetModPlayer<FargoPlayer>().BetsysHeart = true;
             //celestial rune
-
+            player.GetModPlayer<FargoPlayer>().CelestialRune = true;
+            if (player.GetModPlayer<FargoPlayer>().CelestialRuneTimer > 0)
+                player.GetModPlayer<FargoPlayer>().CelestialRuneTimer--;
             //chalice
             player.GetModPlayer<FargoPlayer>().MoonChalice = true;
             if (Soulcheck.GetValue("Cultist Minion"))

@@ -13,6 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             DisplayName.SetDefault("Celestial Rune");
             Tooltip.SetDefault(
 @"Grants immunity to Marked for Death, Clipped Wings, and Hexed
+You periodically fire additional attacks depending on weapon type
 Taking damage creates a friendly Ancient Vision to attack enemies"); 
         }
 
@@ -31,6 +32,8 @@ Taking damage creates a friendly Ancient Vision to attack enemies");
             player.buffImmune[mod.BuffType("ClippedWings")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.GetModPlayer<FargoPlayer>().CelestialRune = true;
+            if (player.GetModPlayer<FargoPlayer>().CelestialRuneTimer > 0)
+                player.GetModPlayer<FargoPlayer>().CelestialRuneTimer--;
         }
     }
 }

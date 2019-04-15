@@ -2753,6 +2753,10 @@ namespace FargowiltasSouls.NPCs
                                 break;
 
                             case 3: //p1 drop nados
+                                if (npc.ai[2] == 60f && Main.netMode != 1)
+                                {
+                                    SpawnRazorbladeRing(npc, 12, 10f, npc.damage / 4, 1f);
+                                }
                                 break;
 
                             case 4: //phase 2 transition
@@ -2804,6 +2808,8 @@ namespace FargowiltasSouls.NPCs
                                     spawnPos /= 2f;
                                     spawnPos += npc.Center;
                                     Projectile.NewProjectile(spawnPos.X, spawnPos.Y, 0f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
+
+                                    SpawnRazorbladeRing(npc, 12, 10f, npc.damage / 4, 2f);
                                 }
                                 break;
 
@@ -2851,7 +2857,11 @@ namespace FargowiltasSouls.NPCs
                                 goto case 10;
 
                             case 12: //p3 *teleports behind you*
-                                if (npc.ai[2] == 16f)
+                                if (npc.ai[2] == 15f)
+                                {
+                                    SpawnRazorbladeRing(npc, 3, 9f, npc.damage / 4, -0.75f);
+                                }
+                                else if (npc.ai[2] == 16f)
                                 {
                                     if (Main.netMode != 1)
                                     {
@@ -4712,18 +4722,7 @@ namespace FargowiltasSouls.NPCs
                                         }
                                     }
 
-                                    const int max2 = 18;
-                                    const float rotation2 = 2f * (float)Math.PI / max2;
-                                    const float speed = 10f;
-                                    Vector2 vel = Main.player[npc.target].Center - npc.Center;
-                                    vel.Normalize();
-                                    vel *= speed;
-                                    for (int i = 0; i < max2; i++)
-                                    {
-                                        vel = vel.RotatedBy(rotation2);
-                                        Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("RazorbladeTyphoon"),
-                                            npc.damage / 6, 0f, Main.myPlayer, npc.spriteDirection, speed);
-                                    }
+                                    SpawnRazorbladeRing(npc, 18, 10f, npc.damage / 6, 1f);
                                 }
                                 break;
 
@@ -4800,31 +4799,8 @@ namespace FargowiltasSouls.NPCs
                                     Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
                                     Projectile.NewProjectile(spawnPos.X, spawnPos.Y, 0f, 2f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
 
-                                    const int max = 12;
-                                    const float rotation = 2f * (float)Math.PI / max;
-                                    const float speed = 12.5f;
-                                    Vector2 vel = Main.player[npc.target].Center - npc.Center;
-                                    vel.Normalize();
-                                    vel *= speed;
-                                    for (int i = 0; i < max; i++)
-                                    {
-                                        vel = vel.RotatedBy(rotation);
-                                        Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("RazorbladeTyphoon"),
-                                            npc.damage / 6, 0f, Main.myPlayer, 0.75f * npc.spriteDirection, speed);
-                                    }
-
-                                    const int max2 = 12;
-                                    const float rotation2 = 2f * (float)Math.PI / max2;
-                                    const float speed2 = 10f;
-                                    Vector2 vel2 = Main.player[npc.target].Center - npc.Center;
-                                    vel2.Normalize();
-                                    vel2 *= speed2;
-                                    for (int i = 0; i < max2; i++)
-                                    {
-                                        vel2 = vel2.RotatedBy(rotation2);
-                                        Projectile.NewProjectile(npc.Center, vel2, mod.ProjectileType("RazorbladeTyphoon"),
-                                            npc.damage / 6, 0f, Main.myPlayer, -2f * npc.spriteDirection, speed2);
-                                    }
+                                    SpawnRazorbladeRing(npc, 12, 12.5f, npc.damage / 6, 0.75f);
+                                    SpawnRazorbladeRing(npc, 12, 10f, npc.damage / 6, -2f);
                                 }
                                 break;
 
@@ -4914,20 +4890,8 @@ namespace FargowiltasSouls.NPCs
                                         Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * 2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
                                         Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
 
-                                        const int max = 3;
-                                        const float rotation = 2f * (float)Math.PI / max;
-                                        const float speed = 9f;
-                                        Vector2 vel = Main.player[npc.target].Center - npc.Center;
-                                        vel.Normalize();
-                                        vel *= speed;
-                                        for (int i = 0; i < max; i++)
-                                        {
-                                            vel = vel.RotatedBy(rotation);
-                                            Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("RazorbladeTyphoon"),
-                                                npc.damage / 6, 0f, Main.myPlayer, npc.spriteDirection, speed);
-                                            Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("RazorbladeTyphoon"),
-                                                npc.damage / 6, 0f, Main.myPlayer, 0.5f * -npc.spriteDirection, speed);
-                                        }
+                                        SpawnRazorbladeRing(npc, 3, 9f, npc.damage / 6, 1f);
+                                        SpawnRazorbladeRing(npc, 3, 9f, npc.damage / 6, -0.5f);
                                     }
                                 }
                                 goto case 10;
@@ -5456,6 +5420,20 @@ namespace FargowiltasSouls.NPCs
                 {
                     target.velocity.X = npc.velocity.Length() * npc.direction;
                 }
+            }
+        }
+
+        private void SpawnRazorbladeRing(NPC npc, int max, float speed, int damage, float rotationModifier)
+        {
+            float rotation = 2f * (float)Math.PI / max;
+            Vector2 vel = Main.player[npc.target].Center - npc.Center;
+            vel.Normalize();
+            vel *= speed;
+            int type = mod.ProjectileType("RazorbladeTyphoon");
+            for (int i = 0; i < max; i++)
+            {
+                vel = vel.RotatedBy(rotation);
+                Projectile.NewProjectile(npc.Center, vel, type, damage, 0f, Main.myPlayer, rotationModifier * npc.spriteDirection, speed);
             }
         }
 

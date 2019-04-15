@@ -66,6 +66,8 @@
   <ItemGroup>
     <None Remove="Buffs\Masomode\FlippedHallow.png" />
     <None Remove="Buffs\PlaceholderBuff.png" />
+    <None Remove="Projectiles\Masomode\CelestialRuneAncientVision.png" />
+    <None Remove="Projectiles\Masomode\CelestialRuneIceSpike.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib" />

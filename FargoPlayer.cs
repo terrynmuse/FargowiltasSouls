@@ -182,6 +182,7 @@ namespace FargowiltasSouls
         public bool MutantAntibodies;
         public bool GravityGlobeEX;
         public bool CelestialRune;
+        public int CelestialRuneTimer;
         public bool MoonChalice;
         public bool LunarCultist;
 
@@ -1099,6 +1100,49 @@ namespace FargowiltasSouls
             }
 
             return AttackSpeed;
+        }
+
+        public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            if (CelestialRune && CelestialRuneTimer <= 0)
+            {
+                CelestialRuneTimer = 60;
+                if (item.melee) //fireball
+                {
+                    Main.PlaySound(SoundID.Item34, position);
+                    Vector2 vel = new Vector2(speedX, speedY);
+                    vel.Normalize();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Projectile.NewProjectile(position, vel.RotatedByRandom(Math.PI / 6) * Main.rand.NextFloat(6f, 10f),
+                            mod.ProjectileType("CelestialRuneFireball"), 50f * player.meleeDamage, 9f, player.whoAmI);
+                    }
+                }
+                if (item.ranged) //lightning
+                {
+                    Vector2 dir = new Vector2(speedX, speedY);
+                    float ai1 = Main.rand.Next(100);
+                    Vector2 vel = Vector2.Normalize(dir.RotatedByRandom(Math.PI / 4)) * 7f;
+                    Projectile.NewProjectile(position, vel, mod.ProjectileType("CelestialRuneLightningArc"),
+                        50f * player.rangedDamage, 1f, player.whoAmI, dir.ToRotation(), ai1);
+                }
+                if (item.magic) //ice mist
+                {
+                    Vector2 vel = new Vector2(speedX, speedY);
+                    vel.Normalize();
+                    vel *= 4.25f;
+                    Projectile.NewProjectile(spawn, vel, mod.ProjectileType("CelestialRuneIceMist"), 50f * player.magicDamage, 4f, player.whoAmI);
+                }
+                if (item.thrown) //ancient vision
+                {
+                    Vector2 vel = new Vector2(speedX, speedY);
+                    vel.Normalize();
+                    vel *= 10f;
+                    Projectile.NewProjectile(spawn, vel, mod.ProjectileType("CelestialRuneAncientVision"), 50f * player.thrownDamage, 0, player.whoAmI);
+                }
+            }
+
+            return true;
         }
 
         public override void UpdateBadLifeRegen()

@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Venom, Burning, and Fused
 Grants immunity to Marked for Death, Clipped Wings, and Hexed
 Grants immunity to Atrophied, Jammed, Reverse Mana Flow, and Antisocial
-Attracts a legendary plant's offspring which flourishes in combat
+You periodically fire additional attacks depending on weapon type
 You erupt into Ancient Visions when injured
 Summons a friendly Cultist to fight at your side");
         }
@@ -36,10 +36,10 @@ Summons a friendly Cultist to fight at your side");
             player.lifeRegen += 2;
             player.buffImmune[BuffID.Venom] = true;
 
-            if (Soulcheck.GetValue("Plantera Minion"))
+            /*if (Soulcheck.GetValue("Plantera Minion"))
             {
                 player.AddBuff(mod.BuffType("PlanterasChild"), 5);
-            }
+            }*/
             
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
@@ -48,6 +48,9 @@ Summons a friendly Cultist to fight at your side");
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
             player.buffImmune[mod.BuffType("ClippedWings")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
+            player.GetModPlayer<FargoPlayer>().CelestialRune = true;
+            if (player.GetModPlayer<FargoPlayer>().CelestialRuneTimer > 0)
+                player.GetModPlayer<FargoPlayer>().CelestialRuneTimer--;
             //chalice
             player.buffImmune[mod.BuffType("Atrophied")] = true;
             player.buffImmune[mod.BuffType("Jammed")] = true;
