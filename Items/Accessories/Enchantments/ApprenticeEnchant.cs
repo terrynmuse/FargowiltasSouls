@@ -32,7 +32,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             
         }
 
-        public override void AddRecipes()
+        /*public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.);
@@ -57,6 +57,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

@@ -12,6 +12,19 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-fishron non-EX has razor rings too
+-added celestial rune attack support effect
+-removed clipped wings immune from rune
+-sand elemental buffed, sandnados spew sand sharks
+-ML socket lasers spawn along warning line
+-nerfed curse of moon dust again
+-ancient light less homing, increase angle range
+-cultist clones shoot lightning bolts, not lightning portals as support
+-moon lord also shoots a lightning orb for vortex p2
+-buff fishron EX phase 1&2 speed
+-nerf phase 3 defense
+-oceanic maul & curse of the moon disable shadow dodge, black belt dodge, hallowed shield
+
 0.6:
 -eoc spawns scythes like crazy, 8 way at the beginning of a dash and a trail afterward
 -king slime spews spikes on every landing and rains slime constanlty below half HP

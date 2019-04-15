@@ -5,9 +5,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargowiltasSouls.Projectiles.Minions
+namespace FargowiltasSouls.Projectiles.Masomode
 {
-    public class LunarCultistFireball : ModProjectile
+    public class CelestialRuneFireball : ModProjectile
     {
         public override string Texture => "Terraria/Projectile_467";
 
@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.aiStyle = -1;
             projectile.alpha = 255;
             projectile.friendly = true;
-            projectile.minion = true;
+            projectile.melee = true;
             projectile.ignoreWater = true;
             projectile.extraUpdates = 1;
             projectile.timeLeft = 600;
@@ -52,6 +52,25 @@ namespace FargowiltasSouls.Projectiles.Minions
                 {
                     projectile.ai[1] = -1f;
                 }
+            }
+            else if (projectile.localAI[0] == 0f) //also used for dust timer btw
+            {
+                float maxDistance = 1000f;
+                int possibleTarget = -1;
+                for (int i = 0; i < 200; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.CanBeChasedBy(projectile))// && Collision.CanHitLine(projectile.Center, 0, 0, npc.Center, 0, 0))
+                    {
+                        float npcDistance = projectile.Distance(npc.Center);
+                        if (npcDistance < maxDistance)
+                        {
+                            maxDistance = npcDistance;
+                            possibleTarget = i;
+                        }
+                    }
+                }
+                projectile.ai[1] = possibleTarget;
             }
 
             projectile.alpha -= 40;

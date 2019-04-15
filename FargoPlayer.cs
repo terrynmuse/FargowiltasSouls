@@ -182,6 +182,7 @@ namespace FargowiltasSouls
         public bool MutantAntibodies;
         public bool GravityGlobeEX;
         public bool CelestialRune;
+        public int CelestialRuneTimer;
         public bool MoonChalice;
         public bool LunarCultist;
 
@@ -1101,6 +1102,49 @@ namespace FargowiltasSouls
             return AttackSpeed;
         }
 
+        public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            if (CelestialRune && CelestialRuneTimer <= 0)
+            {
+                CelestialRuneTimer = 60;
+                if (item.melee) //fireball
+                {
+                    Main.PlaySound(SoundID.Item34, position);
+                    Vector2 vel = new Vector2(speedX, speedY);
+                    vel.Normalize();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Projectile.NewProjectile(position, vel.RotatedByRandom(Math.PI / 6) * Main.rand.NextFloat(6f, 10f),
+                            mod.ProjectileType("CelestialRuneFireball"), (int)(50f * player.meleeDamage), 9f, player.whoAmI);
+                    }
+                }
+                if (item.ranged) //lightning
+                {
+                    Vector2 dir = new Vector2(speedX, speedY);
+                    float ai1 = Main.rand.Next(100);
+                    Vector2 vel = Vector2.Normalize(dir.RotatedByRandom(Math.PI / 4)) * 7f;
+                    Projectile.NewProjectile(position, vel, mod.ProjectileType("CelestialRuneLightningArc"),
+                        (int)(50f * player.rangedDamage), 1f, player.whoAmI, dir.ToRotation(), ai1);
+                }
+                if (item.magic) //ice mist
+                {
+                    Vector2 vel = new Vector2(speedX, speedY);
+                    vel.Normalize();
+                    vel *= 4.25f;
+                    Projectile.NewProjectile(position, vel, mod.ProjectileType("CelestialRuneIceMist"), (int)(50f * player.magicDamage), 4f, player.whoAmI);
+                }
+                if (item.thrown) //ancient vision
+                {
+                    Vector2 vel = new Vector2(speedX, speedY);
+                    vel.Normalize();
+                    vel *= 16f;
+                    Projectile.NewProjectile(position, vel, mod.ProjectileType("CelestialRuneAncientVision"), (int)(50f * player.thrownDamage), 0, player.whoAmI);
+                }
+            }
+
+            return true;
+        }
+
         public override void UpdateBadLifeRegen()
         {
             if (Shadowflame)
@@ -1235,7 +1279,7 @@ namespace FargowiltasSouls
 
             }
 
-            if (CurseoftheMoon && Main.rand.Next(3) == 0)
+            if (CurseoftheMoon && Main.rand.Next(5) == 0)
             {
                 int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, 229, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 1.75f);
                 Main.dust[dust].noGravity = true;
@@ -2338,6 +2382,13 @@ namespace FargowiltasSouls
             {
                 player.wingTimeMax *= 2;
             }
+
+            if (CurseoftheMoon || OceanicMaul)
+            {
+                player.onHitDodge = false;
+                player.shadowDodge = false;
+                player.blackBelt = false;
+            }
         }
 
         public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
@@ -2471,13 +2522,13 @@ namespace FargowiltasSouls
 
         private void CalamityDamage(float dmg)
         {
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += dmg;
+            //CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += dmg;
         }
 
         private void DBTDamage(float dmg)
         {
-            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
-            dbtPlayer.kiDamage += dmg;
+            //DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            //dbtPlayer.kiDamage += dmg;
         }
 
         public void AllCritUp(int crit)
@@ -2503,13 +2554,13 @@ namespace FargowiltasSouls
 
         private void CalamityCrit(int crit)
         {
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += crit;
+            //CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += crit;
         }
 
         private void DBTCrit(int crit)
         {
-            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
-            dbtPlayer.kiCrit += crit;
+            //DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            //dbtPlayer.kiCrit += crit;
         }
 
         public void AllCritEquals(int crit)
@@ -2535,13 +2586,13 @@ namespace FargowiltasSouls
 
         private void CalamityCritEquals(int crit)
         {
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit = crit;
+            //CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit = crit;
         }
 
         private void DBTCritEquals(int crit)
         {
-            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
-            dbtPlayer.kiCrit = crit;
+            //DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            //dbtPlayer.kiCrit = crit;
         }
 
         public void FlowerBoots()
@@ -2997,7 +3048,7 @@ namespace FargowiltasSouls
             AddMinion("Enchanted Sword Familiar", mod.ProjectileType<Projectiles.Minions.HallowSword>(), (int)(dmg * player.minionDamage), 0f);
 
             //reflect proj
-            if (Soulcheck.GetValue("Hallowed Shield"))
+            if (Soulcheck.GetValue("Hallowed Shield") && !CurseoftheMoon && !OceanicMaul)
             {
                 const int focusRadius = 50;
 

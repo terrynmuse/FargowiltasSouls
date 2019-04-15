@@ -137,7 +137,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                                 Vector2 vel = npc.Center - spawn;
                                 vel.Normalize();
                                 vel *= 4.25f;
-                                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("LunarCultistIceMist"), projectile.damage, 4f, Main.myPlayer);
+                                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("LunarCultistIceMist"), projectile.damage, projectile.knockBack * 2f, projectile.owner);
                             }
                             if (projectile.localAI[0] > 60f)
                             {
@@ -154,7 +154,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                             {
                                 Vector2 spawn = projectile.Center;
                                 spawn.Y -= projectile.height;
-                                Projectile.NewProjectile(spawn, Vector2.UnitX * -projectile.spriteDirection * 12f, mod.ProjectileType("AncientVision"), projectile.damage, 6f, projectile.owner);
+                                Projectile.NewProjectile(spawn, Vector2.UnitX * -projectile.spriteDirection * 12f, mod.ProjectileType("AncientVision"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
                             }
                             if (projectile.localAI[0] > 90f)
                             {

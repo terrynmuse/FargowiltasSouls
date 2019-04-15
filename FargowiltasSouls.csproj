@@ -16,7 +16,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CalamityMod">
-      <HintPath>..\folder for wip\Calamity\CalamityMod.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile')">C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile\CalamityMod.dll</HintPath>
+      <HintPath Condition="Exists('..\folder for wip')">..\folder for wip\CalamityMod.dll</HintPath>
     </Reference>
     <Reference Include="Fargowiltas">
       <HintPath>..\folder for wip\Fargowiltas.dll</HintPath>
@@ -66,6 +67,8 @@
   <ItemGroup>
     <None Remove="Buffs\Masomode\FlippedHallow.png" />
     <None Remove="Buffs\PlaceholderBuff.png" />
+    <None Remove="Projectiles\Masomode\CelestialRuneAncientVision.png" />
+    <None Remove="Projectiles\Masomode\CelestialRuneIceSpike.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib" />
