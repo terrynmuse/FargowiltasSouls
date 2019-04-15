@@ -4,17 +4,19 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class PungentEyeball : ModItem
+    public class GuttedHeart : ModItem
     {
+        int timer;
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Pungent Eyeball");
-            Tooltip.SetDefault(@"Grants immunity to Blackout and the Tongue
-Increases your max number of minions by 2
-Increases your max number of sentries by 2
-'It's fermenting...'");
+            DisplayName.SetDefault("Gutted Heart");
+            Tooltip.SetDefault(@"''
+Grants immunity to Bloodthirsty
+10% increased max HP
+Creepers hover around you blocking some damage
+A new Creeper appears every X seconds, and 5 can exist at once");
         }
 
         public override void SetDefaults()
@@ -28,10 +30,15 @@ Increases your max number of sentries by 2
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[BuffID.TheTongue] = true;
-            player.buffImmune[BuffID.Blackout] = true;
-            player.maxMinions += 2;
-            player.maxTurrets += 2;
+            player.buffImmune[mod.BuffType("Bloodthirsty")] = true;
+            player.statLifeMax2 = (int)(player.statLifeMax2 * 1.1f);
+
+            timer++;
+            
+            /*if(timer >= && creeperCount < 5)
+            {
+            spawn creeper
+            }*/
         }
     }
 }

@@ -10,8 +10,8 @@ namespace FargowiltasSouls
 {
     internal class Soulcheck : UIState
     {
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
+        private readonly static Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly static Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public static bool Visible = false;
         public static string owner = "";
@@ -79,11 +79,14 @@ namespace FargowiltasSouls
             ["Supersonic Speed Boosts"] = new Color(81, 181, 113),
             ["Plantera Minion"] = new Color(81, 181, 113),
             ["Cultist Minion"] = new Color(81, 181, 113),
+            ["Ancient Visions On Hit"] = new Color(81, 181, 113),
+            ["Gravity Control"] = new Color(81, 181, 113),
+            ["Stars On Hit"] = new Color(81, 181, 113),
+            ["Bees On Hit"] = new Color(81, 181, 113),
+            ["Lihzahrd Ground Pound"] = new Color(81, 181, 113),
             #endregion
 
             #region pet toggles
-
-            #endregion
             ["Black Cat Pet"] = new Color(81, 181, 113),
             ["Companion Cube Pet"] = new Color(81, 181, 113),
             ["Crimson Heart Pet"] = new Color(81, 181, 113),
@@ -116,6 +119,8 @@ namespace FargowiltasSouls
             ["Turtle Pet"] = new Color(81, 181, 113),
             ["Wisp Pet"] = new Color(81, 181, 113),
             ["Zephyr Fish Pet"] = new Color(81, 181, 113),
+            #endregion
+
         };
 
         public static readonly Dictionary<string, Color> togglesThorium = new Dictionary<string, Color>
@@ -213,8 +218,8 @@ namespace FargowiltasSouls
             ["Shellfish Minions"] = new Color(81, 181, 113),
             ["Amidias' Pendant"] = new Color(81, 181, 113),
             ["Giant Pearl"] = new Color(81, 181, 113),
-            [""] = new Color(81, 181, 113),
-            [""] = new Color(81, 181, 113),
+            ["Poisonous Sea Water"] = new Color(81, 181, 113),
+            //[""] = new Color(81, 181, 113),
         };
 
         private static readonly Color _defaultColor = new Color(81, 181, 113);
@@ -276,9 +281,19 @@ namespace FargowiltasSouls
                     }
                     break;
                 case 2:
-                    foreach (KeyValuePair<string, Color> toggle in togglesThorium)
+                    if (thorium == null)
                     {
-                        CreateCheckbox(toggle.Key, toggle.Value);
+                        foreach (KeyValuePair<string, Color> toggle in togglesCalamity)
+                        {
+                            CreateCheckbox(toggle.Key, toggle.Value);
+                        }
+                    }
+                    else
+                    {
+                        foreach (KeyValuePair<string, Color> toggle in togglesThorium)
+                        {
+                            CreateCheckbox(toggle.Key, toggle.Value);
+                        }
                     }
                     break;
                 case 3:

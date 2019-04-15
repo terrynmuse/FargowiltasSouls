@@ -114,8 +114,14 @@ All other effects of material Souls");
             //charm of myths
             player.pStone = true;
             //bee cloak, sweet heart necklace, star veil
-            player.starCloak = true;
-            player.bee = true;
+            if (Soulcheck.GetValue("Stars On Hit"))
+            {
+                player.starCloak = true;
+            }
+            if (Soulcheck.GetValue("Bees On Hit"))
+            {
+                player.bee = true;
+            }
             player.panic = true;
             player.longInvince = true;
             //spore sac

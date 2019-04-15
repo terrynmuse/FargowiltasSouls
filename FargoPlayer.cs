@@ -689,7 +689,7 @@ namespace FargowiltasSouls
                     player.AddBuff(mod.BuffType("FlippedHallow"), 120);
                 }
 
-                if (Main.hardMode && Main.raining && !(player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight || player.ZoneUnderworldHeight))
+                if (Main.hardMode && Main.raining && !(player.ZoneSnow || player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight || player.ZoneUnderworldHeight))
                 {
                     Point tileCoordinates = player.Top.ToTileCoordinates();
                     bool lightning = true;
@@ -835,7 +835,7 @@ namespace FargowiltasSouls
                 CobaltCD--;
             }
 
-            if (LihzahrdTreasureBox)
+            if (LihzahrdTreasureBox && Soulcheck.GetValue("Lihzahrd Ground Pound"))
             {
                 if (player.controlDown && !player.mount.Active)
                 {
@@ -2259,7 +2259,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (MoonChalice)
+            if (MoonChalice && Soulcheck.GetValue("Ancient Visions On Hit"))
             {
                 for (int i = 0; i < 5; i++)
                 {
@@ -2275,7 +2275,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (CelestialRune)
+            if (CelestialRune && Soulcheck.GetValue("Ancient Visions On Hit"))
             {
                 Projectile.NewProjectile(player.Center, new Vector2(0, -10), mod.ProjectileType("AncientVision"), 50, 0, player.whoAmI);
             }

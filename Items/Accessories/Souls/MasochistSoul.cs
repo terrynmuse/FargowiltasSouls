@@ -86,7 +86,10 @@ Allows the holder to control gravity");
             //galactic globe
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.ChaosState] = true;
-            player.gravControl = true;
+            if (Soulcheck.GetValue("Gravity Control"))
+            {
+                player.gravControl = true;
+            }
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
 
             //sadism

@@ -4,15 +4,17 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class ReinforcedPlating : ModItem
+    public class Corrupt : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Reinforced Plating");
-            Tooltip.SetDefault(@"Grants immunity to Defenseless and Stunned
-Reduces damage taken by 10%");
+            DisplayName.SetDefault("Corrupt Heart");
+            Tooltip.SetDefault(@"''
+Grants immunity to Rotting
+10% increased movement speed
+You spawn mini eaters to seek out enemies every few attacks");
         }
 
         public override void SetDefaults()
@@ -20,16 +22,16 @@ Reduces damage taken by 10%");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 5;
+            item.rare = 4;
             item.value = Item.sellPrice(0, 4);
-            item.defense = 10;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[mod.BuffType("Defenseless")] = true;
-            player.buffImmune[mod.BuffType("Stunned")] = true;
-            player.endurance += 0.1f;
+            player.buffImmune[mod.BuffType("Rotting")] = true;
+            player.moveSpeed += 0.1f;
+            
+            //modPlayer.CorruptHeart = true;
         }
     }
 }

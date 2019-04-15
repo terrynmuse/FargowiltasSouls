@@ -51,7 +51,6 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         private void Calamity(Player player)
         {
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            modPlayer.nanotech = true;
             CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += 0.18f;
             CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += 5;
             CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingVelocity += 0.05f;

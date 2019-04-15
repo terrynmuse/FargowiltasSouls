@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terra Force");
-            string tooltip = "'The land lends it's strength\n'";
+            string tooltip = "'The land lends its strength'\n";
 
             if (thorium == null)
             {
