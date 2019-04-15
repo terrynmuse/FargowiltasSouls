@@ -40,7 +40,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.BorealWoodGreaves);
             recipe.AddIngredient(ItemID.Penguin);
             
-
+            Shiverthorn
+            SnowballCannon - launcher in essence now
+            BorealSword
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
