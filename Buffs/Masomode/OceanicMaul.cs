@@ -23,6 +23,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetModPlayer<FargoPlayer>(mod).OceanicMaul = true;
+            player.GetModPlayer<FargoPlayer>(mod).noDodge = true;
             player.bleed = true;
             player.onFrostBurn = true;
             player.moonLeech = true;

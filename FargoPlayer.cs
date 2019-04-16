@@ -194,6 +194,7 @@ namespace FargowiltasSouls
         public bool Fused;
         public bool Shadowflame;
         public bool DeathMarked;
+        public bool noDodge;
 
         public bool GodEater;               //defense removed, endurance removed, colossal DOT
         public bool FlamesoftheUniverse;    //activates various vanilla debuffs
@@ -515,6 +516,7 @@ namespace FargowiltasSouls
             Fused = false;
             Shadowflame = false;
             Slimed = false;
+            noDodge = false;
 
             GodEater = false;
             FlamesoftheUniverse = false;
@@ -553,6 +555,7 @@ namespace FargowiltasSouls
             Fused = false;
             Shadowflame = false;
             Slimed = false;
+            noDodge = false;
 
             GroundPound = 0;
             MagicalBulb = false;
@@ -2380,7 +2383,7 @@ namespace FargowiltasSouls
         {
             player.wingTimeMax = (int)(player.wingTimeMax * wingTimeModifier);
 
-            if (CurseoftheMoon || OceanicMaul)
+            if (noDodge)
             {
                 player.onHitDodge = false;
                 player.shadowDodge = false;
@@ -3045,7 +3048,7 @@ namespace FargowiltasSouls
             AddMinion("Enchanted Sword Familiar", mod.ProjectileType<Projectiles.Minions.HallowSword>(), (int)(dmg * player.minionDamage), 0f);
 
             //reflect proj
-            if (Soulcheck.GetValue("Hallowed Shield") && !CurseoftheMoon && !OceanicMaul)
+            if (Soulcheck.GetValue("Hallowed Shield") && !noDodge)
             {
                 const int focusRadius = 50;
 
