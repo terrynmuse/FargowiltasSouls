@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Boreal Wood Enchantment");
             Tooltip.SetDefault(
 @"''
+Double tap down to make snow fall around you?
 ");
         }
 
