@@ -8,15 +8,19 @@ namespace FargowiltasSouls.Buffs.Souls
         public override void SetDefaults()
         {
             DisplayName.SetDefault("First Strike");
-            Description.SetDefault("You have 20% damage reduction and hitting an enemy at full HP will always crit");
+            Description.SetDefault("You may dodge incoming attacks and your critical strike chance is doubled");
             Main.buffNoSave[Type] = true;
-            canBeCleared = false;
-            Main.debuff[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.endurance += 0.20f;
+            player.stealth = .5f; //idk if this works at all
+            player.blackBelt = true;
+            player.magicCrit *= 2;
+            player.meleeCrit *= 2;
+            player.rangedCrit *= 2;
+            player.thrownCrit *= 2;
+
             player.GetModPlayer<FargoPlayer>(mod).FirstStrike = true;
         }
     }
