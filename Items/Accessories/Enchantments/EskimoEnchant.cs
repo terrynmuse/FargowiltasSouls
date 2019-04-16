@@ -14,6 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Eskimo Enchantment");
             Tooltip.SetDefault(
 @"''
+goes into frost enchant
+You can walk on water and when you do, it freezes and creates spikes
 ");
         }
 
