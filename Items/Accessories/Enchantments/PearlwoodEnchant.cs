@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Pearlwood Enchantment");
             Tooltip.SetDefault(
 @"''
+You leave behind a trail of rainbows that may shrink enemies
 ");
         }
 
