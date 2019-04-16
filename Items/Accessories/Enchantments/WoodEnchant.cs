@@ -14,6 +14,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Wood Enchantment");
             Tooltip.SetDefault(
 @"''
+Critters have massively increased defense
+Certain critters will attack or debuff enemies
+When critters die, they explode into blood
 ");
         }
 
@@ -29,7 +32,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            
+            /*
+            squirrels throw acorns, scorpions poison/venom, birds shoot feathers, bunnys leap at enemies
+            */
         }
 
         public override void AddRecipes()
