@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Palm Wood Enchantment");
             Tooltip.SetDefault(
 @"''
+Doublt tap down to spawn a literal palm tree that throws coconuts at enemies
 ");
         }
 
