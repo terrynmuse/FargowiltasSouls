@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Rich Mahogany Enchantment");
             Tooltip.SetDefault(
 @"''
+All grappling hooks can damage enemies and have extra range
 ");
         }
 
@@ -46,6 +47,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             moonglow
             double cod
             neon tetra
+            ivy whip, literal all hooks ever tm
             
             waterleaf to cactus when
 
