@@ -94,7 +94,6 @@ You attract items from a larger range";
                 recipe.AddIngredient(ItemID.IronBroadsword);
                 recipe.AddIngredient(thorium.ItemType("OpalStaff"));
                 recipe.AddIngredient(ItemID.IronAnvil);
-                recipe.AddIngredient(ItemID.ZebraSwallowtailButterfly);
             }
             else
             {
@@ -102,6 +101,8 @@ You attract items from a larger range";
                 recipe.AddIngredient(ItemID.IronBroadsword);
                 recipe.AddIngredient(ItemID.IronAnvil);
             }
+            
+            recipe.AddIngredient(ItemID.ZebraSwallowtailButterfly);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
