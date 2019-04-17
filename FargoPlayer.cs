@@ -585,7 +585,7 @@ namespace FargowiltasSouls
 
             if (FargoWorld.MasochistMode)
             {
-                //falling gives you dazed and confused even with protection. wings save you
+                //falling gives you dazed even with protection. wings save you
                 if (player.velocity.Y == 0f && player.wings == 0)
                 {
                     int num21 = 25;
@@ -622,7 +622,6 @@ namespace FargowiltasSouls
                         int buffTime = (int)(dmg * (player.noFallDmg ? .5 : 2));
                         
                         player.AddBuff(BuffID.Dazed, buffTime);
-                        player.AddBuff(BuffID.Confused, buffTime);
                     }
                     player.fallStart = (int)(player.position.Y / 16f);
                 }
