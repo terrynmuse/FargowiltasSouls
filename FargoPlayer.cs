@@ -712,6 +712,13 @@ namespace FargowiltasSouls
                     if (lightning)
                     {
                         player.AddBuff(mod.BuffType("LightningRod"), 2);
+                        
+                        //less aggressive and more random intervals for lightning
+                        if(Main.rand.Next(2) == 0)
+                        {
+                            lightningRodTimer--;
+                        }
+                        
                     } 
                 }
 
