@@ -81,7 +81,6 @@ Lead Poisoning deals damage over time and spreads to nearby enemies";
                 recipe.AddIngredient(thorium.ItemType("OnyxStaff"));
                 recipe.AddIngredient(thorium.ItemType("RustySword"));
                 recipe.AddIngredient(ItemID.GrayPaint, 100);
-                recipe.AddIngredient(ItemID.SulphurButterfly);
             }
             else
             {
@@ -89,6 +88,8 @@ Lead Poisoning deals damage over time and spreads to nearby enemies";
                 recipe.AddIngredient(ItemID.LeadPickaxe);
                 recipe.AddIngredient(ItemID.GrayPaint, 100);
             }
+            
+            recipe.AddIngredient(ItemID.SulphurButterfly);
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
