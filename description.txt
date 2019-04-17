@@ -2,6 +2,10 @@ NEW UPDATE - v 0.6.2
 
 -add to wiki: ice and jungle slimes may become spiked, skeletons may become throwing skeles
 
+-gave prehm enchants more items in recipes so they all have 7 materials
+-removed confused on fall damage, lightning rod while raining is less aggressive
+-Copper enchant has greater bonuses when attacking wet enemies
+-recipe for steel throwing axe increased
 -reworked spider enchant to minion crits
 -aerospec enchant has fall immune now
 -fixed Terra Force tooltip error
