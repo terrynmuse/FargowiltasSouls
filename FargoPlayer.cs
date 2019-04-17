@@ -2808,8 +2808,8 @@ namespace FargowiltasSouls
 
             if (target.FindBuffIndex(BuffID.Wet) != -1)
             {
-                dmg *= 2;
-                chance /= 4;
+                dmg *= 3;
+                chance /= 5;
             }
 
             if (TerraForce)
