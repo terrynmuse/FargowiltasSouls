@@ -42,10 +42,10 @@ Needles scale with melee damage");
             recipe.AddIngredient(ItemID.CactusLeggings);
             recipe.AddIngredient(ItemID.CactusSword);
             recipe.AddIngredient(ItemID.CactusPickaxe);
+            recipe.AddIngredient(ItemID.Sandgun);
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.Sandgun);
                 recipe.AddIngredient(ItemID.ThornsPotion, 5);
                 recipe.AddIngredient(thorium.ItemType("CactusFruit"), 5);
                 recipe.AddIngredient(thorium.ItemType("PricklyJam"), 5);
