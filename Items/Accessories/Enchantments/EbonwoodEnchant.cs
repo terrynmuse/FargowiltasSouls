@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Ebonwood Enchantment");
             Tooltip.SetDefault(
 @"''
+While in the Corruption, enemies that get near you are inflicted with Rotting, Living Wasteland, blah
 ");
         }
 
@@ -36,9 +37,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(ItemID.);
+            recipe.AddIngredient(ItemID.LightlessChasms);
 
-            corrupt painting
+        
             ebonwood sword/bow
             vile mushroom
             ebonkoi
