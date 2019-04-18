@@ -39,19 +39,15 @@ Summons a pet Eater of Souls and Shadow Orb");
             recipe.AddIngredient(ItemID.ShadowHelmet);
             recipe.AddIngredient(ItemID.ShadowScalemail);
             recipe.AddIngredient(ItemID.ShadowGreaves);
+            recipe.AddIngredient(ItemID.WarAxeoftheNight);
+            recipe.AddIngredient(ItemID.PurpleClubberfish);
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.WarAxeoftheNight);
                 recipe.AddIngredient(ItemID.BallOHurt);
-                recipe.AddIngredient(ItemID.PurpleClubberfish);
-                recipe.AddIngredient(ItemID.LightlessChasms);
                 recipe.AddIngredient(thorium.ItemType("CorruptButterfly"));
             }
-            else
-            {
-                recipe.AddIngredient(ItemID.LightlessChasms);
-            }
+
             
             recipe.AddIngredient(ItemID.EatersBone);
             recipe.AddIngredient(ItemID.ShadowOrb);
