@@ -13,7 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Gladiator Enchantment");
             Tooltip.SetDefault(
 @"'Are you not entertained?'
-Thrown projectiles will speed up drastically over time
+Jump height is tripled
+Spears will rain down on struck enemies 
 Summons a pet Minotaur");
         }
 
@@ -51,7 +52,8 @@ Summons a pet Minotaur");
             else
             {
                 recipe.AddIngredient(ItemID.Javelin, 300);
-                recipe.AddIngredient(ItemID.MarbleChest);
+                recipe.AddIngredient(ItemID.BoneJavelin, 300);
+                //angel statue
             }
             
             recipe.AddIngredient(ItemID.TartarSauce);
