@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Boreal Wood Enchantment");
             Tooltip.SetDefault(
 @"''
-Double tap down to make snow fall around you?
+While in the Snow Biome, damaging snow/hail will constantly rain from the sky
 ");
         }
 
@@ -41,7 +41,9 @@ Double tap down to make snow fall around you?
             recipe.AddIngredient(ItemID.BorealWoodGreaves);
             recipe.AddIngredient(ItemID.Penguin);
             
-            /*Shiverthorn
+            /*
+            painting 
+            Shiverthorn
             SnowballCannon - launcher in essence now
             BorealSword*/
             
