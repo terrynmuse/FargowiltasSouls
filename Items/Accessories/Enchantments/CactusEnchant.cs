@@ -41,7 +41,6 @@ Needles scale with melee damage");
             recipe.AddIngredient(ItemID.CactusBreastplate);
             recipe.AddIngredient(ItemID.CactusLeggings);
             recipe.AddIngredient(ItemID.CactusSword);
-            recipe.AddIngredient(ItemID.CactusPickaxe);
             recipe.AddIngredient(ItemID.Sandgun);
             
             if(Fargowiltas.Instance.ThoriumLoaded)
@@ -55,6 +54,8 @@ Needles scale with melee damage");
             {
                 recipe.AddIngredient(ItemID.PinkPricklyPear);
             }
+            
+            recipe.AddIngredient(ItemID.SecretoftheSands);
             
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
