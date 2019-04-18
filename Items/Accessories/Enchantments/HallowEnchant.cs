@@ -47,14 +47,13 @@ Summons a magical fairy");
             {      
                 recipe.AddIngredient(thorium.ItemType("EnchantedShield"));
                 recipe.AddIngredient(ItemID.Excalibur);
-                recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
                 recipe.AddIngredient(thorium.ItemType("FuschiaButterfly"));
                 recipe.AddIngredient(thorium.ItemType("HallowedButterfly"));
             }
             else
             {
                 recipe.AddIngredient(ItemID.Excalibur);
-                recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
+                //Light Disc
             }
                       
             recipe.AddIngredient(ItemID.FairyBell);
