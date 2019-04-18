@@ -55,6 +55,8 @@ While standing in lava, you gain 15 more armor penetration, 15% attack speed, an
                 recipe.AddIngredient(ItemID.ObsidianRose);
                 recipe.AddIngredient(ItemID.ObsidianHorseshoe);
                 recipe.AddIngredient(ItemID.SharkToothNecklace);
+                
+                //any underworld treasure not used??? cascade?
             }
             
             recipe.AddTile(TileID.DemonAltar);
