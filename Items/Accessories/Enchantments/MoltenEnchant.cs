@@ -52,6 +52,7 @@ When you die, you violently explode dealing massive damage");
             else
             {
                 recipe.AddIngredient(ItemID.Sunfury);
+                recipe.AddIngredient(ItemID.DarkLance);
                 recipe.AddIngredient(ItemID.PhoenixBlaster);
                 recipe.AddIngredient(ItemID.DemonsEye);
             }
