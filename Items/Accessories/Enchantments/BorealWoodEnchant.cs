@@ -42,7 +42,7 @@ While in the Snow Biome, damaging snow/hail will constantly rain from the sky
             recipe.AddIngredient(ItemID.Penguin);
             
             /*
-            painting 
+            recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
             Shiverthorn
             SnowballCannon - launcher in essence now
             BorealSword*/
