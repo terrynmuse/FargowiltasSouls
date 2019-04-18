@@ -15,6 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"''
 You leave behind a trail of rainbows that may shrink enemies
+While in the Hallowed, the rainbow trail lasts much longer
 ");
         }
 
@@ -43,7 +44,7 @@ You leave behind a trail of rainbows that may shrink enemies
             Prismite
             Chaos Fish
             Princess Fish
-            hallow painting
+            recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
             Pearlwood Sword, Bow
 
             recipe.AddTile(TileID.CrystalBall);
