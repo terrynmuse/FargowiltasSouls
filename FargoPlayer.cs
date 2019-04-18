@@ -186,6 +186,7 @@ namespace FargowiltasSouls
         public int CelestialRuneTimer;
         public bool MoonChalice;
         public bool LunarCultist;
+        public bool TrueEyes;
 
         //debuffs
         public bool Hexed;
@@ -509,6 +510,7 @@ namespace FargowiltasSouls
             CelestialRune = false;
             MoonChalice = false;
             LunarCultist = false;
+            TrueEyes = false;
 
             //debuffs
             Hexed = false;
@@ -560,6 +562,7 @@ namespace FargowiltasSouls
             GroundPound = 0;
             MagicalBulb = false;
             LunarCultist = false;
+            TrueEyes = false;
 
             GodEater = false;
             FlamesoftheUniverse = false;

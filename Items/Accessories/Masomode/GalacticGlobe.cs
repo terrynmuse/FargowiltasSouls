@@ -13,6 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             DisplayName.SetDefault("Galactic Globe");
             Tooltip.SetDefault(@"Grants immunity to Flipped, Unstable, Distorted, and Chaos State
 Allows the holder to control gravity
+The eyes of Cthulhu protect you
 Increases flight time by 100%");
         }
 
@@ -37,6 +38,8 @@ Increases flight time by 100%");
             {
                 player.gravControl = true;
             }
+
+            player.AddBuff(mod.BuffType("TrueEyes"), 5);
             
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
             player.GetModPlayer<FargoPlayer>().wingTimeModifier += 1f;

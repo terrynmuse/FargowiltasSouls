@@ -12,6 +12,10 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-implemented galactic globe minions
+-curse of the moon debuffs enemies too
+-p3 twins dont become immune when partner isn't also in p3
+-twins go p2 immediately again
 -modified how beetle ench/galactic globe increase wing time (additive, not multiplicative)
 -added tribal charm
 -fishron non-EX has razor rings too

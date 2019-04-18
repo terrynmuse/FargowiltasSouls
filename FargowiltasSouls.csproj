@@ -69,6 +69,9 @@
     <None Remove="Buffs\PlaceholderBuff.png" />
     <None Remove="Projectiles\Masomode\CelestialRuneAncientVision.png" />
     <None Remove="Projectiles\Masomode\CelestialRuneIceSpike.png" />
+    <None Remove="Projectiles\Minions\PhantasmalDeathrayTrueEye.png" />
+    <None Remove="Projectiles\Minions\PhantasmalDeathrayTrueEye2.png" />
+    <None Remove="Projectiles\Minions\PhantasmalDeathrayTrueEye3.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib" />

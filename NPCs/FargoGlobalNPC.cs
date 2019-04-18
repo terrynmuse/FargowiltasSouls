@@ -38,6 +38,7 @@ namespace FargowiltasSouls.NPCs
         public float InfestedDust;
         public bool Needles;
         public bool Electrified;
+        public bool CurseoftheMoon;
 
         public bool PillarSpawn = true;
         public bool ValhallaImmune;
@@ -88,6 +89,7 @@ namespace FargowiltasSouls.NPCs
             Infested = false;
             Needles = false;
             Electrified = false;
+            CurseoftheMoon = false;
         }
 
         public override void SetDefaults(NPC npc)
@@ -1682,7 +1684,7 @@ namespace FargowiltasSouls.NPCs
                         bool spazAlive = BossIsAlive(ref spazBoss, NPCID.Spazmatism);
                         bool targetAlive = npc.HasPlayerTarget && Main.player[npc.target].active;
 
-                        if (npc.life <= npc.lifeMax * .9f && !masoBool[0]) //start phase 2
+                        if (!masoBool[0]) //start phase 2
                         {
                             masoBool[0] = true;
                             npc.ai[0] = 1f;
@@ -1707,8 +1709,6 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
-                            npc.dontTakeDamage = spazAlive && Main.npc[spazBoss].ai[0] < 4f; //if twin not in phase 3
-
                             //2*pi * (# of full circles) / (seconds to finish rotation) / (ticks per sec)
                             const float rotationInterval = 2f * (float)Math.PI * 1f / 4f / 60f;
 
@@ -1841,7 +1841,7 @@ namespace FargowiltasSouls.NPCs
                         spazBoss = npc.whoAmI;
                         bool retiAlive = BossIsAlive(ref retiBoss, NPCID.Retinazer);
 
-                        if (npc.life <= npc.lifeMax * .9f && !masoBool[0]) //spawn in phase 2
+                        if (!masoBool[0]) //spawn in phase 2
                         {
                             masoBool[0] = true;
                             npc.ai[0] = 1f;
@@ -1876,7 +1876,6 @@ namespace FargowiltasSouls.NPCs
                         else
                         {
                             npc.position += npc.velocity / 4f;
-                            npc.dontTakeDamage = retiAlive && Main.npc[retiBoss].ai[0] < 4f; //if twin not in phase3
 
                             if (npc.ai[1] == 0f) //not dashing
                             {
@@ -5322,6 +5321,14 @@ namespace FargowiltasSouls.NPCs
 
                 Lighting.AddLight((int)npc.Center.X / 16, (int)npc.Center.Y / 16, 0.3f, 0.8f, 1.1f);
             }
+
+            if (CurseoftheMoon && Main.rand.Next(5) == 0)
+            {
+                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 229, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 1.75f);
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 1.8f;
+                Main.dust[dust].velocity.Y -= 0.5f;
+            }
         }
 
         public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
@@ -5566,6 +5573,14 @@ namespace FargowiltasSouls.NPCs
                 npc.lifeRegen -= 4;
                 if (npc.velocity != Vector2.Zero)
                     npc.lifeRegen -= 16;
+            }
+
+            if (CurseoftheMoon)
+            {
+                if (npc.lifeRegen > 0)
+                    npc.lifeRegen = 0;
+
+                npc.lifeRegen -= 12;
             }
 		}
 
@@ -8613,6 +8628,11 @@ namespace FargowiltasSouls.NPCs
 			{
                 crit = true;
                 retValue = false;
+            }
+
+            if (CurseoftheMoon)
+            {
+                damage *= 1.1;
             }
 
             //normal damage calc
