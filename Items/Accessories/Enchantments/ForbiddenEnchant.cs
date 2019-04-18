@@ -64,7 +64,7 @@ Any projectiles shot through your storm gain double pierce and 50% damage
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.FlyingCarpet);
+                recipe.AddIngredient(ItemID.FlyingCarpet); //hmmmm
                 recipe.AddIngredient(thorium.ItemType("KarmicHolder"));
                 recipe.AddIngredient(thorium.ItemType("WhisperRa"));
                 recipe.AddIngredient(ItemID.SpiritFlame);
@@ -77,7 +77,7 @@ Any projectiles shot through your storm gain double pierce and 50% damage
             }
             
             recipe.AddIngredient(ItemID.Scorpion);
-            recipe.AddIngredient(ItemID.SecretoftheSands);
+            
             
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
