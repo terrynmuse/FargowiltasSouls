@@ -15,6 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"''
 All grappling hooks can damage enemies and have extra range
+While in the Jungle, they shoot spores??
 ");
         }
 
@@ -39,15 +40,15 @@ All grappling hooks can damage enemies and have extra range
             recipe.AddIngredient(ItemID.AdamantiteBreastplate);
 
             sword/bow
-            jungle painting
             frog
             grubby
-            sluggy
             buggy
             moonglow
             double cod
             neon tetra
             ivy whip, literal all hooks ever tm
+            
+            recipe.AddIngredient(ItemID.DoNotStepontheGrass);
             
             waterleaf to cactus when
 
