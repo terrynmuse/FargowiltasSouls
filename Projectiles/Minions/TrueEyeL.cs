@@ -45,6 +45,9 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (player.active && !player.dead && player.GetModPlayer<FargoPlayer>().TrueEyes)
                 projectile.timeLeft = 2;
 
+            if (projectile.damage == 0)
+                projectile.damage = (int)(60f * player.minionDamage);
+
             //lighting effect?
             DelegateMethods.v3_1 = new Vector3(0.5f, 0.9f, 1f) * 1.5f;
             Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * 6f, 20f, new Utils.PerLinePoint(DelegateMethods.CastLightOpen));
@@ -157,7 +160,10 @@ namespace FargowiltasSouls.Projectiles.Minions
             else
             {
                 if (projectile.localAI[1]++ > 15f)
+                {
+                    projectile.localAI[0] = 0f;
                     TargetEnemies();
+                }
 
                 Vector2 vector2_1 = new Vector2(0f, -100f); //vanilla movement code
                 Vector2 vector2_2 = player.MountedCenter + vector2_1;
@@ -284,7 +290,6 @@ namespace FargowiltasSouls.Projectiles.Minions
                 }
                 projectile.ai[0] = possibleTarget;
             }
-            projectile.localAI[0] = 0f;
             projectile.localAI[1] = 0f;
             projectile.ai[1] = 0f;
         }

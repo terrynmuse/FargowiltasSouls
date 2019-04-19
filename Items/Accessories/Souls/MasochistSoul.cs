@@ -51,6 +51,8 @@ Allows the holder to control gravity");
             player.GetModPlayer<FargoPlayer>().LumpOfFlesh = true;
             player.maxMinions += 2;
             player.maxTurrets += 2;
+            if (Soulcheck.GetValue("Pungent Eye Minion"))
+                player.AddBuff(mod.BuffType("PungentEyeball"), 5);
 
             //tribal charm buffed
             player.statLifeMax2 += 100;
@@ -95,7 +97,8 @@ Allows the holder to control gravity");
             {
                 player.gravControl = true;
             }
-            player.AddBuff(mod.BuffType("TrueEyes"), 5);
+            if (Soulcheck.GetValue("True Eyes Minion"))
+                player.AddBuff(mod.BuffType("TrueEyes"), 5);
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
             player.GetModPlayer<FargoPlayer>().wingTimeModifier += 1f;
 

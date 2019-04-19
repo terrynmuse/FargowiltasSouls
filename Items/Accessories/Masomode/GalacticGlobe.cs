@@ -39,7 +39,8 @@ Increases flight time by 100%");
                 player.gravControl = true;
             }
 
-            player.AddBuff(mod.BuffType("TrueEyes"), 5);
+            if (Soulcheck.GetValue("True Eyes Minion"))
+                player.AddBuff(mod.BuffType("TrueEyes"), 5);
             
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
             player.GetModPlayer<FargoPlayer>().wingTimeModifier += 1f;

@@ -173,6 +173,7 @@ namespace FargowiltasSouls
 
         //maso items
         public bool LumpOfFlesh;
+        public bool PungentEyeballMinion;
         public bool FusedLens;
         public bool GroundStick;
         public bool MagicalBulb;
@@ -499,6 +500,7 @@ namespace FargowiltasSouls
 
             //maso
             LumpOfFlesh = false;
+            PungentEyeballMinion = false;
             FusedLens = false;
             GroundStick = false;
             MagicalBulb = false;
@@ -560,6 +562,7 @@ namespace FargowiltasSouls
             noDodge = false;
 
             GroundPound = 0;
+            PungentEyeballMinion = false;
             MagicalBulb = false;
             LunarCultist = false;
             TrueEyes = false;

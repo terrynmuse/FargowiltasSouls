@@ -45,6 +45,9 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (player.active && !player.dead && player.GetModPlayer<FargoPlayer>().TrueEyes)
                 projectile.timeLeft = 2;
 
+            if (projectile.damage == 0)
+                projectile.damage = (int)(60f * player.minionDamage);
+
             //lighting effect?
             DelegateMethods.v3_1 = new Vector3(0.5f, 0.9f, 1f) * 1.5f;
             Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * 6f, 20f, new Utils.PerLinePoint(DelegateMethods.CastLightOpen));
@@ -155,7 +158,35 @@ namespace FargowiltasSouls.Projectiles.Minions
                 }
                 else //forget target
                 {
-                    TargetEnemies();
+                    if (projectile.ai[1] == 0)
+                    {
+                        TargetEnemies();
+                    }
+                    else //try to recover while making balls
+                    {
+                        float maxDistance = 1000f;
+                        int possibleTarget = -1;
+                        for (int i = 0; i < 200; i++)
+                        {
+                            NPC target = Main.npc[i];
+                            if (target.CanBeChasedBy(projectile))// && Collision.CanHitLine(projectile.Center, 0, 0, target.Center, 0, 0))
+                            {
+                                float npcDistance = projectile.Distance(target.Center);
+                                if (npcDistance < maxDistance)
+                                {
+                                    maxDistance = npcDistance;
+                                    possibleTarget = i;
+                                }
+                            }
+                        }
+                        projectile.ai[0] = possibleTarget;
+                        if (projectile.ai[0] == -1f) //no nearby targets, accept defeat
+                        {
+                            projectile.localAI[0] = 0f;
+                            projectile.localAI[1] = 0f;
+                            projectile.ai[1] = 0f;
+                        }
+                    }
                 }
                 
                 int num5 = projectile.frameCounter + 1;

@@ -54,6 +54,9 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (player.active && !player.dead && player.GetModPlayer<FargoPlayer>().LunarCultist)
                 projectile.timeLeft = 2;
 
+            if (projectile.damage == 0)
+                projectile.damage = (int)(80f * player.minionDamage);
+
             if (projectile.ai[0] >= 0 && projectile.ai[0] < 200) //has target
             {
                 NPC minionAttackTargetNpc = projectile.OwnerMinionAttackTargetNPC;

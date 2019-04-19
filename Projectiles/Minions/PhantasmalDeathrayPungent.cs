@@ -10,13 +10,15 @@ using FargowiltasSouls.Buffs.Masomode;
 
 namespace FargowiltasSouls.Projectiles.Minions
 {
-    public class PhantasmalDeathrayTrueEye : ModProjectile
+    public class PhantasmalDeathrayPungent : ModProjectile
     {
-        private const float maxTime = 90;
+        public override string Texture => "FargowiltasSouls/Projectiles/Masomode/PhantasmalDeathrayWOF";
+
+        private const float maxTime = 120;
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Phantasmal Deathray");
+			DisplayName.SetDefault("Demonic Deathray");
 		}
     	
         public override void SetDefaults()
@@ -43,10 +45,10 @@ namespace FargowiltasSouls.Projectiles.Minions
             {
                 projectile.velocity = -Vector2.UnitY;
             }
-            int ai1 = (int)projectile.ai[1];
-            if (Main.projectile[ai1].active && Main.projectile[ai1].type == mod.ProjectileType("TrueEyeL"))
+            int ai0 = (int)projectile.ai[0];
+            if (Main.projectile[ai0].active && Main.projectile[ai0].type == mod.ProjectileType("PungentEyeball"))
             {
-                projectile.Center = Main.projectile[ai1].Center - Vector2.UnitY * 6f;
+                projectile.Center = Main.projectile[ai0].Center + Vector2.UnitX.RotatedBy(Main.projectile[ai0].rotation) * 20f;
             }
             else
             {
@@ -61,7 +63,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             {
                 Main.PlaySound(29, (int)projectile.position.X, (int)projectile.position.Y, 104, 1f, 0f);
             }
-            float num801 = 0.4f;
+            float num801 = (projectile.ai[1] == 0f) ? 0.4f : 1f;
             projectile.localAI[0] += 1f;
             if (projectile.localAI[0] >= maxTime)
             {
@@ -71,10 +73,8 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 10f * num801;
             if (projectile.scale > num801)
                 projectile.scale = num801;
-            float num804 = projectile.velocity.ToRotation();
-            num804 += projectile.ai[0];
-            projectile.rotation = num804 - 1.57079637f;
-            projectile.velocity = num804.ToRotationVector2();
+            projectile.rotation = Main.projectile[ai0].rotation - 1.57079637f;
+            projectile.velocity = Main.projectile[ai0].rotation.ToRotationVector2();
             float num805 = 3f;
             float num806 = (float)projectile.width;
             Vector2 samplingPoint = projectile.Center;
@@ -119,12 +119,13 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
+            target.AddBuff(BuffID.OnFire, 300);
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            crit = true;
+            if (projectile.ai[1] != 0f)
+                crit = true;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -134,8 +135,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                 return false;
             }
             Texture2D texture2D19 = Main.projectileTexture[projectile.type];
-            Texture2D texture2D20 = mod.GetTexture("Projectiles/Minions/PhantasmalDeathrayTrueEye2");
-            Texture2D texture2D21 = mod.GetTexture("Projectiles/Minions/PhantasmalDeathrayTrueEye3");
+            Texture2D texture2D20 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayWOF2");
+            Texture2D texture2D21 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayWOF3");
             float num223 = projectile.localAI[1];
             Microsoft.Xna.Framework.Color color44 = new Microsoft.Xna.Framework.Color(255, 255, 255, 0) * 0.9f;
             SpriteBatch arg_ABD8_0 = Main.spriteBatch;

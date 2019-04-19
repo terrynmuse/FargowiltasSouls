@@ -31,7 +31,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.extraUpdates = 3;
 
             projectile.usesLocalNPCImmunity = true;
-            projectile.localNPCHitCooldown = 10;
+            projectile.localNPCHitCooldown = 30;
         }
 
         public override void AI()
@@ -57,12 +57,6 @@ namespace FargowiltasSouls.Projectiles.Minions
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
-        }
-
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            if (target.defense > 0)
-                damage += target.defense / 2;
         }
 
         public override Color? GetAlpha(Color lightColor)
