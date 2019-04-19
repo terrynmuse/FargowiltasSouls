@@ -173,6 +173,7 @@ namespace FargowiltasSouls
 
         //maso items
         public bool LumpOfFlesh;
+        public bool PungentEyeballMinion;
         public bool FusedLens;
         public bool GroundStick;
         public bool MagicalBulb;
@@ -186,6 +187,7 @@ namespace FargowiltasSouls
         public int CelestialRuneTimer;
         public bool MoonChalice;
         public bool LunarCultist;
+        public bool TrueEyes;
 
         //debuffs
         public bool Hexed;
@@ -194,6 +196,7 @@ namespace FargowiltasSouls
         public bool Fused;
         public bool Shadowflame;
         public bool DeathMarked;
+        public bool noDodge;
 
         public bool GodEater;               //defense removed, endurance removed, colossal DOT
         public bool FlamesoftheUniverse;    //activates various vanilla debuffs
@@ -497,6 +500,7 @@ namespace FargowiltasSouls
 
             //maso
             LumpOfFlesh = false;
+            PungentEyeballMinion = false;
             FusedLens = false;
             GroundStick = false;
             MagicalBulb = false;
@@ -508,6 +512,7 @@ namespace FargowiltasSouls
             CelestialRune = false;
             MoonChalice = false;
             LunarCultist = false;
+            TrueEyes = false;
 
             //debuffs
             Hexed = false;
@@ -515,6 +520,7 @@ namespace FargowiltasSouls
             Fused = false;
             Shadowflame = false;
             Slimed = false;
+            noDodge = false;
 
             GodEater = false;
             FlamesoftheUniverse = false;
@@ -553,10 +559,13 @@ namespace FargowiltasSouls
             Fused = false;
             Shadowflame = false;
             Slimed = false;
+            noDodge = false;
 
             GroundPound = 0;
+            PungentEyeballMinion = false;
             MagicalBulb = false;
             LunarCultist = false;
+            TrueEyes = false;
 
             GodEater = false;
             FlamesoftheUniverse = false;
@@ -2386,7 +2395,7 @@ namespace FargowiltasSouls
         {
             player.wingTimeMax = (int)(player.wingTimeMax * wingTimeModifier);
 
-            if (CurseoftheMoon || OceanicMaul)
+            if (noDodge)
             {
                 player.onHitDodge = false;
                 player.shadowDodge = false;
@@ -3051,7 +3060,7 @@ namespace FargowiltasSouls
             AddMinion("Enchanted Sword Familiar", mod.ProjectileType<Projectiles.Minions.HallowSword>(), (int)(dmg * player.minionDamage), 0f);
 
             //reflect proj
-            if (Soulcheck.GetValue("Hallowed Shield") && !CurseoftheMoon && !OceanicMaul)
+            if (Soulcheck.GetValue("Hallowed Shield") && !noDodge)
             {
                 const int focusRadius = 50;
 

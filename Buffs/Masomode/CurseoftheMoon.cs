@@ -8,7 +8,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Curse of the Moon");
-            Description.SetDefault("The moon's wrath consumes you, no dodging");
+            Description.SetDefault("The moon's wrath consumes you");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
@@ -25,6 +25,12 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.statDefense -= 10;
             player.endurance -= 0.1f;
             player.GetModPlayer<FargoPlayer>(mod).CurseoftheMoon = true;
+        }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.defense -= 10;
+            npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).CurseoftheMoon = true;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Increases minion damage by 16% but slightly decreases defense
 Increases your max number of minions by 2
 Increases your max number of sentries by 2
-Your minions can inflict Cursed Inferno and Ichor
+The pungent eyeball charges energy to fire a laser as you attack
 Enemies are less likely to target you
 Makes armed and magic skeletons less hostile outside the Dungeon
 'It's growing'");
@@ -42,6 +42,8 @@ Makes armed and magic skeletons less hostile outside the Dungeon
             player.GetModPlayer<FargoPlayer>().LumpOfFlesh = true;
             player.maxMinions += 2;
             player.maxTurrets += 2;
+            if (Soulcheck.GetValue("Pungent Eye Minion"))
+                player.AddBuff(mod.BuffType("PungentEyeball"), 5);
         }
 
         public override void AddRecipes()

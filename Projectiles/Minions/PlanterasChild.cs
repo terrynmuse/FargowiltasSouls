@@ -38,6 +38,9 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (player.active && !player.dead && player.GetModPlayer<FargoPlayer>().MagicalBulb)
                 projectile.timeLeft = 2;
 
+            if (projectile.damage == 0)
+                projectile.damage = (int)(60f * player.minionDamage);
+
             NPC minionAttackTargetNpc = projectile.OwnerMinionAttackTargetNPC;
             if (minionAttackTargetNpc != null && projectile.ai[0] != minionAttackTargetNpc.whoAmI && minionAttackTargetNpc.CanBeChasedBy(projectile))
             {
