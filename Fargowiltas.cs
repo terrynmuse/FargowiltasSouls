@@ -151,7 +151,7 @@ namespace FargowiltasSouls
                 recipe = new ModRecipe(this);
                 recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
                 recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelBattleAxe", 10));
+                recipe.SetResult(thorium.ItemType("SteelBattleAxe"), 10);
                 recipe.AddRecipe();
 
                 recipe = new ModRecipe(this);
