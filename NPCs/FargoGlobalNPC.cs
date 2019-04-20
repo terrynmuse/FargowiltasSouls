@@ -854,9 +854,9 @@ namespace FargowiltasSouls.NPCs
                         masoDeathAI = 40;
                         break;
 			
-		case NPCID.Pinky:
-			masoDeathAI = 25;
-			break;
+		            case NPCID.Pinky:
+			            masoDeathAI = 25;
+			            break;
 
                     case NPCID.FlyingSnake:
                         masoDeathAI = 26;
@@ -922,7 +922,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.AnomuraFungus:
                         masoDeathAI = 39;
                         break;
-
 
                     default:
                         break;
