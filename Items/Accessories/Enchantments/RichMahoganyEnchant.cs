@@ -14,6 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Rich Mahogany Enchantment");
             Tooltip.SetDefault(
 @"''
+All grappling hooks can damage enemies and have extra range
+While in the Jungle, they shoot spores??
 ");
         }
 
@@ -38,14 +40,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.AdamantiteBreastplate);
 
             sword/bow
-            jungle painting
             frog
             grubby
-            sluggy
             buggy
             moonglow
             double cod
             neon tetra
+            ivy whip, literal all hooks ever tm
+            
+            recipe.AddIngredient(ItemID.DoNotStepontheGrass);
             
             waterleaf to cactus when
 

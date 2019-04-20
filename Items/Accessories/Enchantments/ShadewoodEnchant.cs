@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Shadewood Enchantment");
             Tooltip.SetDefault(
 @"''
+While in the Crimson, 
 ");
         }
 
@@ -32,20 +33,23 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.);
+            
+            recipe.AddIngredient(ItemID.DeadlandComesAlive);
+            
+            /*recipe.AddIngredient(ItemID.);
 
             crimson painting
             vicious mushroom
             crimson tigerfish
             hemopiranha
-            shadewood sword/bow
+            shadewood sword/bow*/
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

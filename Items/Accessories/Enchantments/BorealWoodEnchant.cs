@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Boreal Wood Enchantment");
             Tooltip.SetDefault(
 @"''
+While in the Snow Biome, damaging snow/hail will constantly rain from the sky
 ");
         }
 
@@ -40,7 +41,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             recipe.AddIngredient(ItemID.BorealWoodGreaves);
             recipe.AddIngredient(ItemID.Penguin);
             
-            /*Shiverthorn
+            /*
+            recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
+            Shiverthorn
             SnowballCannon - launcher in essence now
             BorealSword*/
             

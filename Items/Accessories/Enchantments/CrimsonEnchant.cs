@@ -16,6 +16,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Greatly increases life regen
 Hearts heal for 1.5x as much
 Summons a pet Face Monster and Crimson Heart");
+
+/*
+consider making hearts drop on hit sometimes instead? both hitting enemies and yourself being hit ech
+*/
         }
 
         public override void SetDefaults()
@@ -43,16 +47,12 @@ Summons a pet Face Monster and Crimson Heart");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.BloodLustCluster);
-                recipe.AddIngredient(ItemID.TheUndertaker);
-                recipe.AddIngredient(ItemID.TheMeatball);
-                recipe.AddIngredient(ItemID.DeadlandComesAlive);
+
                 recipe.AddIngredient(thorium.ItemType("CrimsonButterfly"));
             }
-            else
-            {
-                recipe.AddIngredient(ItemID.DeadlandComesAlive);
-            }
             
+            recipe.AddIngredient(ItemID.TheUndertaker);
+            recipe.AddIngredient(ItemID.TheMeatball);
             recipe.AddIngredient(ItemID.BoneRattle);
             recipe.AddIngredient(ItemID.CrimsonHeart);
             

@@ -14,6 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Eskimo Enchantment");
             Tooltip.SetDefault(
 @"''
+goes into frost enchant
+You can walk on water and when you do, it freezes and creates spikes
 ");
         }
 
@@ -32,20 +34,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(ItemID.);
+            /*recipe.AddIngredient(ItemID.);
             recipe.AddIngredient(ItemID.);
 
             Marshmallow on a stick
             FrostMinnow
-            AtlanticCod
+            AtlanticCod*/
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

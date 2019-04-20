@@ -14,6 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Palm Wood Enchantment");
             Tooltip.SetDefault(
 @"''
+Doublte tap down to spawn a literal palm tree that throws coconuts at enemies
+While in the Ocean or Desert, it attacks much faster
 ");
         }
 
@@ -40,11 +42,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             Trident?
             Breathing Reed
-            SharkFins
             Black Ink
             Purple Mucos
             Lime Kelp
-            Coral
             Seashell
             Starfish
             Tuna

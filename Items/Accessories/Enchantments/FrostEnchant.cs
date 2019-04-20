@@ -79,13 +79,13 @@ Summons a pet Snowman";
                 recipe.AddIngredient(thorium.ItemType("BlizzardsEdge"));
                 recipe.AddIngredient(thorium.ItemType("Glacieor"));
                 recipe.AddIngredient(ItemID.IceBow);
-                recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
+
                 recipe.AddIngredient(thorium.ItemType("FrozenButterfly"));
             }
             else
             {
                 recipe.AddIngredient(ItemID.IceBow);
-                recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
+                
                 recipe.AddIngredient(ItemID.Fish);
             }
             

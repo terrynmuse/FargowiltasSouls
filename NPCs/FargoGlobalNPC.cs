@@ -7586,7 +7586,7 @@ namespace FargowiltasSouls.NPCs
                 damage = (int)(damage + npc.defense * .5);
             }
 
-            if (modPlayer.SpiderEnchant && projectile.minionSlots > 0 && Main.rand.Next(10) == 0)
+            if (modPlayer.SpiderEnchant && projectile.minion && Main.rand.Next(10) == 0)
             {
                 crit = true;
                 damage *= 2;

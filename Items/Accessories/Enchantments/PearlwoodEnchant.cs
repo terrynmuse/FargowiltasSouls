@@ -14,6 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Pearlwood Enchantment");
             Tooltip.SetDefault(
 @"''
+You leave behind a trail of rainbows that may shrink enemies
+While in the Hallowed, the rainbow trail lasts much longer
 ");
         }
 
@@ -42,7 +44,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Prismite
             Chaos Fish
             Princess Fish
-            hallow painting
+            recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
             Pearlwood Sword, Bow
 
             recipe.AddTile(TileID.CrystalBall);

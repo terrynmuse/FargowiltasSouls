@@ -15,6 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Now you see me, now you don’t'
 Throw a smoke bomb to teleport to it
 Standing nearby smoke gives you the First Strike buff
+First Strike doubles your crit chance and you have a chance to dodge attacks
 Summons a pet Black Cat");
         }
 
@@ -39,11 +40,11 @@ Summons a pet Black Cat");
             recipe.AddIngredient(ItemID.NinjaHood);
             recipe.AddIngredient(ItemID.NinjaShirt);
             recipe.AddIngredient(ItemID.NinjaPants);
+            recipe.AddIngredient(ItemID.ThrowingKnife, 300);
+            recipe.AddIngredient(ItemID.Shuriken, 300);
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {   
-                recipe.AddIngredient(ItemID.ThrowingKnife, 300);
-                recipe.AddIngredient(ItemID.Shuriken, 300);
                 recipe.AddIngredient(ItemID.StarAnise, 300);
                 recipe.AddIngredient(ItemID.SmokeBomb, 50);
                 recipe.AddIngredient(thorium.ItemType("Scorpain"));
@@ -51,7 +52,6 @@ Summons a pet Black Cat");
             }
             else
             {
-                recipe.AddIngredient(ItemID.Shuriken, 100);
                 recipe.AddIngredient(ItemID.SmokeBomb, 50);
             }
             
