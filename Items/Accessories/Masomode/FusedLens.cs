@@ -11,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fused Lens");
-            Tooltip.SetDefault(@"Grants immunity to Cursed Inferno and Ichor
+            Tooltip.SetDefault(@"'Too melted to improve vision'
+Grants immunity to Cursed Inferno and Ichor
 Your attacks inflict Cursed Inferno and Ichor");
         }
 

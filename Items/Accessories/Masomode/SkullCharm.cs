@@ -6,12 +6,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class SkullCharm : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Skull Charm");
-            Tooltip.SetDefault(@"Grants immunity to Dazed
+            Tooltip.SetDefault(@"'No longer in the zone'
+Grants immunity to Dazed
 Increases damage taken and dealt by 10%
 Enemies are less likely to target you
 Makes armed and magic skeletons less hostile outside the Dungeon");

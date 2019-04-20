@@ -1,4 +1,7 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,16 +14,16 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of the Masochist");
             Tooltip.SetDefault(
 @"'Embrace suffering'
-Increases damage by 20%, damage reduction by 10%
-Increases max life by 100 and wing time by 150%
-Increases max number of minions and sentries by 2
-Grants immunity to all Masochist Mode debuffs and more
+Increases max life by 100, wing time by 150%, and armor penetration by 25
+Increases max life by 20%, damage by 30%, and damage reduction by 15%
+Increases max number of minions and sentries by 5
+Grants fastfall and immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
-Your attacks can inflict Cursed Inferno, Ichor, and Electrified
-You periodically fire additional attacks depending on weapon type
-Your critical strikes inflict Betsy's Curse
+Your attacks can inflict Cursed Inferno, Ichor, Lightning Rod, and Oceanic Maul
+You periodically fire additional attacks depending on weapon type and Tiny Eaters
+Your critical strikes inflict Betsy's Curse and summon Spectral Fishron
 You erupt into Spiky Balls and Ancient Visions when injured
-Summons a friendly plant's offspring and Cultist
+Summons friendly Creepers, a plant's offspring, Cultist, pungent eye, and true eyes
 Allows the holder to control gravity");
         }
 
@@ -29,78 +32,135 @@ Allows the holder to control gravity");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 10;
-            item.value = Item.sellPrice(0, 7);
+            item.rare = 11;
+            item.value = 5000000;
+            item.defense = 20;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine line2 in list)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = new Color(Main.DiscoR, 51, 255 - (int)(Main.DiscoR * 0.4));
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
+            fargoPlayer.MasochistSoul = true;
+
+            //slimy shield
+            player.buffImmune[BuffID.Slimed] = true;
+            if (Soulcheck.GetValue("Slimy Shield Effects"))
+            {
+                player.maxFallSpeed *= 2f;
+                player.GetModPlayer<FargoPlayer>().SlimyShield = true;
+            }
+
+            //agitating lens
+            fargoPlayer.AgitatingLens = true;
+
+            //queen stinger
+            player.armorPenetration += 25;
+            player.npcTypeNoAggro[210] = true;
+            player.npcTypeNoAggro[211] = true;
+            player.npcTypeNoAggro[42] = true;
+            player.npcTypeNoAggro[176] = true;
+            player.npcTypeNoAggro[231] = true;
+            player.npcTypeNoAggro[232] = true;
+            player.npcTypeNoAggro[233] = true;
+            player.npcTypeNoAggro[234] = true;
+            player.npcTypeNoAggro[235] = true;
+            //fargoPlayer.QueenStinger = true;
+
+            //pure heart
+            fargoPlayer.PureHeart = true;
+
+            //corrupt heart
+            //player.moveSpeed += 0.1f;
+            fargoPlayer.CorruptHeart = true;
+            if (fargoPlayer.CorruptHeartCD > 0)
+                fargoPlayer.CorruptHeartCD -= 2;
+
+            //gutted heart
+            fargoPlayer.GuttedHeart = true;
+            fargoPlayer.GuttedHeartCD--; //faster spawns
+
             //mutant antibodies
             player.buffImmune[BuffID.Rabies] = true;
-            player.GetModPlayer<FargoPlayer>().MutantAntibodies = true;
-            player.meleeDamage += 0.2f;
-            player.rangedDamage += 0.2f;
-            player.magicDamage += 0.2f;
-            player.minionDamage += 0.2f;
-            player.thrownDamage += 0.2f;
+            fargoPlayer.MutantAntibodies = true;
+            player.meleeDamage += 0.3f;
+            player.rangedDamage += 0.3f;
+            player.magicDamage += 0.3f;
+            player.minionDamage += 0.3f;
+            player.thrownDamage += 0.3f;
 
             //lump of flesh
-            player.buffImmune[BuffID.TheTongue] = true;
+            player.buffImmune[BuffID.Blackout] = true;
+            player.buffImmune[BuffID.Obstructed] = true;
             player.buffImmune[BuffID.Dazed] = true;
-            player.GetModPlayer<FargoPlayer>().SkullCharm = true;
-            player.GetModPlayer<FargoPlayer>().LumpOfFlesh = true;
-            player.maxMinions += 2;
-            player.maxTurrets += 2;
+            fargoPlayer.SkullCharm = true;
+            fargoPlayer.LumpOfFlesh = true;
+            player.maxMinions += 5;
+            player.maxTurrets += 5;
             if (Soulcheck.GetValue("Pungent Eye Minion"))
-                player.AddBuff(mod.BuffType("PungentEyeball"), 5);
+                player.AddBuff(mod.BuffType("PungentEyeball"), 2);
 
             //tribal charm buffed
             player.statLifeMax2 += 100;
-            player.GetModPlayer<FargoPlayer>().wingTimeModifier += 0.5f;
+            fargoPlayer.wingTimeModifier += 0.5f;
 
             //dubious circuitry
             player.buffImmune[BuffID.CursedInferno] = true;
             player.buffImmune[BuffID.Ichor] = true;
             player.buffImmune[BuffID.Electrified] = true;
-            player.GetModPlayer<FargoPlayer>().FusedLens = true;
-            player.GetModPlayer<FargoPlayer>().GroundStick = true;
-            player.endurance += 0.1f;
+            fargoPlayer.FusedLens = true;
+            fargoPlayer.GroundStick = true;
+            player.GetModPlayer<FargoPlayer>().DubiousCircuitry = true;
+            player.endurance += 0.15f;
 
             //magical bulb
             player.buffImmune[BuffID.Venom] = true;
             if (Soulcheck.GetValue("Plantera Minion"))
-            {
-                player.AddBuff(mod.BuffType("PlanterasChild"), 5);
-            }
+                player.AddBuff(mod.BuffType("PlanterasChild"), 2);
+
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
-            player.GetModPlayer<FargoPlayer>().LihzahrdTreasureBox = true;
+            fargoPlayer.LihzahrdTreasureBox = true;
+
             //betsy's heart
             player.buffImmune[BuffID.WitheredWeapon] = true;
             player.buffImmune[BuffID.WitheredArmor] = true;
-            player.GetModPlayer<FargoPlayer>().BetsysHeart = true;
+            fargoPlayer.BetsysHeart = true;
+
             //celestial rune
-            player.GetModPlayer<FargoPlayer>().CelestialRune = true;
-            if (player.GetModPlayer<FargoPlayer>().CelestialRuneTimer > 0)
-                player.GetModPlayer<FargoPlayer>().CelestialRuneTimer--;
+            fargoPlayer.CelestialRune = true;
+            if (fargoPlayer.CelestialRuneTimer > 0)
+                fargoPlayer.CelestialRuneTimer -= 2;
+
             //chalice
-            player.GetModPlayer<FargoPlayer>().MoonChalice = true;
+            fargoPlayer.MoonChalice = true;
             if (Soulcheck.GetValue("Cultist Minion"))
-            {
-                player.AddBuff(mod.BuffType("LunarCultist"), 5);
-            }
+                player.AddBuff(mod.BuffType("LunarCultist"), 2);
 
             //galactic globe
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.ChaosState] = true;
+            fargoPlayer.GravityGlobeEX = true;
+            fargoPlayer.wingTimeModifier += 1f;
             if (Soulcheck.GetValue("Gravity Control"))
-            {
                 player.gravControl = true;
-            }
             if (Soulcheck.GetValue("True Eyes Minion"))
-                player.AddBuff(mod.BuffType("TrueEyes"), 5);
-            player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
-            player.GetModPlayer<FargoPlayer>().wingTimeModifier += 1f;
+                player.AddBuff(mod.BuffType("TrueEyes"), 2);
+
+            //cyclonic fin
+            fargoPlayer.CyclonicFin = true;
+            if (fargoPlayer.CyclonicFinCD > 0)
+                fargoPlayer.CyclonicFinCD -= 2;
 
             //sadism
             player.buffImmune[mod.BuffType("Antisocial")] = true;
@@ -137,13 +197,15 @@ Allows the holder to control gravity");
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(mod.ItemType("MutantAntibodies"));
-            recipe.AddIngredient(mod.ItemType("LumpOfFlesh"));
-            recipe.AddIngredient(mod.ItemType("TribalCharm"));
+            recipe.AddIngredient(mod.ItemType("SupremeDeathbringerFairy"));
+            recipe.AddIngredient(mod.ItemType("PureHeart"));
             recipe.AddIngredient(mod.ItemType("DubiousCircuitry"));
+            recipe.AddIngredient(mod.ItemType("LumpOfFlesh"));
             recipe.AddIngredient(mod.ItemType("BetsysHeart"));
+            recipe.AddIngredient(mod.ItemType("MutantAntibodies"));
             recipe.AddIngredient(mod.ItemType("ChaliceoftheMoon"));
             recipe.AddIngredient(mod.ItemType("GalacticGlobe"));
+            recipe.AddIngredient(mod.ItemType("CyclonicFin"));
             recipe.AddIngredient(mod.ItemType("Sadism"));
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");

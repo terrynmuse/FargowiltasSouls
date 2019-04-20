@@ -157,7 +157,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                             {
                                 Vector2 spawn = projectile.Center;
                                 spawn.Y -= projectile.height;
-                                Projectile.NewProjectile(spawn, Vector2.UnitX * -projectile.spriteDirection * 12f, mod.ProjectileType("AncientVision"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
+                                Projectile.NewProjectile(spawn, Vector2.UnitX * -projectile.spriteDirection * 12f, mod.ProjectileType("AncientVisionLunarCultist"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
                             }
                             if (projectile.localAI[0] > 90f)
                             {

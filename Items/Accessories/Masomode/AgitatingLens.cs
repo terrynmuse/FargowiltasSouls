@@ -10,11 +10,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("AgitatingLens");
-            Tooltip.SetDefault(@"''
+            DisplayName.SetDefault("Agitating Lens");
+            Tooltip.SetDefault(@"'The irritable remnant of a defeated foe'
 Grants immunity to Berserked
 10% increased damage when below half HP
-While Dashing or running quickly you will create a trail of blood scythes");
+While dashing or running quickly you will create a trail of demon scythes");
         }
 
         public override void SetDefaults()
@@ -22,7 +22,7 @@ While Dashing or running quickly you will create a trail of blood scythes");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 4;
+            item.rare = 2;
             item.value = Item.sellPrice(0, 4);
             item.defense = 2;
         }
@@ -32,21 +32,9 @@ While Dashing or running quickly you will create a trail of blood scythes");
             player.buffImmune[mod.BuffType("Berserked")] = true;
             
             if(player.statLife < player.statLifeMax2 / 2)
-            {
-              player.GetModPlayer<FargoPlayer>().AllDamageUp(.10f);
-            }
-            
-            /*if(player.speed.X ABS > 10? || player.dashing)
-            {
-              counter++;
-              
-              if(counter > 30)
-              {
-                counter = 0;
-                
-                spawn Blood Scythe
-              }
-            }*/
+                player.GetModPlayer<FargoPlayer>().AllDamageUp(.10f);
+
+            player.GetModPlayer<FargoPlayer>().AgitatingLens = true;
         }
     }
 }

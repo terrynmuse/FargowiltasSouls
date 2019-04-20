@@ -6,15 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class ChaliceoftheMoon : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Chalice of the Moon");
-            Tooltip.SetDefault(
-@"Increases life regeneration
+            Tooltip.SetDefault(@"'The moon smiles'
+Increases life regeneration
 Grants immunity to Venom, Burning, and Fused
-Grants immunity to Marked for Death, Clipped Wings, and Hexed
+Grants immunity to Marked for Death and Hexed
 Grants immunity to Atrophied, Jammed, Reverse Mana Flow, and Antisocial
 You periodically fire additional attacks depending on weapon type
 You erupt into Ancient Visions when injured
@@ -35,22 +33,20 @@ Summons a friendly Cultist to fight at your side");
             //magical bulb
             player.lifeRegen += 2;
             player.buffImmune[BuffID.Venom] = true;
-
             /*if (Soulcheck.GetValue("Plantera Minion"))
-            {
-                player.AddBuff(mod.BuffType("PlanterasChild"), 5);
-            }*/
-            
+                player.AddBuff(mod.BuffType("PlanterasChild"), 2);*/
+
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
             player.buffImmune[mod.BuffType("Fused")] = true;
+
             //celestial rune
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
-            player.buffImmune[mod.BuffType("ClippedWings")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.GetModPlayer<FargoPlayer>().CelestialRune = true;
             if (player.GetModPlayer<FargoPlayer>().CelestialRuneTimer > 0)
                 player.GetModPlayer<FargoPlayer>().CelestialRuneTimer--;
+
             //chalice
             player.buffImmune[mod.BuffType("Atrophied")] = true;
             player.buffImmune[mod.BuffType("Jammed")] = true;
@@ -59,9 +55,7 @@ Summons a friendly Cultist to fight at your side");
             player.GetModPlayer<FargoPlayer>().MoonChalice = true;
 
             if (Soulcheck.GetValue("Cultist Minion"))
-            {
-                player.AddBuff(mod.BuffType("LunarCultist"), 5);
-            }
+                player.AddBuff(mod.BuffType("LunarCultist"), 2);
         }
 
         public override void AddRecipes()

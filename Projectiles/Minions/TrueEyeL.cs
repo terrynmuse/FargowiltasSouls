@@ -165,7 +165,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                     TargetEnemies();
                 }
 
-                Vector2 vector2_1 = new Vector2(0f, -100f); //vanilla movement code
+                Vector2 vector2_1 = player.GetModPlayer<FargoPlayer>().PungentEyeballMinion
+                    ? new Vector2(0f, 100f) : new Vector2(0f, -100f); //vanilla movement code
                 Vector2 vector2_2 = player.MountedCenter + vector2_1;
                 float num1 = Vector2.Distance(projectile.Center, vector2_2);
                 if (num1 > 1500) //teleport when out of range

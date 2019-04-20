@@ -77,14 +77,14 @@ Greatly enhances Flameburst effectiveness
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("Effigy"));
-                recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper
+                recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
                 recipe.AddIngredient(thorium.ItemType("DarkMageStaff"));
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
                 recipe.AddIngredient(ItemID.InfernoFork);
             }
             else
             {
-                recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper
+                recipe.AddIngredient(ItemID.DD2FlameburstTowerT3Popper);
                 recipe.AddIngredient(ItemID.ShadowFlameHexDoll);
                 recipe.AddIngredient(ItemID.InfernoFork);
             }
