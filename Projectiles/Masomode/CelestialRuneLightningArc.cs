@@ -156,6 +156,19 @@ namespace FargowiltasSouls.Projectiles.Masomode
             return false;
         }
 
+        public override void Kill(int timeLeft)
+        {
+            float num2 = (float)(projectile.rotation + 1.57079637050629 + (Main.rand.Next(2) == 1 ? -1.0 : 1.0) * 1.57079637050629);
+            float num3 = (float)(Main.rand.NextDouble() * 2.0 + 2.0);
+            Vector2 vector2 = new Vector2((float)Math.Cos(num2) * num3, (float)Math.Sin(num2) * num3);
+            for (int i = 0; i < projectile.oldPos.Length; i++)
+            {
+                int index = Dust.NewDust(projectile.oldPos[i], 0, 0, 229, vector2.X, vector2.Y, 0, new Color(), 1f);
+                Main.dust[index].noGravity = true;
+                Main.dust[index].scale = 1.7f;
+            }
+        }
+
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Electrified, 180);

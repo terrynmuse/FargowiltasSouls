@@ -28,5 +28,13 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.onFrostBurn = true;
             player.moonLeech = true;
         }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            if (npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).RegenTimer < 2)
+                npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).RegenTimer = 2;
+            npc.defense -= 60;
+            npc.onFrostBurn = true;
+        }
     }
 }

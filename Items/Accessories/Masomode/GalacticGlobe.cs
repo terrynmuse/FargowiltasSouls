@@ -6,14 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class GalacticGlobe : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Galactic Globe");
-            Tooltip.SetDefault(@"Grants immunity to Flipped, Unstable, Distorted, and Chaos State
+            Tooltip.SetDefault(@"'Always watching'
+Grants immunity to Flipped, Unstable, Distorted, and Chaos State
 Allows the holder to control gravity
-The eyes of Cthulhu protect you
+Summons the true eyes of Cthulhu to protect you
 Increases flight time by 100%");
         }
 
@@ -40,7 +39,7 @@ Increases flight time by 100%");
             }
 
             if (Soulcheck.GetValue("True Eyes Minion"))
-                player.AddBuff(mod.BuffType("TrueEyes"), 5);
+                player.AddBuff(mod.BuffType("TrueEyes"), 2);
             
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;
             player.GetModPlayer<FargoPlayer>().wingTimeModifier += 1f;

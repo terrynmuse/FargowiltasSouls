@@ -11,8 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Betsy's Heart");
-            Tooltip.SetDefault(
-@"Grants immunity to Withered Weapon and Withered Armor
+            Tooltip.SetDefault(@"'Lightly roasted, medium rare'
+Grants immunity to Withered Weapon and Withered Armor
 Your critical strikes inflict Betsy's Curse");
         }
 

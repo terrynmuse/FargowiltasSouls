@@ -11,9 +11,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dubious Circuitry");
-            Tooltip.SetDefault(@"Grants immunity to Cursed Inferno, Ichor, Electrified, Lightning Rod, Defenseless, and Stunned
+            Tooltip.SetDefault(@"'Malware probably not included'
+Grants immunity to Cursed Inferno, Ichor, Electrified, Lightning Rod, Defenseless, and Stunned
 Your attacks inflict Cursed Inferno and Ichor
-Your attacks have a small chance to Lightning Rod
+Your attacks have a small chance to inflict Electrified and Lightning Rod
 Reduces damage taken by 6%");
         }
 
@@ -37,6 +38,7 @@ Reduces damage taken by 6%");
             player.buffImmune[mod.BuffType("LightningRod")] = true;
             player.GetModPlayer<FargoPlayer>().FusedLens = true;
             player.GetModPlayer<FargoPlayer>().GroundStick = true;
+            player.GetModPlayer<FargoPlayer>().DubiousCircuitry = true;
             player.endurance += 0.06f;
         }
 

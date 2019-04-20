@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.Masomode
 {
-    public class CelestialRuneAncientVision : ModProjectile
+    public class AncientVisionLunarCultist : ModProjectile
     {
         public override string Texture => "FargowiltasSouls/Projectiles/Masomode/AncientVision";
 
@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.aiStyle = 0;
             aiType = ProjectileID.Bullet;
             projectile.friendly = true;
-            projectile.thrown = true;
+            projectile.minion = true;
             projectile.penetrate = 10;
             projectile.tileCollide = false;
             projectile.timeLeft = 240;

@@ -40,7 +40,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (projectile.damage == 0)
                 projectile.damage = (int)(100f * player.minionDamage);
 
-            Vector2 vector2_1 = new Vector2(player.direction * 75f, -50f); //movement code
+            Vector2 vector2_1 = new Vector2(0f, -100f); //movement code
             Vector2 vector2_2 = player.MountedCenter + vector2_1;
             float num1 = Vector2.Distance(projectile.Center, vector2_2);
             if (num1 > 1000) //teleport when out of range
@@ -65,6 +65,8 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (player.controlUseItem)
             {
                 projectile.ai[0]++;
+                if (player.GetModPlayer<FargoPlayer>().MasochistSoul)
+                    projectile.ai[0]++;
                 if (projectile.ai[0] == 180f)
                 {
                     const int num226 = 18; //dusts indicate charged up

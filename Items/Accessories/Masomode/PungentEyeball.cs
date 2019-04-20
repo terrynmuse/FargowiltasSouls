@@ -11,10 +11,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pungent Eyeball");
-            Tooltip.SetDefault(@"Grants immunity to Blackout and the Tongue
+            Tooltip.SetDefault(@"'It's fermenting'
+Grants immunity to Blackout and Obstructed
 Increases your max number of minions by 2
-Increases your max number of sentries by 2
-'It's fermenting...'");
+Increases your max number of sentries by 2");
         }
 
         public override void SetDefaults()
@@ -28,8 +28,8 @@ Increases your max number of sentries by 2
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[BuffID.TheTongue] = true;
             player.buffImmune[BuffID.Blackout] = true;
+            player.buffImmune[BuffID.Obstructed] = true;
             player.maxMinions += 2;
             player.maxTurrets += 2;
         }

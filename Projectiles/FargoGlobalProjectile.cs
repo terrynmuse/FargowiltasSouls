@@ -1066,14 +1066,12 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.FlamesTrap:
                     case ProjectileID.GeyserTrap:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.primeBoss, NPCID.SkeletronPrime))
-                            target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
-                        else if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
+                        target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
+                        if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                         {
                             if (Main.tile[(int)Main.npc[NPC.golemBoss].Center.X / 16, (int)Main.npc[NPC.golemBoss].Center.Y / 16] == null || //outside temple
                                 Main.tile[(int)Main.npc[NPC.golemBoss].Center.X / 16, (int)Main.npc[NPC.golemBoss].Center.Y / 16].wall != WallID.LihzahrdBrickUnsafe)
                             {
-                                target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
                                 target.AddBuff(BuffID.Burning, Main.rand.Next(60, 300));
                             }
                         }
@@ -1142,12 +1140,12 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if(modPlayer.NecroEnchant && projectile.type == mod.ProjectileType<BossWeapons.DungeonGuardian>() && projectile.penetrate == 1)
+            if (modPlayer.NecroEnchant && projectile.type == mod.ProjectileType<BossWeapons.DungeonGuardian>() && projectile.penetrate == 1)
             {
                 crit = true;
             }
 
-            if(modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && player.HeldItem.type != ItemID.BlizzardStaff)
+            if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && player.HeldItem.type != ItemID.BlizzardStaff)
             {
                 target.AddBuff(BuffID.Chilled, 300);
                 target.AddBuff(BuffID.Frostburn, 300);

@@ -67,7 +67,6 @@
   <ItemGroup>
     <None Remove="Buffs\Masomode\FlippedHallow.png" />
     <None Remove="Buffs\PlaceholderBuff.png" />
-    <None Remove="Projectiles\Masomode\CelestialRuneAncientVision.png" />
     <None Remove="Projectiles\Masomode\CelestialRuneIceSpike.png" />
     <None Remove="Projectiles\Minions\PhantasmalDeathrayTrueEye.png" />
     <None Remove="Projectiles\Minions\PhantasmalDeathrayTrueEye2.png" />

@@ -8,7 +8,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Queen's Stinger");
-            Tooltip.SetDefault("'Ripped right off of a defeated foe..' \nIncreases armor penetration by 10 \nYou are immune to Venom,  Bees and Hornets");
+            Tooltip.SetDefault(@"'Ripped right off of a defeated foe'
+Grants immunity to Infested
+Increases armor penetration by 10
+Your attacks inflict Poisoned
+Bees and Hornets become friendly");
         }
 
         public override void SetDefaults()
@@ -17,12 +21,15 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             item.height = 20;
             item.accessory = true;
             item.rare = 3;
+            item.value = Item.sellPrice(0, 4);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             //pen
-            player.armorPenetration = 10;
+            player.armorPenetration += 10;
+
+            player.buffImmune[mod.BuffType("Infested")] = true;
 
             //bees
             player.npcTypeNoAggro[210] = true;
@@ -37,7 +44,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             player.npcTypeNoAggro[234] = true;
             player.npcTypeNoAggro[235] = true;
 
-            //stinger immmune/poison
+            //stinger immmune
             player.GetModPlayer<FargoPlayer>(mod).QueenStinger = true;
         }
     }

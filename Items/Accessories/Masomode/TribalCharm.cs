@@ -20,7 +20,7 @@ Increases flight time by 25%");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 6;
+            item.rare = 4;
             item.value = Item.sellPrice(0, 5);
             item.defense = 6;
         }

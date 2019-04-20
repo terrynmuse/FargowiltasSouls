@@ -11,8 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Celestial Rune");
-            Tooltip.SetDefault(
-@"Grants immunity to Marked for Death and Hexed
+            Tooltip.SetDefault(@"'A fallen enemy's spells, repurposed'
+Grants immunity to Marked for Death and Hexed
 You may periodically fire additional attacks depending on weapon type
 Taking damage creates a friendly Ancient Vision to attack enemies"); 
         }

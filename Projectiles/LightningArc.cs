@@ -6,9 +6,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace FargowiltasSouls.Projectiles.Minions
+namespace FargowiltasSouls.Projectiles
 {
-    public class LunarCultistLightningArc : ModProjectile
+    public class LightningArc : ModProjectile
     {
         public override string Texture => "Terraria/Projectile_466";
 
@@ -23,10 +23,9 @@ namespace FargowiltasSouls.Projectiles.Minions
         {
             projectile.width = 20;
             projectile.height = 20;
-            projectile.scale = 0.75f;
+            projectile.scale = 0.5f;
             projectile.aiStyle = -1;
             projectile.friendly = true;
-            projectile.minion = true;
             projectile.alpha = 100;
             projectile.ignoreWater = true;
             projectile.tileCollide = true;
@@ -127,20 +126,6 @@ namespace FargowiltasSouls.Projectiles.Minions
                 projectile.velocity = spinningpoint.RotatedBy((double)projectile.ai[0] + 1.57079637050629, new Vector2()) * num1;
                 projectile.rotation = projectile.velocity.ToRotation() + 1.570796f;
             }
-
-            /*for (int index1 = 1; index1 < projectile.oldPos.Length; index1++)
-            {
-                const int max = 5;
-                Vector2 offset = projectile.oldPos[index1 - 1] - projectile.oldPos[index1];
-                offset /= max;
-                for (int i = 0; i < 5; i++)
-                {
-                    Vector2 position = projectile.oldPos[index1] + offset * i;
-                    int index2 = Dust.NewDust(position, projectile.width, projectile.height, 160, 0.0f, 0.0f, 0, new Color(), 1f);
-                    Main.dust[index2].scale = Main.rand.Next(70, 110) * 0.013f;
-                    Main.dust[index2].velocity *= 0.2f;
-                }
-            }*/
         }
 
         public override void Kill(int timeLeft)
@@ -168,12 +153,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
             return false;
         }
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            target.AddBuff(BuffID.Electrified, 180);
-        }
-
+        
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 0) * (1f - projectile.alpha / 255f);
@@ -192,7 +172,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 Vector2 offset = projectile.oldPos[i - 1] - projectile.oldPos[i];
                 int length = (int)offset.Length();
                 offset.Normalize();
-                const int step = 7;
+                const int step = 5;
                 for (int j = 0; j < length; j += step)
                 {
                     Vector2 value5 = projectile.oldPos[i] + offset * j;

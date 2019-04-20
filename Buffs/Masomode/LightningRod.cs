@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
@@ -16,17 +17,18 @@ namespace FargowiltasSouls.Buffs.Masomode
             canBeCleared = true;
         }
 
-        private void SpawnLightning(Player player)
+        private void SpawnLightning(Entity obj, int type, int damage)
         {
             //tends to spawn in ceilings if the player goes indoors/underground
-            Point tileCoordinates = player.Top.ToTileCoordinates();
+            Point tileCoordinates = obj.Top.ToTileCoordinates();
 
             tileCoordinates.X += Main.rand.Next(-25, 25);
             tileCoordinates.Y -= 15 + Main.rand.Next(-5, 5);
 
             for (int index = 0; index < 10 && !WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) && tileCoordinates.Y > 10; ++index) tileCoordinates.Y -= 1;
 
-            Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
+            Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, type, damage, 2f, Main.myPlayer,
+                0f, type == ProjectileID.VortexVortexLightning ? 0f : obj.whoAmI);
         }
 
         public override void Update(Player player, ref int buffIndex)
@@ -36,11 +38,25 @@ namespace FargowiltasSouls.Buffs.Masomode
             if (player.GetModPlayer<FargoPlayer>(mod).lightningRodTimer >= 60)
             {
                 player.GetModPlayer<FargoPlayer>(mod).lightningRodTimer = 0;
-                SpawnLightning(player);
+                SpawnLightning(player, ProjectileID.VortexVortexLightning, 0);
             }
 
             if (Main.rand.Next(60) == 1)
-                SpawnLightning(player);
+                SpawnLightning(player, ProjectileID.VortexVortexLightning, 0);
+        }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            NPCs.FargoGlobalNPC fargoNPC = npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod);
+            fargoNPC.lightningRodTimer++;
+            if (fargoNPC.lightningRodTimer >= 60)
+            {
+                fargoNPC.lightningRodTimer = 0;
+                SpawnLightning(npc, mod.ProjectileType("LightningVortex"), 60);
+            }
+
+            if (Main.rand.Next(60) == 1)
+                SpawnLightning(npc, mod.ProjectileType("LightningVortex"), 60);
         }
     }
 }

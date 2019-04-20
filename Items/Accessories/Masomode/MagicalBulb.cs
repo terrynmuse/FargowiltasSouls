@@ -11,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magical Bulb");
-            Tooltip.SetDefault(@"Grants immunity to Living Wasteland and Infested
+            Tooltip.SetDefault(@"'Matricide?'
+Grants immunity to Venom
 Increases life regeneration
 Attracts a legendary plant's offspring which flourishes in combat");
         }
@@ -27,10 +28,10 @@ Attracts a legendary plant's offspring which flourishes in combat");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[mod.BuffType("LivingWasteland")] = true;
-            player.buffImmune[mod.BuffType("Infested")] = true;
-            player.AddBuff(mod.BuffType("PlanterasChild"), 5);
+            player.buffImmune[BuffID.Venom] = true;
             player.lifeRegen += 2;
+            if (Soulcheck.GetValue("Plantera Minion"))
+                player.AddBuff(mod.BuffType("PlanterasChild"), 2);
         }
     }
 }

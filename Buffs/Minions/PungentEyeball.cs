@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Buffs.Minions
 
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = "FargowiltasSouls/Buffs/PlaceholderDebuff";
+            texture = "FargowiltasSouls/Buffs/PlaceholderBuff";
             return true;
         }
 

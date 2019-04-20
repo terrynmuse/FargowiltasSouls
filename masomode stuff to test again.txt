@@ -12,6 +12,39 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-adjusted and moved slimy shield implementation
+-implemented agitating lens
+-implemented corrupt/gutted/pure heart
+-implemented supreme deathbringer fairy, kinda
+-TOOLTIPS
+-maso regen no longer affects ANY friendly npc
+-lump of flesh gives living wasteland immune
+-pungent eyeball and upgrades give obstructed immune
+-added dust to all lightning
+-fixed ground stick not inflicting electrified
+-dubious circuitry inflicts working lightning rod
+-queen stinger immunizes infested, also gave it a sell price (no venom immune to cheese hardmode jungle water that early)
+-skull charm, chalice of moon, galactic globe use their real sprite
+-fiddled with biome debuffs, they don't display 0s anymore (i think)
+-water debuffs all end when you exit water :ech:
+-lightning rod during rain honestly commit explode
+-pungent eye position changed
+-corrected pungent eye icon to buff (was debuff)
+-true eyes will accommodate pungent eye
+-maso soul charges pungent eye and cyclonic fin faster
+-lunar cultist ancient vision is minion type (was throwing)
+-flames and geyser traps always inflict on fire
+-nerfed golem body regen (750 to 500)
+-repurposed unused fuse bomb
+-when outside temple, golem fists explode when fully extended
+-golem head only breathes fire outside temple
+-golem head always alternates between 3 and 4 spread lasers (was random)
+-added cyclonic fin
+-adjusted globe tooltip
+-adjusted maso soul display colour, price, code tweaks
+-oceanic maul can affect enemies (kinda, no max life reduction yet)
+-adjusted curse of moon effects/dusts
+-magical bulb does venom, also upgrades made consistent skreee
 -ram true eye will throw balls at a different enemy if the original target dies
 -laser true eye is better about choosing to fire its laser
 -fixed minions from accessories not being buffed by player stats
