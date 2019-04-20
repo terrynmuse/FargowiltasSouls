@@ -40,11 +40,15 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override void SendExtraAI(BinaryWriter writer)
         {
+            writer.Write(projectile.localAI[0]);
+            writer.Write(projectile.localAI[1]);
             writer.WriteVector2(target);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
+            projectile.localAI[0] = reader.ReadSingle();
+            projectile.localAI[1] = reader.ReadSingle();
             target = reader.ReadVector2();
         }
 
@@ -101,7 +105,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                                 Vector2 vel = (npc.Center - spawn).RotatedByRandom(Math.PI / 6);
                                 vel.Normalize();
                                 vel *= Main.rand.NextFloat(6f, 10f);
-                                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("LunarCultistFireball"), projectile.damage, 9f, projectile.owner, 0f, projectile.ai[0]);
+                                if (projectile.owner == Main.myPlayer)
+                                    Projectile.NewProjectile(spawn, vel, mod.ProjectileType("LunarCultistFireball"), projectile.damage, 9f, projectile.owner, 0f, projectile.ai[0]);
                             }
                             if (projectile.localAI[0] > 60f)
                             {
@@ -119,7 +124,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                                 Main.PlaySound(SoundID.Item121, projectile.position);
                                 Vector2 spawn = projectile.Center;
                                 spawn.Y -= 100;
-                                Projectile.NewProjectile(spawn, Vector2.Zero, mod.ProjectileType("LunarCultistLightningOrb"), projectile.damage, 8f, projectile.owner, projectile.whoAmI);
+                                if (projectile.owner == Main.myPlayer)
+                                    Projectile.NewProjectile(spawn, Vector2.Zero, mod.ProjectileType("LunarCultistLightningOrb"), projectile.damage, 8f, projectile.owner, projectile.whoAmI);
                             }
                             if (projectile.localAI[0] > 90f)
                             {
@@ -140,7 +146,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                                 Vector2 vel = npc.Center - spawn;
                                 vel.Normalize();
                                 vel *= 4.25f;
-                                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("LunarCultistIceMist"), projectile.damage, projectile.knockBack * 2f, projectile.owner);
+                                if (projectile.owner == Main.myPlayer)
+                                    Projectile.NewProjectile(spawn, vel, mod.ProjectileType("LunarCultistIceMist"), projectile.damage, projectile.knockBack * 2f, projectile.owner);
                             }
                             if (projectile.localAI[0] > 60f)
                             {
@@ -157,7 +164,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                             {
                                 Vector2 spawn = projectile.Center;
                                 spawn.Y -= projectile.height;
-                                Projectile.NewProjectile(spawn, Vector2.UnitX * -projectile.spriteDirection * 12f, mod.ProjectileType("AncientVisionLunarCultist"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
+                                if (projectile.owner == Main.myPlayer)
+                                    Projectile.NewProjectile(spawn, Vector2.UnitX * -projectile.spriteDirection * 12f, mod.ProjectileType("AncientVisionLunarCultist"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
                             }
                             if (projectile.localAI[0] > 90f)
                             {
@@ -180,7 +188,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                                 vel *= 9f;
                                 for (int i = -2; i <= 2; i++)
                                 {
-                                    Projectile.NewProjectile(spawn, vel.RotatedBy(Math.PI / 7 * i), mod.ProjectileType("LunarCultistLight"), projectile.damage, projectile.knockBack, projectile.owner, 0f, (Main.rand.NextFloat() - 0.5f) * 0.3f * 6.28318548202515f / 60f);
+                                    if (projectile.owner == Main.myPlayer)
+                                        Projectile.NewProjectile(spawn, vel.RotatedBy(Math.PI / 7 * i), mod.ProjectileType("LunarCultistLight"), projectile.damage, projectile.knockBack, projectile.owner, 0f, (Main.rand.NextFloat() - 0.5f) * 0.3f * 6.28318548202515f / 60f);
                                 }
                             }
                             if (projectile.localAI[0] > 60f)

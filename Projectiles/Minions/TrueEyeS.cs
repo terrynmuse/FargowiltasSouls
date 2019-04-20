@@ -216,7 +216,7 @@ namespace FargowiltasSouls.Projectiles.Minions
         {
             Vector2 spawn = projectile.Center - Vector2.UnitY * 6f;
             Vector2 vel = npc.Center + npc.velocity * 15f - spawn;
-            if (vel != Vector2.Zero && Main.netMode != 1)
+            if (vel != Vector2.Zero)
             {
                 vel.Normalize();
                 vel *= 8f;

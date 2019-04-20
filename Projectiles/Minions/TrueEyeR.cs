@@ -101,7 +101,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                             break;
 
                         case 1: //slow down
-                            if (projectile.localAI[0] == 1f && Main.netMode != 1) //spawn orb ring
+                            if (projectile.localAI[0] == 1f) //spawn orb ring
                             {
                                 const int max = 6;
                                 const float distance = 100f;
@@ -109,9 +109,9 @@ namespace FargowiltasSouls.Projectiles.Minions
                                 for (int i = 0; i < max; i++)
                                 {
                                     Vector2 spawnPos = projectile.Center - Vector2.UnitY * 6f + new Vector2(distance, 0f).RotatedBy(rotation * i);
-                                    Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("PhantasmalSphereTrueEye"),
-                                        projectile.damage / 3 * 11, 10f, projectile.owner, projectile.whoAmI, i);
-                                    //int n = NPC.NewNPC((int)spawnPos.X, (int)spawnPos.Y, mod.NPCType("CrystalLeaf"), 0, npc.whoAmI, distance, 300, rotation * i);
+                                    if (projectile.owner == Main.myPlayer)
+                                        Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("PhantasmalSphereTrueEye"),
+                                            projectile.damage / 3 * 11, 10f, projectile.owner, projectile.whoAmI, i);
                                 }
                             }
                             projectile.velocity *= 0.95f;

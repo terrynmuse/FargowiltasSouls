@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
+using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls
 {
@@ -339,6 +342,36 @@ namespace FargowiltasSouls
                 //butterflies
                 group = new RecipeGroup(() => Lang.misc[37] + " Dungeon Butterfly", thorium.ItemType("BlueDungeonButterfly"), thorium.ItemType("GreenDungeonButterfly"), thorium.ItemType("PinkDungeonButterfly"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyDungeonButterfly", group);
+            }
+        }
+
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
+        {
+            switch (reader.ReadByte())
+            {
+                case 77: //server side spawning fishron EX
+                    if (Main.netMode == 2)
+                    {
+                        byte target = reader.ReadByte();
+                        int x = reader.ReadInt32();
+                        int y = reader.ReadInt32();
+                        FargoGlobalNPC.spawnFishronEX = true;
+                        NPC.NewNPC(x, y, NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, target);
+                        /*int n = NPC.NewNPC(x, y, NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, target);
+                        if (n < 200)
+                            NetMessage.SendData(23, -1, -1, null, n);*/
+                        FargoGlobalNPC.spawnFishronEX = false;
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has awoken!"), new Color(0, 100, 255));
+                    }
+                    break;
+
+                case 78: //confirming max life
+                    int n = reader.ReadInt32();
+                    Main.npc[n].lifeMax = reader.ReadInt32();
+                    break;
+
+                default:
+                    break;
             }
         }
 

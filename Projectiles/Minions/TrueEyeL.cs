@@ -115,7 +115,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                                     rotationDirection *= -1;
                                 localAI0 -= rotationDirection * 45f;
                                 Vector2 speed = -Vector2.UnitX.RotatedBy(localAI0);
-                                if (Main.netMode != 1)
+                                if (projectile.owner == Main.myPlayer)
                                     Projectile.NewProjectile(projectile.Center - Vector2.UnitY * 6f, speed, mod.ProjectileType("PhantasmalDeathrayTrueEye"),
                                         projectile.damage / 3 * 10, 6f, projectile.owner, rotationDirection, projectile.whoAmI);
                                 projectile.localAI[1] = rotationDirection;

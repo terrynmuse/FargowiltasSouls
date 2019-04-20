@@ -3,13 +3,12 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class FishronRitual : ModProjectile
     {
-        //public override string Texture => "Terraria/Projectile_490";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Oceanic Ritual");
@@ -42,6 +41,20 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
             NPC fishron = Main.npc[ai1];
 
+            if (projectile.localAI[0] == 0f)
+            {
+                projectile.localAI[0] = 1f;
+                FargoGlobalNPC fargoFishron = fishron.GetGlobalNPC<FargoGlobalNPC>();
+                if (fargoFishron.masoAI != 89)
+                {
+                    fargoFishron.masoAI = 89;
+                    fishron.GivenName = "Duke Fishron EX";
+                    fishron.defDamage = (int)(fishron.defDamage * 1.5);
+                    fishron.defDefense *= 2;
+                    fishron.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
+                }
+            }
+
             if (projectile.localAI[1] == 0f)
             {
                 projectile.alpha -= 17;
@@ -55,9 +68,16 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
             if (projectile.alpha < 0)
                 projectile.alpha = 0;
-            if (projectile.alpha > 255)// && fishron.lifeMax == projectile.ai[0] * 5)
+            if (projectile.alpha > 255)
             {
-                //Main.NewText(projectile.timeLeft.ToString());
+                if (Main.netMode == 2) //ensure synchronized max life(?)
+                {
+                    var netMessage = mod.GetPacket();
+                    netMessage.Write((byte)78);
+                    netMessage.Write(ai1);
+                    netMessage.Write((int)projectile.ai[0] * 5);
+                    netMessage.Send();
+                }
                 projectile.Kill();
                 return;
             }

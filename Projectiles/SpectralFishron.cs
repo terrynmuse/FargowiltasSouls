@@ -189,7 +189,7 @@ namespace FargowiltasSouls.Projectiles
         public override void Kill(int timeleft)
         {
             Main.PlaySound(SoundID.Item84, projectile.Center);
-            if (Main.netMode != 1)
+            if (projectile.owner == Main.myPlayer)
             {
                 SpawnRazorbladeRing(12, 12.5f, 0.75f);
                 SpawnRazorbladeRing(12, 10f, -2f);

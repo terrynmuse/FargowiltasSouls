@@ -31,6 +31,16 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.ignoreWater = true;
         }
 
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(projectile.rotation);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            projectile.rotation = reader.ReadSingle();
+        }
+
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
@@ -115,7 +125,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 if (projectile.ai[0] > 180f)
                 {
                     projectile.ai[1] = 120f;
-                    if (Main.netMode != 1)
+                    if (projectile.owner == Main.myPlayer)
                         Projectile.NewProjectile(projectile.Center, Vector2.UnitX.RotatedBy(projectile.rotation), mod.ProjectileType("PhantasmalDeathrayPungent"),
                             projectile.damage, 4f, projectile.owner, projectile.whoAmI, (projectile.ai[0] >= 360) ? 1f : 0f);
                 }

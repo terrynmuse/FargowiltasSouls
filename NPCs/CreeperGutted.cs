@@ -50,7 +50,7 @@ namespace FargowiltasSouls.NPCs
             npc.defense = npc.defDefense;
 
             Player player = Main.player[(int)npc.ai[0]];
-            if (!player.active || !player.GetModPlayer<FargoPlayer>().GuttedHeart)
+            if (!player.active || player.dead || !player.GetModPlayer<FargoPlayer>().GuttedHeart)
             {
                 npc.life = 0;
                 npc.HitEffect();

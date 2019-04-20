@@ -95,7 +95,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                                 type = mod.ProjectileType("SeedPlanterasChild");
                                 Main.PlaySound(SoundID.Item17, projectile.position);
                             }
-                            Projectile.NewProjectile(projectile.Center, speed, type, damage, projectile.knockBack, projectile.owner);
+                            if (projectile.owner == Main.myPlayer)
+                                Projectile.NewProjectile(projectile.Center, speed, type, damage, projectile.knockBack, projectile.owner);
                         }
                     }
                 }
