@@ -76,6 +76,7 @@ namespace FargowiltasSouls.NPCs
         public static int cultBoss = -1;
         public static int moonBoss = -1;
         public static int fishBossEX = -1;
+        public static bool spawnFishronEX;
 
         public override void ResetEffects(NPC npc)
         {
@@ -443,15 +444,14 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DukeFishron:
                         masoAI = 37;
-                        if (FargoWorld.FishronEX)
+                        ValhallaImmune = true;
+                        if (spawnFishronEX)
                         {
                             masoAI = 89;
 			                npc.GivenName = "Duke Fishron EX";
-                            //npc.lifeMax *= 5;
-                            npc.damage = npc.damage * 3 / 2;
-                            npc.defense *= 2;
+                            npc.defDamage = (int)(npc.defDamage * 1.5);
+                            npc.defDefense *= 2;
                             npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
-                            ValhallaImmune = true;
                         }
                         break;
 
@@ -854,9 +854,9 @@ namespace FargowiltasSouls.NPCs
                         masoDeathAI = 40;
                         break;
 			
-		case NPCID.Pinky:
-			masoDeathAI = 25;
-			break;
+		            case NPCID.Pinky:
+			            masoDeathAI = 25;
+			            break;
 
                     case NPCID.FlyingSnake:
                         masoDeathAI = 26;
@@ -922,7 +922,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.AnomuraFungus:
                         masoDeathAI = 39;
                         break;
-
 
                     default:
                         break;
@@ -4526,7 +4525,8 @@ namespace FargowiltasSouls.NPCs
                             RegenTimer = 2;
                             if (npc.ai[0] == -2f) //eye socket is empty
                             {
-                                if (npc.ai[1] == 0f) //happens every 32 ticks
+                                if (npc.ai[1] == 0f //happens every 32 ticks
+                                    && Main.npc[(int)npc.ai[3]].life > 1) //will stop when ML dies
                                 {
                                     Timer++;
                                     if (Timer >= 29) //warning dust, reset timer
@@ -4711,17 +4711,18 @@ namespace FargowiltasSouls.NPCs
                                 if (npc.ai[2] == 1 && Main.netMode != 1)
                                 {
                                     int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax, npc.whoAmI);
-                                    if (p < 0 || p >= 1000) //failed to spawn projectile
+                                    if (p < 0 || p >= 1000) //failed to spawn projectile, abort spawn
                                     {
-                                        npc.lifeMax *= 5;
-                                        npc.life = npc.lifeMax;
-                                        npc.netUpdate = true;
+                                        npc.active = false;
+                                        //Main.NewText("abort");
                                     }
                                 }
                                 masoBool[2] = true;
                                 break;
 
                             case 0: //phase 1
+                                if (!masoBool[1])
+                                    npc.dontTakeDamage = false;
                                 masoBool[2] = false;
                                 npc.ai[2]++;
                                 break;
@@ -6570,7 +6571,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.MoonLordCore:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GalacticGlobe"));
-                        int maxML = Main.rand.Next(3) + 1;
+                        int maxML = Main.rand.Next(5) + 1;
                         for (int i = 0; i < maxML; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LunarCrystal"));
                         break;

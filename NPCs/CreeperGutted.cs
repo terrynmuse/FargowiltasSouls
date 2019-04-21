@@ -50,11 +50,9 @@ namespace FargowiltasSouls.NPCs
             npc.defense = npc.defDefense;
 
             Player player = Main.player[(int)npc.ai[0]];
-            if (!player.active || !player.GetModPlayer<FargoPlayer>().GuttedHeart)
+            if (!player.active || player.dead || !player.GetModPlayer<FargoPlayer>().GuttedHeart)
             {
-                npc.life = 0;
-                npc.HitEffect();
-                npc.checkDead();
+                npc.StrikeNPCNoInteraction(9999, 0f, 0);
                 return;
             }
 
@@ -83,9 +81,10 @@ namespace FargowiltasSouls.NPCs
 
                 if (player.whoAmI == Main.myPlayer && !Soulcheck.GetValue("Creeper Shield"))
                 {
-                    npc.life = 0;
-                    npc.HitEffect();
-                    npc.checkDead();
+                    int n = npc.whoAmI;
+                    npc.StrikeNPCNoInteraction(9999, 0f, 0);
+                    if (Main.netMode != 0)
+                        NetMessage.SendData(28, -1, -1, null, n, 9999f);
                     return;
                 }
             }

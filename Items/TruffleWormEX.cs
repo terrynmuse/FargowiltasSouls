@@ -14,23 +14,24 @@ namespace FargowiltasSouls.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Truffle Worm EX");
-            Tooltip.SetDefault("Only usable in Masochist Mode\nOrdinary Truffle Worm recommended");
+            Tooltip.SetDefault("Only usable in Masochist Mode");
         }
 
         public override void SetDefaults()
         {
             item.maxStack = 20;
-            item.rare = 1;
+            item.rare = 12;
             item.width = 12;
             item.height = 12;
             item.consumable = true;
-            item.useAnimation = 30;
+            item.bait = 777;
+            /*item.useAnimation = 30;
             item.useTime = 30;
-            item.useStyle = 4;
+            item.useStyle = 4;*/
             item.value = Item.sellPrice(0, 15, 0, 0);
         }
 
-        public override bool CanUseItem(Player player)
+        /*public override bool CanUseItem(Player player)
         {
             return FargoWorld.MasochistMode;
         }
@@ -50,7 +51,7 @@ namespace FargowiltasSouls.Items
                 NetMessage.SendData(7);
             }
             return true;
-        }
+        }*/
 
         public override void ModifyTooltips(List<TooltipLine> list)
         {
@@ -67,7 +68,7 @@ namespace FargowiltasSouls.Items
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(ItemID.TruffleWorm, 5);
+            recipe.AddIngredient(ItemID.TruffleWorm);
             recipe.AddIngredient(mod.ItemType("LunarCrystal"), 5);
 
             recipe.AddTile(mod.TileType("CrucibleCosmosSheet"));

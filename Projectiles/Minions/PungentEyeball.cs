@@ -31,6 +31,16 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.ignoreWater = true;
         }
 
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(projectile.localAI[0]);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            projectile.localAI[0] = reader.ReadSingle();
+        }
+
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
@@ -40,7 +50,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (projectile.damage == 0)
                 projectile.damage = (int)(100f * player.minionDamage);
 
-            Vector2 vector2_1 = new Vector2(0f, -100f); //movement code
+            Vector2 vector2_1 = new Vector2(0f, -75f); //movement code
             Vector2 vector2_2 = player.MountedCenter + vector2_1;
             float num1 = Vector2.Distance(projectile.Center, vector2_2);
             if (num1 > 1000) //teleport when out of range
@@ -115,13 +125,16 @@ namespace FargowiltasSouls.Projectiles.Minions
                 if (projectile.ai[0] > 180f)
                 {
                     projectile.ai[1] = 120f;
-                    if (Main.netMode != 1)
+                    if (projectile.owner == Main.myPlayer)
                         Projectile.NewProjectile(projectile.Center, Vector2.UnitX.RotatedBy(projectile.rotation), mod.ProjectileType("PhantasmalDeathrayPungent"),
                             projectile.damage, 4f, projectile.owner, projectile.whoAmI, (projectile.ai[0] >= 360) ? 1f : 0f);
                 }
                 projectile.ai[0] = 0;
             }
-            projectile.rotation = projectile.rotation.AngleLerp((Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY) - projectile.Center).ToRotation(), rotationModifier);
+
+            if (projectile.owner == Main.myPlayer)
+                projectile.localAI[0] = projectile.localAI[0].AngleLerp((Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY) - projectile.Center).ToRotation(), rotationModifier);
+            projectile.rotation = projectile.localAI[0];
 
             if (projectile.frameCounter++ > 4)
             {

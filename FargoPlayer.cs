@@ -179,7 +179,7 @@ namespace FargowiltasSouls
         public bool CorruptHeart;
         public int CorruptHeartCD;
         public bool GuttedHeart;
-        public int GuttedHeartCD;
+        public int GuttedHeartCD = 1; //1 should prevent spawning despite disabled toggle when loading into world
         public bool PureHeart;
         public bool LumpOfFlesh;
         public bool PungentEyeballMinion;
@@ -849,7 +849,7 @@ namespace FargowiltasSouls
                 CobaltCD--;
             }
 
-            if (LihzahrdTreasureBox && Soulcheck.GetValue("Lihzahrd Ground Pound"))
+            if (LihzahrdTreasureBox && player.gravDir > 0 && Soulcheck.GetValue("Lihzahrd Ground Pound"))
             {
                 if (player.controlDown && !player.mount.Active)
                 {
@@ -966,7 +966,7 @@ namespace FargowiltasSouls
                 GuttedHeartCD--;
                 if (GuttedHeartCD <= 0)
                 {
-                    GuttedHeartCD = 300;
+                    GuttedHeartCD = 900;
                     if (Soulcheck.GetValue("Creeper Shield"))
                     {
                         int count = 0;
@@ -975,20 +975,29 @@ namespace FargowiltasSouls
                             if (Main.npc[i].active && Main.npc[i].type == mod.NPCType("CreeperGutted") && Main.npc[i].ai[0] == player.whoAmI)
                                 count++;
                         }
-                        if (count < 5 && Main.netMode != 1)
+                        if (count < 5)
                         {
                             int multiplier = 1;
                             if (PureHeart)
                                 multiplier = 2;
                             if (MasochistSoul)
                                 multiplier = 5;
-                            int n = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, mod.NPCType("CreeperGutted"), 0, player.whoAmI, 0f, multiplier);
-                            if (n < 200)
+                            if (Main.netMode != 1)
                             {
-                                Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
-                                Main.npc[n].netUpdate = true;
-                                if (Main.netMode == 2)
-                                    NetMessage.SendData(23, -1, -1, null, n);
+                                int n = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, mod.NPCType("CreeperGutted"), 0, player.whoAmI, 0f, multiplier);
+                                if (n < 200)
+                                {
+                                    Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
+                                    Main.npc[n].netUpdate = true;
+                                }
+                            }
+                            else
+                            {
+                                var netMessage = mod.GetPacket();
+                                netMessage.Write((byte)0);
+                                netMessage.Write((byte)player.whoAmI);
+                                netMessage.Write((byte)multiplier);
+                                netMessage.Send();
                             }
                         }
                     }
@@ -1957,7 +1966,7 @@ namespace FargowiltasSouls
             {
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
 
-                if (crit && CyclonicFinCD <= 0 && Soulcheck.GetValue("Spectral Fishron"))
+                if (crit && CyclonicFinCD <= 0 && proj.type != mod.ProjectileType("RazorbladeTyphoonFriendly") && Soulcheck.GetValue("Spectral Fishron"))
                 {
                     CyclonicFinCD = 360;
 
@@ -2008,7 +2017,7 @@ namespace FargowiltasSouls
             if (CorruptHeart && CorruptHeartCD <= 0)
             {
                 CorruptHeartCD = 60;
-                if (Soulcheck.GetValue("Tiny Eaters"))
+                if (proj.type != ProjectileID.TinyEater && Soulcheck.GetValue("Tiny Eaters"))
                 {
                     Main.PlaySound(3, (int)player.Center.X, (int)player.Center.Y, 1, 1f, 0.0f);
                     for (int index1 = 0; index1 < 20; ++index1)
@@ -2458,17 +2467,13 @@ namespace FargowiltasSouls
             if (MoonChalice && Soulcheck.GetValue("Ancient Visions On Hit"))
             {
                 for (int i = 0; i < 5; i++)
-                {
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11), mod.ProjectileType("AncientVision"), 80, 2f, player.whoAmI);
-                }
             }
 
             if (LihzahrdTreasureBox && Soulcheck.GetValue("Spiky Balls On Hit"))
             {
                 for (int i = 0; i < 9; i++)
-                {
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11), mod.ProjectileType("LihzahrdSpikyBallFriendly"), 80, 2f, player.whoAmI);
-                }
             }
 
             if (CelestialRune && Soulcheck.GetValue("Ancient Visions On Hit"))
@@ -4051,6 +4056,63 @@ namespace FargowiltasSouls
             if (UniverseEffect || Eternity)
             {
                 player.HeldItem.autoReuse = UniverseStoredAutofire;
+            }
+        }
+
+        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+        {
+            if (bait.type == mod.ItemType("TruffleWormEX"))
+            {
+                bool spawned = false;
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].owner == bait.owner
+                        && Main.projectile[i].bobber && bait.owner == Main.myPlayer)
+                    {
+                        Main.projectile[i].ai[0] = 2f; //cut fishing lines
+
+                        if (!spawned && Main.projectile[i].wet && Main.projectile[i].velocity.Y == 0f
+                            && FargoWorld.MasochistMode && !NPC.AnyNPCs(NPCID.DukeFishron)) //should spawn boss
+                        {
+                            spawned = true;
+                            if (Main.netMode == 0) //singleplayer
+                            {
+                                FargoGlobalNPC.spawnFishronEX = true;
+                                NPC.NewNPC((int)Main.projectile[i].Center.X, (int)Main.projectile[i].Center.Y + 100,
+                                    NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, bait.owner);
+                                FargoGlobalNPC.spawnFishronEX = false;
+                                Main.NewText("Duke Fishron EX has awoken!", 0, 100, 255);
+                            }
+                            else if (Main.netMode == 1) //MP, broadcast(?) packet from spawning player's client
+                            {
+                                var netMessage = mod.GetPacket();
+                                netMessage.Write((byte)77);
+                                netMessage.Write((byte)bait.owner);
+                                netMessage.Write((int)Main.projectile[i].Center.X);
+                                netMessage.Write((int)Main.projectile[i].Center.Y + 100);
+                                netMessage.Send();
+                            }
+                        }
+                    }
+                }
+                /*if (FargoWorld.MasochistMode && bait.owner == Main.myPlayer && !NPC.AnyNPCs(NPCID.DukeFishron))
+                {
+                    if (Main.netMode != 1)
+                    {
+                        Main.NewText("now spawning");
+                        FargoGlobalNPC.spawnFishronEX = true;
+                        NPC.SpawnOnPlayer(bait.owner, NPCID.DukeFishron);
+                        FargoGlobalNPC.spawnFishronEX = false;
+                    }
+                    else
+                    {
+                        Main.NewText("other netmode?");
+                        NetMessage.SendData(61, -1, -1, null, bait.owner, NPCID.DukeFishron);
+                    }
+                }*/
+                bait.stack--;
+                if (bait.stack <= 0)
+                    bait.SetDefaults(0);
             }
         }
 

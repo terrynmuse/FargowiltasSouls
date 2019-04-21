@@ -36,20 +36,20 @@ namespace FargowiltasSouls.Projectiles.Minions
         public override void AI()
         {
             int ai0 = (int)projectile.ai[0];
-            if (!Main.projectile[ai0].active || Main.projectile[ai0].type != mod.ProjectileType("TrueEyeR"))
+            if (ai0 >= 0 && ai0 < 200 && Main.projectile[ai0].active && Main.projectile[ai0].type == mod.ProjectileType("TrueEyeR"))
             {
-                projectile.Kill();
-                return;
-            }
-
-            if (projectile.timeLeft > 295)
-            {
-                if (Main.projectile[ai0].ai[1] == 0f)
+                if (projectile.timeLeft > 295)
                 {
-                    projectile.Kill();
-                    return;
+                    if (Main.projectile[ai0].ai[1] == 0f) //stop following true eye if true eye lost target & isn't preparing to charge
+                    {
+                        projectile.ai[0] = -1f;
+                        projectile.netUpdate = true;
+                    }
+                    else
+                    {
+                        projectile.velocity = Main.projectile[ai0].velocity;
+                    }
                 }
-                projectile.velocity = Main.projectile[ai0].velocity;
             }
 
             if (projectile.alpha > 200)

@@ -47,6 +47,9 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(NPC npc, ref int buffIndex)
         {
+            if (Main.netMode == 1)
+                return;
+
             NPCs.FargoGlobalNPC fargoNPC = npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod);
             fargoNPC.lightningRodTimer++;
             if (fargoNPC.lightningRodTimer >= 60)

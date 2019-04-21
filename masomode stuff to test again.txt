@@ -12,6 +12,21 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-fiddled with vertical heights of pungent/true eye
+-spectral fish no spread fixed
+-lunar cultist desync fixed?
+-fixed true eye laser/sphere being wack on other clients
+-creepers die when you die, not dying when toggled off?
+-fixed creeper spawning issues, tried to fix disabled toggle issue, kinda
+-pungent eye laser is STILL WACK
+-lightning rod on npcs making useless portals hopefully fixed
+-fiddled with things in hopes of not causing projectile dupes in MP
+-added lihzahrd box sprite
+-fixed creeper shield not working in MP
+-lihzahrd box no longer does anything in flipped gravity
+-fixed(?) pungent eye and true eyes not attacking in MP
+-fishron is always immune to valhalla knockback (used to be EX only)
+-restored old truffle worm EX functionality, now multiplayer compatible (i think, ECH)
 -adjusted and moved slimy shield implementation
 -implemented agitating lens
 -implemented corrupt/gutted/pure heart

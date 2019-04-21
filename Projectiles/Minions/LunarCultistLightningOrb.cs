@@ -103,7 +103,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                             Vector2 dir = Main.npc[ai0].Center - projectile.Center;
                             float ai1New = Main.rand.Next(100);
                             Vector2 vel = Vector2.Normalize(dir.RotatedByRandom(Math.PI / 4)) * 7f;
-                            Projectile.NewProjectile(projectile.Center, vel, mod.ProjectileType("LunarCultistLightningArc"), projectile.damage, projectile.knockBack / 2, projectile.owner, dir.ToRotation(), ai1New);
+                            if (projectile.owner == Main.myPlayer)
+                                Projectile.NewProjectile(projectile.Center, vel, mod.ProjectileType("LunarCultistLightningArc"), projectile.damage, projectile.knockBack / 2, projectile.owner, dir.ToRotation(), ai1New);
                         }
                     }
                 }
@@ -128,7 +129,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                     Vector2 dir = Main.npc[possibleTarget].Center - projectile.Center;
                     float ai1 = Main.rand.Next(100);
                     Vector2 vel = Vector2.Normalize(dir.RotatedByRandom(Math.PI / 4)) * 7f;
-                    Projectile.NewProjectile(projectile.Center, vel, mod.ProjectileType("LunarCultistLightningArc"), projectile.damage, projectile.knockBack / 2, projectile.owner, dir.ToRotation(), ai1);
+                    if (projectile.owner == Main.myPlayer)
+                        Projectile.NewProjectile(projectile.Center, vel, mod.ProjectileType("LunarCultistLightningArc"), projectile.damage, projectile.knockBack / 2, projectile.owner, dir.ToRotation(), ai1);
                 }
             }
 

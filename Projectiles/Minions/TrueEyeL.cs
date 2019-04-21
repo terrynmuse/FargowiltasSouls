@@ -115,7 +115,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                                     rotationDirection *= -1;
                                 localAI0 -= rotationDirection * 45f;
                                 Vector2 speed = -Vector2.UnitX.RotatedBy(localAI0);
-                                if (Main.netMode != 1)
+                                if (projectile.owner == Main.myPlayer)
                                     Projectile.NewProjectile(projectile.Center - Vector2.UnitY * 6f, speed, mod.ProjectileType("PhantasmalDeathrayTrueEye"),
                                         projectile.damage / 3 * 10, 6f, projectile.owner, rotationDirection, projectile.whoAmI);
                                 projectile.localAI[1] = rotationDirection;
@@ -166,7 +166,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 }
 
                 Vector2 vector2_1 = player.GetModPlayer<FargoPlayer>().PungentEyeballMinion
-                    ? new Vector2(0f, 100f) : new Vector2(0f, -100f); //vanilla movement code
+                    ? new Vector2(0f, 75f) : new Vector2(0f, -75f); //vanilla movement code
                 Vector2 vector2_2 = player.MountedCenter + vector2_1;
                 float num1 = Vector2.Distance(projectile.Center, vector2_2);
                 if (num1 > 1500) //teleport when out of range
