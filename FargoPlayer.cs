@@ -179,7 +179,7 @@ namespace FargowiltasSouls
         public bool CorruptHeart;
         public int CorruptHeartCD;
         public bool GuttedHeart;
-        public int GuttedHeartCD = 1; //1 should prevent spawning despite disabled toggle when loading into world
+        public int GuttedHeartCD = 2; //2 should prevent spawning despite disabled toggle when loading into world
         public bool PureHeart;
         public bool LumpOfFlesh;
         public bool PungentEyeballMinion;
@@ -1259,12 +1259,10 @@ namespace FargowiltasSouls
             if (Shadowflame)
             {
                 if (player.lifeRegen > 0)
-                {
                     player.lifeRegen = 0;
-                }
+
                 player.lifeRegenTime = 0;
                 player.lifeRegen -= 10;
-
             }
 
             if (GodEater)
@@ -1293,7 +1291,6 @@ namespace FargowiltasSouls
                     player.lifeRegen = 0;
 
                 player.lifeRegenTime = 0;
-
                 player.lifeRegen -= InfestedExtraDot();
             }
 
@@ -1303,7 +1300,6 @@ namespace FargowiltasSouls
                     player.lifeRegen = 0;
 
                 player.lifeRegenTime = 0;
-
                 player.lifeRegen -= 6;
             }
 
@@ -1316,7 +1312,6 @@ namespace FargowiltasSouls
                     player.lifeRegenCount = 0;
 
                 player.lifeRegenTime = 0;
-
                 player.lifeRegen -= 12;
             }
         }
@@ -1955,7 +1950,7 @@ namespace FargowiltasSouls
             if (GroundStick && Main.rand.Next(20) == 0)
                 target.AddBuff(BuffID.Electrified, 240);
 
-            if (DubiousCircuitry && Main.rand.Next(10) == 0)
+            if (DubiousCircuitry && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
                 target.AddBuff(mod.BuffType("LightningRod"), 300);
 
             if (FusedLens)
@@ -2271,7 +2266,7 @@ namespace FargowiltasSouls
             if (GroundStick && Main.rand.Next(20) == 0)
                 target.AddBuff(BuffID.Electrified, 240);
 
-            if (DubiousCircuitry && Main.rand.Next(10) == 0)
+            if (DubiousCircuitry && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
                 target.AddBuff(mod.BuffType("LightningRod"), 300);
 
             if (FusedLens)
@@ -3174,9 +3169,9 @@ namespace FargowiltasSouls
                         p.width = 10;
                         p.height = 10;
                         p.timeLeft = 2;
+                        icicles[IcicleCount] = p;
+                        IcicleCount++;
                     }
-                    icicles[IcicleCount] = p;
-                    IcicleCount++;
                     icicleCD = 120;
                 }
 
@@ -3571,19 +3566,20 @@ namespace FargowiltasSouls
                     ballAmt = 30;
                 }
 
-                float degree;
-
-                for (int i = 0; i < ballAmt; i++)
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    degree = (360 / ballAmt) * i;
-                    Projectile fireball = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, fireballs[i % 3], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
-                    if (fireball != null)
+                    for (int i = 0; i < ballAmt; i++)
                     {
-                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                        fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
-                        fireball.timeLeft = 2;
-                        fireball.penetrate = -1;
-                        fireball.ignoreWater = true;
+                        float degree = (360 / ballAmt) * i;
+                        Projectile fireball = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, fireballs[i % 3], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
+                        if (fireball != null)
+                        {
+                            fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
+                            fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
+                            fireball.timeLeft = 2;
+                            fireball.penetrate = -1;
+                            fireball.ignoreWater = true;
+                        }
                     }
                 }
 

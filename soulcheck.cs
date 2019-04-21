@@ -81,6 +81,7 @@ namespace FargowiltasSouls
             ["Scythes When Dashing"] = new Color(81, 181, 113),
             ["Tiny Eaters"] = new Color(81, 181, 113),
             ["Creeper Shield"] = new Color(81, 181, 113),
+            ["Inflict Lightning Rod"] = new Color(81, 181, 113),
             ["Lihzahrd Ground Pound"] = new Color(81, 181, 113),
             ["Celestial Rune Support"] = new Color(81, 181, 113),
             ["Spectral Fishron"] = new Color(81, 181, 113),

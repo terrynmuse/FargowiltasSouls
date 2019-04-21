@@ -53,6 +53,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                     fishron.defDefense *= 2;
                     fishron.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
                 }
+                projectile.netUpdate = true;
             }
 
             if (projectile.localAI[1] == 0f)
@@ -70,7 +71,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 projectile.alpha = 0;
             if (projectile.alpha > 255)
             {
-                if (Main.netMode == 2) //ensure synchronized max life(?)
+                if (fishron.ai[0] < 4f && Main.netMode == 2) //ensure synchronized max life(?)
                 {
                     var netMessage = mod.GetPacket();
                     netMessage.Write((byte)78);

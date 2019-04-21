@@ -58,7 +58,7 @@ Allows the holder to control gravity");
             if (Soulcheck.GetValue("Slimy Shield Effects"))
             {
                 player.maxFallSpeed *= 2f;
-                player.GetModPlayer<FargoPlayer>().SlimyShield = true;
+                fargoPlayer.SlimyShield = true;
             }
 
             //agitating lens
@@ -120,7 +120,7 @@ Allows the holder to control gravity");
             player.buffImmune[BuffID.Electrified] = true;
             fargoPlayer.FusedLens = true;
             fargoPlayer.GroundStick = true;
-            player.GetModPlayer<FargoPlayer>().DubiousCircuitry = true;
+            fargoPlayer.DubiousCircuitry = true; //doesn't work in MP for some reason
             player.endurance += 0.15f;
 
             //magical bulb

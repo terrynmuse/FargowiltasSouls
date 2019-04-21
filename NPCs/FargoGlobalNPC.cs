@@ -5558,16 +5558,12 @@ namespace FargowiltasSouls.NPCs
             if(HellFire)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
 
                 npc.lifeRegen -= npc.lifeMax / 100;
 
                 if (damage < npc.lifeMax / 1000)
-                {
                     damage = npc.lifeMax / 1000;
-                }
             }
 
             if(Infested)
@@ -5575,11 +5571,10 @@ namespace FargowiltasSouls.NPCs
                 if (npc.lifeRegen > 0)
                     npc.lifeRegen = 0;
 
-                int infest = InfestedExtraDot(npc);
-                npc.lifeRegen -= infest;
+                npc.lifeRegen -= InfestedExtraDot(npc);
 
-                if (damage < infest / 10)
-                    damage = infest / 10;
+                if (damage < 8)
+                    damage = 8;
             }
             else
             {
@@ -5589,9 +5584,7 @@ namespace FargowiltasSouls.NPCs
             if (Electrified)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
 
                 npc.lifeRegen -= 4;
                 if (npc.velocity != Vector2.Zero)
@@ -5620,13 +5613,15 @@ namespace FargowiltasSouls.NPCs
                 return 0;
 
             int timeLeft = npc.buffTime[buffIndex];
-            float baseVal = (MaxInfestTime - timeLeft) / 60f; //change the denominator to adjust max power of DOT
+            if (MaxInfestTime <= 0)
+                MaxInfestTime = timeLeft;
+            float baseVal = (MaxInfestTime - timeLeft) / 30f; //change the denominator to adjust max power of DOT
             int dmg = (int)(baseVal * baseVal + 8);
 
             InfestedDust = baseVal / 15 + .5f;
             if (InfestedDust > 5f)
                 InfestedDust = 5f;
-
+            
             return dmg;
         }
 

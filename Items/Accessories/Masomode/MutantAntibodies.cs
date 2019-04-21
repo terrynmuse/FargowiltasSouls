@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mutant Antibodies");
-            Tooltip.SetDefault(@"'Recommended by 0 out of 10 doctors'
+            Tooltip.SetDefault(@"'Healthy drug recommended by 0 out of 10 doctors'
 Grants immunity to Feral Bite and Mutant Nibble
 Grants immunity to most debuffs caused by entering water
 Increases damage by 20%");
