@@ -33,12 +33,12 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(projectile.rotation);
+            writer.Write(projectile.localAI[0]);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            projectile.rotation = reader.ReadSingle();
+            projectile.localAI[0] = reader.ReadSingle();
         }
 
         public override void AI()
@@ -50,7 +50,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (projectile.damage == 0)
                 projectile.damage = (int)(100f * player.minionDamage);
 
-            Vector2 vector2_1 = new Vector2(0f, -100f); //movement code
+            Vector2 vector2_1 = new Vector2(0f, -75f); //movement code
             Vector2 vector2_2 = player.MountedCenter + vector2_1;
             float num1 = Vector2.Distance(projectile.Center, vector2_2);
             if (num1 > 1000) //teleport when out of range
@@ -131,7 +131,10 @@ namespace FargowiltasSouls.Projectiles.Minions
                 }
                 projectile.ai[0] = 0;
             }
-            projectile.rotation = projectile.rotation.AngleLerp((Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY) - projectile.Center).ToRotation(), rotationModifier);
+
+            if (projectile.owner == Main.myPlayer)
+                projectile.localAI[0] = projectile.localAI[0].AngleLerp((Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY) - projectile.Center).ToRotation(), rotationModifier);
+            projectile.rotation = projectile.localAI[0];
 
             if (projectile.frameCounter++ > 4)
             {

@@ -88,7 +88,7 @@ Allows the holder to control gravity");
 
             //gutted heart
             fargoPlayer.GuttedHeart = true;
-            fargoPlayer.GuttedHeartCD--; //faster spawns
+            fargoPlayer.GuttedHeartCD -= 2; //faster spawns
 
             //mutant antibodies
             player.buffImmune[BuffID.Rabies] = true;

@@ -179,7 +179,7 @@ namespace FargowiltasSouls
         public bool CorruptHeart;
         public int CorruptHeartCD;
         public bool GuttedHeart;
-        public int GuttedHeartCD;
+        public int GuttedHeartCD = 1; //1 should prevent spawning despite disabled toggle when loading into world
         public bool PureHeart;
         public bool LumpOfFlesh;
         public bool PungentEyeballMinion;
@@ -966,7 +966,7 @@ namespace FargowiltasSouls
                 GuttedHeartCD--;
                 if (GuttedHeartCD <= 0)
                 {
-                    GuttedHeartCD = 300;
+                    GuttedHeartCD = 900;
                     if (Soulcheck.GetValue("Creeper Shield"))
                     {
                         int count = 0;
@@ -982,13 +982,22 @@ namespace FargowiltasSouls
                                 multiplier = 2;
                             if (MasochistSoul)
                                 multiplier = 5;
-                            int n = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, mod.NPCType("CreeperGutted"), 0, player.whoAmI, 0f, multiplier);
-                            if (n < 200)
+                            if (Main.netMode != 1)
                             {
-                                Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
-                                Main.npc[n].netUpdate = true;
-                                if (Main.netMode == 2)
-                                    NetMessage.SendData(23, -1, -1, null, n);
+                                int n = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, mod.NPCType("CreeperGutted"), 0, player.whoAmI, 0f, multiplier);
+                                if (n < 200)
+                                {
+                                    Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
+                                    Main.npc[n].netUpdate = true;
+                                }
+                            }
+                            else
+                            {
+                                var netMessage = mod.GetPacket();
+                                netMessage.Write((byte)0);
+                                netMessage.Write((byte)player.whoAmI);
+                                netMessage.Write((byte)multiplier);
+                                netMessage.Send();
                             }
                         }
                     }
@@ -1957,7 +1966,7 @@ namespace FargowiltasSouls
             {
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
 
-                if (crit && CyclonicFinCD <= 0 && Soulcheck.GetValue("Spectral Fishron"))
+                if (crit && CyclonicFinCD <= 0 && proj.type != mod.ProjectileType("RazorbladeTyphoonFriendly") && Soulcheck.GetValue("Spectral Fishron"))
                 {
                     CyclonicFinCD = 360;
 
@@ -2008,7 +2017,7 @@ namespace FargowiltasSouls
             if (CorruptHeart && CorruptHeartCD <= 0)
             {
                 CorruptHeartCD = 60;
-                if (Soulcheck.GetValue("Tiny Eaters"))
+                if (proj.type != ProjectileID.TinyEater && Soulcheck.GetValue("Tiny Eaters"))
                 {
                     Main.PlaySound(3, (int)player.Center.X, (int)player.Center.Y, 1, 1f, 0.0f);
                     for (int index1 = 0; index1 < 20; ++index1)

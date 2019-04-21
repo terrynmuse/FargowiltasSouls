@@ -246,7 +246,7 @@ namespace FargowiltasSouls
 
             _checklistPanel = new UIPanel();
             _checklistPanel.SetPadding(10);
-            _checklistPanel.Width.Set(1000f, 0f);
+            _checklistPanel.Width.Set(1250f, 0f);//(1000f, 0f);
             _checklistPanel.Height.Set(600f, 0f);
             _checklistPanel.Left.Set((Main.screenWidth - 1200) / 2f, 0f);
             _checklistPanel.Top.Set((Main.screenHeight - 700) / 2f, 0f);

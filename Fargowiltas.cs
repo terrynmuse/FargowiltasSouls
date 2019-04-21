@@ -349,6 +349,18 @@ namespace FargowiltasSouls
         {
             switch (reader.ReadByte())
             {
+                case 0: //server side spawning creepers
+                    byte p = reader.ReadByte();
+                    int multiplier = reader.ReadByte();
+                    int n = NPC.NewNPC((int)Main.player[p].Center.X, (int)Main.player[p].Center.Y, NPCType("CreeperGutted"), 0,
+                        p, 0f, multiplier, 0f);
+                    if (n < 200)
+                    {
+                        Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
+                        Main.npc[n].netUpdate = true;
+                    }
+                    break;
+
                 case 77: //server side spawning fishron EX
                     if (Main.netMode == 2)
                     {
@@ -365,9 +377,9 @@ namespace FargowiltasSouls
                     }
                     break;
 
-                case 78: //confirming max life
-                    int n = reader.ReadInt32();
-                    Main.npc[n].lifeMax = reader.ReadInt32();
+                case 78: //confirming fish EX max life
+                    int f = reader.ReadInt32();
+                    Main.npc[f].lifeMax = reader.ReadInt32();
                     break;
 
                 default:

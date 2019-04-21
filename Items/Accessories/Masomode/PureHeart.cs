@@ -19,7 +19,7 @@ Grants immunity to biome debuffs
 10% increased movement speed, 20% increased max life, and 25% increased wing time
 You spawn mini eaters to seek out enemies every few attacks
 Creepers hover around you blocking some damage
-A new Creeper appears every 30 seconds, and 5 can exist at once");
+A new Creeper appears every 15 seconds, and 5 can exist at once");
         }
 
         public override void SetDefaults()
