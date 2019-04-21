@@ -12,6 +12,9 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-horde adjusted
+-code cleanup
+-CHANGED TYPE<>() GETS TO TYPE("") in fargoplayer, globalproj, globalnpc
 -infested shows fixed numbers now
 -added lightning rod toggle
 -fixed orichalcum client side MP glitch i think

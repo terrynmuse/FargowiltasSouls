@@ -120,7 +120,7 @@ Allows the holder to control gravity");
             player.buffImmune[BuffID.Electrified] = true;
             fargoPlayer.FusedLens = true;
             fargoPlayer.GroundStick = true;
-            fargoPlayer.DubiousCircuitry = true; //doesn't work in MP for some reason
+            fargoPlayer.DubiousCircuitry = true;
             player.endurance += 0.15f;
 
             //magical bulb
