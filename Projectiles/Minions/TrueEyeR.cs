@@ -188,15 +188,12 @@ namespace FargowiltasSouls.Projectiles.Minions
                         }
                     }
                 }
-                
-                int num5 = projectile.frameCounter + 1;
-                projectile.frameCounter = num5;
-                if (num5 >= 4)
+
+                //rotation is handled in switch
+                if (++projectile.frameCounter >= 4)
                 {
                     projectile.frameCounter = 0;
-                    int num6 = projectile.frame + 1;
-                    projectile.frame = num6;
-                    if (num6 >= Main.projFrames[projectile.type])
+                    if (++projectile.frame >= Main.projFrames[projectile.type])
                         projectile.frame = 0;
                 }
                 UpdatePupil();
@@ -227,16 +224,11 @@ namespace FargowiltasSouls.Projectiles.Minions
                     float num3 = projectile.velocity.ToRotation() + 1.570796f;
                     if (Math.Abs(projectile.rotation - num3) >= 3.14159274101257)
                         projectile.rotation = num3 >= projectile.rotation ? projectile.rotation + 6.283185f : projectile.rotation - 6.283185f;
-                    float num4 = 12f;
-                    projectile.rotation = (projectile.rotation * (num4 - 1f) + num3) / num4;
-                    int num5 = projectile.frameCounter + 1;
-                    projectile.frameCounter = num5;
-                    if (num5 >= 4)
+                    projectile.rotation = (projectile.rotation * 11f + num3) / 12f;
+                    if (++projectile.frameCounter >= 4)
                     {
                         projectile.frameCounter = 0;
-                        int num6 = projectile.frame + 1;
-                        projectile.frame = num6;
-                        if (num6 >= Main.projFrames[projectile.type])
+                        if (++projectile.frame >= Main.projFrames[projectile.type])
                             projectile.frame = 0;
                     }
                 }
@@ -244,15 +236,11 @@ namespace FargowiltasSouls.Projectiles.Minions
                 {
                     if (projectile.rotation > 3.14159274101257)
                         projectile.rotation = projectile.rotation - 6.283185f;
-                    projectile.rotation = projectile.rotation <= -0.005 || projectile.rotation >= 0.005 ? projectile.rotation * 0.96f : 0.0f;
-                    int num3 = projectile.frameCounter + 1;
-                    projectile.frameCounter = num3;
-                    if (num3 >= 6)
+                    projectile.rotation = projectile.rotation <= -0.005 || projectile.rotation >= 0.005 ? projectile.rotation * 0.96f : 0f;
+                    if (++projectile.frameCounter >= 6)
                     {
                         projectile.frameCounter = 0;
-                        int num4 = projectile.frame + 1;
-                        projectile.frame = num4;
-                        if (num4 >= Main.projFrames[projectile.type])
+                        if (++projectile.frame >= Main.projFrames[projectile.type])
                             projectile.frame = 0;
                     }
                 }

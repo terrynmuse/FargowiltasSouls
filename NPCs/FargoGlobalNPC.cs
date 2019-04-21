@@ -35,6 +35,7 @@ namespace FargowiltasSouls.NPCs
         public bool TimeFrozen;
         public bool HellFire;
         public bool Infested;
+        public int MaxInfestTime;
         public float InfestedDust;
         public bool Needles;
         public bool Electrified;
@@ -4856,7 +4857,7 @@ namespace FargowiltasSouls.NPCs
                                 npc.damage = (int)(npc.defDamage * 1.2f * (Main.expertMode ? 0.6f * Main.damageMultiplier : 1f));
                                 masoBool[2] = false;
                                 Timer++;
-                                if (Timer >= 30 + (int)(570.0 * npc.life / npc.lifeMax)) //yes that needs to be a double
+                                if (Timer >= 60 + (int)(540.0 * npc.life / npc.lifeMax)) //yes that needs to be a double
                                 {
                                     Timer = 0;
                                     if (Main.netMode != 1) //spawn cthulhunado
@@ -5572,17 +5573,17 @@ namespace FargowiltasSouls.NPCs
             if(Infested)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
 
                 int infest = InfestedExtraDot(npc);
                 npc.lifeRegen -= infest;
 
                 if (damage < infest / 10)
-                {
                     damage = infest / 10;
-                }
+            }
+            else
+            {
+                MaxInfestTime = 0;
             }
 
             if (Electrified)
@@ -5615,24 +5616,16 @@ namespace FargowiltasSouls.NPCs
         private int InfestedExtraDot(NPC npc)
         {
             int buffIndex = npc.FindBuffIndex(mod.BuffType<Infested>());
-            
-
             if (buffIndex == -1)
-            {
                 return 0;
-            }
 
             int timeLeft = npc.buffTime[buffIndex];
-            float baseVal = (float)(1800 - timeLeft) / 60;
-            //change the denominator to adjust max power of DOT
+            float baseVal = (MaxInfestTime - timeLeft) / 60f; //change the denominator to adjust max power of DOT
             int dmg = (int)(baseVal * baseVal + 8);
 
             InfestedDust = baseVal / 15 + .5f;
-
             if (InfestedDust > 5f)
-            {
                 InfestedDust = 5f;
-            }
 
             return dmg;
         }

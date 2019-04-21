@@ -832,14 +832,10 @@ namespace FargowiltasSouls
 
                 //immune to DoT
                 if (player.statLife < goldHP)
-                {
                     player.statLife = goldHP;
-                }
 
                 if (player.ownedProjectileCounts[mod.ProjectileType("GoldShellProj")] <= 0)
-                {
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("GoldShellProj"), 0, 0, Main.myPlayer);
-                }
 
                 //AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType<Chlorofuck>(), dmg, 10f);
             }
@@ -869,27 +865,30 @@ namespace FargowiltasSouls
                     }
                     else if (player.velocity.Y == 0f)
                     {
-                        int x = (int)(player.Center.X) / 16;
-                        int y = (int)(player.position.Y + player.height + 8) / 16;
-                        if (GroundPound > 15 && Main.tile[x, y] != null && Main.tile[x, y].nactive() && Main.tileSolid[Main.tile[x, y].type])
+                        if (player.whoAmI == Main.myPlayer)
                         {
-                            Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("ExplosionSmall"), 160, 12f, player.whoAmI);
-                            y -= 2;
-                            for (int i = -3; i <= 3; i++)
+                            int x = (int)(player.Center.X) / 16;
+                            int y = (int)(player.position.Y + player.height + 8) / 16;
+                            if (GroundPound > 15 && Main.tile[x, y] != null && Main.tile[x, y].nactive() && Main.tileSolid[Main.tile[x, y].type])
                             {
-                                if (i == 0)
-                                    continue;
-                                int tilePosX = x + 16 * i;
-                                int tilePosY = y;
-                                if (Main.tile[tilePosX, tilePosY] == null)
-                                    Main.tile[tilePosX, tilePosY] = new Tile();
-                                while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[Main.tile[tilePosX, tilePosY].type]))
+                                Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("ExplosionSmall"), 160, 12f, player.whoAmI);
+                                y -= 2;
+                                for (int i = -3; i <= 3; i++)
                                 {
-                                    tilePosY++;
+                                    if (i == 0)
+                                        continue;
+                                    int tilePosX = x + 16 * i;
+                                    int tilePosY = y;
                                     if (Main.tile[tilePosX, tilePosY] == null)
                                         Main.tile[tilePosX, tilePosY] = new Tile();
+                                    while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[Main.tile[tilePosX, tilePosY].type]))
+                                    {
+                                        tilePosY++;
+                                        if (Main.tile[tilePosX, tilePosY] == null)
+                                            Main.tile[tilePosX, tilePosY] = new Tile();
+                                    }
+                                    Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, mod.ProjectileType("GeyserFriendly"), 80, 8f, player.whoAmI);
                                 }
-                                Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, mod.ProjectileType("GeyserFriendly"), 80, 8f, player.whoAmI);
                             }
                         }
                         GroundPound = 0;
@@ -918,7 +917,7 @@ namespace FargowiltasSouls
             {
                 if (SlimyShieldFalling) //landing
                 {
-                    if (player.velocity.Y == 0f && Soulcheck.GetValue("Slimy Shield Effects"))
+                    if (player.velocity.Y == 0f && player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Slimy Shield Effects"))
                     {
                         SlimyShieldFalling = false;
                         Main.PlaySound(SoundID.Item21, player.Center);
@@ -947,7 +946,7 @@ namespace FargowiltasSouls
                 if (AgitatingLensCD++ > 10)
                 {
                     AgitatingLensCD = 0;
-                    if (player.velocity.Length() >= 8f && Soulcheck.GetValue("Scythes When Dashing"))
+                    if (player.velocity.Length() >= 8f && player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Scythes When Dashing"))
                     {
                         int damage = 20;
                         if (MasochistSoul)
@@ -967,7 +966,7 @@ namespace FargowiltasSouls
                 if (GuttedHeartCD <= 0)
                 {
                     GuttedHeartCD = 900;
-                    if (Soulcheck.GetValue("Creeper Shield"))
+                    if (player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Creeper Shield"))
                     {
                         int count = 0;
                         for (int i = 0; i < 200; i++)
@@ -2671,22 +2670,16 @@ namespace FargowiltasSouls
         private int InfestedExtraDot()
         {
             int buffIndex = player.FindBuffIndex(mod.BuffType<Infested>());
-
             if (buffIndex == -1)
                 return 0;
 
             int timeLeft = player.buffTime[buffIndex];
-
-            float baseVal = (float)(MaxInfestTime - timeLeft) / 120;
-            //change the denominator to adjust max power of DOT
+            float baseVal = (float)(MaxInfestTime - timeLeft) / 120; //change the denominator to adjust max power of DOT
             int modifier = (int)(baseVal * baseVal + 8);
 
             InfestedDust = baseVal / 10 + 1f;
-
             if (InfestedDust > 5f)
-            {
                 InfestedDust = 5f;
-            }
 
             return modifier;
         }

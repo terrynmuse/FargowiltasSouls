@@ -31,16 +31,6 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.ignoreWater = true;
         }
 
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            writer.Write(projectile.localAI[0]);
-        }
-
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            projectile.localAI[0] = reader.ReadSingle();
-        }
-
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
@@ -68,16 +58,16 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
 
             float rotationModifier = 0.08f;
-            if (projectile.ai[1] > 0)
+            if (projectile.localAI[1] > 0)
             {
-                projectile.ai[1]--;
+                projectile.localAI[1]--;
             }
             if (player.controlUseItem)
             {
-                projectile.ai[0]++;
+                projectile.localAI[0]++;
                 if (player.GetModPlayer<FargoPlayer>().MasochistSoul)
-                    projectile.ai[0]++;
-                if (projectile.ai[0] == 180f)
+                    projectile.localAI[0]++;
+                if (projectile.localAI[0] == 180f)
                 {
                     const int num226 = 18; //dusts indicate charged up
                     for (int num227 = 0; num227 < num226; num227++)
@@ -90,13 +80,13 @@ namespace FargowiltasSouls.Projectiles.Minions
                         Main.dust[num228].velocity = vector7;
                     }
                 }
-                if (projectile.ai[0] > 180f)
+                if (projectile.localAI[0] > 180f)
                 {
                     int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 27, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].velocity *= 3f;
                 }
-                if (projectile.ai[0] == 360f)
+                if (projectile.localAI[0] == 360f)
                 {
                     const int num226 = 36; //dusts indicate charged up
                     for (int num227 = 0; num227 < num226; num227++)
@@ -109,7 +99,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                         Main.dust[num228].velocity = vector7;
                     }
                 }
-                if (projectile.ai[0] > 360f)
+                if (projectile.localAI[0] > 360f)
                 {
                     int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 27, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f);
                     Main.dust[d].noGravity = true;
@@ -122,19 +112,24 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
             else
             {
-                if (projectile.ai[0] > 180f)
+                if (projectile.localAI[0] > 180f)
                 {
-                    projectile.ai[1] = 120f;
+                    projectile.localAI[1] = 120f;
                     if (projectile.owner == Main.myPlayer)
                         Projectile.NewProjectile(projectile.Center, Vector2.UnitX.RotatedBy(projectile.rotation), mod.ProjectileType("PhantasmalDeathrayPungent"),
-                            projectile.damage, 4f, projectile.owner, projectile.whoAmI, (projectile.ai[0] >= 360) ? 1f : 0f);
+                            projectile.damage, 4f, projectile.owner, projectile.whoAmI, (projectile.localAI[0] >= 360) ? 1f : 0f);
                 }
-                projectile.ai[0] = 0;
+                projectile.localAI[0] = 0;
             }
 
             if (projectile.owner == Main.myPlayer)
-                projectile.localAI[0] = projectile.localAI[0].AngleLerp((Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY) - projectile.Center).ToRotation(), rotationModifier);
-            projectile.rotation = projectile.localAI[0];
+            {
+                projectile.ai[0] = Main.MouseWorld.X;
+                projectile.ai[1] = Main.MouseWorld.Y;
+                projectile.netUpdate = true;
+            }
+            projectile.rotation = projectile.rotation.AngleLerp(
+                (new Vector2(projectile.ai[0], projectile.ai[1]) - projectile.Center).ToRotation(), rotationModifier);
 
             if (projectile.frameCounter++ > 4)
             {

@@ -120,6 +120,7 @@ namespace FargowiltasSouls.Projectiles
                 {
                     projectile.velocity = Vector2.UnitX.RotatedBy(projectile.ai[0]).RotatedByRandom(Math.PI / 4) * 7f;
                     projectile.ai[1] = Main.rand.Next(100);
+                    projectile.netUpdate = true;
                     return;
                 }
                 projectile.localAI[0] += (float)((double)spinningpoint.X * (double)(projectile.extraUpdates + 1) * 2.0) * num1;

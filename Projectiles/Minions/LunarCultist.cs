@@ -333,6 +333,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 target.Y -= Main.player[projectile.owner].height + 100;
                 projectile.ai[1] = 0f;
             }
+            projectile.netUpdate = true;
         }
 
         public override bool? CanCutTiles()
