@@ -12,7 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Remote Control");
             Tooltip.SetDefault(@"Grants immunity to Electrified
-Your attacks have a small chance to inflict Electrified");
+Your attacks have a small chance to inflict Electrified
+Two friendly probes fight by your side");
         }
 
         public override void SetDefaults()
@@ -28,6 +29,8 @@ Your attacks have a small chance to inflict Electrified");
         {
             player.buffImmune[BuffID.Electrified] = true;
             player.GetModPlayer<FargoPlayer>().GroundStick = true;
+            if (Soulcheck.GetValue("Probes Minion"))
+                player.AddBuff(mod.BuffType("Probes"), 2);
         }
     }
 }

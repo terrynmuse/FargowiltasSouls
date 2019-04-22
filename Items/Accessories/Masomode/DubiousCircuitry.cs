@@ -15,6 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Cursed Inferno, Ichor, Electrified, Lightning Rod, Defenseless, and Stunned
 Your attacks inflict Cursed Inferno and Ichor
 Your attacks have a small chance to inflict Electrified and Lightning Rod
+Two friendly probes fight by your side
 Reduces damage taken by 6%");
         }
 
@@ -39,6 +40,8 @@ Reduces damage taken by 6%");
             player.GetModPlayer<FargoPlayer>().FusedLens = true;
             player.GetModPlayer<FargoPlayer>().GroundStick = true;
             player.GetModPlayer<FargoPlayer>().DubiousCircuitry = true;
+            if (Soulcheck.GetValue("Probes Minion"))
+                player.AddBuff(mod.BuffType("Probes"), 2);
             player.endurance += 0.06f;
         }
 

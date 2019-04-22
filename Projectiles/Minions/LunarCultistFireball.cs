@@ -51,6 +51,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 else
                 {
                     projectile.ai[1] = -1f;
+                    projectile.netUpdate = true;
                 }
             }
 

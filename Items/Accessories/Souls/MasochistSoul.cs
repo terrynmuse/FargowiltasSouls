@@ -19,11 +19,11 @@ Increases max life by 20%, damage by 30%, and damage reduction by 15%
 Increases max number of minions and sentries by 5
 Grants fastfall and immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
-Your attacks can inflict Cursed Inferno, Ichor, Lightning Rod, and Oceanic Maul
+Your attacks inflict Sadism
 You periodically fire additional attacks depending on weapon type and Tiny Eaters
-Your critical strikes inflict Betsy's Curse and summon Spectral Fishron
+Spectral Fishron periodically manifests to support your critical hits
 You erupt into Spiky Balls and Ancient Visions when injured
-Summons friendly Creepers, a plant's offspring, Cultist, pungent eye, and true eyes
+Summons friendly Creepers, probes, plant's offspring, pungent eye, Cultist, and true eyes
 Allows the holder to control gravity");
         }
 
@@ -58,7 +58,7 @@ Allows the holder to control gravity");
             if (Soulcheck.GetValue("Slimy Shield Effects"))
             {
                 player.maxFallSpeed *= 2f;
-                player.GetModPlayer<FargoPlayer>().SlimyShield = true;
+                fargoPlayer.SlimyShield = true;
             }
 
             //agitating lens
@@ -120,7 +120,9 @@ Allows the holder to control gravity");
             player.buffImmune[BuffID.Electrified] = true;
             fargoPlayer.FusedLens = true;
             fargoPlayer.GroundStick = true;
-            player.GetModPlayer<FargoPlayer>().DubiousCircuitry = true;
+            fargoPlayer.DubiousCircuitry = true;
+            if (Soulcheck.GetValue("Probes Minion"))
+                player.AddBuff(mod.BuffType("Probes"), 2);
             player.endurance += 0.15f;
 
             //magical bulb

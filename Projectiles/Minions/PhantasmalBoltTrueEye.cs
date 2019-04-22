@@ -42,14 +42,10 @@ namespace FargowiltasSouls.Projectiles.Minions
             Main.dust[index].velocity = projectile.velocity;
             Main.dust[index].position -= Vector2.One * 4f;
             Main.dust[index].scale = 0.8f;
-            int num1 = projectile.frameCounter + 1;
-            projectile.frameCounter = num1;
-            if (num1 >= 9)
+            if (++projectile.frameCounter >= 6 * 4) //projectile extra updates + 1
             {
                 projectile.frameCounter = 0;
-                int num2 = projectile.frame + 1;
-                projectile.frame = num2;
-                if (num2 >= 5)
+                if (++projectile.frame >= 5)
                     projectile.frame = 0;
             }
         }

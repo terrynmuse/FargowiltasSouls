@@ -29,7 +29,6 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.defense -= 10;
             npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).CurseoftheMoon = true;
         }
     }

@@ -43,6 +43,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                     if (Main.projectile[ai0].ai[1] == 0f) //stop following true eye if true eye lost target & isn't preparing to charge
                     {
                         projectile.ai[0] = -1f;
+                        projectile.velocity = Vector2.Zero;
                         projectile.netUpdate = true;
                     }
                     else

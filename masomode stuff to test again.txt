@@ -12,6 +12,26 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-flames of universe gives immunity to npcs against its components
+-did something to force new sadism debuff onto enemies
+-changed how oceanic maul/curse of moon reduce defense (i think it went negative previously)
+-masochist soul lets you inflict sadism now
+-horde adjusted
+-code cleanup
+-CHANGED TYPE<>() GETS TO TYPE("") in fargoplayer, globalproj, globalnpc
+-infested shows fixed numbers now
+-added lightning rod toggle
+-fixed orichalcum client side MP glitch i think
+-tweaked frost effect to hopefully fix the error when too many projectiles
+-fishron EX doesn't gain more max life than intended during phase transitions in MP probably
+-nerfed infested debuff and made it actually work
+-made celestial rune lightning thinner
+-more fixes in fargoplayer to hopefully reduce players activating other's abilities
+-FIXED MP pungent eye rotation aaaaaaaaa
+-more minion adjustments to improve MP sync hopefully
+-phantasmal spheres now freeze if target lost
+-worked on wack gutted heart creepers in MP AGAIN
+-fish EX p3 max cthulhunado spawn rate nerfed to 60 ticks (was 30)
 -fiddled with vertical heights of pungent/true eye
 -spectral fish no spread fixed
 -lunar cultist desync fixed?
