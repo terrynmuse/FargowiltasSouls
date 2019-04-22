@@ -38,12 +38,13 @@ You can walk on water and when you do, it freezes and creates spikes
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            /*recipe.AddIngredient(ItemID.);
-            recipe.AddIngredient(ItemID.);
-
-            Marshmallow on a stick
-            FrostMinnow
-            AtlanticCod*/
+            recipe.AddIngredient(ItemID.PinkEskimoHood);
+            recipe.AddIngredient(ItemID.PinkEskimoCoat);
+            recipe.AddIngredient(ItemID.PinkEskimoPants);
+            recipe.AddIngredient(ItemID.FrostMinnow);
+            recipe.AddIngredient(ItemID.AtlanticCod);
+            recipe.AddIngredient(ItemID.MarshmallowonaStick);
+            recipe.AddIngredient(ItemID.SnowmanCannon);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

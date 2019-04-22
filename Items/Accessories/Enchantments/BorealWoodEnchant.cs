@@ -40,13 +40,15 @@ While in the Snow Biome, damaging snow/hail will constantly rain from the sky
             recipe.AddIngredient(ItemID.BorealWoodBreastplate);
             recipe.AddIngredient(ItemID.BorealWoodGreaves);
             recipe.AddIngredient(ItemID.Penguin);
-            
-            /*
             recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
-            Shiverthorn
+
+            recipe.AddIngredient(ItemID.Shiverthorn);
+
+
+            /*
             SnowballCannon - launcher in essence now
             BorealSword*/
-            
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

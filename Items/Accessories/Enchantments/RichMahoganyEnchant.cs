@@ -34,27 +34,20 @@ While in the Jungle, they shoot spores??
             
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.AdamantiteBreastplate);
-
-            sword/bow
-            frog
-            grubby
-            buggy
-            moonglow
-            double cod
-            neon tetra
-            ivy whip, literal all hooks ever tm
-            
+            recipe.AddIngredient(ItemID.RichMahoganyHelmet);
+            recipe.AddIngredient(ItemID.RichMahoganyBreastplate);
+            recipe.AddIngredient(ItemID.RichMahoganyGreaves);
+            recipe.AddIngredient(ItemID.IvyWhip);
+            recipe.AddIngredient(ItemID.Frog);
+            recipe.AddIngredient(ItemID.NeonTetra);
             recipe.AddIngredient(ItemID.DoNotStepontheGrass);
-            
-            waterleaf to cactus when
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

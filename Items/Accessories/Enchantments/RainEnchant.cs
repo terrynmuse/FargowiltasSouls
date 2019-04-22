@@ -35,13 +35,14 @@ A miniature storm may appear when an enemy dies");
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            
+
+            recipe.AddIngredient(ItemID.RainHat);
+            recipe.AddIngredient(ItemID.RainCoat);
+            recipe.AddIngredient(ItemID.RainCloud);
+            recipe.AddIngredient(ItemID.Umbrella);
+            recipe.AddIngredient(ItemID.UmbrellaHat);
             recipe.AddIngredient(ItemID.NimbusRod);
-            
-            /*
-            umbrella
-            
-            */
+            //
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

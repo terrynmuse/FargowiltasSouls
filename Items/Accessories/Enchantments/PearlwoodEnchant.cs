@@ -34,22 +34,20 @@ While in the Hallowed, the rainbow trail lasts much longer
             
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.);
-
-            Unicorn on a stick
-            Lightning Bug
-            Prismite
-            Chaos Fish
-            Princess Fish
+            recipe.AddIngredient(ItemID.PearlwoodHelmet);
+            recipe.AddIngredient(ItemID.PearlwoodBreastplate);
+            recipe.AddIngredient(ItemID.PearlwoodGreaves);
+            recipe.AddIngredient(ItemID.UnicornonaStick);
+            recipe.AddIngredient(ItemID.LightningBug);
+            recipe.AddIngredient(ItemID.Prismite);
             recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
-            Pearlwood Sword, Bow
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 //just thorium
                 recipe.AddIngredient(ItemID.RangerEmblem);
                 recipe.AddIngredient(ItemID.PainterPaintballGun);
-                recipe.AddIngredient(ItemID.SnowballCannon);
+                //recipe.AddIngredient(ItemID.SnowballCannon);
                 recipe.AddIngredient(ItemID.RedRyder);
                 recipe.AddIngredient(ItemID.Harpoon);
                 recipe.AddIngredient(ItemID.Musket);
@@ -61,7 +61,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 //no others
                 recipe.AddIngredient(ItemID.RangerEmblem);
                 recipe.AddIngredient(ItemID.PainterPaintballGun);
-                recipe.AddIngredient(ItemID.SnowballCannon);
+                //recipe.AddIngredient(ItemID.SnowballCannon); add a thing
                 recipe.AddIngredient(ItemID.RedRyder);
                 recipe.AddIngredient(ItemID.Harpoon);
                 recipe.AddIngredient(ItemID.Musket);

@@ -37,15 +37,13 @@ While in the Crimson,
         {
             ModRecipe recipe = new ModRecipe(mod);
             
+            recipe.AddIngredient(ItemID.ShadewoodHelmet);
+            recipe.AddIngredient(ItemID.ShadewoodBreastplate);
+            recipe.AddIngredient(ItemID.ShadewoodGreaves);
+            recipe.AddIngredient(ItemID.ShadewoodSword);
+            recipe.AddIngredient(ItemID.CrimsonTigerfish);
+            recipe.AddIngredient(ItemID.ViciousMushroom);
             recipe.AddIngredient(ItemID.DeadlandComesAlive);
-            
-            /*recipe.AddIngredient(ItemID.);
-
-            crimson painting
-            vicious mushroom
-            crimson tigerfish
-            hemopiranha
-            shadewood sword/bow*/
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

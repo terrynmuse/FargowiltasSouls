@@ -46,16 +46,7 @@ When critters die, they explode into blood
             recipe.AddIngredient(ItemID.LivingWoodWand);
             recipe.AddIngredient(ItemID.Bunny);
             recipe.AddIngredient(ItemID.Squirrel);
-            recipe.AddIngredient(ItemID.Bird);
-            
-            /*LeafWand
-            daybloom 
-            grasshopper
-            
-            fireblossom to obsidian when
-            all painter paintings when
-            all vanilla buteflie swhen*/
-            
+            recipe.AddIngredient(ItemID.Bird);        
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

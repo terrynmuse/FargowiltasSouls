@@ -33,21 +33,21 @@ While in the Corruption, enemies that get near you are inflicted with Rotting, L
             
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
+            recipe.AddIngredient(ItemID.EbonwoodHelmet);
+            recipe.AddIngredient(ItemID.EbonwoodBreastplate);
+            recipe.AddIngredient(ItemID.EbonwoodGreaves);
+            recipe.AddIngredient(ItemID.EbonwoodSword);
+            recipe.AddIngredient(ItemID.PurpleClubberfish);
+            recipe.AddIngredient(ItemID.VileMushroom);
             recipe.AddIngredient(ItemID.LightlessChasms);
-
-        
-            ebonwood sword/bow
-            vile mushroom
-            ebonkoi
-            purple clubberfish
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

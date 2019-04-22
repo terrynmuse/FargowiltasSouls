@@ -30,6 +30,9 @@ Summons a pet Minotaur");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            //player.jump
+
+
             player.GetModPlayer<FargoPlayer>(mod).GladiatorEffect(hideVisual);
         }
 

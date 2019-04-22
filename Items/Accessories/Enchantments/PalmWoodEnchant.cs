@@ -34,27 +34,21 @@ While in the Ocean or Desert, it attacks much faster
             
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(ItemID.);
-
-            Trident?
-            Breathing Reed
-            Black Ink
-            Purple Mucos
-            Lime Kelp
-            Seashell
-            Starfish
-            Tuna
-            Shrimp
-            Red Snapper
-            Palm Wood Sword/Bow
+            recipe.AddIngredient(ItemID.PalmWoodHelmet);
+            recipe.AddIngredient(ItemID.PalmWoodBreastplate);
+            recipe.AddIngredient(ItemID.PalmWoodGreaves);
+            recipe.AddIngredient(ItemID.Trident);
+            recipe.AddIngredient(ItemID.Tuna);
+            recipe.AddIngredient(ItemID.Seashell);
+            recipe.AddIngredient(ItemID.LimeKelp);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }
