@@ -179,12 +179,13 @@ namespace FargowiltasSouls
         public bool CorruptHeart;
         public int CorruptHeartCD;
         public bool GuttedHeart;
-        public int GuttedHeartCD = 2; //2 should prevent spawning despite disabled toggle when loading into world
+        public int GuttedHeartCD = 4; //should prevent spawning despite disabled toggle when loading into world
         public bool PureHeart;
         public bool LumpOfFlesh;
         public bool PungentEyeballMinion;
         public bool FusedLens;
         public bool GroundStick;
+        public bool Probes;
         public bool DubiousCircuitry;
         public bool MagicalBulb;
         public bool SkullCharm;
@@ -521,6 +522,7 @@ namespace FargowiltasSouls
             PungentEyeballMinion = false;
             FusedLens = false;
             GroundStick = false;
+            Probes = false;
             DubiousCircuitry = false;
             MagicalBulb = false;
             SkullCharm = false;
