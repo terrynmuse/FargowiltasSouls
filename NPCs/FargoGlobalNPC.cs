@@ -42,6 +42,9 @@ namespace FargowiltasSouls.NPCs
         public bool CurseoftheMoon;
         public int MaxLifeReduction;
         public int lightningRodTimer;
+        public bool Sadism;
+        public bool gotSadism;
+        public bool OceanicMaul;
 
         public bool PillarSpawn = true;
         public bool ValhallaImmune;
@@ -94,6 +97,8 @@ namespace FargowiltasSouls.NPCs
             Needles = false;
             Electrified = false;
             CurseoftheMoon = false;
+            Sadism = false;
+            OceanicMaul = false;
         }
 
         public override void SetDefaults(NPC npc)
@@ -5324,6 +5329,23 @@ namespace FargowiltasSouls.NPCs
                     Main.dust[d].velocity *= 2f;
                 }
             }
+
+            if (Sadism)
+            {
+                int d = Dust.NewDust(npc.Center, 0, 0, 86, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f);
+                Main.dust[d].noGravity = true;
+                Main.dust[d].velocity *= 3f;
+                Main.dust[d].scale += 1f;
+
+                if (Main.rand.Next(4) < 3)
+                {
+                    d = Dust.NewDust(npc.position, npc.width, npc.height, 86, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f);
+                    Main.dust[d].noGravity = true;
+                    Main.dust[d].velocity.Y -= 1f;
+                    Main.dust[d].velocity *= 2f;
+                    Main.dust[d].scale += 0.5f;
+                }
+            }
         }
 
         public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
@@ -5574,6 +5596,35 @@ namespace FargowiltasSouls.NPCs
 
                 if (damage < 6)
                     damage = 6;
+            }
+
+            if (OceanicMaul)
+            {
+                if (RegenTimer < 2)
+                    RegenTimer = 2;
+
+                if (npc.lifeRegen > 0)
+                    npc.lifeRegen = 0;
+
+                npc.lifeRegen -= 48;
+
+                if (damage < 12)
+                    damage = 12;
+            }
+
+            if (Sadism)
+            {
+                if (npc.lifeRegen > 0)
+                    npc.lifeRegen = 0;
+
+                npc.lifeRegen -= 140;
+
+                if (damage < 70)
+                    damage = 70;
+            }
+            else
+            {
+                gotSadism = false;
             }
 		}
 
@@ -8539,7 +8590,16 @@ namespace FargowiltasSouls.NPCs
                     ResetRegenTimer(Main.npc[npc.realLife]);
             }
 
-            if(modPlayer.Eternity)
+            if (OceanicMaul)
+                damage += 30;
+
+            if (CurseoftheMoon)
+            {
+                damage += 5;
+                damage *= 1.1;
+            }
+
+            if (modPlayer.Eternity)
             {
                 if (crit)
                 {
@@ -8582,11 +8642,6 @@ namespace FargowiltasSouls.NPCs
 			{
                 crit = true;
                 retValue = false;
-            }
-
-            if (CurseoftheMoon)
-            {
-                damage *= 1.1;
             }
 
             //normal damage calc

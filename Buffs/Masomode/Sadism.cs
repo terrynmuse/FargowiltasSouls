@@ -1,5 +1,7 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
@@ -8,7 +10,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Sadism");
-            Description.SetDefault("Immune to almost all Masochist Mode debuffs");
+            Description.SetDefault("The power of Masochist Mode is with you");
             Main.buffNoSave[Type] = false;
         }
 
@@ -42,6 +44,34 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("SqueakyToy")] = true;
             player.buffImmune[mod.BuffType("Stunned")] = true;
             player.buffImmune[mod.BuffType("Unstable")] = true;
+        }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            FargoGlobalNPC fargoNPC = npc.GetGlobalNPC<FargoGlobalNPC>();
+            if (!fargoNPC.gotSadism) //reducing redundant debuffs wasting buff slots
+            {
+                fargoNPC.gotSadism = true;
+                npc.buffImmune[BuffID.Poisoned] = true;
+                npc.buffImmune[BuffID.CursedInferno] = true;
+                npc.buffImmune[BuffID.Ichor] = true;
+                npc.buffImmune[BuffID.Electrified] = true;
+                npc.buffImmune[BuffID.BetsysCurse] = true;
+                npc.buffImmune[mod.BuffType("OceanicMaul")] = true;
+                npc.buffImmune[BuffID.Frostburn] = true;
+                npc.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
+                npc.buffImmune[mod.BuffType("Infested")] = true;
+            }
+            npc.poisoned = true;
+            npc.onFire2 = true;
+            npc.ichor = true;
+            fargoNPC.Electrified = true;
+            npc.betsysCurse = true;
+            fargoNPC.OceanicMaul = true;
+            npc.onFrostBurn = true;
+            fargoNPC.CurseoftheMoon = true;
+            fargoNPC.Infested = true;
+            fargoNPC.Sadism = true;
         }
     }
 }

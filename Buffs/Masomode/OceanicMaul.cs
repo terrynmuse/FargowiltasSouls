@@ -31,9 +31,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            if (npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).RegenTimer < 2)
-                npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).RegenTimer = 2;
-            npc.defense -= 60;
+            npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).OceanicMaul = true;
             npc.onFrostBurn = true;
         }
     }

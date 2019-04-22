@@ -1779,7 +1779,7 @@ namespace FargowiltasSouls
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (target.friendly)
+            if (target.townNPC)
                 return;
 
             if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0 && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
@@ -1914,6 +1914,18 @@ namespace FargowiltasSouls
                 palladiumCD = 60;
             }
 
+            if (MasochistSoul)
+            {
+                if (target.FindBuffIndex(mod.BuffType("Sadism")) < 0)
+                {
+                    target.DelBuff(4);
+                    target.AddBuff(mod.BuffType("Sadism"), 600);
+                }
+            }
+
+            if (UniverseEffect || Eternity)
+                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
+
             if (BetsysHeart && crit)
                 target.AddBuff(BuffID.BetsysCurse, 300);
             
@@ -1942,9 +1954,6 @@ namespace FargowiltasSouls
 
             if (ObsidianEnchant)
                 target.AddBuff(BuffID.OnFire, 600);
-
-            if (UniverseEffect || Eternity)
-                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
 
             if (GoldEnchant)
                 target.AddBuff(BuffID.Midas, 120, true);
@@ -2228,6 +2237,12 @@ namespace FargowiltasSouls
                 }
             }
 
+            if (MasochistSoul)
+                target.AddBuff(mod.BuffType("Sadism"), 600);
+
+            if (UniverseEffect || Eternity)
+                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
+
             if (BetsysHeart && crit)
                 target.AddBuff(BuffID.BetsysCurse, 300);
 
@@ -2258,9 +2273,6 @@ namespace FargowiltasSouls
 
             if (ObsidianEnchant)
                 target.AddBuff(BuffID.OnFire, 600);
-
-            if (UniverseEffect || Eternity)
-                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
 
             if (GoldEnchant)
                 target.AddBuff(BuffID.Midas, 120, true);

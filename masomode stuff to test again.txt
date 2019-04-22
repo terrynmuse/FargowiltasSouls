@@ -12,6 +12,10 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-flames of universe gives immunity to npcs against its components
+-did something to force new sadism debuff onto enemies
+-changed how oceanic maul/curse of moon reduce defense (i think it went negative previously)
+-masochist soul lets you inflict sadism now
 -horde adjusted
 -code cleanup
 -CHANGED TYPE<>() GETS TO TYPE("") in fargoplayer, globalproj, globalnpc

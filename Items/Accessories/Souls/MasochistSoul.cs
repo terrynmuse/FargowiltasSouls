@@ -19,9 +19,9 @@ Increases max life by 20%, damage by 30%, and damage reduction by 15%
 Increases max number of minions and sentries by 5
 Grants fastfall and immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
-Your attacks can inflict Cursed Inferno, Ichor, Lightning Rod, and Oceanic Maul
+Your attacks inflict Sadism
 You periodically fire additional attacks depending on weapon type and Tiny Eaters
-Your critical strikes inflict Betsy's Curse and summon Spectral Fishron
+Spectral Fishron periodically manifests to support your critical hits
 You erupt into Spiky Balls and Ancient Visions when injured
 Summons friendly Creepers, probes, plant's offspring, pungent eye, Cultist, and true eyes
 Allows the holder to control gravity");
