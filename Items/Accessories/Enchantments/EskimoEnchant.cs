@@ -41,12 +41,13 @@ You can walk on water and when you do, it freezes and creates spikes
             recipe.AddIngredient(ItemID.PinkEskimoHood);
             recipe.AddIngredient(ItemID.PinkEskimoCoat);
             recipe.AddIngredient(ItemID.PinkEskimoPants);
+            //recipe.AddIngredient(ItemID.IceRod);
             recipe.AddIngredient(ItemID.FrostMinnow);
             recipe.AddIngredient(ItemID.AtlanticCod);
             recipe.AddIngredient(ItemID.MarshmallowonaStick);
-            recipe.AddIngredient(ItemID.SnowmanCannon);
+            
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
