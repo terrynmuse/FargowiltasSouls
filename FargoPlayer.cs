@@ -1116,13 +1116,13 @@ namespace FargowiltasSouls
 
             if (!Soulcheck.GetValue("Tungsten Effect") || !TungstenEnchant)
             {
-                item.scale = 1;
+                //item.SetDefaults();
             }
             else if (TungstenEnchant)
             {
                 if (((item.melee && (item.useStyle == 1 || item.useStyle == 3)) || TerraForce) && item.damage > 0)
                 {
-                    item.scale = 2.5f;
+                    item.scale = 2f;
                 }
             }
 
