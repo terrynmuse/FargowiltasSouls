@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Ammos
 
         public override void SetDefaults()
         {
-            item.damage = 25;
+            item.damage = 20;
             item.ranged = true;
             item.width = 26;
             item.height = 26;
