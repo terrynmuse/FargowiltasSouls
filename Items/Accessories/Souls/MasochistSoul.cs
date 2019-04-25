@@ -124,6 +124,7 @@ Allows the holder to control gravity");
             if (Soulcheck.GetValue("Probes Minion"))
                 player.AddBuff(mod.BuffType("Probes"), 2);
             player.endurance += 0.15f;
+            player.noKnockback = true;
 
             //magical bulb
             player.buffImmune[BuffID.Venom] = true;
