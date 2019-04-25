@@ -780,9 +780,28 @@ namespace FargowiltasSouls.Projectiles
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref int damage, ref bool crit)
         {
-            //Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>(mod);
+            //FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>(mod);
 
+            /*if (FargoWorld.MasochistMode)
+            {
+                switch(projectile.type)
+                {
+                    
+
+                    default:
+                        break;
+                }
+            }*/
+
+            if(squeakyToy)
+            {
+                damage = 1;
+                target.GetModPlayer<FargoPlayer>().Squeak(target.Center);
+            }
+        }
+
+        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        {
             if (FargoWorld.MasochistMode)
             {
                 switch(projectile.type)
@@ -793,7 +812,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.DemonSickle:
-                        if(IsRecolor)
+                        if (IsRecolor)
                         {
                             target.AddBuff(BuffID.ShadowFlame, 300);
                             target.AddBuff(BuffID.Bleeding, 600);
@@ -803,7 +822,7 @@ namespace FargowiltasSouls.Projectiles
                             target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
                             target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         }
-                        
+
                         break;
 
                     case ProjectileID.HarpyFeather:
@@ -820,7 +839,7 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.Stinger:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee))
                             target.AddBuff(BuffID.Venom, Main.rand.Next(180, 900));
-                            target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(120, 1200));
+                        target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(120, 1200));
                         break;
 
                     case ProjectileID.Skull:
@@ -1113,11 +1132,6 @@ namespace FargowiltasSouls.Projectiles
                     default:
                         break;
                 }
-            }
-
-            if(squeakyToy)
-            {
-                modPlayer.Squeak(target.Center);
             }
         }
 

@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Reinforced Plating");
             Tooltip.SetDefault(@"'The sturdiest piece of a defeated foe'
-Grants immunity to Defenseless and Stunned
+Grants immunity to Defenseless, Stunned, and knockback
 Reduces damage taken by 10%");
         }
 
@@ -31,6 +31,7 @@ Reduces damage taken by 10%");
             player.buffImmune[mod.BuffType("Defenseless")] = true;
             player.buffImmune[mod.BuffType("Stunned")] = true;
             player.endurance += 0.1f;
+            player.noKnockback = true;
         }
     }
 }

@@ -35,6 +35,15 @@ namespace FargowiltasSouls.NPCs
             npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune = true;
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            if (FargoWorld.downedFishronEX || !FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBossEX, NPCID.DukeFishron))
+            {
+                npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.FishronCount * .025));
+                npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
+            }
+        }
+
         public override void AI()
         {
             if (npc.buffTime[0] != 0)

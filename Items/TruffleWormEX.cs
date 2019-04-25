@@ -69,6 +69,7 @@ namespace FargowiltasSouls.Items
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(ItemID.TruffleWorm);
+            recipe.AddIngredient(ItemID.ShrimpyTruffle);
             recipe.AddIngredient(mod.ItemType("LunarCrystal"), 5);
 
             recipe.AddTile(mod.TileType("CrucibleCosmosSheet"));

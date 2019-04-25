@@ -1085,8 +1085,6 @@ namespace FargowiltasSouls
             {
                 player.statDefense -= 60;
                 player.endurance = 0;
-                player.longInvince = false;
-                player.noKnockback = false;
 
                 if (MaxLifeReduction > player.statLifeMax2 - 100)
                     MaxLifeReduction = player.statLifeMax2 - 100;
