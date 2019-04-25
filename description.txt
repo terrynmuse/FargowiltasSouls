@@ -21,3 +21,321 @@ This mod adds 2 main things. Souls and Masochist Mode.
 -Masochist mode is a high IQ difficulty mode that offers a new challenge while not relying on just boosting stats. 
 New spawns, tons of new debuffs, new attacks from enemies, and bosses have gone completely insane
 This mode is optional.
+
+
+
+
+
+
+
+
+
+
+
+MEME
+NOTES n things
+Changelog (TEST STUFF)
+-brought back boss scaling
+-Zombie to Armed zombie transform is now all the time instead of post EoC
+-Zombie horde chance is now all the time instead of post EoC, but its a smaller chance to happen
+-Eater of Souls and Crimera hordes are post Boss2 insyead of EoC, and they can horde in larger numbers
+-Cave Bats can spawn in hordes all the time instead of post EoC, max of 4 instead of 5
+-Flying Fish can spawn in hordes all the time instead of post EoC, max of 3 instead of 5
+-Vortex Larva become Vortex Hornets 50% of the time instead of always
+-Twins do not start in phase 2, they enter phase 2 at 90% HP 
+-Corrupt and Crimson Bunnies spawn rate reduced
+-King Slime now only spawns naturally post EoW/BoC instead of post himself, also anytime during a Slime Rain not jsut day
+-Corrupt and Crimson Goldfish can spawn while its raining at night now
+-EoW/BoC can spawn after beating just skeletron, not queen bee AND skeletron
+-mimics now spawn in prehardmode underground
+-white cultist archers also spawn around the dungeon now
+-Gingerbread Men spawn on Hallowed surface at any time instead of only night
+-Lightning Bugs now spawn post any mech instead of post golem
+-Skeletron can spawn anytime in hardmode dungeon instead of post mech
+-Lunar enemeis spawn in the sky post mech instead of always in hard mode
+-QB spawns anytime in hardmode jungle instead of post mech
+-Corrupt critters will continue to spawn in hard mode
+-Lava Slimes, Fire Imps, Dark Casters continue to spawn underground in hardmode
+-Leeches and Blazing Wheels continue to spawn underworld in hard mode
+-Angry Nimbus contines to spawn in the sky in hard mode
+-Demon Eye dashing is slighly more random so they don't all dash at the same time 
+-Demon Eye dash is also slightly slower
+-Vulture feathers are actually named Vulture Feathers 
+-Blood Scythes actually renamed
+-Blood Scythes spawned by EoC now inflict shorter shadowflame and also now inflict Bleeding but not Darkness
+-Duke Fishron EX actually named Duke Fishron EX
+-Skeletron DG mode works better, he doesnt show gore without actually dying, max HP is 1000 higher but when he gets below 1000 he enters the mode and life set to 100
+-BoC shows visual of confusing everyone nearby, when hit, also confusion lasts longer (tbh maybe it should be an aura on hit once hes low )
+-Fixed Prime DR being inconsistent between melee attacks and projectiles
+-Crimslimes don't inflict Bleeding anymore because the Crimson always inflicts it anyway
+-Ice Bats dont inflict Frostburn anymore
+-Giant Flying Foxes dont inflict Squeaky Toy anymore, but do inflict Mutant Nibble
+-Granite Golema and Elemental dont Stone with 100%, now 50%
+-Leeches do not bring your velocity to zero
+-Prime DG mode also works better, and DG mode is 200 instead of 100 HP ech
+-Umbrella Slimes and Present Slimes, Hoppin Jack now inflict Slimed
+-reduced meteor head dash speed
+-Fixed spike slimes spawning king slime only working while king slime is alive as opposed to not 
+-Rainbow Slimes now split into 5 Pinkys and 5 Gastropods 
+-Pinky now inflicts Stunned and splits into 2 Yellows and 1 Mother Slime
+-increased Pinky Slime duration
+-increased Blood Zombie aura range
+-Added Happy Bombs to the clowns explosion
+-Corruptors now inflict Rotting
+-Water Spheres now inflict Wet
+-Ragged Caster projectiles now inflict Hexed instead of Unstable
+-Necromancer attacks inflict Shadowflame
+-Lightning Bug inflicts Electrified instead of Lightning Rod
+-Mechs are not immune to Hallowed Stars, they just have 75% DR 
+-Cultist clones inflict Curse of the moon instead of rotting
+-Moonlord is not immune to phantasm but resists it like Aerial Bane
+-Punget Eye and Galactic Globe upgraded with minions
+
+ADD TO WIKI
+-added combat text to vampire healing
+-bone serpents inflict burning
+-salamanders inflict Poisoned
+-Vile Spit inflicts Rotting
+-Moss Hornets now may spawn in packs of up to 5
+-Ice Slimes and Jungle Slimes may upgrade into Spiked versions
+-Pixies have an aura of Squeaky Toy (not new but missed this)
+
+all things terry did lul
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Antlion Swarmers drop sand when above the player
+-galactic globe immune to curse of the moon
+
+Spawns
+-HM Headless Horsemen????
+-Parrots spawn in the sky
+-mummies spawn in pyramids always 
+-blood feeder - increase stats, heals on damage 
+-angler fish invisible with light, appears in ocean always bleed
+
+Debuffs
+Lava slimes - oiled  (make work)
+-all worm enemies in the game have 7% chance to inflict god eater for 7 seconds on touch
+-frost legion needs some help, all inflict chilled at least, snowballs inflict frostburn
+
+AI
+QB -(take less damage while guards are alive? maybe only in stationary form spraying spike too?? and guards are always charging?)
+crippled only when charging?
+Gastropods explode into lasers (ADD)
+Rainbow slime spawns red, hoppin jacks, yellow, green, blue, purple slimes in order every time its hit 
+fires rainbow slime balls at you
+-all spiders shoot the web spit
+-also not all demon eyes dashing?
+-icy merman shoots twice as fast if he’s in water (also dust ofc)
+-dutchman cannons shoot cannonballs that are obscenely large and inflict Fused
+-Fire Imp, Dark Caster, Tim, and Goblin Sorcerer "panic" when attacked (they fire projectiles 3x as fast and can still shoot after getting damaged)
+-Paladins can throw hammers without having to not be currently attacked
+-enchanted sword family inflict defenseless, have way more knockback resist and don't take five years to attack again when hit
+-Zombies can always open doors like in blood moons
+-clowns throw exploding bananas and explode into snow and sand balls instead of dynamite
+-moths spawn spores everywhere 
+-Pirahnas will hop out the top of water if you are directly above it
+-Ragged Casters teleport when damaged
+
+Withered Weapon 5
+Withered Armor 4
+Marked for Death 6
+Hexed 8
+Cursed Flames 5
+Ichor 5
+Flipped 8
+Unstable 6
+Distorted 2
+Chaos State 0 
+Burning 6 
+Fused 4
+Blackout
+Tongue 0 
+Infested
+Living Wasteland
+Feral Bite 19
+Mutant Nibble 9
+Defenseless 16
+Stunned
+Dazed 3
+Atrophied 3
+Jammed 3
+Reverse Mana Flow 3
+Antisocial 4
+God Eater
+Oozed?
+Webbed?
+Obstructed?
+Electrified 3
+Lightning Rod
+Bleeding
+Poisoned
+Darkness
+Weak
+Broken Armor
+Confused
+Slow
+Sileced
+Cursed
+Chilled 
+Frozen
+Stoned
+Slimed
+Berserked
+Bloodthirsty
+Rotting 11
+Venom 8
+Lethargic
+Clipped Wings 14
+Crippled
+Frostburn
+Shadowflame
+Flames of the Universe
+Squeaky Toy
+
+MISC
+-Fused - a bomb floats above you
+-Hexed - Green Dust like on fire but friendly looking, you know the one
+-Marked for Death - skulls circle around you
+-target dummy and super dummy should be valhalla immune in non masomode
+-stop the guardian from being yeeted
+-1/20 every night for either moon, post plant or sooner? message displays one minute before they start. 
+-Desert is way too bright, need shades
+-red devil trident velocity increases per tick
+-make eoc drop blood scythes
+-add back lightning rain reeeeee, make it much less often 
+
+Frost golem drop 
+immune to Frostburn and Shadowflame
+
+accessory slot adder - crafted from a ton of fragments and luminite
+
+
+
+
+pseudo memes
+
+Boreal - shoot snowballs or snow fall???
+
+if(player.snow)
+{
+	
+}
+
+Ebon
+
+player aura of Rotting and Shadowflame 
+
+Eskimo - ice rod in recipe 
+
+ModPlayer:
+
+if(player.walkingOnWater)
+{
+	Create Ice Rod Projectile right below you
+}
+
+NearbyEffects:
+
+if(modPlayer.EskimoEnchant && tile.type == IceRodBlock)
+{
+	Create spikes
+}
+
+Gladiator
+
+onHitNPC
+
+every 5th hit or so
+
+Spawn several javelins that rain down in the area
+
+Palm
+
+Double tap down (take from vortex)
+
+Spawn Tree if no tree exists
+
+Tree disapears if owner is too far away
+
+Throws coconuts, twice as fast in sandy areas
+
+Pearl
+
+Trail of rainbows, exactly like maso unicorns, variable for rainbows
+rainbow hitting enemies may cause them to half in size and deal half damage
+lasts longer in the hallow
+
+Rain
+
+spawn rain clouds when a enemy dies, or spawn rain drops everywhere above them, or circling storm clouds that shoot lightning 
+
+mahogany
+
+hooks have damage and double in length, projectile.hook? some AI may control how far they go, check examples
+while in jungle they also inflict poison and shoot spores
+
+Shade
+
+
+Wood
+
+GlobalNPC
+Critters all have 999 defense
+All Squirrels, throw acorns at enemies nearby (shuriken AI), birds drop eggs if they fly over enemies, bunnys dash thru enemies and explode into blood 
+
+
+Other todo:
+
+SOUL
+done, look over still
+nerfed amal bullets, damage down
+buffed brain minion, damage up
+tungsten enchant reset set default
+nerfed tungsten size to 100% instead of 150%
+fixed golem drop effect not carrying over to chalice of the moon
+supersonic now says "I am speed"
+
+
+
+terrarium enchant - rainbow color
+nerf king sline rain a bit, until you can actually beat it without being inside lol
+cultist no drop maso drop when summoned with fargo summon
+guardian tome immune to be yeeted by golem 
+top hat squirrel terrarium
+penetrator glow mask and crucible glow mask
+also how about that crucible resprite lol
+remove all thorium butterflies and make sure all vanilla critters are in, all enchant recipes checked over one more time (at home)
+new thorium items and effects time ^ 
+all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
+mechanical cart in supersonic, add some mounts to fishing or someshit
+bugle recipe group
+thorium force with negative regen?
+toggle page bugs, check all combos of mods, add a second page for just fargo, add more toggles for calameme, SoE stacking, infinity relic, etc
+toggle all button
+can you move with gold enchant?
+crucible accept fossils?
+gladiator rework, tiki rework, ninja rework finalize, wood enchants REEE
+tribal charm auto swing?
+absorb hyper mode, for casters amd enchanted weapons, and maybe more 
+can use item no ammo bug, make clestial rune in there and others if there are any 
+add roomba, make sheet somehow and copy generic pet AI
+add fishing rod, one form for now lol
+add deaths meme idea from doc
+invasion length increase??
+
+MUTANT
+seasonal hearts and mana, switch into each other if active
+SoE selling is dumb, not a world thing, only sell if current player has it, like nails only sold with nail gun!
+EA and AA new summons 
+nerf boom shurikens, smaller radius
+make auto house earlier game like supreme early, at solidifier or something
+fix the dam map, chekc heros in mp? or just deactivate in multi - herosmodServices/MapRevealer/ RevealAround Point??
+
+Loot 1000 
+-config?
+
+Equipable 
+-armor works too
+-wings work too
+
