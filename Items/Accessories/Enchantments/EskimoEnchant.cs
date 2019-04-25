@@ -6,6 +6,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class EskimoEnchant : ModItem
     {
+    public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+        
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
