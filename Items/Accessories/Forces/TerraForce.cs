@@ -39,7 +39,7 @@ Getting hit drops your crit back down
             }
 
             tooltip +=
-@"150% increased weapon size
+@"100% increased weapon size
 Attacks may inflict enemies with Lead Poisoning
 Grants immunity to fire, fall damage, and lava
 Increases armor penetration by 5
