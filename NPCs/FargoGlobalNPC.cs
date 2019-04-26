@@ -144,7 +144,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemFistRight: masoHurtAI = 7; break;
 
                     case NPCID.SkeletronPrime:
-                        npc.lifeMax += 1000;
                         masoHurtAI = 8;
                         npc.trapImmune = true;
                         break;
@@ -265,10 +264,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.CultistBossClone:
                         npc.damage = 75;
-                        break;
-
-                    case NPCID.SkeletronHead:
-                        npc.lifeMax += 1000;
                         break;
 
                     case NPCID.SandElemental:
@@ -547,6 +542,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.SkeletronPrime:
                         masoAI = 55;
                         Timer = 0;
+                        npc.dontTakeDamage = true;
                         break;
 
                     case NPCID.VortexHornetQueen:
@@ -2504,29 +2500,6 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-
-                        if (npc.life < 1000 && npc.lifeMax > 1000)
-                        {
-                            for (int k = 0; k < npc.buffImmune.Length; k++)
-                            {
-                                npc.buffImmune[k] = true;
-                            }
-
-                            while (npc.buffTime[0] != 0)
-                            {
-                                npc.DelBuff(0);
-                            }
-
-                            npc.netUpdate = true;
-                            npc.lifeMax = 50;
-
-                            if (npc.life < 50)
-                                npc.life = 50;
-
-                            Main.dayTime = true;
-                            Main.time = 0;
-                            Main.NewText("The Sun Rises..", 175, 75, 255);
-                        }
                         break;
 
                     case 35: //wall of flesh mouth
@@ -3761,10 +3734,6 @@ namespace FargowiltasSouls.NPCs
                                 if (!NPC.AnyNPCs(NPCID.PrimeVice))
                                     NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.PrimeVice, npc.whoAmI, -1f, npc.whoAmI, 0f, 0f, npc.target);
 
-                                /*int heal = npc.lifeMax - npc.life; //full heal
-                                npc.life += heal;
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);*/
-
                                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                                 return;
                             }
@@ -3843,7 +3812,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
-                            masoHurtAI = 0;
+                            masoHurtAI = 6;
                             if (npc.ai[1] == 1f && npc.ai[2] > 2f)
                             {
                                 if (npc.velocity.Length() < 10f)
@@ -3899,32 +3868,6 @@ namespace FargowiltasSouls.NPCs
                                     Main.PlaySound(SoundID.Item11, npc.Center);
                                 }
                             }
-                        }
-
-                        if (npc.life < 1000 && npc.ai[1] != 2f)
-                        {
-                            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
-                            npc.life = npc.lifeMax / 1000;
-                            if (npc.life < 100)
-                                npc.life = 100;
-
-                            npc.defDefense = 9999;
-                            npc.defDamage = 1000;
-                            npc.defense = 9999;
-                            npc.damage = 1000;
-
-                            for (int k = 0; k < npc.buffImmune.Length; k++)
-                            {
-                                npc.buffImmune[k] = true;
-                            }
-
-                            while (npc.buffTime[0] != 0)
-                            {
-                                npc.DelBuff(0);
-                            }
-
-                            npc.ai[1] = 2f;
-                            npc.netUpdate = true;
                         }
                         break;
 
@@ -4497,9 +4440,10 @@ namespace FargowiltasSouls.NPCs
                                 masoBool[0] = true;
                                 npc.defDefense = 9999;
                                 npc.defense = 9999;
+                                npc.defDamage = npc.defDamage * 4 / 3;
+                                npc.damage = npc.defDamage;
                                 int heal = npc.lifeMax - npc.life;
                                 npc.life = npc.lifeMax;
-                                npc.damage = npc.damage * 4 / 3;
                                 if (heal > 0)
                                     CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
                                 npc.netUpdate = true;
@@ -7827,18 +7771,37 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 13: //queen bee
-                        if (FargoWorld.BeeCount < 280 && dropLoot) //check that this isn't a royal subject
+                        if (FargoWorld.BeeCount < 280)
                         {
                             FargoWorld.BeeCount++;
                         }
                         break;
 
                     case 14: //skeletron head
-                        if (FargoWorld.SkeletronCount < 280)
+                        if (npc.ai[1] != 2f)
+                        {
+                            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                            for (int k = 0; k < npc.buffImmune.Length; k++)
+                                npc.buffImmune[k] = true;
+                            while (npc.buffTime[0] != 0)
+                                npc.DelBuff(0);
+
+                            npc.life = npc.lifeMax / 176;
+                            if (npc.life < 50)
+                                npc.life = 50;
+                            npc.defDefense = 9999;
+                            npc.defense = 9999;
+                            npc.defDamage *= 15;
+                            npc.damage *= 15;
+                            npc.ai[1] = 2f;
+                            npc.netUpdate = true;
+                            return false;
+                        }
+                        else if (FargoWorld.SkeletronCount < 280)
                         {
                             FargoWorld.SkeletronCount++;
                         }
-			break;
+			            break;
 
                     case 15: //wall of flesh
                         if (FargoWorld.WallCount < 280)
@@ -7855,7 +7818,26 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 17: //skeletron prime
-                        if (FargoWorld.PrimeCount < 120)
+                        if (npc.ai[1] != 2f)
+                        {
+                            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                            for (int k = 0; k < npc.buffImmune.Length; k++)
+                                npc.buffImmune[k] = true;
+                            while (npc.buffTime[0] != 0)
+                                npc.DelBuff(0);
+
+                            npc.life = npc.lifeMax / 420;
+                            if (npc.life < 100)
+                                npc.life = 100;
+                            npc.defDefense = 9999;
+                            npc.defense = 9999;
+                            npc.defDamage *= 13;
+                            npc.damage *= 13;
+                            npc.ai[1] = 2f;
+                            npc.netUpdate = true;
+                            return false;
+                        }
+                        else if (FargoWorld.PrimeCount < 120)
                         {
                             FargoWorld.PrimeCount++;
                         }
@@ -8142,15 +8124,29 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 38: //prime limbs
-                        if (npc.ai[1] >= 0f && npc.ai[1] < 200f && Main.npc[(int)npc.ai[1]].type == NPCID.SkeletronPrime && Main.npc[(int)npc.ai[1]].ai[0] == 1f)
+                        if (npc.ai[1] >= 0f && npc.ai[1] < 200f && Main.npc[(int)npc.ai[1]].type == NPCID.SkeletronPrime)
                         {
-                            switch(npc.type)
+                            if (Main.npc[(int)npc.ai[1]].dontTakeDamage)
                             {
-                                case NPCID.PrimeLaser: Main.npc[(int)npc.ai[1]].ai[0] = 3f; break;
-                                case NPCID.PrimeCannon: Main.npc[(int)npc.ai[1]].ai[0] = 4f; break;
-                                case NPCID.PrimeSaw: Main.npc[(int)npc.ai[1]].ai[0] = 5f; break;
-                                case NPCID.PrimeVice: Main.npc[(int)npc.ai[1]].ai[0] = 6f; break;
-                                default: break;
+                                Main.npc[(int)npc.ai[1]].dontTakeDamage = false;
+                                if (Main.netMode == 2)
+                                {
+                                    var netMessage = mod.GetPacket();
+                                    netMessage.Write((byte)2);
+                                    netMessage.Write((byte)npc.ai[1]);
+                                    netMessage.Send();
+                                }
+                            }
+                            if (Main.npc[(int)npc.ai[1]].ai[0] == 1f)
+                            {
+                                switch (npc.type)
+                                {
+                                    case NPCID.PrimeLaser: Main.npc[(int)npc.ai[1]].ai[0] = 3f; break;
+                                    case NPCID.PrimeCannon: Main.npc[(int)npc.ai[1]].ai[0] = 4f; break;
+                                    case NPCID.PrimeSaw: Main.npc[(int)npc.ai[1]].ai[0] = 5f; break;
+                                    case NPCID.PrimeVice: Main.npc[(int)npc.ai[1]].ai[0] = 6f; break;
+                                    default: break;
+                                }
                             }
                             Main.npc[(int)npc.ai[1]].netUpdate = true;
                         }
@@ -8371,29 +8367,24 @@ namespace FargowiltasSouls.NPCs
 
                     case 8: //skelly prime DR
                         int armCount = 0;
-                        bool[] arms = { NPC.AnyNPCs(NPCID.PrimeCannon), NPC.AnyNPCs(NPCID.PrimeLaser), NPC.AnyNPCs(NPCID.PrimeSaw), NPC.AnyNPCs(NPCID.PrimeVice) };
-
-                        for (int i = 0; i < 4; i++)
+                        for (int i = 0; i < 200; i++)
                         {
-                            if (arms[i])
-                            {
+                            if (Main.npc[i].active && Main.npc[i].type >= 128 && Main.npc[i].type <= 131 && Main.npc[i].ai[1] == npc.whoAmI)
                                 armCount++;
-                            }
                         }
-
                         switch (armCount)
                         {
                             case 4:
-                                damage = damage / 20;
+                                damage = 0;
                                 break;
                             case 3:
                                 damage = damage / 2;
                                 break;
                             case 2:
-                                damage = damage * 3 / 4;
+                                damage = (int)(damage * 0.75);
                                 break;
                             case 1:
-                                damage = damage * 9 / 10;
+                                damage = (int)(damage * 0.9);
                                 break;
                             default:
                                 break;
@@ -8540,27 +8531,24 @@ namespace FargowiltasSouls.NPCs
 
                     case 8: //skelly prime DR
                         int armCount = 0;
-                        bool[] arms = { NPC.AnyNPCs(NPCID.PrimeCannon), NPC.AnyNPCs(NPCID.PrimeLaser), NPC.AnyNPCs(NPCID.PrimeSaw), NPC.AnyNPCs(NPCID.PrimeVice) };
-                        for (int i = 0; i < 4; i++)
+                        for (int i = 0; i < 200; i++)
                         {
-                            if (arms[i])
-                            {
+                            if (Main.npc[i].active && Main.npc[i].type >= 128 && Main.npc[i].type <= 131 && Main.npc[i].ai[1] == npc.whoAmI)
                                 armCount++;
-                            }
                         }
                         switch (armCount)
                         {
                             case 4:
-                                damage = damage / 20;
+                                damage = 0;
                                 break;
                             case 3:
                                 damage = damage / 2;
                                 break;
                             case 2:
-                                damage = damage * 3 / 4;
+                                damage = (int)(damage * 0.75);
                                 break;
                             case 1:
-                                damage = damage * 9 / 10;
+                                damage = (int)(damage * 0.9);
                                 break;
                             default:
                                 break;
