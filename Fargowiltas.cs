@@ -373,6 +373,25 @@ namespace FargowiltasSouls
                     }
                     break;
 
+                case 2: //client sychronizing royal subjects
+                    if (Main.netMode == 1)
+                    {
+                        Main.NewText("got bee");
+                        byte bee = reader.ReadByte();
+                        NPC minion = Main.npc[bee];
+                        minion.GivenName = "Royal Subject";
+                        minion.scale *= .5f;
+                        minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
+                        minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[1] = true;
+                        minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = true;
+                        minion.GetGlobalNPC<FargoGlobalNPC>().dropLoot = false;
+                        minion.lifeMax = reader.ReadInt32();
+                        minion.life = minion.lifeMax;
+                        minion.damage = reader.ReadInt32();
+                        minion.defDamage = minion.damage;
+                    }
+                    break;
+
                 case 77: //server side spawning fishron EX
                     if (Main.netMode == 2)
                     {

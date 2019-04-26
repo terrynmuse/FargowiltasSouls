@@ -2388,63 +2388,49 @@ namespace FargowiltasSouls.NPCs
                     case 33: //queen bee
                         beeBoss = npc.whoAmI;
 
-                        if (npc.life < npc.lifeMax * .5f && !masoBool[0])
+                        if (!masoBool[0] && npc.life < npc.lifeMax / 2)
                         {
                             masoBool[0] = true;
-
-                            int n = NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-10, 10), (int)npc.Center.Y, NPCID.QueenBee);
-                            NPC minion = Main.npc[n];
-                            minion.GivenName = "Royal Subject";
-                            minion.scale *= .5f;
-                            minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
-                            minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[1] = true;
-                            minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = true;
-                            minion.GetGlobalNPC<FargoGlobalNPC>().dropLoot = false;
-                            minion.lifeMax = npc.lifeMax / 3;
-                            minion.life = minion.lifeMax;
-                            minion.damage = npc.damage / 2;
+                            if (Main.netMode != 1)
+                            {
+                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RoyalSubject"));
+                                if (n < 200 && Main.netMode == 2)
+                                    NetMessage.SendData(23, -1, -1, null, n);
+                            }
                         }
 
-                        if (npc.life < npc.lifeMax * .45f && !masoBool[1])
+                        if (!masoBool[1] && npc.life < npc.lifeMax / 4)
                         {
                             masoBool[1] = true;
-
-                            int n = NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-10, 10), (int)npc.Center.Y, NPCID.QueenBee);
-                            NPC minion = Main.npc[n];
-                            minion.GivenName = "Royal Subject";
-                            minion.scale *= .5f;
-                            minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
-                            minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[1] = true;
-                            minion.GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = true;
-                            minion.GetGlobalNPC<FargoGlobalNPC>().dropLoot = false;
-                            minion.lifeMax = npc.lifeMax / 3;
-                            minion.life = minion.lifeMax;
-                            minion.damage = npc.damage / 2;
+                            if (Main.netMode != 1)
+                            {
+                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RoyalSubject"));
+                                if (n < 200 && Main.netMode == 2)
+                                    NetMessage.SendData(23, -1, -1, null, n);
+                            }
                         }
 
-                        //original queen and at least one minion, or a swarm but oh well :ech:, also only while stationary mode
-                        if (!masoBool[2] && NPC.CountNPCS(NPCID.QueenBee) > 1 && (npc.ai[0] == 3f || npc.ai[0] == 1f))
+                        //original queen and only while stationary mode
+                        if (!masoBool[2] && (npc.ai[0] == 3f || npc.ai[0] == 1f))
                         {
                             Counter++;
-
                             if (Counter >= 90)
                             {
                                 Counter = 0;
-
                                 Counter2++;
-
                                 if (Counter2 > 3)
                                 {
-                                    FargoGlobalProjectile.XWay(16, npc.Center, ProjectileID.Stinger, 6, npc.damage / 3, 1);
+                                    if (Main.netMode != 1)
+                                        FargoGlobalProjectile.XWay(16, npc.Center, ProjectileID.Stinger, 6, npc.damage / 4, 1);
                                     Counter2 = 0;
                                 }
                                 else
                                 {
-                                    FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.Stinger, 6, npc.damage / 3, 1);
+                                    if (Main.netMode != 1)
+                                        FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.Stinger, 6, npc.damage / 4, 1);
                                 }
                             }
                         }
-
                         break;
 
                     case 34: //skeletron head
@@ -7841,7 +7827,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 13: //queen bee
-                        if (FargoWorld.BeeCount < 280)
+                        if (FargoWorld.BeeCount < 280 && dropLoot) //check that this isn't a royal subject
                         {
                             FargoWorld.BeeCount++;
                         }
