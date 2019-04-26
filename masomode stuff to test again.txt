@@ -12,6 +12,8 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-ML drops celestial seal
+-all bosses now drop up to 10 potions per kill (was 5 max)
 -fishron EX stats don't benefit from fishrons killed until fishron EX has been killed
 -rearranged stuff, mainly moving debuffs from modifyhitplayer to onhitplayer
 -sharkrons and bubbles scale with defeated fishrons

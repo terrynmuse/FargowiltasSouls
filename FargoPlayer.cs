@@ -202,6 +202,7 @@ namespace FargowiltasSouls
         public bool CyclonicFin;
         public int CyclonicFinCD;
         public bool MasochistSoul;
+        public bool CelestialSeal;
 
         //debuffs
         public bool Hexed;
@@ -263,8 +264,11 @@ namespace FargowiltasSouls
 
                 //ErrorLogger.Log(log);
 
+                if (CelestialSeal)
+                    FargoDisabledSouls.Add("CelestialSeal");
+
                 return new TagCompound {
-                {name, FargoDisabledSouls}
+                    {name, FargoDisabledSouls}
                 }; ;
             }
 
@@ -277,6 +281,8 @@ namespace FargowiltasSouls
             //string log = name + " loaded: ";
 
             disabledSouls = tag.GetList<string>(name);
+
+            CelestialSeal = disabledSouls.Contains("CelestialSeal");
 
             //var FargoDisabledSouls = tag.GetList<string>(name);
             //foreach (string disabledSoul in FargoDisabledSouls)
@@ -399,6 +405,12 @@ namespace FargowiltasSouls
 
         public override void ResetEffects()
         {
+            if (CelestialSeal)
+            {
+                player.extraAccessory = true;
+                player.extraAccessorySlots = 2;
+            }
+
             AttackSpeed = 1f;
 
             Wood = false;

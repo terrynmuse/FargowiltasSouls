@@ -7383,7 +7383,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        int maxEOC = Main.rand.Next(6) + 1;
+                        int maxEOC = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxEOC; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ThornsPotion);
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AgitatingLens"));
@@ -7403,7 +7403,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         if (dropPotions)
                         {
-                            int max = Main.rand.Next(6) + 1;
+                            int max = Main.rand.Next(10) + 1;
                             for (int i = 0; i < max; i++)
                                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RagePotion);
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CorruptHeart"));
@@ -7411,20 +7411,20 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        int maxBOC = Main.rand.Next(6) + 1;
+                        int maxBOC = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxBOC; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.WrathPotion);
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GuttedHeart"));
                         break;
 
                     case NPCID.SkeletronHead:
-                        int maxSkel = Main.rand.Next(6) + 1;
+                        int maxSkel = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxSkel; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TitanPotion);
                         break;
 
                     case NPCID.QueenBee:
-                        int maxQB = Main.rand.Next(6) + 1;
+                        int maxQB = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxQB; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SummoningPotion);
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("QueenStinger"));
@@ -7432,7 +7432,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PungentEyeball"));
-                        int maxWOF = Main.rand.Next(6) + 1;
+                        int maxWOF = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxWOF; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.InfernoPotion);
                         break;
@@ -7441,7 +7441,7 @@ namespace FargowiltasSouls.NPCs
                         if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
                         {
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FusedLens"));
-                            int max = Main.rand.Next(6) + 1;
+                            int max = Main.rand.Next(10) + 1;
                             for (int i = 0; i < max; i++)
                                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicPowerPotion);
                         }
@@ -7451,7 +7451,7 @@ namespace FargowiltasSouls.NPCs
                         if (!BossIsAlive(ref retiBoss, NPCID.Retinazer))
                         {
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FusedLens"));
-                            int max = Main.rand.Next(6) + 1;
+                            int max = Main.rand.Next(10) + 1;
                             for (int i = 0; i < max; i++)
                                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicPowerPotion);
                         }
@@ -7459,28 +7459,28 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.TheDestroyer:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GroundStick"));
-                        int maxDes = Main.rand.Next(6) + 1;
+                        int maxDes = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxDes; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GravitationPotion);
                         break;
 
                     case NPCID.SkeletronPrime:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ReinforcedPlating"));
-                        int maxSP = Main.rand.Next(6) + 1;
+                        int maxSP = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxSP; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EndurancePotion);
                         break;
 
                     case NPCID.Plantera:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MagicalBulb"));
-                        int maxPlant = Main.rand.Next(6) + 1;
+                        int maxPlant = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxPlant; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CalmingPotion);
                         break;
 
                     case NPCID.Golem:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LihzahrdTreasureBox"));
-                        int maxGolem = Main.rand.Next(6) + 1;
+                        int maxGolem = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxGolem; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LifeforcePotion);
                         break;
@@ -7501,7 +7501,7 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MutantAntibodies"));
                             type = ItemID.Bacon;
                         }
-                        int maxDF = Main.rand.Next(6) + 1;
+                        int maxDF = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxDF; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, type);
                         break;
@@ -7512,7 +7512,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.MoonLordCore:
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GalacticGlobe"));
-                        int maxML = Main.rand.Next(5) + 1;
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CelestialSeal"));
+                        int maxML = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxML; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LunarCrystal"));
                         break;
