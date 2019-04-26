@@ -3298,13 +3298,13 @@ namespace FargowiltasSouls.NPCs
                                     masoBool[3] = !masoBool[3];
                                     if (masoBool[3])
                                     {
-                                        velocity = velocity.RotatedBy(MathHelper.ToRadians(-15));
-                                        max = 4;
+                                        velocity = velocity.RotatedBy(MathHelper.ToRadians(-25));
+                                        max = 6;
                                     }
                                     else
                                     {
-                                        velocity = velocity.RotatedBy(MathHelper.ToRadians(-10));
-                                        max = 3;
+                                        velocity = velocity.RotatedBy(MathHelper.ToRadians(-30));
+                                        max = 7;
                                     }
                                     for (int i = 0; i < max; i++)
                                     {
