@@ -12,6 +12,10 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-ML socket lasers actually stop when ML dies
+-vortex pillar fires cultist lightning orb and periodically reflects projectiles
+-stardust pillar emits omnidirectional rings of ancient light, 8sec
+-solar pillar shoots 6-spreads of cultist's homing fireballs
 -nebula pillar continuously shoots bolts that rain down on you and FUCKING TELEPORTS
 -srollers no longer have boosted defense, only have 200% max life
 -maso minions no longer spawn targeting npc at index 0

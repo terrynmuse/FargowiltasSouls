@@ -1955,10 +1955,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 26: //nebula pill
+                        Aura(npc, 5000, mod.BuffType("Atrophied"), false, 58);
+                        Aura(npc, 5000, mod.BuffType("Jammed"));
+                        Aura(npc, 5000, mod.BuffType("Antisocial"));
                         if (!npc.dontTakeDamage)
                         {
-                            Counter++;
-                            if (Counter > 300)
+                            if (++Counter > 300)
                             {
                                 Counter = 0;
                                 npc.TargetClosest(false);
@@ -1997,11 +1999,10 @@ namespace FargowiltasSouls.NPCs
                                 Main.PlaySound(SoundID.Item8, npc.Center);
                                 npc.netUpdate = true;
                             }
-
-                            Timer--;
-                            if (Timer <= 0)
+                            
+                            if (++Timer > 120)
                             {
-                                Timer = 120;
+                                Timer = 0;
                                 npc.TargetClosest(false);
                                 if (npc.HasPlayerTarget && Main.netMode != 1)
                                 {
@@ -2013,77 +2014,114 @@ namespace FargowiltasSouls.NPCs
                                         Vector2 speed = Main.player[npc.target].Center - position;
                                         speed.Normalize();
                                         speed *= 10f;
-                                        Projectile.NewProjectile(position, speed, ProjectileID.NebulaLaser, 35, 0f, Main.myPlayer);
+                                        Projectile.NewProjectile(position, speed, ProjectileID.NebulaLaser, 40, 0f, Main.myPlayer);
                                     }
                                 }
                             }
                         }
-                        //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
-
-                        Aura(npc, 5000, mod.BuffType("Atrophied"), false, 58);
-                        Aura(npc, 5000, mod.BuffType("Jammed"));
-                        Aura(npc, 5000, mod.BuffType("Antisocial"));
-
-                        /*foreach (Player p in Main.player)
-                        {
-                            if (p.active && npc.Distance(p.Center) < 5000)
-                            {
-                                p.AddBuff(mod.BuffType("Atrophied"), 2);
-                                p.AddBuff(mod.BuffType("Jammed"), 2);
-                                p.AddBuff(mod.BuffType("Antisocial"), 2);
-                            }
-                        }*/
                         break;
 
                     case 27: //solar pill
-
                         Aura(npc, 5000, mod.BuffType("ReverseManaFlow"), false, DustID.SolarFlare);
                         Aura(npc, 5000, mod.BuffType("Jammed"));
                         Aura(npc, 5000, mod.BuffType("Antisocial"));
-
-                        /*foreach (Player p in Main.player)
+                        if (!npc.dontTakeDamage)
                         {
-                            if (p.active && npc.Distance(p.Center) < 5000)
+                            if (++Timer > 300)
                             {
-                                p.AddBuff(mod.BuffType("ReverseManaFlow"), 2);
-                                p.AddBuff(mod.BuffType("Jammed"), 2);
-                                p.AddBuff(mod.BuffType("Antisocial"), 2);
+                                Timer = 0;
+                                npc.TargetClosest(false);
+                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                {
+                                    const float rotate = (float)Math.PI / 4f;
+                                    Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                                    speed.Normalize();
+                                    speed *= 5f;
+                                    for (int i = -2; i <= 2; i++)
+                                        Projectile.NewProjectile(npc.Center, speed.RotatedBy(i * rotate), ProjectileID.CultistBossFireBall, 40, 0f, Main.myPlayer);
+                                }
                             }
-                        }*/
+                        }
                         break;
 
                     case 28: //stardust pill
-
                         Aura(npc, 5000, mod.BuffType("Atrophied"), false, 20);
                         Aura(npc, 5000, mod.BuffType("Jammed"));
                         Aura(npc, 5000, mod.BuffType("ReverseManaFlow"));
-
-                        /*foreach (Player p in Main.player)
+                        if (!npc.dontTakeDamage)
                         {
-                            if (p.active && npc.Distance(p.Center) < 5000)
+                            if (++Timer > 480)
                             {
-                                p.AddBuff(mod.BuffType("Atrophied"), 2);
-                                p.AddBuff(mod.BuffType("Jammed"), 2);
-                                p.AddBuff(mod.BuffType("ReverseManaFlow"), 2);
+                                Timer = 0;
+                                npc.TargetClosest(false);
+                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                {
+                                    const float rotate = (float)Math.PI / 8f;
+                                    Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                                    speed.Normalize();
+                                    speed *= 8f;
+                                    for (int i = 0; i < 16; i++)
+                                    {
+                                        Vector2 vel = speed.RotatedBy(rotate * i);
+                                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientLight, 0,
+                                            0f, (Main.rand.NextFloat() - 0.5f) * 0.3f * 6.28318548202515f / 60f, vel.X, vel.Y);
+                                        if (n < 200)
+                                        {
+                                            Main.npc[n].velocity = vel;
+                                            Main.npc[n].netUpdate = true;
+                                            if (Main.netMode == 2)
+                                                NetMessage.SendData(23, -1, -1, null, n);
+                                        }
+                                    }
+                                }
                             }
-                        }*/
+                        }
                         break;
 
                     case 29: //vortex pill
-
                         Aura(npc, 5000, mod.BuffType("Atrophied"), false, DustID.Vortex);
                         Aura(npc, 5000, mod.BuffType("ReverseManaFlow"));
                         Aura(npc, 5000, mod.BuffType("Antisocial"));
-
-                        /*foreach (Player p in Main.player)
+                        if (!npc.dontTakeDamage)
                         {
-                            if (p.active && npc.Distance(p.Center) < 5000)
+                            if (++Counter > 360) //triggers "shield going down" animation
                             {
-                                p.AddBuff(mod.BuffType("Atrophied"), 2);
-                                p.AddBuff(mod.BuffType("ReverseManaFlow"), 2);
-                                p.AddBuff(mod.BuffType("Antisocial"), 2);
+                                Counter = 0;
+                                npc.ai[3] = 1f;
+                                npc.netUpdate = true;
                             }
-                        }*/
+
+                            npc.reflectingProjectiles = npc.ai[3] > 0f && npc.ai[3] <= 60f;
+                            if (npc.reflectingProjectiles) //dust
+                            {
+                                for (int i = 0; i < 20; i++)
+                                {
+                                    Vector2 offset = new Vector2();
+                                    double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                                    offset.X += (float)(Math.Sin(angle) * npc.height / 2);
+                                    offset.Y += (float)(Math.Cos(angle) * npc.height / 2);
+                                    Dust dust = Main.dust[Dust.NewDust(
+                                        npc.Center + offset - new Vector2(4, 4), 0, 0,
+                                        DustID.Vortex, 0, 0, 100, Color.White, 1f
+                                        )];
+                                    dust.noGravity = true;
+                                }
+                            }
+
+                            if (++Timer > 300)
+                            {
+                                Timer = 0;
+                                npc.TargetClosest(false);
+                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                {
+                                    Vector2 speed = Main.player[npc.target].Center + Main.player[npc.target].velocity * 15f - npc.Center;
+                                    speed.Normalize();
+                                    speed *= 4f;
+                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
+                                }
+                            }
+                        }
+                        //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         break;
 
                     case 30: //lunatic cultist
@@ -2944,7 +2982,7 @@ namespace FargowiltasSouls.NPCs
 
                     case 38: //moon lord core
                         moonBoss = npc.whoAmI;
-
+                        
                         if (!masoBool[0])
                         {
                             masoBool[0] = !npc.dontTakeDamage; //remembers even if core becomes invulnerable again
@@ -3085,6 +3123,7 @@ namespace FargowiltasSouls.NPCs
                                                     if (n < 200)
                                                     {
                                                         Main.npc[n].velocity = vel;
+                                                        Main.npc[n].netUpdate = true;
                                                         if (Main.netMode == 2)
                                                             NetMessage.SendData(23, -1, -1, null, n);
                                                     }
@@ -4586,7 +4625,7 @@ namespace FargowiltasSouls.NPCs
                             if (npc.ai[0] == -2f) //eye socket is empty
                             {
                                 if (npc.ai[1] == 0f //happens every 32 ticks
-                                    && Main.npc[(int)npc.ai[3]].life > 1) //will stop when ML dies
+                                    && Main.npc[(int)npc.ai[3]].ai[0] != 2f) //will stop when ML dies
                                 {
                                     Timer++;
                                     if (Timer >= 29) //warning dust, reset timer
