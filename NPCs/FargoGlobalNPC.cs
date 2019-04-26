@@ -2313,11 +2313,10 @@ namespace FargowiltasSouls.NPCs
                                         masoBool[0] = true;
                                         SharkCount = 1;
                                         Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
-
                                         npc.defDamage *= 20;
                                         npc.defDefense *= 999;
-
                                         npc.netUpdate = true;
+                                        Main.NewText("King Slime has enraged!", 175, 75, 255);
                                     }
                                 }
                                 else
@@ -3252,6 +3251,7 @@ namespace FargowiltasSouls.NPCs
                                 npc.defDamage *= 20;
                                 npc.defDefense *= 999;
                                 npc.netUpdate = true;
+                                Main.NewText("Golem has enraged!", 175, 75, 255);
                             }
 
                             Counter = 0;
