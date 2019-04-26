@@ -2323,7 +2323,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-                        else
+                        else //is berserk
                         {
                             npc.damage = npc.defDamage;
                             npc.defense = npc.defDefense;
@@ -3315,14 +3315,37 @@ namespace FargowiltasSouls.NPCs
                                 Player p = Main.player[npc.target];
 
                                 masoState++;
-                                if (masoState >= 3) //spray random spiky balls
+                                if (masoState >= 3 && p.active && !p.dead) //spray random spiky balls
                                 {
                                     masoState = 0;
                                     Vector2 speed = p.Center - npc.Center;
+                                    speed.Y -= Math.Abs(speed.X) * 0.1f;
                                     speed.Normalize();
                                     speed *= 20f + Main.rand.Next(-50, 51) * 0.025f;
                                     speed = speed.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-10, 11)));
-                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), speed.X, speed.Y, ProjectileID.SpikyBallTrap, npc.damage, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height), speed.X, speed.Y, ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
+
+                                    Vector2 velocity = p.Center - npc.Center;
+                                    velocity.Normalize();
+                                    velocity *= 11f;
+                                    int max;
+                                    masoBool[3] = !masoBool[3];
+                                    if (masoBool[3])
+                                    {
+                                        velocity = velocity.RotatedBy(MathHelper.ToRadians(-15));
+                                        max = 4;
+                                    }
+                                    else
+                                    {
+                                        velocity = velocity.RotatedBy(MathHelper.ToRadians(-10));
+                                        max = 3;
+                                    }
+                                    for (int i = 0; i < max; i++)
+                                    {
+                                        int p1 = Projectile.NewProjectile(npc.Center, velocity, ProjectileID.EyeBeam, npc.damage / 4, 0f, Main.myPlayer);
+                                        Main.projectile[p1].timeLeft = 300;
+                                        velocity = velocity.RotatedBy(MathHelper.ToRadians(10));
+                                    }
                                 }
 
                                 if (p.mount.Active)
