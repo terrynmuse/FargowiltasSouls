@@ -12,6 +12,12 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-nebula pillar continuously shoots bolts that rain down on you and FUCKING TELEPORTS
+-srollers no longer have boosted defense, only have 200% max life
+-maso minions no longer spawn targeting npc at index 0
+-maso minions are better about forgetting distant targets
+-pillars have 500% life, works in MP(?)
+-nerfed hornet/suckler fake death rate
 -ML drops celestial seal
 -all bosses now drop up to 10 potions per kill (was 5 max)
 -fishron EX stats don't benefit from fishrons killed until fishron EX has been killed

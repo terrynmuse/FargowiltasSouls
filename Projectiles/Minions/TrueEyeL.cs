@@ -91,6 +91,8 @@ namespace FargowiltasSouls.Projectiles.Minions
 
                             if (projectile.localAI[0] > 120f)
                             {
+                                if (projectile.Distance(npc.Center) > 1500f) //give up if too far
+                                    TargetEnemies();
                                 projectile.localAI[0] = 0f;
                                 projectile.ai[1]++;
                             }

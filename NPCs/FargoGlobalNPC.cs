@@ -221,9 +221,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SolarSroller:
-                        npc.lifeMax *= 3;
-                        npc.defDefense *= 2;
-                        npc.defense *= 2;
+                        npc.lifeMax *= 2;
                         npc.scale += 0.5f;
                         break;
 
@@ -406,18 +404,22 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.LunarTowerNebula:
                         masoAI = 26;
+                        npc.lifeMax *= 5;
                         break;
 
                     case NPCID.LunarTowerSolar:
                         masoAI = 27;
+                        npc.lifeMax *= 5;
                         break;
 
                     case NPCID.LunarTowerStardust:
                         masoAI = 28;
+                        npc.lifeMax *= 5;
                         break;
 
                     case NPCID.LunarTowerVortex:
                         masoAI = 29;
+                        npc.lifeMax *= 5;
                         break;
 
                     case NPCID.CultistBoss:
@@ -1953,6 +1955,70 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 26: //nebula pill
+                        if (!npc.dontTakeDamage)
+                        {
+                            Counter++;
+                            if (Counter > 300)
+                            {
+                                Counter = 0;
+                                npc.TargetClosest(false);
+                                for (int i = 0; i < 40; ++i)
+                                {
+                                    int d = Dust.NewDust(npc.position, npc.width, npc.height, 242, 0.0f, 0.0f, 0, new Color(), 1f);
+                                    Dust dust = Main.dust[d];
+                                    dust.velocity *= 4f;
+                                    Main.dust[d].noGravity = true;
+                                    Main.dust[d].scale += 1.5f;
+                                }
+                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                {
+                                    int x = (int)Main.player[npc.target].Center.X / 16;
+                                    int y = (int)Main.player[npc.target].Center.Y / 16;
+                                    for (int i = 0; i < 100; i++)
+                                    {
+                                        int newX = x + Main.rand.Next(10, 31) * (Main.rand.Next(2) == 0 ? 1 : -1);
+                                        int newY = y + Main.rand.Next(-15, 16);
+                                        Vector2 newPos = new Vector2(newX * 16, newY * 16);
+                                        if (!Collision.SolidCollision(newPos, npc.width, npc.height))
+                                        {
+                                            npc.Center = newPos;
+                                            break;
+                                        }
+                                    }
+                                }
+                                for (int i = 0; i < 40; ++i)
+                                {
+                                    int d = Dust.NewDust(npc.position, npc.width, npc.height, 242, 0.0f, 0.0f, 0, new Color(), 1f);
+                                    Dust dust = Main.dust[d];
+                                    dust.velocity *= 4f;
+                                    Main.dust[d].noGravity = true;
+                                    Main.dust[d].scale += 1.5f;
+                                }
+                                Main.PlaySound(SoundID.Item8, npc.Center);
+                                npc.netUpdate = true;
+                            }
+
+                            Timer--;
+                            if (Timer <= 0)
+                            {
+                                Timer = 120;
+                                npc.TargetClosest(false);
+                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                {
+                                    for (int i = 0; i < 3; i++)
+                                    {
+                                        Vector2 position = Main.player[npc.target].Center;
+                                        position.X += Main.rand.Next(-300, 301);
+                                        position.Y -= Main.rand.Next(500, 801);
+                                        Vector2 speed = Main.player[npc.target].Center - position;
+                                        speed.Normalize();
+                                        speed *= 10f;
+                                        Projectile.NewProjectile(position, speed, ProjectileID.NebulaLaser, 35, 0f, Main.myPlayer);
+                                    }
+                                }
+                            }
+                        }
+                        //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
 
                         Aura(npc, 5000, mod.BuffType("Atrophied"), false, 58);
                         Aura(npc, 5000, mod.BuffType("Jammed"));
@@ -7953,7 +8019,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 31: //alien hornet
-                        if (Main.rand.Next(10) != 0)
+                        if (Main.rand.Next(5) != 0)
                         {
                             Main.PlaySound(npc.DeathSound, npc.Center); //die without contributing to pillar shield
                             npc.active = false;
@@ -7967,7 +8033,7 @@ namespace FargowiltasSouls.NPCs
                             npc.Transform(NPCID.NebulaBrain);
                             return false;
                         }
-                        else if (Main.rand.Next(10) != 0) //die without contributing to pillar shield
+                        else if (Main.rand.Next(5) != 0) //die without contributing to pillar shield
                         {
                             Main.PlaySound(npc.DeathSound, npc.Center);
                             npc.active = false;

@@ -361,6 +361,18 @@ namespace FargowiltasSouls
                     }
                     break;
 
+                case 1: //server side synchronize pillar data request
+                    if (Main.netMode == 2)
+                    {
+                        byte pillar = reader.ReadByte();
+                        if (Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoAI == 0)
+                        {
+                            Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().SetDefaults(Main.npc[pillar]);
+                            Main.npc[pillar].life = Main.npc[pillar].lifeMax;
+                        }
+                    }
+                    break;
+
                 case 77: //server side spawning fishron EX
                     if (Main.netMode == 2)
                     {
@@ -369,9 +381,6 @@ namespace FargowiltasSouls
                         int y = reader.ReadInt32();
                         FargoGlobalNPC.spawnFishronEX = true;
                         NPC.NewNPC(x, y, NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, target);
-                        /*int n = NPC.NewNPC(x, y, NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, target);
-                        if (n < 200)
-                            NetMessage.SendData(23, -1, -1, null, n);*/
                         FargoGlobalNPC.spawnFishronEX = false;
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has awoken!"), new Color(0, 100, 255));
                     }

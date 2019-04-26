@@ -361,14 +361,35 @@ namespace FargowiltasSouls
 
             for (int i = 0; i < 200; i++)
             {
-                if (Main.npc[i].type == NPCID.LunarTowerSolar)
-                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 27;
-                if (Main.npc[i].type == NPCID.LunarTowerVortex)
-                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 29;
-                if (Main.npc[i].type == NPCID.LunarTowerNebula)
-                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 26;
-                if (Main.npc[i].type == NPCID.LunarTowerStardust)
-                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 28;
+                if (Main.npc[i].type == NPCID.LunarTowerSolar
+                || Main.npc[i].type == NPCID.LunarTowerVortex
+                || Main.npc[i].type == NPCID.LunarTowerNebula
+                || Main.npc[i].type == NPCID.LunarTowerStardust)
+                {
+                    if (Main.netMode == 1)
+                    {
+                        var netMessage = mod.GetPacket();
+                        netMessage.Write((byte)1);
+                        netMessage.Write((byte)i);
+                        netMessage.Send();
+                        byte masoAI = 0;
+                        switch(Main.npc[i].type)
+                        {
+                            case NPCID.LunarTowerNebula: masoAI = 26; break;
+                            case NPCID.LunarTowerSolar: masoAI = 27; break;
+                            case NPCID.LunarTowerStardust: masoAI = 28; break;
+                            case NPCID.LunarTowerVortex: masoAI = 29; break;
+                            default: break;
+                        }
+                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = masoAI;
+                        Main.npc[i].lifeMax *= 5;
+                    }
+                    else
+                    {
+                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().SetDefaults(Main.npc[i]);
+                        Main.npc[i].life = Main.npc[i].lifeMax;
+                    }
+                }
             }
         }
 
