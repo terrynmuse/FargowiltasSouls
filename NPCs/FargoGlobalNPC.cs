@@ -2282,17 +2282,24 @@ namespace FargowiltasSouls.NPCs
                             Player p = Main.player[npc.target];
 
                             Counter++;
-                            if (Counter >= 5) //slime rain
+                            if (Counter >= 90) //slime rain
                             {
                                 Counter = 0;
-
-                                Vector2 speed = new Vector2(Main.rand.Next(-2, 2), 5);
-                                speed.Normalize();
-
-                                int proj = Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-1000, 1000), npc.Center.Y - 1000), speed, mod.ProjectileType("SlimeBall"), npc.damage / 4, 0f, Main.myPlayer);
-                                Main.projectile[proj].friendly = false;
-                                Main.projectile[proj].hostile = true;
-                                Main.projectile[proj].timeLeft = 480;
+                                Main.PlaySound(SoundID.Item21, p.Center);
+                                if (Main.netMode != 1)
+                                {
+                                    for (int i = 0; i < 5; i++)
+                                    {
+                                        Vector2 spawn = p.Center;
+                                        spawn.X += Main.rand.Next(-200, 201);
+                                        spawn.Y -= Main.rand.Next(600, 901);
+                                        Vector2 speed = p.Center - spawn;
+                                        speed.Normalize();
+                                        speed *= 5f;
+                                        speed = speed.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-5, 5)));
+                                        Projectile.NewProjectile(spawn, speed, mod.ProjectileType("SlimeBallHostile"), npc.damage / 5, 0f, Main.myPlayer);
+                                    }
+                                }
                             }
                         }
 

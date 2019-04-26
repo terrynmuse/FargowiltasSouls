@@ -12,6 +12,7 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-king slime rain is different now and actually aims
 -enraged golem shoots lasers too and aims spiky balls better
 -ML socket lasers actually stop when ML dies
 -vortex pillar fires cultist lightning orb and periodically reflects projectiles
