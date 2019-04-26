@@ -2168,7 +2168,8 @@ namespace FargowiltasSouls.NPCs
                                                     distance.Normalize();
                                                     distance = distance.RotatedByRandom(Math.PI / 12);
                                                     distance *= Main.rand.NextFloat(6f, 9f);
-                                                    Projectile.NewProjectile(Main.npc[i].Center, distance, ProjectileID.FrostWave, 25, 0f, Main.myPlayer);
+                                                    Projectile.NewProjectile(Main.npc[i].Center, distance,
+                                                        ProjectileID.FrostWave, npc.damage / 3, 0f, Main.myPlayer);
                                                 }
                                             }
                                         }
@@ -2205,7 +2206,8 @@ namespace FargowiltasSouls.NPCs
                                                 Vector2 dir = Main.player[npc.target].Center - npc.Center;
                                                 float ai1New = Main.rand.Next(100);
                                                 Vector2 vel = Vector2.Normalize(dir.RotatedByRandom(Math.PI / 4)) * 7f;
-                                                Projectile.NewProjectile(Main.npc[i].Center, vel, ProjectileID.CultistBossLightningOrbArc, 30, 0, Main.myPlayer, dir.ToRotation(), ai1New);
+                                                Projectile.NewProjectile(Main.npc[i].Center, vel, ProjectileID.CultistBossLightningOrbArc,
+                                                    npc.damage / 15 * 6, 0, Main.myPlayer, dir.ToRotation(), ai1New);
                                             }
                                         }
                                     }
@@ -2220,9 +2222,12 @@ namespace FargowiltasSouls.NPCs
                                             {
                                                 Vector2 speed = Vector2.UnitX.RotatedByRandom(Math.PI);
                                                 speed *= 6f;
-                                                Projectile.NewProjectile(Main.npc[i].Center, speed, ProjectileID.PhantasmalEye, 30, 0f, Main.myPlayer);
-                                                Projectile.NewProjectile(Main.npc[i].Center, speed.RotatedBy(Math.PI * 2 / 3), ProjectileID.PhantasmalEye, 25, 0f, Main.myPlayer);
-                                                Projectile.NewProjectile(Main.npc[i].Center, speed.RotatedBy(-Math.PI * 2 / 3), ProjectileID.PhantasmalEye, 25, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(Main.npc[i].Center, speed,
+                                                    ProjectileID.PhantasmalEye, npc.damage / 3, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(Main.npc[i].Center, speed.RotatedBy(Math.PI * 2 / 3),
+                                                    ProjectileID.PhantasmalEye, npc.damage / 3, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(Main.npc[i].Center, speed.RotatedBy(-Math.PI * 2 / 3),
+                                                    ProjectileID.PhantasmalEye, npc.damage / 3, 0f, Main.myPlayer);
                                             }
                                         }
                                     }
@@ -2237,7 +2242,8 @@ namespace FargowiltasSouls.NPCs
                                             for (int i = 0; i < 200; i++)
                                             {
                                                 if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
-                                                    Projectile.NewProjectile(Main.npc[i].Center, Vector2.Zero, ProjectileID.NebulaSphere, 30, 0f, Main.myPlayer);
+                                                    Projectile.NewProjectile(Main.npc[i].Center, Vector2.Zero,
+                                                        ProjectileID.NebulaSphere, npc.damage / 15 * 6, 0f, Main.myPlayer);
                                             }
                                         }
                                     }
