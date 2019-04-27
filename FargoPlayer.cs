@@ -1810,7 +1810,7 @@ namespace FargowiltasSouls
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (target.townNPC)
+            if (target.friendly)
                 return;
 
             if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0 && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
@@ -2191,6 +2191,9 @@ namespace FargowiltasSouls
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
+            if (target.friendly)
+                return;
+
             if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
             {
                 CopperEffect(target);
