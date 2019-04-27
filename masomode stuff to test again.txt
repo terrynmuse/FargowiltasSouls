@@ -12,6 +12,14 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-fishron EX no longer cleanses debuffs during phase 2 transition
+-maso soul gives a lot of regen and overrides sadism immunity
+-spectral fishron inflicts nibble
+-sadism components changed, now contains less overlap with flames of universe, but has mutant nibble and rotting
+-mutant nibble works on enemies
+-remembered to make melee attacks trigger corrupt heart
+-frost enchant gives frostburn imbue
+-moved things from globalprojectile.modifyhitnpc() to their own projectiles
 -maso changes for the following bosses scale with their kill count properly (all maso changes now have scaling i think):
 	-spaz
 	-plant

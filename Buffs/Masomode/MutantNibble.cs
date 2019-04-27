@@ -49,5 +49,10 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.thrownDamage = player.thrownDamage + 0.2f;
             player.minionDamage = player.minionDamage + 0.2f;
         }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.GetGlobalNPC<NPCs.FargoGlobalNPC>().MutantNibble = true;
+        }
     }
 }

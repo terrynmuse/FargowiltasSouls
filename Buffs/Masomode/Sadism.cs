@@ -53,24 +53,24 @@ namespace FargowiltasSouls.Buffs.Masomode
             {
                 fargoNPC.gotSadism = true;
                 npc.buffImmune[BuffID.Poisoned] = true;
-                npc.buffImmune[BuffID.CursedInferno] = true;
                 npc.buffImmune[BuffID.Ichor] = true;
-                npc.buffImmune[BuffID.Electrified] = true;
                 npc.buffImmune[BuffID.BetsysCurse] = true;
+                npc.buffImmune[BuffID.Electrified] = true;
                 npc.buffImmune[mod.BuffType("OceanicMaul")] = true;
-                npc.buffImmune[BuffID.Frostburn] = true;
                 npc.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
                 npc.buffImmune[mod.BuffType("Infested")] = true;
+                npc.buffImmune[mod.BuffType("Rotting")] = true;
+                npc.buffImmune[mod.BuffType("MutantNibble")] = true;
             }
             npc.poisoned = true;
-            npc.onFire2 = true;
             npc.ichor = true;
-            fargoNPC.Electrified = true;
             npc.betsysCurse = true;
+            fargoNPC.Electrified = true;
             fargoNPC.OceanicMaul = true;
-            npc.onFrostBurn = true;
             fargoNPC.CurseoftheMoon = true;
             fargoNPC.Infested = true;
+            fargoNPC.Rotting = true;
+            fargoNPC.MutantNibble = true;
             fargoNPC.Sadism = true;
         }
     }

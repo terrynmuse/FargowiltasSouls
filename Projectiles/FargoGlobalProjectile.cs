@@ -822,7 +822,6 @@ namespace FargowiltasSouls.Projectiles
                             target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
                             target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         }
-
                         break;
 
                     case ProjectileID.HarpyFeather:
@@ -890,7 +889,6 @@ namespace FargowiltasSouls.Projectiles
                             default:
                                 break;
                         }
-
                         target.AddBuff(BuffID.Stinky, Main.rand.Next(900, 1200));
                         break;
 
@@ -1012,11 +1010,6 @@ namespace FargowiltasSouls.Projectiles
                         }
                         break;
 
-                    /*case ProjectileID.PinkLaser:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer))
-                            target.AddBuff(mod.BuffType("ClippedWings"), 15);
-                        break;*/
-
                     case ProjectileID.LostSoulHostile:
                         target.AddBuff(mod.BuffType("Hexed"), Main.rand.Next(30, 240));
                         break;
@@ -1031,13 +1024,6 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(1800, 3600));
                         target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         break;
-
-                    /*case ProjectileID.DeathLaser:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer) ||
-                            FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.retiBoss, NPCID.Retinazer) ||
-                            FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.primeBoss, NPCID.SkeletronPrime))
-                            target.AddBuff(mod.BuffType("ClippedWings"), 15);
-                        break;*/
 
                     case ProjectileID.PhantasmalDeathray:
                         if (Main.npc[(int)projectile.ai[1]].active)
@@ -1135,22 +1121,20 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
-        public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        /*public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             if (modPlayer.NecroEnchant && projectile.type == mod.ProjectileType("DungeonGuardian") && projectile.penetrate == 1)
-            {
                 crit = true;
-            }
 
             if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && player.HeldItem.type != ItemID.BlizzardStaff)
             {
                 target.AddBuff(BuffID.Chilled, 300);
                 target.AddBuff(BuffID.Frostburn, 300);
             }
-        }
+        }*/
 
         public override bool PreKill(Projectile projectile, int timeLeft)
         {
@@ -1187,11 +1171,8 @@ namespace FargowiltasSouls.Projectiles
             if (modPlayer.CobaltEnchant && Soulcheck.GetValue("Cobalt Shards") && modPlayer.CobaltCD == 0 && CanSplit && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
             {
                 int damage = 40;
-
                 if(modPlayer.EarthForce)
-                {
                     damage = 80;
-                }
 
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 27);
 

@@ -183,6 +183,7 @@ namespace FargowiltasSouls.Projectiles
         {
             target.immune[projectile.owner] = 0;
             target.AddBuff(mod.BuffType("OceanicMaul"), 900);
+            target.AddBuff(mod.BuffType("MutantNibble"), 900);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
         }
 

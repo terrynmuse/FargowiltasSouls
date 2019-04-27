@@ -45,6 +45,8 @@ namespace FargowiltasSouls.NPCs
         public bool Sadism;
         public bool gotSadism;
         public bool OceanicMaul;
+        public bool MutantNibble;
+        public int LifePrevious = -1;
 
         public bool PillarSpawn = true;
         public bool ValhallaImmune;
@@ -99,6 +101,7 @@ namespace FargowiltasSouls.NPCs
             CurseoftheMoon = false;
             Sadism = false;
             OceanicMaul = false;
+            MutantNibble = false;
         }
 
         public override void SetDefaults(NPC npc)
@@ -4782,8 +4785,6 @@ namespace FargowiltasSouls.NPCs
                             case 4: //phase 2 transition
                                 masoBool[1] = false;
                                 masoBool[2] = true;
-                                if (npc.buffTime[0] != 0)
-                                    npc.DelBuff(0);
                                 if (npc.ai[2] == 1 && Main.netMode != 1)
                                     Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax / 4, npc.whoAmI);
                                 if (npc.ai[2] >= 114)
@@ -4862,6 +4863,8 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     for (int i = 0; i < npc.buffImmune.Length; i++)
                                         npc.buffImmune[i] = true;
+                                    while (npc.buffTime[0] != 0)
+                                        npc.DelBuff(0);
                                 }
                                 goto case 4;
 
@@ -6450,16 +6453,12 @@ namespace FargowiltasSouls.NPCs
             if (Rotting)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
 
                 npc.lifeRegen -= 100;
 
                 if (damage < 5)
-                { 
                     damage = 5;
-                }
             }
 
             if(LeadPoison)
@@ -6568,14 +6567,27 @@ namespace FargowiltasSouls.NPCs
                 if (npc.lifeRegen > 0)
                     npc.lifeRegen = 0;
 
-                npc.lifeRegen -= 140;
+                npc.lifeRegen -= 170;
 
                 if (damage < 70)
                     damage = 70;
             }
+
+            if (MutantNibble)
+            {
+                if (npc.lifeRegen > 0)
+                    npc.lifeRegen = 0;
+                if (npc.lifeRegenCount > 0)
+                    npc.lifeRegenCount = 0;
+
+                if (npc.life > LifePrevious)
+                    npc.life = LifePrevious;
+                else
+                    LifePrevious = npc.life;
+            }
             else
             {
-                gotSadism = false;
+                LifePrevious = npc.life;
             }
 		}
 
