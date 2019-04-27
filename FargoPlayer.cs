@@ -3861,7 +3861,7 @@ namespace FargowiltasSouls
                 {
                     return;
                 }
-                Main.player[Main.myPlayer].lifeSteal -= num2;
+                Main.player[Main.myPlayer].lifeSteal -= num2 * 5; //original damage
 
                 float num3 = 0f;
                 int num4 = proj.owner;
