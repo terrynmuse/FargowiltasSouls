@@ -18,7 +18,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Let's coat the world in a deep freeze' 
 Icicles will start to appear around you
 When there are three, attacking will launch them towards the cursor
-";
+Your attacks inflict Frostburn";
 
             if (thorium != null)
             {

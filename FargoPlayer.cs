@@ -361,14 +361,35 @@ namespace FargowiltasSouls
 
             for (int i = 0; i < 200; i++)
             {
-                if (Main.npc[i].type == NPCID.LunarTowerSolar)
-                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 27;
-                if (Main.npc[i].type == NPCID.LunarTowerVortex)
-                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 29;
-                if (Main.npc[i].type == NPCID.LunarTowerNebula)
-                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 26;
-                if (Main.npc[i].type == NPCID.LunarTowerStardust)
-                    Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = 28;
+                if (Main.npc[i].type == NPCID.LunarTowerSolar
+                || Main.npc[i].type == NPCID.LunarTowerVortex
+                || Main.npc[i].type == NPCID.LunarTowerNebula
+                || Main.npc[i].type == NPCID.LunarTowerStardust)
+                {
+                    if (Main.netMode == 1)
+                    {
+                        var netMessage = mod.GetPacket();
+                        netMessage.Write((byte)1);
+                        netMessage.Write((byte)i);
+                        netMessage.Send();
+                        byte masoAI = 0;
+                        switch(Main.npc[i].type)
+                        {
+                            case NPCID.LunarTowerNebula: masoAI = 26; break;
+                            case NPCID.LunarTowerSolar: masoAI = 27; break;
+                            case NPCID.LunarTowerStardust: masoAI = 28; break;
+                            case NPCID.LunarTowerVortex: masoAI = 29; break;
+                            default: break;
+                        }
+                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = masoAI;
+                        Main.npc[i].lifeMax *= 5;
+                    }
+                    else
+                    {
+                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().SetDefaults(Main.npc[i]);
+                        Main.npc[i].life = Main.npc[i].lifeMax;
+                    }
+                }
             }
         }
 
@@ -1797,7 +1818,7 @@ namespace FargowiltasSouls
                 CopperEffect(target);
             }
 
-            if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian") && proj.type != mod.ProjectileType("DungeonGuardian"))
+            if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian") && proj.type != mod.ProjectileType("DungeonGuardianNecro"))
             {
                 necroCD = 1200;
                 float screenX = Main.screenPosition.X;
@@ -1817,7 +1838,8 @@ namespace FargowiltasSouls
                 num6 = num5 / num6;
                 velocityX *= num6;
                 velocityY *= num6;
-                Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(new Vector2(screenX, screenY), new Vector2(velocityX, velocityY), mod.ProjectileType("DungeonGuardian"), 500, 0f, player.whoAmI, 0, 120);
+                Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(new Vector2(screenX, screenY), new Vector2(velocityX, velocityY),
+                    mod.ProjectileType("DungeonGuardianNecro"), (int)(500 * player.rangedDamage), 0f, player.whoAmI, 0, 120);
                 if (p != null)
                 {
                     p.penetrate = 1;
@@ -1929,6 +1951,7 @@ namespace FargowiltasSouls
                 if (target.FindBuffIndex(mod.BuffType("Sadism")) < 0)
                 {
                     target.DelBuff(4);
+                    target.buffImmune[mod.BuffType("Sadism")] = false;
                     target.AddBuff(mod.BuffType("Sadism"), 600);
                 }
             }
@@ -2028,6 +2051,9 @@ namespace FargowiltasSouls
                     Projectile.NewProjectile(spawn, vel, mod.ProjectileType("SpectralFishron"), dam, 10f, proj.owner, target.whoAmI, damageType);
                 }
             }
+
+            if (FrostEnchant)
+                target.AddBuff(BuffID.Frostburn, 300);
 
             if (CorruptHeart && CorruptHeartCD <= 0)
             {
@@ -2316,6 +2342,47 @@ namespace FargowiltasSouls
                     int dam = (int)(150 * player.meleeDamage);
                     int damageType = 1;
                     Projectile.NewProjectile(spawn, vel, mod.ProjectileType("SpectralFishron"), dam, 10f, player.whoAmI, target.whoAmI, damageType);
+                }
+            }
+
+            if (FrostEnchant)
+                target.AddBuff(BuffID.Frostburn, 300);
+
+            if (CorruptHeart && CorruptHeartCD <= 0)
+            {
+                CorruptHeartCD = 60;
+                if (Soulcheck.GetValue("Tiny Eaters"))
+                {
+                    Main.PlaySound(3, (int)player.Center.X, (int)player.Center.Y, 1, 1f, 0.0f);
+                    for (int index1 = 0; index1 < 20; ++index1)
+                    {
+                        int index2 = Dust.NewDust(player.position, player.width, player.height, 184, 0.0f, 0.0f, 0, new Color(), 1f);
+                        Dust dust = Main.dust[index2];
+                        dust.scale = dust.scale * 1.1f;
+                        Main.dust[index2].noGravity = true;
+                    }
+                    for (int index1 = 0; index1 < 30; ++index1)
+                    {
+                        int index2 = Dust.NewDust(player.position, player.width, player.height, 184, 0.0f, 0.0f, 0, new Color(), 1f);
+                        Dust dust1 = Main.dust[index2];
+                        dust1.velocity = dust1.velocity * 2.5f;
+                        Dust dust2 = Main.dust[index2];
+                        dust2.scale = dust2.scale * 0.8f;
+                        Main.dust[index2].noGravity = true;
+                    }
+                    int num = 2;
+                    if (Main.rand.Next(3) == 0)
+                        ++num;
+                    if (Main.rand.Next(6) == 0)
+                        ++num;
+                    if (Main.rand.Next(9) == 0)
+                        ++num;
+                    int dam = PureHeart ? 30 : 12;
+                    if (MasochistSoul)
+                        dam *= 2;
+                    for (int index = 0; index < num; ++index)
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-35, 36) * 0.02f * 10f,
+                            Main.rand.Next(-35, 36) * 0.02f * 10f, ProjectileID.TinyEater, (int)(dam * player.meleeDamage), 1.75f, player.whoAmI);
                 }
             }
 
@@ -3505,9 +3572,7 @@ namespace FargowiltasSouls
             NecroEnchant = true;
 
             if (necroCD != 0)
-            {
                 necroCD--;
-            }
 
             AddPet("Skeletron Pet", hideVisual, BuffID.BabySkeletronHead, ProjectileID.BabySkeletronHead);
         }

@@ -12,6 +12,35 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-fishron EX no longer cleanses debuffs during phase 2 transition
+-maso soul gives a lot of regen and overrides sadism immunity
+-spectral fishron inflicts nibble
+-sadism components changed, now contains less overlap with flames of universe, but has mutant nibble and rotting
+-mutant nibble works on enemies
+-remembered to make melee attacks trigger corrupt heart
+-frost enchant gives frostburn imbue
+-moved things from globalprojectile.modifyhitnpc() to their own projectiles
+-maso changes for the following bosses scale with their kill count properly (all maso changes now have scaling i think):
+	-spaz
+	-plant
+	-cultist
+	-ML
+-skeletron and prime do their DG mode fakeout when killed again
+-prime DR adjusted
+-prime is fully invul at start of fight, loses invul when any limb dies
+-made royal subjects separate from queen bee to stop MP bugs and other stuff
+-king slime rain is different now and actually aims
+-enraged golem shoots lasers too and aims spiky balls better
+-ML socket lasers actually stop when ML dies
+-vortex pillar fires cultist lightning orb and periodically reflects projectiles
+-stardust pillar emits omnidirectional rings of ancient light, 8sec
+-solar pillar shoots 6-spreads of cultist's homing fireballs
+-nebula pillar continuously shoots bolts that rain down on you and FUCKING TELEPORTS
+-srollers no longer have boosted defense, only have 200% max life
+-maso minions no longer spawn targeting npc at index 0
+-maso minions are better about forgetting distant targets
+-pillars have 500% life, works in MP(?)
+-nerfed hornet/suckler fake death rate
 -ML drops celestial seal
 -all bosses now drop up to 10 potions per kill (was 5 max)
 -fishron EX stats don't benefit from fishrons killed until fishron EX has been killed

@@ -16,7 +16,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'The wind is howling'
 Grants immunity to Oceanic Maul and Curse of the Moon
 Your attacks inflict Oceanic Maul
-Spectral Fishron periodically manifests to support your critical hits");
+Spectral Fishron periodically manifests to support your critical hits
+Spectral Fishron inflicts Oceanic Maul, Curse of the Moon, and Mutant Nibble");
         }
 
         public override void SetDefaults()

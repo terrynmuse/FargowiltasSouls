@@ -5,8 +5,10 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.BossWeapons
 {
-    public class DungeonGuardian : ModProjectile
+    public class DungeonGuardianNecro : ModProjectile
     {
+        public override string Texture => "FargowiltasSouls/Projectiles/BossWeapons/DungeonGuardian";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dungeon Guardian");
@@ -19,14 +21,10 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 			projectile.aiStyle = 0;
 			aiType = ProjectileID.Bullet;
 			projectile.friendly = true;
-			projectile.magic = true;
-			projectile.penetrate = -1;
+			projectile.ranged = true;
+			projectile.penetrate = 1;
 			projectile.tileCollide = false;
 			projectile.timeLeft = 1000;
-			
-			//ignore immune frame
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 1;
 		}
 		
         public override void AI()
@@ -76,6 +74,11 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             }
 
             return selectedTarget;
+        }
+
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            crit = true;
         }
 
         public override void Kill(int timeLeft)

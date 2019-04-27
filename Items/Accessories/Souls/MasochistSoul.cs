@@ -16,10 +16,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 @"'Embrace suffering'
 Increases max life by 100, wing time by 150%, and armor penetration by 25
 Increases max life by 20%, damage by 30%, and damage reduction by 15%
-Increases max number of minions and sentries by 5
+Increases life regen, increases max number of minions and sentries by 5
 Grants fastfall and immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
-Your attacks inflict Sadism
+Your attacks inflict Sadism as a cocktail of Masochist Mode debuffs
 You periodically fire additional attacks depending on weapon type and Tiny Eaters
 Spectral Fishron periodically manifests to support your critical hits
 You erupt into Spiky Balls and Ancient Visions when injured
@@ -127,6 +127,9 @@ Allows the holder to control gravity");
             player.noKnockback = true;
 
             //magical bulb
+            player.lifeRegen += 7;
+            player.lifeRegenTime += 7;
+            player.lifeRegenCount += 7;
             player.buffImmune[BuffID.Venom] = true;
             if (Soulcheck.GetValue("Plantera Minion"))
                 player.AddBuff(mod.BuffType("PlanterasChild"), 2);
