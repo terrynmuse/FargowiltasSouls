@@ -34,7 +34,11 @@ A miniature storm may appear when an enemy dies");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            
+            /*
+             * Rain
+
+spawn rain clouds when a enemy dies, or spawn rain drops everywhere above them, or circling storm clouds that shoot lightning 
+             */
         }
 
         public override void AddRecipes()

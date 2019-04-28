@@ -670,7 +670,7 @@ namespace FargowiltasSouls.Projectiles
                     return Color.SandyBrown;
                 }
 
-                else if (projectile.type == ProjectileID.DemonSickle)
+                else if (projectile.type == ProjectileID.DemonSickle || projectile.type == ProjectileID.DemonScythe)
                 {
                     projectile.Name = "Blood Scythe";
                     return Color.Red;

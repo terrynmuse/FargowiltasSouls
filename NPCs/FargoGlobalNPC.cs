@@ -7391,6 +7391,16 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VolatileEnergy"));
                         break;
 
+                    case NPCID.CorruptBunny:
+                    case NPCID.CrimsonBunny:
+                    case NPCID.CorruptGoldfish:
+                    case NPCID.CrimsonGoldfish:
+                    case NPCID.CorruptPenguin:
+                    case NPCID.CrimsonPenguin:
+                        if (Main.rand.Next(100) == 0)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SqueakyToy"));
+                        break;
+
                     case NPCID.SkeletonSniper:
                     case NPCID.TacticalSkeleton:
                     case NPCID.SkeletonCommando:
@@ -7407,6 +7417,22 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.BigMimicJungle:
                         if (Main.rand.Next(5) == 0)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TribalCharm"));
+                        break;
+
+                    //meh may change later
+                    case NPCID.RainbowSlime:
+                        if (masoDeathAI == 0 && NPC.CountNPCS(NPCID.RainbowSlime) == 1 && Main.rand.Next(5) == 0)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ConcentratedRainbowMatter"));
+                        break;
+
+                    case NPCID.SandElemental:
+                        if (Main.rand.Next(5) == 0)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SandofTime"));
+                        break;
+
+                    case NPCID.WyvernHead:
+                        if (Main.rand.Next(5) == 0)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DragonFang"));
                         break;
 
                     case NPCID.KingSlime:
@@ -7453,6 +7479,7 @@ namespace FargowiltasSouls.NPCs
                         int maxSkel = Main.rand.Next(10) + 1;
                         for (int i = 0; i < maxSkel; i++)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TitanPotion);
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("NecromanticBrew"));
                         break;
 
                     case NPCID.QueenBee:
@@ -8126,9 +8153,9 @@ namespace FargowiltasSouls.NPCs
                             Main.npc[spore].velocity = new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5));
                         }
                         break;
-			
-		case 40: //rainbow slime 1
-			masoDeathAI = 0;
+
+                    case 40: //rainbow slime 1
+                        masoDeathAI = 0;
                         npc.active = false;
                         Main.PlaySound(npc.DeathSound);
 
@@ -8159,9 +8186,9 @@ namespace FargowiltasSouls.NPCs
                             Main.dust[num469].velocity *= 2f;
                         }
                         return false;
-			
-		case 41: //rainbow slime 2
-			for (int i = 0; i < 10; i++)
+
+                    case 41: //rainbow slime 2
+                        for (int i = 0; i < 10; i++)
                         {
                             int spawn = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), 1);
 
@@ -8178,7 +8205,7 @@ namespace FargowiltasSouls.NPCs
                                 Main.npc[spawn].ai[0] = -1000 * Main.rand.Next(3);
                             }
                         }
-			break;
+                        break;
 			
 			/* pseudo memes
 			case: slime zombie

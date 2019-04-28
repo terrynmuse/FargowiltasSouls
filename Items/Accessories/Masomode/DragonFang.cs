@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class SqueakyToy : ModItem
+    public class DragonFang : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         

@@ -9,13 +9,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Graphics.Capture;
-using FargowiltasSouls.Buffs.Masomode;
-using FargowiltasSouls.Buffs.Souls;
-using FargowiltasSouls.Items;
 using FargowiltasSouls.NPCs;
 using FargowiltasSouls.Projectiles;
-using FargowiltasSouls.Projectiles.BossWeapons;
-using FargowiltasSouls.Projectiles.Souls;
 using ThoriumMod;
 using CalamityMod.Items.CalamityCustomThrowingDamage;
 
@@ -203,6 +198,7 @@ namespace FargowiltasSouls
         public int CyclonicFinCD;
         public bool MasochistSoul;
         public bool CelestialSeal;
+        public bool SandsofTime;
 
         //debuffs
         public bool Hexed;
@@ -569,6 +565,7 @@ namespace FargowiltasSouls
             TrueEyes = false;
             CyclonicFin = false;
             MasochistSoul = false;
+            SandsofTime = false;
 
             //debuffs
             Hexed = false;
@@ -601,6 +598,10 @@ namespace FargowiltasSouls
             if (Eternity)
             {
                 player.respawnTimer = (int)(player.respawnTimer * .1);
+            }
+            else if (SandsofTime)
+            {
+                player.respawnTimer = (int)(player.respawnTimer * .5);
             }
         }
 
@@ -950,6 +951,7 @@ namespace FargowiltasSouls
 
             if (SlimyShield)
             {
+                //player.justJumped use this tbh
                 if (SlimyShieldFalling) //landing
                 {
                     if (player.velocity.Y == 0f && player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Slimy Shield Effects"))
@@ -960,7 +962,7 @@ namespace FargowiltasSouls
                         int damage = (int)(20 * player.meleeDamage);
                         if (MasochistSoul)
                             damage *= 3;
-                        for (int i = 0; i < 5; i++)
+                        for (int i = 0; i < 4; i++)
                         {
                             Vector2 spawn = new Vector2(mouse.X + Main.rand.Next(-200, 201), mouse.Y - Main.rand.Next(600, 901));
                             Vector2 speed = mouse - spawn;
@@ -987,8 +989,9 @@ namespace FargowiltasSouls
                         if (MasochistSoul)
                             damage = 70;
                         damage = (int)(damage * player.magicDamage);
-                        Projectile.NewProjectile(player.Center, player.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6))) * 0.1f,
+                        int proj = Projectile.NewProjectile(player.Center, player.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6))) * 0.1f,
                             ProjectileID.DemonScythe, damage, 5f, player.whoAmI);
+                        Main.projectile[proj].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     }
                 }
             }

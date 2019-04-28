@@ -1,4 +1,4 @@
-NEW UPDATE - v 0.6.2
+﻿NEW UPDATE - v 0.6.2
 
 -add to wiki: ice and jungle slimes may become spiked, skeletons may become throwing skeles
 
@@ -226,21 +226,6 @@ Ebon
 
 player aura of Rotting and Shadowflame 
 
-Eskimo - ice rod in recipe 
-
-ModPlayer:
-
-if(player.walkingOnWater)
-{
-	Create Ice Rod Projectile right below you
-}
-
-NearbyEffects:
-
-if(modPlayer.EskimoEnchant && tile.type == IceRodBlock)
-{
-	Create spikes
-}
 
 Gladiator
 
@@ -265,10 +250,6 @@ Pearl
 Trail of rainbows, exactly like maso unicorns, variable for rainbows
 rainbow hitting enemies may cause them to half in size and deal half damage
 lasts longer in the hallow
-
-Rain
-
-spawn rain clouds when a enemy dies, or spawn rain drops everywhere above them, or circling storm clouds that shoot lightning 
 
 mahogany
 
@@ -295,11 +276,10 @@ tungsten enchant reset set default
 nerfed tungsten size to 100% instead of 150%
 fixed golem drop effect not carrying over to chalice of the moon
 supersonic now says "I am speed"
-
+-pillars no longer spawn from pandoras box
 
 
 terrarium enchant - rainbow color
-nerf king sline rain a bit, until you can actually beat it without being inside lol
 cultist no drop maso drop when summoned with fargo summon
 guardian tome immune to be yeeted by golem 
 top hat squirrel terrarium
@@ -324,18 +304,9 @@ add fishing rod, one form for now lol
 add deaths meme idea from doc
 invasion length increase??
 
-MUTANT
-seasonal hearts and mana, switch into each other if active
-SoE selling is dumb, not a world thing, only sell if current player has it, like nails only sold with nail gun!
-EA and AA new summons 
-nerf boom shurikens, smaller radius
-make auto house earlier game like supreme early, at solidifier or something
-fix the dam map, chekc heros in mp? or just deactivate in multi - herosmodServices/MapRevealer/ RevealAround Point??
-
 Loot 1000 
 -config?
 
 Equipable 
--armor works too
 -wings work too
 

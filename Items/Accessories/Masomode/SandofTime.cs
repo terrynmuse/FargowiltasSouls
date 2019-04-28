@@ -28,14 +28,12 @@ You respawn twice as fast");
             item.value = Item.sellPrice(0, 15);
         }
 
-//change to update inventory
-        public override void UpdateAccessory(Player player, bool hideVisual)
+        public override void UpdateInventory(Player player)
         {
-            //player.buffImmune[BuffID] = true; mighty wind
-            
-            //respawn faster ech
+            player.buffImmune[BuffID.WindPushed] = true;
 
-            
+            //respawn faster ech
+            player.GetModPlayer<FargoPlayer>().SandsofTime = true;
         }
     }
 }

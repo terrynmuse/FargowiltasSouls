@@ -36,7 +36,19 @@ You can walk on water and when you do, it freezes and creates spikes
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            
+            /*
+             * if(player.walkingOnWater)
+{
+	Create Ice Rod Projectile right below you
+}
+
+NearbyEffects:
+
+if(modPlayer.EskimoEnchant && tile.type == IceRodBlock)
+{
+	Create spikes
+}
+             */
         }
 
         public override void AddRecipes()

@@ -54,7 +54,7 @@ namespace FargowiltasSouls.Items.Misc
                 //night
                 else
                 {
-                    if (npc.townNPC || npc.dontTakeDamage || npc.type == NPCID.BoundGoblin || npc.type == NPCID.BoundMechanic || npc.type == NPCID.BoundWizard || npc.type == NPCID.BartenderUnconscious || npc.type == NPCID.WebbedStylist)
+                    if (npc.townNPC || npc.dontTakeDamage || npc.type == NPCID.BoundGoblin || npc.type == NPCID.BoundMechanic || npc.type == NPCID.BoundWizard || npc.type == NPCID.BartenderUnconscious || npc.type == NPCID.WebbedStylist || npc.type == NPCID.LunarTowerNebula || npc.type == NPCID.LunarTowerSolar || npc.type == NPCID.LunarTowerStardust || npc.type == NPCID.LunarTowerVortex)
                     {
                         i--;
                     }
