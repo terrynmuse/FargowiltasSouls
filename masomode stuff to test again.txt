@@ -12,6 +12,7 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-added toggle for gold ench lucky coin effect
 -added check for friendly NPC to onhitnpc
 -much more aggressive pillar attacks
 -stardust enemies always contribute to shield when killed
