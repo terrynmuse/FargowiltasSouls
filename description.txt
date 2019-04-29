@@ -1,8 +1,9 @@
 ﻿NEW UPDATE - v 0.6.2
 
--add to wiki: ice and jungle slimes may become spiked, skeletons may become throwing skeles
 
 -gave prehm enchants more items in recipes so they all have 7 materials
+-changed some recipes around
+-Added Wood Enchantments, many more Masomode Drops
 -removed confused on fall damage, lightning rod while raining is less aggressive
 -Copper enchant has greater bonuses when attacking wet enemies
 -recipe for steel throwing axe increased
@@ -92,6 +93,7 @@ Changelog (TEST STUFF)
 -Punget Eye and Galactic Globe upgraded with minions
 
 ADD TO WIKI
+-add to wiki: ice and jungle slimes may become spiked, skeletons may become throwing skeles
 -added combat text to vampire healing
 -bone serpents inflict burning
 -salamanders inflict Poisoned
@@ -100,7 +102,7 @@ ADD TO WIKI
 -Ice Slimes and Jungle Slimes may upgrade into Spiked versions
 -Pixies have an aura of Squeaky Toy (not new but missed this)
 
-all things terry did lul
+-all things terry did lul
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Antlion Swarmers drop sand when above the player
@@ -194,76 +196,17 @@ Flames of the Universe
 Squeaky Toy
 
 MISC
--Fused - a bomb floats above you
+-Fused - a pulsing bomb floats above you and gets redder as time counts down
 -Hexed - Green Dust like on fire but friendly looking, you know the one
 -Marked for Death - skulls circle around you
 -target dummy and super dummy should be valhalla immune in non masomode
--stop the guardian from being yeeted
 -1/20 every night for either moon, post plant or sooner? message displays one minute before they start. 
 -Desert is way too bright, need shades
 -red devil trident velocity increases per tick
--make eoc drop blood scythes
 -add back lightning rain reeeeee, make it much less often 
 
 Frost golem drop 
 immune to Frostburn and Shadowflame
-
-accessory slot adder - crafted from a ton of fragments and luminite
-
-
-
-
-pseudo memes
-
-Boreal - shoot snowballs or snow fall???
-
-if(player.snow)
-{
-	
-}
-
-Ebon
-
-player aura of Rotting and Shadowflame 
-
-
-Gladiator
-
-onHitNPC
-
-every 5th hit or so
-
-Spawn several javelins that rain down in the area
-
-Palm
-
-Double tap down (take from vortex)
-
-Spawn Tree if no tree exists
-
-Tree disapears if owner is too far away
-
-Throws coconuts, twice as fast in sandy areas
-
-Pearl
-
-Trail of rainbows, exactly like maso unicorns, variable for rainbows
-rainbow hitting enemies may cause them to half in size and deal half damage
-lasts longer in the hallow
-
-mahogany
-
-hooks have damage and double in length, projectile.hook? some AI may control how far they go, check examples
-while in jungle they also inflict poison and shoot spores
-
-Shade
-
-
-Wood
-
-GlobalNPC
-Critters all have 999 defense
-All Squirrels, throw acorns at enemies nearby (shuriken AI), birds drop eggs if they fly over enemies, bunnys dash thru enemies and explode into blood 
 
 
 Other todo:
