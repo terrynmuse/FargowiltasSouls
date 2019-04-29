@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Ebonwood Enchantment");
             Tooltip.SetDefault(
 @"''
-While in the Corruption, enemies that get near you are inflicted with Rotting, Living Wasteland, blah
+While in the Corruption, enemies that get near you are inflicted with Rotting and Shadowflame
 ");
         }
 
@@ -30,7 +30,9 @@ While in the Corruption, enemies that get near you are inflicted with Rotting, L
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            
+            /*Ebon
+
+player aura of Rotting and Shadowflame */
         }
 
         public override void AddRecipes()
