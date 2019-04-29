@@ -34,6 +34,14 @@ When critters die, they explode into blood
         {
             /*
             squirrels throw acorns, scorpions poison/venom, birds shoot feathers, bunnys leap at enemies
+          
+
+GlobalNPC
+Critters all have 999 defense (remove from pandroas box)
+
+Squirrels (all variants, gold fires extremely quick) basically hve the masomode Shoot except target nearest enemy and fire acorns (shuriken AI)
+Birds (all variants, gold drops massive gold eggs) drop explosive eggs as they fly and enemies are nearby
+Bunnies (Gold inflicts several debuffs) have contact damage and dash at enemies, also explode into blood
             */
         }
 
