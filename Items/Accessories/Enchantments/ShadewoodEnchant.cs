@@ -30,7 +30,8 @@ While in the Crimson,
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            
+            /*Blood flies everywhere on hit
+            While in the Crimson, it will inflict Super Bleeding on you (spew blood constantly for a few seconds)*/
         }
 
         public override void AddRecipes()
