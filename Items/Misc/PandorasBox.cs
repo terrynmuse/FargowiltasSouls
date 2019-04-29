@@ -44,11 +44,6 @@ namespace FargowiltasSouls.Items.Misc
                     else
                     {
                         int spawn = NPC.NewNPC((int)player.position.X + Main.rand.Next(-800, 800), (int)player.position.Y + Main.rand.Next(-1000, -250), npc.type);
-
-                        if (npc.friendly)
-                        {
-                            Main.npc[spawn].defense = 999;
-                        }
                     }
                 }
                 //night
