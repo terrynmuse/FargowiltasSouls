@@ -13,7 +13,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Gladiator Enchantment");
             Tooltip.SetDefault(
 @"'Are you not entertained?'
-Jump height is tripled
 Spears will rain down on struck enemies 
 Summons a pet Minotaur");
         }
@@ -30,7 +29,12 @@ Summons a pet Minotaur");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            //player.jump
+            /*
+onHitNPC
+
+every 5th hit or so
+
+Spawn several javelins that rain down in the area*/
 
 
             player.GetModPlayer<FargoPlayer>(mod).GladiatorEffect(hideVisual);
