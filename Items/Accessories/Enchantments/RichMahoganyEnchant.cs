@@ -31,7 +31,17 @@ While in the Jungle, they shoot spores??
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            /*
+            GlobalProjectile.GrapplePullSpeed	
+            massively increased grapple pull speed (bat is 16) do 25
             
+            GlobalProjectile.GrappleRetreatSpeed
+            and increased retreat speed, lunar is 24, do 30
+            
+            GraapleRange
+            static is 600, maybe double whatever you have
+            
+            while in jungle they also are damaging? or inflict poison and shoot spores?*/
         }
 
         public override void AddRecipes()
