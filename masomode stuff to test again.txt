@@ -12,6 +12,13 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-added toggle for gold ench lucky coin effect
+-added check for friendly NPC to onhitnpc
+-much more aggressive pillar attacks
+-stardust enemies always contribute to shield when killed
+-alien hornet and suckler fake death chance reduced to 66%
+-nerfed spectre healing, god
+-fxied typo in force of spirit tooltip
 -fishron EX no longer cleanses debuffs during phase 2 transition
 -maso soul gives a lot of regen and overrides sadism immunity
 -spectral fishron inflicts nibble

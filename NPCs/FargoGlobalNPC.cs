@@ -1895,7 +1895,7 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 5000, mod.BuffType("Antisocial"));
                         if (!npc.dontTakeDamage)
                         {
-                            if (++Counter > 300)
+                            if (++Counter > 240)
                             {
                                 Counter = 0;
                                 npc.TargetClosest(false);
@@ -1935,7 +1935,7 @@ namespace FargowiltasSouls.NPCs
                                 npc.netUpdate = true;
                             }
                             
-                            if (++Timer > 120)
+                            if (++Timer > 60)
                             {
                                 Timer = 0;
                                 npc.TargetClosest(false);
@@ -1962,7 +1962,7 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 5000, mod.BuffType("Antisocial"));
                         if (!npc.dontTakeDamage)
                         {
-                            if (++Timer > 300)
+                            if (++Timer > 240)
                             {
                                 Timer = 0;
                                 npc.TargetClosest(false);
@@ -1985,17 +1985,17 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 5000, mod.BuffType("ReverseManaFlow"));
                         if (!npc.dontTakeDamage)
                         {
-                            if (++Timer > 480)
+                            if (++Timer > 420)
                             {
                                 Timer = 0;
                                 npc.TargetClosest(false);
                                 if (npc.HasPlayerTarget && Main.netMode != 1)
                                 {
-                                    const float rotate = (float)Math.PI / 8f;
+                                    const float rotate = (float)Math.PI / 12f;
                                     Vector2 speed = Main.player[npc.target].Center - npc.Center;
                                     speed.Normalize();
                                     speed *= 8f;
-                                    for (int i = 0; i < 16; i++)
+                                    for (int i = 0; i < 24; i++)
                                     {
                                         Vector2 vel = speed.RotatedBy(rotate * i);
                                         int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientLight, 0,
@@ -2026,7 +2026,7 @@ namespace FargowiltasSouls.NPCs
                                 npc.netUpdate = true;
                             }
 
-                            npc.reflectingProjectiles = npc.ai[3] > 0f && npc.ai[3] <= 60f;
+                            npc.reflectingProjectiles = npc.ai[3] != 0f;
                             if (npc.reflectingProjectiles) //dust
                             {
                                 for (int i = 0; i < 20; i++)
@@ -2043,7 +2043,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
 
-                            if (++Timer > 300)
+                            if (++Timer > 240)
                             {
                                 Timer = 0;
                                 npc.TargetClosest(false);
@@ -8002,13 +8002,6 @@ namespace FargowiltasSouls.NPCs
                                     Main.npc[n].velocity.Y = Main.rand.Next(-10, 11);
                                 }
                             }
-
-                            if (Main.rand.Next(3) == 0) //die without contributing to pillar shield
-                            {
-                                Main.PlaySound(npc.DeathSound, npc.Center);
-                                npc.active = false;
-                                return false;
-                            }
                         }
                         break;
 
@@ -8050,7 +8043,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 31: //alien hornet
-                        if (Main.rand.Next(5) != 0)
+                        if (Main.rand.Next(3) != 0)
                         {
                             Main.PlaySound(npc.DeathSound, npc.Center); //die without contributing to pillar shield
                             npc.active = false;
@@ -8064,7 +8057,7 @@ namespace FargowiltasSouls.NPCs
                             npc.Transform(NPCID.NebulaBrain);
                             return false;
                         }
-                        else if (Main.rand.Next(5) != 0) //die without contributing to pillar shield
+                        else if (Main.rand.Next(3) != 0) //die without contributing to pillar shield
                         {
                             Main.PlaySound(npc.DeathSound, npc.Center);
                             npc.active = false;

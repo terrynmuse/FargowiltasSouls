@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 If you reach zero HP you cheat death, returning with 100 HP and spawning bones
 Double tap down to call an ancient storm to the cursor location
 You gain a shield that can reflect projectiles
-Attacks will inflict a Infested and spawn damaging and healing orbs
+Attacks will inflict Infested and spawn damaging and healing orbs
 ";
 
             if (thorium != null)

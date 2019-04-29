@@ -1813,7 +1813,7 @@ namespace FargowiltasSouls
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (target.townNPC)
+            if (target.friendly)
                 return;
 
             if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0 && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
@@ -2194,6 +2194,9 @@ namespace FargowiltasSouls
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
+            if (target.friendly)
+                return;
+
             if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
             {
                 CopperEffect(target);
@@ -3295,7 +3298,8 @@ namespace FargowiltasSouls
             //gold ring
             player.goldRing = true;
             //lucky coin
-            player.coins = true;
+            if (Soulcheck.GetValue("Gold Lucky Coin"))
+                player.coins = true;
             //discount card
             player.discount = true;
             //midas
@@ -3864,7 +3868,7 @@ namespace FargowiltasSouls
                 {
                     return;
                 }
-                Main.player[Main.myPlayer].lifeSteal -= num2;
+                Main.player[Main.myPlayer].lifeSteal -= num2 * 5; //original damage
 
                 float num3 = 0f;
                 int num4 = proj.owner;

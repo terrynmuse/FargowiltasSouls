@@ -38,6 +38,7 @@ namespace FargowiltasSouls
             ["Gladiator Speedup"] = new Color(81, 181, 113),
             ["Silver Sword Familiar"] = new Color(81, 181, 113),
             ["Tungsten Effect"] = new Color(81, 181, 113),
+            ["Gold Lucky Coin"] = new Color(81, 181, 113),
             ["Shadow Darkness"] = new Color(81, 181, 113),
             ["Jungle Spores"] = new Color(81, 181, 113),
             ["Meteor Shower"] = new Color(81, 181, 113),
