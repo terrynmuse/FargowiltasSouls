@@ -304,9 +304,3 @@ add fishing rod, one form for now lol
 add deaths meme idea from doc
 invasion length increase??
 
-Loot 1000 
--config?
-
-Equipable 
--wings work too
-
