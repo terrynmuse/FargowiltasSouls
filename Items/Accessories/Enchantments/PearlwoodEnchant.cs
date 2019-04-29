@@ -31,7 +31,20 @@ While in the Hallowed, the rainbow trail lasts much longer
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            /*
+            Counter++;
+                        if (player.veocity != Vector2.Zero && Counter >= 3) 
+                        {
+                            int direction = player.velocity.X > 0 ? 1 : -1;
+                            int p = Projectile.NewProjectile(new Vector2(player.Center.X - direction * ( player.width / 2), player.Center.Y), player.velocity, ProjectileID.RainbowBack, 20, 1);
+                            Counter = 0;
+                        }
             
+            
+            
+            Trail of rainbows, exactly like maso unicorns, variable for rainbows
+rainbow hitting enemies may cause them to half in size and deal half damage
+lasts longer in the hallow*/
         }
 
         public override void AddRecipes()
