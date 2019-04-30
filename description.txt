@@ -230,6 +230,10 @@ penetrator glow mask and crucible glow mask
 also how about that crucible resprite lol
 remove all thorium butterflies and make sure all vanilla critters are in, all enchant recipes checked over one more time (at home)
 new thorium items and effects time ^ 
+also remove vanilla enchants from thorium forces for the most part
+iron magnet works on certain stars/hearts
+make sure plat enchant is at crystal ball
+remove tungsten stunning, just mega sword
 all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
 mechanical cart in supersonic, add some mounts to fishing or someshit
 bugle recipe group
