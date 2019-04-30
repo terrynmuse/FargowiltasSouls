@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using FargowiltasSouls.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -158,6 +159,28 @@ namespace FargowiltasSouls.Items
                 if (modPlayer.InfinityCounter >= 4)
                 {
                     modPlayer.InfinityHurt();
+                }
+            }
+
+            if (item.damage <= 0) return true;
+
+            if (modPlayer.BorealEnchant)
+            {
+                modPlayer.BorealCount++;
+
+                if (modPlayer.BorealCount >= 4)
+                {
+                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed * .75f;
+
+                    int p = Projectile.NewProjectile(player.Center, velocity, ProjectileID.SnowBallFriendly, (int)(item.damage * .5f), 1, Main.myPlayer);
+
+                    if (player.ZoneSnow)
+                    {
+                        FargoGlobalProjectile.SplitProj(Main.projectile[p], 5);
+                    }
+
+
+                    modPlayer.BorealCount = 0;
                 }
             }
 

@@ -7,15 +7,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     public class BorealWoodEnchant : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Boreal Wood Enchantment");
             Tooltip.SetDefault(
 @"''
-Every 10th attack will be accompanied by a snowball
-While in the Snow Biome, there are several snowballs instead");
+Every 5th attack will be accompanied by a snowball
+While in the Snow Biome, you shoot 5 snowballs instead");
         }
 
         public override void SetDefaults()
@@ -30,21 +29,7 @@ While in the Snow Biome, there are several snowballs instead");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            /*Boreal - shoot snowballs
-            
-            player.getModPlayer<FargoPlayer>().BorealEnchant = true;
-
-            every 10 attacks
-            
-            CanUseItem
-
-normally one snowball
-
-if(player.snow)
-{
-	snowball.Split into 5 or something
-}
-*/
+            player.GetModPlayer<FargoPlayer>().BorealEnchant = true;
         }
 
         public override void AddRecipes()

@@ -7,7 +7,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     public class WoodEnchant : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
@@ -15,9 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"''
 Critters have massively increased defense
-Certain critters will attack or debuff enemies
-When critters die, they explode into blood
-");
+Certain critters will attack enemies");
         }
 
         public override void SetDefaults()
@@ -32,6 +29,7 @@ When critters die, they explode into blood
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.GetModPlayer<FargoPlayer>().WoodEnchant = true;
             /*
             squirrels throw acorns, scorpions poison/venom, birds shoot feathers, bunnys leap at enemies
           

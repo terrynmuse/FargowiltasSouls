@@ -7,7 +7,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     public class EbonwoodEnchant : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {

@@ -7,16 +7,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     public class RichMahoganyEnchant : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rich Mahogany Enchantment");
             Tooltip.SetDefault(
 @"''
-All grappling hooks can damage enemies and have extra range
-While in the Jungle, they shoot spores??
-");
+All grappling hooks pull you in and retract twice as fast
+While in the Jungle, any hook will periodically fire homing shots at enemies");
         }
 
         public override void SetDefaults()
@@ -25,23 +23,13 @@ While in the Jungle, they shoot spores??
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 7;
-            item.value = 100000;
+            item.rare = 1;
+            item.value = 10000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            /*
-            GlobalProjectile.GrapplePullSpeed	
-            massively increased grapple pull speed (bat is 16) do 25
-            
-            GlobalProjectile.GrappleRetreatSpeed
-            and increased retreat speed, lunar is 24, do 30
-            
-            GraapleRange
-            static is 600, maybe double whatever you have
-            
-            while in jungle they also are damaging? or inflict poison and shoot spores?*/
+            player.GetModPlayer<FargoPlayer>().MahoganyEnchant = true;
         }
 
         public override void AddRecipes()

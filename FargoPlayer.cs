@@ -114,6 +114,15 @@ namespace FargowiltasSouls
         public bool RedEnchant;
         public bool TungstenEnchant;
 
+        public bool MahoganyEnchant;
+        public bool BorealEnchant;
+        public int BorealCount = 0;
+        public bool WoodEnchant;
+        public bool PalmEnchant;
+        public bool ShadeEnchant;
+        public bool PearlEnchant;
+        public bool EbonEnchant;
+
         public bool CosmoForce;
         public bool EarthForce;
         public bool LifeForce;
@@ -494,6 +503,14 @@ namespace FargowiltasSouls
             RedEnchant = false;
             NebulaEnchant = false;
             TungstenEnchant = false;
+
+            MahoganyEnchant = false;
+            BorealEnchant = false;
+            WoodEnchant = false;
+            PalmEnchant = false;
+            ShadeEnchant = false;
+            PearlEnchant = false;
+            EbonEnchant = false;
 
             CosmoForce = false;
             EarthForce = false;
@@ -1150,7 +1167,7 @@ namespace FargowiltasSouls
 
             if (!Soulcheck.GetValue("Tungsten Effect") || !TungstenEnchant)
             {
-                //item.SetDefaults();
+                item.SetDefaults(item.type);
             }
             else if (TungstenEnchant)
             {

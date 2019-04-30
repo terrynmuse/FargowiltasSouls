@@ -4713,6 +4713,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 Main.projectile[p].friendly = false;
                                 Main.projectile[p].hostile = true;
+                                Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
                             }
                             Counter = 0;
                         }
@@ -5123,6 +5124,71 @@ namespace FargowiltasSouls.NPCs
             if(!Transform && (npc.type == NPCID.Squirrel || npc.type == NPCID.SquirrelRed) && Main.rand.Next(8) == 0)
             {
                 npc.Transform(mod.NPCType("TophatSquirrel"));
+            }
+
+            if (Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().WoodEnchant)
+            {
+                switch (npc.type)
+                {
+                    case NPCID.Bunny:
+                    case NPCID.BunnySlimed:
+                    case NPCID.BunnyXmas:
+                    case NPCID.GoldBunny:
+
+
+                        goto default;
+
+                    case NPCID.Bird:
+                    case NPCID.BirdBlue:
+                    case NPCID.BirdRed:
+                    case NPCID.GoldBird:
+
+                        goto default;
+
+                    case NPCID.Squirrel:
+                    case NPCID.SquirrelRed:
+                    case NPCID.SquirrelGold:
+                        Counter++;
+
+                        if (Counter >= 60)
+                        {
+                            int p = Projectile.NewProjectile(npc.Center, new Vector2(0, -10), ProjectileID.SeedlerThorn, 15, 1, Main.myPlayer);
+
+                            /*NPC target = null;
+                            float lowestDist = 999;
+
+                            for (int i = 0; i < Main.maxNPCs; i++)
+                            {
+                                NPC n = Main.npc[i];
+                                float dist = Vector2.Distance(n.Center, npc.Center);
+
+                                if (!n.friendly && dist < 400 && dist < lowestDist)
+                                {
+                                    target = n;
+                                    lowestDist = dist;
+                                }
+                            }
+
+                            if (target == null)
+                                return;
+
+                            Main.NewText("hello");
+
+                            Vector2 velocity = Vector2.Normalize(target.Center - npc.Center) * 10;
+
+                            int p = Projectile.NewProjectile(npc.Center, velocity, ProjectileID.SeedlerNut, 15, 1, Main.myPlayer);*/
+
+                            Counter = 0;
+                        }
+                        
+                        goto default;
+
+                    default:
+                        npc.defense = 999;
+
+
+                        break;
+                }
             }
 
             Transform = true;
@@ -8444,6 +8510,13 @@ namespace FargowiltasSouls.NPCs
             if (modPlayer.CactusEnchant)
                 Needles = true;
 
+            //pearlwood
+            if (projectile.type == ProjectileID.RainbowBack && projectile.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow)
+            {
+                npc.StrikeNPC(10, 0, 0);
+                npc.scale = .5f;
+            }
+
             if (FargoWorld.MasochistMode)
             {
                 switch (masoHurtAI)
@@ -8792,6 +8865,9 @@ namespace FargowiltasSouls.NPCs
                 if (npc.knockBackResist > .5f)
                     npc.knockBackResist = .5f;
             }
+
+            
+
         }
 
         public override bool? CanBeHitByItem(NPC npc, Player player, Item item)

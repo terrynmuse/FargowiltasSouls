@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using FargowiltasSouls.Projectiles;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,8 +8,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class PearlwoodEnchant : ModItem
     {
+        int timer = 0;
+
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
@@ -15,8 +18,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"''
 You leave behind a trail of rainbows that may shrink enemies
-While in the Hallowed, the rainbow trail lasts much longer
-");
+While in the Hallowed, the rainbow trail lasts much longer");
         }
 
         public override void SetDefaults()
@@ -25,26 +27,22 @@ While in the Hallowed, the rainbow trail lasts much longer
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 7;
-            item.value = 100000;
+            item.rare = 1;
+            item.value = 10000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            /*
-            Counter++;
-                        if (player.veocity != Vector2.Zero && Counter >= 3) 
-                        {
-                            int direction = player.velocity.X > 0 ? 1 : -1;
-                            int p = Projectile.NewProjectile(new Vector2(player.Center.X - direction * ( player.width / 2), player.Center.Y), player.velocity, ProjectileID.RainbowBack, 20, 1);
-                            Counter = 0;
-                        }
-            
-            
-            
-            Trail of rainbows, exactly like maso unicorns, variable for rainbows
-rainbow hitting enemies may cause them to half in size and deal half damage
-lasts longer in the hallow*/
+            timer++;
+
+            if (player.velocity.Length() > 1 && timer >= 4)
+            {
+                int direction = player.velocity.X > 0 ? 1 : -1;
+                int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 20, 1);
+                Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
+
+                timer = 0;
+            }
         }
 
         public override void AddRecipes()
