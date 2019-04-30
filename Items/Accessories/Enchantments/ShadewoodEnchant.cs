@@ -6,15 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ShadewoodEnchant : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadewood Enchantment");
             Tooltip.SetDefault(
 @"''
-While in the Crimson, 
-");
+When you take damage, blood flies everywhere
+While in the Crimson, you are instead inflicted with Super Bleeding on hit");
         }
 
         public override void SetDefaults()
@@ -29,8 +27,7 @@ While in the Crimson,
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            /*Blood flies everywhere on hit
-            While in the Crimson, it will inflict Super Bleeding on you (spew blood constantly for a few seconds)*/
+            //player.GetModPlayer<FargoPlayer>().ShadeEnchant = true;
         }
 
         public override void AddRecipes()
