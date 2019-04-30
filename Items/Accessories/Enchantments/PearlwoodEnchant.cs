@@ -10,8 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     {
         int timer = 0;
 
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pearlwood Enchantment");
@@ -38,7 +36,7 @@ While in the Hallowed, the rainbow trail lasts much longer");
             if (player.velocity.Length() > 1 && timer >= 4)
             {
                 int direction = player.velocity.X > 0 ? 1 : -1;
-                int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 20, 1);
+                int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 20, 1, main.myPlayer);
                 Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
 
                 timer = 0;
