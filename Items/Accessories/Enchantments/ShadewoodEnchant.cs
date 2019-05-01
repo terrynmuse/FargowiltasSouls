@@ -27,7 +27,7 @@ While in the Crimson, you are instead inflicted with Super Bleeding on hit");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            //player.GetModPlayer<FargoPlayer>().ShadeEnchant = true;
+            player.GetModPlayer<FargoPlayer>().ShadeEnchant = true;
         }
 
         public override void AddRecipes()

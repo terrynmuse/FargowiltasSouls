@@ -6,8 +6,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class RichMahoganyEnchant : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rich Mahogany Enchantment");

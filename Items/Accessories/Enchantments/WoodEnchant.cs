@@ -6,8 +6,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class WoodEnchant : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wood Enchantment");

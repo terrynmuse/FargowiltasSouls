@@ -15,6 +15,7 @@
 -lead poison no longer works on projectile NPCs like water spheres, vile spit etc
 -unicorn rainbows now ignore tiles
 -goblin spike balls now die after one hit
+-fixed bug with firing a stupid amount of thing with weapons with no ammo
 
 This mod adds 2 main things. Souls and Masochist Mode.
 
@@ -220,19 +221,24 @@ nerfed tungsten size to 100% instead of 150%
 fixed golem drop effect not carrying over to chalice of the moon
 supersonic now says "I am speed"
 -pillars no longer spawn from pandoras box
-
-
-terrarium enchant - rainbow color
-cultist no drop maso drop when summoned with fargo summon
+make sure plat enchant is at crystal ball
+can use item no ammo bug, make clestial rune in there and others if there are any 
+iron magnet works on certain stars/hearts
 guardian tome immune to be yeeted by golem 
+terrarium enchant - rainbow color
+
+
+
+
+
+
+cultist no drop maso drop when summoned with fargo summon
 top hat squirrel terrarium
 penetrator glow mask and crucible glow mask
 also how about that crucible resprite lol
 remove all thorium butterflies and make sure all vanilla critters are in, all enchant recipes checked over one more time (at home)
 new thorium items and effects time ^ 
 also remove vanilla enchants from thorium forces for the most part
-iron magnet works on certain stars/hearts
-make sure plat enchant is at crystal ball
 remove tungsten stunning, just mega sword
 all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
 mechanical cart in supersonic, add some mounts to fishing or someshit
@@ -245,9 +251,8 @@ crucible accept fossils?
 gladiator rework, tiki rework, ninja rework finalize, wood enchants REEE
 tribal charm auto swing?
 absorb hyper mode, for casters amd enchanted weapons, and maybe more 
-can use item no ammo bug, make clestial rune in there and others if there are any 
+
 add roomba, make sheet somehow and copy generic pet AI
 add fishing rod, one form for now lol
 add deaths meme idea from doc
-invasion length increase??
 

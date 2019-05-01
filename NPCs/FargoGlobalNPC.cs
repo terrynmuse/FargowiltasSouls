@@ -8510,13 +8510,6 @@ namespace FargowiltasSouls.NPCs
             if (modPlayer.CactusEnchant)
                 Needles = true;
 
-            //pearlwood
-            if (projectile.type == ProjectileID.RainbowBack && projectile.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow)
-            {
-                npc.StrikeNPC(10, 0, 0);
-                npc.scale = .5f;
-            }
-
             if (FargoWorld.MasochistMode)
             {
                 switch (masoHurtAI)
@@ -8866,8 +8859,11 @@ namespace FargowiltasSouls.NPCs
                     npc.knockBackResist = .5f;
             }
 
-            
-
+            //pearlwood
+            if (projectile.type == ProjectileID.RainbowBack && projectile.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow && Main.rand.Next(2) == 0)
+            {
+                npc.scale = .5f;
+            }
         }
 
         public override bool? CanBeHitByItem(NPC npc, Player player, Item item)

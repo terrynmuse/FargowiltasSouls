@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Items
             FargoPlayer p = (FargoPlayer) player.GetModPlayer(mod, "FargoPlayer");
             //ignore money, hearts, mana stars
             if (p.IronEnchant && item.type != 71 && item.type != 72 && item.type != 73 && item.type != 74 && item.type != 54 && item.type != 1734 && item.type != 1735 &&
-                item.type != 184) grabRange += 250;
+                item.type != 184 && item.type != ItemID.CandyCane && item.type != ItemID.SugarPlum) grabRange += 250;
         }
 
         public override void PickAmmo(Item item, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
@@ -162,7 +162,8 @@ namespace FargowiltasSouls.Items
                 }
             }
 
-            if (item.damage <= 0) return true;
+            //non weapons and weapons with no ammo begone
+            if (item.damage <= 0 || !player.HasAmmo(item, true)) return true;
 
             if (modPlayer.BorealEnchant)
             {
@@ -181,6 +182,44 @@ namespace FargowiltasSouls.Items
 
 
                     modPlayer.BorealCount = 0;
+                }
+            }
+
+            if (modPlayer.CelestialRune && modPlayer.CelestialRuneTimer <= 0)
+            {
+                modPlayer.CelestialRuneTimer = 60;
+
+                Vector2 position = player.Center;
+                Vector2 velocity = Vector2.Normalize(Main.MouseWorld - position) * item.shootSpeed;
+
+                if (Soulcheck.GetValue("Celestial Rune Support"))
+                {
+                    if (item.melee) //fireball
+                    {
+                        Main.PlaySound(SoundID.Item34, position);
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Projectile.NewProjectile(position, velocity.RotatedByRandom(Math.PI / 6) * Main.rand.NextFloat(6f, 10f),
+                                mod.ProjectileType("CelestialRuneFireball"), (int)(50f * player.meleeDamage), 9f, player.whoAmI);
+                        }
+                    }
+                    if (item.ranged) //lightning
+                    {
+                        float ai1 = Main.rand.Next(100);
+                        Vector2 vel = Vector2.Normalize(velocity.RotatedByRandom(Math.PI / 4)) * 7f;
+                        Projectile.NewProjectile(position, vel, mod.ProjectileType("CelestialRuneLightningArc"),
+                            (int)(50f * player.rangedDamage), 1f, player.whoAmI, velocity.ToRotation(), ai1);
+                    }
+                    if (item.magic) //ice mist
+                    {
+                        velocity *= 4.25f;
+                        Projectile.NewProjectile(position, velocity, mod.ProjectileType("CelestialRuneIceMist"), (int)(50f * player.magicDamage), 4f, player.whoAmI);
+                    }
+                    if (item.thrown) //ancient vision
+                    {
+                        velocity *= 16f;
+                        Projectile.NewProjectile(position, velocity, mod.ProjectileType("CelestialRuneAncientVision"), (int)(50f * player.thrownDamage), 0, player.whoAmI);
+                    }
                 }
             }
 

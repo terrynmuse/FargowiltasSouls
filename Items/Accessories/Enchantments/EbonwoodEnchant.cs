@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,14 +8,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class EbonwoodEnchant : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ebonwood Enchantment");
             Tooltip.SetDefault(
 @"''
-While in the Corruption, enemies that get near you are inflicted with Rotting and Shadowflame
+You have an aura of Shadowflame
+While in the Corruption, the radius is doubled
 ");
         }
 
@@ -29,9 +30,38 @@ While in the Corruption, enemies that get near you are inflicted with Rotting an
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            /*Ebon
+            //player.GetModPlayer<FargoPlayer>().EbonEnchant = true;
 
-player aura of Rotting and Shadowflame */
+            int dist = 150;
+
+            if (player.ZoneCorrupt)
+            {
+                dist *= 2;
+            }
+
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+
+                if (npc.Distance(player.Center) < dist)
+                {
+                    npc.AddBuff(BuffID.ShadowFlame, 120);
+                }
+            }
+
+            for (int i = 0; i < 20; i++)
+            {
+                Vector2 offset = new Vector2();
+                double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                offset.X += (float)(Math.Sin(angle) * dist);
+                offset.Y += (float)(Math.Cos(angle) * dist);
+                Dust dust = Main.dust[Dust.NewDust(
+                    player.Center + offset - new Vector2(4, 4), 0, 0,
+                    DustID.Shadowflame, 0, 0, 100, Color.White, 1f
+                    )];
+                dust.velocity = player.velocity;
+                dust.noGravity = true;
+            }
         }
 
         public override void AddRecipes()

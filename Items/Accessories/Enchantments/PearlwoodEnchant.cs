@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"''
 You leave behind a trail of rainbows that may shrink enemies
-While in the Hallowed, the rainbow trail lasts much longer");
+While in the Hallow, the rainbow trail lasts much longer");
         }
 
         public override void SetDefaults()
@@ -36,8 +36,9 @@ While in the Hallowed, the rainbow trail lasts much longer");
             if (player.velocity.Length() > 1 && timer >= 4)
             {
                 int direction = player.velocity.X > 0 ? 1 : -1;
-                int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 20, 1, main.myPlayer);
-                Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
+                int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 30, 0, Main.myPlayer);
+                Projectile proj = Main.projectile[p];
+                proj.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
 
                 timer = 0;
             }

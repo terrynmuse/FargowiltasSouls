@@ -323,19 +323,20 @@ namespace FargowiltasSouls.Projectiles
                     projectile.velocity = Vector2.Zero;
                 }
 
+                int deathTimer = 30;
+
                 if (projectile.hostile)
                 {
-                    if (counter >= 60)
-                    {
-                        projectile.Kill();
-                    }
+                    deathTimer = 60;
                 }
-                else
+                else if(Main.player[projectile.owner].ZoneHoly)
                 {
-                    if (counter >= 30)
-                    {
-                        projectile.Kill();
-                    }
+                    deathTimer = 90;
+                }
+
+                if (counter >= deathTimer)
+                {
+                    projectile.Kill();
                 }
             }
 
