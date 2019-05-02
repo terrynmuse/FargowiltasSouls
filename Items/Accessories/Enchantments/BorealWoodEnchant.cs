@@ -6,16 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class BorealWoodEnchant : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Boreal Wood Enchantment");
             Tooltip.SetDefault(
 @"''
-While in the Snow Biome, damaging snow/hail will constantly rain from the sky
-");
+Every 5th attack will be accompanied by a snowball
+While in the Snow Biome, you shoot 5 snowballs instead");
         }
 
         public override void SetDefaults()
@@ -30,7 +27,7 @@ While in the Snow Biome, damaging snow/hail will constantly rain from the sky
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            
+            player.GetModPlayer<FargoPlayer>().BorealEnchant = true;
         }
 
         public override void AddRecipes()
@@ -39,14 +36,11 @@ While in the Snow Biome, damaging snow/hail will constantly rain from the sky
             recipe.AddIngredient(ItemID.BorealWoodHelmet);
             recipe.AddIngredient(ItemID.BorealWoodBreastplate);
             recipe.AddIngredient(ItemID.BorealWoodGreaves);
+            recipe.AddIngredient(ItemID.SnowballCannon);
             recipe.AddIngredient(ItemID.Penguin);
-            
-            /*
             recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
-            Shiverthorn
-            SnowballCannon - launcher in essence now
-            BorealSword*/
-            
+            recipe.AddIngredient(ItemID.Shiverthorn);
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

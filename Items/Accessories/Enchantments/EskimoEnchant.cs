@@ -6,6 +6,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class EskimoEnchant : ModItem
     {
+    public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+        
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
@@ -31,21 +36,35 @@ You can walk on water and when you do, it freezes and creates spikes
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            
+            /*
+             * if(player.walkingOnWater)
+{
+	Create Ice Rod Projectile right below you
+}
+
+NearbyEffects:
+
+if(modPlayer.EskimoEnchant && tile.type == IceRodBlock)
+{
+	Create spikes
+}
+             */
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            /*recipe.AddIngredient(ItemID.);
-            recipe.AddIngredient(ItemID.);
+            recipe.AddIngredient(ItemID.PinkEskimoHood);
+            recipe.AddIngredient(ItemID.PinkEskimoCoat);
+            recipe.AddIngredient(ItemID.PinkEskimoPants);
+            //recipe.AddIngredient(ItemID.IceRod);
+            recipe.AddIngredient(ItemID.FrostMinnow);
+            recipe.AddIngredient(ItemID.AtlanticCod);
+            recipe.AddIngredient(ItemID.MarshmallowonaStick);
+            
 
-            Marshmallow on a stick
-            FrostMinnow
-            AtlanticCod*/
-
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

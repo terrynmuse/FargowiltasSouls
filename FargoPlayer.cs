@@ -9,13 +9,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Graphics.Capture;
-using FargowiltasSouls.Buffs.Masomode;
-using FargowiltasSouls.Buffs.Souls;
-using FargowiltasSouls.Items;
 using FargowiltasSouls.NPCs;
 using FargowiltasSouls.Projectiles;
-using FargowiltasSouls.Projectiles.BossWeapons;
-using FargowiltasSouls.Projectiles.Souls;
 using ThoriumMod;
 using CalamityMod.Items.CalamityCustomThrowingDamage;
 
@@ -119,6 +114,15 @@ namespace FargowiltasSouls
         public bool RedEnchant;
         public bool TungstenEnchant;
 
+        public bool MahoganyEnchant;
+        public bool BorealEnchant;
+        public int BorealCount = 0;
+        public bool WoodEnchant;
+        public bool PalmEnchant;
+        public bool ShadeEnchant;
+        public bool PearlEnchant;
+        public bool EbonEnchant;
+
         public bool CosmoForce;
         public bool EarthForce;
         public bool LifeForce;
@@ -203,6 +207,7 @@ namespace FargowiltasSouls
         public int CyclonicFinCD;
         public bool MasochistSoul;
         public bool CelestialSeal;
+        public bool SandsofTime;
 
         //debuffs
         public bool Hexed;
@@ -499,6 +504,14 @@ namespace FargowiltasSouls
             NebulaEnchant = false;
             TungstenEnchant = false;
 
+            MahoganyEnchant = false;
+            BorealEnchant = false;
+            WoodEnchant = false;
+            PalmEnchant = false;
+            ShadeEnchant = false;
+            PearlEnchant = false;
+            EbonEnchant = false;
+
             CosmoForce = false;
             EarthForce = false;
             LifeForce = false;
@@ -569,6 +582,7 @@ namespace FargowiltasSouls
             TrueEyes = false;
             CyclonicFin = false;
             MasochistSoul = false;
+            SandsofTime = false;
 
             //debuffs
             Hexed = false;
@@ -601,6 +615,10 @@ namespace FargowiltasSouls
             if (Eternity)
             {
                 player.respawnTimer = (int)(player.respawnTimer * .1);
+            }
+            else if (SandsofTime)
+            {
+                player.respawnTimer = (int)(player.respawnTimer * .5);
             }
         }
 
@@ -950,6 +968,7 @@ namespace FargowiltasSouls
 
             if (SlimyShield)
             {
+                //player.justJumped use this tbh
                 if (SlimyShieldFalling) //landing
                 {
                     if (player.velocity.Y == 0f && player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Slimy Shield Effects"))
@@ -960,7 +979,7 @@ namespace FargowiltasSouls
                         int damage = (int)(20 * player.meleeDamage);
                         if (MasochistSoul)
                             damage *= 3;
-                        for (int i = 0; i < 5; i++)
+                        for (int i = 0; i < 4; i++)
                         {
                             Vector2 spawn = new Vector2(mouse.X + Main.rand.Next(-200, 201), mouse.Y - Main.rand.Next(600, 901));
                             Vector2 speed = mouse - spawn;
@@ -987,8 +1006,9 @@ namespace FargowiltasSouls
                         if (MasochistSoul)
                             damage = 70;
                         damage = (int)(damage * player.magicDamage);
-                        Projectile.NewProjectile(player.Center, player.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6))) * 0.1f,
+                        int proj = Projectile.NewProjectile(player.Center, player.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6))) * 0.1f,
                             ProjectileID.DemonScythe, damage, 5f, player.whoAmI);
+                        Main.projectile[proj].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     }
                 }
             }
@@ -1147,13 +1167,13 @@ namespace FargowiltasSouls
 
             if (!Soulcheck.GetValue("Tungsten Effect") || !TungstenEnchant)
             {
-                item.scale = 1;
+                item.SetDefaults(item.type);
             }
             else if (TungstenEnchant)
             {
                 if (((item.melee && (item.useStyle == 1 || item.useStyle == 3)) || TerraForce) && item.damage > 0)
                 {
-                    item.scale = 2.5f;
+                    item.scale = 2f;
                 }
             }
 
@@ -1239,52 +1259,6 @@ namespace FargowiltasSouls
             }
 
             return AttackSpeed;
-        }
-
-        public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            if (CelestialRune && CelestialRuneTimer <= 0)
-            {
-                CelestialRuneTimer = 60;
-                if (Soulcheck.GetValue("Celestial Rune Support"))
-                {
-                    if (item.melee) //fireball
-                    {
-                        Main.PlaySound(SoundID.Item34, position);
-                        Vector2 vel = new Vector2(speedX, speedY);
-                        vel.Normalize();
-                        for (int i = 0; i < 3; i++)
-                        {
-                            Projectile.NewProjectile(position, vel.RotatedByRandom(Math.PI / 6) * Main.rand.NextFloat(6f, 10f),
-                                mod.ProjectileType("CelestialRuneFireball"), (int)(50f * player.meleeDamage), 9f, player.whoAmI);
-                        }
-                    }
-                    if (item.ranged) //lightning
-                    {
-                        Vector2 dir = new Vector2(speedX, speedY);
-                        float ai1 = Main.rand.Next(100);
-                        Vector2 vel = Vector2.Normalize(dir.RotatedByRandom(Math.PI / 4)) * 7f;
-                        Projectile.NewProjectile(position, vel, mod.ProjectileType("CelestialRuneLightningArc"),
-                            (int)(50f * player.rangedDamage), 1f, player.whoAmI, dir.ToRotation(), ai1);
-                    }
-                    if (item.magic) //ice mist
-                    {
-                        Vector2 vel = new Vector2(speedX, speedY);
-                        vel.Normalize();
-                        vel *= 4.25f;
-                        Projectile.NewProjectile(position, vel, mod.ProjectileType("CelestialRuneIceMist"), (int)(50f * player.magicDamage), 4f, player.whoAmI);
-                    }
-                    if (item.thrown) //ancient vision
-                    {
-                        Vector2 vel = new Vector2(speedX, speedY);
-                        vel.Normalize();
-                        vel *= 16f;
-                        Projectile.NewProjectile(position, vel, mod.ProjectileType("CelestialRuneAncientVision"), (int)(50f * player.thrownDamage), 0, player.whoAmI);
-                    }
-                }
-            }
-
-            return true;
         }
 
         public override void UpdateBadLifeRegen()

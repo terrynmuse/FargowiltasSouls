@@ -94,7 +94,7 @@ Summons a pet Glitter";
                 recipe.AddIngredient(ItemID.BeamSword);
             }
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

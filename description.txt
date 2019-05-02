@@ -1,19 +1,340 @@
-NEW UPDATE - v 0.6.2
+﻿NEW UPDATE - v 0.7
 
--add to wiki: ice and jungle slimes may become spiked, skeletons may become throwing skeles
+-Added Wood Enchantment, Boreal Wood Enchantment, Rich Mahogany Enchantment, Ebonwood Enchantment, Shadewood Enchantment, Palm Wood Enchantment, Pearlwood Enchantment
 
--gave prehm enchants more items in recipes so they all have 7 materials
--removed confused on fall damage, lightning rod while raining is less aggressive
--Copper enchant has greater bonuses when attacking wet enemies
--recipe for steel throwing axe increased
--reworked spider enchant to minion crits
--aerospec enchant has fall immune now
--fixed Terra Force tooltip error
--skeletron DG mode now only 50 HP
--removed the slow from Lead Poison
--lead poison no longer works on projectile NPCs like water spheres, vile spit etc
--unicorn rainbows now ignore tiles
--goblin spike balls now die after one hit
+-Ninja Enchantment reworked: Now while in smoke
+-Gladiator Enchantment reworked: 
+-Spider Enchantment reworked: Now allows all minions to crit 10% of the time
+-Modified nearly all Enchantment recipes: they all have the same amount of materials now, Thorium butterflies removed, and several new Thorium items added
+-Copper Enchantment has greater bonuses when attacking wet enemies
+-Lead Enchantment's Lead Poison no longer slows and does not spread to projectile NPCs like Water Spheres
+
+-Aerospec Enchantment has fall immunity now
+
+
+-Nerfed Amalgamated Bullet Pouch: damage down
+-Buffed Brain Staff: damage up
+
+-Nerfed tungsten size to 100% instead of 150% (prob change ech)
+-Fixed Tungsten Enchantment bug where weapons would never be larger without it (prefix size increases etc)
+
+
+supersonic now says "I am speed"
+-Pillars no longer spawn from Pandora's Box
+-Platinum Enchantment now crafted at a Crystal Ball
+-Fixed bug on certain Thorium Enchantments like Illumite where using a weapon with no ammo would spam projectiles
+-Fixed Iron Enchantment's Magnet working on Christmas hearts and stars when it shouldn't
+-Guardian Tome is immune to Masochist Mode Golem fist destruction
+-Terrarium Enchantment rarity is now rainbow
+-Fixed Frost and Orichalcum Enchantments doing horrible things in MP
+-Fixed other various MP minion desyncs
+
+-Recipe for Steel Throwing Axes increased from 1 per Folded Metal to 15
+-Fixed Terra Force tooltip error
+
+-added toggle for Gold Enchantment Lucky Coin effect
+-added check for friendly NPC to onhitnpc
+-nerfed spectre healing, god
+-frost enchant gives frostburn imbue
+
+-flames of universe gives immunity to npcs against its components
+
+
+
+
+
+
+ADD TO WIKI
+-Ice Slimes and Jungle Slimes may upgrade into Spiked versions
+-Pixies have an aura of Squeaky Toy (not new but missed this)
+-Skeletons may upgrade into Bone Throwing Skeletons
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+Masochist Mode Changes (first ever actual changelog!)
+
+Buffs
+-Unicorn rainbows now ignore tiles
+-Zombie to Armed zombie transform is now all the time instead of post EoC
+-Increased Pinky Slime duration
+-Increased Blood Zombie aura range
+-Flames and geyser traps always inflict On Fire
+-Oceanic Maul & Curse of the Moon disable Shadow Dodge, Black Belt dodge, and Hallowed Shield
+-Duke Fishron is always immune to valhalla knockback (used to be EX only)
+-Buffed Duke Fishron EX phase 1&2 speed
+
+Nerfs
+-Removed Confused infliction upon taking fall damage 
+-Lightning Rod while raining is less aggressive
+-Skeletron DG mode is now only 50 HP and it does not set time to day
+-Goblin spike balls now die after one hit
+-Vortex Larva become Vortex Hornets 50% of the time instead of always
+-Corrupt and Crimson Bunny spawn rate reduced
+-Demon Eye dashing is slower and slighly more random so they don't all dash at the same time
+-Reduced Meteor Head dash speed 
+-Granite Golems and Elementals don't Stone with 100% chance, now 50%
+-Leeches do not bring your velocity to zero
+-Mechs are not immune to Hallowed Stars, they just have 75% DR 
+-Moonlord is not immune to phantasm but resists it like Aerial Bane
+-Ice Bats don't inflict Frostburn anymore
+-maso regen no longer affects ANY friendly npc
+-Srollers no longer have boosted defense
+-Nerfed Alien Hornet/Brain Suckler fake death chance to 66%
+-Stardust enemies always contribute to pillar shield when killed
+-Moved debuff infliction from ModifyHitPlayer to OnHitPlayer which is actually pretty substantial, debuffs are not inflicted while you're immune now
+-Nerfed Golem body regen (750 to 500)
+-Fishron EX no longer cleanses debuffs during phase 2 transition
+-Water debuffs all end when you exit water (Jungle water nerf) might revert REE
+-Ancient Light homes less
+-Cultist clones shoot lightning bolts, not lightning portals as support
+-Oceanic Maul no longer removes knockback resistance
+-Duke Fishron EX cthulhunado spawn rate nerfed
+-Duke Fishron EX phase 3 defense reduced
+-Nerfed Infested 
+
+Tweaks
+-Zombie horde chance is now all the time instead of post EoC, but its a smaller chance to happen
+-Eater of Souls and Crimera hordes are post EoW/BoC instead of EoC, and they can horde in larger numbers
+-Cave Bats can spawn in hordes all the time instead of post EoC, max of 4 instead of 5
+-Flying Fish can spawn in hordes all the time instead of post EoC, max of 3 instead of 5
+-King Slime now only spawns naturally post EoW/BoC instead of post himself, also he can spawn anytime during a Slime Rain not just during the day
+-EoW/BoC can spawn after beating just skeletron, not queen bee AND skeletron
+-Blood Scythes spawned by EoC now inflict shorter Shadowflame and also now inflict Bleeding but not Darkness
+-Cultist clones inflict Curse of the moon instead of Rotting
+-Giant Flying Foxes don't inflict Squeaky Toy anymore, but do inflict Mutant Nibble
+-Lightning Bug inflicts Electrified instead of Lightning Rod
+-Ragged Caster projectiles now inflict Hexed instead of Unstable
+-Crimslimes don't inflict Bleeding anymore because the Crimson always inflicts it anyway
+-King Slime's rain is different now and actually aims at you
+-Skeletron Prime DR adjusted,fully invulnerable at the start of the fight, loses invuln when any limb dies
+-Golem head always alternates between 3 and 4 spread of lasers (was random)
+-Twins don't become immune when partner isn't also in phase 3
+-Golem head only breathes fire outside temple
+-Restored Truffle Worm EX functionality, now you fish with it, no longer a toggle, also added a Shrimpy Truffle to its recipe
+-ML socket lasers spawn along warning line
+-All bosses now drop up to 10 potions per kill (was 5)
+
+Fixes
+-Vulture feathers are actually named Vulture Feathers 
+-Blood Scythes also actually called Blood Scythes
+-Duke Fishron EX actually named Duke Fishron EX
+-Fixed Spiked Slimes spawning King Slime only while King Slime is alive as opposed to not 
+-Added combat text to Vampire life steal
+-Made Royal Subjects separate NPCs from Queen Bee to stop MP bugs and other stuff
+-ML socket lasers actually stop when ML dies
+-Duke Fishron EX doesn't gain more max life than intended during phase transitions in MP
+
+New Additions
+-Brought back boss scaling
+-BoC shows visual of confusing everyone nearby, when hit, also confusion lasts longer (tbh maybe it should be an aura on hit once hes low )
+-Rainbow Slimes now split into 5 Pinkys and 5 Gastropods after their initial split
+-Pinky now inflicts Stunned and splits into 2 Yellow Slimes and 1 Mother Slime
+-Added Happy Bombs to the clowns explosion (test)
+-Pillars have 500% life
+-Vortex Pillar fires cultist lightning orbs and periodically reflects projectiles
+-Stardust Pillar emits omnidirectional rings of Ancient Lights
+-Solar Pillar shoots 6-spreads of cultist's homing fireballs
+-Nebula Pillar continuously shoots bolts that rain down on you and TELEPORTS
+-Sand Elemental sandnados spew Sand Sharks
+-Duke Fishron non-EX has razor rings
+-Golem fists explode when fully extended and when outside the temple
+-Moon Lord also shoots a lightning orb during his ranged phase
+-Enraged Golem shoots lasers and aims spiky balls better
+
+Spawns
+-Corrupt and Crimson Goldfish can spawn while it's raining at night now
+-Mimics now spawn in prehardmode underground
+-White Cultist Archers also spawn around the Dungeon now
+-Gingerbread Men spawn on Hallowed surface at any time instead of only at night
+-Lightning Bugs now spawn post any mech instead of post Golem
+-Skeletron can spawn anytime in hardmode dungeon instead of post mech
+-Lunar enemies spawn in the sky post mech instead of always in hard mode
+-Queen Bee spawns anytime in hardmode jungle instead of post mech
+-Corrupt critters will continue to spawn in hard mode
+-Lava Slimes, Fire Imps, Dark Casters continue to spawn underground in hardmode
+-Leeches and Blazing Wheels continue to spawn in the underworld in hard mode
+-Angry Nimbus contines to spawn in the sky in hard mode
+-Moss Hornets now may spawn in packs of up to 5
+
+Debuffs
+-Umbrella Slimes, Present Slimes, and Hoppin Jacks now inflict Slimed
+-Corruptors now inflict Rotting
+-Water Spheres now inflict Wet
+-Necromancer attacks inflict Shadowflame
+-Bone Serpents inflict Burning
+-Salamanders inflict Poisoned
+-Vile Spit inflicts Rotting
+
+Item Changes
+-Added Slimy Shield, Agitating Lens, Corrupt Heart, Gutted Heart, Pure Heart, Necromantic Brew, Supreme Deathbringer Fairy
+-Added Celestial Seal, Cyclonic Fin, Tribal Charm, Squeaky Toy, Sands of Time, Dragon's Fang, Concentrated Rainbow Matter (maybe more)
+-Queen's Stinger is now a Masochist Mode drop (make sure big sting recipe doesnt use it)
+-Pungent Eye, Remote Control, and Galactic Globe now have minions
+-Celestial Rune now has bonus attacks
+-Dubious Circuitry now makes your attacks inflict Lightning Rod
+-Reinforced Plating now gives knockback immmunity
+-Soul of the Masochist lets you inflict Sadism now
+-Ancient Visions spawne don hit are now minion damage instead of throwing
+-Fixed Lihzahrd Treasure Box effect not carrying over to Chalice of the Moon
+-Lihzahrd Treasure Box no longer does anything in flipped gravity
+-Fixed minions from accessories not being buffed by player stats
+-Several sprites added
+-Tooltips changed for some items and moved to the top to match up with all other Fargo item tooltips
+-Debuff immmunity shuffled around on several drops, now every debuff has immunity somewhere
+
+
+
+
+
+
+
+Other todo:
+
+SOUL
+cultist no drop maso drop when summoned with fargo summon
+penetrator glow mask and crucible glow mask
+also how about that crucible resprite lol
+remove all thorium butterflies and make sure all vanilla critters are in, all enchant recipes checked over one more time (at home)
+new thorium items and effects time ^ 
+also remove vanilla enchants from thorium forces for the most part
+remove tungsten stunning, just mega sword
+all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
+mechanical cart in supersonic, add some mounts to fishing or someshit
+bugle recipe group
+thorium force with negative regen?
+toggle page bugs, check all combos of mods, add a second page for just fargo, add more toggles for calameme, SoE stacking, infinity relic, etc
+toggle all button
+can you move with gold enchant?
+crucible accept fossils?
+tribal charm auto swing?
+add roomba, make sheet somehow and copy generic pet AI
+
+
+NOT THIS UPDATE
+top hat squirrel terrarium
+add fishing rod, one form for now lol
+add deaths meme idea from doc
+absorb hyper mode, for casters amd enchanted weapons, and maybe more 
+tiki rework
+
+
+TODO maybe
+
+
+Antlion Swarmers drop sand when above the player
+-galactic globe immune to curse of the moon
+
+Spawns
+-HM Headless Horsemen????
+-Parrots spawn in the sky
+-mummies spawn in pyramids always 
+-blood feeder - increase stats, heals on damage 
+-angler fish invisible with light, appears in ocean always bleed
+
+Debuffs
+Lava slimes - oiled  (make work)
+-all worm enemies in the game have 7% chance to inflict god eater for 7 seconds on touch
+-frost legion needs some help, all inflict chilled at least, snowballs inflict frostburn
+
+AI
+QB -(take less damage while guards are alive? maybe only in stationary form spraying spike too?? and guards are always charging?)
+crippled only when charging?
+Gastropods explode into lasers (ADD)
+Rainbow slime spawns red, hoppin jacks, yellow, green, blue, purple slimes in order every time its hit 
+fires rainbow slime balls at you
+-all spiders shoot the web spit
+-also not all demon eyes dashing?
+-icy merman shoots twice as fast if he’s in water (also dust ofc)
+-dutchman cannons shoot cannonballs that are obscenely large and inflict Fused
+-Fire Imp, Dark Caster, Tim, and Goblin Sorcerer "panic" when attacked (they fire projectiles 3x as fast and can still shoot after getting damaged)
+-Paladins can throw hammers without having to not be currently attacked
+-enchanted sword family inflict defenseless, have way more knockback resist and don't take five years to attack again when hit
+-Zombies can always open doors like in blood moons
+-clowns throw exploding bananas and explode into snow and sand balls instead of dynamite
+-moths spawn spores everywhere 
+-Pirahnas will hop out the top of water if you are directly above it
+-Ragged Casters teleport when damaged
+
+MISC
+-Fused - a pulsing bomb floats above you and gets redder as time counts down
+-Hexed - Green Dust like on fire but friendly looking, you know the one
+-Marked for Death - skulls circle around you
+-target dummy and super dummy should be valhalla immune in non masomode
+-1/20 every night for either moon, post plant or sooner? message displays one minute before they start. 
+-Desert is way too bright, need shades
+-red devil trident velocity increases per tick
+-add back lightning rain reeeeee, make it much less often 
+
+Frost golem drop 
+immune to Frostburn and Shadowflame
+
+
+Number of times each debuff is represented in masomode (basically to see what we should add more of hahayes)
+
+Withered Weapon 5
+Withered Armor 4
+Marked for Death 6
+Hexed 8
+Cursed Flames 5
+Ichor 5
+Flipped 8
+Unstable 6
+Distorted 2
+Chaos State 0 
+Burning 6 
+Fused 4
+Blackout
+Tongue 0 
+Infested
+Living Wasteland
+Feral Bite 19
+Mutant Nibble 9
+Defenseless 16
+Stunned
+Dazed 3
+Atrophied 3
+Jammed 3
+Reverse Mana Flow 3
+Antisocial 4
+God Eater
+Oozed?
+Webbed?
+Obstructed?
+Electrified 3
+Lightning Rod
+Bleeding
+Poisoned
+Darkness
+Weak
+Broken Armor
+Confused
+Slow
+Sileced
+Cursed
+Chilled 
+Frozen
+Stoned
+Slimed
+Berserked
+Bloodthirsty
+Rotting 11
+Venom 8
+Lethargic
+Clipped Wings 14
+Crippled
+Frostburn
+Shadowflame
+Flames of the Universe
+Squeaky Toy
+
+
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

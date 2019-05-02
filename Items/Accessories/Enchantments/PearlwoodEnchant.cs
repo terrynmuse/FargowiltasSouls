@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using FargowiltasSouls.Projectiles;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,8 +8,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class PearlwoodEnchant : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        int timer = 0;
 
         public override void SetStaticDefaults()
         {
@@ -15,8 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"''
 You leave behind a trail of rainbows that may shrink enemies
-While in the Hallowed, the rainbow trail lasts much longer
-");
+While in the Hallow, the rainbow trail lasts much longer");
         }
 
         public override void SetDefaults()
@@ -25,31 +25,39 @@ While in the Hallowed, the rainbow trail lasts much longer
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 7;
-            item.value = 100000;
+            item.rare = 1;
+            item.value = 10000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            
+            timer++;
+
+            if (player.velocity.Length() > 1 && timer >= 4)
+            {
+                int direction = player.velocity.X > 0 ? 1 : -1;
+                int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 30, 0, Main.myPlayer);
+                Projectile proj = Main.projectile[p];
+                proj.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
+
+                timer = 0;
+            }
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.);
-
-            Unicorn on a stick
-            Lightning Bug
-            Prismite
-            Chaos Fish
-            Princess Fish
+            recipe.AddIngredient(ItemID.PearlwoodHelmet);
+            recipe.AddIngredient(ItemID.PearlwoodBreastplate);
+            recipe.AddIngredient(ItemID.PearlwoodGreaves);
+            recipe.AddIngredient(ItemID.UnicornonaStick);
+            recipe.AddIngredient(ItemID.LightningBug);
+            recipe.AddIngredient(ItemID.Prismite);
             recipe.AddIngredient(ItemID.TheLandofDeceivingLooks);
-            Pearlwood Sword, Bow
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -26,6 +27,17 @@ The energy of Terraria seeks to protect you
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Crietz and Band of Replenishment
 Effects of Fan Letter and Terrarium Surround Sound");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB));
+                }
+            }
         }
 
         public override void SetDefaults()

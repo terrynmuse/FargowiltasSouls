@@ -6,8 +6,6 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class BetsysHeart : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Betsy's Heart");

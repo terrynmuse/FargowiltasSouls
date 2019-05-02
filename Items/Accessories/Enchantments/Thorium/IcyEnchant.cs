@@ -70,7 +70,7 @@ Summons a pet Penguin");
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddIngredient(ItemID.IceBoomerang);
-            recipe.AddIngredient(ItemID.SnowballLauncher);
+//add a thing
             recipe.AddIngredient(thorium.ItemType("ShiverthornButterfly"));
             recipe.AddIngredient(ItemID.Fish);
 

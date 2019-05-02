@@ -6,16 +6,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class ShadewoodEnchant : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadewood Enchantment");
             Tooltip.SetDefault(
 @"''
-While in the Crimson, 
-");
+When you take damage, blood flies everywhere
+While in the Crimson, you are instead inflicted with Super Bleeding on hit");
         }
 
         public override void SetDefaults()
@@ -30,22 +27,20 @@ While in the Crimson,
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            
+            player.GetModPlayer<FargoPlayer>().ShadeEnchant = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             
+            recipe.AddIngredient(ItemID.ShadewoodHelmet);
+            recipe.AddIngredient(ItemID.ShadewoodBreastplate);
+            recipe.AddIngredient(ItemID.ShadewoodGreaves);
+            recipe.AddIngredient(ItemID.ShadewoodSword);
+            recipe.AddIngredient(ItemID.CrimsonTigerfish);
+            recipe.AddIngredient(ItemID.ViciousMushroom);
             recipe.AddIngredient(ItemID.DeadlandComesAlive);
-            
-            /*recipe.AddIngredient(ItemID.);
-
-            crimson painting
-            vicious mushroom
-            crimson tigerfish
-            hemopiranha
-            shadewood sword/bow*/
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

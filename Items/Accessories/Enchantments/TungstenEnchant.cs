@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip =
 @"'Bigger is always better'
-150% increased sword size
+100% increased sword size
 10% decreased movement and melee speed
 Sword attacks may stun enemies";
 

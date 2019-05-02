@@ -39,6 +39,7 @@ Summons a friendly Cultist to fight at your side");
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
             player.buffImmune[mod.BuffType("Fused")] = true;
+            player.GetModPlayer<FargoPlayer>().LihzahrdTreasureBox = true;
 
             //celestial rune
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;

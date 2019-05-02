@@ -6,9 +6,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using FargowiltasSouls.Buffs.Masomode;
-using Microsoft.Xna.Framework.Graphics;
-using ThoriumMod;
 
 namespace FargowiltasSouls.Projectiles
 {
@@ -40,6 +37,10 @@ namespace FargowiltasSouls.Projectiles
         private bool firstTick = true;
         private bool squeakyToy = false;
         public int TimeFrozen = 0;
+
+        public bool Rainbow = false;
+
+
 
         public override void SetDefaults(Projectile projectile)
         {
@@ -90,7 +91,8 @@ namespace FargowiltasSouls.Projectiles
         public override bool PreAI(Projectile projectile)
         {
             bool retVal = true;
-            FargoPlayer modPlayer = Main.LocalPlayer.GetModPlayer<FargoPlayer>();
+            Player player = Main.player[Main.myPlayer];
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             counter++;
 
             if (projectile.owner == Main.myPlayer)
@@ -242,6 +244,25 @@ namespace FargowiltasSouls.Projectiles
                         }
                     }
                 }
+
+                //hook AI
+                if (modPlayer.MahoganyEnchant && projectile.aiStyle == 7 && player.ZoneJungle && counter >= 60)
+                {
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        NPC n = Main.npc[i];
+
+                        if (n.CanBeChasedBy(projectile) && Vector2.Distance(n.Center, projectile.Center) < 400)
+                        {
+                            Vector2 velocity = Vector2.Normalize(n.Center - projectile.Center) * 5;
+
+                            Projectile.NewProjectile(projectile.Center, velocity, ProjectileID.ChlorophyteBullet, 15, 1, Main.myPlayer);
+                            break;
+                        }
+                    }
+
+                    counter = 0;
+                }
             }
 
             if(Rotate)
@@ -291,8 +312,8 @@ namespace FargowiltasSouls.Projectiles
                 retVal = false;
             }
 
-            //masomode unicorn meme
-            if (FargoWorld.MasochistMode && projectile.type == ProjectileID.RainbowBack && projectile.hostile)
+            //masomode unicorn meme and pearlwood meme
+            if (Rainbow)
             {
                 projectile.tileCollide = false;
 
@@ -301,7 +322,19 @@ namespace FargowiltasSouls.Projectiles
                 {
                     projectile.velocity = Vector2.Zero;
                 }
-                if (counter >= 60)
+
+                int deathTimer = 30;
+
+                if (projectile.hostile)
+                {
+                    deathTimer = 60;
+                }
+                else if(Main.player[projectile.owner].ZoneHoly)
+                {
+                    deathTimer = 90;
+                }
+
+                if (counter >= deathTimer)
                 {
                     projectile.Kill();
                 }
@@ -670,7 +703,7 @@ namespace FargowiltasSouls.Projectiles
                     return Color.SandyBrown;
                 }
 
-                else if (projectile.type == ProjectileID.DemonSickle)
+                else if (projectile.type == ProjectileID.DemonSickle || projectile.type == ProjectileID.DemonScythe)
                 {
                     projectile.Name = "Blood Scythe";
                     return Color.Red;
@@ -1202,6 +1235,37 @@ namespace FargowiltasSouls.Projectiles
                     if (modPlayer.OriEnchant && Rotate)
                         modPlayer.OriSpawn = false;
                     break;
+            }
+        }
+
+        public override void GrapplePullSpeed(Projectile projectile, Player player, ref float speed)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            if (modPlayer.MahoganyEnchant)
+            {
+                speed *= 2;
+            }
+
+        }
+
+        public override void GrappleRetreatSpeed(Projectile projectile, Player player, ref float speed)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            if (modPlayer.MahoganyEnchant)
+            {
+                speed *= 2;
+            }
+        }
+
+        public override void NumGrappleHooks(Projectile projectile, Player player, ref int numHooks)
+        {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            if (modPlayer.MahoganyEnchant)
+            {
+                numHooks *= 2;
             }
         }
 

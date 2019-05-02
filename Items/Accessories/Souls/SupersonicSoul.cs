@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Supersonic Soul");
 
             string tooltip = 
-@"'Sound barriers forever broken'
+@"'I am speed'
 Allows Supersonic running, flight, and extra mobility on ice
 Allows the holder to quadruple jump if no wings are equipped
 Increases jump height, jump speed, and allows auto-jump
