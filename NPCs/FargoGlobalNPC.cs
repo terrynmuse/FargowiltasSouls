@@ -7438,23 +7438,23 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Hellbat:
                     case NPCID.Lavabat:
                         if (Main.rand.Next(20) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RabiesShot"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("RabiesShot"));
                         break;
 
                     case NPCID.IlluminantBat:
                         if (Main.rand.Next(20) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RabiesShot"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("RabiesShot"));
                         goto case NPCID.IlluminantSlime;
 
                     case NPCID.IlluminantSlime:
                     case NPCID.EnchantedSword:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VolatileEnergy"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("VolatileEnergy"));
                         break;
 
                     case NPCID.ChaosElemental:
                         if (Main.rand.Next(5) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VolatileEnergy"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("VolatileEnergy"));
                         break;
 
                     case NPCID.CorruptBunny:
@@ -7464,7 +7464,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CorruptPenguin:
                     case NPCID.CrimsonPenguin:
                         if (Main.rand.Next(100) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SqueakyToy"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SqueakyToy"));
                         break;
 
                     case NPCID.SkeletonSniper:
@@ -7477,181 +7477,157 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.RaggedCaster:
                     case NPCID.RaggedCasterOpenCoat:
                         if (Main.rand.Next(100) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SkullCharm"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SkullCharm"));
                         break;
 
                     case NPCID.BigMimicJungle:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TribalCharm"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("TribalCharm"));
                         break;
 
                     case NPCID.IceGolem:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FrigidGemstone"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("FrigidGemstone"));
                         break;
 
                     case NPCID.WyvernHead:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DragonFang"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("DragonFang"));
+                        if (Main.rand.Next(3) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.FloatingIslandFishingCrate);
                         break;
 
                     //meh may change later
                     case NPCID.RainbowSlime:
-                        if (masoDeathAI == 0 && NPC.CountNPCS(NPCID.RainbowSlime) == 1 && Main.rand.Next(5) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ConcentratedRainbowMatter"));
+                        if (masoDeathAI == 0 && NPC.CountNPCS(NPCID.RainbowSlime) == 1 && Main.rand.Next(10) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("ConcentratedRainbowMatter"));
                         break;
 
                     case NPCID.SandElemental:
-                        if (Main.rand.Next(5) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SandofTime"));
+                        if (Main.rand.Next(10) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SandofTime"));
                         break;
 
-                    case NPCID.WyvernHead:
-                        if (Main.rand.Next(5) == 0)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DragonFang"));
-                        break;
-
+                    #region boss drops
                     case NPCID.KingSlime:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HerbBag);
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SlimyShield"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.HerbBag, Main.rand.Next(3) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.WoodenCrate, Main.rand.Next(3) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SlimyShield"));
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        int maxEOC = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxEOC; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ThornsPotion);
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AgitatingLens"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.ThornsPotion, Main.rand.Next(10) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.IronCrate, Main.rand.Next(3) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("AgitatingLens"));
                         break;
 
                     case NPCID.EaterofWorldsHead:
                     case NPCID.EaterofWorldsBody:
                     case NPCID.EaterofWorldsTail:
-                        bool dropPotions = true;
+                        bool dropItems = true;
                         for (int i = 0; i < 200; i++)
                         {
                             if (Main.npc[i].active && i != npc.whoAmI && (Main.npc[i].type == 13 || Main.npc[i].type == 14 || Main.npc[i].type == 15))
                             {
-                                dropPotions = false;
+                                dropItems = false;
                                 break;
                             }
                         }
-                        if (dropPotions)
+                        if (dropItems)
                         {
-                            int max = Main.rand.Next(10) + 1;
-                            for (int i = 0; i < max; i++)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RagePotion);
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CorruptHeart"));
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.RagePotion, Main.rand.Next(10) + 1);
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.CorruptFishingCrate, Main.rand.Next(3) + 1);
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("CorruptHeart"));
                         }
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        int maxBOC = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxBOC; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.WrathPotion);
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GuttedHeart"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.WrathPotion, Main.rand.Next(10) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.CrimsonFishingCrate, Main.rand.Next(3) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("GuttedHeart"));
                         break;
 
                     case NPCID.SkeletronHead:
-                        int maxSkel = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxSkel; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TitanPotion);
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("NecromanticBrew"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.TitanPotion, Main.rand.Next(10) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.DungeonFishingCrate, Main.rand.Next(3) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("NecromanticBrew"));
                         break;
 
                     case NPCID.QueenBee:
-                        int maxQB = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxQB; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SummoningPotion);
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("QueenStinger"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.SummoningPotion, Main.rand.Next(10) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.JungleFishingCrate, Main.rand.Next(3) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("QueenStinger"));
                         break;
 
                     case NPCID.WallofFlesh:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PungentEyeball"));
-                        int maxWOF = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxWOF; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.InfernoPotion);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("PungentEyeball"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.InfernoPotion, Main.rand.Next(10) + 1);
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.HallowedFishingCrate, Main.rand.Next(3) + 1);
                         break;
 
                     case NPCID.Retinazer:
                         if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
                         {
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FusedLens"));
-                            int max = Main.rand.Next(10) + 1;
-                            for (int i = 0; i < max; i++)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicPowerPotion);
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("FusedLens"));
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.MagicPowerPotion, Main.rand.Next(10) + 1);
                         }
                         break;
 
                     case NPCID.Spazmatism:
                         if (!BossIsAlive(ref retiBoss, NPCID.Retinazer))
                         {
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FusedLens"));
-                            int max = Main.rand.Next(10) + 1;
-                            for (int i = 0; i < max; i++)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicPowerPotion);
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("FusedLens"));
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.MagicPowerPotion, Main.rand.Next(10) + 1);
                         }
                         break;
 
                     case NPCID.TheDestroyer:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GroundStick"));
-                        int maxDes = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxDes; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GravitationPotion);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("GroundStick"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.GravitationPotion, Main.rand.Next(10) + 1);
                         break;
 
                     case NPCID.SkeletronPrime:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ReinforcedPlating"));
-                        int maxSP = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxSP; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EndurancePotion);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("ReinforcedPlating"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.EndurancePotion, Main.rand.Next(10) + 1);
                         break;
 
                     case NPCID.Plantera:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MagicalBulb"));
-                        int maxPlant = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxPlant; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CalmingPotion);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("MagicalBulb"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.CalmingPotion, Main.rand.Next(10) + 1);
                         break;
 
                     case NPCID.Golem:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LihzahrdTreasureBox"));
-                        int maxGolem = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxGolem; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LifeforcePotion);
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("LihzahrdTreasureBox"));
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.LifeforcePotion, Main.rand.Next(10) + 1);
                         break;
 
                     case NPCID.DD2Betsy:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BetsysHeart"));
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("BetsysHeart"));
                         break;
 
                     case NPCID.DukeFishron:
-                        int type;
                         if (npc.whoAmI == fishBossEX)
                         {
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CyclonicFin"));
-                            type = mod.ItemType("Sadism");
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("CyclonicFin"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
                         }
                         else
                         {
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MutantAntibodies"));
-                            type = ItemID.Bacon;
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("MutantAntibodies"));
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.Bacon, Main.rand.Next(10) + 1);
                         }
-                        int maxDF = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxDF; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, type);
                         break;
 
                     case NPCID.CultistBoss:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CelestialRune"));
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("CelestialRune"));
                         break;
 
                     case NPCID.MoonLordCore:
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("GalacticGlobe"));
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CelestialSeal"));
-                        int maxML = Main.rand.Next(10) + 1;
-                        for (int i = 0; i < maxML; i++)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LunarCrystal"));
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("GalacticGlobe"));
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("CelestialSeal"));
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("LunarCrystal"), Main.rand.Next(10) + 1);
                         break;
+                    #endregion
 
                     default:
                         break;

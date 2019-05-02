@@ -12,6 +12,8 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-all pre-hm bosses drop a crate
+-sadism no longer applies on destroyer
 -fiddled with some ench tooltips
 -fiddled with (seemingly?) unnecessary eternity checks
 -changed global buffs to a switch case
