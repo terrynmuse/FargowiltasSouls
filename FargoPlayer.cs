@@ -171,7 +171,7 @@ namespace FargowiltasSouls
         public bool FishSoul2;
         public bool TerrariaSoul;
         public int HealTimer;
-        public bool VoidSoul;
+        //public bool VoidSoul;
         public bool Eternity;
         private float eternityDamage = 0;
 
@@ -558,7 +558,7 @@ namespace FargowiltasSouls
             FishSoul1 = false;
             FishSoul2 = false;
             TerrariaSoul = false;
-            VoidSoul = false;
+            //VoidSoul = false;
             Eternity = false;
 
             //maso
@@ -618,13 +618,9 @@ namespace FargowiltasSouls
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
             if (Eternity)
-            {
                 player.respawnTimer = (int)(player.respawnTimer * .1);
-            }
             else if (SandsofTime)
-            {
                 player.respawnTimer = (int)(player.respawnTimer * .5);
-            }
         }
 
         public override void UpdateDead()
@@ -801,9 +797,7 @@ namespace FargowiltasSouls
                     int num4 = (int)vector.Y;
                     WorldGen.KillTile(num3, num4, false, false, false);
                     if (Main.netMode == 1 && !Main.tile[num3, num4].active() && Main.netMode == 1)
-                    {
-                        NetMessage.SendData(17, -1, -1, null, 0, (float)num3, (float)num4, 0f, 0, 0, 0);
-                    }
+                        NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
                 }
 
                 if (MasomodeCrystalTimer > 0)
@@ -811,32 +805,20 @@ namespace FargowiltasSouls
             }
 
             if (!Infested && !FirstInfection)
-            {
                 FirstInfection = true;
-            }
 
             if (Eternity && TinCrit < 50)
-            {
                 TinCrit = 50;
-            }
             else if(TerrariaSoul && TinCrit < 25)
-            {
                 TinCrit = 25;
-            }
             else if (TerraForce && TinCrit < 10)
-            {
                 TinCrit = 10;
-            }
 
             if(OriSpawn && !OriEnchant)
-            {
                 OriSpawn = false;
-            }
 
             if (VortexStealth && !VortexEnchant)
-            {
                 VortexStealth = false;
-            }
 
             if (Unstable)
             {
@@ -864,14 +846,10 @@ namespace FargowiltasSouls
             }
 
             if (CopperEnchant && copperCD > 0)
-            {
                 copperCD--;
-            }
 
             if (GoldEnchant && goldCD > 0)
-            {
                 goldCD--;
-            }
 
             if (GoldShell)
             {
@@ -899,9 +877,7 @@ namespace FargowiltasSouls
             }
 
             if (CobaltEnchant && CobaltCD > 0)
-            {
                 CobaltCD--;
-            }
 
             if (LihzahrdTreasureBox && player.gravDir > 0 && Soulcheck.GetValue("Lihzahrd Ground Pound"))
             {
@@ -1159,14 +1135,10 @@ namespace FargowiltasSouls
                 player.manaCost -= 1f;
             }
 
-            if(Eternity)
-            {
+            if (Eternity)
                 player.statManaMax2 = 999;
-            }
-            else if(UniverseEffect)
-            {
+            else if (UniverseEffect)
                 player.statManaMax2 += 300;
-            }
 
             Item item = player.HeldItem;
 
@@ -1451,9 +1423,7 @@ namespace FargowiltasSouls
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             if (ShroomEnchant && !TerrariaSoul && Main.rand.Next(5) == 0)
-            {
                 target.AddBuff(thorium.BuffType("Mycelium"), 120);
-            }
 
             if (proj.type == thorium.ProjectileType("MeteorPlasmaDamage") || proj.type == thorium.ProjectileType("PyroBurst") || proj.type == thorium.ProjectileType("LightStrike") || proj.type == thorium.ProjectileType("WhiteFlare") || proj.type == thorium.ProjectileType("CryoDamage") || proj.type == thorium.ProjectileType("MixtapeNote") || proj.type == thorium.ProjectileType("DragonPulse"))
             {
@@ -1632,9 +1602,7 @@ namespace FargowiltasSouls
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             if (ShroomEnchant && !TerrariaSoul && Main.rand.Next(5) == 0)
-            {
                 target.AddBuff(thorium.BuffType("Mycelium"), 120);
-            }
 
             if (AsgardForce)
             {
@@ -1792,51 +1760,17 @@ namespace FargowiltasSouls
             if (target.friendly)
                 return;
 
-            if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0 && proj.type != ProjectileID.CultistBossLightningOrbArc && Array.IndexOf(wetProj, proj.type) == -1)
-            {
-                CopperEffect(target);
-            }
+            OnHitNPCEither(target, damage, knockback, crit);
 
-            if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian") && proj.type != mod.ProjectileType("DungeonGuardianNecro"))
-            {
-                necroCD = 1200;
-                float screenX = Main.screenPosition.X;
-                if (player.direction < 0)
-                {
-                    screenX += Main.screenWidth;
-                }
-                float screenY = Main.screenPosition.Y;
-                screenY += Main.rand.Next(Main.screenHeight);
-                Vector2 vector = new Vector2(screenX, screenY);
-                float velocityX = target.Center.X - vector.X;
-                float velocityY = target.Center.Y - vector.Y;
-                velocityX += Main.rand.Next(-50, 51) * 0.1f;
-                velocityY += Main.rand.Next(-50, 51) * 0.1f;
-                int num5 = 24;
-                float num6 = (float)Math.Sqrt(velocityX * velocityX + velocityY * velocityY);
-                num6 = num5 / num6;
-                velocityX *= num6;
-                velocityY *= num6;
-                Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(new Vector2(screenX, screenY), new Vector2(velocityX, velocityY),
-                    mod.ProjectileType("DungeonGuardianNecro"), (int)(500 * player.rangedDamage), 0f, player.whoAmI, 0, 120);
-                if (p != null)
-                {
-                    p.penetrate = 1;
-                    p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
-                }
-            }
+            if (CosmoForce && !TerrariaSoul && Main.rand.Next(4) == 0)
+                target.AddBuff(mod.BuffType("SolarFlare"), 300);
 
-            if (target.type == NPCID.TargetDummy) return;
+            if (Array.IndexOf(wetProj, proj.type) > -1)
+                target.AddBuff(BuffID.Wet, 180, true);
 
-            if (JungleEnchant && !NatureForce && Main.rand.Next(4) == 0)
+            if (Soulcheck.GetValue("Spectre Orbs") && !target.immortal)
             {
-                player.ManaEffect(5);
-                player.statMana += 4;
-            }
-
-            if (Soulcheck.GetValue("Spectre Orbs"))
-            {
-                if ((SpiritForce || TerrariaSoul) && proj.type != ProjectileID.SpectreWrath)
+                if (SpiritForce && proj.type != ProjectileID.SpectreWrath)
                 {
                     SpectreHeal(target, proj);
                     SpectreHurt(proj);
@@ -1861,146 +1795,6 @@ namespace FargowiltasSouls
                         }
                     }
                 }
-            }
-
-            if(Eternity)
-            {
-                if (crit && TinCrit < 100)
-                {
-                    TinCrit += 10;
-                }
-                else if (TinCrit >= 100)
-                {
-                    if (damage / 10 > 0)
-                    {
-                        player.statLife += damage / 10;
-                        player.HealEffect(damage / 10);
-                    }
-                    eternityDamage += .1f;
-                }
-            }
-            else if (TerrariaSoul)
-            {
-                if (crit && TinCrit < 100)
-                {
-                    TinCrit += 5;
-                }
-                else if (TinCrit >= 100)
-                {
-                    if (HealTimer <= 0 && damage / 25 > 0)
-                    {
-                        player.statLife += damage / 25;
-                        player.HealEffect(damage / 25);
-                        HealTimer = 10;
-                    }
-                    else
-                    {
-                        HealTimer--;
-                    }
-                }
-            }
-            else if (TinEnchant && crit && TinCrit < 100)
-            {
-                if (TerraForce)
-                {
-                    TinCrit += 5;
-                }
-                else
-                {
-                    TinCrit += 4;
-                }
-            }
-
-            if (PalladEnchant && palladiumCD == 0)
-            {
-                int heal = damage / 20;
-
-                if (heal > 5)
-                    heal = 5;
-                else if (heal < 1)
-                    heal = 1;
-
-                player.statLife += heal;
-                player.HealEffect(heal);
-                palladiumCD = 60;
-            }
-
-            if (MasochistSoul)
-            {
-                if (target.FindBuffIndex(mod.BuffType("Sadism")) < 0)
-                {
-                    target.DelBuff(4);
-                    target.buffImmune[mod.BuffType("Sadism")] = false;
-                    target.AddBuff(mod.BuffType("Sadism"), 600);
-                }
-            }
-
-            if (UniverseEffect || Eternity)
-                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
-
-            if (BetsysHeart && crit)
-                target.AddBuff(BuffID.BetsysCurse, 300);
-            
-            if (LeadEnchant && Main.rand.Next(5) == 0)
-                target.AddBuff(mod.BuffType("LeadPoison"), 120);
-
-            if (CosmoForce && !TerrariaSoul && Main.rand.Next(4) == 0)
-                target.AddBuff(mod.BuffType("SolarFlare"), 300);
-
-            //full moon
-            if (RedEnchant && !TerrariaSoul && Soulcheck.GetValue("Red Riding Super Bleed")
-                && Main.rand.Next(5) == 0 && ((Main.moonPhase == 0) || (WillForce)))
-                target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
-
-            if (ShadowEnchant && !TerrariaSoul && Main.rand.Next(15) == 0)
-                target.AddBuff(BuffID.Darkness, 600, true);
-
-            if (TikiEnchant && !TerrariaSoul)
-                target.AddBuff(mod.BuffType("Infested"), 1800, true);
-
-            if (Array.IndexOf(wetProj, proj.type) > -1)
-                target.AddBuff(BuffID.Wet, 180, true);
-
-            if (QueenStinger)
-                target.AddBuff(BuffID.Poisoned, 120, true);
-
-            if (ObsidianEnchant)
-                target.AddBuff(BuffID.OnFire, 600);
-
-            if (GoldEnchant)
-                target.AddBuff(BuffID.Midas, 120, true);
-
-            if (GroundStick && Main.rand.Next(20) == 0)
-                target.AddBuff(BuffID.Electrified, 240);
-
-            if (DubiousCircuitry && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
-                target.AddBuff(mod.BuffType("LightningRod"), 300);
-
-            if (FusedLens)
-                target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
-
-            if (DragonFang && !target.boss && Main.rand.Next(10) == 0)
-            {
-                target.velocity.X = 0f;
-                target.velocity.Y = 10f;
-                target.AddBuff(mod.BuffType("ClippedWings"), 240);
-                target.netUpdate = true;
-            }
-
-            if (FrigidGemstone && FrigidGemstoneCD <= 0)
-            {
-                FrigidGemstoneCD = 30;
-                float screenX = Main.screenPosition.X;
-                if (player.direction < 0)
-                    screenX += Main.screenWidth;
-                float screenY = Main.screenPosition.Y;
-                screenY += Main.rand.Next(Main.screenHeight);
-                Vector2 spawn = new Vector2(screenX, screenY);
-                Vector2 vel = target.Center - spawn;
-                vel.Normalize();
-                vel *= 27f;
-                int dam = (int)(40 * player.magicDamage);
-                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("Shadowfrostfireball"), dam, 6f, proj.owner, target.whoAmI);
             }
 
             if (CyclonicFin)
@@ -2054,9 +1848,6 @@ namespace FargowiltasSouls
                     Projectile.NewProjectile(spawn, vel, mod.ProjectileType("SpectralFishron"), dam, 10f, proj.owner, target.whoAmI, damageType);
                 }
             }
-
-            if (FrostEnchant)
-                target.AddBuff(BuffID.Frostburn, 300);
 
             if (CorruptHeart && CorruptHeartCD <= 0)
             {
@@ -2192,43 +1983,44 @@ namespace FargowiltasSouls
             }
         }
 
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        public void OnHitNPCEither(NPC target, int damage, float knockback, bool crit)
         {
-            if (target.friendly)
-                return;
-
             if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
-            {
                 CopperEffect(target);
-            }
 
-            if (PalladEnchant && palladiumCD == 0)
+            if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian"))
             {
-                int heal = damage / 20;
-
-                if (heal > 5)
-                    heal = 5;
-                else if (heal < 1)
-                    heal = 1;
-
-                player.statLife += heal;
-                player.HealEffect(heal);
-                palladiumCD = 60;
-            }
-
-            if (Soulcheck.GetValue("Spectre Orbs") && (SpiritForce || TerrariaSoul))
-            {
-                //forced orb spawn reeeee
-                float num = 4f;
-                float speedX = Main.rand.Next(-100, 101);
-                float speedY = Main.rand.Next(-100, 101);
-                float num2 = (float)Math.Sqrt((double)(speedX * speedX + speedY * speedY));
-                num2 = num / num2;
-                speedX *= num2;
-                speedY *= num2;
-                Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.position, new Vector2(speedX, speedY), ProjectileID.SpectreWrath, damage / 2, 0, player.whoAmI, target.whoAmI);
+                necroCD = 1200;
+                float screenX = Main.screenPosition.X;
+                if (player.direction < 0)
+                {
+                    screenX += Main.screenWidth;
+                }
+                float screenY = Main.screenPosition.Y;
+                screenY += Main.rand.Next(Main.screenHeight);
+                Vector2 vector = new Vector2(screenX, screenY);
+                float velocityX = target.Center.X - vector.X;
+                float velocityY = target.Center.Y - vector.Y;
+                velocityX += Main.rand.Next(-50, 51) * 0.1f;
+                velocityY += Main.rand.Next(-50, 51) * 0.1f;
+                int num5 = 24;
+                float num6 = (float)Math.Sqrt(velocityX * velocityX + velocityY * velocityY);
+                num6 = num5 / num6;
+                velocityX *= num6;
+                velocityY *= num6;
+                Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(new Vector2(screenX, screenY), new Vector2(velocityX, velocityY),
+                    mod.ProjectileType("DungeonGuardianNecro"), (int)(500 * player.rangedDamage), 0f, player.whoAmI, 0, 120);
                 if (p != null)
-                    SpectreHeal(target, p);
+                {
+                    p.penetrate = 1;
+                    p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                }
+            }
+
+            if (JungleEnchant && !NatureForce && Main.rand.Next(4) == 0 && !target.immortal)
+            {
+                player.ManaEffect(5);
+                player.statMana += 4;
             }
 
             if (Eternity)
@@ -2270,63 +2062,131 @@ namespace FargowiltasSouls
             else if (TinEnchant && crit && TinCrit < 100)
             {
                 if (TerraForce)
-                {
                     TinCrit += 5;
-                }
                 else
-                {
                     TinCrit += 4;
-                }
             }
 
-            if (MasochistSoul)
-                target.AddBuff(mod.BuffType("Sadism"), 600);
+            if (PalladEnchant && palladiumCD == 0 && !target.immortal)
+            {
+                int heal = damage / 20;
+                if (heal > 5)
+                    heal = 5;
+                else if (heal < 1)
+                    heal = 1;
+                player.statLife += heal;
+                player.HealEffect(heal);
+                palladiumCD = 60;
+            }
 
-            if (UniverseEffect || Eternity)
+            if (UniverseEffect)
                 target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
 
-            if (BetsysHeart && crit)
-                target.AddBuff(BuffID.BetsysCurse, 300);
+            if (MasochistSoul)
+            {
+                if (target.FindBuffIndex(mod.BuffType("Sadism")) < 0 && target.aiStyle != 37)
+                {
+                    target.DelBuff(4);
+                    target.buffImmune[mod.BuffType("Sadism")] = false;
+                    target.AddBuff(mod.BuffType("Sadism"), 600);
+                }
+            }
+            else
+            {
+                if (BetsysHeart && crit)
+                    target.AddBuff(BuffID.BetsysCurse, 300);
 
-            if (VoidSoul && Main.rand.Next(25) == 0 && target.type != NPCID.TargetDummy)
-                Projectile.NewProjectile(target.Center.X, target.Center.Y - 10, 0f, 0f, 518, 0, 0f, Main.myPlayer);
+                if (QueenStinger)
+                    target.AddBuff(BuffID.Poisoned, 120, true);
 
-            if (LeadEnchant && Main.rand.Next(5) == 0)
-                target.AddBuff(mod.BuffType("LeadPoison"), 180);
+                if (GroundStick && Main.rand.Next(20) == 0)
+                    target.AddBuff(BuffID.Electrified, 240);
 
-            if (TungstenEnchant && !TerraForce && Main.rand.Next(10) == 0)
-                target.AddBuff(mod.BuffType("Stunned"), 60);
+                if (FusedLens)
+                    target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
+            }
 
-            if (SolarEnchant && Main.rand.Next(4) == 0)
-                target.AddBuff(mod.BuffType("SolarFlare"), 300);
+            if (!TerrariaSoul)
+            {
+                //full moon
+                if (RedEnchant && Soulcheck.GetValue("Red Riding Super Bleed")
+                    && Main.rand.Next(5) == 0 && (Main.moonPhase == 0 || WillForce))
+                    target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
 
-            if (RedEnchant && !TerrariaSoul && Soulcheck.GetValue("Red Riding Super Bleed")
-                && Main.rand.Next(5) == 0 && ((Main.moonPhase == 0) || (WillForce)))
-                target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
+                if (ShadowEnchant && Main.rand.Next(15) == 0)
+                    target.AddBuff(BuffID.Darkness, 600, true);
 
-            if (ShadowEnchant && !TerrariaSoul && Main.rand.Next(15) == 0)
-                target.AddBuff(BuffID.Darkness, 600, true);
+                if (TikiEnchant)
+                    target.AddBuff(mod.BuffType("Infested"), 1800, true);
 
-            if (TikiEnchant && !TerrariaSoul)
-                target.AddBuff(mod.BuffType("Infested"), 1800, true);
+                if (FrostEnchant)
+                    target.AddBuff(BuffID.Frostburn, 300);
 
-            if (QueenStinger)
-                target.AddBuff(BuffID.Poisoned, 120, true);
-
-            if (ObsidianEnchant)
-                target.AddBuff(BuffID.OnFire, 600);
-
-            if (GoldEnchant)
-                target.AddBuff(BuffID.Midas, 120, true);
-
-            if (GroundStick && Main.rand.Next(20) == 0)
-                target.AddBuff(BuffID.Electrified, 240);
+                if (ObsidianEnchant)
+                    target.AddBuff(BuffID.OnFire, 600);
+            }
 
             if (DubiousCircuitry && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
                 target.AddBuff(mod.BuffType("LightningRod"), 300);
 
-            if (FusedLens)
-                target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
+            if (LeadEnchant && Main.rand.Next(5) == 0)
+                target.AddBuff(mod.BuffType("LeadPoison"), 120);
+
+            if (GoldEnchant)
+                target.AddBuff(BuffID.Midas, 120, true);
+
+            if (DragonFang && !target.boss && Main.rand.Next(10) == 0)
+            {
+                target.velocity.X = 0f;
+                target.velocity.Y = 10f;
+                target.AddBuff(mod.BuffType("ClippedWings"), 240);
+                target.netUpdate = true;
+            }
+
+            if (FrigidGemstone && FrigidGemstoneCD <= 0 && !target.immortal)
+            {
+                FrigidGemstoneCD = 30;
+                float screenX = Main.screenPosition.X;
+                if (player.direction < 0)
+                    screenX += Main.screenWidth;
+                float screenY = Main.screenPosition.Y;
+                screenY += Main.rand.Next(Main.screenHeight);
+                Vector2 spawn = new Vector2(screenX, screenY);
+                Vector2 vel = target.Center - spawn;
+                vel.Normalize();
+                vel *= 27f;
+                int dam = (int)(40 * player.magicDamage);
+                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("Shadowfrostfireball"), dam, 6f, proj.owner, target.whoAmI);
+            }
+        }
+
+        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        {
+            if (target.friendly)
+                return;
+
+            OnHitNPCEither(target, damage, knockback, crit);
+
+            if (Soulcheck.GetValue("Spectre Orbs") && SpiritForce && !target.immortal)
+            {
+                //forced orb spawn reeeee
+                float num = 4f;
+                float speedX = Main.rand.Next(-100, 101);
+                float speedY = Main.rand.Next(-100, 101);
+                float num2 = (float)Math.Sqrt((double)(speedX * speedX + speedY * speedY));
+                num2 = num / num2;
+                speedX *= num2;
+                speedY *= num2;
+                Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.position, new Vector2(speedX, speedY), ProjectileID.SpectreWrath, damage / 2, 0, player.whoAmI, target.whoAmI);
+                if (p != null)
+                    SpectreHeal(target, p);
+            }
+
+            if (TungstenEnchant && Main.rand.Next(10) == 0 && !target.boss)
+                target.AddBuff(mod.BuffType("Stunned"), 60);
+
+            if (SolarEnchant && Main.rand.Next(4) == 0)
+                target.AddBuff(mod.BuffType("SolarFlare"), 300);
 
             if (CyclonicFin)
             {
@@ -2350,9 +2210,6 @@ namespace FargowiltasSouls
                     Projectile.NewProjectile(spawn, vel, mod.ProjectileType("SpectralFishron"), dam, 10f, player.whoAmI, target.whoAmI, damageType);
                 }
             }
-
-            if (FrostEnchant)
-                target.AddBuff(BuffID.Frostburn, 300);
 
             if (CorruptHeart && CorruptHeartCD <= 0)
             {
@@ -3557,21 +3414,15 @@ namespace FargowiltasSouls
             if (!Soulcheck.GetValue("Nebula Boosters")) return;
 
             if (player.nebulaCD > 0)
-            {
                 player.nebulaCD--;
-            }
             player.setNebula = true;
 
             if (TerrariaSoul) return;
 
             if (player.nebulaLevelDamage == 3 && player.nebulaLevelLife == 3 && player.nebulaLevelMana == 3 && NebulaCounter == 0)
-            {
-                    NebulaCounter = 1200;
-            }
+                NebulaCounter = 1200;
             else if(NebulaCounter != 0)
-            {
                 NebulaCounter--;
-            }
         }
 
         public void NecroEffect(bool hideVisual)
@@ -3645,9 +3496,7 @@ namespace FargowiltasSouls
                 int ballAmt = 3;
 
                 if(Eternity)
-                {
                     ballAmt = 30;
-                }
 
                 if (player.whoAmI == Main.myPlayer)
                 {
@@ -3678,14 +3527,10 @@ namespace FargowiltasSouls
             if (Eternity) return;
 
             if (Soulcheck.GetValue("Palladium Healing"))
-            {
                 PalladEnchant = true;
-            }
             
-            if(palladiumCD != 0)
-            {
+            if(palladiumCD > 0)
                 palladiumCD--;
-            }
         }
 
         public void PumpkinEffect(int dmg, bool hideVisual)
@@ -3763,9 +3608,7 @@ namespace FargowiltasSouls
         public void ShroomiteEffect(bool hideVisual)
         {
             if (!TerrariaSoul && Soulcheck.GetValue("Shroomite Stealth"))
-            {
                 player.shroomiteStealth = true;
-            }
 
             ShroomEnchant = true;
             AddPet("Truffle Pet", hideVisual, BuffID.BabyTruffle, ProjectileID.Truffle);
@@ -3837,16 +3680,12 @@ namespace FargowiltasSouls
             SpectreEnchant = true;
             AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
 
-            if (SpiritForce || TerrariaSoul) return;
+            if (SpiritForce) return;
 
             if (SpecHeal)
-            {
                 player.ghostHeal = true;
-            }
             else
-            {
                 player.ghostHurt = true;
-            }
         }
 
         public void SpectreHeal(NPC npc, Projectile proj)
@@ -4031,17 +3870,18 @@ namespace FargowiltasSouls
             TinEnchant = true;
             AllCritEquals(TinCrit);
 
-            if (!Eternity) return;
-
-            if (eternityDamage > 20000) eternityDamage = 20000;
-
-            AllDamageUp(eternityDamage);
-            player.statDefense += (int)(eternityDamage * 100); //10 defense per .1 damage
+            if (Eternity)
+            {
+                if (eternityDamage > 20000)
+                    eternityDamage = 20000;
+                AllDamageUp(eternityDamage);
+                player.statDefense += (int)(eternityDamage * 100); //10 defense per .1 damage
+            }
         }
 
         public void TitaniumEffect()
         {
-            if(!TerrariaSoul && !ThoriumSoul && player.statLife == player.statLifeMax2)
+            if(!TerrariaSoul && !ThoriumSoul && player.statLife == player.statLifeMax2 && player.endurance < .9f)
                 player.endurance = .9f;
 
             player.onHitDodge = true;
@@ -4076,7 +3916,6 @@ namespace FargowiltasSouls
                 if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15)
                 {
                     VortexStealth = !VortexStealth;
-
                     if(Soulcheck.GetValue("Vortex Voids") && vortexCD == 0 && VortexStealth)
                     {
                         int p = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("Void"), 60, 5f, player.whoAmI);
@@ -4106,18 +3945,17 @@ namespace FargowiltasSouls
 
         public override bool PreItemCheck()
         {
-            if (UniverseEffect || Eternity)
+            if (UniverseEffect)
             {
                 UniverseStoredAutofire = player.HeldItem.autoReuse;
                 player.HeldItem.autoReuse = true;
             }
-
             return true;
         }
 
         public override void PostItemCheck()
         {
-            if (UniverseEffect || Eternity)
+            if (UniverseEffect)
             {
                 player.HeldItem.autoReuse = UniverseStoredAutofire;
             }

@@ -10,14 +10,19 @@ namespace FargowiltasSouls.Buffs
     {
         public override void Update(int type, Player player, ref int buffIndex)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            if (type == BuffID.ShadowFlame) modPlayer.Shadowflame = true;
-
-            if (type == BuffID.Slimed)
+            switch(type)
             {
-                Main.buffNoTimeDisplay[type] = false;
-                modPlayer.Slimed = true;
+                case BuffID.ShadowFlame:
+                    player.GetModPlayer<FargoPlayer>().Shadowflame = true;
+                    break;
+
+                case BuffID.Slimed:
+                    Main.buffNoTimeDisplay[type] = false;
+                    player.GetModPlayer<FargoPlayer>().Slimed = true;
+                    break;
+
+                default:
+                    break;
             }
 
             base.Update(type, player, ref buffIndex);
@@ -25,39 +30,39 @@ namespace FargowiltasSouls.Buffs
 
         public override void Update(int type, NPC npc, ref int buffIndex)
         {
-            if (type == BuffID.Chilled)
+            switch(type)
             {
-                npc.color = Colors.RarityBlue;
+                case BuffID.Chilled:
+                    npc.color = Colors.RarityBlue;
+                    if (!npc.boss)
+                        npc.position -= npc.velocity / 2;
+                    break;
 
-                if (!npc.boss) npc.velocity *= .5f;
-            }
-            else if(type == BuffID.Darkness)
-            {
-                npc.color = Color.Gray;
-
-                if(Main.rand.Next(20) == 0)
-                {
-                    for (int i = 0; i < 200; i++)
+                case BuffID.Darkness:
+                    npc.color = Color.Gray;
+                    if (Main.rand.Next(20) == 0)
                     {
-                        NPC target = Main.npc[i];
-                        if (target.active && Vector2.Distance(npc.Center, target.Center) < 200)
+                        for (int i = 0; i < 200; i++)
                         {
-                            Vector2 velocity = Vector2.Normalize(target.Center - npc.Center) * 5;
-                            Projectile.NewProjectile(npc.Center, velocity, ProjectileID.ShadowFlame, npc.damage / 2, 0, Main.myPlayer);
-
-                            if(Main.rand.Next(3) == 0)
+                            NPC target = Main.npc[i];
+                            if (target.active && Vector2.Distance(npc.Center, target.Center) < 200)
                             {
-                                break;
+                                Vector2 velocity = Vector2.Normalize(target.Center - npc.Center) * 5;
+                                Projectile.NewProjectile(npc.Center, velocity, ProjectileID.ShadowFlame, npc.damage / 2, 0, Main.myPlayer);
+                                if (Main.rand.Next(3) == 0)
+                                    break;
                             }
                         }
                     }
-                }
+                    break;
+
+                case BuffID.Electrified:
+                    npc.GetGlobalNPC<NPCs.FargoGlobalNPC>().Electrified = true;
+                    break;
+
+                default:
+                    break;
             }
-            else if (type == BuffID.Electrified)
-            {
-                npc.GetGlobalNPC<NPCs.FargoGlobalNPC>().Electrified = true;
-            }
-            
         }
     }
 }

@@ -87,6 +87,7 @@ and most of SoT not mentioned because meme tooltip length
             modPlayer.Eternity = true;
 
             //UNIVERSE
+            modPlayer.UniverseEffect = true;
             modPlayer.AllDamageUp(2f);
             if (Soulcheck.GetValue("Universe Attack Speed"))
             {

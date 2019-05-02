@@ -21,9 +21,7 @@ Attacks may inflict enemies with Lead Poisoning
 Lead Poisoning deals damage over time and spreads to nearby enemies";
 
             if(thorium != null)
-            {
                 tooltip += "\nEffects of Lead Shield";
-            }
 
             Tooltip.SetDefault(tooltip);
         }
