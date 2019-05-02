@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'It pulses with vitality'
 Grants immunity to Rotting, Bloodthirsty
 Grants immunity to biome debuffs
-10% increased movement speed, 20% increased max life, and 25% increased wing time
+20% increased movement speed and 20% increased max life
 You spawn mini eaters to seek out enemies every few attacks
 Creepers hover around you blocking some damage
 A new Creeper appears every 15 seconds, and 5 can exist at once");
@@ -27,8 +27,8 @@ A new Creeper appears every 15 seconds, and 5 can exist at once");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 5;
-            item.value = Item.sellPrice(0, 5);
+            item.rare = 6;
+            item.value = Item.sellPrice(0, 4);
             item.defense = 6;
         }
 
@@ -38,15 +38,13 @@ A new Creeper appears every 15 seconds, and 5 can exist at once");
             fargoPlayer.PureHeart = true;
 
             player.buffImmune[mod.BuffType("Rotting")] = true;
-            player.moveSpeed += 0.1f;
+            player.moveSpeed += 0.2f;
             fargoPlayer.CorruptHeart = true;
             if (fargoPlayer.CorruptHeartCD > 0)
                 fargoPlayer.CorruptHeartCD--;
 
             player.buffImmune[mod.BuffType("Bloodthirsty")] = true;
             fargoPlayer.GuttedHeart = true;
-
-            fargoPlayer.wingTimeModifier += 0.25f;
         }
 
         public override void AddRecipes()
@@ -55,7 +53,6 @@ A new Creeper appears every 15 seconds, and 5 can exist at once");
 
             recipe.AddIngredient(mod.ItemType("CorruptHeart"));
             recipe.AddIngredient(mod.ItemType("GuttedHeart"));
-            recipe.AddIngredient(mod.ItemType("TribalCharm"));
             recipe.AddIngredient(ItemID.PurificationPowder, 30);
 
             recipe.AddTile(TileID.MythrilAnvil);

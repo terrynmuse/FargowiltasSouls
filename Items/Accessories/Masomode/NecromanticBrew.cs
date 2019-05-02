@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Necromantic Brew");
-            Tooltip.SetDefault(@"''
+            Tooltip.SetDefault(@"'The bone-growing solution of a defeated foe'
 Grants immunity to Lethargic
 Summons 2 skeletron arms to whack enemies");
         }
@@ -23,7 +23,7 @@ Summons 2 skeletron arms to whack enemies");
             item.height = 20;
             item.accessory = true;
             item.rare = 4;
-            item.value = Item.sellPrice(0, 8);
+            item.value = Item.sellPrice(0, 3);
             item.defense = 2;
         }
 

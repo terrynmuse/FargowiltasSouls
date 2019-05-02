@@ -24,8 +24,8 @@ Bees and Hornets become friendly");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 4;
-            item.value = Item.sellPrice(0, 5);
+            item.rare = 5;
+            item.value = Item.sellPrice(0, 4);
             item.defense = 2;
         }
 

@@ -21,7 +21,7 @@ Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 4;
+            item.rare = 5;
             item.value = Item.sellPrice(0, 4);
         }
 

@@ -22,7 +22,7 @@ Increases damage by 20%");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 10;
+            item.rare = 9;
             item.value = Item.sellPrice(0, 7);
         }
 

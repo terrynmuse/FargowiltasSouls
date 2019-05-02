@@ -26,7 +26,7 @@ Spectral Fishron inflicts Oceanic Maul, Curse of the Moon, and Mutant Nibble");
             item.height = 20;
             item.accessory = true;
             item.rare = 11;
-            item.value = Item.sellPrice(0, 15);
+            item.value = Item.sellPrice(0, 17);
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

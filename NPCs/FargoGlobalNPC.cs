@@ -7437,24 +7437,23 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GiantFlyingFox:
                     case NPCID.Hellbat:
                     case NPCID.Lavabat:
-                        if (Main.rand.Next(20) == 0)
+                        if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("RabiesShot"));
                         break;
 
                     case NPCID.IlluminantBat:
-                        if (Main.rand.Next(20) == 0)
+                        if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("RabiesShot"));
                         goto case NPCID.IlluminantSlime;
 
                     case NPCID.IlluminantSlime:
                     case NPCID.EnchantedSword:
-                        if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("VolatileEnergy"));
+                        if (Main.rand.Next(3) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("VolatileEnergy"), Main.rand.Next(3) + 1);
                         break;
 
                     case NPCID.ChaosElemental:
-                        if (Main.rand.Next(5) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("VolatileEnergy"));
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("VolatileEnergy"), Main.rand.Next(3, 7));
                         break;
 
                     case NPCID.CorruptBunny:
@@ -7463,7 +7462,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CrimsonGoldfish:
                     case NPCID.CorruptPenguin:
                     case NPCID.CrimsonPenguin:
-                        if (Main.rand.Next(100) == 0)
+                        if (Main.rand.Next(20) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SqueakyToy"));
                         break;
 

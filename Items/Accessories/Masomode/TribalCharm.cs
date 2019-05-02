@@ -11,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tribal Charm");
-            Tooltip.SetDefault(@"Increases max life by 50
+            Tooltip.SetDefault(@"''
+Increases max life by 50
 Increases flight time by 25%");
         }
 
@@ -20,7 +21,7 @@ Increases flight time by 25%");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 4;
+            item.rare = 5;
             item.value = Item.sellPrice(0, 4);
             item.defense = 6;
         }

@@ -24,8 +24,8 @@ You respawn twice as fast");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 6;
-            item.value = Item.sellPrice(0, 15);
+            item.rare = 5;
+            item.value = Item.sellPrice(0, 4);
         }
 
         public override void UpdateInventory(Player player)

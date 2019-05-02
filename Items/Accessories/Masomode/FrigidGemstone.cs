@@ -12,7 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frigid Gemstone");
-            Tooltip.SetDefault(@"Grants immunity to Frostburn and Shadowflame
+            Tooltip.SetDefault(@"''
+Grants immunity to Frostburn and Shadowflame
 Your attacks summon Shadowfrostfireballs to attack your enemies");
         }
 
@@ -21,7 +22,7 @@ Your attacks summon Shadowfrostfireballs to attack your enemies");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 4;
+            item.rare = 5;
             item.value = Item.sellPrice(0, 4);
         }
 

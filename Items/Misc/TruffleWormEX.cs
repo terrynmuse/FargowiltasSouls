@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetDefaults()
         {
             item.maxStack = 20;
-            item.rare = 12;
+            item.rare = 11;
             item.width = 12;
             item.height = 12;
             item.consumable = true;
@@ -28,7 +28,7 @@ namespace FargowiltasSouls.Items.Misc
             /*item.useAnimation = 30;
             item.useTime = 30;
             item.useStyle = 4;*/
-            item.value = Item.sellPrice(0, 15, 0, 0);
+            item.value = Item.sellPrice(0, 17, 0, 0);
         }
 
         /*public override bool CanUseItem(Player player)

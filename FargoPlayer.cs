@@ -211,6 +211,7 @@ namespace FargowiltasSouls
         public bool DragonFang;
         public bool FrigidGemstone;
         public int FrigidGemstoneCD;
+        public bool SqueakyAcc;
 
         //debuffs
         public bool Hexed;
@@ -588,6 +589,7 @@ namespace FargowiltasSouls
             SandsofTime = false;
             DragonFang = false;
             FrigidGemstone = false;
+            SqueakyAcc = false;
 
             //debuffs
             Hexed = false;
@@ -2353,9 +2355,7 @@ namespace FargowiltasSouls
             //lava
 
             if (damageSource == PlayerDeathReason.ByOther(2))
-            {
                 player.Hurt(PlayerDeathReason.ByOther(2), 999, 1);
-            }
 
             if (IronGuard && internalTimer > 0 && !player.immune)
             {
@@ -2363,6 +2363,12 @@ namespace FargowiltasSouls
                 player.immuneTime = player.longInvince ? 60 : 30;
                 player.AddBuff(BuffID.ParryDamageBuff, 300);
                 return false;
+            }
+
+            if (SqueakyAcc && Main.rand.Next(10) == 0)
+            {
+                Squeak(player.Center);
+                damage = 1;
             }
 
             return true;

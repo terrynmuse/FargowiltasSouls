@@ -20,8 +20,8 @@ Bees and Hornets become friendly");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 3;
-            item.value = Item.sellPrice(0, 4);
+            item.rare = 4;
+            item.value = Item.sellPrice(0, 3);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

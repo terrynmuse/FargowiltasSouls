@@ -27,6 +27,7 @@ Only usable after Demon Heart");
             item.useTime = 30;
             item.consumable = true;
             item.UseSound = SoundID.Item123;
+            item.value = Item.sellPrice(0, 15);
         }
 
         /*public override bool CanUseItem(Player player)
