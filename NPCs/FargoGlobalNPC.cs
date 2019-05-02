@@ -8578,7 +8578,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case 7: //golem fists
-                        if (projectile.maxPenetrate != 1 && !projectile.minion)
+                        if (projectile.maxPenetrate != 1 && !projectile.minion && projectile.type != mod.ProjectileType("DungeonGuardian"))
                             projectile.active = false;
                         break;
 
