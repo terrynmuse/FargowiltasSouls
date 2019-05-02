@@ -208,6 +208,9 @@ namespace FargowiltasSouls
         public bool MasochistSoul;
         public bool CelestialSeal;
         public bool SandsofTime;
+        public bool DragonFang;
+        public bool FrigidGemstone;
+        public int FrigidGemstoneCD;
 
         //debuffs
         public bool Hexed;
@@ -583,6 +586,8 @@ namespace FargowiltasSouls
             CyclonicFin = false;
             MasochistSoul = false;
             SandsofTime = false;
+            DragonFang = false;
+            FrigidGemstone = false;
 
             //debuffs
             Hexed = false;
@@ -1973,6 +1978,30 @@ namespace FargowiltasSouls
 
             if (FusedLens)
                 target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
+
+            if (DragonFang && !target.boss && Main.rand.Next(10) == 0)
+            {
+                target.velocity.X = 0f;
+                target.velocity.Y = 10f;
+                target.AddBuff(mod.BuffType("ClippedWings"), 240);
+                target.netUpdate = true;
+            }
+
+            if (FrigidGemstone && FrigidGemstoneCD <= 0)
+            {
+                FrigidGemstoneCD = 30;
+                float screenX = Main.screenPosition.X;
+                if (player.direction < 0)
+                    screenX += Main.screenWidth;
+                float screenY = Main.screenPosition.Y;
+                screenY += Main.rand.Next(Main.screenHeight);
+                Vector2 spawn = new Vector2(screenX, screenY);
+                Vector2 vel = target.Center - spawn;
+                vel.Normalize();
+                vel *= 27f;
+                int dam = (int)(40 * player.magicDamage);
+                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("Shadowfrostfireball"), dam, 6f, proj.owner, target.whoAmI);
+            }
 
             if (CyclonicFin)
             {

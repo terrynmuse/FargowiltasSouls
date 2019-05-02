@@ -5,15 +5,15 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class DragonFang : ModItem
+    public class FrigidGemstone : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dragon's Fang");
-            Tooltip.SetDefault(@"Grants immunity to Clipped Wings and Crippled
-Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies");
+            DisplayName.SetDefault("Frigid Gemstone");
+            Tooltip.SetDefault(@"Grants immunity to Frostburn and Shadowflame
+Your attacks summon Shadowfrostfireballs to attack your enemies");
         }
 
         public override void SetDefaults()
@@ -27,9 +27,9 @@ Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[mod.BuffType("ClippedWings")] = true;
-            player.buffImmune[mod.BuffType("Crippled")] = true;
-            player.GetModPlayer<FargoPlayer>().DragonFang = true;
+            player.buffImmune[BuffID.Frostburn] = true;
+            player.buffImmune[BuffID.ShadowFlame] = true;
+            player.GetModPlayer<FargoPlayer>().FrigidGemstone = true;
         }
     }
 }

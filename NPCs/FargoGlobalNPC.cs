@@ -1895,7 +1895,7 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 5000, mod.BuffType("Antisocial"));
                         if (!npc.dontTakeDamage)
                         {
-                            if (++Counter > 240)
+                            if (++Counter > 180)
                             {
                                 Counter = 0;
                                 npc.TargetClosest(false);
@@ -1944,8 +1944,8 @@ namespace FargowiltasSouls.NPCs
                                     for (int i = 0; i < 3; i++)
                                     {
                                         Vector2 position = Main.player[npc.target].Center;
-                                        position.X += Main.rand.Next(-300, 301);
-                                        position.Y -= Main.rand.Next(500, 801);
+                                        position.X += Main.rand.Next(-150, 151);
+                                        position.Y -= Main.rand.Next(600, 801);
                                         Vector2 speed = Main.player[npc.target].Center - position;
                                         speed.Normalize();
                                         speed *= 10f;
@@ -7481,8 +7481,18 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BigMimicJungle:
-                        if (Main.rand.Next(5) == 0)
+                        if (Main.rand.Next(10) == 0)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TribalCharm"));
+                        break;
+
+                    case NPCID.IceGolem:
+                        if (Main.rand.Next(10) == 0)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FrigidGemstone"));
+                        break;
+
+                    case NPCID.WyvernHead:
+                        if (Main.rand.Next(10) == 0)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DragonFang"));
                         break;
 
                     //meh may change later
