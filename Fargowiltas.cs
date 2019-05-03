@@ -373,8 +373,12 @@ namespace FargowiltasSouls
                     }
                     break;
 
-                case 2: //client sychronizing prime invulnerability
-                    Main.npc[reader.ReadByte()].dontTakeDamage = false;
+                case 2: //net updating maso
+                    FargoGlobalNPC fargoNPC = Main.npc[reader.ReadByte()].GetGlobalNPC<FargoGlobalNPC>();
+                    fargoNPC.masoBool[0] = reader.ReadBoolean();
+                    fargoNPC.masoBool[1] = reader.ReadBoolean();
+                    fargoNPC.masoBool[2] = reader.ReadBoolean();
+                    fargoNPC.masoBool[3] = reader.ReadBoolean();
                     break;
 
                 case 77: //server side spawning fishron EX
