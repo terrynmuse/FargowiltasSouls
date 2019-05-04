@@ -9,8 +9,6 @@ namespace FargowiltasSouls.Items.Misc
 {
 	public class VolatileEnergy : ModItem
 	{
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Volatile Energy");
@@ -21,7 +19,8 @@ namespace FargowiltasSouls.Items.Misc
             item.width = 20;
             item.height = 20;
             item.maxStack = 99;
-            item.rare = 7;
+            item.rare = 6;
+            item.value = Item.sellPrice(0, 0, 3, 0);
         }
 
         public override void AddRecipes()
@@ -32,7 +31,7 @@ namespace FargowiltasSouls.Items.Misc
             recipe.AddIngredient(ItemID.SoulofLight, 100);
             recipe.AddIngredient(ItemID.HallowedBar, 5);
 
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ItemID.RodofDiscord);
             recipe.AddRecipe();
         }

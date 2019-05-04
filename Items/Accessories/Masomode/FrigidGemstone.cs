@@ -1,19 +1,20 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class TribalCharm : ModItem
+    public class FrigidGemstone : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
+        
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tribal Charm");
+            DisplayName.SetDefault("Frigid Gemstone");
             Tooltip.SetDefault(@"''
-Increases max life by 50
-Increases flight time by 25%");
+Grants immunity to Frostburn and Shadowflame
+Your attacks summon Shadowfrostfireballs to attack your enemies");
         }
 
         public override void SetDefaults()
@@ -23,13 +24,13 @@ Increases flight time by 25%");
             item.accessory = true;
             item.rare = 5;
             item.value = Item.sellPrice(0, 4);
-            item.defense = 6;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 50;
-            player.GetModPlayer<FargoPlayer>().wingTimeModifier += 0.25f;
+            player.buffImmune[BuffID.Frostburn] = true;
+            player.buffImmune[BuffID.ShadowFlame] = true;
+            player.GetModPlayer<FargoPlayer>().FrigidGemstone = true;
         }
     }
 }

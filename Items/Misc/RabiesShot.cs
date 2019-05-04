@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Rabies Shot");
-            Tooltip.SetDefault( "Cures Feral Bite");
+            Tooltip.SetDefault("Cures Feral Bite");
 		}
 
 		public override void SetDefaults()
@@ -22,12 +22,13 @@ namespace FargowiltasSouls.Items.Misc
             item.width = 20;
             item.height = 20;
             item.maxStack = 30;
-            item.rare = 10;
+            item.rare = 3;
             item.useStyle = 2;
             item.useAnimation = 17;
             item.useTime = 17;
             item.consumable = true;
             item.UseSound = SoundID.Item3;
+            item.value = Item.sellPrice(0, 0, 4, 0);
         }
 
         public override bool UseItem(Player player)

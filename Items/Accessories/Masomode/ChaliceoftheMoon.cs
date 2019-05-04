@@ -24,8 +24,8 @@ Summons a friendly Cultist to fight at your side");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 10;
-            item.value = Item.sellPrice(0, 10);
+            item.rare = 9;
+            item.value = Item.sellPrice(0, 7);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -21,6 +21,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.ranged = false;
             projectile.arrow = false;
             projectile.hostile = true;
+            projectile.coldDamage = true;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

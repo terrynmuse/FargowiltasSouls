@@ -44,10 +44,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
             if (projectile.localAI[0] == 0f)
             {
                 projectile.localAI[0] = 1f;
-                FargoGlobalNPC fargoFishron = fishron.GetGlobalNPC<FargoGlobalNPC>();
-                if (fargoFishron.masoAI != 89)
+                if (FargoGlobalNPC.fishBossEX != fishron.whoAmI)
                 {
-                    fargoFishron.masoAI = 89;
+                    fishron.GetGlobalNPC<FargoGlobalNPC>().masoBool[3] = true;
                     fishron.GivenName = "Duke Fishron EX";
                     fishron.defDamage = (int)(fishron.defDamage * 1.5);
                     fishron.defDefense *= 2;

@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Misc
             item.width = 20;
             item.height = 20;
             item.maxStack = 30;
-            item.rare = 10;
+            item.rare = 11;
             item.useStyle = 2;
             item.useAnimation = 17;
             item.useTime = 17;
@@ -30,6 +30,18 @@ namespace FargowiltasSouls.Items.Misc
             item.buffType = mod.BuffType("Sadism");
             item.buffTime = 7200;
             item.UseSound = SoundID.Item3;
+            item.value = Item.sellPrice(0, 1);
         }
-	}
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine line2 in list)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = new Color(Main.DiscoR, 51, 255 - (int)(Main.DiscoR * 0.4));
+                }
+            }
+        }
+    }
 }

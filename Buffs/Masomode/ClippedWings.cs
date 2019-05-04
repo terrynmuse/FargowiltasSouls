@@ -21,5 +21,12 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.wingTimeMax = 0;
             player.rocketTime = 0;
         }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.position -= npc.velocity / 2;
+            if (npc.velocity.Y < 0)
+                npc.velocity.Y = 0;
+        }
     }
 }

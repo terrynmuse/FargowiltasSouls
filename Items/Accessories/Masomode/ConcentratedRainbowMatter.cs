@@ -12,11 +12,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Concentrated Rainbow Matter");
-            Tooltip.SetDefault(@"''
+            Tooltip.SetDefault(@"'Taste the rainbow'
 Grants immunity to Flames of the Universe
 Summons a rainbow slime (which is just slime AI but inflicts Flames of the Universe and is bigger maybe, 
-additionally if he has a target but hasnt hit them in so long, he jumps super high to them or shoots some rainbow shet)
-");
+additionally if he has a target but hasnt hit them in so long, he jumps super high to them or shoots some rainbow shet)");
         }
 
         public override void SetDefaults()
@@ -24,8 +23,8 @@ additionally if he has a target but hasnt hit them in so long, he jumps super hi
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 4;
-            item.value = Item.sellPrice(0, 8);
+            item.rare = 5;
+            item.value = Item.sellPrice(0, 4);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

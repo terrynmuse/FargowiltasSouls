@@ -23,7 +23,7 @@ You spawn mini eaters to seek out enemies every few attacks");
             item.height = 20;
             item.accessory = true;
             item.rare = 3;
-            item.value = Item.sellPrice(0, 4);
+            item.value = Item.sellPrice(0, 2);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

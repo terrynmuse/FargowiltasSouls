@@ -24,7 +24,7 @@ Reduces damage taken by 6%");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 6;
+            item.rare = 7;
             item.value = Item.sellPrice(0, 5);
             item.defense = 6;
         }

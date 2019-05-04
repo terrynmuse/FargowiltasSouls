@@ -23,7 +23,7 @@ While dashing or running quickly you will create a trail of demon scythes");
             item.height = 20;
             item.accessory = true;
             item.rare = 2;
-            item.value = Item.sellPrice(0, 4);
+            item.value = Item.sellPrice(0, 1);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

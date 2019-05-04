@@ -25,8 +25,8 @@ When you land after a jump, slime will fall from the sky over your cursor");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 3;
-            item.value = Item.sellPrice(0, 4);
+            item.rare = 2;
+            item.value = Item.sellPrice(0, 1);
             item.defense = 2;
         }
 

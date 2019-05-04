@@ -22,7 +22,7 @@ Attracts a legendary plant's offspring which flourishes in combat");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 7;
+            item.rare = 8;
             item.value = Item.sellPrice(0, 6);
         }
 

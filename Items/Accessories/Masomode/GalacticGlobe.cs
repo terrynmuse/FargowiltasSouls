@@ -22,7 +22,7 @@ Increases flight time by 100%");
             item.height = 20;
             item.accessory = true;
             item.rare = 10;
-            item.value = Item.sellPrice(0, 7);
+            item.value = Item.sellPrice(0, 8);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

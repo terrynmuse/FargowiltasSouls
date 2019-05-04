@@ -11,7 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Remote Control");
-            Tooltip.SetDefault(@"Grants immunity to Electrified
+            Tooltip.SetDefault(@"'A defeated foe's segment with an antenna glued on'
+Grants immunity to Electrified
 Your attacks have a small chance to inflict Electrified
 Two friendly probes fight by your side");
         }
@@ -21,7 +22,7 @@ Two friendly probes fight by your side");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 5;
+            item.rare = 6;
             item.value = Item.sellPrice(0, 4);
         }
 

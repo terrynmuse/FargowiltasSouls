@@ -12,6 +12,23 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-ABOLISHED MASOAI/HURTAI/DEATHAI
+-increased drop rates of rabies shot and volatile energy
+-implemented squeaky toy
+-REALLY standardized masomode item rarity/sell prices
+-all pre-hm bosses drop a crate
+-sadism no longer applies on destroyer
+-fiddled with some ench tooltips
+-fiddled with (seemingly?) unnecessary eternity checks
+-changed global buffs to a switch case
+-overhauled the onhitnpc section
+-removed vestiges of void soul(?)
+-titanium doesn't lower endurance
+-frigid gemstone implemented
+-clipped wings works on enemies
+-dragon fang implemented
+-nebula pillar shoots narrower, teleports more often
+
 -added toggle for gold ench lucky coin effect
 -added check for friendly NPC to onhitnpc
 -much more aggressive pillar attacks
