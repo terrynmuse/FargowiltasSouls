@@ -381,16 +381,6 @@ namespace FargowiltasSouls
                         netMessage.Write((byte)1);
                         netMessage.Write((byte)i);
                         netMessage.Send();
-                        byte masoAI = 0;
-                        switch(Main.npc[i].type)
-                        {
-                            case NPCID.LunarTowerNebula: masoAI = 26; break;
-                            case NPCID.LunarTowerSolar: masoAI = 27; break;
-                            case NPCID.LunarTowerStardust: masoAI = 28; break;
-                            case NPCID.LunarTowerVortex: masoAI = 29; break;
-                            default: break;
-                        }
-                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().masoAI = masoAI;
                         Main.npc[i].lifeMax *= 5;
                     }
                     else
@@ -1146,7 +1136,7 @@ namespace FargowiltasSouls
 
             if (!Soulcheck.GetValue("Tungsten Effect") || !TungstenEnchant)
             {
-                item.SetDefaults(item.type);
+                //item.SetDefaults(item.type); //this resets alt-click favourited items and REFORGES
             }
             else if (TungstenEnchant)
             {
@@ -2158,7 +2148,7 @@ namespace FargowiltasSouls
                 vel.Normalize();
                 vel *= 27f;
                 int dam = (int)(40 * player.magicDamage);
-                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("Shadowfrostfireball"), dam, 6f, proj.owner, target.whoAmI);
+                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("Shadowfrostfireball"), dam, 6f, player.whoAmI, target.whoAmI);
             }
         }
 

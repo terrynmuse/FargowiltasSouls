@@ -203,6 +203,13 @@ namespace FargowiltasSouls.NPCs
                         npc.lifeMax *= 2;
                         break;
 
+                    case NPCID.LunarTowerNebula:
+                    case NPCID.LunarTowerSolar:
+                    case NPCID.LunarTowerStardust:
+                    case NPCID.LunarTowerVortex:
+                        npc.lifeMax *= 5;
+                        break;
+
 
                     #region maso bosses
                     case NPCID.ServantofCthulhu:
@@ -260,11 +267,8 @@ namespace FargowiltasSouls.NPCs
                         {
                             masoBool[3] = true;
                             npc.GivenName = "Duke Fishron EX";
-                            Main.NewText(npc.damage.ToString() + ", " + npc.defense.ToString());
-                            Main.NewText(npc.defDamage.ToString() + ", " + npc.defDefense.ToString());
                             npc.damage = (int)(npc.damage * 1.5);
                             npc.defense *= 2;
-                            Main.NewText("after: " + npc.damage.ToString() + ", " + npc.defense.ToString());
                             npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
                         }
                         break;
@@ -3195,7 +3199,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.SkeletronPrime:
                         primeBoss = npc.whoAmI;
-                        npc.dontTakeDamage = masoBool[0];
+                        npc.dontTakeDamage = !masoBool[0];
 
                         if (npc.ai[0] != 2f) //in phase 1
                         {
@@ -6881,7 +6885,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
-                        if (npc.whoAmI == fishBossEX)
+                        if (masoBool[3])
                         {
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("CyclonicFin"));
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
@@ -7392,7 +7396,7 @@ namespace FargowiltasSouls.NPCs
                             Projectile.NewProjectile(npc.Center, velocity, mod.ProjectileType("DrakanianDaybreak"), npc.damage / 4, 1f, Main.myPlayer);
                         }
                         Main.PlaySound(SoundID.Item1, npc.Center);
-                        if (Main.netMode(2) == 0)
+                        if (Main.rand.Next(2) == 0)
                         {
                             npc.Transform(NPCID.SolarSolenian);
                             return false;
@@ -7501,7 +7505,7 @@ namespace FargowiltasSouls.NPCs
                                     default: break;
                                 }
                             }
-                            Main.npc[ai1].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = false;
+                            Main.npc[ai1].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
                             Main.npc[ai1].GetGlobalNPC<FargoGlobalNPC>().NetUpdateMaso(ai1);
                             Main.npc[ai1].netUpdate = true;
                         }

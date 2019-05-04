@@ -365,8 +365,9 @@ namespace FargowiltasSouls
                     if (Main.netMode == 2)
                     {
                         byte pillar = reader.ReadByte();
-                        if (Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoAI == 0)
+                        if (!Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoBool[0])
                         {
+                            Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
                             Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().SetDefaults(Main.npc[pillar]);
                             Main.npc[pillar].life = Main.npc[pillar].lifeMax;
                         }
