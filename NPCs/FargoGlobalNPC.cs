@@ -4774,7 +4774,7 @@ namespace FargowiltasSouls.NPCs
                             }
                             break;
 
-                        case NPCID.Probe:
+                        /*case NPCID.Probe:
                             if (!BossIsAlive(ref destroyBoss, NPCID.TheDestroyer) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref retiBoss, NPCID.Retinazer))
                             {
                                 int[] mechs = new int[] { NPCID.TheDestroyer, NPCID.SkeletronPrime, NPCID.Spazmatism, NPCID.Retinazer};
@@ -4793,7 +4793,7 @@ namespace FargowiltasSouls.NPCs
                                     NPC.SpawnOnPlayer(target.whoAmI, NPCID.Spazmatism);
                                 }
                             }
-                            break;
+                            break;*/
 
                         case NPCID.BlueSlime:
                             switch (npc.netID)
@@ -7939,8 +7939,14 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.TheDestroyer:
                     case NPCID.TheDestroyerBody:
                     case NPCID.TheDestroyerTail:
+                        if (projectile.type == ProjectileID.CrystalDart)
+                            damage /= 4;
+                        if (projectile.type == ProjectileID.HallowStar)
+                            damage /= 4;
+                        break;
                     case NPCID.PrimeCannon:
                     case NPCID.PrimeLaser:
                     case NPCID.PrimeSaw:
