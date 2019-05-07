@@ -283,7 +283,8 @@ namespace FargowiltasSouls.NPCs
                         npc.lifeMax *= 5;
                         if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
-                            npc.lifeMax *= 4;
+                            npc.lifeMax *= 20;
+                            npc.defense *= 2;
                             npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
                             ValhallaImmune = true;
                         }
@@ -7832,8 +7833,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DukeFishron:
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
-                        if (modPlayer.UniverseEffect && crit)
-                            damage /= 5;
                         if (masoBool[2])
                             damage = 0;
                         break;
@@ -8027,8 +8026,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DukeFishron:
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
-                        if (modPlayer.UniverseEffect && crit)
-                            damage /= 5;
                         if (projectile.ranged)
                         {
                             if (projectile.arrow)

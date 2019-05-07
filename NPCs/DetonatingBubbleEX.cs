@@ -21,7 +21,7 @@ namespace FargowiltasSouls.NPCs
             npc.width = 36;
             npc.height = 36;
             npc.damage = 100;
-            npc.lifeMax = 250;
+            npc.lifeMax = 2500;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.noGravity = true;
@@ -76,7 +76,6 @@ namespace FargowiltasSouls.NPCs
 
         public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
         {
-            crit = false;
             return true;
         }
 

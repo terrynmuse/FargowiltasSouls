@@ -61,10 +61,10 @@ namespace FargowiltasSouls.Projectiles
                             projectile.timeLeft = 1;
                         break;
 
-                    /*case ProjectileID.Sharknado:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
-                            projectile.damage = projectile.damage * 3 / 2;
-                        break;*/
+                    case ProjectileID.SharknadoBolt:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBossEX, NPCID.DukeFishron))
+                            projectile.extraUpdates++;
+                        break;
 
                     default:
                         break;
