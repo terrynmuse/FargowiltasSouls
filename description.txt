@@ -19,7 +19,7 @@
 -Fixed Tungsten Enchantment bug where weapons would never be larger without it (prefix size increases etc)
 
 
-supersonic now says "I am speed"
+-Supersonic Soul tooltip changed
 -Pillars no longer spawn from Pandora's Box
 -Platinum Enchantment now crafted at a Crystal Ball
 -Fixed bug on certain Thorium Enchantments like Illumite where using a weapon with no ammo would spam projectiles
@@ -215,6 +215,9 @@ can you move with gold enchant?
 crucible accept fossils?
 tribal charm auto swing?
 add roomba, make sheet somehow and copy generic pet AI
+thorium support use more GetItem()
+Terrarium and Plague at Ancient Manip
+ebon stop working on town npcs, critters, 1hp projectiles
 
 
 NOT THIS UPDATE
