@@ -29,11 +29,8 @@ additionally if he has a target but hasnt hit them in so long, he jumps super hi
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            //player.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
-            
-            //
-
-            
+            player.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
+            player.AddBuff(mod.BuffType("RainbowSlime"), 2);
         }
     }
 }

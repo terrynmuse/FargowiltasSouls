@@ -212,6 +212,7 @@ namespace FargowiltasSouls
         public bool FrigidGemstone;
         public int FrigidGemstoneCD;
         public bool SqueakyAcc;
+        public bool RainbowSlime;
 
         //debuffs
         public bool Hexed;
@@ -580,6 +581,7 @@ namespace FargowiltasSouls
             DragonFang = false;
             FrigidGemstone = false;
             SqueakyAcc = false;
+            RainbowSlime = false;
 
             //debuffs
             Hexed = false;
