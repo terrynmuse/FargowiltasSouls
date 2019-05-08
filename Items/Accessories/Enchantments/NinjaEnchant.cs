@@ -13,9 +13,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Ninja Enchantment");
             Tooltip.SetDefault(
 @"'Now you see me, now you don’t'
-Throw a smoke bomb to teleport to it
-Standing nearby smoke gives you the First Strike buff
-First Strike makes every other projectile split into lesser damaging illusions
+Throw a smoke bomb to teleport to it and gain the First Strike Buff
+First Strike causes your next melee attack to crit for 3x damage
+First Strike causes your next projectile attack to fire a barrage of 3
 Summons a pet Black Cat");
         }
 

@@ -16,7 +16,7 @@ namespace FargowiltasSouls
         public static bool Visible = false;
         public static string owner = "";
         public static int pageNumber = 1;
-        public static int totalPages = 1;
+        public static int totalPages = 2;
 
         public static readonly Dictionary<string, bool> ToggleDict = new Dictionary<string, bool>();
         public static readonly Dictionary<string, UiCheckbox> checkboxDict = new Dictionary<string, UiCheckbox>();
@@ -45,9 +45,10 @@ namespace FargowiltasSouls
             ["Necro Guardian"] = new Color(81, 181, 113),
             ["Molten Inferno"] = new Color(81, 181, 113),
             ["Cobalt Shards"] = new Color(81, 181, 113),
-            ["Palladium Healing"] = new Color(81, 181, 113),
+            ["Palladium Healing"] = new Color(81, 181, 113), //also deactivate rapid healing
             ["Orichalcum Fireballs"] = new Color(81, 181, 113),
             ["Adamantite Splitting"] = new Color(81, 181, 113),
+            //titanium shadow dodge
             ["Spider Swarm"] = new Color(81, 181, 113),
             ["Frost Icicles"] = new Color(81, 181, 113),
             ["Forbidden Storm"] = new Color(81, 181, 113),
@@ -96,8 +97,13 @@ namespace FargowiltasSouls
             ["Spiky Balls On Hit"] = new Color(81, 181, 113),
             ["Stars On Hit"] = new Color(81, 181, 113),
             ["Bees On Hit"] = new Color(81, 181, 113),
+            //infinity relic
+            //SoE damage stacking
             #endregion
+        };
 
+        public static readonly Dictionary<string, Color> togglesPets = new Dictionary<string, Color>
+        {
             #region pet toggles
             ["Black Cat Pet"] = new Color(81, 181, 113),
             ["Companion Cube Pet"] = new Color(81, 181, 113),
@@ -132,8 +138,8 @@ namespace FargowiltasSouls
             ["Wisp Pet"] = new Color(81, 181, 113),
             ["Zephyr Fish Pet"] = new Color(81, 181, 113),
             #endregion
-
         };
+
 
         public static readonly Dictionary<string, Color> togglesThorium = new Dictionary<string, Color>
         {
@@ -232,6 +238,8 @@ namespace FargowiltasSouls
             ["Giant Pearl"] = new Color(81, 181, 113),
             ["Poisonous Sea Water"] = new Color(81, 181, 113),
             //[""] = new Color(81, 181, 113),
+            //abyssal diving gear
+            //every thing reee
         };
 
         private static readonly Color _defaultColor = new Color(81, 181, 113);
@@ -249,7 +257,7 @@ namespace FargowiltasSouls
 
             _checklistPanel = new UIPanel();
             _checklistPanel.SetPadding(10);
-            _checklistPanel.Width.Set(1250f, 0f);//(1000f, 0f);
+            _checklistPanel.Width.Set(1000f, 0f);
             _checklistPanel.Height.Set(600f, 0f);
             _checklistPanel.Left.Set((Main.screenWidth - 1200) / 2f, 0f);
             _checklistPanel.Top.Set((Main.screenHeight - 700) / 2f, 0f);
@@ -293,6 +301,12 @@ namespace FargowiltasSouls
                     }
                     break;
                 case 2:
+                    foreach (KeyValuePair<string, Color> toggle in togglesPets)
+                    {
+                        CreateCheckbox(toggle.Key, toggle.Value);
+                    }
+                    break;
+                case 3:
                     if (thorium == null)
                     {
                         foreach (KeyValuePair<string, Color> toggle in togglesCalamity)
@@ -308,7 +322,7 @@ namespace FargowiltasSouls
                         }
                     }
                     break;
-                case 3:
+                case 4:
                     foreach (KeyValuePair<string, Color> toggle in togglesCalamity)
                     {
                         CreateCheckbox(toggle.Key, toggle.Value);
@@ -316,7 +330,7 @@ namespace FargowiltasSouls
                     break;
             }
 
-            if (totalPages > 1) CreateNextButton();
+            CreateNextButton();
         }
 
         private static void CreateCheckbox(string name, Color color)

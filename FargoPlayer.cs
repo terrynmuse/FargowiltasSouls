@@ -120,6 +120,7 @@ namespace FargowiltasSouls
         public bool WoodEnchant;
         public bool PalmEnchant;
         public bool ShadeEnchant;
+        public bool SuperBleed;
         public bool PearlEnchant;
         public bool EbonEnchant;
 
@@ -323,6 +324,23 @@ namespace FargowiltasSouls
                 }
             }
 
+            foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesPets)
+            {
+                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
+                {
+                    if (disabledSouls.Contains(buff.Key))
+                    {
+                        Soulcheck.ToggleDict[buff.Key] = false;
+                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
+                    }
+                    else
+                    {
+                        Soulcheck.ToggleDict[buff.Key] = true;
+                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
+                    }
+                }
+            }
+
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesThorium)
@@ -503,6 +521,7 @@ namespace FargowiltasSouls
             WoodEnchant = false;
             PalmEnchant = false;
             ShadeEnchant = false;
+            SuperBleed = false;
             PearlEnchant = false;
             EbonEnchant = false;
 
@@ -653,6 +672,7 @@ namespace FargowiltasSouls
             CurseoftheMoon = false;
             OceanicMaul = false;
             DeathMarked = false;
+            SuperBleed = false;
 
             MaxLifeReduction = 0;
         }
@@ -835,6 +855,11 @@ namespace FargowiltasSouls
                     unstableCD = 60;
                 }
                 unstableCD--;
+            }
+
+            if (SuperBleed && Main.rand.Next(4) == 0)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y - 40, 0f + Main.rand.Next(-5, 5),  Main.rand.Next(-6, -2), mod.ProjectileType("SuperBlood"), 5, 0f, Main.myPlayer);
             }
 
             if (CopperEnchant && copperCD > 0)
@@ -2374,6 +2399,21 @@ namespace FargowiltasSouls
                 Projectile[] projs2 = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
             }
 
+            if (ShadeEnchant)
+            {
+                if (player.ZoneCrimson)
+                {
+                    player.AddBuff(mod.BuffType("SuperBleed"), 300);
+                }
+                else
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 40, 0f + Main.rand.Next(-5, 5), Main.rand.Next(-6, -2), mod.ProjectileType("SuperBlood"), 5, 0f, Main.myPlayer);
+                    }
+                }
+            }
+
             if(TinEnchant)
             {
                 if(Eternity)
@@ -3434,20 +3474,6 @@ namespace FargowiltasSouls
         public void NinjaEffect(bool hideVisual)
         {
             NinjaEnchant = true;
-
-            //ninja smoke bomb nonsense
-            float distance = 4 * 16;
-            List<Projectile> projs = Main.projectile.Where(x => x.active && x.type == ProjectileID.SmokeBomb).ToList();
-
-            foreach(Projectile p in projs)
-            {
-                if (Vector2.Distance(p.Center, player.Center) <= distance)
-                {
-                    player.AddBuff(mod.BuffType("FirstStrike"), 300);
-                    break;
-                }
-            }
-
             AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
         }
 

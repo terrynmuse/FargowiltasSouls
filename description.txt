@@ -2,7 +2,7 @@
 
 -Added Wood Enchantment, Boreal Wood Enchantment, Rich Mahogany Enchantment, Ebonwood Enchantment, Shadewood Enchantment, Palm Wood Enchantment, Pearlwood Enchantment
 
--Ninja Enchantment reworked: Now while in smoke
+-Ninja Enchantment reworked: First Strike now given after throwing a smoke bomb, active until your next attack which will be enhanced
 -Gladiator Enchantment reworked: 
 -Spider Enchantment reworked: Now allows all minions to crit 10% of the time
 -Modified nearly all Enchantment recipes: they all have the same amount of materials now, Thorium butterflies removed, and several new Thorium items added
@@ -198,25 +198,29 @@ Item Changes
 Other todo:
 
 SOUL
-cultist no drop maso drop when summoned with fargo summon
 penetrator glow mask and crucible glow mask
+
+
+
+
+
+cultist no drop maso drop when summoned with fargo summon
 also how about that crucible resprite lol
 remove all thorium butterflies and make sure all vanilla critters are in, all enchant recipes checked over one more time (at home)
 new thorium items and effects time ^ 
+
 also remove vanilla enchants from thorium forces for the most part
 remove tungsten stunning, just mega sword
 all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
 mechanical cart in supersonic, add some mounts to fishing or someshit
 bugle recipe group
 thorium force with negative regen?
-toggle page bugs, check all combos of mods, add a second page for just fargo, add more toggles for calameme, SoE stacking, infinity relic, etc
-toggle all button
+toggle page bugs, check all combos of mods, add more toggles for calameme, SoE stacking, infinity relic, etc
 can you move with gold enchant?
 crucible accept fossils?
 tribal charm auto swing?
 add roomba, make sheet somehow and copy generic pet AI
 thorium support use more GetItem()
-Terrarium and Plague at Ancient Manip
 ebon stop working on town npcs, critters, 1hp projectiles
 
 

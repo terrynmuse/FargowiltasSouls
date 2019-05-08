@@ -33,11 +33,10 @@ While in the Ocean or Desert, it attacks much faster");
                 {
                     //D U S T
 
-
-                    /*if (player.ownedProjectileCounts[] == 0)
+                    if (player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] == 0)
                     {
-                        int p = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("PalmTree"), 60, 5f, player.whoAmI);
-                    }*/
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("PalmTreeSentry"), 15, 0f, player.whoAmI);
+                    }
                 }
             }
 
