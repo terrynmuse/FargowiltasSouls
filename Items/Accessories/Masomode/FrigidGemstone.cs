@@ -30,10 +30,13 @@ Your attacks summon Shadowfrostfireballs to attack your enemies");
         {
             player.buffImmune[BuffID.Frostburn] = true;
             player.buffImmune[BuffID.ShadowFlame] = true;
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
-            fargoPlayer.FrigidGemstone = true;
-            if (fargoPlayer.FrigidGemstoneCD > 0)
-                fargoPlayer.FrigidGemstoneCD--;
+            if (Soulcheck.GetValue("Shadowfrostfireballs"))
+            {
+                FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
+                fargoPlayer.FrigidGemstone = true;
+                if (fargoPlayer.FrigidGemstoneCD > 0)
+                    fargoPlayer.FrigidGemstoneCD--;
+            }
         }
     }
 }
