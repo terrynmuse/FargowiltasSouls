@@ -2053,6 +2053,7 @@ namespace FargowiltasSouls.NPCs
                         fishBoss = npc.whoAmI;
                         if (masoBool[3]) //fishron EX
                         {
+                            fishBossEX = npc.whoAmI;
                             npc.position += npc.velocity * 0.5f;
                             //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                             switch ((int)npc.ai[0])

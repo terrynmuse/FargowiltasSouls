@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Projectiles.Minions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rainbow Slime");
-            Main.projFrames[projectile.type] = Main.projFrames[ProjectileID.BabySlime];
+            Main.projFrames[projectile.type] = 6;
             //ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
         }
 
@@ -46,6 +46,19 @@ namespace FargowiltasSouls.Projectiles.Minions
 
             if (projectile.damage == 0)
                 projectile.damage = (int)(28f * player.minionDamage);
+
+            //Main.NewText(projectile.ai[0].ToString() + " " + projectile.ai[1].ToString() + " " + projectile.localAI[0].ToString() + " " + projectile.localAI[1].ToString());
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            return false;
+        }
+
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+        {
+            fallThrough = Main.player[projectile.owner].Center.Y > projectile.position.Y + projectile.height;
+            return base.TileCollideStyle(ref width, ref height, ref fallThrough);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -56,6 +69,20 @@ namespace FargowiltasSouls.Projectiles.Minions
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, projectile.alpha);
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Texture2D texture2D13 = Main.projectileTexture[projectile.type];
+            int num156 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]; //ypos of lower right corner of sprite to draw
+            int y3 = num156 * projectile.frame; //ypos of upper left corner of sprite to draw
+            Rectangle rectangle = new Rectangle(0, y3, texture2D13.Width, num156);
+            Vector2 origin2 = rectangle.Size() / 2f;
+
+            Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY - 4),
+                new Microsoft.Xna.Framework.Rectangle?(rectangle), projectile.GetAlpha(lightColor), projectile.rotation, origin2,
+                projectile.scale, projectile.spriteDirection < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+            return false;
         }
     }
 }
