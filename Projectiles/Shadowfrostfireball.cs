@@ -24,17 +24,19 @@ namespace FargowiltasSouls.Projectiles
             projectile.penetrate = 1;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
+            projectile.timeLeft = 360;
         }
 
         public override void AI()
         {
-            for (int index1 = 0; index1 < 2; ++index1)
-            {
-                int index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, new Color(), 2f);
-                Main.dust[index2].noGravity = true;
-                Main.dust[index2].velocity.X *= 0.3f;
-                Main.dust[index2].velocity.Y *= 0.3f;
-            }
+            int index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, new Color(), 2f);
+            Main.dust[index2].noGravity = true;
+            Main.dust[index2].velocity.X *= 0.3f;
+            Main.dust[index2].velocity.Y *= 0.3f;
+            index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 27, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, new Color(), 2f);
+            Main.dust[index2].noGravity = true;
+            Main.dust[index2].velocity.X *= 0.3f;
+            Main.dust[index2].velocity.Y *= 0.3f;
             
             if (projectile.ai[0] >= 0 && projectile.ai[0] < 200f)
             {
@@ -85,12 +87,17 @@ namespace FargowiltasSouls.Projectiles
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Item10, projectile.position);
-            for (int index1 = 0; index1 < 20; ++index1)
+            for (int index1 = 0; index1 < 10; ++index1)
             {
                 int index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, new Color(), 2f);
                 Main.dust[index2].noGravity = true;
                 Main.dust[index2].velocity *= 2f;
+                index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 27, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, new Color(), 2f);
+                Main.dust[index2].noGravity = true;
+                Main.dust[index2].velocity *= 2f;
                 int index3 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, new Color(), 1f);
+                Main.dust[index3].velocity *= 2f;
+                index3 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 27, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, new Color(), 1f);
                 Main.dust[index3].velocity *= 2f;
             }
         }

@@ -213,6 +213,7 @@ namespace FargowiltasSouls
         public bool FrigidGemstone;
         public int FrigidGemstoneCD;
         public bool SqueakyAcc;
+        public bool RainbowSlime;
 
         //debuffs
         public bool Hexed;
@@ -599,6 +600,7 @@ namespace FargowiltasSouls
             DragonFang = false;
             FrigidGemstone = false;
             SqueakyAcc = false;
+            RainbowSlime = false;
 
             //debuffs
             Hexed = false;
@@ -1904,6 +1906,22 @@ namespace FargowiltasSouls
                 }
             }
 
+            if (FrigidGemstone && FrigidGemstoneCD <= 0 && !target.immortal && proj.type != mod.ProjectileType("Shadowfrostfireball"))
+            {
+                FrigidGemstoneCD = 30;
+                float screenX = Main.screenPosition.X;
+                if (player.direction < 0)
+                    screenX += Main.screenWidth;
+                float screenY = Main.screenPosition.Y;
+                screenY += Main.rand.Next(Main.screenHeight);
+                Vector2 spawn = new Vector2(screenX, screenY);
+                Vector2 vel = target.Center - spawn;
+                vel.Normalize();
+                vel *= 8f;
+                int dam = (int)(40 * player.magicDamage);
+                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("Shadowfrostfireball"), dam, 6f, player.whoAmI, target.whoAmI);
+            }
+
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumHitProj(proj, target, damage, crit);
         }
 
@@ -2159,22 +2177,6 @@ namespace FargowiltasSouls
                 target.AddBuff(mod.BuffType("ClippedWings"), 240);
                 target.netUpdate = true;
             }
-
-            if (FrigidGemstone && FrigidGemstoneCD <= 0 && !target.immortal)
-            {
-                FrigidGemstoneCD = 30;
-                float screenX = Main.screenPosition.X;
-                if (player.direction < 0)
-                    screenX += Main.screenWidth;
-                float screenY = Main.screenPosition.Y;
-                screenY += Main.rand.Next(Main.screenHeight);
-                Vector2 spawn = new Vector2(screenX, screenY);
-                Vector2 vel = target.Center - spawn;
-                vel.Normalize();
-                vel *= 27f;
-                int dam = (int)(40 * player.magicDamage);
-                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("Shadowfrostfireball"), dam, 6f, player.whoAmI, target.whoAmI);
-            }
         }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -2264,6 +2266,22 @@ namespace FargowiltasSouls
                         Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-35, 36) * 0.02f * 10f,
                             Main.rand.Next(-35, 36) * 0.02f * 10f, ProjectileID.TinyEater, (int)(dam * player.meleeDamage), 1.75f, player.whoAmI);
                 }
+            }
+
+            if (FrigidGemstone && FrigidGemstoneCD <= 0 && !target.immortal)
+            {
+                FrigidGemstoneCD = 30;
+                float screenX = Main.screenPosition.X;
+                if (player.direction < 0)
+                    screenX += Main.screenWidth;
+                float screenY = Main.screenPosition.Y;
+                screenY += Main.rand.Next(Main.screenHeight);
+                Vector2 spawn = new Vector2(screenX, screenY);
+                Vector2 vel = target.Center - spawn;
+                vel.Normalize();
+                vel *= 10f;
+                int dam = (int)(40 * player.magicDamage);
+                Projectile.NewProjectile(spawn, vel, mod.ProjectileType("Shadowfrostfireball"), dam, 6f, player.whoAmI, target.whoAmI);
             }
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumHitNPC(target, item, crit);

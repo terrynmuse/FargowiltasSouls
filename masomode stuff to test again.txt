@@ -12,6 +12,18 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-frigid gemstone works
+-added rainbow slime, now it works
+-destroyer also resists crystal darts (trust me, he needs it)
+-commented out probe death code for now
+-refactored transform to firstTick in globalNPC, now also used to make certain npcs ValhallaImmune
+-wof deathray also inflicts darkness and blackout lul
+-wof shoots fireballs faster in phase 2
+-sharkron EX has x100 life (was x20) and x2 defense
+-fishron EX has x25 life (was x5)
+-detonating bubble EX can be critted, but has x10 life (x2 to account for crits, then x5 to account of soul of universe)
+-sharkron and fishron no longer resist soul of universe crits
+-sharknado bolts have extra update in EX fight
 -ABOLISHED MASOAI/HURTAI/DEATHAI
 -increased drop rates of rabies shot and volatile energy
 -implemented squeaky toy

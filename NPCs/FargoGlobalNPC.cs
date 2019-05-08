@@ -54,7 +54,7 @@ namespace FargowiltasSouls.NPCs
         //masochist doom
         public byte masoState = 0;
         public bool[] masoBool = new bool[4];
-        public bool Transform = false;
+        public bool FirstTick = false;
         private int Stop = 0;
         public bool dropLoot = true;
         public bool PaladinsShield = false;
@@ -127,10 +127,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.SolarSolenian:
                         npc.knockBackResist = 0f;
-                        break;
-
-                    case NPCID.TargetDummy:
-                        ValhallaImmune = true;
                         break;
 
                     case NPCID.RainbowSlime:
@@ -222,10 +218,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                         npc.defense *= 5;
-                        ValhallaImmune = true;
-                        break;
-                    case NPCID.WallofFleshEye:
-                        ValhallaImmune = true;
                         break;
                     case NPCID.TheHungry:
                         npc.lifeMax *= 4;
@@ -258,7 +250,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemFistRight:
                         npc.scale += 0.5f;
                         npc.trapImmune = true;
-                        ValhallaImmune = true;
                         break;
 
                     case NPCID.DukeFishron:
@@ -283,7 +274,8 @@ namespace FargowiltasSouls.NPCs
                         npc.lifeMax *= 5;
                         if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
-                            npc.lifeMax *= 4;
+                            npc.lifeMax *= 20;
+                            npc.defense *= 2;
                             npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
                             ValhallaImmune = true;
                         }
@@ -310,7 +302,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead:
                         isMasoML = true;
-                        ValhallaImmune = true;
                         break;
                     case NPCID.MoonLordLeechBlob:
                         npc.lifeMax *= 5;
@@ -497,7 +488,7 @@ namespace FargowiltasSouls.NPCs
                     RegenTimer--;
                 
                 //transformations
-                if(!Transform)
+                if(!FirstTick)
                 {
                     int npcType = 0;
                     int[] transforms = { NPCID.Zombie, NPCID.ArmedZombie, NPCID.ZombieEskimo, NPCID.ArmedZombieEskimo, NPCID.PincushionZombie, NPCID.ArmedZombiePincussion, NPCID.FemaleZombie, NPCID.ArmedZombieCenx, NPCID.SlimedZombie, NPCID.ArmedZombieSlimed, NPCID.TwiggyZombie, NPCID.ArmedZombieTwiggy, NPCID.SwampZombie, NPCID.ArmedZombieSwamp, NPCID.Skeleton, NPCID.BoneThrowingSkeleton, NPCID.HeadacheSkeleton, NPCID.BoneThrowingSkeleton2, NPCID.MisassembledSkeleton, NPCID.BoneThrowingSkeleton3, NPCID.PantlessSkeleton, NPCID.BoneThrowingSkeleton4, NPCID.JungleSlime, NPCID.SpikedJungleSlime, NPCID.IceSlime, NPCID.SpikedIceSlime };
@@ -1814,6 +1805,10 @@ namespace FargowiltasSouls.NPCs
                                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                             }
                         }
+                        else //phase 2
+                        {
+                            Counter++;
+                        }
 
                         Counter++;
                         if (Counter >= 180)
@@ -2058,6 +2053,7 @@ namespace FargowiltasSouls.NPCs
                         fishBoss = npc.whoAmI;
                         if (masoBool[3]) //fishron EX
                         {
+                            fishBossEX = npc.whoAmI;
                             npc.position += npc.velocity * 0.5f;
                             //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                             switch ((int)npc.ai[0])
@@ -4387,9 +4383,33 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            if(!Transform && (npc.type == NPCID.Squirrel || npc.type == NPCID.SquirrelRed) && Main.rand.Next(8) == 0)
+            if(!FirstTick)
             {
-                npc.Transform(mod.NPCType("TophatSquirrel"));
+                switch(npc.type)
+                {
+                    case NPCID.WallofFlesh:
+                    case NPCID.WallofFleshEye:
+                    case NPCID.MoonLordCore:
+                    case NPCID.MoonLordHand:
+                    case NPCID.MoonLordHead:
+                    case NPCID.MoonLordLeechBlob:
+                    case NPCID.TargetDummy:
+                    case NPCID.GolemFistLeft:
+                    case NPCID.GolemFistRight:
+                    case NPCID.GolemHead:
+                        ValhallaImmune = true;
+                        break;
+
+                    case NPCID.Squirrel:
+                    case NPCID.SquirrelRed:
+                        if (Main.rand.Next(8) == 0)
+                            npc.Transform(mod.NPCType("TophatSquirrel"));
+                        break;
+
+                    default:
+                        break;
+                }
+                FirstTick = true;
             }
 
             if (Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().WoodEnchant)
@@ -4400,15 +4420,12 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.BunnySlimed:
                     case NPCID.BunnyXmas:
                     case NPCID.GoldBunny:
-
-
                         goto default;
 
                     case NPCID.Bird:
                     case NPCID.BirdBlue:
                     case NPCID.BirdRed:
                     case NPCID.GoldBird:
-
                         goto default;
 
                     case NPCID.Squirrel:
@@ -4446,19 +4463,14 @@ namespace FargowiltasSouls.NPCs
 
                             Counter = 0;
                         }
-                        
                         goto default;
 
                     default:
                         npc.defense = 999;
-
-
                         break;
                 }
             }
-
-            Transform = true;
-
+            
         }
 
         public void NetUpdateMaso(int npc)
@@ -4488,7 +4500,7 @@ namespace FargowiltasSouls.NPCs
                     {
                         NPC newNPC = Main.npc[j];
                         newNPC.velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 5f;
-                        newNPC.GetGlobalNPC<FargoGlobalNPC>().Transform = true;
+                        newNPC.GetGlobalNPC<FargoGlobalNPC>().FirstTick = true;
                         if (Main.netMode == 2)
                             NetMessage.SendData(23, -1, -1, null, j);
                     }
@@ -4763,7 +4775,7 @@ namespace FargowiltasSouls.NPCs
                             }
                             break;
 
-                        case NPCID.Probe:
+                        /*case NPCID.Probe:
                             if (!BossIsAlive(ref destroyBoss, NPCID.TheDestroyer) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref retiBoss, NPCID.Retinazer))
                             {
                                 int[] mechs = new int[] { NPCID.TheDestroyer, NPCID.SkeletronPrime, NPCID.Spazmatism, NPCID.Retinazer};
@@ -4782,7 +4794,7 @@ namespace FargowiltasSouls.NPCs
                                     NPC.SpawnOnPlayer(target.whoAmI, NPCID.Spazmatism);
                                 }
                             }
-                            break;
+                            break;*/
 
                         case NPCID.BlueSlime:
                             switch (npc.netID)
@@ -6548,7 +6560,7 @@ namespace FargowiltasSouls.NPCs
                     }
                     else if (underworld)
                     {
-		    pool[NPCID.LeechHead] = .025f;
+		                pool[NPCID.LeechHead] = .025f;
                         pool[NPCID.BlazingWheel] = .05f;
 		    
                         if (!BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
@@ -7832,8 +7844,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DukeFishron:
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
-                        if (modPlayer.UniverseEffect && crit)
-                            damage /= 5;
                         if (masoBool[2])
                             damage = 0;
                         break;
@@ -7930,8 +7940,14 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.TheDestroyer:
                     case NPCID.TheDestroyerBody:
                     case NPCID.TheDestroyerTail:
+                        if (projectile.type == ProjectileID.CrystalDart)
+                            damage /= 4;
+                        if (projectile.type == ProjectileID.HallowStar)
+                            damage /= 4;
+                        break;
                     case NPCID.PrimeCannon:
                     case NPCID.PrimeLaser:
                     case NPCID.PrimeSaw:
@@ -8027,8 +8043,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DukeFishron:
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
-                        if (modPlayer.UniverseEffect && crit)
-                            damage /= 5;
                         if (projectile.ranged)
                         {
                             if (projectile.arrow)
@@ -8197,9 +8211,8 @@ namespace FargowiltasSouls.NPCs
 		{
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			
-            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") &&
-                npc.type != NPCID.WallofFlesh && npc.type != NPCID.WallofFleshEye && npc.type != NPCID.TargetDummy &&
-                !npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune && npc.knockBackResist < 1)
+            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback")
+                && !npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune && npc.knockBackResist < 1)
             {
                 npc.knockBackResist += .02f;
                 if(npc.knockBackResist > .5f)
@@ -8212,9 +8225,8 @@ namespace FargowiltasSouls.NPCs
             FargoPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<FargoPlayer>(mod);
 
             //spears
-            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce) &&
-                npc.type != NPCID.WallofFlesh && npc.type != NPCID.WallofFleshEye && npc.type != NPCID.TargetDummy &&
-                !npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune && npc.knockBackResist < 1)
+            if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce)
+                && !npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune && npc.knockBackResist < 1)
             {
                 npc.knockBackResist += .02f;
                 if (npc.knockBackResist > .5f)
