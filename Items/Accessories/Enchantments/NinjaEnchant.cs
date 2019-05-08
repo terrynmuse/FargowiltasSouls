@@ -14,8 +14,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Now you see me, now you don’t'
 Throw a smoke bomb to teleport to it and gain the First Strike Buff
-First Strike causes your next melee attack to crit for 3x damage
-First Strike causes your next projectile attack to fire a barrage of 3
+First Strike enhances your next attack 
+Melee attacks will crit for 3x damage
+Projectile attacks fire in a barrage of 3
 Summons a pet Black Cat");
         }
 

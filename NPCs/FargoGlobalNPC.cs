@@ -8196,12 +8196,6 @@ namespace FargowiltasSouls.NPCs
 			    damage *= 4;
                 retValue = false;
 			}
-			
-			if(modPlayer.FirstStrike && npc.lifeMax == npc.life)
-			{
-                crit = true;
-                retValue = false;
-            }
 
             //normal damage calc
             return retValue;

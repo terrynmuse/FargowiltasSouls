@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,8 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Palm Wood Enchantment");
             Tooltip.SetDefault(
 @"''
-Doublte tap down to spawn a palm tree sentry that throws coconuts at enemies
-While in the Ocean or Desert, it attacks much faster");
+Double tap down to spawn a palm tree sentry that throws nuts at enemies
+While in the Ocean or Desert, it attacks twice as fast");
         }
 
         public override void SetDefaults()
@@ -29,21 +30,19 @@ While in the Ocean or Desert, it attacks much faster");
         {
             if (Soulcheck.GetValue("Palm Tree Sentry") && (player.controlDown && player.releaseDown))
             {
-                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15)
+                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15 && player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] == 0)
                 {
-                    //D U S T
+                    Vector2 mouse = Main.MouseWorld;
 
                     if (player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] == 0)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("PalmTreeSentry"), 15, 0f, player.whoAmI);
+                        Projectile.NewProjectile(mouse.X, mouse.Y - 10, 0f, 0f, mod.ProjectileType("PalmTreeSentry"), 15, 0f, player.whoAmI);
+
+                        //dust?
+
                     }
                 }
             }
-
-            /*
-In PalmTree.cs
-Tree disapears if owner is too far away
-Throws coconuts, twice as fast in sandy areas (ocean and desert)*/
         }
 
         public override void AddRecipes()

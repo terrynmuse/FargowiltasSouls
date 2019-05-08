@@ -1613,6 +1613,13 @@ namespace FargowiltasSouls
                 return;
             }
 
+            if (FirstStrike)
+            {
+                crit = true;
+                damage = (int)(damage * 1.5f);
+                player.ClearBuff(mod.BuffType("FirstStrike"));
+            }
+
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumModifyNPC(target, item, damage, crit);
         }
 

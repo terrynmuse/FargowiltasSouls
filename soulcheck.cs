@@ -29,6 +29,7 @@ namespace FargowiltasSouls
             ["Dangersense Buff"] = new Color(81, 181, 113),
             ["Spelunker Buff"] = new Color(81, 181, 113),
             ["Shine Buff"] = new Color(81, 181, 113),
+            ["Palm Tree Sentry"] = new Color(81, 181, 113),
             ["Cactus Needles"] = new Color(81, 181, 113),
             ["Pumpkin Fire"] = new Color(81, 181, 113),
             ["Copper Lightning"] = new Color(81, 181, 113),
