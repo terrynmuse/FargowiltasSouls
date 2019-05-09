@@ -883,6 +883,7 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.GoldenShowerHostile:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.wallBoss, NPCID.WallofFlesh))
                         {
+                            target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 300));
                             target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 240));
                             target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(120, 240));
                             target.velocity = Vector2.Zero;

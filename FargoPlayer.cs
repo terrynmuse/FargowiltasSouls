@@ -951,10 +951,10 @@ namespace FargowiltasSouls
                         SlimyShieldFalling = false;
                         Main.PlaySound(SoundID.Item21, player.Center);
                         Vector2 mouse = Main.MouseWorld;
-                        int damage = (int)(20 * player.meleeDamage);
+                        int damage = (int)(15 * player.meleeDamage);
                         if (MasochistSoul)
-                            damage *= 3;
-                        for (int i = 0; i < 4; i++)
+                            damage *= 4;
+                        for (int i = 0; i < 3; i++)
                         {
                             Vector2 spawn = new Vector2(mouse.X + Main.rand.Next(-200, 201), mouse.Y - Main.rand.Next(600, 901));
                             Vector2 speed = mouse - spawn;
@@ -964,7 +964,7 @@ namespace FargowiltasSouls
                         }
                     }
                 }
-                else if (player.velocity.Y > 0f)
+                else if (player.velocity.Y > 1f)
                 {
                     SlimyShieldFalling = true;
                 }
