@@ -949,22 +949,24 @@ namespace FargowiltasSouls
                     if (player.velocity < 0f)
                         SlimyShieldFalling = false;
 
-                    if (player.velocity.Y == 0f && player.whoAmI == Main.myPlayer
-                        && player.gravDir > 0 && Soulcheck.GetValue("Slimy Shield Effects"))
+                    if (player.velocity.Y == 0f)
                     {
                         SlimyShieldFalling = false;
-                        Main.PlaySound(SoundID.Item21, player.Center);
-                        Vector2 mouse = Main.MouseWorld;
-                        int damage = (int)(15 * player.meleeDamage);
-                        if (MasochistSoul)
-                            damage *= 4;
-                        for (int i = 0; i < 3; i++)
+                        if (player.whoAmI == Main.myPlayer && player.gravDir > 0 && Soulcheck.GetValue("Slimy Shield Effects"))
                         {
-                            Vector2 spawn = new Vector2(mouse.X + Main.rand.Next(-200, 201), mouse.Y - Main.rand.Next(600, 901));
-                            Vector2 speed = mouse - spawn;
-                            speed.Normalize();
-                            speed *= 10f;
-                            Projectile.NewProjectile(spawn, speed, mod.ProjectileType("SlimeBall"), damage, 1f, Main.myPlayer);
+                            Main.PlaySound(SoundID.Item21, player.Center);
+                            Vector2 mouse = Main.MouseWorld;
+                            int damage = (int)(15 * player.meleeDamage);
+                            if (MasochistSoul)
+                                damage *= 4;
+                            for (int i = 0; i < 3; i++)
+                            {
+                                Vector2 spawn = new Vector2(mouse.X + Main.rand.Next(-200, 201), mouse.Y - Main.rand.Next(600, 901));
+                                Vector2 speed = mouse - spawn;
+                                speed.Normalize();
+                                speed *= 10f;
+                                Projectile.NewProjectile(spawn, speed, mod.ProjectileType("SlimeBall"), damage, 1f, Main.myPlayer);
+                            }
                         }
                     }
                 }
