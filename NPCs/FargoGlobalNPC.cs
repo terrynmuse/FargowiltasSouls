@@ -212,7 +212,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.LunarTowerStardust:
                     case NPCID.LunarTowerVortex:
                         npc.lifeMax *= 5;
-                        npc.damage = 50;
                         break;
 
 
@@ -816,22 +815,22 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.VoodooDemon:
+                        if (npc.lavaWet)
+                        {
+                            npc.buffImmune[BuffID.OnFire] = false;
+                            npc.AddBuff(BuffID.OnFire, 600);
+                        }
                         if (!npc.HasBuff(BuffID.OnFire))
                         {
                             Timer = 600;
-                            if (npc.lavaWet)
-                            {
-                                npc.buffImmune[BuffID.OnFire] = false;
-                                npc.AddBuff(BuffID.OnFire, 600);
-                            }
                         }
                         else
                         {
                             Main.PlaySound(4, (int)npc.position.X, (int)npc.position.Y, 10, 1f, 0.5f);
                             Timer--;
-                            if (!BossIsAlive(ref wallBoss, NPCID.WallofFlesh) && npc.HasPlayerTarget && Main.netMode != 1)
+                            if (Timer <= 0 && !BossIsAlive(ref wallBoss, NPCID.WallofFlesh) && npc.HasPlayerTarget && Main.netMode != 1)
                             {
-                                NPC.SpawnWOF(npc.target);
+                                NPC.SpawnWOF(Main.player[npc.target].Center);
                                 //Main.NewText("Wall of Flesh has awoken!", 175, 75);
                                 npc.Transform(NPCID.Demon);
                             }
@@ -927,7 +926,7 @@ namespace FargowiltasSouls.NPCs
                                     int n = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), NPCID.ServantofCthulhu);
                                     if (n != 200)
                                     {
-                                        Main.npc[n].velocity = vel.RotatedBy(Math.PI / 2 * i;
+                                        Main.npc[n].velocity = vel.RotatedBy(Math.PI / 2 * i);
                                         if (Main.netMode == 2)
                                             NetMessage.SendData(23, -1, -1, null, n);
                                     }

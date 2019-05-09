@@ -946,7 +946,7 @@ namespace FargowiltasSouls
                 //player.justJumped use this tbh
                 if (SlimyShieldFalling) //landing
                 {
-                    if (player.velocity < 0f)
+                    if (player.velocity.Y < 0f)
                         SlimyShieldFalling = false;
 
                     if (player.velocity.Y == 0f)
@@ -970,10 +970,11 @@ namespace FargowiltasSouls
                         }
                     }
                 }
-                else if (player.velocity.Y > 1f)
+                else if (player.velocity.Y > 3f)
                 {
                     SlimyShieldFalling = true;
                 }
+                Main.NewText(player.velocity.Y.ToString());
             }
 
             if (AgitatingLens)
