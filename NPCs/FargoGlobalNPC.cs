@@ -831,7 +831,10 @@ namespace FargowiltasSouls.NPCs
                             if (Timer <= 0 && !BossIsAlive(ref wallBoss, NPCID.WallofFlesh) && npc.HasPlayerTarget && Main.netMode != 1)
                             {
                                 NPC.SpawnWOF(Main.player[npc.target].Center);
-                                //Main.NewText("Wall of Flesh has awoken!", 175, 75);
+                                if (Main.netMode == 2)
+                                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Wall of Flesh has awoken!"), new Color(175, 75, 0));
+                                else
+                                    Main.NewText("Wall of Flesh has awoken!", 175, 75);
                                 npc.Transform(NPCID.Demon);
                             }
                         }

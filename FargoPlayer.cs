@@ -974,7 +974,6 @@ namespace FargowiltasSouls
                 {
                     SlimyShieldFalling = true;
                 }
-                Main.NewText(player.velocity.Y.ToString());
             }
 
             if (AgitatingLens)
