@@ -17,14 +17,14 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 Increases max life by 100, wing time by 150%, and armor penetration by 25
 Increases max life by 20%, damage by 30%, and damage reduction by 15%
 Increases life regen, increases max number of minions and sentries by 5
-Grants fastfall and immunity to all Masochist Mode debuffs and more
+Grants gravity control, fastfall, and immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks inflict Sadism as a cocktail of Masochist Mode debuffs
-You periodically fire additional attacks depending on weapon type and Tiny Eaters
+You attacks create additional attacks depending on weapon type, Tiny Eaters, and Shadowfrostfireballs
 Spectral Fishron periodically manifests to support your critical hits
-You erupt into Spiky Balls and Ancient Visions when injured
-Summons friendly Creepers, probes, plant's offspring, pungent eye, Cultist, and true eyes
-Allows the holder to control gravity");
+You respawn twice as fast and erupt into Spiky Balls and Ancient Visions when injured
+Attacks have a chance to squeak and deal 1 damage to you
+Summons friendly Creepers, rainbow slime, probes, plant's offspring, pungent eye, Cultist, and true eyes");
         }
 
         public override void SetDefaults()
@@ -110,7 +110,35 @@ Allows the holder to control gravity");
             if (Soulcheck.GetValue("Pungent Eye Minion"))
                 player.AddBuff(mod.BuffType("PungentEyeball"), 2);
 
+            //concentrated rainbow matter
+            if (Soulcheck.GetValue("Rainbow Slime Minion"))
+                player.AddBuff(mod.BuffType("RainbowSlime"), 2);
+
+            //dragon fang
+            if (Soulcheck.GetValue("Inflict Clipped Wings"))
+                fargoPlayer.DragonFang = true;
+
+            //frigid gemstone
+            player.buffImmune[BuffID.Frozen] = true;
+            player.buffImmune[BuffID.Frostburn] = true;
+            player.buffImmune[BuffID.ShadowFlame] = true;
+            if (Soulcheck.GetValue("Shadowfrostfireballs"))
+            {
+                fargoPlayer.FrigidGemstone = true;
+                if (fargoPlayer.FrigidGemstoneCD > 0)
+                    fargoPlayer.FrigidGemstoneCD -= 5;
+            }
+
+            //sands of time
+            player.buffImmune[BuffID.WindPushed] = true;
+            fargoPlayer.SandsofTime = true;
+
+            //squeaky toy
+            fargoPlayer.SqueakyAcc = true;
+
             //tribal charm buffed
+            player.buffImmune[BuffID.Webbed] = true;
+            player.buffImmune[BuffID.Suffocation] = true;
             player.statLifeMax2 += 100;
             fargoPlayer.wingTimeModifier += 0.5f;
 
@@ -139,6 +167,7 @@ Allows the holder to control gravity");
             fargoPlayer.LihzahrdTreasureBox = true;
 
             //betsy's heart
+            player.buffImmune[BuffID.OgreSpit] = true;
             player.buffImmune[BuffID.WitheredWeapon] = true;
             player.buffImmune[BuffID.WitheredArmor] = true;
             fargoPlayer.BetsysHeart = true;
@@ -204,8 +233,9 @@ Allows the holder to control gravity");
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(mod.ItemType("SupremeDeathbringerFairy"));
-            recipe.AddIngredient(mod.ItemType("PureHeart"));
+            recipe.AddIngredient(mod.ItemType("BionomicCluster"));
             recipe.AddIngredient(mod.ItemType("DubiousCircuitry"));
+            recipe.AddIngredient(mod.ItemType("PureHeart"));
             recipe.AddIngredient(mod.ItemType("LumpOfFlesh"));
             recipe.AddIngredient(mod.ItemType("BetsysHeart"));
             recipe.AddIngredient(mod.ItemType("MutantAntibodies"));

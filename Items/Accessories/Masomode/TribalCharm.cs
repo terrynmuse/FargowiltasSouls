@@ -12,6 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Tribal Charm");
             Tooltip.SetDefault(@"''
+Grants immunity to Webbed and Suffocation
 Increases max life by 50
 Increases flight time by 25%");
         }
@@ -28,6 +29,8 @@ Increases flight time by 25%");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.buffImmune[BuffID.Webbed] = true;
+            player.buffImmune[BuffID.Suffocation] = true;
             player.statLifeMax2 += 50;
             player.GetModPlayer<FargoPlayer>().wingTimeModifier += 0.25f;
         }
