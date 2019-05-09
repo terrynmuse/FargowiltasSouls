@@ -208,9 +208,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.LunarTowerSolar:
-                        npc.lifeMax *= 5;
-                        npc.damage = 100;
-                        break;
                     case NPCID.LunarTowerNebula:
                     case NPCID.LunarTowerStardust:
                     case NPCID.LunarTowerVortex:
@@ -1266,6 +1263,13 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 5000, mod.BuffType("Atrophied"), false, 58);
                         Aura(npc, 5000, mod.BuffType("Jammed"));
                         Aura(npc, 5000, mod.BuffType("Antisocial"));
+                        if (!masoBool[0])
+                        {
+                            masoBool[0] = true;
+                            npc.damage += 100;
+                            npc.defDamage += 100;
+                            npc.netUpdate = true;
+                        }
                         if (!npc.dontTakeDamage)
                         {
                             if (++Counter > 180)
@@ -1333,6 +1337,13 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 5000, mod.BuffType("ReverseManaFlow"), false, DustID.SolarFlare);
                         Aura(npc, 5000, mod.BuffType("Jammed"));
                         Aura(npc, 5000, mod.BuffType("Antisocial"));
+                        if (!masoBool[0])
+                        {
+                            masoBool[0] = true;
+                            npc.damage += 200;
+                            npc.defDamage += 200;
+                            npc.netUpdate = true;
+                        }
                         if (!npc.dontTakeDamage)
                         {
                             if (++Timer > 240)
@@ -1353,6 +1364,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.LunarTowerStardust:
+                        if (!masoBool[0])
+                        {
+                            masoBool[0] = true;
+                            npc.damage += 100;
+                            npc.defDamage += 100;
+                            npc.netUpdate = true;
+                        }
                         Aura(npc, 5000, mod.BuffType("Atrophied"), false, 20);
                         Aura(npc, 5000, mod.BuffType("Jammed"));
                         Aura(npc, 5000, mod.BuffType("ReverseManaFlow"));
@@ -1387,6 +1405,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.LunarTowerVortex:
+                        if (!masoBool[0])
+                        {
+                            masoBool[0] = true;
+                            npc.damage += 100;
+                            npc.defDamage += 100;
+                            npc.netUpdate = true;
+                        }
                         Aura(npc, 5000, mod.BuffType("Atrophied"), false, DustID.Vortex);
                         Aura(npc, 5000, mod.BuffType("ReverseManaFlow"));
                         Aura(npc, 5000, mod.BuffType("Antisocial"));
