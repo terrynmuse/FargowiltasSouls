@@ -66,7 +66,7 @@ Effects of Lich's Gaze and Plague Lord's Flask");
             recipe.AddIngredient(thorium.ItemType("FrostPlagueStaff"));
             recipe.AddIngredient(ItemID.ToxicFlask);
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

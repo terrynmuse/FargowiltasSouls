@@ -2,7 +2,7 @@
 
 -Added Wood Enchantment, Boreal Wood Enchantment, Rich Mahogany Enchantment, Ebonwood Enchantment, Shadewood Enchantment, Palm Wood Enchantment, Pearlwood Enchantment
 
--Ninja Enchantment reworked: Now while in smoke
+-Ninja Enchantment reworked: First Strike now given after throwing a smoke bomb, active until your next attack which will be enhanced
 -Gladiator Enchantment reworked: 
 -Spider Enchantment reworked: Now allows all minions to crit 10% of the time
 -Modified nearly all Enchantment recipes: they all have the same amount of materials now, Thorium butterflies removed, and several new Thorium items added
@@ -19,7 +19,7 @@
 -Fixed Tungsten Enchantment bug where weapons would never be larger without it (prefix size increases etc)
 
 
-supersonic now says "I am speed"
+-Supersonic Soul tooltip changed
 -Pillars no longer spawn from Pandora's Box
 -Platinum Enchantment now crafted at a Crystal Ball
 -Fixed bug on certain Thorium Enchantments like Illumite where using a weapon with no ammo would spam projectiles
@@ -39,7 +39,8 @@ supersonic now says "I am speed"
 
 -flames of universe gives immunity to npcs against its components
 
-
+Several code tweaks to make things more efficient 
+Target and Super Dummies are immune to Valhalla knockback
 
 
 
@@ -53,11 +54,6 @@ ADD TO WIKI
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-
-
 Masochist Mode Changes (first ever actual changelog!)
 
 Buffs
@@ -69,6 +65,9 @@ Buffs
 -Oceanic Maul & Curse of the Moon disable Shadow Dodge, Black Belt dodge, and Hallowed Shield
 -Duke Fishron is always immune to valhalla knockback (used to be EX only)
 -Buffed Duke Fishron EX phase 1&2 speed
+-Wall of Flesh deathray also inflicts Darkness and Blackout
+-Wall of Flesh shoots fireballs faster in phase 2
+-Destroyer also resists Crystal Darts
 
 Nerfs
 -Removed Confused infliction upon taking fall damage 
@@ -120,6 +119,10 @@ Tweaks
 -Restored Truffle Worm EX functionality, now you fish with it, no longer a toggle, also added a Shrimpy Truffle to its recipe
 -ML socket lasers spawn along warning line
 -All bosses now drop up to 10 potions per kill (was 5)
+-Duke Fishron EX, Sharkron EX, and Detonating Bubble EX no longer resist Soul of the Universe crits, but..
+-Duke Fishron EX has x25 life (was x5)
+-Sharkron EX has x100 life (was x20) and x2 defense
+-Detonating Bubble EX has x10 life
 
 Fixes
 -Vulture feathers are actually named Vulture Feathers 
@@ -147,6 +150,7 @@ New Additions
 -Golem fists explode when fully extended and when outside the temple
 -Moon Lord also shoots a lightning orb during his ranged phase
 -Enraged Golem shoots lasers and aims spiky balls better
+-All pre-hm bosses drop a crate
 
 Spawns
 -Corrupt and Crimson Goldfish can spawn while it's raining at night now
@@ -174,18 +178,20 @@ Debuffs
 
 Item Changes
 -Added Slimy Shield, Agitating Lens, Corrupt Heart, Gutted Heart, Pure Heart, Necromantic Brew, Supreme Deathbringer Fairy
--Added Celestial Seal, Cyclonic Fin, Tribal Charm, Squeaky Toy, Sands of Time, Dragon's Fang, Concentrated Rainbow Matter (maybe more)
+-Added Celestial Seal, Cyclonic Fin, Tribal Charm, Squeaky Toy, Sands of Time, Dragon's Fang, Concentrated Rainbow Matter, Frigid Gemstone
 -Queen's Stinger is now a Masochist Mode drop (make sure big sting recipe doesnt use it)
 -Pungent Eye, Remote Control, and Galactic Globe now have minions
 -Celestial Rune now has bonus attacks
 -Dubious Circuitry now makes your attacks inflict Lightning Rod
 -Reinforced Plating now gives knockback immmunity
 -Soul of the Masochist lets you inflict Sadism now
--Ancient Visions spawne don hit are now minion damage instead of throwing
+-Ancient Visions spawned on hit are now minion damage instead of throwing
 -Fixed Lihzahrd Treasure Box effect not carrying over to Chalice of the Moon
 -Lihzahrd Treasure Box no longer does anything in flipped gravity
 -Fixed minions from accessories not being buffed by player stats
+-Increased drop rates of Rabies Shot and Volatile Energy
 -Several sprites added
+-Standardized masomode item rarity/sell prices
 -Tooltips changed for some items and moved to the top to match up with all other Fargo item tooltips
 -Debuff immmunity shuffled around on several drops, now every debuff has immunity somewhere
 
@@ -198,23 +204,30 @@ Item Changes
 Other todo:
 
 SOUL
-cultist no drop maso drop when summoned with fargo summon
 penetrator glow mask and crucible glow mask
-also how about that crucible resprite lol
+
 remove all thorium butterflies and make sure all vanilla critters are in, all enchant recipes checked over one more time (at home)
 new thorium items and effects time ^ 
 also remove vanilla enchants from thorium forces for the most part
+thorium support use more GetItem()
+
+
+cultist no drop maso drop when summoned with fargo summon
+also how about that crucible resprite lol
+
 remove tungsten stunning, just mega sword
 all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
 mechanical cart in supersonic, add some mounts to fishing or someshit
 bugle recipe group
 thorium force with negative regen?
-toggle page bugs, check all combos of mods, add a second page for just fargo, add more toggles for calameme, SoE stacking, infinity relic, etc
-toggle all button
+toggle page bugs, check all combos of mods, add more toggles for calameme, SoE stacking, infinity relic, etc
 can you move with gold enchant?
 crucible accept fossils?
 tribal charm auto swing?
 add roomba, make sheet somehow and copy generic pet AI
+
+ebon stop working on town npcs, critters, 1hp projectiles
+-commented out probe death code for now
 
 
 NOT THIS UPDATE
@@ -226,7 +239,6 @@ tiki rework
 
 
 TODO maybe
-
 
 Antlion Swarmers drop sand when above the player
 -galactic globe immune to curse of the moon
@@ -266,14 +278,10 @@ MISC
 -Fused - a pulsing bomb floats above you and gets redder as time counts down
 -Hexed - Green Dust like on fire but friendly looking, you know the one
 -Marked for Death - skulls circle around you
--target dummy and super dummy should be valhalla immune in non masomode
 -1/20 every night for either moon, post plant or sooner? message displays one minute before they start. 
 -Desert is way too bright, need shades
 -red devil trident velocity increases per tick
 -add back lightning rain reeeeee, make it much less often 
-
-Frost golem drop 
-immune to Frostburn and Shadowflame
 
 
 Number of times each debuff is represented in masomode (basically to see what we should add more of hahayes)

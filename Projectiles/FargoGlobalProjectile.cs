@@ -101,6 +101,20 @@ namespace FargowiltasSouls.Projectiles
                 {
                     firstTick = false;
 
+                    if (modPlayer.FirstStrike && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99 && CanSplit && Array.IndexOf(noSplit, projectile.type) <= -1)
+                    {
+                        Projectile p = NewProjectileDirectSafe(projectile.position + projectile.velocity * 2, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
+                        p.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = false;
+                        p.Opacity *= .75f;
+
+                        p = NewProjectileDirectSafe(projectile.position - projectile.velocity * 2, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
+                        p.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = false;
+                        p.Opacity *= .75f;
+
+                        player.ClearBuff(mod.BuffType("FirstStrike"));
+                    }
+
+
                     if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
                         && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99
                         && Soulcheck.GetValue("Adamantite Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
@@ -805,6 +819,8 @@ namespace FargowiltasSouls.Projectiles
                 {
                     player.Teleport(teleportPos, 1);
                     NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, teleportPos.X, teleportPos.Y, 1);
+
+                    player.AddBuff(mod.BuffType("FirstStrike"), 2);
                 }
             }
 

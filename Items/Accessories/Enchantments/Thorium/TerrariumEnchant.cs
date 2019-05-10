@@ -111,7 +111,7 @@ Effects of Fan Letter and Terrarium Surround Sound");
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

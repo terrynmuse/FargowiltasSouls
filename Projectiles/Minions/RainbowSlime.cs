@@ -45,7 +45,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 projectile.Kill();
 
             if (projectile.damage == 0)
-                projectile.damage = (int)(28f * player.minionDamage);
+                projectile.damage = (int)(35 * player.minionDamage);
 
             //Main.NewText(projectile.ai[0].ToString() + " " + projectile.ai[1].ToString() + " " + projectile.localAI[0].ToString() + " " + projectile.localAI[1].ToString());
         }
