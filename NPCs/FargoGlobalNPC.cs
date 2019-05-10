@@ -3065,32 +3065,6 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.MothronSpawn:
-                        if (++Counter >= 300)
-                            npc.Transform(NPCID.Mothron);
-                        break;
-
-                    case NPCID.BabySlime:
-                        if (++Counter >= 600)
-                            npc.Transform(NPCID.MotherSlime);
-                        break;
-
-                    case NPCID.CorruptSlime:
-                        switch(npc.netID)
-                        {
-                            case NPCID.Slimeling:
-                                if (++Counter >= 600)
-                                    npc.Transform(NPCID.CorruptSlime);
-                                break;
-                            case NPCID.Slimer2:
-                                if (++Counter >= 300)
-                                    npc.Transform(NPCID.Slimer);
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-
                     case NPCID.Pumpking:
                         if (++Timer >= 12)
                         {
@@ -3989,7 +3963,7 @@ namespace FargowiltasSouls.NPCs
                                             Main.projectile[p].timeLeft += Main.rand.Next(180);
                                         }
 
-                                        Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.BouncyDynamite, 250, 20f, Main.myPlayer);
+                                        Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.BouncyBomb, 100, 8f, Main.myPlayer);
                                     }
                                 }
 
@@ -4875,45 +4849,6 @@ namespace FargowiltasSouls.NPCs
             {
                 switch (npc.type)
                 {
-                    case NPCID.SlimeSpiked:
-                        if (!BossIsAlive(ref slimeBoss, NPCID.KingSlime) && Main.rand.Next(3) == 0)
-                        {
-                            npc.Transform(NPCID.KingSlime);
-                            npc.velocity.Y = -20f;
-                            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
-                        }
-                        break;
-
-                    case NPCID.WanderingEye:
-                        if (!BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) && Main.rand.Next(3) == 0)
-                        {
-                            npc.Transform(NPCID.EyeofCthulhu);
-                            npc.velocity.Y = -5f;
-                            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
-                        }
-                        break;
-
-                    /*case NPCID.Probe:
-                        if (!BossIsAlive(ref destroyBoss, NPCID.TheDestroyer) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref retiBoss, NPCID.Retinazer))
-                        {
-                            int[] mechs = new int[] { NPCID.TheDestroyer, NPCID.SkeletronPrime, NPCID.Spazmatism, NPCID.Retinazer};
-                            int spawn = mechs[Main.rand.Next(mechs.Length)];
-
-                            npc.Transform(spawn);
-                            npc.velocity.Y = -5f;
-                            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
-
-                            if (spawn == NPCID.Spazmatism)
-                            {
-                                NPC.SpawnOnPlayer(target.whoAmI, NPCID.Retinazer);
-                            }
-                            else if (spawn == NPCID.Retinazer)
-                            {
-                                NPC.SpawnOnPlayer(target.whoAmI, NPCID.Spazmatism);
-                            }
-                        }
-                        break;*/
-
                     case NPCID.BlueSlime:
                         switch (npc.netID)
                         {
@@ -5063,25 +4998,14 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ManEater:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
-                        if (target.statLife < 100)
-                            target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Man Eater."), 999, 0);
-                        break;
-
-                    case NPCID.TombCrawlerHead:
-                        if (target.statLife < 60)
-                            target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Tomb Crawler."), 999, 0);
                         break;
 
                     case NPCID.DevourerHead:
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(90, 900));
-                        if (target.statLife < 50)
-                            target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Devourer."), 999, 0);
                         break;
 
                     case NPCID.AngryTrapper:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
-                        if (target.statLife < 180)
-                            target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by an Angry Trapper."), 999, 0);
                         break;
 
                     case NPCID.SkeletronHead:
@@ -5231,13 +5155,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PigronCrimson:
                     case NPCID.PigronHallow:
                         target.AddBuff(mod.BuffType("SqueakyToy"), Main.rand.Next(180));
-                        if (!BossIsAlive(ref fishBoss, NPCID.DukeFishron) && Main.rand.Next(3) == 0)
-                        {
-                            npc.velocity = npc.Center - target.Center;
-                            npc.velocity.Normalize();
-                            npc.velocity *= 2.5f;
-                            npc.Transform(NPCID.DukeFishron);
-                        }
+                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
+                        target.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(1800, 3600));
                         break;
 
                     case NPCID.CorruptBunny:
@@ -5426,20 +5345,6 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("Unstable"), 30);
                         break;
 
-                    case NPCID.Nutcracker:
-                    case NPCID.NutcrackerSpinning:
-                        if (target.Male)
-                        {
-                            target.statDefense = 0;
-                            target.endurance = 0;
-                            target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " got his nuts cracked."), 9999, 0);
-                        }
-                        else
-                        {
-                            target.AddBuff(BuffID.Bleeding, Main.rand.Next(900, 1800));
-                        }
-                        break;
-
                     case NPCID.Wraith:
                         target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(300, 900));
                         break;
@@ -5513,8 +5418,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.PirateDeckhand:
-                        npc.Transform(NPCID.PirateCaptain);
-                        npc.GetGlobalNPC<FargoGlobalNPC>().dropLoot = false;
                         target.DropCoins();
                         goto case NPCID.GrayGrunt;
 
@@ -5583,8 +5486,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.TheDestroyer:
                         target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(300, 1200));
                         target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300, 1200));
-                        if (target.statLife < 300)
-                            target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by the Destroyer."), 9999, 0);
                         goto case NPCID.TheDestroyerTail;
 
                     case NPCID.TheDestroyerBody:
@@ -5646,9 +5547,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SolarCrawltipedeHead:
+                        target.AddBuff(BuffID.OnFire, Main.rand.Next(600, 1200));
                         target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(600, 1200));
-                        if (target.statLife < 200)
-                            target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Crawltipede."), 999, 0);
                         break;
 
                     case NPCID.BoneLee:
@@ -7105,14 +7005,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GoblinScout:
                     case NPCID.GoblinSorcerer:
                     case NPCID.GoblinThief:
-                        int ball = Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.Next(-5, 6), -5), ProjectileID.SpikyBall, 15, 0, Main.myPlayer);
-                        if (ball < 1000)
-                        {
-                            Main.projectile[ball].hostile = true;
-                            Main.projectile[ball].friendly = false;
-                            Main.projectile[ball].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                            Main.projectile[ball].penetrate = 1;
-                        }
+                        if (Main.netMode != 1)
+                            Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.Next(-5, 6), -5), mod.ProjectileType("GoblinSpikyBall"), 15, 0, Main.myPlayer);
                         break;
 
                     case NPCID.AngryBones:

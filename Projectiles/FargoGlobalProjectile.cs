@@ -702,11 +702,6 @@ namespace FargowiltasSouls.Projectiles
                     return Color.Brown;
                 }
 
-                else if (projectile.type == ProjectileID.SpikyBall)
-                {
-                    return Color.Red;
-                }
-
                 else if (projectile.type == ProjectileID.PineNeedleFriendly)
                 {
                     return Color.GreenYellow;
@@ -886,7 +881,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.Stinger:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee))
-                            target.AddBuff(BuffID.Venom, Main.rand.Next(180, 900));
+                            target.AddBuff(BuffID.Venom, Main.rand.Next(30, 300));
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(120, 1200));
                         break;
 
