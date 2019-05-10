@@ -7006,7 +7006,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GoblinSorcerer:
                     case NPCID.GoblinThief:
                         if (Main.netMode != 1)
-                            Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.Next(-5, 6), -5), mod.ProjectileType("GoblinSpikyBall"), 15, 0, Main.myPlayer);
+                            Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(-2f, 2f), -5), mod.ProjectileType("GoblinSpikyBall"), 15, 0, Main.myPlayer);
                         break;
 
                     case NPCID.AngryBones:

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,13 +26,13 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.timeLeft /= 6;
         }
 
-        /*public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
         {
             fallThrough = false;
-            return base.TileCollideStyle(width, height, fallThrough);
-        }*/
+            return base.TileCollideStyle(ref width, ref height, ref fallThrough);
+        }
 
-        public override Color? GetAlpha(Projectile projectile, Color lightColor)
+        public override Color? GetAlpha(Color lightColor)
         {
             return Color.Green;
         }
