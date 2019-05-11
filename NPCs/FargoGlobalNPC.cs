@@ -1946,7 +1946,8 @@ namespace FargowiltasSouls.NPCs
                             npc.netUpdate = true;
                         }
 
-                        if (npc.HasPlayerTarget && Main.player[npc.target].dead)// Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 2000)
+                        if (npc.HasPlayerTarget &&
+                            (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 2000))
                         {
                             npc.TargetClosest(true);
                             if (Counter2++ > 120)
