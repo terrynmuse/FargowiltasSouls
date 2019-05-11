@@ -1947,7 +1947,14 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         if (npc.HasPlayerTarget && Main.player[npc.target].dead)// Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 2000)
-                            npc.velocity *= 20;
+                        {
+                            npc.TargetClosest(true);
+                            if (Counter2++ > 120)
+                            {
+                                Counter2 = 120;
+                                npc.velocity *= 20;
+                            }
+                        }
 
                         //Main.NewText("ai0 " + npc.ai[0].ToString() + ", ai1 " + npc.ai[1].ToString() + ", ai2 " + npc.ai[2].ToString() + ", ai3 " + npc.ai[3].ToString());
                         break;
