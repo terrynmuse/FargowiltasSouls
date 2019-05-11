@@ -7934,19 +7934,15 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.TheDestroyer:
                     case NPCID.TheDestroyerBody:
                     case NPCID.TheDestroyerTail:
-                        if (projectile.type == ProjectileID.CrystalDart)
-                            damage /= 4;
-                        if (projectile.type == ProjectileID.HallowStar)
-                            damage /= 4;
-                        break;
                     case NPCID.PrimeCannon:
                     case NPCID.PrimeLaser:
                     case NPCID.PrimeSaw:
                     case NPCID.PrimeVice:
                     case NPCID.Retinazer:
                     case NPCID.Spazmatism:
+                    case NPCID.Probe:
                         if (projectile.type == ProjectileID.HallowStar)
-                            damage /= 4;
+                            damage = 0;
                         break;
 
                     case NPCID.GolemFistLeft:
@@ -7983,7 +7979,7 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
                         if (projectile.type == ProjectileID.HallowStar)
-                            damage /= 4;
+                            damage = 0;
                         break;
 
                     case NPCID.BrainofCthulhu:
