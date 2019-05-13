@@ -632,7 +632,7 @@ namespace FargowiltasSouls
         {
             if (Eternity)
                 player.respawnTimer = (int)(player.respawnTimer * .1);
-            else if (SandsofTime)
+            else if (SandsofTime && (!FargoGlobalNPC.AnyBossAlive() || MasochistSoul))
                 player.respawnTimer = (int)(player.respawnTimer * .5);
         }
 

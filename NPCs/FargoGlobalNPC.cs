@@ -66,6 +66,7 @@ namespace FargowiltasSouls.NPCs
         public int Timer = 600;
         public byte SharkCount = 0;
 
+        public static int boss = -1;
         public static int slimeBoss = -1;
         public static int eyeBoss = -1;
         public static int eaterBoss = -1;
@@ -789,7 +790,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WallCreeperWall:
                         Counter++;
                         if (Counter >= 600)
-                            Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, npc.damage / 4, 0);
+                            Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, npc.damage / 6, 0);
                         break;
 
                     case NPCID.SeekerHead:
@@ -799,7 +800,7 @@ namespace FargowiltasSouls.NPCs
                             Counter = 0;
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                             if (t != -1 && npc.Distance(Main.player[t].Center) < 500)
-                                Projectile.NewProjectile(npc.Center, npc.velocity, ProjectileID.EyeFire, npc.damage / 3, 0f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.Center, npc.velocity, ProjectileID.EyeFire, npc.damage / 4, 0f, Main.myPlayer);
                         }
                         break;
 
@@ -810,7 +811,7 @@ namespace FargowiltasSouls.NPCs
                             Counter = 0;
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                             if (t != -1 && npc.Distance(Main.player[t].Center) < 800)
-                                FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 1, npc.damage / 2, .5f);
+                                FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 1, npc.damage / 4, .5f);
                         }
                         break;
 
@@ -915,7 +916,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        eyeBoss = npc.whoAmI;
+                        eyeBoss = boss = npc.whoAmI;
 
                         Counter++;
                         if (Counter >= 300)
@@ -947,25 +948,31 @@ namespace FargowiltasSouls.NPCs
 
                             for (int i = 0; i < 8; i++)
                             {
-                                projs[i].hostile = true;
-                                projs[i].friendly = false;
-                                projs[i].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                                if (projs[i] != null)
+                                {
+                                    projs[i].hostile = true;
+                                    projs[i].friendly = false;
+                                    projs[i].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                                }
                             }
                         }
 
                         if (Counter2 > 0 && Counter2 % 5 == 0)
                         {
                             int p = Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y), npc.velocity / 10, ProjectileID.DemonSickle, npc.damage / 4, 1f, Main.myPlayer);
-                            Main.projectile[p].hostile = true;
-                            Main.projectile[p].friendly = false;
-                            Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                            //Main.projectile[p].timeLeft = 120;
+                            if (p != 1000)
+                            {
+                                Main.projectile[p].hostile = true;
+                                Main.projectile[p].friendly = false;
+                                Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                                //Main.projectile[p].timeLeft = 120;
+                            }
                         }
                         Counter2--;
                         break;
 
                     case NPCID.Retinazer:
-                        retiBoss = npc.whoAmI;
+                        retiBoss = boss = npc.whoAmI;
                         bool spazAlive = BossIsAlive(ref spazBoss, NPCID.Spazmatism);
                         bool targetAlive = npc.HasPlayerTarget && Main.player[npc.target].active;
 
@@ -1133,7 +1140,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Spazmatism:
-                        spazBoss = npc.whoAmI;
+                        spazBoss = boss = npc.whoAmI;
                         bool retiAlive = BossIsAlive(ref retiBoss, NPCID.Retinazer);
 
                         if (!masoBool[0]) //spawn in phase 2
@@ -1460,7 +1467,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.CultistBoss:
-                        cultBoss = npc.whoAmI;
+                        cultBoss = boss = npc.whoAmI;
 
                         Timer++;
                         if (Timer >= 1200)
@@ -1601,7 +1608,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.KingSlime:
-                        slimeBoss = npc.whoAmI;
+                        slimeBoss = boss = npc.whoAmI;
 
                         if (masoBool[1])
                         {
@@ -1718,7 +1725,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EaterofWorldsHead:
-                        eaterBoss = npc.whoAmI;
+                        eaterBoss = boss = npc.whoAmI;
                         Counter++;
                         if (Counter >= 6) //cursed flamethrower, roughly same direction as head
                         {
@@ -1732,7 +1739,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.QueenBee:
-                        beeBoss = npc.whoAmI;
+                        beeBoss = boss = npc.whoAmI;
 
                         if (!masoBool[0] && npc.life < npc.lifeMax / 2)
                         {
@@ -1780,7 +1787,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SkeletronHead:
-                        skeleBoss = npc.whoAmI;
+                        skeleBoss = boss = npc.whoAmI;
 
                         if (Counter != 0)
                         {
@@ -1854,7 +1861,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.WallofFlesh:
-                        wallBoss = npc.whoAmI;
+                        wallBoss = boss = npc.whoAmI;
 
                         if (npc.ai[3] == 0f) //when spawned in, make one eye invul
                         {
@@ -1961,7 +1968,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.TheDestroyer:
-                        destroyBoss = npc.whoAmI;
+                        destroyBoss = boss = npc.whoAmI;
 
                         if (!masoBool[0])
                         {
@@ -2143,7 +2150,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
-                        fishBoss = npc.whoAmI;
+                        fishBoss = boss = npc.whoAmI;
                         if (masoBool[3]) //fishron EX
                         {
                             fishBossEX = npc.whoAmI;
@@ -2546,7 +2553,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MoonLordCore:
-                        moonBoss = npc.whoAmI;
+                        moonBoss = boss = npc.whoAmI;
                         
                         if (!masoBool[0])
                         {
@@ -3269,7 +3276,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SkeletronPrime:
-                        primeBoss = npc.whoAmI;
+                        primeBoss = boss = npc.whoAmI;
                         npc.dontTakeDamage = !masoBool[0];
 
                         if (npc.ai[0] != 2f) //in phase 1
@@ -4129,9 +4136,7 @@ namespace FargowiltasSouls.NPCs
                         if (npc.ai[0] == 0f && masoBool[0])
                         {
                             masoBool[0] = false;
-                            if (Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16] != null //NOT in temple
-                                && Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].wall != WallID.LihzahrdBrickUnsafe
-                                && Main.netMode != 1)
+                            if (Main.netMode != 1)
                                 Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FuseBomb"), npc.damage / 4, 0f, Main.myPlayer);
                         }
                         masoBool[0] = npc.ai[0] != 0f;
@@ -6848,6 +6853,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("PungentEyeball"));
+                        npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("ShadowLockBox"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.InfernoPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HallowedFishingCrate, Main.rand.Next(3) + 1);
                         break;
@@ -8264,6 +8270,16 @@ namespace FargowiltasSouls.NPCs
             {
                 return false;
             }
+        }
+
+        public static bool AnyBossAlive()
+        {
+            if (boss == -1)
+                return false;
+            if (Main.npc[boss].active && Main.npc[boss].boss)
+                return true;
+            boss = -1;
+            return false;
         }
     }
 }

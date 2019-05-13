@@ -24,10 +24,10 @@ namespace FargowiltasSouls.Buffs.Masomode
             {
                 player.immune = false;
                 player.immuneTime = 0;
-                Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileID.Explosives, 400, 10f, Main.myPlayer);
-                /*Projectile.NewProjectile(player.position, player.velocity * 0, mod.ProjectileType("FusionBomb"), 0, 4f);
+                //Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileID.Explosives, 400, 10f, Main.myPlayer);
                 int damage = (player.statLifeMax2 / 2) + Main.rand.Next(-player.statLifeMax2 / 8, player.statLifeMax2 / 4);
-                player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was blown to bits."), damage, 0, false, false, true);*/
+                Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("FusionBomb"), damage / 4, 4f, Main.myPlayer);
+                player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was blown to bits."), damage, 0, false, false, true);
             }
         }
 

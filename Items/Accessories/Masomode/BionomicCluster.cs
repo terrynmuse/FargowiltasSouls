@@ -18,7 +18,7 @@ Grants immunity to Frostburn, Shadowflame, Frozen, Squeaky Toy, Purified, and Mi
 Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and Suffocation
 Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies
 Your attacks summon Shadowfrostfireballs to attack your enemies
-You respawn twice as fast
+You respawn twice as fast when no boss is alive
 Increases max life by 50 and flight time by 25%
 Attacks have a chance to squeak and deal 1 damage to you
 Summons a friendly rainbow slime");

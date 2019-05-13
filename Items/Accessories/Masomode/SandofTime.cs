@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"''
 Works in your inventory
 Grants immunity to Mighty Wind
-You respawn twice as fast");
+You respawn twice as fast when no boss is alive");
         }
 
         public override void SetDefaults()
