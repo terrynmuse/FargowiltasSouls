@@ -5198,7 +5198,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        target.AddBuff(mod.BuffType("Hexed"), Main.rand.Next(90));
+                        target.AddBuff(BuffID.Confused, Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(90));
