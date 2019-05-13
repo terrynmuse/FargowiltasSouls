@@ -214,6 +214,7 @@ namespace FargowiltasSouls
         public int FrigidGemstoneCD;
         public bool SqueakyAcc;
         public bool RainbowSlime;
+        public bool SkeletronArms;
 
         //debuffs
         public bool Hexed;
@@ -601,6 +602,7 @@ namespace FargowiltasSouls
             FrigidGemstone = false;
             SqueakyAcc = false;
             RainbowSlime = false;
+            SkeletronArms = false;
 
             //debuffs
             Hexed = false;

@@ -24,7 +24,7 @@ You attacks create additional attacks depending on weapon type, Tiny Eaters, and
 Spectral Fishron periodically manifests to support your critical hits
 You respawn twice as fast and erupt into Spiky Balls and Ancient Visions when injured
 Attacks have a chance to squeak and deal 1 damage to you
-Summons friendly Creepers, rainbow slime, probes, plant's offspring, pungent eye, Cultist, and true eyes");
+Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, pungent eye, Cultist, and true eyes");
         }
 
         public override void SetDefaults()
@@ -76,6 +76,10 @@ Summons friendly Creepers, rainbow slime, probes, plant's offspring, pungent eye
             player.npcTypeNoAggro[234] = true;
             player.npcTypeNoAggro[235] = true;
             //fargoPlayer.QueenStinger = true;
+
+            //necromantic brew
+            if (Soulcheck.GetValue("Skeletron Arms Minion"))
+                player.AddBuff(mod.BuffType("SkeletronArms"), 2);
 
             //pure heart
             fargoPlayer.PureHeart = true;

@@ -91,6 +91,7 @@ namespace FargowiltasSouls
             ["Celestial Rune Support"] = new Color(81, 181, 113),
             ["Spectral Fishron"] = new Color(81, 181, 113),
             ["Gravity Control"] = new Color(81, 181, 113),
+            ["Skeletron Arms Minion"] = new Color(81, 181, 113),
             ["Rainbow Slime Minion"] = new Color(81, 181, 113),
             ["Probes Minion"] = new Color(81, 181, 113),
             ["Plantera Minion"] = new Color(81, 181, 113),

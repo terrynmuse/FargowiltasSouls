@@ -12,11 +12,12 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Supreme Deathbringer Fairy");
             Tooltip.SetDefault(@"'Supremacy not necessarily guaranteed'
-Grants immunity to Slimed, Berserked, and Infested
+Grants immunity to Slimed, Berserked, Lethargic, and Infested
 Increases damage by 10% and armor penetration by 10
 While dashing or running quickly you will create a trail of blood scythes
 Your attacks inflict Poisoned
-Bees and Hornets become friendly");
+Bees and Hornets become friendly
+Summons 2 Skeletron arms to whack enemies");
         }
 
         public override void SetDefaults()
@@ -59,15 +60,21 @@ Bees and Hornets become friendly");
             player.npcTypeNoAggro[234] = true;
             player.npcTypeNoAggro[235] = true;
             fargoPlayer.QueenStinger = true;
+
+            //necromantic brew
+            player.buffImmune[mod.BuffType("Lethargic")] = true;
+            if (Soulcheck.GetValue("Skeletron Arms Minion"))
+                player.AddBuff(mod.BuffType("SkeletronArms"), 2);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(mod.ItemType("AgitatingLens"));
-            recipe.AddIngredient(mod.ItemType("QueenStinger"));
             recipe.AddIngredient(mod.ItemType("SlimyShield"));
+            recipe.AddIngredient(mod.ItemType("AgitatingLens"));
+            recipe.AddIngredient(mod.ItemType("NecromanticBrew"));
+            recipe.AddIngredient(mod.ItemType("QueenStinger"));
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
