@@ -1,6 +1,6 @@
 ﻿NEW UPDATE - v 0.7
 
--Added Wood Enchantment, Boreal Wood Enchantment, Rich Mahogany Enchantment, Ebonwood Enchantment, Shadewood Enchantment, Palm Wood Enchantment, Pearlwood Enchantment
+-Added Wood Enchantment, Boreal Wood Enchantment, Rich Mahogany Enchantment, Ebonwood Enchantment, Shadewood Enchantment, Palm Wood Enchantment, Pearlwood Enchantment, and Force of Wood
 
 -Ninja Enchantment reworked: First Strike now given after throwing a smoke bomb, active until your next attack which will be enhanced
 -Gladiator Enchantment reworked: 
@@ -201,36 +201,35 @@ Item Changes
 
 
 
-Other todo:
+TODO for next update
 
-SOUL
-penetrator glow mask and crucible glow mask
+
 
 remove all thorium butterflies and make sure all vanilla critters are in, all enchant recipes checked over one more time (at home)
 new thorium items and effects time ^ 
 also remove vanilla enchants from thorium forces for the most part
 thorium support use more GetItem()
 
-
-cultist no drop maso drop when summoned with fargo summon
-also how about that crucible resprite lol
-
 remove tungsten stunning, just mega sword
 all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
 mechanical cart in supersonic, add some mounts to fishing or someshit
 bugle recipe group
-thorium force with negative regen?
+dont increment, just set numbers tbh
 toggle page bugs, check all combos of mods, add more toggles for calameme, SoE stacking, infinity relic, etc
-can you move with gold enchant?
-crucible accept fossils?
-tribal charm auto swing?
 add roomba, make sheet somehow and copy generic pet AI
-
 ebon stop working on town npcs, critters, 1hp projectiles
--commented out probe death code for now
+
+thorium force with negative regen?
+can you move with gold enchant?
+tribal charm auto swing?
+cultist no drop maso drop when summoned with fargo summon
+
+
 
 
 NOT THIS UPDATE
+crucible accept fossils?
+penetrator glow mask and crucible glow mask
 top hat squirrel terrarium
 add fishing rod, one form for now lol
 add deaths meme idea from doc
@@ -238,7 +237,6 @@ absorb hyper mode, for casters amd enchanted weapons, and maybe more
 tiki rework
 
 
-TODO maybe
 
 Antlion Swarmers drop sand when above the player
 -galactic globe immune to curse of the moon
