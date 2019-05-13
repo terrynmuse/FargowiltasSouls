@@ -16,7 +16,6 @@
 -fixed eoc xway despawn when at projectile limit
 -sands of time doesnt work when boss is alive
 -golem fists always explode
--added shadow lock box drop from wof
 -BOC INFLICTS LONG CONFUSED INSTEAD OF HEXED
 -mechs are straight immune to holy arrow stars
 -nerfed spawns in masomode overall

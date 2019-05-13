@@ -6853,7 +6853,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("PungentEyeball"));
-                        npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("ShadowLockBox"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.InfernoPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HallowedFishingCrate, Main.rand.Next(3) + 1);
                         break;
