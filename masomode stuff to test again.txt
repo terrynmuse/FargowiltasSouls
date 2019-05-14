@@ -12,6 +12,9 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-nebula pillar only does its gimmick if you're in aura range
+-mourning wood always drops goodie bag
+-pumpking has 10% chance to drop bladed glove
 -added skeletron arms(?)
 -restored old fused
 -fixed eoc xway despawn when at projectile limit

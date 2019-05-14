@@ -27,8 +27,8 @@ namespace FargowiltasSouls.Buffs.Minions
             {
                 if (player.ownedProjectileCounts[mod.ProjectileType("SkeletronArmL")] < 1)
                     Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("SkeletronArmL"), 0, 8f, player.whoAmI);
-                //if (player.ownedProjectileCounts[mod.ProjectileType("SkeletronArmR")] < 1)
-                    //Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("SkeletronArmR"), 0, 8f, player.whoAmI);
+                if (player.ownedProjectileCounts[mod.ProjectileType("SkeletronArmR")] < 1)
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("SkeletronArmR"), 0, 8f, player.whoAmI);
             }
         }
     }

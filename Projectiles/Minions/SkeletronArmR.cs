@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.Minions
 {
-    public class SkeletronArmL : ModProjectile
+    public class SkeletronArmR : ModProjectile
     {
         public override string Texture => "Terraria/NPC_36";
 
@@ -50,7 +50,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (projectile.ai[0] >= 0f)
             {
                 Vector2 home = player.Center;
-                home.X -= 200f;
+                home.X += 200f;
                 home.Y -= 50f;
                 Vector2 distance = home - projectile.Center;
                 float range = distance.Length();
@@ -118,7 +118,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
 
             Vector2 angle = player.Center - projectile.Center;
-            angle.X -= 200f;
+            angle.X += 200f;
             angle.Y += 180f;
             projectile.rotation = (float)Math.Atan2(angle.Y, angle.X) + (float)Math.PI / 2f;
         }
@@ -130,7 +130,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             int y3 = num156 * projectile.frame; //ypos of upper left corner of sprite to draw
             Rectangle rectangle = new Rectangle(0, y3, texture2D13.Width, num156);
             Vector2 origin2 = rectangle.Size() / 2f;
-            Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), projectile.GetAlpha(lightColor), projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), projectile.GetAlpha(lightColor), projectile.rotation, origin2, projectile.scale, SpriteEffects.FlipHorizontally, 0f);
             return false;
         }
     }

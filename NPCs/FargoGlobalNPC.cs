@@ -1293,7 +1293,7 @@ namespace FargowiltasSouls.NPCs
                                     Main.dust[d].noGravity = true;
                                     Main.dust[d].scale += 1.5f;
                                 }
-                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                if (npc.HasPlayerTarget && Main.netMode != 1 && npc.Distance(Main.player[npc.target].Center) < 5000)
                                 {
                                     int x = (int)Main.player[npc.target].Center.X / 16;
                                     int y = (int)Main.player[npc.target].Center.Y / 16;
@@ -1325,7 +1325,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 Timer = 0;
                                 npc.TargetClosest(false);
-                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                if (npc.HasPlayerTarget && Main.netMode != 1 && npc.Distance(Main.player[npc.target].Center) < 5000)
                                 {
                                     for (int i = 0; i < 3; i++)
                                     {
@@ -6798,6 +6798,15 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.SandElemental:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SandofTime"));
+                        break;
+
+                    case NPCID.MourningWood:
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.GoodieBag);
+                        break;
+
+                    case NPCID.Pumpking:
+                        if (Main.rand.Next(10) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.BladedGlove);
                         break;
 
                     #region boss drops
