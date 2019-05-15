@@ -12,6 +12,39 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-buffed soul of masochist because i can, fuck you
+-added hellstone bars to deathbringer fairy recipe
+-slightly reduced lunar crystals needed for truffle worm EX recipe
+-any normal size rainbow slime can drop CRM but the rate is now 5%
+-plantera drops life fruit
+-wof drops shadow crates if fargo enabled
+-antlions now succ the player with their balls on hit
+-basilisks have buffed health, now inflict poison/venom/infested on hit
+-dune splicers have 500% life
+-various underground desert mobs can drop desert fossils
+-tried something to make rainbow slime work correctly in MP
+-big rainbow slime sprays rainbow slime spikes like king slime but HE AIMS
+-pungent eyeball doesn't netUpdate EVERY SINGLE TICK anymore
+-lunar cultist lightning is thinner
+-skull charm & upgrades make relevant skeletons passive like royal gel when outside dungeon
+-gutted heart/pure heart/maso soul do their lifeforce effect in updateAccessory instead of modPlayer (should be safe...?)
+-dungeon guardian below 1000 life moves at double speed and shoots skulls
+-dungeon guardian inflicts FOTU, god eater, and MFD, also it IGNORES I-FRAMES
+-golem also shoots downwards geysers if player is below
+-golem has anti-elevation fireball spreads
+-only half of prime limbs move at higher speed in phase 2
+-destroyer head no longer inflicts crippled/clipped wings
+-golem head now breathes fire for 1sec after each laser spread
+-moved pinky and bone lee checks for on hit stuff
+-flames of the universe allows its component debuffs to be inflicted after it wears off
+-moved marked for death effect to modPlayer, also nerfed it to just 300% damage
+-ML no longer drops celes seal
+-celes seal is crafted instead
+-pungent eyeball longer recharges while firing laser
+-masomode bosses no longer spawn if they're already alive. period.
+-white cultist archers can be targeted by homing/minions
+-ancient visions and phantasm dragons can spawn during ML fight again
+-PURGED ALL DD2 ENEMY NATURAL SPAWNS
 -nebula pillar only does its gimmick if you're in aura range
 -mourning wood always drops goodie bag
 -pumpking has 10% chance to drop bladed glove

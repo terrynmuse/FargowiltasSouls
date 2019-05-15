@@ -13,18 +13,16 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Soul of the Masochist");
             Tooltip.SetDefault(
-@"'Embrace suffering'
-Increases max life by 100, wing time by 150%, and armor penetration by 25
-Increases max life by 20%, damage by 30%, and damage reduction by 15%
-Increases life regen, increases max number of minions and sentries by 5
+@"'To inflict suffering, you must first embrace it'
+Increases max life by 200, wing time by 200%, and armor penetration by 50
+Increases max life by 50%, damage by 30%, and damage reduction by 20%
+Increases life regen drastically, increases max number of minions and sentries by 10
 Grants gravity control, fastfall, and immunity to all Masochist Mode debuffs and more
 Makes armed and magic skeletons less hostile outside the Dungeon
-Your attacks inflict Sadism as a cocktail of Masochist Mode debuffs
-You attacks create additional attacks depending on weapon type, Tiny Eaters, and Shadowfrostfireballs
-Spectral Fishron periodically manifests to support your critical hits
+Your attacks create additional attacks and inflict Sadism as a cocktail of Masochist Mode debuffs
 You respawn twice as fast and erupt into Spiky Balls and Ancient Visions when injured
 Attacks have a chance to squeak and deal 1 damage to you
-Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, pungent eye, Cultist, and true eyes");
+Summons the aid of all Masochist Mode bosses to your side");
         }
 
         public override void SetDefaults()
@@ -34,7 +32,7 @@ Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, punge
             item.accessory = true;
             item.rare = 11;
             item.value = 5000000;
-            item.defense = 20;
+            item.defense = 30;
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)
@@ -53,6 +51,23 @@ Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, punge
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.MasochistSoul = true;
 
+            //stat modifiers
+            player.meleeDamage += 0.3f;
+            player.rangedDamage += 0.3f;
+            player.magicDamage += 0.3f;
+            player.minionDamage += 0.3f;
+            player.thrownDamage += 0.3f;
+            player.maxMinions += 10;
+            player.maxTurrets += 10;
+            player.armorPenetration += 50;
+            player.statLifeMax2 += player.statLifeMax / 2;
+            player.statLifeMax2 += 200;
+            player.endurance += 0.2f;
+            player.lifeRegen += 7;
+            player.lifeRegenTime += 7;
+            player.lifeRegenCount += 7;
+            fargoPlayer.wingTimeModifier += 2f;
+
             //slimy shield
             player.buffImmune[BuffID.Slimed] = true;
             if (Soulcheck.GetValue("Slimy Shield Effects"))
@@ -65,7 +80,6 @@ Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, punge
             fargoPlayer.AgitatingLens = true;
 
             //queen stinger
-            player.armorPenetration += 25;
             player.npcTypeNoAggro[210] = true;
             player.npcTypeNoAggro[211] = true;
             player.npcTypeNoAggro[42] = true;
@@ -97,20 +111,25 @@ Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, punge
             //mutant antibodies
             player.buffImmune[BuffID.Rabies] = true;
             fargoPlayer.MutantAntibodies = true;
-            player.meleeDamage += 0.3f;
-            player.rangedDamage += 0.3f;
-            player.magicDamage += 0.3f;
-            player.minionDamage += 0.3f;
-            player.thrownDamage += 0.3f;
 
             //lump of flesh
             player.buffImmune[BuffID.Blackout] = true;
             player.buffImmune[BuffID.Obstructed] = true;
             player.buffImmune[BuffID.Dazed] = true;
             fargoPlayer.SkullCharm = true;
+            if (!player.ZoneDungeon)
+            {
+                player.npcTypeNoAggro[NPCID.SkeletonSniper] = true;
+                player.npcTypeNoAggro[NPCID.SkeletonCommando] = true;
+                player.npcTypeNoAggro[NPCID.TacticalSkeleton] = true;
+                player.npcTypeNoAggro[NPCID.DiabolistRed] = true;
+                player.npcTypeNoAggro[NPCID.DiabolistWhite] = true;
+                player.npcTypeNoAggro[NPCID.Necromancer] = true;
+                player.npcTypeNoAggro[NPCID.NecromancerArmored] = true;
+                player.npcTypeNoAggro[NPCID.RaggedCaster] = true;
+                player.npcTypeNoAggro[NPCID.RaggedCasterOpenCoat] = true;
+            }
             fargoPlayer.LumpOfFlesh = true;
-            player.maxMinions += 5;
-            player.maxTurrets += 5;
             if (Soulcheck.GetValue("Pungent Eye Minion"))
                 player.AddBuff(mod.BuffType("PungentEyeball"), 2);
 
@@ -143,8 +162,6 @@ Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, punge
             //tribal charm buffed
             player.buffImmune[BuffID.Webbed] = true;
             player.buffImmune[BuffID.Suffocation] = true;
-            player.statLifeMax2 += 100;
-            fargoPlayer.wingTimeModifier += 0.5f;
 
             //dubious circuitry
             player.buffImmune[BuffID.CursedInferno] = true;
@@ -155,13 +172,9 @@ Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, punge
             fargoPlayer.DubiousCircuitry = true;
             if (Soulcheck.GetValue("Probes Minion"))
                 player.AddBuff(mod.BuffType("Probes"), 2);
-            player.endurance += 0.15f;
             player.noKnockback = true;
 
             //magical bulb
-            player.lifeRegen += 7;
-            player.lifeRegenTime += 7;
-            player.lifeRegenCount += 7;
             player.buffImmune[BuffID.Venom] = true;
             if (Soulcheck.GetValue("Plantera Minion"))
                 player.AddBuff(mod.BuffType("PlanterasChild"), 2);
@@ -190,7 +203,6 @@ Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, punge
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.ChaosState] = true;
             fargoPlayer.GravityGlobeEX = true;
-            fargoPlayer.wingTimeModifier += 1f;
             if (Soulcheck.GetValue("Gravity Control"))
                 player.gravControl = true;
             if (Soulcheck.GetValue("True Eyes Minion"))
@@ -246,7 +258,8 @@ Summons friendly arms, Creepers, rainbow slime, probes, plant's offspring, punge
             recipe.AddIngredient(mod.ItemType("ChaliceoftheMoon"));
             recipe.AddIngredient(mod.ItemType("GalacticGlobe"));
             recipe.AddIngredient(mod.ItemType("CyclonicFin"));
-            recipe.AddIngredient(mod.ItemType("Sadism"));
+            recipe.AddIngredient(mod.ItemType("Sadism"), 15);
+            recipe.AddIngredient(ItemID.LunarBar, 50);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
 

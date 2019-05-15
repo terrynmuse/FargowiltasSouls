@@ -31,12 +31,13 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
-            npc.buffImmune[BuffID.ShadowFlame] = true;
-            npc.buffImmune[BuffID.Frostburn] = true;
-            npc.buffImmune[BuffID.Ichor] = true;
-            npc.buffImmune[BuffID.Venom] = true;
+            bool beImmune = npc.buffTime[buffIndex] > 2;
+            npc.buffImmune[BuffID.OnFire] = beImmune;
+            npc.buffImmune[BuffID.CursedInferno] = beImmune;
+            npc.buffImmune[BuffID.ShadowFlame] = beImmune;
+            npc.buffImmune[BuffID.Frostburn] = beImmune;
+            npc.buffImmune[BuffID.Ichor] = beImmune;
+            npc.buffImmune[BuffID.Venom] = beImmune;
             npc.onFire = true;
             npc.onFire2 = true;
             npc.shadowFlame = true;

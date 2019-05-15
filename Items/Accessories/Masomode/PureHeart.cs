@@ -36,7 +36,7 @@ A new Creeper appears every 15 seconds, and 5 can exist at once");
         {
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.PureHeart = true;
-
+            player.statLifeMax2 += player.statLifeMax / 5;
             player.buffImmune[mod.BuffType("Rotting")] = true;
             player.moveSpeed += 0.2f;
             fargoPlayer.CorruptHeart = true;

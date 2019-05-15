@@ -75,6 +75,7 @@ Summons 2 Skeletron arms to whack enemies");
             recipe.AddIngredient(mod.ItemType("AgitatingLens"));
             recipe.AddIngredient(mod.ItemType("NecromanticBrew"));
             recipe.AddIngredient(mod.ItemType("QueenStinger"));
+            recipe.AddIngredient(ItemID.HellstoneBar, 10);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

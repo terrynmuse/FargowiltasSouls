@@ -382,6 +382,15 @@ namespace FargowiltasSouls
                     fargoNPC.masoBool[3] = reader.ReadBoolean();
                     break;
 
+                case 3: //rainbow slime, MP clients syncing to server
+                    if (Main.netMode == 1)
+                    {
+                        byte slime = reader.ReadByte();
+                        Main.npc[slime].scale = reader.ReadSingle();
+                        Main.npc[slime].lifeMax = reader.ReadInt32();
+                    }
+                    break;
+
                 case 77: //server side spawning fishron EX
                     if (Main.netMode == 2)
                     {

@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -57,18 +58,26 @@ namespace FargowiltasSouls.Projectiles.Minions
                     projectile.velocity = vector2_3 * 0.1f;
             }
 
-            float rotationModifier = 0.08f;
+            const float rotationModifier = 0.08f;
+            const float chargeTime = 180f;
             if (projectile.localAI[1] > 0)
             {
                 projectile.localAI[1]--;
+                if (projectile.owner == Main.myPlayer)
+                    projectile.netUpdate = true;
             }
             if (player.controlUseItem)
             {
-                projectile.localAI[0]++;
-                if (player.GetModPlayer<FargoPlayer>().MasochistSoul)
-                    projectile.localAI[0]++;
-                if (projectile.localAI[0] == 180f)
+                if (player.ownedProjectileCounts[mod.ProjectileType("PhantasmalDeathrayPungent")] < 1)
                 {
+                    projectile.localAI[0]++;
+                    if (player.GetModPlayer<FargoPlayer>().MasochistSoul)
+                        projectile.localAI[0]++;
+                }
+                if (projectile.localAI[0] == chargeTime)
+                {
+                    if (projectile.owner == Main.myPlayer)
+                        projectile.netUpdate = true;
                     const int num226 = 18; //dusts indicate charged up
                     for (int num227 = 0; num227 < num226; num227++)
                     {
@@ -80,14 +89,16 @@ namespace FargowiltasSouls.Projectiles.Minions
                         Main.dust[num228].velocity = vector7;
                     }
                 }
-                if (projectile.localAI[0] > 180f)
+                if (projectile.localAI[0] > chargeTime)
                 {
                     int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 27, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].velocity *= 3f;
                 }
-                if (projectile.localAI[0] == 360f)
+                if (projectile.localAI[0] == chargeTime * 2f)
                 {
+                    if (projectile.owner == Main.myPlayer)
+                        projectile.netUpdate = true;
                     const int num226 = 36; //dusts indicate charged up
                     for (int num227 = 0; num227 < num226; num227++)
                     {
@@ -99,7 +110,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                         Main.dust[num228].velocity = vector7;
                     }
                 }
-                if (projectile.localAI[0] > 360f)
+                if (projectile.localAI[0] > chargeTime * 2f)
                 {
                     int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 27, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f);
                     Main.dust[d].noGravity = true;
@@ -112,12 +123,14 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
             else
             {
-                if (projectile.localAI[0] > 180f)
+                if (projectile.localAI[0] > chargeTime)
                 {
+                    if (projectile.owner == Main.myPlayer)
+                        projectile.netUpdate = true;
                     projectile.localAI[1] = 120f;
                     if (projectile.owner == Main.myPlayer)
                         Projectile.NewProjectile(projectile.Center, Vector2.UnitX.RotatedBy(projectile.rotation), mod.ProjectileType("PhantasmalDeathrayPungent"),
-                            projectile.damage, 4f, projectile.owner, projectile.whoAmI, (projectile.localAI[0] >= 360) ? 1f : 0f);
+                            projectile.damage, 4f, projectile.owner, projectile.whoAmI, (projectile.localAI[0] >= chargeTime * 2f) ? 1f : 0f);
                 }
                 projectile.localAI[0] = 0;
             }
@@ -126,7 +139,6 @@ namespace FargowiltasSouls.Projectiles.Minions
             {
                 projectile.ai[0] = Main.MouseWorld.X;
                 projectile.ai[1] = Main.MouseWorld.Y;
-                projectile.netUpdate = true;
             }
             projectile.rotation = projectile.rotation.AngleLerp(
                 (new Vector2(projectile.ai[0], projectile.ai[1]) - projectile.Center).ToRotation(), rotationModifier);

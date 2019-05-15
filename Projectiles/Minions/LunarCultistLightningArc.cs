@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Projectiles.Minions
         {
             projectile.width = 20;
             projectile.height = 20;
-            projectile.scale = 0.75f;
+            projectile.scale = 0.5f;
             projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.minion = true;
@@ -193,7 +193,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 Vector2 offset = projectile.oldPos[i - 1] - projectile.oldPos[i];
                 int length = (int)offset.Length();
                 offset.Normalize();
-                const int step = 7;
+                const int step = 5;
                 for (int j = 0; j < length; j += step)
                 {
                     Vector2 value5 = projectile.oldPos[i] + offset * j;

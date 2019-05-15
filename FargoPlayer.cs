@@ -1023,8 +1023,7 @@ namespace FargowiltasSouls
 
             if (GuttedHeart)
             {
-                player.statLifeMax2 += player.statLifeMax / 10;
-
+                //player.statLifeMax2 += player.statLifeMax / 10;
                 GuttedHeartCD--;
                 if (GuttedHeartCD <= 0)
                 {
@@ -1066,8 +1065,8 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (PureHeart) //additive with gutted heart
-                player.statLifeMax2 += player.statLifeMax / 10;
+            //additive with gutted heart
+            //if (PureHeart) player.statLifeMax2 += player.statLifeMax / 10;
 
             if (Slimed)
             {
@@ -2417,6 +2416,11 @@ namespace FargowiltasSouls
             {
                 Squeak(player.Center);
                 damage = 1;
+            }
+
+            if (DeathMarked)
+            {
+                damage *= 3;
             }
 
             return true;

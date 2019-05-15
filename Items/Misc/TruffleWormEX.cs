@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Truffle Worm EX");
-            Tooltip.SetDefault("Only usable in Masochist Mode");
+            Tooltip.SetDefault("Only usable in Masochist Mode\nThe tides surge in its presence");
         }
 
         public override void SetDefaults()
@@ -70,7 +70,7 @@ namespace FargowiltasSouls.Items.Misc
 
             recipe.AddIngredient(ItemID.TruffleWorm);
             recipe.AddIngredient(ItemID.ShrimpyTruffle);
-            recipe.AddIngredient(mod.ItemType("LunarCrystal"), 5);
+            recipe.AddIngredient(mod.ItemType("LunarCrystal"), 3);
 
             recipe.AddTile(mod.TileType("CrucibleCosmosSheet"));
             recipe.SetResult(this);

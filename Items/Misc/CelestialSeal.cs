@@ -35,10 +35,14 @@ Only usable after Demon Heart");
             return player.extraAccessorySlots == 1;
         }*/
 
+        public override bool CanUseItem(Player player)
+        {
+            return player.extraAccessorySlots == 1;
+        }
+
         public override bool UseItem(Player player)
         {
-            if (player.itemAnimation > 0 && player.itemTime == 0
-                && player.extraAccessorySlots == 1)
+            if (player.itemAnimation > 0 && player.itemTime == 0)
             {
                 player.GetModPlayer<FargoPlayer>().CelestialSeal = true;
             }
@@ -54,6 +58,23 @@ Only usable after Demon Heart");
                     line2.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
                 }
             }
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+
+            recipe.AddIngredient(mod.ItemType("LunarCrystal"), 15);
+            recipe.AddIngredient(ItemID.LunarBar, 10);
+            recipe.AddIngredient(ItemID.FragmentNebula, 25);
+            recipe.AddIngredient(ItemID.FragmentSolar, 25);
+            recipe.AddIngredient(ItemID.FragmentStardust, 25);
+            recipe.AddIngredient(ItemID.FragmentVortex, 25);
+
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
+
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
