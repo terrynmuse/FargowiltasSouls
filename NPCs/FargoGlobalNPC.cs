@@ -12,8 +12,6 @@ using Terraria.Localization;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using FargowiltasSouls.Buffs.Masomode;
-
 namespace FargowiltasSouls.NPCs
 {
     public class FargoGlobalNPC : GlobalNPC
@@ -41,15 +39,13 @@ namespace FargowiltasSouls.NPCs
         public bool Needles;
         public bool Electrified;
         public bool CurseoftheMoon;
-        public int MaxLifeReduction;
         public int lightningRodTimer;
         public bool Sadism;
         public bool gotSadism;
         public bool OceanicMaul;
         public bool MutantNibble;
         public int LifePrevious = -1;
-
-        public bool PillarSpawn = true;
+        
         public bool ValhallaImmune;
 
         //masochist doom
