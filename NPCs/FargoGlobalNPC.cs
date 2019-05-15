@@ -2190,7 +2190,6 @@ namespace FargowiltasSouls.NPCs
                                     break;
 
                                 case 1: //p1 dash
-                                    npc.position += npc.velocity * 0.25f;
                                     Counter++;
                                     if (Counter > 5)
                                     {
@@ -2499,7 +2498,6 @@ namespace FargowiltasSouls.NPCs
                                     goto case 4;
 
                                 case 10: //phase 3
-                                    npc.position += npc.velocity * 0.25f;
                                     Timer++;
                                     if (Timer >= 600) //spawn cthulhunado
                                     {
