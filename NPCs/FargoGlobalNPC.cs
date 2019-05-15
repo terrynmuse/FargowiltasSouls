@@ -2318,13 +2318,14 @@ namespace FargowiltasSouls.NPCs
                                          //vanilla fishron has x1.1 damage in p3. p2 has x1.2 damage...
                                     npc.damage = (int)(npc.defDamage * 1.2f * (Main.expertMode ? 0.6f * Main.damageMultiplier : 1f));
                                     masoBool[2] = false;
-                                    /*Timer++;
-                                    if (Timer >= 60 + (int)(540.0 * npc.life / npc.lifeMax)) //yes that needs to be a double
+                                    Timer++;
+                                    //if (Timer >= 60 + (int)(540.0 * npc.life / npc.lifeMax)) //yes that needs to be a double
+                                    if (Timer >= 600)
                                     {
                                         Timer = 0;
                                         if (Main.netMode != 1) //spawn cthulhunado
                                             Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);
-                                    }*/
+                                    }
                                     break;
 
                                 case 11: //p3 dash
@@ -2388,7 +2389,7 @@ namespace FargowiltasSouls.NPCs
                                             spawnPos += npc.Center;
                                             /*Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * 2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
                                             Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);*/
-                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, 0f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
+                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, 0f, 4f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
 
                                             SpawnRazorbladeRing(npc, 3, 9f, npc.damage / 6, 1f);
                                             SpawnRazorbladeRing(npc, 3, 9f, npc.damage / 6, -0.5f);
@@ -2505,12 +2506,12 @@ namespace FargowiltasSouls.NPCs
 
                                 case 10: //phase 3
                                     Timer++;
-                                    if (Timer >= 600) //spawn cthulhunado
+                                    /*if (Timer >= 600) //spawn cthulhunado
                                     {
                                         Timer = 0;
                                         if (Main.netMode != 1)
                                             Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);
-                                    }
+                                    }*/
                                     break;
 
                                 case 11: //p3 dash
