@@ -2386,8 +2386,9 @@ namespace FargowiltasSouls.NPCs
                                             spawnPos *= npc.width + 20f;
                                             spawnPos /= 2f;
                                             spawnPos += npc.Center;
-                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * 2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
-                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
+                                            /*Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * 2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
+                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);*/
+                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, 0f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
 
                                             SpawnRazorbladeRing(npc, 3, 9f, npc.damage / 6, 1f);
                                             SpawnRazorbladeRing(npc, 3, 9f, npc.damage / 6, -0.5f);
@@ -2546,7 +2547,7 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         SpawnRazorbladeRing(npc, 3, 9f, npc.damage / 4, -0.75f);
                                     }
-                                    else if (npc.ai[2] == 16f)
+                                    /*else if (npc.ai[2] == 16f)
                                     {
                                         if (Main.netMode != 1)
                                         {
@@ -2557,7 +2558,7 @@ namespace FargowiltasSouls.NPCs
                                             spawnPos += npc.Center;
                                             Projectile.NewProjectile(spawnPos.X, spawnPos.Y, 0f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
                                         }
-                                    }
+                                    }*/
                                     goto case 10;
 
                                 default:

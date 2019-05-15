@@ -13,6 +13,7 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 -added fishron's anti running spell circle
+-nerfed fishron's p3 nados
 -slowed down fishron a teeny bit
 -wof mouth has 1000% defense again (was 500%), hungries have 300% life (was 400%)
 -need to be farther for wof to begin going hyperspeed, but wof tongues at slightly closer range
