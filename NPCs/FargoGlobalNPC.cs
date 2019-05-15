@@ -2158,6 +2158,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DukeFishron:
                         fishBoss = boss = npc.whoAmI;
+                        if (npc.Distance(Main.player[Main.myPlayer]) < 2400f)
+                            Main.player[Main.myPlayer].AddBuff(mod.BuffType("OceanicFreeze"), 2);
                         if (masoBool[3]) //fishron EX
                         {
                             fishBossEX = npc.whoAmI;
@@ -2166,14 +2168,14 @@ namespace FargowiltasSouls.NPCs
                             switch ((int)npc.ai[0])
                             {
                                 case -1: //just spawned
-                                    if (npc.ai[2] == 1 && Main.netMode != 1)
+                                    if (npc.ai[2] == 1 && Main.netMode != 1) //create spell circles
                                     {
-                                        int p = Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax, npc.whoAmI);
-                                        if (p < 0 || p >= 1000) //failed to spawn projectile, abort spawn
-                                        {
+                                        int p1 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
+                                            mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax, npc.whoAmI);
+                                        int p2 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
+                                            mod.ProjectileType("FishronRitual2"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                        if (p1 == 1000 || p2 == 1000) //failed to spawn projectile, abort spawn
                                             npc.active = false;
-                                            //Main.NewText("abort");
-                                        }
                                     }
                                     masoBool[2] = true;
                                     break;
@@ -2316,13 +2318,13 @@ namespace FargowiltasSouls.NPCs
                                          //vanilla fishron has x1.1 damage in p3. p2 has x1.2 damage...
                                     npc.damage = (int)(npc.defDamage * 1.2f * (Main.expertMode ? 0.6f * Main.damageMultiplier : 1f));
                                     masoBool[2] = false;
-                                    Timer++;
+                                    /*Timer++;
                                     if (Timer >= 60 + (int)(540.0 * npc.life / npc.lifeMax)) //yes that needs to be a double
                                     {
                                         Timer = 0;
                                         if (Main.netMode != 1) //spawn cthulhunado
                                             Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);
-                                    }
+                                    }*/
                                     break;
 
                                 case 11: //p3 dash
@@ -2403,6 +2405,13 @@ namespace FargowiltasSouls.NPCs
                             switch ((int)npc.ai[0])
                             {
                                 case -1: //just spawned
+                                    if (npc.ai[2] == 1 && Main.netMode != 1) //create spell circle
+                                    {
+                                        int p2 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
+                                            mod.ProjectileType("FishronRitual2"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                        if (p2 == 1000) //failed to spawn projectile, abort spawn
+                                            npc.active = false;
+                                    }
                                     npc.dontTakeDamage = true;
                                     break;
 
