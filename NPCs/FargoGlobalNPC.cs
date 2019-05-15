@@ -237,10 +237,10 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.WallofFlesh:
-                        npc.defense *= 5;
+                        npc.defense *= 10;
                         break;
                     case NPCID.TheHungry:
-                        npc.lifeMax *= 4;
+                        npc.lifeMax *= 3;
                         npc.knockBackResist = 0f;
                         break;
 
@@ -1936,7 +1936,7 @@ namespace FargowiltasSouls.NPCs
 
                             //tongue the player if they're in hell, too far away, and not debuffed already
                             if (npc.HasPlayerTarget && Main.player[npc.target].active && Main.player[npc.target].ZoneUnderworldHeight
-                            && Math.Abs(Main.player[npc.target].Center.X - npc.Center.X) > 3000
+                            && Math.Abs(Main.player[npc.target].Center.X - npc.Center.X) > 2500
                             && !Main.player[npc.target].HasBuff(BuffID.TheTongue))
                             {
                                 Main.player[npc.target].AddBuff(BuffID.TheTongue, 10);
@@ -1965,7 +1965,7 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         if (npc.HasPlayerTarget &&
-                            (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 2000))
+                            (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 3000))
                         {
                             npc.TargetClosest(true);
                             if (Counter2++ > 120)
