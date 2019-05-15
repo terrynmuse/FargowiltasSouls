@@ -14,6 +14,7 @@
 //	default expertmode damage: *= 0.80
 -wof mouth has 1000% defense again (was 500%), hungries have 300% life (was 400%)
 -need to be farther for wof to begin going hyperspeed, but wof tongues at slightly closer range
+-added a "player is main.myplayer" check to AddMinion, should hopefully fix MP memes
 -buffed soul of masochist because i can, fuck you
 -added hellstone bars to deathbringer fairy recipe
 -slightly reduced lunar crystals needed for truffle worm EX recipe

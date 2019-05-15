@@ -2623,15 +2623,8 @@ namespace FargowiltasSouls
 
         public void AddMinion(string toggle, int proj, int damage, float knockback)
         {
-            if(player.ownedProjectileCounts[proj] >= 1)
-            {
-                return;
-            }
-
-            if (Soulcheck.GetValue(toggle))
-            {
+            if(player.ownedProjectileCounts[proj] < 1 && player.whoAmI == Main.myPlayer && Soulcheck.GetValue(toggle))
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, damage, knockback, Main.myPlayer);
-            }
         }
 
         private void KillPets()
