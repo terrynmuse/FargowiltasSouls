@@ -365,9 +365,9 @@ namespace FargowiltasSouls
                     if (Main.netMode == 2)
                     {
                         byte pillar = reader.ReadByte();
-                        if (!Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoBool[0])
+                        if (!Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoBool[1])
                         {
-                            Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
+                            Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoBool[1] = true;
                             Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().SetDefaults(Main.npc[pillar]);
                             Main.npc[pillar].life = Main.npc[pillar].lifeMax;
                         }
@@ -380,6 +380,15 @@ namespace FargowiltasSouls
                     fargoNPC.masoBool[1] = reader.ReadBoolean();
                     fargoNPC.masoBool[2] = reader.ReadBoolean();
                     fargoNPC.masoBool[3] = reader.ReadBoolean();
+                    break;
+
+                case 3: //rainbow slime, MP clients syncing to server
+                    if (Main.netMode == 1)
+                    {
+                        byte slime = reader.ReadByte();
+                        Main.npc[slime].scale = reader.ReadSingle();
+                        Main.npc[slime].lifeMax = reader.ReadInt32();
+                    }
                     break;
 
                 case 77: //server side spawning fishron EX

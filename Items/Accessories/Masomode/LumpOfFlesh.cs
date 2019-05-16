@@ -38,6 +38,18 @@ Makes armed and magic skeletons less hostile outside the Dungeon");
             player.statDefense -= 6;
             player.aggro -= 400;
             player.GetModPlayer<FargoPlayer>().SkullCharm = true;
+            if (!player.ZoneDungeon)
+            {
+                player.npcTypeNoAggro[NPCID.SkeletonSniper] = true;
+                player.npcTypeNoAggro[NPCID.SkeletonCommando] = true;
+                player.npcTypeNoAggro[NPCID.TacticalSkeleton] = true;
+                player.npcTypeNoAggro[NPCID.DiabolistRed] = true;
+                player.npcTypeNoAggro[NPCID.DiabolistWhite] = true;
+                player.npcTypeNoAggro[NPCID.Necromancer] = true;
+                player.npcTypeNoAggro[NPCID.NecromancerArmored] = true;
+                player.npcTypeNoAggro[NPCID.RaggedCaster] = true;
+                player.npcTypeNoAggro[NPCID.RaggedCasterOpenCoat] = true;
+            }
             player.GetModPlayer<FargoPlayer>().LumpOfFlesh = true;
             player.maxMinions += 2;
             player.maxTurrets += 2;

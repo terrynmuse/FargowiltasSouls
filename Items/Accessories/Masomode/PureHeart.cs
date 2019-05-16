@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Pure Heart");
             Tooltip.SetDefault(@"'It pulses with vitality'
-Grants immunity to Rotting, Bloodthirsty
+Grants immunity to Rotting and Bloodthirsty
 Grants immunity to biome debuffs
 20% increased movement speed and 20% increased max life
 You spawn mini eaters to seek out enemies every few attacks
@@ -36,7 +36,7 @@ A new Creeper appears every 15 seconds, and 5 can exist at once");
         {
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.PureHeart = true;
-
+            player.statLifeMax2 += player.statLifeMax / 5;
             player.buffImmune[mod.BuffType("Rotting")] = true;
             player.moveSpeed += 0.2f;
             fargoPlayer.CorruptHeart = true;
@@ -54,6 +54,7 @@ A new Creeper appears every 15 seconds, and 5 can exist at once");
             recipe.AddIngredient(mod.ItemType("CorruptHeart"));
             recipe.AddIngredient(mod.ItemType("GuttedHeart"));
             recipe.AddIngredient(ItemID.PurificationPowder, 30);
+            recipe.AddIngredient(ItemID.GreenSolution, 50);
 
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

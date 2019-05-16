@@ -12,6 +12,84 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-added fishron's anti running spell circle
+-nerfed fishron's p3 nados
+-slowed down fishron a teeny bit
+-wof mouth has 1000% defense again (was 500%), hungries have 300% life (was 400%)
+-need to be farther for wof to begin going hyperspeed, but wof tongues at slightly closer range
+-added a "player is main.myplayer" check to AddMinion, should hopefully fix MP memes
+-buffed soul of masochist because i can, fuck you
+-added hellstone bars to deathbringer fairy recipe
+-slightly reduced lunar crystals needed for truffle worm EX recipe
+-any normal size rainbow slime can drop CRM but the rate is now 5%
+-plantera drops life fruit
+-wof drops shadow crates if fargo enabled
+-antlions now succ the player with their balls on hit
+-basilisks have buffed health, now inflict poison/venom/infested on hit
+-dune splicers have 500% life
+-various underground desert mobs can drop desert fossils
+-tried something to make rainbow slime work correctly in MP
+-big rainbow slime sprays rainbow slime spikes like king slime but HE AIMS
+-pungent eyeball doesn't netUpdate EVERY SINGLE TICK anymore
+-lunar cultist lightning is thinner
+-skull charm & upgrades make relevant skeletons passive like royal gel when outside dungeon
+-gutted heart/pure heart/maso soul do their lifeforce effect in updateAccessory instead of modPlayer (should be safe...?)
+-dungeon guardian below 1000 life moves at double speed and shoots skulls
+-dungeon guardian inflicts FOTU, god eater, and MFD, also it IGNORES I-FRAMES
+-golem also shoots downwards geysers if player is below
+-golem has anti-elevation fireball spreads
+-only half of prime limbs move at higher speed in phase 2
+-destroyer head no longer inflicts crippled/clipped wings
+-golem head now breathes fire for 1sec after each laser spread
+-moved pinky and bone lee checks for on hit stuff
+-flames of the universe allows its component debuffs to be inflicted after it wears off
+-moved marked for death effect to modPlayer, also nerfed it to just 300% damage
+-ML no longer drops celes seal
+-celes seal is crafted instead
+-pungent eyeball longer recharges while firing laser
+-masomode bosses no longer spawn if they're already alive. period.
+-white cultist archers can be targeted by homing/minions
+-ancient visions and phantasm dragons can spawn during ML fight again
+-PURGED ALL DD2 ENEMY NATURAL SPAWNS
+-nebula pillar only does its gimmick if you're in aura range
+-mourning wood always drops goodie bag
+-pumpking has 10% chance to drop bladed glove
+-added skeletron arms(?)
+-restored old fused
+-fixed eoc xway despawn when at projectile limit
+-sands of time doesnt work when boss is alive
+-golem fists always explode
+-BOC INFLICTS LONG CONFUSED INSTEAD OF HEXED
+-mechs are straight immune to holy arrow stars
+-nerfed spawns in masomode overall
+-wof retargets and also waits before zooming off after dead player
+-removed enemy promotions
+-pigron no longer becomes fishron, now inflicts oceanic maul
+-nutcracker effects removed
+-changed how goblins drop balls on death
+-queen bee stinger venom duration nerfed a bit
+-removed eaten alive
+-clown drops bomb instead of dynamite
+-fixed stuff, made stuff work
+-slimy shield has a few extra checks for player flying back up, or when in flipped gravity
+-betsys heart/maso soul also grant oozed immune
+-frigid gemstone gives immune to frozen
+-added green solution to pure heart recipe
+-added toggle for dragon fang
+-added bionomic cluster
+-added cluster effects to maso soul
+-MASOMODE DEBUFFS ALWAYS APPLY AGAIN SKREEEEEEEEEEEEEEEEEEEEEEEEEE
+-changed how voodoo demon spawns wof
+-eye of cthulhu drops life crystals (was iron crates)
+-nerfed slimy shield number of balls, damage, and added a minimum velocity requirement
+-wof generally inflicts on fire again
+-wof inflicts burning on touch
+-eaters of souls no longer drop loot during eater of worlds boss fight
+-all maso boss drops are client side in multi like bags, i think
+-fiddled with various debuff lengths
+-made all NewNPC calls MP-friendly, i think
+-all pillars deal contact damage and inflict curse of the moon
+-toggle for shadowfrostfireballs and rainbow slime minion
 -frigid gemstone works
 -added rainbow slime, now it works
 -destroyer also resists crystal darts (trust me, he needs it)

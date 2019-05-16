@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Oceanic Hurricane");
+            DisplayName.SetDefault("Razorblade Typhoon");
             Main.projFrames[projectile.type] = 3;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[projectile.type] = 2;

@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Betsy's Heart");
             Tooltip.SetDefault(@"'Lightly roasted, medium rare'
-Grants immunity to Withered Weapon and Withered Armor
+Grants immunity to Oozed, Withered Weapon, and Withered Armor
 Your critical strikes inflict Betsy's Curse");
         }
 
@@ -25,6 +25,7 @@ Your critical strikes inflict Betsy's Curse");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.buffImmune[BuffID.OgreSpit] = true;
             player.buffImmune[BuffID.WitheredWeapon] = true;
             player.buffImmune[BuffID.WitheredArmor] = true;
             player.GetModPlayer<FargoPlayer>().BetsysHeart = true;

@@ -66,6 +66,11 @@ namespace FargowiltasSouls.Projectiles
                             projectile.extraUpdates++;
                         break;
 
+                    case ProjectileID.FlamesTrap:
+                        if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
+                            projectile.tileCollide = false;
+                        break;
+
                     default:
                         break;
                 }
@@ -702,11 +707,6 @@ namespace FargowiltasSouls.Projectiles
                     return Color.Brown;
                 }
 
-                else if (projectile.type == ProjectileID.SpikyBall)
-                {
-                    return Color.Red;
-                }
-
                 else if (projectile.type == ProjectileID.PineNeedleFriendly)
                 {
                     return Color.GreenYellow;
@@ -881,12 +881,16 @@ namespace FargowiltasSouls.Projectiles
                     //so only antlion sand and not falling sand 
                     case ProjectileID.SandBallFalling:
                         if (projectile.velocity.X != 0)
+                        {
                             target.AddBuff(mod.BuffType("Stunned"), Main.rand.Next(60, 120));
+                            //pull player in opposite direction of sandball (towards where it came from)
+                            target.velocity.X = projectile.velocity.X > 0 ? -6f : 6f;
+                        }
                         break;
 
                     case ProjectileID.Stinger:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee))
-                            target.AddBuff(BuffID.Venom, Main.rand.Next(180, 900));
+                            target.AddBuff(BuffID.Venom, Main.rand.Next(30, 300));
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(120, 1200));
                         break;
 
@@ -899,6 +903,7 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.GoldenShowerHostile:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.wallBoss, NPCID.WallofFlesh))
                         {
+                            target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 300));
                             target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 240));
                             target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(120, 240));
                             target.velocity = Vector2.Zero;
@@ -1105,6 +1110,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.FlamesTrap:
                     case ProjectileID.GeyserTrap:
+                    case ProjectileID.Fireball:
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
                         if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                         {

@@ -184,7 +184,7 @@ namespace FargowiltasSouls
         public bool CorruptHeart;
         public int CorruptHeartCD;
         public bool GuttedHeart;
-        public int GuttedHeartCD = 4; //should prevent spawning despite disabled toggle when loading into world
+        public int GuttedHeartCD = 60; //should prevent spawning despite disabled toggle when loading into world
         public bool PureHeart;
         public bool LumpOfFlesh;
         public bool PungentEyeballMinion;
@@ -214,6 +214,7 @@ namespace FargowiltasSouls
         public int FrigidGemstoneCD;
         public bool SqueakyAcc;
         public bool RainbowSlime;
+        public bool SkeletronArms;
 
         //debuffs
         public bool Hexed;
@@ -601,6 +602,7 @@ namespace FargowiltasSouls
             FrigidGemstone = false;
             SqueakyAcc = false;
             RainbowSlime = false;
+            SkeletronArms = false;
 
             //debuffs
             Hexed = false;
@@ -632,7 +634,7 @@ namespace FargowiltasSouls
         {
             if (Eternity)
                 player.respawnTimer = (int)(player.respawnTimer * .1);
-            else if (SandsofTime)
+            else if (SandsofTime && (!FargoGlobalNPC.AnyBossAlive() || MasochistSoul))
                 player.respawnTimer = (int)(player.respawnTimer * .5);
         }
 
@@ -652,7 +654,7 @@ namespace FargowiltasSouls
 
             SlimyShieldFalling = false;
             CorruptHeartCD = 0;
-            GuttedHeartCD = 0;
+            GuttedHeartCD = 60;
             GroundPound = 0;
             PungentEyeballMinion = false;
             MagicalBulb = false;
@@ -971,25 +973,31 @@ namespace FargowiltasSouls
                 //player.justJumped use this tbh
                 if (SlimyShieldFalling) //landing
                 {
-                    if (player.velocity.Y == 0f && player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Slimy Shield Effects"))
+                    if (player.velocity.Y < 0f)
+                        SlimyShieldFalling = false;
+
+                    if (player.velocity.Y == 0f)
                     {
                         SlimyShieldFalling = false;
-                        Main.PlaySound(SoundID.Item21, player.Center);
-                        Vector2 mouse = Main.MouseWorld;
-                        int damage = (int)(20 * player.meleeDamage);
-                        if (MasochistSoul)
-                            damage *= 3;
-                        for (int i = 0; i < 4; i++)
+                        if (player.whoAmI == Main.myPlayer && player.gravDir > 0 && Soulcheck.GetValue("Slimy Shield Effects"))
                         {
-                            Vector2 spawn = new Vector2(mouse.X + Main.rand.Next(-200, 201), mouse.Y - Main.rand.Next(600, 901));
-                            Vector2 speed = mouse - spawn;
-                            speed.Normalize();
-                            speed *= 10f;
-                            Projectile.NewProjectile(spawn, speed, mod.ProjectileType("SlimeBall"), damage, 1f, Main.myPlayer);
+                            Main.PlaySound(SoundID.Item21, player.Center);
+                            Vector2 mouse = Main.MouseWorld;
+                            int damage = (int)(15 * player.meleeDamage);
+                            if (MasochistSoul)
+                                damage *= 4;
+                            for (int i = 0; i < 3; i++)
+                            {
+                                Vector2 spawn = new Vector2(mouse.X + Main.rand.Next(-200, 201), mouse.Y - Main.rand.Next(600, 901));
+                                Vector2 speed = mouse - spawn;
+                                speed.Normalize();
+                                speed *= 10f;
+                                Projectile.NewProjectile(spawn, speed, mod.ProjectileType("SlimeBall"), damage, 1f, Main.myPlayer);
+                            }
                         }
                     }
                 }
-                else if (player.velocity.Y > 0f)
+                else if (player.velocity.Y > 3f)
                 {
                     SlimyShieldFalling = true;
                 }
@@ -1015,8 +1023,7 @@ namespace FargowiltasSouls
 
             if (GuttedHeart)
             {
-                player.statLifeMax2 += player.statLifeMax / 10;
-
+                //player.statLifeMax2 += player.statLifeMax / 10;
                 GuttedHeartCD--;
                 if (GuttedHeartCD <= 0)
                 {
@@ -1058,8 +1065,8 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (PureHeart) //additive with gutted heart
-                player.statLifeMax2 += player.statLifeMax / 10;
+            //additive with gutted heart
+            //if (PureHeart) player.statLifeMax2 += player.statLifeMax / 10;
 
             if (Slimed)
             {
@@ -2411,6 +2418,11 @@ namespace FargowiltasSouls
                 damage = 1;
             }
 
+            if (DeathMarked)
+            {
+                damage *= 3;
+            }
+
             return true;
         }
 
@@ -2611,15 +2623,8 @@ namespace FargowiltasSouls
 
         public void AddMinion(string toggle, int proj, int damage, float knockback)
         {
-            if(player.ownedProjectileCounts[proj] >= 1)
-            {
-                return;
-            }
-
-            if (Soulcheck.GetValue(toggle))
-            {
+            if(player.ownedProjectileCounts[proj] < 1 && player.whoAmI == Main.myPlayer && Soulcheck.GetValue(toggle))
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, damage, knockback, Main.myPlayer);
-            }
         }
 
         private void KillPets()
