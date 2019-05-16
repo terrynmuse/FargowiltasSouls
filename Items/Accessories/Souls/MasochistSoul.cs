@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of the Masochist");
             Tooltip.SetDefault(
 @"'To inflict suffering, you must first embrace it'
-Increases max life by 200, wing time by 200%, and armor penetration by 50
+Increases max life by 250, wing time by 200%, and armor penetration by 50
 Increases max life by 50%, damage by 30%, and damage reduction by 20%
 Increases life regen drastically, increases max number of minions and sentries by 10
 Grants gravity control, fastfall, and immunity to all Masochist Mode debuffs and more
@@ -61,7 +61,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.maxTurrets += 10;
             player.armorPenetration += 50;
             player.statLifeMax2 += player.statLifeMax / 2;
-            player.statLifeMax2 += 200;
+            player.statLifeMax2 += 250;
             player.endurance += 0.2f;
             player.lifeRegen += 7;
             player.lifeRegenTime += 7;

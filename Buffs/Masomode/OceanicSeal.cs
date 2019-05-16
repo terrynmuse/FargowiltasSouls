@@ -1,4 +1,6 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using FargowiltasSouls.NPCs;
@@ -23,19 +25,20 @@ namespace FargowiltasSouls.Buffs.Masomode
             return true;
         }
 
-        public override void Update(Player player, ref int buffIndex)
+        /*public override void Update(Player player, ref int buffIndex)
         {
-            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBossEX, NPCID.DukeFishron))
+            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
                 player.buffTime[buffIndex] = 2;
             else
                 return;
 
-            float distance = player.Distance(Main.npc[FargoGlobalNPC.fishBossEX].Center);
-            if (distance > 1600)
+            float distance = player.Distance(Main.npc[FargoGlobalNPC.fishBoss].Center);
+            const float threshold = 1200f;
+            if (distance > threshold)
             {
-                if (distance > 2400)
+                if (distance > threshold * 1.5f)
                 {
-                    if (distance > 3200)
+                    if (distance > threshold * 2f)
                     {
                         player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
                         return;
@@ -50,20 +53,20 @@ namespace FargowiltasSouls.Buffs.Masomode
                     player.velocity.Y = -0.4f;
                 }
 
-                Vector2 movement = Main.npc[FargoGlobalNPC.fishBossEX].Center - player.Center;
-                float difference = movement.Length() - 1600f;
+                Vector2 movement = Main.npc[FargoGlobalNPC.fishBoss].Center - player.Center;
+                float difference = movement.Length() - 1200f;
                 movement.Normalize();
                 movement *= difference < 17f ? difference : 17f;
                 player.position += movement;
 
-                for (int i = 0; i < 15; i++)
+                for (int i = 0; i < 20; i++)
                 {
-                    int d = Dust.NewDust(player.position, player.width, player.height, 135, 0f, 0f, 0, default(Color), 2f);
+                    int d = Dust.NewDust(player.position, player.width, player.height, 135, 0f, 0f, 0, default(Color), 2.5f);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].noLight = true;
                     Main.dust[d].velocity *= 5f;
                 }
             }
-        }
+        }*/
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using FargowiltasSouls.NPCs;
@@ -9,19 +11,24 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class FishronRitual2 : ModProjectile
     {
+        public override string Texture => "Terraria/Projectile_409";
+
+        private const float PI = (float)Math.PI;
+        private const float rotationPerTick = PI / 140f;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Oceanic Ritual");
+            Main.projFrames[projectile.type] = 3;
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 320;
-            projectile.height = 320;
-            //projectile.hostile = true;
+            projectile.width = 30;
+            projectile.height = 30;
+            projectile.scale *= 2f;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            projectile.timeLeft = 300;
             projectile.alpha = 255;
         }
 
@@ -31,61 +38,73 @@ namespace FargowiltasSouls.Projectiles.Masomode
             if (projectile.ai[1] >= 0f && projectile.ai[1] < 200f &&
                 Main.npc[ai1].active && Main.npc[ai1].type == NPCID.DukeFishron)
             {
-                projectile.Center = Main.npc[ai1].Center;
-                projectile.alpha -= 4;
+                projectile.alpha -= 2;
                 if (projectile.alpha < 0)
                     projectile.alpha = 0;
-            }
-            else
-            {
-                projectile.alpha += 4;
-                if (projectile.alpha > 255)
-                    projectile.Kill();
-            }
-            
-            projectile.scale = (1f - projectile.alpha / 255f) * 5f;
-            projectile.rotation -= (float)Math.PI / 70f;
 
-            if (projectile.alpha == 0)
-            {
-                for (int index1 = 0; index1 < 2; ++index1)
+                projectile.velocity = Main.npc[ai1].Center - projectile.Center;
+                projectile.velocity /= 20f;
+
+                Player player = Main.player[Main.myPlayer];
+                if (player.active && !player.dead)
                 {
-                    float num = Main.rand.Next(2, 4);
-                    float scale = projectile.scale * 0.6f;
-                    if (index1 == 1)
+                    float distance = player.Distance(projectile.Center);
+                    const float threshold = 1200f;
+                    if (distance > threshold)
                     {
-                        scale *= 0.42f;
-                        num *= -0.75f;
-                    }
-                    Vector2 vector21 = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 11));
-                    vector21.Normalize();
-                    int index21 = Dust.NewDust(projectile.Center, 0, 0, 135, 0f, 0f, 100, new Color(), 2f);
-                    Main.dust[index21].noGravity = true;
-                    Main.dust[index21].noLight = true;
-                    Main.dust[index21].position += vector21 * 204f * scale;
-                    Main.dust[index21].velocity = vector21 * -num;
-                    if (Main.rand.Next(8) == 0)
-                    {
-                        Main.dust[index21].velocity *= 2f;
-                        Main.dust[index21].scale += 0.5f;
+                        if (distance > threshold * 1.5f)
+                        {
+                            if (distance > threshold * 2f)
+                            {
+                                player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
+                                return;
+                            }
+
+                            player.frozen = true;
+                            player.controlHook = false;
+                            player.controlUseItem = false;
+                            if (player.mount.Active)
+                                player.mount.Dismount(player);
+                            player.velocity.X = 0f;
+                            player.velocity.Y = -0.4f;
+                        }
+
+                        Vector2 movement = projectile.Center - player.Center;
+                        float difference = movement.Length() - 1200f;
+                        movement.Normalize();
+                        movement *= difference < 17f ? difference : 17f;
+                        player.position += movement;
+
+                        for (int i = 0; i < 20; i++)
+                        {
+                            int d = Dust.NewDust(player.position, player.width, player.height, 135, 0f, 0f, 0, default(Color), 2.5f);
+                            Main.dust[d].noGravity = true;
+                            Main.dust[d].noLight = true;
+                            Main.dust[d].velocity *= 5f;
+                        }
                     }
                 }
             }
-
-            Vector2 vector2 = new Vector2(Main.rand.Next(-10, 11), Main.rand.Next(-10, 11));
-            vector2.Normalize();
-            int index2 = Dust.NewDust(projectile.Center, 0, 0, 135, 0f, 0f, 100, new Color(), 2f);
-            Main.dust[index2].noGravity = true;
-            Main.dust[index2].noLight = true;
-            Main.dust[index2].velocity = vector2 * Main.rand.Next(1, 3);
-            if (Main.rand.Next(2) == 0)
+            else
             {
-                Main.dust[index2].velocity *= 2f;
-                Main.dust[index2].scale += 0.5f;
+                projectile.velocity = Vector2.Zero;
+                projectile.alpha += 2;
+                if (projectile.alpha > 255)
+                    projectile.Kill();
             }
-            Main.dust[index2].fadeIn = 2f;
 
-            Lighting.AddLight(projectile.Center, 0.4f, 0.9f, 1.1f);
+            projectile.timeLeft = 2;
+            projectile.scale = (1f - projectile.alpha / 255f) * 2f;
+            projectile.ai[0] -= rotationPerTick;
+            if (projectile.ai[0] < -PI)
+            {
+                projectile.ai[0] += 2f * PI;
+                projectile.netUpdate = true;
+            }
+            projectile.rotation += 0.2f;
+            projectile.frame++;
+            if (projectile.frame > 2)
+                projectile.frame = 0;
         }
 
         public override bool CanDamage()
@@ -93,9 +112,38 @@ namespace FargowiltasSouls.Projectiles.Masomode
             return false;
         }
 
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Texture2D texture2D13 = Main.projectileTexture[projectile.type];
+            int num156 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]; //ypos of lower right corner of sprite to draw
+            int y3 = num156 * projectile.frame; //ypos of upper left corner of sprite to draw
+            Rectangle rectangle = new Rectangle(0, y3, texture2D13.Width, num156);
+            Vector2 origin2 = rectangle.Size() / 2f;
+
+            Color color26 = lightColor;
+            color26 = projectile.GetAlpha(color26);
+
+            for (int x = 0; x < 32; x++)
+            {
+                Vector2 drawOffset = new Vector2(1200f * projectile.scale / 2f, 0f).RotatedBy(projectile.ai[0]);
+                drawOffset = drawOffset.RotatedBy(2f * PI / 32f * x);
+                const int max = 4;
+                for (int i = 0; i < max; i++)
+                {
+                    Color color27 = color26;
+                    color27 *= (float)(max - i) / max;
+                    Vector2 value4 = projectile.Center + drawOffset.RotatedBy(rotationPerTick * i);
+                    float num165 = projectile.rotation;
+                    Main.spriteBatch.Draw(texture2D13, value4 - Main.screenPosition + new Vector2(0, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color27, num165, origin2, projectile.scale, SpriteEffects.None, 0f);
+                }
+                Main.spriteBatch.Draw(texture2D13, projectile.Center + drawOffset - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+            }
+            return false;
+        }
+
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.White;
+            return new Color(150, 50 + (int)(100.0 * Main.DiscoG / 255.0), 255, 200);
         }
     }
 }
