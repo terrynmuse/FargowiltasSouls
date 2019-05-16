@@ -12,6 +12,12 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-slime rain, the guardian, penetrator, and nuke fishron recipes require sadism (post-fish EX)
+-penetrator dash gives total immunity to all damage
+-nuke fishron works on fishron again
+-nuke fishron inflicts oceanic maul/mutant nibble/curse of moon
+-fish nukes also explode into razor rings like spectral fishron
+
 -added fishron's anti running spell circle
 -nerfed fishron's p3 nados
 -slowed down fishron a teeny bit

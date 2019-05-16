@@ -10,12 +10,12 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Penetrator");
-            Tooltip.SetDefault("'The reward for slaughtering many..'");
+            Tooltip.SetDefault("'The reward for slaughtering many...'");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 300;
+            item.damage = 350;
             item.useStyle = 5;
             item.useAnimation = 16;
             item.useTime = 16;
@@ -24,10 +24,10 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.width = 32;
             item.height = 32;
             item.scale = 1f;
-            item.rare = 5;
+            item.rare = 11;
             item.UseSound = SoundID.Item1;
             item.shoot = mod.ProjectileType("HentaiSpear");
-            item.value = 1000;
+            item.value = 10000;
             item.noMelee = true; // Important because the spear is acutally a projectile instead of an item. This prevents the melee hitbox of this item.
             item.noUseGraphic = true; // Important, it's kind of wired if people see two spears at one time. This prevents the melee animation of this item.
             item.melee = true;
@@ -51,8 +51,11 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             if (Fargowiltas.Instance.FargosLoaded)
             {
                 ModRecipe recipe = new ModRecipe(mod);
+
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerMoon"));
-                recipe.AddTile(TileID.Anvils);
+                recipe.AddIngredient(mod.ItemType("Sadism"));
+
+                recipe.AddTile(mod, "CrucibleCosmosSheet");
                 recipe.SetResult(this);
                 recipe.AddRecipe();
             }

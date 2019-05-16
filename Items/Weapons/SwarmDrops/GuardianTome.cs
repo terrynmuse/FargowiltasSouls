@@ -23,8 +23,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.useTurn = true;
             item.noMelee = true;
             item.knockBack = 2;
-            item.value = 1000;
-            item.rare = 10; //
+            item.value = 10000;
+            item.rare = 11; //
             item.mana = 100; //           
             item.UseSound = SoundID.Item21; //
             item.autoReuse = true;
@@ -35,8 +35,11 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+
             recipe.AddIngredient(ItemID.BoneKey, 100);
-            recipe.AddTile(TileID.BoneWelder);
+            recipe.AddIngredient(mod.ItemType("Sadism"));
+
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

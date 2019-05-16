@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargowiltasSouls.Projectiles
+namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class SpectralFishron : ModProjectile
     {
