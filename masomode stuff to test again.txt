@@ -17,6 +17,8 @@
 -nuke fishron works on fishron again
 -nuke fishron inflicts oceanic maul/mutant nibble/curse of moon
 -fish nukes also explode into razor rings like spectral fishron
+-cyclonic fin/maso soul also gives frozen immune
+-cyclonic fin gives attacks inflict curse of moon
 
 -added fishron's anti running spell circle
 -nerfed fishron's p3 nados

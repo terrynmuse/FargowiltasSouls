@@ -14,10 +14,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Cyclonic Fin");
             Tooltip.SetDefault(@"'The wind is howling'
-Grants immunity to Oceanic Maul and Curse of the Moon
-Your attacks inflict Oceanic Maul
+Grants immunity to Frozen, Curse of the Moon, and Oceanic Maul
+Your attacks inflict Curse of the Moon and Oceanic Maul
 Spectral Fishron periodically manifests to support your critical hits
-Spectral Fishron inflicts Oceanic Maul, Curse of the Moon, and Mutant Nibble");
+Spectral Fishron also inflicts Mutant Nibble, disabling enemy healing");
         }
 
         public override void SetDefaults()
@@ -42,6 +42,7 @@ Spectral Fishron inflicts Oceanic Maul, Curse of the Moon, and Mutant Nibble");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.buffImmune[BuffID.Frozen] = true;
             player.buffImmune[mod.BuffType("OceanicMaul")] = true;
             player.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
             player.GetModPlayer<FargoPlayer>().CyclonicFin = true;

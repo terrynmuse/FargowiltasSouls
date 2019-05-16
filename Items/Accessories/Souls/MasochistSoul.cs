@@ -209,6 +209,7 @@ Summons the aid of all Masochist Mode bosses to your side");
                 player.AddBuff(mod.BuffType("TrueEyes"), 2);
 
             //cyclonic fin
+            player.buffImmune[BuffID.Frozen] = true;
             fargoPlayer.CyclonicFin = true;
             if (fargoPlayer.CyclonicFinCD > 0)
                 fargoPlayer.CyclonicFinCD -= 2;
