@@ -26,7 +26,6 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.hostile = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            projectile.extraUpdates = 1;
             projectile.timeLeft = 300;
         }
 
@@ -49,6 +48,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 Main.PlaySound(SoundID.Item17, projectile.position);
             }
             projectile.velocity.Y += 0.15f;
+
+            projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2f;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
@@ -59,7 +60,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Main.DiscoColor;
+            return new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 200);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
