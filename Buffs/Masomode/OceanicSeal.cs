@@ -12,10 +12,11 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Oceanic Seal");
-            Description.SetDefault("You will not escape");
+            Description.SetDefault("No dodging, no lifesteal, and you cannot escape");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
+            longerExpertDebuff = false;
             canBeCleared = false;
         }
 
@@ -25,9 +26,12 @@ namespace FargowiltasSouls.Buffs.Masomode
             return true;
         }
 
-        /*public override void Update(Player player, ref int buffIndex)
+        public override void Update(Player player, ref int buffIndex)
         {
-            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
+            player.GetModPlayer<FargoPlayer>(mod).noDodge = true;
+            player.moonLeech = true;
+
+            /*if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
                 player.buffTime[buffIndex] = 2;
             else
                 return;
@@ -66,7 +70,7 @@ namespace FargowiltasSouls.Buffs.Masomode
                     Main.dust[d].noLight = true;
                     Main.dust[d].velocity *= 5f;
                 }
-            }
-        }*/
+            }*/
+        }
     }
 }

@@ -12,6 +12,21 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-rainbow slime spikes don't ignore tiles anymore
+-halved krampus spawn rate
+-various masomode spawns no longer happen during old one's army
+-fishron's oceanic seal only affects his current target
+-oceanic seal now prevents dodging/lifesteal
+-reverse mana flow also causes -90% magic damage
+-curse of the moon DOT is weaker
+-removed bleed/frostburn/moon leech effects from nullification curse
+-moon lord phantasmal attacks have consistent debuff times
+-ML deathray meme debuffs removed, now inflicts marked for death
+-moon leech disables palladium enchant lifesteal too.
+-ML no longer inflicts water candle/battle during phase 2
+-ML attacks are on fixed timer
+-some work on ML synchronization, retooled masostate as static masoStateML
+
 -slime rain, the guardian, penetrator, and nuke fishron recipes require sadism (post-fish EX)
 -penetrator dash gives total immunity to all damage
 -nuke fishron works on fishron again

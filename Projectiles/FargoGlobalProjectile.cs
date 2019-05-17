@@ -1079,7 +1079,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.PhantasmalDeathray:
-                        if (Main.npc[(int)projectile.ai[1]].active)
+                        /*if (Main.npc[(int)projectile.ai[1]].active)
                         {
                             if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordHead)
                             {
@@ -1094,13 +1094,15 @@ namespace FargowiltasSouls.Projectiles
                             {
                                 goto case ProjectileID.PhantasmalSphere;
                             }
-                        }
+                        }*/
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), 300);
+                        target.AddBuff(mod.BuffType("CurseoftheMoon"), 1200);
                         break;
 
                     case ProjectileID.PhantasmalBolt:
                     case ProjectileID.PhantasmalEye:
                     case ProjectileID.PhantasmalSphere:
-                        target.AddBuff(mod.BuffType("CurseoftheMoon"), Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
                         break;
 
                     case ProjectileID.RocketSkeleton:

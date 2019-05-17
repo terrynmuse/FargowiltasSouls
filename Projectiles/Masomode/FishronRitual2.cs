@@ -45,42 +45,45 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 projectile.velocity = Main.npc[ai1].Center - projectile.Center;
                 projectile.velocity /= 20f;
 
-                Player player = Main.player[Main.myPlayer];
-                if (player.active && !player.dead)
+                if (Main.npc[ai1].HasPlayerTarget)
                 {
-                    float distance = player.Distance(projectile.Center);
-                    const float threshold = 1200f;
-                    if (distance > threshold)
+                    Player player = Main.player[Main.npc[ai1].target];
+                    if (player.active && !player.dead)
                     {
-                        if (distance > threshold * 1.5f)
+                        float distance = player.Distance(projectile.Center);
+                        const float threshold = 1200f;
+                        if (distance > threshold)
                         {
-                            if (distance > threshold * 2f)
+                            if (distance > threshold * 1.5f)
                             {
-                                player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
-                                return;
+                                if (distance > threshold * 2f)
+                                {
+                                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
+                                    return;
+                                }
+
+                                player.frozen = true;
+                                player.controlHook = false;
+                                player.controlUseItem = false;
+                                if (player.mount.Active)
+                                    player.mount.Dismount(player);
+                                player.velocity.X = 0f;
+                                player.velocity.Y = -0.4f;
                             }
 
-                            player.frozen = true;
-                            player.controlHook = false;
-                            player.controlUseItem = false;
-                            if (player.mount.Active)
-                                player.mount.Dismount(player);
-                            player.velocity.X = 0f;
-                            player.velocity.Y = -0.4f;
-                        }
+                            Vector2 movement = projectile.Center - player.Center;
+                            float difference = movement.Length() - 1200f;
+                            movement.Normalize();
+                            movement *= difference < 17f ? difference : 17f;
+                            player.position += movement;
 
-                        Vector2 movement = projectile.Center - player.Center;
-                        float difference = movement.Length() - 1200f;
-                        movement.Normalize();
-                        movement *= difference < 17f ? difference : 17f;
-                        player.position += movement;
-
-                        for (int i = 0; i < 20; i++)
-                        {
-                            int d = Dust.NewDust(player.position, player.width, player.height, 135, 0f, 0f, 0, default(Color), 2.5f);
-                            Main.dust[d].noGravity = true;
-                            Main.dust[d].noLight = true;
-                            Main.dust[d].velocity *= 5f;
+                            for (int i = 0; i < 20; i++)
+                            {
+                                int d = Dust.NewDust(player.position, player.width, player.height, 135, 0f, 0f, 0, default(Color), 2.5f);
+                                Main.dust[d].noGravity = true;
+                                Main.dust[d].noLight = true;
+                                Main.dust[d].velocity *= 5f;
+                            }
                         }
                     }
                 }

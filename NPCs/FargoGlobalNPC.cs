@@ -49,7 +49,7 @@ namespace FargowiltasSouls.NPCs
         public bool ValhallaImmune;
 
         //masochist doom
-        public byte masoState = 0;
+        public static byte masoStateML = 0;
         public bool[] masoBool = new bool[4];
         public bool FirstTick = false;
         private int Stop = 0;
@@ -222,6 +222,10 @@ namespace FargowiltasSouls.NPCs
                         npc.lavaImmune = false;
                         break;
 
+                    case NPCID.Reaper:
+                        Timer = 0;
+                        break;
+
 
                     #region maso bosses
                     case NPCID.ServantofCthulhu:
@@ -315,6 +319,9 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MoonLordCore:
+                        isMasoML = true;
+                        masoStateML = 0;
+                        break;
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead:
                         isMasoML = true;
@@ -2158,8 +2165,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DukeFishron:
                         fishBoss = boss = npc.whoAmI;
-                        if (npc.Distance(Main.player[Main.myPlayer].Center) < 1800)
-                            Main.player[Main.myPlayer].AddBuff(mod.BuffType("OceanicSeal"), 2);
+                        if (npc.HasPlayerTarget & npc.Distance(Main.player[npc.target].Center) < 1800)
+                            Main.player[npc.target].AddBuff(mod.BuffType("OceanicSeal"), 2);
                         if (masoBool[3]) //fishron EX
                         {
                             fishBossEX = npc.whoAmI;
@@ -2595,31 +2602,30 @@ namespace FargowiltasSouls.NPCs
                                         player.DelBuff(buffIndex);
                                     }
                                 }
-                                player.AddBuff(BuffID.WaterCandle, 2);
-                                player.AddBuff(BuffID.Battle, 2);
+                                //player.AddBuff(BuffID.WaterCandle, 2);
+                                //player.AddBuff(BuffID.Battle, 2);
                                 player.AddBuff(mod.BuffType("NullificationCurse"), 2);
                             }
 
                             Timer++;
-                            if (Timer >= 360)
+                            if (Timer >= 240)
                             {
-                                Timer = Main.rand.Next(180);
-
-                                switch (masoState)
+                                Timer = 0;
+                                if (Main.netMode != 1)
                                 {
-                                    case 0: //melee
-                                        for (int i = 0; i < 3; i++)
-                                        {
-                                            NPC bodyPart = Main.npc[(int)npc.localAI[i]];
-
-                                            if (bodyPart.active)
+                                    switch (masoStateML)
+                                    {
+                                        case 0: //melee
+                                            for (int i = 0; i < 3; i++)
                                             {
-                                                if (i == 2 && bodyPart.type == NPCID.MoonLordHead)
+                                                NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+
+                                                if (bodyPart.active)
                                                 {
-                                                    Vector2 speed = new Vector2(0f, -12f).RotatedBy(MathHelper.ToRadians(-60));
-                                                    for (int j = 0; j < 6; j++)
+                                                    if (i == 2 && bodyPart.type == NPCID.MoonLordHead)
                                                     {
-                                                        if (Main.netMode != 1)
+                                                        Vector2 speed = new Vector2(0f, -12f).RotatedBy(MathHelper.ToRadians(-60));
+                                                        for (int j = 0; j < 6; j++)
                                                         {
                                                             int n = NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.SolarGoop);
                                                             if (n < 200)
@@ -2628,118 +2634,150 @@ namespace FargowiltasSouls.NPCs
                                                                 if (Main.netMode == 2)
                                                                     NetMessage.SendData(23, -1, -1, null, n);
                                                             }
+                                                            speed = speed.RotatedBy(MathHelper.ToRadians(20));
                                                         }
-                                                        speed = speed.RotatedBy(MathHelper.ToRadians(20));
+                                                    }
+                                                    else if (bodyPart.type == NPCID.MoonLordHand)
+                                                    {
+                                                        Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
+                                                        speed.Normalize();
+                                                        speed *= 6f;
+                                                        int damage = (int)(25 * (1 + FargoWorld.MoonlordCount * .0125));
+                                                        for (int j = 0; j < 4; j++)
+                                                        {
+                                                            Projectile.NewProjectile(bodyPart.Center, speed,
+                                                                ProjectileID.CultistBossFireBall, damage, 0f, Main.myPlayer);
+                                                            speed = speed.RotatedBy(Math.PI / 2);
+                                                        }
                                                     }
                                                 }
-                                                else if (bodyPart.type == NPCID.MoonLordHand)
+                                            }
+                                            break;
+                                        case 1: //ranged
+                                            for (int i = 0; i < 12; i++) //spawn lightning
+                                            {
+                                                Point tileCoordinates = Main.player[npc.target].Top.ToTileCoordinates();
+
+                                                if (Main.rand.Next(2) == 0)
+                                                {
+                                                    tileCoordinates.X += Main.rand.Next(-40, 41);
+                                                    tileCoordinates.Y += Main.rand.Next(30, 41) * (Main.rand.Next(2) == 0 ? 1 : -1);
+                                                }
+                                                else
+                                                {
+                                                    tileCoordinates.X += Main.rand.Next(30, 41) * (Main.rand.Next(2) == 0 ? 1 : -1);
+                                                    tileCoordinates.Y += Main.rand.Next(-40, 41);
+                                                }
+
+                                                for (int index = 0; index < 10 && !WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) && tileCoordinates.Y > 10; ++index)
+                                                    tileCoordinates.Y -= 1;
+
+                                                Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
+                                            }
+                                            Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.CultistBossLightningOrb,
+                                                (int)(30 * (1 + FargoWorld.MoonlordCount * .0125)), 0f, Main.myPlayer);
+                                            break;
+                                        case 2: //magic
+                                            for (int i = 0; i < 3; i++)
+                                            {
+                                                NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+
+                                                if (bodyPart.active &&
+                                                    ((i == 2 && bodyPart.type == NPCID.MoonLordHead) ||
+                                                    bodyPart.type == NPCID.MoonLordHand))
+                                                {
+                                                    Vector2 distance = Main.player[npc.target].Center - bodyPart.Center;
+                                                    distance.Normalize();
+                                                    distance *= 6f;
+                                                    int damage = (int)(35 * (1 + FargoWorld.MoonlordCount * .0125));
+                                                    for (int j = -1; j <= 1; j += 2) //aim above and below player
+                                                    {
+                                                        Vector2 speed = distance.RotatedBy(Math.PI / 24 * j);
+                                                        for (int k = -2; k <= 2; k++) //fire a 5-spread each
+                                                        {
+                                                            Projectile.NewProjectile(bodyPart.Center, speed.RotatedBy(Math.PI / 96 * k),
+                                                                ProjectileID.NebulaLaser, damage, 0f, Main.myPlayer);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        case 3: //summoner
+                                            for (int i = 0; i < 3; i++)
+                                            {
+                                                NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+
+                                                if (bodyPart.active &&
+                                                    ((i == 2 && bodyPart.type == NPCID.MoonLordHead) ||
+                                                    bodyPart.type == NPCID.MoonLordHand))
                                                 {
                                                     Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
                                                     speed.Normalize();
-                                                    speed *= 6f;
-                                                    int damage = (int)(25 * (1 + FargoWorld.MoonlordCount * .0125));
-                                                    for (int j = 0; j < 4; j++)
+                                                    speed *= 9f;
+                                                    for (int j = -3; j <= 3; j++)
                                                     {
-                                                        if (Main.netMode != 1)
-                                                            Projectile.NewProjectile(bodyPart.Center, speed,
-                                                                ProjectileID.CultistBossFireBall, damage, 0f, Main.myPlayer);
-                                                        speed = speed.RotatedBy(Math.PI / 2);
+                                                        Vector2 vel = speed.RotatedBy(Math.PI / 6 * j);
+                                                        int n = NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientLight, 0, 0f, (Main.rand.NextFloat() - 0.5f) * 0.3f * 6.28318548202515f / 60f, vel.X, vel.Y);
+                                                        if (n < 200)
+                                                        {
+                                                            Main.npc[n].velocity = vel;
+                                                            Main.npc[n].netUpdate = true;
+                                                            if (Main.netMode == 2)
+                                                                NetMessage.SendData(23, -1, -1, null, n);
+                                                        }
                                                     }
                                                 }
                                             }
-                                        }
-                                        break;
-                                    case 1: //ranged
-                                        for (int i = 0; i < 12; i++) //spawn lightning
-                                        {
-                                            Point tileCoordinates = Main.player[npc.target].Top.ToTileCoordinates();
-
-                                            if (Main.rand.Next(2) == 0)
-                                            {
-                                                tileCoordinates.X += Main.rand.Next(-40, 41);
-                                                tileCoordinates.Y += Main.rand.Next(30, 41) * (Main.rand.Next(2) == 0 ? 1 : -1);
-                                            }
-                                            else
-                                            {
-                                                tileCoordinates.X += Main.rand.Next(30, 41) * (Main.rand.Next(2) == 0 ? 1 : -1);
-                                                tileCoordinates.Y += Main.rand.Next(-40, 41);
-                                            }
-
-                                            for (int index = 0; index < 10 && !WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) && tileCoordinates.Y > 10; ++index)
-                                                tileCoordinates.Y -= 1;
-
-                                            Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
-                                        }
-
-                                        Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.CultistBossLightningOrb,
-                                            (int)(30 * (1 + FargoWorld.MoonlordCount * .0125)), 0f, Main.myPlayer);
-                                        break;
-                                    case 2: //magic
-                                        for (int i = 0; i < 3; i++)
-                                        {
-                                            NPC bodyPart = Main.npc[(int)npc.localAI[i]];
-
-                                            if (bodyPart.active &&
-                                                ((i == 2 && bodyPart.type == NPCID.MoonLordHead) ||
-                                                bodyPart.type == NPCID.MoonLordHand))
-                                            {
-                                                Vector2 distance = Main.player[npc.target].Center - bodyPart.Center;
-                                                distance.Normalize();
-                                                distance *= 6f;
-                                                int damage = (int)(35 * (1 + FargoWorld.MoonlordCount * .0125));
-                                                for (int j = -1; j <= 1; j += 2) //aim above and below player
-                                                {
-                                                    Vector2 speed = distance.RotatedBy(Math.PI / 24 * j);
-                                                    for (int k = -2; k <= 2; k++) //fire a 5-spread each
-                                                    {
-                                                        Projectile.NewProjectile(bodyPart.Center, speed.RotatedBy(Math.PI / 96 * k),
-                                                            ProjectileID.NebulaLaser, damage, 0f, Main.myPlayer);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    case 3: //summoner
-                                        for (int i = 0; i < 3; i++)
-                                        {
-                                            NPC bodyPart = Main.npc[(int)npc.localAI[i]];
-
-                                            if (bodyPart.active && Main.netMode != 1 &&
-                                                ((i == 2 && bodyPart.type == NPCID.MoonLordHead) ||
-                                                bodyPart.type == NPCID.MoonLordHand))
-                                            {
-                                                Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
-                                                speed.Normalize();
-                                                speed *= 9f;
-                                                for (int j = -3; j <= 3; j++)
-                                                {
-                                                    Vector2 vel = speed.RotatedBy(Math.PI / 6 * j);
-                                                    int n = NPC.NewNPC((int)bodyPart.Center.X, (int)bodyPart.Center.Y, NPCID.AncientLight, 0, 0f, (Main.rand.NextFloat() - 0.5f) * 0.3f * 6.28318548202515f / 60f, vel.X, vel.Y);
-                                                    if (n < 200)
-                                                    {
-                                                        Main.npc[n].velocity = vel;
-                                                        Main.npc[n].netUpdate = true;
-                                                        if (Main.netMode == 2)
-                                                            NetMessage.SendData(23, -1, -1, null, n);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    default:
-                                        break;
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                             }
                         }
 
-                        if (npc.ai[0] == 2f) //stop when dead
+                        if (npc.ai[0] == 2f) //moon lord is dead
                         {
+                            if (!masoBool[1]) //check once when dead
+                            {
+                                masoBool[1] = true;
+                                //stop all attacks (and become intangible lol) after i die
+                                if (Main.netMode != 1 && NPC.CountNPCS(NPCID.MoonLordCore) == 1)
+                                {
+                                    masoStateML = 4;
+                                    if (Main.netMode == 2)
+                                    {
+                                        var netMessage = mod.GetPacket();
+                                        netMessage.Write((byte)4);
+                                        netMessage.Write(masoStateML);
+                                        netMessage.Send();
+                                    }
+                                }
+                            }
                             Counter = 0;
-                            masoState = 4;
+                        }
+                        else //moon lord isn't dead
+                        {
+                            if (++Counter > 1800)
+                            {
+                                Counter = 0;
+                                if (Main.netMode != 1)
+                                {
+                                    if (++masoStateML > 3)
+                                        masoStateML = 0;
+                                    if (Main.netMode == 2)
+                                    {
+                                        var netMessage = mod.GetPacket();
+                                        netMessage.Write((byte)4);
+                                        netMessage.Write(masoStateML);
+                                        netMessage.Send();
+                                    }
+                                }
+                            }
                         }
 
                         int dustType = 87;
-                        switch (masoState)
+                        switch (masoStateML)
                         {
                             case 0: Main.monolithType = 3; break;
                             case 1: Main.monolithType = 0; dustType = 89; break;
@@ -2754,15 +2792,6 @@ namespace FargowiltasSouls.NPCs
                             int MLdust = Dust.NewDust(npc.Center + new Vector2(120f, 0f).RotatedBy(Math.PI * 2 / 5 * i + MLoffset), 0, 0, dustType, npc.velocity.X * 0.5f, npc.velocity.Y * 0.5f, 0, default(Color), 2f);
                             Main.dust[MLdust].noGravity = true;
                             Main.dust[MLdust].velocity.Y -= 3.5f;
-                        }
-
-                        Counter++;
-                        if (Counter > 1800)
-                        {
-                            Counter = 0;
-                            masoState++;
-                            if (masoState > 3)
-                                masoState = 0;
                         }
                         break;
 
@@ -4139,15 +4168,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead:
-                        Counter++;
-                        if (Counter > 1800)
-                        {
-                            Counter = 0;
-                            masoState++;
-                            if (masoState > 3)
-                                masoState = 0;
-                        }
-                        
                         RegenTimer = 2;
                         if (npc.ai[0] == -2f) //eye socket is empty
                         {
@@ -4330,7 +4350,7 @@ namespace FargowiltasSouls.NPCs
                             Vector2 velocity = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 10;
                             npc.velocity = velocity;
                             masoBool[0] = true;
-                            masoState = 5;
+                            Timer = 5;
                         }
 
                         if (masoBool[0])
@@ -4343,9 +4363,9 @@ namespace FargowiltasSouls.NPCs
                                 Main.projectile[p].friendly = false;
 
                                 Counter2 = 0;
-                                masoState--;
+                                Timer--;
 
-                                if (masoState <= 0)
+                                if (Timer <= 0)
                                     masoBool[0] = false;
                             }
                         }
@@ -6174,7 +6194,7 @@ namespace FargowiltasSouls.NPCs
                 //is lava on screen
                 bool nearLava = Collision.LavaCollision(spawnInfo.player.position, spawnInfo.spawnTileX, spawnInfo.spawnTileY);
                 bool noInvasion = Fargowiltas.NoInvasion(spawnInfo);
-                bool normalSpawn = !spawnInfo.playerInTown && noInvasion;
+                bool normalSpawn = !spawnInfo.playerInTown && noInvasion && !oldOnesArmy;
 
 
 
@@ -6502,7 +6522,7 @@ namespace FargowiltasSouls.NPCs
 
                                 if (cavern)
                                 {
-                                    pool[NPCID.Krampus] = .05f;
+                                    pool[NPCID.Krampus] = .025f;
 
                                     if (NPC.downedChristmasIceQueen)
                                     {
@@ -8196,7 +8216,7 @@ namespace FargowiltasSouls.NPCs
         public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
         {
             if (isMasoML)
-                return masoState == 0;
+                return masoStateML == 0;
 
             return null;
         }
@@ -8205,7 +8225,7 @@ namespace FargowiltasSouls.NPCs
         {
             if (isMasoML)
             {
-                switch (masoState)
+                switch (masoStateML)
                 {
                     case 0: if (!projectile.melee) return false; break;
                     case 1: if (!projectile.ranged) return false; break;

@@ -1322,7 +1322,7 @@ namespace FargowiltasSouls
                     player.lifeRegenCount = 0;
 
                 player.lifeRegenTime = 0;
-                player.lifeRegen -= 12;
+                player.lifeRegen -= 8;
             }
         }
 
@@ -2117,7 +2117,7 @@ namespace FargowiltasSouls
                     TinCrit += 4;
             }
 
-            if (PalladEnchant && palladiumCD == 0 && !target.immortal)
+            if (PalladEnchant && palladiumCD == 0 && !target.immortal && !player.moonLeech)
             {
                 int heal = damage / 20;
                 if (heal > 5)
