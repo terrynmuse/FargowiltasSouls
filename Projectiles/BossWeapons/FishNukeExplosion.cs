@@ -62,9 +62,9 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                     projectile.height, 31, 0f, 0f, 100, default(Color), 3f);
                 Main.dust[dust].velocity *= 1.4f;
             }
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 60; i++)
             {
-                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 0, default(Color), 3f);
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 0, default(Color), 3.5f);
                 Main.dust[d].noGravity = true;
                 Main.dust[d].noLight = true;
                 Main.dust[d].velocity *= 4f;
