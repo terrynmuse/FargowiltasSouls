@@ -902,7 +902,7 @@ namespace FargowiltasSouls
 
             if (LihzahrdTreasureBox && player.gravDir > 0 && Soulcheck.GetValue("Lihzahrd Ground Pound"))
             {
-                if (player.controlDown && !player.mount.Active)
+                if (player.controlDown && !player.mount.Active && !player.controlJump)
                 {
                     if (player.velocity.Y != 0f)
                     {
