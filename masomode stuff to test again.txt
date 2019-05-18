@@ -29,6 +29,7 @@
 -golem anti air fireballs are only fired up, but he does the anti-underground version whenever he lands
 -golem does his fireballs in phase 1 too, but anti air is half as frequent
 -golem AAFs are now 7 per spread when outside temple (was 5)
+-fixed groundpound glitch in MP
 
 -slime rain, the guardian, penetrator, and nuke fishron recipes require sadism (post-fish EX)
 -penetrator dash gives total immunity to all damage
