@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Healthy drug recommended by 0 out of 10 doctors'
 Grants immunity to Feral Bite and Mutant Nibble
 Grants immunity to most debuffs caused by entering water
+Grants effects of Wet debuff while riding Cute Fishron
 Increases damage by 20%");
         }
 
@@ -36,6 +37,10 @@ Increases damage by 20%");
             player.magicDamage += 0.2f;
             player.minionDamage += 0.2f;
             player.thrownDamage += 0.2f;
+            if (player.mount.Active && player.mount.Type == MountID.CuteFishron)
+            {
+                player.dripping = true;
+            }
         }
     }
 }
