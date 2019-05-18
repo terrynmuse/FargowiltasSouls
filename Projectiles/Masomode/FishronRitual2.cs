@@ -60,7 +60,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                         {
                             int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
                             player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
-                                Main.npc[ai1].damage * 2 / 3, hitDirection, false, false, false, 1);
+                                Main.npc[ai1].damage / 3, hitDirection, false, false, false, 1);
                             player.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += ai1 == FargoGlobalNPC.fishBossEX ? 50 : 25;
                             player.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(300, 600));
                         }
