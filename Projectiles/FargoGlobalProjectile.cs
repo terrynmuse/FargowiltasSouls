@@ -1089,20 +1089,21 @@ namespace FargowiltasSouls.Projectiles
                                 target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 600);
                                 target.AddBuff(mod.BuffType("CurseoftheMoon"), 1800);
                                 target.AddBuff(mod.BuffType("GodEater"), Main.expertMode ? 210 : 420);
+                                
                             }
                             else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
                             {
                                 goto case ProjectileID.PhantasmalSphere;
                             }
                         }*/
-                        target.AddBuff(mod.BuffType("MarkedforDeath"), 300);
-                        target.AddBuff(mod.BuffType("CurseoftheMoon"), 1200);
+                        target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), 120);
                         break;
 
                     case ProjectileID.PhantasmalBolt:
                     case ProjectileID.PhantasmalEye:
                     case ProjectileID.PhantasmalSphere:
-                        target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
+                        target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
                         break;
 
                     case ProjectileID.RocketSkeleton:

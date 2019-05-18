@@ -30,6 +30,9 @@
 -golem does his fireballs in phase 1 too, but anti air is half as frequent
 -golem AAFs are now 7 per spread when outside temple (was 5)
 -fixed groundpound glitch in MP
+-FORCE OF EARTH ACTUALLY GIVES MYTHRIL EFFECT
+-nullicurse and oceanic seal disable shell hide too
+-nerfed ML debuffs again
 
 -slime rain, the guardian, penetrator, and nuke fishron recipes require sadism (post-fish EX)
 -penetrator dash gives total immunity to all damage
