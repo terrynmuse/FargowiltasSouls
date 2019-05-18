@@ -4484,6 +4484,10 @@ namespace FargowiltasSouls.NPCs
                             if (!masoBool[0])
                             {
                                 masoBool[0] = true;
+                                for (int i = 0; i < npc.buffImmune.Length; i++)
+                                    npc.buffImmune[i] = true;
+                                while (npc.buffType[0] != 0)
+                                    npc.DelBuff(0);
                                 Main.PlaySound(15, npc.Center, 0);
                             }
                             if (++Counter > 60)
