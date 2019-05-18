@@ -2824,15 +2824,17 @@ namespace FargowiltasSouls.NPCs
 
                         if (masoBool[0])
                         {
-                            if (npc.velocity.Y == 0f) //spawning geysers from floor
+                            if (npc.velocity.Y == 0f)
                             {
                                 masoBool[0] = false;
 
-                                if (Main.netMode != 1)
+                                if (Main.netMode != 1) //landing attacks
                                 {
                                     Vector2 spawnPos = new Vector2(npc.position.X, npc.Center.Y);
-                                    if (Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16] != null && //in temple
-                                        Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].wall == WallID.LihzahrdBrickUnsafe)
+                                    bool inTemple = Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16] != null && //in temple
+                                        Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].wall == WallID.LihzahrdBrickUnsafe;
+
+                                    if (inTemple) //spawning geysers from floor
                                     {
                                         spawnPos.X -= npc.width * 2;
                                         for (int i = 0; i < 2; i++)
@@ -2892,6 +2894,25 @@ namespace FargowiltasSouls.NPCs
                                                 ProjectileID.GeyserTrap, npc.damage / 5, 0f, Main.myPlayer);
                                         }
                                     }
+
+                                    //golem's anti-air fireball spray (whenever he lands while player is below)
+                                    if (npc.HasPlayerTarget && Main.player[npc.target].position.Y > npc.position.Y + npc.height)
+                                    {
+                                        float gravity = 0.2f; //normally floats up
+                                        const float time = 60f;
+                                        Vector2 distance = Main.player[npc.target].Center - npc.Center;
+                                        distance += Main.player[npc.target].velocity * 45f;
+                                        distance.X = distance.X / time;
+                                        distance.Y = distance.Y / time - 0.5f * gravity * time;
+                                        if (Math.Sign(distance.Y) != Math.Sign(gravity))
+                                            distance.Y = 0f; //cannot arc shots to hit someone on the same elevation
+                                        int max = inTemple ? 2 : 3;
+                                        for (int i = -max; i <= max; i++)
+                                        {
+                                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + 1.5f * i, distance.Y,
+                                                mod.ProjectileType("GolemFireball"), npc.damage / 5, 0f, Main.myPlayer, gravity, 0f);
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -2919,8 +2940,37 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
+                        Counter2++;
+                        if (Counter2 > 240) //golem's anti-air fireball spray (when player is above)
+                        {
+                            Counter2 = 0;
+                            if (npc.HasPlayerTarget && Main.player[npc.target].position.Y < npc.position.Y
+                                && Main.netMode != 1) //shoutouts to arterius
+                            {
+                                bool inTemple = Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16] != null && //in temple
+                                    Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].wall == WallID.LihzahrdBrickUnsafe;
+
+                                float gravity = -0.2f; //normally floats up
+                                //if (Main.player[npc.target].position.Y > npc.position.Y + npc.height) gravity *= -1f; //aim down if player below golem
+                                const float time = 60f;
+                                Vector2 distance = Main.player[npc.target].Center - npc.Center;
+                                distance += Main.player[npc.target].velocity * 45f;
+                                distance.X = distance.X / time;
+                                distance.Y = distance.Y / time - 0.5f * gravity * time;
+                                if (Math.Sign(distance.Y) != Math.Sign(gravity))
+                                    distance.Y = 0f; //cannot arc shots to hit someone on the same elevation
+                                int max = inTemple ? 2 : 3;
+                                for (int i = -max; i <= max; i++)
+                                {
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + 1.5f * i, distance.Y,
+                                        mod.ProjectileType("GolemFireball"), npc.damage / 5, 0f, Main.myPlayer, gravity, 0f);
+                                }
+                            }
+                        }
+
                         if (!npc.dontTakeDamage)
                         {
+                            Counter2++; //attack faster!
                             npc.life += 9; //healing stuff
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
@@ -2929,30 +2979,6 @@ namespace FargowiltasSouls.NPCs
                             {
                                 Timer = Main.rand.Next(30);
                                 CombatText.NewText(npc.Hitbox, CombatText.HealLife, 500);
-                            }
-
-                            Counter2++;
-                            if (Counter2 > 120) //golem's anti-air/anti-underground fireball spray when vulnerable
-                            {
-                                Counter2 = 0;
-                                if (npc.HasPlayerTarget && Main.netMode != 1) //shoutouts to arterius
-                                {
-                                    float gravity = -0.2f; //normally floats up
-                                    if (Main.player[npc.target].position.Y > npc.position.Y + npc.height)
-                                        gravity *= -1f; //aim down if player below golem
-                                    const float time = 60f;
-                                    Vector2 distance = Main.player[npc.target].Center - npc.Center;
-                                    distance += Main.player[npc.target].velocity * 30f;
-                                    distance.X = distance.X / time;
-                                    distance.Y = distance.Y / time - 0.5f * gravity * time;
-                                    if (Math.Sign(distance.Y) != Math.Sign(gravity))
-                                        distance.Y = 0f; //cannot arc shots to hit someone on the same elevation
-                                    for (int i = -2; i <= 2; i++)
-                                    {
-                                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + 1.5f * i, distance.Y,
-                                            mod.ProjectileType("GolemFireball"), npc.damage / 5, 0f, Main.myPlayer, gravity, 0f);
-                                    }
-                                }
                             }
                         }
                         break;
