@@ -1097,7 +1097,6 @@ namespace FargowiltasSouls.Projectiles
                             }
                         }*/
                         target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
-                        target.AddBuff(mod.BuffType("MarkedforDeath"), 120);
                         break;
 
                     case ProjectileID.PhantasmalBolt:
