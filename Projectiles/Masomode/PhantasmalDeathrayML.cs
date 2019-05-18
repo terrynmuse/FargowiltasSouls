@@ -56,7 +56,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             {
                 Main.PlaySound(29, (int)projectile.position.X, (int)projectile.position.Y, 104, 1f, 0f);
             }
-            float num801 = 1f;
+            float num801 = 0.5f;
             projectile.localAI[0] += 1f;
             if (projectile.localAI[0] >= maxTime)
             {

@@ -393,7 +393,11 @@ namespace FargowiltasSouls
 
                 case 4: //moon lord vulnerability synchronization
                     if (Main.netMode == 1)
+                    {
+                        int ML = reader.ReadByte();
+                        Main.npc[ML].GetGlobalNPC<FargoGlobalNPC>().Counter = reader.ReadInt32();
                         FargoGlobalNPC.masoStateML = reader.ReadByte();
+                    }
                     break;
 
                 case 77: //server side spawning fishron EX

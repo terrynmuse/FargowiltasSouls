@@ -2654,7 +2654,7 @@ namespace FargowiltasSouls.NPCs
                                             }
                                             break;
                                         case 1: //ranged
-                                            for (int i = 0; i < 12; i++) //spawn lightning
+                                            /*for (int i = 0; i < 12; i++) //spawn lightning
                                             {
                                                 Point tileCoordinates = Main.player[npc.target].Top.ToTileCoordinates();
 
@@ -2673,7 +2673,7 @@ namespace FargowiltasSouls.NPCs
                                                     tileCoordinates.Y -= 1;
 
                                                 Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
-                                            }
+                                            }*/
                                             Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.CultistBossLightningOrb,
                                                 (int)(30 * (1 + FargoWorld.MoonlordCount * .0125)), 0f, Main.myPlayer);
                                             break;
@@ -2749,6 +2749,8 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         var netMessage = mod.GetPacket();
                                         netMessage.Write((byte)4);
+                                        netMessage.Write((byte)npc.whoAmI);
+                                        netMessage.Write(Counter);
                                         netMessage.Write(masoStateML);
                                         netMessage.Send();
                                     }
@@ -2761,17 +2763,16 @@ namespace FargowiltasSouls.NPCs
                             if (++Counter > 1800)
                             {
                                 Counter = 0;
-                                if (Main.netMode != 1)
+                                if (++masoStateML > 3)
+                                    masoStateML = 0;
+                                if (Main.netMode == 2)
                                 {
-                                    if (++masoStateML > 3)
-                                        masoStateML = 0;
-                                    if (Main.netMode == 2)
-                                    {
-                                        var netMessage = mod.GetPacket();
-                                        netMessage.Write((byte)4);
-                                        netMessage.Write(masoStateML);
-                                        netMessage.Send();
-                                    }
+                                    var netMessage = mod.GetPacket();
+                                    netMessage.Write((byte)4);
+                                    netMessage.Write((byte)npc.whoAmI);
+                                    netMessage.Write(Counter);
+                                    netMessage.Write(masoStateML);
+                                    netMessage.Send();
                                 }
                             }
                         }
@@ -4236,7 +4237,7 @@ namespace FargowiltasSouls.NPCs
                                             if (difference < 0f)
                                                 rotationDirection *= -1f;
                                             Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[0]);
-                                            int damage = (int)(75 * (1 + FargoWorld.MoonlordCount * .0125));
+                                            int damage = (int)(50 * (1 + FargoWorld.MoonlordCount * .0125));
                                             if (Main.netMode != 1)
                                                 Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayML"),
                                                     damage, 0f, Main.myPlayer, rotationDirection, npc.whoAmI);
