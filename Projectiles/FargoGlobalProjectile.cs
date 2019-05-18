@@ -1051,16 +1051,8 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.VortexLightning:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.moonBoss, NPCID.MoonLordCore))
-                        {
-                            damage *= 3;
-                            target.AddBuff(BuffID.Electrified, Main.rand.Next(300, 600));
-                        }
-                        else
-                        {
-                            damage *= 2;
-                            target.AddBuff(BuffID.Electrified, Main.rand.Next(30, 300));
-                        }
+                        damage *= 2;
+                        target.AddBuff(BuffID.Electrified, Main.rand.Next(30, 300));
                         break;
 
                     case ProjectileID.LostSoulHostile:

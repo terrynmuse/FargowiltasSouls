@@ -2590,6 +2590,9 @@ namespace FargowiltasSouls.NPCs
                         {
                             Counter++; //phases transition twice as fast when core is exposed
 
+                            if (masoStateML == 3 && RegenTimer < 2)
+                                RegenTimer = 2;
+
                             if (Main.player[Main.myPlayer].active && !Main.player[Main.myPlayer].dead)
                             {
                                 Player player = Main.player[Main.myPlayer];
@@ -2654,7 +2657,7 @@ namespace FargowiltasSouls.NPCs
                                             }
                                             break;
                                         case 1: //ranged
-                                            /*for (int i = 0; i < 12; i++) //spawn lightning
+                                            for (int i = 0; i < 12; i++) //spawn lightning
                                             {
                                                 Point tileCoordinates = Main.player[npc.target].Top.ToTileCoordinates();
 
@@ -2673,7 +2676,7 @@ namespace FargowiltasSouls.NPCs
                                                     tileCoordinates.Y -= 1;
 
                                                 Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
-                                            }*/
+                                            }
                                             Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.CultistBossLightningOrb,
                                                 (int)(30 * (1 + FargoWorld.MoonlordCount * .0125)), 0f, Main.myPlayer);
                                             break;

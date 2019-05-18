@@ -35,6 +35,8 @@
 -nerfed ML debuffs again
 -mutant antibodies and cyclonic fin give buffs to cute fishron!!!!!
 -nerfed ML deathrays again
+-nerfed ML lightning (no longer does triple damage (normally only double), no longer does 5-10sec electrified (normally 5max))
+-ML no longer regenerates during stardust phase (fucking idiots)
 
 -slime rain, the guardian, penetrator, and nuke fishron recipes require sadism (post-fish EX)
 -penetrator dash gives total immunity to all damage
