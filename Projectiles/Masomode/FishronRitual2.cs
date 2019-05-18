@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
         private const float PI = (float)Math.PI;
         private const float rotationPerTick = PI / 140f;
 
+        private bool targetIsMe;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Oceanic Ritual");
@@ -47,11 +49,21 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
                 if (Main.npc[ai1].HasPlayerTarget)
                 {
+                    targetIsMe = Main.npc[ai1].target == Main.myPlayer;
+
                     Player player = Main.player[Main.npc[ai1].target];
                     if (player.active && !player.dead)
                     {
                         float distance = player.Distance(projectile.Center);
                         const float threshold = 1200f;
+                        if (Math.Abs(distance - threshold) < 30f && player.hurtCooldowns[1] == 0 && projectile.alpha == 0)
+                        {
+                            int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
+                            player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
+                                Main.npc[ai1].damage * 2 / 3, hitDirection, false, false, false, 1);
+                            player.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += ai1 == FargoGlobalNPC.fishBossEX ? 50 : 25;
+                            player.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(300, 600));
+                        }
                         if (distance > threshold)
                         {
                             if (distance > threshold * 1.5f)
@@ -90,6 +102,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             }
             else
             {
+                targetIsMe = true;
                 projectile.velocity = Vector2.Zero;
                 projectile.alpha += 2;
                 if (projectile.alpha > 255)
@@ -125,6 +138,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
             Color color26 = lightColor;
             color26 = projectile.GetAlpha(color26);
+            if (!targetIsMe)
+                color26 *= 0.15f;
 
             for (int x = 0; x < 32; x++)
             {
@@ -146,7 +161,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(150, 50 + (int)(100.0 * Main.DiscoG / 255.0), 255, 200);
+            return new Color(150, 50 + (int)(100.0 * Main.DiscoG / 255.0), 255, 150);
         }
     }
 }
