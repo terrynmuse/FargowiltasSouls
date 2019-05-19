@@ -6825,6 +6825,11 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.BladedGlove);
                         break;
 
+                    case NPCID.LavaSlime:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.LavaCharm);
+                        break;
+
                     case NPCID.DesertDjinn:
                         if (Main.rand.Next(20) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.FlyingCarpet);
