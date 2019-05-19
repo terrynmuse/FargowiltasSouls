@@ -20,12 +20,11 @@ Dash into any walls, to teleport through them to the next opening
 
             if(thorium != null)
             {
-                tooltip += "Striking an enemy with any throwing weapon will trigger 'Shadow Dance'\n";
+                tooltip += "50% of the damage you take is staggered over the next 10 seconds\n";
             }
 
             tooltip +=
-@"Throw a smoke bomb to teleport to it
-Standing nearby smoke gives you the First Strike buff
+@"Throw a smoke bomb to teleport to it and gain the First Strike Buff
 Greatly enhances Lightning Aura effectiveness
 Effects of Master Ninja Gear
 Summons a pet Gato and Black Cat";

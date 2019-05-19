@@ -34,7 +34,8 @@ Summons several pets";
             else
             {
                 tooltip +=
-@"Effects of Master Ninja Gear and Dark Effigy
+@"50% of the damage you take is staggered over the next 10 seconds
+Effects of Master Ninja Gear and Dark Effigy
 Summons several pets";
             }
 
@@ -93,6 +94,8 @@ Summons several pets";
             {
                 player.AddBuff(thorium.BuffType("EffigyRegen"), 2, true);
             }
+            //shade
+            thoriumPlayer.shadeSet = true;
         }
 
         public override void AddRecipes()

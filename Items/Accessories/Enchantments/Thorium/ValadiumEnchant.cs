@@ -47,8 +47,11 @@ Effects of Eye of the Beholder");
                 player.rangedDamage += 0.12f;
                 player.AddBuff(thorium.BuffType("GravityDamage"), 60, true);
             }
-            //eye of beholder
-            thorium.GetItem("EyeofBeholder").UpdateAccessory(player, hideVisual);
+            if (Soulcheck.GetValue("Eye of the Beholder"))
+            {
+                //eye of beholder
+                thorium.GetItem("EyeofBeholder").UpdateAccessory(player, hideVisual);
+            }
         }
         
         private readonly string[] items =

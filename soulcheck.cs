@@ -273,13 +273,13 @@ namespace FargowiltasSouls
 
             UiCheckbox.CheckboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
 
-            if (thorium != null)
+            if (thorium != null && calamity != null)
             {
-                totalPages++;
+                totalPages = 4;
             }
-            if (calamity != null)
+            else if (calamity != null || thorium != null)
             {
-                totalPages++;
+                totalPages = 3;
             }
 
             for (int i = 1; i <= totalPages; i++)

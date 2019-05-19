@@ -24,15 +24,13 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
 @"'Behold the craftsmanship of the Dark Elves...'
 10% increased damage and damage reduction
 Immune to intense heat
-Attacks have a chance to shock enemies with chain lightning and a lightning bolt
+Attacks have a chance to cause a lightning bolt to strike
 Grants the ability to dash into the enemy
 Right Click to guard with your shield
-Any damage you take while at full HP is reduced by 90%
-Briefly become invulnerable after striking an enemy
 A meteor shower initiates every few seconds while attacking
 Moving around generates up to 5 static rings, then a bubble of energy will protect you from one attack
 Effects of Eye of the Storm, Energized Subwoofer, and Spartan's Subwoofer
-Effects of Champion's Rebuttal, Ogre Sandals, and Spiked Bracers
+Effects of Champion's Rebuttal, Incandescent Spark, and Spiked Bracers
 Effects of the Greedy Magnet, Mask of the Crystal Eye, and Abyssal Shell
 Summons a pet Omega, I.F.O., and Bio-Feeder");
         }
@@ -64,22 +62,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             if (Soulcheck.GetValue("Eye of the Storm"))
             {
                 //eye of the storm
-                timer++;
-                if (timer > 60)
-                {
-                    if (player.direction > 0)
-                    {
-                        Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                        Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                        timer = 0;
-                    }
-                    if (player.direction < 0)
-                    {
-                        Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                        Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                        timer = 0;
-                    }
-                }
+                thorium.GetItem("EyeoftheStorm").UpdateAccessory(player, hideVisual);
             }
             
             //woofers
@@ -97,8 +80,6 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             //bronze
             //rebuttal
             thoriumPlayer.championShield = true;
-            //copper enchant
-            player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
 
             //durasteel
             mod.GetItem("DurasteelEnchant").UpdateAccessory(player, hideVisual);
@@ -106,8 +87,6 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
 
             //titan
             modPlayer.AllDamageUp(.1f);
-            //titanium
-            player.GetModPlayer<FargoPlayer>(mod).TitaniumEffect();
             //crystal eye mask
             thoriumPlayer.critDamage += 0.1f;
             //abyssal shell

@@ -22,8 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Live in the shadows, and strike with precision'
 50% of the damage you take is staggered over the next 10 seconds
-Throw a smoke bomb to teleport to it
-Standing nearby smoke gives you the First Strike buff
+Throw a smoke bomb to teleport to it and gain the First Strike Buff
 Summons a pet Black Cat");
         }
 

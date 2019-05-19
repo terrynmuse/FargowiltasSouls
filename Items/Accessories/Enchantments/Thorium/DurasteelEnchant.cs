@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
-using Microsoft.Xna.Framework;
 using System;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
@@ -51,6 +50,7 @@ Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
             {
                 thorium.GetItem("IncandescentSpark").UpdateAccessory(player, hideVisual);
             }
+
             if (Soulcheck.GetValue("Greedy Magnet"))
             {
                 thorium.GetItem("GreedyMagnet").HoldItem(player);

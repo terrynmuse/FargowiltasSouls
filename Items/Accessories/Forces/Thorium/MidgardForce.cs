@@ -69,21 +69,9 @@ Summons a pet Pink Slime");
             if (Soulcheck.GetValue("Eye of the Beholder"))
             {
                 //eye of beholder
-                lightGen++;
-                if (lightGen >= 40)
-                {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze"), 0, 0f, player.whoAmI, i, 0f);
-                    }
-                    for (int j = 0; j < 10; j++)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze2"), 0, 0f, player.whoAmI, j, 0f);
-                    }
-                    lightGen = 0;
-                }
+                thorium.GetItem("EyeofBeholder").UpdateAccessory(player, hideVisual);
             }
-            
+
             //illumite
             //slime pet
             modPlayer.AddPet("Pink Slime Pet", hideVisual, thorium.BuffType("PinkSlimeBuff"), thorium.ProjectileType("PinkSlime"));

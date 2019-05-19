@@ -95,7 +95,7 @@ Lightning scales with magic damage";
                 recipe.AddIngredient(ItemID.Wire, 20);
             }
                        
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

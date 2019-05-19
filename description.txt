@@ -216,14 +216,16 @@ toggle page bugs, check all combos of mods, add more toggles for calameme, SoE s
 add roomba, make sheet somehow and copy generic pet AI
 ebon stop working on town npcs, critters, 1hp projectiles
 
-thorium force with negative regen?
-can you move with gold enchant?
-tribal charm auto swing?
-cultist no drop maso drop when summoned with fargo summon
+
+
 
 
 
 NOT THIS UPDATE
+thorium force with negative regen?
+can you move with gold enchant?
+tribal charm auto swing?
+cultist no drop maso drop when summoned with fargo summon
 all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
 crucible accept fossils?
 penetrator glow mask and crucible glow mask

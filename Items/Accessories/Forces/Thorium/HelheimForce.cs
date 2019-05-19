@@ -24,11 +24,10 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
 Your boots vibrate at an unreal frequency, increasing movement speed significantly
 While moving, all damage is increased
 Your attacks have a chance to unleash an explosion of Dragon's Flame
-Your attacks may inflict Darkness on enemies
 Consecutive attacks against enemies might drop flesh, which grants bonus life and damage
-Greatly increases life regen
-Hearts heal for 1.5x as much
 While above 75% maximum life, you become unstable
+Your plague gas will linger in the air twice as long and your plague reactions will deal 20% more damage
+Killing an enemy will release a soul fragment
 Effects of Crash Boots, Dragon Talon Necklace, and Grim Subwoofer
 Effects of Vampire Gland, Demon Blood Badge, and Blood Demon's Subwoofer 
 Effects of Shade Band, Lich's Gaze, and Plague Lord's Flask
@@ -75,25 +74,11 @@ Summons several pets");
                     }
                 }
             }
-                
+
             //crash boots
-            player.moveSpeed += 0.0015f * thoriumPlayer.momentum;
-            player.maxRunSpeed += 0.0025f * thoriumPlayer.momentum;
-            if (player.velocity.X > 0f || player.velocity.X < 0f)
-            {
-                if (thoriumPlayer.momentum < 180)
-                {
-                    thoriumPlayer.momentum++;
-                }
-                if (thoriumPlayer.momentum > 60 && Collision.SolidCollision(player.position, player.width, player.height + 4))
-                {
-                    int num = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + player.height - 2f), player.width + 4, 4, 6, 0f, 0f, 100, default(Color), 0.625f + 0.0075f * thoriumPlayer.momentum);
-                    Main.dust[num].noGravity = true;
-                    Main.dust[num].noLight = true;
-                    Dust dust = Main.dust[num];
-                    dust.velocity *= 0f;
-                }
-            }
+            thorium.GetItem("CrashBoots").UpdateAccessory(player, hideVisual);
+            player.moveSpeed -= 0.15f;
+            player.maxRunSpeed -= 1f;
             //woofers
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
@@ -115,8 +100,6 @@ Summons several pets");
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
             thoriumPlayer.wyvernPet = true;
-            //darkness, pets
-            modPlayer.ShadowEffect(hideVisual);
 
             //demon blood
             thoriumPlayer.demonbloodSet = true;
@@ -135,8 +118,6 @@ Summons several pets");
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
             thoriumPlayer.blisterPet = true;
-            //crimson regen, pets
-            modPlayer.CrimsonEffect(hideVisual);
 
             if (Soulcheck.GetValue("Harbinger Overcharge"))
             {
