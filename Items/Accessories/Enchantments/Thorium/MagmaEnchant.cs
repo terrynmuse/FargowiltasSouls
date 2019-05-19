@@ -47,50 +47,8 @@ Effects of Spring Steps, Slag Stompers, and Molten Spear Tip");
             player.magmaStone = true;
             thoriumPlayer.magmaSet = true;
             //spring steps
-            player.extraFall += 10;
-            if (player.velocity.Y < 0f && allowJump)
-            {
-                allowJump = false;
-                thoriumPlayer.jumps++;
-            }
-            if (player.velocity.Y > 0f || player.sliding || player.justJumped)
-            {
-                allowJump = true;
-            }
-            if (thoriumPlayer.jumps == 0)
-            {
-                player.jumpSpeedBoost += 5f;
-            }
-            if (thoriumPlayer.jumps == 1)
-            {
-                player.jumpSpeedBoost += 1f;
-            }
-            if (thoriumPlayer.jumps == 2)
-            {
-                player.jumpSpeedBoost += 1.75f;
-            }
-            if (thoriumPlayer.jumps >= 3)
-            {
-                float num = 16f;
-                int num2 = 0;
-                while (num2 < num)
-                {
-                    Vector2 vector = Vector2.UnitX * 0f;
-                    vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(5f, 20f);
-                    vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
-                    int num3 = Dust.NewDust(player.Center, 0, 0, 127, 0f, 0f, 0, default(Color), 1f);
-                    Main.dust[num3].scale = 1.35f;
-                    Main.dust[num3].noGravity = true;
-                    Main.dust[num3].position = player.Center + vector;
-                    Dust dust = Main.dust[num3];
-                    dust.position.Y = dust.position.Y + 12f;
-                    Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
-                    int num4 = num2;
-                    num2 = num4 + 1;
-                }
-                Main.PlaySound(SoundID.Item74, player.position);
-                thoriumPlayer.jumps = 0;
-            }
+            thorium.GetItem("SpringSteps").UpdateAccessory(player, hideVisual);
+
             if (Soulcheck.GetValue("Slag Stompers"))
             {
                 //slag stompers

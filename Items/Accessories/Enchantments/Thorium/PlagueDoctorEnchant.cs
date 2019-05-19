@@ -20,8 +20,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Plague Doctor Enchantment");
             Tooltip.SetDefault(
 @"'What nasty concoction could you be brewing?'
-Plague doctor vials have a 40% chance to become retrievable upon shattering
-Throwing damage will decrease enemy defense
+Your plague gas will linger in the air twice as long and your plague reactions will deal 20% more damage
+Killing an enemy will release a soul fragment
+Touching a soul fragment greatly increases your movement and throwing speed briefly
 Effects of Lich's Gaze and Plague Lord's Flask");
         }
 

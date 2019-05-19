@@ -19,8 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 Your attacks may inflict Darkness on enemies
 A Dungeon Guardian will occasionally annihilate a foe when struck
 All of your minions may occasionally spew massive scythes everywhere
-Throw a smoke bomb to teleport to it
-Standing nearby smoke gives you the First Strike buff
+Throw a smoke bomb to teleport to it and gain the First Strike Buff
 Dash into any walls, to teleport through them to the next opening
 While attacking, Flameburst shots manifest themselves from your shadows
 Greatly enhances Flameburst effectiveness
@@ -99,12 +98,8 @@ Summons several pets";
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            
-            if(!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                recipe.AddIngredient(null, "ShadowEnchant");
-            }
 
+            recipe.AddIngredient(null, "ShadowEnchant");
             recipe.AddIngredient(null, "NecroEnchant");
             recipe.AddIngredient(null, "SpookyEnchant");
             recipe.AddIngredient(null, "ShinobiEnchant");

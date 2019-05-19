@@ -76,16 +76,16 @@ Summons a pet Snowman";
             if(Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(thorium.ItemType("FrostSubwoofer"));
+                recipe.AddIngredient(ItemID.Frostbrand);
                 recipe.AddIngredient(thorium.ItemType("BlizzardsEdge"));
                 recipe.AddIngredient(thorium.ItemType("Glacieor"));
                 recipe.AddIngredient(ItemID.IceBow);
-
-                recipe.AddIngredient(thorium.ItemType("FrozenButterfly"));
+                recipe.AddIngredient(thorium.ItemType("FreezeRay"));
             }
             else
             {
+                recipe.AddIngredient(ItemID.Frostbrand);
                 recipe.AddIngredient(ItemID.IceBow);
-                
                 recipe.AddIngredient(ItemID.Fish);
             }
             

@@ -79,7 +79,7 @@ Summons a pet Gato and Black Cat";
                 recipe.AddIngredient(ItemID.MonkBelt);
                 recipe.AddIngredient(thorium.ItemType("ShadeKusarigama"));
                 recipe.AddIngredient(ItemID.DD2LightningAuraT3Popper);
-                recipe.AddIngredient(thorium.ItemType("TotalityButterfly"));
+                recipe.AddIngredient(ItemID.DeadlySphereStaff);
             }
             else
             {

@@ -10,7 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class GraniteEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        public int timer;
 
         public override bool Autoload(ref string name)
         {
@@ -48,23 +47,10 @@ Effects of Eye of the Storm and Energized Subwoofer");
             player.noKnockback = true;
             player.moveSpeed -= 0.5f;
             player.maxRunSpeed = 4f;
+
             //eye of the storm
-            timer++;
-            if (timer > 60)
-            {
-                if (player.direction > 0)
-                {
-                    Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    timer = 0;
-                }
-                if (player.direction < 0)
-                {
-                    Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                    timer = 0;
-                }
-            }
+            thorium.GetItem("EyeoftheStorm").UpdateAccessory(player, hideVisual);
+            
             //granite woofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
@@ -83,8 +69,7 @@ Effects of Eye of the Storm and Energized Subwoofer");
             "GraniteSubwoofer",
             "GraniteSaber",
             "EnergyProjector",
-            "BoulderProbe",
-            "EnergyWingButterfly"
+            "BoulderProbe"
         };
 
         public override void AddRecipes()
@@ -99,6 +84,8 @@ Effects of Eye of the Storm and Energized Subwoofer");
             recipe.AddIngredient(ItemID.NightVisionHelmet);
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("ObsidianStriker"), 300);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

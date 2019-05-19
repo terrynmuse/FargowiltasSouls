@@ -179,7 +179,7 @@ namespace FargowiltasSouls
             ["Assassin Damage"] = new Color(81, 181, 113),
             ["Pyromancer Bursts"] = new Color(81, 181, 113),
             ["Conduit Shield"] = new Color(81, 181, 113),
-            ["Ogre Sandals"] = new Color(81, 181, 113),
+            ["Incandescent Spark"] = new Color(81, 181, 113),
             ["Greedy Magnet"] = new Color(81, 181, 113),
             ["Cyber Punk States"] = new Color(81, 181, 113),
             ["Metronome"] = new Color(81, 181, 113),

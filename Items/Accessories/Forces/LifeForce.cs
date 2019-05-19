@@ -70,21 +70,18 @@ Your wings last twice as long
             //needle spray
             modPlayer.CactusEffect();
 
-            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);           
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);           
         }
 
-        private void Thorium(Player player)
+        private void Thorium(Player player, bool hideVisual)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //bee booties
-            if (Soulcheck.GetValue("Bee Booties") && (player.velocity.X > 1f && player.velocity.X > 0f) || (player.velocity.X < 1f && player.velocity.X < 0f))
+            if (Soulcheck.GetValue("Bee Booties"))
             {
-                timer++;
-                if (timer > 45)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeeSummonSpawn"), 0, 0f, player.whoAmI, 0f, 0f);
-                    timer = 0;
-                }
+                thorium.GetItem("BeeBoots").UpdateAccessory(player, hideVisual);
+                player.moveSpeed -= 0.15f;
+                player.maxRunSpeed -= 1f;
             }
 
             //venom woofer

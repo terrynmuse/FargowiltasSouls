@@ -47,8 +47,8 @@ Summons a pet Baby Dino");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.BoneJavelin, 300);
+                recipe.AddIngredient(thorium.ItemType("SeveredHand"), 300);
                 recipe.AddIngredient(thorium.ItemType("Sitar"));
-                recipe.AddIngredient(thorium.ItemType("AmberButterfly"));
             }
             
             recipe.AddIngredient(ItemID.AmberMosquito);

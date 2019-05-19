@@ -46,8 +46,8 @@ When you die, you violently explode dealing massive damage");
                 recipe.AddIngredient(ItemID.Sunfury);
                 recipe.AddIngredient(ItemID.DarkLance);
                 recipe.AddIngredient(ItemID.PhoenixBlaster);
+                recipe.AddIngredient(thorium.ItemType("MeteoriteClusterBomb"), 300);
                 recipe.AddIngredient(ItemID.DemonsEye);
-                recipe.AddIngredient(thorium.ItemType("HellwingButterfly"));
             }
             else
             {

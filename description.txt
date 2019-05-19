@@ -11,6 +11,10 @@
 
 -Aerospec Enchantment has fall immunity now
 
+-Removed all Thorium butterflies from recipes
+-Changed around Force recipes so that Thorium does not take away from certain vanilla ones as much
+-Added several new Thorium items and their effects to Enchantments and Souls
+-Several Thorium effects have been made more stable and should break less easily from Thorium updates
 
 -Nerfed Amalgamated Bullet Pouch: damage down
 -Buffed Brain Staff: damage up
@@ -19,7 +23,7 @@
 -Fixed Tungsten Enchantment bug where weapons would never be larger without it (prefix size increases etc)
 
 
--Supersonic Soul tooltip changed
+-Supersonic Soul tooltip changed, and random defense removed
 -Pillars no longer spawn from Pandora's Box
 -Platinum Enchantment now crafted at a Crystal Ball
 -Fixed bug on certain Thorium Enchantments like Illumite where using a weapon with no ammo would spam projectiles
@@ -203,15 +207,8 @@ Item Changes
 
 TODO for next update
 
-
-
-remove all thorium butterflies and make sure all vanilla critters are in, all enchant recipes checked over one more time (at home)
-new thorium items and effects time ^ 
-also remove vanilla enchants from thorium forces for the most part
-thorium support use more GetItem()
-
 remove tungsten stunning, just mega sword
-all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
+
 mechanical cart in supersonic, add some mounts to fishing or someshit
 bugle recipe group
 dont increment, just set numbers tbh
@@ -226,8 +223,8 @@ cultist no drop maso drop when summoned with fargo summon
 
 
 
-
 NOT THIS UPDATE
+all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
 crucible accept fossils?
 penetrator glow mask and crucible glow mask
 top hat squirrel terrarium

@@ -48,7 +48,7 @@ Summons a pet Squashling");
             {      
                 recipe.AddIngredient(thorium.ItemType("BentZombieArm"));
                 recipe.AddIngredient(ItemID.PumpkinPie);
-                recipe.AddIngredient(ItemID.ThroughtheWindow);
+                recipe.AddIngredient(ItemID.GoodMorning);
             }
             
             recipe.AddIngredient(ItemID.MagicalPumpkinSeed);

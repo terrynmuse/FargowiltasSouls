@@ -60,11 +60,11 @@ A meteor shower initiates every few seconds while attacking";
             recipe.AddIngredient(ItemID.StarCannon);
 
             if(Fargowiltas.Instance.ThoriumLoaded)
-            {      
+            {
+                recipe.AddIngredient(thorium.ItemType("StarTrail"));
                 recipe.AddIngredient(thorium.ItemType("CometCrossfire"));
                 recipe.AddIngredient(ItemID.MeteorStaff);
                 recipe.AddIngredient(ItemID.PlaceAbovetheClouds);
-                recipe.AddIngredient(thorium.ItemType("MeteorButterfly"));
                 recipe.AddIngredient(thorium.ItemType("BioPod"));
             }
             else

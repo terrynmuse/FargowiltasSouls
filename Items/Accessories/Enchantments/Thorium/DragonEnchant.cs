@@ -21,9 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Made from mythical scales'
 Your attacks have a chance to unleash an explosion of Dragon's Flame
-Your attacks may inflict Darkness on enemies
 Effects of Dragon Talon Necklace
-Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
+Summons a pet Wyvern");
         }
 
         public override void SetDefaults()
@@ -49,18 +48,17 @@ Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
             thoriumPlayer.wyvernPet = true;
-            //darkness, pets
-            modPlayer.ShadowEffect(hideVisual);
         }
         
         private readonly string[] items =
         {
+            "DragonMask",
+            "DragonBreastplate",
+            "DragonGreaves",
             "DragonTalonNecklace",
             "DragonsBreath",
             "EbonyTail",
-            "DragonkinStaff",
-            "CursedFlameButterfly",
-            "CloudyChewToy"
+            "DragonkinStaff"
         };
 
         public override void AddRecipes()
@@ -69,12 +67,11 @@ Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
             
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(thorium.ItemType("DragonMask"));
-            recipe.AddIngredient(thorium.ItemType("DragonBreastplate"));
-            recipe.AddIngredient(thorium.ItemType("DragonGreaves"));
-            recipe.AddIngredient(null, "ShadowEnchant");
-
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("CorrupterBalloon"), 300);
+            recipe.AddIngredient(ItemID.ClingerStaff);
+            recipe.AddIngredient(thorium.ItemType("CloudyChewToy"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

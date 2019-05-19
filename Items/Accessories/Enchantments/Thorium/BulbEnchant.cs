@@ -43,30 +43,8 @@ Effects of Night Shade Petal and Petal Shield");
             //bulb set bonus
             thoriumPlayer.bulbSpore = true;
             //petal shield
-            if (thoriumPlayer.outOfCombat)
-            {
-                timer++;
-                if (timer >= 900)
-                {
-                    thoriumPlayer.lifeRecovery += 3;
-                    timer = 900;
-                    return;
-                }
-                if (timer >= 600)
-                {
-                    thoriumPlayer.lifeRecovery += 2;
-                    return;
-                }
-                if (timer >= 300)
-                {
-                    thoriumPlayer.lifeRecovery++;
-                    return;
-                }
-            }
-            else
-            {
-                timer = 0;
-            }
+            mod.GetItem("PetalShield").UpdateAccessory(player, hideVisual);
+            player.statDefense -= 2;
             //night shade petal
             thoriumPlayer.nightshadeBoost = true;
         }
@@ -79,7 +57,7 @@ Effects of Night Shade Petal and Petal Shield");
             "PetalShield",
             "NightShadePetal",
             "BloomingBlade",
-            "MoonglowButterfly"
+            "CreepingVineStaff"
         };
 
         public override void AddRecipes()
@@ -90,8 +68,8 @@ Effects of Night Shade Petal and Petal Shield");
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddIngredient(ItemID.SkyBlueFlower);
             recipe.AddIngredient(ItemID.Sunflower);
+            recipe.AddIngredient(ItemID.SkyBlueFlower);
             recipe.AddIngredient(ItemID.YellowMarigold);
 
             recipe.AddTile(TileID.DemonAltar);

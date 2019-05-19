@@ -58,7 +58,7 @@ Effects of Fan Letter");
             recipe.AddIngredient(thorium.ItemType("Oboe"));
             recipe.AddIngredient(thorium.ItemType("SkywareLute"));
             recipe.AddIngredient(thorium.ItemType("Panflute"));
-            recipe.AddIngredient(thorium.ItemType("DeathweedButterfly"));
+            recipe.AddIngredient(thorium.ItemType("ConchShell"));
             recipe.AddIngredient(ItemID.Mouse);
 
             recipe.AddTile(TileID.DemonAltar);

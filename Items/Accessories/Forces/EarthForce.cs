@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         {
             DisplayName.SetDefault("Force of Earth");
 
-            string tooltip = 
+            Tooltip.SetDefault(
 @"'Gaia's blessing shines upon you'
 25% chance for your projectiles to explode into shards
 Greatly increases life regeneration after striking an enemy 
@@ -22,16 +22,9 @@ One attack gains 5% life steal every second, capped at 5 HP
 Flower petals will cause extra damage to your target 
 Spawns 3 fireballs to rotate around you
 Every 8th projectile you shoot will split into 3
-Any secondary projectiles may also split";
-
-            if (thorium == null)
-            {
-                tooltip += @"
+Any secondary projectiles may also split
 Any damage you take while at full HP is reduced by 90%
-Briefly become invulnerable after striking an enemy";
-            }
-            
-            Tooltip.SetDefault(tooltip);
+Briefly become invulnerable after striking an enemy");
         }
 
         public override void SetDefaults()
@@ -55,10 +48,8 @@ Briefly become invulnerable after striking an enemy";
             modPlayer.OrichalcumEffect();
             //split
             modPlayer.AdamantiteEnchant = true;
-
             //shadow dodge, full hp resistance
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-                modPlayer.TitaniumEffect();
+            modPlayer.TitaniumEffect();
         }
 
         public override void AddRecipes()
@@ -70,11 +61,7 @@ Briefly become invulnerable after striking an enemy";
             recipe.AddIngredient(null, "MythrilEnchant");
             recipe.AddIngredient(null, "OrichalcumEnchant");
             recipe.AddIngredient(null, "AdamantiteEnchant");
-
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                recipe.AddIngredient(null, "TitaniumEnchant");
-            }
+            recipe.AddIngredient(null, "TitaniumEnchant");
 
             recipe.AddTile(TileID.LunarCraftingStation);
 

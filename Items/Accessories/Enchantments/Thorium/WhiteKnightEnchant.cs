@@ -69,7 +69,7 @@ Summons a Moogle pet");
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddIngredient(ItemID.SkyFracture);
-            recipe.AddIngredient(thorium.ItemType("PixiewingButterfly"));
+            recipe.AddIngredient(thorium.ItemType("SnowWhite"));
             recipe.AddIngredient(thorium.ItemType("DelectableNut"));
 
             recipe.AddTile(TileID.CrystalBall);

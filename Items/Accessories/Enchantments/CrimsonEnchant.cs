@@ -47,8 +47,8 @@ consider making hearts drop on hit sometimes instead? both hitting enemies and y
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.BloodLustCluster);
-
-                recipe.AddIngredient(thorium.ItemType("CrimsonButterfly"));
+                recipe.AddIngredient(ItemID.TheRottedFork);
+                recipe.AddIngredient(thorium.ItemType("CrimtaneTomahawk"), 300);
             }
             
             recipe.AddIngredient(ItemID.TheUndertaker);

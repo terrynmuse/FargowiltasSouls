@@ -59,7 +59,6 @@ Effects of Ghastly Carapace and Inner Flame";
                 {
                     player.AddBuff(thorium.BuffType("GhastlySoul"), 60, true);
                 }
-                thoriumPlayer.soulStorage = true;
             }
 
             if(Soulcheck.GetValue("Spirit Trapper Wisps"))
@@ -85,8 +84,8 @@ Effects of Ghastly Carapace and Inner Flame";
                 recipe.AddIngredient(null, "SpiritTrapperEnchant");
                 recipe.AddIngredient(thorium.ItemType("GhastlyCarapace"));
                 recipe.AddIngredient(ItemID.Keybrand);
+                recipe.AddIngredient(ItemID.MagicalHarp);
                 recipe.AddIngredient(ItemID.SpectreStaff);
-                recipe.AddIngredient(thorium.ItemType("EctoplasmicButterfly"));
             }
             else
             {

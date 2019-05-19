@@ -73,12 +73,9 @@ Summons several pets";
             //bulb, cryo effect
             modPlayer.NatureForce = true;
 
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                //regen, hearts heal more, pets
-                modPlayer.CrimsonEffect(hideVisual);
-            }
-            
+            //regen, hearts heal more, pets
+            modPlayer.CrimsonEffect(hideVisual);
+
             //inferno and explode
             modPlayer.MoltenEffect(25);
             //icicles, pets
@@ -197,7 +194,9 @@ Summons several pets";
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            recipe.AddIngredient(null, "CrimsonEnchant");
+            
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {
                 recipe.AddIngredient(null, "FrostEnchant");
                 recipe.AddIngredient(null, "ChlorophyteEnchant");
@@ -206,7 +205,6 @@ Summons several pets";
             }
             else
             {
-                recipe.AddIngredient(null, "CrimsonEnchant");
                 recipe.AddIngredient(null, "MoltenEnchant");
                 recipe.AddIngredient(null, "FrostEnchant");
                 recipe.AddIngredient(null, "ChlorophyteEnchant");

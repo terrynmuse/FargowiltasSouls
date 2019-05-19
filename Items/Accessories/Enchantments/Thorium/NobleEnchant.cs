@@ -43,23 +43,7 @@ Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
             //noble set bonus
             thoriumPlayer.bardBuffDuration += 300;
             //ring of unity
-            thoriumPlayer.brother = true;
-            byte b = 1;
-            for (int i = 0; i < 255; i++)
-            {
-                Player player2 = Main.player[i];
-                if (player2.active && !player2.dead && player2 != player && thoriumPlayer.brother && player2.DistanceSQ(player.Center) < 160000f)
-                {
-                    b += 1;
-                }
-            }
-            thoriumPlayer.flatMeleeDamage += (int)b;
-            thoriumPlayer.flatRangedDamage += (int)b;
-            thoriumPlayer.flatMagicDamage += (int)b;
-            thoriumPlayer.flatThrownDamage += (int)b;
-            thoriumPlayer.flatSummonDamage += (int)b;
-            thoriumPlayer.flatRadiantDamage += (int)b;
-            thoriumPlayer.flatSymphonicDamage += (int)b;
+            thorium.GetItem("RingofUnity").UpdateAccessory(player, hideVisual);
 
             if (Soulcheck.GetValue("Mix Tape"))
             {
@@ -90,7 +74,7 @@ Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
             "GoldenBugleHorn",
             "Microphone",
             "Bongos",
-            "FireblossomButterfly"
+            "MusicSheet3"
         };
 
         public override void AddRecipes()

@@ -22,11 +22,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Infused with Corrupt Blood'
 Consecutive attacks against enemies might drop flesh, which grants bonus life and damage
-Greatly increases life regen
-Hearts heal for 1.5x as much
 Effects of Vampire Gland, Demon Blood Badge, and Vile Flail-Core
 Effects of Blood Demon's Subwoofer and Yellow Music Player
-Summons a pet Flying Blister, Face Monster, and Crimson Heart");
+Summons a pet Flying Blister");
         }
 
         public override void SetDefaults()
@@ -70,8 +68,6 @@ Summons a pet Flying Blister, Face Monster, and Crimson Heart");
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
             thoriumPlayer.blisterPet = true;
-            //crimson regen, pets
-            modPlayer.CrimsonEffect(hideVisual);
         }
         
         private readonly string[] items =
@@ -80,8 +76,7 @@ Summons a pet Flying Blister, Face Monster, and Crimson Heart");
             "VileCore",
             "CrimsonSubwoofer",
             "TunePlayerCritChance",
-            "DarkContagionBook",
-            "IchorButterfly"
+            "DarkContagionBook"
         };
 
         public override void AddRecipes()
@@ -97,6 +92,8 @@ Summons a pet Flying Blister, Face Monster, and Crimson Heart");
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
+            recipe.AddIngredient(thorium.ItemType("FesteringBalloon"), 300);
+            
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

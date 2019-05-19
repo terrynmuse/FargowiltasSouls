@@ -9,7 +9,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class ConductorEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        public int timer;
 
         public override bool Autoload(ref string name)
         {
@@ -45,17 +44,7 @@ Effects of Metronome and Purple Music Player");
 
             if (Soulcheck.GetValue("Metronome"))
             {
-                //metronome
-                timer++;
-                if (timer == 180)
-                {
-                    player.AddBuff(thorium.BuffType("MetronomeBuff"), 179, true);
-                }
-                if (timer == 360)
-                {
-                    player.AddBuff(thorium.BuffType("MetronomeDebuff"), 179, true);
-                    timer = 0;
-                }
+                thorium.GetItem("Metronome").UpdateAccessory(player, hideVisual);
             }
             
             //music player

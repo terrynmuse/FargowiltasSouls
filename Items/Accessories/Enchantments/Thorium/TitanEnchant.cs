@@ -21,8 +21,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Infused with primordial energy'
 15% increased damage
-Any damage you take while at full HP is reduced by 90%
-Briefly become invulnerable after striking an enemy
 Effects of Mask of the Crystal Eye, Abyssal Shell, and Cyan Music Player");
         }
 
@@ -43,8 +41,6 @@ Effects of Mask of the Crystal Eye, Abyssal Shell, and Cyan Music Player");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             player.GetModPlayer<FargoPlayer>().AllDamageUp(.15f);
-            //titanium
-            player.GetModPlayer<FargoPlayer>(mod).TitaniumEffect();
             //crystal eye mask
             thoriumPlayer.critDamage += 0.1f;
             //abyssal shell
@@ -65,10 +61,10 @@ Effects of Mask of the Crystal Eye, Abyssal Shell, and Cyan Music Player");
             recipe.AddIngredient(thorium.ItemType("TitanMask"));
             recipe.AddIngredient(thorium.ItemType("TitanBreastplate"));
             recipe.AddIngredient(thorium.ItemType("TitanGreaves"));
-            recipe.AddIngredient(null, "TitaniumEnchant");
             recipe.AddIngredient(thorium.ItemType("CrystalEyeMask"));
             recipe.AddIngredient(thorium.ItemType("AbyssalShell"));
             recipe.AddIngredient(thorium.ItemType("TunePlayerDamageReduction"));
+            recipe.AddIngredient(thorium.ItemType("TitanBoomerang"));
             recipe.AddIngredient(thorium.ItemType("Executioner"));
 
             recipe.AddTile(TileID.CrystalBall);
