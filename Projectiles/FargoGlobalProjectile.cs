@@ -1051,16 +1051,8 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.VortexLightning:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.moonBoss, NPCID.MoonLordCore))
-                        {
-                            damage *= 3;
-                            target.AddBuff(BuffID.Electrified, Main.rand.Next(300, 600));
-                        }
-                        else
-                        {
-                            damage *= 2;
-                            target.AddBuff(BuffID.Electrified, Main.rand.Next(30, 300));
-                        }
+                        damage *= 2;
+                        target.AddBuff(BuffID.Electrified, Main.rand.Next(30, 300));
                         break;
 
                     case ProjectileID.LostSoulHostile:
@@ -1079,7 +1071,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.PhantasmalDeathray:
-                        if (Main.npc[(int)projectile.ai[1]].active)
+                        /*if (Main.npc[(int)projectile.ai[1]].active)
                         {
                             if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordHead)
                             {
@@ -1089,18 +1081,20 @@ namespace FargowiltasSouls.Projectiles
                                 target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 600);
                                 target.AddBuff(mod.BuffType("CurseoftheMoon"), 1800);
                                 target.AddBuff(mod.BuffType("GodEater"), Main.expertMode ? 210 : 420);
+                                
                             }
                             else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
                             {
                                 goto case ProjectileID.PhantasmalSphere;
                             }
-                        }
+                        }*/
+                        target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
                         break;
 
                     case ProjectileID.PhantasmalBolt:
                     case ProjectileID.PhantasmalEye:
                     case ProjectileID.PhantasmalSphere:
-                        target.AddBuff(mod.BuffType("CurseoftheMoon"), Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
                         break;
 
                     case ProjectileID.RocketSkeleton:

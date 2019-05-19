@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
         private const float PI = (float)Math.PI;
         private const float rotationPerTick = PI / 140f;
 
+        private bool targetIsMe;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Oceanic Ritual");
@@ -45,48 +47,62 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 projectile.velocity = Main.npc[ai1].Center - projectile.Center;
                 projectile.velocity /= 20f;
 
-                Player player = Main.player[Main.myPlayer];
-                if (player.active && !player.dead)
+                if (Main.npc[ai1].HasPlayerTarget)
                 {
-                    float distance = player.Distance(projectile.Center);
-                    const float threshold = 1200f;
-                    if (distance > threshold)
+                    targetIsMe = Main.npc[ai1].target == Main.myPlayer;
+
+                    Player player = Main.player[Main.npc[ai1].target];
+                    if (player.active && !player.dead)
                     {
-                        if (distance > threshold * 1.5f)
+                        float distance = player.Distance(projectile.Center);
+                        const float threshold = 1200f;
+                        if (Math.Abs(distance - threshold) < 30f && player.hurtCooldowns[1] == 0 && projectile.alpha == 0)
                         {
-                            if (distance > threshold * 2f)
+                            int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
+                            player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
+                                Main.npc[ai1].damage / 3, hitDirection, false, false, false, 1);
+                            player.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += ai1 == FargoGlobalNPC.fishBossEX ? 50 : 25;
+                            player.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(300, 600));
+                        }
+                        if (distance > threshold)
+                        {
+                            if (distance > threshold * 1.5f)
                             {
-                                player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
-                                return;
+                                if (distance > threshold * 2f)
+                                {
+                                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
+                                    return;
+                                }
+
+                                player.frozen = true;
+                                player.controlHook = false;
+                                player.controlUseItem = false;
+                                if (player.mount.Active)
+                                    player.mount.Dismount(player);
+                                player.velocity.X = 0f;
+                                player.velocity.Y = -0.4f;
                             }
 
-                            player.frozen = true;
-                            player.controlHook = false;
-                            player.controlUseItem = false;
-                            if (player.mount.Active)
-                                player.mount.Dismount(player);
-                            player.velocity.X = 0f;
-                            player.velocity.Y = -0.4f;
-                        }
+                            Vector2 movement = projectile.Center - player.Center;
+                            float difference = movement.Length() - 1200f;
+                            movement.Normalize();
+                            movement *= difference < 17f ? difference : 17f;
+                            player.position += movement;
 
-                        Vector2 movement = projectile.Center - player.Center;
-                        float difference = movement.Length() - 1200f;
-                        movement.Normalize();
-                        movement *= difference < 17f ? difference : 17f;
-                        player.position += movement;
-
-                        for (int i = 0; i < 20; i++)
-                        {
-                            int d = Dust.NewDust(player.position, player.width, player.height, 135, 0f, 0f, 0, default(Color), 2.5f);
-                            Main.dust[d].noGravity = true;
-                            Main.dust[d].noLight = true;
-                            Main.dust[d].velocity *= 5f;
+                            for (int i = 0; i < 20; i++)
+                            {
+                                int d = Dust.NewDust(player.position, player.width, player.height, 135, 0f, 0f, 0, default(Color), 2.5f);
+                                Main.dust[d].noGravity = true;
+                                Main.dust[d].noLight = true;
+                                Main.dust[d].velocity *= 5f;
+                            }
                         }
                     }
                 }
             }
             else
             {
+                targetIsMe = true;
                 projectile.velocity = Vector2.Zero;
                 projectile.alpha += 2;
                 if (projectile.alpha > 255)
@@ -122,6 +138,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
             Color color26 = lightColor;
             color26 = projectile.GetAlpha(color26);
+            if (!targetIsMe)
+                color26 *= 0.15f;
 
             for (int x = 0; x < 32; x++)
             {
@@ -143,7 +161,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(150, 50 + (int)(100.0 * Main.DiscoG / 255.0), 255, 200);
+            return new Color(150, 50 + (int)(100.0 * Main.DiscoG / 255.0), 255, 150);
         }
     }
 }

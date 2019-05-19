@@ -13,6 +13,46 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 
+-rainbow slime spikes don't ignore tiles anymore
+-halved krampus spawn rate
+-various masomode spawns no longer happen during old one's army
+-fishron's oceanic seal only affects his current target
+-oceanic seal now prevents dodging/lifesteal
+-reverse mana flow also causes -90% magic damage
+-curse of the moon DOT is weaker
+-removed bleed/frostburn/moon leech effects from nullification curse
+-moon lord phantasmal attacks have consistent debuff times
+-ML deathray meme debuffs removed, now inflicts marked for death
+-moon leech disables palladium enchant lifesteal too.
+-ML no longer inflicts water candle/battle during phase 2
+-ML attacks are on fixed timer
+-some work on ML synchronization, retooled masostate as static masoStateML
+-golem anti air fireballs are only fired up, but he does the anti-underground version whenever he lands
+-golem does his fireballs in phase 1 too, but anti air is half as frequent
+-golem AAFs are now 7 per spread when outside temple (was 5)
+-fixed groundpound glitch in MP
+-FORCE OF EARTH ACTUALLY GIVES MYTHRIL EFFECT
+-nullicurse and oceanic seal disable shell hide too
+-nerfed ML debuffs again
+-mutant antibodies and cyclonic fin give buffs to cute fishron!!!!!
+-nerfed ML deathrays again
+-nerfed ML lightning (no longer does triple damage (normally only double), no longer does 5-10sec electrified (normally 5max))
+-ML no longer regenerates during stardust phase (fucking idiots)
+-galactic globe gives curse of moon immune
+-djinn drops flying carpet, 5% chance
+-dark caster drops water bolt, 5%
+-lava charm is now lava slime drop (1%)
+-dark caster spawns less often in normal cave
+
+-slime rain, the guardian, penetrator, and nuke fishron recipes require sadism (post-fish EX)
+-penetrator dash gives total immunity to all damage
+-nuke fishron works on fishron again
+-nuke fishron inflicts oceanic maul/mutant nibble/curse of moon
+-fish nukes also explode into razor rings like spectral fishron
+-cyclonic fin/maso soul also gives frozen immune
+-cyclonic fin gives attacks inflict curse of moon
+
+
 ECH all below is accounted for in changelog now
 
 -added fishron's anti running spell circle

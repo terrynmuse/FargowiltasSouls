@@ -803,7 +803,7 @@ namespace FargowiltasSouls
                 int tileX = (int)Main.player[player.whoAmI].position.X / 16;
                 int tileY = (int)Main.player[player.whoAmI].position.Y / 16;
                 Tile currentTile = Framing.GetTileSafely(tileX, tileY);
-                if (currentTile.wall == WallID.SpiderUnsafe && player.stickyBreak > 0 && !PureHeart)
+                if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe && player.stickyBreak > 0 && !PureHeart)
                 {
                     player.AddBuff(BuffID.Webbed, 30);
                     //player.stickyBreak = 1000;
@@ -812,7 +812,7 @@ namespace FargowiltasSouls
                     int num3 = (int)vector.X;
                     int num4 = (int)vector.Y;
                     WorldGen.KillTile(num3, num4, false, false, false);
-                    if (Main.netMode == 1 && !Main.tile[num3, num4].active() && Main.netMode == 1)
+                    if (Main.netMode == 1 && !Main.tile[num3, num4].active())
                         NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
                 }
 
@@ -902,7 +902,7 @@ namespace FargowiltasSouls
 
             if (LihzahrdTreasureBox && player.gravDir > 0 && Soulcheck.GetValue("Lihzahrd Ground Pound"))
             {
-                if (player.controlDown && !player.mount.Active)
+                if (player.controlDown && !player.mount.Active && !player.controlJump)
                 {
                     if (player.velocity.Y != 0f)
                     {
@@ -934,15 +934,15 @@ namespace FargowiltasSouls
                                         continue;
                                     int tilePosX = x + 16 * i;
                                     int tilePosY = y;
-                                    if (Main.tile[tilePosX, tilePosY] == null)
-                                        Main.tile[tilePosX, tilePosY] = new Tile();
-                                    while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[Main.tile[tilePosX, tilePosY].type]))
+                                    if (Main.tile[tilePosX, tilePosY] != null)
                                     {
-                                        tilePosY++;
-                                        if (Main.tile[tilePosX, tilePosY] == null)
-                                            Main.tile[tilePosX, tilePosY] = new Tile();
+                                        while (Main.tile[tilePosX, tilePosY] != null
+                                            && !(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[Main.tile[tilePosX, tilePosY].type]))
+                                        {
+                                            tilePosY++;
+                                        }
+                                        Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, mod.ProjectileType("GeyserFriendly"), 80, 8f, player.whoAmI);
                                     }
-                                    Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, mod.ProjectileType("GeyserFriendly"), 80, 8f, player.whoAmI);
                                 }
                             }
                         }
@@ -1322,7 +1322,7 @@ namespace FargowiltasSouls
                     player.lifeRegenCount = 0;
 
                 player.lifeRegenTime = 0;
-                player.lifeRegen -= 12;
+                player.lifeRegen -= 8;
             }
         }
 
@@ -1833,6 +1833,7 @@ namespace FargowiltasSouls
             if (CyclonicFin)
             {
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
+                target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
 
                 if (crit && CyclonicFinCD <= 0 && proj.type != mod.ProjectileType("RazorbladeTyphoonFriendly") && Soulcheck.GetValue("Spectral Fishron"))
                 {
@@ -2116,7 +2117,7 @@ namespace FargowiltasSouls
                     TinCrit += 4;
             }
 
-            if (PalladEnchant && palladiumCD == 0 && !target.immortal)
+            if (PalladEnchant && palladiumCD == 0 && !target.immortal && !player.moonLeech)
             {
                 int heal = damage / 20;
                 if (heal > 5)
@@ -2224,6 +2225,7 @@ namespace FargowiltasSouls
             if (CyclonicFin)
             {
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
+                target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
 
                 if (crit && CyclonicFinCD <= 0 && Soulcheck.GetValue("Spectral Fishron"))
                 {
@@ -3241,7 +3243,7 @@ namespace FargowiltasSouls
             {
                 const int focusRadius = 50;
 
-                if (Math.Abs(player.velocity.X) < 1.5f && Math.Abs(player.velocity.Y) < 1.5f)
+                if (Math.Abs(player.velocity.X) < .5f && Math.Abs(player.velocity.Y) < .5f)
                 {
                     for (int i = 0; i < 25; i++)
                     {
@@ -3945,7 +3947,7 @@ namespace FargowiltasSouls
             AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
             AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
 
-            if (!TerrariaSoul && Soulcheck.GetValue("Turtle Shell Buff") && IsStandingStill && !player.controlUseItem)
+            if (!TerrariaSoul && Soulcheck.GetValue("Turtle Shell Buff") && IsStandingStill && !player.controlUseItem && !noDodge)
                 player.AddBuff(mod.BuffType("ShellHide"), 2);
         }
 

@@ -9,6 +9,7 @@ namespace FargowiltasSouls.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Slime Rain");
             Tooltip.SetDefault("The King's innards spread across the land..");
         }
 
@@ -24,7 +25,7 @@ namespace FargowiltasSouls.Items.Weapons
             item.melee = true;
             item.knockBack = 6;
             item.value = 10000;
-            item.rare = 10;
+            item.rare = 11;
             item.UseSound = SoundID.Item34;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("SlimeBall");
@@ -58,14 +59,14 @@ namespace FargowiltasSouls.Items.Weapons
 
         public override void AddRecipes()
         {
-            if (Fargowiltas.Instance.FargosLoaded)
-            {
-                ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(null, "SlimeSword", 10);
-                recipe.AddTile(mod, "CrucibleCosmosSheet");
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-            }
+            ModRecipe recipe = new ModRecipe(mod);
+
+            recipe.AddIngredient(mod.ItemType("SlimeSword"), 10);
+            recipe.AddIngredient(mod.ItemType("Sadism"));
+
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

@@ -18,7 +18,7 @@ Increases max life by 250, wing time by 200%, and armor penetration by 50
 Increases max life by 50%, damage by 30%, and damage reduction by 20%
 Increases life regen drastically, increases max number of minions and sentries by 10
 Grants gravity control, fastfall, and immunity to all Masochist Mode debuffs and more
-Makes armed and magic skeletons less hostile outside the Dungeon
+Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks and inflict Sadism as a cocktail of Masochist Mode debuffs
 You respawn twice as fast and erupt into Spiky Balls and Ancient Visions when injured
 Attacks have a chance to squeak and deal 1 damage to you
@@ -209,9 +209,66 @@ Summons the aid of all Masochist Mode bosses to your side");
                 player.AddBuff(mod.BuffType("TrueEyes"), 2);
 
             //cyclonic fin
+            player.buffImmune[BuffID.Frozen] = true;
             fargoPlayer.CyclonicFin = true;
             if (fargoPlayer.CyclonicFinCD > 0)
                 fargoPlayer.CyclonicFinCD -= 2;
+            if (player.mount.Active && player.mount.Type == MountID.CuteFishron)
+            {
+                player.MountFishronSpecialCounter = 300;
+                player.meleeDamage += 0.15f;
+                player.rangedDamage += 0.15f;
+                player.magicDamage += 0.15f;
+                player.minionDamage += 0.15f;
+                player.thrownDamage += 0.15f;
+                player.meleeCrit += 30;
+                player.rangedCrit += 30;
+                player.magicCrit += 30;
+                player.thrownCrit += 30;
+                player.statDefense += 30;
+                if (player.controlLeft == player.controlRight)
+                {
+                    if (player.velocity.X != 0)
+                        player.velocity.X -= player.mount.Acceleration * Math.Sign(player.velocity.X);
+                    if (player.velocity.X != 0)
+                        player.velocity.X -= player.mount.Acceleration * Math.Sign(player.velocity.X);
+                }
+                else if (player.controlLeft)
+                {
+                    player.velocity.X -= player.mount.Acceleration * 4f;
+                    if (player.velocity.X < -16f)
+                        player.velocity.X = -16f;
+                    if (!player.controlUseItem)
+                        player.direction = -1;
+                }
+                else if (player.controlRight)
+                {
+                    player.velocity.X += player.mount.Acceleration * 4f;
+                    if (player.velocity.X > 16f)
+                        player.velocity.X = 16f;
+                    if (!player.controlUseItem)
+                        player.direction = 1;
+                }
+                if (player.controlUp == player.controlDown)
+                {
+                    if (player.velocity.Y != 0)
+                        player.velocity.Y -= player.mount.Acceleration * Math.Sign(player.velocity.Y);
+                    if (player.velocity.Y != 0)
+                        player.velocity.Y -= player.mount.Acceleration * Math.Sign(player.velocity.Y);
+                }
+                else if (player.controlUp)
+                {
+                    player.velocity.Y -= player.mount.Acceleration * 4f;
+                    if (player.velocity.Y < -16f)
+                        player.velocity.Y = -16f;
+                }
+                else if (player.controlDown)
+                {
+                    player.velocity.Y += player.mount.Acceleration * 4f;
+                    if (player.velocity.Y > 16f)
+                        player.velocity.Y = 16f;
+                }
+            }
 
             //sadism
             player.buffImmune[mod.BuffType("Antisocial")] = true;

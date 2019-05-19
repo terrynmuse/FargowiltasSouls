@@ -17,6 +17,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             Tooltip.SetDefault(
 @"'Gaia's blessing shines upon you'
 25% chance for your projectiles to explode into shards
+25% increased weapon use speed
 Greatly increases life regeneration after striking an enemy 
 One attack gains 5% life steal every second, capped at 5 HP
 Flower petals will cause extra damage to your target 
@@ -40,6 +41,8 @@ Briefly become invulnerable after striking an enemy");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            //mythril
+            modPlayer.AttackSpeed *= 1.25f;
             //shards
             modPlayer.CobaltEnchant = true;
             //regen on hit, heals

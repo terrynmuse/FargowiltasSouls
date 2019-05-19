@@ -11,9 +11,9 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Explosion");
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
-            ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+            DisplayName.SetDefault("Fish Nuke");
+            //ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
+            //ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
         public override void SetDefaults()
@@ -22,9 +22,9 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.height = 500;
             projectile.aiStyle = 0;
             projectile.friendly = true;
-            projectile.thrown = true;
+            projectile.ranged = true;
             projectile.penetrate = -1;
-            projectile.timeLeft = 10;
+            projectile.timeLeft = 2;
             projectile.tileCollide = false;
             projectile.light = 0.75f;
             projectile.ignoreWater = true;
@@ -32,7 +32,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             aiType = ProjectileID.Bullet;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        /*public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if (target.whoAmI == NPCs.FargoGlobalNPC.fishBossEX)
             {
@@ -43,23 +43,32 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 damage = 0;
                 crit = false;
             }
+        }*/
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.immune[projectile.owner] = 0;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 900);
+            target.AddBuff(mod.BuffType("MutantNibble"), 900);
+            target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
         }
 
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(2, (int) projectile.position.X, (int) projectile.position.Y, 14);
-            projectile.position.X = projectile.position.X + projectile.width / 2f;
-            projectile.position.Y = projectile.position.Y + projectile.height / 2f;
-            projectile.position.X = projectile.position.X - projectile.width / 2f;
-            projectile.position.Y = projectile.position.Y - projectile.height / 2f;
-
-            for (int i = 0; i < 50; i++)
+            Main.PlaySound(2, projectile.Center, 14);
+            for (int i = 0; i < 30; i++)
             {
                 int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
                     projectile.height, 31, 0f, 0f, 100, default(Color), 3f);
                 Main.dust[dust].velocity *= 1.4f;
             }
-
+            for (int i = 0; i < 60; i++)
+            {
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 0, default(Color), 3.5f);
+                Main.dust[d].noGravity = true;
+                Main.dust[d].noLight = true;
+                Main.dust[d].velocity *= 4f;
+            }
             for (int i = 0; i < 30; i++)
             {
                 int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
@@ -87,6 +96,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                     Main.gore[gore].velocity.Y += 1f;
                 }
             }
+
+
         }
     }
 }

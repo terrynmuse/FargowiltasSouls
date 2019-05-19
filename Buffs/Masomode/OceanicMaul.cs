@@ -8,7 +8,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Oceanic Maul");
-            Description.SetDefault("Defensive stats and max life are savaged, no lifesteal, no dodging");
+            Description.SetDefault("Defensive stats and max life are savaged");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
@@ -23,10 +23,8 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetModPlayer<FargoPlayer>(mod).OceanicMaul = true;
-            player.GetModPlayer<FargoPlayer>(mod).noDodge = true;
             player.bleed = true;
             player.onFrostBurn = true;
-            player.moonLeech = true;
         }
 
         public override void Update(NPC npc, ref int buffIndex)

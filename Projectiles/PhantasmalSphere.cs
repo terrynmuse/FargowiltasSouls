@@ -9,7 +9,7 @@ namespace FargowiltasSouls.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("PhantasmalSphere");
+            DisplayName.SetDefault("Phantasmal Sphere");
         }
 
         public override void SetDefaults()
@@ -23,19 +23,6 @@ namespace FargowiltasSouls.Projectiles
             projectile.timeLeft = 100;
             aiType = ProjectileID.Bullet;
         }
-
-
-        // public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        // {
-        // target.AddBuff(BuffID.Ichor, 240, true);
-        // target.AddBuff(BuffID.CursedInferno, 240, true);
-        // target.AddBuff(BuffID.Confused, 120, true);
-        // target.AddBuff(BuffID.Venom, 240, true);
-        // target.AddBuff(BuffID.ShadowFlame, 240, true);
-        // target.AddBuff(BuffID.OnFire, 240, true);
-        // target.AddBuff(BuffID.Frostburn, 240, true);
-        // }
-
 
         public override void AI()
         {
@@ -65,6 +52,11 @@ namespace FargowiltasSouls.Projectiles
                     projectile.velocity = Vector2.Lerp(projectile.velocity, desiredVelocity, 1f / amountOfFramesToLerpBy);
                 }
             }
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
         }
 
         private int HomeOnTarget()

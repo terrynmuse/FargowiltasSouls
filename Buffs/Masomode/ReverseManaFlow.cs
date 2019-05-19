@@ -19,8 +19,9 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            //all ranged weapons shoot confetti 
+            //mana cost also damages
             player.GetModPlayer<FargoPlayer>(mod).ReverseManaFlow = true;
+            player.magicDamage -= 0.9f;
         }
     }
 }

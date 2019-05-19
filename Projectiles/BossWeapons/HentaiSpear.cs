@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Spear");
+            DisplayName.SetDefault("The Penetrator");
         }
 
         public override void SetDefaults()
@@ -78,6 +78,11 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.rotation = (float) Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + MathHelper.ToRadians(135f);
             // Offset by 90 degrees here
             if (projectile.spriteDirection == -1) projectile.rotation -= MathHelper.ToRadians(90f);
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
         }
     }
 }

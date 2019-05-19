@@ -87,6 +87,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 // Set immunities
                 player.immune = true;
                 player.immuneTime = Math.Max(player.immuneTime, 2);
+                player.hurtCooldowns[0] = Math.Max(player.hurtCooldowns[0], 2);
+                player.hurtCooldowns[1] = Math.Max(player.hurtCooldowns[1], 2);
                 player.immuneNoBlink = true;
                 player.fallStart = (int) (player.position.Y / 16f);
                 player.fallStart2 = player.fallStart;
