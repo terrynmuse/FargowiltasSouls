@@ -43,8 +43,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
                 recipe.AddIngredient(thorium.ItemType("MythrilStaff"));
                 recipe.AddIngredient(ItemID.LaserRifle);
                 recipe.AddIngredient(ItemID.ClockworkAssaultRifle);
+                recipe.AddIngredient(thorium.ItemType("BulletStorm"));
                 recipe.AddIngredient(ItemID.Gatligator);
-                recipe.AddIngredient(ItemID.OnyxBlaster);
                 recipe.AddIngredient(ItemID.Megashark);
                 recipe.AddIngredient(thorium.ItemType("Trigun"));  
             }

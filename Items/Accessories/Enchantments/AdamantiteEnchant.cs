@@ -46,14 +46,15 @@ Any secondary projectiles may also split");
                 recipe.AddIngredient(thorium.ItemType("DynastyWarFan"));
                 recipe.AddIngredient(thorium.ItemType("Scorn"));
                 recipe.AddIngredient(thorium.ItemType("OgreSnotGun"));
+                recipe.AddIngredient(thorium.ItemType("MidasMallet"));
             }
             else
             {
                 recipe.AddIngredient(ItemID.DarkLance);
                 recipe.AddIngredient(ItemID.AdamantiteGlaive);
+                recipe.AddIngredient(ItemID.TitaniumTrident);
             }
             
-            recipe.AddIngredient(ItemID.Shotgun);
             recipe.AddIngredient(ItemID.VenomStaff);
             
             recipe.AddTile(TileID.CrystalBall);

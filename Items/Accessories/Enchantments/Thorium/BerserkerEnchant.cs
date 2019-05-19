@@ -10,8 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
     public class BerserkerEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        public bool allowJump = true;
-        public int timer;
        
         public override bool Autoload(ref string name)
         {
@@ -27,7 +25,7 @@ Damage is increased by 15% at every 25% segment of life
 Fire surrounds your armour and melee weapons
 Enemies that you set on fire or singe will take additional damage over time
 Nearby enemies are ignited
-When you die, you violently explode dealing massive damage to surrounding enemies
+When you die, you violently explode dealing massive damage
 Effects of Spring Steps and Slag Stompers
 Effects of Molten Spear Tip and Orange Music Player");
         }
@@ -76,15 +74,13 @@ Effects of Molten Spear Tip and Orange Music Player");
             thoriumPlayer.MP3AttackSpeed = 2;
             //magma
             mod.GetItem("MagmaEnchant").UpdateAccessory(player, hideVisual);
-
-            //molten explode and inferno
-            modPlayer.MoltenEffect(20);
+            //molten
+            modPlayer.MoltenEffect(15);
         }
         
         private readonly string[] items =
         {
             "TunePlayerAttackSpeed",
-            "BerserkBreaker",
             "SurtrsSword",
             "ThermogenicImpaler",
             "WyvernSlayer"
@@ -103,6 +99,8 @@ Effects of Molten Spear Tip and Orange Music Player");
             recipe.AddIngredient(null, "MoltenEnchant");
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(ItemID.BreakerBlade);
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

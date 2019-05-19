@@ -48,7 +48,7 @@ While standing in lava, you gain 15 more armor penetration, 15% attack speed, an
                 recipe.AddIngredient(thorium.ItemType("ObsidianScale"));
                 recipe.AddIngredient(ItemID.ObsidianRose);
                 recipe.AddIngredient(ItemID.SharkToothNecklace);
-                recipe.AddIngredient(thorium.ItemType("ObsidianButterfly"));
+                recipe.AddIngredient(thorium.ItemType("MagmaBlade"));
             }
             else
             {

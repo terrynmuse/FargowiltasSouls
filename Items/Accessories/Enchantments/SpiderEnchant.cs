@@ -71,10 +71,10 @@ Your minions can now crit with a 10% chance
             {      
                 recipe.AddIngredient(thorium.ItemType("VenomSubwoofer"));
                 recipe.AddIngredient(thorium.ItemType("Webgun"));
+                recipe.AddIngredient(thorium.ItemType("Arthropod"));
                 recipe.AddIngredient(ItemID.SpiderStaff);
                 recipe.AddIngredient(ItemID.QueenSpiderStaff);
                 recipe.AddIngredient(ItemID.BatScepter);
-                recipe.AddIngredient(thorium.ItemType("ZereneButterfly"));
             }
             else
             {

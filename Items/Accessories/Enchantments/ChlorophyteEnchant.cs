@@ -61,10 +61,10 @@ Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer
             modPlayer.FlowerBoots();
             modPlayer.JungleEffect();
 
-            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
         }
 
-        private void Thorium(Player player)
+        private void Thorium(Player player, bool hideVisual)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //subwoofer
@@ -78,30 +78,8 @@ Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer
                 }
             }
             //petal shield
-            if (thoriumPlayer.outOfCombat)
-            {
-                timer++;
-                if (timer >= 900)
-                {
-                    thoriumPlayer.lifeRecovery += 3;
-                    timer = 900;
-                    return;
-                }
-                if (timer >= 600)
-                {
-                    thoriumPlayer.lifeRecovery += 2;
-                    return;
-                }
-                if (timer >= 300)
-                {
-                    thoriumPlayer.lifeRecovery++;
-                    return;
-                }
-            }
-            else
-            {
-                timer = 0;
-            }
+            mod.GetItem("PetalShield").UpdateAccessory(player, hideVisual);
+            player.statDefense -= 2;
             //night shade petal
             thoriumPlayer.nightshadeBoost = true;
         }
@@ -120,7 +98,7 @@ Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer
                 recipe.AddIngredient(ItemID.FlowerBoots);
                 recipe.AddIngredient(ItemID.StaffofRegrowth);
                 recipe.AddIngredient(ItemID.LeafBlower);
-                recipe.AddIngredient(thorium.ItemType("ChlorophyteButterfly"));
+                recipe.AddIngredient(thorium.ItemType("BudBomb"), 300);
             }
             else
             {

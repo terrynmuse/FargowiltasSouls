@@ -33,8 +33,8 @@ Summons a friendly Cultist to fight at your side");
             //magical bulb
             player.lifeRegen += 2;
             player.buffImmune[BuffID.Venom] = true;
-            /*if (Soulcheck.GetValue("Plantera Minion"))
-                player.AddBuff(mod.BuffType("PlanterasChild"), 2);*/
+            if (Soulcheck.GetValue("Plantera Minion"))
+                player.AddBuff(mod.BuffType("PlanterasChild"), 2);
 
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;

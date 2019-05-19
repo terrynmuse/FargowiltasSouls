@@ -43,25 +43,11 @@ Effects of Goblin War Shield and Agnor's Bowl");
             //tide hunter set bonus
             thoriumPlayer.tideHunterSet = true;
             //angler bowl
-            if (!hideVisual)
-            {
-                if (player.direction > 0 && Main.rand.Next(2) == 0)
-                {
-                    Projectile.NewProjectile(player.Center.X + 56f, player.Center.Y - 10f, 0f, 0f, thorium.ProjectileType("AnglerLight"), 0, 0f, Main.myPlayer, 0f, 0f);
-                }
-                if (player.direction < 0 && Main.rand.Next(2) == 0)
-                {
-                    Projectile.NewProjectile(player.Center.X - 56f, player.Center.Y - 10f, 0f, 0f, thorium.ProjectileType("AnglerLight"), 0, 0f, Main.myPlayer, 0f, 0f);
-                }
-            }
+            thorium.GetItem("AnglerBowl").UpdateAccessory(player, hideVisual);
             //yew set bonus
             thoriumPlayer.yewCharging = true;
             //goblin war shield
-            if (player.velocity.X == 0f)
-            {
-                player.statDefense += 4;
-                player.noKnockback = true;
-            }
+            thorium.GetItem("GoblinWarshield").UpdateAccessory(player, hideVisual);
         }
         
         private readonly string[] items =

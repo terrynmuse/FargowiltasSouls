@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'What killed the dinosaurs? The ice age!'
 Magic damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies
 An icy aura surrounds you, which freezes nearby enemies after a short delay
-Effects of Ice Bound Strider Hide and Blue Music Player
+Effects of Frostburn Pouch, Ice Bound Strider Hide, and Blue Music Player
 Summons a pet Penguin and Owl");
         }
 
@@ -60,6 +60,8 @@ Summons a pet Penguin and Owl");
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
             }
+            //frostburn pouch
+            thoriumPlayer.frostburnPouch = true;
         }
 
         public override void AddRecipes()

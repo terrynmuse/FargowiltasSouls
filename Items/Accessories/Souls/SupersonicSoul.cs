@@ -46,7 +46,6 @@ Effects of Flying Carpet";
         {
             item.width = 20;
             item.height = 20;
-            item.defense = 4;
             item.accessory = true;
             item.value = 750000;
             item.rare = 11;

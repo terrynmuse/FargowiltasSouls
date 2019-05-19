@@ -49,11 +49,7 @@ Summons a Pet Parrot");
             "FlightBoots",
             "ChampionWing",
             "HarpyTalon",
-            "Aerial",
-            "HarpyPelter",
-            "PetalBloom",
-            "PetalWand",
-            "AvianButterfly"
+            "Aerial"
         };
 
         public override void AddRecipes()
@@ -63,6 +59,11 @@ Summons a Pet Parrot");
             ModRecipe recipe = new ModRecipe(mod);
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(thorium.ItemType("HarpiesBarrage"), 300);
+            recipe.AddIngredient(thorium.ItemType("ShinobiSlicer"), 300);
+            recipe.AddIngredient(thorium.ItemType("Bolas"), 300);
+            recipe.AddIngredient(thorium.ItemType("WackWrench"), 300);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

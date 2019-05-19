@@ -47,9 +47,9 @@ Summons a pet Black Cat");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {   
                 recipe.AddIngredient(ItemID.StarAnise, 300);
-                recipe.AddIngredient(ItemID.SmokeBomb, 50);
+                recipe.AddIngredient(ItemID.SpikyBall, 300);
                 recipe.AddIngredient(thorium.ItemType("Scorpain"));
-                recipe.AddIngredient(thorium.ItemType("AmphibianEgg"));
+                recipe.AddIngredient(ItemID.SmokeBomb, 50);
             }
             else
             {

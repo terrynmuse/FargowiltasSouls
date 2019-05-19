@@ -60,7 +60,7 @@ If an ally is below half health, you will gain increased healing abilities");
             "ChiLantern",
             "GraniteIonStaff",
             "Prophecy",
-            "LifeCrystalButterfly"
+            "LifeDisperser"
         };
 
         public override void AddRecipes()

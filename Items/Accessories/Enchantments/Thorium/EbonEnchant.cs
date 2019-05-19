@@ -52,8 +52,7 @@ Corrupts your radiant powers, causing them to take on dark forms and deal additi
             "DarkHeart",
             "PoisonPrickler",
             "EaterOfPain",
-            "BrainCoral",
-            "BloodiedButterfly"
+            "BrainCoral"
         };
 
         public override void AddRecipes()
@@ -63,6 +62,8 @@ Corrupts your radiant powers, causing them to take on dark forms and deal additi
             ModRecipe recipe = new ModRecipe(mod);
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+
+            recipe.AddIngredient(ItemID.RedAdmiralButterfly);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

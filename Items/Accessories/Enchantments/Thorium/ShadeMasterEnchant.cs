@@ -21,9 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Shade Master Enchantment");
             Tooltip.SetDefault(
 @"'Live in the shadows, and strike with precision'
-Striking an enemy with any throwing weapon will trigger 'Shadow Dance'
-Throw a smoke bomb to teleport to it
-Standing nearby smoke gives you the First Strike buff
+50% of the damage you take is staggered over the next 10 seconds
+Throw a smoke bomb to teleport to it and gain the First Strike Buff
 Summons a pet Black Cat");
         }
 

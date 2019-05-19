@@ -24,10 +24,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Your boots vibrate at an unreal frequency, increasing movement speed significantly
 While moving, your melee damage and critical strike chance are increased
 Your attacks have a chance to unleash an explosion of Dragon's Flame
-Your attacks may inflict Darkness on enemies
 Effects of Crash Boots, Dragon Talon Necklace, and Cursed Flail-Core
 Effects of Grim Subwoofer and Green Music Player
-Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
+Summons a pet Wyvern");
         }
 
         public override void SetDefaults()
@@ -70,23 +69,9 @@ Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
             }
 
             //crash boots
-            player.moveSpeed += 0.0015f * thoriumPlayer.momentum;
-            player.maxRunSpeed += 0.0025f * thoriumPlayer.momentum;
-            if (player.velocity.X > 0f || player.velocity.X < 0f)
-            {
-                if (thoriumPlayer.momentum < 180)
-                {
-                    thoriumPlayer.momentum++;
-                }
-                if (thoriumPlayer.momentum > 60 && Collision.SolidCollision(player.position, player.width, player.height + 4))
-                {
-                    int num = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + player.height - 2f), player.width + 4, 4, 6, 0f, 0f, 100, default(Color), 0.625f + 0.0075f * thoriumPlayer.momentum);
-                    Main.dust[num].noGravity = true;
-                    Main.dust[num].noLight = true;
-                    Dust dust = Main.dust[num];
-                    dust.velocity *= 0f;
-                }
-            }
+            thorium.GetItem("CrashBoots").UpdateAccessory(player, hideVisual);
+            player.moveSpeed -= 0.15f;
+            player.maxRunSpeed -= 1f;
             //cursed core
             thoriumPlayer.cursedCore = true;
             //corrupt woofer
@@ -109,8 +94,6 @@ Summons a pet Wyvern, Eater of Souls, and Shadow Orb");
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
             thoriumPlayer.wyvernPet = true;
-            //darkness, pets
-            modPlayer.ShadowEffect(hideVisual);
         }
 
         public override void AddRecipes()

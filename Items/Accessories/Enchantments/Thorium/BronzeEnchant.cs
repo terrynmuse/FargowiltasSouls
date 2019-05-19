@@ -22,9 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Bronze Enchantment");
             Tooltip.SetDefault(
 @"'You have the favor of Zeus'
-Attacks have a chance to shock enemies with chain lightning
 Thrown damage has a chance to cause a lightning bolt to strike
-Effects of Champion's Rebuttal, Spartan Sadals, and Spartan's Subwoofer");
+Effects of Olympic Torch, Champion's Rebuttal, Spartan Sadals, and Spartan's Subwoofer");
         }
 
         public override void SetDefaults()
@@ -47,7 +46,9 @@ Effects of Champion's Rebuttal, Spartan Sadals, and Spartan's Subwoofer");
             //rebuttal
             thoriumPlayer.championShield = true;
             //sandles
-            thoriumPlayer.spartanSandle = true;
+            thorium.GetItem("SpartanSandles").UpdateAccessory(player, hideVisual);
+            player.moveSpeed -= 0.15f;
+            player.maxRunSpeed -= 1f;
             //subwoofer
             for (int i = 0; i < 255; i++)
             {
@@ -58,8 +59,9 @@ Effects of Champion's Rebuttal, Spartan Sadals, and Spartan's Subwoofer");
                 }
             }
             thoriumPlayer.bardRangeBoost += 450;
-            //copper enchant
-            player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
+
+            //olympic torch
+            thoriumPlayer.olympicTorch = true;
         }
 
         public override void AddRecipes()
@@ -71,13 +73,13 @@ Effects of Champion's Rebuttal, Spartan Sadals, and Spartan's Subwoofer");
             recipe.AddIngredient(thorium.ItemType("BronzeHelmet"));
             recipe.AddIngredient(thorium.ItemType("BronzeBreastplate"));
             recipe.AddIngredient(thorium.ItemType("BronzeGreaves"));
-            recipe.AddIngredient(null, "CopperEnchant");
+            recipe.AddIngredient(thorium.ItemType("OlympicTorch"));
             recipe.AddIngredient(thorium.ItemType("ChampionsBarrier"));
             recipe.AddIngredient(thorium.ItemType("SpartanSandles"));
             recipe.AddIngredient(thorium.ItemType("BronzeSubwoofer"));
             recipe.AddIngredient(thorium.ItemType("ChampionBlade"));
             recipe.AddIngredient(thorium.ItemType("BronzeThrowing"), 300);
-            recipe.AddIngredient(thorium.ItemType("AncientWingButterfly"));
+            recipe.AddIngredient(thorium.ItemType("GraniteThrowingAxe"), 300);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

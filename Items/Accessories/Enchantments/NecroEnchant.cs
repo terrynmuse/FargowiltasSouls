@@ -43,10 +43,10 @@ Summons a pet Skeletron Head");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("Slugger"));
+                recipe.AddIngredient(ItemID.BoneGlove);
                 recipe.AddIngredient(ItemID.Marrow);
                 recipe.AddIngredient(thorium.ItemType("BoneFlayerTail"));
                 recipe.AddIngredient(ItemID.TheGuardiansGaze);
-                recipe.AddIngredient(thorium.ItemType("BoneButterfly"));
             }
             else
             {

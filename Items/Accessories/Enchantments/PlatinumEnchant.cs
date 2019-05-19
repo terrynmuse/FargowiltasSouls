@@ -83,8 +83,8 @@ Summons a pet Glitter";
                 recipe.AddIngredient(thorium.ItemType("PlatinumAegis"));
                 recipe.AddIngredient(ItemID.DiamondRing);
                 recipe.AddIngredient(ItemID.TaxCollectorsStickOfDoom);
+                recipe.AddIngredient(ItemID.WhitePhasesaber);
                 recipe.AddIngredient(ItemID.BeamSword);
-                recipe.AddIngredient(thorium.ItemType("DiamondButterfly"));
                 recipe.AddIngredient(thorium.ItemType("ShinyObject"));
             }
             else

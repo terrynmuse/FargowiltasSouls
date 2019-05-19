@@ -300,7 +300,6 @@ When you die, you explode and revive with 200 HP";
                 timer = 0;
             }
 
-
             //WILL
             if (Soulcheck.GetValue("Proof of Avarice"))
             {

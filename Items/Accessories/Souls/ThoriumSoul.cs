@@ -2,7 +2,6 @@
 using System;
 using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
@@ -13,8 +12,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public int whisperingTimer;
-        public int stormTimer;
-        public int lightGen;
         public int terrariumTimer;
         public int tideTimer;
 
@@ -54,7 +51,6 @@ Damage will duplicate itself for 33% of the damage and apply the Frozen debuff t
             Attacks will heavily burn and damage all adjacent enemies
             Every third attack will unleash an illumite missile
             Your attacks have a chance to unleash an explosion of Dragon's Flame
-Your attacks may inflict Darkness on enemies
 Consecutive attacks against enemies might drop flesh
             Every seventh attack will unleash damaging mana bolts
 Critical strikes engulf enemies in a long lasting void flame and unleash ivory flares
@@ -63,8 +59,6 @@ Critical strikes engulf enemies in a long lasting void flame and unleash ivory f
 
             Critical strikes release a splash of foam, slowing nearby enemies
 After four consecutive non-critical strikes, your next attack will mini-crit for 150% damage
-            Greatly increases life regen
-Hearts heal for 1.5x as much
              Critical strikes ring a bell over your head, slowing all nearby enemies briefly
              Produces a floating globule every half second
 Every globule increases defense and makes your next attack a mini-crit
@@ -182,69 +176,14 @@ Every globule increases defense and makes your next attack a mini-crit
             if (Soulcheck.GetValue("Eye of the Storm"))
             {
                 //eye of the storm
-                stormTimer++;
-                if (stormTimer > 60)
-                {
-                    if (player.direction > 0)
-                    {
-                        Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                        Projectile.NewProjectile(player.Center.X + 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                        stormTimer = 0;
-                    }
-                    if (player.direction < 0)
-                    {
-                        Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                        Projectile.NewProjectile(player.Center.X - 14f, player.Center.Y - 20f, Main.rand.Next(-5, 5), Main.rand.Next(-5, -1), thorium.ProjectileType("StormHome"), 25, 0f, player.whoAmI, 0f, 0f);
-                        stormTimer = 0;
-                    }
-                }
+                thorium.GetItem("EyeoftheStorm").UpdateAccessory(player, hideVisual);
             }
             //rebuttal
             thoriumPlayer.championShield = true;
-            //copper enchant
-            player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
-            if (Soulcheck.GetValue("Ogre Sandals"))
+
+            if (Soulcheck.GetValue("Incandescent Spark"))
             {
-                //ogre sandals
-                if (player.velocity.Y > 0f && thoriumPlayer.falling < 120)
-                {
-                    thoriumPlayer.falling += 3;
-                }
-                if (player.velocity.Y < 0f)
-                {
-                    thoriumPlayer.falling = 0;
-                }
-                if (player.velocity.Y == 0f && Collision.SolidCollision(player.position, player.width, player.height + 4) && thoriumPlayer.falling > 50)
-                {
-                    if (thoriumPlayer.falling >= 100)
-                    {
-                        Main.PlaySound(SoundID.Item70, player.position);
-                        Main.PlaySound(SoundID.Item69, player.position);
-                        float num = 16f;
-                        int num2 = 0;
-                        while (num2 < num)
-                        {
-                            Vector2 vector = Vector2.UnitX * 0f;
-                            vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(20f, 5f);
-                            vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
-                            int num3 = Dust.NewDust(player.Center, 0, 0, 0, 0f, 0f, 0, default(Color), 1f);
-                            Main.dust[num3].scale = 1.35f;
-                            Main.dust[num3].noGravity = true;
-                            Main.dust[num3].position = player.Center + vector;
-                            Dust dust = Main.dust[num3];
-                            dust.position.Y = dust.position.Y + 12f;
-                            Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
-                            int num4 = num2;
-                            num2 = num4 + 1;
-                        }
-                    }
-                    Main.PlaySound(SoundID.Item69, player.position);
-                    float num5 = 6f + 0.05f * thoriumPlayer.falling;
-                    int num6 = (int)(50.0 + thoriumPlayer.falling * 0.25);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 8f, 5f + thoriumPlayer.falling * 0.035f, 0f, thorium.ProjectileType("CrashSurge"), num6, num5, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 8f, -5f - thoriumPlayer.falling * 0.035f, 0f, thorium.ProjectileType("CrashSurge"), num6, num5, Main.myPlayer, 0f, 0f);
-                    thoriumPlayer.falling = 0;
-                }
+                thorium.GetItem("IncandescentSpark").UpdateAccessory(player, hideVisual);
             }
             if (Soulcheck.GetValue("Greedy Magnet"))
             {
@@ -275,8 +214,6 @@ Every globule increases defense and makes your next attack a mini-crit
                 //iron shield raise
                 modPlayer.IronEffect();
             }
-            //titanium
-            modPlayer.TitaniumEffect();
             //abyssal shell
             thoriumPlayer.AbyssalShell = true;
             if (Soulcheck.GetValue("Conduit Shield"))
@@ -331,19 +268,7 @@ Every globule increases defense and makes your next attack a mini-crit
             if (Soulcheck.GetValue("Eye of the Beholder"))
             {
                 //eye of beholder
-                lightGen++;
-                if (lightGen >= 40)
-                {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze"), 0, 0f, player.whoAmI, i, 0f);
-                    }
-                    for (int j = 0; j < 10; j++)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("BeholderGaze2"), 0, 0f, player.whoAmI, j, 0f);
-                    }
-                    lightGen = 0;
-                }
+                thorium.GetItem("EyeofBeholder").UpdateAccessory(player, hideVisual);
             }
             //slime pet
             modPlayer.AddPet("Pink Slime Pet", hideVisual, thorium.BuffType("PinkSlimeBuff"), thorium.ProjectileType("PinkSlime"));
@@ -384,21 +309,7 @@ Every globule increases defense and makes your next attack a mini-crit
             if (Soulcheck.GetValue("Mana-Charged Rocketeers"))
             {
                 //mana charge rockets
-                player.manaRegen++;
-                player.manaRegenDelay -= 2;
-                if (player.statMana > 0)
-                {
-                    player.rocketBoots = 1;
-                    if (player.rocketFrame)
-                    {
-                        if (Main.rand.Next(2) == 0)
-                        {
-                            player.statMana -= 2;
-                            Dust.NewDust(new Vector2(player.position.X, player.position.Y + 20f), player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 100, default(Color), 1.5f);
-                        }
-                        player.rocketTime = 1;
-                    }
-                }
+                thorium.GetItem("ManaChargedRocketeers").UpdateAccessory(player, hideVisual);
             }
 
             //HELHEIM
@@ -424,23 +335,9 @@ Every globule increases defense and makes your next attack a mini-crit
                 }
             }
             //crash boots
-            player.moveSpeed += 0.0015f * thoriumPlayer.momentum;
-            player.maxRunSpeed += 0.0025f * thoriumPlayer.momentum;
-            if (player.velocity.X > 0f || player.velocity.X < 0f)
-            {
-                if (thoriumPlayer.momentum < 180)
-                {
-                    thoriumPlayer.momentum++;
-                }
-                if (thoriumPlayer.momentum > 60 && Collision.SolidCollision(player.position, player.width, player.height + 4))
-                {
-                    int num = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + player.height - 2f), player.width + 4, 4, 6, 0f, 0f, 100, default(Color), 0.625f + 0.0075f * thoriumPlayer.momentum);
-                    Main.dust[num].noGravity = true;
-                    Main.dust[num].noLight = true;
-                    Dust dust = Main.dust[num];
-                    dust.velocity *= 0f;
-                }
-            }
+            thorium.GetItem("CrashBoots").UpdateAccessory(player, hideVisual);
+            player.moveSpeed -= 0.15f;
+            player.maxRunSpeed -= 1f;
             if (Soulcheck.GetValue("Dragon Flames"))
             {
                 //dragon 
@@ -448,8 +345,6 @@ Every globule increases defense and makes your next attack a mini-crit
             }
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
-            //darkness, pets
-            modPlayer.ShadowEffect(hideVisual);
             //demon blood badge
             thoriumPlayer.CrimsonBadge = true;
             if (Soulcheck.GetValue("Flesh Drops"))
@@ -464,8 +359,6 @@ Every globule increases defense and makes your next attack a mini-crit
             }
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
-            //crimson regen, pets
-            modPlayer.CrimsonEffect(hideVisual);
             //pet
             modPlayer.AddPet("Moogle Pet", hideVisual, thorium.BuffType("LilMogBuff"), thorium.ProjectileType("LilMog"));
             modPlayer.KnightEnchant = true;
