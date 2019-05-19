@@ -6296,7 +6296,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (noBiome && NPC.downedBoss3)
                             {
-                                pool[NPCID.DarkCaster] = .1f;
+                                pool[NPCID.DarkCaster] = .025f;
                             }
                         }
                     }
@@ -6826,7 +6826,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.LavaSlime:
-                        if (Main.rand.Next(50) == 0)
+                        if (Main.rand.Next(100) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.LavaCharm);
                         break;
 
@@ -6836,7 +6836,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DarkCaster:
-                        if (Main.hardMode ? Main.rand.Next(10) == 0 : Main.rand.Next(20) == 0)
+                        if (Main.rand.Next(20) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.WaterBolt);
                         break;
 
