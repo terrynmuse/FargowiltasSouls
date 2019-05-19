@@ -6825,6 +6825,16 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.BladedGlove);
                         break;
 
+                    case NPCID.DesertDjinn:
+                        if (Main.rand.Next(20) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.FlyingCarpet);
+                        break;
+
+                    case NPCID.DarkCaster:
+                        if (Main.hardMode ? Main.rand.Next(10) == 0 : Main.rand.Next(20) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.WaterBolt);
+                        break;
+
                     #region boss drops
                     case NPCID.KingSlime:
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HerbBag, Main.rand.Next(3) + 1);

@@ -37,6 +37,9 @@
 -nerfed ML deathrays again
 -nerfed ML lightning (no longer does triple damage (normally only double), no longer does 5-10sec electrified (normally 5max))
 -ML no longer regenerates during stardust phase (fucking idiots)
+-galactic globe gives curse of moon immune
+-djinn drops flying carpet, 5% chance
+-dark caster drops water bolt, 5/10% in pre-hm/hm
 
 -slime rain, the guardian, penetrator, and nuke fishron recipes require sadism (post-fish EX)
 -penetrator dash gives total immunity to all damage

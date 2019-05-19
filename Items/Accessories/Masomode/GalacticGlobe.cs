@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Galactic Globe");
             Tooltip.SetDefault(@"'Always watching'
-Grants immunity to Flipped, Unstable, Distorted, and Chaos State
+Grants immunity to Flipped, Unstable, Distorted, Chaos State, and Curse of the Moon
 Allows the holder to control gravity
 Summons the true eyes of Cthulhu to protect you
 Increases flight time by 100%");
@@ -30,6 +30,7 @@ Increases flight time by 100%");
             player.buffImmune[mod.BuffType("Flipped")] = true;
             player.buffImmune[mod.BuffType("FlippedHallow")] = true;
             player.buffImmune[mod.BuffType("Unstable")] = true;
+            player.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.ChaosState] = true;
 
