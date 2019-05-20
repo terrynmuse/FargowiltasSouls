@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Throw with the force of nuclear fusion'
 Critical strikes will unleash ivory flares from the cosmos
-Ivory flares deal 0.5% of the hit target's maximum life as damage");
+Ivory flares deal 0.1% of the hit target's maximum life as damage");
         }
 
         public override void SetDefaults()
@@ -38,8 +38,7 @@ Ivory flares deal 0.5% of the hit target's maximum life as damage");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.whiteDwarfSet = true;
+            player.GetModPlayer<ThoriumPlayer>(thorium).whiteDwarfSet = true;
         }
         
         private readonly string[] items =
@@ -63,7 +62,7 @@ Ivory flares deal 0.5% of the hit target's maximum life as damage");
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddIngredient(thorium.ItemType("WhiteDwarfKunai"), 300);
-            recipe.AddIngredient(thorium.ItemType("LuminiteButterfly"));
+            recipe.AddIngredient(thorium.ItemType("AngelsEnd"));
 
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);

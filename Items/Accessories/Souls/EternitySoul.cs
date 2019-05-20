@@ -302,6 +302,14 @@ and most of SoT not mentioned because meme tooltip length
                 thoriumPlayer.yuma = true;
             }
 
+            //THROWING
+            thoriumPlayer.throwGuide2 = true;
+            //dead mans patch
+            thoriumPlayer.deadEyeBool = true;
+            //mermaid canteen
+            thoriumPlayer.canteenEffect += 750;
+            thoriumPlayer.canteenCadet = true;
+
             //HEALER
             thoriumPlayer.radiantBoost += 0.4f;
             thoriumPlayer.radiantSpeed -= 0.25f;

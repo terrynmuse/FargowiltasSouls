@@ -20,7 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Lich Enchantment");
             Tooltip.SetDefault(
 @"'Embrace death...'
-Throwing damage will decrease enemy defense
+Killing an enemy will release a soul fragment
+Touching a soul fragment greatly increases your movement and throwing speed briefly
 Effects of Lich's Gaze");
         }
 

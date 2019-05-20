@@ -42,21 +42,7 @@ Effects of Mana-Charged Rocketeers");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.malignantSet = true;
             //mana charge rockets
-            player.manaRegen++;
-            player.manaRegenDelay -= 2;
-            if (player.statMana > 0)
-            {
-                player.rocketBoots = 1;
-                if (player.rocketFrame)
-                {
-                    if (Main.rand.Next(2) == 0)
-                    {
-                        player.statMana -= 2;
-                        Dust.NewDust(new Vector2(player.position.X, player.position.Y + 20f), player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 100, default(Color), 1.5f);
-                    }
-                    player.rocketTime = 1;
-                }
-            }
+            thorium.GetItem("ManaChargedRocketeers").UpdateAccessory(player, hideVisual);
         }
         
         private readonly string[] items =

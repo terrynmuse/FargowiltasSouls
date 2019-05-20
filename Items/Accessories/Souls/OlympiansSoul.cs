@@ -26,6 +26,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 20% increased throwing speed
 15% increased throwing critical chance and velocity";
 
+            if (thorium != null)
+            {
+                tooltip += "Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch";
+            }
+
             if (calamity != null)
             {
                 tooltip += "\nEffects of Nanotech\nBonuses also effect rogue damage";
@@ -62,7 +67,20 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.thrownCrit += 15;
             player.thrownVelocity += 0.15f;
 
+            if (Fargowiltas.Instance.CalamityLoaded) Thorium(player);
+
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
+        }
+
+        private void Thorium(Player player)
+        {
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
+            thoriumPlayer.throwGuide2 = true;
+            //dead mans patch
+            thoriumPlayer.deadEyeBool = true;
+            //mermaid canteen
+            thoriumPlayer.canteenEffect += 750;
+            thoriumPlayer.canteenCadet = true;
         }
 
         private void Calamity(Player player)
@@ -82,18 +100,18 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(Fargowiltas.Instance.CalamityLoaded ? calamity.ItemType("Nanotech") : thorium.ItemType("BoneGrip"));
+                recipe.AddIngredient(Fargowiltas.Instance.CalamityLoaded ? calamity.ItemType("Nanotech") : thorium.ItemType("MagnetoGrip"));
+                recipe.AddIngredient(thorium.ItemType("ThrowingGuideVolume3"));
+                recipe.AddIngredient(thorium.ItemType("MermaidCanteen"));
+                recipe.AddIngredient(thorium.ItemType("DeadEyePatch"));
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BananarangThrown") : ItemID.Bananarang, 5);
-                recipe.AddIngredient(thorium.ItemType("CryoFang"));
-                recipe.AddIngredient(fargos != null ? fargos.ItemType("ShadowflameKnifeThrown") : ItemID.ShadowFlameKnife);
                 recipe.AddIngredient(thorium.ItemType("HotPot"));
                 recipe.AddIngredient(thorium.ItemType("VoltTomahawk"));
                 recipe.AddIngredient(thorium.ItemType("SparkTaser"));
                 recipe.AddIngredient(thorium.ItemType("PharaohsSlab"));
-                recipe.AddIngredient(fargos != null ? fargos.ItemType("ToxicFlaskThrown") : ItemID.ToxicFlask);
+                recipe.AddIngredient(thorium.ItemType("TerraKnife"));
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("VampireKnivesThrown") : ItemID.VampireKnives);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("PaladinsHammerThrown") : ItemID.PaladinsHammer);
-                recipe.AddIngredient(fargos != null ? fargos.ItemType("PossessedHatchetThrown") : ItemID.PossessedHatchet);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("TerrarianThrown") : ItemID.Terrarian);
             }
             else

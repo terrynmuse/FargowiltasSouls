@@ -179,7 +179,7 @@ namespace FargowiltasSouls
             ["Assassin Damage"] = new Color(81, 181, 113),
             ["Pyromancer Bursts"] = new Color(81, 181, 113),
             ["Conduit Shield"] = new Color(81, 181, 113),
-            ["Ogre Sandals"] = new Color(81, 181, 113),
+            ["Incandescent Spark"] = new Color(81, 181, 113),
             ["Greedy Magnet"] = new Color(81, 181, 113),
             ["Cyber Punk States"] = new Color(81, 181, 113),
             ["Metronome"] = new Color(81, 181, 113),
@@ -273,13 +273,13 @@ namespace FargowiltasSouls
 
             UiCheckbox.CheckboxTexture = Fargowiltas.Instance.GetTexture("checkBox");
 
-            if (thorium != null)
+            if (thorium != null && calamity != null)
             {
-                totalPages++;
+                totalPages = 4;
             }
-            if (calamity != null)
+            else if (calamity != null || thorium != null)
             {
-                totalPages++;
+                totalPages = 3;
             }
 
             for (int i = 1; i <= totalPages; i++)

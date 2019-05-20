@@ -42,11 +42,7 @@ Effects of Goblin War Shield");
             //yew set bonus
             thoriumPlayer.yewCharging = true;
             //goblin war shield
-            if (player.velocity.X == 0f)
-            {
-                player.statDefense += 4;
-                player.noKnockback = true;
-            }
+            thorium.GetItem("GoblinWarshield").UpdateAccessory(player, hideVisual);
         }
         
         private readonly string[] items =

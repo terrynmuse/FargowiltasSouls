@@ -64,9 +64,8 @@ Increases flight time by 100%";
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                //recipe.AddIngredient(ItemID.GolemFist);
+                recipe.AddIngredient(ItemID.GolemFist);
                 recipe.AddIngredient(thorium.ItemType("SolScorchedSlab"));
-                recipe.AddIngredient(thorium.ItemType("TempleButterfly"));
             }
               
             recipe.AddTile(TileID.CrystalBall);

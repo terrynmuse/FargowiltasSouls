@@ -81,20 +81,21 @@ Lightning scales with magic damage";
                 recipe.AddIngredient(thorium.ItemType("CopperBuckler"));
                 recipe.AddIngredient(ItemID.CopperShortsword);
                 recipe.AddIngredient(ItemID.AmethystStaff);
+                recipe.AddIngredient(ItemID.PurplePhaseblade);
                 recipe.AddIngredient(thorium.ItemType("ThunderTalon"));
                 recipe.AddIngredient(thorium.ItemType("Zapper"));
-                recipe.AddIngredient(ItemID.NimbusRod);
-                recipe.AddIngredient(thorium.ItemType("AmethystButterfly"));
+                recipe.AddIngredient(ItemID.FirstEncounter);
             }
             else
             {
                 recipe.AddIngredient(ItemID.CopperShortsword);
                 recipe.AddIngredient(ItemID.AmethystStaff);
-                recipe.AddIngredient(ItemID.NimbusRod);
+                recipe.AddIngredient(ItemID.FirstEncounter);
+                //recipe.AddIngredient(ItemID.PurplePhaseblade);
                 recipe.AddIngredient(ItemID.Wire, 20);
             }
                        
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

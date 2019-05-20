@@ -44,11 +44,11 @@ Summons a pet Magic Lantern");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("aSandstonePickaxe"));
+                recipe.AddIngredient(ItemID.CnadyCanePickaxe); //gj 
                 recipe.AddIngredient(ItemID.GoldPickaxe);
                 recipe.AddIngredient(ItemID.BonePickaxe);
                 recipe.AddIngredient(thorium.ItemType("EnforcedThoriumPax"));
                 recipe.AddIngredient(ItemID.MoltenPickaxe);
-                recipe.AddIngredient(thorium.ItemType("BlinkrootButterfly"));
             }
             else
             {

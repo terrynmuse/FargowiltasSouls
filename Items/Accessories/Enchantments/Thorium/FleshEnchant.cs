@@ -21,10 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Symbiotically attached to your body'
 Consecutive attacks against enemies might drop flesh, which grants bonus life and damage
-Greatly increases life regen
-Hearts heal for 1.5x as much
 Effects of Vampire Gland
-Summons a pet Flying Blister, Face Monster, and Crimson Heart");
+Summons a pet Flying Blister");
         }
 
         public override void SetDefaults()
@@ -50,17 +48,19 @@ Summons a pet Flying Blister, Face Monster, and Crimson Heart");
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
             thoriumPlayer.blisterPet = true;
-            //crimson regen, pets
-            modPlayer.CrimsonEffect(hideVisual);
         }
         
         private readonly string[] items =
         {
+            "FleshMask",
+            "FleshBody",
+            "FleshLegs",
             "VampireGland",
             "GrimFlayer",
+            "ToothOfTheConsumer",
             "FleshMace",
             "BloodBelcher",
-            "HungerStaff",
+            "BloodDrinker",
             "BlisterSack"
         };
 
@@ -69,11 +69,6 @@ Summons a pet Flying Blister, Face Monster, and Crimson Heart");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-
-            recipe.AddIngredient(thorium.ItemType("FleshMask"));
-            recipe.AddIngredient(thorium.ItemType("FleshBody"));
-            recipe.AddIngredient(thorium.ItemType("FleshLegs"));
-            recipe.AddIngredient(null, "CrimsonEnchant");
 
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 

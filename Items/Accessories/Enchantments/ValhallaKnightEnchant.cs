@@ -46,9 +46,9 @@ Summons a pet Dragon");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BlobhornCoralStaff"));
+                recipe.AddIngredient(ItemID.MonkStaffT2);
                 recipe.AddIngredient(ItemID.DD2SquireBetsySword);
                 recipe.AddIngredient(ItemID.DD2BallistraTowerT3Popper);
-                recipe.AddIngredient(thorium.ItemType("CloudwingButterfly"));
             }
             else
             {

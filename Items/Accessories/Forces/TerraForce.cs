@@ -15,26 +15,20 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terra Force");
-            string tooltip = "'The land lends its strength'\n";
+            string tooltip = 
+@"'The land lends its strength'
+Attacks have a chance to shock enemies with lightning
+Sets your critical strike chance to 10%
+Every crit will increase it by 5%
+Getting hit drops your crit back down
+";
 
             if (thorium == null)
             {
                 tooltip +=
-@"Attacks have a chance to shock enemies with lightning
-Sets your critical strike chance to 10%
-Every crit will increase it by 5%
-Getting hit drops your crit back down
-Allows the player to dash into the enemy
+@"Allows the player to dash into the enemy
 Right Click to guard with your shield
 You attract items from a larger range
-";
-            }
-            else
-            {
-                tooltip +=
-@"Sets your critical strike chance to 10%
-Every crit will increase it by 5%
-Getting hit drops your crit back down
 ";
             }
 
@@ -46,8 +40,6 @@ Increases armor penetration by 5
 While standing in lava, you gain 15 more armor penetration, 15% attack speed, and your attacks ignite enemies";
                 
             Tooltip.SetDefault(tooltip);
-
-            
         }
 
         public override void SetDefaults()
@@ -64,6 +56,8 @@ While standing in lava, you gain 15 more armor penetration, 15% attack speed, an
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            //lightning
+            modPlayer.CopperEnchant = true;
             //crit effect improved
             modPlayer.TerraForce = true;
             //crits
@@ -78,8 +72,6 @@ While standing in lava, you gain 15 more armor penetration, 15% attack speed, an
             //because absorbed somewhere else with thorium
             if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                //lightning
-                modPlayer.CopperEnchant = true;
                 //EoC Shield
                 player.dash = 2;
                 if (Soulcheck.GetValue("Iron Shield"))
@@ -99,14 +91,11 @@ While standing in lava, you gain 15 more armor penetration, 15% attack speed, an
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            recipe.AddIngredient(null, "CopperEnchant");
+            recipe.AddIngredient(null, "TinEnchant");
+
+            if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                recipe.AddIngredient(null, "TinEnchant");
-            }
-            else
-            {
-                recipe.AddIngredient(null, "CopperEnchant");
-                recipe.AddIngredient(null, "TinEnchant");
                 recipe.AddIngredient(null, "IronEnchant");
             }
 

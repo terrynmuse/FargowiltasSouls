@@ -68,7 +68,7 @@ Summons a pet Holy Goat");
             "BloomGuard",
             "SunrayStaff",
             "MorningDew",
-            "LifeFruitButterfly",
+            "HolyFire",
             "RichLeaf"
         };
 

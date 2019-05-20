@@ -63,7 +63,7 @@ Effects of Guide to Plant Fiber Cordage");
             recipe.AddIngredient(ItemID.SlimeStaff);
             recipe.AddIngredient(ItemID.Blowpipe);
             recipe.AddIngredient(thorium.ItemType( "ChiTea"), 5);
-            recipe.AddIngredient(thorium.ItemType("DaybloomButterfly"));
+            recipe.AddIngredient(ItemID.TreeNymphButterfly);
             recipe.AddIngredient(ItemID.Grasshopper);
 
             recipe.AddTile(TileID.DemonAltar);

@@ -21,6 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Cold to the touch'
 An icy aura surrounds you, which freezes nearby enemies after a short delay
+Effects of Frostburn Pouch
 Summons a pet Penguin");
         }
 
@@ -47,6 +48,9 @@ Summons a pet Penguin");
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
             }
 
+            //frostburn pouch
+            thoriumPlayer.frostburnPouch = true;
+
             modPlayer.IcyEnchant = true;
             modPlayer.AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
         }
@@ -56,6 +60,7 @@ Summons a pet Penguin");
             "IcyBandana",
             "IcyMail",
             "IcyGreaves",
+            "FrostburnPouch",
             "FrostFireKatana",
             "FrostFury",
             "Blizzard"
@@ -69,9 +74,8 @@ Summons a pet Penguin");
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
+            recipe.AddIngredient(thorium.ItemType("IcyCaltrop"), 300);
             recipe.AddIngredient(ItemID.IceBoomerang);
-//add a thing
-            recipe.AddIngredient(thorium.ItemType("ShiverthornButterfly"));
             recipe.AddIngredient(ItemID.Fish);
 
             recipe.AddTile(TileID.DemonAltar);

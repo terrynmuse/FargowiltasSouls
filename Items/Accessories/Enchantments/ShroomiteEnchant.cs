@@ -57,7 +57,7 @@ While in stealth, crits deal 4x damage
                 recipe.AddIngredient(thorium.ItemType("MyceliumGattlingPulser"));
                 recipe.AddIngredient(ItemID.Uzi);
                 recipe.AddIngredient(ItemID.TacticalShotgun);
-                recipe.AddIngredient(thorium.ItemType("ShroomiteButterfly"));
+                recipe.AddIngredient(thorium.ItemType("RedFragmentBlaster"));
             }
             else
             {

@@ -45,9 +45,8 @@ Summons a pet Eater of Souls and Shadow Orb");
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(ItemID.BallOHurt);
-                recipe.AddIngredient(thorium.ItemType("CorruptButterfly"));
+                recipe.AddIngredient(thorium.ItemType("DemoniteTomahawk"), 300);
             }
-
             
             recipe.AddIngredient(ItemID.EatersBone);
             recipe.AddIngredient(ItemID.ShadowOrb);

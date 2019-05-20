@@ -82,7 +82,7 @@ When casting healing spells, a cross is used instead of mana");
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             recipe.AddIngredient(thorium.ItemType("PurifiedWater"), 300);
-            recipe.AddIngredient(thorium.ItemType("SwallowtailButterfly"));
+            recipe.AddIngredient(ItemID.MonarchButterfly);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
