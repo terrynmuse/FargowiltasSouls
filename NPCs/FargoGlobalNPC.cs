@@ -8084,10 +8084,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                     case NPCID.WallofFleshEye:
-                        /*if (npc.ai[0] == 2f || npc.ai[0] == -2f)
-                            damage = (int)(damage * 0.75);*/
                         if (projectile.type == ProjectileID.Bee || projectile.type == ProjectileID.GiantBee)
-                            damage /= 5;
+                            damage /= 2;
                         break;
 
                     case NPCID.MoonLordCore:
