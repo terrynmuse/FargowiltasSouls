@@ -29,14 +29,6 @@ Summons a pet Minotaur");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            /*
-onHitNPC
-
-every 5th hit or so
-
-Spawn several javelins that rain down in the area*/
-
-
             player.GetModPlayer<FargoPlayer>(mod).GladiatorEffect(hideVisual);
         }
 
@@ -60,7 +52,7 @@ Spawn several javelins that rain down in the area*/
             {
                 recipe.AddIngredient(ItemID.Javelin, 300);
                 recipe.AddIngredient(ItemID.BoneJavelin, 300);
-                //angel statue
+                recipe.AddIngredient(ItemID.AngelStatue);
             }
             
             recipe.AddIngredient(ItemID.TartarSauce);

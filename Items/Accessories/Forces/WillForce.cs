@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 Your attacks inflict Midas and Super Bleed
 Press the Gold hotkey to be encased in a Golden Shell
 20% chance for enemies to drop 8x loot
-Shot projectiles will speed up drastically over time
+Spears will rain down on struck enemies 
 All attacks will slowly remove enemy knockback immunity
 Effects of Greedy Ring, Celestial Shell, and Shiny Stone
 ";
@@ -47,13 +47,13 @@ Effects of Greedy Ring, Celestial Shell, and Shiny Stone
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //makes speed up for all, super bleed on all, knockback remove for all
+            //super bleed on all, knockback remove for all
             modPlayer.WillForce = true; 
             //midas, greedy ring, pet, zhonyas
             modPlayer.GoldEffect(hideVisual);
             //loot multiply
             modPlayer.PlatinumEnchant = true;
-            //speed up and pets
+            //javelins and pets
             modPlayer.GladiatorEffect(hideVisual);
             //super bleed, pet
             modPlayer.RedRidingEffect(hideVisual);
@@ -68,7 +68,6 @@ Effects of Greedy Ring, Celestial Shell, and Shiny Stone
             //knockback kill, pet
             modPlayer.ValhallaEffect(hideVisual);
             player.shinyStone = true;
-            
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
         }

@@ -43,7 +43,7 @@ While in the Corruption, the radius is doubled
             {
                 NPC npc = Main.npc[i];
 
-                if (npc.Distance(player.Center) < dist)
+                if (!npc.townNPC && !npc.friendly && npc.lifeMax > 1 && npc.Distance(player.Center) < dist)
                 {
                     npc.AddBuff(BuffID.ShadowFlame, 120);
                 }

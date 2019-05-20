@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 50% increased shoot speed
 25% increased all critical chance
 Crits deal 5x damage
-All weapons have double knockback and have auto swing
+All weapons have double knockback
 Increases your maximum mana by 300
 ";
 

@@ -14,9 +14,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of the Masochist");
             Tooltip.SetDefault(
 @"'To inflict suffering, you must first embrace it'
-Increases max life by 250, wing time by 200%, and armor penetration by 50
+Increases wing time by 200%, and armor penetration by 50
 Increases max life by 50%, damage by 30%, and damage reduction by 20%
 Increases life regen drastically, increases max number of minions and sentries by 10
+All weapons have auto swing
 Grants gravity control, fastfall, and immunity to all Masochist Mode debuffs and more
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks and inflict Sadism as a cocktail of Masochist Mode debuffs
@@ -61,7 +62,6 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.maxTurrets += 10;
             player.armorPenetration += 50;
             player.statLifeMax2 += player.statLifeMax / 2;
-            player.statLifeMax2 += 250;
             player.endurance += 0.2f;
             player.lifeRegen += 7;
             player.lifeRegenTime += 7;
@@ -162,6 +162,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             //tribal charm buffed
             player.buffImmune[BuffID.Webbed] = true;
             player.buffImmune[BuffID.Suffocation] = true;
+            fargoPlayer.TribalCharm = true;
 
             //dubious circuitry
             player.buffImmune[BuffID.CursedInferno] = true;

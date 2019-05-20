@@ -228,13 +228,6 @@ namespace FargowiltasSouls.Projectiles
                         }
                     }
 
-                    if (modPlayer.GladEnchant && !modPlayer.TerrariaSoul && (projectile.thrown || modPlayer.WillForce) && CanSplit && projectile.damage > 0 && projectile.minionSlots == 0 && projectile.aiStyle != 19 && Array.IndexOf(noSplit, projectile.type) <= -1 &&
-                        Soulcheck.GetValue("Gladiator Speedup") && numSpeedups > 0 && counter % 10 == 0)
-                    {
-                        numSpeedups--;
-                        projectile.velocity = Vector2.Multiply(projectile.velocity, 1.5f);
-                    }
-
                     if (modPlayer.Jammed && projectile.ranged && projectile.type != ProjectileID.ConfettiGun)
                     {
                         Projectile.NewProjectile(projectile.Center, projectile.velocity, ProjectileID.ConfettiGun, 0, 0f);
@@ -884,7 +877,7 @@ namespace FargowiltasSouls.Projectiles
                         {
                             target.AddBuff(mod.BuffType("Stunned"), Main.rand.Next(60, 120));
                             //pull player in opposite direction of sandball (towards where it came from)
-                            target.velocity.X = projectile.velocity.X > 0 ? -6f : 6f;
+                            //target.velocity.X = projectile.velocity.X > 0 ? -6f : 6f;
                         }
                         break;
 

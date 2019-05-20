@@ -13,6 +13,12 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 
+-antlion back to how it was but only happens when stunned
+-nimbus only spawns in the sky in hard mode now
+-tribal charm now adds auto swing
+-pinky split works
+-added back man eater and angry trapper voring, man eater is phm only, they both turn red when they can eat you
+
 -rainbow slime spikes don't ignore tiles anymore
 -halved krampus spawn rate
 -various masomode spawns no longer happen during old one's army
