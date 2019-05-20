@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Oceanic Seal");
-            Description.SetDefault("No dodging, no lifesteal, and you cannot escape");
+            Description.SetDefault("No dodging, no lifesteal, no supersonic, and you cannot escape");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
@@ -29,14 +29,15 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetModPlayer<FargoPlayer>(mod).noDodge = true;
+            player.GetModPlayer<FargoPlayer>(mod).noSupersonic = true;
             player.moonLeech = true;
 
-            /*if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
+            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
                 player.buffTime[buffIndex] = 2;
             else
                 return;
 
-            float distance = player.Distance(Main.npc[FargoGlobalNPC.fishBoss].Center);
+            /*float distance = player.Distance(Main.npc[FargoGlobalNPC.fishBoss].Center);
             const float threshold = 1200f;
             if (distance > threshold)
             {

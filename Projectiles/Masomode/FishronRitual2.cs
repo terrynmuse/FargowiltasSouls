@@ -38,7 +38,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             int ai1 = (int)projectile.ai[1];
             if (projectile.ai[1] >= 0f && projectile.ai[1] < 200f &&
-                Main.npc[ai1].active && Main.npc[ai1].type == NPCID.DukeFishron)
+                Main.npc[ai1].active && Main.npc[ai1].type == NPCID.DukeFishron
+                && Main.npc[ai1].HasPlayerTarget && Main.npc[ai1].target == projectile.owner
+                && Main.player[projectile.owner].active && !Main.player[projectile.owner].dead)
             {
                 projectile.alpha -= 2;
                 if (projectile.alpha < 0)
@@ -47,62 +49,58 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 projectile.velocity = Main.npc[ai1].Center - projectile.Center;
                 projectile.velocity /= 20f;
 
-                if (Main.npc[ai1].HasPlayerTarget)
+                targetIsMe = projectile.owner == Main.myPlayer;
+
+                Player player = Main.player[projectile.owner];
+                if (player.active && !player.dead)
                 {
-                    targetIsMe = Main.npc[ai1].target == Main.myPlayer;
-
-                    Player player = Main.player[Main.npc[ai1].target];
-                    if (player.active && !player.dead)
+                    float distance = player.Distance(projectile.Center);
+                    const float threshold = 1200f;
+                    if (Math.Abs(distance - threshold) < 30f && player.hurtCooldowns[1] == 0 && projectile.alpha == 0)
                     {
-                        float distance = player.Distance(projectile.Center);
-                        const float threshold = 1200f;
-                        if (Math.Abs(distance - threshold) < 30f && player.hurtCooldowns[1] == 0 && projectile.alpha == 0)
+                        int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
+                        player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
+                            Main.npc[ai1].damage / 3, hitDirection, false, false, false, 1);
+                        player.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += ai1 == FargoGlobalNPC.fishBossEX ? 50 : 25;
+                        player.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(300, 600));
+                    }
+                    if (distance > threshold)
+                    {
+                        if (distance > threshold * 1.5f)
                         {
-                            int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
-                            player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
-                                Main.npc[ai1].damage / 3, hitDirection, false, false, false, 1);
-                            player.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += ai1 == FargoGlobalNPC.fishBossEX ? 50 : 25;
-                            player.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(300, 600));
+                            if (distance > threshold * 2f)
+                            {
+                                player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
+                                return;
+                            }
+
+                            player.frozen = true;
+                            player.controlHook = false;
+                            player.controlUseItem = false;
+                            if (player.mount.Active)
+                                player.mount.Dismount(player);
+                            player.velocity.X = 0f;
+                            player.velocity.Y = -0.4f;
                         }
-                        if (distance > threshold)
+
+                        Vector2 movement = projectile.Center - player.Center;
+                        float difference = movement.Length() - 1200f;
+                        movement.Normalize();
+                        movement *= difference < 17f ? difference : 17f;
+                        player.position += movement;
+
+                        for (int i = 0; i < 20; i++)
                         {
-                            if (distance > threshold * 1.5f)
-                            {
-                                if (distance > threshold * 2f)
-                                {
-                                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
-                                    return;
-                                }
-
-                                player.frozen = true;
-                                player.controlHook = false;
-                                player.controlUseItem = false;
-                                if (player.mount.Active)
-                                    player.mount.Dismount(player);
-                                player.velocity.X = 0f;
-                                player.velocity.Y = -0.4f;
-                            }
-
-                            Vector2 movement = projectile.Center - player.Center;
-                            float difference = movement.Length() - 1200f;
-                            movement.Normalize();
-                            movement *= difference < 17f ? difference : 17f;
-                            player.position += movement;
-
-                            for (int i = 0; i < 20; i++)
-                            {
-                                int d = Dust.NewDust(player.position, player.width, player.height, 135, 0f, 0f, 0, default(Color), 2.5f);
-                                Main.dust[d].noGravity = true;
-                                Main.dust[d].noLight = true;
-                                Main.dust[d].velocity *= 5f;
-                            }
+                            int d = Dust.NewDust(player.position, player.width, player.height, 135, 0f, 0f, 0, default(Color), 2.5f);
+                            Main.dust[d].noGravity = true;
+                            Main.dust[d].noLight = true;
+                            Main.dust[d].velocity *= 5f;
                         }
                     }
                 }
             }
             else
             {
-                targetIsMe = true;
                 projectile.velocity = Vector2.Zero;
                 projectile.alpha += 2;
                 if (projectile.alpha > 255)

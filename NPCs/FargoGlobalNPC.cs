@@ -281,6 +281,7 @@ namespace FargowiltasSouls.NPCs
                             npc.damage = (int)(npc.damage * 1.5);
                             npc.defense *= 2;
                             npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
+                            npc.buffImmune[mod.BuffType("LightningRod")] = true;
                         }
                         break;
                     case NPCID.DetonatingBubble:
@@ -297,6 +298,7 @@ namespace FargowiltasSouls.NPCs
                             npc.lifeMax *= 20;
                             npc.defense *= 2;
                             npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
+                            npc.buffImmune[mod.BuffType("LightningRod")] = true;
                             ValhallaImmune = true;
                         }
                         npc.buffImmune[BuffID.OnFire] = true;
@@ -2165,8 +2167,15 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DukeFishron:
                         fishBoss = boss = npc.whoAmI;
-                        if (npc.HasPlayerTarget & npc.Distance(Main.player[npc.target].Center) < 1800)
-                            Main.player[npc.target].AddBuff(mod.BuffType("OceanicSeal"), 2);
+                        if (npc.HasPlayerTarget)
+                        {
+                            if (npc.Distance(Main.player[npc.target].Center) < 1800)
+                                Main.player[npc.target].AddBuff(mod.BuffType("OceanicSeal"), 2);
+                            if (Main.player[npc.target].ownedProjectileCounts[mod.ProjectileType("FishronRitual2")] < 1
+                                && Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual2"),
+                                    0, 0f, npc.target, 0f, npc.whoAmI);
+                        }
                         if (masoBool[3]) //fishron EX
                         {
                             fishBossEX = npc.whoAmI;
@@ -2179,9 +2188,7 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         int ritual1 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
                                             mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax, npc.whoAmI);
-                                        int ritual2 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
-                                            mod.ProjectileType("FishronRitual2"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
-                                        if (ritual1 == 1000 || ritual2 == 1000) //failed to spawn projectile, abort spawn
+                                        if (ritual1 == 1000) //failed to spawn projectile, abort spawn
                                             npc.active = false;
                                         Main.PlaySound(SoundID.Item84, npc.Center);
                                     }
@@ -2371,6 +2378,22 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         if (Main.netMode != 1)
                                         {
+                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, 1f);
+                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, -0.5f);
+                                        }
+                                    }
+                                    else if (npc.ai[2] == 16f)
+                                    {
+                                        if (Main.netMode != 1)
+                                        {
+                                            /*Vector2 spawnPos = Vector2.UnitX * npc.direction;
+                                            spawnPos = spawnPos.RotatedBy(npc.rotation);
+                                            spawnPos *= npc.width + 20f;
+                                            spawnPos /= 2f;
+                                            spawnPos += npc.Center;
+                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * 2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
+                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);*/
+
                                             const int max = 24;
                                             float rotation = 2f * (float)Math.PI / max;
                                             for (int i = 0; i < max; i++)
@@ -2387,22 +2410,6 @@ namespace FargowiltasSouls.NPCs
                                             }
                                         }
                                     }
-                                    else if (npc.ai[2] == 16f)
-                                    {
-                                        if (Main.netMode != 1)
-                                        {
-                                            /*Vector2 spawnPos = Vector2.UnitX * npc.direction;
-                                            spawnPos = spawnPos.RotatedBy(npc.rotation);
-                                            spawnPos *= npc.width + 20f;
-                                            spawnPos /= 2f;
-                                            spawnPos += npc.Center;
-                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * 2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
-                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);*/
-
-                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, 1f);
-                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, -0.5f);
-                                        }
-                                    }
                                     goto case 10;
 
                                 default:
@@ -2415,13 +2422,13 @@ namespace FargowiltasSouls.NPCs
                             switch ((int)npc.ai[0])
                             {
                                 case -1: //just spawned
-                                    if (npc.ai[2] == 1 && Main.netMode != 1) //create spell circle
+                                    /*if (npc.ai[2] == 1 && Main.netMode != 1) //create spell circle
                                     {
                                         int p2 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
                                             mod.ProjectileType("FishronRitual2"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
                                         if (p2 == 1000) //failed to spawn projectile, abort spawn
                                             npc.active = false;
-                                    }
+                                    }*/
                                     npc.dontTakeDamage = true;
                                     break;
 

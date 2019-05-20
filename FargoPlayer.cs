@@ -224,6 +224,7 @@ namespace FargowiltasSouls
         public bool Shadowflame;
         public bool DeathMarked;
         public bool noDodge;
+        public bool noSupersonic;
 
         public bool GodEater;               //defense removed, endurance removed, colossal DOT
         public bool FlamesoftheUniverse;    //activates various vanilla debuffs
@@ -611,6 +612,7 @@ namespace FargowiltasSouls
             Shadowflame = false;
             Slimed = false;
             noDodge = false;
+            noSupersonic = false;
 
             GodEater = false;
             FlamesoftheUniverse = false;
@@ -650,6 +652,7 @@ namespace FargowiltasSouls
             Shadowflame = false;
             Slimed = false;
             noDodge = false;
+            noSupersonic = false;
             lightningRodTimer = 0;
 
             SlimyShieldFalling = false;
@@ -924,7 +927,8 @@ namespace FargowiltasSouls
                         {
                             int x = (int)(player.Center.X) / 16;
                             int y = (int)(player.position.Y + player.height + 8) / 16;
-                            if (GroundPound > 15 && Main.tile[x, y] != null && Main.tile[x, y].nactive() && Main.tileSolid[Main.tile[x, y].type])
+                            if (GroundPound > 15 && x >= 0 && x < Main.maxTilesX && y >= 0 && y < Main.maxTilesY
+                                && Main.tile[x, y] != null && Main.tile[x, y].nactive() && Main.tileSolid[Main.tile[x, y].type])
                             {
                                 Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("ExplosionSmall"), 160, 12f, player.whoAmI);
                                 y -= 2;
@@ -934,9 +938,9 @@ namespace FargowiltasSouls
                                         continue;
                                     int tilePosX = x + 16 * i;
                                     int tilePosY = y;
-                                    if (Main.tile[tilePosX, tilePosY] != null)
+                                    if (Main.tile[tilePosX, tilePosY] != null && tilePosX >= 0 && tilePosX < Main.maxTilesX)
                                     {
-                                        while (Main.tile[tilePosX, tilePosY] != null
+                                        while (Main.tile[tilePosX, tilePosY] != null && tilePosY >= 0 && tilePosY < Main.maxTilesY
                                             && !(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[Main.tile[tilePosX, tilePosY].type]))
                                         {
                                             tilePosY++;
