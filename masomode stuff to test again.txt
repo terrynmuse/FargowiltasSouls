@@ -47,6 +47,8 @@
 -tribal charm webbed immune moved to mystic skull
 -biome mimics inflict unique debuffs now
 -changed lump of flesh recipe from ectoplasm/souls to spectre bars
+-implemented super flocko?
+-ice queen spawns flockos and inflicts ice debuffs on hit too
 
 -antlion back to how it was but only happens when stunned
 -nimbus only spawns in the sky in hard mode now

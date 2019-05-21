@@ -3317,7 +3317,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.IceQueen:
                         Counter++;
 
-                        short countCap = 7;
+                        short countCap = 14;
                         if (npc.life < npc.lifeMax * 3 / 4)
                             countCap--;
                         if (npc.life < npc.lifeMax / 2)
@@ -3330,6 +3330,16 @@ namespace FargowiltasSouls.NPCs
                         if (Counter > countCap)
                         {
                             Counter = 0;
+                            if (++Counter2 > 25)
+                            {
+                                Counter2 = 0;
+                                if (Main.netMode != 1)
+                                {
+                                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Flocko);
+                                    if (Main.netMode == 2)
+                                        NetMessage.SendData(23, -1, -1, null, n);
+                                }
+                            }
                             Vector2 speed = new Vector2(Main.rand.Next(-1000, 1001), Main.rand.Next(-1000, 1001));
                             speed.Normalize();
                             speed *= 12f;
@@ -5593,11 +5603,6 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("Unstable"), Main.rand.Next(600));
                         break;
 
-                    case NPCID.Flocko:
-                        target.AddBuff(BuffID.Chilled, Main.rand.Next(900, 1800));
-                        target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 600));
-                        break;
-
                     case NPCID.GoblinThief:
                         if (target.whoAmI == Main.myPlayer && Main.rand.Next(2) == 0)
                         {
@@ -5764,17 +5769,28 @@ namespace FargowiltasSouls.NPCs
                         target.velocity.X = npc.velocity.Length() * npc.direction;
                         break;
 
+                    case NPCID.MourningWood:
+                        int duration1 = Main.rand.Next(120, 240);
+                        target.AddBuff(BuffID.OnFire, duration1);
+                        target.AddBuff(BuffID.CursedInferno, duration1);
+                        target.AddBuff(BuffID.ShadowFlame, duration1);
+                        break;
+
                     case NPCID.Pumpking:
                     case NPCID.PumpkingBlade:
                         target.AddBuff(BuffID.Weak, Main.rand.Next(900, 1800));
                         target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(900, 1800));
                         break;
 
-                    case NPCID.MourningWood:
-                        int duration1 = Main.rand.Next(120, 240);
-                        target.AddBuff(BuffID.OnFire, duration1);
-                        target.AddBuff(BuffID.CursedInferno, duration1);
-                        target.AddBuff(BuffID.ShadowFlame, duration1);
+                    case NPCID.Flocko:
+                        target.AddBuff(BuffID.Chilled, 300);
+                        target.AddBuff(BuffID.Frostburn, 300);
+                        break;
+
+                    case NPCID.IceQueen:
+                        target.AddBuff(BuffID.Chilled, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Frostburn, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Frozen, Main.rand.Next(120));
                         break;
 
                     case NPCID.VortexHornet:
