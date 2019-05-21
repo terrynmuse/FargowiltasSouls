@@ -8,11 +8,12 @@ namespace FargowiltasSouls.Projectiles.Minions
 {
     public class FrostShard : ModProjectile
     {
-        public override string Texture => "Terraria/Projectile_275";
+        public override string Texture => "Terraria/Projectile_349";
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frost Shard");
+            Main.projFrames[projectile.type] = 5;
         }
 
         public override void SetDefaults()
@@ -33,7 +34,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             {
                 projectile.frameCounter = 0;
                 projectile.frame++;
-                if (projectile.frame > 1)
+                if (projectile.frame > 5)
                     projectile.frame = 0;
             }
         }

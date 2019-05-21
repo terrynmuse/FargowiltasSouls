@@ -18,7 +18,7 @@
 -cyclonic fin gives cute fishron a spell circle
 -oceanic seal suppresses supersonic toggle
 -made new oceanic seal work in MP?
--added duke fishron EX to boss checklist?
+-added duke fishron EX to boss checklist
 -increased sadism duration to 7 minutes
 -lunatic cultist drops celestial seal
 -added volatile energy to pure heart recipe

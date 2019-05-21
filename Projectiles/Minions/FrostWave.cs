@@ -8,7 +8,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 {
     public class FrostWave : ModProjectile
     {
-        public override string Texture => "Terraria/Projectile_275";
+        public override string Texture => "Terraria/Projectile_348";
 
         public override void SetStaticDefaults()
         {

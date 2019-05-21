@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Projectiles.Minions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Super Flocko");
-            Main.projFrames[projectile.type] = 5;
+            Main.projFrames[projectile.type] = 6;
             //ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
         }
 
@@ -155,10 +155,10 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
 
             //projectile.rotation = projectile.velocity.ToRotation();
-            projectile.rotation += projectile.velocity.Length() / 12f * (projectile.velocity.X > 0 ? 1f : -1f);
+            projectile.rotation += projectile.velocity.Length() / 12f * (projectile.velocity.X > 0 ? -0.2f : 0.2f);
             if (++projectile.frameCounter > 3)
             {
-                if (++projectile.frame > 5)
+                if (++projectile.frame >= 6)
                     projectile.frame = 0;
                 projectile.frameCounter = 0;
             }

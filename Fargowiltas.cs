@@ -129,7 +129,7 @@ namespace FargowiltasSouls
                 Mod bossChecklist = ModLoader.GetMod("BossChecklist");
                 if (bossChecklist != null)
                 {
-                    bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 17.1f, (Func<bool>)(() => FargoWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
+                    bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 14.1f, (Func<bool>)(() => FargoWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
                 }
             }
             catch (Exception e)
