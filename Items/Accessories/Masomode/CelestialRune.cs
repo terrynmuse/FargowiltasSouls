@@ -31,8 +31,7 @@ Taking damage creates a friendly Ancient Vision to attack enemies");
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.GetModPlayer<FargoPlayer>().CelestialRune = true;
-            if (player.GetModPlayer<FargoPlayer>().CelestialRuneTimer > 0)
-                player.GetModPlayer<FargoPlayer>().CelestialRuneTimer--;
+            player.GetModPlayer<FargoPlayer>().AdditionalAttacks = true;
         }
     }
 }

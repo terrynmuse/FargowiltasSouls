@@ -38,9 +38,7 @@ Increases damage by 20%");
             player.minionDamage += 0.2f;
             player.thrownDamage += 0.2f;
             if (player.mount.Active && player.mount.Type == MountID.CuteFishron)
-            {
                 player.dripping = true;
-            }
         }
     }
 }

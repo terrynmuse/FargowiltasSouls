@@ -33,9 +33,20 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.moonLeech = true;
 
             if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
+            {
                 player.buffTime[buffIndex] = 2;
+                if (player.whoAmI == Main.npc[FargoGlobalNPC.fishBoss].target
+                    && player.whoAmI == Main.myPlayer
+                    && player.ownedProjectileCounts[mod.ProjectileType("FishronRitual2")] < 1)
+                {
+                    Projectile.NewProjectile(Main.npc[FargoGlobalNPC.fishBoss].Center, Vector2.Zero,
+                        mod.ProjectileType("FishronRitual2"), 0, 0f, player.whoAmI, 0f, FargoGlobalNPC.fishBoss);
+                }
+            }
             else
+            {
                 return;
+            }
 
             /*float distance = player.Distance(Main.npc[FargoGlobalNPC.fishBoss].Center);
             const float threshold = 1200f;

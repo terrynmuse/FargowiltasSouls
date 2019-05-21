@@ -167,6 +167,7 @@ namespace FargowiltasSouls
         public bool RangedEssence;
         public bool BuilderMode;
         public bool UniverseEffect;
+        public bool autofire;
         public bool UniverseStoredAutofire;
         public bool FishSoul1;
         public bool FishSoul2;
@@ -194,13 +195,15 @@ namespace FargowiltasSouls
         public bool DubiousCircuitry;
         public bool MagicalBulb;
         public bool SkullCharm;
+        public bool PumpkingsCape;
         public bool LihzahrdTreasureBox;
         public int GroundPound;
         public bool BetsysHeart;
         public bool MutantAntibodies;
         public bool GravityGlobeEX;
         public bool CelestialRune;
-        public int CelestialRuneTimer;
+        public bool AdditionalAttacks;
+        public int AdditionalAttacksTimer;
         public bool MoonChalice;
         public bool LunarCultist;
         public bool TrueEyes;
@@ -215,6 +218,7 @@ namespace FargowiltasSouls
         public bool SqueakyAcc;
         public bool RainbowSlime;
         public bool SkeletronArms;
+        public bool SuperFlocko;
 
         //debuffs
         public bool Hexed;
@@ -568,6 +572,7 @@ namespace FargowiltasSouls
             RangedEssence = false;
             BuilderMode = false;
             UniverseEffect = false;
+            autofire = false;
             FishSoul1 = false;
             FishSoul2 = false;
             TerrariaSoul = false;
@@ -588,11 +593,13 @@ namespace FargowiltasSouls
             DubiousCircuitry = false;
             MagicalBulb = false;
             SkullCharm = false;
+            PumpkingsCape = false;
             LihzahrdTreasureBox = false;
             BetsysHeart = false;
             MutantAntibodies = false;
             GravityGlobeEX = false;
             CelestialRune = false;
+            AdditionalAttacks = false;
             MoonChalice = false;
             LunarCultist = false;
             TrueEyes = false;
@@ -604,6 +611,7 @@ namespace FargowiltasSouls
             SqueakyAcc = false;
             RainbowSlime = false;
             SkeletronArms = false;
+            SuperFlocko = false;
 
             //debuffs
             Hexed = false;
@@ -1183,6 +1191,9 @@ namespace FargowiltasSouls
                     item.scale = 2f;
                 }
             }
+
+            if (AdditionalAttacks && AdditionalAttacksTimer > 0)
+                AdditionalAttacksTimer--;
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumPostUpdate();
         }
@@ -4003,7 +4014,7 @@ namespace FargowiltasSouls
 
         public override bool PreItemCheck()
         {
-            if (UniverseEffect)
+            if (autofire)
             {
                 UniverseStoredAutofire = player.HeldItem.autoReuse;
                 player.HeldItem.autoReuse = true;
@@ -4013,7 +4024,7 @@ namespace FargowiltasSouls
 
         public override void PostItemCheck()
         {
-            if (UniverseEffect)
+            if (autofire)
             {
                 player.HeldItem.autoReuse = UniverseStoredAutofire;
             }

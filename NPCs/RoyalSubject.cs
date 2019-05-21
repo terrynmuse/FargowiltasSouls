@@ -44,6 +44,15 @@ namespace FargowiltasSouls.NPCs
             npc.damage = (int)(npc.damage * (1 + FargoWorld.BeeCount * .0125));
         }
 
+        public override void AI()
+        {
+            if (!FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee)
+                && !NPC.AnyNPCs(NPCID.QueenBee))
+            {
+                npc.StrikeNPCNoInteraction(9999, 0f, 0);
+            }
+        }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 180));
@@ -55,6 +64,20 @@ namespace FargowiltasSouls.NPCs
         public override bool PreNPCLoot()
         {
             return false;
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                //Main.PlaySound(npc.DeathSound, npc.Center);
+                for (int i = 0; i < 20; i++)
+                {
+                    int d = Dust.NewDust(npc.position, npc.width, npc.height, 5);
+                    Main.dust[d].velocity *= 3f;
+                    Main.dust[d].scale += 0.75f;
+                }
+            }
         }
 
         public override void FindFrame(int frameHeight)

@@ -250,7 +250,9 @@ namespace FargowiltasSouls.Projectiles
                         projectile.Kill();
                     }
 
-                    if (modPlayer.SpookyEnchant && Soulcheck.GetValue("Spooky Scythes") && projectile.minion && projectile.minionSlots > 0 && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
+                    if (modPlayer.SpookyEnchant && Soulcheck.GetValue("Spooky Scythes") && projectile.owner == Main.myPlayer
+                        && projectile.minion && projectile.minionSlots > 0
+                        && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
                     {
                         Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 62);
                         Projectile[] projs = XWay(8, projectile.Center, mod.ProjectileType("SpookyScythe"), 5, projectile.damage / 2, 2f);
@@ -1161,6 +1163,11 @@ namespace FargowiltasSouls.Projectiles
                             target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
                             target.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(1800, 3600));
                         }
+                        break;
+
+                    case ProjectileID.FlamingScythe:
+                        target.AddBuff(BuffID.OnFire, Main.rand.Next(900, 1800));
+                        target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(900, 1800));
                         break;
 
                     default:

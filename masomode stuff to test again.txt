@@ -17,6 +17,32 @@
 -tried making ground pound code more robust
 -cyclonic fin gives cute fishron a spell circle
 -oceanic seal suppresses supersonic toggle
+-made new oceanic seal work in MP?
+-added duke fishron EX to boss checklist?
+-increased sadism duration to 7 minutes
+-lunatic cultist drops celestial seal
+-added volatile energy to pure heart recipe
+-tried to make spooky ench not trigger by other players in MP?
+-added autofire to tribal charm
+-slightly buffed moon lord's socket rays
+-removed living wasteland immune from lump of flesh
+-revmoed frozen immune from cyclonic fin and frigid gemstone
+-pumpking inflicts living wasteland (was rotting)
+-pumpking scythes inflict on fire/living wasteland!
+-mourning wood now drops bladed glove 10%
+-pumpking now drops bloody machete 10%
+-pumpking also drops a goodie bag when killed
+-more flavour text
+-added pumpking's cape
+-added ice queen's crown (super flocko not complete yet, ech)
+-added heart of the masochist
+-removed lunar bars from soul of the masochist recipe (they're in heart now)
+-bionomic cluster/chalice give defense now (matches their components)
+-added souls of light/night to cluster recipe
+-tried making eaters of souls more reliably not drop loot during EOW fight
+-made various boss parts immune to clipped wings
+-BUFFED SOUL OF MASOCHIST AGAIN HAHAAAAAAAAAAAAAAAAAAAA
+-royal subjects die when queen bee dies (i think)
 
 -rainbow slime spikes don't ignore tiles anymore
 -halved krampus spawn rate

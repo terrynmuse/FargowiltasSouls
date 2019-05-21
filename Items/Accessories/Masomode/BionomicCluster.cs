@@ -13,9 +13,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bionomic Cluster");
-            Tooltip.SetDefault(@"''
-Grants immunity to Frostburn, Shadowflame, Frozen, Squeaky Toy, Purified, and Mighty Wind
+            Tooltip.SetDefault(@"'The amalgamate born of a thousand common enemies'
+Grants immunity to Frostburn, Shadowflame, Squeaky Toy, Purified, and Mighty Wind
 Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and Suffocation
+Grants autofire to all weapons
 Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies
 Your attacks summon Shadowfrostfireballs to attack your enemies
 You respawn twice as fast when no boss is alive
@@ -31,6 +32,7 @@ Summons a friendly rainbow slime");
             item.accessory = true;
             item.rare = 7;
             item.value = Item.sellPrice(0, 5);
+            item.defense = 6;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -49,7 +51,6 @@ Summons a friendly rainbow slime");
                 fargoPlayer.DragonFang = true;
 
             //frigid gemstone
-            player.buffImmune[BuffID.Frozen] = true;
             player.buffImmune[BuffID.Frostburn] = true;
             player.buffImmune[BuffID.ShadowFlame] = true;
             if (Soulcheck.GetValue("Shadowfrostfireballs"))
@@ -72,6 +73,7 @@ Summons a friendly rainbow slime");
             player.buffImmune[BuffID.Webbed] = true;
             player.buffImmune[BuffID.Suffocation] = true;
             player.statLifeMax2 += 50;
+            fargoPlayer.autofire = true;
             fargoPlayer.wingTimeModifier += 0.25f;
         }
 
@@ -85,6 +87,8 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(mod.ItemType("SandofTime"));
             recipe.AddIngredient(mod.ItemType("SqueakyToy"));
             recipe.AddIngredient(mod.ItemType("TribalCharm"));
+            recipe.AddIngredient(ItemID.SoulofLight, 20);
+            recipe.AddIngredient(ItemID.SoulofNight, 20);
 
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

@@ -44,7 +44,6 @@ Upgrades Cute Fishron to Cute Fishron EX");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[BuffID.Frozen] = true;
             player.buffImmune[mod.BuffType("OceanicMaul")] = true;
             player.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
             player.GetModPlayer<FargoPlayer>().CyclonicFin = true;

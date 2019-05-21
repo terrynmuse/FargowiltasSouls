@@ -35,9 +35,7 @@ Increases flight time by 100%");
             player.buffImmune[BuffID.ChaosState] = true;
 
             if (Soulcheck.GetValue("Gravity Control"))
-            {
                 player.gravControl = true;
-            }
 
             if (Soulcheck.GetValue("True Eyes Minion"))
                 player.AddBuff(mod.BuffType("TrueEyes"), 2);
