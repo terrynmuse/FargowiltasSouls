@@ -47,6 +47,7 @@ namespace FargowiltasSouls
             ["Molten Inferno"] = new Color(81, 181, 113),
             ["Cobalt Shards"] = new Color(81, 181, 113),
             ["Palladium Healing"] = new Color(81, 181, 113),
+            ["Mythril Speedup"] = new Color(81, 181, 113),
             ["Orichalcum Fireballs"] = new Color(81, 181, 113),
             ["Adamantite Splitting"] = new Color(81, 181, 113),
             ["Titanium Shadow Dodge"] = new Color(81, 181, 113),
