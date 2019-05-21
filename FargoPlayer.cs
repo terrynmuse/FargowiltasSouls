@@ -2091,7 +2091,7 @@ namespace FargowiltasSouls
                 player.statMana += 4;
             }
 
-            if (GladEnchant && projectile != ProjectileID.JavelinFriendly)
+            if (GladEnchant && Soulcheck.GetValue("Gladiator Rain") && projectile != ProjectileID.JavelinFriendly)
             {
                 gladCount++;
 

@@ -40,6 +40,7 @@ namespace FargowiltasSouls
             ["Tungsten Effect"] = new Color(81, 181, 113),
             ["Gold Lucky Coin"] = new Color(81, 181, 113),
             ["Shadow Darkness"] = new Color(81, 181, 113),
+            ["Gladiator Rain"] = new Color(81, 181, 113),
             ["Jungle Spores"] = new Color(81, 181, 113),
             ["Meteor Shower"] = new Color(81, 181, 113),
             ["Necro Guardian"] = new Color(81, 181, 113),
