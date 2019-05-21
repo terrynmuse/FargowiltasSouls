@@ -88,7 +88,6 @@ Summons a friendly super Flocko and true eyes of Cthulhu");
 
             //heart of maso
             player.buffImmune[mod.BuffType("NullificationCurse")] = true;
-            NPCs.FargoGlobalNPC.masoStateML = 4;
         }
 
         public override void AddRecipes()

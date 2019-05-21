@@ -8364,7 +8364,7 @@ namespace FargowiltasSouls.NPCs
 
         public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
         {
-            if (isMasoML && masoStateML > 0 && masoStateML < 4)
+            if (isMasoML && masoStateML > 0 && masoStateML < 4 && !player.buffImmune[mod.BuffType("NullificationCurse")])
                 return false;
 
             return null;
@@ -8372,7 +8372,7 @@ namespace FargowiltasSouls.NPCs
 
         public override bool? CanBeHitByProjectile(NPC npc, Projectile projectile)
         {
-            if (isMasoML)
+            if (isMasoML && !Main.player[projectile.owner].buffImmune[mod.BuffType("NullificationCurse")])
             {
                 switch (masoStateML)
                 {

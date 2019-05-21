@@ -224,7 +224,6 @@ Summons the aid of all Masochist Mode bosses to your side");
 
             //heart of maso
             player.buffImmune[mod.BuffType("NullificationCurse")] = true;
-            NPCs.FargoGlobalNPC.masoStateML = 4;
 
             //cyclonic fin
             player.buffImmune[BuffID.Frozen] = true;
