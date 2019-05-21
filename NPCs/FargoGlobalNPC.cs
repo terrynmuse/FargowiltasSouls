@@ -6211,7 +6211,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void EditSpawnRate (Player player, ref int spawnRate, ref int maxSpawns)
 		{
-			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+			//FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			
             if(FargoWorld.MasochistMode)
             {
