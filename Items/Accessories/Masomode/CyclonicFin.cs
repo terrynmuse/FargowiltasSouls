@@ -19,7 +19,7 @@ Grants immunity to Frozen, Curse of the Moon, and Oceanic Maul
 Your attacks inflict Curse of the Moon and Oceanic Maul
 Spectral Fishron periodically manifests to support your critical hits
 Spectral Fishron also inflicts Mutant Nibble, disabling enemy healing
-Empowers Cute Fishron, increasing speed and stat bonuses");
+Upgrades Cute Fishron to Cute Fishron EX");
         }
 
         public override void SetDefaults()
@@ -44,7 +44,6 @@ Empowers Cute Fishron, increasing speed and stat bonuses");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[BuffID.Frozen] = true;
             player.buffImmune[mod.BuffType("OceanicMaul")] = true;
             player.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
             player.GetModPlayer<FargoPlayer>().CyclonicFin = true;
@@ -52,6 +51,8 @@ Empowers Cute Fishron, increasing speed and stat bonuses");
                 player.GetModPlayer<FargoPlayer>().CyclonicFinCD--;
             if (player.mount.Active && player.mount.Type == MountID.CuteFishron)
             {
+                if (player.ownedProjectileCounts[mod.ProjectileType("CuteFishronRitual")] < 1 && player.whoAmI == Main.myPlayer)
+                    Projectile.NewProjectile(player.MountedCenter, Vector2.Zero, mod.ProjectileType("CuteFishronRitual"), 0, 0f, Main.myPlayer);
                 player.MountFishronSpecialCounter = 300;
                 player.meleeDamage += 0.15f;
                 player.rangedDamage += 0.15f;
@@ -63,6 +64,9 @@ Empowers Cute Fishron, increasing speed and stat bonuses");
                 player.magicCrit += 30;
                 player.thrownCrit += 30;
                 player.statDefense += 30;
+                player.lifeRegen += 3;
+                player.lifeRegenCount += 3;
+                player.lifeRegenTime += 3;
                 if (player.controlLeft == player.controlRight)
                 {
                     if (player.velocity.X != 0)

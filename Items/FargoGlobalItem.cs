@@ -186,14 +186,14 @@ namespace FargowiltasSouls.Items
                 }
             }
 
-            if (modPlayer.CelestialRune && modPlayer.CelestialRuneTimer <= 0)
+            if (modPlayer.AdditionalAttacks && modPlayer.AdditionalAttacksTimer <= 0)
             {
-                modPlayer.CelestialRuneTimer = 60;
+                modPlayer.AdditionalAttacksTimer = 60;
 
                 Vector2 position = player.Center;
                 Vector2 velocity = Vector2.Normalize(Main.MouseWorld - position) * item.shootSpeed;
 
-                if (Soulcheck.GetValue("Celestial Rune Support"))
+                if (modPlayer.CelestialRune && Soulcheck.GetValue("Celestial Rune Support"))
                 {
                     if (item.melee) //fireball
                     {
@@ -220,6 +220,31 @@ namespace FargowiltasSouls.Items
                     {
                         velocity *= 16f;
                         Projectile.NewProjectile(position, velocity, mod.ProjectileType("CelestialRuneAncientVision"), (int)(50f * player.thrownDamage), 0, player.whoAmI);
+                    }
+                }
+
+                if (modPlayer.PumpkingsCape && Soulcheck.GetValue("Pumpking's Cape Support"))
+                {
+                    if (item.melee) //flaming jack
+                    {
+                        velocity *= 8f;
+                        Projectile.NewProjectile(position, velocity, ProjectileID.FlamingJack, (int)(75f * player.meleeDamage), 7.5f, player.whoAmI);
+                    }
+                    if (item.ranged) //jack o lantern
+                    {
+                        velocity *= 7f;
+                        Projectile.NewProjectile(position, velocity, ProjectileID.JackOLantern, (int)(95f * player.rangedDamage), 8f, player.whoAmI);
+                    }
+                    if (item.magic) //bat scepter
+                    {
+                        velocity *= 10f;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Vector2 newVel = velocity;
+                            newVel.X += Main.rand.Next(-35, 36) * 0.05f;
+                            newVel.Y += Main.rand.Next(-35, 36) * 0.05f;
+                            Projectile.NewProjectile(position, newVel, ProjectileID.Bat, (int)(45f * player.magicDamage), 3f, player.whoAmI);
+                        }
                     }
                 }
             }

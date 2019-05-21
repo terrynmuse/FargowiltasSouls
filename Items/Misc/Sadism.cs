@@ -14,7 +14,8 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sadism");
-            Tooltip.SetDefault( "Grants immunity to almost all Masochist Mode debuffs");
+            Tooltip.SetDefault(@"'Proof of having embraced suffering'
+Grants immunity to almost all Masochist Mode debuffs");
 		}
 
 		public override void SetDefaults()
@@ -28,7 +29,7 @@ namespace FargowiltasSouls.Items.Misc
             item.useTime = 17;
             item.consumable = true;
             item.buffType = mod.BuffType("Sadism");
-            item.buffTime = 7200;
+            item.buffTime = 25200;
             item.UseSound = SoundID.Item3;
             item.value = Item.sellPrice(0, 1);
         }

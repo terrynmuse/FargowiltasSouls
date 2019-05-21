@@ -88,6 +88,7 @@ and most of SoT not mentioned because meme tooltip length
 
             //UNIVERSE
             modPlayer.UniverseEffect = true;
+            modPlayer.autofire = true;
             modPlayer.AllDamageUp(2f);
             if (Soulcheck.GetValue("Universe Attack Speed"))
             {
@@ -181,7 +182,7 @@ and most of SoT not mentioned because meme tooltip length
 
             //SUPERSONIC
             //frost spark plus super speed
-            if (Soulcheck.GetValue("Supersonic Speed Boosts"))
+            if (Soulcheck.GetValue("Supersonic Speed Boosts") && !player.GetModPlayer<FargoPlayer>().noSupersonic)
             {
                 player.maxRunSpeed += 15f;
                 player.runAcceleration += .25f;

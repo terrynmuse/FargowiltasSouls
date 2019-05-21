@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Lump of Flesh");
             Tooltip.SetDefault(@"'It's growing'
-Grants immunity to Living Wasteland, Blackout, Obstructed, and Dazed
+Grants immunity to Blackout, Obstructed, and Dazed
 Increases minion damage by 16% but slightly decreases defense
 Increases your max number of minions by 2
 Increases your max number of sentries by 2
@@ -30,7 +30,6 @@ Makes armed and magic skeletons less hostile outside the Dungeon");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[mod.BuffType("LivingWasteland")] = true;
             player.buffImmune[BuffID.Blackout] = true;
             player.buffImmune[BuffID.Obstructed] = true;
             player.buffImmune[BuffID.Dazed] = true;

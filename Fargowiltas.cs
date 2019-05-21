@@ -125,6 +125,12 @@ namespace FargowiltasSouls
                 DebuffIDs[21] = BuffType("SqueakyToy");
                 DebuffIDs[22] = BuffType("Stunned");
                 DebuffIDs[23] = BuffType("Unstable");
+
+                Mod bossChecklist = ModLoader.GetMod("BossChecklist");
+                if (bossChecklist != null)
+                {
+                    bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 17.1f, (Func<bool>)(() => FargoWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
+                }
             }
             catch (Exception e)
             {

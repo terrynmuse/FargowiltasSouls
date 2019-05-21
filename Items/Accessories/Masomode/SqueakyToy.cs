@@ -12,7 +12,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Squeaky Toy");
-            Tooltip.SetDefault(@"Grants immunity to Squeaky Toy and Purified
+            Tooltip.SetDefault(@"'The beloved toy of a defeated foe...?'
+Grants immunity to Squeaky Toy and Purified
 Attacks have a chance to squeak and deal 1 damage to you");
         }
 

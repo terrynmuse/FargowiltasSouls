@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sands of Time");
-            Tooltip.SetDefault(@"''
+            Tooltip.SetDefault(@"'Whatever you do, don't drop it'
 Works in your inventory
 Grants immunity to Mighty Wind
 You respawn twice as fast when no boss is alive");

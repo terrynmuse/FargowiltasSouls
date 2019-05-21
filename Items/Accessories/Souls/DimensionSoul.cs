@@ -148,7 +148,7 @@ All other effects of material Souls");
 
             //SUPERSONIC
             //frost spark plus super speed
-            if (Soulcheck.GetValue("Supersonic Speed Boosts"))
+            if (Soulcheck.GetValue("Supersonic Speed Boosts") && !player.GetModPlayer<FargoPlayer>().noSupersonic)
             {
                 player.maxRunSpeed += 15f;
                 player.runAcceleration += .25f;

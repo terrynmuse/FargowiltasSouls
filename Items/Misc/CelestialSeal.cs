@@ -30,11 +30,6 @@ Only usable after Demon Heart");
             item.value = Item.sellPrice(0, 15);
         }
 
-        /*public override bool CanUseItem(Player player)
-        {
-            return player.extraAccessorySlots == 1;
-        }*/
-
         public override bool CanUseItem(Player player)
         {
             return player.extraAccessorySlots == 1;
@@ -60,7 +55,7 @@ Only usable after Demon Heart");
             }
         }
 
-        public override void AddRecipes()
+        /*public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
@@ -75,6 +70,6 @@ Only usable after Demon Heart");
 
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

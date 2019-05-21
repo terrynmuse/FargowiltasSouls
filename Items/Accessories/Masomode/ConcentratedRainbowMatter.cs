@@ -14,8 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             DisplayName.SetDefault("Concentrated Rainbow Matter");
             Tooltip.SetDefault(@"'Taste the rainbow'
 Grants immunity to Flames of the Universe
-Summons a rainbow slime (which is just slime AI but inflicts Flames of the Universe and is bigger maybe, 
-additionally if he has a target but hasnt hit them in so long, he jumps super high to them or shoots some rainbow shet)");
+Summons a baby rainbow slime");
         }
 
         public override void SetDefaults()

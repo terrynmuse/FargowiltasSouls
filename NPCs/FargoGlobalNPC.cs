@@ -124,13 +124,6 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
-                    case NPCID.EaterofSouls:
-                    case NPCID.BigEater:
-                    case NPCID.LittleEater:
-                        if (BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
-                            dropLoot = false;
-                        break;
-
                     case NPCID.SolarSolenian:
                         npc.knockBackResist = 0f;
                         break;
@@ -214,6 +207,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.LunarTowerStardust:
                     case NPCID.LunarTowerVortex:
                         npc.lifeMax *= 5;
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         break;
 
                     case NPCID.CultistArcherWhite:
@@ -238,6 +232,9 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WallofFlesh:
                         npc.defense *= 10;
                         break;
+                    case NPCID.WallofFleshEye:
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
+                        break;
                     case NPCID.TheHungry:
                         npc.lifeMax *= 3;
                         npc.knockBackResist = 0f;
@@ -256,6 +253,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PrimeSaw:
                     case NPCID.PrimeVice:
                         npc.trapImmune = true;
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         break;
 
                     case NPCID.Golem:
@@ -264,11 +262,13 @@ namespace FargowiltasSouls.NPCs
                         break;
                     case NPCID.GolemHead:
                         npc.trapImmune = true;
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         break;
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight:
                         npc.scale += 0.5f;
                         npc.trapImmune = true;
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         break;
 
                     case NPCID.DukeFishron:
@@ -280,6 +280,7 @@ namespace FargowiltasSouls.NPCs
                             npc.damage = (int)(npc.damage * 1.5);
                             npc.defense *= 2;
                             npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
+                            npc.buffImmune[mod.BuffType("LightningRod")] = true;
                         }
                         break;
                     case NPCID.DetonatingBubble:
@@ -291,11 +292,13 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
                         npc.lifeMax *= 5;
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
                             npc.lifeMax *= 20;
                             npc.defense *= 2;
                             npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
+                            npc.buffImmune[mod.BuffType("LightningRod")] = true;
                             ValhallaImmune = true;
                         }
                         npc.buffImmune[BuffID.OnFire] = true;
@@ -306,6 +309,7 @@ namespace FargowiltasSouls.NPCs
                         npc.lifeMax = (int)(npc.lifeMax * 1.5);
                         break;
                     case NPCID.CultistBossClone:
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         npc.damage = 75;
                         break;
                     case NPCID.AncientDoom:
@@ -323,9 +327,11 @@ namespace FargowiltasSouls.NPCs
                         break;
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead:
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         isMasoML = true;
                         break;
                     case NPCID.MoonLordLeechBlob:
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         npc.lifeMax *= 5;
                         break;
 
@@ -1790,6 +1796,17 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.EaterofSouls:
+                    case NPCID.BigEater:
+                    case NPCID.LittleEater:
+                        if (Counter < 6) //for a few ticks after spawning, check if EOW is active
+                        {
+                            Counter++;
+                            if (BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
+                                dropLoot = false;
+                        }
+                        break;
+
                     case NPCID.QueenBee:
                         beeBoss = boss = npc.whoAmI;
 
@@ -2203,8 +2220,15 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DukeFishron:
                         fishBoss = boss = npc.whoAmI;
-                        if (npc.HasPlayerTarget & npc.Distance(Main.player[npc.target].Center) < 1800)
-                            Main.player[npc.target].AddBuff(mod.BuffType("OceanicSeal"), 2);
+                        if (npc.HasPlayerTarget)
+                        {
+                            if (npc.Distance(Main.player[npc.target].Center) < 1800)
+                                Main.player[npc.target].AddBuff(mod.BuffType("OceanicSeal"), 2);
+                            /*if (Main.player[npc.target].ownedProjectileCounts[mod.ProjectileType("FishronRitual2")] < 1
+                                && Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual2"),
+                                    0, 0f, npc.target, 0f, npc.whoAmI);*/
+                        }
                         if (masoBool[3]) //fishron EX
                         {
                             fishBossEX = npc.whoAmI;
@@ -2217,9 +2241,7 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         int ritual1 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
                                             mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax, npc.whoAmI);
-                                        int ritual2 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
-                                            mod.ProjectileType("FishronRitual2"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
-                                        if (ritual1 == 1000 || ritual2 == 1000) //failed to spawn projectile, abort spawn
+                                        if (ritual1 == 1000) //failed to spawn projectile, abort spawn
                                             npc.active = false;
                                         Main.PlaySound(SoundID.Item84, npc.Center);
                                     }
@@ -2409,6 +2431,22 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         if (Main.netMode != 1)
                                         {
+                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, 1f);
+                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, -0.5f);
+                                        }
+                                    }
+                                    else if (npc.ai[2] == 16f)
+                                    {
+                                        if (Main.netMode != 1)
+                                        {
+                                            /*Vector2 spawnPos = Vector2.UnitX * npc.direction;
+                                            spawnPos = spawnPos.RotatedBy(npc.rotation);
+                                            spawnPos *= npc.width + 20f;
+                                            spawnPos /= 2f;
+                                            spawnPos += npc.Center;
+                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * 2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
+                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);*/
+
                                             const int max = 24;
                                             float rotation = 2f * (float)Math.PI / max;
                                             for (int i = 0; i < max; i++)
@@ -2425,22 +2463,6 @@ namespace FargowiltasSouls.NPCs
                                             }
                                         }
                                     }
-                                    else if (npc.ai[2] == 16f)
-                                    {
-                                        if (Main.netMode != 1)
-                                        {
-                                            /*Vector2 spawnPos = Vector2.UnitX * npc.direction;
-                                            spawnPos = spawnPos.RotatedBy(npc.rotation);
-                                            spawnPos *= npc.width + 20f;
-                                            spawnPos /= 2f;
-                                            spawnPos += npc.Center;
-                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * 2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
-                                            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, npc.direction * -2f, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);*/
-
-                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, 1f);
-                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, -0.5f);
-                                        }
-                                    }
                                     goto case 10;
 
                                 default:
@@ -2453,13 +2475,13 @@ namespace FargowiltasSouls.NPCs
                             switch ((int)npc.ai[0])
                             {
                                 case -1: //just spawned
-                                    if (npc.ai[2] == 1 && Main.netMode != 1) //create spell circle
+                                    /*if (npc.ai[2] == 1 && Main.netMode != 1) //create spell circle
                                     {
                                         int p2 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
                                             mod.ProjectileType("FishronRitual2"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
                                         if (p2 == 1000) //failed to spawn projectile, abort spawn
                                             npc.active = false;
-                                    }
+                                    }*/
                                     npc.dontTakeDamage = true;
                                     break;
 
@@ -4278,7 +4300,7 @@ namespace FargowiltasSouls.NPCs
                                             if (difference < 0f)
                                                 rotationDirection *= -1f;
                                             Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[0]);
-                                            int damage = (int)(50 * (1 + FargoWorld.MoonlordCount * .0125));
+                                            int damage = (int)(60 * (1 + FargoWorld.MoonlordCount * .0125));
                                             if (Main.netMode != 1)
                                                 Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayML"),
                                                     damage, 0f, Main.myPlayer, rotationDirection, npc.whoAmI);
@@ -5736,7 +5758,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Pumpking:
                     case NPCID.PumpkingBlade:
                         target.AddBuff(BuffID.Weak, Main.rand.Next(900, 1800));
-                        target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(900, 1800));
+                        target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(900, 1800));
                         break;
 
                     case NPCID.MourningWood:
@@ -6856,11 +6878,21 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.MourningWood:
                         Item.NewItem(npc.position, npc.width, npc.height, ItemID.GoodieBag);
+                        if (Main.rand.Next(10) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.BloodyMachete);
                         break;
 
                     case NPCID.Pumpking:
+                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.GoodieBag);
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.BladedGlove);
+                        if (Main.pumpkinMoon && Main.rand.Next(25) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("PumpkingsCape"));
+                        break;
+
+                    case NPCID.IceQueen:
+                        if (Main.snowMoon && Main.rand.Next(25) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("IceQueensCrown"));
                         break;
 
                     case NPCID.LavaSlime:
@@ -6869,12 +6901,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DesertDjinn:
-                        if (Main.rand.Next(20) == 0)
+                        if (Main.rand.Next(50) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.FlyingCarpet);
                         break;
 
                     case NPCID.DarkCaster:
-                        if (Main.rand.Next(20) == 0)
+                        if (Main.rand.Next(25) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.WaterBolt);
                         break;
 
@@ -6993,6 +7025,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.CultistBoss:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CelestialRune"));
+                        if (Main.player[Main.myPlayer].extraAccessorySlots == 1)
+                            npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CelestialSeal"));
                         break;
 
                     case NPCID.MoonLordCore:
@@ -8300,8 +8334,8 @@ namespace FargowiltasSouls.NPCs
 
         public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
         {
-            if (isMasoML)
-                return masoStateML == 0;
+            if (isMasoML && masoStateML > 0 && masoStateML < 4)
+                return false;
 
             return null;
         }

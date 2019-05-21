@@ -65,7 +65,7 @@ Effects of Flying Carpet";
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             //frost spark plus super speed
-            if (Soulcheck.GetValue("Supersonic Speed Boosts"))
+            if (Soulcheck.GetValue("Supersonic Speed Boosts") && !player.GetModPlayer<FargoPlayer>().noSupersonic)
             {
                 player.maxRunSpeed += 10f;
                 player.runAcceleration += .25f;
