@@ -20,7 +20,7 @@ Grants autofire to all weapons
 Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies
 Your attacks summon Shadowfrostfireballs to attack your enemies
 You respawn twice as fast when no boss is alive
-All weapons have auto swing
+Automatically use mana potions when needed
 Attacks have a chance to squeak and deal 1 damage to you
 Summons a friendly rainbow slime");
         }
@@ -73,6 +73,10 @@ Summons a friendly rainbow slime");
             player.buffImmune[BuffID.Webbed] = true;
             player.buffImmune[BuffID.Suffocation] = true;
             fargoPlayer.TribalCharm = true;
+
+            //mystic skull
+            player.buffImmune[BuffID.Suffocation] = true;
+            player.manaFlower = true;
         }
 
         public override void AddRecipes()
@@ -85,6 +89,7 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(mod.ItemType("SandofTime"));
             recipe.AddIngredient(mod.ItemType("SqueakyToy"));
             recipe.AddIngredient(mod.ItemType("TribalCharm"));
+            recipe.AddIngredient(mod.ItemType("MysticSkull"));
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 20);
 

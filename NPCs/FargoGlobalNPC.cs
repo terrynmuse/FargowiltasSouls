@@ -5195,7 +5195,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ManEater:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
-                        if (target.statLife < 100 && !Main.hardMode)
+                        if (target.statLife < 100)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Man Eater."), 999, 0);
                         break;
 
@@ -5535,10 +5535,19 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BigMimicCorruption:
+                        target.AddBuff(BuffID.CursedInferno, 300);
+                        goto case NPCID.Mimic;
+
                     case NPCID.BigMimicCrimson:
+                        target.AddBuff(BuffID.Ichor, 300);
+                        goto case NPCID.Mimic;
+
                     case NPCID.BigMimicHallow:
+                        target.AddBuff(mod.BuffType("Unstable"), 60);
+                        goto case NPCID.Mimic;
+
                     case NPCID.BigMimicJungle:
-                        target.AddBuff(mod.BuffType("Berserked"), 300);
+                        target.AddBuff(BuffID.Suffocation, 120);
                         goto case NPCID.Mimic;
 
                     case NPCID.RuneWizard:
@@ -6908,6 +6917,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DarkCaster:
                         if (Main.rand.Next(25) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.WaterBolt);
+                        break;
+
+                    case NPCID.RuneWizard:
+                        if (Main.rand.Next(2) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("MysticSkull"));
                         break;
 
                     #region boss drops

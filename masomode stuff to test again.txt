@@ -43,6 +43,10 @@
 -made various boss parts immune to clipped wings
 -BUFFED SOUL OF MASOCHIST AGAIN HAHAAAAAAAAAAAAAAAAAAAA
 -royal subjects die when queen bee dies (i think)
+-added mystic skull (part of bionomic cluster)
+-tribal charm webbed immune moved to mystic skull
+-biome mimics inflict unique debuffs now
+-changed lump of flesh recipe from ectoplasm/souls to spectre bars
 
 -antlion back to how it was but only happens when stunned
 -nimbus only spawns in the sky in hard mode now

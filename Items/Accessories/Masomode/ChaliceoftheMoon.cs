@@ -9,10 +9,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Chalice of the Moon");
-            Tooltip.SetDefault(@"'The moon smiles upon you'
-Increases life regeneration
+            Tooltip.SetDefault(@"'The moon smiles'
 Grants immunity to Venom, Burning, Fused, Marked for Death, and Hexed
 Grants immunity to Atrophied, Jammed, Reverse Mana Flow, and Antisocial
+Increases life regeneration
 You periodically fire additional attacks depending on weapon type
 You erupt into Ancient Visions when injured
 Summons a friendly Cultist and plant to fight at your side");

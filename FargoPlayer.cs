@@ -572,7 +572,6 @@ namespace FargowiltasSouls
             RangedEssence = false;
             BuilderMode = false;
             UniverseEffect = false;
-            autofire = false;
             FishSoul1 = false;
             FishSoul2 = false;
             TerrariaSoul = false;
@@ -812,20 +811,23 @@ namespace FargowiltasSouls
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                     player.AddBuff(mod.BuffType("Lethargic"), 2);
 
-                int tileX = (int)Main.player[player.whoAmI].position.X / 16;
-                int tileY = (int)Main.player[player.whoAmI].position.Y / 16;
-                Tile currentTile = Framing.GetTileSafely(tileX, tileY);
-                if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe && player.stickyBreak > 0 && !PureHeart)
+                if (player.stickyBreak > 0)
                 {
-                    player.AddBuff(BuffID.Webbed, 30);
-                    //player.stickyBreak = 1000;
+                    int tileX = (int)Main.player[player.whoAmI].position.X / 16;
+                    int tileY = (int)Main.player[player.whoAmI].position.Y / 16;
+                    Tile currentTile = Framing.GetTileSafely(tileX, tileY);
+                    if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe && !PureHeart && !player.buffImmune[BuffID.Webbed])
+                    {
+                        player.AddBuff(BuffID.Webbed, 30);
+                        //player.stickyBreak = 1000;
 
-                    Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
-                    int num3 = (int)vector.X;
-                    int num4 = (int)vector.Y;
-                    WorldGen.KillTile(num3, num4, false, false, false);
-                    if (Main.netMode == 1 && !Main.tile[num3, num4].active())
-                        NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
+                        Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
+                        int num3 = (int)vector.X;
+                        int num4 = (int)vector.Y;
+                        WorldGen.KillTile(num3, num4, false, false, false);
+                        if (Main.netMode == 1 && !Main.tile[num3, num4].active())
+                            NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
+                    }
                 }
 
                 if (MasomodeCrystalTimer > 0)
