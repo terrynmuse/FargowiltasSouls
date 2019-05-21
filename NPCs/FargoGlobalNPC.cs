@@ -166,7 +166,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.IchorSticker:
                     case NPCID.Mimic:
                     case NPCID.SeekerHead:
-                    case NPCID.AngryNimbus:
                         dropLoot = Main.hardMode;
                         break;
 
@@ -666,8 +665,9 @@ namespace FargowiltasSouls.NPCs
                 {
                     werewolfTime = true;
                 }*/
+                int target;
 
-                switch (npc.type)
+                switch (npc.type) 
                 {
                     case NPCID.Tim:
                         Aura(npc, 400, BuffID.Silenced, false, 15);
@@ -691,6 +691,44 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Ghost:
                         Aura(npc, 100, BuffID.Cursed, false, 20);
+                        break;
+
+                    case NPCID.ManEater:
+                        target = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+
+                        if (target != -1)
+                        {
+                            Player player = Main.player[target];
+
+                            if (player.statLife < 100)
+                            {
+                                SharkCount = 2;
+                            }
+                            else
+                            {
+                                SharkCount = 0;
+                            }
+                        }
+
+                        break;
+
+                    case NPCID.AngryTrapper:
+                        target = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+
+                        if (target != -1)
+                        {
+                            Player player = Main.player[target];
+
+                            if (player.statLife < 180)
+                            {
+                                SharkCount = 2;
+                            }
+                            else
+                            {
+                                SharkCount = 0;
+                            }
+                        }
+
                         break;
 
                     case NPCID.Mummy:
@@ -4347,13 +4385,13 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    /*case NPCID.Antlion:
+                    case NPCID.Antlion:
                         Counter++;
                         if (Counter >= 30)
                         {
                             foreach (Player p in Main.player.Where(x => x.active && !x.dead))
                             {
-                                if (npc.Distance(p.Center) < 250)
+                                if (p.HasBuff(mod.BuffType("Stunned")) && npc.Distance(p.Center) < 250)
                                 {
                                     Vector2 velocity = Vector2.Normalize(npc.Center - p.Center) * 5f;
                                     p.velocity += velocity;
@@ -4361,7 +4399,7 @@ namespace FargowiltasSouls.NPCs
                             }
                             Counter = 0;
                         }
-                        break;*/
+                        break;
 
                     case NPCID.AngryNimbus:
                         Counter++;
@@ -5157,6 +5195,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ManEater:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
+                        if (target.statLife < 100 && !Main.hardMode)
+                            target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Man Eater."), 999, 0);
                         break;
 
                     case NPCID.DevourerHead:
@@ -5165,6 +5205,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.AngryTrapper:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
+                        if (target.statLife < 180)
+                            target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by an Angry Trapper."), 999, 0);
                         break;
 
                     case NPCID.SkeletronHead:
@@ -6327,10 +6369,6 @@ namespace FargowiltasSouls.NPCs
                         pool[NPCID.LeechHead] = .05f;
                         pool[NPCID.BlazingWheel] = .1f;
                     }
-                    else if (sky)
-                    {
-                        pool[NPCID.AngryNimbus] = .05f;
-                    }
 
                     //height-independent biomes
                     if (corruption)
@@ -7177,6 +7215,32 @@ namespace FargowiltasSouls.NPCs
                                 }
                                 break;
 
+                            case NPCID.Pinky:
+                                if (Main.netMode != 1)
+                                {
+                                    for (int i = 0; i < 3; i++)
+                                    {
+                                        int spawn = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), 1);
+
+                                        if (spawn != 200)
+                                        {
+                                            Main.npc[spawn].SetDefaults(i < 2 ? NPCID.YellowSlime : NPCID.MotherSlime);
+                                            Main.npc[spawn].velocity.X = npc.velocity.X * 2f;
+                                            Main.npc[spawn].velocity.Y = npc.velocity.Y;
+
+                                            NPC spawn2 = Main.npc[spawn];
+                                            spawn2.velocity.X = spawn2.velocity.X + (Main.rand.Next(-20, 20) * 0.1f + i * npc.direction * 0.3f);
+                                            NPC spawn3 = Main.npc[spawn];
+                                            spawn3.velocity.Y = spawn3.velocity.Y - (Main.rand.Next(0, 10) * 0.1f + i);
+                                            Main.npc[spawn].ai[0] = -1000 * Main.rand.Next(3);
+
+                                            if (Main.netMode == 2)
+                                                NetMessage.SendData(23, -1, -1, null, spawn);
+                                        }
+                                    }
+                                }
+                                break;
+
                             default:
                                 break;
                         }
@@ -7400,32 +7464,6 @@ namespace FargowiltasSouls.NPCs
                         if (FargoWorld.MoonlordCount < 120)
                             FargoWorld.MoonlordCount++;
                         break;
-
-                    /*case NPCID.Pinky: //needs to be under blue slime, probably
-                        if (Main.netMode != 1)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                int spawn = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), 1);
-
-                                if (spawn != 200)
-                                {
-                                    Main.npc[spawn].SetDefaults(i < 2 ? NPCID.YellowSlime : NPCID.MotherSlime);
-                                    Main.npc[spawn].velocity.X = npc.velocity.X * 2f;
-                                    Main.npc[spawn].velocity.Y = npc.velocity.Y;
-
-                                    NPC spawn2 = Main.npc[spawn];
-                                    spawn2.velocity.X = spawn2.velocity.X + (Main.rand.Next(-20, 20) * 0.1f + i * npc.direction * 0.3f);
-                                    NPC spawn3 = Main.npc[spawn];
-                                    spawn3.velocity.Y = spawn3.velocity.Y - (Main.rand.Next(0, 10) * 0.1f + i);
-                                    Main.npc[spawn].ai[0] = -1000 * Main.rand.Next(3);
-
-                                    if (Main.netMode == 2)
-                                        NetMessage.SendData(23, -1, -1, null, spawn);
-                                }
-                            }
-                        }
-                        break;*/
 
                     case NPCID.FlyingSnake:
                         if (!masoBool[0])
@@ -8080,10 +8118,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                     case NPCID.WallofFleshEye:
-                        /*if (npc.ai[0] == 2f || npc.ai[0] == -2f)
-                            damage = (int)(damage * 0.75);*/
                         if (projectile.type == ProjectileID.Bee || projectile.type == ProjectileID.GiantBee)
-                            damage /= 5;
+                            damage /= 2;
                         break;
 
                     case NPCID.MoonLordCore:

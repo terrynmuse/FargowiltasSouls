@@ -184,7 +184,7 @@ When you die, you explode and revive with 200 HP";
             modPlayer.WillForce = true; //knockback remove for all
             modPlayer.GoldEffect(hideVisual); //midas, greedy ring, pet, zhonyas
             modPlayer.PlatinumEnchant = true; //loot multiply
-            modPlayer.GladiatorEffect(hideVisual); //pet
+            modPlayer.GladiatorEffect(hideVisual); //javelins, pet
             modPlayer.RedRidingEffect(hideVisual); //pet
             player.accMerman = true;
             player.wolfAcc = true;
@@ -316,6 +316,7 @@ When you die, you explode and revive with 200 HP";
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(null, "WoodForce");
             recipe.AddIngredient(null, "TerraForce");
             recipe.AddIngredient(null, "EarthForce");
             recipe.AddIngredient(null, "NatureForce");

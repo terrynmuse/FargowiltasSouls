@@ -20,7 +20,7 @@ Grants autofire to all weapons
 Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies
 Your attacks summon Shadowfrostfireballs to attack your enemies
 You respawn twice as fast when no boss is alive
-Increases max life by 50 and flight time by 25%
+All weapons have auto swing
 Attacks have a chance to squeak and deal 1 damage to you
 Summons a friendly rainbow slime");
         }
@@ -72,9 +72,7 @@ Summons a friendly rainbow slime");
             //tribal charm
             player.buffImmune[BuffID.Webbed] = true;
             player.buffImmune[BuffID.Suffocation] = true;
-            player.statLifeMax2 += 50;
-            fargoPlayer.autofire = true;
-            fargoPlayer.wingTimeModifier += 0.25f;
+            fargoPlayer.TribalCharm = true;
         }
 
         public override void AddRecipes()

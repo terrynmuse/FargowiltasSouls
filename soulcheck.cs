@@ -36,7 +36,6 @@ namespace FargowiltasSouls
             ["Tin Crit"] = new Color(81, 181, 113),
             ["Iron Magnet"] = new Color(81, 181, 113),
             ["Iron Shield"] = new Color(81, 181, 113),
-            ["Gladiator Speedup"] = new Color(81, 181, 113),
             ["Silver Sword Familiar"] = new Color(81, 181, 113),
             ["Tungsten Effect"] = new Color(81, 181, 113),
             ["Gold Lucky Coin"] = new Color(81, 181, 113),
@@ -46,10 +45,10 @@ namespace FargowiltasSouls
             ["Necro Guardian"] = new Color(81, 181, 113),
             ["Molten Inferno"] = new Color(81, 181, 113),
             ["Cobalt Shards"] = new Color(81, 181, 113),
-            ["Palladium Healing"] = new Color(81, 181, 113), //also deactivate rapid healing
+            ["Palladium Healing"] = new Color(81, 181, 113),
             ["Orichalcum Fireballs"] = new Color(81, 181, 113),
             ["Adamantite Splitting"] = new Color(81, 181, 113),
-            //titanium shadow dodge
+            ["Titanium Shadow Dodge"] = new Color(81, 181, 113),
             ["Spider Swarm"] = new Color(81, 181, 113),
             ["Frost Icicles"] = new Color(81, 181, 113),
             ["Forbidden Storm"] = new Color(81, 181, 113),
@@ -104,8 +103,7 @@ namespace FargowiltasSouls
             ["Spiky Balls On Hit"] = new Color(81, 181, 113),
             ["Stars On Hit"] = new Color(81, 181, 113),
             ["Bees On Hit"] = new Color(81, 181, 113),
-            //infinity relic
-            //SoE damage stacking
+            ["Eternity Stacking"] = new Color(81, 181, 113),
             #endregion
         };
 

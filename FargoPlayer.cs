@@ -85,6 +85,7 @@ namespace FargowiltasSouls
         public bool ShellHide;
         public bool LeadEnchant;
         public bool GladEnchant;
+        private int gladCount = 0;
         public bool GoldEnchant;
         public bool GoldShell;
         private int goldCD = 0;
@@ -167,13 +168,10 @@ namespace FargowiltasSouls
         public bool RangedEssence;
         public bool BuilderMode;
         public bool UniverseEffect;
-        public bool autofire;
-        public bool UniverseStoredAutofire;
         public bool FishSoul1;
         public bool FishSoul2;
         public bool TerrariaSoul;
         public int HealTimer;
-        //public bool VoidSoul;
         public bool Eternity;
         private float eternityDamage = 0;
 
@@ -219,6 +217,8 @@ namespace FargowiltasSouls
         public bool RainbowSlime;
         public bool SkeletronArms;
         public bool SuperFlocko;
+        public bool TribalCharm;
+        public bool TribalAutoFire;
 
         //debuffs
         public bool Hexed;
@@ -612,6 +612,7 @@ namespace FargowiltasSouls
             RainbowSlime = false;
             SkeletronArms = false;
             SuperFlocko = false;
+            TribalCharm = false;
 
             //debuffs
             Hexed = false;
@@ -1808,7 +1809,7 @@ namespace FargowiltasSouls
             if (target.friendly)
                 return;
 
-            OnHitNPCEither(target, damage, knockback, crit);
+            OnHitNPCEither(target, damage, knockback, crit, proj.type);
 
             if (CosmoForce && !TerrariaSoul && Main.rand.Next(4) == 0)
                 target.AddBuff(mod.BuffType("SolarFlare"), 300);
@@ -2048,7 +2049,7 @@ namespace FargowiltasSouls
             }
         }
 
-        public void OnHitNPCEither(NPC target, int damage, float knockback, bool crit)
+        public void OnHitNPCEither(NPC target, int damage, float knockback, bool crit, int projectile = -1)
         {
             if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
                 CopperEffect(target);
@@ -2088,6 +2089,27 @@ namespace FargowiltasSouls
                 player.statMana += 4;
             }
 
+            if (GladEnchant && projectile != ProjectileID.JavelinFriendly)
+            {
+                gladCount++;
+
+                if (gladCount >= 10)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Vector2 spawn = new Vector2(target.Center.X + Main.rand.Next(-150, 151), target.Center.Y - Main.rand.Next(600, 801));
+                        Vector2 speed = target.Center - spawn;
+                        speed.Normalize();
+                        speed *= 15f;
+                        int p = Projectile.NewProjectile(spawn, speed, ProjectileID.JavelinFriendly, damage / 2, 1f, Main.myPlayer);
+                        Main.projectile[p].tileCollide = false;
+                        Main.projectile[p].penetrate = 1;
+                    }
+
+                    gladCount = 0;
+                }
+            }
+
             if (Eternity)
             {
                 if (crit && TinCrit < 100)
@@ -2101,7 +2123,11 @@ namespace FargowiltasSouls
                         player.statLife += damage / 10;
                         player.HealEffect(damage / 10);
                     }
-                    eternityDamage += .1f;
+
+                    if (Soulcheck.GetValue("Eternity Stacking"))
+                    {
+                        eternityDamage += .1f;
+                    }
                 }
             }
             else if (TerrariaSoul)
@@ -3590,16 +3616,17 @@ namespace FargowiltasSouls
 
         public void PalladiumEffect()
         {
-            player.onHitRegen = true;
-
             //no lifesteal needed here for SoE
             if (Eternity) return;
 
             if (Soulcheck.GetValue("Palladium Healing"))
+            {
+                player.onHitRegen = true;
                 PalladEnchant = true;
-            
-            if(palladiumCD > 0)
-                palladiumCD--;
+
+                if (palladiumCD > 0)
+                    palladiumCD--;
+            }
         }
 
         public void PumpkinEffect(int dmg, bool hideVisual)
@@ -3953,7 +3980,10 @@ namespace FargowiltasSouls
             if(!TerrariaSoul && !ThoriumSoul && player.statLife == player.statLifeMax2 && player.endurance < .9f)
                 player.endurance = .9f;
 
-            player.onHitDodge = true;
+            if (Soulcheck.GetValue("Titanium Shadow Dodge"))
+            {
+                player.onHitDodge = true;
+            }
         }
 
         public void TurtleEffect(bool hideVisual)
@@ -4014,9 +4044,9 @@ namespace FargowiltasSouls
 
         public override bool PreItemCheck()
         {
-            if (autofire)
+            if (TribalCharm)
             {
-                UniverseStoredAutofire = player.HeldItem.autoReuse;
+                TribalAutoFire = player.HeldItem.autoReuse;
                 player.HeldItem.autoReuse = true;
             }
             return true;
@@ -4024,9 +4054,9 @@ namespace FargowiltasSouls
 
         public override void PostItemCheck()
         {
-            if (autofire)
+            if (TribalCharm)
             {
-                player.HeldItem.autoReuse = UniverseStoredAutofire;
+                player.HeldItem.autoReuse = TribalAutoFire;
             }
         }
 
