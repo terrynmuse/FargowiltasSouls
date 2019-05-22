@@ -2555,7 +2555,7 @@ namespace FargowiltasSouls
                     p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
 
-            if(player.FindBuffIndex(mod.BuffType("Revived")) == -1)
+            if (player.whoAmI == Main.myPlayer && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
             {
                 if(Eternity)
                 {
@@ -4066,6 +4066,7 @@ namespace FargowiltasSouls
         {
             if (bait.type == mod.ItemType("TruffleWormEX"))
             {
+                caughtType = 0;
                 bool spawned = false;
                 for (int i = 0; i < 1000; i++)
                 {
@@ -4084,7 +4085,7 @@ namespace FargowiltasSouls
                                 NPC.NewNPC((int)Main.projectile[i].Center.X, (int)Main.projectile[i].Center.Y + 100,
                                     NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, bait.owner);
                                 FargoGlobalNPC.spawnFishronEX = false;
-                                Main.NewText("Duke Fishron EX has awoken!", 0, 100, 255);
+                                Main.NewText("Duke Fishron EX has awoken!", 50, 150, 255);
                             }
                             else if (Main.netMode == 1) //MP, broadcast(?) packet from spawning player's client
                             {
@@ -4113,9 +4114,12 @@ namespace FargowiltasSouls
                         NetMessage.SendData(61, -1, -1, null, bait.owner, NPCID.DukeFishron);
                     }
                 }*/
-                bait.stack--;
-                if (bait.stack <= 0)
-                    bait.SetDefaults(0);
+                if (spawned)
+                {
+                    bait.stack--;
+                    if (bait.stack <= 0)
+                        bait.SetDefaults(0);
+                }
             }
         }
 

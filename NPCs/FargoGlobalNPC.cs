@@ -891,9 +891,9 @@ namespace FargowiltasSouls.NPCs
                             {
                                 NPC.SpawnWOF(Main.player[npc.target].Center);
                                 if (Main.netMode == 2)
-                                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Wall of Flesh has awoken!"), new Color(175, 75, 0));
+                                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Wall of Flesh has awoken!"), new Color(175, 75, 255));
                                 else
-                                    Main.NewText("Wall of Flesh has awoken!", 175, 75);
+                                    Main.NewText("Wall of Flesh has awoken!", 175, 75, 255);
                                 npc.Transform(NPCID.Demon);
                             }
                         }
@@ -1182,12 +1182,12 @@ namespace FargowiltasSouls.NPCs
                                         Main.npc[spawn].life = Main.npc[spawn].lifeMax / 2;
                                         if (Main.netMode == 2)
                                         {
-                                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Spazmatism has been revived!"), new Color(175, 75, 0));
+                                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Spazmatism has been revived!"), new Color(175, 75, 255));
                                             NetMessage.SendData(23, -1, -1, null, spawn);
                                         }
                                         else
                                         {
-                                            Main.NewText("Spazmatism has been revived!", 175, 75);
+                                            Main.NewText("Spazmatism has been revived!", 175, 75, 255);
                                         }
                                     }
                                 }
@@ -1313,12 +1313,12 @@ namespace FargowiltasSouls.NPCs
                                         Main.npc[spawn].life = Main.npc[spawn].lifeMax / 2;
                                         if (Main.netMode == 2)
                                         {
-                                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Retinazer has been revived!"), new Color(175, 75, 0));
+                                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Retinazer has been revived!"), new Color(175, 75, 255));
                                             NetMessage.SendData(23, -1, -1, null, spawn);
                                         }
                                         else
                                         {
-                                            Main.NewText("Retinazer has been revived!", 175, 75);
+                                            Main.NewText("Retinazer has been revived!", 175, 75, 255);
                                         }
                                     }
                                 }
@@ -4035,7 +4035,7 @@ namespace FargowiltasSouls.NPCs
                             Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
 
                             if (Main.netMode == 0)
-                                Main.NewText("A Clown has begun ticking!", 175, 75, byte.MaxValue);
+                                Main.NewText("A Clown has begun ticking!", 175, 75, 255);
                         }
 
                         Counter++;
@@ -7041,16 +7041,16 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
-                        if (masoBool[3])
+                        /*if (masoBool[3])
                         {
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CyclonicFin"));
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
                         }
                         else
-                        {
-                            npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantAntibodies"));
-                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.Bacon, Main.rand.Next(10) + 1);
-                        }
+                        {*/
+                        npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantAntibodies"));
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.Bacon, Main.rand.Next(10) + 1);
+                        //}
                         break;
 
                     case NPCID.CultistBoss:
@@ -7479,8 +7479,24 @@ namespace FargowiltasSouls.NPCs
                             if (fishBossEX == npc.whoAmI)
                             {
                                 if (!FargoWorld.downedFishronEX)
-                                    Main.NewText("The ocean stirs...", 0, 100, 255);
+                                {
+                                    if (Main.netMode == 0)
+                                        Main.NewText("The ocean stirs...", 50, 150, 255);
+                                    else if (Main.netMode == 2)
+                                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The ocean stirs..."), new Color(50, 150, 255));
+                                }
                                 FargoWorld.downedFishronEX = true;
+                                if (Main.netMode == 0)
+                                    Main.NewText("Duke Fishron EX has been defeated!", 50, 150, 255);
+                                else if (Main.netMode == 2)
+                                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has been defeated!"), new Color(50, 150, 255));
+                                npc.DropBossBags();
+                                npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CyclonicFin"));
+                                npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
+                                int max = Main.rand.Next(5) + 5;
+                                for (int i = 0; i < max; i++)
+                                    Item.NewItem(npc.position, npc.width, npc.height, ItemID.Heart);
+                                return false;
                             }
                         }
                         break;
