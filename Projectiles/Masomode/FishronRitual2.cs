@@ -39,7 +39,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             int ai1 = (int)projectile.ai[1];
             if (projectile.ai[1] >= 0f && projectile.ai[1] < 200f &&
                 Main.npc[ai1].active && Main.npc[ai1].type == NPCID.DukeFishron
-                && Main.npc[ai1].HasPlayerTarget && Main.npc[ai1].target == projectile.owner
+                //&& Main.npc[ai1].HasPlayerTarget && Main.npc[ai1].target == projectile.owner
                 && Main.player[projectile.owner].active && !Main.player[projectile.owner].dead)
             {
                 projectile.alpha -= 2;
@@ -49,14 +49,15 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 projectile.velocity = Main.npc[ai1].Center - projectile.Center;
                 projectile.velocity /= 20f;
 
-                targetIsMe = projectile.owner == Main.myPlayer;
+                targetIsMe = projectile.owner == Main.myPlayer
+                    && Main.npc[ai1].HasPlayerTarget && projectile.owner == Main.npc[ai1].target;
 
-                Player player = Main.player[projectile.owner];
+                Player player = Main.player[Main.myPlayer];
                 if (player.active && !player.dead)
                 {
                     float distance = player.Distance(projectile.Center);
                     const float threshold = 1200f;
-                    if (Math.Abs(distance - threshold) < 30f && player.hurtCooldowns[1] == 0 && projectile.alpha == 0)
+                    if (targetIsMe && Math.Abs(distance - threshold) < 30f && player.hurtCooldowns[1] == 0 && projectile.alpha == 0)
                     {
                         int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
                         player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
@@ -64,11 +65,11 @@ namespace FargowiltasSouls.Projectiles.Masomode
                         player.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += ai1 == FargoGlobalNPC.fishBossEX ? 50 : 25;
                         player.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(300, 600));
                     }
-                    if (distance > threshold)
+                    if (distance > threshold && distance < threshold * 3f)
                     {
                         if (distance > threshold * 1.5f)
                         {
-                            if (distance > threshold * 2f)
+                            if (distance > threshold * 2.5f)
                             {
                                 player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
                                 return;
@@ -104,7 +105,10 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 projectile.velocity = Vector2.Zero;
                 projectile.alpha += 2;
                 if (projectile.alpha > 255)
+                {
                     projectile.Kill();
+                    return;
+                }
             }
 
             projectile.timeLeft = 2;

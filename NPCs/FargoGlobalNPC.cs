@@ -2220,15 +2220,8 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DukeFishron:
                         fishBoss = boss = npc.whoAmI;
-                        if (npc.HasPlayerTarget)
-                        {
-                            if (npc.Distance(Main.player[npc.target].Center) < 1800)
-                                Main.player[npc.target].AddBuff(mod.BuffType("OceanicSeal"), 2);
-                            /*if (Main.player[npc.target].ownedProjectileCounts[mod.ProjectileType("FishronRitual2")] < 1
-                                && Main.netMode != 1)
-                                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FishronRitual2"),
-                                    0, 0f, npc.target, 0f, npc.whoAmI);*/
-                        }
+                        if (npc.Distance(Main.player[Main.myPlayer].Center) < 1800f)
+                            Main.player[Main.myPlayer].AddBuff(mod.BuffType("OceanicSeal"), 2);
                         if (masoBool[3]) //fishron EX
                         {
                             fishBossEX = npc.whoAmI;

@@ -20,6 +20,8 @@
 -enemies inflicted with oceanic maul and curse of the moon no longer take multiplied damage
 -prime DEFINITELY shouldn't be invincible in final phase anymore
 -added security wallet
+-fishron ritual traps everyone
+-oceanic seal affects EVERYONE in MP (but only damages fishron's target), i think
 
 -changed how fishron EX spell circle works
 -fishron EX disables supersonic toggle
