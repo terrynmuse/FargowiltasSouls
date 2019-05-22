@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Cyclonic Fin");
             Tooltip.SetDefault(@"'The wind is howling'
-Grants immunity to Frozen, Curse of the Moon, and Oceanic Maul
+Grants immunity to Curse of the Moon and Oceanic Maul
 Your attacks inflict Curse of the Moon and Oceanic Maul
 Spectral Fishron periodically manifests to support your critical hits
 Spectral Fishron also inflicts Mutant Nibble, disabling enemy healing

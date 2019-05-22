@@ -354,5 +354,31 @@ namespace FargowiltasSouls.Items
 
             return false;
         }
+
+        public override bool NewPreReforge(Item item)
+        {
+            if (Main.player[item.owner].GetModPlayer<FargoPlayer>().SecurityWallet)
+            {
+                switch(item.prefix)
+                {
+                    case PrefixID.Warding:  if (Soulcheck.GetValue("Warding"))  return false; break;
+                    case PrefixID.Violent:  if (Soulcheck.GetValue("Violent"))  return false; break;
+                    case PrefixID.Quick:    if (Soulcheck.GetValue("Quick"))    return false; break;
+                    case PrefixID.Lucky:    if (Soulcheck.GetValue("Lucky"))    return false; break;
+                    case PrefixID.Menacing: if (Soulcheck.GetValue("Menacing")) return false; break;
+                    case PrefixID.Legendary:if (Soulcheck.GetValue("Legendary"))return false; break;
+                    case PrefixID.Unreal:   if (Soulcheck.GetValue("Unreal"))   return false; break;
+                    case PrefixID.Mythical: if (Soulcheck.GetValue("Mythical")) return false; break;
+                    case PrefixID.Godly:    if (Soulcheck.GetValue("Godly"))    return false; break;
+                    case PrefixID.Demonic:  if (Soulcheck.GetValue("Demonic"))  return false; break;
+                    case PrefixID.Ruthless: if (Soulcheck.GetValue("Ruthless")) return false; break;
+                    case PrefixID.Light:    if (Soulcheck.GetValue("Light"))    return false; break;
+                    case PrefixID.Deadly:   if (Soulcheck.GetValue("Deadly"))   return false; break;
+                    case PrefixID.Rapid:    if (Soulcheck.GetValue("Rapid"))    return false; break;
+                    default: break;
+                }
+            }
+            return true;
+        }
     }
 }

@@ -3490,6 +3490,8 @@ namespace FargowiltasSouls.NPCs
                         }
                         else //in phase 2
                         {
+                            npc.dontTakeDamage = false;
+
                             if (npc.ai[1] == 1f && npc.ai[2] > 2f)
                             {
                                 if (npc.velocity.Length() < 10f)
@@ -5604,7 +5606,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.GoblinThief:
-                        if (target.whoAmI == Main.myPlayer && Main.rand.Next(2) == 0)
+                        if (target.whoAmI == Main.myPlayer && !target.GetModPlayer<FargoPlayer>().SecurityWallet && Main.rand.Next(2) == 0)
                         {
                             //try stealing mouse item, then selected item
                             if (!StealFromInventory(target, ref Main.mouseItem))
@@ -5629,11 +5631,13 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PirateCrossbower:
                     case NPCID.PirateDeadeye:
                     case NPCID.PirateShipCannon:
-                        target.DropCoins();
+                        if (!target.GetModPlayer<FargoPlayer>().SecurityWallet)
+                            target.DropCoins();
                         break;
 
                     case NPCID.PirateDeckhand:
-                        target.DropCoins();
+                        if (!target.GetModPlayer<FargoPlayer>().SecurityWallet)
+                            target.DropCoins();
                         goto case NPCID.GrayGrunt;
 
                     case NPCID.GoblinPeon:
@@ -5808,7 +5812,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Krampus:
-                        if (target.whoAmI == Main.myPlayer)
+                        if (target.whoAmI == Main.myPlayer && !target.GetModPlayer<FargoPlayer>().SecurityWallet)
                         {
                             //try stealing mouse item, then selected item
                             if (!StealFromInventory(target, ref Main.mouseItem))
@@ -5821,12 +5825,9 @@ namespace FargowiltasSouls.NPCs
                             {
                                 int toss = Main.rand.Next(3, 8 + target.extraAccessorySlots); //pick random accessory slot
                                 if (Main.rand.Next(3) == 0 && target.armor[toss + 10].stack > 0) //chance to pick vanity slot if accessory is there
-                                {
                                     toss += 10;
-                                }
 
                                 bool successfulSteal = StealFromInventory(target, ref target.armor[toss]);
-
                                 if (!successfulSteal && maxAttempts > 0)
                                 {
                                     maxAttempts--;
@@ -6899,6 +6900,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.SandElemental:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SandofTime"));
+                        break;
+
+                    case NPCID.PirateCaptain:
+                        if (Main.rand.Next(10) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SecurityWallet"));
                         break;
 
                     case NPCID.MourningWood:
@@ -8294,12 +8300,15 @@ namespace FargowiltasSouls.NPCs
             }
 
             if (OceanicMaul)
-                damage += 30;
+            {
+                damage += 15;
+                //damage *= 1.3;
+            }
 
             if (CurseoftheMoon)
             {
                 damage += 5;
-                damage *= 1.1;
+                //damage *= 1.1;
             }
 
             if (modPlayer.Eternity)

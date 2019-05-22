@@ -147,6 +147,23 @@ namespace FargowiltasSouls
             #endregion
         };
 
+        public static readonly Dictionary<string, Color> togglesReforges = new Dictionary<string, Color>
+        {
+            ["Warding"] = new Color(81, 181, 113),
+            ["Violent"] = new Color(81, 181, 113),
+            ["Quick"] = new Color(81, 181, 113),
+            ["Lucky"] = new Color(81, 181, 113),
+            ["Menacing"] = new Color(81, 181, 113),
+            ["Legendary"] = new Color(81, 181, 113),
+            ["Unreal"] = new Color(81, 181, 113),
+            ["Mythical"] = new Color(81, 181, 113),
+            ["Godly"] = new Color(81, 181, 113),
+            ["Demonic"] = new Color(81, 181, 113),
+            ["Ruthless"] = new Color(81, 181, 113),
+            ["Light"] = new Color(81, 181, 113),
+            ["Deadly"] = new Color(81, 181, 113),
+            ["Rapid"] = new Color(81, 181, 113)
+        };
 
         public static readonly Dictionary<string, Color> togglesThorium = new Dictionary<string, Color>
         {
@@ -314,6 +331,12 @@ namespace FargowiltasSouls
                     }
                     break;
                 case 3:
+                    foreach (KeyValuePair<string, Color> toggle in togglesReforges)
+                    {
+                        CreateCheckbox(toggle.Key, toggle.Value);
+                    }
+                    break;
+                case 4:
                     if (thorium == null)
                     {
                         foreach (KeyValuePair<string, Color> toggle in togglesCalamity)
@@ -329,7 +352,7 @@ namespace FargowiltasSouls
                         }
                     }
                     break;
-                case 4:
+                case 5:
                     foreach (KeyValuePair<string, Color> toggle in togglesCalamity)
                     {
                         CreateCheckbox(toggle.Key, toggle.Value);

@@ -18,7 +18,7 @@ Increases wing time by 200%, and armor penetration by 50
 Increases max life by 50%, damage by 40%, crit rate by 30%, and damage reduction by 20%
 Increases life regen drastically, increases max number of minions and sentries by 10
 Grants gravity control, fastfall, and immunity to all Masochist Mode debuffs and more
-Grants autofire to all weapons and you automatically use mana potions when needed
+Grants autofire to all weapons, modifier protection, and you automatically use mana potions when needed
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks and inflict Sadism as a cocktail of Masochist Mode debuffs
 You respawn twice as fast and erupt into Spiky Balls and Ancient Visions when injured
@@ -162,6 +162,9 @@ Summons the aid of all Masochist Mode bosses to your side");
             //mystic skull
             player.buffImmune[BuffID.Webbed] = true;
             player.manaFlower = true;
+
+            //security wallet
+            fargoPlayer.SecurityWallet = true;
 
             //squeaky toy
             fargoPlayer.SqueakyAcc = true;

@@ -14,6 +14,12 @@
 //	default expertmode damage: *= 0.80
 -tried making fishron EX say fishron EX when defeated
 -truffle worm EX shouldn't(?) be lost if it cant fish up fishron EX?
+-oceanic maul inflicts heavy defense/DR down again
+-galactic globe no longer grants curse of the moon immune hahaaaaaa
+-oceanic maul has the DOT and dust of curse of the moon too
+-enemies inflicted with oceanic maul and curse of the moon no longer take multiplied damage
+-prime DEFINITELY shouldn't be invincible in final phase anymore
+-added security wallet
 
 -changed how fishron EX spell circle works
 -fishron EX disables supersonic toggle

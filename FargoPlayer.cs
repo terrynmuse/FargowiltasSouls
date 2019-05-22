@@ -211,6 +211,7 @@ namespace FargowiltasSouls
         public bool CelestialSeal;
         public bool SandsofTime;
         public bool DragonFang;
+        public bool SecurityWallet;
         public bool FrigidGemstone;
         public int FrigidGemstoneCD;
         public bool SqueakyAcc;
@@ -332,6 +333,23 @@ namespace FargowiltasSouls
             }
 
             foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesPets)
+            {
+                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
+                {
+                    if (disabledSouls.Contains(buff.Key))
+                    {
+                        Soulcheck.ToggleDict[buff.Key] = false;
+                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
+                    }
+                    else
+                    {
+                        Soulcheck.ToggleDict[buff.Key] = true;
+                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
+                    }
+                }
+            }
+
+            foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesReforges)
             {
                 if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
                 {
@@ -606,6 +624,7 @@ namespace FargowiltasSouls
             MasochistSoul = false;
             SandsofTime = false;
             DragonFang = false;
+            SecurityWallet = false;
             FrigidGemstone = false;
             SqueakyAcc = false;
             RainbowSlime = false;
@@ -1851,7 +1870,7 @@ namespace FargowiltasSouls
             if (CyclonicFin)
             {
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
-                target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
+                //target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
 
                 if (crit && CyclonicFinCD <= 0 && proj.type != mod.ProjectileType("RazorbladeTyphoonFriendly") && Soulcheck.GetValue("Spectral Fishron"))
                 {
@@ -2268,7 +2287,7 @@ namespace FargowiltasSouls
             if (CyclonicFin)
             {
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
-                target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
+                //target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
 
                 if (crit && CyclonicFinCD <= 0 && Soulcheck.GetValue("Spectral Fishron"))
                 {

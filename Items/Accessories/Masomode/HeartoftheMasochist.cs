@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Suffering no longer hurts, mostly'
 Grants immunity to Living Wasteland, Frozen, Oozed, Withered Weapon, and Withered Armor
 Grants immunity to Feral Bite, Mutant Nibble, Flipped, Unstable, Distorted, and Chaos State
-Grants immunity to Curse of the Moon, Nullification Curse and most debuffs caused by water
+Grants immunity to Nullification Curse and most debuffs caused by entering water
 Increases damage, critical strike chance, and damage reduction by 10%
 Increases flight time by 100%
 You may periodically fire additional attacks depending on weapon type
@@ -76,7 +76,7 @@ Summons a friendly super Flocko and true eyes of Cthulhu");
             player.buffImmune[mod.BuffType("Flipped")] = true;
             player.buffImmune[mod.BuffType("FlippedHallow")] = true;
             player.buffImmune[mod.BuffType("Unstable")] = true;
-            player.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
+            //player.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.ChaosState] = true;
             if (Soulcheck.GetValue("Gravity Control"))

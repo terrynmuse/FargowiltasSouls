@@ -23,13 +23,17 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetModPlayer<FargoPlayer>(mod).OceanicMaul = true;
+            player.GetModPlayer<FargoPlayer>(mod).CurseoftheMoon = true;
             player.bleed = true;
             player.onFrostBurn = true;
+            player.statDefense -= 30;
+            player.endurance -= 0.3f;
         }
 
         public override void Update(NPC npc, ref int buffIndex)
         {
             npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).OceanicMaul = true;
+            npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).CurseoftheMoon = true;
             npc.onFrostBurn = true;
         }
     }
