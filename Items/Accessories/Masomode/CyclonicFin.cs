@@ -51,7 +51,7 @@ Upgrades Cute Fishron to Cute Fishron EX");
                 player.GetModPlayer<FargoPlayer>().CyclonicFinCD--;
             if (player.mount.Active && player.mount.Type == MountID.CuteFishron)
             {
-                if (player.ownedProjectileCounts[mod.ProjectileType("CuteFishronRitual")] < 1)
+                if (player.ownedProjectileCounts[mod.ProjectileType("CuteFishronRitual")] < 1 && player.whoAmI == Main.myPlayer)
                     Projectile.NewProjectile(player.MountedCenter, Vector2.Zero, mod.ProjectileType("CuteFishronRitual"), 0, 0f, Main.myPlayer);
                 player.MountFishronSpecialCounter = 300;
                 player.meleeDamage += 0.15f;

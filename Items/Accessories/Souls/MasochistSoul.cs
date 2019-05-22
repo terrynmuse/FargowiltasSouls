@@ -235,7 +235,7 @@ Summons the aid of all Masochist Mode bosses to your side");
                 fargoPlayer.CyclonicFinCD -= 2;
             if (player.mount.Active && player.mount.Type == MountID.CuteFishron)
             {
-                if (player.ownedProjectileCounts[mod.ProjectileType("CuteFishronRitual")] < 1)
+                if (player.ownedProjectileCounts[mod.ProjectileType("CuteFishronRitual")] < 1 && player.whoAmI == Main.myPlayer)
                     Projectile.NewProjectile(player.MountedCenter, Vector2.Zero, mod.ProjectileType("CuteFishronRitual"), 0, 0f, Main.myPlayer);
                 player.MountFishronSpecialCounter = 300;
                 player.meleeDamage += 0.5f;
