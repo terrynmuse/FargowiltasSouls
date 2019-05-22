@@ -16,7 +16,7 @@ namespace FargowiltasSouls
         public static bool Visible = false;
         public static string owner = "";
         public static int pageNumber = 1;
-        public static int totalPages = 2;
+        public static int totalPages = 3;
 
         public static readonly Dictionary<string, bool> ToggleDict = new Dictionary<string, bool>();
         public static readonly Dictionary<string, UiCheckbox> checkboxDict = new Dictionary<string, UiCheckbox>();
@@ -294,11 +294,11 @@ namespace FargowiltasSouls
 
             if (thorium != null && calamity != null)
             {
-                totalPages = 4;
+                totalPages = 5;
             }
             else if (calamity != null || thorium != null)
             {
-                totalPages = 3;
+                totalPages = 4;
             }
 
             for (int i = 1; i <= totalPages; i++)
