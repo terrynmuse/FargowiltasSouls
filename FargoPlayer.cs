@@ -364,6 +364,19 @@ namespace FargowiltasSouls
                         Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
                     }
                 }
+                else
+                {
+                    if (disabledSouls.Contains(buff.Key))
+                    {
+                        Soulcheck.ToggleDict.Add(buff.Key, false);
+                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
+                    }
+                    else
+                    {
+                        Soulcheck.ToggleDict.Add(buff.Key, true);
+                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
+                    }
+                }
             }
 
             if (Fargowiltas.Instance.ThoriumLoaded)
