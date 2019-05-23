@@ -6953,7 +6953,7 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SandofTime"));
                         break;
 
-                    case NPCID.PirateCaptain:
+                    case NPCID.PirateShip:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SecurityWallet"));
                         break;

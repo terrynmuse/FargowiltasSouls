@@ -17,6 +17,7 @@
 -all mechs drop fallen stars when killed
 -all mechs have dark star attacks
 -fixed certain masomode projectile changes happening outside masomode(?)
+-flying dutchman drops security wallet (was captain)
 
 -tried making fishron EX say fishron EX when defeated
 -truffle worm EX shouldn't(?) be lost if it cant fish up fishron EX
