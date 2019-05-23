@@ -2872,9 +2872,9 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         double MLoffset = MathHelper.ToRadians(360 * Counter / 600);
-                        for (int i = 0; i < 5; i++)
+                        for (int i = 0; i < 4; i++)
                         {
-                            int MLdust = Dust.NewDust(npc.Center + new Vector2(120f, 0f).RotatedBy(Math.PI * 2 / 5 * i + MLoffset), 0, 0, dustType, npc.velocity.X * 0.5f, npc.velocity.Y * 0.5f, 0, default(Color), 2f);
+                            int MLdust = Dust.NewDust(npc.Center + new Vector2(120f, 0f).RotatedBy(Math.PI * 2 / 4 * i + MLoffset), 0, 0, dustType, npc.velocity.X * 0.5f, npc.velocity.Y * 0.5f, 0, default(Color), 2f);
                             Main.dust[MLdust].noGravity = true;
                             Main.dust[MLdust].velocity.Y -= 3.5f;
                         }
