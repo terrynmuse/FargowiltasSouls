@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Security Wallet");
-            Tooltip.SetDefault(@"'Your riches are yours only'
+            Tooltip.SetDefault(@"'Use caution around other players'
 Grants immunity to enemies that steal items or coins
 Prevents you from reforging items with certain modifiers
 Protected modifiers can be chosen in the toggles menu");

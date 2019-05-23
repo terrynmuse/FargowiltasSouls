@@ -558,26 +558,20 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.BombSkeletronPrime:
-                    if (FargoWorld.MasochistMode)
-                    {
+                    if (FargoWorld.MasochistMode && projectile.damage < 40)
                         projectile.damage = 40;
-                        //projectile.Damage();
-                    }
                     break;
 
                 case ProjectileID.CultistRitual:
-                    if (FargoWorld.MasochistMode)
+                    if (FargoWorld.MasochistMode && projectile.ai[0] > 120f && projectile.ai[0] < 299f)
                     {
-                        if (projectile.ai[0] > 120f && projectile.ai[0] < 299f)
-                        {
-                            projectile.ai[0] = 299f;
-                            projectile.netUpdate = true;
-                        }
+                        projectile.ai[0] = 299f;
+                        projectile.netUpdate = true;
                     }
                     break;
 
                 case ProjectileID.MoonLeech:
-                    if (projectile.ai[0] > 0f)
+                    if (FargoWorld.MasochistMode && projectile.ai[0] > 0f)
                     {
                         Vector2 distance = Main.player[(int)projectile.ai[1]].Center - projectile.Center - projectile.velocity;
                         if (distance != Vector2.Zero)
@@ -586,7 +580,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.SandnadoHostile:
-                    if (projectile.timeLeft == 1199 && Main.netMode != 1)
+                    if (FargoWorld.MasochistMode && projectile.timeLeft == 1199 && Main.netMode != 1)
                     {
                         int n = NPC.NewNPC((int)projectile.Center.X, (int)projectile.Center.Y, NPCID.SandShark);
                         if (n < 200)

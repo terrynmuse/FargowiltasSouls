@@ -4117,7 +4117,7 @@ namespace FargowiltasSouls
                                 NPC.NewNPC((int)Main.projectile[i].Center.X, (int)Main.projectile[i].Center.Y + 100,
                                     NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, bait.owner);
                                 FargoGlobalNPC.spawnFishronEX = false;
-                                Main.NewText("Duke Fishron EX has awoken!", 50, 150, 255);
+                                Main.NewText("Duke Fishron EX has awoken!", 50, 100, 255);
                             }
                             else if (Main.netMode == 1) //MP, broadcast(?) packet from spawning player's client
                             {

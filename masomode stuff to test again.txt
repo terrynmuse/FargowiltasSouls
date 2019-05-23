@@ -12,8 +12,14 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-changed fish EX text colour again
+-fishron hopefully doesnt become immortal forever if quick killed early in MP????
+-all mechs drop fallen stars when killed
+-all mechs have dark star attacks
+-fixed certain masomode projectile changes happening outside masomode(?)
+
 -tried making fishron EX say fishron EX when defeated
--truffle worm EX shouldn't(?) be lost if it cant fish up fishron EX?
+-truffle worm EX shouldn't(?) be lost if it cant fish up fishron EX
 -oceanic maul inflicts heavy defense/DR down again
 -galactic globe no longer grants curse of the moon immune hahaaaaaa
 -oceanic maul has the DOT and dust of curse of the moon too

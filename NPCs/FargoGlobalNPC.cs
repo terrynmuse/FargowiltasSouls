@@ -1151,6 +1151,20 @@ namespace FargowiltasSouls.NPCs
                             //    npc.netUpdate = true;
                             //}
 
+                            if (Counter2++ > 180)
+                            {
+                                Counter2 = 0;
+                                if (Main.netMode != 1 && npc.HasPlayerTarget)
+                                {
+                                    Vector2 distance = Main.player[npc.target].Center - npc.Center;
+                                    distance.Normalize();
+                                    distance *= 12f;
+                                    for (int i = 0; i < 8; i++)
+                                        Projectile.NewProjectile(npc.Center, distance.RotatedBy(2 * Math.PI / 8 * i),
+                                            mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
+                                }
+                            }
+
                             //dust code
                             if (Main.rand.Next(4) < 3)
                             {
@@ -1279,6 +1293,20 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     Counter = 0;
                                     Projectile.NewProjectile(npc.Center, npc.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-6f, 6f))) * 0.66f, ProjectileID.EyeFire, npc.damage / 5, 0f, Main.myPlayer);
+                                }
+                            }
+
+                            if (Counter2++ > 180)
+                            {
+                                Counter2 = 0;
+                                if (Main.netMode != 1 && npc.HasPlayerTarget)
+                                {
+                                    Vector2 distance = Main.player[npc.target].Center - npc.Center;
+                                    distance.Normalize();
+                                    distance *= 12f;
+                                    for (int i = 0; i < 8; i++)
+                                        Projectile.NewProjectile(npc.Center, distance.RotatedBy(2 * Math.PI / 8 * i),
+                                            mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
                                 }
                             }
 
@@ -3721,37 +3749,51 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.TheDestroyerBody:
                     case NPCID.TheDestroyerTail:
-                        if (npc.realLife >= 0 && npc.realLife < 200)
+                        if (npc.realLife >= 0 && npc.realLife < 200 && Main.npc[npc.realLife].life > 0)
                         {
-                            if (Main.npc[npc.realLife].life > 0)
+                            if (npc.ai[2] != 0)
                             {
+                                npc.localAI[0] = 0f;
                                 int cap = Main.npc[npc.realLife].lifeMax / Main.npc[npc.realLife].life;
-                                Counter += Main.rand.Next(2 + cap);
+                                Counter += Main.rand.Next(2 + cap) + 1;
                                 if (Counter >= Main.rand.Next(1400, 26000))
                                 {
                                     Counter = 0;
-                                    npc.localAI[0] = 26000f;
+                                    if (Main.netMode != 1 && npc.HasPlayerTarget)
+                                    {
+                                        Vector2 distance = Main.player[npc.target].Center - npc.Center;
+                                        float length = distance.Length();
+                                        distance.Normalize();
+                                        distance *= 12f;
+                                        int damage = (int)(npc.damage / 4.5);
+                                        for (int i = -1; i <= 1; i++)
+                                        {
+                                            Projectile.NewProjectile(npc.Center,
+                                                distance.RotatedBy(i * MathHelper.ToRadians(5) * length / 600.0),
+                                                mod.ProjectileType("DarkStar"), damage, 0f, Main.myPlayer);
+                                        }
+                                    }
                                 }
                             }
-                            else
-                            {
-                                npc.life = 0;
-                                npc.active = false;
-                                //npc.checkDead();
-                                return;
-                            }
+                        }
+                        else
+                        {
+                            npc.life = 0;
+                            npc.active = false;
+                            //npc.checkDead();
+                            return;
                         }
 
-                        if (npc.ai[2] != 0) //if probe is released
+                        /*if (npc.ai[2] != 0) //if probe is released
                         {
                             Timer--;
-                            if (Timer <= 0)
+                            if (Timer <= 0) //reactivate light
                             {
                                 Timer = 900 + Main.rand.Next(900);
                                 npc.ai[2] = 0;
                                 npc.netUpdate = true;
                             }
-                        }
+                        }*/
                         break;
 
                     case NPCID.TacticalSkeleton: //num3 = 120, damage = 40/50, num8 = 0
@@ -4123,6 +4165,22 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.PrimeCannon:
+                        if (masoBool[0])
+                        {
+                            bool shoot = false;
+                            if (npc.localAI[0] > (npc.ai[2] == 0f ? 120f : 30f))
+                            {
+                                npc.localAI[0] = 0f;
+                                shoot = true;
+                            }
+
+                            if (shoot && Main.netMode != 1)
+                            {
+                                Vector2 speed = new Vector2(12f, 0f).RotatedBy(npc.rotation - Math.PI / 2);
+                                Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
+                            }
+                        }
+                        goto case NPCID.PrimeLaser;
                     case NPCID.PrimeLaser:
                     case NPCID.PrimeVice:
                         if (!masoBool[0])
@@ -7003,6 +7061,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("FusedLens"));
                             npc.DropItemInstanced(npc.position, npc.Size, ItemID.MagicPowerPotion, Main.rand.Next(10) + 1);
+                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
                         }
                         break;
 
@@ -7011,17 +7070,20 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("FusedLens"));
                             npc.DropItemInstanced(npc.position, npc.Size, ItemID.MagicPowerPotion, Main.rand.Next(10) + 1);
+                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
                         }
                         break;
 
                     case NPCID.TheDestroyer:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("GroundStick"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.GravitationPotion, Main.rand.Next(10) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
                         break;
 
                     case NPCID.SkeletronPrime:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("ReinforcedPlating"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.EndurancePotion, Main.rand.Next(10) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
                         break;
 
                     case NPCID.Plantera:
@@ -7414,11 +7476,15 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DukeFishron:
                         if (npc.ai[0] <= 9)
                         {
-                            masoBool[1] = true;
                             npc.life = 1;
-                            npc.dontTakeDamage = true;
                             npc.active = true;
                             npc.netUpdate = true;
+                            if (Main.netMode != 1) //something about wack ass MP
+                            {
+                                npc.dontTakeDamage = true;
+                                masoBool[1] = true;
+                                NetUpdateMaso(npc.whoAmI);
+                            }
 
                             for (int index1 = 0; index1 < 100; ++index1) //gross vanilla dodge dust
                             {
@@ -7480,15 +7546,15 @@ namespace FargowiltasSouls.NPCs
                                 if (!FargoWorld.downedFishronEX)
                                 {
                                     if (Main.netMode == 0)
-                                        Main.NewText("The ocean stirs...", 50, 150, 255);
+                                        Main.NewText("The ocean stirs...", 50, 100, 255);
                                     else if (Main.netMode == 2)
-                                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The ocean stirs..."), new Color(50, 150, 255));
+                                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The ocean stirs..."), new Color(50, 100, 255));
                                 }
                                 FargoWorld.downedFishronEX = true;
                                 if (Main.netMode == 0)
-                                    Main.NewText("Duke Fishron EX has been defeated!", 50, 150, 255);
+                                    Main.NewText("Duke Fishron EX has been defeated!", 50, 100, 255);
                                 else if (Main.netMode == 2)
-                                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has been defeated!"), new Color(50, 150, 255));
+                                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has been defeated!"), new Color(50, 100, 255));
                                 npc.DropBossBags();
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CyclonicFin"));
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
