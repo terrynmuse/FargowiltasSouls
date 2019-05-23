@@ -23,6 +23,7 @@
 -lightning bolts from friendly lightning rod inflicts electrified on enemies
 -betsy drops inferno potion (wof drops obsidian skin now)
 -ocean mobs besides jellyfish/shark can drop starfish and seashell
+-added ordinary carrot, 1% drop from any frost legion mob
 
 -tried making fishron EX say fishron EX when defeated
 -truffle worm EX shouldn't(?) be lost if it cant fish up fishron EX

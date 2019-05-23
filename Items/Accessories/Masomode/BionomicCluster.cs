@@ -19,7 +19,7 @@ Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and 
 Grants autofire to all weapons and immunity to enemies that steal items or coins
 Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies
 Your attacks summon Shadowfrostfireballs to attack your enemies
-You respawn twice as fast when no boss is alive
+You respawn twice as fast when no boss is alive and have improved night vision
 Automatically use mana potions when needed and gives modifier protection
 Attacks have a chance to squeak and deal 1 damage to you
 Summons a friendly rainbow slime");
@@ -80,6 +80,9 @@ Summons a friendly rainbow slime");
 
             //security wallet
             fargoPlayer.SecurityWallet = true;
+
+            //carrot
+            player.nightVision = true;
         }
 
         public override void AddRecipes()
@@ -94,6 +97,7 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(mod.ItemType("TribalCharm"));
             recipe.AddIngredient(mod.ItemType("MysticSkull"));
             recipe.AddIngredient(mod.ItemType("SecurityWallet"));
+            recipe.AddIngredient(mod.ItemType("OrdinaryCarrot"));
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 20);
 

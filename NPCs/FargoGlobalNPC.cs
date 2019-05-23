@@ -7010,6 +7010,13 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("MysticSkull"));
                         break;
 
+                    case NPCID.SnowBalla:
+                    case NPCID.SnowmanGangsta:
+                    case NPCID.MisterStabby:
+                        if (Main.rand.Next(100) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("OrdinaryCarrot"));
+                        break;
+
                     #region boss drops
                     case NPCID.KingSlime:
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HerbBag, Main.rand.Next(3) + 1);

@@ -21,7 +21,7 @@ Grants gravity control, fastfall, and immunity to all Masochist Mode debuffs and
 Grants autofire to all weapons, modifier protection, and you automatically use mana potions when needed
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks and inflict Sadism as a cocktail of Masochist Mode debuffs
-You respawn twice as fast and erupt into Spiky Balls and Ancient Visions when injured
+You respawn twice as fast, have improved night vision, and erupt into various attacks when injured
 Attacks have a chance to squeak and deal 1 damage to you
 Summons the aid of all Masochist Mode bosses to your side");
         }
@@ -165,6 +165,9 @@ Summons the aid of all Masochist Mode bosses to your side");
 
             //security wallet
             fargoPlayer.SecurityWallet = true;
+
+            //carrot
+            player.nightVision = true;
 
             //squeaky toy
             fargoPlayer.SqueakyAcc = true;
