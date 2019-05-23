@@ -124,6 +124,10 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
+                    case NPCID.MisterStabby:
+                        npc.Opacity /= 5;
+                        break;
+
                     case NPCID.SolarSolenian:
                         npc.knockBackResist = 0f;
                         break;
@@ -5975,8 +5979,18 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DesertScorpionWalk:
                     case NPCID.DesertScorpionWall:
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), Main.rand.Next(60, 180));
+                        break;
+
                     case NPCID.MisterStabby:
                         target.AddBuff(mod.BuffType("MarkedforDeath"), Main.rand.Next(60, 180));
+                        target.AddBuff(BuffID.Chilled, Main.rand.Next(1200));
+                        break;
+
+                    case NPCID.SnowBalla:
+                    case NPCID.SnowmanGangsta:
+                        target.AddBuff(BuffID.Chilled, Main.rand.Next(1200));
+                        target.AddBuff(BuffID.Frostburn, Main.rand.Next(600));
                         break;
 
                     case NPCID.NebulaHeadcrab:
@@ -7958,6 +7972,14 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.MisterStabby:
+                        if (!masoBool[0])
+                        {
+                            masoBool[0] = true;
+                            npc.Opacity *= 5;
+                        }
+                        break;
+
                     case NPCID.GiantShelly:
                     case NPCID.GiantShelly2:
                         player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was impaled by a Giant Shelly."), damage / 4, 0);
@@ -8131,6 +8153,14 @@ namespace FargowiltasSouls.NPCs
                         {
                             masoBool[0] = true;
                             npc.Opacity *= 25;
+                        }
+                        break;
+
+                    case NPCID.MisterStabby:
+                        if (!masoBool[0])
+                        {
+                            masoBool[0] = true;
+                            npc.Opacity *= 5;
                         }
                         break;
 
