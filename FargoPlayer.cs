@@ -190,7 +190,6 @@ namespace FargowiltasSouls
         public bool FusedLens;
         public bool GroundStick;
         public bool Probes;
-        public bool DubiousCircuitry;
         public bool MagicalBulb;
         public bool SkullCharm;
         public bool PumpkingsCape;
@@ -218,6 +217,7 @@ namespace FargowiltasSouls
         public bool RainbowSlime;
         public bool SkeletronArms;
         public bool SuperFlocko;
+        public bool MiniSaucer;
         public bool TribalCharm;
         public bool TribalAutoFire;
 
@@ -620,7 +620,6 @@ namespace FargowiltasSouls
             FusedLens = false;
             GroundStick = false;
             Probes = false;
-            DubiousCircuitry = false;
             MagicalBulb = false;
             SkullCharm = false;
             PumpkingsCape = false;
@@ -643,6 +642,7 @@ namespace FargowiltasSouls
             RainbowSlime = false;
             SkeletronArms = false;
             SuperFlocko = false;
+            MiniSaucer = false;
             TribalCharm = false;
 
             //debuffs
@@ -2224,9 +2224,6 @@ namespace FargowiltasSouls
                 if (QueenStinger)
                     target.AddBuff(BuffID.Poisoned, 120, true);
 
-                if (GroundStick && Main.rand.Next(20) == 0)
-                    target.AddBuff(BuffID.Electrified, 240);
-
                 if (FusedLens)
                     target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
             }
@@ -2251,7 +2248,7 @@ namespace FargowiltasSouls
                     target.AddBuff(BuffID.OnFire, 600);
             }
 
-            if (DubiousCircuitry && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
+            if (GroundStick && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
                 target.AddBuff(mod.BuffType("LightningRod"), 300);
 
             if (LeadEnchant && Main.rand.Next(5) == 0)

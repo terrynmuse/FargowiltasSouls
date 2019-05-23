@@ -18,6 +18,11 @@
 -all mechs have dark star attacks
 -fixed certain masomode projectile changes happening outside masomode(?)
 -flying dutchman drops security wallet (was captain)
+-implemented framework of saucer control console
+-reworked ground stick/dubious circuitry; gives lightning rod immune and attacks can inflict it (not electrified)
+-lightning bolts from friendly lightning rod inflicts electrified on enemies
+-betsy drops inferno potion (wof drops obsidian skin now)
+-ocean mobs besides jellyfish/shark can drop starfish and seashell
 
 -tried making fishron EX say fishron EX when defeated
 -truffle worm EX shouldn't(?) be lost if it cant fish up fishron EX

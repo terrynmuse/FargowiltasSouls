@@ -16,13 +16,13 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Suffering no longer hurts, mostly'
 Grants immunity to Living Wasteland, Frozen, Oozed, Withered Weapon, and Withered Armor
 Grants immunity to Feral Bite, Mutant Nibble, Flipped, Unstable, Distorted, and Chaos State
-Grants immunity to Nullification Curse and most debuffs caused by entering water
+Grants immunity to Electrified, Nullification Curse, and most debuffs caused by entering water
 Increases damage, critical strike chance, and damage reduction by 10%
 Increases flight time by 100%
 You may periodically fire additional attacks depending on weapon type
 Your critical strikes inflict Betsy's Curse
 Grants effects of Wet debuff while riding Cute Fishron and gravity control
-Summons a friendly super Flocko and true eyes of Cthulhu");
+Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
         }
 
         public override void SetDefaults()
@@ -58,6 +58,11 @@ Summons a friendly super Flocko and true eyes of Cthulhu");
             player.buffImmune[BuffID.Frozen] = true;
             if (Soulcheck.GetValue("Flocko Minion"))
                 player.AddBuff(mod.BuffType("SuperFlocko"), 2);
+
+            //saucer control console
+            player.buffImmune[BuffID.Electrified] = true;
+            if (Soulcheck.GetValue("Saucer Minion"))
+                player.AddBuff(mod.BuffType("SaucerMinion"), 2);
 
             //betsy's heart
             player.buffImmune[BuffID.OgreSpit] = true;
@@ -96,6 +101,7 @@ Summons a friendly super Flocko and true eyes of Cthulhu");
 
             recipe.AddIngredient(mod.ItemType("PumpkingsCape"));
             recipe.AddIngredient(mod.ItemType("IceQueensCrown"));
+            recipe.AddIngredient(mod.ItemType("SaucerControlConsole"));
             recipe.AddIngredient(mod.ItemType("BetsysHeart"));
             recipe.AddIngredient(mod.ItemType("MutantAntibodies"));
             recipe.AddIngredient(mod.ItemType("GalacticGlobe"));

@@ -6913,6 +6913,14 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.width, npc.height, ItemID.DesertFossil, Main.rand.Next(6) + 1);
                         break;
 
+                    case NPCID.Crab:
+                    case NPCID.Squid:
+                    case NPCID.SeaSnail:
+                        if (Main.rand.Next(10) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height,
+                                Main.rand.Next(2) == 0 ? ItemID.Starfish : ItemID.Seashell, Main.rand.Next(3) + 1);
+                        break;
+
                     case NPCID.SkeletonSniper:
                     case NPCID.TacticalSkeleton:
                     case NPCID.SkeletonCommando:
@@ -6975,6 +6983,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.IceQueen:
                         if (Main.snowMoon && Main.rand.Next(25) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("IceQueensCrown"));
+                        break;
+
+                    case NPCID.MartianSaucerCore:
+                        if (Main.rand.Next(10) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SaucerControlConsole"));
                         break;
 
                     case NPCID.LavaSlime:
@@ -7050,7 +7063,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("PungentEyeball"));
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.InfernoPotion, Main.rand.Next(10) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.ObsidianSkinPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HallowedFishingCrate, Main.rand.Next(3) + 1);
                         if (Fargowiltas.Instance.FargosLoaded)
                             npc.DropItemInstanced(npc.position, npc.Size, ModLoader.GetMod("Fargowiltas").ItemType("ShadowCrate"), Main.rand.Next(3) + 1);
@@ -7099,6 +7112,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DD2Betsy:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("BetsysHeart"));
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.InfernoPotion, Main.rand.Next(10) + 1);
                         break;
 
                     case NPCID.DukeFishron:

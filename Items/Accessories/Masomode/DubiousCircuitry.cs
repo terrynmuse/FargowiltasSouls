@@ -12,9 +12,9 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Dubious Circuitry");
             Tooltip.SetDefault(@"'Malware probably not included'
-Grants immunity to Cursed Inferno, Ichor, Electrified, Lightning Rod, Defenseless, Stunned, and knockback
+Grants immunity to Cursed Inferno, Ichor, Lightning Rod, Defenseless, Stunned, and knockback
 Your attacks inflict Cursed Inferno and Ichor
-Your attacks have a small chance to inflict Electrified and Lightning Rod
+Your attacks have a small chance to inflict Lightning Rod
 Two friendly probes fight by your side
 Reduces damage taken by 6%");
         }
@@ -33,13 +33,11 @@ Reduces damage taken by 6%");
         {
             player.buffImmune[BuffID.CursedInferno] = true;
             player.buffImmune[BuffID.Ichor] = true;
-            player.buffImmune[BuffID.Electrified] = true;
             player.buffImmune[mod.BuffType("Defenseless")] = true;
             player.buffImmune[mod.BuffType("Stunned")] = true;
             player.buffImmune[mod.BuffType("LightningRod")] = true;
             player.GetModPlayer<FargoPlayer>().FusedLens = true;
             player.GetModPlayer<FargoPlayer>().GroundStick = true;
-            player.GetModPlayer<FargoPlayer>().DubiousCircuitry = true;
             if (Soulcheck.GetValue("Probes Minion"))
                 player.AddBuff(mod.BuffType("Probes"), 2);
             player.endurance += 0.06f;

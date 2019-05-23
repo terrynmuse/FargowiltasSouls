@@ -176,10 +176,8 @@ Summons the aid of all Masochist Mode bosses to your side");
             //dubious circuitry
             player.buffImmune[BuffID.CursedInferno] = true;
             player.buffImmune[BuffID.Ichor] = true;
-            player.buffImmune[BuffID.Electrified] = true;
             fargoPlayer.FusedLens = true;
             fargoPlayer.GroundStick = true;
-            fargoPlayer.DubiousCircuitry = true;
             if (Soulcheck.GetValue("Probes Minion"))
                 player.AddBuff(mod.BuffType("Probes"), 2);
             player.noKnockback = true;
@@ -197,6 +195,11 @@ Summons the aid of all Masochist Mode bosses to your side");
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
             fargoPlayer.LihzahrdTreasureBox = true;
+
+            //saucer control console
+            player.buffImmune[BuffID.Electrified] = true;
+            if (Soulcheck.GetValue("Saucer Minion"))
+                player.AddBuff(mod.BuffType("SaucerMinion"), 2);
 
             //betsy's heart
             player.buffImmune[BuffID.OgreSpit] = true;

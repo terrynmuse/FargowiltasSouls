@@ -99,6 +99,7 @@ namespace FargowiltasSouls
             ["Plantera Minion"] = new Color(81, 181, 113),
             ["Pungent Eye Minion"] = new Color(81, 181, 113),
             ["Flocko Minion"] = new Color(81, 181, 113),
+            ["Saucer Minion"] = new Color(81, 181, 113),
             ["Cultist Minion"] = new Color(81, 181, 113),
             ["True Eyes Minion"] = new Color(81, 181, 113),
             ["Ancient Visions On Hit"] = new Color(81, 181, 113),
