@@ -5,55 +5,37 @@
 -Ninja Enchantment reworked: First Strike now given after throwing a smoke bomb, active until your next attack which will be enhanced
 -Gladiator Enchantment reworked: Now attacks cause javelins to fall from the sky 
 -Spider Enchantment reworked: Now allows all minions to crit 10% of the time
+-Copper Enchantment buffed: has greater bonuses when attacking wet enemies
+-Frost Enchantment buffed: all attacks apply Frostburn
+-Lead Enchantment nerfed: Lead Poison no longer slows and does not spread to projectile NPCs like Water Spheres
+-Spectre Enchantment nerfed: heals slighly less
+-Fixed Iron Enchantment's Magnet working on Christmas hearts and stars when it shouldn't
+-Fixed Platinum Enchantment being crafted at a Demon Altar instead of at a Crystal Ball 
+-Fixed Frost and Orichalcum Enchantments doing horrible things in multiplayer
+-Fixed Terrarium Enchantment rarity not being rainbow
+-Fixed Aerospec Enchantment not having fall immunity
+-Fixed bug on certain Thorium Enchantments like Illumite where using a weapon with no ammo would spam projectiles
+-Recipe for Steel Throwing Axes increased from 1 per Folded Metal to 15
 -Modified nearly all Enchantment recipes: they all have the same amount of materials now, Thorium butterflies removed, and several new Thorium items added
--Copper Enchantment has greater bonuses when attacking wet enemies
--Lead Enchantment's Lead Poison no longer slows and does not spread to projectile NPCs like Water Spheres
-
--Aerospec Enchantment has fall immunity now
-
--Removed all Thorium butterflies from recipes
+-Fixed Terra Force tooltip typo
 -Changed around Force recipes so that Thorium does not take away from certain vanilla ones as much
--Added several new Thorium items and their effects to Enchantments and Souls
 -Several Thorium effects have been made more stable and should break less easily from Thorium updates
+-Added several more toggles
+-Fixed other various multiplayer minion desyncs
 
--Nerfed Amalgamated Bullet Pouch: damage down
--Buffed Brain Staff: damage up
+-Pillars no longer spawn from Pandora's Box
+
+-Amalgamated Bullet Pouch damage nerfed
+-Mind Break damage buffed 
+
+
 
 -Nerfed tungsten size to 100% instead of 150% (prob change ech)
 -Fixed Tungsten Enchantment bug where weapons would never be larger without it (prefix size increases etc)
-
--Added several more toggles
-
 -Supersonic Soul tooltip changed, and random defense removed
--Pillars no longer spawn from Pandora's Box
--Platinum Enchantment now crafted at a Crystal Ball
--Fixed bug on certain Thorium Enchantments like Illumite where using a weapon with no ammo would spam projectiles
--Fixed Iron Enchantment's Magnet working on Christmas hearts and stars when it shouldn't
 -Guardian Tome is immune to Masochist Mode Golem fist destruction
--Terrarium Enchantment rarity is now rainbow
--Fixed Frost and Orichalcum Enchantments doing horrible things in MP
--Fixed other various MP minion desyncs
-
--Recipe for Steel Throwing Axes increased from 1 per Folded Metal to 15
--Fixed Terra Force tooltip error
-
--added toggle for Gold Enchantment Lucky Coin effect
--added check for friendly NPC to onhitnpc
--nerfed spectre healing, god
--frost enchant gives frostburn imbue
-
 -flames of universe gives immunity to npcs against its components
-
-Several code tweaks to make things more efficient 
-Target and Super Dummies are immune to Valhalla knockback
-
-
-
-
-ADD TO WIKI
--Ice Slimes and Jungle Slimes may upgrade into Spiked versions
--Pixies have an aura of Squeaky Toy (not new but missed this)
--Skeletons may upgrade into Bone Throwing Skeletons
+-Target and Super Dummies are immune to Valhalla knockback
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -64,10 +46,10 @@ TODO for next update
 -remove tungsten stunning, just mega sword
 -mechanical cart in supersonic, add some mounts to fishing or someshit
 -bugle recipe group
--toggle page bugs, check all combos of mods, add more toggles for calameme
 -add roomba, make sheet somehow and copy generic pet AI
 
 NOT THIS UPDATE
+-add more toggles for calameme
 thorium force with negative regen?
 can you move with gold enchant?
 cultist no drop maso drop when summoned with fargo summon
@@ -77,6 +59,7 @@ penetrator glow mask and crucible glow mask
 top hat squirrel terrarium
 add fishing rod, one form for now lol
 add deaths meme idea from doc
+add cats king slime minion
 absorb hyper mode, for casters amd enchanted weapons, and maybe more 
 tiki rework
 
