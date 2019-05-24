@@ -5,16 +5,16 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class FrigidGemstone : ModItem
+    public class WretchedPouch : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frigid Gemstone");
-            Tooltip.SetDefault(@"'Cold to the touch'
-Grants immunity to Frostburn
-Your attacks summon Frostfireballs to attack your enemies");
+            DisplayName.SetDefault("Wretched Pouch");
+            Tooltip.SetDefault(@"'The accursed incendiary powder of a defeated foe'
+Grants immunity to Shadowflame
+You erupt into Shadowflame tentacles when injured");
         }
 
         public override void SetDefaults()
@@ -28,14 +28,8 @@ Your attacks summon Frostfireballs to attack your enemies");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[BuffID.Frostburn] = true;
-            if (Soulcheck.GetValue("Frostfireballs"))
-            {
-                FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
-                fargoPlayer.FrigidGemstone = true;
-                if (fargoPlayer.FrigidGemstoneCD > 0)
-                    fargoPlayer.FrigidGemstoneCD--;
-            }
+            player.buffImmune[BuffID.ShadowFlame] = true;
+            player.GetModPlayer<FargoPlayer>().WretchedPouch = true;
         }
     }
 }

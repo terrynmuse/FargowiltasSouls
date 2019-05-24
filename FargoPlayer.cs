@@ -212,6 +212,7 @@ namespace FargowiltasSouls
         public bool DragonFang;
         public bool SecurityWallet;
         public bool FrigidGemstone;
+        public bool WretchedPouch;
         public int FrigidGemstoneCD;
         public bool SqueakyAcc;
         public bool RainbowSlime;
@@ -638,6 +639,7 @@ namespace FargowiltasSouls
             DragonFang = false;
             SecurityWallet = false;
             FrigidGemstone = false;
+            WretchedPouch = false;
             SqueakyAcc = false;
             RainbowSlime = false;
             SkeletronArms = false;
@@ -2561,6 +2563,22 @@ namespace FargowiltasSouls
             if (CelestialRune && Soulcheck.GetValue("Ancient Visions On Hit"))
             {
                 Projectile.NewProjectile(player.Center, new Vector2(0, -10), mod.ProjectileType("AncientVision"), 50, 0, player.whoAmI);
+            }
+
+            if (WretchedPouch && Soulcheck.GetValue("Tentacles On Hit"))
+            {
+                Vector2 vel = new Vector2(9f, 0f).RotatedByRandom(2 * Math.PI);
+                for (int i = 0; i < 6; i++)
+                {
+                    Vector2 speed = vel.RotatedBy(2 * Math.PI / 6 * (i + Main.rand.NextDouble() - 0.5));
+                    float ai1 = Main.rand.Next(10, 80) * (1f / 1000f);
+                    if (Main.rand.Next(2) == 0)
+                        ai1 *= -1f;
+                    float ai0 = Main.rand.Next(10, 80) * (1f / 1000f);
+                    if (Main.rand.Next(2) == 0)
+                        ai0 *= -1f;
+                    Projectile.NewProjectile(player.Center, speed, mod.ProjectileType("ShadowflameTentacle"), 30, 3.75f, player.whoAmI, ai0, ai1);
+                }
             }
         }
 

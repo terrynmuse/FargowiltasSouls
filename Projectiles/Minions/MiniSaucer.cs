@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,6 +9,8 @@ namespace FargowiltasSouls.Projectiles.Minions
 {
     public class MiniSaucer : ModProjectile
     {
+        private int rotation = 0;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mini Saucer");
@@ -30,6 +33,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 
             projectile.usesLocalNPCImmunity = true;
             projectile.localNPCHitCooldown = 10;
+            projectile.scale = 1.5f;
         }
 
         public override void AI()
@@ -39,7 +43,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 projectile.timeLeft = 2;
 
             if (projectile.damage == 0)
-                projectile.damage = (int)(80f * player.minionDamage);
+                projectile.damage = (int)(50f * player.minionDamage);
 
             NPC minionAttackTargetNpc = projectile.OwnerMinionAttackTargetNPC;
             if (minionAttackTargetNpc != null && projectile.ai[0] != minionAttackTargetNpc.whoAmI && minionAttackTargetNpc.CanBeChasedBy(projectile))
@@ -55,12 +59,11 @@ namespace FargowiltasSouls.Projectiles.Minions
                 if (npc.CanBeChasedBy(projectile))
                 {
                     Vector2 distance = npc.Center - projectile.Center;
-                    distance.Y -= 150;
+                    distance.Y -= 250 + npc.height / 2;
                     float length = distance.Length();
-                    if (length > 100f)
+                    if (length > 50f)
                     {
-                        distance /= 16f;
-                        projectile.velocity = (projectile.velocity * 23f + distance) / 24f;
+                        projectile.velocity = (projectile.velocity * 23f + distance / 18f) / 24f;
                     }
                     else
                     {
@@ -68,13 +71,14 @@ namespace FargowiltasSouls.Projectiles.Minions
                             projectile.velocity *= 1.05f;
                     }
 
-                    if (++projectile.localAI[0] > 30f)
+                    if (++projectile.localAI[0] > 20f)
                     {
                         projectile.localAI[0] = 0f;
                         if (player.whoAmI == Main.myPlayer)
                         {
-                            Projectile.NewProjectile(projectile.Center, new Vector2(8f, 0f).RotatedBy((Main.rand.NextDouble() - 0.5) * 0.785398185253143),
-                                mod.ProjectileType("SaucerRocket"), projectile.damage, projectile.knockBack * 2f, projectile.owner, npc.whoAmI, 20f);
+                            Vector2 vel = new Vector2(0f, -10f).RotatedBy((Main.rand.NextDouble() - 0.5) * Math.PI);
+                            Projectile.NewProjectile(projectile.Center, vel, mod.ProjectileType("SaucerRocket"),
+                                projectile.damage, projectile.knockBack * 4f, projectile.owner, npc.whoAmI, 20f);
                         }
                     }
 
@@ -82,13 +86,15 @@ namespace FargowiltasSouls.Projectiles.Minions
                     {
                         projectile.localAI[1] = 0f;
                         Vector2 vel = distance;
+                        vel.Y += 200;
                         vel.Normalize();
                         vel *= 16f;
                         Main.PlaySound(SoundID.Item12, projectile.Center);
                         if (player.whoAmI == Main.myPlayer)
                         {
-                            Projectile.NewProjectile(projectile.Center, vel.RotatedBy((Main.rand.NextDouble() - 0.5) * 0.785398185253143 / 3.0),
-                                mod.ProjectileType("SaucerLaser"), projectile.damage / 2, projectile.knockBack / 2f, projectile.owner);
+                            Projectile.NewProjectile(projectile.Center + projectile.velocity * 2.5f,
+                                vel.RotatedBy((Main.rand.NextDouble() - 0.5) * 0.785398185253143 / 3.0),
+                                mod.ProjectileType("SaucerLaser"), projectile.damage / 2, projectile.knockBack, projectile.owner);
                         }
                     }
                 }
@@ -100,20 +106,24 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
             else //no target
             {
-                Vector2 target = player.Center - projectile.Center;
-                target.Y -= 100f;
-                float length = target.Length();
+                Vector2 distance = player.Center - projectile.Center;
+                distance.X -= 100 * player.direction;
+                distance.Y -= 50f;
+                float length = distance.Length();
                 if (length > 2000f)
                 {
                     projectile.Center = player.Center;
-                    projectile.ai[0] = -1f;
-                    projectile.netUpdate = true;
+                    projectile.velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 12f;
                 }
-                else if (length > 100f)
+                else if (length > 20f)
                 {
-                    target.Normalize();
-                    target *= (length > 200f) ? 10f : 6f;
-                    projectile.velocity = (projectile.velocity * 30f + target) / 31f;
+                    distance /= 18f;
+                    projectile.velocity = (projectile.velocity * 23f + distance) / 24f;
+                }
+                else
+                {
+                    if (projectile.velocity.Length() < 12f)
+                        projectile.velocity *= 1.05f;
                 }
 
                 projectile.localAI[1]++;
@@ -145,7 +155,18 @@ namespace FargowiltasSouls.Projectiles.Minions
                 }
             }
 
-            //projectile.rotation = projectile.velocity.ToRotation();
+            if (projectile.velocity.X > 16f)
+                projectile.velocity.X = 16f;
+            if (projectile.velocity.X < -16f)
+                projectile.velocity.X = -16f;
+            if (projectile.velocity.Y > 16f)
+                projectile.velocity.Y = 16f;
+            if (projectile.velocity.Y < -16f)
+                projectile.velocity.Y = -16f;
+            
+            projectile.rotation = (float)Math.Sin(2 * Math.PI * rotation++ / 90) * (float)Math.PI / 8f;
+            if (rotation > 180)
+                rotation = 0;
         }
 
         public override bool? CanCutTiles()

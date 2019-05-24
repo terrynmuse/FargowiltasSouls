@@ -4713,6 +4713,37 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.MisterStabby:
+                        if (masoBool[0])
+                            npc.position.X += npc.velocity.X / 2;
+                        break;
+
+                    case NPCID.SnowmanGangsta:
+                        if (++Counter > 180)
+                        {
+                            Counter = 0;
+                            if (Main.netMode != 1 && npc.HasPlayerTarget)
+                            {
+                                for (int index = 0; index < 6; ++index)
+                                {
+                                    Vector2 Speed = Main.player[npc.target].Center - npc.Center;
+                                    Speed.X += Main.rand.Next(-40, 41);
+                                    Speed.Y += Main.rand.Next(-40, 41);
+                                    Speed.Normalize();
+                                    Speed *= 11f;
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Speed.X, Speed.Y, ProjectileID.BulletSnowman, 20, 0f, Main.myPlayer);
+                                }
+                            }
+                            Main.PlaySound(SoundID.Item38, npc.Center);
+                        }
+                        break;
+
+                    case NPCID.SnowBalla:
+                        masoBool[0] = !masoBool[0];
+                        if (masoBool[0])
+                            npc.AI();
+                        break;
+
                     //drakin possible meme tm
                     /*if (!DD2Event.Ongoing)
                     {
@@ -6973,6 +7004,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.SandElemental:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SandofTime"));
+                        break;
+
+                    case NPCID.GoblinSummoner:
+                        if (Main.rand.Next(10) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("WretchedPouch"));
                         break;
 
                     case NPCID.PirateShip:

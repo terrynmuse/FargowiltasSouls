@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.alpha = 255;
-            projectile.timeLeft = 180;
+            projectile.timeLeft = 600;
             projectile.minion = true;
             projectile.tileCollide = false;
         }
@@ -36,7 +36,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 
                 if (--projectile.ai[1] == 0) //do for one tick right before homing
                 {
-                    projectile.velocity = Vector2.Normalize(projectile.velocity) * (projectile.velocity.Length() + 4f);
+                    projectile.velocity = Vector2.Normalize(projectile.velocity) * (projectile.velocity.Length() + 6f);
                     projectile.netUpdate = true;
                     for (int index1 = 0; index1 < 8; ++index1)
                     {
@@ -51,7 +51,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
             else //start homing
             {
-                if (projectile.ai[0] >= 0 && projectile.ai[0] < 200) //have target
+                if (projectile.ai[0] >= 0 && projectile.ai[0] < 200 && Main.npc[(int)projectile.ai[0]].CanBeChasedBy()) //have target
                 {
                     double num4 = (double)(Main.npc[(int)projectile.ai[0]].Center - projectile.Center).ToRotation() - (double)projectile.velocity.ToRotation();
                     if (num4 > Math.PI)
@@ -102,23 +102,21 @@ namespace FargowiltasSouls.Projectiles.Minions
                         Main.dust[index2].velocity = projectile.velocity * 0.0f;
                     }
                 }
-                projectile.rotation = projectile.velocity.ToRotation() + 1.570796f;
+            }
 
-                if (++projectile.frameCounter >= 3)
-                {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 3)
-                        projectile.frame = 0;
-                }
+            projectile.rotation = projectile.velocity.ToRotation() + 1.570796f;
 
-                for (int index1 = 0; index1 < 2; ++index1)
-                {
-                    Vector2 vector2 = Vector2.UnitY.RotatedBy(projectile.rotation, new Vector2()) * 8f * (index1 + 1);
-                    int index2 = Dust.NewDust(projectile.Center, 0, 0, 228, 0.0f, 0.0f, 0, new Color(), 1f);
-                    Main.dust[index2].position = projectile.Center + vector2;
-                    Main.dust[index2].scale = 1f;
-                    Main.dust[index2].noGravity = true;
-                }
+            Vector2 vector21 = Vector2.UnitY.RotatedBy(projectile.rotation, new Vector2()) * 8f * 2;
+            int index21 = Dust.NewDust(projectile.Center, 0, 0, 228, 0.0f, 0.0f, 0, new Color(), 1f);
+            Main.dust[index21].position = projectile.Center + vector21;
+            Main.dust[index21].scale = 1f;
+            Main.dust[index21].noGravity = true;
+
+            if (++projectile.frameCounter >= 3)
+            {
+                projectile.frameCounter = 0;
+                if (++projectile.frame >= 3)
+                    projectile.frame = 0;
             }
         }
 

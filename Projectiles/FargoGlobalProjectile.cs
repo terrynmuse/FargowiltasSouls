@@ -1157,6 +1157,15 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(900, 1800));
                         break;
 
+                    case ProjectileID.SnowBallHostile:
+                        if (!target.HasBuff(BuffID.Frozen))
+                            target.AddBuff(BuffID.Frozen, Main.rand.Next(90));
+                        break;
+
+                    case ProjectileID.BulletSnowman:
+                        target.AddBuff(BuffID.Chilled, Main.rand.Next(300));
+                        break;
+
                     default:
                         break;
                 }

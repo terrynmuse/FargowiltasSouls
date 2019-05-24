@@ -147,13 +147,15 @@ Summons the aid of all Masochist Mode bosses to your side");
 
             //frigid gemstone
             player.buffImmune[BuffID.Frostburn] = true;
-            player.buffImmune[BuffID.ShadowFlame] = true;
-            if (Soulcheck.GetValue("Shadowfrostfireballs"))
+            if (Soulcheck.GetValue("Frostfireballs"))
             {
                 fargoPlayer.FrigidGemstone = true;
                 if (fargoPlayer.FrigidGemstoneCD > 0)
                     fargoPlayer.FrigidGemstoneCD -= 5;
             }
+
+            player.buffImmune[BuffID.ShadowFlame] = true;
+            player.GetModPlayer<FargoPlayer>().WretchedPouch = true;
 
             //sands of time
             player.buffImmune[BuffID.WindPushed] = true;

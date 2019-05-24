@@ -25,6 +25,8 @@
 -ocean mobs besides jellyfish/shark can drop starfish and seashell
 -added ordinary carrot, 1% drop from any frost legion mob
 -frost legion inflicts chilled, stabby inflicts MFD, balla/gangsta inflict frostburn all on touch
+-added wretched pouch
+-frigid gemstone no longer has any shadowflame properties
 
 -tried making fishron EX say fishron EX when defeated
 -truffle worm EX shouldn't(?) be lost if it cant fish up fishron EX
