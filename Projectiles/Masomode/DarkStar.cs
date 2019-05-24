@@ -9,7 +9,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class DarkStar : ModProjectile
     {
-        public override string Texture => "Terraria/Projectile_197";
+        public override string Texture => "Terraria/Projectile_12";
 
         public override void SetStaticDefaults()
         {
@@ -24,9 +24,10 @@ namespace FargowiltasSouls.Projectiles.Masomode
             aiType = ProjectileID.FallingStar;
             projectile.alpha = 50;
             //projectile.light = 1f;
-            //projectile.tileCollide = false;
+            projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 300;
+            projectile.timeLeft = 900;
+            projectile.hostile = true;
         }
 
         public override void AI()

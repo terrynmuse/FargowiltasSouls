@@ -1155,15 +1155,15 @@ namespace FargowiltasSouls.NPCs
                             //    npc.netUpdate = true;
                             //}
 
-                            if (Counter2++ > 180)
+                            if (Counter2++ > 240)
                             {
                                 Counter2 = 0;
                                 if (Main.netMode != 1 && npc.HasPlayerTarget)
                                 {
                                     Vector2 distance = Main.player[npc.target].Center - npc.Center;
                                     distance.Normalize();
-                                    distance *= 12f;
-                                    for (int i = 0; i < 8; i++)
+                                    distance *= 10f;
+                                    for (int i = 0; i < 12; i++)
                                         Projectile.NewProjectile(npc.Center, distance.RotatedBy(2 * Math.PI / 8 * i),
                                             mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
                                 }
@@ -1307,7 +1307,7 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     Vector2 distance = Main.player[npc.target].Center - npc.Center;
                                     distance.Normalize();
-                                    distance *= 12f;
+                                    distance *= 14f;
                                     for (int i = 0; i < 8; i++)
                                         Projectile.NewProjectile(npc.Center, distance.RotatedBy(2 * Math.PI / 8 * i),
                                             mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
@@ -3752,7 +3752,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.TheDestroyerBody:
-                    case NPCID.TheDestroyerTail:
                         if (npc.realLife >= 0 && npc.realLife < 200 && Main.npc[npc.realLife].life > 0)
                         {
                             if (npc.ai[2] != 0)
@@ -3768,13 +3767,12 @@ namespace FargowiltasSouls.NPCs
                                         Vector2 distance = Main.player[npc.target].Center - npc.Center;
                                         float length = distance.Length();
                                         distance.Normalize();
-                                        distance *= 12f;
-                                        int damage = (int)(npc.damage / 4.5);
+                                        distance *= 10f;
                                         for (int i = -1; i <= 1; i++)
                                         {
                                             Projectile.NewProjectile(npc.Center,
-                                                distance.RotatedBy(i * MathHelper.ToRadians(5) * length / 600.0),
-                                                mod.ProjectileType("DarkStar"), damage, 0f, Main.myPlayer);
+                                                distance.RotatedBy(i * MathHelper.ToRadians(5) * length / 1800.0),
+                                                mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
                                         }
                                     }
                                 }
@@ -3788,16 +3786,16 @@ namespace FargowiltasSouls.NPCs
                             return;
                         }
 
-                        /*if (npc.ai[2] != 0) //if probe is released
+                        if (npc.ai[2] != 0) //if probe is released
                         {
                             Timer--;
                             if (Timer <= 0) //reactivate light
                             {
-                                Timer = 900 + Main.rand.Next(900);
+                                Timer = 1800;
                                 npc.ai[2] = 0;
                                 npc.netUpdate = true;
                             }
-                        }*/
+                        }
                         break;
 
                     case NPCID.TacticalSkeleton: //num3 = 120, damage = 40/50, num8 = 0
@@ -4169,20 +4167,21 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.PrimeCannon:
-                        if (masoBool[0])
+                        if (npc.ai[2] != 0f)
                         {
-                            bool shoot = false;
-                            if (npc.localAI[0] > (npc.ai[2] == 0f ? 120f : 30f))
+                            if (npc.localAI[0] > 30f)
                             {
                                 npc.localAI[0] = 0f;
-                                shoot = true;
+                                if (Main.netMode != 1)
+                                {
+                                    Vector2 speed = new Vector2(18f, 0f).RotatedBy(npc.rotation + Math.PI / 2);
+                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
+                                }
                             }
-
-                            if (shoot && Main.netMode != 1)
-                            {
-                                Vector2 speed = new Vector2(12f, 0f).RotatedBy(npc.rotation - Math.PI / 2);
-                                Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
-                            }
+                        }
+                        else
+                        {
+                            npc.localAI[0]++;
                         }
                         goto case NPCID.PrimeLaser;
                     case NPCID.PrimeLaser:
