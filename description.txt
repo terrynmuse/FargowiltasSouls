@@ -48,6 +48,24 @@ TODO for next update
 -bugle recipe group
 -add roomba, make sheet somehow and copy generic pet AI
 
+-make dicer work with yoyo bag
+-statigel to phm?
+-world shaper makes block use time 1
+-fix web softlock timer maybe?
+rain lightning
+-soe stacking rework
+-universal collapse in MP PLEASE
+-make flight actually infinite in SoD +
+fix one pixel in brain minion
+-add dust to wings
+HALLOW STAR IMMUNE BEGONE
+
+
+truffle EX in mutants shop
+make swarms cash out to each player
+dark mage summon?
+
+
 NOT THIS UPDATE
 -add more toggles for calameme
 thorium force with negative regen?
