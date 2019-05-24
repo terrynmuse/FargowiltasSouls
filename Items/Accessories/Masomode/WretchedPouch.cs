@@ -1,19 +1,20 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class TribalCharm : ModItem
+    public class WretchedPouch : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
+        
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tribal Charm");
-            Tooltip.SetDefault(@"'It feels protective'
-Grants immunity to Webbed
-Grants autofire to all weapons");
+            DisplayName.SetDefault("Wretched Pouch");
+            Tooltip.SetDefault(@"'The accursed incendiary powder of a defeated foe'
+Grants immunity to Shadowflame
+You erupt into Shadowflame tentacles when injured");
         }
 
         public override void SetDefaults()
@@ -23,13 +24,12 @@ Grants autofire to all weapons");
             item.accessory = true;
             item.rare = 5;
             item.value = Item.sellPrice(0, 4);
-            item.defense = 6;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[BuffID.Webbed] = true;
-            player.GetModPlayer<FargoPlayer>().TribalCharm = true;
+            player.buffImmune[BuffID.ShadowFlame] = true;
+            player.GetModPlayer<FargoPlayer>().WretchedPouch = true;
         }
     }
 }

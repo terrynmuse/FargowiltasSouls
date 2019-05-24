@@ -4,12 +4,12 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Minions
 {
-    public class SuperFlocko : ModBuff
+    public class SaucerMinion : ModBuff
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Super Flocko");
-            Description.SetDefault("The super Flocko will protect you");
+            DisplayName.SetDefault("Mini Saucer");
+            Description.SetDefault("The Mini Saucer will protect you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
         }
@@ -22,11 +22,11 @@ namespace FargowiltasSouls.Buffs.Minions
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<FargoPlayer>().SuperFlocko = true;
+            player.GetModPlayer<FargoPlayer>().MiniSaucer = true;
             if (player.whoAmI == Main.myPlayer)
             {
-                if (player.ownedProjectileCounts[mod.ProjectileType("SuperFlocko")] < 1)
-                    Projectile.NewProjectile(player.Center, new Vector2(0f, -10f), mod.ProjectileType("SuperFlocko"), 0, 4f, player.whoAmI);
+                if (player.ownedProjectileCounts[mod.ProjectileType("MiniSaucer")] < 1)
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("MiniSaucer"), 0, 3f, player.whoAmI);
             }
         }
     }

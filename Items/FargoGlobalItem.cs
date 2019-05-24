@@ -191,7 +191,7 @@ namespace FargowiltasSouls.Items
                 modPlayer.AdditionalAttacksTimer = 60;
 
                 Vector2 position = player.Center;
-                Vector2 velocity = Vector2.Normalize(Main.MouseWorld - position) * item.shootSpeed;
+                Vector2 velocity = Vector2.Normalize(Main.MouseWorld - position);
 
                 if (modPlayer.CelestialRune && Soulcheck.GetValue("Celestial Rune Support"))
                 {
@@ -213,13 +213,11 @@ namespace FargowiltasSouls.Items
                     }
                     if (item.magic) //ice mist
                     {
-                        velocity *= 4.25f;
-                        Projectile.NewProjectile(position, velocity, mod.ProjectileType("CelestialRuneIceMist"), (int)(50f * player.magicDamage), 4f, player.whoAmI);
+                        Projectile.NewProjectile(position, velocity * 4.25f, mod.ProjectileType("CelestialRuneIceMist"), (int)(50f * player.magicDamage), 4f, player.whoAmI);
                     }
                     if (item.thrown) //ancient vision
                     {
-                        velocity *= 16f;
-                        Projectile.NewProjectile(position, velocity, mod.ProjectileType("CelestialRuneAncientVision"), (int)(50f * player.thrownDamage), 0, player.whoAmI);
+                        Projectile.NewProjectile(position, velocity * 16f, mod.ProjectileType("CelestialRuneAncientVision"), (int)(50f * player.thrownDamage), 0, player.whoAmI);
                     }
                 }
 
@@ -227,22 +225,34 @@ namespace FargowiltasSouls.Items
                 {
                     if (item.melee) //flaming jack
                     {
-                        velocity *= 8f;
-                        Projectile.NewProjectile(position, velocity, ProjectileID.FlamingJack, (int)(75f * player.meleeDamage), 7.5f, player.whoAmI);
+                        float distance = 2000f;
+                        int target = -1;
+                        for (int i = 0; i < 200; i++)
+                        {
+                            if (Main.npc[i].active && Main.npc[i].CanBeChasedBy())
+                            {
+                                float newDist = Main.npc[i].Distance(player.Center);
+                                if (newDist < distance)
+                                {
+                                    distance = newDist;
+                                    target = i;
+                                }
+                            }
+                        }
+                        if (target != -1)
+                            Projectile.NewProjectile(position, velocity * 8f, ProjectileID.FlamingJack, (int)(75f * player.meleeDamage), 7.5f, player.whoAmI, target, 0f);
                     }
                     if (item.ranged) //jack o lantern
                     {
-                        velocity *= 7f;
-                        Projectile.NewProjectile(position, velocity, ProjectileID.JackOLantern, (int)(95f * player.rangedDamage), 8f, player.whoAmI);
+                        Projectile.NewProjectile(position, velocity * 11f, ProjectileID.JackOLantern, (int)(95f * player.rangedDamage), 8f, player.whoAmI);
                     }
                     if (item.magic) //bat scepter
                     {
-                        velocity *= 10f;
                         for (int i = 0; i < 3; i++)
                         {
-                            Vector2 newVel = velocity;
-                            newVel.X += Main.rand.Next(-35, 36) * 0.05f;
-                            newVel.Y += Main.rand.Next(-35, 36) * 0.05f;
+                            Vector2 newVel = velocity * 10f;
+                            newVel.X += Main.rand.Next(-35, 36) * 0.02f;
+                            newVel.Y += Main.rand.Next(-35, 36) * 0.02f;
                             Projectile.NewProjectile(position, newVel, ProjectileID.Bat, (int)(45f * player.magicDamage), 3f, player.whoAmI);
                         }
                     }
@@ -343,6 +353,32 @@ namespace FargowiltasSouls.Items
             if (modPlayer.Eternity && item.damage > 0) item.shootSpeed *= 2f;
 
             return false;
+        }
+
+        public override bool NewPreReforge(Item item)
+        {
+            if (Main.player[item.owner].GetModPlayer<FargoPlayer>().SecurityWallet)
+            {
+                switch(item.prefix)
+                {
+                    case PrefixID.Warding:  if (Soulcheck.GetValue("Warding"))  return false; break;
+                    case PrefixID.Violent:  if (Soulcheck.GetValue("Violent"))  return false; break;
+                    case PrefixID.Quick:    if (Soulcheck.GetValue("Quick"))    return false; break;
+                    case PrefixID.Lucky:    if (Soulcheck.GetValue("Lucky"))    return false; break;
+                    case PrefixID.Menacing: if (Soulcheck.GetValue("Menacing")) return false; break;
+                    case PrefixID.Legendary:if (Soulcheck.GetValue("Legendary"))return false; break;
+                    case PrefixID.Unreal:   if (Soulcheck.GetValue("Unreal"))   return false; break;
+                    case PrefixID.Mythical: if (Soulcheck.GetValue("Mythical")) return false; break;
+                    case PrefixID.Godly:    if (Soulcheck.GetValue("Godly"))    return false; break;
+                    case PrefixID.Demonic:  if (Soulcheck.GetValue("Demonic"))  return false; break;
+                    case PrefixID.Ruthless: if (Soulcheck.GetValue("Ruthless")) return false; break;
+                    case PrefixID.Light:    if (Soulcheck.GetValue("Light"))    return false; break;
+                    case PrefixID.Deadly:   if (Soulcheck.GetValue("Deadly"))   return false; break;
+                    case PrefixID.Rapid:    if (Soulcheck.GetValue("Rapid"))    return false; break;
+                    default: break;
+                }
+            }
+            return true;
         }
     }
 }

@@ -129,7 +129,7 @@ namespace FargowiltasSouls
                 Mod bossChecklist = ModLoader.GetMod("BossChecklist");
                 if (bossChecklist != null)
                 {
-                    bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 17.1f, (Func<bool>)(() => FargoWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
+                    bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 14.1f, (Func<bool>)(() => FargoWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
                 }
             }
             catch (Exception e)
@@ -415,7 +415,7 @@ namespace FargowiltasSouls
                         FargoGlobalNPC.spawnFishronEX = true;
                         NPC.NewNPC(x, y, NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, target);
                         FargoGlobalNPC.spawnFishronEX = false;
-                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has awoken!"), new Color(0, 100, 255));
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has awoken!"), new Color(50, 100, 255));
                     }
                     break;
 

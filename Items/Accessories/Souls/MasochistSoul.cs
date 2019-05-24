@@ -17,11 +17,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 Increases wing time by 200%, and armor penetration by 50
 Increases max life by 50%, damage by 40%, crit rate by 30%, and damage reduction by 20%
 Increases life regen drastically, increases max number of minions and sentries by 10
-All weapons have auto swing
 Grants gravity control, fastfall, and immunity to all Masochist Mode debuffs and more
+Grants autofire to all weapons, modifier protection, and you automatically use mana potions when needed
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks and inflict Sadism as a cocktail of Masochist Mode debuffs
-You respawn twice as fast and erupt into Spiky Balls and Ancient Visions when injured
+You respawn twice as fast, have improved night vision, and erupt into various attacks when injured
 Attacks have a chance to squeak and deal 1 damage to you
 Summons the aid of all Masochist Mode bosses to your side");
         }
@@ -147,33 +147,42 @@ Summons the aid of all Masochist Mode bosses to your side");
 
             //frigid gemstone
             player.buffImmune[BuffID.Frostburn] = true;
-            player.buffImmune[BuffID.ShadowFlame] = true;
-            if (Soulcheck.GetValue("Shadowfrostfireballs"))
+            if (Soulcheck.GetValue("Frostfireballs"))
             {
                 fargoPlayer.FrigidGemstone = true;
                 if (fargoPlayer.FrigidGemstoneCD > 0)
                     fargoPlayer.FrigidGemstoneCD -= 5;
             }
 
+            player.buffImmune[BuffID.ShadowFlame] = true;
+            player.GetModPlayer<FargoPlayer>().WretchedPouch = true;
+
             //sands of time
             player.buffImmune[BuffID.WindPushed] = true;
             fargoPlayer.SandsofTime = true;
+
+            //mystic skull
+            player.buffImmune[BuffID.Webbed] = true;
+            player.manaFlower = true;
+
+            //security wallet
+            fargoPlayer.SecurityWallet = true;
+
+            //carrot
+            player.nightVision = true;
 
             //squeaky toy
             fargoPlayer.SqueakyAcc = true;
 
             //tribal charm
-            player.buffImmune[BuffID.Webbed] = true;
             player.buffImmune[BuffID.Suffocation] = true;
             fargoPlayer.TribalCharm = true;
 
             //dubious circuitry
             player.buffImmune[BuffID.CursedInferno] = true;
             player.buffImmune[BuffID.Ichor] = true;
-            player.buffImmune[BuffID.Electrified] = true;
             fargoPlayer.FusedLens = true;
             fargoPlayer.GroundStick = true;
-            fargoPlayer.DubiousCircuitry = true;
             if (Soulcheck.GetValue("Probes Minion"))
                 player.AddBuff(mod.BuffType("Probes"), 2);
             player.noKnockback = true;
@@ -191,6 +200,11 @@ Summons the aid of all Masochist Mode bosses to your side");
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
             fargoPlayer.LihzahrdTreasureBox = true;
+
+            //saucer control console
+            player.buffImmune[BuffID.Electrified] = true;
+            if (Soulcheck.GetValue("Saucer Minion"))
+                player.AddBuff(mod.BuffType("SaucerMinion"), 2);
 
             //betsy's heart
             player.buffImmune[BuffID.OgreSpit] = true;
@@ -221,7 +235,6 @@ Summons the aid of all Masochist Mode bosses to your side");
 
             //heart of maso
             player.buffImmune[mod.BuffType("NullificationCurse")] = true;
-            NPCs.FargoGlobalNPC.masoStateML = 4;
 
             //cyclonic fin
             player.buffImmune[BuffID.Frozen] = true;
@@ -233,16 +246,16 @@ Summons the aid of all Masochist Mode bosses to your side");
                 if (player.ownedProjectileCounts[mod.ProjectileType("CuteFishronRitual")] < 1 && player.whoAmI == Main.myPlayer)
                     Projectile.NewProjectile(player.MountedCenter, Vector2.Zero, mod.ProjectileType("CuteFishronRitual"), 0, 0f, Main.myPlayer);
                 player.MountFishronSpecialCounter = 300;
-                player.meleeDamage += 0.5f;
-                player.rangedDamage += 0.5f;
-                player.magicDamage += 0.5f;
-                player.minionDamage += 0.5f;
-                player.thrownDamage += 0.5f;
-                player.meleeCrit += 20;
-                player.rangedCrit += 20;
-                player.magicCrit += 20;
-                player.thrownCrit += 20;
-                player.statDefense += 20;
+                player.meleeDamage += 0.15f;
+                player.rangedDamage += 0.15f;
+                player.magicDamage += 0.15f;
+                player.minionDamage += 0.15f;
+                player.thrownDamage += 0.15f;
+                player.meleeCrit += 30;
+                player.rangedCrit += 30;
+                player.magicCrit += 30;
+                player.thrownCrit += 30;
+                player.statDefense += 30;
                 player.lifeRegen += 3;
                 player.lifeRegenCount += 3;
                 player.lifeRegenTime += 3;
@@ -330,6 +343,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             recipe.AddIngredient(mod.ItemType("DubiousCircuitry"));
             recipe.AddIngredient(mod.ItemType("PureHeart"));
             recipe.AddIngredient(mod.ItemType("LumpOfFlesh"));
+            recipe.AddIngredient(mod.ItemType("ChaliceoftheMoon"));
             recipe.AddIngredient(mod.ItemType("HeartoftheMasochist"));
             recipe.AddIngredient(mod.ItemType("CyclonicFin"));
             recipe.AddIngredient(mod.ItemType("Sadism"), 30);

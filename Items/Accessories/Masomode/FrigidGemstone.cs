@@ -13,8 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Frigid Gemstone");
             Tooltip.SetDefault(@"'Cold to the touch'
-Grants immunity to Frostburn and Shadowflame
-Your attacks summon Shadowfrostfireballs to attack your enemies");
+Grants immunity to Frostburn
+Your attacks summon Frostfireballs to attack your enemies");
         }
 
         public override void SetDefaults()
@@ -29,8 +29,7 @@ Your attacks summon Shadowfrostfireballs to attack your enemies");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[BuffID.Frostburn] = true;
-            player.buffImmune[BuffID.ShadowFlame] = true;
-            if (Soulcheck.GetValue("Shadowfrostfireballs"))
+            if (Soulcheck.GetValue("Frostfireballs"))
             {
                 FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
                 fargoPlayer.FrigidGemstone = true;

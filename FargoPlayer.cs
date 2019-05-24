@@ -190,7 +190,6 @@ namespace FargowiltasSouls
         public bool FusedLens;
         public bool GroundStick;
         public bool Probes;
-        public bool DubiousCircuitry;
         public bool MagicalBulb;
         public bool SkullCharm;
         public bool PumpkingsCape;
@@ -211,12 +210,15 @@ namespace FargowiltasSouls
         public bool CelestialSeal;
         public bool SandsofTime;
         public bool DragonFang;
+        public bool SecurityWallet;
         public bool FrigidGemstone;
+        public bool WretchedPouch;
         public int FrigidGemstoneCD;
         public bool SqueakyAcc;
         public bool RainbowSlime;
         public bool SkeletronArms;
         public bool SuperFlocko;
+        public bool MiniSaucer;
         public bool TribalCharm;
         public bool TribalAutoFire;
 
@@ -343,6 +345,36 @@ namespace FargowiltasSouls
                     else
                     {
                         Soulcheck.ToggleDict[buff.Key] = true;
+                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
+                    }
+                }
+            }
+
+            foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesReforges)
+            {
+                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
+                {
+                    if (disabledSouls.Contains(buff.Key))
+                    {
+                        Soulcheck.ToggleDict[buff.Key] = false;
+                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
+                    }
+                    else
+                    {
+                        Soulcheck.ToggleDict[buff.Key] = true;
+                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
+                    }
+                }
+                else
+                {
+                    if (disabledSouls.Contains(buff.Key))
+                    {
+                        Soulcheck.ToggleDict.Add(buff.Key, false);
+                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
+                    }
+                    else
+                    {
+                        Soulcheck.ToggleDict.Add(buff.Key, true);
                         Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
                     }
                 }
@@ -572,7 +604,6 @@ namespace FargowiltasSouls
             RangedEssence = false;
             BuilderMode = false;
             UniverseEffect = false;
-            autofire = false;
             FishSoul1 = false;
             FishSoul2 = false;
             TerrariaSoul = false;
@@ -590,7 +621,6 @@ namespace FargowiltasSouls
             FusedLens = false;
             GroundStick = false;
             Probes = false;
-            DubiousCircuitry = false;
             MagicalBulb = false;
             SkullCharm = false;
             PumpkingsCape = false;
@@ -607,11 +637,14 @@ namespace FargowiltasSouls
             MasochistSoul = false;
             SandsofTime = false;
             DragonFang = false;
+            SecurityWallet = false;
             FrigidGemstone = false;
+            WretchedPouch = false;
             SqueakyAcc = false;
             RainbowSlime = false;
             SkeletronArms = false;
             SuperFlocko = false;
+            MiniSaucer = false;
             TribalCharm = false;
 
             //debuffs
@@ -812,20 +845,23 @@ namespace FargowiltasSouls
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                     player.AddBuff(mod.BuffType("Lethargic"), 2);
 
-                int tileX = (int)Main.player[player.whoAmI].position.X / 16;
-                int tileY = (int)Main.player[player.whoAmI].position.Y / 16;
-                Tile currentTile = Framing.GetTileSafely(tileX, tileY);
-                if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe && player.stickyBreak > 0 && !PureHeart)
+                if (player.stickyBreak > 0)
                 {
-                    player.AddBuff(BuffID.Webbed, 30);
-                    //player.stickyBreak = 1000;
+                    int tileX = (int)Main.player[player.whoAmI].position.X / 16;
+                    int tileY = (int)Main.player[player.whoAmI].position.Y / 16;
+                    Tile currentTile = Framing.GetTileSafely(tileX, tileY);
+                    if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe && !PureHeart && !player.buffImmune[BuffID.Webbed])
+                    {
+                        player.AddBuff(BuffID.Webbed, 30);
+                        //player.stickyBreak = 1000;
 
-                    Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
-                    int num3 = (int)vector.X;
-                    int num4 = (int)vector.Y;
-                    WorldGen.KillTile(num3, num4, false, false, false);
-                    if (Main.netMode == 1 && !Main.tile[num3, num4].active())
-                        NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
+                        Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
+                        int num3 = (int)vector.X;
+                        int num4 = (int)vector.Y;
+                        WorldGen.KillTile(num3, num4, false, false, false);
+                        if (Main.netMode == 1 && !Main.tile[num3, num4].active())
+                            NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
+                    }
                 }
 
                 if (MasomodeCrystalTimer > 0)
@@ -1849,7 +1885,7 @@ namespace FargowiltasSouls
             if (CyclonicFin)
             {
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
-                target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
+                //target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
 
                 if (crit && CyclonicFinCD <= 0 && proj.type != mod.ProjectileType("RazorbladeTyphoonFriendly") && Soulcheck.GetValue("Spectral Fishron"))
                 {
@@ -2089,7 +2125,7 @@ namespace FargowiltasSouls
                 player.statMana += 4;
             }
 
-            if (GladEnchant && projectile != ProjectileID.JavelinFriendly)
+            if (GladEnchant && Soulcheck.GetValue("Gladiator Rain") && projectile != ProjectileID.JavelinFriendly)
             {
                 gladCount++;
 
@@ -2190,9 +2226,6 @@ namespace FargowiltasSouls
                 if (QueenStinger)
                     target.AddBuff(BuffID.Poisoned, 120, true);
 
-                if (GroundStick && Main.rand.Next(20) == 0)
-                    target.AddBuff(BuffID.Electrified, 240);
-
                 if (FusedLens)
                     target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
             }
@@ -2217,7 +2250,7 @@ namespace FargowiltasSouls
                     target.AddBuff(BuffID.OnFire, 600);
             }
 
-            if (DubiousCircuitry && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
+            if (GroundStick && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
                 target.AddBuff(mod.BuffType("LightningRod"), 300);
 
             if (LeadEnchant && Main.rand.Next(5) == 0)
@@ -2266,7 +2299,7 @@ namespace FargowiltasSouls
             if (CyclonicFin)
             {
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
-                target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
+                //target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
 
                 if (crit && CyclonicFinCD <= 0 && Soulcheck.GetValue("Spectral Fishron"))
                 {
@@ -2531,6 +2564,22 @@ namespace FargowiltasSouls
             {
                 Projectile.NewProjectile(player.Center, new Vector2(0, -10), mod.ProjectileType("AncientVision"), 50, 0, player.whoAmI);
             }
+
+            if (WretchedPouch && Soulcheck.GetValue("Tentacles On Hit"))
+            {
+                Vector2 vel = new Vector2(9f, 0f).RotatedByRandom(2 * Math.PI);
+                for (int i = 0; i < 6; i++)
+                {
+                    Vector2 speed = vel.RotatedBy(2 * Math.PI / 6 * (i + Main.rand.NextDouble() - 0.5));
+                    float ai1 = Main.rand.Next(10, 80) * (1f / 1000f);
+                    if (Main.rand.Next(2) == 0)
+                        ai1 *= -1f;
+                    float ai0 = Main.rand.Next(10, 80) * (1f / 1000f);
+                    if (Main.rand.Next(2) == 0)
+                        ai0 *= -1f;
+                    Projectile.NewProjectile(player.Center, speed, mod.ProjectileType("ShadowflameTentacle"), 30, 3.75f, player.whoAmI, ai0, ai1);
+                }
+            }
         }
 
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -2553,7 +2602,7 @@ namespace FargowiltasSouls
                     p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
 
-            if(player.FindBuffIndex(mod.BuffType("Revived")) == -1)
+            if (player.whoAmI == Main.myPlayer && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
             {
                 if(Eternity)
                 {
@@ -4064,6 +4113,7 @@ namespace FargowiltasSouls
         {
             if (bait.type == mod.ItemType("TruffleWormEX"))
             {
+                caughtType = 0;
                 bool spawned = false;
                 for (int i = 0; i < 1000; i++)
                 {
@@ -4082,7 +4132,7 @@ namespace FargowiltasSouls
                                 NPC.NewNPC((int)Main.projectile[i].Center.X, (int)Main.projectile[i].Center.Y + 100,
                                     NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, bait.owner);
                                 FargoGlobalNPC.spawnFishronEX = false;
-                                Main.NewText("Duke Fishron EX has awoken!", 0, 100, 255);
+                                Main.NewText("Duke Fishron EX has awoken!", 50, 100, 255);
                             }
                             else if (Main.netMode == 1) //MP, broadcast(?) packet from spawning player's client
                             {
@@ -4111,9 +4161,12 @@ namespace FargowiltasSouls
                         NetMessage.SendData(61, -1, -1, null, bait.owner, NPCID.DukeFishron);
                     }
                 }*/
-                bait.stack--;
-                if (bait.stack <= 0)
-                    bait.SetDefaults(0);
+                if (spawned)
+                {
+                    bait.stack--;
+                    if (bait.stack <= 0)
+                        bait.SetDefaults(0);
+                }
             }
         }
 

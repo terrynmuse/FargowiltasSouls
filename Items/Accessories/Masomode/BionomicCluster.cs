@@ -16,12 +16,13 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'The amalgamate born of a thousand common enemies'
 Grants immunity to Frostburn, Shadowflame, Squeaky Toy, Purified, and Mighty Wind
 Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and Suffocation
-Grants autofire to all weapons
+Grants autofire to all weapons and immunity to enemies that steal items or coins
 Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies
-Your attacks summon Shadowfrostfireballs to attack your enemies
-You respawn twice as fast when no boss is alive
-All weapons have auto swing
+Your attacks summon Frostfireballs to attack your enemies
+You respawn twice as fast when no boss is alive and have improved night vision
+Automatically use mana potions when needed and gives modifier protection
 Attacks have a chance to squeak and deal 1 damage to you
+You erupt into Shadowflame tentacles when injured
 Summons a friendly rainbow slime");
         }
 
@@ -52,13 +53,16 @@ Summons a friendly rainbow slime");
 
             //frigid gemstone
             player.buffImmune[BuffID.Frostburn] = true;
-            player.buffImmune[BuffID.ShadowFlame] = true;
-            if (Soulcheck.GetValue("Shadowfrostfireballs"))
+            if (Soulcheck.GetValue("Frostfireballs"))
             {
                 fargoPlayer.FrigidGemstone = true;
                 if (fargoPlayer.FrigidGemstoneCD > 0)
                     fargoPlayer.FrigidGemstoneCD--;
             }
+
+            //wretched pouch
+            player.buffImmune[BuffID.ShadowFlame] = true;
+            player.GetModPlayer<FargoPlayer>().WretchedPouch = true;
 
             //sands of time
             player.buffImmune[BuffID.WindPushed] = true;
@@ -73,6 +77,16 @@ Summons a friendly rainbow slime");
             player.buffImmune[BuffID.Webbed] = true;
             player.buffImmune[BuffID.Suffocation] = true;
             fargoPlayer.TribalCharm = true;
+
+            //mystic skull
+            player.buffImmune[BuffID.Suffocation] = true;
+            player.manaFlower = true;
+
+            //security wallet
+            fargoPlayer.SecurityWallet = true;
+
+            //carrot
+            player.nightVision = true;
         }
 
         public override void AddRecipes()
@@ -85,6 +99,10 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(mod.ItemType("SandofTime"));
             recipe.AddIngredient(mod.ItemType("SqueakyToy"));
             recipe.AddIngredient(mod.ItemType("TribalCharm"));
+            recipe.AddIngredient(mod.ItemType("MysticSkull"));
+            recipe.AddIngredient(mod.ItemType("SecurityWallet"));
+            recipe.AddIngredient(mod.ItemType("OrdinaryCarrot"));
+            recipe.AddIngredient(mod.ItemType("WretchedPouch"));
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 20);
 

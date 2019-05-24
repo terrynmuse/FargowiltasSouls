@@ -30,7 +30,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.tileCollide = false;
 
             projectile.usesLocalNPCImmunity = true;
-            projectile.localNPCHitCooldown = 30;
+            projectile.localNPCHitCooldown = 10;
         }
 
         public override void AI()

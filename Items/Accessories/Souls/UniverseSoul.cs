@@ -65,7 +65,6 @@ Grants all other effects of material Souls";
             modPlayer.AllCritUp(25);
             //use speed, velocity, debuffs, crit dmg, mana up, double knockback
             modPlayer.UniverseEffect = true;
-            modPlayer.autofire = true;
             
             if (Soulcheck.GetValue("Universe Attack Speed"))
             {

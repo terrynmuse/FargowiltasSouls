@@ -129,6 +129,11 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.Electrified, 240);
+        }
+
         public override void Kill(int timeLeft)
         {
             float num2 = (float)(projectile.rotation + 1.57079637050629 + (Main.rand.Next(2) == 1 ? -1.0 : 1.0) * 1.57079637050629);

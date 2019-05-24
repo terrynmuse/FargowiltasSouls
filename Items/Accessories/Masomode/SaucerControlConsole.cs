@@ -4,16 +4,16 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class TribalCharm : ModItem
+    public class SaucerControlConsole : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tribal Charm");
-            Tooltip.SetDefault(@"'It feels protective'
-Grants immunity to Webbed
-Grants autofire to all weapons");
+            DisplayName.SetDefault("Saucer Control Console");
+            Tooltip.SetDefault(@"'Just keep it in airplane mode'
+Grants immunity to Electrified
+Summons a friendly Mini Saucer");
         }
 
         public override void SetDefaults()
@@ -21,15 +21,15 @@ Grants autofire to all weapons");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 5;
-            item.value = Item.sellPrice(0, 4);
-            item.defense = 6;
+            item.rare = 8;
+            item.value = Item.sellPrice(0, 6);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[BuffID.Webbed] = true;
-            player.GetModPlayer<FargoPlayer>().TribalCharm = true;
+            player.buffImmune[BuffID.Electrified] = true;
+            if (Soulcheck.GetValue("Saucer Minion"))
+                player.AddBuff(mod.BuffType("SaucerMinion"), 2);
         }
     }
 }

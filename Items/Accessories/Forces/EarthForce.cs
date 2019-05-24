@@ -42,7 +42,8 @@ Briefly become invulnerable after striking an enemy");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //mythril
-            modPlayer.AttackSpeed *= 1.25f;
+            if (Soulcheck.GetValue("Mythril Speedup"))
+                modPlayer.AttackSpeed *= 1.25f;
             //shards
             modPlayer.CobaltEnchant = true;
             //regen on hit, heals

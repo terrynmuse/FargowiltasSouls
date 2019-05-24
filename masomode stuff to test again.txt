@@ -12,13 +12,40 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-changed fish EX text colour again
+-fishron hopefully doesnt become immortal forever if quick killed early in MP????
+-all mechs drop fallen stars when killed
+-all mechs have dark star attacks
+-fixed certain masomode projectile changes happening outside masomode(?)
+-flying dutchman drops security wallet (was captain)
+-implemented framework of saucer control console
+-reworked ground stick/dubious circuitry; gives lightning rod immune and attacks can inflict it (not electrified)
+-lightning bolts from friendly lightning rod inflicts electrified on enemies
+-betsy drops inferno potion (wof drops obsidian skin now)
+-ocean mobs besides jellyfish/shark can drop starfish and seashell
+-added ordinary carrot, 1% drop from any frost legion mob
+-frost legion inflicts chilled, stabby inflicts MFD, balla/gangsta inflict frostburn all on touch
+-added wretched pouch
+-frigid gemstone no longer has any shadowflame properties
+
+-tried making fishron EX say fishron EX when defeated
+-truffle worm EX shouldn't(?) be lost if it cant fish up fishron EX
+-oceanic maul inflicts heavy defense/DR down again
+-galactic globe no longer grants curse of the moon immune hahaaaaaa
+-oceanic maul has the DOT and dust of curse of the moon too
+-enemies inflicted with oceanic maul and curse of the moon no longer take multiplied damage
+-prime DEFINITELY shouldn't be invincible in final phase anymore
+-added security wallet
+-fishron ritual traps everyone
+-oceanic seal affects EVERYONE in MP (but only damages fishron's target), i think
+
 -changed how fishron EX spell circle works
 -fishron EX disables supersonic toggle
 -tried making ground pound code more robust
 -cyclonic fin gives cute fishron a spell circle
 -oceanic seal suppresses supersonic toggle
 -made new oceanic seal work in MP?
--added duke fishron EX to boss checklist?
+-added duke fishron EX to boss checklist
 -increased sadism duration to 7 minutes
 -lunatic cultist drops celestial seal
 -added volatile energy to pure heart recipe
@@ -43,6 +70,12 @@
 -made various boss parts immune to clipped wings
 -BUFFED SOUL OF MASOCHIST AGAIN HAHAAAAAAAAAAAAAAAAAAAA
 -royal subjects die when queen bee dies (i think)
+-added mystic skull (part of bionomic cluster)
+-tribal charm webbed immune moved to mystic skull
+-biome mimics inflict unique debuffs now
+-changed lump of flesh recipe from ectoplasm/souls to spectre bars
+-implemented super flocko?
+-ice queen spawns flockos and inflicts ice debuffs on hit too
 
 -antlion back to how it was but only happens when stunned
 -nimbus only spawns in the sky in hard mode now

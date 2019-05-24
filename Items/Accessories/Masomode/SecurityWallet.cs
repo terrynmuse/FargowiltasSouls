@@ -1,19 +1,21 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class TribalCharm : ModItem
+    public class SecurityWallet : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
+        
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tribal Charm");
-            Tooltip.SetDefault(@"'It feels protective'
-Grants immunity to Webbed
-Grants autofire to all weapons");
+            DisplayName.SetDefault("Security Wallet");
+            Tooltip.SetDefault(@"'Use caution around other players'
+Grants immunity to enemies that steal items or coins
+Prevents you from reforging items with certain modifiers
+Protected modifiers can be chosen in the toggles menu");
         }
 
         public override void SetDefaults()
@@ -23,13 +25,11 @@ Grants autofire to all weapons");
             item.accessory = true;
             item.rare = 5;
             item.value = Item.sellPrice(0, 4);
-            item.defense = 6;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[BuffID.Webbed] = true;
-            player.GetModPlayer<FargoPlayer>().TribalCharm = true;
+            player.GetModPlayer<FargoPlayer>().SecurityWallet = true;
         }
     }
 }

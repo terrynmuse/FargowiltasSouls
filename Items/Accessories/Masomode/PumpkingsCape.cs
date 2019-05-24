@@ -6,6 +6,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class PumpkingsCape : ModItem
     {
+        public override string Texture => "FargowiltasSouls/Items/Placeholder";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pumpking's Cape");

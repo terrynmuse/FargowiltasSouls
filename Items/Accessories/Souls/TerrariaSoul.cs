@@ -128,6 +128,8 @@ When you die, you explode and revive with 200 HP";
 
             //EARTH
             modPlayer.CobaltEnchant = true; //shards
+            if (Soulcheck.GetValue("Mythril Speedup"))
+                modPlayer.AttackSpeed *= 1.25f; //mythril
             modPlayer.PalladiumEffect(); //regen on hit, heals
             modPlayer.OrichalcumEffect(); //fireballs and petals
             modPlayer.AdamantiteEnchant = true; //split
