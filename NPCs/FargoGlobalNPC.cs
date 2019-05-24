@@ -7613,18 +7613,12 @@ namespace FargowiltasSouls.NPCs
 
                             if (fishBossEX == npc.whoAmI)
                             {
-                                if (!FargoWorld.downedFishronEX)
-                                {
-                                    if (Main.netMode == 0)
-                                        Main.NewText("The ocean stirs...", 50, 100, 255);
-                                    else if (Main.netMode == 2)
-                                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The ocean stirs..."), new Color(50, 100, 255));
-                                }
                                 FargoWorld.downedFishronEX = true;
                                 if (Main.netMode == 0)
                                     Main.NewText("Duke Fishron EX has been defeated!", 50, 100, 255);
                                 else if (Main.netMode == 2)
                                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has been defeated!"), new Color(50, 100, 255));
+                                Main.PlaySound(npc.DeathSound, npc.Center);
                                 npc.DropBossBags();
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CyclonicFin"));
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
