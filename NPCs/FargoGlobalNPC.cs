@@ -1008,32 +1008,12 @@ namespace FargowiltasSouls.NPCs
                         if (npc.ai[1] == 3f && npc.life < npc.lifeMax * .4f)
                         {
                             Counter2 = 30;
-
-                            Projectile[] projs = new Projectile[8];
-                            projs = FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 2, npc.damage / 4, 1f);
-
-                            for (int i = 0; i < 8; i++)
-                            {
-                                if (projs[i] != null)
-                                {
-                                    projs[i].hostile = true;
-                                    projs[i].friendly = false;
-                                    projs[i].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                                }
-                            }
+                            FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 2, npc.damage / 4, 1f);
                         }
 
                         if (Counter2 > 0 && Counter2 % 5 == 0)
-                        {
-                            int p = Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y), npc.velocity / 10, ProjectileID.DemonSickle, npc.damage / 4, 1f, Main.myPlayer);
-                            if (p != 1000)
-                            {
-                                Main.projectile[p].hostile = true;
-                                Main.projectile[p].friendly = false;
-                                Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                                //Main.projectile[p].timeLeft = 120;
-                            }
-                        }
+                            Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
+                                npc.velocity / 10, ProjectileID.DemonSickle, npc.damage / 4, 1f, Main.myPlayer);
                         Counter2--;
                         break;
 
@@ -1846,26 +1826,17 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.QueenBee:
                         beeBoss = boss = npc.whoAmI;
 
-                        if (!masoBool[0] && npc.life < npc.lifeMax / 2)
+                        if (!masoBool[0] && npc.life < npc.lifeMax / 3 * 2 && npc.HasPlayerTarget)
                         {
                             masoBool[0] = true;
-                            if (Main.netMode != 1)
-                            {
-                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RoyalSubject"));
-                                if (n < 200 && Main.netMode == 2)
-                                    NetMessage.SendData(23, -1, -1, null, n);
-                            }
+                            NPC.SpawnOnPlayer(npc.target, mod.NPCType("RoyalSubject"));
                         }
 
-                        if (!masoBool[1] && npc.life < npc.lifeMax / 4)
+                        if (!masoBool[1] && npc.life < npc.lifeMax / 3 && npc.HasPlayerTarget)
                         {
                             masoBool[1] = true;
-                            if (Main.netMode != 1)
-                            {
-                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RoyalSubject"));
-                                if (n < 200 && Main.netMode == 2)
-                                    NetMessage.SendData(23, -1, -1, null, n);
-                            }
+                            NPC.SpawnOnPlayer(npc.target, mod.NPCType("RoyalSubject"));
+                            NPC.SpawnOnPlayer(npc.target, mod.NPCType("RoyalSubject"));
                         }
 
                         //only while stationary mode
@@ -5666,7 +5637,28 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Plantera:
                         target.AddBuff(mod.BuffType("MutantNibble"), Main.rand.Next(600, 900));
-                        goto case NPCID.PlanterasHook;
+                        target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
+                        target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
+                        bool isVenomed1 = false;
+                        for (int i = 0; i < 22; i++)
+                        {
+                            if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
+                            {
+                                isVenomed1 = true;
+                                target.buffTime[i] += 300;
+                                if (target.buffTime[i] > 1200)
+                                {
+                                    target.AddBuff(mod.BuffType("Infested"), target.buffTime[i]);
+                                    Main.PlaySound(15, (int)target.Center.X, (int)target.Center.Y, 0);
+                                }
+                                break;
+                            }
+                        }
+                        if (!isVenomed1)
+                        {
+                            target.AddBuff(BuffID.Venom, 300);
+                        }
+                        break;
 
                     case NPCID.PlanterasHook:
                     case NPCID.PlanterasTentacle:
@@ -7621,18 +7613,12 @@ namespace FargowiltasSouls.NPCs
 
                             if (fishBossEX == npc.whoAmI)
                             {
-                                if (!FargoWorld.downedFishronEX)
-                                {
-                                    if (Main.netMode == 0)
-                                        Main.NewText("The ocean stirs...", 50, 100, 255);
-                                    else if (Main.netMode == 2)
-                                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The ocean stirs..."), new Color(50, 100, 255));
-                                }
                                 FargoWorld.downedFishronEX = true;
                                 if (Main.netMode == 0)
                                     Main.NewText("Duke Fishron EX has been defeated!", 50, 100, 255);
                                 else if (Main.netMode == 2)
                                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has been defeated!"), new Color(50, 100, 255));
+                                Main.PlaySound(npc.DeathSound, npc.Center);
                                 npc.DropBossBags();
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CyclonicFin"));
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
@@ -8153,6 +8139,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Sharkron2:
                         if (masoBool[2])
                             damage = 0;
+                        break;
+
+                    case NPCID.Plantera:
+                        if (item.type == ItemID.FetidBaghnakhs)
+                            damage /= 4;
                         break;
 
                     default:

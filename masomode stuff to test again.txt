@@ -27,6 +27,12 @@
 -frost legion inflicts chilled, stabby inflicts MFD, balla/gangsta inflict frostburn all on touch
 -added wretched pouch
 -frigid gemstone no longer has any shadowflame properties
+-plantera has 75% resistance against fetish bagknickers
+-plantera inflicts venom way more aggressively on direct touch
+-NUKE FISHRON HAS HOMING AND POLISH
+-standardized sell prices for sadism tier
+-changed how queen bee spawns royal subjects
+-cleaned eye sickles because recolor and stuff isnt necessaryyyy
 
 -tried making fishron EX say fishron EX when defeated
 -truffle worm EX shouldn't(?) be lost if it cant fish up fishron EX

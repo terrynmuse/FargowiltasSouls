@@ -59,7 +59,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                 if (npc.CanBeChasedBy(projectile))
                 {
                     Vector2 distance = npc.Center - projectile.Center;
-                    distance.Y -= 250 + npc.height / 2;
+                    float offset = 250 + npc.height / 2;
+                    distance.Y -= offset;
                     float length = distance.Length();
                     if (length > 50f)
                     {
@@ -86,7 +87,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                     {
                         projectile.localAI[1] = 0f;
                         Vector2 vel = distance;
-                        vel.Y += 200;
+                        vel.Y += offset;
                         vel.Normalize();
                         vel *= 16f;
                         Main.PlaySound(SoundID.Item12, projectile.Center);

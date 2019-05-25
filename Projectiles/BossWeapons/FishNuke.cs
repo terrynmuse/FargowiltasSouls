@@ -17,12 +17,82 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         {
             projectile.width = 20;
             projectile.height = 24;
-            projectile.aiStyle = 1;
+            projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.ranged = true;
             projectile.penetrate = 1;
             projectile.timeLeft = 600;
-            aiType = ProjectileID.Bullet;
+            projectile.ignoreWater = true;
+            projectile.extraUpdates = 1;
+            //aiType = ProjectileID.Bullet;
+        }
+
+        public override void AI()
+        {
+            if (projectile.ai[0] >= 0 && projectile.ai[0] < 200)
+            {
+                int ai0 = (int)projectile.ai[0];
+                if (Main.npc[ai0].CanBeChasedBy())
+                {
+                    double num4 = (Main.npc[ai0].Center - projectile.Center).ToRotation() - projectile.velocity.ToRotation();
+                    if (num4 > Math.PI)
+                        num4 -= 2.0 * Math.PI;
+                    if (num4 < -1.0 * Math.PI)
+                        num4 += 2.0 * Math.PI;
+                    projectile.velocity = projectile.velocity.RotatedBy(num4 * 0.1f);
+                }
+                else
+                {
+                    projectile.ai[0] = -1f;
+                    projectile.netUpdate = true;
+                }
+            }
+            else
+            {
+                if (++projectile.localAI[1] > 12f)
+                {
+                    projectile.localAI[1] = 0f;
+                    float maxDistance = 500f;
+                    int possibleTarget = -1;
+                    for (int i = 0; i < 200; i++)
+                    {
+                        NPC npc = Main.npc[i];
+                        if (npc.CanBeChasedBy() && Collision.CanHitLine(projectile.Center, 0, 0, npc.Center, 0, 0))
+                        {
+                            float npcDistance = projectile.Distance(npc.Center);
+                            if (npcDistance < maxDistance)
+                            {
+                                maxDistance = npcDistance;
+                                possibleTarget = i;
+                            }
+                        }
+                    }
+                    projectile.ai[0] = possibleTarget;
+                    projectile.netUpdate = true;
+                }
+            }
+            
+            if (++projectile.localAI[0] >= 24f)
+            {
+                projectile.localAI[0] = 0f;
+                for (int index1 = 0; index1 < 12; ++index1)
+                {
+                    Vector2 vector2 = (Vector2.UnitX * (float)-projectile.width / 2f + -Vector2.UnitY.RotatedBy((double)index1 * 3.14159274101257 / 6.0, new Vector2()) * new Vector2(8f, 16f)).RotatedBy((double)projectile.rotation - 1.57079637050629, new Vector2());
+                    int index2 = Dust.NewDust(projectile.Center, 0, 0, 135, 0.0f, 0.0f, 160, new Color(), 1f);
+                    Main.dust[index2].scale = 1.1f;
+                    Main.dust[index2].noGravity = true;
+                    Main.dust[index2].position = projectile.Center + vector2;
+                    Main.dust[index2].velocity = projectile.velocity * 0.1f;
+                    Main.dust[index2].velocity = Vector2.Normalize(projectile.Center - projectile.velocity * 3f - Main.dust[index2].position) * 1.25f;
+                }
+            }
+            Vector2 vector21 = Vector2.UnitY.RotatedBy(projectile.rotation, new Vector2()) * 8f * 2;
+            int index21 = Dust.NewDust(projectile.Center, 0, 0, 6, 0.0f, 0.0f, 0, new Color(), 1f);
+            Main.dust[index21].position = projectile.Center + vector21;
+            Main.dust[index21].scale = 1f;
+            Main.dust[index21].noGravity = true;
+
+            projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2f;
         }
 
         /*public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -63,7 +133,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         {
             Main.PlaySound(SoundID.Item84, projectile.Center);
             if (projectile.owner == Main.myPlayer)
-                SpawnRazorbladeRing(8, 17f, 0.7f * (projectile.velocity.X > 0 ? -1f : 1f));
+                SpawnRazorbladeRing(8, 17f, projectile.velocity.X > 0 ? -1f : 1f);
             int num1 = 36;
             for (int index1 = 0; index1 < num1; ++index1)
             {
@@ -86,8 +156,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             for (int i = 0; i < max; i++)
             {
                 vel = vel.RotatedBy(rotation);
-                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage / 6,
-                    projectile.knockBack, projectile.owner, rotationModifier, 1f);
+                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage / 4,
+                    projectile.knockBack, projectile.owner, rotationModifier, 6f);
             }
         }
     }

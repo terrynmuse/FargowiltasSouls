@@ -56,20 +56,20 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(2, projectile.Center, 14);
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 20; i++)
             {
                 int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
                     projectile.height, 31, 0f, 0f, 100, default(Color), 3f);
                 Main.dust[dust].velocity *= 1.4f;
             }
-            for (int i = 0; i < 60; i++)
+            for (int i = 0; i < 30; i++)
             {
                 int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 0, default(Color), 3.5f);
                 Main.dust[d].noGravity = true;
                 Main.dust[d].noLight = true;
                 Main.dust[d].velocity *= 4f;
             }
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 20; i++)
             {
                 int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width,
                     projectile.height, 6, 0f, 0f, 100, default(Color), 3.5f);

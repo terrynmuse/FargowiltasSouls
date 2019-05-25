@@ -48,6 +48,7 @@ namespace FargowiltasSouls.Projectiles
                     case 3: projectile.magic = true; break;
                     case 4: projectile.minion = true; break;
                     case 5: projectile.thrown = true; break;
+                    case 6: projectile.ranged = true; projectile.timeLeft -= 420; break;
                     default: break;
                 }
                 projectile.ai[1] = projectile.velocity.Length();
