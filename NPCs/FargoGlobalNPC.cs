@@ -1004,32 +1004,12 @@ namespace FargowiltasSouls.NPCs
                         if (npc.ai[1] == 3f && npc.life < npc.lifeMax * .4f)
                         {
                             Counter2 = 30;
-
-                            Projectile[] projs = new Projectile[8];
-                            projs = FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 2, npc.damage / 4, 1f);
-
-                            for (int i = 0; i < 8; i++)
-                            {
-                                if (projs[i] != null)
-                                {
-                                    projs[i].hostile = true;
-                                    projs[i].friendly = false;
-                                    projs[i].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                                }
-                            }
+                            FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 2, npc.damage / 4, 1f);
                         }
 
                         if (Counter2 > 0 && Counter2 % 5 == 0)
-                        {
-                            int p = Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y), npc.velocity / 10, ProjectileID.DemonSickle, npc.damage / 4, 1f, Main.myPlayer);
-                            if (p != 1000)
-                            {
-                                Main.projectile[p].hostile = true;
-                                Main.projectile[p].friendly = false;
-                                Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                                //Main.projectile[p].timeLeft = 120;
-                            }
-                        }
+                            Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
+                                npc.velocity / 10, ProjectileID.DemonSickle, npc.damage / 4, 1f, Main.myPlayer);
                         Counter2--;
                         break;
 
@@ -1842,26 +1822,17 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.QueenBee:
                         beeBoss = boss = npc.whoAmI;
 
-                        if (!masoBool[0] && npc.life < npc.lifeMax / 2)
+                        if (!masoBool[0] && npc.life < npc.lifeMax / 3 * 2 && npc.HasPlayerTarget)
                         {
                             masoBool[0] = true;
-                            if (Main.netMode != 1)
-                            {
-                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RoyalSubject"));
-                                if (n < 200 && Main.netMode == 2)
-                                    NetMessage.SendData(23, -1, -1, null, n);
-                            }
+                            NPC.SpawnOnPlayer(npc.target, mod.NPCType("RoyalSubject"));
                         }
 
-                        if (!masoBool[1] && npc.life < npc.lifeMax / 4)
+                        if (!masoBool[1] && npc.life < npc.lifeMax / 3 && npc.HasPlayerTarget)
                         {
                             masoBool[1] = true;
-                            if (Main.netMode != 1)
-                            {
-                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RoyalSubject"));
-                                if (n < 200 && Main.netMode == 2)
-                                    NetMessage.SendData(23, -1, -1, null, n);
-                            }
+                            NPC.SpawnOnPlayer(npc.target, mod.NPCType("RoyalSubject"));
+                            NPC.SpawnOnPlayer(npc.target, mod.NPCType("RoyalSubject"));
                         }
 
                         //only while stationary mode
