@@ -25,13 +25,13 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.useAnimation = 17;
             item.useStyle = 5;
             item.noMelee = true;
-            item.knockBack = 3f;
+            item.knockBack = 7.7f;
             item.UseSound = new LegacySoundStyle(2, 62);
-            item.value = 50000;
+            item.value = Item.sellPrice(0, 70);
             item.rare = 11;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("FishNuke");
-            item.shootSpeed = 30f;
+            item.shootSpeed = 7.7f;
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)
@@ -49,6 +49,13 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-12, 0);
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Vector2 speed = new Vector2(speedX, speedY).RotatedBy((Main.rand.NextDouble() - 0.5) * MathHelper.ToRadians(15));
+            Projectile.NewProjectile(position, speed, type, damage, knockBack, player.whoAmI, -1f, 0f);
+            return false;
         }
 
         public override void AddRecipes()

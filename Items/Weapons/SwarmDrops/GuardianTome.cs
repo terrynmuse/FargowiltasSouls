@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,7 +24,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.useTurn = true;
             item.noMelee = true;
             item.knockBack = 2;
-            item.value = 10000;
+            item.value = Item.sellPrice(0, 70);
             item.rare = 11; //
             item.mana = 100; //           
             item.UseSound = SoundID.Item21; //

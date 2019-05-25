@@ -5658,7 +5658,28 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Plantera:
                         target.AddBuff(mod.BuffType("MutantNibble"), Main.rand.Next(600, 900));
-                        goto case NPCID.PlanterasHook;
+                        target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
+                        target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
+                        bool isVenomed1 = false;
+                        for (int i = 0; i < 22; i++)
+                        {
+                            if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
+                            {
+                                isVenomed1 = true;
+                                target.buffTime[i] += 300;
+                                if (target.buffTime[i] > 1200)
+                                {
+                                    target.AddBuff(mod.BuffType("Infested"), target.buffTime[i]);
+                                    Main.PlaySound(15, (int)target.Center.X, (int)target.Center.Y, 0);
+                                }
+                                break;
+                            }
+                        }
+                        if (!isVenomed1)
+                        {
+                            target.AddBuff(BuffID.Venom, 300);
+                        }
+                        break;
 
                     case NPCID.PlanterasHook:
                     case NPCID.PlanterasTentacle:
@@ -8139,6 +8160,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Sharkron2:
                         if (masoBool[2])
                             damage = 0;
+                        break;
+
+                    case NPCID.Plantera:
+                        if (item.type == ItemID.FetidBaghnakhs)
+                            damage /= 4;
                         break;
 
                     default:
