@@ -228,6 +228,7 @@ namespace FargowiltasSouls
         private int unstableCD = 0;
         public bool Fused;
         public bool Shadowflame;
+        public bool Oiled;
         public bool DeathMarked;
         public bool noDodge;
         public bool noSupersonic;
@@ -652,6 +653,7 @@ namespace FargowiltasSouls
             Unstable = false;
             Fused = false;
             Shadowflame = false;
+            Oiled = false;
             Slimed = false;
             noDodge = false;
             noSupersonic = false;
@@ -692,6 +694,7 @@ namespace FargowiltasSouls
             unstableCD = 0;
             Fused = false;
             Shadowflame = false;
+            Oiled = false;
             Slimed = false;
             noDodge = false;
             noSupersonic = false;
@@ -779,7 +782,7 @@ namespace FargowiltasSouls
                     player.AddBuff(BuffID.OnFire, Main.expertMode ? 1 : 2);
 
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
-                    player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode ? 1 : 2);
+                    player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, 300);
 
                 if (player.ZoneSnow && Main.hardMode && !Main.dayTime)
                 {
@@ -811,7 +814,7 @@ namespace FargowiltasSouls
                     if (!PureHeart)
                         player.AddBuff(BuffID.Darkness, Main.expertMode ? 1 : 2);
                     if(player.wet && !MutantAntibodies)
-                        player.AddBuff(BuffID.CursedInferno, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.CursedInferno, 300);
                 }
 
                 if (player.ZoneCrimson && Main.hardMode)
@@ -1376,6 +1379,11 @@ namespace FargowiltasSouls
                 player.lifeRegenTime = 0;
                 player.lifeRegen -= 8;
             }
+
+            if (Oiled && player.lifeRegen < 0)
+            {
+                player.lifeRegen *= 2;
+            }
         }
 
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
@@ -1385,6 +1393,20 @@ namespace FargowiltasSouls
                 if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f)
                 {
                     int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.Shadowflame, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    Main.playerDrawDust.Add(dust);
+
+                    fullBright = true;
+                }
+            }
+
+            if (Hexed)
+            {
+                if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f)
+                {
+                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.BubbleBlock, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;

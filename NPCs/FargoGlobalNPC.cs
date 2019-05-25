@@ -698,19 +698,23 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.ManEater:
-                        target = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
 
-                        if (target != -1)
+                        if (!Main.hardMode)
                         {
-                            Player player = Main.player[target];
+                            target = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
 
-                            if (player.statLife < 100)
+                            if (target != -1)
                             {
-                                SharkCount = 2;
-                            }
-                            else
-                            {
-                                SharkCount = 0;
+                                Player player = Main.player[target];
+
+                                if (player.statLife < 100)
+                                {
+                                    SharkCount = 2;
+                                }
+                                else
+                                {
+                                    SharkCount = 0;
+                                }
                             }
                         }
 
@@ -5292,7 +5296,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ManEater:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
-                        if (target.statLife < 100)
+                        if (target.statLife < 100 && !Main.hardMode)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Man Eater."), 999, 0);
                         break;
 
@@ -5633,18 +5637,22 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.BigMimicCorruption:
                         target.AddBuff(BuffID.CursedInferno, 300);
+                        target.AddBuff(mod.BuffType("Berserked"), 300);
                         goto case NPCID.Mimic;
 
                     case NPCID.BigMimicCrimson:
                         target.AddBuff(BuffID.Ichor, 300);
+                        target.AddBuff(mod.BuffType("Berserked"), 300);
                         goto case NPCID.Mimic;
 
                     case NPCID.BigMimicHallow:
                         target.AddBuff(mod.BuffType("Unstable"), 60);
+                        target.AddBuff(mod.BuffType("Berserked"), 300);
                         goto case NPCID.Mimic;
 
                     case NPCID.BigMimicJungle:
                         target.AddBuff(BuffID.Suffocation, 120);
+                        target.AddBuff(mod.BuffType("Berserked"), 300);
                         goto case NPCID.Mimic;
 
                     case NPCID.RuneWizard:
@@ -8258,7 +8266,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Spazmatism:
                     case NPCID.Probe:
                         if (projectile.type == ProjectileID.HallowStar)
-                            damage = 0;
+                            damage /= 4;
                         break;
 
                     case NPCID.GolemFistLeft:
@@ -8295,7 +8303,7 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
                         if (projectile.type == ProjectileID.HallowStar)
-                            damage = 0;
+                            damage /= 4;
                         break;
 
                     case NPCID.BrainofCthulhu:
@@ -8344,7 +8352,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DukeFishron:
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
-                        if (projectile.ranged)
+                        if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron) && projectile.ranged)
                         {
                             if (projectile.arrow)
                             {
