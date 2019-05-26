@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.Green;
+            return Color.Red;
         }
     }
 }

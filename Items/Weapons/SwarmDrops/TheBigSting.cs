@@ -55,7 +55,6 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             if (Fargowiltas.Instance.FargosLoaded)
             {
                 ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(null, "QueenStinger");
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerBee"));
                 recipe.AddTile(TileID.Anvils);
                 recipe.SetResult(this);

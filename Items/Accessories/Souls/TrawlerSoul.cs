@@ -96,7 +96,7 @@ Permanent Sonar and Crate Buffs";
                 recipe.AddIngredient(ItemID.GoldenFishingRod);
             }
 
-            recipe.AddIngredient(ItemID.FinWings);
+            recipe.AddIngredient(ItemID.FuzzyCarrot);
             recipe.AddIngredient(ItemID.ReaverShark);
             recipe.AddIngredient(ItemID.Toxikarp);
             recipe.AddIngredient(ItemID.Bladetongue);

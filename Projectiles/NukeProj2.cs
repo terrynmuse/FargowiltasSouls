@@ -60,7 +60,7 @@ namespace FargowiltasSouls.Projectiles
             {
                 for (int j = 0; j < Main.maxTilesY; j++)
                 {
-                    FargoGlobalTile.ClearEverythingWithNet(i, j);
+                    FargoGlobalTile.ClearEverything(i, j);
                     
                     if (WorldGen.InWorld(i, j))
                         Main.Map.Update(i, j, 255);

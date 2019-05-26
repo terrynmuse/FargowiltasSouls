@@ -17,9 +17,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip =
 @"'Bigger is always better'
-100% increased sword size
-10% decreased movement and melee speed
-Sword attacks may stun enemies";
+150% increased sword size
+10% decreased movement and melee speed";
 
             if(thorium != null)
             {
@@ -79,12 +78,12 @@ Sword attacks may stun enemies";
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("TungstenBulwark"));
+                recipe.AddIngredient(ItemID.TungstenBroadsword);
                 recipe.AddIngredient(ItemID.TungstenHammer);
                 recipe.AddIngredient(ItemID.EmeraldStaff);
                 recipe.AddIngredient(ItemID.GreenPhaseblade);
                 recipe.AddIngredient(ItemID.Snail);
                 recipe.AddIngredient(ItemID.Sluggy);
-                recipe.AddIngredient(thorium.ItemType("EmeraldButterfly"));
             }
             else
             {

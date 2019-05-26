@@ -176,7 +176,7 @@ namespace FargowiltasSouls.Items
 
                     int p = Projectile.NewProjectile(player.Center, velocity, ProjectileID.SnowBallFriendly, (int)(item.damage * .5f), 1, Main.myPlayer);
 
-                    if (player.ZoneSnow)
+                    if (player.ZoneSnow || modPlayer.WoodForce)
                     {
                         FargoGlobalProjectile.SplitProj(Main.projectile[p], 5);
                     }

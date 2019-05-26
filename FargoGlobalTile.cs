@@ -116,11 +116,17 @@ namespace FargowiltasSouls
         }
         internal static void ClearEverything(int x, int y)
         {
-            FindChestTopLeft(x, y, true);
+            //FindChestTopLeft(x, y, true);
             Tile tile = Main.tile[x, y];
-            ClearTile(tile);
-            ClearWall(tile);
-            ClearLiquid(tile, x, y);
+
+            if (tile != null)
+            {
+                ClearTile(tile);
+                ClearWall(tile);
+                ClearLiquid(tile, x, y);
+            }
+
+           
         }
         internal static void ClearTileWithNet(int x, int y)
         {
