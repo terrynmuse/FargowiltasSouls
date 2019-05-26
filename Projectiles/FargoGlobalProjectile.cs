@@ -260,7 +260,8 @@ namespace FargowiltasSouls.Projectiles
                 }
 
                 //hook AI
-                if (modPlayer.MahoganyEnchant && projectile.aiStyle == 7 && (player.ZoneJungle || modPlayer.WoodForce) && counter >= 60)
+                if (modPlayer.MahoganyEnchant && projectile.aiStyle == 7 && (player.ZoneJungle || modPlayer.WoodForce) && counter >= 60
+                    && Soulcheck.GetValue("Mahogany Hook Support"))
                 {
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
@@ -335,25 +336,17 @@ namespace FargowiltasSouls.Projectiles
 
                 counter++;
                 if (counter >= 5)
-                {
                     projectile.velocity = Vector2.Zero;
-                }
 
                 int deathTimer = 30;
 
                 if (projectile.hostile)
-                {
                     deathTimer = 60;
-                }
                 else if(p.ZoneHoly || p.GetModPlayer<FargoPlayer>().WoodForce)
-                {
                     deathTimer = 90;
-                }
 
                 if (counter >= deathTimer)
-                {
                     projectile.Kill();
-                }
             }
 
             return retVal;

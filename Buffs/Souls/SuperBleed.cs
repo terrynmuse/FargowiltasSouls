@@ -9,7 +9,14 @@ namespace FargowiltasSouls.Buffs.Souls
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Super Bleed");
+            Description.SetDefault("Spewing blood in self defense");
             Main.buffNoSave[Type] = true;
+        }
+
+        public override bool Autoload(ref string name, ref string texture)
+        {
+            texture = "FargowiltasSouls/Buffs/PlaceholderBuff";
+            return true;
         }
 
         public override void Update(NPC npc, ref int buffIndex)

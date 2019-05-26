@@ -166,23 +166,15 @@ namespace FargowiltasSouls.Items
             //non weapons and weapons with no ammo begone
             if (item.damage <= 0 || !player.HasAmmo(item, true)) return true;
 
-            if (modPlayer.BorealEnchant)
+            if (modPlayer.BorealEnchant && ++modPlayer.BorealCount >= 4)
             {
-                modPlayer.BorealCount++;
-
-                if (modPlayer.BorealCount >= 4)
+                modPlayer.BorealCount = 0;
+                if (Soulcheck.GetValue("Boreal Snowball Support"))
                 {
                     Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed * .75f;
-
                     int p = Projectile.NewProjectile(player.Center, velocity, ProjectileID.SnowBallFriendly, (int)(item.damage * .5f), 1, Main.myPlayer);
-
-                    if (player.ZoneSnow || modPlayer.WoodForce)
-                    {
+                    if (p != 1000 && (player.ZoneSnow || modPlayer.WoodForce))
                         FargoGlobalProjectile.SplitProj(Main.projectile[p], 5);
-                    }
-
-
-                    modPlayer.BorealCount = 0;
                 }
             }
 

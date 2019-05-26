@@ -922,7 +922,8 @@ namespace FargowiltasSouls
 
             if (SuperBleed && Main.rand.Next(4) == 0)
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y - 40, 0f + Main.rand.Next(-5, 5),  Main.rand.Next(-6, -2), mod.ProjectileType("SuperBlood"), 5, 0f, Main.myPlayer);
+                Projectile.NewProjectile(player.position.X + Main.rand.Next(player.width), player.Center.Y + Main.rand.Next(player.height),
+                    0f + Main.rand.Next(-5, 5),  Main.rand.Next(-6, -2), mod.ProjectileType("SuperBlood"), 5, 0f, Main.myPlayer);
             }
 
             if (CopperEnchant && copperCD > 0)
@@ -2542,19 +2543,12 @@ namespace FargowiltasSouls
                 Projectile[] projs2 = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
             }
 
-            if (ShadeEnchant)
+            if (ShadeEnchant && Soulcheck.GetValue("Super Blood On Hit"))
             {
-                if (player.ZoneCrimson)
-                {
+                if (player.ZoneCrimson || WoodForce)
                     player.AddBuff(mod.BuffType("SuperBleed"), 300);
-                }
-                else
-                {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y - 40, 0f + Main.rand.Next(-5, 5), Main.rand.Next(-6, -2), mod.ProjectileType("SuperBlood"), 5, 0f, Main.myPlayer);
-                    }
-                }
+                for (int i = 0; i < 10; i++)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 40, Main.rand.Next(-5, 6), Main.rand.Next(-6, -2), mod.ProjectileType("SuperBlood"), 5, 0f, Main.myPlayer);
             }
 
             if(TinEnchant)
@@ -4123,21 +4117,19 @@ namespace FargowiltasSouls
 
         public void EbonEffect()
         {
+            if (!Soulcheck.GetValue("Shadowflame Aura"))
+                return;
+
             int dist = 150;
 
             if (player.ZoneCorrupt || WoodForce)
-            {
                 dist *= 2;
-            }
 
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 NPC npc = Main.npc[i];
-
-                if (!npc.townNPC && !npc.friendly && npc.lifeMax > 1 && npc.Distance(player.Center) < dist)
-                {
+                if (npc.active && !npc.friendly && npc.lifeMax > 1 && npc.Distance(player.Center) < dist)
                     npc.AddBuff(BuffID.ShadowFlame, 120);
-                }
             }
 
             for (int i = 0; i < 20; i++)
@@ -4177,14 +4169,17 @@ namespace FargowiltasSouls
         {
             pearlCounter++;
 
-            if (player.velocity.Length() > 1 && pearlCounter >= 4)
+            if (pearlCounter >= 4)
             {
-                int direction = player.velocity.X > 0 ? 1 : -1;
-                int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 30, 0, Main.myPlayer);
-                Projectile proj = Main.projectile[p];
-                proj.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
-
                 pearlCounter = 0;
+                if (Soulcheck.GetValue("Rainbow Trail") && player.velocity.Length() > 1)
+                {
+                    int direction = player.velocity.X > 0 ? 1 : -1;
+                    int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 30, 0, Main.myPlayer);
+                    Projectile proj = Main.projectile[p];
+                    proj.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
+                    proj.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                }
             }
         }
 

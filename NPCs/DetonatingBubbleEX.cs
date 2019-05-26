@@ -32,7 +32,7 @@ namespace FargowiltasSouls.NPCs
             npc.buffImmune[BuffID.OnFire] = true;
             npc.aiStyle = -1;
             npc.chaseable = false;
-            npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune = true;
+            npc.GetGlobalNPC<FargoGlobalNPC>().SpecialEnchantImmune = true;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
