@@ -74,14 +74,14 @@ Spore damage scales with magic damage";
                 recipe.AddIngredient(ItemID.Boomstick);
                 recipe.AddIngredient(thorium.ItemType("MantisCane"));
                 recipe.AddIngredient(ItemID.PoisonedKnife, 300);
-                recipe.AddIngredient(ItemID.Frog);
+                recipe.AddIngredient(ItemID.Buggy);
             }
             else
             {
                 recipe.AddIngredient(ItemID.CordageGuide);
                 recipe.AddIngredient(ItemID.JungleRose);
                 recipe.AddIngredient(ItemID.ThornChakram);
-                recipe.AddIngredient(ItemID.Frog);
+                recipe.AddIngredient(ItemID.Buggy);
             }
             
             recipe.AddTile(TileID.DemonAltar);

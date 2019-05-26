@@ -21,7 +21,7 @@ While in the Jungle, any hook will periodically fire homing shots at enemies");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 1;
+            item.rare = 2;
             item.value = 10000;
         }
 

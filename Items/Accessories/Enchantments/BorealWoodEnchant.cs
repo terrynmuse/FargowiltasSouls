@@ -21,8 +21,8 @@ While in the Snow Biome, you shoot 5 snowballs instead");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 7;
-            item.value = 100000;
+            item.rare = 2;
+            item.value = 10000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

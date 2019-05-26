@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,27 +21,13 @@ While in the Ocean or Desert, it attacks twice as fast");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 7;
-            item.value = 100000;
+            item.rare = 2;
+            item.value = 10000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (Soulcheck.GetValue("Palm Tree Sentry") && (player.controlDown && player.releaseDown))
-            {
-                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15 && player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] == 0)
-                {
-                    Vector2 mouse = Main.MouseWorld;
-
-                    if (player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] == 0)
-                    {
-                        Projectile.NewProjectile(mouse.X, mouse.Y - 10, 0f, 0f, mod.ProjectileType("PalmTreeSentry"), 15, 0f, player.whoAmI);
-
-                        //dust?
-
-                    }
-                }
-            }
+            player.GetModPlayer<FargoPlayer>().PalmEffect();
         }
 
         public override void AddRecipes()

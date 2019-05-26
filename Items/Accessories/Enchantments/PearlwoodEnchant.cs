@@ -1,6 +1,4 @@
-﻿using FargowiltasSouls.Projectiles;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,8 +6,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class PearlwoodEnchant : ModItem
     {
-        int timer = 0;
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pearlwood Enchantment");
@@ -25,23 +21,13 @@ While in the Hallow, the rainbow trail lasts much longer");
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 1;
-            item.value = 10000;
+            item.rare = 3;
+            item.value = 20000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            timer++;
-
-            if (player.velocity.Length() > 1 && timer >= 4)
-            {
-                int direction = player.velocity.X > 0 ? 1 : -1;
-                int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 30, 0, Main.myPlayer);
-                Projectile proj = Main.projectile[p];
-                proj.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
-
-                timer = 0;
-            }
+            player.GetModPlayer<FargoPlayer>().PearlEffect();
         }
 
         public override void AddRecipes()

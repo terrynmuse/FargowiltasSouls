@@ -262,8 +262,8 @@ Effects of Flying Carpet";
             }
             
             recipe.AddIngredient(ItemID.FlyingCarpet);
+            recipe.AddIngredient(ItemID.MinecartMech);
             recipe.AddIngredient(ItemID.SlimySaddle);
-            recipe.AddIngredient(ItemID.FuzzyCarrot);
             recipe.AddIngredient(ItemID.BlessedApple);
             recipe.AddIngredient(ItemID.AncientHorn);
             recipe.AddIngredient(ItemID.ReindeerBells);

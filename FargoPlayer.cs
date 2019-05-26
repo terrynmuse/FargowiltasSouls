@@ -114,16 +114,15 @@ namespace FargowiltasSouls
         Vector2 prevPosition;
         public bool RedEnchant;
         public bool TungstenEnchant;
+        private float tungstenPrevSizeSave = -1;
 
         public bool MahoganyEnchant;
         public bool BorealEnchant;
         public int BorealCount = 0;
         public bool WoodEnchant;
-        public bool PalmEnchant;
         public bool ShadeEnchant;
+        private int pearlCounter = 0;
         public bool SuperBleed;
-        public bool PearlEnchant;
-        public bool EbonEnchant;
 
         public bool CosmoForce;
         public bool EarthForce;
@@ -133,6 +132,7 @@ namespace FargowiltasSouls
         public bool ShadowForce;
         public bool TerraForce;
         public bool WillForce;
+        public bool WoodForce;
 
         //thorium 
         public bool IcyEnchant;
@@ -223,6 +223,7 @@ namespace FargowiltasSouls
         public bool TribalAutoFire;
 
         //debuffs
+        private int webCounter = 0;
         public bool Hexed;
         public bool Unstable;
         private int unstableCD = 0;
@@ -559,11 +560,8 @@ namespace FargowiltasSouls
             MahoganyEnchant = false;
             BorealEnchant = false;
             WoodEnchant = false;
-            PalmEnchant = false;
             ShadeEnchant = false;
             SuperBleed = false;
-            PearlEnchant = false;
-            EbonEnchant = false;
 
             CosmoForce = false;
             EarthForce = false;
@@ -573,6 +571,7 @@ namespace FargowiltasSouls
             TerraForce = false;
             ShadowForce = false;
             WillForce = false;
+            WoodForce = false;
 
             //thorium
             IcyEnchant = false;
@@ -865,6 +864,15 @@ namespace FargowiltasSouls
                         if (Main.netMode == 1 && !Main.tile[num3, num4].active())
                             NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
                     }
+
+                    webCounter++;
+
+                    if (webCounter >= 30)
+                    {
+                        player.DelBuff(BuffID.Webbed);
+                        player.stickyBreak = 0;
+                        webCounter = 0;
+                    }
                 }
 
                 if (MasomodeCrystalTimer > 0)
@@ -1069,6 +1077,7 @@ namespace FargowiltasSouls
                         int proj = Projectile.NewProjectile(player.Center, player.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6))) * 0.1f,
                             ProjectileID.DemonScythe, damage, 5f, player.whoAmI);
                         Main.projectile[proj].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
+                        Main.projectile[proj].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                     }
                 }
             }
@@ -1220,16 +1229,17 @@ namespace FargowiltasSouls
 
             Item item = player.HeldItem;
 
-            if (!Soulcheck.GetValue("Tungsten Effect") || !TungstenEnchant)
+            if (TungstenEnchant)
             {
-                //item.SetDefaults(item.type); //this resets alt-click favourited items and REFORGES
-            }
-            else if (TungstenEnchant)
-            {
-                if (((item.melee && (item.useStyle == 1 || item.useStyle == 3)) || TerraForce) && item.damage > 0)
+                if (((item.melee && (item.useStyle == 1 || item.useStyle == 3)) || TerraForce) && item.damage > 0 && item.scale < 2.5f)
                 {
-                    item.scale = 2f;
+                    tungstenPrevSizeSave = item.scale;
+                    item.scale = 2.5f;
                 }
+            }
+            else if ((!Soulcheck.GetValue("Tungsten Effect") || !TungstenEnchant) && tungstenPrevSizeSave != -1)
+            {
+                item.scale = tungstenPrevSizeSave;
             }
 
             if (AdditionalAttacks && AdditionalAttacksTimer > 0)
@@ -1410,6 +1420,7 @@ namespace FargowiltasSouls
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
+                    Main.dust[dust].color = Color.GreenYellow;
                     Main.playerDrawDust.Add(dust);
 
                     fullBright = true;
@@ -2312,9 +2323,6 @@ namespace FargowiltasSouls
                     SpectreHeal(target, p);
             }
 
-            if (TungstenEnchant && Main.rand.Next(10) == 0 && !target.boss)
-                target.AddBuff(mod.BuffType("Stunned"), 60);
-
             if (SolarEnchant && Main.rand.Next(4) == 0)
                 target.AddBuff(mod.BuffType("SolarFlare"), 300);
 
@@ -2824,13 +2832,13 @@ namespace FargowiltasSouls
 
         private void CalamityDamage(float dmg)
         {
-            //CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += dmg;
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += dmg;
         }
 
         private void DBTDamage(float dmg)
         {
-            //DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
-            //dbtPlayer.kiDamage += dmg;
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            dbtPlayer.kiDamage += dmg;
         }
 
         public void AllCritUp(int crit)
@@ -2856,13 +2864,13 @@ namespace FargowiltasSouls
 
         private void CalamityCrit(int crit)
         {
-            //CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += crit;
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += crit;
         }
 
         private void DBTCrit(int crit)
         {
-            //DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
-            //dbtPlayer.kiCrit += crit;
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            dbtPlayer.kiCrit += crit;
         }
 
         public void AllCritEquals(int crit)
@@ -4111,6 +4119,73 @@ namespace FargowiltasSouls
             }
 
             AddPet("Companion Cube Pet", hideVisual, BuffID.CompanionCube, ProjectileID.CompanionCube);
+        }
+
+        public void EbonEffect()
+        {
+            int dist = 150;
+
+            if (player.ZoneCorrupt || WoodForce)
+            {
+                dist *= 2;
+            }
+
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+
+                if (!npc.townNPC && !npc.friendly && npc.lifeMax > 1 && npc.Distance(player.Center) < dist)
+                {
+                    npc.AddBuff(BuffID.ShadowFlame, 120);
+                }
+            }
+
+            for (int i = 0; i < 20; i++)
+            {
+                Vector2 offset = new Vector2();
+                double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                offset.X += (float)(Math.Sin(angle) * dist);
+                offset.Y += (float)(Math.Cos(angle) * dist);
+                Dust dust = Main.dust[Dust.NewDust(
+                    player.Center + offset - new Vector2(4, 4), 0, 0,
+                    DustID.Shadowflame, 0, 0, 100, Color.White, 1f
+                    )];
+                dust.velocity = player.velocity;
+                dust.noGravity = true;
+            }
+        }
+
+        public void PalmEffect()
+        {
+            if (Soulcheck.GetValue("Palm Tree Sentry") && (player.controlDown && player.releaseDown))
+            {
+                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15 && player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] == 0)
+                {
+                    Vector2 mouse = Main.MouseWorld;
+
+                    if (player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] == 0)
+                    {
+                        Projectile.NewProjectile(mouse.X, mouse.Y - 10, 0f, 0f, mod.ProjectileType("PalmTreeSentry"), WoodForce? 15 : 45, 0f, player.whoAmI);
+
+                        //dust?
+                    }
+                }
+            }
+        }
+
+        public void PearlEffect()
+        {
+            pearlCounter++;
+
+            if (player.velocity.Length() > 1 && pearlCounter >= 4)
+            {
+                int direction = player.velocity.X > 0 ? 1 : -1;
+                int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 30, 0, Main.myPlayer);
+                Projectile proj = Main.projectile[p];
+                proj.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow = true;
+
+                pearlCounter = 0;
+            }
         }
 
         public override bool PreItemCheck()

@@ -24,44 +24,13 @@ While in the Corruption, the radius is doubled
             item.height = 20;
             item.accessory = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 7;
-            item.value = 100000;
+            item.rare = 2;
+            item.value = 10000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            //player.GetModPlayer<FargoPlayer>().EbonEnchant = true;
-
-            int dist = 150;
-
-            if (player.ZoneCorrupt)
-            {
-                dist *= 2;
-            }
-
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                NPC npc = Main.npc[i];
-
-                if (!npc.townNPC && !npc.friendly && npc.lifeMax > 1 && npc.Distance(player.Center) < dist)
-                {
-                    npc.AddBuff(BuffID.ShadowFlame, 120);
-                }
-            }
-
-            for (int i = 0; i < 20; i++)
-            {
-                Vector2 offset = new Vector2();
-                double angle = Main.rand.NextDouble() * 2d * Math.PI;
-                offset.X += (float)(Math.Sin(angle) * dist);
-                offset.Y += (float)(Math.Cos(angle) * dist);
-                Dust dust = Main.dust[Dust.NewDust(
-                    player.Center + offset - new Vector2(4, 4), 0, 0,
-                    DustID.Shadowflame, 0, 0, 100, Color.White, 1f
-                    )];
-                dust.velocity = player.velocity;
-                dust.noGravity = true;
-            }
+            player.GetModPlayer<FargoPlayer>().EbonEffect();
         }
 
         public override void AddRecipes()
@@ -72,7 +41,7 @@ While in the Corruption, the radius is doubled
             recipe.AddIngredient(ItemID.EbonwoodBreastplate);
             recipe.AddIngredient(ItemID.EbonwoodGreaves);
             recipe.AddIngredient(ItemID.EbonwoodSword);
-            recipe.AddIngredient(ItemID.PurpleClubberfish);
+            recipe.AddIngredient(ItemID.Ebonkoi);
             recipe.AddIngredient(ItemID.VileMushroom);
             recipe.AddIngredient(ItemID.LightlessChasms);
 

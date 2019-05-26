@@ -260,7 +260,7 @@ namespace FargowiltasSouls.Projectiles
                 }
 
                 //hook AI
-                if (modPlayer.MahoganyEnchant && projectile.aiStyle == 7 && player.ZoneJungle && counter >= 60)
+                if (modPlayer.MahoganyEnchant && projectile.aiStyle == 7 && (player.ZoneJungle || modPlayer.WoodForce) && counter >= 60)
                 {
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
@@ -329,6 +329,8 @@ namespace FargowiltasSouls.Projectiles
             //masomode unicorn meme and pearlwood meme
             if (Rainbow)
             {
+                Player p = Main.player[projectile.owner];
+
                 projectile.tileCollide = false;
 
                 counter++;
@@ -343,7 +345,7 @@ namespace FargowiltasSouls.Projectiles
                 {
                     deathTimer = 60;
                 }
-                else if(Main.player[projectile.owner].ZoneHoly)
+                else if(p.ZoneHoly || p.GetModPlayer<FargoPlayer>().WoodForce)
                 {
                     deathTimer = 90;
                 }
@@ -706,7 +708,7 @@ namespace FargowiltasSouls.Projectiles
                     return Color.SandyBrown;
                 }
 
-                else if (projectile.type == ProjectileID.DemonSickle || projectile.type == ProjectileID.DemonScythe)
+                else if (projectile.type == ProjectileID.DemonScythe)
                 {
                     projectile.Name = "Blood Scythe";
                     return Color.Red;
@@ -850,16 +852,8 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.DemonSickle:
-                        if (IsRecolor)
-                        {
-                            target.AddBuff(BuffID.ShadowFlame, 300);
-                            target.AddBuff(BuffID.Bleeding, 600);
-                        }
-                        else
-                        {
-                            target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
-                            target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
-                        }
+                        target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
+                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.HarpyFeather:
@@ -1274,16 +1268,6 @@ namespace FargowiltasSouls.Projectiles
             if (modPlayer.MahoganyEnchant)
             {
                 speed *= 2;
-            }
-        }
-
-        public override void NumGrappleHooks(Projectile projectile, Player player, ref int numHooks)
-        {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            if (modPlayer.MahoganyEnchant)
-            {
-                numHooks *= 2;
             }
         }
 

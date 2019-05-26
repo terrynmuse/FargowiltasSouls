@@ -102,6 +102,22 @@ When you die, you explode and revive with 200 HP";
             //includes revive, both spectres, adamantite, heart and star heal
             modPlayer.TerrariaSoul = true;
 
+            //WOOD
+            //wood
+            modPlayer.WoodEnchant = true;
+            //boreal
+            modPlayer.BorealEnchant = true;
+            //mahogany
+            modPlayer.MahoganyEnchant = true;
+            //ebon
+            modPlayer.EbonEffect();
+            //shade
+            modPlayer.ShadeEnchant = true;
+            //palm
+            modPlayer.PalmEffect();
+            //pearl
+            modPlayer.PearlEffect();
+
             //TERRA
             modPlayer.TerraForce = true; //crit effect improved
 
@@ -128,8 +144,6 @@ When you die, you explode and revive with 200 HP";
 
             //EARTH
             modPlayer.CobaltEnchant = true; //shards
-            if (Soulcheck.GetValue("Mythril Speedup"))
-                modPlayer.AttackSpeed *= 1.25f; //mythril
             modPlayer.PalladiumEffect(); //regen on hit, heals
             modPlayer.OrichalcumEffect(); //fireballs and petals
             modPlayer.AdamantiteEnchant = true; //split

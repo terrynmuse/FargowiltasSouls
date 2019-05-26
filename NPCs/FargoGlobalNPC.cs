@@ -1008,12 +1008,12 @@ namespace FargowiltasSouls.NPCs
                         if (npc.ai[1] == 3f && npc.life < npc.lifeMax * .4f)
                         {
                             Counter2 = 30;
-                            FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 2, npc.damage / 4, 1f);
+                            FargoGlobalProjectile.XWay(8, npc.Center, mod.ProjectileType("BloodScythe"), 2, npc.damage / 4, 1f);
                         }
 
                         if (Counter2 > 0 && Counter2 % 5 == 0)
                             Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
-                                npc.velocity / 10, ProjectileID.DemonSickle, npc.damage / 4, 1f, Main.myPlayer);
+                                npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 1f, Main.myPlayer);
                         Counter2--;
                         break;
 
@@ -4770,68 +4770,15 @@ namespace FargowiltasSouls.NPCs
                     default:
                         break;
                 }
+
+                //critters
+                if (Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().WoodEnchant && npc.damage == 0 && !npc.townNPC && npc.lifeMax == 5)
+                {
+                    npc.defense *= 10;
+                }
+
                 FirstTick = true;
             }
-
-            if (Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().WoodEnchant)
-            {
-                switch (npc.type)
-                {
-                    case NPCID.Bunny:
-                    case NPCID.BunnySlimed:
-                    case NPCID.BunnyXmas:
-                    case NPCID.GoldBunny:
-                        goto default;
-
-                    case NPCID.Bird:
-                    case NPCID.BirdBlue:
-                    case NPCID.BirdRed:
-                    case NPCID.GoldBird:
-                        goto default;
-
-                    case NPCID.Squirrel:
-                    case NPCID.SquirrelRed:
-                    case NPCID.SquirrelGold:
-                        Counter++;
-
-                        if (Counter >= 60)
-                        {
-                            int p = Projectile.NewProjectile(npc.Center, new Vector2(0, -10), ProjectileID.SeedlerThorn, 15, 1, Main.myPlayer);
-
-                            /*NPC target = null;
-                            float lowestDist = 999;
-
-                            for (int i = 0; i < Main.maxNPCs; i++)
-                            {
-                                NPC n = Main.npc[i];
-                                float dist = Vector2.Distance(n.Center, npc.Center);
-
-                                if (!n.friendly && dist < 400 && dist < lowestDist)
-                                {
-                                    target = n;
-                                    lowestDist = dist;
-                                }
-                            }
-
-                            if (target == null)
-                                return;
-
-                            Main.NewText("hello");
-
-                            Vector2 velocity = Vector2.Normalize(target.Center - npc.Center) * 10;
-
-                            int p = Projectile.NewProjectile(npc.Center, velocity, ProjectileID.SeedlerNut, 15, 1, Main.myPlayer);*/
-
-                            Counter = 0;
-                        }
-                        goto default;
-
-                    default:
-                        npc.defense = 999;
-                        break;
-                }
-            }
-            
         }
 
         public void NetUpdateMaso(int npc)
@@ -7211,6 +7158,11 @@ namespace FargowiltasSouls.NPCs
             {
                 npc.life = 1;
                 return false;
+            }
+
+            if (modPlayer.WoodEnchant && npc.damage == 0 && !npc.townNPC && npc.lifeMax == 5)
+            {
+                Projectile.NewProjectile(npc.Center, new Vector2(0, -4), ProjectileID.LostSoulFriendly, 20, 0, Main.myPlayer);
             }
 
             if (Needles && npc.lifeMax > 1 && Main.rand.Next(2) == 0)
