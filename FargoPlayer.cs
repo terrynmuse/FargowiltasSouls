@@ -825,7 +825,11 @@ namespace FargowiltasSouls
                 }
 
                 if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) && player.active && !PureHeart)
+                {
                     player.AddBuff(mod.BuffType("FlippedHallow"), 120);
+                    if (player.wet && !MutantAntibodies)
+                        player.AddBuff(BuffID.Confused, 2);
+                }
 
                 /*if (Main.hardMode && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))
                 {
