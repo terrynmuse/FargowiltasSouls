@@ -30,6 +30,9 @@ namespace FargowiltasSouls
             ["Spelunker Buff"] = new Color(81, 181, 113),
             ["Shine Buff"] = new Color(81, 181, 113),
             ["Palm Tree Sentry"] = new Color(81, 181, 113),
+            ["Boreal Snowball Support"] = new Color(81, 181, 113),
+            ["Mahogany Hook Support"] = new Color(81, 181, 113),
+            ["Shadowflame Aura"] = new Color(81, 181, 113),
             ["Cactus Needles"] = new Color(81, 181, 113),
             ["Pumpkin Fire"] = new Color(81, 181, 113),
             ["Copper Lightning"] = new Color(81, 181, 113),
@@ -45,6 +48,7 @@ namespace FargowiltasSouls
             ["Meteor Shower"] = new Color(81, 181, 113),
             ["Necro Guardian"] = new Color(81, 181, 113),
             ["Molten Inferno"] = new Color(81, 181, 113),
+            ["Rainbow Trail"] = new Color(81, 181, 113),
             ["Cobalt Shards"] = new Color(81, 181, 113),
             ["Palladium Healing"] = new Color(81, 181, 113),
             ["Mythril Speedup"] = new Color(81, 181, 113),
@@ -107,6 +111,7 @@ namespace FargowiltasSouls
             ["Ancient Visions On Hit"] = new Color(81, 181, 113),
             ["Stars On Hit"] = new Color(81, 181, 113),
             ["Bees On Hit"] = new Color(81, 181, 113),
+            ["Super Blood On Hit"] = new Color(81, 181, 113),
             ["Eternity Stacking"] = new Color(81, 181, 113),
             #endregion
         };

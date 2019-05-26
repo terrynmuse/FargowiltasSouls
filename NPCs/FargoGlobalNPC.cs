@@ -46,7 +46,7 @@ namespace FargowiltasSouls.NPCs
         public bool MutantNibble;
         public int LifePrevious = -1;
         
-        public bool ValhallaImmune;
+        public bool SpecialEnchantImmune;
 
         //masochist doom
         public static byte masoStateML = 0;
@@ -276,7 +276,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
-                        ValhallaImmune = true;
+                        SpecialEnchantImmune = true;
                         if (spawnFishronEX)
                         {
                             masoBool[3] = true;
@@ -303,7 +303,7 @@ namespace FargowiltasSouls.NPCs
                             npc.defense *= 2;
                             npc.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
                             npc.buffImmune[mod.BuffType("LightningRod")] = true;
-                            ValhallaImmune = true;
+                            SpecialEnchantImmune = true;
                         }
                         npc.buffImmune[BuffID.OnFire] = true;
                         npc.lavaImmune = true;
@@ -4758,7 +4758,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight:
                     case NPCID.GolemHead:
-                        ValhallaImmune = true;
+                        SpecialEnchantImmune = true;
                         break;
 
                     case NPCID.Squirrel:
@@ -4774,7 +4774,8 @@ namespace FargowiltasSouls.NPCs
                 //critters
                 if (Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().WoodEnchant && npc.damage == 0 && !npc.townNPC && npc.lifeMax == 5)
                 {
-                    npc.defense *= 10;
+                    npc.defense = 9999;
+                    npc.defDefense = 9999;
                 }
 
                 FirstTick = true;
@@ -8455,7 +8456,7 @@ namespace FargowiltasSouls.NPCs
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 			
             if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback")
-                && !npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune && npc.knockBackResist < 1)
+                && !npc.GetGlobalNPC<FargoGlobalNPC>().SpecialEnchantImmune && npc.knockBackResist < 1)
             {
                 npc.knockBackResist += .02f;
                 if(npc.knockBackResist > .5f)
@@ -8469,7 +8470,7 @@ namespace FargowiltasSouls.NPCs
 
             //spears
             if(modPlayer.ValhallaEnchant && Soulcheck.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce)
-                && !npc.GetGlobalNPC<FargoGlobalNPC>().ValhallaImmune && npc.knockBackResist < 1)
+                && !npc.GetGlobalNPC<FargoGlobalNPC>().SpecialEnchantImmune && npc.knockBackResist < 1)
             {
                 npc.knockBackResist += .02f;
                 if (npc.knockBackResist > .5f)
@@ -8477,7 +8478,8 @@ namespace FargowiltasSouls.NPCs
             }
 
             //pearlwood
-            if (projectile.type == ProjectileID.RainbowBack && projectile.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow && Main.rand.Next(2) == 0)
+            if (projectile.type == ProjectileID.RainbowBack && projectile.GetGlobalProjectile<FargoGlobalProjectile>().Rainbow && Main.rand.Next(2) == 0
+                && !npc.boss && !SpecialEnchantImmune)
             {
                 npc.scale = .5f;
             }

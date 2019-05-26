@@ -103,6 +103,7 @@ When you die, you explode and revive with 200 HP";
             modPlayer.TerrariaSoul = true;
 
             //WOOD
+            modPlayer.WoodForce = true;
             //wood
             modPlayer.WoodEnchant = true;
             //boreal
