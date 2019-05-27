@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.width = 14;
             projectile.height = 14;
             projectile.hostile = true;
+            projectile.tileCollide = false;
             projectile.timeLeft = 180;
             projectile.aiStyle = 43;
             aiType = ProjectileID.CrystalLeafShot;

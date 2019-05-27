@@ -28,7 +28,7 @@
 	-eoc blood sickles
 	-reti blazing deathray
 	-ALL MECHS dark star attacks
-	-plantera crystal leaf shots
+	-plantera crystal leaf shots (also goes through walls now)
 	-golem fist explosions
 
 -hallowed water inflicts confused
