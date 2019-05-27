@@ -279,6 +279,8 @@ namespace FargowiltasSouls
             ["God Slayer Effects"] = new Color(81, 181, 113),
             ["Silva Effects"] = new Color(81, 181, 113),
             ["Auric Tesla Effects"] = new Color(81, 181, 113),
+
+            ["Elemental Quiver"] = new Color(81, 181, 113),
             //[""] = new Color(81, 181, 113),
             //abyssal diving gear
         };

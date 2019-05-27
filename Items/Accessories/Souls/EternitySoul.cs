@@ -542,8 +542,13 @@ and most of SoT not mentioned because meme tooltip length
             player.meleeDamage -= .15f;
             player.meleeSpeed -= .15f;
             player.meleeCrit -= 5;
-            //range
-            modPlayer.eQuiver = true;
+
+            if (Soulcheck.GetValue("Elemental Quiver"))
+            {
+                //range
+                modPlayer.eQuiver = true;
+            }
+
             //magic
             modPlayer.eTalisman = true;
             //summon

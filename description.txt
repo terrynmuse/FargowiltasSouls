@@ -1,10 +1,12 @@
 ﻿NEW UPDATE - v 0.7.1
+-Added a Roomba
 -Mod icon actually works
 -Added several more toggles for wood enchantment effects and calamity effects
 -Shadewood buffed effect now always works with Force of Wood
 -Changed Super Bleeding icon to not be dumb
 -Pearlwood shrinking no longer works on certain NPCs and the rainbow trail cannot split
 -Fixed Tungsten effect not toggling correctly
+-Masochist Mode Hallowed water now inflicts Confused
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

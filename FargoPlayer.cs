@@ -32,6 +32,9 @@ namespace FargowiltasSouls
         public bool BrainMinion;
         public bool EaterMinion;
 
+        //pet
+        public bool RoombaPet;
+
         #region enchantments
         public bool PetsActive = true;
         public bool ShadowEnchant;
@@ -501,6 +504,8 @@ namespace FargowiltasSouls
 
             BrainMinion = false;
             EaterMinion = false;
+
+            RoombaPet = false;
 
             #region enchantments 
             PetsActive = true;

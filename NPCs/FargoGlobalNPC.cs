@@ -8539,5 +8539,15 @@ namespace FargowiltasSouls.NPCs
             boss = -1;
             return false;
         }
+
+        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        {
+            if (type == NPCID.Steampunker)
+            {
+                shop.item[nextSlot].SetDefaults(mod.ItemType("RoombaPet"));
+                shop.item[nextSlot].value = 50000;
+                nextSlot++;
+            }     
+        }
     }
 }
