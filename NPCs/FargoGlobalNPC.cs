@@ -6981,7 +6981,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.SandElemental:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SandofTime"));
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SandsofTime"));
                         break;
 
                     case NPCID.GoblinSummoner:

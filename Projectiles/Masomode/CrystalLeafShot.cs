@@ -23,6 +23,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.timeLeft = 180;
             projectile.aiStyle = 43;
             aiType = ProjectileID.CrystalLeafShot;
+            cooldownSlot = 1;
         }
 
         public override void OnHitPlayer(Player player, int damage, bool crit)

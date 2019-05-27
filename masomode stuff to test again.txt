@@ -23,6 +23,13 @@
 -tribal charm gives purified immune
 -added golden dipping vat (2% pirate captain drop) and recipes?
 -some under the hood cleanup for maso buff icons
+-CHANGED SANDS OF TIME TO BE NAMED SANDS OF TIME CONSISTENTLY SO IT DOESNT FUCK UP BIOCLUSTER SKREEEEEEEEEEEE
+-the following attacks are on moon lord's invul timer (facilitates combos, deters slime cheese):
+	-eoc blood sickles
+	-reti blazing deathray
+	-ALL MECHS dark star attacks
+	-plantera crystal leaf shots
+	-golem fist explosions
 
 -hallowed water inflicts confused
 -soul of terraria gives buffed version of wood force effects ech

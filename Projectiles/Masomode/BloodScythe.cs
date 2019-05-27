@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             aiType = ProjectileID.DemonSickle;
             projectile.hostile = true;
             projectile.friendly = false;
+            cooldownSlot = 1;
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -96,7 +96,7 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(mod.ItemType("ConcentratedRainbowMatter"));
             recipe.AddIngredient(mod.ItemType("DragonFang"));
             recipe.AddIngredient(mod.ItemType("FrigidGemstone"));
-            recipe.AddIngredient(mod.ItemType("SandofTime"));
+            recipe.AddIngredient(mod.ItemType("SandsofTime"));
             recipe.AddIngredient(mod.ItemType("SqueakyToy"));
             recipe.AddIngredient(mod.ItemType("TribalCharm"));
             recipe.AddIngredient(mod.ItemType("MysticSkull"));
