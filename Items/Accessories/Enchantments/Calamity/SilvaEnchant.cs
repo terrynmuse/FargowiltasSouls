@@ -68,13 +68,20 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            modPlayer.silvaSet = true;
-            //melee
-            modPlayer.silvaMelee = true;
-            //range
-            modPlayer.silvaRanged = true;
-            //magic
-            modPlayer.silvaMage = true;
+
+            if (Soulcheck.GetValue("Silva Effects"))
+            {
+                modPlayer.silvaSet = true;
+                //melee
+                modPlayer.silvaMelee = true;
+                //range
+                modPlayer.silvaRanged = true;
+                //magic
+                modPlayer.silvaMage = true;
+                //throw
+                modPlayer.silvaThrowing = true;
+            }
+            
 
             if (Soulcheck.GetValue("Silva Crystal Minion"))
             {
@@ -92,9 +99,6 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
                     }
                 }
             }
-            
-            //throw
-            modPlayer.silvaThrowing = true;
 
             if (Soulcheck.GetValue("Godly Soul Artifact"))
             {

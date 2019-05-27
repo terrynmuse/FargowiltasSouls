@@ -59,35 +59,45 @@ You have a magic carpet");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            //legs
-            player.carpet = true;
-            //body
-            modPlayer.fBarrier = true;
-            modPlayer.godSlayerReflect = true;
-            //all heads
-            modPlayer.tarraSet = true;
-            modPlayer.bloodflareSet = true;
-            modPlayer.godSlayer = true;
-            modPlayer.silvaSet = true;
-            modPlayer.auricSet = true;
-            modPlayer.auricBoost = true;
-            player.lavaImmune = true;
-            player.ignoreWater = true;
-            //melee head
-            modPlayer.tarraMelee = true;
-            modPlayer.bloodflareMelee = true;
-            modPlayer.godSlayerDamage = true;
-            modPlayer.silvaMelee = true;
-            //range head
-            modPlayer.tarraRanged = true;
-            modPlayer.bloodflareRanged = true;
-            modPlayer.godSlayerRanged = true;
-            modPlayer.silvaRanged = true;
-            //magic head
-            modPlayer.tarraMage = true;
-            modPlayer.bloodflareMage = true;
-            modPlayer.godSlayerMage = true;
-            modPlayer.silvaMage = true;
+
+            if (Soulcheck.GetValue("Auric Tesla Effects"))
+            {
+                //legs
+                player.carpet = true;
+                //body
+                modPlayer.fBarrier = true;
+                modPlayer.godSlayerReflect = true;
+                //all heads
+                modPlayer.tarraSet = true;
+                modPlayer.bloodflareSet = true;
+                modPlayer.godSlayer = true;
+                modPlayer.silvaSet = true;
+                modPlayer.auricSet = true;
+                modPlayer.auricBoost = true;
+                player.lavaImmune = true;
+                player.ignoreWater = true;
+                //melee head
+                modPlayer.tarraMelee = true;
+                modPlayer.bloodflareMelee = true;
+                modPlayer.godSlayerDamage = true;
+                modPlayer.silvaMelee = true;
+                //range head
+                modPlayer.tarraRanged = true;
+                modPlayer.bloodflareRanged = true;
+                modPlayer.godSlayerRanged = true;
+                modPlayer.silvaRanged = true;
+                //magic head
+                modPlayer.tarraMage = true;
+                modPlayer.bloodflareMage = true;
+                modPlayer.godSlayerMage = true;
+                modPlayer.silvaMage = true;
+                //throw head
+                modPlayer.tarraThrowing = true;
+                modPlayer.bloodflareThrowing = true;
+                modPlayer.godSlayerThrowing = true;
+                modPlayer.silvaThrowing = true;
+            }
+
             //summon head
             modPlayer.tarraSummon = true;
             if (Soulcheck.GetValue("Polterghast Mines"))
@@ -226,11 +236,6 @@ You have a magic carpet");
                     }
                 }      
             }
-            //throw head
-            modPlayer.tarraThrowing = true;
-            modPlayer.bloodflareThrowing = true;
-            modPlayer.godSlayerThrowing = true;
-            modPlayer.silvaThrowing = true;
         }
 
         public override void AddRecipes()

@@ -64,18 +64,22 @@ Effects of the Profaned Soul Artifact");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            modPlayer.tarraSet = true;
-            //melee
-            modPlayer.tarraMelee = true;
-            //range
-            modPlayer.tarraRanged = true;
-            //magic
-            modPlayer.tarraMage = true;
-            //summon
-            modPlayer.tarraSummon = true;
-            //throw
-            modPlayer.tarraThrowing = true;
 
+            if (Soulcheck.GetValue("Tarragon Effects"))
+            {
+                modPlayer.tarraSet = true;
+                //melee
+                modPlayer.tarraMelee = true;
+                //range
+                modPlayer.tarraRanged = true;
+                //magic
+                modPlayer.tarraMage = true;
+                //summon
+                modPlayer.tarraSummon = true;
+                //throw
+                modPlayer.tarraThrowing = true;
+            }
+            
             if (Soulcheck.GetValue("Profaned Soul Artifact"))
             {
                 //profaned soul artifact

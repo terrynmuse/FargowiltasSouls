@@ -40,7 +40,12 @@ Effects of the Astral Arcanum");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            modPlayer.astralStarRain = true;
+
+            if (Soulcheck.GetValue("Astral Stars"))
+            {
+                modPlayer.astralStarRain = true;
+            }
+            
             //astral arcanum
             modPlayer.astralArcanum = true;
             modPlayer.aBulwark = true;

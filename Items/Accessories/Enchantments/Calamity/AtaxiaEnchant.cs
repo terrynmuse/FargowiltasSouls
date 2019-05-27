@@ -45,17 +45,21 @@ Effects of the Plague Hive");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            //all
-            modPlayer.ataxiaBlaze = true;
-            //melee
-            modPlayer.ataxiaGeyser = true;
-            //range
-            modPlayer.ataxiaBolt = true;
-            //magic
-            modPlayer.ataxiaMage = true;
-            //throw
-            modPlayer.ataxiaVolley = true;
 
+            if (Soulcheck.GetValue("Ataxia Effects"))
+            {
+                //all
+                modPlayer.ataxiaBlaze = true;
+                //melee
+                modPlayer.ataxiaGeyser = true;
+                //range
+                modPlayer.ataxiaBolt = true;
+                //magic
+                modPlayer.ataxiaMage = true;
+                //throw
+                modPlayer.ataxiaVolley = true;
+            }
+            
             if (Soulcheck.GetValue("Plague Hive"))
             {
                 //plague hive

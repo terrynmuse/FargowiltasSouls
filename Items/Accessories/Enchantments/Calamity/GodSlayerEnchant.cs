@@ -66,17 +66,23 @@ Effects of the Nebulous Core");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            //body
-            modPlayer.godSlayerReflect = true;
-            //all
-            modPlayer.godSlayer = true;
-            //melee
-            modPlayer.godSlayerDamage = true;
-            //ranged
-            modPlayer.godSlayerRanged = true;
-            //magic
-            modPlayer.godSlayerMage = true;
 
+            if (Soulcheck.GetValue("God Slayer Effects"))
+            {
+                //body
+                modPlayer.godSlayerReflect = true;
+                //all
+                modPlayer.godSlayer = true;
+                //melee
+                modPlayer.godSlayerDamage = true;
+                //ranged
+                modPlayer.godSlayerRanged = true;
+                //magic
+                modPlayer.godSlayerMage = true;
+                //throw
+                modPlayer.godSlayerThrowing = true;
+            }
+            
             if (Soulcheck.GetValue("Mechworm Minion"))
             {
                 //summon
@@ -196,9 +202,6 @@ Effects of the Nebulous Core");
                 }
             }
             
-            //throw
-            modPlayer.godSlayerThrowing = true;
-
             if (Soulcheck.GetValue("Nebulous Core"))
             {
                 //nebulous core

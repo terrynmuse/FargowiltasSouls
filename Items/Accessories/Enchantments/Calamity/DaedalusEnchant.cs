@@ -45,12 +45,16 @@ Effects of Permafrost's Concoction");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            modPlayer.daedalusReflect = true;
-            modPlayer.daedalusShard = true;
-            modPlayer.daedalusAbsorb = true;
-            modPlayer.daedalusCrystal = true;
-            modPlayer.daedalusSplit = true;
 
+            if (Soulcheck.GetValue("Daedalus Effects"))
+            {
+                modPlayer.daedalusReflect = true;
+                modPlayer.daedalusShard = true;
+                modPlayer.daedalusAbsorb = true;
+                modPlayer.daedalusCrystal = true;
+                modPlayer.daedalusSplit = true;
+            }
+            
             if (Soulcheck.GetValue("Permafrost's Concoction"))
             {
                 //permafrost concoction

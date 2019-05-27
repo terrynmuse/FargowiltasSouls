@@ -42,8 +42,11 @@ Rogue attacks spawn Xeroc Stars");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            modPlayer.xerocSet = true;
+            if (Soulcheck.GetValue("Xeroc Effects"))
+            {
+                CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+                modPlayer.xerocSet = true;
+            }
         }
 
         public override void AddRecipes()

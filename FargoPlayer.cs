@@ -1230,7 +1230,7 @@ namespace FargowiltasSouls
 
             Item item = player.HeldItem;
 
-            if (TungstenEnchant)
+            if (TungstenEnchant && Soulcheck.GetValue("Tungsten Effect"))
             {
                 if (((item.melee && (item.useStyle == 1 || item.useStyle == 3)) || TerraForce) && item.damage > 0 && item.scale < 2.5f)
                 {
