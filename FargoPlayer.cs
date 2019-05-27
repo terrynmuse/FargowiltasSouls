@@ -876,9 +876,9 @@ namespace FargowiltasSouls
 
                     webCounter++;
 
-                    if (webCounter >= 30)
+                    if (webCounter >= 30 && player.HasBuff(BuffID.Webbed))
                     {
-                        player.DelBuff(BuffID.Webbed);
+                        player.DelBuff(player.FindBuffIndex(BuffID.Webbed));
                         player.stickyBreak = 0;
                         webCounter = 0;
                     }
