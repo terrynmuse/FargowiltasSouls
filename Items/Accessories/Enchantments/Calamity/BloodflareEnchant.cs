@@ -67,16 +67,21 @@ Effects of the Core of the Blood God and Affliction");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            modPlayer.bloodflareSet = true;
-            modPlayer.bloodflareMelee = true;
-            modPlayer.bloodflareRanged = true;
-            modPlayer.bloodflareMage = true;
+
+            if (Soulcheck.GetValue("Bloodflare Effects"))
+            {
+                modPlayer.bloodflareSet = true;
+                modPlayer.bloodflareMelee = true;
+                modPlayer.bloodflareRanged = true;
+                modPlayer.bloodflareMage = true;
+                modPlayer.bloodflareThrowing = true;
+            }
+           
             if (Soulcheck.GetValue("Polterghast Mines"))
             {
                 modPlayer.bloodflareSummon = true;
             }
             
-            modPlayer.bloodflareThrowing = true;
             //core of the blood god
             modPlayer.coreOfTheBloodGod = true;
             modPlayer.fleshTotem = true;

@@ -32,6 +32,9 @@ namespace FargowiltasSouls
         public bool BrainMinion;
         public bool EaterMinion;
 
+        //pet
+        public bool RoombaPet;
+
         #region enchantments
         public bool PetsActive = true;
         public bool ShadowEnchant;
@@ -502,6 +505,8 @@ namespace FargowiltasSouls
             BrainMinion = false;
             EaterMinion = false;
 
+            RoombaPet = false;
+
             #region enchantments 
             PetsActive = true;
             ShadowEnchant = false;
@@ -871,9 +876,9 @@ namespace FargowiltasSouls
 
                     webCounter++;
 
-                    if (webCounter >= 30)
+                    if (webCounter >= 30 && player.HasBuff(BuffID.Webbed))
                     {
-                        player.DelBuff(BuffID.Webbed);
+                        player.DelBuff(player.FindBuffIndex(BuffID.Webbed));
                         player.stickyBreak = 0;
                         webCounter = 0;
                     }
@@ -1234,7 +1239,7 @@ namespace FargowiltasSouls
 
             Item item = player.HeldItem;
 
-            if (TungstenEnchant)
+            if (TungstenEnchant && Soulcheck.GetValue("Tungsten Effect"))
             {
                 if (((item.melee && (item.useStyle == 1 || item.useStyle == 3)) || TerraForce) && item.damage > 0 && item.scale < 2.5f)
                 {

@@ -43,15 +43,19 @@ Rage activates when you are damaged");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            //melee
-            modPlayer.reaverBlast = true;
-            //range
-            modPlayer.reaverDoubleTap = true;
-            //magic
-            modPlayer.reaverBurst = true;
-            //throw
-            modPlayer.reaverSpore = true;
 
+            if (Soulcheck.GetValue("Reaver Effects"))
+            {
+                //melee
+                modPlayer.reaverBlast = true;
+                //range
+                modPlayer.reaverDoubleTap = true;
+                //magic
+                modPlayer.reaverBurst = true;
+                //throw
+                modPlayer.reaverSpore = true;
+            }
+            
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
             if (Soulcheck.GetValue("Reaver Orb Minion"))

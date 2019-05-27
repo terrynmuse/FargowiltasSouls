@@ -1,8 +1,13 @@
-﻿NEW UPDATE - v 0.7
--Added a Mod Icon!!!!
--A TON of Masochist Mode changes: check out the wiki to see them all as well as the rest of this updates changes
--Added Wood Enchantment, Boreal Wood Enchantment, Rich Mahogany Enchantment, Ebonwood Enchantment, Shadewood Enchantment, Palm Wood Enchantment, Pearlwood Enchantment, and Force of Wood
--Modified nearly all Enchantment recipes: they all have the same amount of materials now, Thorium butterflies removed, and several new Thorium items added
+﻿NEW UPDATE - v 0.7.2
+-Added a Roomba
+-Mod icon actually works
+-Added several more toggles for wood enchantment effects and calamity effects
+-Shadewood buffed effect now always works with Force of Wood
+-Changed Super Bleeding icon to not be dumb
+-Pearlwood shrinking no longer works on certain NPCs and the rainbow trail cannot split
+-Fixed Tungsten effect not toggling correctly
+-Masochist Mode Hallowed water now inflicts Confused
+-Fixed Maso Webbed softlock AGAIN
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

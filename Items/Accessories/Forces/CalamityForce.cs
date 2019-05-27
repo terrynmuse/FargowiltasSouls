@@ -90,14 +90,19 @@ Effects of Giant Pearl and Amidias' Pendant");
             //MOLLUSK
             mod.GetItem("MolluskEnchant").UpdateAccessory(player, hideVisual);
             //ATAXIA
-            calamityPlayer.ataxiaBlaze = true;
-            //melee
-            calamityPlayer.ataxiaGeyser = true;
-            //range
-            calamityPlayer.ataxiaBolt = true;
-            //magic
-            calamityPlayer.ataxiaMage = true;
-
+            if (Soulcheck.GetValue("Ataxia Effects"))
+            {
+                calamityPlayer.ataxiaBlaze = true;
+                //melee
+                calamityPlayer.ataxiaGeyser = true;
+                //range
+                calamityPlayer.ataxiaBolt = true;
+                //magic
+                calamityPlayer.ataxiaMage = true;
+                //throw
+                calamityPlayer.ataxiaVolley = true;
+            }
+                
             if (Soulcheck.GetValue("Chaos Spirit Minion"))
             {
                 //summon
@@ -115,9 +120,6 @@ Effects of Giant Pearl and Amidias' Pendant");
                 }
             }
             
-            //throw
-            calamityPlayer.ataxiaVolley = true;
-
             if (Soulcheck.GetValue("Plague Hive"))
             {
                 //plague hive
@@ -126,9 +128,12 @@ Effects of Giant Pearl and Amidias' Pendant");
                 player.strongBees = true;
                 calamityPlayer.alchFlask = true;
             }
-            
+
             //XEROC
-            calamityPlayer.xerocSet = true;
+            if (Soulcheck.GetValue("Xeroc Effects"))
+            {
+                calamityPlayer.xerocSet = true;
+            }
         }
 
 

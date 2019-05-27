@@ -268,9 +268,21 @@ namespace FargowiltasSouls
             ["Amidias' Pendant"] = new Color(81, 181, 113),
             ["Giant Pearl"] = new Color(81, 181, 113),
             ["Poisonous Sea Water"] = new Color(81, 181, 113),
+
+            ["Daedalus Effects"] = new Color(81, 181, 113),
+            ["Reaver Effects"] = new Color(81, 181, 113),
+            ["Astral Stars"] = new Color(81, 181, 113),
+            ["Ataxia Effects"] = new Color(81, 181, 113),
+            ["Xeroc Effects"] = new Color(81, 181, 113),
+            ["Tarragon Effects"] = new Color(81, 181, 113),
+            ["Bloodflare Effects"] = new Color(81, 181, 113),
+            ["God Slayer Effects"] = new Color(81, 181, 113),
+            ["Silva Effects"] = new Color(81, 181, 113),
+            ["Auric Tesla Effects"] = new Color(81, 181, 113),
+
+            ["Elemental Quiver"] = new Color(81, 181, 113),
             //[""] = new Color(81, 181, 113),
             //abyssal diving gear
-            //every thing reee
         };
 
         private static readonly Color _defaultColor = new Color(81, 181, 113);
