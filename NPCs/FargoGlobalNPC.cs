@@ -166,12 +166,12 @@ namespace FargowiltasSouls.NPCs
                         npc.noTileCollide = true;
                         break;
 
-                    case NPCID.Medusa:
+                    /*case NPCID.Medusa:
                     case NPCID.IchorSticker:
                     case NPCID.Mimic:
                     case NPCID.SeekerHead:
                         dropLoot = Main.hardMode;
-                        break;
+                        break;*/
 
                     case NPCID.SolarSroller:
                         npc.lifeMax *= 2;
@@ -690,7 +690,12 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.EnchantedSword:
                     case NPCID.CursedHammer:
                     case NPCID.CrimsonAxe:
-                        Aura(npc, 400, BuffID.WitheredWeapon, false, 14);
+                        masoBool[0] = !masoBool[0];
+                        if (masoBool[0]) //run AI twice per tick
+                        {
+                            Aura(npc, 400, BuffID.WitheredWeapon, false, 14); //only needed once per tick
+                            npc.AI();
+                        }
                         break;
 
                     case NPCID.Ghost:
@@ -4718,6 +4723,25 @@ namespace FargowiltasSouls.NPCs
                             npc.AI();
                         break;
 
+                    case NPCID.PirateShip:
+                        if (++Counter > 10)
+                        {
+                            Counter = 0;
+                            if (npc.HasPlayerTarget)
+                            {
+                                Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                                speed.X += Main.rand.Next(-20, 21);
+                                speed.Y += Main.rand.Next(-20, 21);
+                                speed.Normalize();
+                                speed *= 14f;
+                                if (Main.netMode != 1)
+                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.BulletDeadeye, 15, 0f, Main.myPlayer);
+
+                                Main.PlaySound(SoundID.Item11, npc.Center);
+                            }
+                        }
+                        break;
+
                     //drakin possible meme tm
                     /*if (!DD2Event.Ongoing)
                     {
@@ -6371,7 +6395,7 @@ namespace FargowiltasSouls.NPCs
                     //mutually exclusive world layers
                     if (surface)
                     {
-                        if(night)
+                        if (night)
                         {
                             if (noBiome)
                             {
@@ -6402,9 +6426,9 @@ namespace FargowiltasSouls.NPCs
                                     pool[NPCID.EyeofCthulhu] = Main.bloodMoon ? .002f : .001f;
                             }
                         }
-			
-			            if (Main.slimeRain && NPC.downedBoss2 && !BossIsAlive(ref slimeBoss, NPCID.KingSlime))
-                             pool[NPCID.KingSlime] = 0.02f;
+
+                        if (Main.slimeRain && NPC.downedBoss2 && !BossIsAlive(ref slimeBoss, NPCID.KingSlime))
+                            pool[NPCID.KingSlime] = 0.02f;
                     }
                     else if (wideUnderground)
                     {
@@ -6437,6 +6461,13 @@ namespace FargowiltasSouls.NPCs
                     {
                         pool[NPCID.LeechHead] = .05f;
                         pool[NPCID.BlazingWheel] = .1f;
+                    }
+                    else if (sky)
+                    {
+                        if (normalSpawn)
+                        {
+                            pool[NPCID.AngryNimbus] = .01f;
+                        }
                     }
 
                     //height-independent biomes
@@ -6958,6 +6989,11 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("WretchedPouch"));
                         break;
 
+                    case NPCID.PirateCaptain:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("GoldenDippingVat"));
+                        break;
+
                     case NPCID.PirateShip:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SecurityWallet"));
@@ -7129,6 +7165,7 @@ namespace FargowiltasSouls.NPCs
                         {*/
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantAntibodies"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.Bacon, Main.rand.Next(10) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(3) + 1);
                         //}
                         break;
 
@@ -7564,17 +7601,20 @@ namespace FargowiltasSouls.NPCs
                             if (FargoWorld.FishronCount < 120)
                                 FargoWorld.FishronCount++;
 
-                            if (fishBossEX == npc.whoAmI)
+                            if (fishBossEX == npc.whoAmI) //drop loot here (avoids the vanilla "fishron defeated" message)
                             {
                                 FargoWorld.downedFishronEX = true;
                                 if (Main.netMode == 0)
                                     Main.NewText("Duke Fishron EX has been defeated!", 50, 100, 255);
                                 else if (Main.netMode == 2)
                                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has been defeated!"), new Color(50, 100, 255));
+
                                 Main.PlaySound(npc.DeathSound, npc.Center);
                                 npc.DropBossBags();
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CyclonicFin"));
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
+                                npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(3) + 1);
+
                                 int max = Main.rand.Next(5) + 5;
                                 for (int i = 0; i < max; i++)
                                     Item.NewItem(npc.position, npc.width, npc.height, ItemID.Heart);
@@ -7827,6 +7867,17 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.Medusa:
+                    case NPCID.IchorSticker:
+                    case NPCID.SeekerHead:
+                    case NPCID.Mimic:
+                        if (!Main.hardMode) //in pre-hm, fake death
+                        {
+                            Main.PlaySound(npc.DeathSound, npc.Center);
+                            return false;
+                        }
+                        break;
+
                     /*case 41: //rainbow slime 2
                         for (int i = 0; i < 10; i++)
                         {
@@ -7846,27 +7897,27 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
                         break;*/
-			
-			/* pseudo memes
-			case: slime zombie
-			NewNPC(Slime)
-			
-			case skeletons:
-			for()
-			{
-			NewProjectile(Bones)
-			}
-			
-			case digger:
-			NewNPC(GiantWorm)
-			
-			case ichor sticker:
-			for()
-			{
-			NewProjectile(Ichor)
-			}
-			
-			*/
+
+                    /* pseudo memes
+                    case: slime zombie
+                    NewNPC(Slime)
+
+                    case skeletons:
+                    for()
+                    {
+                    NewProjectile(Bones)
+                    }
+
+                    case digger:
+                    NewNPC(GiantWorm)
+
+                    case ichor sticker:
+                    for()
+                    {
+                    NewProjectile(Ichor)
+                    }
+
+                    */
 
                     default:
                         break;
@@ -8102,6 +8153,9 @@ namespace FargowiltasSouls.NPCs
                     default:
                         break;
                 }
+
+                if (npc.friendly && npc.lifeMax == 5)
+                    player.AddBuff(mod.BuffType("Guilty"), 300);
             }
         }
 
@@ -8321,6 +8375,9 @@ namespace FargowiltasSouls.NPCs
                     default:
                         break;
                 }
+
+                if (npc.friendly && npc.lifeMax == 5 && projectile.friendly && !projectile.hostile)
+                    player.AddBuff(mod.BuffType("Guilty"), 300);
             }
 
             /*if (projectile.type == ProjectileID.EyeFire) //why is there a type check in here, MAKE A MODPROJ

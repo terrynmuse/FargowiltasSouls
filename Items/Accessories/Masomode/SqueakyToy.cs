@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Squeaky Toy");
             Tooltip.SetDefault(@"'The beloved toy of a defeated foe...?'
-Grants immunity to Squeaky Toy and Purified
+Grants immunity to Squeaky Toy and Guilty
 Attacks have a chance to squeak and deal 1 damage to you");
         }
 
@@ -29,7 +29,7 @@ Attacks have a chance to squeak and deal 1 damage to you");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[mod.BuffType("SqueakyToy")] = true;
-            player.buffImmune[mod.BuffType("Purified")] = true;
+            player.buffImmune[mod.BuffType("Guilty")] = true;
             player.GetModPlayer<FargoPlayer>().SqueakyAcc = true;
         }
     }

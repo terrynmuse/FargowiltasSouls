@@ -325,7 +325,12 @@ namespace FargowiltasSouls
                 ItemID.YellowPhasesaber);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyPhasesaber", group);
 
-            if(ThoriumLoaded)
+            //vanilla butterflies
+            group = new RecipeGroup(() => Lang.misc[37] + " Butterfly", ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly,
+                ItemID.RedAdmiralButterfly, ItemID.SulphurButterfly, ItemID.TreeNymphButterfly, ItemID.UlyssesButterfly, ItemID.ZebraSwallowtailButterfly);
+            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyButterfly", group);
+
+            if (ThoriumLoaded)
             {
                 Mod thorium = ModLoader.GetMod("ThoriumMod");
 

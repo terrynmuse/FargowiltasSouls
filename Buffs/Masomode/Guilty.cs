@@ -4,12 +4,12 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
-    public class SqueakyToy : ModBuff
+    public class Guilty : ModBuff
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Squeaky Toy");
-            Description.SetDefault("Your attacks are squeaky toys!");
+            DisplayName.SetDefault("Guilty");
+            Description.SetDefault("Weapons dulled by the guilt of slaying innocent critters");
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
@@ -24,13 +24,11 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            //all attacks do one damage and make squeaky noises
-            player.GetModPlayer<FargoPlayer>(mod).SqueakyToy = true;
-        }
-
-        public override void Update(NPC npc, ref int buffIndex)
-        {
-            npc.GetGlobalNPC<FargoGlobalNpc>().SqueakyToy = true;
+            player.meleeDamage -= 0.25f;
+            player.rangedDamage -= 0.25f;
+            player.magicDamage -= 0.25f;
+            player.minionDamage -= 0.25f;
+            player.thrownDamage -= 0.25f;
         }
     }
 }

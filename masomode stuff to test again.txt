@@ -12,8 +12,19 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
--hallowed water inflicts confused
+-pirate ship has a minigun
+-added chest of the jungle (summons jungle mimic)
+-angry nimbus spawns on pre-hm space too
+-all the maso hardmode enemies that spawn in pre-hm, will fake death when killed in pre-hm
+-enchanted sword family acts twice per tick haHAAAA
+-added golden crate to fishron's drops
+-killing critters inflicts guilty on you
+-squeaky toy gives immune to guilty, removed purified immune
+-tribal charm gives purified immune
+-added golden dipping vat (2% pirate captain drop) and recipes?
+-some under the hood cleanup for maso buff icons
 
+-hallowed water inflicts confused
 -soul of terraria gives buffed version of wood force effects ech
 -added toggles for wood force components
 -pearlwood ench trail no longer splits

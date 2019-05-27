@@ -14,6 +14,12 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.buffNoSave[Type] = false;
         }
 
+        public override bool Autoload(ref string name, ref string texture)
+        {
+            texture = "FargowiltasSouls/Buffs/PlaceholderBuff";
+            return true;
+        }
+
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffImmune[mod.BuffType("Antisocial")] = true;
@@ -29,6 +35,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("FlippedHallow")] = true;
             player.buffImmune[mod.BuffType("Fused")] = true;
             player.buffImmune[mod.BuffType("GodEater")] = true;
+            player.buffImmune[mod.BuffType("Guilty")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.buffImmune[mod.BuffType("Infested")] = true;
             player.buffImmune[mod.BuffType("Jammed")] = true;
