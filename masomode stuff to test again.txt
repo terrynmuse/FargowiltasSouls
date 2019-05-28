@@ -66,6 +66,10 @@
 -agitating lens uses a new proj (doesn't reuse vanilla), now it doesnt interfere w/ i frames
 -penetrator removes i-frames on hit
 -fixed skull charm not actually doing the -10% DR it's supposed to
+-changed penetrator's phantasmal spheres to be more like vanilla spheres
+-penetrator creates explosions as it hits enemies
+-renamed RoombaPEt to RoombaPet internally
+-nuke fishron no longer has a %-based minimum damage, but increased base damage and uses rockets as ammo
 
 -hallowed water inflicts confused
 -soul of terraria gives buffed version of wood force effects ech

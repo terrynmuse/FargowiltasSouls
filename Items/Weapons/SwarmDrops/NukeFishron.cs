@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override void SetDefaults()
         {
-            item.damage = 300;
+            item.damage = 370;
             item.ranged = true;
             item.width = 24;
             item.height = 24;
@@ -27,6 +27,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.noMelee = true;
             item.knockBack = 7.7f;
             item.UseSound = new LegacySoundStyle(2, 62);
+            item.useAmmo = AmmoID.Rocket;
             item.value = Item.sellPrice(0, 70);
             item.rare = 11;
             item.autoReuse = true;

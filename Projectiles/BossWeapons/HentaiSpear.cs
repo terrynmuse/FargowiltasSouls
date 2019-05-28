@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.BossWeapons
@@ -84,7 +85,10 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.immune[projectile.owner] = 0;
+            Main.PlaySound(SoundID.Item88, target.Center);
+            if (projectile.owner == Main.myPlayer)
+                Projectile.NewProjectile(target.position + new Vector2(Main.rand.Next(target.width), Main.rand.Next(target.height)),
+                    Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage / 2, projectile.knockBack * 2f, projectile.owner);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
         }
     }
