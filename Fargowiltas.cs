@@ -411,6 +411,14 @@ namespace FargowiltasSouls
                     }
                     break;
 
+                case 5: //retinazer laser MP sync
+                    if (Main.netMode == 1)
+                    {
+                        int reti = reader.ReadByte();
+                        Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().Counter = reader.ReadInt32();
+                    }
+                    break;
+
                 case 77: //server side spawning fishron EX
                     if (Main.netMode == 2)
                     {

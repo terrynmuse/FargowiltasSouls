@@ -64,9 +64,10 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             {
                 ModRecipe recipe = new ModRecipe(mod);
 
-                recipe.AddIngredient(mod.ItemType("FishStick"), 5);
-                recipe.AddIngredient(mod.ItemType("CyclonicFin"));
-                recipe.AddIngredient(mod.ItemType("Sadism"));
+                recipe.AddIngredient(mod.ItemType("FishStick"), 10);
+                recipe.AddIngredient(mod.ItemType("CyclonicFin"), 5);
+                recipe.AddIngredient(mod.ItemType("Sadism"), 30);
+                recipe.AddIngredient(ItemID.ShrimpyTruffle);
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerFish"));
 
                 recipe.AddTile(mod, "CrucibleCosmosSheet");

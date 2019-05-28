@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.aiStyle = 0;
             aiType = ProjectileID.Bullet;
             projectile.friendly = true;
-            projectile.magic = true;
+            projectile.minion = true;
             projectile.penetrate = 10;
             projectile.tileCollide = false;
             projectile.timeLeft = 240;

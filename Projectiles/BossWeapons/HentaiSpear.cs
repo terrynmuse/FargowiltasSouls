@@ -33,6 +33,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.ownerHitCheck = true;
             projectile.melee = true;
             projectile.alpha = 0;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = -1;
         }
         // It appears that for this AI, only the ai0 field is used!
 
@@ -82,6 +84,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            target.immune[projectile.owner] = 0;
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
         }
     }

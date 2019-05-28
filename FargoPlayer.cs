@@ -188,7 +188,6 @@ namespace FargowiltasSouls
         public bool GuttedHeart;
         public int GuttedHeartCD = 60; //should prevent spawning despite disabled toggle when loading into world
         public bool PureHeart;
-        public bool LumpOfFlesh;
         public bool PungentEyeballMinion;
         public bool FusedLens;
         public bool GroundStick;
@@ -224,6 +223,7 @@ namespace FargowiltasSouls
         public bool MiniSaucer;
         public bool TribalCharm;
         public bool TribalAutoFire;
+        public bool SupremeDeathbringerFairy;
 
         //debuffs
         private int webCounter = 0;
@@ -621,7 +621,6 @@ namespace FargowiltasSouls
             CorruptHeart = false;
             GuttedHeart = false;
             PureHeart = false;
-            LumpOfFlesh = false;
             PungentEyeballMinion = false;
             FusedLens = false;
             GroundStick = false;
@@ -651,6 +650,7 @@ namespace FargowiltasSouls
             SuperFlocko = false;
             MiniSaucer = false;
             TribalCharm = false;
+            SupremeDeathbringerFairy = false;
 
             //debuffs
             Hexed = false;
@@ -996,7 +996,10 @@ namespace FargowiltasSouls
                             if (GroundPound > 15 && x >= 0 && x < Main.maxTilesX && y >= 0 && y < Main.maxTilesY
                                 && Main.tile[x, y] != null && Main.tile[x, y].nactive() && Main.tileSolid[Main.tile[x, y].type])
                             {
-                                Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("ExplosionSmall"), 160, 12f, player.whoAmI);
+                                int baseDamage = 80;
+                                if (MasochistSoul)
+                                    baseDamage *= 2;
+                                Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("ExplosionSmall"), baseDamage * 2, 12f, player.whoAmI);
                                 y -= 2;
                                 for (int i = -3; i <= 3; i++)
                                 {
@@ -1011,7 +1014,7 @@ namespace FargowiltasSouls
                                         {
                                             tilePosY++;
                                         }
-                                        Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, mod.ProjectileType("GeyserFriendly"), 80, 8f, player.whoAmI);
+                                        Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, mod.ProjectileType("GeyserFriendly"), baseDamage, 8f, player.whoAmI);
                                     }
                                 }
                             }
@@ -1053,9 +1056,12 @@ namespace FargowiltasSouls
                         {
                             Main.PlaySound(SoundID.Item21, player.Center);
                             Vector2 mouse = Main.MouseWorld;
-                            int damage = (int)(15 * player.meleeDamage);
+                            int damage = 15;
+                            if (SupremeDeathbringerFairy)
+                                damage = 25;
                             if (MasochistSoul)
-                                damage *= 4;
+                                damage = 50;
+                            damage = (int)(damage * player.meleeDamage);
                             for (int i = 0; i < 3; i++)
                             {
                                 Vector2 spawn = new Vector2(mouse.X + Main.rand.Next(-200, 201), mouse.Y - Main.rand.Next(600, 901));
@@ -1078,16 +1084,16 @@ namespace FargowiltasSouls
                 if (AgitatingLensCD++ > 10)
                 {
                     AgitatingLensCD = 0;
-                    if (player.velocity.Length() >= 8f && player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Scythes When Dashing"))
+                    if (player.velocity.Length() >= 6f && player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Scythes When Dashing"))
                     {
                         int damage = 20;
+                        if (SupremeDeathbringerFairy)
+                            damage = 30;
                         if (MasochistSoul)
-                            damage = 70;
+                            damage = 60;
                         damage = (int)(damage * player.magicDamage);
                         int proj = Projectile.NewProjectile(player.Center, player.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6))) * 0.1f,
-                            ProjectileID.DemonScythe, damage, 5f, player.whoAmI);
-                        Main.projectile[proj].GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
-                        Main.projectile[proj].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                            mod.ProjectileType("BloodScytheFriendly"), damage, 5f, player.whoAmI);
                     }
                 }
             }
@@ -1497,7 +1503,6 @@ namespace FargowiltasSouls
                     Main.dust[d].velocity *= 3f;
                     Main.playerDrawDust.Add(d);
                 }
-
                 if (Main.rand.Next(5) == 0)
                 {
                     int d = Dust.NewDust(player.position, player.width, player.height, 229, player.velocity.X * 0.4f, player.velocity.Y * 0.4f);
@@ -2029,6 +2034,8 @@ namespace FargowiltasSouls
                 vel.Normalize();
                 vel *= 8f;
                 int dam = (int)(40 * player.magicDamage);
+                if (MasochistSoul)
+                    dam *= 2;
                 Projectile.NewProjectile(spawn, vel, mod.ProjectileType("Shadowfrostfireball"), dam, 6f, player.whoAmI, target.whoAmI);
             }
 
@@ -2256,6 +2263,18 @@ namespace FargowiltasSouls
             {
                 if (target.FindBuffIndex(mod.BuffType("Sadism")) < 0 && target.aiStyle != 37)
                 {
+                    /*target.buffImmune[BuffID.Poisoned] = true;
+                    target.buffImmune[BuffID.Venom] = true;
+                    target.buffImmune[BuffID.Ichor] = true;
+                    target.buffImmune[BuffID.CursedInferno] = true;
+                    target.buffImmune[BuffID.BetsysCurse] = true;
+                    target.buffImmune[BuffID.Electrified] = true;
+                    target.buffImmune[mod.BuffType("OceanicMaul")] = true;
+                    target.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
+                    target.buffImmune[mod.BuffType("Infested")] = true;
+                    target.buffImmune[mod.BuffType("Rotting")] = true;
+                    target.buffImmune[mod.BuffType("MutantNibble")] = true;*/
+
                     target.DelBuff(4);
                     target.buffImmune[mod.BuffType("Sadism")] = false;
                     target.AddBuff(mod.BuffType("Sadism"), 600);
@@ -2266,8 +2285,11 @@ namespace FargowiltasSouls
                 if (BetsysHeart && crit)
                     target.AddBuff(BuffID.BetsysCurse, 300);
 
+                if (PumpkingsCape && crit)
+                    target.AddBuff(mod.BuffType("Rotting"), 300);
+
                 if (QueenStinger)
-                    target.AddBuff(BuffID.Poisoned, 120, true);
+                    target.AddBuff(SupremeDeathbringerFairy ? BuffID.Venom : BuffID.Poisoned, 120, true);
 
                 if (FusedLens)
                     target.AddBuff(Main.rand.Next(2) == 0 ? BuffID.CursedInferno : BuffID.Ichor, 360);
@@ -2507,9 +2529,11 @@ namespace FargowiltasSouls
 
         public override bool CanBeHitByProjectile(Projectile proj)
         {
-            if (ShellHide) return false;
-            if (!QueenStinger) return true;
-            return proj.type != ProjectileID.Stinger;
+            if (ShellHide)
+                return false;
+            if (QueenStinger && proj.type == ProjectileID.Stinger)
+                return false;
+            return true;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -2581,26 +2605,40 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (MoonChalice && Soulcheck.GetValue("Ancient Visions On Hit"))
+            if (MoonChalice)
             {
-                for (int i = 0; i < 5; i++)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11), mod.ProjectileType("AncientVision"), 80, 2f, player.whoAmI);
+                if (Soulcheck.GetValue("Ancient Visions On Hit"))
+                {
+                    int dam = 50;
+                    if (MasochistSoul)
+                        dam *= 2;
+                    for (int i = 0; i < 5; i++)
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11),
+                            mod.ProjectileType("AncientVision"), (int)(dam * player.minionDamage), 6f, player.whoAmI);
+                }
+            }
+            else if (CelestialRune && Soulcheck.GetValue("Ancient Visions On Hit"))
+            {
+                Projectile.NewProjectile(player.Center, new Vector2(0, -10), mod.ProjectileType("AncientVision"),
+                    (int)(40 * player.minionDamage), 3f, player.whoAmI);
             }
 
             if (LihzahrdTreasureBox && Soulcheck.GetValue("Spiky Balls On Hit"))
             {
+                int dam = 60;
+                if (MasochistSoul)
+                    dam *= 2;
                 for (int i = 0; i < 9; i++)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11), mod.ProjectileType("LihzahrdSpikyBallFriendly"), 80, 2f, player.whoAmI);
-            }
-
-            if (CelestialRune && Soulcheck.GetValue("Ancient Visions On Hit"))
-            {
-                Projectile.NewProjectile(player.Center, new Vector2(0, -10), mod.ProjectileType("AncientVision"), 50, 0, player.whoAmI);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11),
+                        mod.ProjectileType("LihzahrdSpikyBallFriendly"), (int)(dam * player.meleeDamage), 2f, player.whoAmI);
             }
 
             if (WretchedPouch && Soulcheck.GetValue("Tentacles On Hit"))
             {
                 Vector2 vel = new Vector2(9f, 0f).RotatedByRandom(2 * Math.PI);
+                int dam = 30;
+                if (MasochistSoul)
+                    dam *= 3;
                 for (int i = 0; i < 6; i++)
                 {
                     Vector2 speed = vel.RotatedBy(2 * Math.PI / 6 * (i + Main.rand.NextDouble() - 0.5));
@@ -2610,7 +2648,8 @@ namespace FargowiltasSouls
                     float ai0 = Main.rand.Next(10, 80) * (1f / 1000f);
                     if (Main.rand.Next(2) == 0)
                         ai0 *= -1f;
-                    Projectile.NewProjectile(player.Center, speed, mod.ProjectileType("ShadowflameTentacle"), 30, 3.75f, player.whoAmI, ai0, ai1);
+                    Projectile.NewProjectile(player.Center, speed, mod.ProjectileType("ShadowflameTentacle"),
+                        (int)(dam * player.magicDamage), 3.75f, player.whoAmI, ai0, ai1);
                 }
             }
         }

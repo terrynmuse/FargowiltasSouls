@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Somehow, it's the right size'
 Grants immunity to Living Wasteland
 Increases damage and critical strike chance by 5%
+Your critical strikes inflict Rotting
 You may periodically fire additional attacks depending on weapon type");
         }
 

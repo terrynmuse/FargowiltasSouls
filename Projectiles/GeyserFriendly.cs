@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Projectiles
             projectile.trap = false;
             projectile.hostile = false;
             aiType = ProjectileID.GeyserTrap;
+            projectile.usesLocalNPCImmunity = true;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

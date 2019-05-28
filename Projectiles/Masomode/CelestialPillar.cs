@@ -142,7 +142,14 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
+            if (target.mount.Active)
+                target.mount.Dismount(target);
+            target.velocity.X = projectile.velocity.X < 0 ? -16f : 16f;
+            target.velocity.Y = -4f;
+            target.AddBuff(mod.BuffType("Stunned"), 60);
+            target.AddBuff(mod.BuffType("MarkedforDeath"), 240);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
+            projectile.timeLeft = 0;
         }
 
         public override void Kill(int timeLeft)
@@ -178,7 +185,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                     Vector2 speed = new Vector2(0f, 8f * (j + 1) + 4f).RotatedBy(projectile.rotation);
                     for (int i = 0; i < max; i++)
                         Projectile.NewProjectile(projectile.Center, speed.RotatedBy(rotationInterval * i),
-                            mod.ProjectileType("CelestialFragment"), projectile.damage / 2, 0f, Main.myPlayer, projectile.ai[0]);
+                            mod.ProjectileType("CelestialFragment"), projectile.damage / 3, 0f, Main.myPlayer, projectile.ai[0]);
                 }
             }
         }

@@ -53,7 +53,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
                 ModRecipe recipe = new ModRecipe(mod);
 
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerMoon"));
-                recipe.AddIngredient(mod.ItemType("Sadism"));
+                recipe.AddIngredient(mod.ItemType("Sadism"), 15);
 
                 recipe.AddTile(mod, "CrucibleCosmosSheet");
                 recipe.SetResult(this);

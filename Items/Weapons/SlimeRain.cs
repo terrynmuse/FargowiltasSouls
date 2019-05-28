@@ -44,14 +44,14 @@ namespace FargowiltasSouls.Items.Weapons
             ref int type, ref int damage, ref float knockBack)
         {
             float x;
-            float y = player.Center.Y - 400f;
+            float y = player.Center.Y - Main.rand.Next(400, 600);
 
             for (int i = 0; i < 5; i++)
             {
                 x = player.Center.X + 2f * Main.rand.Next(-400, 401);
                 int p = Projectile.NewProjectile(new Vector2(x, y), new Vector2(Main.rand.Next(-4, 4), 12f), type, damage, knockBack, player.whoAmI);
                 if (p < 1000)
-                    Main.projectile[p].timeLeft = 60;
+                    Main.projectile[p].timeLeft = 90;
             }
 
             return false;
@@ -62,7 +62,7 @@ namespace FargowiltasSouls.Items.Weapons
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(mod.ItemType("SlimeSword"), 10);
-            recipe.AddIngredient(mod.ItemType("Sadism"));
+            recipe.AddIngredient(mod.ItemType("Sadism"), 15);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);

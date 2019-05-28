@@ -24,7 +24,7 @@ namespace FargowiltasSouls.NPCs
             aiType = NPCID.QueenBee;
             npc.damage = 15;
             npc.defense = 8;
-            npc.lifeMax = 850;
+            npc.lifeMax = 800;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.knockBackResist = 0f;

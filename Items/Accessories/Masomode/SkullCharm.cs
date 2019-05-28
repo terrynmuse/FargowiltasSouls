@@ -33,6 +33,7 @@ Makes armed and magic skeletons less hostile outside the Dungeon");
             player.magicDamage += 0.1f;
             player.minionDamage += 0.1f;
             player.thrownDamage += 0.1f;
+            player.endurance -= 0.1f;
             player.aggro -= 400;
             player.GetModPlayer<FargoPlayer>().SkullCharm = true;
             if (!player.ZoneDungeon)

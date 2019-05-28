@@ -56,21 +56,10 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(NPC npc, ref int buffIndex)
         {
             FargoGlobalNPC fargoNPC = npc.GetGlobalNPC<FargoGlobalNPC>();
-            if (!fargoNPC.gotSadism) //reducing redundant debuffs wasting buff slots
-            {
-                fargoNPC.gotSadism = true;
-                npc.buffImmune[BuffID.Poisoned] = true;
-                npc.buffImmune[BuffID.Ichor] = true;
-                npc.buffImmune[BuffID.BetsysCurse] = true;
-                npc.buffImmune[BuffID.Electrified] = true;
-                npc.buffImmune[mod.BuffType("OceanicMaul")] = true;
-                npc.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
-                npc.buffImmune[mod.BuffType("Infested")] = true;
-                npc.buffImmune[mod.BuffType("Rotting")] = true;
-                npc.buffImmune[mod.BuffType("MutantNibble")] = true;
-            }
             npc.poisoned = true;
+            npc.venom = true;
             npc.ichor = true;
+            npc.onFire2 = true;
             npc.betsysCurse = true;
             fargoNPC.Electrified = true;
             fargoNPC.OceanicMaul = true;

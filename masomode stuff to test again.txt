@@ -31,6 +31,42 @@
 	-plantera crystal leaf shots (also goes through walls now)
 	-golem fist explosions
 
+-dutchman cannons now fire the bullets (not dutchman itself)
+-chaos ball (goblin sorceror proj) is invincible in hardmode
+-nerfed celestial fragments (150 -> 100 base damage)
+-ice golem constantly radiates frostfireballs
+-shadowflame apparation inflicts shadowflame on hit
+-goblin summoner has a large shadowflame aura that shoots chaos balls, also erupts into tentacles when hit
+-nerfed ice tortoise DR to cap at 50%
+-dungeon guardian now always reasserts his damage/defense and takes 1 damage for sure at low health
+-tried making ML phases less buggy in MP?
+-tried something to make retinazer's deathray compatible with rev
+-changed hallowed mimic to inflict long confused (was short unstable)
+-nerfed chaos elemental unstable max duration from 10sec to 4sec
+-golem body now also inflicts 3sec marked for death
+-cultist on touch inflicts marked for death and curse of the moon (HE DIDN'T INFLICT ANYTHING BEFORE????????)
+-celestial pillar also inflicts stunned/MFD, knocks the player off mount, sends them flying always, and explodes immediately on hit
+-celestial fragments also inflict hexed
+-pumpking's cape gives you rotting imbue on crit
+-removed rotting's -1000% DR effect
+-removed venom effect from flames of the universe
+-added venom/cursed inferno effect to sadism when applied to enemies
+-lowered agitating lens threshold to sprinting speed (i think)
+-supreme deathbringer fairy upgrades queen stinger's poison imbue to venom imbue
+-supreme deathbringer fairy just buffs its effects overall...
+-skeletron arm minions have increased speed when attacking and scale with SDT/soul of maso
+-probes scale with soul of maso, more damage/attack faster
+-rainbow slime damage scales with soul of maso
+-BASICALLY EVERYTHING PRE-PLANT THAT DIDN'T SCALE WITH SOUL OF MASO NOW DOES
+-ancient vision reclassified to minion (was magic)
+-removed sadism's buff immunity thingy, should be ok?
+-increased sadisms required for swarm weapons
+-nerfed royal subject hp slightly
+-lihzahrd ground pound shouldn't interact with i-frame timers?
+-agitating lens uses a new proj (doesn't reuse vanilla), now it doesnt interfere w/ i frames
+-penetrator removes i-frames on hit
+-fixed skull charm not actually doing the -10% DR it's supposed to
+
 -hallowed water inflicts confused
 -soul of terraria gives buffed version of wood force effects ech
 -added toggles for wood force components
