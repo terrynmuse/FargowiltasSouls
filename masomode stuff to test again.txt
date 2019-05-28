@@ -21,7 +21,7 @@
 -killing critters inflicts guilty on you
 -squeaky toy gives immune to guilty, removed purified immune
 -tribal charm gives purified immune
--added golden dipping vat (2% pirate captain drop) and recipes?
+-added golden dipping vat (2% pirate captain drop) and recipes (w/ sprite)
 -some under the hood cleanup for maso buff icons
 -CHANGED SANDS OF TIME TO BE NAMED SANDS OF TIME CONSISTENTLY SO IT DOESNT FUCK UP BIOCLUSTER SKREEEEEEEEEEEE
 -the following attacks are on moon lord's invul timer (facilitates combos, deters slime cheese):

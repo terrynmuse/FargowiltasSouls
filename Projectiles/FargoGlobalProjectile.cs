@@ -563,14 +563,12 @@ namespace FargowiltasSouls.Projectiles
                         if (projectile.ai[0] > 120f && projectile.ai[0] < 299f) //instant ritual
                         {
                             projectile.ai[0] = 299f;
-                            projectile.netUpdate = true;
-                        }
-                        if (projectile.localAI[0] == 0f)
-                        {
-                            projectile.localAI[0] = 1f;
                             if (Main.netMode != 1)
-                                Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("CelestialPillar"),
+                            {
+                                Projectile.NewProjectile(projectile.Center, Vector2.UnitY * -10f, mod.ProjectileType("CelestialPillar"),
                                     (int)(75 * (1 + FargoWorld.CultistCount * .0125)), 0f, Main.myPlayer, Main.rand.Next(4));
+                            }
+                            projectile.netUpdate = true;
                         }
                     }
                     break;

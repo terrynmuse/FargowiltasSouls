@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,6 +19,8 @@ namespace FargowiltasSouls.Items.Misc
             item.maxStack = 99;
             item.useTurn = true;
             item.autoReuse = true;
+            item.rare = 8;
+            item.value = Item.sellPrice(0, 10);
             item.useAnimation = 15;
             item.useTime = 15;
             item.useStyle = 1;

@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class CelestialPillar : ModProjectile
     {
-        Vector2 target;
+        private int target = -1;
 
         public override void SetStaticDefaults()
         {
@@ -35,22 +35,104 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(target.X);
-            writer.Write(target.Y);
+            writer.Write(target);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            target.X = reader.ReadSingle();
-            target.Y = reader.ReadSingle();
+            target = reader.ReadInt32();
         }
 
         public override void AI()
         {
-            //spawn fade in while spinning up and targeting someone
-            //save coords and shoot at target
-            //flying at them, explode upon reaching their location
-            //set frame according to ai0
+            if (projectile.localAI[0] == 0f)
+            {
+                projectile.localAI[0] = 1f;
+                int type;
+                switch ((int)projectile.ai[0])
+                {
+                    case 0: type = 242; break; //nebula
+                    case 1: type = 127; break; //solar
+                    case 2: type = 229; break; //vortex
+                    default: type = 135; break; //stardust
+                }
+                for (int index = 0; index < 50; ++index)
+                {
+                    Dust dust = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, type, 0.0f, 0.0f, 0, new Color(), 1f)];
+                    dust.velocity *= 10f;
+                    dust.fadeIn = 1f;
+                    dust.scale = 1 + Main.rand.NextFloat() + Main.rand.Next(4) * 0.3f;
+                    if (Main.rand.Next(3) != 0)
+                    {
+                        dust.noGravity = true;
+                        dust.velocity *= 3f;
+                        dust.scale *= 2f;
+                    }
+                }
+            }
+            if (projectile.alpha > 0)
+            {
+                projectile.alpha -= 2;
+                if (projectile.alpha <= 0)
+                {
+                    projectile.alpha = 0;
+                    if (target != -1)
+                    {
+                        Main.PlaySound(SoundID.Item89, projectile.Center);
+                        projectile.velocity = Main.player[target].Center - projectile.Center;
+                        float distance = projectile.velocity.Length();
+                        projectile.velocity.Normalize();
+                        const float speed = 32f;
+                        projectile.velocity *= speed;
+                        projectile.timeLeft = (int)(distance / speed) + 15;
+                        projectile.netUpdate = true;
+                        return;
+                    }
+                    else
+                    {
+                        projectile.Kill();
+                    }
+                }
+
+                projectile.velocity.Y += 10f / 120f;
+                projectile.rotation += projectile.velocity.Length() / 20f;
+
+                if (target >= 0 && Main.player[target].active && !Main.player[target].dead)
+                {
+                    if (projectile.alpha < 100)
+                    {
+                        projectile.rotation = projectile.rotation.AngleLerp(
+                          (Main.player[target].Center - projectile.Center).ToRotation(), (255 - projectile.alpha) / 255f * 0.08f);
+                    }
+                }
+                else
+                {
+                    int possibleTarget = -1;
+                    float maxDistance = 9000f;
+                    for (int i = 0; i < 255; i++)
+                    {
+                        if (Main.player[i].active && !Main.player[i].dead)
+                        {
+                            float distance = projectile.Distance(Main.player[i].Center);
+                            if (distance < maxDistance)
+                            {
+                                possibleTarget = i;
+                                maxDistance = distance;
+                            }
+                        }
+                    }
+                    if (possibleTarget != -1)
+                    {
+                        target = possibleTarget;
+                        projectile.netUpdate = true;
+                    }
+                }
+            }
+            else
+            {
+                projectile.rotation = projectile.velocity.ToRotation();
+            }
+            projectile.frame = (int)projectile.ai[0];
         }
 
         public override bool CanDamage()
@@ -65,7 +147,40 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void Kill(int timeLeft)
         {
-            //explode into fragments (they inherit my ai0)
+            Main.PlaySound(SoundID.Item92, projectile.Center);
+            int type;
+            switch ((int)projectile.ai[0])
+            {
+                case 0: type = 242; break; //nebula
+                case 1: type = 127; break; //solar
+                case 2: type = 229; break; //vortex
+                default: type = 135; break; //stardust
+            }
+            for (int index = 0; index < 80; ++index)
+            {
+                Dust dust = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, type, 0.0f, 0.0f, 0, new Color(), 1f)];
+                dust.velocity *= 10f;
+                dust.fadeIn = 1f;
+                dust.scale = 1 + Main.rand.NextFloat() + Main.rand.Next(4) * 0.3f;
+                if (Main.rand.Next(3) != 0)
+                {
+                    dust.noGravity = true;
+                    dust.velocity *= 3f;
+                    dust.scale *= 2f;
+                }
+            }
+            if (Main.netMode != 1)
+            {
+                const int max = 24;
+                const float rotationInterval = 2f * (float)Math.PI / max;
+                for (int j = 0; j < 4; j++)
+                {
+                    Vector2 speed = new Vector2(0f, 8f * (j + 1) + 4f).RotatedBy(projectile.rotation);
+                    for (int i = 0; i < max; i++)
+                        Projectile.NewProjectile(projectile.Center, speed.RotatedBy(rotationInterval * i),
+                            mod.ProjectileType("CelestialFragment"), projectile.damage / 2, 0f, Main.myPlayer, projectile.ai[0]);
+                }
+            }
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -82,7 +197,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             Vector2 origin2 = rectangle.Size() / 2f;
             Color color26 = lightColor;
             color26 = projectile.GetAlpha(color26);
-            for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i += 2)
+            for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i += 3)
             {
                 Color color27 = color26;
                 color27 *= (float)(ProjectileID.Sets.TrailCacheLength[projectile.type] - i) / ProjectileID.Sets.TrailCacheLength[projectile.type];

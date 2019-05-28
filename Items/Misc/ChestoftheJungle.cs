@@ -31,12 +31,15 @@ namespace FargowiltasSouls.Items.Misc
 
         public override bool UseItem(Player player)
         {
-            if (player.itemAnimation > 0 && player.itemTime == 0 && Main.netMode != 1)
+            if (player.itemAnimation > 0 && player.itemTime == 0)
             {
-                //NPC.SpawnOnPlayer(player.whoAmI, NPCID.BigMimicJungle);
-                int n = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 300, NPCID.BigMimicJungle);
-                if (n != 200 && Main.netMode == 2)
-                    NetMessage.SendData(23, -1, -1, null, n);
+                Main.PlaySound(15, player.Center, 0);
+                if (Main.netMode != 1)
+                {//NPC.SpawnOnPlayer(player.whoAmI, NPCID.BigMimicJungle);
+                    int n = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 300, NPCID.BigMimicJungle);
+                    if (n != 200 && Main.netMode == 2)
+                        NetMessage.SendData(23, -1, -1, null, n);
+                }
             }
             return true;
         }
