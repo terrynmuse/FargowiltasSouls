@@ -40,7 +40,7 @@ namespace FargowiltasSouls.Projectiles
 
         public bool Rainbow = false;
 
-
+        public int ModProjID;
 
         public override void SetDefaults(Projectile projectile)
         {
@@ -75,6 +75,8 @@ namespace FargowiltasSouls.Projectiles
                         break;
                 }
             }
+
+            Fargowiltas.ModProjDict.TryGetValue(projectile.type, out ModProjID);
         }
 
         private static int[] noSplit = {
@@ -161,7 +163,7 @@ namespace FargowiltasSouls.Projectiles
                         projectile.minion = true;
                         projectile.thrown = true;
 
-                        /*if (Fargowiltas.Instance.ThoriumLoaded)
+                        /*if (thoriumLoaded)
                         {
 
 
@@ -601,85 +603,85 @@ namespace FargowiltasSouls.Projectiles
                         break;
             }
 
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            switch (ModProjID)
             {
-                //switch wouldnt work because IDs not constant RIP
-                /*if(projectile.type == thorium.ProjectileType("Omega"))
-                {
-                    KillPet(projectile, player, thorium.BuffType("OmegaBuff"), modPlayer.MeteorEnchant, "Omega Pet");
-                }
-                else */if (projectile.type == thorium.ProjectileType("IFO"))
-                {
+                case 0:
+                    break;
+
+                #region thorium pets
+                case 1:
                     KillPet(projectile, player, thorium.BuffType("Identified"), modPlayer.MeteorEnchant, "I.F.O. Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("BioFeederPet"))
-                {
+                    break;
+
+                case 2:
                     KillPet(projectile, player, thorium.BuffType("BioFeederBuff"), modPlayer.MeteorEnchant, "Bio-Feeder Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("BlisterPet"))
-                {
+                    break;
+
+                case 3:
                     KillPet(projectile, player, thorium.BuffType("BlisterBuff"), modPlayer.CrimsonEnchant, "Blister Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("WyvernPet"))
-                {
+                    break;
+
+                case 4:
                     KillPet(projectile, player, thorium.BuffType("WyvernPetBuff"), modPlayer.ShadowEnchant, "Wyvern Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("SupportLantern"))
-                {
+                    break;
+
+                case 5:
                     KillPet(projectile, player, thorium.BuffType("SupportLanternBuff"), modPlayer.MinerEnchant, "Inspiring Lantern Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("LockBoxPet"))
-                {
+                    break;
+
+                case 6:
                     KillPet(projectile, player, thorium.BuffType("LockBoxBuff"), modPlayer.MinerEnchant, "Lock Box Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("Devil"))
-                {
+                    break;
+
+                case 7:
                     KillPet(projectile, player, thorium.BuffType("DevilBuff"), modPlayer.WarlockEnchant, "Li'l Devil Minion", true);
-                }
-                else if (projectile.type == thorium.ProjectileType("Angel"))
-                {
+                    break;
+
+                case 8:
                     KillPet(projectile, player, thorium.BuffType("AngelBuff"), modPlayer.SacredEnchant, "Li'l Cherub Minion", true);
-                }
-                else if (projectile.type == thorium.ProjectileType("LifeSpirit"))
-                {
+                    break;
+
+                case 9:
                     KillPet(projectile, player, thorium.BuffType("LifeSpiritBuff"), modPlayer.SacredEnchant, "Life Spirit Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("HolyGoat"))
-                {
+                    break;
+
+                case 10:
                     KillPet(projectile, player, thorium.BuffType("HolyGostBuff"), modPlayer.BinderEnchant, "Holy Goat Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("MinionSapling"))
-                {
+                    break;
+
+                case 11:
                     KillPet(projectile, player, thorium.BuffType("SaplingBuff"), modPlayer.LivingWoodEnchant, "Sapling Minion", true);
-                }
-                else if (projectile.type == thorium.ProjectileType("SnowyOwlPet"))
-                {
+                    break;
+
+                case 12:
                     KillPet(projectile, player, thorium.BuffType("SnowyOwlBuff"), modPlayer.IcyEnchant, "Owl Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("JellyfishPet"))
-                {
+                    break;
+
+                case 13:
                     KillPet(projectile, player, thorium.BuffType("JellyPet"), modPlayer.DepthEnchant, "Jellyfish Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("LilMog"))
-                {
+                    break;
+
+                case 14:
                     KillPet(projectile, player, thorium.BuffType("LilMogBuff"), modPlayer.KnightEnchant, "Moogle Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("Maid1"))
-                {
+                    break;
+
+                case 15:
                     KillPet(projectile, player, thorium.BuffType("MaidBuff"), modPlayer.DreamEnchant, "Maid Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("PinkSlime"))
-                {
+                    break;
+
+                case 16:
                     KillPet(projectile, player, thorium.BuffType("PinkSlimeBuff"), modPlayer.IllumiteEnchant, "Pink Slime Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("ShinyPet"))
-                {
+                    break;
+
+                case 17:
                     KillPet(projectile, player, thorium.BuffType("ShineDust"), modPlayer.PlatinumEnchant, "Glitter Pet");
-                }
-                else if (projectile.type == thorium.ProjectileType("DrachmaBag"))
-                {
+                    break;
+
+                case 18:
                     KillPet(projectile, player, thorium.BuffType("DrachmaBuff"), modPlayer.GoldEnchant, "Coin Bag Pet");
-                }
+                    break;
+
+                #endregion
             }
 
             if (stormBoosted)

@@ -35,7 +35,9 @@ namespace FargowiltasSouls
         internal bool DBTLoaded;
 
         public UserInterface CustomResources;
-        internal Soulcheck SoulCheck; 
+        internal Soulcheck SoulCheck;
+
+        internal static readonly Dictionary<int, int> ModProjDict = new Dictionary<int, int>();
 
         public Fargowiltas()
         {
@@ -130,6 +132,29 @@ namespace FargowiltasSouls
                 if (bossChecklist != null)
                 {
                     bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 14.1f, (Func<bool>)(() => FargoWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
+                }
+
+                if (ThoriumLoaded)
+                {
+                    Mod thorium = ModLoader.GetMod("ThoriumMod");
+                    ModProjDict.Add(thorium.ProjectileType("IFO"), 1);
+                    ModProjDict.Add(thorium.ProjectileType("BioFeederPet"), 2);
+                    ModProjDict.Add(thorium.ProjectileType("BlisterPet"), 3);
+                    ModProjDict.Add(thorium.ProjectileType("WyvernPet"), 4);
+                    ModProjDict.Add(thorium.ProjectileType("SupportLantern"), 5);
+                    ModProjDict.Add(thorium.ProjectileType("LockBoxPet"), 6);
+                    ModProjDict.Add(thorium.ProjectileType("Devil"), 7);
+                    ModProjDict.Add(thorium.ProjectileType("Angel"), 8);
+                    ModProjDict.Add(thorium.ProjectileType("LifeSpirit"), 9);
+                    ModProjDict.Add(thorium.ProjectileType("HolyGoat"), 10);
+                    ModProjDict.Add(thorium.ProjectileType("MinionSapling"), 11);
+                    ModProjDict.Add(thorium.ProjectileType("SnowyOwlPet"), 12);
+                    ModProjDict.Add(thorium.ProjectileType("JellyfishPet"), 13);
+                    ModProjDict.Add(thorium.ProjectileType("LilMog"), 14);
+                    ModProjDict.Add(thorium.ProjectileType("Maid1"), 15);
+                    ModProjDict.Add(thorium.ProjectileType("PinkSlime"), 16);
+                    ModProjDict.Add(thorium.ProjectileType("ShinyPet"), 17);
+                    ModProjDict.Add(thorium.ProjectileType("DrachmaBag"), 18);
                 }
             }
             catch (Exception e)
