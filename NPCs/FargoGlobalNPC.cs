@@ -578,9 +578,13 @@ namespace FargowiltasSouls.NPCs
                             if (Main.rand.Next(5) == 0)
                                 Horde(npc, 5);
                             break;
-			    
+
+                        case NPCID.BigMossHornet:
+                        case NPCID.GiantMossHornet:
+                        case NPCID.LittleMossHornet:
 			            case NPCID.MossHornet:
-                            if (Main.rand.Next(4) == 0)
+                        case NPCID.TinyMossHornet:
+                            if (Main.rand.Next(4) == 0 && !BossIsAlive(ref beeBoss, NPCID.QueenBee))
                                 Horde(npc, 5);
                             break;
 
@@ -749,7 +753,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.IlluminantBat:
                         if (masoBool[0])
                         {
-                            if (!masoBool[1] && ++Counter2 > 60)
+                            if (!masoBool[1] && ++Counter2 > 30)
                             {
                                 masoBool[1] = true;
                                 if (Main.netMode == 2)
@@ -1960,7 +1964,7 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
-                        if (npc.ai[1] == 1f) //spinning
+                        if (npc.ai[1] == 1f || npc.ai[1] == 2f) //spinning or DG mode
                         {
                             npc.localAI[2]++;
 
@@ -1977,11 +1981,16 @@ namespace FargowiltasSouls.NPCs
                                     speed *= 6f;
                                     speed += npc.velocity * 1.5f * (1f - ratio);
                                     speed.Y -= Math.Abs(speed.X) * 0.2f;
-
                                     if (Main.netMode != 1)
                                         Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 9 * 2, 0f, Main.myPlayer);
                                 }
                             }
+                        }
+
+                        if (npc.ai[1] == 2f)
+                        {
+                            npc.defense = 9999;
+                            npc.damage = npc.defDamage * 15;
                         }
                         break;
 
@@ -3169,6 +3178,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.FlyingSnake:
                         if (masoBool[0]) //after reviving
                         {
+                            if (npc.buffType[0] != 0)
+                                npc.DelBuff(0);
                             npc.position += npc.velocity;
                             npc.knockBackResist = 0f;
                             //npc.damage = npc.defDamage * 3 / 2;
@@ -4653,47 +4664,44 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DungeonGuardian:
                         npc.damage = npc.defDamage;
                         npc.defense = npc.defDefense;
-                        if (npc.life < 1000 && !masoBool[0])
+                        while (npc.buffType[0] != 0)
+                            npc.DelBuff(0);
+                        if (npc.velocity.Length() < 10f)
                         {
-                            masoBool[0] = true;
-                            npc.netUpdate = true;
-                            npc.life = 1000;
-                            for (int i = 0; i < npc.buffImmune.Length; i++)
-                                npc.buffImmune[i] = true;
-                            while (npc.buffType[0] != 0)
-                                npc.DelBuff(0);
-                            Main.PlaySound(15, npc.Center, 0);
+                            npc.velocity.Normalize();
+                            npc.velocity *= 10f;
                         }
-                        if (masoBool[0])
+                        if (--Counter < 0)
                         {
-                            if (npc.buffType[0] != 0)
-                                npc.DelBuff(0);
-                            if (npc.velocity.Length() < 10f)
+                            Counter = 60;
+                            if (npc.HasPlayerTarget && Main.netMode != 1)
                             {
-                                npc.velocity.Normalize();
-                                npc.velocity *= 10f;
+                                Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                                speed.X += Main.rand.Next(-20, 21);
+                                speed.Y += Main.rand.Next(-20, 21);
+                                speed.Normalize();
+                                speed *= 3f;
+                                speed += npc.velocity * 2f;
+                                Projectile.NewProjectile(npc.Center, speed, ProjectileID.Skull, npc.damage / 4, 0, Main.myPlayer, -1f, 0f);
                             }
-                            if (--Counter < 0)
-                            {
-                                Counter = 60;
-                                if (npc.HasPlayerTarget && Main.netMode != 1)
-                                {
-                                    Vector2 speed = Main.player[npc.target].Center - npc.Center;
-                                    speed.X += Main.rand.Next(-20, 21);
-                                    speed.Y += Main.rand.Next(-20, 21);
-                                    speed.Normalize();
-                                    speed *= 3f;
-                                    speed += npc.velocity * 2f;
-                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.Skull, npc.damage / 4, 0, Main.myPlayer, -1f, 0f);
-                                }
-                            }
+                        }
+                        if (++Counter2 > 6)
+                        {
+                            Counter2 = 0;
+                            Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
+                            speed.Normalize();
+                            speed *= 6f;
+                            speed += npc.velocity * 1.25f;
+                            speed.Y -= Math.Abs(speed.X) * 0.2f;
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 4, 0f, Main.myPlayer);
                         }
                         break;
 
                     case NPCID.RainbowSlime:
                         if (masoBool[0]) //small rainbow slime
                         {
-                            if (!masoBool[1] && ++Counter > 60)
+                            if (!masoBool[1] && ++Counter > 30)
                             {
                                 masoBool[1] = true;
                                 npc.netUpdate = true;
@@ -4702,7 +4710,6 @@ namespace FargowiltasSouls.NPCs
                                     var netMessage = mod.GetPacket();
                                     netMessage.Write((byte)3);
                                     netMessage.Write((byte)npc.whoAmI);
-                                    netMessage.Write(npc.scale);
                                     netMessage.Write(npc.lifeMax);
                                     netMessage.Send();
                                 }
@@ -7554,10 +7561,8 @@ namespace FargowiltasSouls.NPCs
                             npc.life = npc.lifeMax / 176;
                             if (npc.life < 50)
                                 npc.life = 50;
-                            npc.defDefense = 9999;
                             npc.defense = 9999;
-                            npc.defDamage *= 15;
-                            npc.damage *= 15;
+                            npc.damage = npc.defDamage * 15;
                             npc.ai[1] = 2f;
                             npc.netUpdate = true;
                             return false;
@@ -7730,8 +7735,11 @@ namespace FargowiltasSouls.NPCs
                             masoBool[0] = true;
                             npc.life = npc.lifeMax;
                             npc.active = true;
-                            npc.netUpdate = true;
-                            NetUpdateMaso(npc.whoAmI);
+                            if (Main.netMode == 2)
+                            {
+                                npc.netUpdate = true;
+                                NetUpdateMaso(npc.whoAmI);
+                            }
                             return false;
                         }
                         break;
@@ -7965,15 +7973,6 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.DungeonGuardian:
-                        if (!masoBool[0])
-                        {
-                            npc.life = 999;
-                            npc.active = true;
-                            return false;
-                        }
-                        break;
-
                     case NPCID.Hornet:
                     case NPCID.HornetFatty:
                     case NPCID.HornetHoney:
@@ -8022,7 +8021,7 @@ namespace FargowiltasSouls.NPCs
                         if (masoBool[0])
                         {
                             npc.active = false;
-                            Main.player(npc.DeathSound, npc.Center);
+                            Main.PlaySound(npc.DeathSound, npc.Center);
                             return false;
                         }
                         break;
@@ -8315,8 +8314,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DungeonGuardian:
-                        if (masoBool[0])
-                            damage = 1;
+                        damage = 1;
                         break;
 
                     default:
@@ -8560,8 +8558,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DungeonGuardian:
-                        if (masoBool[0])
-                            damage = 1;
+                        damage = 1;
                         break;
 
                     default:

@@ -422,7 +422,11 @@ namespace FargowiltasSouls
                     if (Main.netMode == 1)
                     {
                         byte slime = reader.ReadByte();
-                        Main.npc[slime].scale = reader.ReadSingle();
+                        Main.npc[slime].position = Main.npc[slime].Center;
+                        Main.npc[slime].width = (int)(Main.npc[slime].width / Main.npc[slime].scale);
+                        Main.npc[slime].height = (int)(Main.npc[slime].height / Main.npc[slime].scale);
+                        Main.npc[slime].scale = 1f;
+                        Main.npc[slime].Center = Main.npc[slime].position;
                         Main.npc[slime].lifeMax = reader.ReadInt32();
                         Main.npc[slime].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
                     }

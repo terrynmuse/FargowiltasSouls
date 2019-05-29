@@ -20,6 +20,11 @@
 -tried making KS not enrage client-side only
 -some general MP fiddling
 -illuminant bat produced from splitting are transparent and HAVE NO DROPS
+-skeletron also sprays bones in DG mode
+-actual dungeon guardian always has super speed, shoots skulls, sprays bones, and is debuff immune
+-all variants of moss hornet can swarm
+-moss hornets won't swarm during queen bee fight
+-an under the hood change to how thorium pets are spawned/despawned by enchs
 
 -pirate ship has a minigun
 -added chest of the jungle (summons jungle mimic)
