@@ -43,8 +43,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
                         Vector2 dist = player.Center - projectile.Center;
                         dist.Normalize();
                         dist *= 8f;
-                        projectile.velocity.X = (projectile.velocity.X * 14 + dist.X) / 15;
-                        projectile.velocity.Y = (projectile.velocity.Y * 14 + dist.Y) / 15;
+                        projectile.velocity.X = (projectile.velocity.X * 40 + dist.X) / 41;
+                        projectile.velocity.Y = (projectile.velocity.Y * 40 + dist.Y) / 41;
                     }
                     else
                     {

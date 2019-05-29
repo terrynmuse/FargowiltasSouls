@@ -64,12 +64,14 @@
 -nerfed royal subject hp slightly
 -lihzahrd ground pound shouldn't interact with i-frame timers?
 -agitating lens uses a new proj (doesn't reuse vanilla), now it doesnt interfere w/ i frames
--penetrator removes i-frames on hit
 -fixed skull charm not actually doing the -10% DR it's supposed to
+-penetrator removes i-frames on hit
 -changed penetrator's phantasmal spheres to be more like vanilla spheres
 -penetrator creates explosions as it hits enemies
 -renamed RoombaPEt to RoombaPet internally
 -nuke fishron no longer has a %-based minimum damage, but increased base damage and uses rockets as ammo
+-snow balla now has 200% horiz move speed instead of hyper mode
+-gave unique rarities to all sadism gear
 
 -hallowed water inflicts confused
 -soul of terraria gives buffed version of wood force effects ech

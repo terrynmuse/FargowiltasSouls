@@ -57,11 +57,11 @@ namespace FargowiltasSouls.Projectiles
 
             if (projectile.alpha > 0)
             {
-                projectile.alpha -= 10;
+                projectile.alpha -= 20;
                 if (projectile.alpha < 0)
                     projectile.alpha = 0;
             }
-            projectile.scale = 1f - projectile.alpha / 255f;
+            projectile.scale = (1f - projectile.alpha / 255f) * .75f;
             for (int i = 0; i < 2; i++)
             {
                 float num = Main.rand.NextFloat(-0.5f, 0.5f);
@@ -111,13 +111,26 @@ namespace FargowiltasSouls.Projectiles
         public override void Kill(int timeleft)
         {
             Main.PlaySound(4, projectile.Center, 6);
-            for (int i = 0; i < 20; i++)
+            projectile.position = projectile.Center;
+            projectile.width = projectile.height = 208;
+            projectile.Center = projectile.position;
+            for (int index1 = 0; index1 < 3; ++index1)
             {
-                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 15, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
-                Main.dust[d].noGravity = true;
-                Main.dust[d].velocity *= 2f;
-                d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 15, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100);
-                Main.dust[d].velocity *= 2f;
+                int index2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0.0f, 0.0f, 100, new Color(), 1.5f);
+                Main.dust[index2].position = new Vector2((float)(projectile.width / 2), 0.0f).RotatedBy(6.28318548202515 * Main.rand.NextDouble(), new Vector2()) * (float)Main.rand.NextDouble() + projectile.Center;
+            }
+            for (int index1 = 0; index1 < 10; ++index1)
+            {
+                int index2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 229, 0.0f, 0.0f, 0, new Color(), 2.5f);
+                Main.dust[index2].position = new Vector2((float)(projectile.width / 2), 0.0f).RotatedBy(6.28318548202515 * Main.rand.NextDouble(), new Vector2()) * (float)Main.rand.NextDouble() + projectile.Center;
+                Main.dust[index2].noGravity = true;
+                Dust dust1 = Main.dust[index2];
+                dust1.velocity = dust1.velocity * 1f;
+                int index3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 229, 0.0f, 0.0f, 100, new Color(), 1.5f);
+                Main.dust[index3].position = new Vector2((float)(projectile.width / 2), 0.0f).RotatedBy(6.28318548202515 * Main.rand.NextDouble(), new Vector2()) * (float)Main.rand.NextDouble() + projectile.Center;
+                Dust dust2 = Main.dust[index3];
+                dust2.velocity = dust2.velocity * 1f;
+                Main.dust[index3].noGravity = true;
             }
         }
 

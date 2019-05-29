@@ -144,8 +144,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             if (target.mount.Active)
                 target.mount.Dismount(target);
-            target.velocity.X = projectile.velocity.X < 0 ? -16f : 16f;
-            target.velocity.Y = -4f;
+            target.velocity.X = projectile.velocity.X < 0 ? -15f : 15f;
+            target.velocity.Y = -10f;
             target.AddBuff(mod.BuffType("Stunned"), 60);
             target.AddBuff(mod.BuffType("MarkedforDeath"), 240);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);

@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             aiType = ProjectileID.DemonScythe;
             projectile.usesLocalNPCImmunity = true;
             projectile.localNPCHitCooldown = 10;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
         }
 
         public override Color? GetAlpha(Color lightColor)

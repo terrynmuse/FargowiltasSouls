@@ -123,6 +123,10 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
+                    case NPCID.PirateShipCannon:
+                        Counter = Main.rand.Next(10);
+                        break;
+
                     case NPCID.MisterStabby:
                         npc.Opacity /= 5;
                         break;
@@ -1067,6 +1071,8 @@ namespace FargowiltasSouls.NPCs
                                         {
                                             Counter++;
                                             npc.ai[3] = -npc.rotation;
+                                            if (npc.ai[2] > 250f)
+                                                npc.ai[2] = 250f;
                                             masoBool[2] = (Main.player[npc.target].Center.X - npc.Center.X < 0);
                                         }
                                         npc.netUpdate = true;
@@ -1084,7 +1090,9 @@ namespace FargowiltasSouls.NPCs
                                 case 1: //slowing down, beginning rotation
                                     npc.velocity *= 1f - (npc.ai[0] - 4f) / 120f;
                                     npc.localAI[1] = 0f;
-                                    //npc.ai[3]--; //negate vanilla counting up
+                                    npc.ai[2]--; //negate vanilla counting up
+                                    if (npc.ai[2] > 250f)
+                                        npc.ai[2] = 250f;
                                     npc.ai[3] -= (npc.ai[0] - 4f) / 120f * rotationInterval * (masoBool[2] ? 1f : -1f);
                                     npc.rotation = -npc.ai[3];
 
@@ -1112,7 +1120,9 @@ namespace FargowiltasSouls.NPCs
                                 case 2: //spinning full speed
                                     npc.velocity = Vector2.Zero;
                                     npc.localAI[1] = 0f;
-                                    //npc.ai[2]--;
+                                    npc.ai[2]--;
+                                    if (npc.ai[2] > 250f)
+                                        npc.ai[2] = 250f;
                                     npc.ai[3] -= rotationInterval * (masoBool[2] ? 1f : -1f);
                                     npc.rotation = -npc.ai[3];
 
@@ -1135,7 +1145,9 @@ namespace FargowiltasSouls.NPCs
                                 case 3: //laser done, slowing down spin, moving again
                                     npc.velocity *= (npc.ai[0] - 4f) / 60f;
                                     npc.localAI[1] = 0f;
-                                    //npc.ai[3]--;
+                                    npc.ai[2]--;
+                                    if (npc.ai[2] > 250f)
+                                        npc.ai[2] = 250f;
                                     npc.ai[3] -= (1f - (npc.ai[0] - 4f) / 60f) * rotationInterval * (masoBool[2] ? 1f : -1f);
                                     npc.rotation = -npc.ai[3];
 
@@ -4657,23 +4669,25 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DungeonGuardian:
                         npc.damage = npc.defDamage;
                         npc.defense = npc.defDefense;
-                        if (npc.life < 1000)
+                        if (npc.life < 1000 && !masoBool[0])
                         {
+                            masoBool[0] = true;
+                            npc.netUpdate = true;
+                            npc.life = 1000;
+                            for (int i = 0; i < npc.buffImmune.Length; i++)
+                                npc.buffImmune[i] = true;
+                            while (npc.buffType[0] != 0)
+                                npc.DelBuff(0);
+                            Main.PlaySound(15, npc.Center, 0);
+                        }
+                        if (masoBool[0])
+                        {
+                            if (npc.buffType[0] != 0)
+                                npc.DelBuff(0);
                             if (npc.velocity.Length() < 10f)
                             {
                                 npc.velocity.Normalize();
                                 npc.velocity *= 10f;
-                            }
-                            if (!masoBool[0])
-                            {
-                                masoBool[0] = true;
-                                npc.netUpdate = true;
-                                npc.life = 1000;
-                                for (int i = 0; i < npc.buffImmune.Length; i++)
-                                    npc.buffImmune[i] = true;
-                                while (npc.buffType[0] != 0)
-                                    npc.DelBuff(0);
-                                Main.PlaySound(15, npc.Center, 0);
                             }
                             if (--Counter < 0)
                             {
@@ -4686,8 +4700,7 @@ namespace FargowiltasSouls.NPCs
                                     speed.Normalize();
                                     speed *= 3f;
                                     speed += npc.velocity * 2f;
-                                    Projectile.NewProjectile(npc.Center + speed * 5f, speed,
-                                        ProjectileID.Skull, npc.damage / 4, 0, Main.myPlayer, -1f, 0f);
+                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.Skull, npc.damage / 4, 0, Main.myPlayer, -1f, 0f);
                                 }
                             }
                         }
@@ -4767,9 +4780,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SnowBalla:
-                        masoBool[0] = !masoBool[0];
-                        if (masoBool[0])
-                            npc.AI();
+                        npc.position.X += npc.velocity.X;
                         break;
 
                     case NPCID.PirateShipCannon:
@@ -4819,14 +4830,14 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.IceGolem:
-                        if (++Counter > 30)
+                        if (++Counter > 60)
                         {
                             Counter = 0;
                             Main.PlaySound(SoundID.Item8, npc.Center);
                             if (npc.HasPlayerTarget && Main.netMode != 1)
                             {
-                                Projectile.NewProjectile(npc.Center, new Vector2(8f, 0f).RotatedByRandom(2 * Math.PI),
-                                    mod.ProjectileType("FrostfireballHostile"), npc.damage / 4, 0f, Main.myPlayer, npc.target, 60);
+                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0f).RotatedByRandom(2 * Math.PI),
+                                    mod.ProjectileType("FrostfireballHostile"), npc.damage / 5, 0f, Main.myPlayer, npc.target, 30f);
                             }
                         }
                         break;
@@ -7972,6 +7983,15 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.DungeonGuardian:
+                        if (!masoBool[0])
+                        {
+                            npc.life = 999;
+                            npc.active = true;
+                            return false;
+                        }
+                        break;
+
                     /*case 41: //rainbow slime 2
                         for (int i = 0; i < 10; i++)
                         {
@@ -8234,9 +8254,9 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.GoblinSummoner:
-                        if (Main.rand.Next(4) == 0 && Main.netMode != 1)
+                        if (Main.rand.Next(3) == 0 && Main.netMode != 1)
                         {
-                            Vector2 vel = new Vector2(12f, 0f).RotatedByRandom(2 * Math.PI);
+                            Vector2 vel = new Vector2(9f, 0f).RotatedByRandom(2 * Math.PI);
                             for (int i = 0; i < 6; i++)
                             {
                                 Vector2 speed = vel.RotatedBy(2 * Math.PI / 6 * (i + Main.rand.NextDouble() - 0.5));

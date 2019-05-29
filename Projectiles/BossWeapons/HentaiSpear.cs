@@ -35,7 +35,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.melee = true;
             projectile.alpha = 0;
             projectile.usesLocalNPCImmunity = true;
-            projectile.localNPCHitCooldown = -1;
+            projectile.localNPCHitCooldown = 0;
         }
         // It appears that for this AI, only the ai0 field is used!
 
@@ -81,6 +81,12 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.rotation = (float) Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + MathHelper.ToRadians(135f);
             // Offset by 90 degrees here
             if (projectile.spriteDirection == -1) projectile.rotation -= MathHelper.ToRadians(90f);
+
+            if (projectile.ai[0] == 0f)
+            {
+                projectile.ai[0] = 3f;
+                projectile.netUpdate = true;
+            }
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -88,7 +94,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             Main.PlaySound(SoundID.Item88, target.Center);
             if (projectile.owner == Main.myPlayer)
                 Projectile.NewProjectile(target.position + new Vector2(Main.rand.Next(target.width), Main.rand.Next(target.height)),
-                    Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage / 2, projectile.knockBack * 2f, projectile.owner);
+                    Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
         }
     }

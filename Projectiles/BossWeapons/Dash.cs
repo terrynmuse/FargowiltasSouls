@@ -61,7 +61,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             if (UpdateCount >= DASH_STEP_DELAY)
             {
                 //spawn along path
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 0, mod.ProjectileType("PhantasmalSphere"), (int) (projectile.damage * 0.5f), 0 /*kb*/, Main.myPlayer);
+                if (projectile.owner == Main.myPlayer)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 0, mod.ProjectileType("PhantasmalSphere"), projectile.damage, projectile.knockBack, projectile.owner);
 
                 if (UpdateCount == DASH_STEP_DELAY)
                 {

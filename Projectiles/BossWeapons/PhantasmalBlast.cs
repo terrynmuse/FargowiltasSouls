@@ -28,6 +28,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             //projectile.extraUpdates = 5;
 			projectile.penetrate = -1;
             projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 0;
+            projectile.scale = 2f;
             projectile.alpha = 0;
 		}
 

@@ -55,7 +55,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 speed = new Vector2(speedX, speedY).RotatedBy((Main.rand.NextDouble() - 0.5) * MathHelper.ToRadians(15));
-            Projectile.NewProjectile(position, speed, type, damage, knockBack, player.whoAmI, -1f, 0f);
+            Projectile.NewProjectile(position, speed, item.shoot, damage, knockBack, player.whoAmI, -1f, 0f);
             return false;
         }
 
