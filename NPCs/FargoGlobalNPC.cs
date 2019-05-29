@@ -8036,6 +8036,14 @@ namespace FargowiltasSouls.NPCs
                     default:
                         break;
                 }
+
+                /*if (npc.catchItem != 0 && npc.lifeMax == 5)
+                {
+                    float distance = 0;
+                    int p = npc.FindClosestPlayer(out distance);
+                    if (p >= 0 && p < 255 && distance < 800)
+                        Main.player[p].AddBuff(mod.BuffType("Guilty"), 300);
+                }*/
             }
             
             return true;
@@ -8280,7 +8288,7 @@ namespace FargowiltasSouls.NPCs
                         break;
                 }
 
-                if (npc.friendly && npc.lifeMax == 5)
+                if (npc.catchItem != 0 && npc.lifeMax == 5)
                     player.AddBuff(mod.BuffType("Guilty"), 300);
             }
         }
@@ -8525,7 +8533,7 @@ namespace FargowiltasSouls.NPCs
                         break;
                 }
 
-                if (npc.friendly && npc.lifeMax == 5 && projectile.friendly && !projectile.hostile)
+                if (npc.catchItem != 0 && npc.lifeMax == 5 && projectile.friendly && !projectile.hostile)
                     player.AddBuff(mod.BuffType("Guilty"), 300);
             }
 
