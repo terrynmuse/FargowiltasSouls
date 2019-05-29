@@ -399,6 +399,7 @@ namespace FargowiltasSouls
                         byte slime = reader.ReadByte();
                         Main.npc[slime].scale = reader.ReadSingle();
                         Main.npc[slime].lifeMax = reader.ReadInt32();
+                        Main.npc[slime].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
                     }
                     break;
 
@@ -415,6 +416,7 @@ namespace FargowiltasSouls
                     if (Main.netMode == 1)
                     {
                         int reti = reader.ReadByte();
+                        Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = reader.ReadBoolean();
                         Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().Counter = reader.ReadInt32();
                     }
                     break;

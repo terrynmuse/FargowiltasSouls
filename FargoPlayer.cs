@@ -4257,10 +4257,11 @@ namespace FargowiltasSouls
                 bool spawned = false;
                 for (int i = 0; i < 1000; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == bait.owner
-                        && Main.projectile[i].bobber && bait.owner == Main.myPlayer)
+                    if (Main.projectile[i].active && Main.projectile[i].bobber
+                        && Main.projectile[i].owner == player.whoAmI && player.whoAmI == Main.myPlayer)
                     {
                         Main.projectile[i].ai[0] = 2f; //cut fishing lines
+                        Main.projectile[i].netUpdate = true;
 
                         if (!spawned && Main.projectile[i].wet && Main.projectile[i].velocity.Y == 0f
                             && FargoWorld.MasochistMode && !NPC.AnyNPCs(NPCID.DukeFishron)) //should spawn boss
@@ -4270,7 +4271,7 @@ namespace FargowiltasSouls
                             {
                                 FargoGlobalNPC.spawnFishronEX = true;
                                 NPC.NewNPC((int)Main.projectile[i].Center.X, (int)Main.projectile[i].Center.Y + 100,
-                                    NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, bait.owner);
+                                    NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, player.whoAmI);
                                 FargoGlobalNPC.spawnFishronEX = false;
                                 Main.NewText("Duke Fishron EX has awoken!", 50, 100, 255);
                             }
@@ -4278,10 +4279,14 @@ namespace FargowiltasSouls
                             {
                                 var netMessage = mod.GetPacket();
                                 netMessage.Write((byte)77);
-                                netMessage.Write((byte)bait.owner);
+                                netMessage.Write((byte)player.whoAmI);
                                 netMessage.Write((int)Main.projectile[i].Center.X);
                                 netMessage.Write((int)Main.projectile[i].Center.Y + 100);
                                 netMessage.Send();
+                            }
+                            else if (Main.netMode == 2)
+                            {
+                                NetMessage.BroadcastChatMessage(Terraria.Localization.NetworkText.FromLiteral("???????"), Color.White);
                             }
                         }
                     }
