@@ -1391,7 +1391,7 @@ namespace FargowiltasSouls
                     player.lifeRegen = 0;
 
                 player.lifeRegenTime = 0;
-                player.lifeRegen -= 6;
+                player.lifeRegen -= 2;
             }
 
             if (CurseoftheMoon)

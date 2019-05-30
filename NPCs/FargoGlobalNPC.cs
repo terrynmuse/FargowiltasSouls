@@ -1923,7 +1923,12 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.SkeletronHead:
                         skeleBoss = boss = npc.whoAmI;
-
+                        if (!masoBool[0])
+                        {
+                            masoBool[0] = true;
+                            if (Main.netMode != 1 && !NPC.downedBoss3)
+                                Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("BloodiedSkull"));
+                        }
                         if (Counter != 0)
                         {
                             Timer++;
@@ -1975,7 +1980,7 @@ namespace FargowiltasSouls.NPCs
                             npc.localAI[2]++;
 
                             float ratio = (float)npc.life / npc.lifeMax;
-                            float threshold = 5f + 25f * ratio;
+                            float threshold = 3f + 17f * ratio;
                             if (npc.localAI[2] >= threshold) //spray bones
                             {
                                 npc.localAI[2] = 0f;
@@ -1985,7 +1990,7 @@ namespace FargowiltasSouls.NPCs
                                     Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
                                     speed.Normalize();
                                     speed *= 6f;
-                                    speed += npc.velocity * 1.5f * (1f - ratio);
+                                    speed += npc.velocity * 1.25f * (1f - ratio);
                                     speed.Y -= Math.Abs(speed.X) * 0.2f;
                                     if (Main.netMode != 1)
                                         Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 9 * 2, 0f, Main.myPlayer);
@@ -4570,7 +4575,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BloodZombie:
-                        Aura(npc, 80, mod.BuffType("Bloodthirsty"), false, 5);
+                        Aura(npc, 300, BuffID.Bleeding, false, 5);
                         break;
 
                     case NPCID.PossessedArmor:
@@ -5502,7 +5507,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BloodZombie:
-                        target.AddBuff(BuffID.Cursed, Main.rand.Next(240, 480));
+                        target.AddBuff(BuffID.Cursed, Main.rand.Next(30, 90));
+                        target.AddBuff(mod.BuffType("Bloodthirsty"), Main.rand.Next(60, 240));
                         break;
 
                     case NPCID.Drippler:
@@ -7190,10 +7196,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MisterStabby:
                         if (Main.rand.Next(100) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("OrdinaryCarrot"));
-                        break;
-
-                    case NPCID.OldMan:
-                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("BloodiedSkull"));
                         break;
 
                     #region boss drops
