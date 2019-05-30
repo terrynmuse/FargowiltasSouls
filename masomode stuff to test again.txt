@@ -45,6 +45,7 @@
 -blood zombie aura changed to bleeding
 -reduced blood zombie cursed on hit, but they inflict bloodthirsty too now
 -old man/skeletron drops the bloodied skull properly
+-nerfed rotting DOT (it gets inflicted for like five years)
 
 -hornets and eaters fake death during queen bee/eater of worlds fights
 -bees can turn into big hornet variants too now
