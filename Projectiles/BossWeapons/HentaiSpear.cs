@@ -70,9 +70,26 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 }
 
                 if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3) // Somewhere along the item animation, make sure the spear moves back
+                {
                     MovementFactor -= 2.4f;
+                    if (projectile.localAI[0] == 0f)
+                    {
+                        projectile.localAI[0] = 1f;
+                        if (projectile.ai[1] == 0f && projectile.owner == Main.myPlayer) //only right click
+                        {
+                            Vector2 vel = Vector2.Normalize(projectile.velocity) * 8f;
+                            for (int i = -2; i <= 2; i++)
+                            {
+                                Projectile.NewProjectile(projectile.Center, vel.RotatedBy(Math.PI / 36 * i), mod.ProjectileType("PhantasmalBolt"),
+                                    projectile.damage, projectile.knockBack, projectile.owner);
+                            }
+                        }
+                    }
+                }
                 else // Otherwise, increase the movement factor
+                {
                     MovementFactor += 2.1f;
+                }
             }
 
             // When we reach the end of the animation, we can kill the spear projectile

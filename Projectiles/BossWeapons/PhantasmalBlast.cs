@@ -31,7 +31,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.localNPCHitCooldown = 0;
             projectile.scale = 2f;
             projectile.alpha = 0;
-		}
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+        }
 
         public override void AI()
         {

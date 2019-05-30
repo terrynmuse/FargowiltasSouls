@@ -705,7 +705,7 @@ namespace FargowiltasSouls
             lightningRodTimer = 0;
 
             SlimyShieldFalling = false;
-            CorruptHeartCD = 0;
+            CorruptHeartCD = 60;
             GuttedHeartCD = 60;
             GroundPound = 0;
             PungentEyeballMinion = false;

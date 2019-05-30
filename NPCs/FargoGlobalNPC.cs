@@ -76,6 +76,7 @@ namespace FargowiltasSouls.NPCs
         public static int fishBoss = -1;
         public static int cultBoss = -1;
         public static int moonBoss = -1;
+        public static int guardBoss = -1;
         public static int fishBossEX = -1;
         public static bool spawnFishronEX;
 
@@ -220,6 +221,14 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Reaper:
                         Timer = 0;
+                        break;
+
+                    case NPCID.EnchantedSword:
+                    case NPCID.CursedHammer:
+                    case NPCID.CrimsonAxe:
+                        npc.scale = 2f;
+                        npc.lifeMax *= 3;
+                        npc.knockBackResist = 0f;
                         break;
 
 
@@ -704,12 +713,10 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.EnchantedSword:
                     case NPCID.CursedHammer:
                     case NPCID.CrimsonAxe:
-                        masoBool[0] = !masoBool[0];
-                        if (masoBool[0]) //run AI twice per tick
-                        {
-                            Aura(npc, 400, BuffID.WitheredWeapon, false, 14); //only needed once per tick
-                            npc.AI();
-                        }
+                        npc.position += npc.velocity / 2f;
+                        Aura(npc, 300, BuffID.WitheredWeapon, false, 14);
+                        if (npc.ai[0] == 2f) //spinning up
+                            npc.ai[1] += 6f * (1f - (float)npc.life / npc.lifeMax); //FINISH SPINNING FASTER
                         break;
 
                     case NPCID.Ghost:
@@ -2135,7 +2142,7 @@ namespace FargowiltasSouls.NPCs
 
                                 bool isOnSolidTile = false;
 
-                                //for every tile this npc occupies
+                                //for every tile npc npc occupies
                                 for (int x = cornerX1; x < cornerX2; ++x)
                                 {
                                     for (int y = cornerY1; y < cornerY2; ++y)
@@ -3673,7 +3680,7 @@ namespace FargowiltasSouls.NPCs
                             Counter = (short)Main.rand.Next(60);
                             if (Main.netMode != 1)
                             {
-                                //this entire block is fucked
+                                //npc entire block is fucked
                                 int length = Main.rand.Next(3, 6);
                                 int[] numArray = new int[length];
                                 int maxValue = 0;
@@ -4661,6 +4668,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DungeonGuardian:
+                        guardBoss = boss = npc.whoAmI;
                         npc.damage = npc.defDamage;
                         npc.defense = npc.defDefense;
                         while (npc.buffType[0] != 0)
@@ -4770,7 +4778,30 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SnowBalla:
-                        npc.position.X += npc.velocity.X;
+                        if (npc.ai[2] == 8f)
+                        {
+                            npc.velocity.X = 0f;
+                            npc.velocity.Y = 0f;
+                            float num3 = 10f;
+                            Vector2 vector2 = new Vector2(npc.position.X + npc.width * 0.5f - npc.direction * 12, npc.position.Y + npc.height * 0.25f);
+                            float num4 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2f - vector2.X;
+                            float num5 = Main.player[npc.target].position.Y - vector2.Y;
+                            float num6 = (float)Math.Sqrt(num4 * num4 + num5 * num5);
+                            float num7 = num3 / num6;
+                            float SpeedX = num4 * num7;
+                            float SpeedY = num5 * num7;
+                            if (Main.netMode != 1)
+                            {
+                                int Damage = 35;
+                                int Type = 109;
+                                int p = Projectile.NewProjectile(vector2.X, vector2.Y, SpeedX, SpeedY, Type, Damage, 0f, Main.myPlayer);
+                                Main.projectile[p].ai[0] = 2f;
+                                Main.projectile[p].timeLeft = 300;
+                                Main.projectile[p].friendly = false;
+                                NetMessage.SendData(27, -1, -1, null, p);
+                                npc.netUpdate = true;
+                            }
+                        }
                         break;
 
                     case NPCID.PirateShipCannon:
@@ -4844,7 +4875,7 @@ namespace FargowiltasSouls.NPCs
                         }
                     }*/
 
-                    //psycho wtf why wont this work ech
+                    //psycho wtf why wont npc work ech
                     /*case 88:
                         Counter++;
                         if (Counter >= 120)
@@ -6157,6 +6188,18 @@ namespace FargowiltasSouls.NPCs
                         target.immuneTime = 0;
                         break;
 
+                    case NPCID.EnchantedSword:
+                        target.AddBuff(mod.BuffType("Purified"), Main.rand.Next(60, 300));
+                        break;
+
+                    case NPCID.CursedHammer:
+                        target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(60, 300));
+                        break;
+
+                    case NPCID.CrimsonAxe:
+                        target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
+                        break;
+
                     default:
                         break;
                 }
@@ -7147,6 +7190,10 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MisterStabby:
                         if (Main.rand.Next(100) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("OrdinaryCarrot"));
+                        break;
+
+                    case NPCID.OldMan:
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("BloodiedSkull"));
                         break;
 
                     #region boss drops

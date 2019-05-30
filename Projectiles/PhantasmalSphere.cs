@@ -27,6 +27,7 @@ namespace FargowiltasSouls.Projectiles
             projectile.timeLeft = 120;
             projectile.tileCollide = false;
             projectile.alpha = 200;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
         }
 
         public override void AI()

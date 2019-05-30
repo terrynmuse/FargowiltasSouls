@@ -883,6 +883,14 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.Skull:
                         if (Main.rand.Next(4) == 0)
                             target.AddBuff(BuffID.Cursed, Main.rand.Next(60, 360));
+                        goto case ProjectileID.SkeletonBone;
+                    case ProjectileID.SkeletonBone:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.guardBoss, NPCID.DungeonGuardian))
+                        {
+                            target.AddBuff(mod.BuffType("MarkedforDeath"), 420);
+                            target.immune = false;
+                            target.immuneTime = 0;
+                        }
                         break;
 
                     case ProjectileID.EyeLaser:
@@ -1163,6 +1171,7 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.BulletSnowman:
                         target.AddBuff(BuffID.Chilled, Main.rand.Next(300));
                         break;
+                    
 
                     default:
                         break;

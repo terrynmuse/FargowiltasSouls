@@ -26,6 +26,20 @@
 -removed white space from various masomode item sprites
 -pungent eyeball minion is actually a PUNGENT EYEBALL NOW
 -penetrator has a right click
+-penetrator right click shoots phantasmal bolts
+-penetrator explosions and phantasmal spheres can't split anymore
+-penetrator disables mounts and carts while dashing
+-slime rain's slime rain spawns from slightly higher up and has much finer randomness for horizontal velocity
+-corrupt heart no longer makes your attacks spam tiny eaters when you're dead
+-added bloodied skull (old man summon)
+-dungeon guardian's projectiles ignore i frames too
+-enchanted sword family has no more hyper mode meme, instead:
+	spins up faster as life decreases
+	is knockback immune
+	moves faster
+	more health
+	inflicts extra debuffs (purified, defenseless, infested)
+-snow balla throws snowballs much more aggressively
 
 -hornets and eaters fake death during queen bee/eater of worlds fights
 -bees can turn into big hornet variants too now

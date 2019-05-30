@@ -39,6 +39,9 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 return;
             }
 
+            if (player.mount.Active)
+                player.mount.Dismount(player);
+
             // Get dash location
             if (UpdateCount == 0)
             {
