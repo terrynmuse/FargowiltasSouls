@@ -4239,7 +4239,7 @@ namespace FargowiltasSouls
             if (pearlCounter >= 4)
             {
                 pearlCounter = 0;
-                if (Soulcheck.GetValue("Rainbow Trail") && player.velocity.Length() > 1)
+                if (Soulcheck.GetValue("Rainbow Trail") && player.velocity.Length() > 1 && player.whoAmI == Main.myPlayer)
                 {
                     int direction = player.velocity.X > 0 ? 1 : -1;
                     int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 30, 0, Main.myPlayer);

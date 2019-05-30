@@ -46,6 +46,7 @@
 -reduced blood zombie cursed on hit, but they inflict bloodthirsty too now
 -old man/skeletron drops the bloodied skull properly
 -nerfed rotting DOT (it gets inflicted for like five years)
+-rainbow trail shouldnt bork in MP
 
 -hornets and eaters fake death during queen bee/eater of worlds fights
 -bees can turn into big hornet variants too now
