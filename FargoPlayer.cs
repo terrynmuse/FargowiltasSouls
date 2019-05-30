@@ -1430,17 +1430,16 @@ namespace FargowiltasSouls
 
             if (Hexed)
             {
-                if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f)
+                if (Main.rand.Next(3) == 0 && drawInfo.shadow == 0f)
                 {
-                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.BubbleBlock, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
+                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.BubbleBlock, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2.5f);
                     Main.dust[dust].noGravity = true;
-                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity *= 2f;
                     Main.dust[dust].velocity.Y -= 0.5f;
                     Main.dust[dust].color = Color.GreenYellow;
                     Main.playerDrawDust.Add(dust);
-
-                    fullBright = true;
                 }
+                fullBright = true;
             }
 
             if (Infested)
@@ -1452,9 +1451,8 @@ namespace FargowiltasSouls
                     //Main.dust[dust].velocity *= 1.8f;
                     // Main.dust[dust].velocity.Y -= 0.5f;
                     Main.playerDrawDust.Add(dust);
-
-                    fullBright = true;
                 }
+                fullBright = true;
             }
 
             if (GodEater) //plague dust code but its pink
@@ -1511,6 +1509,27 @@ namespace FargowiltasSouls
                     Main.dust[d].velocity *= 2f;
                     Main.playerDrawDust.Add(d);
                 }
+            }
+
+            if (DeathMarked)
+            {
+                if (Main.rand.Next(2) == 0 && drawInfo.shadow == 0f)
+                {
+                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, 109, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 0, default(Color), 1.5f);
+                    Main.dust[dust].velocity.Y--;
+                    if (Main.rand.Next(3) != 0)
+                    {
+                        Main.dust[dust].noGravity = true;
+                        Main.dust[dust].scale += 0.5f;
+                        Main.dust[dust].velocity *= 3f;
+                        Main.dust[dust].velocity.Y -= 0.5f;
+                    }
+                    Main.playerDrawDust.Add(dust);
+                }
+                r *= 0.2f;
+                g *= 0.2f;
+                b *= 0.2f;
+                fullBright = true;
             }
         }
 

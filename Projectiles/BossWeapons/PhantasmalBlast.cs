@@ -18,8 +18,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
 		public override void SetDefaults()
 		{
-			projectile.width = 140;
-			projectile.height = 140;
+			projectile.width = 100;
+			projectile.height = 100;
 			projectile.aiStyle = -1;
             //aiType = ProjectileID.LunarFlare;
 			projectile.friendly = true;
@@ -56,6 +56,17 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 }
             }
             //if (++projectile.ai[0] > Main.projFrames[projectile.type] * 3) projectile.Kill();
+
+            if (projectile.localAI[0] == 0f)
+            {
+                projectile.localAI[0] = 1f;
+                Main.PlaySound(SoundID.Item88, projectile.Center);
+            }
+        }
+
+        public override bool CanDamage()
+        {
+            return projectile.frame < 4;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

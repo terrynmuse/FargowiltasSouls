@@ -23,12 +23,13 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void SetDefaults()
         {
-            projectile.width = 116;
-            projectile.height = 116;
+            projectile.width = 58;
+            projectile.height = 58;
             projectile.aiStyle = 19;
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.tileCollide = false;
+            projectile.ignoreWater = true;
             projectile.scale = 1.3f;
             projectile.hide = true;
             projectile.ownerHitCheck = true;
@@ -57,6 +58,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projOwner.itemTime = projOwner.itemAnimation;
             projectile.position.X = ownerMountedCenter.X - projectile.width / 2;
             projectile.position.Y = ownerMountedCenter.Y - projectile.height / 2;
+            // Change the spear position based off of the velocity and the movementFactor
+            projectile.position += projectile.velocity * MovementFactor;
             // As long as the player isn't frozen, the spear can move
             if (!projOwner.frozen)
             {
@@ -72,8 +75,6 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                     MovementFactor += 2.1f;
             }
 
-            // Change the spear position based off of the velocity and the movementFactor
-            projectile.position += projectile.velocity * MovementFactor;
             // When we reach the end of the animation, we can kill the spear projectile
             if (projOwner.itemAnimation == 0) projectile.Kill();
             // Apply proper rotation, with an offset of 135 degrees due to the sprite's rotation, notice the usage of MathHelper, use this class!
@@ -81,18 +82,11 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.rotation = (float) Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + MathHelper.ToRadians(135f);
             // Offset by 90 degrees here
             if (projectile.spriteDirection == -1) projectile.rotation -= MathHelper.ToRadians(90f);
-
-            if (projectile.ai[0] == 0f)
-            {
-                projectile.ai[0] = 3f;
-                projectile.netUpdate = true;
-            }
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            Main.PlaySound(SoundID.Item88, target.Center);
-            if (projectile.owner == Main.myPlayer)
+            if (projectile.owner == Main.myPlayer && (projectile.ai[1] != 0f || projectile.numHits % 6 == 0))
                 Projectile.NewProjectile(target.position + new Vector2(Main.rand.Next(target.width), Main.rand.Next(target.height)),
                     Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);

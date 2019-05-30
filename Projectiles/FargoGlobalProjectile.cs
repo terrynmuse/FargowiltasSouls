@@ -966,6 +966,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.RuneBlast:
                         target.AddBuff(mod.BuffType("FlamesoftheUniverse"), Main.rand.Next(30, 120));
+                        target.AddBuff(mod.BuffType("Hexed"), Main.rand.Next(60, 180));
                         break;
 
                     case ProjectileID.ThornBall:
