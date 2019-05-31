@@ -51,6 +51,7 @@ namespace FargowiltasSouls.Items.Misc
             recipe.AddIngredient(ItemID.SoulofLight, 7);
             recipe.AddIngredient(ItemID.SoulofNight, 7);
             recipe.AddIngredient(ItemID.PurificationPowder);
+            recipe.AddIngredient(mod.ItemType("VolatileEnergy"));
             recipe.AddIngredient(ItemID.Chest);
 
             recipe.AddTile(TileID.WorkBenches);

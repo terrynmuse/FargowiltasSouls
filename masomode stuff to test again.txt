@@ -18,6 +18,7 @@
 -corites no longer spawn near meteorites post-golem
 -meteor heads have 25% chance to be replaced with corites post-golem
 -reduced bee promotions odds from 50% to 33%
+-added a volatile energy to chest of the jungle recipe (so it's maso locked now)
 
 -added sprites for:
 	mystic skull
