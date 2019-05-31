@@ -2000,8 +2000,41 @@ namespace FargowiltasSouls.NPCs
 
                         if (npc.ai[1] == 2f)
                         {
+                            while (npc.buffType[0] != 0)
+                                npc.DelBuff(0);
                             npc.defense = 9999;
                             npc.damage = npc.defDamage * 15;
+                        }
+                        break;
+
+                    case NPCID.SkeletronHand:
+                        if (npc.life < npc.lifeMax / 2)
+                        {
+                            if (--Counter < 0)
+                            {
+                                Counter = (int)(5f + 25f * npc.life / npc.lifeMax);
+                                if (Main.netMode != 1)
+                                {
+                                    Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
+                                    speed.Normalize();
+                                    speed *= 6f;
+                                    speed.Y -= Math.Abs(speed.X) * 0.2f;
+                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 4, 0f, Main.myPlayer);
+                                }
+                            }
+                            if (--Counter2 < 0)
+                            {
+                                Counter2 = 300;
+                                if (npc.HasPlayerTarget && Main.netMode != 1)
+                                {
+                                    Vector2 speed = Main.player[npc.target].Center - npc.Center;
+                                    speed.X += Main.rand.Next(-20, 21);
+                                    speed.Y += Main.rand.Next(-20, 21);
+                                    speed.Normalize();
+                                    speed *= 3f;
+                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.Skull, npc.damage / 4, 0, Main.myPlayer, -1f, 0f);
+                                }
+                            }
                         }
                         break;
 

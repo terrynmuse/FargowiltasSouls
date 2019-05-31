@@ -47,6 +47,9 @@
 -old man/skeletron drops the bloodied skull properly
 -nerfed rotting DOT (it gets inflicted for like five years)
 -rainbow trail shouldnt bork in MP
+-skeletron hands shoot skulls and bones when below 50% life
+-skeletron DG cleanses debuffs more thoroughly
+-skeletron's bones glow in the dark a bit
 
 -hornets and eaters fake death during queen bee/eater of worlds fights
 -bees can turn into big hornet variants too now

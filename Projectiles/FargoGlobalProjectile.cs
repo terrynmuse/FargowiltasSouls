@@ -71,6 +71,11 @@ namespace FargowiltasSouls.Projectiles
                             projectile.tileCollide = false;
                         break;
 
+                    case ProjectileID.SkeletonBone:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.skeleBoss, NPCID.SkeletronHead))
+                            projectile.light = 0.5f;
+                        break;
+
                     default:
                         break;
                 }
