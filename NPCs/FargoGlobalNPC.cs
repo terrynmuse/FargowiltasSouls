@@ -645,7 +645,7 @@ namespace FargowiltasSouls.NPCs
 
                         case NPCID.Bee:
                         case NPCID.BeeSmall:
-                            if (Main.rand.Next(2) == 0)
+                            if (Main.rand.Next(3) == 0)
                                 switch (Main.hardMode ? Main.rand.Next(16, 21) : Main.rand.Next(16))
                                 {
                                     case 0: npcType = NPCID.Hornet; break;
@@ -670,6 +670,11 @@ namespace FargowiltasSouls.NPCs
                                     case 19: npcType = NPCID.LittleMossHornet; break;
                                     case 20: npcType = NPCID.TinyMossHornet; break;
                                 }
+                            break;
+
+                        case NPCID.MeteorHead:
+                            if (NPC.downedGolemBoss && Main.rand.Next(4) == 0)
+                                npcType = NPCID.SolarCorite;
                             break;
 
                         default:
@@ -4240,7 +4245,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Mimic:
                     case NPCID.PresentMimic:
                         npc.dontTakeDamage = false;
-                        if (npc.justHit)
+                        if (npc.justHit && Main.hardMode)
                             Counter = 20;
                         if (Counter != 0)
                         {
@@ -6564,7 +6569,7 @@ namespace FargowiltasSouls.NPCs
                 bool frostMoon = surface && night && Main.snowMoon;
                 bool pumpkinMoon = surface && night && Main.pumpkinMoon;
                 bool solarEclipse = surface && day && Main.eclipse;
-
+                bool lunarEvents = NPC.LunarApocalypseIsUp && (nebulaTower || vortexTower || stardustTower || solarTower);
 
                 //no work?
                 //is lava on screen
@@ -6603,17 +6608,15 @@ namespace FargowiltasSouls.NPCs
                             if (normalSpawn && NPC.downedBoss1)
                             {
                                 if (jungle)
-                                {
                                     pool[NPCID.DoctorBones] = .05f;
-                                }
 
                                 if (NPC.downedBoss3 && !BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
-                                    pool[NPCID.EyeofCthulhu] = Main.bloodMoon ? .002f : .001f;
+                                    pool[NPCID.EyeofCthulhu] = Main.bloodMoon ? .004f : .002f;
                             }
                         }
 
                         if (Main.slimeRain && NPC.downedBoss2 && !BossIsAlive(ref slimeBoss, NPCID.KingSlime))
-                            pool[NPCID.KingSlime] = 0.02f;
+                            pool[NPCID.KingSlime] = 0.04f;
                     }
                     else if (wideUnderground)
                     {
@@ -6637,9 +6640,7 @@ namespace FargowiltasSouls.NPCs
                         if (cavern)
                         {
                             if (noBiome && NPC.downedBoss3)
-                            {
                                 pool[NPCID.DarkCaster] = .025f;
-                            }
                         }
                     }
                     else if (underworld)
@@ -6650,9 +6651,7 @@ namespace FargowiltasSouls.NPCs
                     else if (sky)
                     {
                         if (normalSpawn)
-                        {
                             pool[NPCID.AngryNimbus] = .01f;
-                        }
                     }
 
                     //height-independent biomes
@@ -6662,7 +6661,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             pool[NPCID.SeekerHead] = .01f;
                             if (normalSpawn && NPC.downedBoss3 && !underworld && !BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
-                                pool[NPCID.EaterofWorldsHead] = .001f;
+                                pool[NPCID.EaterofWorldsHead] = .002f;
                         }
                     }
 
@@ -6672,7 +6671,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             pool[NPCID.IchorSticker] = .01f;
                             if (normalSpawn && NPC.downedBoss3 && !underworld && !BossIsAlive(ref brainBoss, NPCID.BrainofCthulhu))
-                                pool[NPCID.BrainofCthulhu] = .001f;
+                                pool[NPCID.BrainofCthulhu] = .002f;
                         }
                     }
 
@@ -6685,25 +6684,20 @@ namespace FargowiltasSouls.NPCs
                         pool[NPCID.AnomuraFungus] = .1f;
                     }
 
-                    if (Fargowiltas.NormalSpawn(spawnInfo) && !surface)
-                    {
+                    if (!surface && normalSpawn)
                         pool[NPCID.Mimic] = .01f;
-                    }
                 }
                 else //all the hardmode
                 {
                     //mutually exclusive world layers
-                    if (surface)
+                    if (surface && !lunarEvents)
                     {
-                        if (NPC.LunarApocalypseIsUp && (nebulaTower || vortexTower || stardustTower || solarTower))
-                            return;
-
                         if (day)
                         {
                             if (normalSpawn)
                             {
                                 if (noBiome && !BossIsAlive(ref slimeBoss, NPCID.KingSlime))
-                                    pool[NPCID.KingSlime] = Main.slimeRain ? .002f : .001f;
+                                    pool[NPCID.KingSlime] = Main.slimeRain ? .004f : .002f;
 
                                 if (NPC.downedMechBossAny && (noBiome || dungeon))
                                     pool[NPCID.CultistArcherWhite] = .025f;
@@ -6714,22 +6708,22 @@ namespace FargowiltasSouls.NPCs
                             if (Main.bloodMoon)
                             {
                                 pool[NPCID.ChatteringTeethBomb] = .1f;
-                                pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .005f : .02f;
+                                pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .01f : .04f;
 
                                 if (NPC.downedPlantBoss)
                                 {
                                     if (!BossIsAlive(ref retiBoss, NPCID.Retinazer) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref destroyBoss, NPCID.TheDestroyer))
                                     {
-                                        pool[NPCID.Retinazer] = .01f;
-                                        pool[NPCID.Spazmatism] = .01f;
-                                        pool[NPCID.TheDestroyer] = .01f;
-                                        pool[NPCID.SkeletronPrime] = .01f;
+                                        pool[NPCID.Retinazer] = .02f;
+                                        pool[NPCID.Spazmatism] = .02f;
+                                        pool[NPCID.TheDestroyer] = .02f;
+                                        pool[NPCID.SkeletronPrime] = .02f;
                                     }
                                 }
                             }
                             else //not blood moon
                             {
-                                if (noInvasion && !DD2Event.Ongoing)
+                                if (noInvasion && !oldOnesArmy)
                                     pool[NPCID.Clown] = 0.01f;
 
                                 if (noBiome)
@@ -6753,21 +6747,19 @@ namespace FargowiltasSouls.NPCs
                                 if (normalSpawn)
                                 {
                                     if (!BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
-                                        pool[NPCID.EyeofCthulhu] = .01f;
+                                        pool[NPCID.EyeofCthulhu] = .02f;
 
                                     if (NPC.downedMechBossAny)
-                                    {
                                         pool[NPCID.Probe] = 0.2f;
-                                    }
 
                                     if (NPC.downedPlantBoss) //GODLUL
                                     {
                                         if (!BossIsAlive(ref retiBoss, NPCID.Retinazer) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref destroyBoss, NPCID.TheDestroyer))
                                         {
-                                            pool[NPCID.Retinazer] = .0025f;
-                                            pool[NPCID.Spazmatism] = .0025f;
-                                            pool[NPCID.TheDestroyer] = .0025f;
-                                            pool[NPCID.SkeletronPrime] = .0025f;
+                                            pool[NPCID.Retinazer] = .005f;
+                                            pool[NPCID.Spazmatism] = .005f;
+                                            pool[NPCID.TheDestroyer] = .005f;
+                                            pool[NPCID.SkeletronPrime] = .005f;
                                         }
 
                                         if (!Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().SkullCharm)
@@ -6845,13 +6837,15 @@ namespace FargowiltasSouls.NPCs
 
                         if (hallow)
                         {
-                            pool[NPCID.RainbowSlime] = .001f;
+                            if (!Main.raining)
+                                pool[NPCID.RainbowSlime] = .001f;
                             pool[NPCID.GingerbreadMan] = .05f;
                         }
 
                         if (snow && noInvasion)
                         {
-                            pool[NPCID.IceGolem] = .01f;
+                            if (!Main.raining)
+                                pool[NPCID.IceGolem] = .01f;
                             pool[NPCID.SnowBalla] = .04f;
                             pool[NPCID.MisterStabby] = .04f;
                             pool[NPCID.SnowmanGangsta] = .04f;
@@ -6860,7 +6854,7 @@ namespace FargowiltasSouls.NPCs
                         if (ocean)
                         {
                             if (NPC.downedFishron && !BossIsAlive(ref fishBoss, NPCID.DukeFishron))
-                                pool[NPCID.DukeFishron] = .002f;
+                                pool[NPCID.DukeFishron] = .004f;
                         }
                         else if (desert)
                         {
@@ -6883,31 +6877,24 @@ namespace FargowiltasSouls.NPCs
                         if (cavern)
                         {
                             if (noBiome && NPC.downedBoss3)
-                            {
                                 pool[NPCID.DarkCaster] = .05f;
-                            }
                         }
 
                         if (dungeon && night && normalSpawn && !BossIsAlive(ref skeleBoss, NPCID.SkeletronHead))
-                            pool[NPCID.SkeletronHead] = .0025f;
+                            pool[NPCID.SkeletronHead] = .005f;
 
                         if (NPC.downedMechBossAny)
                         {
                             if (snow && !Main.dayTime) //frost moon underground
                             {
                                 if (underground)
-                                {
                                     pool[NPCID.Nutcracker] = .05f;
-                                }
 
                                 if (cavern)
                                 {
                                     pool[NPCID.Krampus] = .025f;
-
                                     if (NPC.downedChristmasIceQueen)
-                                    {
                                         pool[NPCID.IceQueen] = .005f;
-                                    }
                                 }
                             }
                         }
@@ -6923,7 +6910,7 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         if (NPC.downedAncientCultist && dungeon && !BossIsAlive(ref cultBoss, NPCID.CultistBoss))
-                            pool[NPCID.CultistBoss] = 0.001f;
+                            pool[NPCID.CultistBoss] = 0.002f;
                     }
                     else if (underworld)
                     {
@@ -6931,9 +6918,7 @@ namespace FargowiltasSouls.NPCs
                         pool[NPCID.BlazingWheel] = .05f;
 
                         if (!BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
-                        {
                             pool[NPCID.TheHungryII] = .03f;
-                        }
 
                         if (NPC.downedPlantBoss && !Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().SkullCharm)
                         {
@@ -6946,7 +6931,7 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         if (NPC.downedGolemBoss && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
-                            pool[NPCID.DD2Betsy] = .005f;
+                            pool[NPCID.DD2Betsy] = .01f;
                     }
                     else if (sky)
                     {
@@ -6972,7 +6957,7 @@ namespace FargowiltasSouls.NPCs
                             }
                             if (NPC.downedMoonlord && !BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
                             {
-                                pool[NPCID.MoonLordCore] = 0.001f;
+                                pool[NPCID.MoonLordCore] = 0.002f;
                             }
                         }
                     }
@@ -6981,32 +6966,27 @@ namespace FargowiltasSouls.NPCs
                     if (corruption)
                     {
                         if (normalSpawn && !BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
-                            pool[NPCID.EaterofWorldsHead] = .002f;
+                            pool[NPCID.EaterofWorldsHead] = .004f;
                     }
 
                     if (crimson)
                     {
                         if (normalSpawn && !BossIsAlive(ref brainBoss, NPCID.BrainofCthulhu))
-                            pool[NPCID.BrainofCthulhu] = .002f;
+                            pool[NPCID.BrainofCthulhu] = .004f;
                     }
 
                     if (jungle)
                     {
                         if (normalSpawn && !BossIsAlive(ref beeBoss, NPCID.QueenBee))
-                            pool[NPCID.QueenBee] = .0005f;
+                            pool[NPCID.QueenBee] = .001f;
 
                         if (!surface)
                         {
-                            pool[NPCID.BigMimicJungle] = .002f;
+                            pool[NPCID.BigMimicJungle] = .0025f;
 
                             if (NPC.downedGolemBoss && !BossIsAlive(ref NPC.plantBoss, NPCID.Plantera))
-                                pool[NPCID.Plantera] = .00025f;
+                                pool[NPCID.Plantera] = .0005f;
                         }
-                    }
-
-                    if (meteor && NPC.downedGolemBoss)
-                    {
-                        pool[NPCID.SolarCorite] = .025f;
                     }
 
                     if (spawnInfo.lihzahrd)

@@ -856,16 +856,16 @@ namespace FargowiltasSouls
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                     player.AddBuff(mod.BuffType("Lethargic"), 2);
 
+                Vector2 tileCenter = player.Center;
+                tileCenter.X /= 16;
+                tileCenter.Y /= 16;
+                Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
                 if (player.stickyBreak > 0)
                 {
-                    int tileX = (int)Main.player[player.whoAmI].position.X / 16;
-                    int tileY = (int)Main.player[player.whoAmI].position.Y / 16;
-                    Tile currentTile = Framing.GetTileSafely(tileX, tileY);
                     if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe && !PureHeart && !player.buffImmune[BuffID.Webbed])
                     {
                         player.AddBuff(BuffID.Webbed, 30);
                         //player.stickyBreak = 1000;
-
                         Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
                         int num3 = (int)vector.X;
                         int num4 = (int)vector.Y;
@@ -873,15 +873,18 @@ namespace FargowiltasSouls
                         if (Main.netMode == 1 && !Main.tile[num3, num4].active())
                             NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
                     }
-
                     webCounter++;
-
                     if (webCounter >= 30 && player.HasBuff(BuffID.Webbed))
                     {
                         player.DelBuff(player.FindBuffIndex(BuffID.Webbed));
                         player.stickyBreak = 0;
                         webCounter = 0;
                     }
+                }
+                if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
+                {
+                    if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles?
+                        player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), 10, 0, false, false, false, 0);
                 }
 
                 if (MasomodeCrystalTimer > 0)

@@ -12,6 +12,13 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-CACTUS INFLICTS 10 DAMAGE AAAAAAAAAAAAAAAAAAAAAAAAAA
+-doubled all boss spawn rates
+-mimics don't have cross necklace effect in pre-hm
+-corites no longer spawn near meteorites post-golem
+-meteor heads have 25% chance to be replaced with corites post-golem
+-reduced bee promotions odds from 50% to 33%
+
 -added sprites for:
 	mystic skull
 	pumpking's cape
