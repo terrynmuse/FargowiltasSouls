@@ -786,7 +786,7 @@ namespace FargowiltasSouls
                     player.AddBuff(BuffID.OnFire, Main.expertMode ? 1 : 2);
 
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
-                    player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, 300);
+                    player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode ? 1 : 2);
 
                 if (player.ZoneSnow && Main.hardMode && !Main.dayTime)
                 {
@@ -818,7 +818,7 @@ namespace FargowiltasSouls
                     if (!PureHeart)
                         player.AddBuff(BuffID.Darkness, Main.expertMode ? 1 : 2);
                     if(player.wet && !MutantAntibodies)
-                        player.AddBuff(BuffID.CursedInferno, 300);
+                        player.AddBuff(BuffID.CursedInferno, Main.expertMode ? 1 : 2);
                 }
 
                 if (player.ZoneCrimson && Main.hardMode)
