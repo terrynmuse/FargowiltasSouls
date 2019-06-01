@@ -84,6 +84,11 @@ namespace FargowiltasSouls.Projectiles
                         projectile.extraUpdates++;
                         break;
 
+                    case ProjectileID.BulletSnowman:
+                        projectile.tileCollide = false;
+                        projectile.timeLeft = 600;
+                        break;
+
                     default:
                         break;
                 }

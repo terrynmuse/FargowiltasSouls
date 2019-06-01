@@ -25,6 +25,8 @@
 -wyverns and red devils spawn lootless pre hardmode
 -eaters of souls shoot cursed fireballs
 -goblin thieves have doubled horiz move speed
+-maso pumpking/ice queen have clipped wings immune
+-everybody gangsta till the snowman's bullets ignore walls
 
 -added sprites for:
 	mystic skull

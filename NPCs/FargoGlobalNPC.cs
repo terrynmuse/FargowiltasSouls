@@ -237,6 +237,11 @@ namespace FargowiltasSouls.NPCs
                         npc.knockBackResist = 0f;
                         break;
 
+                    case NPCID.Pumpking:
+                    case NPCID.IceQueen:
+                        npc.buffImmune[mod.BuffType("ClippedWings")] = true;
+                        break;
+
 
                     #region maso bosses
                     case NPCID.ServantofCthulhu:
