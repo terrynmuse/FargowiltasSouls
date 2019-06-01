@@ -72,8 +72,16 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.SkeletonBone:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.skeleBoss, NPCID.SkeletronHead))
-                            projectile.light = 0.5f;
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.skeleBoss, NPCID.SkeletronHead)
+                            || FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.guardBoss, NPCID.DungeonGuardian))
+                        {
+                            projectile.light = 1f;
+                            projectile.scale = 1.5f;
+                        }
+                        break;
+
+                    case ProjectileID.UnholyTridentHostile:
+                        projectile.extraUpdates++;
                         break;
 
                     default:
@@ -1176,7 +1184,10 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.BulletSnowman:
                         target.AddBuff(BuffID.Chilled, Main.rand.Next(300));
                         break;
-                    
+
+                    case ProjectileID.UnholyTridentHostile:
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), Main.rand.Next(30, 120));
+                        break;
 
                     default:
                         break;

@@ -123,6 +123,12 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
+                    case NPCID.BigEater:
+                    case NPCID.EaterofSouls:
+                    case NPCID.LittleEater:
+                        Counter = Main.rand.Next(60);
+                        break;
+
                     case NPCID.PirateShipCannon:
                         Counter = Main.rand.Next(10);
                         break;
@@ -4906,6 +4912,24 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.EaterofSouls:
+                    case NPCID.BigEater:
+                    case NPCID.LittleEater:
+                        if (--Counter < 0)
+                        {
+                            Counter = 300;
+                            if (Main.netMode != 1 && npc.HasPlayerTarget && Main.player[npc.target].active && !Main.player[npc.target].dead)
+                            {
+                                Vector2 speed = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 12f;
+                                Projectile.NewProjectile(npc.Center, speed, ProjectileID.CursedFlameHostile, npc.damage / 4, 0f, Main.myPlayer);
+                            }
+                        }
+                        break;
+
+                    case NPCID.GoblinThief:
+                        npc.position.X += npc.velocity.X;
+                        break;
+
                     //drakin possible meme tm
                     /*if (!DD2Event.Ongoing)
                     {
@@ -5035,7 +5059,7 @@ namespace FargowiltasSouls.NPCs
 
             Player player = Main.player[t];
             //npc facing player target or if already started attack
-            if (npc.direction == (Math.Sign(player.position.X - npc.position.X)) || Stop > 0)
+            if (player.active && !player.dead && npc.direction == (Math.Sign(player.position.X - npc.position.X)) || Stop > 0)
             {
                 //start the pause
                 if (delay != 0 && Stop == 0)
@@ -6647,11 +6671,15 @@ namespace FargowiltasSouls.NPCs
                     {
                         pool[NPCID.LeechHead] = .05f;
                         pool[NPCID.BlazingWheel] = .1f;
+                        pool[NPCID.RedDevil] = .025f;
                     }
                     else if (sky)
                     {
                         if (normalSpawn)
-                            pool[NPCID.AngryNimbus] = .01f;
+                        {
+                            pool[NPCID.AngryNimbus] = .02f;
+                            pool[NPCID.WyvernHead] = .005f;
+                        }
                     }
 
                     //height-independent biomes
@@ -8028,6 +8056,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.IchorSticker:
                     case NPCID.SeekerHead:
                     case NPCID.Mimic:
+                    case NPCID.RedDevil:
+                    case NPCID.WyvernHead:
                         if (!Main.hardMode) //in pre-hm, fake death
                         {
                             npc.active = false;

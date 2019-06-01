@@ -20,6 +20,11 @@
 -reduced bee promotions odds from 50% to 33%
 -added a volatile energy to chest of the jungle recipe (so it's maso locked now)
 -standardized biome water debuffs (all end when you get out of water)
+-skeletron bones emit more light and are really FAT so theyre actually visible
+-red devil's unholy tridents have an extra update and inflict marked for death
+-wyverns and red devils spawn lootless pre hardmode
+-eaters of souls shoot cursed fireballs
+-goblin thieves have doubled horiz move speed
 
 -added sprites for:
 	mystic skull
