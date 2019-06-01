@@ -27,6 +27,8 @@
 -goblin thieves have doubled horiz move speed
 -maso pumpking/ice queen have clipped wings immune
 -everybody gangsta till the snowman's bullets ignore walls
+-boss scaling cap doubled
+-added boss count reset for debugging and testing
 
 -added sprites for:
 	mystic skull

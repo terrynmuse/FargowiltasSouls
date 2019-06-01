@@ -7601,12 +7601,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        if (FargoWorld.EyeCount < 280)
+                        if (FargoWorld.EyeCount < 560)
                             FargoWorld.EyeCount++;
                         break;
 
                     case NPCID.KingSlime:
-                        if (FargoWorld.SlimeCount < 280)
+                        if (FargoWorld.SlimeCount < 560)
                             FargoWorld.SlimeCount++;
                         break;
 
@@ -7636,12 +7636,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        if (FargoWorld.BrainCount < 280)
+                        if (FargoWorld.BrainCount < 560)
                             FargoWorld.BrainCount++;
                         break;
 
                     case NPCID.QueenBee:
-                        if (FargoWorld.BeeCount < 280)
+                        if (FargoWorld.BeeCount < 560)
                             FargoWorld.BeeCount++;
                         break;
 
@@ -7663,19 +7663,19 @@ namespace FargowiltasSouls.NPCs
                             npc.netUpdate = true;
                             return false;
                         }
-                        else if (FargoWorld.SkeletronCount < 280)
+                        else if (FargoWorld.SkeletronCount < 560)
                         {
                             FargoWorld.SkeletronCount++;
                         }
                         break;
 
                     case NPCID.WallofFlesh:
-                        if (FargoWorld.WallCount < 280)
+                        if (FargoWorld.WallCount < 560)
                             FargoWorld.WallCount++;
                         break;
 
                     case NPCID.TheDestroyer:
-                        if (FargoWorld.DestroyerCount < 120)
+                        if (FargoWorld.DestroyerCount < 240)
                             FargoWorld.DestroyerCount++;
                         break;
 
@@ -7699,29 +7699,29 @@ namespace FargowiltasSouls.NPCs
                             npc.netUpdate = true;
                             return false;
                         }
-                        else if (FargoWorld.PrimeCount < 120)
+                        else if (FargoWorld.PrimeCount < 240)
                         {
                             FargoWorld.PrimeCount++;
                         }
                         break;
 
                     case NPCID.Retinazer:
-                        if (FargoWorld.TwinsCount < 120 && !NPC.AnyNPCs(NPCID.Spazmatism))
+                        if (FargoWorld.TwinsCount < 240 && !NPC.AnyNPCs(NPCID.Spazmatism))
                             FargoWorld.TwinsCount++;
                         break;
 
                     case NPCID.Spazmatism:
-                        if (FargoWorld.TwinsCount < 120 && !NPC.AnyNPCs(NPCID.Retinazer))
+                        if (FargoWorld.TwinsCount < 240 && !NPC.AnyNPCs(NPCID.Retinazer))
                             FargoWorld.TwinsCount++;
                         break;
 
                     case NPCID.Plantera:
-                        if (FargoWorld.PlanteraCount < 120)
+                        if (FargoWorld.PlanteraCount < 240)
                             FargoWorld.PlanteraCount++;
                         break;
 
                     case NPCID.Golem:
-                        if (FargoWorld.GolemCount < 120)
+                        if (FargoWorld.GolemCount < 240)
                             FargoWorld.GolemCount++;
                         break;
 
@@ -7790,7 +7790,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
-                            if (FargoWorld.FishronCount < 120)
+                            if (FargoWorld.FishronCount < 240)
                                 FargoWorld.FishronCount++;
 
                             if (fishBossEX == npc.whoAmI) //drop loot here (avoids the vanilla "fishron defeated" message)
@@ -7816,12 +7816,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.CultistBoss:
-                        if (FargoWorld.CultistCount < 120)
+                        if (FargoWorld.CultistCount < 240)
                             FargoWorld.CultistCount++;
                         break;
 
                     case NPCID.MoonLordCore:
-                        if (FargoWorld.MoonlordCount < 120)
+                        if (FargoWorld.MoonlordCount < 240)
                             FargoWorld.MoonlordCount++;
                         break;
 
