@@ -3638,7 +3638,7 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         foreach (NPC l in Main.npc.Where(l => l.active && l.ai[1] == npc.whoAmI))
                                         {
-                                            switch (npc.type)
+                                            switch (l.type)
                                             {
                                                 case NPCID.PrimeCannon:
                                                 case NPCID.PrimeLaser:
@@ -4273,14 +4273,17 @@ namespace FargowiltasSouls.NPCs
                                 npc.localAI[0] = 0f;
                                 if (Main.netMode != 1)
                                 {
-                                    Vector2 speed = new Vector2(18f, 0f).RotatedBy(npc.rotation + Math.PI / 2);
-                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
+                                    Vector2 speed = new Vector2(14f, 0f).RotatedBy(npc.rotation + Math.PI / 2);
+                                    for (int i = -1; i <= 1; i++)
+                                        Projectile.NewProjectile(npc.Center, speed.RotatedBy(Math.PI / 12 * i), mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
                                 }
                             }
                         }
                         else
                         {
                             npc.localAI[0]++;
+                            if (masoBool[1])
+                                npc.ai[3]++;
                         }
                         goto case NPCID.PrimeLaser;
                     case NPCID.PrimeLaser:
@@ -4303,7 +4306,7 @@ namespace FargowiltasSouls.NPCs
                         else
                         {
                             if (masoBool[1])
-                                npc.position += npc.velocity / 3;
+                                npc.position += npc.velocity / 4;
                             npc.dontTakeDamage = true;
                         }
                         break;
@@ -5958,10 +5961,6 @@ namespace FargowiltasSouls.NPCs
                         if (npc.ai[0] >= 4f)
                             target.AddBuff(BuffID.CursedInferno, 300);
                         break;
-                    /*case NPCID.Retinazer:
-                        target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(120, 240));
-                        target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 240));
-                        break;*/
 
                     case NPCID.TheDestroyer:
                     case NPCID.TheDestroyerBody:

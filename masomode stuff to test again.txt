@@ -29,6 +29,10 @@
 -everybody gangsta till the snowman's bullets ignore walls
 -boss scaling cap doubled
 -added boss count reset for debugging and testing
+-prime cannon shoots triple star shots now and one of them goes into star mode much more often in phase 2
+-prime cannonballs inflict fused
+-fixed bug where 4 of prime's limbs weren't actually faster in phase 2 (theyre now moving 25% faster)
+-retinazer lasers inflict ichor
 
 -added sprites for:
 	mystic skull

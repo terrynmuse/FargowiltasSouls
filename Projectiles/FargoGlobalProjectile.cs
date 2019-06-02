@@ -1194,6 +1194,16 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType("MarkedforDeath"), Main.rand.Next(30, 120));
                         break;
 
+                    case ProjectileID.BombSkeletronPrime:
+                        if (!target.HasBuff(mod.BuffType("Fused")))
+                            target.AddBuff(mod.BuffType("Fused"), 240);
+                        break;
+
+                    case ProjectileID.DeathLaser:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.retiBoss, NPCID.Retinazer))
+                            target.AddBuff(BuffID.Ichor, Main.rand.Next(300, 600));
+                        break;
+
                     default:
                         break;
                 }
