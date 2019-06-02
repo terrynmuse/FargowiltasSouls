@@ -14,6 +14,12 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.buffNoSave[Type] = false;
         }
 
+        public override bool Autoload(ref string name, ref string texture)
+        {
+            texture = "FargowiltasSouls/Buffs/PlaceholderBuff";
+            return true;
+        }
+
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffImmune[mod.BuffType("Antisocial")] = true;
@@ -29,6 +35,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("FlippedHallow")] = true;
             player.buffImmune[mod.BuffType("Fused")] = true;
             player.buffImmune[mod.BuffType("GodEater")] = true;
+            player.buffImmune[mod.BuffType("Guilty")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.buffImmune[mod.BuffType("Infested")] = true;
             player.buffImmune[mod.BuffType("Jammed")] = true;
@@ -49,21 +56,10 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(NPC npc, ref int buffIndex)
         {
             FargoGlobalNPC fargoNPC = npc.GetGlobalNPC<FargoGlobalNPC>();
-            if (!fargoNPC.gotSadism) //reducing redundant debuffs wasting buff slots
-            {
-                fargoNPC.gotSadism = true;
-                npc.buffImmune[BuffID.Poisoned] = true;
-                npc.buffImmune[BuffID.Ichor] = true;
-                npc.buffImmune[BuffID.BetsysCurse] = true;
-                npc.buffImmune[BuffID.Electrified] = true;
-                npc.buffImmune[mod.BuffType("OceanicMaul")] = true;
-                npc.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
-                npc.buffImmune[mod.BuffType("Infested")] = true;
-                npc.buffImmune[mod.BuffType("Rotting")] = true;
-                npc.buffImmune[mod.BuffType("MutantNibble")] = true;
-            }
             npc.poisoned = true;
+            npc.venom = true;
             npc.ichor = true;
+            npc.onFire2 = true;
             npc.betsysCurse = true;
             fargoNPC.Electrified = true;
             fargoNPC.OceanicMaul = true;

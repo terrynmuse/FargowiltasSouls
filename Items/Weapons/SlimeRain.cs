@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,6 +36,17 @@ namespace FargowiltasSouls.Items.Weapons
             item.reuseDelay = 14;
         }
 
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine line2 in list)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = new Color(0, Main.DiscoG, 255);
+                }
+            }
+        }
+
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Slimed, 180);
@@ -44,16 +56,14 @@ namespace FargowiltasSouls.Items.Weapons
             ref int type, ref int damage, ref float knockBack)
         {
             float x;
-            float y = player.Center.Y - 400f;
-
+            float y = player.Center.Y - Main.rand.Next(500, 701);
             for (int i = 0; i < 5; i++)
             {
                 x = player.Center.X + 2f * Main.rand.Next(-400, 401);
-                int p = Projectile.NewProjectile(new Vector2(x, y), new Vector2(Main.rand.Next(-4, 4), 12f), type, damage, knockBack, player.whoAmI);
+                int p = Projectile.NewProjectile(x, y, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(15f, 20f), type, damage, knockBack, player.whoAmI);
                 if (p < 1000)
                     Main.projectile[p].timeLeft = 60;
             }
-
             return false;
         }
 
@@ -62,7 +72,7 @@ namespace FargowiltasSouls.Items.Weapons
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(mod.ItemType("SlimeSword"), 10);
-            recipe.AddIngredient(mod.ItemType("Sadism"));
+            recipe.AddIngredient(mod.ItemType("Sadism"), 15);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);

@@ -5,22 +5,22 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.Masomode
 {
-    public class BloodScythe : ModProjectile
+    public class BloodScytheFriendly : ModProjectile
     {
         public override string Texture => "Terraria/Projectile_44";
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Blood Sickle");
+            DisplayName.SetDefault("Blood Scythe");
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.DemonSickle);
-            aiType = ProjectileID.DemonSickle;
-            projectile.hostile = true;
-            projectile.friendly = false;
-            cooldownSlot = 1;
+            projectile.CloneDefaults(ProjectileID.DemonScythe);
+            aiType = ProjectileID.DemonScythe;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 10;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -28,10 +28,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
             return Color.Red;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.ShadowFlame, 300);
-            target.AddBuff(BuffID.Bleeding, 600);
         }
     }
 }

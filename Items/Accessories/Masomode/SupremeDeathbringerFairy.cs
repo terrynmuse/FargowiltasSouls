@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Slimed, Berserked, Lethargic, and Infested
 Increases damage by 10% and armor penetration by 10
 While dashing or running quickly you will create a trail of blood scythes
-Your attacks inflict Poisoned
+Your attacks inflict Venom
 Bees and Hornets become friendly
 Summons 2 Skeletron arms to whack enemies");
         }
@@ -33,6 +33,7 @@ Summons 2 Skeletron arms to whack enemies");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
+            fargoPlayer.SupremeDeathbringerFairy = true;
 
             //slimy shield
             player.buffImmune[BuffID.Slimed] = true;

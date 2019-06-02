@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,12 +35,23 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.shootSpeed = 18f;
         }
 
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine line2 in list)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = new Color(255, Main.DiscoG, 0);
+                }
+            }
+        }
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
             recipe.AddIngredient(ItemID.BoneKey, 100);
-            recipe.AddIngredient(mod.ItemType("Sadism"));
+            recipe.AddIngredient(mod.ItemType("Sadism"), 15);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);

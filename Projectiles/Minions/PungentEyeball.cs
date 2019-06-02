@@ -72,7 +72,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 {
                     projectile.localAI[0]++;
                     if (player.GetModPlayer<FargoPlayer>().MasochistSoul)
-                        projectile.localAI[0]++;
+                        projectile.localAI[0] += 2;
                 }
                 if (projectile.localAI[0] == chargeTime)
                 {

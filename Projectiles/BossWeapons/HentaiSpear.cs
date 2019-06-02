@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.BossWeapons
@@ -22,17 +23,20 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void SetDefaults()
         {
-            projectile.width = 116;
-            projectile.height = 116;
+            projectile.width = 58;
+            projectile.height = 58;
             projectile.aiStyle = 19;
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.tileCollide = false;
+            projectile.ignoreWater = true;
             projectile.scale = 1.3f;
             projectile.hide = true;
             projectile.ownerHitCheck = true;
             projectile.melee = true;
             projectile.alpha = 0;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 0;
         }
         // It appears that for this AI, only the ai0 field is used!
 
@@ -54,6 +58,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projOwner.itemTime = projOwner.itemAnimation;
             projectile.position.X = ownerMountedCenter.X - projectile.width / 2;
             projectile.position.Y = ownerMountedCenter.Y - projectile.height / 2;
+            // Change the spear position based off of the velocity and the movementFactor
+            projectile.position += projectile.velocity * MovementFactor;
             // As long as the player isn't frozen, the spear can move
             if (!projOwner.frozen)
             {
@@ -64,13 +70,28 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 }
 
                 if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3) // Somewhere along the item animation, make sure the spear moves back
+                {
                     MovementFactor -= 2.4f;
+                    if (projectile.localAI[0] == 0f)
+                    {
+                        projectile.localAI[0] = 1f;
+                        if (projectile.ai[1] == 0f && projectile.owner == Main.myPlayer) //only right click
+                        {
+                            Vector2 vel = Vector2.Normalize(projectile.velocity) * 8f;
+                            for (int i = -2; i <= 2; i++)
+                            {
+                                Projectile.NewProjectile(projectile.Center, vel.RotatedBy(Math.PI / 36 * i), mod.ProjectileType("PhantasmalBolt"),
+                                    projectile.damage, projectile.knockBack, projectile.owner);
+                            }
+                        }
+                    }
+                }
                 else // Otherwise, increase the movement factor
+                {
                     MovementFactor += 2.1f;
+                }
             }
 
-            // Change the spear position based off of the velocity and the movementFactor
-            projectile.position += projectile.velocity * MovementFactor;
             // When we reach the end of the animation, we can kill the spear projectile
             if (projOwner.itemAnimation == 0) projectile.Kill();
             // Apply proper rotation, with an offset of 135 degrees due to the sprite's rotation, notice the usage of MathHelper, use this class!
@@ -82,6 +103,9 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            if (projectile.owner == Main.myPlayer && (projectile.ai[1] != 0f || projectile.numHits % 6 == 0))
+                Projectile.NewProjectile(target.position + new Vector2(Main.rand.Next(target.width), Main.rand.Next(target.height)),
+                    Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
         }
     }

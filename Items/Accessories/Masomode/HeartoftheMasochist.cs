@@ -20,7 +20,7 @@ Grants immunity to Electrified, Nullification Curse, and most debuffs caused by 
 Increases damage, critical strike chance, and damage reduction by 10%
 Increases flight time by 100%
 You may periodically fire additional attacks depending on weapon type
-Your critical strikes inflict Betsy's Curse
+Your critical strikes inflict Rotting and Betsy's Curse
 Grants effects of Wet debuff while riding Cute Fishron and gravity control
 Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
         }
@@ -38,15 +38,8 @@ Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
-            player.meleeDamage += 0.1f;
-            player.rangedDamage += 0.1f;
-            player.magicDamage += 0.1f;
-            player.thrownDamage += 0.1f;
-            player.minionDamage += 0.1f;
-            player.meleeCrit += 10;
-            player.rangedCrit += 10;
-            player.magicCrit += 10;
-            player.thrownCrit += 10;
+            fargoPlayer.AllDamageUp(.1f);
+            fargoPlayer.AllCritUp(10);
             player.endurance += 0.1f;
 
             //pumpking's cape

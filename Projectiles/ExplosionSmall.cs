@@ -29,6 +29,8 @@ namespace FargowiltasSouls.Projectiles
             projectile.ignoreWater = true;
             projectile.extraUpdates = 1;
             aiType = ProjectileID.Bullet;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = -1;
         }
 
         public override void Kill(int timeLeft)

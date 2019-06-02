@@ -110,30 +110,35 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (damage < target.lifeMax / 25)
+            /*if (damage < target.lifeMax / 25)
                 damage = target.lifeMax / 25;
             if (projectile.owner == Main.myPlayer)
                 Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("FishNukeExplosion"),
-                    damage, projectile.knockBack * 2f, projectile.owner);
+                    damage, projectile.knockBack * 2f, projectile.owner);*/
 
             target.AddBuff(mod.BuffType("OceanicMaul"), 900);
             target.AddBuff(mod.BuffType("MutantNibble"), 900);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
         }
 
-        public override bool OnTileCollide(Vector2 oldVelocity)
+        /*public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (projectile.owner == Main.myPlayer)
                 Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("FishNukeExplosion"),
                     projectile.damage, projectile.knockBack * 2f, projectile.owner);
             return true;
-        }
+        }*/
 
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Item84, projectile.Center);
             if (projectile.owner == Main.myPlayer)
+            {
                 SpawnRazorbladeRing(8, 17f, projectile.velocity.X > 0 ? -1f : 1f);
+                if (projectile.owner == Main.myPlayer)
+                    Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("FishNukeExplosion"),
+                        projectile.damage, projectile.knockBack * 2f, projectile.owner);
+            }
             int num1 = 36;
             for (int index1 = 0; index1 < num1; ++index1)
             {
@@ -156,7 +161,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             for (int i = 0; i < max; i++)
             {
                 vel = vel.RotatedBy(rotation);
-                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage / 4,
+                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage / 2,
                     projectile.knockBack, projectile.owner, rotationModifier, 6f);
             }
         }

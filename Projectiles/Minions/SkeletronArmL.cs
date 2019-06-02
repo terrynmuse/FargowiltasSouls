@@ -41,7 +41,14 @@ namespace FargowiltasSouls.Projectiles.Minions
                 projectile.timeLeft = 2;
 
             if (projectile.damage == 0)
-                projectile.damage = (int)(18f * player.minionDamage);
+            {
+                projectile.damage = 18;
+                if (player.GetModPlayer<FargoPlayer>().SupremeDeathbringerFairy)
+                    projectile.damage = 24;
+                if (player.GetModPlayer<FargoPlayer>().MasochistSoul)
+                    projectile.damage = 48;
+                projectile.damage = (int)(projectile.damage * player.minionDamage);
+            }
 
             //tentacle head movement (homing)
             Vector2 playerVel = player.position - player.oldPosition;
@@ -108,7 +115,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                     {
                         projectile.velocity = Main.npc[target].Center - projectile.Center;
                         projectile.velocity.Normalize();
-                        projectile.velocity *= 12f;
+                        projectile.velocity *= 16f;
                         projectile.velocity += Main.npc[target].velocity / 2f;
                         projectile.velocity -= playerVel / 2f;
                         projectile.ai[0] *= -1f;

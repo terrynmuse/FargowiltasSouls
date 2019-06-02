@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,7 +21,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.useAnimation = 16;
             item.useTime = 16;
             item.shootSpeed = 3.7f;
-            item.knockBack = 4f;
+            item.knockBack = 7f;
             item.width = 32;
             item.height = 32;
             item.scale = 1f;
@@ -34,14 +35,51 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.autoReuse = true;
         }
 
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+
         public override bool CanUseItem(Player player)
         {
+            if (player.altFunctionUse == 2) //right click
+            {
+                item.useAnimation = 32;
+                item.useTime = 32;
+            }
+            else
+            {
+                item.useAnimation = 16;
+                item.useTime = 16;
+            }
             return player.ownedProjectileCounts[item.shoot] < 1; // This is to ensure the spear doesn't bug out when using autoReuse = true
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine line2 in list)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = new Color(0, 255, Main.DiscoB);
+                }
+            }
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, item.shoot, damage, knockBack, item.owner);
+            if (player.altFunctionUse == 2) //right click
+            {
+                Vector2 speed = new Vector2(speedX, speedY);
+                speed.Normalize();
+                speed *= 3.7f * 32 / player.itemAnimationMax;
+                speedX = speed.X;
+                speedY = speed.Y;
+                damage /= 3;
+                return true;
+            }
+
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, item.shoot, damage, knockBack, item.owner, 0f, 1f);
             Projectile.NewProjectile(position.X, position.Y, speedX * 5f, speedY * 5f, mod.ProjectileType("Dash"), damage, knockBack, item.owner);
             return false;
         }
@@ -53,7 +91,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
                 ModRecipe recipe = new ModRecipe(mod);
 
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerMoon"));
-                recipe.AddIngredient(mod.ItemType("Sadism"));
+                recipe.AddIngredient(mod.ItemType("Sadism"), 15);
 
                 recipe.AddTile(mod, "CrucibleCosmosSheet");
                 recipe.SetResult(this);

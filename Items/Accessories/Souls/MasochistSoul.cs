@@ -14,10 +14,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             DisplayName.SetDefault("Soul of the Masochist");
             Tooltip.SetDefault(
 @"'To inflict suffering, you must first embrace it'
-Increases wing time by 200%, and armor penetration by 50
-Increases max life by 50%, damage by 40%, crit rate by 30%, and damage reduction by 20%
+Increases wing time by 200%, armor penetration by 50, and movement speed by 20%
+Increases max life by 60%, damage by 50%, crit rate by 30%, and damage reduction by 20%
 Increases life regen drastically, increases max number of minions and sentries by 10
-Grants gravity control, fastfall, and immunity to all Masochist Mode debuffs and more
+Grants gravity control, fastfall, and immunity to knockback, all Masochist Mode debuffs, and more
 Grants autofire to all weapons, modifier protection, and you automatically use mana potions when needed
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks and inflict Sadism as a cocktail of Masochist Mode debuffs
@@ -53,24 +53,18 @@ Summons the aid of all Masochist Mode bosses to your side");
             fargoPlayer.MasochistSoul = true;
 
             //stat modifiers
-            player.meleeDamage += 0.4f;
-            player.rangedDamage += 0.4f;
-            player.magicDamage += 0.4f;
-            player.minionDamage += 0.4f;
-            player.thrownDamage += 0.4f;
-            player.meleeCrit += 30;
-            player.rangedCrit += 30;
-            player.magicCrit += 30;
-            player.thrownCrit += 30;
+            fargoPlayer.AllDamageUp(.5f);
+            fargoPlayer.AllCritUp(30);
             player.endurance += 0.2f;
             player.maxMinions += 10;
             player.maxTurrets += 10;
             player.armorPenetration += 50;
-            player.statLifeMax2 += player.statLifeMax / 2;
+            player.statLifeMax2 += player.statLifeMax * 3 / 5;
             player.lifeRegen += 7;
             player.lifeRegenTime += 7;
             player.lifeRegenCount += 7;
             fargoPlayer.wingTimeModifier += 2f;
+            player.moveSpeed += 0.2f;
 
             //slimy shield
             player.buffImmune[BuffID.Slimed] = true;
@@ -93,17 +87,19 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.npcTypeNoAggro[233] = true;
             player.npcTypeNoAggro[234] = true;
             player.npcTypeNoAggro[235] = true;
-            //fargoPlayer.QueenStinger = true;
+            fargoPlayer.QueenStinger = true;
 
             //necromantic brew
             if (Soulcheck.GetValue("Skeletron Arms Minion"))
                 player.AddBuff(mod.BuffType("SkeletronArms"), 2);
 
+            //supreme deathbringer fairy
+            fargoPlayer.SupremeDeathbringerFairy = true;
+
             //pure heart
             fargoPlayer.PureHeart = true;
 
             //corrupt heart
-            //player.moveSpeed += 0.1f;
             fargoPlayer.CorruptHeart = true;
             if (fargoPlayer.CorruptHeartCD > 0)
                 fargoPlayer.CorruptHeartCD -= 2;
@@ -133,7 +129,6 @@ Summons the aid of all Masochist Mode bosses to your side");
                 player.npcTypeNoAggro[NPCID.RaggedCaster] = true;
                 player.npcTypeNoAggro[NPCID.RaggedCasterOpenCoat] = true;
             }
-            fargoPlayer.LumpOfFlesh = true;
             if (Soulcheck.GetValue("Pungent Eye Minion"))
                 player.AddBuff(mod.BuffType("PungentEyeball"), 2);
 
@@ -154,6 +149,7 @@ Summons the aid of all Masochist Mode bosses to your side");
                     fargoPlayer.FrigidGemstoneCD -= 5;
             }
 
+            //wretched pouch
             player.buffImmune[BuffID.ShadowFlame] = true;
             player.GetModPlayer<FargoPlayer>().WretchedPouch = true;
 
@@ -237,7 +233,6 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("NullificationCurse")] = true;
 
             //cyclonic fin
-            player.buffImmune[BuffID.Frozen] = true;
             fargoPlayer.CyclonicFin = true;
             if (fargoPlayer.CyclonicFinCD > 0)
                 fargoPlayer.CyclonicFinCD -= 2;
@@ -317,6 +312,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("FlippedHallow")] = true;
             player.buffImmune[mod.BuffType("Fused")] = true;
             player.buffImmune[mod.BuffType("GodEater")] = true;
+            player.buffImmune[mod.BuffType("Guilty")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.buffImmune[mod.BuffType("Infested")] = true;
             player.buffImmune[mod.BuffType("Jammed")] = true;

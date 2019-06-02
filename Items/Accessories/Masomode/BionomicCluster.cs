@@ -14,8 +14,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Bionomic Cluster");
             Tooltip.SetDefault(@"'The amalgamate born of a thousand common enemies'
-Grants immunity to Frostburn, Shadowflame, Squeaky Toy, Purified, and Mighty Wind
-Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and Suffocation
+Grants immunity to Frostburn, Shadowflame, Squeaky Toy, Guilty, Mighty Wind, and Suffocation
+Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and Purified
 Grants autofire to all weapons and immunity to enemies that steal items or coins
 Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies
 Your attacks summon Frostfireballs to attack your enemies
@@ -70,12 +70,12 @@ Summons a friendly rainbow slime");
 
             //squeaky toy
             player.buffImmune[mod.BuffType("SqueakyToy")] = true;
-            player.buffImmune[mod.BuffType("Purified")] = true;
+            player.buffImmune[mod.BuffType("Guilty")] = true;
             fargoPlayer.SqueakyAcc = true;
 
             //tribal charm
             player.buffImmune[BuffID.Webbed] = true;
-            player.buffImmune[BuffID.Suffocation] = true;
+            player.buffImmune[mod.BuffType("Purified")] = true;
             fargoPlayer.TribalCharm = true;
 
             //mystic skull
@@ -96,7 +96,7 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(mod.ItemType("ConcentratedRainbowMatter"));
             recipe.AddIngredient(mod.ItemType("DragonFang"));
             recipe.AddIngredient(mod.ItemType("FrigidGemstone"));
-            recipe.AddIngredient(mod.ItemType("SandofTime"));
+            recipe.AddIngredient(mod.ItemType("SandsofTime"));
             recipe.AddIngredient(mod.ItemType("SqueakyToy"));
             recipe.AddIngredient(mod.ItemType("TribalCharm"));
             recipe.AddIngredient(mod.ItemType("MysticSkull"));

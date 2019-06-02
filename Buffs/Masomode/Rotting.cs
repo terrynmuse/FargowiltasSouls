@@ -24,10 +24,9 @@ namespace FargowiltasSouls.Buffs.Masomode
 
             player.statLifeMax2 -= player.statLifeMax / 5;
             player.statDefense -= 10;
-            player.endurance -= 10;
-
-            if (player.statDefense < 0) player.statDefense = 0;
-            if (player.endurance < 0) player.endurance = 0;
+            //player.endurance -= 0.1f;
+            //if (player.statDefense < 0) player.statDefense = 0;
+            //if (player.endurance < 0) player.endurance = 0;
 
             player.meleeDamage -= 0.1f;
             player.magicDamage -= 0.1f;

@@ -35,7 +35,9 @@ namespace FargowiltasSouls
         internal bool DBTLoaded;
 
         public UserInterface CustomResources;
-        internal Soulcheck SoulCheck; 
+        internal Soulcheck SoulCheck;
+
+        internal static readonly Dictionary<int, int> ModProjDict = new Dictionary<int, int>();
 
         public Fargowiltas()
         {
@@ -130,6 +132,29 @@ namespace FargowiltasSouls
                 if (bossChecklist != null)
                 {
                     bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 14.1f, (Func<bool>)(() => FargoWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
+                }
+
+                if (ThoriumLoaded)
+                {
+                    Mod thorium = ModLoader.GetMod("ThoriumMod");
+                    ModProjDict.Add(thorium.ProjectileType("IFO"), 1);
+                    ModProjDict.Add(thorium.ProjectileType("BioFeederPet"), 2);
+                    ModProjDict.Add(thorium.ProjectileType("BlisterPet"), 3);
+                    ModProjDict.Add(thorium.ProjectileType("WyvernPet"), 4);
+                    ModProjDict.Add(thorium.ProjectileType("SupportLantern"), 5);
+                    ModProjDict.Add(thorium.ProjectileType("LockBoxPet"), 6);
+                    ModProjDict.Add(thorium.ProjectileType("Devil"), 7);
+                    ModProjDict.Add(thorium.ProjectileType("Angel"), 8);
+                    ModProjDict.Add(thorium.ProjectileType("LifeSpirit"), 9);
+                    ModProjDict.Add(thorium.ProjectileType("HolyGoat"), 10);
+                    ModProjDict.Add(thorium.ProjectileType("MinionSapling"), 11);
+                    ModProjDict.Add(thorium.ProjectileType("SnowyOwlPet"), 12);
+                    ModProjDict.Add(thorium.ProjectileType("JellyfishPet"), 13);
+                    ModProjDict.Add(thorium.ProjectileType("LilMog"), 14);
+                    ModProjDict.Add(thorium.ProjectileType("Maid1"), 15);
+                    ModProjDict.Add(thorium.ProjectileType("PinkSlime"), 16);
+                    ModProjDict.Add(thorium.ProjectileType("ShinyPet"), 17);
+                    ModProjDict.Add(thorium.ProjectileType("DrachmaBag"), 18);
                 }
             }
             catch (Exception e)
@@ -325,7 +350,12 @@ namespace FargowiltasSouls
                 ItemID.YellowPhasesaber);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyPhasesaber", group);
 
-            if(ThoriumLoaded)
+            //vanilla butterflies
+            group = new RecipeGroup(() => Lang.misc[37] + " Butterfly", ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly,
+                ItemID.RedAdmiralButterfly, ItemID.SulphurButterfly, ItemID.TreeNymphButterfly, ItemID.UlyssesButterfly, ItemID.ZebraSwallowtailButterfly);
+            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyButterfly", group);
+
+            if (ThoriumLoaded)
             {
                 Mod thorium = ModLoader.GetMod("ThoriumMod");
 
@@ -392,8 +422,13 @@ namespace FargowiltasSouls
                     if (Main.netMode == 1)
                     {
                         byte slime = reader.ReadByte();
-                        Main.npc[slime].scale = reader.ReadSingle();
+                        Main.npc[slime].position = Main.npc[slime].Center;
+                        Main.npc[slime].width = (int)(Main.npc[slime].width / Main.npc[slime].scale);
+                        Main.npc[slime].height = (int)(Main.npc[slime].height / Main.npc[slime].scale);
+                        Main.npc[slime].scale = 1f;
+                        Main.npc[slime].Center = Main.npc[slime].position;
                         Main.npc[slime].lifeMax = reader.ReadInt32();
+                        Main.npc[slime].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
                     }
                     break;
 
@@ -403,6 +438,15 @@ namespace FargowiltasSouls
                         int ML = reader.ReadByte();
                         Main.npc[ML].GetGlobalNPC<FargoGlobalNPC>().Counter = reader.ReadInt32();
                         FargoGlobalNPC.masoStateML = reader.ReadByte();
+                    }
+                    break;
+
+                case 5: //retinazer laser MP sync
+                    if (Main.netMode == 1)
+                    {
+                        int reti = reader.ReadByte();
+                        Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = reader.ReadBoolean();
+                        Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().Counter = reader.ReadInt32();
                     }
                     break;
 

@@ -41,7 +41,11 @@ namespace FargowiltasSouls.Projectiles.Minions
                 projectile.timeLeft = 2;
 
             if (projectile.damage == 0)
+            {
                 projectile.damage = (int)(50f * player.minionDamage);
+                if (player.GetModPlayer<FargoPlayer>().MasochistSoul)
+                    projectile.damage *= 2;
+            }
 
             projectile.ai[0] -= (float)Math.PI / 60f;
             projectile.Center = player.Center + new Vector2(60, 0).RotatedBy(projectile.ai[0]);
@@ -54,9 +58,10 @@ namespace FargowiltasSouls.Projectiles.Minions
                 {
                     if (player.controlUseItem)
                     {
-                        projectile.localAI[0] = 60f;
+                        projectile.localAI[0] = player.GetModPlayer<FargoPlayer>().MasochistSoul ? 30f : 60f;
                         Projectile.NewProjectile(projectile.Center, new Vector2(8f, 0f).RotatedBy(projectile.rotation),
                             mod.ProjectileType("ProbeLaser"), projectile.damage / 5 * 8, 0f, projectile.owner);
+                        projectile.netUpdate = true;
                     }
                     else
                     {
@@ -64,7 +69,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                     }
                 }
 
-                if (++projectile.localAI[1] > 15f) //needed for rotation sync in multi
+                if (++projectile.localAI[1] > 20f) //needed for rotation sync in multi
                 {
                     projectile.localAI[1] = 0f;
                     projectile.netUpdate = true;

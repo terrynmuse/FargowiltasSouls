@@ -49,7 +49,6 @@ Makes armed and magic skeletons less hostile outside the Dungeon");
                 player.npcTypeNoAggro[NPCID.RaggedCaster] = true;
                 player.npcTypeNoAggro[NPCID.RaggedCasterOpenCoat] = true;
             }
-            player.GetModPlayer<FargoPlayer>().LumpOfFlesh = true;
             player.maxMinions += 2;
             player.maxTurrets += 2;
             if (Soulcheck.GetValue("Pungent Eye Minion"))

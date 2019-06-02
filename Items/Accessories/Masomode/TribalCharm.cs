@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Tribal Charm");
             Tooltip.SetDefault(@"'It feels protective'
-Grants immunity to Webbed
+Grants immunity to Webbed and Purified
 Grants autofire to all weapons");
         }
 
@@ -29,6 +29,7 @@ Grants autofire to all weapons");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[BuffID.Webbed] = true;
+            player.buffImmune[mod.BuffType("Purified")] = true;
             player.GetModPlayer<FargoPlayer>().TribalCharm = true;
         }
     }
