@@ -33,7 +33,7 @@
 -prime cannonballs inflict fused
 -fixed bug where 4 of prime's limbs weren't actually faster in phase 2 (theyre now moving 25% faster)
 -retinazer lasers inflict ichor
--HORNETS HAVE A 33% CHANCE TO IGNORE WALLS
+-HORNETS HAVE A 50% CHANCE TO IGNORE WALLS
 -eaters of souls can also ignore walls
 -jungle creepers can now also shoot webs when on walls
 
