@@ -6292,6 +6292,11 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
                         break;
 
+                    case NPCID.WalkingAntlion:
+                        if (target.HasBuff(BuffID.Dazed))
+                            target.AddBuff(BuffID.Dazed, Main.rand.Next(60));
+                        break;
+
                     default:
                         break;
                 }
@@ -6737,7 +6742,11 @@ namespace FargowiltasSouls.NPCs
                     }
 
                     if (!surface && normalSpawn)
+                    {
                         pool[NPCID.Mimic] = .01f;
+                        if (desert)
+                            pool[NPCID.DuneSplicerHead] = .005f;
+                    }
                 }
                 else //all the hardmode
                 {
@@ -8082,6 +8091,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Mimic:
                     case NPCID.RedDevil:
                     case NPCID.WyvernHead:
+                    case NPCID.DuneSplicerHead:
+                    case NPCID.AngryNimbus:
                         if (!Main.hardMode) //in pre-hm, fake death
                         {
                             npc.active = false;

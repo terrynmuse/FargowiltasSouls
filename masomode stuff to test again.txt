@@ -36,6 +36,9 @@
 -HORNETS HAVE A 50% CHANCE TO IGNORE WALLS
 -eaters of souls can also ignore walls
 -jungle creepers can now also shoot webs when on walls
+-antlion charger now inflicts short dazed
+-dune splicers are a rare pre-hm lootless spawn
+-fixed angry nimbus potentially dropping things pre-hm
 
 -added sprites for:
 	mystic skull
