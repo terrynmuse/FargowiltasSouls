@@ -889,6 +889,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.BloodCrawlerWall:
                     case NPCID.WallCreeperWall:
+                    case NPCID.JungleCreeperWall:
                         Counter++;
                         if (Counter >= 600)
                             Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, npc.damage / 6, 0);
@@ -4932,6 +4933,25 @@ namespace FargowiltasSouls.NPCs
                                 Projectile.NewProjectile(npc.Center, speed, ProjectileID.CursedFlameHostile, npc.damage / 4, 0f, Main.myPlayer);
                             }
                         }
+                        goto case NPCID.Hornet;
+                    case NPCID.Hornet:
+                    case NPCID.HornetFatty:
+                    case NPCID.HornetHoney:
+                    case NPCID.HornetLeafy:
+                    case NPCID.HornetSpikey:
+                    case NPCID.HornetStingy:
+                    case NPCID.MossHornet:
+                        if (!masoBool[0] && ++Counter2 > 30) //also used by eaters of souls
+                        {
+                            masoBool[0] = true;
+                            Counter2 = 0;
+                            if (Main.netMode != 1 && Main.rand.Next(2) == 0)
+                            {
+                                masoBool[1] = true;
+                                NetUpdateMaso(npc.whoAmI);
+                            }
+                        }
+                        npc.noTileCollide = masoBool[1];
                         break;
 
                     case NPCID.GoblinThief:
