@@ -7,11 +7,6 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
-        public override bool Autoload(ref string name)
-        {
-            return false;
-        }
-
         public override void SetDefaults()
         {
             item.width = 14; //

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.Minions
@@ -61,25 +62,18 @@ namespace FargowiltasSouls.Projectiles.Minions
 
             int num1038 = 30;
 
-            //D U S T
-            /*if (Main.rand.Next(30) == 0)
-            {
-                int num1039 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 0, default(Color), 2f);
-                Main.dust[num1039].noGravity = true;
-                Main.dust[num1039].fadeIn = 2f;
-                Point point4 = Main.dust[num1039].position.ToTileCoordinates();
-                if (WorldGen.InWorld(point4.X, point4.Y, 5) && WorldGen.SolidTile(point4.X, point4.Y))
-                {
-                    Main.dust[num1039].noLight = true;
-                }
-            }*/
+            //dust!
+            int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f,
+                projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+            Main.dust[dustId].noGravity = true;
+            int dustId3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f,
+                projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+            Main.dust[dustId3].noGravity = true;
 
             bool flag67 = false;
             Vector2 value67 = Vector2.Zero;
             Vector2 arg_2D865_0 = Vector2.Zero;
             float num1052 = 0f;
-            float scaleFactor16 = 0f;
-            float scaleFactor17 = 1f;
             if (projectile.ai[1] == 1f)
             {
                 projectile.ai[1] = 0f;
@@ -94,14 +88,8 @@ namespace FargowiltasSouls.Projectiles.Minions
                 Vector2 arg_2D957_0 = Main.projectile[byUUID].velocity;
                 num1052 = Main.projectile[byUUID].rotation;
                 float num1053 = MathHelper.Clamp(Main.projectile[byUUID].scale, 0f, 50f);
-                scaleFactor17 = num1053;
-                scaleFactor16 = 16f;
                 int arg_2D9AD_0 = Main.projectile[byUUID].alpha;
                 Main.projectile[byUUID].localAI[0] = projectile.localAI[0] + 1f;
-                //if (Main.projectile[byUUID].type != mod.ProjectileType("DestroyerHead"))
-                //{
-                //    Main.projectile[byUUID].localAI[1] = projectile.whoAmI;
-                //}
             }
 
             if (!flag67) return;
@@ -125,11 +113,24 @@ namespace FargowiltasSouls.Projectiles.Minions
 
             projectile.rotation = vector134.ToRotation() + 1.57079637f;
             projectile.position = projectile.Center;
-            projectile.scale = scaleFactor17;
             projectile.width = projectile.height = (int) (num1038 * projectile.scale);
             projectile.Center = projectile.position;
-            if (vector134 != Vector2.Zero) projectile.Center = value67 - Vector2.Normalize(vector134) * scaleFactor16 * scaleFactor17;
+            if (vector134 != Vector2.Zero) projectile.Center = value67 - Vector2.Normalize(vector134) * 36;
             projectile.spriteDirection = vector134.X > 0f ? 1 : -1;
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 60, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 2f;
+                dust = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 60, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100);
+                Main.dust[dust].velocity *= 2f;
+            }
         }
     }
 }

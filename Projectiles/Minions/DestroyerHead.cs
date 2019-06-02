@@ -46,22 +46,14 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override void AI()
         {
-            //dust!
-            int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f,
-                projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
-            Main.dust[dustId].noGravity = true;
-            int dustId3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f,
-                projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
-            Main.dust[dustId3].noGravity = true;
-
             //keep the head looking right
             projectile.rotation = projectile.velocity.ToRotation() + 1.57079637f;
             projectile.spriteDirection = projectile.velocity.X > 0f ? 1 : -1;
 
             const int aislotHomingCooldown = 0;
-            const int homingDelay = 10;
-            const float desiredFlySpeedInPixelsPerFrame = 20;
-            const float amountOfFramesToLerpBy = 40; // minimum of 1, please keep in full numbers even though it's a float!
+            const int homingDelay = 30;
+            const float desiredFlySpeedInPixelsPerFrame = 40;
+            const float amountOfFramesToLerpBy = 80; // minimum of 1, please keep in full numbers even though it's a float!
 
             projectile.ai[aislotHomingCooldown]++;
             if (projectile.ai[aislotHomingCooldown] > homingDelay)
@@ -100,6 +92,20 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
 
             return selectedTarget;
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 60, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 2f;
+                dust = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 60, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100);
+                Main.dust[dust].velocity *= 2f;
+            }
         }
     }
 }

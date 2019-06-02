@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Boreal Wood Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'The cooler wood'
 Every 5th attack will be accompanied by a snowball
 While in the Snow Biome, you shoot 5 snowballs instead");
         }

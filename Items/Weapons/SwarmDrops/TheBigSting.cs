@@ -29,7 +29,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.rare = 5;
             item.autoReuse = true;
             item.shoot = ProjectileID.HornetStinger;
-            //item.useAmmo = ItemID.Stinger;
+            item.useAmmo = ItemID.Stinger;
             item.shootSpeed = 20f;
         }
 
@@ -48,6 +48,11 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-10, 0);
+        }
+
+        public override bool ConsumeAmmo(Player p)
+        {
+            return Main.rand.Next(4) != 0;
         }
 
         public override void AddRecipes()

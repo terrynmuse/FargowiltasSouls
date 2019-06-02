@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Ebonwood Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Untapped potential'
 You have an aura of Shadowflame
 While in the Corruption, the radius is doubled
 ");

@@ -18,7 +18,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Rain Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Come again some other day'
 A miniature storm may appear when an enemy dies");
         }
 
