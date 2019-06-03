@@ -4164,7 +4164,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             Timer = Main.rand.Next(300);
 
-                            if (npc.HasPlayerTarget && Main.netMode != 1 && Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].head))
+                            if (npc.HasPlayerTarget && Main.netMode != 1)
                             {
                                 Vector2 speed = Main.player[npc.target].Center - npc.Center;
                                 speed.Y -= Math.Abs(speed.X) * 0.1f; //account for gravity

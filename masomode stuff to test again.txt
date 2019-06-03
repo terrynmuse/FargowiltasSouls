@@ -48,6 +48,7 @@
 -brain of cthulhu self-cleanses debuffs (cannot use them to distinguish the real one)
 -BRAIN OF CTHULHU'S ILLUSIONS ARE ON THE MINIMAP TOO
 -added something to hopefully make destroyer segments not glitch out because of debuffs as much
+-boc's creepers shoot ichor whether or not they think they have line of sight
 
 -added sprites for:
 	mystic skull
