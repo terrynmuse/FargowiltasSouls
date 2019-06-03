@@ -4146,7 +4146,7 @@ namespace FargowiltasSouls.NPCs
                                     n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, 1, -1);
                                     if (n != 200 && Main.netMode == 2)
                                         NetMessage.SendData(23, -1, -1, null, n);
-                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, -1, -1);
+                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, 1, 1);
                                     if (n != 200 && Main.netMode == 2)
                                         NetMessage.SendData(23, -1, -1, null, n);
                                 }
@@ -4611,12 +4611,12 @@ namespace FargowiltasSouls.NPCs
                             }
                             Counter = 0;
                         }
-                        if (Main.netMode != 1 && Main.rand.Next(6) == 0)
+                        if (npc.velocity.Y == 0f && Main.netMode != 1 && Main.rand.Next(6) == 0)
                         {
                             int p = Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + npc.height,
-                                Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f), ProjectileID.HallowSpray, 0, 0f, Main.myPlayer, 8f);
+                                Main.rand.NextFloat(-0.5f, 0.5f), Main.rand.NextFloat(-0.5f, 0.5f), ProjectileID.HallowSpray, 0, 0f, Main.myPlayer, 8f);
                             if (p != 1000)
-                                Main.projectile[p].timeLeft = 30;
+                                Main.projectile[p].timeLeft = 6;
                         }
                         break;
 
@@ -4989,10 +4989,9 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.VileSpit:
                         if (Main.netMode != 1 && Main.rand.Next(6) == 0)
                         {
-                            int p = Projectile.NewProjectile(npc.Center, npc.velocity * .5f + Main.rand.NextVector2Square(-1f, 1f),
-                                ProjectileID.CorruptSpray, 0, 0f, Main.myPlayer, 8f);
+                            int p = Projectile.NewProjectile(npc.Center, npc.velocity, ProjectileID.CorruptSpray, 0, 0f, Main.myPlayer, 8f);
                             if (p != 1000)
-                                Main.projectile[p].timeLeft = 30;
+                                Main.projectile[p].timeLeft = 6;
                         }
                         break;
 

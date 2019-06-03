@@ -9,8 +9,6 @@ namespace FargowiltasSouls.NPCs
     [AutoloadBossHead]
     public class BrainIllusion : ModNPC
     {
-        public override string Texture => "FargowiltasSouls/Projectiles/Explosion";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Brain of Cthulhu");
