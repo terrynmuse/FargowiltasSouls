@@ -52,6 +52,8 @@
 -changed my mind again, prime cannon just shoots single stars
 -prime cannon switches to star mode twice as often always (not just p2 arm)
 -sands of time gives cactus damage immune
+-removed skeletron and skeletron prime's DG form immunities
+-changed skeletron's bone attacks from sprays to rings
 
 -added sprites for:
 	mystic skull

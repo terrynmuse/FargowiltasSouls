@@ -1991,30 +1991,27 @@ namespace FargowiltasSouls.NPCs
                         if (npc.ai[1] == 1f || npc.ai[1] == 2f) //spinning or DG mode
                         {
                             npc.localAI[2]++;
-
                             float ratio = (float)npc.life / npc.lifeMax;
-                            float threshold = 3f + 17f * ratio;
+                            float threshold = 10f + 20f * ratio;
                             if (npc.localAI[2] >= threshold) //spray bones
                             {
                                 npc.localAI[2] = 0f;
-
-                                if (threshold > 0)
+                                if (threshold > 0 && npc.HasPlayerTarget && Main.netMode != 1)
                                 {
-                                    Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
-                                    speed.Normalize();
-                                    speed *= 6f;
-                                    speed += npc.velocity * 1.25f * (1f - ratio);
-                                    speed.Y -= Math.Abs(speed.X) * 0.2f;
-                                    if (Main.netMode != 1)
-                                        Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 9 * 2, 0f, Main.myPlayer);
+                                    Vector2 speed = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 6f;
+                                    for (int i = 0; i < 8; i++)
+                                    {
+                                        Vector2 vel = speed.RotatedBy(Math.PI * 2 / 8 * i);
+                                        vel += npc.velocity * 1.25f * (1f - ratio);
+                                        vel.Y -= Math.Abs(vel.X) * 0.2f;
+                                        Projectile.NewProjectile(npc.Center, vel, ProjectileID.SkeletonBone, npc.damage / 9 * 2, 0f, Main.myPlayer);
+                                    }
                                 }
                             }
                         }
 
                         if (npc.ai[1] == 2f)
                         {
-                            while (npc.buffType[0] != 0)
-                                npc.DelBuff(0);
                             npc.defense = 9999;
                             npc.damage = npc.defDamage * 15;
                         }
@@ -2025,14 +2022,16 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (--Counter < 0)
                             {
-                                Counter = (int)(5f + 25f * npc.life / npc.lifeMax);
-                                if (Main.netMode != 1)
+                                Counter = (int)(20f + 40f * npc.life / npc.lifeMax);
+                                if (npc.HasPlayerTarget && Main.netMode != 1)
                                 {
-                                    Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
-                                    speed.Normalize();
-                                    speed *= 6f;
-                                    speed.Y -= Math.Abs(speed.X) * 0.2f;
-                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 4, 0f, Main.myPlayer);
+                                    Vector2 speed = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 6f;
+                                    for (int i = 0; i < 8; i++)
+                                    {
+                                        Vector2 vel = speed.RotatedBy(Math.PI * 2 / 8 * i);
+                                        vel.Y -= Math.Abs(vel.X) * 0.2f;
+                                        Projectile.NewProjectile(npc.Center, vel, ProjectileID.SkeletonBone, npc.damage / 4, 0f, Main.myPlayer);
+                                    }
                                 }
                             }
                             if (--Counter2 < 0)
@@ -7719,11 +7718,6 @@ namespace FargowiltasSouls.NPCs
                         if (npc.ai[1] != 2f)
                         {
                             Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
-                            for (int k = 0; k < npc.buffImmune.Length; k++)
-                                npc.buffImmune[k] = true;
-                            while (npc.buffTime[0] != 0)
-                                npc.DelBuff(0);
-
                             npc.life = npc.lifeMax / 176;
                             if (npc.life < 50)
                                 npc.life = 50;
@@ -7753,11 +7747,6 @@ namespace FargowiltasSouls.NPCs
                         if (npc.ai[1] != 2f)
                         {
                             Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
-                            for (int k = 0; k < npc.buffImmune.Length; k++)
-                                npc.buffImmune[k] = true;
-                            while (npc.buffTime[0] != 0)
-                                npc.DelBuff(0);
-
                             npc.life = npc.lifeMax / 420;
                             if (npc.life < 100)
                                 npc.life = 100;
