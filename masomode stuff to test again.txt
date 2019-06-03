@@ -49,6 +49,8 @@
 -BRAIN OF CTHULHU'S ILLUSIONS ARE ON THE MINIMAP TOO
 -added something to hopefully make destroyer segments not glitch out because of debuffs as much
 -boc's creepers shoot ichor whether or not they think they have line of sight
+-changed my mind again, prime cannon just shoots single stars
+-prime cannon switches to star mode twice as often always (not just p2 arm)
 
 -added sprites for:
 	mystic skull

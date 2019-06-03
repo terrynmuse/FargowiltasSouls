@@ -4301,17 +4301,15 @@ namespace FargowiltasSouls.NPCs
                                 npc.localAI[0] = 0f;
                                 if (Main.netMode != 1)
                                 {
-                                    Vector2 speed = new Vector2(14f, 0f).RotatedBy(npc.rotation + Math.PI / 2);
-                                    for (int i = -1; i <= 1; i++)
-                                        Projectile.NewProjectile(npc.Center, speed.RotatedBy(Math.PI / 12 * i), mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
+                                    Vector2 speed = new Vector2(16f, 0f).RotatedBy(npc.rotation + Math.PI / 2);
+                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
                                 }
                             }
                         }
                         else
                         {
                             npc.localAI[0]++;
-                            if (masoBool[1])
-                                npc.ai[3]++;
+                            npc.ai[3]++;
                         }
                         goto case NPCID.PrimeLaser;
                     case NPCID.PrimeLaser:
