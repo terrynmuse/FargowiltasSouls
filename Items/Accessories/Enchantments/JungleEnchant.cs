@@ -18,7 +18,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'The wrath of the jungle dwells within'
 25% chance to steal 4 mana with each attack
 Taking damage will release a poisoning spore explosion
-Spore damage scales with magic damage";
+Spore damage scales with magic damage
+";
 
             if(thorium != null)
                 tooltip += "Effects of Toxic Subwoofer";

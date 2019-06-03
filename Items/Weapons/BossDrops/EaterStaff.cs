@@ -34,6 +34,7 @@ Summons 4 segments for each minion slot");
             item.buffType = mod.BuffType("EaterMinion");
             item.buffTime = 3600;
             item.summon = true;
+            item.value = 40000;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
