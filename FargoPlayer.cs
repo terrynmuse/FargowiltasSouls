@@ -856,13 +856,13 @@ namespace FargowiltasSouls
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                     player.AddBuff(mod.BuffType("Lethargic"), 2);
 
-                Vector2 tileCenter = player.Center;
-                tileCenter.X /= 16;
-                tileCenter.Y /= 16;
-                Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
-                if (player.stickyBreak > 0)
+                if (!PureHeart && !player.buffImmune[BuffID.Webbed] && player.stickyBreak > 0)
                 {
-                    if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe && !PureHeart && !player.buffImmune[BuffID.Webbed])
+                    Vector2 tileCenter = player.Center;
+                    tileCenter.X /= 16;
+                    tileCenter.Y /= 16;
+                    Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
+                    if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe)
                     {
                         player.AddBuff(BuffID.Webbed, 30);
                         //player.stickyBreak = 1000;
@@ -881,10 +881,17 @@ namespace FargowiltasSouls
                         webCounter = 0;
                     }
                 }
-                if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
+                if (!SandsofTime)
                 {
-                    if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles?
-                        player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), 10, 0, false, false, false, 0);
+                    Vector2 tileCenter = player.Center;
+                    tileCenter.X /= 16;
+                    tileCenter.Y /= 16;
+                    Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
+                    if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
+                    {
+                        if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles?
+                            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), 10, 0, false, false, false, 0);
+                    }
                 }
 
                 if (MasomodeCrystalTimer > 0)

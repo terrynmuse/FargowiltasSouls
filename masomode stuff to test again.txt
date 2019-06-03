@@ -51,6 +51,7 @@
 -boc's creepers shoot ichor whether or not they think they have line of sight
 -changed my mind again, prime cannon just shoots single stars
 -prime cannon switches to star mode twice as often always (not just p2 arm)
+-sands of time gives cactus damage immune
 
 -added sprites for:
 	mystic skull
