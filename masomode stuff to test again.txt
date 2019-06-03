@@ -94,7 +94,6 @@
 -hornets and eaters fake death during queen bee/eater of worlds fights
 -bees can turn into big hornet variants too now
 -bees exclusively become moss hornets in hardmode hahAAAAA
--all variants of moss hornet inflict infested on touch (previously was only "moss hornet")
 -goblin summoner's aura is smaller, support attack is slower and fires from diagonals (was cardinal)
 -tried making KS not enrage client-side only
 -some general MP fiddling

@@ -598,12 +598,8 @@ namespace FargowiltasSouls.NPCs
                             if (Main.rand.Next(5) == 0)
                                 Horde(npc, 5);
                             break;
-
-                        case NPCID.BigMossHornet:
-                        case NPCID.GiantMossHornet:
-                        case NPCID.LittleMossHornet:
+                            
                         case NPCID.MossHornet:
-                        case NPCID.TinyMossHornet:
                             if (Main.rand.Next(4) == 0 && !BossIsAlive(ref beeBoss, NPCID.QueenBee))
                                 Horde(npc, 5);
                             break;
