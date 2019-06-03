@@ -3894,6 +3894,9 @@ namespace FargowiltasSouls.NPCs
                                 npc.netUpdate = true;
                             }
                         }
+
+                        if (npc.buffType[0] != 0)
+                            npc.DelBuff(0);
                         break;
 
                     case NPCID.TacticalSkeleton: //num3 = 120, damage = 40/50, num8 = 0
@@ -4127,8 +4130,32 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
+                        brainBoss = boss = npc.whoAmI;
                         if (!npc.dontTakeDamage) //vulnerable
-                            npc.position += npc.velocity / 4f;
+                        {
+                            npc.position += npc.velocity / 4f; //faster
+                            if (npc.buffType[0] != 0) //constant debuff cleanse
+                            {
+                                npc.buffImmune[npc.buffType[0]] = true;
+                                npc.DelBuff(0);
+                            }
+                            if (!masoBool[0]) //spawn illusions
+                            {
+                                masoBool[0] = true;
+                                if (Main.netMode != 1)
+                                {
+                                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, -1, 1);
+                                    if (n != 200 && Main.netMode == 2)
+                                        NetMessage.SendData(23, -1, -1, null, n);
+                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, 1, -1);
+                                    if (n != 200 && Main.netMode == 2)
+                                        NetMessage.SendData(23, -1, -1, null, n);
+                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, -1, -1);
+                                    if (n != 200 && Main.netMode == 2)
+                                        NetMessage.SendData(23, -1, -1, null, n);
+                                }
+                            }
+                        }
                         break;
 
                     case NPCID.Creeper:
@@ -4590,6 +4617,13 @@ namespace FargowiltasSouls.NPCs
                             }
                             Counter = 0;
                         }
+                        if (Main.netMode != 1 && Main.rand.Next(6) == 0)
+                        {
+                            int p = Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + npc.height,
+                                Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f), ProjectileID.HallowSpray, 0, 0f, Main.myPlayer, 8f);
+                            if (p != 1000)
+                                Main.projectile[p].timeLeft = 30;
+                        }
                         break;
 
                     case NPCID.Reaper:
@@ -4956,6 +4990,16 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.GoblinThief:
                         npc.position.X += npc.velocity.X;
+                        break;
+
+                    case NPCID.VileSpit:
+                        if (Main.netMode != 1 && Main.rand.Next(6) == 0)
+                        {
+                            int p = Projectile.NewProjectile(npc.Center, npc.velocity * .5f + Main.rand.NextVector2Square(-1f, 1f),
+                                ProjectileID.CorruptSpray, 0, 0f, Main.myPlayer, 8f);
+                            if (p != 1000)
+                                Main.projectile[p].timeLeft = 30;
+                        }
                         break;
 
                     //drakin possible meme tm
@@ -6293,7 +6337,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.WalkingAntlion:
-                        if (target.HasBuff(BuffID.Dazed))
+                        if (!target.HasBuff(BuffID.Dazed))
                             target.AddBuff(BuffID.Dazed, Main.rand.Next(60));
                         break;
 
@@ -6925,6 +6969,11 @@ namespace FargowiltasSouls.NPCs
                         if (NPC.downedMechBossAny && Main.raining)
                         {
                             pool[NPCID.LightningBug] = .1f;
+                        }
+
+                        if (crimson)
+                        {
+                            pool[NPCID.IchorSticker] = .1f;
                         }
                     }
                     else if (wideUnderground)

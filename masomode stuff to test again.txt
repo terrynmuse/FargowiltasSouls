@@ -39,6 +39,15 @@
 -antlion charger now inflicts short dazed
 -dune splicers are a rare pre-hm lootless spawn
 -fixed angry nimbus potentially dropping things pre-hm
+-unicorns create blue solution at their feet
+-vile spit emits purple solution
+-ichor spit emits red solution
+-fixed brain of cthulhu not setting flags it's supposed to, which fixes:
+	sands of time working during brain fight
+	more brains naturally spawning during brain fight
+-brain of cthulhu self-cleanses debuffs (cannot use them to distinguish the real one)
+-BRAIN OF CTHULHU'S ILLUSIONS ARE ON THE MINIMAP TOO
+-added something to hopefully make destroyer segments not glitch out because of debuffs as much
 
 -added sprites for:
 	mystic skull
