@@ -60,7 +60,7 @@
 -added plantera's fruit
 -skelly cant stun if you already have stun
 -fixed eater of worlds using EYE'S boss count???
--the following stuff scales with boss kills properly (max scale should be 10x and 5x damage):
+-the following stuff scales with boss kills properly (max scale should be 8x and 4x damage):
 	king slime slimes
 	eow vile spit
 	eow cursed fireballs
