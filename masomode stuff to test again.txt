@@ -97,6 +97,15 @@
 -desert djinn curse inflicts biome-based cursed inferno/ichor for same possible durations
 -sandnados inflict dazed
 -ogre melee inflicts broken armor and stomp inflicts dazed
+-etherian lightning bugs create lightning portals and have an aura of lightning rod
+-old one's skeletons can shoot chaos balls
+-wither beasts have an aura of withered weapon/armor
+-dark mage grants an aura of protection to nearby enemies and lethargic for players
+-etherian wyverns shoot bouncy fireballs
+-kobold gliders scatter spiky balls as they fly
+-etherian goblins inflict poisoned and bleeding
+-goblin bombers drop a goblin bomb when killed
+-betsy summons dark mages
 
 -added sprites for:
 	mystic skull

@@ -123,6 +123,11 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
+                    case NPCID.DD2SkeletonT1:
+                    case NPCID.DD2SkeletonT3:
+                        Counter = Main.rand.Next(180);
+                        break;
+
                     case NPCID.BloodFeeder:
                         npc.lifeMax *= 5;
                         break;
@@ -906,7 +911,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ArmoredViking:
                         Counter++;
-                        if (Counter >= 10)
+                        if (Counter >= 30)
                             Shoot(npc, 0, 200, 10, ProjectileID.IceSickle, npc.damage / 4, 1, false, true);
                         break;
 
@@ -3393,9 +3398,9 @@ namespace FargowiltasSouls.NPCs
                         Counter++;
                         if (Counter >= 300)
                         {
-                            Counter = (short)Main.rand.Next(120);
                             if (npc.ai[0] != 5f) //if not latched on player
                                 Shoot(npc, 60, 1000, 9, ProjectileID.NebulaLaser, (int)(npc.damage * 0.4f), 0);
+                            Counter = (short)Main.rand.Next(120);
                         }
                         break;
 
@@ -4836,6 +4841,15 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DD2Betsy:
                         betsyBoss = boss = npc.whoAmI;
+                        if (npc.ai[1] == 20f || npc.ai[1] == 45f || npc.ai[1] == 70f)
+                        {
+                            if (Main.netMode != 1 && NPC.CountNPCS(NPCID.DD2DarkMageT3) < 3)
+                            {
+                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.DD2DarkMageT3, npc.whoAmI);
+                                if (n != 200 && Main.netMode == 2)
+                                    NetMessage.SendData(23, -1, -1, null, n);
+                            }
+                        }
                         break;
 
                     case NPCID.DungeonGuardian:
@@ -5104,6 +5118,71 @@ namespace FargowiltasSouls.NPCs
                             Counter += 2;
                         if (npc.alpha < Counter)
                             npc.alpha = Counter;
+                        break;
+
+                    case NPCID.DD2SkeletonT1:
+                    case NPCID.DD2SkeletonT3:
+                        if (++Counter > 360)
+                        {
+                            Counter = 0;
+                            if (Main.netMode != 1)
+                            {
+                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.ChaosBall);
+                                if (n != 200 && Main.netMode == 2)
+                                    NetMessage.SendData(23, -1, -1, null, n);
+                            }
+                        }
+                        break;
+
+                    case NPCID.DD2WitherBeastT2:
+                    case NPCID.DD2WitherBeastT3:
+                        Aura(npc, 250, BuffID.WitheredArmor, false, 119);
+                        Aura(npc, 250, BuffID.WitheredWeapon, false, 14);
+                        break;
+
+                    case NPCID.DD2DarkMageT1:
+                    case NPCID.DD2DarkMageT3:
+                        /*if (BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
+                            npc.velocity.Y = 0f;*/
+                        Aura(npc, 500, mod.BuffType("Lethargic"), false, DustID.PinkFlame);
+                        foreach (NPC n in Main.npc.Where(n => n.active && !n.friendly && n.type != npc.type && n.Distance(npc.Center) < 500f))
+                        {
+                            n.GetGlobalNPC<FargoGlobalNPC>().PaladinsShield = true;
+                            if (Main.rand.Next(2) == 0)
+                            {
+                                int d = Dust.NewDust(n.position, n.width, n.height, DustID.PinkFlame, 0f, -1.5f, 0, new Color());
+                                Main.dust[d].velocity *= 0.5f;
+                                Main.dust[d].noLight = true;
+                            }
+                        }
+                        break;
+
+                    case NPCID.DD2WyvernT1:
+                    case NPCID.DD2WyvernT2:
+                    case NPCID.DD2WyvernT3:
+                        if (++Counter >= 180)
+                            Shoot(npc, 0, 300, 6, ProjectileID.Fireball, npc.damage / 4, 0f);
+                        break;
+
+                    case NPCID.DD2LightningBugT3:
+                        Aura(npc, 200, mod.BuffType("LightningRod"), false, DustID.Vortex);
+                        if (++Counter > 240)
+                        {
+                            Counter = 0;
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, Vector2.Zero, 578, 0, 0f, Main.myPlayer);
+                        }
+                        break;
+
+                    case NPCID.DD2KoboldFlyerT2:
+                    case NPCID.DD2KoboldFlyerT3:
+                        if (++Counter > 60)
+                        {
+                            Counter = 0;
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(-2f, 2f), -5f),
+                                    mod.ProjectileType("GoblinSpikyBall"), npc.damage / 5, 0f, Main.myPlayer);
+                        }
                         break;
 
                     //drakin possible meme tm
@@ -6327,6 +6406,13 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DD2SkeletonT3:
                         target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(1200, 2400));
+                        break;
+
+                    case NPCID.DD2GoblinT1:
+                    case NPCID.DD2GoblinT2:
+                    case NPCID.DD2GoblinT3:
+                        target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
+                        target.AddBuff(BuffID.Bleeding, Main.rand.Next(60, 300));
                         break;
 
                     case NPCID.SolarSpearman:
@@ -8303,8 +8389,15 @@ namespace FargowiltasSouls.NPCs
                             Vector2 vel = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 7f;
                             for (int i = 0; i < 8; i++)
                                 Projectile.NewProjectile(npc.Center, vel.RotatedBy(2 * Math.PI / 12), ProjectileID.PinkLaser, 25, 0f, Main.myPlayer);
-                            
                         }
+                        break;
+
+                    case NPCID.DD2GoblinBomberT1:
+                    case NPCID.DD2GoblinBomberT2:
+                    case NPCID.DD2GoblinBomberT3:
+                        if (Main.netMode != 1)
+                            Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(-3f, 3f), -6f),
+                                ProjectileID.DD2GoblinBomb, npc.damage / 4, 0, Main.myPlayer);
                         break;
 
                     /*case 41: //rainbow slime 2
