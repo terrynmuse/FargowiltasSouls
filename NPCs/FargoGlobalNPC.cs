@@ -448,6 +448,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.TheDestroyer:
                     case NPCID.TheDestroyerBody:
                     case NPCID.TheDestroyerTail:
+                    case NPCID.Probe:
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.DestroyerCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoWorld.DestroyerCount * .0125));
                         break;

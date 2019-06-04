@@ -115,6 +115,11 @@ namespace FargowiltasSouls.Projectiles
                         projectile.damage = (int)(projectile.damage * (1 + FargoWorld.PrimeCount * .0125));
                         break;
 
+                    case ProjectileID.PinkLaser:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer))
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.DestroyerCount * .0125));
+                        break;
+
                     case ProjectileID.SeedPlantera:
                     case ProjectileID.PoisonSeedPlantera:
                     case ProjectileID.ThornBall:

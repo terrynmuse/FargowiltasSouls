@@ -68,6 +68,7 @@
 	queen bee hornets and bees
 	wof hungry, hungry 2, leeches
 	all mech death lasers
+	destroyer probes and probe lasers
 	prime cannonballs
 	plantera crystal leaf shot
 	plantera seeds and spiky balls
