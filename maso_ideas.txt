@@ -14,9 +14,6 @@ Lava slimes - oiled  (make work)
 AI
 QB -(take less damage while guards are alive? maybe only in stationary form spraying spike too?? and guards are always charging?)
 crippled only when charging?
-Gastropods explode into lasers (ADD)
-Rainbow slime spawns red, hoppin jacks, yellow, green, blue, purple slimes in order every time its hit 
-fires rainbow slime balls at you
 -also not all demon eyes dashing?
 -icy merman shoots twice as fast if he’s in water (also dust ofc)
 -dutchman cannons shoot cannonballs that are obscenely large and inflict Fused

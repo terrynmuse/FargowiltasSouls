@@ -4347,7 +4347,6 @@ namespace FargowiltasSouls.NPCs
                         foreach (NPC n in Main.npc.Where(n => n.active && !n.friendly && n.type != NPCID.Paladin && n.Distance(npc.Center) < 800f))
                         {
                             n.GetGlobalNPC<FargoGlobalNPC>().PaladinsShield = true;
-
                             if (Main.rand.Next(2) == 0)
                             {
                                 int d = Dust.NewDust(n.position, n.width, n.height, 246, 0f, -1.5f, 0, new Color());
@@ -8268,6 +8267,16 @@ namespace FargowiltasSouls.NPCs
                             npc.active = false;
                             Main.PlaySound(npc.DeathSound, npc.Center);
                             return false;
+                        }
+                        break;
+
+                    case NPCID.Gastropod:
+                        if (Main.netMode != 1 && npc.HasPlayerTarget)
+                        {
+                            Vector2 vel = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 7f;
+                            for (int i = 0; i < 8; i++)
+                                Projectile.NewProjectile(npc.Center, vel.RotatedBy(2 * Math.PI / 12), ProjectileID.PinkLaser, 25, 0f, Main.myPlayer);
+                            
                         }
                         break;
 

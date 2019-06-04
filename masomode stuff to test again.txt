@@ -84,6 +84,7 @@
 -sharks can jump out of the water to attack dry players
 -wandering eyes have double health, inflict berserked, p2 blood scythes, p2 knockback immune
 -demon eyes have a 25% chance to be replaced with wandering eye in hardmode
+-gastropods explode into lasers when killed
 
 -added sprites for:
 	mystic skull
