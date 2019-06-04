@@ -57,6 +57,7 @@
 -all pillars are immune to clipped wings
 -nerfed skelly bone spray (slower, less max speed)
 -added plantera's fruit
+-skelly cant stun if you already have stun
 
 -added sprites for:
 	mystic skull

@@ -2026,7 +2026,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (--Counter < 0)
                             {
-                                Counter = (int)(30f + 90f * npc.life / npc.lifeMax);
+                                Counter = (int)(60f + 120f * npc.life / npc.lifeMax);
                                 if (npc.HasPlayerTarget && Main.netMode != 1)
                                 {
                                     Vector2 speed = new Vector2(0f, -6f);
@@ -5517,7 +5517,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SkeletronHand:
-                        if (Main.rand.Next(2) == 0)
+                        if (Main.rand.Next(2) == 0 && !target.HasBuff(mod.BuffType("Stunned")))
                             target.AddBuff(mod.BuffType("Stunned"), Main.rand.Next(90));
                         break;
 
