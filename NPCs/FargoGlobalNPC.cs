@@ -1996,7 +1996,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.localAI[2]++;
                             float ratio = (float)npc.life / npc.lifeMax;
-                            float threshold = 20f + 40f * ratio;
+                            float threshold = 15f + 45f * ratio;
                             if (npc.localAI[2] >= threshold) //spray bones
                             {
                                 npc.localAI[2] = 0f;
@@ -2006,7 +2006,7 @@ namespace FargowiltasSouls.NPCs
                                     for (int i = 0; i < 8; i++)
                                     {
                                         Vector2 vel = speed.RotatedBy(Math.PI * 2 / 8 * i);
-                                        vel += npc.velocity * (1f - ratio);
+                                        vel += npc.velocity * 1.25f * (1f - ratio);
                                         vel.Y -= Math.Abs(vel.X) * 0.2f;
                                         Projectile.NewProjectile(npc.Center, vel, ProjectileID.SkeletonBone, npc.damage / 9 * 2, 0f, Main.myPlayer);
                                     }
@@ -2029,7 +2029,7 @@ namespace FargowiltasSouls.NPCs
                                 Counter = (int)(60f + 120f * npc.life / npc.lifeMax);
                                 if (npc.HasPlayerTarget && Main.netMode != 1)
                                 {
-                                    Vector2 speed = new Vector2(0f, -6f);
+                                    Vector2 speed = new Vector2(0f, -3f);
                                     for (int i = 0; i < 8; i++)
                                     {
                                         Vector2 vel = speed.RotatedBy(Math.PI * 2 / 8 * i);
