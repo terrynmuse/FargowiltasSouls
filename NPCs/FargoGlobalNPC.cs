@@ -1996,7 +1996,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.localAI[2]++;
                             float ratio = (float)npc.life / npc.lifeMax;
-                            float threshold = 10f + 20f * ratio;
+                            float threshold = 20f + 40f * ratio;
                             if (npc.localAI[2] >= threshold) //spray bones
                             {
                                 npc.localAI[2] = 0f;
@@ -2006,7 +2006,7 @@ namespace FargowiltasSouls.NPCs
                                     for (int i = 0; i < 8; i++)
                                     {
                                         Vector2 vel = speed.RotatedBy(Math.PI * 2 / 8 * i);
-                                        vel += npc.velocity * 1.25f * (1f - ratio);
+                                        vel += npc.velocity * (1f - ratio);
                                         vel.Y -= Math.Abs(vel.X) * 0.2f;
                                         Projectile.NewProjectile(npc.Center, vel, ProjectileID.SkeletonBone, npc.damage / 9 * 2, 0f, Main.myPlayer);
                                     }
@@ -2026,10 +2026,10 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (--Counter < 0)
                             {
-                                Counter = (int)(20f + 40f * npc.life / npc.lifeMax);
+                                Counter = (int)(30f + 90f * npc.life / npc.lifeMax);
                                 if (npc.HasPlayerTarget && Main.netMode != 1)
                                 {
-                                    Vector2 speed = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 6f;
+                                    Vector2 speed = new Vector2(0f, -6f);
                                     for (int i = 0; i < 8; i++)
                                     {
                                         Vector2 vel = speed.RotatedBy(Math.PI * 2 / 8 * i);
@@ -3333,6 +3333,8 @@ namespace FargowiltasSouls.NPCs
                                     if (Main.netMode == 2 && n < 200)
                                         NetMessage.SendData(23, -1, -1, null, n);
                                 }
+                                if (!NPC.downedPlantBoss)
+                                    Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("PlanterasFruit"));
                             }
                         }
 
@@ -4972,7 +4974,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.HornetSpikey:
                     case NPCID.HornetStingy:
                     case NPCID.MossHornet:
-                        if (!masoBool[0] && ++Counter2 > 30) //also used by eaters of souls
+                    case NPCID.Harpy:
+                        if (!masoBool[0] && ++Counter2 > 30) //also used by eaters of souls and harpies
                         {
                             masoBool[0] = true;
                             Counter2 = 0;
