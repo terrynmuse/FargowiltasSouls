@@ -123,6 +123,10 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
+                    case NPCID.WanderingEye:
+                        npc.lifeMax *= 2;
+                        break;
+
                     case NPCID.BigEater:
                     case NPCID.EaterofSouls:
                     case NPCID.LittleEater:
@@ -721,6 +725,13 @@ namespace FargowiltasSouls.NPCs
                                 npcType = NPCID.SolarCorite;
                             break;
 
+                        case NPCID.DemonEye:
+                        case NPCID.DemonEyeOwl:
+                        case NPCID.DemonEyeSpaceship:
+                            if (Main.hardMode && Main.rand.Next(4) == 0)
+                                npcType = NPCID.WanderingEye;
+                            break;
+
                         default:
                             break;
                     }
@@ -1000,6 +1011,36 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Shark:
+                        if (++Counter2 > 420) //initiate jump
+                        {
+                            Counter2 = 0;
+                            int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                            if (t != -1 && !Main.player[t].wet && Main.netMode != 1)
+                            {
+                                const float gravity = 0.3f;
+                                const float time = 120f;
+                                Vector2 distance = Main.player[t].Center - npc.Center;
+                                distance.X = distance.X / time;
+                                distance.Y = distance.Y / time - 0.5f * gravity * time;
+                                npc.ai[1] = 120f;
+                                npc.ai[2] = distance.X;
+                                npc.ai[3] = distance.Y;
+                                npc.netUpdate = true;
+                            }
+                        }
+                        if (npc.ai[1] > 0f) //while jumping
+                        {
+                            npc.ai[1]--;
+                            npc.noTileCollide = true;
+                            npc.velocity.X = npc.ai[2];
+                            npc.velocity.Y = npc.ai[3];
+                            npc.ai[3] += 0.3f;
+                        }
+                        else
+                        {
+                            npc.noTileCollide = false;
+                        }
+                        goto case NPCID.SandShark;
                     case NPCID.SandShark:
                     case NPCID.SandsharkCorrupt:
                     case NPCID.SandsharkCrimson:
@@ -3116,7 +3157,7 @@ namespace FargowiltasSouls.NPCs
                                     //golem's anti-air fireball spray (whenever he lands while player is below)
                                     if (npc.HasPlayerTarget && Main.player[npc.target].position.Y > npc.position.Y + npc.height)
                                     {
-                                        float gravity = 0.2f; //normally floats up
+                                        float gravity = 0.2f; //shoot down
                                         const float time = 60f;
                                         Vector2 distance = Main.player[npc.target].Center - npc.Center;
                                         distance += Main.player[npc.target].velocity * 45f;
@@ -5035,6 +5076,19 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.WanderingEye:
+                        if (npc.life < npc.lifeMax / 2)
+                        {
+                            npc.knockBackResist = 0f;
+                            if (++Counter > 5)
+                            {
+                                Counter = 0;
+                                if (Main.netMode != 1)
+                                    Projectile.NewProjectile(npc.Center, npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 0f, Main.myPlayer);
+                            }
+                        }
+                        break;
+
                     //drakin possible meme tm
                     /*if (!DD2Event.Ongoing)
                     {
@@ -5482,6 +5536,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EyeofCthulhu:
+                    case NPCID.WanderingEye:
                         target.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(60, 600));
                         break;
 

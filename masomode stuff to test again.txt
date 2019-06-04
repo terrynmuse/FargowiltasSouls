@@ -81,6 +81,9 @@
 -added boss count max for debugging
 -fixed eater's counter secretly incrementing infinitely
 -betsy spawns in hell after old one's army tier 3 is completed (was post-golem only)
+-sharks can jump out of the water to attack dry players
+-wandering eyes have double health, inflict berserked, p2 blood scythes, p2 knockback immune
+-demon eyes have a 25% chance to be replaced with wandering eye in hardmode
 
 -added sprites for:
 	mystic skull
