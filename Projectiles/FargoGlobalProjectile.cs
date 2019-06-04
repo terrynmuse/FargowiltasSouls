@@ -620,7 +620,7 @@ namespace FargowiltasSouls.Projectiles
                 case ProjectileID.GoldenShowerHostile:
                     if (FargoWorld.MasochistMode && Main.netMode != 1 && Main.rand.Next(6) == 0)
                     {
-                        int p = Projectile.NewProjectile(projectile.Center, projectile.velocity * .5f, ProjectileID.CrimsonSpray, 0, 0f, Main.myPlayer, 8f);
+                        int p = Projectile.NewProjectile(projectile.Center, projectile.velocity, ProjectileID.CrimsonSpray, 0, 0f, Main.myPlayer, 8f);
                         if (p != 1000)
                             Main.projectile[p].timeLeft = 6;
                     }
