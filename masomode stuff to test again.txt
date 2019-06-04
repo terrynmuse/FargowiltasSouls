@@ -54,6 +54,7 @@
 -sands of time gives cactus damage immune
 -removed skeletron and skeletron prime's DG form immunities
 -changed skeletron's bone attacks from sprays to rings
+-all pillars are immune to clipped wings
 
 -added sprites for:
 	mystic skull

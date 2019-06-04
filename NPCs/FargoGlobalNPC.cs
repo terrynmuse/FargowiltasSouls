@@ -1432,6 +1432,7 @@ namespace FargowiltasSouls.NPCs
                             npc.damage += 100;
                             npc.defDamage += 100;
                             npc.netUpdate = true;
+                            npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         }
                         if (!npc.dontTakeDamage)
                         {
@@ -1506,6 +1507,7 @@ namespace FargowiltasSouls.NPCs
                             npc.damage += 200;
                             npc.defDamage += 200;
                             npc.netUpdate = true;
+                            npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         }
                         if (!npc.dontTakeDamage)
                         {
@@ -1533,6 +1535,7 @@ namespace FargowiltasSouls.NPCs
                             npc.damage += 100;
                             npc.defDamage += 100;
                             npc.netUpdate = true;
+                            npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         }
                         Aura(npc, 5000, mod.BuffType("Atrophied"), false, 20);
                         Aura(npc, 5000, mod.BuffType("Jammed"));
@@ -1574,6 +1577,7 @@ namespace FargowiltasSouls.NPCs
                             npc.damage += 100;
                             npc.defDamage += 100;
                             npc.netUpdate = true;
+                            npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         }
                         Aura(npc, 5000, mod.BuffType("Atrophied"), false, DustID.Vortex);
                         Aura(npc, 5000, mod.BuffType("ReverseManaFlow"));
