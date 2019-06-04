@@ -1433,9 +1433,8 @@ namespace FargowiltasSouls
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
                     Main.playerDrawDust.Add(dust);
-
-                    fullBright = true;
                 }
+                fullBright = true;
             }
 
             if (Hexed)
@@ -1489,17 +1488,15 @@ namespace FargowiltasSouls
                 drawInfo.drawPlayer.onFrostBurn = true;
                 drawInfo.drawPlayer.ichor = true;
                 drawInfo.drawPlayer.burned = true;
-
-                //shadowflame
-                if (Main.rand.Next(4) != 0 || drawInfo.shadow != 0f) return;
-                int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.Shadowflame, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
-                Main.dust[dust].noGravity = true;
-                Main.dust[dust].velocity *= 1.8f;
-                Main.dust[dust].velocity.Y -= 0.5f;
-                Main.playerDrawDust.Add(dust);
-
+                if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f) //shadowflame
+                {
+                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.Shadowflame, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    Main.playerDrawDust.Add(dust);
+                }
                 fullBright = true;
-
             }
 
             if (CurseoftheMoon)
@@ -1540,6 +1537,23 @@ namespace FargowiltasSouls
                 g *= 0.2f;
                 b *= 0.2f;
                 fullBright = true;
+            }
+
+            if (Fused)
+            {
+                if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f)
+                {
+                    int dust = Dust.NewDust(drawInfo.position + new Vector2(player.width / 2, player.height / 5), 0, 0, DustID.Fire, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 0, default(Color), 1.5f);
+                    Main.dust[dust].velocity.Y -= 2f;
+                    if (Main.rand.Next(3) != 0)
+                    {
+                        Main.dust[dust].scale += 0.5f;
+                        Main.dust[dust].noGravity = true;
+                        Main.dust[dust].velocity *= 3f;
+                        Main.dust[dust].velocity.Y -= 2f;
+                    }
+                    Main.playerDrawDust.Add(dust);
+                }
             }
         }
 

@@ -89,6 +89,10 @@ namespace FargowiltasSouls.Projectiles
                         projectile.timeLeft = 600;
                         break;
 
+                    case ProjectileID.CannonballHostile:
+                        projectile.scale = 2f;
+                        break;
+
                     #region maso boss scaling (CHECK THAT YOU'RE NOT DOUBLE DIPPING)
 
                     case ProjectileID.CursedFlameHostile: //spaz p3 balls are already scaled
@@ -980,6 +984,8 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.SkeletonBone:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.guardBoss, NPCID.DungeonGuardian))
                         {
+                            target.AddBuff(mod.BuffType("GodEater"), 420);
+                            target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 420);
                             target.AddBuff(mod.BuffType("MarkedforDeath"), 420);
                             target.immune = false;
                             target.immuneTime = 0;
@@ -1093,9 +1099,9 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.DesertDjinnCurse:
                         if (target.ZoneCorrupt)
-                            target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 900));
+                            target.AddBuff(BuffID.CursedInferno, Main.rand.Next(300, 600));
                         else if (target.ZoneCrimson)
-                            target.AddBuff(BuffID.Ichor, Main.rand.Next(900, 1800));
+                            target.AddBuff(BuffID.Ichor, Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.BrainScramblerBolt:
@@ -1266,7 +1272,8 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.UnholyTridentHostile:
-                        target.AddBuff(mod.BuffType("MarkedforDeath"), Main.rand.Next(30, 120));
+                        target.AddBuff(BuffID.Blackout, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.BombSkeletronPrime:
@@ -1277,6 +1284,28 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.DeathLaser:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.retiBoss, NPCID.Retinazer))
                             target.AddBuff(BuffID.Ichor, Main.rand.Next(300, 600));
+                        break;
+
+                    case ProjectileID.CannonballHostile:
+                        target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
+                        break;
+
+                    case ProjectileID.AncientDoomProjectile:
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), 120);
+                        target.AddBuff(BuffID.ShadowFlame, 300);
+                        break;
+
+                    case ProjectileID.SandnadoHostile:
+                        if (!target.HasBuff(BuffID.Dazed))
+                            target.AddBuff(BuffID.Dazed, Main.rand.Next(120));
+                        break;
+
+                    case ProjectileID.DD2OgreSmash:
+                        target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(300, 600));
+                        break;
+
+                    case ProjectileID.DD2OgreStomp:
+                        target.AddBuff(BuffID.Dazed, Main.rand.Next(60, 120));
                         break;
 
                     default:

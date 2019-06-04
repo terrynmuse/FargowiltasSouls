@@ -21,7 +21,7 @@
 -added a volatile energy to chest of the jungle recipe (so it's maso locked now)
 -standardized biome water debuffs (all end when you get out of water)
 -skeletron bones emit more light and are really FAT so theyre actually visible
--red devil's unholy tridents have an extra update and inflict marked for death
+-red devil's unholy tridents have an extra update
 -wyverns and red devils spawn lootless pre hardmode
 -eaters of souls shoot cursed fireballs
 -goblin thieves have doubled horiz move speed
@@ -85,6 +85,18 @@
 -wandering eyes have double health, inflict berserked, p2 blood scythes, p2 knockback immune
 -demon eyes have a 25% chance to be replaced with wandering eye in hardmode
 -gastropods explode into lasers when killed
+-angler fish inflict bleeding, are transparent until hit, and glow while transparent
+-psycho constantly becomes more transparent, uncloaks whenever hit, inflicts obstructed
+-blood feeder has 5x more life, lifesteal, and gains damage on hit
+-DG's skulls and bones also inflict god eater and flames of universe lel
+-changed my mind again again, skeletron makes bone rings not bone spray FINAL CHANGE
+-enemy cannonballs are extra THICC and inflict defenseless
+-added fused dust
+-red devil unholy trident inflicts shadowflame and blackout
+-ancient doom and prophecy's end inflict MFD + shadowflame
+-desert djinn curse inflicts biome-based cursed inferno/ichor for same possible durations
+-sandnados inflict dazed
+-ogre melee inflicts broken armor and stomp inflicts dazed
 
 -added sprites for:
 	mystic skull

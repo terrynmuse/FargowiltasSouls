@@ -4,19 +4,12 @@ Spawns
 -HM Headless Horsemen????
 -Parrots spawn in the sky
 -mummies spawn in pyramids always 
--blood feeder - increase stats, heals on damage 
--angler fish invisible with light, appears in ocean always bleed
-
-Debuffs
-Lava slimes - oiled  (make work)
--all worm enemies in the game have 7% chance to inflict god eater for 7 seconds on touch
 
 AI
 QB -(take less damage while guards are alive? maybe only in stationary form spraying spike too?? and guards are always charging?)
 crippled only when charging?
 -also not all demon eyes dashing?
 -icy merman shoots twice as fast if he’s in water (also dust ofc)
--dutchman cannons shoot cannonballs that are obscenely large and inflict Fused
 -Fire Imp, Dark Caster, Tim, and Goblin Sorcerer "panic" when attacked (they fire projectiles 3x as fast and can still shoot after getting damaged)
 -Paladins can throw hammers without having to not be currently attacked
 -Zombies can always open doors like in blood moons
@@ -26,7 +19,6 @@ crippled only when charging?
 -Ragged Casters teleport when damaged
 
 MISC
--Fused - a pulsing bomb floats above you and gets redder as time counts down
 -Marked for Death - skulls circle around you
 -1/20 every night for either moon, post plant or sooner? message displays one minute before they start. 
 -Desert is way too bright, need shades

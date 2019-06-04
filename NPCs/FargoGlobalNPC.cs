@@ -123,6 +123,10 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
+                    case NPCID.BloodFeeder:
+                        npc.lifeMax *= 5;
+                        break;
+
                     case NPCID.WanderingEye:
                         npc.lifeMax *= 2;
                         break;
@@ -138,6 +142,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MisterStabby:
+                    case NPCID.AnglerFish:
                         npc.Opacity /= 5;
                         break;
 
@@ -2074,19 +2079,20 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.localAI[2]++;
                             float ratio = (float)npc.life / npc.lifeMax;
-                            float threshold = 5f + 25f * ratio;
+                            float threshold = 20f + 100f * ratio;
                             if (npc.localAI[2] >= threshold) //spray bones
                             {
                                 npc.localAI[2] = 0f;
                                 if (threshold > 0 && npc.HasPlayerTarget && Main.netMode != 1)
                                 {
-                                    Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
-                                    speed.Normalize();
-                                    speed *= 6f;
-                                    speed += npc.velocity * 1.25f * (1f - ratio);
-                                    speed.Y -= Math.Abs(speed.X) * 0.2f;
-                                    if (Main.netMode != 1)
-                                        Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.defDamage / 9 * 2, 0f, Main.myPlayer);
+                                    Vector2 speed = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 6f;
+                                    for (int i = 0; i < 8; i++)
+                                    {
+                                        Vector2 vel = speed.RotatedBy(Math.PI * 2 / 8 * i);
+                                        vel += npc.velocity * (1f - ratio);
+                                        vel.Y -= Math.Abs(vel.X) * 0.2f;
+                                        Projectile.NewProjectile(npc.Center, vel, ProjectileID.SkeletonBone, npc.defDamage / 9 * 2, 0f, Main.myPlayer);
+                                    }
                                 }
                             }
                         }
@@ -5088,6 +5094,18 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.AnglerFish:
+                        if (!masoBool[0]) //make light while invisible
+                            Lighting.AddLight(npc.Center, 0.25f, 1f, 1f);
+                        break;
+
+                    case NPCID.Psycho: //alpha is controlled by vanilla ai so this is necessary
+                        if (Counter < 200)
+                            Counter += 2;
+                        if (npc.alpha < Counter)
+                            npc.alpha = Counter;
+                        break;
+
                     //drakin possible meme tm
                     /*if (!DD2Event.Ongoing)
                     {
@@ -5099,15 +5117,6 @@ namespace FargowiltasSouls.NPCs
                             npc.velocity.X *= 2;
                         }
                     }*/
-
-                    //psycho wtf why wont npc work ech
-                    /*case 88:
-                        Counter++;
-                        if (Counter >= 120)
-                        {
-                            npc.Opacity -= .01f;
-                        }
-                        break;*/
 
                     default:
                         break;
@@ -5868,6 +5877,7 @@ namespace FargowiltasSouls.NPCs
                     //CULTIST OP
                     case NPCID.AncientDoom:
                         target.AddBuff(mod.BuffType("MarkedforDeath"), 120);
+                        target.AddBuff(BuffID.ShadowFlame, 300);
                         break;
                     case NPCID.AncientLight:
                         target.AddBuff(mod.BuffType("Purified"), Main.rand.Next(60, 180));
@@ -6426,6 +6436,23 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WalkingAntlion:
                         if (!target.HasBuff(BuffID.Dazed))
                             target.AddBuff(BuffID.Dazed, Main.rand.Next(60));
+                        break;
+
+                    case NPCID.AnglerFish:
+                        target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 600));
+                        break;
+
+                    case NPCID.BloodFeeder:
+                        target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 600));
+                        npc.life += damage * 2;
+                        if (npc.life > npc.lifeMax)
+                            npc.life = npc.lifeMax;
+                        CombatText.NewText(npc.Hitbox, CombatText.HealLife, damage * 2);
+                        npc.damage = (int)(npc.damage * 1.1f);
+                        break;
+
+                    case NPCID.Psycho:
+                        target.AddBuff(BuffID.Obstructed, Main.rand.Next(60, 240));
                         break;
 
                     default:
@@ -8416,6 +8443,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MisterStabby:
+                    case NPCID.AnglerFish:
                         if (!masoBool[0])
                         {
                             masoBool[0] = true;
@@ -8571,6 +8599,10 @@ namespace FargowiltasSouls.NPCs
                         damage = 1;
                         break;
 
+                    case NPCID.Psycho:
+                        Counter = 0;
+                        break;
+
                     default:
                         break;
                 }
@@ -8619,6 +8651,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MisterStabby:
+                    case NPCID.AnglerFish:
                         if (!masoBool[0])
                         {
                             masoBool[0] = true;
@@ -8813,6 +8846,10 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DungeonGuardian:
                         damage = 1;
+                        break;
+
+                    case NPCID.Psycho:
+                        Counter = 0;
                         break;
 
                     default:
