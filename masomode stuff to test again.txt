@@ -55,11 +55,12 @@
 -removed skeletron and skeletron prime's DG form immunities
 -changed skeletron's bone attacks from sprays to rings
 -all pillars are immune to clipped wings
+
 -nerfed skelly bone spray (slower, less max speed)
 -added plantera's fruit
 -skelly cant stun if you already have stun
 -fixed eater of worlds using EYE'S boss count???
--the following stuff scales with boss kills properly:
+-the following stuff scales with boss kills properly (max scale should be 10x and 5x damage):
 	king slime slimes
 	eow vile spit
 	eow cursed fireballs
@@ -70,8 +71,15 @@
 	prime cannonballs
 	plantera crystal leaf shot
 	plantera seeds and spiky balls
+	golem lasers
 	fishron sharknados
+	cultist fireballs
+	cultist ice mist
+	cultist lightning orb
 	moon lord phantasmal attacks
+-added boss count max for debugging
+-fixed eater's counter secretly incrementing infinitely
+-betsy spawns in hell after old one's army tier 3 is completed (was post-golem only)
 
 -added sprites for:
 	mystic skull

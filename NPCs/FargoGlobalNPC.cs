@@ -3241,8 +3241,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                                 for (int i = 0; i < max; i++)
                                 {
-                                    int p = Projectile.NewProjectile(npc.Center, velocity,
-                                        ProjectileID.EyeBeam, npc.damage / 32 * 7, 0f, Main.myPlayer);
+                                    int p = Projectile.NewProjectile(npc.Center, velocity, ProjectileID.EyeBeam, 28, 0f, Main.myPlayer);
                                     Main.projectile[p].timeLeft = 300;
                                     velocity = velocity.RotatedBy(MathHelper.ToRadians(10));
                                 }
@@ -7073,7 +7072,7 @@ namespace FargowiltasSouls.NPCs
                             pool[NPCID.RaggedCasterOpenCoat] = .002f;
                         }
 
-                        if (NPC.downedGolemBoss && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
+                        if (DD2Event.DownedInvasionT3 && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
                             pool[NPCID.DD2Betsy] = .01f;
                     }
                     else if (sky)
@@ -7711,12 +7710,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        if (FargoWorld.EyeCount < 560)
+                        if (FargoWorld.EyeCount < FargoWorld.MaxCountPreHM)
                             FargoWorld.EyeCount++;
                         break;
 
                     case NPCID.KingSlime:
-                        if (FargoWorld.SlimeCount < 560)
+                        if (FargoWorld.SlimeCount < FargoWorld.MaxCountPreHM)
                             FargoWorld.SlimeCount++;
                         break;
 
@@ -7741,17 +7740,17 @@ namespace FargowiltasSouls.NPCs
                                 break;
                             }
                         }
-                        if (increment)
+                        if (increment && FargoWorld.EaterCount < FargoWorld.MaxCountPreHM)
                             FargoWorld.EaterCount++;
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        if (FargoWorld.BrainCount < 560)
+                        if (FargoWorld.BrainCount < FargoWorld.MaxCountPreHM)
                             FargoWorld.BrainCount++;
                         break;
 
                     case NPCID.QueenBee:
-                        if (FargoWorld.BeeCount < 560)
+                        if (FargoWorld.BeeCount < FargoWorld.MaxCountPreHM)
                             FargoWorld.BeeCount++;
                         break;
 
@@ -7768,19 +7767,19 @@ namespace FargowiltasSouls.NPCs
                             npc.netUpdate = true;
                             return false;
                         }
-                        else if (FargoWorld.SkeletronCount < 560)
+                        else if (FargoWorld.SkeletronCount < FargoWorld.MaxCountPreHM)
                         {
                             FargoWorld.SkeletronCount++;
                         }
                         break;
 
                     case NPCID.WallofFlesh:
-                        if (FargoWorld.WallCount < 560)
+                        if (FargoWorld.WallCount < FargoWorld.MaxCountPreHM)
                             FargoWorld.WallCount++;
                         break;
 
                     case NPCID.TheDestroyer:
-                        if (FargoWorld.DestroyerCount < 240)
+                        if (FargoWorld.DestroyerCount < FargoWorld.MaxCountHM)
                             FargoWorld.DestroyerCount++;
                         break;
 
@@ -7799,29 +7798,29 @@ namespace FargowiltasSouls.NPCs
                             npc.netUpdate = true;
                             return false;
                         }
-                        else if (FargoWorld.PrimeCount < 240)
+                        else if (FargoWorld.PrimeCount < FargoWorld.MaxCountHM)
                         {
                             FargoWorld.PrimeCount++;
                         }
                         break;
 
                     case NPCID.Retinazer:
-                        if (FargoWorld.TwinsCount < 240 && !NPC.AnyNPCs(NPCID.Spazmatism))
+                        if (FargoWorld.TwinsCount < FargoWorld.MaxCountHM && !NPC.AnyNPCs(NPCID.Spazmatism))
                             FargoWorld.TwinsCount++;
                         break;
 
                     case NPCID.Spazmatism:
-                        if (FargoWorld.TwinsCount < 240 && !NPC.AnyNPCs(NPCID.Retinazer))
+                        if (FargoWorld.TwinsCount < FargoWorld.MaxCountHM && !NPC.AnyNPCs(NPCID.Retinazer))
                             FargoWorld.TwinsCount++;
                         break;
 
                     case NPCID.Plantera:
-                        if (FargoWorld.PlanteraCount < 240)
+                        if (FargoWorld.PlanteraCount < FargoWorld.MaxCountHM)
                             FargoWorld.PlanteraCount++;
                         break;
 
                     case NPCID.Golem:
-                        if (FargoWorld.GolemCount < 240)
+                        if (FargoWorld.GolemCount < FargoWorld.MaxCountHM)
                             FargoWorld.GolemCount++;
                         break;
 
@@ -7890,7 +7889,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
-                            if (FargoWorld.FishronCount < 240)
+                            if (FargoWorld.FishronCount < FargoWorld.MaxCountHM)
                                 FargoWorld.FishronCount++;
 
                             if (fishBossEX == npc.whoAmI) //drop loot here (avoids the vanilla "fishron defeated" message)
@@ -7916,12 +7915,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.CultistBoss:
-                        if (FargoWorld.CultistCount < 240)
+                        if (FargoWorld.CultistCount < FargoWorld.MaxCountHM)
                             FargoWorld.CultistCount++;
                         break;
 
                     case NPCID.MoonLordCore:
-                        if (FargoWorld.MoonlordCount < 240)
+                        if (FargoWorld.MoonlordCount < FargoWorld.MaxCountHM)
                             FargoWorld.MoonlordCount++;
                         break;
 

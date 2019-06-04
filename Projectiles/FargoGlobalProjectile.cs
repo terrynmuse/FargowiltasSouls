@@ -121,9 +121,26 @@ namespace FargowiltasSouls.Projectiles
                         projectile.damage = (int)(projectile.damage * (1 + FargoWorld.PlanteraCount * .0125));
                         break;
 
+                    case ProjectileID.EyeLaser:
+                        projectile.damage = (int)(projectile.damage * (1 + FargoWorld.GolemCount * .0125));
+                        break;
+
                     case ProjectileID.Sharknado: //spawns from sharks too but whatever
                         if (FargoWorld.downedFishronEX || !FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBossEX, NPCID.DukeFishron))
                             projectile.damage = (int)(projectile.damage * (1 + FargoWorld.FishronCount * .0125));
+                        break;
+
+                    case ProjectileID.CultistBossFireBall:
+                    case ProjectileID.CultistBossLightningOrb:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss))
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.CultistCount * .0125));
+                        break;
+                    case ProjectileID.CultistBossIceMist:
+                        if (projectile.ai[0] == 1f)
+                        {
+                            Main.NewText("scaled");
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.CultistCount * .0125));
+                        }
                         break;
 
                     case ProjectileID.PhantasmalBolt:
