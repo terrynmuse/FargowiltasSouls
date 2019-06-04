@@ -378,12 +378,24 @@ namespace FargowiltasSouls.NPCs
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.SlimeCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoWorld.SlimeCount * .0125));
                         break;
+                    case NPCID.BlueSlime:
+                    case NPCID.SlimeSpiked:
+                        if (BossIsAlive(ref slimeBoss, NPCID.KingSlime))
+                        {
+                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.SlimeCount * .025));
+                            npc.damage = (int)(npc.damage * (1 + FargoWorld.SlimeCount * .0125));
+                        }
+                        break;
 
                     case NPCID.EaterofWorldsHead:
                     case NPCID.EaterofWorldsBody:
                     case NPCID.EaterofWorldsTail:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.EyeCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.EyeCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.EaterCount* .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoWorld.EaterCount* .0125));
+                        break;
+                    case NPCID.VileSpit:
+                        if (BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
+                            npc.damage = (int)(npc.damage * (1 + FargoWorld.EaterCount* .0125));
                         break;
 
                     case NPCID.BrainofCthulhu:
@@ -396,6 +408,21 @@ namespace FargowiltasSouls.NPCs
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.BeeCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoWorld.BeeCount * .0125));
                         break;
+                    case NPCID.Hornet:
+                    case NPCID.HornetFatty:
+                    case NPCID.HornetHoney:
+                    case NPCID.HornetLeafy:
+                    case NPCID.HornetSpikey:
+                    case NPCID.HornetStingy:
+                    case NPCID.MossHornet:
+                    case NPCID.Bee:
+                    case NPCID.BeeSmall:
+                        if (BossIsAlive(ref beeBoss, NPCID.QueenBee))
+                        {
+                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.BeeCount * .025));
+                            npc.damage = (int)(npc.damage * (1 + FargoWorld.BeeCount * .0125));
+                        }
+                        break;
 
                     case NPCID.SkeletronHead:
                     case NPCID.SkeletronHand:
@@ -407,6 +434,15 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WallofFleshEye:
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.WallCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoWorld.WallCount * .0125));
+                        break;
+                    case NPCID.TheHungry:
+                    case NPCID.TheHungryII:
+                    case NPCID.LeechHead:
+                        if (BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
+                        {
+                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.WallCount * .025));
+                            npc.damage = (int)(npc.damage * (1 + FargoWorld.WallCount * .0125));
+                        }
                         break;
 
                     case NPCID.TheDestroyer:
@@ -1926,13 +1962,13 @@ namespace FargowiltasSouls.NPCs
                                 if (Counter2 > 3)
                                 {
                                     if (Main.netMode != 1)
-                                        FargoGlobalProjectile.XWay(16, npc.Center, ProjectileID.Stinger, 6, npc.damage / 4, 1);
+                                        FargoGlobalProjectile.XWay(16, npc.Center, ProjectileID.Stinger, 6, 11, 1);
                                     Counter2 = 0;
                                 }
                                 else
                                 {
                                     if (Main.netMode != 1)
-                                        FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.Stinger, 6, npc.damage / 4, 1);
+                                        FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.Stinger, 6, 11, 1);
                                 }
                             }
                         }
@@ -3368,7 +3404,6 @@ namespace FargowiltasSouls.NPCs
                                         damage = damage * 2;
                                     else if (Main.expertMode)
                                         damage = damage * 9 / 10;
-                                    damage = (int)(damage * (1 + FargoWorld.PlanteraCount * .0125));
 
                                     Vector2 velocity = Main.player[t].Center - npc.Center;
                                     velocity.Normalize();
@@ -8144,16 +8179,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.HornetLeafy:
                     case NPCID.HornetSpikey:
                     case NPCID.HornetStingy:
-                    case NPCID.LittleHornetFatty:
-                    case NPCID.LittleHornetHoney:
-                    case NPCID.LittleHornetLeafy:
-                    case NPCID.LittleHornetSpikey:
-                    case NPCID.LittleHornetStingy:
-                    case NPCID.BigHornetFatty:
-                    case NPCID.BigHornetHoney:
-                    case NPCID.BigHornetLeafy:
-                    case NPCID.BigHornetSpikey:
-                    case NPCID.BigHornetStingy:
                         if (BossIsAlive(ref beeBoss, NPCID.QueenBee))
                         {
                             npc.active = false;

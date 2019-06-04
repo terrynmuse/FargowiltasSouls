@@ -58,6 +58,20 @@
 -nerfed skelly bone spray (slower, less max speed)
 -added plantera's fruit
 -skelly cant stun if you already have stun
+-fixed eater of worlds using EYE'S boss count???
+-the following stuff scales with boss kills properly:
+	king slime slimes
+	eow vile spit
+	eow cursed fireballs
+	queen bee stingers
+	queen bee hornets and bees
+	wof hungry, hungry 2, leeches
+	all mech death lasers
+	prime cannonballs
+	plantera crystal leaf shot
+	plantera seeds and spiky balls
+	fishron sharknados
+	moon lord phantasmal attacks
 
 -added sprites for:
 	mystic skull

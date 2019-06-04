@@ -89,6 +89,55 @@ namespace FargowiltasSouls.Projectiles
                         projectile.timeLeft = 600;
                         break;
 
+                    #region maso boss scaling (CHECK THAT YOU'RE NOT DOUBLE DIPPING)
+
+                    case ProjectileID.CursedFlameHostile: //spaz p3 balls are already scaled
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead))
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.EaterCount * .0125));
+                        break;
+
+                    case ProjectileID.Stinger:
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee))
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.BeeCount * .0125));
+                        break;
+
+                    case ProjectileID.DeathLaser: //may be used elsewhere?
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.retiBoss, NPCID.Retinazer))
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.TwinsCount * .0125));
+                        else if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.destroyBoss, NPCID.TheDestroyer))
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.DestroyerCount * .0125));
+                        else if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.primeBoss, NPCID.SkeletronPrime))
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.PrimeCount * .0125));
+                        break;
+
+                    case ProjectileID.BombSkeletronPrime:
+                        projectile.damage += 40;
+                        projectile.damage = (int)(projectile.damage * (1 + FargoWorld.PrimeCount * .0125));
+                        break;
+
+                    case ProjectileID.SeedPlantera:
+                    case ProjectileID.PoisonSeedPlantera:
+                    case ProjectileID.ThornBall:
+                        projectile.damage = (int)(projectile.damage * (1 + FargoWorld.PlanteraCount * .0125));
+                        break;
+
+                    case ProjectileID.Sharknado: //spawns from sharks too but whatever
+                        if (FargoWorld.downedFishronEX || !FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBossEX, NPCID.DukeFishron))
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.FishronCount * .0125));
+                        break;
+
+                    case ProjectileID.PhantasmalBolt:
+                    case ProjectileID.PhantasmalDeathray:
+                    case ProjectileID.PhantasmalSphere:
+                        projectile.damage = (int)(projectile.damage * (1 + FargoWorld.MoonlordCount * .0125));
+                        break;
+                    case ProjectileID.PhantasmalEye: //also spawned w/ scaling by cultist
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.moonBoss, NPCID.MoonLordCore))
+                            projectile.damage = (int)(projectile.damage * (1 + FargoWorld.MoonlordCount * .0125));
+                        break;
+
+                    #endregion
+
                     default:
                         break;
                 }
@@ -570,11 +619,6 @@ namespace FargowiltasSouls.Projectiles
                 case ProjectileID.VortexAcid:
                     if (FargoWorld.MasochistMode)
                         projectile.position += projectile.velocity * .25f;
-                    break;
-
-                case ProjectileID.BombSkeletronPrime:
-                    if (FargoWorld.MasochistMode && projectile.damage < 40)
-                        projectile.damage = 40;
                     break;
 
                 case ProjectileID.CultistRitual:
