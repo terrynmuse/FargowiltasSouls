@@ -5185,6 +5185,38 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.LavaSlime:
+                        if (npc.velocity.Y < 0f)
+                        {
+                            masoBool[0] = true;
+                        }
+                        else if (npc.velocity.Y > 0f) //coming down
+                        {
+                            if (masoBool[0] && Main.netMode != 1 && npc.HasValidTarget && npc.position.Y > Main.player[npc.target].position.Y + 100
+                                && npc.Center.ToTileCoordinates().Y > Main.maxTilesY - 200) //in hell and below player
+                            {
+                                masoBool[0] = false;
+                                int tileX = (int)(npc.Center.X / 16f);
+                                int tileY = (int)(npc.Center.Y / 16f);
+                                Tile tile = Framing.GetTileSafely(tileX, tileY);
+                                if (tile != null && !tile.active() && tile.liquid == 0)
+                                {
+                                    tile.lava(true);
+                                    tile.liquid = 255;
+                                    if (Main.netMode == 2)
+                                        NetMessage.SendTileSquare(-1, tileX, tileY, 1);
+                                    else
+                                        WorldGen.SquareTileFrame(tileX, tileY, true);
+                                    npc.netUpdate = true;
+                                }
+                            }
+                        }
+                        else //npc vel y = 0
+                        {
+                            masoBool[0] = false;
+                        }
+                        break;
+
                     //drakin possible meme tm
                     /*if (!DD2Event.Ongoing)
                     {

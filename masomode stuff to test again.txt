@@ -106,6 +106,7 @@
 -etherian goblins inflict poisoned and bleeding
 -goblin bombers drop a goblin bomb when killed
 -betsy summons dark mages
+-lava slimes can use lava to jump(?)
 
 -added sprites for:
 	mystic skull
