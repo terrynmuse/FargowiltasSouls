@@ -112,6 +112,7 @@
 -bees no longer promote to moss hornets during queen bee fight
 -fixed fused not actually exploding
 -fixed crystal leaf shot debuffs
+-fixed webbed softlock?????????????????
 
 -added sprites for:
 	mystic skull

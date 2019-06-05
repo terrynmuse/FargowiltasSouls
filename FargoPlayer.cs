@@ -867,11 +867,14 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Webbed, 30);
                         //player.stickyBreak = 1000;
                         Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
-                        int num3 = (int)vector.X;
-                        int num4 = (int)vector.Y;
-                        WorldGen.KillTile(num3, num4, false, false, false);
-                        if (Main.netMode == 1 && !Main.tile[num3, num4].active())
-                            NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
+                        if (vector.X != -1 && vector.Y != -1)
+                        {
+                            int num3 = (int)vector.X;
+                            int num4 = (int)vector.Y;
+                            WorldGen.KillTile(num3, num4, false, false, false);
+                            if (Main.netMode == 1 && !Main.tile[num3, num4].active())
+                                NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
+                        }
                     }
                     webCounter++;
                     if (webCounter >= 30 && player.HasBuff(BuffID.Webbed))
@@ -889,7 +892,7 @@ namespace FargowiltasSouls
                     Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
                     if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
                     {
-                        if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles?
+                        if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles
                             player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), 10, 0, false, false, false, 0);
                     }
                 }
