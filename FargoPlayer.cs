@@ -865,6 +865,7 @@ namespace FargowiltasSouls
                     if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe && !PureHeart && !player.buffImmune[BuffID.Webbed])
                     {
                         player.AddBuff(BuffID.Webbed, 30);
+                        player.stickyBreak = 0;
                         //player.stickyBreak = 1000;
                         Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
                         int num3 = (int)vector.X;
@@ -873,13 +874,13 @@ namespace FargowiltasSouls
                         if (Main.netMode == 1 && !Main.tile[num3, num4].active())
                             NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
                     }
-                    webCounter++;
+                    /*webCounter++;
                     if (webCounter >= 30 && player.HasBuff(BuffID.Webbed))
                     {
                         player.DelBuff(player.FindBuffIndex(BuffID.Webbed));
                         player.stickyBreak = 0;
                         webCounter = 0;
-                    }
+                    }*/
                 }
                 if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
                 {

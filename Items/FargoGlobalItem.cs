@@ -164,7 +164,7 @@ namespace FargowiltasSouls.Items
             }
 
             //non weapons and weapons with no ammo begone
-            if (item.damage <= 0 || !player.HasAmmo(item, true)) return true;
+            if (item.damage <= 0 || !player.HasAmmo(item, true) || (item.mana > 0 && player.statMana < item.mana)) return true;
 
             if (modPlayer.BorealEnchant && ++modPlayer.BorealCount >= 4)
             {
