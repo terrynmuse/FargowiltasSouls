@@ -1541,16 +1541,15 @@ namespace FargowiltasSouls
 
             if (Fused)
             {
-                if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f)
+                if (Main.rand.Next(2) == 0 && drawInfo.shadow == 0f)
                 {
-                    int dust = Dust.NewDust(drawInfo.position + new Vector2(player.width / 2, player.height / 5), 0, 0, DustID.Fire, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 0, default(Color), 1.5f);
+                    int dust = Dust.NewDust(drawInfo.position + new Vector2(player.width / 2, player.height / 5), 0, 0, DustID.Fire, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 0, default(Color), 2f);
                     Main.dust[dust].velocity.Y -= 2f;
-                    if (Main.rand.Next(3) != 0)
+                    Main.dust[dust].velocity *= 2f;
+                    if (Main.rand.Next(4) == 0)
                     {
                         Main.dust[dust].scale += 0.5f;
                         Main.dust[dust].noGravity = true;
-                        Main.dust[dust].velocity *= 3f;
-                        Main.dust[dust].velocity.Y -= 2f;
                     }
                     Main.playerDrawDust.Add(dust);
                 }

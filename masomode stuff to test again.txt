@@ -81,7 +81,7 @@
 -added boss count max for debugging
 -fixed eater's counter secretly incrementing infinitely
 -betsy spawns in hell after old one's army tier 3 is completed (was post-golem only)
--sharks can jump out of the water to attack dry players
+-sharks can jump out of the water
 -wandering eyes have double health, inflict berserked, p2 blood scythes, p2 knockback immune
 -demon eyes have a 25% chance to be replaced with wandering eye in hardmode
 -gastropods explode into lasers when killed
@@ -101,12 +101,16 @@
 -old one's skeletons can shoot chaos balls
 -wither beasts have an aura of withered weapon/armor
 -dark mage grants an aura of protection to nearby enemies and lethargic for players
+-dark mage bolt inflicts hexed
 -etherian wyverns shoot bouncy fireballs
 -kobold gliders scatter spiky balls as they fly
 -etherian goblins inflict poisoned and bleeding
--goblin bombers drop a goblin bomb when killed
+-goblin bombers drop goblin bombs when killed
 -betsy summons dark mages
 -lava slimes can use lava to jump(?)
+-plantera drops fruit when she has clear line of sight to target
+-bees no longer promote to moss hornets during queen bee fight
+-fixed fused not actually exploding
 
 -added sprites for:
 	mystic skull

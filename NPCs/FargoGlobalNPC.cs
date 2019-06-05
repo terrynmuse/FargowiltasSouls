@@ -123,6 +123,10 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
+                    case NPCID.Shark:
+                        Counter2 = Main.rand.Next(180);
+                        break;
+
                     case NPCID.DD2SkeletonT1:
                     case NPCID.DD2SkeletonT3:
                         Counter = Main.rand.Next(180);
@@ -428,7 +432,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.HornetLeafy:
                     case NPCID.HornetSpikey:
                     case NPCID.HornetStingy:
-                    case NPCID.MossHornet:
                     case NPCID.Bee:
                     case NPCID.BeeSmall:
                         if (BossIsAlive(ref beeBoss, NPCID.QueenBee))
@@ -452,6 +455,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.TheHungry:
                     case NPCID.TheHungryII:
                     case NPCID.LeechHead:
+                    case NPCID.LeechBody:
+                    case NPCID.LeechTail:
                         if (BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
                         {
                             npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.WallCount * .025));
@@ -651,7 +656,7 @@ namespace FargowiltasSouls.NPCs
                             break;
                             
                         case NPCID.MossHornet:
-                            if (Main.rand.Next(4) == 0 && !BossIsAlive(ref beeBoss, NPCID.QueenBee))
+                            if (Main.rand.Next(4) == 0)
                                 Horde(npc, 5);
                             break;
 
@@ -704,7 +709,7 @@ namespace FargowiltasSouls.NPCs
                         case NPCID.Bee:
                         case NPCID.BeeSmall:
                             if (Main.rand.Next(3) == 0)
-                                switch (Main.hardMode ? Main.rand.Next(16, 21) : Main.rand.Next(16))
+                                switch ((Main.hardMode && !BossIsAlive(ref beeBoss, NPCID.QueenBee)) ? Main.rand.Next(16, 21) : Main.rand.Next(16))
                                 {
                                     case 0: npcType = NPCID.Hornet; break;
                                     case 1: npcType = NPCID.HornetFatty; break;
@@ -1025,7 +1030,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             Counter2 = 0;
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                            if (t != -1 && !Main.player[t].wet && Main.netMode != 1)
+                            if (t != -1 && Main.netMode != 1)
                             {
                                 const float gravity = 0.3f;
                                 const float time = 120f;
@@ -3420,9 +3425,13 @@ namespace FargowiltasSouls.NPCs
                                     if (Main.netMode == 2 && n < 200)
                                         NetMessage.SendData(23, -1, -1, null, n);
                                 }
-                                if (!NPC.downedPlantBoss)
-                                    Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("PlanterasFruit"));
                             }
+                        }
+                        if (!NPC.downedPlantBoss && Main.netMode != 1 && npc.HasPlayerTarget && !masoBool[1]
+                            && Collision.CanHit(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0))
+                        {
+                            masoBool[1] = true;
+                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("PlanterasFruit"));
                         }
 
                         if (npc.life <= npc.lifeMax / 2) //phase 2
@@ -4841,7 +4850,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DD2Betsy:
                         betsyBoss = boss = npc.whoAmI;
-                        if (npc.ai[1] == 20f || npc.ai[1] == 45f || npc.ai[1] == 70f)
+                        if (npc.ai[0] == 6f && npc.ai[1] == 1f)
                         {
                             if (Main.netMode != 1 && NPC.CountNPCS(NPCID.DD2DarkMageT3) < 3)
                             {
@@ -5099,7 +5108,7 @@ namespace FargowiltasSouls.NPCs
                         if (npc.life < npc.lifeMax / 2)
                         {
                             npc.knockBackResist = 0f;
-                            if (++Counter > 5)
+                            if (++Counter > 20)
                             {
                                 Counter = 0;
                                 if (Main.netMode != 1)
@@ -5110,7 +5119,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.AnglerFish:
                         if (!masoBool[0]) //make light while invisible
-                            Lighting.AddLight(npc.Center, 0.25f, 1f, 1f);
+                            Lighting.AddLight(npc.Center, 0.1f, 0.5f, 0.5f);
                         break;
 
                     case NPCID.Psycho: //alpha is controlled by vanilla ai so this is necessary
@@ -5122,7 +5131,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DD2SkeletonT1:
                     case NPCID.DD2SkeletonT3:
-                        if (++Counter > 360)
+                        if (++Counter > 420)
                         {
                             Counter = 0;
                             if (Main.netMode != 1)
@@ -5136,22 +5145,32 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DD2WitherBeastT2:
                     case NPCID.DD2WitherBeastT3:
-                        Aura(npc, 250, BuffID.WitheredArmor, false, 119);
-                        Aura(npc, 250, BuffID.WitheredWeapon, false, 14);
+                        Aura(npc, 300, BuffID.WitheredArmor, false, 119);
+                        Aura(npc, 300, BuffID.WitheredWeapon, false, 14);
                         break;
 
                     case NPCID.DD2DarkMageT1:
-                    case NPCID.DD2DarkMageT3:
-                        /*if (BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
-                            npc.velocity.Y = 0f;*/
-                        Aura(npc, 500, mod.BuffType("Lethargic"), false, DustID.PinkFlame);
-                        foreach (NPC n in Main.npc.Where(n => n.active && !n.friendly && n.type != npc.type && n.Distance(npc.Center) < 500f))
+                        Aura(npc, 600, mod.BuffType("Lethargic"), false, 254);
+                        foreach (NPC n in Main.npc.Where(n => n.active && !n.friendly && n.type != npc.type && n.Distance(npc.Center) < 600))
                         {
                             n.GetGlobalNPC<FargoGlobalNPC>().PaladinsShield = true;
                             if (Main.rand.Next(2) == 0)
                             {
-                                int d = Dust.NewDust(n.position, n.width, n.height, DustID.PinkFlame, 0f, -1.5f, 0, new Color());
-                                Main.dust[d].velocity *= 0.5f;
+                                int d = Dust.NewDust(n.position, n.width, n.height, 254, 0f, -3f, 0, new Color(), 1.5f);
+                                Main.dust[d].noGravity = true;
+                                Main.dust[d].noLight = true;
+                            }
+                        }
+                        break;
+                    case NPCID.DD2DarkMageT3:
+                        Aura(npc, 900, mod.BuffType("Lethargic"), false, 254);
+                        foreach (NPC n in Main.npc.Where(n => n.active && !n.friendly && n.type != npc.type && n.Distance(npc.Center) < 900))
+                        {
+                            n.GetGlobalNPC<FargoGlobalNPC>().PaladinsShield = true;
+                            if (Main.rand.Next(2) == 0)
+                            {
+                                int d = Dust.NewDust(n.position, n.width, n.height, 254, 0f, -3f, 0, new Color(), 1.5f);
+                                Main.dust[d].noGravity = true;
                                 Main.dust[d].noLight = true;
                             }
                         }
@@ -5161,7 +5180,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DD2WyvernT2:
                     case NPCID.DD2WyvernT3:
                         if (++Counter >= 180)
-                            Shoot(npc, 0, 300, 6, ProjectileID.Fireball, npc.damage / 4, 0f);
+                        {
+                            Counter = 0;
+                            if (Main.netMode != 1)
+                                Shoot(npc, 0, 300, 6, ProjectileID.Fireball, npc.damage / 4, 0f);
+                        }
                         break;
 
                     case NPCID.DD2LightningBugT3:
@@ -5201,12 +5224,11 @@ namespace FargowiltasSouls.NPCs
                                 Tile tile = Framing.GetTileSafely(tileX, tileY);
                                 if (tile != null && !tile.active() && tile.liquid == 0)
                                 {
-                                    tile.lava(true);
+                                    tile.liquidType(1);
                                     tile.liquid = 255;
                                     if (Main.netMode == 2)
                                         NetMessage.SendTileSquare(-1, tileX, tileY, 1);
-                                    else
-                                        WorldGen.SquareTileFrame(tileX, tileY, true);
+                                    WorldGen.SquareTileFrame(tileX, tileY, true);
                                     npc.netUpdate = true;
                                 }
                             }
@@ -8419,8 +8441,8 @@ namespace FargowiltasSouls.NPCs
                         if (Main.netMode != 1 && npc.HasPlayerTarget)
                         {
                             Vector2 vel = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 7f;
-                            for (int i = 0; i < 8; i++)
-                                Projectile.NewProjectile(npc.Center, vel.RotatedBy(2 * Math.PI / 12), ProjectileID.PinkLaser, 25, 0f, Main.myPlayer);
+                            for (int i = 0; i < 12; i++)
+                                Projectile.NewProjectile(npc.Center, vel.RotatedBy(2 * Math.PI / 12 * i), ProjectileID.PinkLaser, 25, 0f, Main.myPlayer);
                         }
                         break;
 
@@ -8428,8 +8450,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DD2GoblinBomberT2:
                     case NPCID.DD2GoblinBomberT3:
                         if (Main.netMode != 1)
-                            Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(-3f, 3f), -6f),
-                                ProjectileID.DD2GoblinBomb, npc.damage / 4, 0, Main.myPlayer);
+                        {
+                            for (int i = 0; i < 3; i++)
+                                Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(-3f, 3f), -6f),
+                                  ProjectileID.DD2GoblinBomb, npc.damage / 4, 0, Main.myPlayer);
+                        }
                         break;
 
                     /*case 41: //rainbow slime 2

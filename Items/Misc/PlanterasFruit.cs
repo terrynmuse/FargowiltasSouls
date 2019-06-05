@@ -30,7 +30,7 @@ namespace FargowiltasSouls.Items.Misc
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(NPCID.Plantera);
+            return player.ZoneJungle && !NPC.AnyNPCs(NPCID.Plantera);
         }
 
         public override bool UseItem(Player player)
@@ -40,8 +40,11 @@ namespace FargowiltasSouls.Items.Misc
                 Main.PlaySound(15, player.Center, 0);
                 NPC.SpawnOnPlayer(player.whoAmI, NPCID.Plantera);
                 if (NPC.downedPlantBoss)
-                    for (int i = 0; i < 20; i++)
-                        Projectile.NewProjectile(player.Center, Main.rand.NextVector2Square(-30f, 30f), ProjectileID.ThornBall, 56, 0f, Main.myPlayer);
+                {
+                    for (int i = 0; i < 30; i++)
+                        Projectile.NewProjectile(player.position + new Vector2(Main.rand.Next(player.width), Main.rand.Next(player.height)),
+                            new Vector2(Main.rand.Next(-30, 31), Main.rand.Next(-30, 31)), ProjectileID.ThornBall, 56, 0f, Main.myPlayer);
+                }
             }
             return true;
         }
