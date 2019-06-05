@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Palm Wood Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Alarmingly calm'
 Double tap down to spawn a palm tree sentry that throws nuts at enemies
 While in the Ocean or Desert, it attacks twice as fast");
         }
@@ -37,7 +37,7 @@ While in the Ocean or Desert, it attacks twice as fast");
             recipe.AddIngredient(ItemID.PalmWoodHelmet);
             recipe.AddIngredient(ItemID.PalmWoodBreastplate);
             recipe.AddIngredient(ItemID.PalmWoodGreaves);
-            recipe.AddIngredient(ItemID.Trident);
+            recipe.AddIngredient(ItemID.BreathingReed);
             recipe.AddIngredient(ItemID.Tuna);
             recipe.AddIngredient(ItemID.Seashell);
             recipe.AddIngredient(ItemID.LimeKelp);

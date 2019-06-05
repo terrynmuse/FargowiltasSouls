@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Rich Mahogany Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Guaranteed to keep you hooked'
 All grappling hooks pull you in and retract twice as fast
 While in the Jungle, any hook will periodically fire homing shots at enemies");
         }

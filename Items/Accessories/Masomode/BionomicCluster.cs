@@ -93,20 +93,20 @@ Summons a friendly rainbow slime");
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(mod.ItemType("ConcentratedRainbowMatter"));
+            recipe.AddIngredient(mod.ItemType("SqueakyToy"));
             recipe.AddIngredient(mod.ItemType("DragonFang"));
             recipe.AddIngredient(mod.ItemType("FrigidGemstone"));
             recipe.AddIngredient(mod.ItemType("SandsofTime"));
-            recipe.AddIngredient(mod.ItemType("SqueakyToy"));
+            recipe.AddIngredient(mod.ItemType("ConcentratedRainbowMatter"));
             recipe.AddIngredient(mod.ItemType("TribalCharm"));
             recipe.AddIngredient(mod.ItemType("MysticSkull"));
-            recipe.AddIngredient(mod.ItemType("SecurityWallet"));
-            recipe.AddIngredient(mod.ItemType("OrdinaryCarrot"));
             recipe.AddIngredient(mod.ItemType("WretchedPouch"));
+            recipe.AddIngredient(mod.ItemType("OrdinaryCarrot"));
+            recipe.AddIngredient(mod.ItemType("SecurityWallet"));
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 20);
 
-            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddTile(TileID.MeatGrinder);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

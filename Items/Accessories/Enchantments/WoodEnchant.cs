@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Wood Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Humble beginnings…'
 Critters have massively increased defense
 When critters die, they release their souls to aid you");
         }

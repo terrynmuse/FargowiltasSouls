@@ -33,5 +33,10 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             item.autoReuse = true;
             item.value = Item.sellPrice(0, 2);
         }
+
+        public override bool CanUseItem(Player player)
+        {
+            return player.maxMinions >= 2;
+        }
     }
 }

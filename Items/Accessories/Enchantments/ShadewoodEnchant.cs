@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Shadewood Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Surprisingly clean'
 When you take damage, blood flies everywhere
 While in the Crimson, you are instead inflicted with Super Bleeding on hit");
         }

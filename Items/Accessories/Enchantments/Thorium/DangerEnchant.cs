@@ -71,7 +71,7 @@ You are immune to most damage-inflicting debuffs");
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddIngredient(thorium.ItemType("DangerDagger"), 500);
+            recipe.AddIngredient(thorium.ItemType("DangerDagger"), 300);
             recipe.AddIngredient(ItemID.Rally);
 
             recipe.AddTile(TileID.DemonAltar);

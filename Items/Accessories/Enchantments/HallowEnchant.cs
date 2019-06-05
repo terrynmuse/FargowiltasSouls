@@ -49,7 +49,7 @@ Summons a magical fairy");
                 recipe.AddIngredient(ItemID.Excalibur);
                 recipe.AddIngredient(ItemID.LightDisc, 5);
                 recipe.AddIngredient(thorium.ItemType("HolyStaff"));
-                recipe.AddIngredient(ItemID.LightningBug);
+                recipe.AddIngredient(thorium.ItemType("MusicSheet4"));
             }
             else
             {

@@ -13,11 +13,6 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             Tooltip.SetDefault("");
         }
 
-        public override bool Autoload(ref string name)
-        {
-            return false;
-        }
-
         public override void SetDefaults()
         {
             item.damage = 60;
@@ -44,13 +39,13 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             int shoot = 0;
 
             if (rand == 0)
-                shoot = ProjectileID.CultistBossIceMist;
+                shoot = mod.ProjectileType("LunarCultistFireball");
             else if (rand == 1)
-                shoot = ProjectileID.CultistBossFireBall;
+                shoot = mod.ProjectileType("LunarCultistLightningOrb");
             else if (rand == 2)
-                shoot = ProjectileID.VortexLightning;
+                shoot = mod.ProjectileType("LunarCultistIceMist");
             else
-                shoot = ProjectileID.CultistBossFireBallClone;
+                shoot = mod.ProjectileType("LunarCultistLight");
 
             int p = Projectile.NewProjectile(position, new Vector2(speedX, speedY), shoot, damage, knockBack, player.whoAmI);
             if (p < 1000)

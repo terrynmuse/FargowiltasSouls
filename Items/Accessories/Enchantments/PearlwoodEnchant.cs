@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Pearlwood Enchantment");
             Tooltip.SetDefault(
-@"''
+@"'Too little, too late…'
 You leave behind a trail of rainbows that may shrink enemies
 While in the Hallow, the rainbow trail lasts much longer");
         }

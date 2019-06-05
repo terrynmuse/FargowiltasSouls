@@ -56,7 +56,7 @@ Summons a pet Skeletron Head");
             
             recipe.AddIngredient(ItemID.BoneKey);
             
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
