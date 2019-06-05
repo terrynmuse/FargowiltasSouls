@@ -12,6 +12,43 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-fixed calamity fucking up biome debuffs and making them not display
+-ragged caster bolts also inflict reverse mana flow
+-diabolist blasts also inflict jammed
+-necromancer shadowbeams also inflict atrophied
+-lost girls have 300 defense now
+-lost girl/nymph have double damage/defense and quadruple life in hardmode
+-lost girl/nymph inflicts slow, weak, lovestruck, and has lifesteal on touch
+-nymph is knockback immune and has a reverse aura of lovestruck
+-nymph HEALS FROM ATTACKS MADE BY LOVESTRUCK PLAYERS
+-paladins from dungeon slimes should sync properly in multiplayer
+-paladins have broken armor aura in addition to their paladin's shield effect
+-sand sharks spawn in underground desert
+-changed how sharks bleed enrage for MP
+-shark bleed enrage now gives a linear scaling damage boost up to +250% (was exponential)
+-wof eyes now turn transparent when invulnerable (was red, hard to see)
+-eater of worlds always inflicts 10mins weak on touch (5% chance in vanilla)
+-slightly increased duration of blue/purple spray made by unicorn/vile spit
+-tweaked how meteor heads dash (might help with their teleportation in mp? might not)
+-betsy and attacks inflict burning too now btw
+-floaty gross inflicts oozed on touch
+-wyvern inflicts crippled, clipped wings, and purified
+-celestial pillar can always hurt the player (previously couldn't while it was spawning)
+-cultist pillar disables the corresponding damage type on hit
+-cultist throws pillars based on which damage type was used on him most
+-wall of flesh spits fireballs/ichor faster as health decreases, slightly more accurate
+-fixed retinazer only shooting 8-spread stars (should be 12-spread)
+-dark caster-type enemies will teleport away much faster after being hit (cannot be stopped)
+-tim and rune wizard have tripled life
+-tim has a reverse silenced aura + close range cursed aura
+-rune wizard's close range aura is suffocation + hexed
+-rune wizard periodically emits rings of rune blasts
+-rune wizard and attacks inflict suffocation too
+-reverse auras have a fixed maximum range (so they dont meme players on the other side of map)
+-restored derpling confused aura to reverse aura
+-sand elementals also constantly respawn dune splicers
+-dune splicers now inflict clipped wings
+
 -CACTUS INFLICTS 10 DAMAGE AAAAAAAAAAAAAAAAAAAAAAAAAA
 -doubled all boss spawn rates
 -mimics don't have cross necklace effect in pre-hm

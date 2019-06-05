@@ -56,6 +56,13 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             target.AddBuff(mod.BuffType("Hexed"), 120);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
+            switch ((int)projectile.ai[0])
+            {
+                case 0: target.AddBuff(mod.BuffType("ReverseManaFlow"), 180); break; //nebula
+                case 1: target.AddBuff(mod.BuffType("Atrophied"), 180); break; //solar
+                case 2: target.AddBuff(mod.BuffType("Jammed"), 180); break; //vortex
+                default: target.AddBuff(mod.BuffType("Asocial"), 180); break; //stardust
+            }
         }
 
         public override Color? GetAlpha(Color lightColor)

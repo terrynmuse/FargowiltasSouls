@@ -10,13 +10,11 @@ QB -(take less damage while guards are alive? maybe only in stationary form spra
 crippled only when charging?
 -also not all demon eyes dashing?
 -icy merman shoots twice as fast if he’s in water (also dust ofc)
--Fire Imp, Dark Caster, Tim, and Goblin Sorcerer "panic" when attacked (they fire projectiles 3x as fast and can still shoot after getting damaged)
 -Paladins can throw hammers without having to not be currently attacked
 -Zombies can always open doors like in blood moons
 -clowns throw exploding bananas and explode into snow and sand balls instead of dynamite
 -moths spawn spores everywhere 
 -Pirahnas will hop out the top of water if you are directly above it
--Ragged Casters teleport when damaged
 
 MISC
 -Marked for Death - skulls circle around you
@@ -30,7 +28,6 @@ meme ideas
 fire imp - explosion of burning spheres when they teleport
 -wraiths steal your souls on hit
 -mimics dont reveal themself until you are extremely close
--ice golem has snowflakes protecting him something
 -hellhound in hell?
 mothron
 

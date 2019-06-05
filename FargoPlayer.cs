@@ -783,23 +783,23 @@ namespace FargowiltasSouls
                 }
 
                 if (player.ZoneUnderworldHeight && !(player.fireWalk || PureHeart))
-                    player.AddBuff(BuffID.OnFire, Main.expertMode ? 1 : 2);
+                    player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
-                    player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode ? 1 : 2);
+                    player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
                 if (player.ZoneSnow && Main.hardMode && !Main.dayTime)
                 {
                     if (!PureHeart)
-                        player.AddBuff(BuffID.Chilled, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Chilled, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
                     if (player.wet && !MutantAntibodies)
                     {
-                        player.AddBuff(BuffID.Frostburn, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Frostburn, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                         MasomodeFreezeTimer++;
                         if (MasomodeFreezeTimer >= 300)
                         {
-                            player.AddBuff(BuffID.Frozen, 120);
+                            player.AddBuff(BuffID.Frozen, Main.expertMode && Main.expertDebuffTime > 1 ? 60 : 120);
                             MasomodeFreezeTimer = -300;
                         }
                     }
@@ -816,24 +816,25 @@ namespace FargowiltasSouls
                 if (player.ZoneCorrupt && Main.hardMode)
                 {
                     if (!PureHeart)
-                        player.AddBuff(BuffID.Darkness, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Darkness, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                     if(player.wet && !MutantAntibodies)
-                        player.AddBuff(BuffID.CursedInferno, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.CursedInferno, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
                 if (player.ZoneCrimson && Main.hardMode)
                 {
                     if (!PureHeart)
-                        player.AddBuff(BuffID.Bleeding, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Bleeding, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                     if (player.wet && !MutantAntibodies)
-                        player.AddBuff(BuffID.Ichor, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Ichor, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
-                if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) && player.active && !PureHeart)
+                if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) && player.active)
                 {
-                    player.AddBuff(mod.BuffType("FlippedHallow"), 120);
+                    if (!PureHeart)
+                        player.AddBuff(mod.BuffType("FlippedHallow"), 120);
                     if (player.wet && !MutantAntibodies)
-                        player.AddBuff(BuffID.Confused, 2);
+                        player.AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
                 /*if (Main.hardMode && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))

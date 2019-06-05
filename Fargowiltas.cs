@@ -418,17 +418,17 @@ namespace FargowiltasSouls
                     fargoNPC.masoBool[3] = reader.ReadBoolean();
                     break;
 
-                case 3: //rainbow slime, MP clients syncing to server
+                case 3: //rainbow slime/paladin, MP clients syncing to server
                     if (Main.netMode == 1)
                     {
-                        byte slime = reader.ReadByte();
-                        Main.npc[slime].position = Main.npc[slime].Center;
-                        Main.npc[slime].width = (int)(Main.npc[slime].width / Main.npc[slime].scale);
-                        Main.npc[slime].height = (int)(Main.npc[slime].height / Main.npc[slime].scale);
-                        Main.npc[slime].scale = 1f;
-                        Main.npc[slime].Center = Main.npc[slime].position;
-                        Main.npc[slime].lifeMax = reader.ReadInt32();
-                        Main.npc[slime].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
+                        byte npc = reader.ReadByte();
+                        Main.npc[npc].lifeMax = reader.ReadInt32();
+                        float newScale = reader.ReadSingle();
+                        Main.npc[npc].position = Main.npc[npc].Center;
+                        Main.npc[npc].width = (int)(Main.npc[npc].width / Main.npc[npc].scale * newScale);
+                        Main.npc[npc].height = (int)(Main.npc[npc].height / Main.npc[npc].scale * newScale);
+                        Main.npc[npc].scale = newScale;
+                        Main.npc[npc].Center = Main.npc[npc].position;
                     }
                     break;
 
@@ -447,6 +447,14 @@ namespace FargowiltasSouls
                         int reti = reader.ReadByte();
                         Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = reader.ReadBoolean();
                         Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().Counter = reader.ReadInt32();
+                    }
+                    break;
+
+                case 6: //shark MP sync
+                    if (Main.netMode == 1)
+                    {
+                        int shark = reader.ReadByte();
+                        Main.npc[shark].GetGlobalNPC<FargoGlobalNPC>().SharkCount = reader.ReadByte();
                     }
                     break;
 
