@@ -7,8 +7,6 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class SqueakyToy : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Squeaky Toy");

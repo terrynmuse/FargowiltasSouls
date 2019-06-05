@@ -12,6 +12,11 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-removed unintentional 2def from necromantic brew
+-added ice queen crown sprite
+-added remote control sprite
+-added squeaky toy sprite
+
 -fixed calamity fucking up biome debuffs and making them not display
 -ragged caster bolts also inflict reverse mana flow
 -diabolist blasts also inflict jammed
