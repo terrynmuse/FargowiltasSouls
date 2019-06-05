@@ -8,6 +8,11 @@ namespace Fargowiltas.Items.Weapons
 	{
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Blender");

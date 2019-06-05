@@ -106,7 +106,7 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 20);
 
-            recipe.AddTile(TileID.MeatGrinder);
+            recipe.AddTile(TileID.CookingPots);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

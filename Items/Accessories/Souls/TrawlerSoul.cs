@@ -100,8 +100,8 @@ Permanent Sonar and Crate Buffs";
             recipe.AddIngredient(ItemID.ReaverShark);
             recipe.AddIngredient(ItemID.Toxikarp);
             recipe.AddIngredient(ItemID.Bladetongue);
-            recipe.AddIngredient(ItemID.CrystalSerpent);
             recipe.AddIngredient(ItemID.ObsidianSwordfish);
+            recipe.AddIngredient(ItemID.HardySaddle);
             recipe.AddIngredient(ItemID.ZephyrFish);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");

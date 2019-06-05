@@ -67,7 +67,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.thrownCrit += 15;
             player.thrownVelocity += 0.15f;
 
-            if (Fargowiltas.Instance.CalamityLoaded) Thorium(player);
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
 
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
         }

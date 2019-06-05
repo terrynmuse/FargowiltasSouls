@@ -41,8 +41,8 @@ Any secondary projectiles may also split");
             
             if(Fargowiltas.Instance.ThoriumLoaded)
             {      
-                recipe.AddIngredient(ItemID.AdamantiteGlaive);
                 recipe.AddIngredient(thorium.ItemType("AdamantiteStaff"));
+                recipe.AddIngredient(ItemID.CrystalSerpent);
                 recipe.AddIngredient(thorium.ItemType("DynastyWarFan"));
                 recipe.AddIngredient(thorium.ItemType("Scorn"));
                 recipe.AddIngredient(thorium.ItemType("OgreSnotGun"));
@@ -50,9 +50,9 @@ Any secondary projectiles may also split");
             }
             else
             {
-                recipe.AddIngredient(ItemID.DarkLance);
                 recipe.AddIngredient(ItemID.AdamantiteGlaive);
                 recipe.AddIngredient(ItemID.TitaniumTrident);
+                recipe.AddIngredient(ItemID.CrystalSerpent);
             }
             
             recipe.AddIngredient(ItemID.VenomStaff);

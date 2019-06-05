@@ -4,10 +4,13 @@
 -Fixed bug with Mind Break being able to use it with only 1 slot and the minion shooting and then despawning
 -The Big Sting now uses Stingers as ammo, 75% chance to not consume them 
 
-
+-Fixed Olympian Soul's Thorium effects only working with calamity lool
 -Fixed more tooltip errors and altered a few recipes
 -Certain effects that occur while atacking dont go crazy when out of mana using a magic weapon
 -Added value to Eater of Worlds Staff
+
+-Rearanged recipe order for some maso accessrory
+-Cluster now at cooking pots
 
 This mod adds 2 main things. Souls and Masochist Mode.
 
