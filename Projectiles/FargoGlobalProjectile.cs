@@ -1202,6 +1202,10 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType("LightningRod"), Main.rand.Next(300, 600));
                         break;
 
+                    case ProjectileID.RayGunnerLaser:
+                        target.AddBuff(BuffID.VortexDebuff, Main.rand.Next(60, 180));
+                        break;
+
                     case ProjectileID.SaucerMissile:
                         target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 180));
                         target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(120, 180));
@@ -1402,6 +1406,16 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.DD2DarkMageBolt:
                         target.AddBuff(mod.BuffType("Hexed"), Main.rand.Next(60, 300));
+                        break;
+
+                    case ProjectileID.IceSpike:
+                        target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
+                        target.AddBuff(BuffID.Frostburn, Main.rand.Next(15, 150));
+                        break;
+
+                    case ProjectileID.JungleSpike:
+                        target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
+                        target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
                         break;
 
                     default:

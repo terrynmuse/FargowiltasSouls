@@ -19,6 +19,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             //disables running :v
             player.GetModPlayer<FargoPlayer>(mod).Kneecapped = true;
+            player.slow = true;
         }
     }
 }
