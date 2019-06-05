@@ -1035,6 +1035,7 @@ namespace FargowiltasSouls.NPCs
                                 const float gravity = 0.3f;
                                 const float time = 120f;
                                 Vector2 distance = Main.player[t].Center - npc.Center;
+                                distance.X += Main.rand.Next(-npc.width, npc.width + 1);
                                 distance.X = distance.X / time;
                                 distance.Y = distance.Y / time - 0.5f * gravity * time;
                                 npc.ai[1] = 120f;
