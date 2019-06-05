@@ -8452,7 +8452,7 @@ namespace FargowiltasSouls.NPCs
                         if (Main.netMode != 1)
                         {
                             for (int i = 0; i < 3; i++)
-                                Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(-3f, 3f), -6f),
+                                Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-9f, -6f)),
                                   ProjectileID.DD2GoblinBomb, npc.damage / 4, 0, Main.myPlayer);
                         }
                         break;
