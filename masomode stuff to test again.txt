@@ -111,6 +111,7 @@
 -plantera drops fruit when she has clear line of sight to target
 -bees no longer promote to moss hornets during queen bee fight
 -fixed fused not actually exploding
+-fixed crystal leaf shot debuffs
 
 -added sprites for:
 	mystic skull
