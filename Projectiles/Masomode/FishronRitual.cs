@@ -51,6 +51,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                     fishron.defDamage = (int)(fishron.defDamage * 1.5);
                     fishron.defDefense *= 2;
                     fishron.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
+                    fishron.buffImmune[mod.BuffType("LightningRod")] = true;
                 }
                 projectile.netUpdate = true;
             }

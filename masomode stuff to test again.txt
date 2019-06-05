@@ -21,7 +21,7 @@
 -added a volatile energy to chest of the jungle recipe (so it's maso locked now)
 -standardized biome water debuffs (all end when you get out of water)
 -skeletron bones emit more light and are really FAT so theyre actually visible
--red devil's unholy tridents have an extra update and inflict marked for death
+-red devil's unholy tridents have an extra update
 -wyverns and red devils spawn lootless pre hardmode
 -eaters of souls shoot cursed fireballs
 -goblin thieves have doubled horiz move speed
@@ -29,6 +29,89 @@
 -everybody gangsta till the snowman's bullets ignore walls
 -boss scaling cap doubled
 -added boss count reset for debugging and testing
+-prime cannon shoots triple star shots now and one of them goes into star mode much more often in phase 2
+-prime cannonballs inflict fused
+-fixed bug where 4 of prime's limbs weren't actually faster in phase 2 (theyre now moving 25% faster)
+-retinazer lasers inflict ichor
+-HORNETS HAVE A 50% CHANCE TO IGNORE WALLS
+-eaters of souls can also ignore walls
+-jungle creepers can now also shoot webs when on walls
+-antlion charger now inflicts short dazed
+-dune splicers are a rare pre-hm lootless spawn
+-fixed angry nimbus potentially dropping things pre-hm
+-unicorns create blue solution at their feet
+-vile spit emits purple solution
+-ichor spit emits red solution
+-fixed brain of cthulhu not setting flags it's supposed to, which fixes:
+	sands of time working during brain fight
+	more brains naturally spawning during brain fight
+-brain of cthulhu self-cleanses debuffs (cannot use them to distinguish the real one)
+-BRAIN OF CTHULHU'S ILLUSIONS ARE ON THE MINIMAP TOO
+-added something to hopefully make destroyer segments not glitch out because of debuffs as much
+-boc's creepers shoot ichor whether or not they think they have line of sight
+-changed my mind again, prime cannon just shoots single stars
+-prime cannon switches to star mode twice as often always (not just p2 arm)
+-sands of time gives cactus damage immune
+-removed skeletron and skeletron prime's DG form immunities
+-changed skeletron's bone attacks from sprays to rings
+-all pillars are immune to clipped wings
+
+-nerfed skelly bone spray (slower, less max speed)
+-added plantera's fruit
+-skelly cant stun if you already have stun
+-fixed eater of worlds using EYE'S boss count???
+-the following stuff scales with boss kills properly (max scale should be 8x and 4x damage):
+	king slime slimes
+	eow vile spit
+	eow cursed fireballs
+	queen bee stingers
+	queen bee hornets and bees
+	wof hungry, hungry 2, leeches
+	all mech death lasers
+	destroyer probes and probe lasers
+	prime cannonballs
+	plantera crystal leaf shot
+	plantera seeds and spiky balls
+	golem lasers
+	fishron sharknados
+	cultist fireballs
+	cultist ice mist
+	cultist lightning orb
+	moon lord phantasmal attacks
+-added boss count max for debugging
+-fixed eater's counter secretly incrementing infinitely
+-betsy spawns in hell after old one's army tier 3 is completed (was post-golem only)
+-sharks can jump out of the water
+-wandering eyes have double health, inflict berserked, p2 blood scythes, p2 knockback immune
+-demon eyes have a 25% chance to be replaced with wandering eye in hardmode
+-gastropods explode into lasers when killed
+-angler fish inflict bleeding, are transparent until hit, and glow while transparent
+-psycho constantly becomes more transparent, uncloaks whenever hit, inflicts obstructed
+-blood feeder has 5x more life, lifesteal, and gains damage on hit
+-DG's skulls and bones also inflict god eater and flames of universe lel
+-changed my mind again again, skeletron makes bone rings not bone spray FINAL CHANGE
+-enemy cannonballs are extra THICC and inflict defenseless
+-added fused dust
+-red devil unholy trident inflicts shadowflame and blackout
+-ancient doom and prophecy's end inflict MFD + shadowflame
+-desert djinn curse inflicts biome-based cursed inferno/ichor for same possible durations
+-sandnados inflict dazed
+-ogre melee inflicts broken armor and stomp inflicts dazed
+-etherian lightning bugs create lightning portals and have an aura of lightning rod
+-old one's skeletons can shoot chaos balls
+-wither beasts have an aura of withered weapon/armor
+-dark mage grants an aura of protection to nearby enemies and lethargic for players
+-dark mage bolt inflicts hexed
+-etherian wyverns shoot bouncy fireballs
+-kobold gliders scatter spiky balls as they fly
+-etherian goblins inflict poisoned and bleeding
+-goblin bombers drop goblin bombs when killed
+-betsy summons dark mages
+-lava slimes can use lava to jump(?)
+-plantera drops fruit when she has clear line of sight to target
+-bees no longer promote to moss hornets during queen bee fight
+-fixed fused not actually exploding
+-fixed crystal leaf shot debuffs
 
 -added sprites for:
 	mystic skull
@@ -72,7 +155,6 @@
 -hornets and eaters fake death during queen bee/eater of worlds fights
 -bees can turn into big hornet variants too now
 -bees exclusively become moss hornets in hardmode hahAAAAA
--all variants of moss hornet inflict infested on touch (previously was only "moss hornet")
 -goblin summoner's aura is smaller, support attack is slower and fires from diagonals (was cardinal)
 -tried making KS not enrage client-side only
 -some general MP fiddling

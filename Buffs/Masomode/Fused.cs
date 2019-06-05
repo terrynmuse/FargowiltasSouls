@@ -27,7 +27,7 @@ namespace FargowiltasSouls.Buffs.Masomode
                 player.immuneTime = 0;
                 //Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileID.Explosives, 400, 10f, Main.myPlayer);
                 int damage = (player.statLifeMax2 / 2) + Main.rand.Next(-player.statLifeMax2 / 8, player.statLifeMax2 / 4);
-                Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("FusionBomb"), damage / 4, 4f, Main.myPlayer);
+                Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("FuseBomb"), damage / 4, 4f, Main.myPlayer);
                 player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was blown to bits."), damage, 0, false, false, true);
             }
         }

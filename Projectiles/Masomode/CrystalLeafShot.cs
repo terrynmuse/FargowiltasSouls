@@ -27,28 +27,31 @@ namespace FargowiltasSouls.Projectiles.Masomode
             cooldownSlot = 1;
         }
 
-        public override void OnHitPlayer(Player player, int damage, bool crit)
+        public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
         {
-            player.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
-            player.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
-            bool isVenomed = false;
-            for (int i = 0; i < 22; i++)
+            if (target.hurtCooldowns[1] == 0)
             {
-                if (player.buffType[i] == BuffID.Venom && player.buffTime[i] > 1)
+                target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
+                target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
+                bool isVenomed = false;
+                for (int i = 0; i < 22; i++)
                 {
-                    isVenomed = true;
-                    player.buffTime[i] += Main.rand.Next(60, 300);
-                    if (player.buffTime[i] > 1200)
+                    if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
                     {
-                        player.AddBuff(mod.BuffType("Infested"), player.buffTime[i]);
-                        Main.PlaySound(15, (int)player.Center.X, (int)player.Center.Y, 0);
+                        isVenomed = true;
+                        target.buffTime[i] += Main.rand.Next(60, 300);
+                        if (target.buffTime[i] > 1200)
+                        {
+                            target.AddBuff(mod.BuffType("Infested"), target.buffTime[i]);
+                            Main.PlaySound(15, (int)target.Center.X, (int)target.Center.Y, 0);
+                        }
+                        break;
                     }
-                    break;
                 }
-            }
-            if (!isVenomed)
-            {
-                player.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
+                if (!isVenomed)
+                {
+                    target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
+                }
             }
         }
     }

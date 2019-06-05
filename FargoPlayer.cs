@@ -856,13 +856,13 @@ namespace FargowiltasSouls
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                     player.AddBuff(mod.BuffType("Lethargic"), 2);
 
-                Vector2 tileCenter = player.Center;
-                tileCenter.X /= 16;
-                tileCenter.Y /= 16;
-                Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
-                if (player.stickyBreak > 0)
+                if (!PureHeart && !player.buffImmune[BuffID.Webbed] && player.stickyBreak > 0)
                 {
-                    if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe && !PureHeart && !player.buffImmune[BuffID.Webbed])
+                    Vector2 tileCenter = player.Center;
+                    tileCenter.X /= 16;
+                    tileCenter.Y /= 16;
+                    Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
+                    if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe)
                     {
                         player.AddBuff(BuffID.Webbed, 30);
                         player.stickyBreak = 0;
@@ -882,10 +882,17 @@ namespace FargowiltasSouls
                         webCounter = 0;
                     }*/
                 }
-                if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
+                if (!SandsofTime)
                 {
-                    if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles?
-                        player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), 10, 0, false, false, false, 0);
+                    Vector2 tileCenter = player.Center;
+                    tileCenter.X /= 16;
+                    tileCenter.Y /= 16;
+                    Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
+                    if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
+                    {
+                        if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles?
+                            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), 10, 0, false, false, false, 0);
+                    }
                 }
 
                 if (MasomodeCrystalTimer > 0)
@@ -1427,9 +1434,8 @@ namespace FargowiltasSouls
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
                     Main.playerDrawDust.Add(dust);
-
-                    fullBright = true;
                 }
+                fullBright = true;
             }
 
             if (Hexed)
@@ -1483,17 +1489,15 @@ namespace FargowiltasSouls
                 drawInfo.drawPlayer.onFrostBurn = true;
                 drawInfo.drawPlayer.ichor = true;
                 drawInfo.drawPlayer.burned = true;
-
-                //shadowflame
-                if (Main.rand.Next(4) != 0 || drawInfo.shadow != 0f) return;
-                int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.Shadowflame, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
-                Main.dust[dust].noGravity = true;
-                Main.dust[dust].velocity *= 1.8f;
-                Main.dust[dust].velocity.Y -= 0.5f;
-                Main.playerDrawDust.Add(dust);
-
+                if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f) //shadowflame
+                {
+                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width, player.height, DustID.Shadowflame, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 2f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    Main.playerDrawDust.Add(dust);
+                }
                 fullBright = true;
-
             }
 
             if (CurseoftheMoon)
@@ -1534,6 +1538,22 @@ namespace FargowiltasSouls
                 g *= 0.2f;
                 b *= 0.2f;
                 fullBright = true;
+            }
+
+            if (Fused)
+            {
+                if (Main.rand.Next(2) == 0 && drawInfo.shadow == 0f)
+                {
+                    int dust = Dust.NewDust(drawInfo.position + new Vector2(player.width / 2, player.height / 5), 0, 0, DustID.Fire, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 0, default(Color), 2f);
+                    Main.dust[dust].velocity.Y -= 2f;
+                    Main.dust[dust].velocity *= 2f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].scale += 0.5f;
+                        Main.dust[dust].noGravity = true;
+                    }
+                    Main.playerDrawDust.Add(dust);
+                }
             }
         }
 

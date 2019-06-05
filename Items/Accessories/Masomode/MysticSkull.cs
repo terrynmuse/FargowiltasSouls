@@ -11,8 +11,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Mystic Skull");
             Tooltip.SetDefault(@"'The quietly muttering head of a defeated foe'
-Grants immunity to Suffocation
 Works in your inventory
+Grants immunity to Suffocation
 10% reduced magic damage
 Automatically use mana potions when needed");
         }

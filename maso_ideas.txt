@@ -4,27 +4,14 @@ Spawns
 -HM Headless Horsemen????
 -Parrots spawn in the sky
 -mummies spawn in pyramids always 
--blood feeder - increase stats, heals on damage 
--angler fish invisible with light, appears in ocean always bleed
-
-Debuffs
-Lava slimes - oiled  (make work)
--all worm enemies in the game have 7% chance to inflict god eater for 7 seconds on touch
--frost legion needs some help, all inflict chilled at least, snowballs inflict frostburn
 
 AI
 QB -(take less damage while guards are alive? maybe only in stationary form spraying spike too?? and guards are always charging?)
 crippled only when charging?
-Gastropods explode into lasers (ADD)
-Rainbow slime spawns red, hoppin jacks, yellow, green, blue, purple slimes in order every time its hit 
-fires rainbow slime balls at you
--all spiders shoot the web spit
 -also not all demon eyes dashing?
 -icy merman shoots twice as fast if he’s in water (also dust ofc)
--dutchman cannons shoot cannonballs that are obscenely large and inflict Fused
 -Fire Imp, Dark Caster, Tim, and Goblin Sorcerer "panic" when attacked (they fire projectiles 3x as fast and can still shoot after getting damaged)
 -Paladins can throw hammers without having to not be currently attacked
--enchanted sword family inflict defenseless, have way more knockback resist and don't take five years to attack again when hit
 -Zombies can always open doors like in blood moons
 -clowns throw exploding bananas and explode into snow and sand balls instead of dynamite
 -moths spawn spores everywhere 
@@ -32,12 +19,9 @@ fires rainbow slime balls at you
 -Ragged Casters teleport when damaged
 
 MISC
--Fused - a pulsing bomb floats above you and gets redder as time counts down
--Hexed - Green Dust like on fire but friendly looking, you know the one
 -Marked for Death - skulls circle around you
 -1/20 every night for either moon, post plant or sooner? message displays one minute before they start. 
 -Desert is way too bright, need shades
--red devil trident velocity increases per tick
 -add back lightning rain reeeeee, make it much less often 
 
 
@@ -46,7 +30,6 @@ meme ideas
 fire imp - explosion of burning spheres when they teleport
 -wraiths steal your souls on hit
 -mimics dont reveal themself until you are extremely close
--wandering eyes have blood scythes in their phase2
 -ice golem has snowflakes protecting him something
 -hellhound in hell?
 mothron
@@ -64,7 +47,6 @@ top hat squirrel terrarium
 add fishing rod, one form for now lol
 add deaths meme idea from doc
 add cats king slime minion
-absorb hyper mode, for casters amd enchanted weapons, and maybe more 
 tiki rework
 -add dust to wings
 -make flight actually infinite in SoD +

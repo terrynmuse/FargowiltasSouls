@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             DisplayName.SetDefault("Sands of Time");
             Tooltip.SetDefault(@"'Whatever you do, don't drop it'
 Works in your inventory
-Grants immunity to Mighty Wind
+Grants immunity to Mighty Wind and cactus damage
 You respawn twice as fast when no boss is alive");
         }
 

@@ -15,6 +15,9 @@ namespace FargowiltasSouls
         public static bool BuilderMode;
 
         //masomode
+        public const int MaxCountPreHM = 560;
+        public const int MaxCountHM = 240;
+
         public static bool MasochistMode;
         public static bool downedFishronEX;
         public static int EyeCount;
