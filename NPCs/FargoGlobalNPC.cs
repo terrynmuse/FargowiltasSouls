@@ -1228,7 +1228,7 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         //during dashes in phase 2
-                        if (npc.ai[1] == 3f && npc.life < npc.lifeMax * .4f)
+                        if (npc.ai[1] == 4f && npc.ai[2] == 1f && npc.life < npc.lifeMax * .4f)
                         {
                             Counter2 = 30;
                             if (Main.netMode != 1)
@@ -1239,6 +1239,8 @@ namespace FargowiltasSouls.NPCs
                             Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
                                 npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 1f, Main.myPlayer);
                         Counter2--;
+
+                        PrintAI(npc);
                         break;
 
                     case NPCID.Retinazer:

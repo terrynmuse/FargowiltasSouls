@@ -22,6 +22,7 @@
 -wof hopefully doesnt instakill players while trying to drag them back for fleeing deathray range
 -wof has fire dust denoting deathray range
 -changed how ice viking does the meme
+-trying to fix maso-rev eye compatibility...
 
 -mushi ladybug and fungo fish also burst into spores when killed
 -mushi ladybug inflicts darkness/blackout
