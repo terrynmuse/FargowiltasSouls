@@ -971,8 +971,16 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ArmoredViking:
                         Counter++;
-                        if (Counter >= 30)
-                            Shoot(npc, 0, 200, 10, ProjectileID.IceSickle, npc.damage / 4, 1, false, true);
+                        if (Counter >= 10)
+                        {
+                            Counter = 0;
+                            if (Main.netMode != 1 && npc.HasPlayerTarget //collision check to reduce spam when not relevant
+                                && Collision.CanHitLine(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0))
+                            {
+                                Vector2 vel = npc.DirectionTo(Main.player[npc.target].Center) * 10f;
+                                Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("IceSickleHostile"), npc.damage / 4, 0f, Main.myPlayer);
+                            }
+                        }
                         break;
 
                     case NPCID.Crawdad:
@@ -2293,14 +2301,6 @@ namespace FargowiltasSouls.NPCs
                                     Projectile.NewProjectile(npc.Center + Speed * 4f, Speed, ProjectileID.CursedFlameHostile, Damage, 0f, Main.myPlayer);
                                 }
                             }
-                            //tongue the player if they're in hell, too far away, and not debuffed already
-                            if (npc.HasPlayerTarget && Main.player[npc.target].active && Main.player[npc.target].ZoneUnderworldHeight
-                            && Math.Abs(Main.player[npc.target].Center.X - npc.Center.X) > 2500
-                            && !Main.player[npc.target].HasBuff(BuffID.TheTongue))
-                            {
-                                Main.player[npc.target].AddBuff(BuffID.TheTongue, 10);
-                                Main.PlaySound(15, (int)Main.player[npc.target].position.X, (int)Main.player[npc.target].position.Y, 0);
-                            }
                         }
                         
                         if (--Timer < 0) //ichor vomit
@@ -2322,14 +2322,39 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
-                        if (npc.HasPlayerTarget &&
-                            (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 3000))
+                        if (npc.HasPlayerTarget && (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 3000))
                         {
                             npc.TargetClosest(true);
                             if (Counter2++ > 120)
                             {
                                 Counter2 = 120;
                                 npc.velocity *= 20;
+                            }
+                        }
+
+                        if (Main.player[Main.myPlayer].active & !Main.player[Main.myPlayer].dead
+                            && Main.player[Main.myPlayer].ZoneUnderworldHeight)
+                        {
+                            if (Math.Abs(2500 - Math.Abs(npc.Center.X - Main.player[Main.myPlayer].Center.X)) < 500)
+                            {
+                                for (int i = 0; i < 10; i++) //dust when player is near edge
+                                {
+                                    Vector2 dustPos = new Vector2(npc.direction, 0f).RotatedBy(Math.PI / 4 * (-0.5 + Main.rand.NextDouble()));
+                                    int d = Dust.NewDust(npc.Center + dustPos, 0, 0, DustID.Fire);
+                                    Main.dust[d].velocity = npc.velocity;
+                                    Main.dust[d].noGravity = true;
+                                    Main.dust[d].noLight = true;
+                                }
+                            }
+                            if (++npc.localAI[1] > 15f)
+                            {
+                                npc.localAI[1] = 0f; //tongue the player if they're 2500-2900 units away
+                                if (Math.Abs(2700 - npc.Distance(Main.player[Main.myPlayer].Center)) < 200)
+                                {
+                                    if (!Main.player[Main.myPlayer].tongued)
+                                        Main.PlaySound(15, Main.player[Main.myPlayer].Center, 0);
+                                    Main.player[Main.myPlayer].AddBuff(BuffID.TheTongue, 10);
+                                }
                             }
                         }
                         break;
