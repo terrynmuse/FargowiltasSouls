@@ -23,6 +23,12 @@
 -wof has fire dust denoting deathray range
 -changed how ice viking does the meme
 -trying to fix maso-rev eye compatibility...
+-mothron shoots eye beams and stingers, also has omega defense and projectile reflect when laying eggs
+-mothron & spawn are almost knockback immune
+-increased golden dipping vat drop rate to 5%
+-nymph periodically sprays bees everywhere
+-added nymph's perfume
+-did something to gutted heart creeper spawning in MP, might fix unintended spawns...?
 
 -mushi ladybug and fungo fish also burst into spores when killed
 -mushi ladybug inflicts darkness/blackout

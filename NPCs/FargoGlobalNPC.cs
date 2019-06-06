@@ -123,6 +123,11 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
+                    case NPCID.Mothron:
+                    case NPCID.MothronSpawn:
+                        npc.knockBackResist *= .1f;
+                        break;
+
                     case NPCID.Butcher:
                         npc.knockBackResist = 0f;
                         break;
@@ -5395,6 +5400,24 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Nymph:
                         npc.knockBackResist = 0f;
                         Aura(npc, 250, BuffID.Lovestruck, true, DustID.PinkFlame);
+                        if (--Counter < 0)
+                        {
+                            Counter = 600;
+                            if (Main.netMode != 1)
+                            {
+                                for (int i = 0; i < 8; i++)
+                                {
+                                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y,
+                                        Main.rand.Next(2) == 0 ? NPCID.Bee : NPCID.BeeSmall);
+                                    if (n != 200)
+                                    {
+                                        Main.npc[n].velocity = Main.rand.NextVector2Square(-10f, 10f);
+                                        if (Main.netMode == 2)
+                                            NetMessage.SendData(23, -1, -1, null, n);
+                                    }
+                                }
+                            }
+                        }
                         break;
 
                     case NPCID.DarkCaster:
@@ -5532,6 +5555,44 @@ namespace FargowiltasSouls.NPCs
                                 Vector2 vel = npc.DirectionTo(Main.player[npc.target].Center) * 14;
                                 Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("VenomSpit"), 9, 0, Main.myPlayer);
                             }
+                        }
+                        break;
+
+                    case NPCID.Mothron:
+                        if (--Counter < 0)
+                        {
+                            Counter = 20 + (int)(100f * npc.life / npc.lifeMax);
+                            if (npc.HasPlayerTarget && Main.netMode != 1)
+                            {
+                                Vector2 spawnPos = npc.Center + new Vector2(30f * -npc.direction, 30f);
+                                Vector2 vel = Main.player[npc.target].Center - spawnPos
+                                    + new Vector2(Main.rand.Next(-80, 81), Main.rand.Next(-40, 41));
+                                vel.Normalize();
+                                vel *= 10f;
+                                Projectile.NewProjectile(spawnPos, vel, ProjectileID.Stinger, npc.defDamage / 8, 0f, Main.myPlayer);
+                            }
+                        }
+
+                        if (--Counter2 < 0)
+                        {
+                            Counter2 = 60 + (int)(120f * npc.life / npc.lifeMax);
+                            if (npc.HasPlayerTarget && Main.netMode != 1)
+                            {
+                                Vector2 spawnPos = npc.Center;
+                                spawnPos.X += 45f * npc.direction;
+                                Vector2 vel = Vector2.Normalize(Main.player[npc.target].Center - spawnPos) * 9f;
+                                Projectile.NewProjectile(spawnPos, vel, ProjectileID.EyeLaser, npc.defDamage / 5, 0f, Main.myPlayer);
+                            }
+                        }
+                        
+                        npc.defense = npc.defDefense;
+                        npc.reflectingProjectiles = npc.ai[0] >= 4f;
+                        if (npc.reflectingProjectiles)
+                        {
+                            npc.defense *= 5;
+                            int d = Dust.NewDust(npc.position, npc.width, npc.height, 228, npc.velocity.X * .4f, npc.velocity.Y * .4f, 0, Color.White, 2f);
+                            Main.dust[d].velocity *= 3f;
+                            Main.dust[d].noGravity = true;
                         }
                         break;
 
@@ -7914,13 +7975,17 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.PirateCaptain:
-                        if (Main.rand.Next(50) == 0)
+                        if (Main.rand.Next(20) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("GoldenDippingVat"));
                         break;
 
                     case NPCID.PirateShip:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SecurityWallet"));
+                        break;
+
+                    case NPCID.Nymph:
+                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("NymphsPerfume"));
                         break;
 
                     case NPCID.MourningWood:

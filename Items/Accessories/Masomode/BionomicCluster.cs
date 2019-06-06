@@ -18,7 +18,7 @@ Grants immunity to Frostburn, Shadowflame, Squeaky Toy, Guilty, Mighty Wind, and
 Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and Purified
 Grants autofire to all weapons and immunity to enemies that steal items or coins
 Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies
-Your attacks summon Frostfireballs to attack your enemies
+Your attacks summon Frostfireballs to attack your enemies and sometimes hearts
 You respawn twice as fast when no boss is alive and have improved night vision
 Automatically use mana potions when needed and gives modifier protection
 Attacks have a chance to squeak and deal 1 damage to you
@@ -87,6 +87,16 @@ Summons a friendly rainbow slime");
 
             //carrot
             player.nightVision = true;
+
+            //nymph's perfume
+            player.buffImmune[BuffID.Lovestruck] = true;
+            player.buffImmune[BuffID.Stinky] = true;
+            if (Soulcheck.GetValue("Attacks Spawn Hearts"))
+            {
+                fargoPlayer.NymphsPerfume = true;
+                if (fargoPlayer.NymphsPerfumeCD > 0)
+                    fargoPlayer.NymphsPerfumeCD--;
+            }
         }
 
         public override void AddRecipes()
@@ -103,6 +113,7 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(mod.ItemType("SecurityWallet"));
             recipe.AddIngredient(mod.ItemType("OrdinaryCarrot"));
             recipe.AddIngredient(mod.ItemType("WretchedPouch"));
+            recipe.AddIngredient(mod.ItemType("NymphsPerfume"));
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 20);
 

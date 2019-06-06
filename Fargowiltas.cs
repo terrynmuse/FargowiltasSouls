@@ -386,14 +386,17 @@ namespace FargowiltasSouls
             switch (reader.ReadByte())
             {
                 case 0: //server side spawning creepers
-                    byte p = reader.ReadByte();
-                    int multiplier = reader.ReadByte();
-                    int n = NPC.NewNPC((int)Main.player[p].Center.X, (int)Main.player[p].Center.Y, NPCType("CreeperGutted"), 0,
-                        p, 0f, multiplier, 0f);
-                    if (n < 200)
+                    if (Main.netMode == 2)
                     {
-                        Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
-                        Main.npc[n].netUpdate = true;
+                        byte p = reader.ReadByte();
+                        int multiplier = reader.ReadByte();
+                        int n = NPC.NewNPC((int)Main.player[p].Center.X, (int)Main.player[p].Center.Y, NPCType("CreeperGutted"), 0,
+                            p, 0f, multiplier, 0f);
+                        if (n != 200)
+                        {
+                            Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
+                            NetMessage.SendData(23, -1, -1, null, n);
+                        }
                     }
                     break;
 
@@ -472,6 +475,15 @@ namespace FargowiltasSouls
                     {
                         int caster = reader.ReadByte();
                         Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 = 0;
+                    }
+                    break;
+
+                case 9: //client to server, request heart spawn
+                    if (Main.netMode == 2)
+                    {
+                        int n = reader.ReadByte();
+                        Item.NewItem(Main.npc[n].Hitbox, ItemID.Heart);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("SERVER RECEIVED REQUEST"), Color.White);
                     }
                     break;
 

@@ -90,6 +90,7 @@ namespace FargowiltasSouls
             ["Tiny Eaters"] = new Color(81, 181, 113),
             ["Creeper Shield"] = new Color(81, 181, 113),
             ["Frostfireballs"] = new Color(81, 181, 113),
+            ["Attacks Spawn Hearts"] = new Color(81, 181, 113),
             ["Inflict Clipped Wings"] = new Color(81, 181, 113),
             ["Inflict Lightning Rod"] = new Color(81, 181, 113),
             ["Pumpking's Cape Support"] = new Color(81, 181, 113),

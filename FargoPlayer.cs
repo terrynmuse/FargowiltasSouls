@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Graphics.Capture;
@@ -216,6 +217,8 @@ namespace FargowiltasSouls
         public bool FrigidGemstone;
         public bool WretchedPouch;
         public int FrigidGemstoneCD;
+        public bool NymphsPerfume;
+        public int NymphsPerfumeCD = 30;
         public bool SqueakyAcc;
         public bool RainbowSlime;
         public bool SkeletronArms;
@@ -644,6 +647,7 @@ namespace FargowiltasSouls
             SecurityWallet = false;
             FrigidGemstone = false;
             WretchedPouch = false;
+            NymphsPerfume = false;
             SqueakyAcc = false;
             RainbowSlime = false;
             SkeletronArms = false;
@@ -708,6 +712,8 @@ namespace FargowiltasSouls
             CorruptHeartCD = 60;
             GuttedHeartCD = 60;
             GroundPound = 0;
+            NymphsPerfume = false;
+            NymphsPerfumeCD = 30;
             PungentEyeballMinion = false;
             MagicalBulb = false;
             LunarCultist = false;
@@ -1134,16 +1140,13 @@ namespace FargowiltasSouls
                                 multiplier = 2;
                             if (MasochistSoul)
                                 multiplier = 5;
-                            if (Main.netMode != 1)
+                            if (Main.netMode == 0)
                             {
                                 int n = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, mod.NPCType("CreeperGutted"), 0, player.whoAmI, 0f, multiplier);
-                                if (n < 200)
-                                {
+                                if (n != 200)
                                     Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
-                                    Main.npc[n].netUpdate = true;
-                                }
                             }
-                            else
+                            else if (Main.netMode == 1)
                             {
                                 var netMessage = mod.GetPacket();
                                 netMessage.Write((byte)0);
@@ -2300,6 +2303,27 @@ namespace FargowiltasSouls
                 player.statLife += heal;
                 player.HealEffect(heal);
                 palladiumCD = 60;
+            }
+
+            if (NymphsPerfume && NymphsPerfumeCD <= 0 && !target.immortal && !player.moonLeech)
+            {
+                NymphsPerfumeCD = 600;
+                if (Main.netMode == 0)
+                {
+                    Item.NewItem(target.Hitbox, ItemID.Heart);
+                }
+                else if (Main.netMode == 1)
+                {
+                    Main.NewText("CLIENT SIDE ONLY DEBUG MESSAGE");
+                    var netMessage = mod.GetPacket();
+                    netMessage.Write((byte)9);
+                    netMessage.Write((byte)target.whoAmI);
+                    netMessage.Send();
+                }
+                else if (Main.netMode == 2)
+                {
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("SERVER SIDE DEBUG MESSAGE?????????"), Color.White);
+                }
             }
 
             if (UniverseEffect)
