@@ -123,6 +123,10 @@ namespace FargowiltasSouls.NPCs
                         npc.Opacity /= 25;
                         break;
 
+                    case NPCID.Butcher:
+                        npc.knockBackResist = 0f;
+                        break;
+
                     case NPCID.Tim:
                     case NPCID.RuneWizard:
                         npc.buffImmune[BuffID.OnFire] = true;
@@ -1002,7 +1006,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.JungleCreeperWall:
                         Counter++;
                         if (Counter >= 600)
-                            Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, npc.damage / 6, 0);
+                            Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, 9, 0);
                         break;
 
                     case NPCID.SeekerHead:
@@ -5029,33 +5033,31 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-                        else //big rainbow slime
+                        
+                        if (masoBool[2]) //shoot spikes whenever jumping
                         {
-                            if (masoBool[2]) //shoot spikes whenever jumping
+                            if (npc.velocity.Y == 0f) //start attack
                             {
-                                if (npc.velocity.Y == 0f) //start attack
+                                masoBool[2] = false;
+                                if (npc.HasPlayerTarget && Main.netMode != 1)
                                 {
-                                    masoBool[2] = false;
-                                    if (npc.HasPlayerTarget && Main.netMode != 1)
+                                    const float gravity = 0.15f;
+                                    const float time = 120f;
+                                    Vector2 distance = Main.player[npc.target].Center - npc.Center;
+                                    distance += Main.player[npc.target].velocity * 30f;
+                                    distance.X = distance.X / time;
+                                    distance.Y = distance.Y / time - 0.5f * gravity * time;
+                                    for (int i = 0; i < 10; i++)
                                     {
-                                        const float gravity = 0.15f;
-                                        const float time = 120f;
-                                        Vector2 distance = Main.player[npc.target].Center - npc.Center;
-                                        distance += Main.player[npc.target].velocity * 30f;
-                                        distance.X = distance.X / time;
-                                        distance.Y = distance.Y / time - 0.5f * gravity * time;
-                                        for (int i = 0; i < 10; i++)
-                                        {
-                                            Projectile.NewProjectile(npc.Center, distance + Main.rand.NextVector2Square(-1f, 1f),
-                                                mod.ProjectileType("RainbowSlimeSpike"), npc.damage / 8, 0f, Main.myPlayer);
-                                        }
+                                        Projectile.NewProjectile(npc.Center, distance + Main.rand.NextVector2Square(-1f, 1f),
+                                            mod.ProjectileType("RainbowSlimeSpike"), npc.damage / 8, 0f, Main.myPlayer);
                                     }
                                 }
                             }
-                            else if (npc.velocity.Y > 0)
-                            {
-                                masoBool[2] = true;
-                            }
+                        }
+                        else if (npc.velocity.Y > 0)
+                        {
+                            masoBool[2] = true;
                         }
                         break;
 
@@ -5466,6 +5468,42 @@ namespace FargowiltasSouls.NPCs
                                 int p = Projectile.NewProjectile(npc.Center, vel, ProjectileID.LostSoulHostile, npc.damage / 4, 0f, Main.myPlayer);
                                 if (p != 1000)
                                     Main.projectile[p].timeLeft = 300;
+                            }
+                        }
+                        break;
+
+                    case NPCID.ArmoredSkeleton:
+                    case NPCID.HeavySkeleton:
+                        if (++Counter > 180)
+                        {
+                            if (++Counter2 > 6)
+                            {
+                                Counter2 = 0;
+                                Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
+                                speed.Normalize();
+                                speed *= 6f;
+                                speed += npc.velocity * 1.25f;
+                                speed.Y -= Math.Abs(speed.X) * 0.2f;
+                                if (Main.netMode != 1)
+                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 4, 0f, Main.myPlayer);
+                            }
+                            if (Counter > 300)
+                                Counter = 0;
+                        }
+                        break;
+
+                    case NPCID.Butcher:
+                        npc.position.X += npc.velocity.X;
+                        break;
+                        
+                    case NPCID.DesertScorpionWall:
+                        if (++Counter > 240)
+                        {
+                            Counter = 0;
+                            if (Main.netMode != 1 && npc.HasPlayerTarget)
+                            {
+                                Vector2 vel = npc.DirectionTo(Main.player[npc.target].Center) * 14;
+                                Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("VenomSpit"), 9, 0, Main.myPlayer);
                             }
                         }
                         break;
@@ -7597,16 +7635,16 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (!hallow && !corruption && !crimson)
                             {
-                                pool[NPCID.SandShark] = .1f;
+                                pool[NPCID.SandShark] = .2f;
                             }
                             else
                             {
                                 if (hallow)
-                                    pool[NPCID.SandsharkHallow] = .1f;
+                                    pool[NPCID.SandsharkHallow] = .2f;
                                 if (corruption)
-                                    pool[NPCID.SandsharkCorrupt] = .1f;
+                                    pool[NPCID.SandsharkCorrupt] = .2f;
                                 if (crimson)
-                                    pool[NPCID.SandsharkCrimson] = .1f;
+                                    pool[NPCID.SandsharkCrimson] = .2f;
                             }
                         }
                     }
@@ -8810,6 +8848,15 @@ namespace FargowiltasSouls.NPCs
                             for (int i = 0; i < 3; i++)
                                 Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-9f, -6f)),
                                   ProjectileID.DD2GoblinBomb, npc.damage / 4, 0, Main.myPlayer);
+                        }
+                        break;
+
+                    case NPCID.PossessedArmor:
+                        if (Main.rand.Next(2) == 0 && Main.netMode != 1)
+                        {
+                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.X, NPCID.Ghost);
+                            if (n != 200 && Main.netMode == 2)
+                                NetMessage.SendData(23, -1, -1, null, n);
                         }
                         break;
 

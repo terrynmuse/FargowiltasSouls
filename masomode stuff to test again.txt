@@ -12,6 +12,14 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-small rainbow slimes can also spray spikes
+-armored skeletons periodically spray bones
+-possessed armors sometimes spawn ghosts when killed
+-butcher has knockback immune and double horiz velocity
+-nerfed web spit damage to always 36
+-sand poachers have venom spit on walls
+-increased underground desert sand shark spawn a bit
+
 -mushi ladybug and fungo fish also burst into spores when killed
 -mushi ladybug inflicts darkness/blackout
 -fungi spore inflicts poisoned and are temporarily invulnerable when spawned
