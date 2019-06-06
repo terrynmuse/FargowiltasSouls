@@ -56,6 +56,7 @@ A new Creeper appears every 15 seconds, and 5 can exist at once");
             recipe.AddIngredient(mod.ItemType("VolatileEnergy"), 20);
             recipe.AddIngredient(ItemID.PurificationPowder, 30);
             recipe.AddIngredient(ItemID.GreenSolution, 50);
+            recipe.AddIngredient(ItemID.HallowedBar, 5);
 
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
