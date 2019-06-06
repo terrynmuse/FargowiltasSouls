@@ -76,13 +76,13 @@ Summons a sea urchin to protect you");
             recipe.AddIngredient(calamity.ItemType("VictideHeadgear"));
             recipe.AddIngredient(calamity.ItemType("VictideBreastplate"));
             recipe.AddIngredient(calamity.ItemType("VictideLeggings"));
-            recipe.AddIngredient(calamity.ItemType("ScourgeoftheDesert"));
+            recipe.AddIngredient(calamity.ItemType("TrinketofChi"));
+            recipe.AddIngredient(calamity.ItemType("DeepDiver"));
+            recipe.AddIngredient(calamity.ItemType("FungalSymbiote"));
+            recipe.AddIngredient(calamity.ItemType("DuneHopper"));
             recipe.AddIngredient(calamity.ItemType("TeardropCleaver"));
             recipe.AddIngredient(calamity.ItemType("MycelialClaws"));
-            recipe.AddIngredient(calamity.ItemType("BlackAnurian"));
-            recipe.AddIngredient(calamity.ItemType("Archerfish"));
-            recipe.AddIngredient(calamity.ItemType("Lionfish"));
-            recipe.AddIngredient(calamity.ItemType("HerringStaff"));
+            recipe.AddIngredient(calamity.ItemType("TheTransformer"));
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
