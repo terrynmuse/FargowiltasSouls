@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.Masomode
@@ -77,15 +78,20 @@ namespace FargowiltasSouls.Projectiles.Masomode
             return false;
         }
 
-        public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
+        public override bool CanHitPlayer(Player target)
         {
-            damage = projectile.damage;
+            if (projectile.Colliding(projectile.Hitbox, target.Hitbox))
+            {
+                target.hurtCooldowns[0] = 0;
+                target.Hurt(PlayerDeathReason.ByProjectile(target.whoAmI, projectile.whoAmI), projectile.damage, 0, false, false, false, 0);
+                projectile.timeLeft = 0;
+            }
+            return false;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override Color? GetAlpha(Color lightColor)
         {
-            target.hurtCooldowns[0] = 0;
-            projectile.timeLeft = 0;
+            return new Color(255, lightColor.G, lightColor.B, lightColor.A);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

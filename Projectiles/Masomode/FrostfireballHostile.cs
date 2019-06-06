@@ -23,11 +23,17 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.hostile = true;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 360;
+            projectile.timeLeft = 600;
         }
 
         public override void AI()
         {
+            if (projectile.localAI[0] == 0f)
+            {
+                projectile.localAI[0] = 1f;
+                Main.PlaySound(SoundID.Item8, projectile.Center);
+            }
+
             int index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, new Color(), 2f);
             Main.dust[index2].noGravity = true;
             Main.dust[index2].velocity.X *= 0.3f;

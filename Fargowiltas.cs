@@ -458,6 +458,23 @@ namespace FargowiltasSouls
                     }
                     break;
 
+                case 7: //client to server activate dark caster family
+                    if (Main.netMode == 2)
+                    {
+                        int caster = reader.ReadByte();
+                        if (Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 == 0)
+                            Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 = reader.ReadInt32();
+                    }
+                    break;
+
+                case 8: //server to clients reset counter
+                    if (Main.netMode == 1)
+                    {
+                        int caster = reader.ReadByte();
+                        Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 = 0;
+                    }
+                    break;
+
                 case 77: //server side spawning fishron EX
                     if (Main.netMode == 2)
                     {

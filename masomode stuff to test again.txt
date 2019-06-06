@@ -13,11 +13,10 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 -mushi ladybug and fungo fish also burst into spores when killed
--fungo fish can electrify like other jellyfish
 -mushi ladybug inflicts darkness/blackout
 -fungi spore inflicts poisoned and are temporarily invulnerable when spawned
 -spores made by killed enemies have finer randomness
--antlion swarmers can swarm and sometimes go through walls
+-antlion swarmers can swarm
 -CRIPPLED HAS THE EFFECTS OF SLOW BUILT-IN NOW.
 -all spiders inflict infested on touch
 -buffed shark family & piranha bleeding min duration
@@ -38,6 +37,12 @@
 -headless horseman inflicts living wasteland and cursed
 -yeti inflicts frozen on touch and shares ice golem's homing frostfireballs
 -all mimics drop fake hearts when killed
+-wof eye lasers ignore walls too
+-lava slimes have to be further below player in order to lava jump
+-buffed mystic skull drop rate to 100%
+-tim/rune wizard immune to fire/lava (prevents inferno potion from working)
+-changed wof's demonic deathray to divine deathray
+-wof no longer steals velocity
 
 -removed unintentional 2def from necromantic brew
 -added ice queen crown sprite
@@ -71,7 +76,7 @@
 -wall of flesh spits fireballs/ichor faster as health decreases, slightly more accurate
 -fixed retinazer only shooting 8-spread stars (should be 12-spread)
 -dark caster-type enemies will teleport away much faster after being hit (cannot be stopped)
--tim and rune wizard have tripled life
+-tim and rune wizard have 4x life
 -tim has a reverse silenced aura + close range cursed aura
 -rune wizard's close range aura is suffocation + hexed
 -rune wizard periodically emits rings of rune blasts
