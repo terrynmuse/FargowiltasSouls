@@ -3262,7 +3262,7 @@ namespace FargowiltasSouls.NPCs
                                         int max = inTemple ? 2 : 3;
                                         for (int i = -max; i <= max; i++)
                                         {
-                                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + 1.5f * i, distance.Y,
+                                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + i, distance.Y,
                                                 mod.ProjectileType("GolemFireball"), npc.damage / 5, 0f, Main.myPlayer, gravity, 0f);
                                         }
                                     }
@@ -3315,7 +3315,7 @@ namespace FargowiltasSouls.NPCs
                                 int max = inTemple ? 2 : 3;
                                 for (int i = -max; i <= max; i++)
                                 {
-                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + 1.5f * i, distance.Y,
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + i, distance.Y,
                                         mod.ProjectileType("GolemFireball"), npc.damage / 5, 0f, Main.myPlayer, gravity, 0f);
                                 }
                             }

@@ -45,6 +45,7 @@
 -wof no longer steals velocity
 -dubious circuitry recipe needs more hallowed/chloro bar
 -pure heart recipe now needs hallowed bar
+-tightened golem fireball spread
 
 -removed unintentional 2def from necromantic brew
 -added ice queen crown sprite
