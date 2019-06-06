@@ -12,6 +12,8 @@
 -Rearanged recipe order for some maso accessrory
 -Cluster now at cooking pots
 
+-Victide Enchantment recipe much easier, several other recipes altered and given new effects from new accessories (verify recipes work and add new effects)
+
 This mod adds 2 main things. Souls and Masochist Mode.
 
 -Souls are a massive crafting tree of hundreds of items leading into one accessory. 
