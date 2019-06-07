@@ -15,6 +15,14 @@ namespace FargowiltasSouls.Items
     {
         private static Mod thorium = ModLoader.GetMod("ThoriumMod");
 
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == ItemID.Stinger)
+            {
+                item.ammo = item.type;
+            }
+        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if (item.type == ItemID.DogWhistle)

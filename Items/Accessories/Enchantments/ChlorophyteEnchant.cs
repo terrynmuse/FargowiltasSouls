@@ -78,7 +78,7 @@ Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer
                 }
             }
             //petal shield
-            mod.GetItem("PetalShield").UpdateAccessory(player, hideVisual);
+            thorium.GetItem("PetalShield").UpdateAccessory(player, hideVisual);
             player.statDefense -= 2;
             //night shade petal
             thoriumPlayer.nightshadeBoost = true;

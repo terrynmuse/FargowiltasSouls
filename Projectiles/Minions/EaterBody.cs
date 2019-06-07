@@ -15,8 +15,8 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override void SetDefaults()
         {
-            projectile.width = 24;
-            projectile.height = 24;
+            projectile.width = 28;
+            projectile.height = 32;
             projectile.penetrate = -1;
             projectile.timeLeft *= 5;
             projectile.minion = true;
@@ -85,8 +85,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             Vector2 value67 = Vector2.Zero;
             Vector2 arg_2D865_0 = Vector2.Zero;
             float num1052 = 0f;
-            float scaleFactor16 = 0f;
-            float scaleFactor17 = 1f;
+
             if (projectile.ai[1] == 1f)
             {
                 projectile.ai[1] = 0f;
@@ -101,8 +100,6 @@ namespace FargowiltasSouls.Projectiles.Minions
                 Vector2 arg_2D957_0 = Main.projectile[byUUID].velocity;
                 num1052 = Main.projectile[byUUID].rotation;
                 float num1053 = MathHelper.Clamp(Main.projectile[byUUID].scale, 0f, 50f);
-                scaleFactor17 = num1053;
-                scaleFactor16 = 16f;
                 int arg_2D9AD_0 = Main.projectile[byUUID].alpha;
                 Main.projectile[byUUID].localAI[0] = projectile.localAI[0] + 1f;
                 if (Main.projectile[byUUID].type != mod.ProjectileType("EaterHead")) Main.projectile[byUUID].localAI[1] = projectile.whoAmI;
@@ -129,10 +126,17 @@ namespace FargowiltasSouls.Projectiles.Minions
 
             projectile.rotation = vector134.ToRotation() + 1.57079637f;
             projectile.position = projectile.Center;
-            projectile.scale = scaleFactor17;
             projectile.width = projectile.height = (int) (num1038 * projectile.scale);
             projectile.Center = projectile.position;
-            if (vector134 != Vector2.Zero) projectile.Center = value67 - Vector2.Normalize(vector134) * scaleFactor16 * scaleFactor17;
+
+            float dist = 26;
+
+            if (Main.projectile[byUUID].type == mod.ProjectileType("EaterHead"))
+            {
+                dist = 32;
+            }
+
+            if (vector134 != Vector2.Zero) projectile.Center = value67 - Vector2.Normalize(vector134) * dist;
             projectile.spriteDirection = vector134.X > 0f ? 1 : -1;
         }
 

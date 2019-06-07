@@ -23,8 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 All armor bonuses from Victide, Aerospec, and Statigel
 All armor bonuses from Daedalus, Reaver, and Astral
 All armor bonuses from Mollusk, Ataxia, and Xeroc
-Effects of Permafrost's Concoction, Astral Arcanum, Plague Hive
-Effects of Giant Pearl and Amidias' Pendant");
+Effects of Permafrost's Concoction, Astral Arcanum, and Hide of Astrum Deus
+Effects of Plague Hive, Giant Pearl, and Amidias' Pendant");
 
         }
 
@@ -52,6 +52,8 @@ Effects of Giant Pearl and Amidias' Pendant");
                 calamityPlayer.sGenerator = true;
                 //raiders talisman
                 calamityPlayer.raiderTalisman = true;
+                //trinket of chi
+                calamityPlayer.trinketOfChi = true;
             }
             
             //VICTIDE
@@ -60,6 +62,7 @@ Effects of Giant Pearl and Amidias' Pendant");
             mod.GetItem("AerospecEnchant").UpdateAccessory(player, hideVisual);
             //STATIGEL
             calamityPlayer.statigelSet = true;
+            calamity.GetItem("FungalSymbiote").UpdateAccessory(player, hideVisual);
             if (Soulcheck.GetValue("Slime God Minion"))
             {
                 //summon

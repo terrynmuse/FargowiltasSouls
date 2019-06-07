@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 @"'Statis’ mystical power surrounds you…'
 When you take over 100 damage in one hit you become immune to damage for an extended period of time
 Grants an extra jump and increased jump height
-Summons a mini slime god to fight for you, the type depends on what world evil you have");
+Summons a mini slime god to fight for you, the type depends on what world evil you have
+Effects of Fungal Symbiote");
         }
 
         public override void SetDefaults()
@@ -66,6 +67,8 @@ Summons a mini slime god to fight for you, the type depends on what world evil y
                     }
                 }
             }
+
+            calamity.GetItem("FungalSymbiote").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()
@@ -82,7 +85,7 @@ Summons a mini slime god to fight for you, the type depends on what world evil y
             recipe.AddIngredient(calamity.ItemType("StatigelArmor"));
             recipe.AddIngredient(calamity.ItemType("StatigelGreaves"));
             recipe.AddIngredient(calamity.ItemType("ManaOverloader"));
-            recipe.AddIngredient(calamity.ItemType("LuxorsGift"));
+            recipe.AddIngredient(calamity.ItemType("FungalSymbiote"));
             recipe.AddIngredient(calamity.ItemType("Waraxe"));
             recipe.AddIngredient(calamity.ItemType("MarkedMagnum"));
             recipe.AddIngredient(calamity.ItemType("HeartRapier"));

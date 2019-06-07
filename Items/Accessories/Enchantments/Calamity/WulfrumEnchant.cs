@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             Tooltip.SetDefault(
 @"'Not to be confused with Tungsten Enchantment…'
 +5 defense when below 50% life
-Effects of the Spirit Glyph and Raider's Talisman");
+Effects of the Spirit Glyph, Raider's Talisman, and Trinket of Chi");
         }
 
         public override void SetDefaults()
@@ -48,6 +48,8 @@ Effects of the Spirit Glyph and Raider's Talisman");
             modPlayer.sGenerator = true;
             //raiders talisman
             modPlayer.raiderTalisman = true;
+            //trinket of chi
+            modPlayer.trinketOfChi = true;
         }
 
         public override void AddRecipes()
@@ -65,7 +67,7 @@ Effects of the Spirit Glyph and Raider's Talisman");
             recipe.AddIngredient(calamity.ItemType("WulfrumLeggings"));
             recipe.AddIngredient(calamity.ItemType("SpiritGenerator"));
             recipe.AddIngredient(calamity.ItemType("RaidersTalisman"));
-            recipe.AddIngredient(calamity.ItemType("WulfrumBlade"));
+            recipe.AddIngredient(calamity.ItemType("TrinketofChi"));
             recipe.AddIngredient(calamity.ItemType("IcicleStaff"));
             recipe.AddIngredient(calamity.ItemType("MandibleBow"));
             recipe.AddIngredient(calamity.ItemType("MarniteSpear"));

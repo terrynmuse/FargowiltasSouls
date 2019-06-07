@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 @"'The sky comes to your aid…'
 You fall quicker and are immune to fall damage
 Taking over 25 damage in one hit causes several homing feathers to fall
-Summons a Valkyrie minion to protect you");
+Summons a Valkyrie minion to protect you
+Effects of Gladiator's Locket and Unstable Prism");
         }
 
         public override void SetDefaults()
@@ -60,6 +61,9 @@ Summons a Valkyrie minion to protect you");
                     }
                 }
             }
+
+            calamity.GetItem("GladiatorsLocket").UpdateAccessory(player, hideVisual);
+            calamity.GetItem("UnstablePrism").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()
@@ -83,7 +87,6 @@ Summons a Valkyrie minion to protect you");
             recipe.AddIngredient(calamity.ItemType("PerfectDark"));
             recipe.AddIngredient(calamity.ItemType("SausageMaker"));
             
-
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
