@@ -2314,15 +2314,10 @@ namespace FargowiltasSouls
                 }
                 else if (Main.netMode == 1)
                 {
-                    Main.NewText("CLIENT SIDE ONLY DEBUG MESSAGE");
                     var netMessage = mod.GetPacket();
                     netMessage.Write((byte)9);
                     netMessage.Write((byte)target.whoAmI);
                     netMessage.Send();
-                }
-                else if (Main.netMode == 2)
-                {
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("SERVER SIDE DEBUG MESSAGE?????????"), Color.White);
                 }
             }
 

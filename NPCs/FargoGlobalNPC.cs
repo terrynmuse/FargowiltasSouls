@@ -982,7 +982,7 @@ namespace FargowiltasSouls.NPCs
                             if (Main.netMode != 1 && npc.HasPlayerTarget //collision check to reduce spam when not relevant
                                 && Collision.CanHitLine(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0))
                             {
-                                Vector2 vel = npc.DirectionTo(Main.player[npc.target].Center) * 10f;
+                                Vector2 vel = npc.DirectionTo(Main.player[npc.target].Center) * 14f;
                                 Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("IceSickleHostile"), npc.damage / 4, 0f, Main.myPlayer);
                             }
                         }
@@ -1233,7 +1233,7 @@ namespace FargowiltasSouls.NPCs
                         }
 
                         //during dashes in phase 2
-                        if (npc.ai[1] == 4f && npc.ai[2] == 1f && npc.life < npc.lifeMax * .4f)
+                        if (npc.ai[1] == 3f && npc.life < npc.lifeMax * .4f)
                         {
                             Counter2 = 30;
                             if (Main.netMode != 1)
@@ -1244,8 +1244,6 @@ namespace FargowiltasSouls.NPCs
                             Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
                                 npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 1f, Main.myPlayer);
                         Counter2--;
-
-                        PrintAI(npc);
                         break;
 
                     case NPCID.Retinazer:
@@ -2339,15 +2337,15 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
-                        if (Main.player[Main.myPlayer].active & !Main.player[Main.myPlayer].dead
-                            && Main.player[Main.myPlayer].ZoneUnderworldHeight)
+                        if (Main.player[Main.myPlayer].active & !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].ZoneUnderworldHeight)
                         {
-                            if (Math.Abs(2500 - Math.Abs(npc.Center.X - Main.player[Main.myPlayer].Center.X)) < 500)
+                            if (Math.Abs(2500 - Math.Abs(npc.Center.X - Main.player[Main.myPlayer].Center.X)) < Main.screenWidth / 2)
                             {
                                 for (int i = 0; i < 10; i++) //dust when player is near edge
                                 {
-                                    Vector2 dustPos = new Vector2(npc.direction, 0f).RotatedBy(Math.PI / 4 * (-0.5 + Main.rand.NextDouble()));
+                                    Vector2 dustPos = new Vector2(2500 * npc.direction, 0f).RotatedBy(Math.PI / 3 * (-0.5 + Main.rand.NextDouble()));
                                     int d = Dust.NewDust(npc.Center + dustPos, 0, 0, DustID.Fire);
+                                    Main.dust[d].scale += 1f;
                                     Main.dust[d].velocity = npc.velocity;
                                     Main.dust[d].noGravity = true;
                                     Main.dust[d].noLight = true;
@@ -3295,10 +3293,10 @@ namespace FargowiltasSouls.NPCs
                                         distance.Y = distance.Y / time - 0.5f * gravity * time;
                                         if (Math.Sign(distance.Y) != Math.Sign(gravity))
                                             distance.Y = 0f; //cannot arc shots to hit someone on the same elevation
-                                        int max = inTemple ? 2 : 3;
+                                        int max = inTemple ? 1 : 3;
                                         for (int i = -max; i <= max; i++)
                                         {
-                                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + i, distance.Y,
+                                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + i * 1.5f, distance.Y,
                                                 mod.ProjectileType("GolemFireball"), npc.damage / 5, 0f, Main.myPlayer, gravity, 0f);
                                         }
                                     }
@@ -3348,7 +3346,7 @@ namespace FargowiltasSouls.NPCs
                                 distance.Y = distance.Y / time - 0.5f * gravity * time;
                                 if (Math.Sign(distance.Y) != Math.Sign(gravity))
                                     distance.Y = 0f; //cannot arc shots to hit someone on the same elevation
-                                int max = inTemple ? 2 : 3;
+                                int max = inTemple ? 1 : 3;
                                 for (int i = -max; i <= max; i++)
                                 {
                                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, distance.X + i, distance.Y,
@@ -5534,6 +5532,7 @@ namespace FargowiltasSouls.NPCs
                                 speed *= 6f;
                                 speed += npc.velocity * 1.25f;
                                 speed.Y -= Math.Abs(speed.X) * 0.2f;
+                                speed.Y -= 3f;
                                 if (Main.netMode != 1)
                                     Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 4, 0f, Main.myPlayer);
                             }
@@ -5590,8 +5589,10 @@ namespace FargowiltasSouls.NPCs
                         if (npc.reflectingProjectiles)
                         {
                             npc.defense *= 5;
-                            int d = Dust.NewDust(npc.position, npc.width, npc.height, 228, npc.velocity.X * .4f, npc.velocity.Y * .4f, 0, Color.White, 2f);
-                            Main.dust[d].velocity *= 3f;
+                            if (npc.buffType[0] != 0)
+                                npc.DelBuff(0);
+                            int d = Dust.NewDust(npc.position, npc.width, npc.height, 228, npc.velocity.X * .4f, npc.velocity.Y * .4f, 0, Color.White, 3f);
+                            Main.dust[d].velocity *= 6f;
                             Main.dust[d].noGravity = true;
                         }
                         break;
@@ -9256,6 +9257,7 @@ namespace FargowiltasSouls.NPCs
                                 npc.life = npc.lifeMax;
                             CombatText.NewText(npc.Hitbox, CombatText.HealLife, damage);
                             damage = 0;
+                            npc.netUpdate = true;
                         }
                         break;
 
@@ -9553,6 +9555,7 @@ namespace FargowiltasSouls.NPCs
                                 npc.life = npc.lifeMax;
                             CombatText.NewText(npc.Hitbox, CombatText.HealLife, damage);
                             damage = 0;
+                            npc.netUpdate = true;
                         }
                         break;
 

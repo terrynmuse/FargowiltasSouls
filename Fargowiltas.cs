@@ -483,7 +483,18 @@ namespace FargowiltasSouls
                     {
                         int n = reader.ReadByte();
                         Item.NewItem(Main.npc[n].Hitbox, ItemID.Heart);
-                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("SERVER RECEIVED REQUEST"), Color.White);
+                    }
+                    break;
+
+                case 10: //client to server, sync cultist data
+                    if (Main.netMode == 2)
+                    {
+                        int cult = reader.ReadByte();
+                        FargoGlobalNPC cultNPC = Main.npc[cult].GetGlobalNPC<FargoGlobalNPC>();
+                        cultNPC.Counter += reader.ReadInt32();
+                        cultNPC.Counter2 += reader.ReadInt32();
+                        cultNPC.Timer += reader.ReadInt32();
+                        Main.npc[cult].localAI[3] += reader.ReadSingle();
                     }
                     break;
 
