@@ -935,19 +935,11 @@ namespace FargowiltasSouls.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            Player player = Main.player[Main.myPlayer];
+            /*Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             if (modPlayer.SqueakyToy)
-                return;
-
-            if (projectile.minion)
-            {
-                if (modPlayer.UniverseEffect || modPlayer.Eternity)
-                {
-                    target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
-                }
-            }
+                return;*/
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumOnHit(projectile, crit);
         }
@@ -1451,21 +1443,6 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
         }
-
-        /*public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            if (modPlayer.NecroEnchant && projectile.type == mod.ProjectileType("DungeonGuardian") && projectile.penetrate == 1)
-                crit = true;
-
-            if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && player.HeldItem.type != ItemID.BlizzardStaff)
-            {
-                target.AddBuff(BuffID.Chilled, 300);
-                target.AddBuff(BuffID.Frostburn, 300);
-            }
-        }*/
 
         public override bool PreKill(Projectile projectile, int timeLeft)
         {

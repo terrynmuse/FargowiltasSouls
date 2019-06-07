@@ -6138,8 +6138,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SkeletronHand:
-                        if (Main.rand.Next(2) == 0 && !target.HasBuff(mod.BuffType("Stunned")))
-                            target.AddBuff(mod.BuffType("Stunned"), Main.rand.Next(90));
+                        if (Main.rand.Next(2) == 0)
+                            target.AddBuff(BuffID.Dazed, Main.rand.Next(30, 60));
                         break;
 
                     case NPCID.CaveBat:

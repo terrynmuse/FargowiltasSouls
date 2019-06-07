@@ -37,6 +37,7 @@
 -nebula floater inflicts silenced on touch
 -corite inflicts slow/on fire
 -stargazer laser only inflicts distorted (was withered armor/weapon)
+-skeletron hand now inflicts dazed (was stunned)
 
 -small rainbow slimes can also spray spikes
 -armored skeletons periodically spray bones
