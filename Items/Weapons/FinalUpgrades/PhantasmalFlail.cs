@@ -6,6 +6,11 @@ namespace FargowiltasSouls.Items.Weapons.FinalUpgrades
 {
     public class PhantasmalFlail : ModItem
     {
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Phantasmal Leash of Cthulhu");

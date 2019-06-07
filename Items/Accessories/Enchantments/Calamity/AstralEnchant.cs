@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 @"'The Astral Infection has consumed you...'
 Whenever you crit an enemy fallen, hallowed, and astral stars will rain down
 This effect has a 1 second cooldown before it can trigger again
-Effects of the Astral Arcanum");
+Effects of the Astral Arcanum and Hide of Astrum Deus");
         }
 
         public override void SetDefaults()
@@ -45,12 +45,9 @@ Effects of the Astral Arcanum");
             {
                 modPlayer.astralStarRain = true;
             }
-            
-            //astral arcanum
-            modPlayer.astralArcanum = true;
-            modPlayer.aBulwark = true;
-            modPlayer.projRef = true;
-            player.buffImmune[calamity.BuffType("GodSlayerInferno")] = true;
+
+            calamity.GetItem("AstralArcanum").UpdateAccessory(player, hideVisual);
+            calamity.GetItem("HideofAstrumDeus").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()
@@ -63,9 +60,9 @@ Effects of the Astral Arcanum");
             recipe.AddIngredient(calamity.ItemType("AstralBreastplate"));
             recipe.AddIngredient(calamity.ItemType("AstralLeggings"));
             recipe.AddIngredient(calamity.ItemType("AstralArcanum"));
-            recipe.AddIngredient(calamity.ItemType("LunicEye"));
+            recipe.AddIngredient(calamity.ItemType("HideofAstrumDeus"));
+            recipe.AddIngredient(calamity.ItemType("EyeofMagnus"));
             recipe.AddIngredient(calamity.ItemType("Nebulash"));
-            recipe.AddIngredient(calamity.ItemType("TitanArm"));
             recipe.AddIngredient(calamity.ItemType("HivePod"));
             recipe.AddIngredient(calamity.ItemType("AstralStaff"));
             recipe.AddIngredient(calamity.ItemType("HeavenfallenStardisk"));

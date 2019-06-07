@@ -9,7 +9,12 @@ namespace FargowiltasSouls.Items.Weapons
 {
     public class DualSaber : ModItem
     {
-		public override void SetStaticDefaults()
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
+        public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Dual Saber");
 			Tooltip.SetDefault("ye \n and thus fargo never added a proper description for this item");

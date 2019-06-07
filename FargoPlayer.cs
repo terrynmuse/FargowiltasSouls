@@ -875,6 +875,7 @@ namespace FargowiltasSouls
                     if (currentTile != null && currentTile.wall == WallID.SpiderUnsafe)
                     {
                         player.AddBuff(BuffID.Webbed, 30);
+                        player.stickyBreak = 0;
                         //player.stickyBreak = 1000;
                         Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
                         if (vector.X != -1 && vector.Y != -1)
@@ -886,13 +887,13 @@ namespace FargowiltasSouls
                                 NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
                         }
                     }
-                    webCounter++;
+                    /*webCounter++;
                     if (webCounter >= 30 && player.HasBuff(BuffID.Webbed))
                     {
                         player.DelBuff(player.FindBuffIndex(BuffID.Webbed));
                         player.stickyBreak = 0;
                         webCounter = 0;
-                    }
+                    }*/
                 }
                 if (!SandsofTime)
                 {

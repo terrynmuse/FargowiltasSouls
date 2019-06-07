@@ -81,15 +81,16 @@ Effects of Giant Pearl and Amidias' Pendant");
             recipe.AddIngredient(calamity.ItemType("MolluskShelleggings"));
             recipe.AddIngredient(calamity.ItemType("GiantPearl"));
             recipe.AddIngredient(calamity.ItemType("AmidiasPendant"));
+            recipe.AddIngredient(calamity.ItemType("BlackAnurian"));
+            recipe.AddIngredient(calamity.ItemType("Archerfish"));
+            recipe.AddIngredient(calamity.ItemType("Lionfish"));
+            recipe.AddIngredient(calamity.ItemType("HerringStaff"));
             recipe.AddIngredient(calamity.ItemType("SeafoamBomb"));
             recipe.AddIngredient(calamity.ItemType("AquamarineStaff"));
-            recipe.AddIngredient(calamity.ItemType("MagicalConch"));
-            recipe.AddIngredient(calamity.ItemType("Waywasher"));
             recipe.AddIngredient(calamity.ItemType("AmidiasTrident"));
             recipe.AddIngredient(calamity.ItemType("EutrophicShank"));
             recipe.AddIngredient(calamity.ItemType("Serpentine"));
-            recipe.AddIngredient(calamity.ItemType("ClamCrusher"));
-            recipe.AddIngredient(calamity.ItemType("ClamorRifle"));
+            
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

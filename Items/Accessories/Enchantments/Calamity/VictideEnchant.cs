@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 @"'The former seas have energized you…'
 When using any weapon you have a 10% chance to throw a returning seashell projectile
 This seashell does true damage and does not benefit from any damage class
-Summons a sea urchin to protect you");
+Summons a sea urchin to protect you
+Effects of Deep Diver, The Transformer, and Luxor's Gift");
         }
 
         public override void SetDefaults()
@@ -42,7 +43,7 @@ Summons a sea urchin to protect you");
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
             //all
             modPlayer.victideSet = true;
-            
+
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
             if (Soulcheck.GetValue("Victide Sea Urchin"))
@@ -61,6 +62,10 @@ Summons a sea urchin to protect you");
                     }
                 }
             }
+
+            calamity.GetItem("DeepDiver").UpdateAccessory(player, hideVisual);
+            calamity.GetItem("TheTransformer").UpdateAccessory(player, hideVisual);
+            calamity.GetItem("LuxorsGift").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()
@@ -76,14 +81,14 @@ Summons a sea urchin to protect you");
             recipe.AddIngredient(calamity.ItemType("VictideHeadgear"));
             recipe.AddIngredient(calamity.ItemType("VictideBreastplate"));
             recipe.AddIngredient(calamity.ItemType("VictideLeggings"));
-            recipe.AddIngredient(calamity.ItemType("ScourgeoftheDesert"));
+            recipe.AddIngredient(calamity.ItemType("DeepDiver"));
+            recipe.AddIngredient(calamity.ItemType("TheTransformer"));
+            recipe.AddIngredient(calamity.ItemType("LuxorsGift"));
+            recipe.AddIngredient(calamity.ItemType("RedtideSword"));
+            recipe.AddIngredient(calamity.ItemType("DuneHopper"));
             recipe.AddIngredient(calamity.ItemType("TeardropCleaver"));
             recipe.AddIngredient(calamity.ItemType("MycelialClaws"));
-            recipe.AddIngredient(calamity.ItemType("BlackAnurian"));
-            recipe.AddIngredient(calamity.ItemType("Archerfish"));
-            recipe.AddIngredient(calamity.ItemType("Lionfish"));
-            recipe.AddIngredient(calamity.ItemType("HerringStaff"));
-
+            
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

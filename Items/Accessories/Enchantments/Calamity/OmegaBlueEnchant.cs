@@ -112,7 +112,7 @@ Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
             recipe.AddIngredient(calamity.ItemType("AquaticEmblem"));
             recipe.AddIngredient(calamity.ItemType("HalibutCannon"));
             recipe.AddIngredient(calamity.ItemType("CalamarisLament"));
-            recipe.AddIngredient(calamity.ItemType("Valediction"));
+            recipe.AddIngredient(calamity.ItemType("TheReaper"));
             recipe.AddIngredient(calamity.ItemType("SulphuricAcidCannon"));
             recipe.AddIngredient(calamity.ItemType("EidolicWail"));
             recipe.AddIngredient(calamity.ItemType("SDFMG"));

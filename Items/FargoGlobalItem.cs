@@ -15,6 +15,14 @@ namespace FargowiltasSouls.Items
     {
         private static Mod thorium = ModLoader.GetMod("ThoriumMod");
 
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == ItemID.Stinger)
+            {
+                item.ammo = item.type;
+            }
+        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if (item.type == ItemID.DogWhistle)
@@ -164,7 +172,7 @@ namespace FargowiltasSouls.Items
             }
 
             //non weapons and weapons with no ammo begone
-            if (item.damage <= 0 || !player.HasAmmo(item, true)) return true;
+            if (item.damage <= 0 || !player.HasAmmo(item, true) || (item.mana > 0 && player.statMana < item.mana)) return true;
 
             if (modPlayer.BorealEnchant && ++modPlayer.BorealCount >= 4)
             {

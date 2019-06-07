@@ -7,6 +7,11 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
     public class DamnedBook : ModItem
     {
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cultist's Spellbook");

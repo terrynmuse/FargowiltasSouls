@@ -50,10 +50,10 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             return new Vector2(-10, 0);
         }
 
-        public override bool ConsumeAmmo(Player p)
+        /*public override bool ConsumeAmmo(Player p)
         {
             return Main.rand.Next(4) != 0;
-        }
+        }*/
 
         public override void AddRecipes()
         {
