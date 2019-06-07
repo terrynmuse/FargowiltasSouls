@@ -23,6 +23,11 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.penetrate = 6;
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(mod.BuffType("Midas"), Main.rand.Next(300, 900));
+        }
+
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (projectile.penetrate > 1)

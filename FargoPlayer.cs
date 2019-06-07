@@ -265,6 +265,7 @@ namespace FargowiltasSouls
         public bool CurseoftheMoon;
         public bool OceanicMaul;
         public int MaxLifeReduction;
+        public bool Midas;
 
         public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
@@ -682,6 +683,7 @@ namespace FargowiltasSouls
             CurseoftheMoon = false;
             OceanicMaul = false;
             DeathMarked = false;
+            Midas = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -734,6 +736,7 @@ namespace FargowiltasSouls
             CurseoftheMoon = false;
             OceanicMaul = false;
             DeathMarked = false;
+            Midas = false;
             SuperBleed = false;
 
             MaxLifeReduction = 0;
@@ -2717,6 +2720,9 @@ namespace FargowiltasSouls
                         (int)(dam * player.magicDamage), 3.75f, player.whoAmI, ai0, ai1);
                 }
             }
+
+            if (Midas)
+                player.DropCoins();
         }
 
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)

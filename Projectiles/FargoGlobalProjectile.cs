@@ -1400,8 +1400,8 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.BombSkeletronPrime:
-                        if (!target.HasBuff(mod.BuffType("Fused")))
-                            target.AddBuff(mod.BuffType("Fused"), 240);
+                        if (Main.rand.Next(3) == 0 && !target.HasBuff(mod.BuffType("Fused")))
+                            target.AddBuff(mod.BuffType("Fused"), 360);
                         break;
 
                     case ProjectileID.DeathLaser:
@@ -1411,6 +1411,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.CannonballHostile:
                         target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Midas"), Main.rand.Next(300, 900));
                         break;
 
                     case ProjectileID.AncientDoomProjectile:

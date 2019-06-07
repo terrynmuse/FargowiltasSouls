@@ -43,7 +43,9 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("LightningRod")] = true;
             player.buffImmune[mod.BuffType("LivingWasteland")] = true;
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
+            player.buffImmune[mod.BuffType("Midas")] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
+            player.buffImmune[mod.BuffType("NullificationCurse")] = true;
             player.buffImmune[mod.BuffType("OceanicMaul")] = true;
             player.buffImmune[mod.BuffType("Purified")] = true;
             player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;
@@ -61,6 +63,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             npc.ichor = true;
             npc.onFire2 = true;
             npc.betsysCurse = true;
+            npc.midas = true;
             fargoNPC.Electrified = true;
             fargoNPC.OceanicMaul = true;
             fargoNPC.CurseoftheMoon = true;

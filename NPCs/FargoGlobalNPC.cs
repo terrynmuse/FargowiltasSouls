@@ -111,6 +111,10 @@ namespace FargowiltasSouls.NPCs
 
                 switch (npc.type)
                 {
+                    case NPCID.Moth:
+                        npc.lifeMax *= 2;
+                        break;
+
                     case NPCID.Salamander:
                     case NPCID.Salamander2:
                     case NPCID.Salamander3:
@@ -2141,7 +2145,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             masoBool[0] = true;
                             if (Main.netMode != 1 && !NPC.downedBoss3)
-                                Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("BloodiedSkull"));
+                                Item.NewItem(npc.position, npc.Size, mod.ItemType("BloodiedSkull"));
                         }
                         if (Counter != 0)
                         {
@@ -3554,7 +3558,7 @@ namespace FargowiltasSouls.NPCs
                             && Collision.CanHit(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0))
                         {
                             masoBool[1] = true;
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("PlanterasFruit"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("PlanterasFruit"));
                         }
 
                         if (npc.life <= npc.lifeMax / 2) //phase 2
@@ -5156,7 +5160,7 @@ namespace FargowiltasSouls.NPCs
                                 speed.Normalize();
                                 speed *= 14f;
                                 if (Main.netMode != 1)
-                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.BulletDeadeye, 15, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PirateDeadeyeBullet"), 15, 0f, Main.myPlayer);
 
                                 Main.PlaySound(SoundID.Item11, npc.Center);
                             }
@@ -5598,6 +5602,24 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.Moth:
+                        npc.position += npc.velocity;
+                        for (int i = 0; i < 2; i++)
+                        {
+                            int d = Dust.NewDust(npc.position, npc.width, npc.height, 70);
+                            Main.dust[d].scale += 1f;
+                            Main.dust[d].noGravity = true;
+                            Main.dust[d].velocity *= 5f;
+                        }
+                        if (++Counter > 4)
+                        {
+                            Counter = 0;
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, Main.rand.NextVector2Unit() * 14f,
+                                    mod.ProjectileType("MothDust"), npc.damage / 5, 0f, Main.myPlayer);
+                        }
+                        break;
+
                     //drakin possible meme tm
                     /*if (!DD2Event.Ongoing)
                     {
@@ -5936,6 +5958,15 @@ namespace FargowiltasSouls.NPCs
             {
                 switch (npc.type)
                 {
+                    case NPCID.Moth:
+                        target.AddBuff(BuffID.Darkness, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Blackout, Main.rand.Next(60, 300));
+                        target.AddBuff(BuffID.Obstructed, Main.rand.Next(30, 120));
+                        target.AddBuff(BuffID.Confused, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(120, 360));
+                        target.AddBuff(mod.BuffType("Unstable"), Main.rand.Next(30, 120));
+                        break;
+
                     case NPCID.BlueSlime:
                         switch (npc.netID)
                         {
@@ -5977,7 +6008,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.LavaSlime:
-                        target.AddBuff(BuffID.Oiled, Main.rand.Next(900, 1800));
+                        target.AddBuff(mod.BuffType("Oiled"), Main.rand.Next(900, 1800));
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 300));
                         break;
 
@@ -6265,8 +6296,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CrimsonGoldfish:
                     case NPCID.CorruptPenguin:
                     case NPCID.CrimsonPenguin:
-                    case NPCID.Scutlix:
-                    case NPCID.Parrot:
                     case NPCID.GingerbreadMan:
                         target.AddBuff(mod.BuffType("SqueakyToy"), Main.rand.Next(180));
                         break;
@@ -6472,6 +6501,12 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(300, 900));
                         break;
 
+                    case NPCID.Reaper:
+                        target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(1200, 7200));
+                        target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(600, 1200));
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), 600);
+                        break;
+
                     case NPCID.Plantera:
                         target.AddBuff(mod.BuffType("MutantNibble"), Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
@@ -6546,26 +6581,53 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-                        goto case NPCID.PirateCorsair;
+                        target.AddBuff(mod.BuffType("Midas"), Main.rand.Next(300, 900));
+                        if (Main.hardMode)
+                            target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(300, 900));
+                        break;
 
                     case NPCID.PirateCaptain:
                     case NPCID.PirateCorsair:
                     case NPCID.PirateCrossbower:
                     case NPCID.PirateDeadeye:
                     case NPCID.PirateShipCannon:
-                        if (!target.GetModPlayer<FargoPlayer>().SecurityWallet)
-                            target.DropCoins();
+                    case NPCID.PirateDeckhand:
+                        target.AddBuff(mod.BuffType("Midas"), Main.rand.Next(300, 900));
+                        target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(300, 900));
                         break;
 
-                    case NPCID.PirateDeckhand:
-                        if (!target.GetModPlayer<FargoPlayer>().SecurityWallet)
-                            target.DropCoins();
-                        goto case NPCID.GrayGrunt;
-
+                    case NPCID.Parrot:
+                        target.AddBuff(mod.BuffType("SqueakyToy"), Main.rand.Next(180));
+                        target.AddBuff(mod.BuffType("Midas"), Main.rand.Next(300, 900));
+                        target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(300, 900));
+                        break;
+                        
                     case NPCID.GoblinPeon:
-                    case NPCID.GrayGrunt:
+                    case NPCID.GoblinSorcerer:
+                    case NPCID.GoblinWarrior:
+                    case NPCID.GoblinArcher:
+                    case NPCID.GoblinSummoner:
                         if (Main.hardMode)
                             target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(300, 900));
+                        break;
+                        
+                    case NPCID.ScutlixRider:
+                    case NPCID.GigaZapper:
+                    case NPCID.MartianEngineer:
+                    case NPCID.MartianOfficer:
+                    case NPCID.RayGunner:
+                    case NPCID.GrayGrunt:
+                    case NPCID.BrainScrambler:
+                    case NPCID.MartianDrone:
+                    case NPCID.MartianWalker:
+                    case NPCID.MartianTurret:
+                        target.AddBuff(BuffID.Electrified, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(300, 900));
+                        break;
+
+                    case NPCID.Scutlix:
+                        target.AddBuff(mod.BuffType("SqueakyToy"), Main.rand.Next(180));
+                        target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(300, 900));
                         break;
 
                     case NPCID.Zombie:
@@ -7882,22 +7944,22 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Hellbat:
                     case NPCID.Lavabat:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("RabiesShot"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("RabiesShot"));
                         break;
 
                     case NPCID.IlluminantBat:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("RabiesShot"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("RabiesShot"));
                         goto case NPCID.IlluminantSlime;
 
                     case NPCID.IlluminantSlime:
                     case NPCID.EnchantedSword:
                         if (Main.rand.Next(3) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("VolatileEnergy"), Main.rand.Next(3) + 1);
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("VolatileEnergy"), Main.rand.Next(3) + 1);
                         break;
 
                     case NPCID.ChaosElemental:
-                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("VolatileEnergy"), Main.rand.Next(3, 7));
+                        Item.NewItem(npc.position, npc.Size, mod.ItemType("VolatileEnergy"), Main.rand.Next(3, 7));
                         break;
 
                     case NPCID.CorruptBunny:
@@ -7907,7 +7969,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CorruptPenguin:
                     case NPCID.CrimsonPenguin:
                         if (Main.rand.Next(20) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SqueakyToy"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SqueakyToy"));
                         break;
 
                     case NPCID.DesertBeast:
@@ -7920,7 +7982,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DesertGhoulCrimson:
                     case NPCID.DesertGhoulHallow:
                         if (Main.rand.Next(3) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.DesertFossil, Main.rand.Next(6) + 1);
+                            Item.NewItem(npc.position, npc.Size, ItemID.DesertFossil, Main.rand.Next(6) + 1);
                         break;
 
                     case NPCID.Crab:
@@ -7941,103 +8003,109 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.RaggedCaster:
                     case NPCID.RaggedCasterOpenCoat:
                         if (Main.rand.Next(100) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SkullCharm"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SkullCharm"));
                         break;
 
                     case NPCID.BigMimicJungle:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("TribalCharm"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("TribalCharm"));
                         break;
 
                     case NPCID.IceGolem:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("FrigidGemstone"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("FrigidGemstone"));
                         break;
 
                     case NPCID.WyvernHead:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("DragonFang"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("DragonFang"));
                         if (Main.rand.Next(3) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.FloatingIslandFishingCrate);
+                            Item.NewItem(npc.position, npc.Size, ItemID.FloatingIslandFishingCrate);
                         break;
 
                     case NPCID.RainbowSlime:
                         if (masoBool[0] && Main.rand.Next(20) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("ConcentratedRainbowMatter"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("ConcentratedRainbowMatter"));
                         break;
 
                     case NPCID.SandElemental:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SandsofTime"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SandsofTime"));
                         break;
 
                     case NPCID.GoblinSummoner:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("WretchedPouch"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("WretchedPouch"));
                         break;
 
                     case NPCID.PirateCaptain:
                         if (Main.rand.Next(20) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("GoldenDippingVat"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("GoldenDippingVat"));
                         break;
 
                     case NPCID.PirateShip:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SecurityWallet"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SecurityWallet"));
                         break;
 
                     case NPCID.Nymph:
-                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("NymphsPerfume"));
+                        Item.NewItem(npc.position, npc.Size, mod.ItemType("NymphsPerfume"));
                         break;
 
                     case NPCID.MourningWood:
-                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.GoodieBag);
+                        Item.NewItem(npc.position, npc.Size, ItemID.GoodieBag);
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.BloodyMachete);
+                            Item.NewItem(npc.position, npc.Size, ItemID.BloodyMachete);
                         break;
 
                     case NPCID.Pumpking:
-                        Item.NewItem(npc.position, npc.width, npc.height, ItemID.GoodieBag);
+                        Item.NewItem(npc.position, npc.Size, ItemID.GoodieBag);
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.BladedGlove);
+                            Item.NewItem(npc.position, npc.Size, ItemID.BladedGlove);
                         if (Main.pumpkinMoon && Main.rand.Next(25) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("PumpkingsCape"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("PumpkingsCape"));
+                        break;
+
+                    case NPCID.Everscream:
+                    case NPCID.SantaNK1:
+                        Item.NewItem(npc.position, npc.Size, ItemID.Present);
                         break;
 
                     case NPCID.IceQueen:
+                        Item.NewItem(npc.Hitbox, ItemID.Present);
                         if (Main.snowMoon && Main.rand.Next(25) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("IceQueensCrown"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("IceQueensCrown"));
                         break;
 
                     case NPCID.MartianSaucerCore:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("SaucerControlConsole"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SaucerControlConsole"));
                         break;
 
                     case NPCID.LavaSlime:
                         if (Main.rand.Next(100) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.LavaCharm);
+                            Item.NewItem(npc.position, npc.Size, ItemID.LavaCharm);
                         break;
 
                     case NPCID.DesertDjinn:
                         if (Main.rand.Next(50) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.FlyingCarpet);
+                            Item.NewItem(npc.position, npc.Size, ItemID.FlyingCarpet);
                         break;
 
                     case NPCID.DarkCaster:
                         if (Main.rand.Next(25) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, ItemID.WaterBolt);
+                            Item.NewItem(npc.position, npc.Size, ItemID.WaterBolt);
                         break;
 
                     case NPCID.RuneWizard:
-                        Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("MysticSkull"));
+                        Item.NewItem(npc.position, npc.Size, mod.ItemType("MysticSkull"));
                         break;
 
                     case NPCID.SnowBalla:
                     case NPCID.SnowmanGangsta:
                     case NPCID.MisterStabby:
                         if (Main.rand.Next(100) == 0)
-                            Item.NewItem(npc.position, npc.width, npc.height, mod.ItemType("OrdinaryCarrot"));
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("OrdinaryCarrot"));
                         break;
 
                     #region boss drops
@@ -8596,7 +8664,7 @@ namespace FargowiltasSouls.NPCs
 
                                 int max = Main.rand.Next(5) + 5;
                                 for (int i = 0; i < max; i++)
-                                    Item.NewItem(npc.position, npc.width, npc.height, ItemID.Heart);
+                                    Item.NewItem(npc.position, npc.Size, ItemID.Heart);
                                 return false;
                             }
                         }

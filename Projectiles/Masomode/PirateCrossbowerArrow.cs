@@ -35,6 +35,11 @@ namespace FargowiltasSouls.Projectiles.Masomode
             Dust.NewDust(projectile.position, projectile.width, projectile.height, Type, projectile.velocity.X / 2f, projectile.velocity.Y / 2f, 150, default(Color), 1.2f);
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(mod.BuffType("Midas"), Main.rand.Next(300, 900));
+        }
+
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 0);

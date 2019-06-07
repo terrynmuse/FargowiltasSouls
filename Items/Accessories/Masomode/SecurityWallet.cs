@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Security Wallet");
             Tooltip.SetDefault(@"'Use caution around other players'
-Grants immunity to enemies that steal items or coins
+Grants immunity to Midas and enemies that steal items
 Prevents you from reforging items with certain modifiers
 Protected modifiers can be chosen in the toggles menu");
         }
@@ -29,6 +29,7 @@ Protected modifiers can be chosen in the toggles menu");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.buffImmune[mod.BuffType("Midas")] = true;
             player.GetModPlayer<FargoPlayer>().SecurityWallet = true;
         }
     }

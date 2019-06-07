@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -17,14 +19,34 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            //inflicts rotting on everything in range
-            if (player.ownedProjectileCounts[mod.ProjectileType("DeathAura")] <= 0 && player.whoAmI == Main.myPlayer)
+            const float distance = 300f;
+            for (int i = 0; i < 200; i++)
+                if (Main.npc[i].active && (Main.npc[i].friendly || Main.npc[i].catchItem != 0) && Main.npc[i].Distance(player.Center) < distance)
+                    Main.npc[i].AddBuff(mod.BuffType("Rotting"), 2);
+            for (int i = 0; i < 255; i++)
+                if (Main.player[i].active && !Main.player[i].dead && i != player.whoAmI && Main.player[i].Distance(player.Center) < distance)
+                    Main.player[i].AddBuff(mod.BuffType("Rotting"), 2);
+
+            for (int i = 0; i < 20; i++)
             {
-                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, 0f, 0f, mod.ProjectileType("DeathAura"), 9001, 9f, player.whoAmI);
-                player.ownedProjectileCounts[mod.ProjectileType("DeathAura")]++;
+                Vector2 offset = new Vector2();
+                double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                offset.X += (float)(Math.Sin(angle) * distance);
+                offset.Y += (float)(Math.Cos(angle) * distance);
+                Dust dust = Main.dust[Dust.NewDust(player.Center + offset - new Vector2(4, 4), 0, 0, 119, 0, 0, 100, Color.White, 1f)];
+                dust.velocity = player.velocity;
+                dust.noGravity = true;
             }
 
             player.GetModPlayer<FargoPlayer>(mod).Rotting = true;
+            player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= .9f;
+            player.statLifeMax2 -= player.statLifeMax / 5;
+            player.statDefense -= 10;
+            player.meleeDamage -= 0.1f;
+            player.magicDamage -= 0.1f;
+            player.rangedDamage -= 0.1f;
+            player.thrownDamage -= 0.1f;
+            player.minionDamage -= 0.1f;
         }
     }
 }

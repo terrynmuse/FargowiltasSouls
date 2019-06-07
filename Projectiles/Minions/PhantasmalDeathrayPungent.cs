@@ -18,7 +18,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Demonic Deathray");
+			DisplayName.SetDefault("Divine Deathray");
 		}
     	
         public override void SetDefaults()
@@ -119,7 +119,8 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.OnFire, 300);
+            target.AddBuff(BuffID.Confused, 300);
+            target.AddBuff(mod.BuffType("ClippedWings"), 300);
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

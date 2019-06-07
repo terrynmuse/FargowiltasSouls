@@ -239,9 +239,6 @@ Summons the aid of all Masochist Mode bosses to your side");
             if (Soulcheck.GetValue("True Eyes Minion"))
                 player.AddBuff(mod.BuffType("TrueEyes"), 2);
 
-            //heart of maso
-            player.buffImmune[mod.BuffType("NullificationCurse")] = true;
-
             //cyclonic fin
             fargoPlayer.CyclonicFin = true;
             if (fargoPlayer.CyclonicFinCD > 0)
@@ -330,7 +327,9 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("LightningRod")] = true;
             player.buffImmune[mod.BuffType("LivingWasteland")] = true;
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
+            player.buffImmune[mod.BuffType("Midas")] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
+            player.buffImmune[mod.BuffType("NullificationCurse")] = true;
             player.buffImmune[mod.BuffType("OceanicMaul")] = true;
             player.buffImmune[mod.BuffType("Purified")] = true;
             player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;
