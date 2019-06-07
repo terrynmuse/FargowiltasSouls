@@ -9033,7 +9033,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PossessedArmor:
                         if (Main.rand.Next(2) == 0 && Main.netMode != 1)
                         {
-                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.X, NPCID.Ghost);
+                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Ghost);
                             if (n != 200 && Main.netMode == 2)
                                 NetMessage.SendData(23, -1, -1, null, n);
                         }
