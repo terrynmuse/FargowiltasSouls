@@ -1280,23 +1280,6 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.PhantasmalDeathray:
-                        /*if (Main.npc[(int)projectile.ai[1]].active)
-                        {
-                            if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordHead)
-                            {
-                                int d = Main.rand.Next(Fargowiltas.DebuffIDs.Length);
-                                target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 300));
-
-                                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 600);
-                                target.AddBuff(mod.BuffType("CurseoftheMoon"), 1800);
-                                target.AddBuff(mod.BuffType("GodEater"), Main.expertMode ? 210 : 420);
-                                
-                            }
-                            else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
-                            {
-                                goto case ProjectileID.PhantasmalSphere;
-                            }
-                        }*/
                         target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
                         break;
 

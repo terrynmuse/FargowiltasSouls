@@ -5950,15 +5950,6 @@ namespace FargowiltasSouls.NPCs
             {
                 switch (npc.type)
                 {
-                    case NPCID.Moth:
-                        target.AddBuff(BuffID.Darkness, Main.rand.Next(300, 600));
-                        target.AddBuff(BuffID.Blackout, Main.rand.Next(60, 300));
-                        target.AddBuff(BuffID.Obstructed, Main.rand.Next(30, 120));
-                        target.AddBuff(BuffID.Confused, Main.rand.Next(300, 600));
-                        target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(120, 360));
-                        target.AddBuff(mod.BuffType("Unstable"), Main.rand.Next(30, 120));
-                        break;
-
                     case NPCID.BlueSlime:
                         switch (npc.netID)
                         {

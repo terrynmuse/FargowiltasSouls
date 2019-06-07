@@ -14,7 +14,7 @@
 //	default expertmode damage: *= 0.80
 -man eaters vore in hardmode too, why not
 -moth has doubled life, double speed, and sprays dust
-	moth & dust inflicts darkness/blackout/obstructed/confused/flipped/unstable (ECHHHHH)
+	moth dust inflicts COMPLETELY RANDOM DEBUFFS
 -presents are 100% drop from frost moon minibosses now
 -nerfed prime bomb fused chance from 100% to 33%, increased duration a bit
 -midas can affect player, applied by most pirate invasion enemies/attacks + goblin thief
@@ -37,6 +37,9 @@
 -corite inflicts slow/on fire
 -stargazer laser only inflicts distorted (was withered armor/weapon)
 -skeletron hand now inflicts dazed (was stunned)
+-heart of maso also gives moon leech immune lel
+-mutant antibodies also give wet immune lul
+-changed how debuff id list and purified buff cleansing work under the hood
 
 -small rainbow slimes can also spray spikes
 -armored skeletons periodically spray bones

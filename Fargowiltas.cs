@@ -16,14 +16,8 @@ namespace FargowiltasSouls
         internal static ModHotKey CheckListKey;
         internal static ModHotKey FreezeKey;
         internal static ModHotKey GoldKey;
-
-        //stoned (ID 156) is placeholder for modded debuffs
-        //add more 156s after the currently existing ones (not at the actual end of array) and then overwrite them in PostSetupContent when adding buffs
-        internal static int[] DebuffIDs =
-        {
-            156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 20, 21, 22, 23, 24, 30, 31, 32, 33, 35, 36, 37, 39, 44,
-            46, 67, 68, 69, 70, 80, 94, 103, 120, 137, 144, 145, 148, 153, 156, 160, 163, 164, 195, 196, 197
-        };
+        
+        internal static List<int> DebuffIDs;
 
         internal static Fargowiltas Instance;
         //loaded
@@ -69,6 +63,7 @@ namespace FargowiltasSouls
         {
             Soulcheck.ToggleDict.Clear();
             Soulcheck.checkboxDict.Clear();
+            DebuffIDs.Clear();
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -103,30 +98,40 @@ namespace FargowiltasSouls
                 ThoriumLoaded = ModLoader.GetMod("ThoriumMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
 
-                DebuffIDs[0] = BuffType("Antisocial");
-                DebuffIDs[1] = BuffType("Atrophied");
-                DebuffIDs[2] = BuffType("Berserked");
-                DebuffIDs[3] = BuffType("Bloodthirsty");
-                DebuffIDs[4] = BuffType("ClippedWings");
-                DebuffIDs[5] = BuffType("Crippled");
-                DebuffIDs[6] = BuffType("Defenseless");
-                DebuffIDs[7] = BuffType("FlamesoftheUniverse");
-                DebuffIDs[8] = BuffType("Flipped");
-                DebuffIDs[9] = BuffType("Fused");
-                DebuffIDs[10] = BuffType("GodEater");
-                DebuffIDs[11] = BuffType("Hexed");
-                DebuffIDs[12] = BuffType("Infested");
-                DebuffIDs[13] = BuffType("Jammed");
-                DebuffIDs[14] = BuffType("Lethargic");
-                DebuffIDs[15] = BuffType("LightningRod");
-                DebuffIDs[16] = BuffType("LivingWasteland");
-                DebuffIDs[17] = BuffType("MarkedforDeath");
-                DebuffIDs[18] = BuffType("MutantNibble");
-                DebuffIDs[19] = BuffType("Purified");
-                DebuffIDs[20] = BuffType("Rotting");
-                DebuffIDs[21] = BuffType("SqueakyToy");
-                DebuffIDs[22] = BuffType("Stunned");
-                DebuffIDs[23] = BuffType("Unstable");
+                DebuffIDs = new List<int> { 20, 22, 23, 24, 36, 39, 44, 46, 47, 67, 68, 69, 70, 80,
+                    88, 94, 103, 137, 144, 145, 148, 149, 153, 156, 160, 163, 164, 195, 196, 197, 199 };
+                DebuffIDs.Add(BuffType("Antisocial"));
+                DebuffIDs.Add(BuffType("Atrophied"));
+                DebuffIDs.Add(BuffType("Berserked"));
+                DebuffIDs.Add(BuffType("Bloodthirsty"));
+                DebuffIDs.Add(BuffType("ClippedWings"));
+                DebuffIDs.Add(BuffType("Crippled"));
+                DebuffIDs.Add(BuffType("CurseoftheMoon"));
+                DebuffIDs.Add(BuffType("Defenseless"));
+                DebuffIDs.Add(BuffType("FlamesoftheUniverse"));
+                DebuffIDs.Add(BuffType("Flipped"));
+                DebuffIDs.Add(BuffType("FlippedHallow"));
+                DebuffIDs.Add(BuffType("Fused"));
+                DebuffIDs.Add(BuffType("GodEater"));
+                DebuffIDs.Add(BuffType("Guilty"));
+                DebuffIDs.Add(BuffType("Hexed"));
+                DebuffIDs.Add(BuffType("Infested"));
+                DebuffIDs.Add(BuffType("Jammed"));
+                DebuffIDs.Add(BuffType("Lethargic"));
+                DebuffIDs.Add(BuffType("LightningRod"));
+                DebuffIDs.Add(BuffType("LivingWasteland"));
+                DebuffIDs.Add(BuffType("MarkedforDeath"));
+                DebuffIDs.Add(BuffType("Midas"));
+                DebuffIDs.Add(BuffType("MutantNibble"));
+                DebuffIDs.Add(BuffType("NullificationCurse"));
+                DebuffIDs.Add(BuffType("Oiled"));
+                DebuffIDs.Add(BuffType("OceanicMaul"));
+                DebuffIDs.Add(BuffType("Purified"));
+                DebuffIDs.Add(BuffType("ReverseManaFlow"));
+                DebuffIDs.Add(BuffType("Rotting"));
+                DebuffIDs.Add(BuffType("SqueakyToy"));
+                DebuffIDs.Add(BuffType("Stunned"));
+                DebuffIDs.Add(BuffType("Unstable"));
 
                 Mod bossChecklist = ModLoader.GetMod("BossChecklist");
                 if (bossChecklist != null)

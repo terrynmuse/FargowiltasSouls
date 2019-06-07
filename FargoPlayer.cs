@@ -1205,13 +1205,10 @@ namespace FargowiltasSouls
                 KillPets();
 
                 //removes all buffs/debuffs, but it interacts really weirdly with luiafk infinite potions.
-
-                for (int i = 0; i < 22; i++)
+                for (int i = 21; i >= 0; i--)
                 {
-                    if (player.buffType[i] > 0 && player.buffTime[i] > 0 && Array.IndexOf(Fargowiltas.DebuffIDs, player.buffType[i]) == -1)
-                    {
+                    if (player.buffType[i] > 0 && player.buffTime[i] > 0 && !Main.debuff[player.buffType[i]])
                         player.DelBuff(i);
-                    }
                 }
             }
             else if (Asocial)

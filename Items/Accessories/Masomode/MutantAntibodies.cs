@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Mutant Antibodies");
             Tooltip.SetDefault(@"'Healthy drug recommended by 0 out of 10 doctors'
-Grants immunity to Feral Bite and Mutant Nibble
+Grants immunity to Wet, Feral Bite, and Mutant Nibble
 Grants immunity to most debuffs caused by entering water
 Grants effects of Wet debuff while riding Cute Fishron
 Increases damage by 20%");
@@ -29,6 +29,7 @@ Increases damage by 20%");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.buffImmune[BuffID.Wet] = true;
             player.buffImmune[BuffID.Rabies] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
             player.GetModPlayer<FargoPlayer>().MutantAntibodies = true;

@@ -16,8 +16,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Suffering no longer hurts, mostly'
 Grants immunity to Living Wasteland, Frozen, Oozed, Withered Weapon, and Withered Armor
 Grants immunity to Feral Bite, Mutant Nibble, Flipped, Unstable, Distorted, and Chaos State
-Grants immunity to Electrified, Nullification Curse, and most debuffs caused by entering water
-Increases damage, critical strike chance, and damage reduction by 10%
+Grants immunity to Wet, Electrified, Moon Leech, Nullification Curse, and water debuffs
+Increases damage, critical strike chance, and damage reduction by 10%, 
 Increases flight time by 100%
 You may periodically fire additional attacks depending on weapon type
 Your critical strikes inflict Rotting and Betsy's Curse
@@ -64,6 +64,7 @@ Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
             fargoPlayer.BetsysHeart = true;
 
             //mutant antibodies
+            player.buffImmune[BuffID.Wet] = true;
             player.buffImmune[BuffID.Rabies] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
             fargoPlayer.MutantAntibodies = true;
@@ -85,6 +86,7 @@ Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
             fargoPlayer.wingTimeModifier += 1f;
 
             //heart of maso
+            player.buffImmune[BuffID.MoonLeech] = true;
             player.buffImmune[mod.BuffType("NullificationCurse")] = true;
         }
 

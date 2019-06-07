@@ -109,6 +109,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             fargoPlayer.GuttedHeartCD -= 2; //faster spawns
 
             //mutant antibodies
+            player.buffImmune[BuffID.Wet] = true;
             player.buffImmune[BuffID.Rabies] = true;
             fargoPlayer.MutantAntibodies = true;
 
@@ -238,6 +239,9 @@ Summons the aid of all Masochist Mode bosses to your side");
                 player.gravControl = true;
             if (Soulcheck.GetValue("True Eyes Minion"))
                 player.AddBuff(mod.BuffType("TrueEyes"), 2);
+
+            //heart of maso
+            player.buffImmune[BuffID.MoonLeech] = true;
 
             //cyclonic fin
             fargoPlayer.CyclonicFin = true;

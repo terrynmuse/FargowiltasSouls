@@ -22,6 +22,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.hide = true;
             projectile.hostile = true;
             projectile.timeLeft = 180;
+            cooldownSlot = 1;
         }
 
         public override void AI()
@@ -37,12 +38,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.Darkness, Main.rand.Next(300, 600));
-            target.AddBuff(BuffID.Blackout, Main.rand.Next(60, 300));
-            target.AddBuff(BuffID.Obstructed, Main.rand.Next(30, 120));
-            target.AddBuff(BuffID.Confused, Main.rand.Next(300, 600));
-            target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(120, 360));
-            target.AddBuff(mod.BuffType("Unstable"), Main.rand.Next(30, 120));
+            int d = Main.rand.Next(Fargowiltas.DebuffIDs.Count);
+            target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 600));
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
