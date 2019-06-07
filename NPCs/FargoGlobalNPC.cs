@@ -612,30 +612,31 @@ namespace FargowiltasSouls.NPCs
                 npc.frameCounter = 0;
             }
 
-            return true;
-        }
-
-        public override void AI(NPC npc)
-        {
             if (FargoWorld.MasochistMode)
             {
-                if (RegenTimer > 0)
-                    RegenTimer--;
-
-                //transformations
-                if (!FirstTick)
+                if (!FirstTick) //transformations and other first tick maso stuff
                 {
-                    int npcType = 0;
-                    int[] transforms = { NPCID.Zombie, NPCID.ArmedZombie, NPCID.ZombieEskimo, NPCID.ArmedZombieEskimo, NPCID.PincushionZombie, NPCID.ArmedZombiePincussion, NPCID.FemaleZombie, NPCID.ArmedZombieCenx, NPCID.SlimedZombie, NPCID.ArmedZombieSlimed, NPCID.TwiggyZombie, NPCID.ArmedZombieTwiggy, NPCID.SwampZombie, NPCID.ArmedZombieSwamp, NPCID.Skeleton, NPCID.BoneThrowingSkeleton, NPCID.HeadacheSkeleton, NPCID.BoneThrowingSkeleton2, NPCID.MisassembledSkeleton, NPCID.BoneThrowingSkeleton3, NPCID.PantlessSkeleton, NPCID.BoneThrowingSkeleton4, NPCID.JungleSlime, NPCID.SpikedJungleSlime, NPCID.IceSlime, NPCID.SpikedIceSlime };
-                    if (Array.IndexOf(transforms, npc.type) % 2 == 0 && Main.rand.Next(5) == 0)
-                        npcType = transforms[Array.IndexOf(transforms, npc.type) + 1];
-
                     switch (npc.type)
                     {
                         case NPCID.Zombie:
                             if (Main.rand.Next(8) == 0)
                                 Horde(npc, 6);
+                            if (Main.rand.Next(5) == 0)
+                                npc.Transform(NPCID.ArmedZombie);
                             break;
+
+                        case NPCID.ZombieEskimo: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.ArmedZombieEskimo); break;
+                        case NPCID.PincushionZombie: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.ArmedZombiePincussion); break;
+                        case NPCID.FemaleZombie: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.ArmedZombieCenx); break;
+                        case NPCID.SlimedZombie: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.ArmedZombieSlimed); break;
+                        case NPCID.TwiggyZombie: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.ArmedZombieTwiggy); break;
+                        case NPCID.SwampZombie: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.ArmedZombieSwamp); break;
+                        case NPCID.Skeleton: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.BoneThrowingSkeleton); break;
+                        case NPCID.HeadacheSkeleton: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.BoneThrowingSkeleton2); break;
+                        case NPCID.MisassembledSkeleton: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.BoneThrowingSkeleton3); break;
+                        case NPCID.PantlessSkeleton: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.BoneThrowingSkeleton4); break;
+                        case NPCID.JungleSlime: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.SpikedJungleSlime); break;
+                        case NPCID.IceSlime: if (Main.rand.Next(5) == 0) npc.Transform(NPCID.SpikedIceSlime); break;
 
                         case NPCID.EaterofSouls:
                         case NPCID.BigEater:
@@ -686,7 +687,7 @@ namespace FargowiltasSouls.NPCs
                             if (Main.rand.Next(5) == 0)
                                 Horde(npc, 5);
                             break;
-                            
+
                         case NPCID.MossHornet:
                             if (Main.rand.Next(4) == 0)
                                 Horde(npc, 5);
@@ -700,7 +701,7 @@ namespace FargowiltasSouls.NPCs
                         case NPCID.Crawdad:
                         case NPCID.GiantShelly:
                             if (Main.rand.Next(5) == 0) //pick a random salamander
-                                npcType = Main.rand.Next(498, 507);
+                                npc.Transform(Main.rand.Next(498, 507));
                             break;
 
                         case NPCID.Salamander:
@@ -709,7 +710,7 @@ namespace FargowiltasSouls.NPCs
                         case NPCID.Salamander4:
                         case NPCID.GiantShelly2:
                             if (Main.rand.Next(5) == 0) //pick a random crawdad
-                                npcType = Main.rand.Next(494, 496);
+                                npc.Transform(Main.rand.Next(494, 496));
                             break;
 
                         case NPCID.Salamander5:
@@ -718,29 +719,29 @@ namespace FargowiltasSouls.NPCs
                         case NPCID.Salamander8:
                         case NPCID.Crawdad2:
                             if (Main.rand.Next(5) == 0) //pick a random shelly
-                                npcType = Main.rand.Next(496, 498);
+                                npc.Transform(Main.rand.Next(496, 498));
                             break;
 
                         case NPCID.Goldfish:
                         case NPCID.GoldfishWalker:
                         case NPCID.BlueJellyfish:
                             if (Main.rand.Next(6) == 0) //random sharks
-                                npcType = NPCID.Shark;
+                                npc.Transform(NPCID.Shark);
                             break;
 
                         //mimic swapping
                         case NPCID.BigMimicCorruption:
                             if (Main.rand.Next(4) == 0)
-                                npcType = NPCID.BigMimicCrimson;
+                                npc.Transform(NPCID.BigMimicCrimson);
                             break;
                         case NPCID.BigMimicCrimson:
                             if (Main.rand.Next(4) == 0)
-                                npcType = NPCID.BigMimicCorruption;
+                                npc.Transform(NPCID.BigMimicCorruption);
                             break;
 
                         case NPCID.VortexLarva:
                             if (Main.rand.Next(2) == 0)
-                                npcType = NPCID.VortexHornet;
+                                npc.Transform(NPCID.VortexHornet);
                             break;
 
                         case NPCID.Bee:
@@ -748,53 +749,66 @@ namespace FargowiltasSouls.NPCs
                             if (Main.rand.Next(3) == 0)
                                 switch ((Main.hardMode && !BossIsAlive(ref beeBoss, NPCID.QueenBee)) ? Main.rand.Next(16, 21) : Main.rand.Next(16))
                                 {
-                                    case 0: npcType = NPCID.Hornet; break;
-                                    case 1: npcType = NPCID.HornetFatty; break;
-                                    case 2: npcType = NPCID.HornetHoney; break;
-                                    case 3: npcType = NPCID.HornetLeafy; break;
-                                    case 4: npcType = NPCID.HornetSpikey; break;
-                                    case 5: npcType = NPCID.HornetStingy; break;
-                                    case 6: npcType = NPCID.LittleHornetFatty; break;
-                                    case 7: npcType = NPCID.LittleHornetHoney; break;
-                                    case 8: npcType = NPCID.LittleHornetLeafy; break;
-                                    case 9: npcType = NPCID.LittleHornetSpikey; break;
-                                    case 10: npcType = NPCID.LittleHornetStingy; break;
-                                    case 11: npcType = NPCID.BigHornetFatty; break;
-                                    case 12: npcType = NPCID.BigHornetHoney; break;
-                                    case 13: npcType = NPCID.BigHornetLeafy; break;
-                                    case 14: npcType = NPCID.BigHornetSpikey; break;
-                                    case 15: npcType = NPCID.BigHornetStingy; break;
-                                    case 16: npcType = NPCID.MossHornet; break;
-                                    case 17: npcType = NPCID.BigMossHornet; break;
-                                    case 18: npcType = NPCID.GiantMossHornet; break;
-                                    case 19: npcType = NPCID.LittleMossHornet; break;
-                                    case 20: npcType = NPCID.TinyMossHornet; break;
+                                    case 0: npc.Transform(NPCID.Hornet); break;
+                                    case 1: npc.Transform(NPCID.HornetFatty); break;
+                                    case 2: npc.Transform(NPCID.HornetHoney); break;
+                                    case 3: npc.Transform(NPCID.HornetLeafy); break;
+                                    case 4: npc.Transform(NPCID.HornetSpikey); break;
+                                    case 5: npc.Transform(NPCID.HornetStingy); break;
+                                    case 6: npc.Transform(NPCID.LittleHornetFatty); break;
+                                    case 7: npc.Transform(NPCID.LittleHornetHoney); break;
+                                    case 8: npc.Transform(NPCID.LittleHornetLeafy); break;
+                                    case 9: npc.Transform(NPCID.LittleHornetSpikey); break;
+                                    case 10: npc.Transform(NPCID.LittleHornetStingy); break;
+                                    case 11: npc.Transform(NPCID.BigHornetFatty); break;
+                                    case 12: npc.Transform(NPCID.BigHornetHoney); break;
+                                    case 13: npc.Transform(NPCID.BigHornetLeafy); break;
+                                    case 14: npc.Transform(NPCID.BigHornetSpikey); break;
+                                    case 15: npc.Transform(NPCID.BigHornetStingy); break;
+                                    case 16: npc.Transform(NPCID.MossHornet); break;
+                                    case 17: npc.Transform(NPCID.BigMossHornet); break;
+                                    case 18: npc.Transform(NPCID.GiantMossHornet); break;
+                                    case 19: npc.Transform(NPCID.LittleMossHornet); break;
+                                    case 20: npc.Transform(NPCID.TinyMossHornet); break;
                                 }
                             break;
 
                         case NPCID.MeteorHead:
                             if (NPC.downedGolemBoss && Main.rand.Next(4) == 0)
-                                npcType = NPCID.SolarCorite;
+                                npc.Transform(NPCID.SolarCorite);
                             break;
 
                         case NPCID.DemonEye:
                         case NPCID.DemonEyeOwl:
                         case NPCID.DemonEyeSpaceship:
                             if (Main.hardMode && Main.rand.Next(4) == 0)
-                                npcType = NPCID.WanderingEye;
+                                npc.Transform(NPCID.WanderingEye);
                             break;
 
                         case NPCID.MothronEgg:
-                            npcType = NPCID.MothronSpawn;
+                            npc.Transform(NPCID.MothronSpawn);
+                            break;
+
+                        case NPCID.EyeofCthulhu:
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("EyeofCthulhuAI"), 0, 0f, Main.myPlayer, npc.whoAmI);
                             break;
 
                         default:
                             break;
                     }
-
-                    if (npcType != 0)
-                        npc.Transform(npcType);
                 }
+            }
+
+            return true;
+        }
+
+        public override void AI(NPC npc)
+        {
+            if (FargoWorld.MasochistMode)
+            {
+                if (RegenTimer > 0)
+                    RegenTimer--;
 
                 /*if (npc.townNPC && Main.hardMode && !Main.dayTime && Main.moonPhase == 0 && werewolfTime)
                 {
@@ -807,8 +821,6 @@ namespace FargowiltasSouls.NPCs
                 {
                     werewolfTime = true;
                 }*/
-                int target;
-
                 switch (npc.type)
                 {
                     case NPCID.Tim:
@@ -858,28 +870,17 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.ManEater:
-                        if (!Main.hardMode)
-                        {
-                            target = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                            if (target != -1)
-                            {
-                                if (Main.player[target].statLife < 100)
-                                    SharkCount = 2;
-                                else
-                                    SharkCount = 0;
-                            }
-                        }
+                        if (npc.HasValidTarget && Main.player[npc.target].statLife < 100)
+                            SharkCount = 2;
+                        else
+                            SharkCount = 0;
                         break;
 
                     case NPCID.AngryTrapper:
-                        target = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                        if (target != -1)
-                        {
-                            if (Main.player[target].statLife < 180)
-                                SharkCount = 2;
-                            else
-                                SharkCount = 0;
-                        }
+                        if (npc.HasValidTarget && Main.player[npc.target].statLife < 180)
+                            SharkCount = 2;
+                        else
+                            SharkCount = 0;
                         break;
 
                     case NPCID.Mummy:
@@ -1209,7 +1210,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.EyeofCthulhu:
+                    /*case NPCID.EyeofCthulhu:
                         eyeBoss = boss = npc.whoAmI;
 
                         Counter++;
@@ -1244,7 +1245,7 @@ namespace FargowiltasSouls.NPCs
                             Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
                                 npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 1f, Main.myPlayer);
                         Counter2--;
-                        break;
+                        break;*/
 
                     case NPCID.Retinazer:
                         retiBoss = boss = npc.whoAmI;
@@ -6087,7 +6088,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ManEater:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
-                        if (target.statLife < 100 && !Main.hardMode)
+                        if (target.statLife < 100)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Man Eater."), 999, 0);
                         break;
 

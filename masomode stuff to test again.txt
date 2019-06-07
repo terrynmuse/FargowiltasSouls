@@ -12,6 +12,9 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-man eaters vore in hardmode too, why not
+-slightly changed transformations work to also facilitate maso-rev eye compatability
+
 -small rainbow slimes can also spray spikes
 -armored skeletons periodically spray bones
 -possessed armors sometimes spawn ghosts when killed
