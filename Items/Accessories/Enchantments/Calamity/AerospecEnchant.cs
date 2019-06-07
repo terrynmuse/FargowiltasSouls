@@ -75,13 +75,14 @@ Summons a Valkyrie minion to protect you");
             recipe.AddIngredient(calamity.ItemType("AerospecHeadgear"));
             recipe.AddIngredient(calamity.ItemType("AerospecBreastplate"));
             recipe.AddIngredient(calamity.ItemType("AerospecLeggings"));
+            recipe.AddIngredient(calamity.ItemType("GladiatorsLocket"));
+            recipe.AddIngredient(calamity.ItemType("UnstablePrism"));
             recipe.AddIngredient(calamity.ItemType("Galeforce"));
             recipe.AddIngredient(calamity.ItemType("StormSurge"));
             recipe.AddIngredient(calamity.ItemType("SkyGlaze"));
             recipe.AddIngredient(calamity.ItemType("PerfectDark"));
-            recipe.AddIngredient(calamity.ItemType("Shadethrower"));
             recipe.AddIngredient(calamity.ItemType("SausageMaker"));
-            recipe.AddIngredient(calamity.ItemType("BloodClotStaff"));
+            
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

@@ -82,7 +82,7 @@ Summons a mini slime god to fight for you, the type depends on what world evil y
             recipe.AddIngredient(calamity.ItemType("StatigelArmor"));
             recipe.AddIngredient(calamity.ItemType("StatigelGreaves"));
             recipe.AddIngredient(calamity.ItemType("ManaOverloader"));
-            recipe.AddIngredient(calamity.ItemType("OverloadedBlaster"));
+            recipe.AddIngredient(calamity.ItemType("LuxorsGift"));
             recipe.AddIngredient(calamity.ItemType("Waraxe"));
             recipe.AddIngredient(calamity.ItemType("MarkedMagnum"));
             recipe.AddIngredient(calamity.ItemType("HeartRapier"));
