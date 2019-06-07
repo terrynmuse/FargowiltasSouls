@@ -1217,6 +1217,7 @@ namespace FargowiltasSouls.Projectiles
                             target.AddBuff(BuffID.CursedInferno, Main.rand.Next(300, 600));
                         else if (target.ZoneCrimson)
                             target.AddBuff(BuffID.Ichor, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Silenced, Main.rand.Next(60, 120));
                         break;
 
                     case ProjectileID.BrainScramblerBolt:
@@ -1367,8 +1368,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.StardustSoldierLaser:
-                        target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(300, 600));
-                        target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.VortexDebuff, Main.rand.Next(120, 180));
                         break;
 
                     case ProjectileID.Sharknado:

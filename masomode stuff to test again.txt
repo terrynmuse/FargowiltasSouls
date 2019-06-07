@@ -28,6 +28,15 @@
 -changed how living wasteland works, gave it a visible aura
 -updated debuffs/name of pungent eyeball deathray to match wof
 -made oiled its own debuff
+-nerfed cursed skull cursed duration, but increased chance
+-water sphere inflicts silenced
+-desert djinn curse inflicts silenced
+-etherian lightning bug inflicts webbed
+-poltergeist inflicts silenced
+-nebula beast inflicts feral bite/silenced
+-nebula floater inflicts silenced on touch
+-corite inflicts slow/on fire
+-stargazer laser only inflicts distorted (was withered armor/weapon)
 
 -small rainbow slimes can also spray spikes
 -armored skeletons periodically spray bones

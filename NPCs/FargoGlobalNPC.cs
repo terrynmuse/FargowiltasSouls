@@ -6109,8 +6109,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.CursedSkull:
-                        if (Main.rand.Next(4) == 0)
-                            target.AddBuff(BuffID.Cursed, Main.rand.Next(60, 600));
+                        if (Main.rand.Next(2) == 0)
+                            target.AddBuff(BuffID.Cursed, Main.rand.Next(30, 120));
                         break;
 
                     case NPCID.Snatcher:
@@ -6253,6 +6253,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WaterSphere:
                         target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(600));
                         target.AddBuff(BuffID.Wet, Main.rand.Next(1200));
+                        target.AddBuff(BuffID.Silenced, Main.rand.Next(60, 120));
                         break;
 
                     case NPCID.GiantShelly:
@@ -6758,6 +6759,10 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.ShadowFlame, duration1);
                         break;
 
+                    case NPCID.Poltergeist:
+                        target.AddBuff(BuffID.Silenced, Main.rand.Next(60, 180));
+                        break;
+
                     case NPCID.Pumpking:
                     case NPCID.PumpkingBlade:
                         target.AddBuff(BuffID.Slow, Main.rand.Next(900, 1800));
@@ -6816,10 +6821,6 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-                        break;
-
-                    case NPCID.GigaZapper:
-                        target.AddBuff(mod.BuffType("LightningRod"), Main.rand.Next(300, 600));
                         break;
 
                     case NPCID.Clown:
@@ -6881,6 +6882,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DD2LightningBugT3:
                         target.AddBuff(BuffID.Electrified, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Webbed, Main.rand.Next(60));
                         break;
 
                     case NPCID.DD2SkeletonT1:
@@ -6902,7 +6904,13 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.Burning, Main.rand.Next(60, 300));
                         break;
 
+                    case NPCID.SolarCorite:
+                        target.AddBuff(BuffID.Slow, Main.rand.Next(60, 300));
+                        target.AddBuff(BuffID.OnFire, Main.rand.Next(300, 600));
+                        break;
+
                     case NPCID.SolarSolenian:
+                        target.AddBuff(BuffID.Slow, Main.rand.Next(60, 300));
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(300, 600));
                         target.AddBuff(BuffID.Ichor, Main.rand.Next(600, 1200));
                         break;
@@ -6930,8 +6938,17 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.NebulaHeadcrab:
-                        target.AddBuff(mod.BuffType("Unstable"), Main.rand.Next(60, 180));
-                        target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(60, 180));
+                        target.AddBuff(mod.BuffType("Unstable"), Main.rand.Next(30, 120));
+                        target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(30, 120));
+                        break;
+
+                    case NPCID.NebulaBeast:
+                        target.AddBuff(BuffID.Rabies, Main.rand.Next(7200));
+                        target.AddBuff(BuffID.Silenced, Main.rand.Next(60, 180));
+                        break;
+
+                    case NPCID.NebulaBrain:
+                        target.AddBuff(BuffID.Silenced, Main.rand.Next(60, 180));
                         break;
 
                     case NPCID.StardustCellBig:
