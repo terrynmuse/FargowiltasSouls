@@ -13,7 +13,6 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 -man eaters vore in hardmode too, why not
--slightly changed transformations work to also facilitate maso-rev eye compatability
 -moth has doubled life, double speed, and sprays dust
 	moth & dust inflicts darkness/blackout/obstructed/confused/flipped/unstable (ECHHHHH)
 -presents are 100% drop from frost moon minibosses now

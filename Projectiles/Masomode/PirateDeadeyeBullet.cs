@@ -21,6 +21,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.ranged = false;
             projectile.hostile = true;
             projectile.penetrate = 6;
+            projectile.timeLeft = 600;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

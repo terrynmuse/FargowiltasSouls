@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void AI()
         {
-            projectile.velocity *= .98f;
+            projectile.velocity *= .96f;
 
             int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 70);
             Main.dust[d].noGravity = true;

@@ -616,8 +616,16 @@ namespace FargowiltasSouls.NPCs
                 npc.frameCounter = 0;
             }
 
+            return true;
+        }
+
+        public override void AI(NPC npc)
+        {
             if (FargoWorld.MasochistMode)
             {
+                if (RegenTimer > 0)
+                    RegenTimer--;
+
                 if (!FirstTick) //transformations and other first tick maso stuff
                 {
                     switch (npc.type)
@@ -793,26 +801,10 @@ namespace FargowiltasSouls.NPCs
                             npc.Transform(NPCID.MothronSpawn);
                             break;
 
-                        case NPCID.EyeofCthulhu:
-                            if (Main.netMode != 1)
-                                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("EyeofCthulhuAI"), 0, 0f, Main.myPlayer, npc.whoAmI);
-                            break;
-
                         default:
                             break;
                     }
                 }
-            }
-
-            return true;
-        }
-
-        public override void AI(NPC npc)
-        {
-            if (FargoWorld.MasochistMode)
-            {
-                if (RegenTimer > 0)
-                    RegenTimer--;
 
                 /*if (npc.townNPC && Main.hardMode && !Main.dayTime && Main.moonPhase == 0 && werewolfTime)
                 {
@@ -1214,7 +1206,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    /*case NPCID.EyeofCthulhu:
+                    case NPCID.EyeofCthulhu:
                         eyeBoss = boss = npc.whoAmI;
 
                         Counter++;
@@ -1249,7 +1241,7 @@ namespace FargowiltasSouls.NPCs
                             Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
                                 npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 1f, Main.myPlayer);
                         Counter2--;
-                        break;*/
+                        break;
 
                     case NPCID.Retinazer:
                         retiBoss = boss = npc.whoAmI;
@@ -5155,8 +5147,8 @@ namespace FargowiltasSouls.NPCs
                             if (npc.HasPlayerTarget)
                             {
                                 Vector2 speed = Main.player[npc.target].Center - npc.Center;
-                                speed.X += Main.rand.Next(-20, 21);
-                                speed.Y += Main.rand.Next(-20, 21);
+                                speed.X += Main.rand.Next(-40, 41);
+                                speed.Y += Main.rand.Next(-40, 41);
                                 speed.Normalize();
                                 speed *= 14f;
                                 if (Main.netMode != 1)
@@ -5611,11 +5603,11 @@ namespace FargowiltasSouls.NPCs
                             Main.dust[d].noGravity = true;
                             Main.dust[d].velocity *= 5f;
                         }
-                        if (++Counter > 4)
+                        if (++Counter > 6)
                         {
                             Counter = 0;
                             if (Main.netMode != 1)
-                                Projectile.NewProjectile(npc.Center, Main.rand.NextVector2Unit() * 14f,
+                                Projectile.NewProjectile(npc.Center, Main.rand.NextVector2Unit() * 12f,
                                     mod.ProjectileType("MothDust"), npc.damage / 5, 0f, Main.myPlayer);
                         }
                         break;
