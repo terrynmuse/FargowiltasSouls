@@ -15,6 +15,9 @@
 -removed oceanic seal from standard fishron
 -cultist has lunar seal
 -celestial pillar explodes right on player instead of overshooting now
+-added heart sprites
+-removed unintentional defense from pure heart
+-removed whitespace from ice queen crown sprite
 
 -man eaters vore in hardmode too, why not
 -moth has doubled life, double speed, and sprays dust
