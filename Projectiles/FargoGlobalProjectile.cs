@@ -588,24 +588,37 @@ namespace FargowiltasSouls.Projectiles
                         if (!masobool) //MP sync data to server
                         {
                             masobool = true;
-                            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss) && Main.netMode == 1)
+                            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss))
                             {
                                 NPC cultist = Main.npc[FargoGlobalNPC.cultBoss];
-                                FargoGlobalNPC fargoCultist = cultist.GetGlobalNPC<FargoGlobalNPC>();
+                                if (Main.netMode == 1)
+                                {
+                                    FargoGlobalNPC fargoCultist = cultist.GetGlobalNPC<FargoGlobalNPC>();
 
-                                var netMessage = mod.GetPacket();
-                                netMessage.Write((byte)10);
-                                netMessage.Write((byte)FargoGlobalNPC.cultBoss);
-                                netMessage.Write(fargoCultist.Counter);
-                                netMessage.Write(fargoCultist.Counter2);
-                                netMessage.Write(fargoCultist.Timer);
-                                netMessage.Write(cultist.localAI[3]);
-                                netMessage.Send();
+                                    var netMessage = mod.GetPacket();
+                                    netMessage.Write((byte)10);
+                                    netMessage.Write((byte)FargoGlobalNPC.cultBoss);
+                                    netMessage.Write(fargoCultist.Counter);
+                                    netMessage.Write(fargoCultist.Counter2);
+                                    netMessage.Write(fargoCultist.Timer);
+                                    netMessage.Write(cultist.localAI[3]);
+                                    netMessage.Send();
 
-                                fargoCultist.Counter = 0; //clear client side data now
-                                fargoCultist.Counter2 = 0;
-                                fargoCultist.Timer = 0;
-                                cultist.localAI[3] = 0f;
+                                    fargoCultist.Counter = 0; //clear client side data now
+                                    fargoCultist.Counter2 = 0;
+                                    fargoCultist.Timer = 0;
+                                    cultist.localAI[3] = 0f;
+                                }
+                                else //refresh ritual
+                                {
+                                    for (int i = 0; i < 1000; i++)
+                                        if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType("CultistRitual"))
+                                        {
+                                            Main.projectile[i].Kill();
+                                            break;
+                                        }
+                                    Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("CultistRitual"), 0, 0f, Main.myPlayer);
+                                }
                             }
                         }
 

@@ -2545,10 +2545,10 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DukeFishron:
                         fishBoss = boss = npc.whoAmI;
-                        if (npc.Distance(Main.player[Main.myPlayer].Center) < 1800f)
-                            Main.player[Main.myPlayer].AddBuff(mod.BuffType("OceanicSeal"), 2);
                         if (masoBool[3]) //fishron EX
                         {
+                            if (npc.Distance(Main.player[Main.myPlayer].Center) < 1800f)
+                                Main.player[Main.myPlayer].AddBuff(mod.BuffType("OceanicSeal"), 2);
                             fishBossEX = npc.whoAmI;
                             npc.position += npc.velocity * 0.5f;
                             switch ((int)npc.ai[0])

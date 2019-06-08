@@ -12,6 +12,10 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-removed oceanic seal from standard fishron
+-cultist has lunar seal
+-celestial pillar explodes right on player instead of overshooting now
+
 -man eaters vore in hardmode too, why not
 -moth has doubled life, double speed, and sprays dust
 	moth dust inflicts COMPLETELY RANDOM DEBUFFS

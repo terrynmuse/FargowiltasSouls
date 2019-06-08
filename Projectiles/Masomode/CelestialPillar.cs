@@ -84,7 +84,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                         projectile.velocity.Normalize();
                         const float speed = 32f;
                         projectile.velocity *= speed;
-                        projectile.timeLeft = (int)(distance / speed) + 15;
+                        projectile.timeLeft = (int)(distance / speed);
                         projectile.netUpdate = true;
                         return;
                     }

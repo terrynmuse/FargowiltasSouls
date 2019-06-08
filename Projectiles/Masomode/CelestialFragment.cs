@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.hostile = true;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 240;
+            projectile.timeLeft = 300;
             cooldownSlot = 1;
         }
 
@@ -46,6 +46,26 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 }
                 Dust dust = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, type, 0f, 0f, 0, new Color(), 1f)];
                 dust.velocity *= 4f;
+                dust.fadeIn = 1f;
+                dust.scale = 1f + Main.rand.NextFloat() + Main.rand.Next(4) * 0.3f;
+                dust.noGravity = true;
+            }
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            int type;
+            switch ((int)projectile.ai[0])
+            {
+                case 0: type = 242; break; //nebula
+                case 1: type = 127; break; //solar
+                case 2: type = 229; break; //vortex
+                default: type = 135; break; //stardust
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                Dust dust = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, type, 0f, 0f, 0, new Color(), 1f)];
+                dust.velocity *= 6f;
                 dust.fadeIn = 1f;
                 dust.scale = 1f + Main.rand.NextFloat() + Main.rand.Next(4) * 0.3f;
                 dust.noGravity = true;
