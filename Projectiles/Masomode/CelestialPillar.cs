@@ -84,7 +84,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                         projectile.velocity.Normalize();
                         const float speed = 32f;
                         projectile.velocity *= speed;
-                        projectile.timeLeft = (int)(distance / speed) + 15;
+                        projectile.timeLeft = (int)(distance / speed);
                         projectile.netUpdate = true;
                         return;
                     }
@@ -135,11 +135,6 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.frame = (int)projectile.ai[0];
         }
 
-        public override bool CanDamage()
-        {
-            return projectile.alpha == 0;
-        }
-
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (target.mount.Active)
@@ -149,6 +144,13 @@ namespace FargowiltasSouls.Projectiles.Masomode
             target.AddBuff(mod.BuffType("Stunned"), 60);
             target.AddBuff(mod.BuffType("MarkedforDeath"), 240);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
+            switch ((int)projectile.ai[0])
+            {
+                case 0: target.AddBuff(mod.BuffType("ReverseManaFlow"), 360); break; //nebula
+                case 1: target.AddBuff(mod.BuffType("Atrophied"), 360); break; //solar
+                case 2: target.AddBuff(mod.BuffType("Jammed"), 360); break; //vortex
+                default: target.AddBuff(mod.BuffType("Asocial"), 360); break; //stardust
+            }
             projectile.timeLeft = 0;
         }
 

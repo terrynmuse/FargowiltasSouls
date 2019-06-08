@@ -3,12 +3,12 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
-    public class Crippled : ModBuff
+    public class Midas : ModBuff
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Crippled");
-            Description.SetDefault("You cannot run");
+            DisplayName.SetDefault("Midas");
+            Description.SetDefault("Drop money on hit");
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
@@ -17,9 +17,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            //disables running :v
-            player.GetModPlayer<FargoPlayer>(mod).Kneecapped = true;
-            player.slow = true;
+            player.GetModPlayer<FargoPlayer>(mod).Midas = true;
         }
     }
 }

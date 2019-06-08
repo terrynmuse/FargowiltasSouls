@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Demonic Deathray");
+			DisplayName.SetDefault("Divine Deathray");
 		}
     	
         public override void SetDefaults()
@@ -199,12 +199,10 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.Darkness, Main.rand.Next(300, 600));
-            target.AddBuff(BuffID.Blackout, Main.rand.Next(300, 600));
-            target.AddBuff(BuffID.Dazed, Main.rand.Next(30, 90));
-            target.AddBuff(BuffID.OnFire, Main.rand.Next(300, 600));
-            target.AddBuff(mod.BuffType<ClippedWings>(), Main.rand.Next(300, 600));
-            target.AddBuff(mod.BuffType<Crippled>(), Main.rand.Next(300, 600));
+            target.AddBuff(mod.BuffType("Flipped"), 300);
+            target.AddBuff(BuffID.Confused, 300);
+            target.AddBuff(mod.BuffType<ClippedWings>(), 300);
+            target.AddBuff(mod.BuffType<Crippled>(), 300);
             target.velocity = target.velocity / 4;
         }
     }

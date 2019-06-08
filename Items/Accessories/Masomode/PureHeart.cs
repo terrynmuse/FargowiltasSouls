@@ -8,8 +8,6 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class PureHeart : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pure Heart");
@@ -29,7 +27,6 @@ A new Creeper appears every 15 seconds, and 5 can exist at once");
             item.accessory = true;
             item.rare = 6;
             item.value = Item.sellPrice(0, 4);
-            item.defense = 6;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -56,6 +53,7 @@ A new Creeper appears every 15 seconds, and 5 can exist at once");
             recipe.AddIngredient(mod.ItemType("VolatileEnergy"), 20);
             recipe.AddIngredient(ItemID.PurificationPowder, 30);
             recipe.AddIngredient(ItemID.GreenSolution, 50);
+            recipe.AddIngredient(ItemID.HallowedBar, 5);
 
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

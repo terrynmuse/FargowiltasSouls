@@ -21,11 +21,6 @@ namespace FargowiltasSouls.Buffs
                     player.GetModPlayer<FargoPlayer>().Slimed = true;
                     break;
 
-                case BuffID.Oiled:
-                    player.GetModPlayer<FargoPlayer>().Oiled = true;
-                    Main.debuff[type] = true;
-                    break;
-
                 default:
                     break;
             }

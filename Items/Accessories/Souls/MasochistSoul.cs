@@ -20,7 +20,7 @@ Increases life regen drastically, increases max number of minions and sentries b
 Grants gravity control, fastfall, and immunity to knockback, all Masochist Mode debuffs, and more
 Grants autofire to all weapons, modifier protection, and you automatically use mana potions when needed
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
-Your attacks create additional attacks and inflict Sadism as a cocktail of Masochist Mode debuffs
+Your attacks create additional attacks, hearts, and inflict a cocktail of Masochist Mode debuffs
 You respawn twice as fast, have improved night vision, and erupt into various attacks when injured
 Attacks have a chance to squeak and deal 1 damage to you
 Summons the aid of all Masochist Mode bosses to your side");
@@ -109,6 +109,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             fargoPlayer.GuttedHeartCD -= 2; //faster spawns
 
             //mutant antibodies
+            player.buffImmune[BuffID.Wet] = true;
             player.buffImmune[BuffID.Rabies] = true;
             fargoPlayer.MutantAntibodies = true;
 
@@ -158,7 +159,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             fargoPlayer.SandsofTime = true;
 
             //mystic skull
-            player.buffImmune[BuffID.Webbed] = true;
+            player.buffImmune[BuffID.Suffocation] = true;
             player.manaFlower = true;
 
             //security wallet
@@ -171,8 +172,18 @@ Summons the aid of all Masochist Mode bosses to your side");
             fargoPlayer.SqueakyAcc = true;
 
             //tribal charm
-            player.buffImmune[BuffID.Suffocation] = true;
+            player.buffImmune[BuffID.Webbed] = true;
             fargoPlayer.TribalCharm = true;
+            
+            //nymph's perfume
+            player.buffImmune[BuffID.Lovestruck] = true;
+            player.buffImmune[BuffID.Stinky] = true;
+            if (Soulcheck.GetValue("Attacks Spawn Hearts"))
+            {
+                fargoPlayer.NymphsPerfume = true;
+                if (fargoPlayer.NymphsPerfumeCD > 0)
+                    fargoPlayer.NymphsPerfumeCD -= 10;
+            }
 
             //dubious circuitry
             player.buffImmune[BuffID.CursedInferno] = true;
@@ -230,7 +241,7 @@ Summons the aid of all Masochist Mode bosses to your side");
                 player.AddBuff(mod.BuffType("TrueEyes"), 2);
 
             //heart of maso
-            player.buffImmune[mod.BuffType("NullificationCurse")] = true;
+            player.buffImmune[BuffID.MoonLeech] = true;
 
             //cyclonic fin
             fargoPlayer.CyclonicFin = true;
@@ -320,7 +331,10 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("LightningRod")] = true;
             player.buffImmune[mod.BuffType("LivingWasteland")] = true;
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
+            player.buffImmune[mod.BuffType("Midas")] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
+            player.buffImmune[mod.BuffType("NullificationCurse")] = true;
+            player.buffImmune[mod.BuffType("Oiled")] = true;
             player.buffImmune[mod.BuffType("OceanicMaul")] = true;
             player.buffImmune[mod.BuffType("Purified")] = true;
             player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;

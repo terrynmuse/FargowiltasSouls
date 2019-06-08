@@ -10,13 +10,9 @@ QB -(take less damage while guards are alive? maybe only in stationary form spra
 crippled only when charging?
 -also not all demon eyes dashing?
 -icy merman shoots twice as fast if he’s in water (also dust ofc)
--Fire Imp, Dark Caster, Tim, and Goblin Sorcerer "panic" when attacked (they fire projectiles 3x as fast and can still shoot after getting damaged)
 -Paladins can throw hammers without having to not be currently attacked
 -Zombies can always open doors like in blood moons
 -clowns throw exploding bananas and explode into snow and sand balls instead of dynamite
--moths spawn spores everywhere 
--Pirahnas will hop out the top of water if you are directly above it
--Ragged Casters teleport when damaged
 
 MISC
 -Marked for Death - skulls circle around you
@@ -30,7 +26,6 @@ meme ideas
 fire imp - explosion of burning spheres when they teleport
 -wraiths steal your souls on hit
 -mimics dont reveal themself until you are extremely close
--ice golem has snowflakes protecting him something
 -hellhound in hell?
 mothron
 
@@ -63,66 +58,68 @@ truffle EX in mutants shop
 make swarms cash out to each player
 dark mage summon?
 
-
-
-
-
-
-Number of times each debuff is represented in masomode
-(actually prob now outdated, after update we can count n add/remove some things so all debuffs are represented nicely)
-
-Withered Weapon 5
-Withered Armor 4
-Marked for Death 6
-Hexed 8
-Cursed Flames 5
-Ichor 5
-Flipped 8
-Unstable 6
-Distorted 2
-Chaos State 0 
-Burning 6 
-Fused 4
-Blackout
-Tongue 0 
-Infested
-Living Wasteland
-Feral Bite 19
-Mutant Nibble 9
-Defenseless 16
-Stunned
-Dazed 3
-Atrophied 3
-Jammed 3
-Reverse Mana Flow 3
-Antisocial 4
-God Eater
-Oozed?
-Webbed?
-Obstructed?
-Electrified 3
-Lightning Rod
-Bleeding
-Poisoned
-Darkness
-Weak
-Broken Armor
-Confused
-Slow
-Sileced
-Cursed
-Chilled 
-Frozen
-Stoned
-Slimed
-Berserked
-Bloodthirsty
-Rotting 11
-Venom 8
-Lethargic
-Clipped Wings 14
-Crippled
-Frostburn
-Shadowflame
-Flames of the Universe
-Squeaky Toy
+Antisocial          4
+Atrophied           4
+Berserked           10
+Blackout            6
+Bleeding            11
+Bloodthirsty        5
+BrokenArmor         10
+Burning             9
+Chilled             7
+ClippedWings        15
+Confused            7
+Crippled            8
+Cursed              7
+CursedInferno       6
+CurseoftheMoon      7
+Darkness            6
+Dazed               5
+Defenseless         17
+Electrified         5
+FlamesoftheUniverse 7
+Flipped             8
+Frostburn           7
+Frozen              6
+Fused               5
+GodEater            3
+Guilty              1
+Hexed               9
+Ichor               6
+Infested            17
+Jammed              4
+Lethargic           9
+LightningRod        7
+LivingWasteland     12
+Lovestruck          2
+MarkedforDeath      13
+Midas               4
+MutantNibble        8
+NoBuilding          1
+Obstructed          6
+OceanicMaul         5
+OgreSpit            4
+Oiled               1
+OnFire              18
+Poisoned            10
+Purified            7
+Rabies              22
+ReverseManaFlow     4
+Rotting             13
+ShadowFlame         13
+Silenced            6
+Slimed              18
+Slow                6
+SqueakyToy          8
+Stinky              2
+Stoned              3
+Stunned             8
+Suffocation         4
+Unstable            7
+Venom               8
+VortexDebuff        4
+Weak                6
+Webbed              2
+Wet                 1
+WitheredArmor       4
+WitheredWeapon      5

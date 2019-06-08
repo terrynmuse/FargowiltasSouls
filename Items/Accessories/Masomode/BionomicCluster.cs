@@ -16,10 +16,9 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'The amalgamate born of a thousand common enemies'
 Grants immunity to Frostburn, Shadowflame, Squeaky Toy, Guilty, Mighty Wind, and Suffocation
 Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and Purified
-Grants autofire to all weapons and immunity to enemies that steal items or coins
-Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies
-Your attacks summon Frostfireballs to attack your enemies
-You respawn twice as fast when no boss is alive and have improved night vision
+Grants immunity to Lovestruck, Stinky, Midas, and enemies that steal items
+Your attacks can inflict Clipped Wings, spawn Frostfireballs, and produce hearts
+You have autofire, improved night vision, and faster respawn when no boss is alive
 Automatically use mana potions when needed and gives modifier protection
 Attacks have a chance to squeak and deal 1 damage to you
 You erupt into Shadowflame tentacles when injured
@@ -31,8 +30,8 @@ Summons a friendly rainbow slime");
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = 7;
-            item.value = Item.sellPrice(0, 5);
+            item.rare = 8;
+            item.value = Item.sellPrice(0, 6);
             item.defense = 6;
         }
 
@@ -83,30 +82,42 @@ Summons a friendly rainbow slime");
             player.manaFlower = true;
 
             //security wallet
+            player.buffImmune[mod.BuffType("Midas")] = true;
             fargoPlayer.SecurityWallet = true;
 
             //carrot
             player.nightVision = true;
+
+            //nymph's perfume
+            player.buffImmune[BuffID.Lovestruck] = true;
+            player.buffImmune[BuffID.Stinky] = true;
+            if (Soulcheck.GetValue("Attacks Spawn Hearts"))
+            {
+                fargoPlayer.NymphsPerfume = true;
+                if (fargoPlayer.NymphsPerfumeCD > 0)
+                    fargoPlayer.NymphsPerfumeCD--;
+            }
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(mod.ItemType("SqueakyToy"));
+            recipe.AddIngredient(mod.ItemType("ConcentratedRainbowMatter"));
             recipe.AddIngredient(mod.ItemType("DragonFang"));
             recipe.AddIngredient(mod.ItemType("FrigidGemstone"));
             recipe.AddIngredient(mod.ItemType("SandsofTime"));
-            recipe.AddIngredient(mod.ItemType("ConcentratedRainbowMatter"));
+            recipe.AddIngredient(mod.ItemType("SqueakyToy"));
             recipe.AddIngredient(mod.ItemType("TribalCharm"));
             recipe.AddIngredient(mod.ItemType("MysticSkull"));
-            recipe.AddIngredient(mod.ItemType("WretchedPouch"));
-            recipe.AddIngredient(mod.ItemType("OrdinaryCarrot"));
             recipe.AddIngredient(mod.ItemType("SecurityWallet"));
+            recipe.AddIngredient(mod.ItemType("OrdinaryCarrot"));
+            recipe.AddIngredient(mod.ItemType("WretchedPouch"));
+            recipe.AddIngredient(mod.ItemType("NymphsPerfume"));
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 20);
 
-            recipe.AddTile(TileID.CookingPots);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

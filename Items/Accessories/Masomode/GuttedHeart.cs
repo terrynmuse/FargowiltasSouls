@@ -8,8 +8,6 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class GuttedHeart : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gutted Heart");

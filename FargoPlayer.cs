@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Graphics.Capture;
@@ -216,6 +217,8 @@ namespace FargowiltasSouls
         public bool FrigidGemstone;
         public bool WretchedPouch;
         public int FrigidGemstoneCD;
+        public bool NymphsPerfume;
+        public int NymphsPerfumeCD = 30;
         public bool SqueakyAcc;
         public bool RainbowSlime;
         public bool SkeletronArms;
@@ -262,6 +265,7 @@ namespace FargowiltasSouls
         public bool CurseoftheMoon;
         public bool OceanicMaul;
         public int MaxLifeReduction;
+        public bool Midas;
 
         public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
@@ -644,6 +648,7 @@ namespace FargowiltasSouls
             SecurityWallet = false;
             FrigidGemstone = false;
             WretchedPouch = false;
+            NymphsPerfume = false;
             SqueakyAcc = false;
             RainbowSlime = false;
             SkeletronArms = false;
@@ -678,6 +683,7 @@ namespace FargowiltasSouls
             CurseoftheMoon = false;
             OceanicMaul = false;
             DeathMarked = false;
+            Midas = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -708,6 +714,8 @@ namespace FargowiltasSouls
             CorruptHeartCD = 60;
             GuttedHeartCD = 60;
             GroundPound = 0;
+            NymphsPerfume = false;
+            NymphsPerfumeCD = 30;
             PungentEyeballMinion = false;
             MagicalBulb = false;
             LunarCultist = false;
@@ -728,6 +736,7 @@ namespace FargowiltasSouls
             CurseoftheMoon = false;
             OceanicMaul = false;
             DeathMarked = false;
+            Midas = false;
             SuperBleed = false;
 
             MaxLifeReduction = 0;
@@ -783,23 +792,23 @@ namespace FargowiltasSouls
                 }
 
                 if (player.ZoneUnderworldHeight && !(player.fireWalk || PureHeart))
-                    player.AddBuff(BuffID.OnFire, Main.expertMode ? 1 : 2);
+                    player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
-                    player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode ? 1 : 2);
+                    player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
                 if (player.ZoneSnow && Main.hardMode && !Main.dayTime)
                 {
                     if (!PureHeart)
-                        player.AddBuff(BuffID.Chilled, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Chilled, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
                     if (player.wet && !MutantAntibodies)
                     {
-                        player.AddBuff(BuffID.Frostburn, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Frostburn, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                         MasomodeFreezeTimer++;
                         if (MasomodeFreezeTimer >= 300)
                         {
-                            player.AddBuff(BuffID.Frozen, 120);
+                            player.AddBuff(BuffID.Frozen, Main.expertMode && Main.expertDebuffTime > 1 ? 60 : 120);
                             MasomodeFreezeTimer = -300;
                         }
                     }
@@ -816,24 +825,25 @@ namespace FargowiltasSouls
                 if (player.ZoneCorrupt && Main.hardMode)
                 {
                     if (!PureHeart)
-                        player.AddBuff(BuffID.Darkness, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Darkness, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                     if(player.wet && !MutantAntibodies)
-                        player.AddBuff(BuffID.CursedInferno, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.CursedInferno, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
                 if (player.ZoneCrimson && Main.hardMode)
                 {
                     if (!PureHeart)
-                        player.AddBuff(BuffID.Bleeding, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Bleeding, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                     if (player.wet && !MutantAntibodies)
-                        player.AddBuff(BuffID.Ichor, Main.expertMode ? 1 : 2);
+                        player.AddBuff(BuffID.Ichor, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
-                if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) && player.active && !PureHeart)
+                if (player.ZoneHoly && (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) && player.active)
                 {
-                    player.AddBuff(mod.BuffType("FlippedHallow"), 120);
+                    if (!PureHeart)
+                        player.AddBuff(mod.BuffType("FlippedHallow"), 120);
                     if (player.wet && !MutantAntibodies)
-                        player.AddBuff(BuffID.Confused, 2);
+                        player.AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
                 /*if (Main.hardMode && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))
@@ -868,11 +878,14 @@ namespace FargowiltasSouls
                         player.stickyBreak = 0;
                         //player.stickyBreak = 1000;
                         Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
-                        int num3 = (int)vector.X;
-                        int num4 = (int)vector.Y;
-                        WorldGen.KillTile(num3, num4, false, false, false);
-                        if (Main.netMode == 1 && !Main.tile[num3, num4].active())
-                            NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
+                        if (vector.X != -1 && vector.Y != -1)
+                        {
+                            int num3 = (int)vector.X;
+                            int num4 = (int)vector.Y;
+                            WorldGen.KillTile(num3, num4, false, false, false);
+                            if (Main.netMode == 1 && !Main.tile[num3, num4].active())
+                                NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
+                        }
                     }
                     /*webCounter++;
                     if (webCounter >= 30 && player.HasBuff(BuffID.Webbed))
@@ -890,7 +903,7 @@ namespace FargowiltasSouls
                     Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
                     if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
                     {
-                        if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles?
+                        if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles
                             player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), 10, 0, false, false, false, 0);
                     }
                 }
@@ -1131,16 +1144,13 @@ namespace FargowiltasSouls
                                 multiplier = 2;
                             if (MasochistSoul)
                                 multiplier = 5;
-                            if (Main.netMode != 1)
+                            if (Main.netMode == 0)
                             {
                                 int n = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, mod.NPCType("CreeperGutted"), 0, player.whoAmI, 0f, multiplier);
-                                if (n < 200)
-                                {
+                                if (n != 200)
                                     Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
-                                    Main.npc[n].netUpdate = true;
-                                }
                             }
-                            else
+                            else if (Main.netMode == 1)
                             {
                                 var netMessage = mod.GetPacket();
                                 netMessage.Write((byte)0);
@@ -1195,13 +1205,10 @@ namespace FargowiltasSouls
                 KillPets();
 
                 //removes all buffs/debuffs, but it interacts really weirdly with luiafk infinite potions.
-
-                for (int i = 0; i < 22; i++)
+                for (int i = 21; i >= 0; i--)
                 {
-                    if (player.buffType[i] > 0 && player.buffTime[i] > 0 && Array.IndexOf(Fargowiltas.DebuffIDs, player.buffType[i]) == -1)
-                    {
+                    if (player.buffType[i] > 0 && player.buffTime[i] > 0 && !Main.debuff[player.buffType[i]])
                         player.DelBuff(i);
-                    }
                 }
             }
             else if (Asocial)
@@ -2299,6 +2306,22 @@ namespace FargowiltasSouls
                 palladiumCD = 60;
             }
 
+            if (NymphsPerfume && NymphsPerfumeCD <= 0 && !target.immortal && !player.moonLeech)
+            {
+                NymphsPerfumeCD = 600;
+                if (Main.netMode == 0)
+                {
+                    Item.NewItem(target.Hitbox, ItemID.Heart);
+                }
+                else if (Main.netMode == 1)
+                {
+                    var netMessage = mod.GetPacket();
+                    netMessage.Write((byte)9);
+                    netMessage.Write((byte)target.whoAmI);
+                    netMessage.Send();
+                }
+            }
+
             if (UniverseEffect)
                 target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
 
@@ -2695,6 +2718,9 @@ namespace FargowiltasSouls
                         (int)(dam * player.magicDamage), 3.75f, player.whoAmI, ai0, ai1);
                 }
             }
+
+            if (Midas)
+                player.DropCoins();
         }
 
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)

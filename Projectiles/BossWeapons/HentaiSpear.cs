@@ -32,7 +32,6 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.ignoreWater = true;
             projectile.scale = 1.3f;
             projectile.hide = true;
-            projectile.ownerHitCheck = true;
             projectile.melee = true;
             projectile.alpha = 0;
             projectile.usesLocalNPCImmunity = true;

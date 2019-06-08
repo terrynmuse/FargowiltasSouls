@@ -5,17 +5,16 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class SecurityWallet : ModItem
+    public class NymphsPerfume : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Security Wallet");
-            Tooltip.SetDefault(@"'Use caution around other players'
-Grants immunity to Midas and enemies that steal items
-Prevents you from reforging items with certain modifiers
-Protected modifiers can be chosen in the toggles menu");
+            DisplayName.SetDefault("Nymph's Perfume");
+            Tooltip.SetDefault(@"'The scent is somewhat overpowering'
+Grants immunity to Lovestruck and Stinky
+Your attacks occasionally produce hearts");
         }
 
         public override void SetDefaults()
@@ -29,8 +28,12 @@ Protected modifiers can be chosen in the toggles menu");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[mod.BuffType("Midas")] = true;
-            player.GetModPlayer<FargoPlayer>().SecurityWallet = true;
+            player.buffImmune[BuffID.Lovestruck] = true;
+            player.buffImmune[BuffID.Stinky] = true;
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
+            fargoPlayer.NymphsPerfume = true;
+            if (fargoPlayer.NymphsPerfumeCD > 0)
+                fargoPlayer.NymphsPerfumeCD--;
         }
     }
 }

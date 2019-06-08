@@ -95,6 +95,10 @@ namespace FargowiltasSouls.Projectiles
                         projectile.scale = 2f;
                         break;
 
+                    case ProjectileID.EyeLaser:
+                        projectile.tileCollide = false;
+                        break;
+
                     default:
                         break;
                 }
@@ -581,15 +585,70 @@ namespace FargowiltasSouls.Projectiles
                 case ProjectileID.CultistRitual:
                     if (FargoWorld.MasochistMode)
                     {
+                        if (!masobool) //MP sync data to server
+                        {
+                            masobool = true;
+                            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss))
+                            {
+                                NPC cultist = Main.npc[FargoGlobalNPC.cultBoss];
+                                if (Main.netMode == 1)
+                                {
+                                    FargoGlobalNPC fargoCultist = cultist.GetGlobalNPC<FargoGlobalNPC>();
+
+                                    var netMessage = mod.GetPacket();
+                                    netMessage.Write((byte)10);
+                                    netMessage.Write((byte)FargoGlobalNPC.cultBoss);
+                                    netMessage.Write(fargoCultist.Counter);
+                                    netMessage.Write(fargoCultist.Counter2);
+                                    netMessage.Write(fargoCultist.Timer);
+                                    netMessage.Write(cultist.localAI[3]);
+                                    netMessage.Send();
+
+                                    fargoCultist.Counter = 0; //clear client side data now
+                                    fargoCultist.Counter2 = 0;
+                                    fargoCultist.Timer = 0;
+                                    cultist.localAI[3] = 0f;
+                                }
+                                else //refresh ritual
+                                {
+                                    for (int i = 0; i < 1000; i++)
+                                        if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType("CultistRitual"))
+                                        {
+                                            Main.projectile[i].Kill();
+                                            break;
+                                        }
+                                    Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("CultistRitual"), 0, 0f, Main.myPlayer);
+                                }
+                            }
+                        }
+
                         if (projectile.ai[0] > 120f && projectile.ai[0] < 299f) //instant ritual
                         {
                             projectile.ai[0] = 299f;
-                            if (Main.netMode != 1)
+                            float ai0 = Main.rand.Next(4);
+                            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss))
                             {
-                                Projectile.NewProjectile(projectile.Center, Vector2.UnitY * -10f, mod.ProjectileType("CelestialPillar"),
-                                    (int)(75 * (1 + FargoWorld.CultistCount * .0125)), 0f, Main.myPlayer, Main.rand.Next(4));
+                                NPC cultist = Main.npc[FargoGlobalNPC.cultBoss];
+                                FargoGlobalNPC fargoCultist = cultist.GetGlobalNPC<FargoGlobalNPC>();
+                                int[] weight = new int[4];
+                                weight[0] = fargoCultist.Counter;
+                                weight[1] = fargoCultist.Counter2;
+                                weight[2] = fargoCultist.Timer;
+                                weight[3] = (int)cultist.localAI[3];
+                                fargoCultist.Counter = 0;
+                                fargoCultist.Counter2 = 0;
+                                fargoCultist.Timer = 0;
+                                cultist.localAI[3] = 0f;
+                                int max = 0;
+                                for (int i = 1; i < 4; i++)
+                                    if (weight[max] < weight[i])
+                                        max = i;
+                                if (weight[max] > 0)
+                                    ai0 = max;
                             }
-                            projectile.netUpdate = true;
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(projectile.Center, Vector2.UnitY * -10f, mod.ProjectileType("CelestialPillar"),
+                                    (int)(75 * (1 + FargoWorld.CultistCount * .0125)), 0f, Main.myPlayer, ai0);
                         }
                     }
                     break;
@@ -625,6 +684,24 @@ namespace FargowiltasSouls.Projectiles
                         int p = Projectile.NewProjectile(projectile.Center, projectile.velocity, ProjectileID.CrimsonSpray, 0, 0f, Main.myPlayer, 8f);
                         if (p != 1000)
                             Main.projectile[p].timeLeft = 6;
+                    }
+                    break;
+
+                case ProjectileID.RuneBlast:
+                    if (FargoWorld.MasochistMode && projectile.ai[0] == 1f)
+                    {
+                        if (projectile.localAI[0] == 0f)
+                        {
+                            projectile.localAI[0] = projectile.Center.X;
+                            projectile.localAI[1] = projectile.Center.Y;
+                        }
+                        Vector2 distance = projectile.Center - new Vector2(projectile.localAI[0], projectile.localAI[1]);
+                        if (distance != Vector2.Zero && distance.Length() >= 300f)
+                        {
+                            projectile.velocity = distance.RotatedBy(Math.PI / 2);
+                            projectile.velocity.Normalize();
+                            projectile.velocity *= 8f;
+                        }
                     }
                     break;
 
@@ -871,19 +948,11 @@ namespace FargowiltasSouls.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            Player player = Main.player[Main.myPlayer];
+            /*Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
             if (modPlayer.SqueakyToy)
-                return;
-
-            if (projectile.minion)
-            {
-                if (modPlayer.UniverseEffect || modPlayer.Eternity)
-                {
-                    target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240, true);
-                }
-            }
+                return;*/
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumOnHit(projectile, crit);
         }
@@ -1050,7 +1119,6 @@ namespace FargowiltasSouls.Projectiles
                             target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 300));
                             target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 240));
                             target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(120, 240));
-                            target.velocity = Vector2.Zero;
                         }
                         break;
 
@@ -1125,6 +1193,7 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.RuneBlast:
                         target.AddBuff(mod.BuffType("FlamesoftheUniverse"), Main.rand.Next(30, 120));
                         target.AddBuff(mod.BuffType("Hexed"), Main.rand.Next(60, 180));
+                        target.AddBuff(BuffID.Suffocation, Main.rand.Next(120, 240));
                         break;
 
                     case ProjectileID.ThornBall:
@@ -1153,6 +1222,7 @@ namespace FargowiltasSouls.Projectiles
                             target.AddBuff(BuffID.CursedInferno, Main.rand.Next(300, 600));
                         else if (target.ZoneCrimson)
                             target.AddBuff(BuffID.Ichor, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.Silenced, Main.rand.Next(60, 120));
                         break;
 
                     case ProjectileID.BrainScramblerBolt:
@@ -1163,6 +1233,10 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.MartianTurretBolt:
                     case ProjectileID.GigaZapperSpear:
                         target.AddBuff(mod.BuffType("LightningRod"), Main.rand.Next(300, 600));
+                        break;
+
+                    case ProjectileID.RayGunnerLaser:
+                        target.AddBuff(BuffID.VortexDebuff, Main.rand.Next(60, 180));
                         break;
 
                     case ProjectileID.SaucerMissile:
@@ -1202,37 +1276,23 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.LostSoulHostile:
                         target.AddBuff(mod.BuffType("Hexed"), Main.rand.Next(30, 240));
+                        target.AddBuff(mod.BuffType("ReverseManaFlow"), Main.rand.Next(180, 360));
                         break;
 
                     case ProjectileID.InfernoHostileBlast:
                     case ProjectileID.InfernoHostileBolt:
                         if (Main.rand.Next(5) == 0)
                             target.AddBuff(mod.BuffType("Fused"), 1800);
+                        target.AddBuff(mod.BuffType("Jammed"), Main.rand.Next(180, 360));
                         break;
 
                     case ProjectileID.ShadowBeamHostile:
                         target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(1800, 3600));
                         target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Atrophied"), Main.rand.Next(180, 360));
                         break;
 
                     case ProjectileID.PhantasmalDeathray:
-                        /*if (Main.npc[(int)projectile.ai[1]].active)
-                        {
-                            if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordHead)
-                            {
-                                int d = Main.rand.Next(Fargowiltas.DebuffIDs.Length);
-                                target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 300));
-
-                                target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 600);
-                                target.AddBuff(mod.BuffType("CurseoftheMoon"), 1800);
-                                target.AddBuff(mod.BuffType("GodEater"), Main.expertMode ? 210 : 420);
-                                
-                            }
-                            else if (Main.npc[(int)projectile.ai[1]].type == NPCID.MoonLordFreeEye)
-                            {
-                                goto case ProjectileID.PhantasmalSphere;
-                            }
-                        }*/
                         target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
                         break;
 
@@ -1268,10 +1328,11 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.DD2BetsyFireball:
                     case ProjectileID.DD2BetsyFlameBreath:
+                        target.AddBuff(BuffID.OnFire, Main.rand.Next(900, 1800));
+                        target.AddBuff(BuffID.Ichor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(60, 300));
                         target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(60, 300));
-                        target.AddBuff(BuffID.Ichor, Main.rand.Next(600, 900));
-                        target.AddBuff(BuffID.OnFire, Main.rand.Next(900, 1800));
+                        target.AddBuff(BuffID.Burning, Main.rand.Next(60, 300));
                         break;
 
                     case ProjectileID.DD2DrakinShot:
@@ -1295,8 +1356,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.StardustSoldierLaser:
-                        target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(300, 600));
-                        target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
+                        target.AddBuff(BuffID.VortexDebuff, Main.rand.Next(120, 180));
                         break;
 
                     case ProjectileID.Sharknado:
@@ -1328,8 +1388,8 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.BombSkeletronPrime:
-                        if (!target.HasBuff(mod.BuffType("Fused")))
-                            target.AddBuff(mod.BuffType("Fused"), 240);
+                        if (Main.rand.Next(3) == 0 && !target.HasBuff(mod.BuffType("Fused")))
+                            target.AddBuff(mod.BuffType("Fused"), 360);
                         break;
 
                     case ProjectileID.DeathLaser:
@@ -1339,6 +1399,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.CannonballHostile:
                         target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Midas"), Main.rand.Next(300, 900));
                         break;
 
                     case ProjectileID.AncientDoomProjectile:
@@ -1363,26 +1424,21 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType("Hexed"), Main.rand.Next(60, 300));
                         break;
 
+                    case ProjectileID.IceSpike:
+                        target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
+                        target.AddBuff(BuffID.Frostburn, Main.rand.Next(15, 150));
+                        break;
+
+                    case ProjectileID.JungleSpike:
+                        target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
+                        target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
+                        break;
+
                     default:
                         break;
                 }
             }
         }
-
-        /*public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            if (modPlayer.NecroEnchant && projectile.type == mod.ProjectileType("DungeonGuardian") && projectile.penetrate == 1)
-                crit = true;
-
-            if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && player.HeldItem.type != ItemID.BlizzardStaff)
-            {
-                target.AddBuff(BuffID.Chilled, 300);
-                target.AddBuff(BuffID.Frostburn, 300);
-            }
-        }*/
 
         public override bool PreKill(Projectile projectile, int timeLeft)
         {

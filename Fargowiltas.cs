@@ -16,14 +16,8 @@ namespace FargowiltasSouls
         internal static ModHotKey CheckListKey;
         internal static ModHotKey FreezeKey;
         internal static ModHotKey GoldKey;
-
-        //stoned (ID 156) is placeholder for modded debuffs
-        //add more 156s after the currently existing ones (not at the actual end of array) and then overwrite them in PostSetupContent when adding buffs
-        internal static int[] DebuffIDs =
-        {
-            156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 20, 21, 22, 23, 24, 30, 31, 32, 33, 35, 36, 37, 39, 44,
-            46, 67, 68, 69, 70, 80, 94, 103, 120, 137, 144, 145, 148, 153, 156, 160, 163, 164, 195, 196, 197
-        };
+        
+        internal static List<int> DebuffIDs;
 
         internal static Fargowiltas Instance;
         //loaded
@@ -69,6 +63,7 @@ namespace FargowiltasSouls
         {
             Soulcheck.ToggleDict.Clear();
             Soulcheck.checkboxDict.Clear();
+            DebuffIDs.Clear();
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -103,30 +98,40 @@ namespace FargowiltasSouls
                 ThoriumLoaded = ModLoader.GetMod("ThoriumMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
 
-                DebuffIDs[0] = BuffType("Antisocial");
-                DebuffIDs[1] = BuffType("Atrophied");
-                DebuffIDs[2] = BuffType("Berserked");
-                DebuffIDs[3] = BuffType("Bloodthirsty");
-                DebuffIDs[4] = BuffType("ClippedWings");
-                DebuffIDs[5] = BuffType("Crippled");
-                DebuffIDs[6] = BuffType("Defenseless");
-                DebuffIDs[7] = BuffType("FlamesoftheUniverse");
-                DebuffIDs[8] = BuffType("Flipped");
-                DebuffIDs[9] = BuffType("Fused");
-                DebuffIDs[10] = BuffType("GodEater");
-                DebuffIDs[11] = BuffType("Hexed");
-                DebuffIDs[12] = BuffType("Infested");
-                DebuffIDs[13] = BuffType("Jammed");
-                DebuffIDs[14] = BuffType("Lethargic");
-                DebuffIDs[15] = BuffType("LightningRod");
-                DebuffIDs[16] = BuffType("LivingWasteland");
-                DebuffIDs[17] = BuffType("MarkedforDeath");
-                DebuffIDs[18] = BuffType("MutantNibble");
-                DebuffIDs[19] = BuffType("Purified");
-                DebuffIDs[20] = BuffType("Rotting");
-                DebuffIDs[21] = BuffType("SqueakyToy");
-                DebuffIDs[22] = BuffType("Stunned");
-                DebuffIDs[23] = BuffType("Unstable");
+                DebuffIDs = new List<int> { 20, 22, 23, 24, 36, 39, 44, 46, 47, 67, 68, 69, 70, 80,
+                    88, 94, 103, 137, 144, 145, 148, 149, 153, 156, 160, 163, 164, 195, 196, 197, 199 };
+                DebuffIDs.Add(BuffType("Antisocial"));
+                DebuffIDs.Add(BuffType("Atrophied"));
+                DebuffIDs.Add(BuffType("Berserked"));
+                DebuffIDs.Add(BuffType("Bloodthirsty"));
+                DebuffIDs.Add(BuffType("ClippedWings"));
+                DebuffIDs.Add(BuffType("Crippled"));
+                DebuffIDs.Add(BuffType("CurseoftheMoon"));
+                DebuffIDs.Add(BuffType("Defenseless"));
+                DebuffIDs.Add(BuffType("FlamesoftheUniverse"));
+                DebuffIDs.Add(BuffType("Flipped"));
+                DebuffIDs.Add(BuffType("FlippedHallow"));
+                DebuffIDs.Add(BuffType("Fused"));
+                DebuffIDs.Add(BuffType("GodEater"));
+                DebuffIDs.Add(BuffType("Guilty"));
+                DebuffIDs.Add(BuffType("Hexed"));
+                DebuffIDs.Add(BuffType("Infested"));
+                DebuffIDs.Add(BuffType("Jammed"));
+                DebuffIDs.Add(BuffType("Lethargic"));
+                DebuffIDs.Add(BuffType("LightningRod"));
+                DebuffIDs.Add(BuffType("LivingWasteland"));
+                DebuffIDs.Add(BuffType("MarkedforDeath"));
+                DebuffIDs.Add(BuffType("Midas"));
+                DebuffIDs.Add(BuffType("MutantNibble"));
+                DebuffIDs.Add(BuffType("NullificationCurse"));
+                DebuffIDs.Add(BuffType("Oiled"));
+                DebuffIDs.Add(BuffType("OceanicMaul"));
+                DebuffIDs.Add(BuffType("Purified"));
+                DebuffIDs.Add(BuffType("ReverseManaFlow"));
+                DebuffIDs.Add(BuffType("Rotting"));
+                DebuffIDs.Add(BuffType("SqueakyToy"));
+                DebuffIDs.Add(BuffType("Stunned"));
+                DebuffIDs.Add(BuffType("Unstable"));
 
                 Mod bossChecklist = ModLoader.GetMod("BossChecklist");
                 if (bossChecklist != null)
@@ -386,14 +391,17 @@ namespace FargowiltasSouls
             switch (reader.ReadByte())
             {
                 case 0: //server side spawning creepers
-                    byte p = reader.ReadByte();
-                    int multiplier = reader.ReadByte();
-                    int n = NPC.NewNPC((int)Main.player[p].Center.X, (int)Main.player[p].Center.Y, NPCType("CreeperGutted"), 0,
-                        p, 0f, multiplier, 0f);
-                    if (n < 200)
+                    if (Main.netMode == 2)
                     {
-                        Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
-                        Main.npc[n].netUpdate = true;
+                        byte p = reader.ReadByte();
+                        int multiplier = reader.ReadByte();
+                        int n = NPC.NewNPC((int)Main.player[p].Center.X, (int)Main.player[p].Center.Y, NPCType("CreeperGutted"), 0,
+                            p, 0f, multiplier, 0f);
+                        if (n != 200)
+                        {
+                            Main.npc[n].velocity = Vector2.UnitX.RotatedByRandom(2 * Math.PI) * 8;
+                            NetMessage.SendData(23, -1, -1, null, n);
+                        }
                     }
                     break;
 
@@ -418,17 +426,17 @@ namespace FargowiltasSouls
                     fargoNPC.masoBool[3] = reader.ReadBoolean();
                     break;
 
-                case 3: //rainbow slime, MP clients syncing to server
+                case 3: //rainbow slime/paladin, MP clients syncing to server
                     if (Main.netMode == 1)
                     {
-                        byte slime = reader.ReadByte();
-                        Main.npc[slime].position = Main.npc[slime].Center;
-                        Main.npc[slime].width = (int)(Main.npc[slime].width / Main.npc[slime].scale);
-                        Main.npc[slime].height = (int)(Main.npc[slime].height / Main.npc[slime].scale);
-                        Main.npc[slime].scale = 1f;
-                        Main.npc[slime].Center = Main.npc[slime].position;
-                        Main.npc[slime].lifeMax = reader.ReadInt32();
-                        Main.npc[slime].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
+                        byte npc = reader.ReadByte();
+                        Main.npc[npc].lifeMax = reader.ReadInt32();
+                        float newScale = reader.ReadSingle();
+                        Main.npc[npc].position = Main.npc[npc].Center;
+                        Main.npc[npc].width = (int)(Main.npc[npc].width / Main.npc[npc].scale * newScale);
+                        Main.npc[npc].height = (int)(Main.npc[npc].height / Main.npc[npc].scale * newScale);
+                        Main.npc[npc].scale = newScale;
+                        Main.npc[npc].Center = Main.npc[npc].position;
                     }
                     break;
 
@@ -447,6 +455,51 @@ namespace FargowiltasSouls
                         int reti = reader.ReadByte();
                         Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = reader.ReadBoolean();
                         Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().Counter = reader.ReadInt32();
+                    }
+                    break;
+
+                case 6: //shark MP sync
+                    if (Main.netMode == 1)
+                    {
+                        int shark = reader.ReadByte();
+                        Main.npc[shark].GetGlobalNPC<FargoGlobalNPC>().SharkCount = reader.ReadByte();
+                    }
+                    break;
+
+                case 7: //client to server activate dark caster family
+                    if (Main.netMode == 2)
+                    {
+                        int caster = reader.ReadByte();
+                        if (Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 == 0)
+                            Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 = reader.ReadInt32();
+                    }
+                    break;
+
+                case 8: //server to clients reset counter
+                    if (Main.netMode == 1)
+                    {
+                        int caster = reader.ReadByte();
+                        Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 = 0;
+                    }
+                    break;
+
+                case 9: //client to server, request heart spawn
+                    if (Main.netMode == 2)
+                    {
+                        int n = reader.ReadByte();
+                        Item.NewItem(Main.npc[n].Hitbox, ItemID.Heart);
+                    }
+                    break;
+
+                case 10: //client to server, sync cultist data
+                    if (Main.netMode == 2)
+                    {
+                        int cult = reader.ReadByte();
+                        FargoGlobalNPC cultNPC = Main.npc[cult].GetGlobalNPC<FargoGlobalNPC>();
+                        cultNPC.Counter += reader.ReadInt32();
+                        cultNPC.Counter2 += reader.ReadInt32();
+                        cultNPC.Timer += reader.ReadInt32();
+                        Main.npc[cult].localAI[3] += reader.ReadSingle();
                     }
                     break;
 
