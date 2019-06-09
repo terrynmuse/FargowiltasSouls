@@ -4,9 +4,11 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.BossWeapons
 {
-    internal class BlenderProjectile : ModProjectile
+    internal class BlenderProj2 : ModProjectile
     {
         public int Counter = 1;
+
+        public override string Texture => "FargowiltasSouls/Projectiles/BossWeapons/DicerProj";
 
         public override void SetStaticDefaults()
         {
@@ -22,8 +24,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         {
             projectile.CloneDefaults(ProjectileID.Kraken);
             projectile.extraUpdates = 0;
-            projectile.width = 19;
-            projectile.height = 19;
+            projectile.width = 30;
+            projectile.height = 30;
             //yoyo ai
             projectile.aiStyle = 99;
             projectile.friendly = true;
@@ -31,21 +33,14 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.melee = true;
             projectile.scale = 1f;
         }
-        // notes for aiStyle 99: 
-        // localAI[0] is used for timing up to YoyosLifeTimeMultiplier
-        // localAI[1] can be used freely by specific types
-        // ai[0] and ai[1] usually point towards the x and y world coordinate hover point
-        // ai[0] is -1f once YoyosLifeTimeMultiplier is reached, when the player is stoned/frozen, when the yoyo is too far away, or the player is no longer clicking the shoot button.
-        // ai[0] being negative makes the yoyo move back towards the player
-        // Any AI method can be used for dust, spawning projectiles, etc specific to your yoyo.
 
         public override void AI()
         {
-            if (Counter <= 24)
+            if (Counter % 30 == 0)
             {
-                int proj = mod.ProjectileType("DicerProjectile");
+                int proj2 = mod.ProjectileType("DicerProj2");
 
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 5f, proj, (int) (projectile.damage * 0.5f), 2 /*kb*/, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, proj2, projectile.damage, 0, Main.myPlayer);
             }
 
             Counter++;

@@ -59,8 +59,7 @@ Your wings last twice as long
             modPlayer.SpiderEffect(hideVisual);
             //defense beetle bois
             modPlayer.BeetleEffect();
-            //extra wing time
-            modPlayer.BeetleEnchant = true;
+            modPlayer.wingTimeModifier += 1f;
             //flame trail, pie heal, pet
             modPlayer.PumpkinEffect(25, hideVisual);
             //shell hide, pets

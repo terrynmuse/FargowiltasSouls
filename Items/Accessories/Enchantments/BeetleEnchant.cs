@@ -17,11 +17,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Beetles protect you from damage
 Increases flight time by 100%";
 
-            if(thorium != null)
-            {
-                tooltip += "\nSummons a pet Parrot";
-            }
-
             Tooltip.SetDefault(tooltip);
         }
 
@@ -40,8 +35,6 @@ Increases flight time by 100%";
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //defense beetle bois
             modPlayer.BeetleEffect();
-            //extra wing time
-            modPlayer.BeetleEnchant = true;
             modPlayer.wingTimeModifier += 1f;
         }
 

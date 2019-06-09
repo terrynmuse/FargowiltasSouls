@@ -95,7 +95,6 @@ namespace FargowiltasSouls
         private int goldCD = 0;
         private int goldHP;
         public bool CactusEnchant;
-        public bool BeetleEnchant;
         public bool ForbiddenEnchant;
         public bool MinerEnchant;
         public bool PumpkinEnchant;
@@ -548,7 +547,6 @@ namespace FargowiltasSouls
             GoldEnchant = false;
             GoldShell = false;
             CactusEnchant = false;
-            BeetleEnchant = false;
             ForbiddenEnchant = false;
             MinerEnchant = false;
             PumpkinEnchant = false;

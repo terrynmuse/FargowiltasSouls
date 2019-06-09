@@ -29,18 +29,39 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.rare = 5;
             item.autoReuse = true;
             item.shoot = ProjectileID.HornetStinger;
-            item.useAmmo = ItemID.Stinger;
+            //item.useAmmo = ItemID.Stinger;
             item.shootSpeed = 20f;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int p = Projectile.NewProjectile(new Vector2(position.X, position.Y), new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
-            if (p < 1000)
+            //tsunami code
+            Vector2 vector = player.RotatedRelativePoint(player.MountedCenter, true);
+            float num = 0.314159274f;
+            int numShots = 2;
+            Vector2 vel = new Vector2(speedX, speedY);
+            vel.Normalize();
+            vel *= 40f;
+            bool collide = Collision.CanHit(vector, 0, 0, vector + vel, 0, 0);
+
+            for (int i = 0; i < numShots; i++)
             {
-                Main.projectile[p].ranged = true;
-                Main.projectile[p].minion = false;
+                float num3 = (float)i - ((float)numShots - 1f) / 2f;
+                Vector2 value = Utils.RotatedBy(vel, (num * num3), default(Vector2));
+
+                if (!collide)
+                {
+                    value -= vel;
+                }
+
+                int p = Projectile.NewProjectile(vector.X + value.X, vector.Y + value.Y, speedX, speedY, type, damage, knockBack, player.whoAmI);
+                if (p < 1000)
+                {
+                    Main.projectile[p].ranged = true;
+                    Main.projectile[p].minion = false;
+                }
             }
+
             return false;
         }
 
@@ -60,6 +81,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             if (Fargowiltas.Instance.FargosLoaded)
             {
                 ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(null, "HiveStaff");
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerBee"));
                 recipe.AddTile(TileID.Anvils);
                 recipe.SetResult(this);

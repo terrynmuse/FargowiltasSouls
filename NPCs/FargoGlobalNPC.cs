@@ -7882,6 +7882,11 @@ namespace FargowiltasSouls.NPCs
                         pool[NPCID.BlazingWheel] = .1f;
                         pool[NPCID.SpikeBall] = .1f;
                     }
+
+                    if (ocean && spawnInfo.water)
+                    {
+                        pool[NPCID.AnglerFish] = .1f;
+                    }
                 }
 
                 //maybe make moon lord core handle these spawns...?
