@@ -9,11 +9,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class LightBall : ModProjectile
     {
-        public override string Texture => "Terraria/Projectile_253";
-
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Light ball");
+            DisplayName.SetDefault("Light Ball");
         }
 
         public override void SetDefaults()
@@ -41,7 +39,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             Main.dust[index2].velocity.X *= 0.3f;
             Main.dust[index2].velocity.Y *= 0.3f;
 
-            projectile.velocity *= 1f + projectile.ai[1];
+            projectile.velocity *= 1f + Math.Abs(projectile.ai[1]);
             Vector2 acceleration = projectile.velocity.RotatedBy(Math.PI / 2);
             acceleration *= projectile.ai[1];
             projectile.velocity += acceleration;

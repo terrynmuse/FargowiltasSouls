@@ -37,12 +37,6 @@ namespace FargowiltasSouls.NPCs
 
         public override void AI()
         {
-            if (npc.localAI[0] == 0f)
-            {
-                npc.localAI[0] = 1f;
-                Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0, 1f, 0.5f);
-            }
-
             if (npc.buffType[0] != 0)
                 npc.DelBuff(0);
 
@@ -65,6 +59,13 @@ namespace FargowiltasSouls.NPCs
                 if (++npc.ai[0] > 255f)
                 {
                     npc.StrikeNPCNoInteraction(9999, 0f, 0);
+                    for (int i = 0; i < 50; i++)
+                    {
+                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 20);
+                        Main.dust[d].scale += 1f;
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].velocity *= 5f;
+                    }
                     return;
                 }
                 npc.alpha = (int)npc.ai[0];
@@ -75,11 +76,6 @@ namespace FargowiltasSouls.NPCs
                 {
                     npc.localAI[1] = 1f;
                     Main.PlaySound(15, npc.Center, 0);
-                }
-                if (npc.position.Y < Main.worldSurface) //enrage above surface
-                {
-                    npc.Transform(NPCID.DungeonGuardian);
-                    return;
                 }
                 npc.TargetClosest(true); //chase nearest player, etc
                 npc.alpha = 0;
@@ -97,8 +93,8 @@ namespace FargowiltasSouls.NPCs
                             speed.X += Main.rand.Next(-20, 21);
                             speed.Y += Main.rand.Next(-20, 21);
                             speed.Normalize();
-                            speed *= 2f;
-                            speed += npc.velocity * 2f;
+                            speed *= 3f;
+                            speed += npc.velocity;
                             Projectile.NewProjectile(npc.Center, speed, ProjectileID.Skull, npc.damage / 4, 0, Main.myPlayer, -1f, 0f);
                         }
                     }

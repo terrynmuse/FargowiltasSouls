@@ -31,7 +31,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             if (projectile.localAI[0] == 0f)
             {
-                projectile.localAI[0] = 0f;
+                projectile.localAI[0] = 1f;
                 Main.PlaySound(SoundID.Item1, projectile.Center);
             }
 
@@ -43,13 +43,13 @@ namespace FargowiltasSouls.Projectiles.Masomode
             }
             else if (projectile.ai[1] == 60f)
             {
-                const int max = 16;
+                const int max = 12;
                 for (int i = 0; i < max; i++)
-                    Projectile.NewProjectile(projectile.Center, Vector2.Normalize(projectile.velocity).RotatedBy(2 * Math.PI / max) * 8f,
-                        mod.ProjectileType("FlamingJack"), projectile.damage, 0f, Main.myPlayer, projectile.ai[0], 60f);
+                    Projectile.NewProjectile(projectile.Center, Vector2.Normalize(projectile.velocity).RotatedBy(2 * Math.PI / max * i) * 8f,
+                        mod.ProjectileType("FlamingJack"), projectile.damage, 0f, Main.myPlayer, projectile.ai[0], 30f);
             }
 
-            projectile.rotation += projectile.velocity.Length() / (projectile.velocity.X > 0 ? -40f : 40f);
+            projectile.rotation += projectile.velocity.Length() / (projectile.velocity.X > 0 ? 30f : -30f);
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

@@ -887,7 +887,7 @@ namespace FargowiltasSouls.NPCs
                                     )];
                                 dust.velocity = npc.velocity;
                                 if (Main.rand.Next(3) == 0)
-                                    dust.velocity += Vector2.Normalize(offset) * 4f;
+                                    dust.velocity += Vector2.Normalize(offset) * 5f;
                                 dust.noGravity = true;
                                 dust.color = Color.GreenYellow;
                             }
@@ -4152,6 +4152,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.TheDestroyerBody:
+                    case NPCID.TheDestroyerTail:
                         if (npc.realLife >= 0 && npc.realLife < 200 && Main.npc[npc.realLife].life > 0 && npc.life > 0)
                         {
                             if (npc.ai[2] != 0)
@@ -5067,6 +5068,7 @@ namespace FargowiltasSouls.NPCs
                             if (npc.velocity.Y == 0f) //spawn smash
                             {
                                 masoBool[0] = false;
+                                Main.PlaySound(2, npc.Center, 14);
                                 if (Main.netMode != 1)
                                 {
                                     Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.DD2OgreSmash, npc.damage / 4, 4, Main.myPlayer);
@@ -5082,7 +5084,7 @@ namespace FargowiltasSouls.NPCs
                                     const int max = 16;
                                     for (int i = 0; i < max; i++)
                                     {
-                                        Vector2 vel = new Vector2(0f, -5f).RotatedBy(2 * Math.PI / max);
+                                        Vector2 vel = new Vector2(0f, -4f).RotatedBy(2 * Math.PI / max * i);
                                         Projectile.NewProjectile(npc.Center, vel, type, 0, 0f, Main.myPlayer, 8f);
                                     }
                                 }
@@ -5726,8 +5728,8 @@ namespace FargowiltasSouls.NPCs
                                 Vector2 vel = Vector2.Normalize(npc.velocity) * 2f;
                                 for (int i = 0; i < max; i++)
                                 {
-                                    Projectile.NewProjectile(npc.Center, vel.RotatedBy(2 * Math.PI / max),
-                                        mod.ProjectileType("LightBall"), npc.damage / 5, 0f, Main.myPlayer, .012f * npc.direction);
+                                    Projectile.NewProjectile(npc.Center, vel.RotatedBy(2 * Math.PI / max * i),
+                                        mod.ProjectileType("LightBall"), npc.damage / 5, 0f, Main.myPlayer, 0f, .012f * npc.direction);
                                 }
                             }
                         }
@@ -5791,7 +5793,6 @@ namespace FargowiltasSouls.NPCs
                                     NetMessage.SendData(17, -1, -1, null, 0, tileX, tileY);
                             }
                         }
-                        PrintAI(npc);
                         break;
 
                     //drakin possible meme tm
@@ -5904,7 +5905,7 @@ namespace FargowiltasSouls.NPCs
                     )];
                 dust.velocity = npc.velocity;
                 if (Main.rand.Next(3) == 0)
-                    dust.velocity += Vector2.Normalize(offset) * (reverse ? 4f : -4f);
+                    dust.velocity += Vector2.Normalize(offset) * (reverse ? 5f : -5f);
                 dust.noGravity = true;
             }
         }

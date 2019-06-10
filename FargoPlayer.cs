@@ -272,6 +272,7 @@ namespace FargowiltasSouls
 
         public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
+        public int MasomodeSpaceBreathTimer = 0;
 
         public IList<string> disabledSouls = new List<string>();
 
@@ -861,7 +862,7 @@ namespace FargowiltasSouls
                 {
                     Tile currentTile = Framing.GetTileSafely(player.Center);
                     if (currentTile.wall == WallID.None)
-                        player.AddBuff(BuffID.Wet, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                        player.AddBuff(BuffID.Wet, 2);
                 }
 
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
@@ -872,8 +873,11 @@ namespace FargowiltasSouls
                     bool inLiquid = Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
                     if (!inLiquid)
                         player.breath -= 3;
-                    if (Main.rand.Next(3) == 0)
+                    if (++MasomodeSpaceBreathTimer > 10)
+                    {
+                        MasomodeSpaceBreathTimer = 0;
                         player.breath--;
+                    }
                     if (player.breath == 0)
                         Main.PlaySound(23);
                     if (player.breath <= 0)
