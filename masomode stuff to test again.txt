@@ -30,6 +30,12 @@
 -player can suffocate in space NOOOOOOOOOOOOOOOOOO
 -zombies break down doors
 -eoc can no longer spawn multiple times at once during blood moon
+-changed how bloodthirsty and builder mode work
+-changed how skull charm blocks spawns (should work properly in mp now????)
+-added sinister icon
+-dungeon guardian is now immune to valhalla/pearlwood and drops sinister icon
+-added baby guardian (drops sinister icon)
+-necromantic brew and upgrades allow baby guardian to spawn
 
 -removed oceanic seal from standard fishron
 -cultist has lunar seal

@@ -188,6 +188,7 @@ namespace FargowiltasSouls
         public int CorruptHeartCD;
         public bool GuttedHeart;
         public int GuttedHeartCD = 60; //should prevent spawning despite disabled toggle when loading into world
+        public bool NecromanticBrew;
         public bool PureHeart;
         public bool PungentEyeballMinion;
         public bool FusedLens;
@@ -239,6 +240,8 @@ namespace FargowiltasSouls
         public bool DeathMarked;
         public bool noDodge;
         public bool noSupersonic;
+        public bool Bloodthirsty;
+        public bool SinisterIcon;
 
         public bool GodEater;               //defense removed, endurance removed, colossal DOT
         public bool FlamesoftheUniverse;    //activates various vanilla debuffs
@@ -624,6 +627,7 @@ namespace FargowiltasSouls
             AgitatingLens = false;
             CorruptHeart = false;
             GuttedHeart = false;
+            NecromanticBrew = false;
             PureHeart = false;
             PungentEyeballMinion = false;
             FusedLens = false;
@@ -666,6 +670,8 @@ namespace FargowiltasSouls
             Slimed = false;
             noDodge = false;
             noSupersonic = false;
+            Bloodthirsty = false;
+            SinisterIcon = false;
 
             GodEater = false;
             FlamesoftheUniverse = false;
@@ -710,9 +716,12 @@ namespace FargowiltasSouls
             noSupersonic = false;
             lightningRodTimer = 0;
 
+            BuilderMode = false;
+
             SlimyShieldFalling = false;
             CorruptHeartCD = 60;
             GuttedHeartCD = 60;
+            NecromanticBrew = false;
             GroundPound = 0;
             NymphsPerfume = false;
             NymphsPerfumeCD = 30;
@@ -738,6 +747,8 @@ namespace FargowiltasSouls
             DeathMarked = false;
             Midas = false;
             SuperBleed = false;
+            Bloodthirsty = false;
+            SinisterIcon = false;
 
             MaxLifeReduction = 0;
         }

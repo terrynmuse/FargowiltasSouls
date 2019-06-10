@@ -17,6 +17,7 @@ Increases damage by 10% and armor penetration by 10
 While dashing or running quickly you will create a trail of blood scythes
 Your attacks inflict Venom
 Bees and Hornets become friendly
+May attract baby skeleton heads
 Summons 2 Skeletron arms to whack enemies");
         }
 
@@ -64,6 +65,7 @@ Summons 2 Skeletron arms to whack enemies");
 
             //necromantic brew
             player.buffImmune[mod.BuffType("Lethargic")] = true;
+            fargoPlayer.NecromanticBrew = true;
             if (Soulcheck.GetValue("Skeletron Arms Minion"))
                 player.AddBuff(mod.BuffType("SkeletronArms"), 2);
         }

@@ -90,6 +90,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             fargoPlayer.QueenStinger = true;
 
             //necromantic brew
+            fargoPlayer.NecromanticBrew = true;
             if (Soulcheck.GetValue("Skeletron Arms Minion"))
                 player.AddBuff(mod.BuffType("SkeletronArms"), 2);
 
