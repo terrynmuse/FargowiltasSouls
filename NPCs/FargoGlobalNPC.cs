@@ -7758,7 +7758,8 @@ namespace FargowiltasSouls.NPCs
                             if (Main.bloodMoon)
                             {
                                 pool[NPCID.ChatteringTeethBomb] = .1f;
-                                pool[NPCID.EyeofCthulhu] = BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu) ? .01f : .04f;
+                                if (!BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
+                                    pool[NPCID.EyeofCthulhu] = .04f;
 
                                 if (NPC.downedPlantBoss)
                                 {
