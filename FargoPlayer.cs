@@ -846,25 +846,28 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
-                /*if (Main.hardMode && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))
+                if (!PureHeart && Main.hardMode && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))
                 {
-                    Point tileCoordinates = player.Top.ToTileCoordinates();
-                    bool lightning = true;
-                    for (int i = 0; i < 30; i++)
-                    {
-                        if (WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) || tileCoordinates.Y < 10)
-                        {
-                            lightning = false;
-                            break;
-                        }
-                        tileCoordinates.Y--;
-                    }
-                    if (lightning)
-                        player.AddBuff(mod.BuffType("LightningRod"), 2); 
-                }*/
+                    Tile currentTile = Framing.GetTileSafely(player.Center);
+                    if (currentTile.wall == WallID.None)
+                        player.AddBuff(BuffID.Wet, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                }
 
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                     player.AddBuff(mod.BuffType("Lethargic"), 2);
+
+                if (!PureHeart && player.ZoneSkyHeight && player.whoAmI == Main.myPlayer)
+                {
+                    bool inLiquid = Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
+                    if (!inLiquid)
+                        player.breath -= 3;
+                    if (Main.rand.Next(3) == 0)
+                        player.breath--;
+                    if (player.breath == 0)
+                        Main.PlaySound(23);
+                    if (player.breath <= 0)
+                        player.AddBuff(BuffID.Suffocation, 2);
+                }
 
                 if (!PureHeart && !player.buffImmune[BuffID.Webbed] && player.stickyBreak > 0)
                 {

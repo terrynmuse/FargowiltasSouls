@@ -12,6 +12,24 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-post plant mage skeletons can become each other
+-snatcher has man eater abilities now
+-changed hellhound debuffs to feral bite/mutant nibble
+-changed mutant nibble debuffs
+-added check for destroyer so it hopefully doesnt leave ghost segments when killed?
+-destroyer p2 at 75% life now
+-aura dust now indicates if aura is reverse
+-pigrons spawn rarely at ocean
+-increased ancient doom life x4 (2500)
+-ancient dooms spin around but cant damage until they've faded in a bit
+-wyverns have doubled life and shoot rings of light balls hahaaaaa
+-biome mimic stomp also emits sprays of their respective biome solution
+-headless horseman throws horseman's blades at you
+-swamp thing throws ogre spit
+-hardmode rain when not in front of background wall inflicts... wet.
+-player can suffocate in space NOOOOOOOOOOOOOOOOOO
+-zombies break down doors
+
 -removed oceanic seal from standard fishron
 -cultist has lunar seal
 -celestial pillar explodes right on player instead of overshooting now
