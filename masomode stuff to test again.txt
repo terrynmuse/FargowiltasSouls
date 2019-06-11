@@ -28,6 +28,7 @@
 -updated living wasteland dust to match other auras
 -ADDED MUTANT MASOMODE DIALOGUE?????????????
 -fossil hopefully no longer spams bones when dead
+-added lunar ritual for moon lord...
 
 -post plant mage skeletons can become each other
 -snatcher has man eater abilities now

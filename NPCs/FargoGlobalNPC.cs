@@ -3076,6 +3076,14 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordCore:
                         moonBoss = npc.whoAmI;
 
+                        if (!masoBool[3])
+                        {
+                            masoBool[3] = true;
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("LunarRitual"),
+                                    (int)(100.0 * (1.0 + FargoWorld.MoonlordCount * .0125)), 0f, Main.myPlayer, 0f, npc.whoAmI);
+                        }
+
                         if (!masoBool[0])
                         {
                             masoBool[0] = !npc.dontTakeDamage; //remembers even if core becomes invulnerable again

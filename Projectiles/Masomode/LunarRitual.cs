@@ -9,17 +9,17 @@ using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls.Projectiles.Masomode
 {
-    public class CultistRitual : ModProjectile
+    public class LunarRitual : ModProjectile
     {
         public override string Texture => "Terraria/Projectile_454";
 
         private const float PI = (float)Math.PI;
         private const float rotationPerTick = PI / 140f;
-        private const float threshold = 2000f;
+        private const float threshold = 1600f;
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cultist Ritual");
+            DisplayName.SetDefault("Lunar Ritual");
             Main.projFrames[projectile.type] = 2;
         }
 
@@ -35,11 +35,15 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void AI()
         {
-            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss))
+            int ai1 = (int)projectile.ai[1];
+            if (projectile.ai[1] >= 0f && projectile.ai[1] < 200f &&
+                Main.npc[ai1].active && Main.npc[ai1].type == NPCID.MoonLordCore)
             {
                 projectile.alpha -= 2;
                 if (projectile.alpha < 0)
                     projectile.alpha = 0;
+
+                projectile.Center = Main.npc[ai1].Center;
 
                 Player player = Main.player[Main.myPlayer];
                 if (player.active && !player.dead)
@@ -49,7 +53,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                     {
                         int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
                         player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
-                            Main.npc[FargoGlobalNPC.cultBoss].damage, hitDirection, false, false, false, 0);
+                            projectile.damage, hitDirection, false, false, false, 0);
                         player.AddBuff(mod.BuffType("CurseoftheMoon"), Main.rand.Next(300, 600));
                     }
                     if (distance > threshold && distance < threshold * 2f)
@@ -94,10 +98,10 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
             projectile.timeLeft = 2;
             projectile.scale = (1f - projectile.alpha / 255f) * 2f;
-            projectile.ai[0] += rotationPerTick;
-            if (projectile.ai[0] > PI)
+            projectile.ai[0] -= rotationPerTick;
+            if (projectile.ai[0] < -PI)
             {
-                projectile.ai[0] -= 2f * PI;
+                projectile.ai[0] += 2f * PI;
                 projectile.netUpdate = true;
             }
 

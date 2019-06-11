@@ -69,11 +69,11 @@ namespace FargowiltasSouls.Projectiles.Masomode
                     {
                         if (distance > threshold * 1.5f)
                         {
-                            if (distance > threshold * 2.5f)
+                            /*if (distance > threshold * 2.5f)
                             {
                                 player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to escape."), 7777, 0);
                                 return;
-                            }
+                            }*/
 
                             player.frozen = true;
                             player.controlHook = false;
