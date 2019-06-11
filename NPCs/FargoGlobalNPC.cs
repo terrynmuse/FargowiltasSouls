@@ -637,6 +637,9 @@ namespace FargowiltasSouls.NPCs
 
         public override void AI(NPC npc)
         {
+            if (npc.boss)
+                boss = npc.whoAmI;
+
             if (FargoWorld.MasochistMode)
             {
                 if (RegenTimer > 0)
@@ -1280,7 +1283,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        eyeBoss = boss = npc.whoAmI;
+                        eyeBoss = npc.whoAmI;
 
                         Counter++;
                         if (Counter >= 300)
@@ -1317,7 +1320,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Retinazer:
-                        retiBoss = boss = npc.whoAmI;
+                        retiBoss = npc.whoAmI;
                         bool spazAlive = BossIsAlive(ref spazBoss, NPCID.Spazmatism);
                         bool targetAlive = npc.HasPlayerTarget && Main.player[npc.target].active;
 
@@ -1546,7 +1549,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Spazmatism:
-                        spazBoss = boss = npc.whoAmI;
+                        spazBoss = npc.whoAmI;
                         bool retiAlive = BossIsAlive(ref retiBoss, NPCID.Retinazer);
 
                         if (!masoBool[0]) //spawn in phase 2
@@ -1890,7 +1893,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.CultistBoss:
-                        cultBoss = boss = npc.whoAmI;
+                        cultBoss = npc.whoAmI;
 
                         Timer++;
                         if (Timer >= 1200)
@@ -2049,7 +2052,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.KingSlime:
-                        slimeBoss = boss = npc.whoAmI;
+                        slimeBoss = npc.whoAmI;
 
                         if (masoBool[1])
                         {
@@ -2172,7 +2175,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EaterofWorldsHead:
-                        eaterBoss = boss = npc.whoAmI;
+                        eaterBoss = npc.whoAmI;
                         Counter++;
                         if (Counter >= 6) //cursed flamethrower, roughly same direction as head
                         {
@@ -2186,7 +2189,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.QueenBee:
-                        beeBoss = boss = npc.whoAmI;
+                        beeBoss = npc.whoAmI;
 
                         if (!masoBool[0] && npc.life < npc.lifeMax / 3 * 2 && npc.HasPlayerTarget)
                         {
@@ -2225,7 +2228,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SkeletronHead:
-                        skeleBoss = boss = npc.whoAmI;
+                        skeleBoss = npc.whoAmI;
                         if (!masoBool[0])
                         {
                             masoBool[0] = true;
@@ -2341,7 +2344,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.WallofFlesh:
-                        wallBoss = boss = npc.whoAmI;
+                        wallBoss = npc.whoAmI;
 
                         if (npc.ai[3] == 0f) //when spawned in, make one eye invul
                         {
@@ -2455,7 +2458,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.TheDestroyer:
-                        destroyBoss = boss = npc.whoAmI;
+                        destroyBoss = npc.whoAmI;
 
                         if (!masoBool[0])
                         {
@@ -2637,7 +2640,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
-                        fishBoss = boss = npc.whoAmI;
+                        fishBoss = npc.whoAmI;
                         if (masoBool[3]) //fishron EX
                         {
                             if (npc.Distance(Main.player[Main.myPlayer].Center) < 1800f)
@@ -3048,7 +3051,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MoonLordCore:
-                        moonBoss = boss = npc.whoAmI;
+                        moonBoss = npc.whoAmI;
 
                         if (!masoBool[0])
                         {
@@ -3804,7 +3807,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SkeletronPrime:
-                        primeBoss = boss = npc.whoAmI;
+                        primeBoss = npc.whoAmI;
                         npc.dontTakeDamage = !masoBool[0];
 
                         if (npc.ai[0] != 2f) //in phase 1
@@ -4439,7 +4442,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        brainBoss = boss = npc.whoAmI;
+                        brainBoss = npc.whoAmI;
                         if (!npc.dontTakeDamage) //vulnerable
                         {
                             npc.position += npc.velocity / 4f; //faster
@@ -5105,7 +5108,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DD2Betsy:
-                        betsyBoss = boss = npc.whoAmI;
+                        betsyBoss = npc.whoAmI;
                         if (npc.ai[0] == 6f && npc.ai[1] == 1f)
                         {
                             if (Main.netMode != 1 && NPC.CountNPCS(NPCID.DD2DarkMageT3) < 3)
@@ -5119,7 +5122,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DungeonGuardian:
-                        guardBoss = boss = npc.whoAmI;
+                        guardBoss = npc.whoAmI;
                         npc.damage = npc.defDamage;
                         npc.defense = npc.defDefense;
                         while (npc.buffType[0] != 0)

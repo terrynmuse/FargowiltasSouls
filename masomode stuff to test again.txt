@@ -19,6 +19,9 @@
 -reduced probe spawn rate a bit
 -mummies have low chance to explode into wall creepers when killed
 -bosses occupy even more slots in maso now
+-fargoglobalnpc tracks all bosses with boss var
+	(so sands of time wont accelerate respawn during modded bosses either anymore)
+-sands of time wont accelerate respawn during boss fights outside masomode either
 
 -post plant mage skeletons can become each other
 -snatcher has man eater abilities now
