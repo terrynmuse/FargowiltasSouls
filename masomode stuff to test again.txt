@@ -25,6 +25,8 @@
 -armored skeletons (hardmode caverns enemy) no longer spray bones
 -angry bones (dungeon enemy) spray bones now
 -regular skeletons explode into bones when killed
+-updated living wasteland dust to match other auras
+-ADDED MUTANT MASOMODE DIALOGUE?????????????
 
 -post plant mage skeletons can become each other
 -snatcher has man eater abilities now
