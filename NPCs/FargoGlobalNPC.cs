@@ -1087,11 +1087,34 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.BloodCrawlerWall:
+                    case NPCID.WallCreeper:
+                        if (masoBool[0]) //small spider
+                        {
+                            if (!masoBool[1] && ++Counter2 > 15)
+                            {
+                                masoBool[1] = true;
+                                if (Main.netMode == 2) //MP sync
+                                {
+                                    var netMessage = mod.GetPacket();
+                                    netMessage.Write((byte)3);
+                                    netMessage.Write((byte)npc.whoAmI);
+                                    netMessage.Write(npc.lifeMax);
+                                    netMessage.Write(npc.scale);
+                                    netMessage.Send();
+                                    npc.netUpdate = true;
+                                }
+                            }
+                        }
+                        break;
+
                     case NPCID.WallCreeperWall:
+                        if (++Counter >= 600)
+                            Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, 9, 0);
+                        goto case NPCID.WallCreeper;
+
+                    case NPCID.BloodCrawlerWall:
                     case NPCID.JungleCreeperWall:
-                        Counter++;
-                        if (Counter >= 600)
+                        if (++Counter >= 600)
                             Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, 9, 0);
                         break;
 
@@ -5634,8 +5657,10 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.ArmoredSkeleton:
-                    case NPCID.HeavySkeleton:
+                    case NPCID.AngryBones:
+                    case NPCID.AngryBonesBig:
+                    case NPCID.AngryBonesBigHelmet:
+                    case NPCID.AngryBonesBigMuscle:
                         if (++Counter > 180)
                         {
                             if (++Counter2 > 6)
@@ -9268,6 +9293,12 @@ namespace FargowiltasSouls.NPCs
                                 int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.WallCreeper);
                                 if (n != 200)
                                 {
+                                    Main.npc[n].position = Main.npc[n].Center;
+                                    Main.npc[n].width = (int)(Main.npc[n].width * .5f);
+                                    Main.npc[n].height = (int)(Main.npc[n].height * .5f);
+                                    Main.npc[n].scale = .5f;
+                                    Main.npc[n].Center = Main.npc[n].position;
+                                    Main.npc[n].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
                                     Main.npc[n].velocity.X = Main.rand.NextFloat(-10f, 10f);
                                     Main.npc[n].velocity.Y = Main.rand.NextFloat(-15f, 5f);
                                     if (Main.netMode == 2)
@@ -9277,38 +9308,36 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    /* pseudo memes
-                    case: slime zombie
-                    NewNPC(Slime)
-
-                    case skeletons:
-                    for()
-                    {
-                    NewProjectile(Bones)
-                    }
-
-                    case digger:
-                    NewNPC(GiantWorm)
-
-                    case ichor sticker:
-                    for()
-                    {
-                    NewProjectile(Ichor)
-                    }
-
-                    */
+                    case NPCID.Skeleton:
+                    case NPCID.HeadacheSkeleton:
+                    case NPCID.MisassembledSkeleton:
+                    case NPCID.PantlessSkeleton:
+                    case NPCID.SkeletonTopHat:
+                    case NPCID.SkeletonAstonaut:
+                    case NPCID.SkeletonAlien:
+                    case NPCID.BoneThrowingSkeleton:
+                    case NPCID.BoneThrowingSkeleton2:
+                    case NPCID.BoneThrowingSkeleton3:
+                    case NPCID.BoneThrowingSkeleton4:
+                        if (Main.netMode != 1)
+                        {
+                            for (int i = 0; i < 10; i++)
+                            {
+                                Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
+                                speed.Normalize();
+                                speed *= 6f;
+                                speed += npc.velocity * 1.25f;
+                                speed.Y -= Math.Abs(speed.X) * 0.2f;
+                                speed.Y -= 3f;
+                                if (Main.netMode != 1)
+                                    Projectile.NewProjectile(npc.Center, speed, ProjectileID.SkeletonBone, npc.damage / 4, 0f, Main.myPlayer);
+                            }
+                        }
+                        break;
 
                     default:
                         break;
                 }
-
-                /*if (npc.catchItem != 0 && npc.lifeMax == 5)
-                {
-                    float distance = 0;
-                    int p = npc.FindClosestPlayer(out distance);
-                    if (p >= 0 && p < 255 && distance < 800)
-                        Main.player[p].AddBuff(mod.BuffType("Guilty"), 300);
-                }*/
             }
 
             return true;
@@ -9444,20 +9473,6 @@ namespace FargowiltasSouls.NPCs
                             npc.ai[2] = -6f;
                         }
                         break;
-
-                    /*case NPCID.TheDestroyerBody:
-                    case NPCID.TheDestroyerTail:
-                    case NPCID.PrimeCannon:
-                    case NPCID.PrimeLaser:
-                    case NPCID.PrimeSaw:
-                    case NPCID.PrimeVice:
-                    case NPCID.Retinazer:
-                    case NPCID.Spazmatism:
-                        break;
-
-                    case NPCID.GolemFistLeft:
-                    case NPCID.GolemFistRight:
-                        break;*/
 
                     case NPCID.SkeletronPrime:
                         if (npc.ai[0] != 2f) //in phase 1
@@ -9914,25 +9929,11 @@ namespace FargowiltasSouls.NPCs
                 if (npc.catchItem != 0 && npc.lifeMax == 5 && projectile.friendly && !projectile.hostile)
                     player.AddBuff(mod.BuffType("Guilty"), 300);
             }
-
-            /*if (projectile.type == ProjectileID.EyeFire) //why is there a type check in here, MAKE A MODPROJ
-                npc.AddBuff(BuffID.CursedInferno, 300);*/
         }
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
         {
             FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>(mod);
-
-            /*if (FargoWorld.MasochistMode)
-            {
-                switch (npc.type)
-                {
-                    
-
-                    default:
-                        break;
-                }
-            }*/
 
             if (target.HasBuff(mod.BuffType("ShellHide")))
                 damage *= 2;

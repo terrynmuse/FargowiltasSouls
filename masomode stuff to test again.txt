@@ -17,11 +17,14 @@
 -mutant's gift should always be reliably synced in MP now
 -probes can swarm as natural swarm lel
 -reduced probe spawn rate a bit
--mummies have low chance to explode into wall creepers when killed
+-mummies have low chance to explode into mini wall creepers when killed
 -bosses occupy even more slots in maso now
 -fargoglobalnpc tracks all bosses with boss var
 	(so sands of time wont accelerate respawn during modded bosses either anymore)
 -sands of time wont accelerate respawn during boss fights outside masomode either
+-armored skeletons (hardmode caverns enemy) no longer spray bones
+-angry bones (dungeon enemy) spray bones now
+-regular skeletons explode into bones when killed
 
 -post plant mage skeletons can become each other
 -snatcher has man eater abilities now
@@ -85,7 +88,6 @@
 -changed how debuff id list and purified buff cleansing work under the hood
 
 -small rainbow slimes can also spray spikes
--armored skeletons periodically spray bones
 -possessed armors sometimes spawn ghosts when killed
 -butcher has knockback immune and double horiz velocity
 -nerfed web spit damage to always 36
