@@ -106,12 +106,10 @@ namespace FargowiltasSouls.NPCs
             {
                 ResetRegenTimer(npc);
 
-                if (npc.boss)
-                    npc.npcSlots += 10;
-
                 switch (npc.type)
                 {
                     case NPCID.DungeonGuardian:
+                        npc.boss = true;
                         SpecialEnchantImmune = true;
                         break;
 
@@ -609,6 +607,9 @@ namespace FargowiltasSouls.NPCs
                         break;
                 }
                 #endregion
+
+                if (npc.boss)
+                    npc.npcSlots += 30;
             }
         }
 
@@ -723,6 +724,11 @@ namespace FargowiltasSouls.NPCs
                         case NPCID.FlyingAntlion:
                             if (Main.rand.Next(3) == 0)
                                 Horde(npc, 3);
+                            break;
+
+                        case NPCID.Probe:
+                            if (Main.rand.Next(4) == 0 && !AnyBossAlive())
+                                Horde(npc, 8);
                             break;
 
                         case NPCID.Crawdad:
@@ -5017,6 +5023,8 @@ namespace FargowiltasSouls.NPCs
                                     DustID.Electric, 0, 0, 100, Color.White, 1f
                                     )];
                                 dust.velocity = npc.velocity;
+                                if (Main.rand.Next(3) == 0)
+                                    dust.velocity += Vector2.Normalize(offset) * -5f;
                                 dust.noGravity = true;
                             }
                         }
@@ -7812,7 +7820,7 @@ namespace FargowiltasSouls.NPCs
                                         pool[NPCID.EyeofCthulhu] = .02f;
 
                                     if (NPC.downedMechBossAny)
-                                        pool[NPCID.Probe] = 0.2f;
+                                        pool[NPCID.Probe] = 0.1f;
 
                                     if (NPC.downedPlantBoss) //GODLUL
                                     {
@@ -9247,25 +9255,24 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    /*case 41: //rainbow slime 2
-                        for (int i = 0; i < 10; i++)
+                    case NPCID.Mummy:
+                    case NPCID.DarkMummy:
+                    case NPCID.LightMummy:
+                        if (Main.rand.Next(8) == 0 && Main.netMode != 1)
                         {
-                            int spawn = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), 1);
-
-                            if (spawn != 200)
+                            for (int i = 0; i < 4; i++)
                             {
-                                Main.npc[spawn].SetDefaults(i < 5 ? NPCID.Pinky : NPCID.Gastropod);
-                                Main.npc[spawn].velocity.X = npc.velocity.X * 2f;
-                                Main.npc[spawn].velocity.Y = npc.velocity.Y;
-
-                                NPC spawn2 = Main.npc[spawn];
-                                spawn2.velocity.X = spawn2.velocity.X + (Main.rand.Next(-20, 20) * 0.1f + i * npc.direction * 0.3f);
-                                NPC spawn3 = Main.npc[spawn];
-                                spawn3.velocity.Y = spawn3.velocity.Y - (Main.rand.Next(0, 10) * 0.1f + i);
-                                Main.npc[spawn].ai[0] = -1000 * Main.rand.Next(3);
+                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.WallCreeper);
+                                if (n != 200)
+                                {
+                                    Main.npc[n].velocity.X = Main.rand.NextFloat(-10f, 10f);
+                                    Main.npc[n].velocity.Y = Main.rand.NextFloat(-15f, 5f);
+                                    if (Main.netMode == 2)
+                                        NetMessage.SendData(23, -1, -1, null, n);
+                                }
                             }
                         }
-                        break;*/
+                        break;
 
                     /* pseudo memes
                     case: slime zombie

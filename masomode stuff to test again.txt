@@ -12,6 +12,14 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-jellyfish aura visual consistent with others
+-dungeon guardian now counts as a boss
+-mutant's gift should always be reliably synced in MP now
+-probes can swarm as natural swarm lel
+-reduced probe spawn rate a bit
+-mummies have low chance to explode into wall creepers when killed
+-bosses occupy even more slots in maso now
+
 -post plant mage skeletons can become each other
 -snatcher has man eater abilities now
 -changed hellhound debuffs to feral bite/mutant nibble
