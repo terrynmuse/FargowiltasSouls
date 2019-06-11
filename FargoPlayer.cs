@@ -3367,7 +3367,7 @@ namespace FargowiltasSouls
             //bone zone
             if (FossilBones)
             {
-                if (boneCD == 0)
+                if (boneCD <= 0 && !player.dead)
                 {
                     for (int i = 0; i < Main.rand.Next(4, 12); i++)
                     {
@@ -3400,13 +3400,13 @@ namespace FargowiltasSouls
 
                     boneCD = 20;
                 }
-
-                boneCD--;
+                else
+                {
+                    boneCD--;
+                }
 
                 if (!player.immune)
-                {
                     FossilBones = false;
-                }
             }
 
             AddPet("Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);
