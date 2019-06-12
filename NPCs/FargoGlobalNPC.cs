@@ -1087,31 +1087,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.WallCreeper:
-                        if (masoBool[0]) //small spider
-                        {
-                            if (!masoBool[1] && ++Counter2 > 15)
-                            {
-                                masoBool[1] = true;
-                                if (Main.netMode == 2) //MP sync
-                                {
-                                    var netMessage = mod.GetPacket();
-                                    netMessage.Write((byte)3);
-                                    netMessage.Write((byte)npc.whoAmI);
-                                    netMessage.Write(npc.lifeMax);
-                                    netMessage.Write(npc.scale);
-                                    netMessage.Send();
-                                    npc.netUpdate = true;
-                                }
-                            }
-                        }
-                        break;
-
                     case NPCID.WallCreeperWall:
-                        if (++Counter >= 600)
-                            Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, 9, 0);
-                        goto case NPCID.WallCreeper;
-
                     case NPCID.BloodCrawlerWall:
                     case NPCID.JungleCreeperWall:
                         if (++Counter >= 600)
@@ -1220,7 +1196,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             Counter2 = 0;
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                            if (t != -1 && Main.netMode != 1)
+                            if (npc.life < npc.lifeMax && t != -1 && Main.netMode != 1)
                             {
                                 const float gravity = 0.3f;
                                 const float time = 120f;
@@ -9294,21 +9270,15 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Mummy:
                     case NPCID.DarkMummy:
                     case NPCID.LightMummy:
-                        if (Main.rand.Next(8) == 0 && Main.netMode != 1)
+                        if (Main.rand.Next(5) == 0 && Main.netMode != 1)
                         {
                             for (int i = 0; i < 4; i++)
                             {
                                 int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.WallCreeper);
                                 if (n != 200)
                                 {
-                                    Main.npc[n].position = Main.npc[n].Center;
-                                    Main.npc[n].width = (int)(Main.npc[n].width * .5f);
-                                    Main.npc[n].height = (int)(Main.npc[n].height * .5f);
-                                    Main.npc[n].scale = .5f;
-                                    Main.npc[n].Center = Main.npc[n].position;
-                                    Main.npc[n].GetGlobalNPC<FargoGlobalNPC>().masoBool[0] = true;
-                                    Main.npc[n].velocity.X = Main.rand.NextFloat(-10f, 10f);
-                                    Main.npc[n].velocity.Y = Main.rand.NextFloat(-15f, 5f);
+                                    Main.npc[n].velocity.X = Main.rand.NextFloat(-5f, 5f);
+                                    Main.npc[n].velocity.Y = Main.rand.NextFloat(-10f, 0f);
                                     if (Main.netMode == 2)
                                         NetMessage.SendData(23, -1, -1, null, n);
                                 }
@@ -9333,8 +9303,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 Vector2 speed = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
                                 speed.Normalize();
-                                speed *= 6f;
-                                speed += npc.velocity * 1.25f;
+                                speed *= Main.rand.NextFloat(3f, 6f);
                                 speed.Y -= Math.Abs(speed.X) * 0.2f;
                                 speed.Y -= 3f;
                                 if (Main.netMode != 1)

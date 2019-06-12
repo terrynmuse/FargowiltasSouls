@@ -29,6 +29,7 @@
 -ADDED MUTANT MASOMODE DIALOGUE?????????????
 -fossil hopefully no longer spams bones when dead
 -added lunar ritual for moon lord...
+-sharks only begin jumping once damaged
 
 -post plant mage skeletons can become each other
 -snatcher has man eater abilities now

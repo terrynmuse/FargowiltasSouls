@@ -56,9 +56,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
                             projectile.damage, hitDirection, false, false, false, 0);
                         player.AddBuff(mod.BuffType("CurseoftheMoon"), Main.rand.Next(300, 600));
                     }
-                    if (distance > threshold && distance < threshold * 2f)
+                    if (distance > threshold && distance < threshold * 5f)
                     {
-                        if (distance > threshold * 1.5f)
+                        if (distance > threshold * 2f)
                         {
                             player.frozen = true;
                             player.controlHook = false;
