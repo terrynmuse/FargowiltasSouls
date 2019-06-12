@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,14 +9,13 @@ namespace FargowiltasSouls.Items.Misc
 {
 	public class Sadism : ModItem
 	{
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sadism");
             Tooltip.SetDefault(@"'Proof of having embraced suffering'
 Grants immunity to almost all Masochist Mode debuffs");
-		}
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(10, 3));
+        }
 
 		public override void SetDefaults()
 		{
