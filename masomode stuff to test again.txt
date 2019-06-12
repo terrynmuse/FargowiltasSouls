@@ -13,6 +13,8 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 -queen stinger doesnt give immune to stingers/moss hornets anymore
+-changed dubious circuitry recipe to use mech souls (was chloro)
+-REPLACED HALLOWED BARS IN PURE HEART WITH CHLORO HAHAAAAAAAAAAAAAAAAA
 
 -jellyfish aura visual consistent with others
 -dungeon guardian now counts as a boss
