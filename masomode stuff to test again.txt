@@ -12,6 +12,8 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-queen stinger doesnt give immune to stingers/moss hornets anymore
+
 -jellyfish aura visual consistent with others
 -dungeon guardian now counts as a boss
 -mutant's gift should always be reliably synced in MP now

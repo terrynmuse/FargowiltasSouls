@@ -2615,8 +2615,6 @@ namespace FargowiltasSouls
         {
             if (ShellHide)
                 return false;
-            if (QueenStinger && proj.type == ProjectileID.Stinger)
-                return false;
             return true;
         }
 
