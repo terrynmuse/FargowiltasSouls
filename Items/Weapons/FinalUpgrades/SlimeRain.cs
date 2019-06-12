@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargowiltasSouls.Items.Weapons
+namespace FargowiltasSouls.Items.Weapons.FinalUpgrades
 {
     public class SlimeRain : ModItem
     {

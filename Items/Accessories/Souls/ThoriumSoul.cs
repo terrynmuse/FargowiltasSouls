@@ -15,8 +15,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public int terrariumTimer;
         public int tideTimer;
 
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override bool Autoload(ref string name)
         {
             return ModLoader.GetLoadedMods().Contains("ThoriumMod");

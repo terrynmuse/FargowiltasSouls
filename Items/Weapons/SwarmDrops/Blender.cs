@@ -2,26 +2,18 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Items.Weapons
+namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 {
 	public class Blender : ModItem
 	{
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
-        public override bool Autoload(ref string name)
-        {
-            return false;
-        }
+        public override string Texture => "FargowiltasSouls/Items/Weapons/BossDrops/Dicer";
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Blender");
-			Tooltip.SetDefault("''");
+			DisplayName.SetDefault("The Blender");
+			Tooltip.SetDefault("'The reward for slaughtering many..'");
 			
-			// These are all related to gamepad controls and don't seem to affect anything else
 			ItemID.Sets.Yoyo[item.type] = true;
-			ItemID.Sets.GamepadExtraRange[item.type] = 15;
-			ItemID.Sets.GamepadSmartQuickReach[item.type] = true;
 		}
 
 		public override void SetDefaults()
@@ -34,24 +26,27 @@ namespace Fargowiltas.Items.Weapons
 			item.melee = true;
 			item.channel = true;
 			item.noMelee = true;
-			item.shoot = mod.ProjectileType("BlenderProjectile");
+			item.shoot = mod.ProjectileType("BlenderProj");
 			item.useAnimation = 25;
 			item.useTime = 25;
 			item.shootSpeed = 16f;
-
 			item.knockBack = 2.5f;
 			item.damage = 124;
-			item.value = Item.sellPrice(0, 0, 1, 0);
-			item.rare = 0;
+			item.value = Item.sellPrice(0, 10, 0, 0);
+			item.rare = 10;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			//recipe.AddIngredient(null, "ExampleItem", 10);
-			recipe.AddIngredient(ItemID.WoodYoyo);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(null, "Dicer");
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerPlant"));
+                recipe.AddTile(TileID.Anvils);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
 		}
 	}
 }

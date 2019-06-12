@@ -15,13 +15,13 @@ namespace FargowiltasSouls.Items
     {
         private static Mod thorium = ModLoader.GetMod("ThoriumMod");
 
-        public override void SetDefaults(Item item)
+        /*public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.Stinger)
             {
                 item.ammo = item.type;
             }
-        }
+        }*/
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
@@ -84,23 +84,23 @@ namespace FargowiltasSouls.Items
                     player.QuickSpawnItem(mod.ItemType("Bonezone"));
                     break;
                 case ItemID.QueenBeeBossBag:
-                    player.QuickSpawnItem(mod.ItemType("QueenStinger"));
+                    player.QuickSpawnItem(mod.ItemType("HiveStaff"));
                     break;
-                /*case ItemID.DestroyerBossBag:
-                    player.QuickSpawnItem(mod.ItemType("Probe"));
-                    break;*/
+                case ItemID.DestroyerBossBag:
+                    player.QuickSpawnItem(mod.ItemType("DestroyerGun"));
+                    break;
                 case ItemID.TwinsBossBag:
                     player.QuickSpawnItem(mod.ItemType("TwinRangs"));
                     break;
                 /*case ItemID.SkeletronPrimeBossBag:
-                    player.QuickSpawnItem(mod.ItemType("PrimeStaff"));
+                    player.QuickSpawnItem(mod.ItemType("DarkStarCannon"));
                     break;*/
                 case ItemID.PlanteraBossBag:
                     player.QuickSpawnItem(mod.ItemType("Dicer"));
                     break;
-                //case ItemID.GolemBossBag:
-                    //player.QuickSpawnItem(mod.ItemType("GolemStaff"));
-                    //break;
+                case ItemID.GolemBossBag:
+                    player.QuickSpawnItem(mod.ItemType("GolemTome"));
+                    break;
                 case ItemID.FishronBossBag:
                     player.QuickSpawnItem(mod.ItemType("FishStick"));
                     break;

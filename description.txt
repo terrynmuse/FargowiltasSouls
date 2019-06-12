@@ -3,7 +3,10 @@
 -Buffed Eater of Worlds Staff
 -Fixed bug with Mind Break being able to use it with only 1 slot and the minion shooting and then despawning
 -Fixed Bulb and Chlorophyte Enchantments crashing with Thorium 
--The Big Sting now uses Stingers as ammo, 75% chance to not consume them 
+-Big Sting now fires 2 stingers at once
+-The Dicer works with Yoyo Bag accessories now, also nerfed its damage, range, duration, and speed
+-Nerfed Hell Zone damage
+-Fixed Force of Life not giving extra wing time
 
 -Fixed Olympian Soul's Thorium effects only working with calamity lool
 -Fixed more tooltip errors and altered a few recipes
@@ -16,7 +19,7 @@
 -Victide Enchantment recipe much easier, several other recipes altered and given new effects from new accessories (verify recipes work and add new effects)
 
 -Fiddled with Eater of Worlds minion segement distance so it looks alot better
--Oiled is not cancellable now
+-Added Hive Staff, The Blender, Dark Star Cannon, 
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

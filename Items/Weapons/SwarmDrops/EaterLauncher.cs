@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FargowiltasSouls.Items.Weapons.BossDrops
+namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 {
-    class HoneyRain
+    class EaterLauncher
     {
     }
 }

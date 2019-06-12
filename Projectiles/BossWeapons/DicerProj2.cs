@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Projectiles.BossWeapons
 {
-    internal class DicerProjectile2 : ModProjectile
+    internal class DicerProj2 : ModProjectile
     {
         public int Counter = 1;
 

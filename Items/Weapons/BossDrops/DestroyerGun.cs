@@ -4,7 +4,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargowiltasSouls.Items.Weapons.SwarmDrops
+namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
     public class DestroyerGun : ModItem
     {
@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Destroyer Gun");
-            Tooltip.SetDefault("''");
+            Tooltip.SetDefault("'An old foe beaten into submission..'");
         }
 
         public override void SetDefaults()
@@ -69,23 +69,6 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
                 shootNum++;
             }
-
-
-
-            
-
-            //int previous = 0;
-
-            /*for (int i = 0; i < 8; i++)
-            {
-                current = Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("DestroyerBody"), damage, knockBack, player.whoAmI, current, 0f);
-                previous = current;
-            }
-
-            current = Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("DestroyerTail"), damage, knockBack, player.whoAmI, current, 0f);*/
-
-            //Main.projectile[previous].localAI[1] = current;
-            //Main.projectile[previous].netUpdate = true;
 
             return false;
         }
