@@ -5,7 +5,7 @@
 -Fixed Bulb and Chlorophyte Enchantments crashing with Thorium 
 -Big Sting now fires 2 stingers at once
 -The Dicer works with Yoyo Bag accessories now, also nerfed its damage, range, duration, and speed
-
+-Nerfed Hell Zone damage
 -Fixed Force of Life not giving extra wing time
 
 -Fixed Olympian Soul's Thorium effects only working with calamity lool
@@ -19,7 +19,7 @@
 -Victide Enchantment recipe much easier, several other recipes altered and given new effects from new accessories (verify recipes work and add new effects)
 
 -Fiddled with Eater of Worlds minion segement distance so it looks alot better
--Added Hive Staff, The Blender
+-Added Hive Staff, The Blender, Dark Star Cannon, 
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

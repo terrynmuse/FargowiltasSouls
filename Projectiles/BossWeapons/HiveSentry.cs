@@ -76,10 +76,16 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 }
                 projectile.ai[1] = 0f;
 
+                float distance = Vector2.Distance(Main.player[projectile.owner].Center, projectile.Center);
+
                 //kill if too far away
-                if (Vector2.Distance(Main.player[projectile.owner].Center, projectile.Center) > 2000)
+                if (distance > 2000)
                 {
                     projectile.Kill();
+                }
+                else if (distance < 20)
+                {
+                    Main.player[projectile.owner].AddBuff(BuffID.Honey, 300);
                 }
             }
         }

@@ -93,14 +93,14 @@ namespace FargowiltasSouls.Items
                     player.QuickSpawnItem(mod.ItemType("TwinRangs"));
                     break;
                 /*case ItemID.SkeletronPrimeBossBag:
-                    player.QuickSpawnItem(mod.ItemType("PrimeStaff"));
+                    player.QuickSpawnItem(mod.ItemType("DarkStarCannon"));
                     break;*/
                 case ItemID.PlanteraBossBag:
                     player.QuickSpawnItem(mod.ItemType("Dicer"));
                     break;
-                //case ItemID.GolemBossBag:
-                    //player.QuickSpawnItem(mod.ItemType("GolemStaff"));
-                    //break;
+                case ItemID.GolemBossBag:
+                    player.QuickSpawnItem(mod.ItemType("GolemTome"));
+                    break;
                 case ItemID.FishronBossBag:
                     player.QuickSpawnItem(mod.ItemType("FishStick"));
                     break;
