@@ -2613,6 +2613,8 @@ namespace FargowiltasSouls
         {
             if (ShellHide)
                 return false;
+            if (QueenStinger && !Main.hardMode && proj.type == ProjectileID.Stinger)
+                return false;
             return true;
         }
 

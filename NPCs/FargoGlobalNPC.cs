@@ -9545,8 +9545,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
-                    case NPCID.Sharkron:
-                    case NPCID.Sharkron2:
                         if (masoBool[2])
                             damage = 0;
                         break;
@@ -9830,26 +9828,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
-                    case NPCID.Sharkron:
-                    case NPCID.Sharkron2:
-                        if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron) && projectile.ranged)
-                        {
-                            if (projectile.arrow)
-                            {
-                                if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.DD2BetsyArrow)
-                                    damage /= 4;
-                                if (projectile.type == mod.ProjectileType("FargoArrowProj"))
-                                {
-                                    projectile.active = false;
-                                    damage = 0;
-                                }
-                            }
-                            else if (projectile.type == mod.ProjectileType("FargoBulletProj"))
-                            {
-                                projectile.active = false;
-                                damage = 0;
-                            }
-                        }
+                        if (projectile.ranged && projectile.arrow && (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.DD2BetsyArrow))
+                            damage /= 3;
                         if (masoBool[2])
                             damage = 0;
                         break;
