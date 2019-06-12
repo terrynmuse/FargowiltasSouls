@@ -16,6 +16,7 @@
 -changed dubious circuitry recipe to use mech souls (was chloro)
 -REPLACED HALLOWED BARS IN PURE HEART WITH CHLORO HAHAAAAAAAAAAAAAAAAA
 -arapaimas will jump you when you're submerged
+-adjusted fake hearts and water movement to fix MP disappearing...?
 
 -jellyfish aura visual consistent with others
 -dungeon guardian now counts as a boss
