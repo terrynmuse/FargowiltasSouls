@@ -5951,7 +5951,7 @@ namespace FargowiltasSouls.NPCs
             //works because buffs are client side anyway :ech:
             Player p = Main.player[Main.myPlayer];
             float range = npc.Distance(p.Center);
-            if (reverse ? range > distance && range < 1500f : range < distance)
+            if (reverse ? range > distance && range < 3000f : range < distance)
                 p.AddBuff(buff, 2);
 
             for (int i = 0; i < 20; i++)
