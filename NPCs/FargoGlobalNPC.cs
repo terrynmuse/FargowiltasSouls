@@ -8314,7 +8314,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Nymph:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("NymphsPerfume"));
+                        if (Main.rand.Next(2) == 0)
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("NymphsPerfume"));
                         break;
 
                     case NPCID.MourningWood:
@@ -8363,7 +8364,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.RuneWizard:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("MysticSkull"));
+                        if (Main.rand.Next(2) == 0)
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("MysticSkull"));
                         break;
 
                     case NPCID.SnowBalla:

@@ -18,6 +18,7 @@
 -nymph lovestruck aura is now officially a debuff
 -pixies can pass through tiles
 -fake hearts last for 10sec now hahaaaa
+-nerfed mystic skull/nymph perfume drop rates to 50% (was 100%)
 
 -queen stinger doesnt give immune to stingers/moss hornets anymore
 -changed dubious circuitry recipe to use mech souls (was chloro)
