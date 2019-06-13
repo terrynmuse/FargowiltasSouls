@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Infested
 Increases armor penetration by 10
 Your attacks inflict Poisoned
-Bees and Hornets become friendly");
+Bees and weak Hornets become friendly");
         }
 
         public override void SetDefaults()
@@ -37,7 +37,6 @@ Bees and Hornets become friendly");
 
             //hornets
             player.npcTypeNoAggro[42] = true;
-            player.npcTypeNoAggro[176] = true;
             player.npcTypeNoAggro[231] = true;
             player.npcTypeNoAggro[232] = true;
             player.npcTypeNoAggro[233] = true;

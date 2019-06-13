@@ -14,7 +14,8 @@ Grants immunity to Slimed, Berserked, Lethargic, and Infested
 Increases damage by 10% and armor penetration by 10
 While dashing or running quickly you will create a trail of blood scythes
 Your attacks inflict Venom
-Bees and Hornets become friendly
+Bees and weak Hornets become friendly
+May attract baby skeleton heads
 Summons 2 Skeletron arms to whack enemies");
         }
 
@@ -52,7 +53,6 @@ Summons 2 Skeletron arms to whack enemies");
             player.npcTypeNoAggro[210] = true;
             player.npcTypeNoAggro[211] = true;
             player.npcTypeNoAggro[42] = true;
-            player.npcTypeNoAggro[176] = true;
             player.npcTypeNoAggro[231] = true;
             player.npcTypeNoAggro[232] = true;
             player.npcTypeNoAggro[233] = true;
@@ -62,6 +62,7 @@ Summons 2 Skeletron arms to whack enemies");
 
             //necromantic brew
             player.buffImmune[mod.BuffType("Lethargic")] = true;
+            fargoPlayer.NecromanticBrew = true;
             if (Soulcheck.GetValue("Skeletron Arms Minion"))
                 player.AddBuff(mod.BuffType("SkeletronArms"), 2);
         }

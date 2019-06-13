@@ -12,14 +12,58 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-queen stinger doesnt give immune to stingers/moss hornets anymore
+-changed dubious circuitry recipe to use mech souls (was chloro)
+-REPLACED HALLOWED BARS IN PURE HEART WITH CHLORO HAHAAAAAAAAAAAAAAAAA
+-arapaimas will jump you when you're submerged
+-adjusted fake hearts and water movement to fix MP disappearing...?
+-amalg ammos are post fish EX now
+-fishron no longer resists amalg ammos
+-sharkron no longer shares fishron resists
 
+-jellyfish aura visual consistent with others
+-dungeon guardian now counts as a boss
+-mutant's gift should always be reliably synced in MP now
+-probes can swarm as natural swarm lel
+-reduced probe spawn rate a bit
+-mummies have low chance to explode into mini wall creepers when killed
+-bosses occupy even more slots in maso now
+-fargoglobalnpc tracks all bosses with boss var
+	(so sands of time wont accelerate respawn during modded bosses either anymore)
+-sands of time wont accelerate respawn during boss fights outside masomode either
+-armored skeletons (hardmode caverns enemy) no longer spray bones
+-angry bones (dungeon enemy) spray bones now
+-regular skeletons explode into bones when killed
+-updated living wasteland dust to match other auras
+-ADDED MUTANT MASOMODE DIALOGUE?????????????
+-fossil hopefully no longer spams bones when dead
+-added lunar ritual for moon lord...
+-sharks only begin jumping once damaged
 
-
-
-
-
-
-ECH - below is accounted for 
+-post plant mage skeletons can become each other
+-snatcher has man eater abilities now
+-changed hellhound debuffs to feral bite/mutant nibble
+-changed mutant nibble debuffs
+-added check for destroyer so it hopefully doesnt leave ghost segments when killed?
+-destroyer p2 at 75% life now
+-aura dust now indicates if aura is reverse
+-pigrons spawn rarely at ocean
+-increased ancient doom life x4 (2500)
+-ancient dooms spin around but cant damage until they've faded in a bit
+-wyverns have doubled life and shoot rings of light balls hahaaaaa
+-biome mimic stomp also emits sprays of their respective biome solution
+-headless horseman throws horseman's blades at you
+-swamp thing throws ogre spit
+-hardmode rain when not in front of background wall inflicts... wet.
+-player can suffocate in space NOOOOOOOOOOOOOOOOOO
+-zombies break down doors
+-eoc can no longer spawn multiple times at once during blood moon
+-changed how bloodthirsty and builder mode work
+-changed how skull charm blocks spawns (should work properly in mp now????)
+-added sinister icon
+-dungeon guardian is now immune to valhalla/pearlwood and drops sinister icon
+-added baby guardian (drops sinister icon)
+-necromantic brew and upgrades allow baby guardian to spawn
 
 -removed oceanic seal from standard fishron
 -cultist has lunar seal
@@ -58,7 +102,6 @@ ECH - below is accounted for
 -changed how debuff id list and purified buff cleansing work under the hood
 
 -small rainbow slimes can also spray spikes
--armored skeletons periodically spray bones
 -possessed armors sometimes spawn ghosts when killed
 -butcher has knockback immune and double horiz velocity
 -nerfed web spit damage to always 36
@@ -372,3 +415,5 @@ ECH - below is accounted for
 -pearlwood ench trail no longer splits
 -pearlwood ench can't affect bosses or related enemies (same as valhalla knockback)
 -changed super bleed icon to not be so wack
+
+ECH

@@ -83,10 +83,7 @@ Effect can be disabled in Soul Toggles menu");
             player.autoActuator = true;
 
             if (Soulcheck.GetValue("Builder Mode"))
-            {
-                FargoWorld.BuilderMode = true;
                 modPlayer.BuilderMode = true;
-            }
 
             //cell phone
             player.accWatch = 3;

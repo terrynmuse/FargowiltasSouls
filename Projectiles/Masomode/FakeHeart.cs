@@ -20,7 +20,6 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.timeLeft = 300;
             projectile.hostile = true;
             projectile.aiStyle = -1;
-            projectile.ignoreWater = true;
             cooldownSlot = 0;
         }
 
@@ -28,28 +27,6 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             float gravity = .1f;
             float yMax = 7f;
-            if (projectile.honeyWet)
-            {
-                gravity = .05f;
-                yMax = 3f;
-            }
-            else if (projectile.wet)
-            {
-                gravity = .08f;
-                yMax = 5f;
-            }
-
-            try
-            {
-                projectile.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
-                if (Collision.honey)
-                    projectile.honeyWet = true;
-            }
-            catch
-            {
-                projectile.active = false;
-                return;
-            }
 
             projectile.velocity.Y += gravity;
             if (projectile.velocity.Y > yMax)

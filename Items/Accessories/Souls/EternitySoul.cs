@@ -248,10 +248,7 @@ and most of SoT not mentioned because meme tooltip length
             player.autoActuator = true;
             //builder mode
             if (Soulcheck.GetValue("Builder Mode"))
-            {
-                FargoWorld.BuilderMode = true;
                 modPlayer.BuilderMode = true;
-            }
             //cell phone
             player.accWatch = 3;
             player.accDepthMeter = 1;

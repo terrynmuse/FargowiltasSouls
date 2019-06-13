@@ -39,7 +39,7 @@ namespace FargowiltasSouls.Items.Ammos
             if (!Fargowiltas.Instance.FargosLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.EndlessMusketPouch);
+            //recipe.AddIngredient(ItemID.EndlessMusketPouch);
             recipe.AddIngredient(fargos, "SilverPouch");
             recipe.AddIngredient(fargos, "MeteorPouch");
             recipe.AddIngredient(fargos, "CursedPouch");
@@ -53,6 +53,7 @@ namespace FargowiltasSouls.Items.Ammos
             recipe.AddIngredient(fargos, "ChlorophytePouch");
             recipe.AddIngredient(fargos, "NanoPouch");
             recipe.AddIngredient(fargos, "LuminitePouch");
+            recipe.AddIngredient(mod.ItemType("Sadism"));
             recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);
             recipe.AddRecipe();

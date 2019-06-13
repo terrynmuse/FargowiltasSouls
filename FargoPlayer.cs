@@ -187,6 +187,7 @@ namespace FargowiltasSouls
         public int CorruptHeartCD;
         public bool GuttedHeart;
         public int GuttedHeartCD = 60; //should prevent spawning despite disabled toggle when loading into world
+        public bool NecromanticBrew;
         public bool PureHeart;
         public bool PungentEyeballMinion;
         public bool FusedLens;
@@ -238,6 +239,8 @@ namespace FargowiltasSouls
         public bool DeathMarked;
         public bool noDodge;
         public bool noSupersonic;
+        public bool Bloodthirsty;
+        public bool SinisterIcon;
 
         public bool GodEater;               //defense removed, endurance removed, colossal DOT
         public bool FlamesoftheUniverse;    //activates various vanilla debuffs
@@ -268,6 +271,7 @@ namespace FargowiltasSouls
 
         public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
+        public int MasomodeSpaceBreathTimer = 0;
 
         public IList<string> disabledSouls = new List<string>();
 
@@ -622,6 +626,7 @@ namespace FargowiltasSouls
             AgitatingLens = false;
             CorruptHeart = false;
             GuttedHeart = false;
+            NecromanticBrew = false;
             PureHeart = false;
             PungentEyeballMinion = false;
             FusedLens = false;
@@ -664,6 +669,8 @@ namespace FargowiltasSouls
             Slimed = false;
             noDodge = false;
             noSupersonic = false;
+            Bloodthirsty = false;
+            SinisterIcon = false;
 
             GodEater = false;
             FlamesoftheUniverse = false;
@@ -708,9 +715,12 @@ namespace FargowiltasSouls
             noSupersonic = false;
             lightningRodTimer = 0;
 
+            BuilderMode = false;
+
             SlimyShieldFalling = false;
             CorruptHeartCD = 60;
             GuttedHeartCD = 60;
+            NecromanticBrew = false;
             GroundPound = 0;
             NymphsPerfume = false;
             NymphsPerfumeCD = 30;
@@ -736,6 +746,8 @@ namespace FargowiltasSouls
             DeathMarked = false;
             Midas = false;
             SuperBleed = false;
+            Bloodthirsty = false;
+            SinisterIcon = false;
 
             MaxLifeReduction = 0;
         }
@@ -844,25 +856,31 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
-                /*if (Main.hardMode && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))
+                if (!PureHeart && Main.hardMode && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))
                 {
-                    Point tileCoordinates = player.Top.ToTileCoordinates();
-                    bool lightning = true;
-                    for (int i = 0; i < 30; i++)
-                    {
-                        if (WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) || tileCoordinates.Y < 10)
-                        {
-                            lightning = false;
-                            break;
-                        }
-                        tileCoordinates.Y--;
-                    }
-                    if (lightning)
-                        player.AddBuff(mod.BuffType("LightningRod"), 2); 
-                }*/
+                    Tile currentTile = Framing.GetTileSafely(player.Center);
+                    if (currentTile.wall == WallID.None)
+                        player.AddBuff(BuffID.Wet, 2);
+                }
 
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                     player.AddBuff(mod.BuffType("Lethargic"), 2);
+
+                if (!PureHeart && !player.buffImmune[BuffID.Suffocation] && player.ZoneSkyHeight && player.whoAmI == Main.myPlayer)
+                {
+                    bool inLiquid = Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
+                    if (!inLiquid)
+                        player.breath -= 3;
+                    if (++MasomodeSpaceBreathTimer > 10)
+                    {
+                        MasomodeSpaceBreathTimer = 0;
+                        player.breath--;
+                    }
+                    if (player.breath == 0)
+                        Main.PlaySound(23);
+                    if (player.breath <= 0)
+                        player.AddBuff(BuffID.Suffocation, 2);
+                }
 
                 if (!PureHeart && !player.buffImmune[BuffID.Webbed] && player.stickyBreak > 0)
                 {
@@ -2595,7 +2613,7 @@ namespace FargowiltasSouls
         {
             if (ShellHide)
                 return false;
-            if (QueenStinger && proj.type == ProjectileID.Stinger)
+            if (QueenStinger && !Main.hardMode && proj.type == ProjectileID.Stinger)
                 return false;
             return true;
         }
@@ -3347,7 +3365,7 @@ namespace FargowiltasSouls
             //bone zone
             if (FossilBones)
             {
-                if (boneCD == 0)
+                if (boneCD <= 0 && !player.dead)
                 {
                     for (int i = 0; i < Main.rand.Next(4, 12); i++)
                     {
@@ -3380,13 +3398,13 @@ namespace FargowiltasSouls
 
                     boneCD = 20;
                 }
-
-                boneCD--;
+                else
+                {
+                    boneCD--;
+                }
 
                 if (!player.immune)
-                {
                     FossilBones = false;
-                }
             }
 
             AddPet("Dino Pet", hideVisual, BuffID.BabyDinosaur, ProjectileID.BabyDino);

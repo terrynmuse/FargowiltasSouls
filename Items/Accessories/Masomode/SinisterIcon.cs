@@ -5,17 +5,16 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
-    public class NecromanticBrew : ModItem
+    public class SinisterIcon : ModItem
     {
         public override string Texture => "FargowiltasSouls/Items/Placeholder";
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Necromantic Brew");
-            Tooltip.SetDefault(@"'The bone-growing solution of a defeated foe'
-Grants immunity to Lethargic
-Summons 2 Skeletron arms to whack enemies
-May attract baby skeleton heads");
+            DisplayName.SetDefault("Sinister Icon");
+            Tooltip.SetDefault(@"'Most definitely not alive'
+Prevents Masochist Mode-induced natural boss spawns
+Increases spawn rate");
         }
 
         public override void SetDefaults()
@@ -29,10 +28,7 @@ May attract baby skeleton heads");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.buffImmune[mod.BuffType("Lethargic")] = true;
-            player.GetModPlayer<FargoPlayer>().NecromanticBrew = true;
-            if (Soulcheck.GetValue("Skeletron Arms Minion"))
-                player.AddBuff(mod.BuffType("SkeletronArms"), 2);
+            player.GetModPlayer<FargoPlayer>().SinisterIcon = true;
         }
     }
 }

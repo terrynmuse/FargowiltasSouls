@@ -51,8 +51,10 @@ Reduces damage taken by 6%");
             recipe.AddIngredient(mod.ItemType("FusedLens"));
             recipe.AddIngredient(mod.ItemType("GroundStick"));
             recipe.AddIngredient(mod.ItemType("ReinforcedPlating"));
-            recipe.AddIngredient(ItemID.HallowedBar, 20);
-            recipe.AddIngredient(ItemID.ChlorophyteBar, 10);
+            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddIngredient(ItemID.SoulofFright, 5);
+            recipe.AddIngredient(ItemID.SoulofMight, 5);
+            recipe.AddIngredient(ItemID.SoulofSight, 5);
 
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

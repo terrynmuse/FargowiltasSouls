@@ -1,4 +1,6 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items
@@ -41,11 +43,16 @@ namespace FargowiltasSouls.Items
             {
                 FargoWorld.MasochistMode = !FargoWorld.MasochistMode;
                 Main.expertMode = true;
-
-                Main.NewText(FargoWorld.MasochistMode
-                    ? "Masochist Mode initiated!"
-                    : "Masochist Mode deactivated!", 175, 75);
-
+                string text = FargoWorld.MasochistMode ? "Masochist Mode initiated!" : "Masochist Mode deactivated!";
+                if (Main.netMode == 0)
+                {
+                    Main.NewText(text, 175, 75, 255);
+                }
+                else if (Main.netMode == 2)
+                {
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(text), new Color(175, 75, 255));
+                    NetMessage.SendData(7); //sync world
+                }
                 Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
             }
             return true;

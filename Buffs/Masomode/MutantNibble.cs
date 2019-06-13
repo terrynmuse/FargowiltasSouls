@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Masomode
@@ -27,20 +28,20 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.rabid = true;
             if (Main.rand.Next(1200) == 0)
             {
-                int rng = Main.rand.Next(6);
-                double duration = Main.rand.Next(60, 100) * 0.01;
-                if (rng == 0)
-                    player.AddBuff(22, 180 * (int) duration);
-                else if (rng == 1)
-                    player.AddBuff(23, 45 * (int) duration);
-                else if (rng == 2)
-                    player.AddBuff(31, 90 * (int) duration);
-                else if (rng == 3)
-                    player.AddBuff(32, 210 * (int) duration);
-                else if (rng == 4)
-                    player.AddBuff(33, 300 * (int) duration);
-                else if (rng == 5)
-                    player.AddBuff(35, 60 * (int) duration);
+                switch (Main.rand.Next(10))
+                {
+                    case 0: player.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300)); break;
+                    case 1: player.AddBuff(mod.BuffType("Lethargic"), Main.rand.Next(240)); break;
+                    case 2: player.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(120)); break;
+                    case 3: player.AddBuff(mod.BuffType("Hexed"), Main.rand.Next(120)); break;
+                    case 4: player.AddBuff(mod.BuffType("MarkedforDeath"), Main.rand.Next(120)); break;
+                    case 5: player.AddBuff(mod.BuffType("Purified"), Main.rand.Next(60)); break;
+                    case 6: player.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(300)); break;
+                    case 7: player.AddBuff(mod.BuffType("SqueakyToy"), Main.rand.Next(120)); break;
+                    case 8: player.AddBuff(mod.BuffType("Unstable"), Main.rand.Next(90)); break;
+                    case 9: player.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(180)); break;
+                    default: player.AddBuff(BuffID.Rabies, Main.rand.Next(300)); break;
+                }
             }
 
             player.meleeDamage = player.meleeDamage + 0.2f;

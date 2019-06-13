@@ -52,9 +52,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
                             Main.npc[FargoGlobalNPC.cultBoss].damage, hitDirection, false, false, false, 0);
                         player.AddBuff(mod.BuffType("CurseoftheMoon"), Main.rand.Next(300, 600));
                     }
-                    if (distance > threshold && distance < threshold * 2f)
+                    if (distance > threshold && distance < threshold * 4f)
                     {
-                        if (distance > threshold * 1.5f)
+                        if (distance > threshold * 2f)
                         {
                             player.frozen = true;
                             player.controlHook = false;
@@ -95,9 +95,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.timeLeft = 2;
             projectile.scale = (1f - projectile.alpha / 255f) * 2f;
             projectile.ai[0] -= rotationPerTick;
-            if (projectile.ai[0] < -PI)
+            if (projectile.ai[0] > PI)
             {
-                projectile.ai[0] += 2f * PI;
+                projectile.ai[0] -= 2f * PI;
                 projectile.netUpdate = true;
             }
 
