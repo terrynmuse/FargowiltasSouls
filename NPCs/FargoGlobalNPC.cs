@@ -6336,7 +6336,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Snatcher:
                     case NPCID.ManEater:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
-                        if (target.statLife < 100)
+                        if (target.statLife + damage < 100)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Man Eater."), 999, 0);
                         break;
 
@@ -6346,7 +6346,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.AngryTrapper:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
-                        if (target.statLife < 180)
+                        if (target.statLife + damage < 180)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by an Angry Trapper."), 999, 0);
                         break;
 
