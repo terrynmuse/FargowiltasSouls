@@ -90,6 +90,7 @@ Summons a friendly rainbow slime");
 
             //nymph's perfume
             player.buffImmune[BuffID.Lovestruck] = true;
+            player.buffImmune[mod.BuffType("Lovestruck")] = true;
             player.buffImmune[BuffID.Stinky] = true;
             if (Soulcheck.GetValue("Attacks Spawn Hearts"))
             {

@@ -42,6 +42,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("Lethargic")] = true;
             player.buffImmune[mod.BuffType("LightningRod")] = true;
             player.buffImmune[mod.BuffType("LivingWasteland")] = true;
+            player.buffImmune[mod.BuffType("Lovestruck")] = true;
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
             player.buffImmune[mod.BuffType("Midas")] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;

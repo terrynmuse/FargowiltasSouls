@@ -108,6 +108,10 @@ namespace FargowiltasSouls.NPCs
 
                 switch (npc.type)
                 {
+                    case NPCID.Pixie:
+                        npc.noTileCollide = true;
+                        break;
+
                     case NPCID.DungeonGuardian:
                         npc.boss = true;
                         SpecialEnchantImmune = true;
@@ -297,7 +301,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CursedHammer:
                     case NPCID.CrimsonAxe:
                         npc.scale = 2f;
-                        npc.lifeMax *= 3;
+                        npc.lifeMax *= 4;
+                        npc.defense *= 2;
                         npc.knockBackResist = 0f;
                         break;
 
@@ -931,7 +936,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CursedHammer:
                     case NPCID.CrimsonAxe:
                         npc.position += npc.velocity / 2f;
-                        Aura(npc, 300, BuffID.WitheredWeapon, false, 14);
+                        Aura(npc, 300, BuffID.WitheredArmor, true, 119);
+                        Aura(npc, 300, BuffID.WitheredWeapon, true, 14);
                         if (npc.ai[0] == 2f) //spinning up
                             npc.ai[1] += 6f * (1f - (float)npc.life / npc.lifeMax); //FINISH SPINNING FASTER
                         break;
@@ -4531,9 +4537,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Pixie:
-                        if (npc.HasPlayerTarget && Vector2.Distance(Main.player[npc.target].Center, npc.Center) < 200)
+                        if (npc.HasPlayerTarget)
                         {
-                            Counter++;
+                            if (npc.velocity.Y < 0f && npc.position.Y < Main.player[npc.target].position.Y)
+                                npc.velocity.Y = 0f;
+                            if (Vector2.Distance(Main.player[npc.target].Center, npc.Center) < 200)
+                                Counter++;
                         }
                         if (Counter >= 60)
                         {
@@ -5550,7 +5559,7 @@ namespace FargowiltasSouls.NPCs
                         
                     case NPCID.Nymph:
                         npc.knockBackResist = 0f;
-                        Aura(npc, 250, BuffID.Lovestruck, true, DustID.PinkFlame);
+                        Aura(npc, 250, mod.BuffType("Lovestruck"), true, DustID.PinkFlame);
                         if (--Counter < 0)
                         {
                             Counter = 600;
@@ -7261,7 +7270,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Nymph:
                         target.AddBuff(BuffID.Slow, Main.rand.Next(60, 300));
                         target.AddBuff(BuffID.Weak, Main.rand.Next(60, 300));
-                        target.AddBuff(BuffID.Lovestruck, Main.rand.Next(60, 300));
+                        target.AddBuff(mod.BuffType("Lovestruck"), Main.rand.Next(60, 300));
                         npc.life += damage * 2;
                         if (npc.life > npc.lifeMax)
                             npc.life = npc.lifeMax;
