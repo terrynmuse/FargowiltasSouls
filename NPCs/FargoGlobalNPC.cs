@@ -10164,7 +10164,7 @@ namespace FargowiltasSouls.NPCs
                 if (!p.accFlipper && !p.gills && !p.GetModPlayer<FargoPlayer>().MutantAntibodies)
                     dialogue.Add("The water is bogging you down? Never had an issue with it, personally... Have you tried breathing water instead of air?");
                 if (!p.fireWalk && !p.buffImmune[BuffID.OnFire])
-                    dialogue.Add("The underworld has gotten a lot hotter since the last time I visited. I hear an obsidian skull is a good lucky charm against burning alive, though.");
+                    dialogue.Add("The underworld has gotten a lot hotter since the last time I visited. I hear an obsidian skull is a good luck charm against burning alive, though.");
                 if (!p.buffImmune[BuffID.Suffocation] && !p.GetModPlayer<FargoPlayer>().PureHeart)
                     dialogue.Add("Want to have a breath-holding contest? The empty vacuum of space would be perfect.");
 
