@@ -89,6 +89,7 @@ namespace FargowiltasSouls
             ["Scythes When Dashing"] = new Color(81, 181, 113),
             ["Tiny Eaters"] = new Color(81, 181, 113),
             ["Creeper Shield"] = new Color(81, 181, 113),
+            ["Sinister Icon"] = new Color(81, 181, 113),
             ["Frostfireballs"] = new Color(81, 181, 113),
             ["Attacks Spawn Hearts"] = new Color(81, 181, 113),
             ["Inflict Clipped Wings"] = new Color(81, 181, 113),

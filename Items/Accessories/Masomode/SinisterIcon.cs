@@ -28,7 +28,8 @@ Increases spawn rate");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>().SinisterIcon = true;
+            if (Soulcheck.GetValue("Sinister Icon"))
+                player.GetModPlayer<FargoPlayer>().SinisterIcon = true;
         }
     }
 }

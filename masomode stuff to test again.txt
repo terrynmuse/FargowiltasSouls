@@ -16,6 +16,7 @@
 -all bats can horde (the horde is now +1 to +5, 25% chance)
 -queen stinger doesnt work when queen bee is alive
 -ALL HORNETS BECOME MOSS IN HARDMODE unless queen bee is alive
+-sinister icon added to maso soul and has toggle
 
 -hopefully angry trapper no longer vores when it shouldnt?
 -enchanted sword family now has 4x life and 2x defense
