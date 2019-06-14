@@ -5329,6 +5329,14 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.PirateShip:
+                        if (npc.HasPlayerTarget)
+                        {
+                            if (npc.velocity.Y < 0f && npc.position.Y + npc.height < Main.player[npc.target].position.Y)
+                                npc.velocity.Y = 0f;
+                        }
+                        break;
+
                     case NPCID.PirateShipCannon:
                         if (++Counter > 10)
                         {
