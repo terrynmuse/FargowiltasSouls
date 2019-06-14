@@ -18,6 +18,7 @@
 -ALL HORNETS BECOME MOSS IN HARDMODE unless queen bee is alive
 -sinister icon added to maso soul and has toggle
 -flying dutchman also doesnt fly up if above player
+-fixed cult clones not shooting lightning bolts directly at player
 
 -hopefully angry trapper no longer vores when it shouldnt?
 -enchanted sword family now has 4x life and 2x defense
