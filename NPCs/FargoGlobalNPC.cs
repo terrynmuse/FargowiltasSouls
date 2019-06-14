@@ -4763,7 +4763,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (npc.ai[2] >= 0f)
                         {
-                            npc.alpha = 200;
+                            npc.alpha = 175;
                             npc.dontTakeDamage = true;
                             if (npc.ai[1] <= 90 && npc.ai[2] == 2f)
                             {
