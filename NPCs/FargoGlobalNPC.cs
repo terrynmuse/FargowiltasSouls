@@ -821,6 +821,23 @@ namespace FargowiltasSouls.NPCs
                                 }
                             break;
 
+                        case NPCID.Hornet:
+                        case NPCID.HornetFatty:
+                        case NPCID.HornetHoney:
+                        case NPCID.HornetLeafy:
+                        case NPCID.HornetSpikey:
+                        case NPCID.HornetStingy:
+                            if (Main.hardMode && !BossIsAlive(ref beeBoss, NPCID.QueenBee))
+                                switch(Main.rand.Next(5))
+                                {
+                                    case 0: npc.Transform(NPCID.MossHornet); break;
+                                    case 1: npc.Transform(NPCID.BigMossHornet); break;
+                                    case 2: npc.Transform(NPCID.GiantMossHornet); break;
+                                    case 3: npc.Transform(NPCID.LittleMossHornet); break;
+                                    case 4: npc.Transform(NPCID.TinyMossHornet); break;
+                                }
+                            break;
+
                         case NPCID.MeteorHead:
                             if (NPC.downedGolemBoss && Main.rand.Next(4) == 0)
                                 npc.Transform(NPCID.SolarCorite);
@@ -5653,19 +5670,16 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SandElemental:
+                        if (npc.HasValidTarget)
+                            Main.player[npc.target].ZoneSandstorm = true;
                         if (++Counter > 60)
                         {
                             Counter = 0;
-                            if (Main.netMode != 1)
+                            if (Main.netMode != 1 && !NPC.AnyNPCs(NPCID.DuneSplicerHead))
                             {
-                                if (!Sandstorm.Happening)
-                                    typeof(Sandstorm).GetMethod("StartSandstorm", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null);
-                                if (!NPC.AnyNPCs(NPCID.DuneSplicerHead))
-                                {
-                                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.DuneSplicerHead);
-                                    if (n != 200 && Main.netMode == 2)
-                                        NetMessage.SendData(23, -1, -1, null, n);
-                                }
+                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.DuneSplicerHead, npc.whoAmI, 0f, 0f, 0f, 0f, npc.target);
+                                if (n != 200 && Main.netMode == 2)
+                                    NetMessage.SendData(23, -1, -1, null, n);
                             }
                         }
                         break;
