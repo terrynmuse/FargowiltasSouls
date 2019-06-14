@@ -119,9 +119,8 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 if(Fargowiltas.Instance.CalamityLoaded)
                     recipe.AddIngredient( calamity.ItemType("Nanotech"));
                 else
-                    recipe.AddIngredient(fargos != null ? fargos.ItemType("ChikThrown") : ItemID.Chik);
+                    recipe.AddIngredient(fargos != null ? fargos.ItemType("MagicDaggerThrown") : ItemID.MagicDagger);
 
-                recipe.AddIngredient(fargos != null ? fargos.ItemType("MagicDaggerThrown") : ItemID.MagicDagger);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BananarangThrown") : ItemID.Bananarang, 5);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("AmarokThrown") : ItemID.Amarok);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("ShadowflameKnifeThrown") : ItemID.ShadowFlameKnife);
@@ -132,6 +131,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("VampireKnivesThrown") : ItemID.VampireKnives);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("PaladinsHammerThrown") : ItemID.PaladinsHammer);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("PossessedHatchetThrown") : ItemID.PossessedHatchet);
+                recipe.AddIngredient(fargos != null ? fargos.ItemType("TheEyeofCthulhuThrown") : ItemID.TheEyeOfCthulhu);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("TerrarianThrown") : ItemID.Terrarian);
             }
 

@@ -10144,6 +10144,14 @@ namespace FargowiltasSouls.NPCs
                 shop.item[nextSlot].value = 50000;
                 nextSlot++;
             }
+
+            //for eater rocket
+            if (type == NPCID.ArmsDealer && !NPC.downedPlantBoss)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.RocketI);
+                shop.item[nextSlot].value = 500;
+                nextSlot++;
+            }
         }
 
         public override void GetChat(NPC npc, ref string chat)
