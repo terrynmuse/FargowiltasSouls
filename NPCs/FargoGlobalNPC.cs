@@ -685,8 +685,15 @@ namespace FargowiltasSouls.NPCs
                             break;
 
                         case NPCID.CaveBat:
-                            if (Main.rand.Next(5) == 0)
-                                Horde(npc, 4);
+                        case NPCID.JungleBat:
+                        case NPCID.Hellbat:
+                        case NPCID.IceBat:
+                        case NPCID.GiantBat:
+                        case NPCID.IlluminantBat:
+                        case NPCID.Lavabat:
+                        case NPCID.GiantFlyingFox:
+                            if (Main.rand.Next(4) == 0)
+                                Horde(npc, Main.rand.Next(5) + 1);
                             break;
 
                         case NPCID.Shark:
@@ -5649,11 +5656,16 @@ namespace FargowiltasSouls.NPCs
                         if (++Counter > 60)
                         {
                             Counter = 0;
-                            if (Main.netMode != 1 && !NPC.AnyNPCs(NPCID.DuneSplicerHead))
+                            if (Main.netMode != 1)
                             {
-                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.DuneSplicerHead);
-                                if (n != 200 && Main.netMode == 2)
-                                    NetMessage.SendData(23, -1, -1, null, n);
+                                if (!Sandstorm.Happening)
+                                    typeof(Sandstorm).GetMethod("StartSandstorm", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null);
+                                if (!NPC.AnyNPCs(NPCID.DuneSplicerHead))
+                                {
+                                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.DuneSplicerHead);
+                                    if (n != 200 && Main.netMode == 2)
+                                        NetMessage.SendData(23, -1, -1, null, n);
+                                }
                             }
                         }
                         break;

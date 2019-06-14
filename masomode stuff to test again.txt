@@ -12,6 +12,9 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-sand elemental forces sandstorms while spawning dune splicers
+-all bats can horde (the horde is now +1 to +5, 25% chance)
+
 -hopefully angry trapper no longer vores when it shouldnt?
 -enchanted sword family now has 4x life and 2x defense
 -enchanted sword family aura is now reverse withered armor/weapon
