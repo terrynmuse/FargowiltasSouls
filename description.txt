@@ -19,7 +19,9 @@
 -Victide Enchantment recipe much easier, several other recipes altered and given new effects from new accessories (verify recipes work and add new effects)
 
 -Fiddled with Eater of Worlds minion segement distance so it looks alot better
--Added Hive Staff, The Blender, Dark Star Cannon, 
+-Added Hive Staff, The Blender, Dark Star Cannon, Rockeater Launcher
+
+-Gittle patreon effect
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

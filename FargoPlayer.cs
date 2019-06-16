@@ -1295,6 +1295,36 @@ namespace FargowiltasSouls
             if (AdditionalAttacks && AdditionalAttacksTimer > 0)
                 AdditionalAttacksTimer--;
 
+            if (player.whoAmI == Main.myPlayer && player.controlUseItem && player.HeldItem.type == mod.ItemType("EaterLauncher"))
+            {
+
+                for (int i = 0; i < 20; i++)
+                {
+                    Vector2 offset = new Vector2();
+                    double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                    offset.X += (float)(Math.Sin(angle) * 300);
+                    offset.Y += (float)(Math.Cos(angle) * 300);
+                    Dust dust = Main.dust[Dust.NewDust(
+                        player.Center + offset - new Vector2(4, 4), 0, 0,
+                        DustID.PurpleCrystalShard, 0, 0, 100, Color.White, 1f
+                        )];
+                    dust.velocity = player.velocity;
+                    dust.noGravity = true;
+
+                    Vector2 offset2 = new Vector2();
+                    double angle2 = Main.rand.NextDouble() * 2d * Math.PI;
+                    offset2.X += (float)(Math.Sin(angle2) * 400);
+                    offset2.Y += (float)(Math.Cos(angle2) * 400);
+                    Dust dust2 = Main.dust[Dust.NewDust(
+                        player.Center + offset2 - new Vector2(4, 4), 0, 0,
+                        DustID.PurpleCrystalShard, 0, 0, 100, Color.White, 1f
+                        )];
+                    dust2.velocity = player.velocity;
+                    dust2.noGravity = true;
+                }
+            }
+
+
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumPostUpdate();
         }
 

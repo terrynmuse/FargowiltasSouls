@@ -85,7 +85,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BloodyMacheteThrown") : ItemID.BloodyMachete);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("IceBoomerangThrown") : ItemID.IceBoomerang);
                 recipe.AddIngredient(ItemID.AleThrowingGlove);
-                recipe.AddIngredient(ItemID.FrostDaggerfish, 300);
+                recipe.AddIngredient(ItemID.PartyGirlGrenade, 300);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("TheMeatballThrown") : ItemID.TheMeatball);
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("AmazonThrown") : ItemID.JungleYoyo);
                 recipe.AddIngredient(ItemID.Beenade, 300);
