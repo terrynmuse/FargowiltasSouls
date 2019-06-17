@@ -9,7 +9,7 @@ namespace FargowiltasSouls.Buffs.Minions
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Soul of the Masochist");
-            Description.SetDefault("They will protect you");
+            Description.SetDefault("The power of Masochist Mode is with you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
         }
@@ -88,6 +88,7 @@ namespace FargowiltasSouls.Buffs.Minions
 
                 if (Soulcheck.GetValue("True Eyes Minion"))
                 {
+                    fargoPlayer.TrueEyes = true;
                     if (player.ownedProjectileCounts[mod.ProjectileType("TrueEyeL")] < 1)
                         Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("TrueEyeL"), 0, 3f, player.whoAmI, -1f);
 

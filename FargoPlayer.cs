@@ -1190,10 +1190,20 @@ namespace FargowiltasSouls
                             }
                             if (Main.npc[lowestHealth].life < Main.npc[lowestHealth].lifeMax)
                             {
-                                int damage = Main.npc[lowestHealth].lifeMax - Main.npc[lowestHealth].life;
-                                Main.npc[lowestHealth].life = Main.npc[lowestHealth].lifeMax;
-                                CombatText.NewText(Main.npc[lowestHealth].Hitbox, CombatText.HealLife, damage);
-                                Main.npc[lowestHealth].netUpdate = true;
+                                if (Main.netMode == 0)
+                                {
+                                    int damage = Main.npc[lowestHealth].lifeMax - Main.npc[lowestHealth].life;
+                                    Main.npc[lowestHealth].life = Main.npc[lowestHealth].lifeMax;
+                                    CombatText.NewText(Main.npc[lowestHealth].Hitbox, CombatText.HealLife, damage);
+                                }
+                                else if (Main.netMode == 1)
+                                {
+                                    var netMessage = mod.GetPacket();
+                                    netMessage.Write((byte)11);
+                                    netMessage.Write((byte)player.whoAmI);
+                                    netMessage.Write((byte)lowestHealth);
+                                    netMessage.Send();
+                                }
                             }
                         }
                     }
