@@ -503,6 +503,23 @@ namespace FargowiltasSouls
                     }
                     break;
 
+                case 11: //refresh creeper
+                    if (Main.netMode != 0)
+                    {
+                        byte player = reader.ReadByte();
+                        NPC creeper = Main.npc[reader.ReadByte()];
+                        if (creeper.active && creeper.type == NPCType("CreeperGutted") && creeper.ai[0] == player)
+                        {
+                            int damage = creeper.lifeMax - creeper.life;
+                            creeper.life = creeper.lifeMax;
+                            if (damage > 0)
+                                CombatText.NewText(creeper.Hitbox, CombatText.HealLife, damage);
+                            if (Main.netMode == 2)
+                                creeper.netUpdate = true;
+                        }
+                    }
+                    break;
+
                 case 77: //server side spawning fishron EX
                     if (Main.netMode == 2)
                     {

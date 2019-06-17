@@ -37,6 +37,13 @@ namespace FargowiltasSouls.Items.Misc
         {
             if (player.itemAnimation > 0 && player.itemTime == 0)
             {
+                if (!NPC.downedBoss3)
+                {
+                    Main.dayTime = false;
+                    Main.time = 0;
+                }
+                if (Main.netMode == 2) //sync time, downed boss flags, other world stuff
+                    NetMessage.SendData(7, -1, -1, null, 0, 0f, 0f, 0f, 0, 0, 0);
                 Main.PlaySound(15, player.Center, 0);
                 NPC.SpawnOnPlayer(player.whoAmI, NPC.downedBoss3 ? NPCID.DungeonGuardian : NPCID.OldMan);
             }

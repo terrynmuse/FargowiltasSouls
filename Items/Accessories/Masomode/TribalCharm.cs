@@ -6,12 +6,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class TribalCharm : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tribal Charm");
-            Tooltip.SetDefault(@"'It feels protective'
+            Tooltip.SetDefault(@"'An idol of the ancient jungle dwellers'
 Grants immunity to Webbed and Purified
 Grants autofire to all weapons");
         }

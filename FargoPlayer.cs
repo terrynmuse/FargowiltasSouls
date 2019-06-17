@@ -1175,6 +1175,37 @@ namespace FargowiltasSouls
                                 netMessage.Send();
                             }
                         }
+                        else
+                        {
+                            int lowestHealth = -1;
+                            for (int i = 0; i < 200; i++)
+                            {
+                                if (Main.npc[i].active && Main.npc[i].type == mod.NPCType("CreeperGutted") && Main.npc[i].ai[0] == player.whoAmI)
+                                {
+                                    if (lowestHealth < 0)
+                                        lowestHealth = i;
+                                    else if (Main.npc[i].life < Main.npc[lowestHealth].life)
+                                        lowestHealth = i;
+                                }
+                            }
+                            if (Main.npc[lowestHealth].life < Main.npc[lowestHealth].lifeMax)
+                            {
+                                if (Main.netMode == 0)
+                                {
+                                    int damage = Main.npc[lowestHealth].lifeMax - Main.npc[lowestHealth].life;
+                                    Main.npc[lowestHealth].life = Main.npc[lowestHealth].lifeMax;
+                                    CombatText.NewText(Main.npc[lowestHealth].Hitbox, CombatText.HealLife, damage);
+                                }
+                                else if (Main.netMode == 1)
+                                {
+                                    var netMessage = mod.GetPacket();
+                                    netMessage.Write((byte)11);
+                                    netMessage.Write((byte)player.whoAmI);
+                                    netMessage.Write((byte)lowestHealth);
+                                    netMessage.Send();
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -2322,8 +2353,11 @@ namespace FargowiltasSouls
                 {
                     if (HealTimer <= 0 && damage / 25 > 0)
                     {
-                        player.statLife += damage / 25;
-                        player.HealEffect(damage / 25);
+                        if (!player.moonLeech)
+                        {
+                            player.statLife += damage / 25;
+                            player.HealEffect(damage / 25);
+                        }
                         HealTimer = 10;
                     }
                     else
