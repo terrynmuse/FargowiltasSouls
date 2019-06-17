@@ -6,13 +6,11 @@ using Terraria.ModLoader;
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class FrigidGemstone : ModItem
-    {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        
+    {   
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frigid Gemstone");
-            Tooltip.SetDefault(@"'Cold to the touch'
+            Tooltip.SetDefault(@"'A shard of ancient magical ice'
 Grants immunity to Frostburn
 Your attacks summon Frostfireballs to attack your enemies");
         }

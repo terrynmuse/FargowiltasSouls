@@ -12,6 +12,11 @@
 //	default type = 82 (flaming arrow?)
 //	default damage = 35
 //	default expertmode damage: *= 0.80
+-added sprites for:
+	frigid gemstone (+tooltip)
+	sands of time
+	tribal charm (+tooltip)
+	ordinary carrot
 -maso soul minions are one buff
 -moon leech debuff family disables soul of terraria's tin crit lifesteal
 -gutted heart will now refresh the weakest creeper when you're at creeper cap

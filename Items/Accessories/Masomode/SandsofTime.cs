@@ -7,9 +7,6 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class SandsofTime : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        //sprite should be an hourglass
-        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sands of Time");
