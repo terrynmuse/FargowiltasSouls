@@ -52,6 +52,8 @@ Summons the aid of all Masochist Mode bosses to your side");
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.MasochistSoul = true;
 
+            player.AddBuff(mod.BuffType("SouloftheMasochist"), 2);
+
             //stat modifiers
             fargoPlayer.AllDamageUp(.5f);
             fargoPlayer.AllCritUp(30);
@@ -91,8 +93,7 @@ Summons the aid of all Masochist Mode bosses to your side");
 
             //necromantic brew
             fargoPlayer.NecromanticBrew = true;
-            if (Soulcheck.GetValue("Skeletron Arms Minion"))
-                player.AddBuff(mod.BuffType("SkeletronArms"), 2);
+            //if (Soulcheck.GetValue("Skeletron Arms Minion")) player.AddBuff(mod.BuffType("SkeletronArms"), 2);
 
             //supreme deathbringer fairy
             fargoPlayer.SupremeDeathbringerFairy = true;
@@ -131,16 +132,14 @@ Summons the aid of all Masochist Mode bosses to your side");
                 player.npcTypeNoAggro[NPCID.RaggedCaster] = true;
                 player.npcTypeNoAggro[NPCID.RaggedCasterOpenCoat] = true;
             }
-            if (Soulcheck.GetValue("Pungent Eye Minion"))
-                player.AddBuff(mod.BuffType("PungentEyeball"), 2);
+            //if (Soulcheck.GetValue("Pungent Eye Minion")) player.AddBuff(mod.BuffType("PungentEyeball"), 2);
 
             //sinister icon
             if (Soulcheck.GetValue("Sinister Icon"))
                 player.GetModPlayer<FargoPlayer>().SinisterIcon = true;
 
             //concentrated rainbow matter
-            if (Soulcheck.GetValue("Rainbow Slime Minion"))
-                player.AddBuff(mod.BuffType("RainbowSlime"), 2);
+            //if (Soulcheck.GetValue("Rainbow Slime Minion")) player.AddBuff(mod.BuffType("RainbowSlime"), 2);
 
             //dragon fang
             if (Soulcheck.GetValue("Inflict Clipped Wings"))
@@ -195,19 +194,16 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[BuffID.Ichor] = true;
             fargoPlayer.FusedLens = true;
             fargoPlayer.GroundStick = true;
-            if (Soulcheck.GetValue("Probes Minion"))
-                player.AddBuff(mod.BuffType("Probes"), 2);
+            //if (Soulcheck.GetValue("Probes Minion")) player.AddBuff(mod.BuffType("Probes"), 2);
             player.noKnockback = true;
 
             //magical bulb
             player.buffImmune[BuffID.Venom] = true;
-            if (Soulcheck.GetValue("Plantera Minion"))
-                player.AddBuff(mod.BuffType("PlanterasChild"), 2);
+            //if (Soulcheck.GetValue("Plantera Minion")) player.AddBuff(mod.BuffType("PlanterasChild"), 2);
 
             //ice queen's crown
             player.buffImmune[BuffID.Frozen] = true;
-            if (Soulcheck.GetValue("Flocko Minion"))
-                player.AddBuff(mod.BuffType("SuperFlocko"), 2);
+            //if (Soulcheck.GetValue("Flocko Minion")) player.AddBuff(mod.BuffType("SuperFlocko"), 2);
 
             //lihzahrd treasure
             player.buffImmune[BuffID.Burning] = true;
@@ -215,8 +211,7 @@ Summons the aid of all Masochist Mode bosses to your side");
 
             //saucer control console
             player.buffImmune[BuffID.Electrified] = true;
-            if (Soulcheck.GetValue("Saucer Minion"))
-                player.AddBuff(mod.BuffType("SaucerMinion"), 2);
+            //if (Soulcheck.GetValue("Saucer Minion")) player.AddBuff(mod.BuffType("SaucerMinion"), 2);
 
             //betsy's heart
             player.buffImmune[BuffID.OgreSpit] = true;
@@ -233,8 +228,7 @@ Summons the aid of all Masochist Mode bosses to your side");
 
             //chalice
             fargoPlayer.MoonChalice = true;
-            if (Soulcheck.GetValue("Cultist Minion"))
-                player.AddBuff(mod.BuffType("LunarCultist"), 2);
+            //if (Soulcheck.GetValue("Cultist Minion")) player.AddBuff(mod.BuffType("LunarCultist"), 2);
 
             //galactic globe
             player.buffImmune[BuffID.VortexDebuff] = true;
@@ -242,8 +236,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             fargoPlayer.GravityGlobeEX = true;
             if (Soulcheck.GetValue("Gravity Control"))
                 player.gravControl = true;
-            if (Soulcheck.GetValue("True Eyes Minion"))
-                player.AddBuff(mod.BuffType("TrueEyes"), 2);
+            //if (Soulcheck.GetValue("True Eyes Minion")) player.AddBuff(mod.BuffType("TrueEyes"), 2);
 
             //heart of maso
             player.buffImmune[BuffID.MoonLeech] = true;
