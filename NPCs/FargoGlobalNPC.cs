@@ -108,6 +108,10 @@ namespace FargowiltasSouls.NPCs
 
                 switch (npc.type)
                 {
+                    case NPCID.Pixie:
+                        npc.noTileCollide = true;
+                        break;
+
                     case NPCID.DungeonGuardian:
                         npc.boss = true;
                         SpecialEnchantImmune = true;
@@ -297,7 +301,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CursedHammer:
                     case NPCID.CrimsonAxe:
                         npc.scale = 2f;
-                        npc.lifeMax *= 3;
+                        npc.lifeMax *= 4;
+                        npc.defense *= 2;
                         npc.knockBackResist = 0f;
                         break;
 
@@ -680,8 +685,15 @@ namespace FargowiltasSouls.NPCs
                             break;
 
                         case NPCID.CaveBat:
-                            if (Main.rand.Next(5) == 0)
-                                Horde(npc, 4);
+                        case NPCID.JungleBat:
+                        case NPCID.Hellbat:
+                        case NPCID.IceBat:
+                        case NPCID.GiantBat:
+                        case NPCID.IlluminantBat:
+                        case NPCID.Lavabat:
+                        case NPCID.GiantFlyingFox:
+                            if (Main.rand.Next(4) == 0)
+                                Horde(npc, Main.rand.Next(5) + 1);
                             break;
 
                         case NPCID.Shark:
@@ -809,6 +821,23 @@ namespace FargowiltasSouls.NPCs
                                 }
                             break;
 
+                        case NPCID.Hornet:
+                        case NPCID.HornetFatty:
+                        case NPCID.HornetHoney:
+                        case NPCID.HornetLeafy:
+                        case NPCID.HornetSpikey:
+                        case NPCID.HornetStingy:
+                            if (Main.hardMode && !BossIsAlive(ref beeBoss, NPCID.QueenBee))
+                                switch(Main.rand.Next(5))
+                                {
+                                    case 0: npc.Transform(NPCID.MossHornet); break;
+                                    case 1: npc.Transform(NPCID.BigMossHornet); break;
+                                    case 2: npc.Transform(NPCID.GiantMossHornet); break;
+                                    case 3: npc.Transform(NPCID.LittleMossHornet); break;
+                                    case 4: npc.Transform(NPCID.TinyMossHornet); break;
+                                }
+                            break;
+
                         case NPCID.MeteorHead:
                             if (NPC.downedGolemBoss && Main.rand.Next(4) == 0)
                                 npc.Transform(NPCID.SolarCorite);
@@ -931,7 +960,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CursedHammer:
                     case NPCID.CrimsonAxe:
                         npc.position += npc.velocity / 2f;
-                        Aura(npc, 300, BuffID.WitheredWeapon, false, 14);
+                        Aura(npc, 300, BuffID.WitheredArmor, true, 119);
+                        Aura(npc, 300, BuffID.WitheredWeapon, true, 14);
                         if (npc.ai[0] == 2f) //spinning up
                             npc.ai[1] += 6f * (1f - (float)npc.life / npc.lifeMax); //FINISH SPINNING FASTER
                         break;
@@ -2010,7 +2040,7 @@ namespace FargowiltasSouls.NPCs
                                         {
                                             if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
                                             {
-                                                Vector2 dir = Main.player[npc.target].Center - npc.Center;
+                                                Vector2 dir = Main.player[npc.target].Center - Main.npc[i].Center;
                                                 float ai1New = Main.rand.Next(100);
                                                 Vector2 vel = Vector2.Normalize(dir.RotatedByRandom(Math.PI / 4)) * 7f;
                                                 Projectile.NewProjectile(Main.npc[i].Center, vel, ProjectileID.CultistBossLightningOrbArc,
@@ -4531,9 +4561,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Pixie:
-                        if (npc.HasPlayerTarget && Vector2.Distance(Main.player[npc.target].Center, npc.Center) < 200)
+                        if (npc.HasPlayerTarget)
                         {
-                            Counter++;
+                            if (npc.velocity.Y < 0f && npc.position.Y < Main.player[npc.target].position.Y)
+                                npc.velocity.Y = 0f;
+                            if (Vector2.Distance(Main.player[npc.target].Center, npc.Center) < 200)
+                                Counter++;
                         }
                         if (Counter >= 60)
                         {
@@ -4730,7 +4763,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (npc.ai[2] >= 0f)
                         {
-                            npc.alpha = 200;
+                            npc.alpha = 175;
                             npc.dontTakeDamage = true;
                             if (npc.ai[1] <= 90 && npc.ai[2] == 2f)
                             {
@@ -5296,6 +5329,14 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
+                    case NPCID.PirateShip:
+                        if (npc.HasPlayerTarget)
+                        {
+                            if (npc.velocity.Y < 0f && npc.position.Y + npc.height < Main.player[npc.target].position.Y)
+                                npc.velocity.Y = 0f;
+                        }
+                        break;
+
                     case NPCID.PirateShipCannon:
                         if (++Counter > 10)
                         {
@@ -5550,7 +5591,7 @@ namespace FargowiltasSouls.NPCs
                         
                     case NPCID.Nymph:
                         npc.knockBackResist = 0f;
-                        Aura(npc, 250, BuffID.Lovestruck, true, DustID.PinkFlame);
+                        Aura(npc, 250, mod.BuffType("Lovestruck"), true, DustID.PinkFlame);
                         if (--Counter < 0)
                         {
                             Counter = 600;
@@ -5637,12 +5678,14 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SandElemental:
+                        if (npc.HasValidTarget)
+                            Main.player[npc.target].ZoneSandstorm = true;
                         if (++Counter > 60)
                         {
                             Counter = 0;
                             if (Main.netMode != 1 && !NPC.AnyNPCs(NPCID.DuneSplicerHead))
                             {
-                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.DuneSplicerHead);
+                                int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.DuneSplicerHead, npc.whoAmI, 0f, 0f, 0f, 0f, npc.target);
                                 if (n != 200 && Main.netMode == 2)
                                     NetMessage.SendData(23, -1, -1, null, n);
                             }
@@ -5942,7 +5985,7 @@ namespace FargowiltasSouls.NPCs
             //works because buffs are client side anyway :ech:
             Player p = Main.player[Main.myPlayer];
             float range = npc.Distance(p.Center);
-            if (reverse ? range > distance && range < 1500f : range < distance)
+            if (reverse ? range > distance && range < 3000f : range < distance)
                 p.AddBuff(buff, 2);
 
             for (int i = 0; i < 20; i++)
@@ -6336,7 +6379,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Snatcher:
                     case NPCID.ManEater:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
-                        if (target.statLife < 100)
+                        if (target.statLife + damage < 100)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Man Eater."), 999, 0);
                         break;
 
@@ -6346,7 +6389,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.AngryTrapper:
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 1800));
-                        if (target.statLife < 180)
+                        if (target.statLife + damage < 180)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by an Angry Trapper."), 999, 0);
                         break;
 
@@ -7261,7 +7304,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Nymph:
                         target.AddBuff(BuffID.Slow, Main.rand.Next(60, 300));
                         target.AddBuff(BuffID.Weak, Main.rand.Next(60, 300));
-                        target.AddBuff(BuffID.Lovestruck, Main.rand.Next(60, 300));
+                        target.AddBuff(mod.BuffType("Lovestruck"), Main.rand.Next(60, 300));
                         npc.life += damage * 2;
                         if (npc.life > npc.lifeMax)
                             npc.life = npc.lifeMax;
@@ -8305,7 +8348,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Nymph:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("NymphsPerfume"));
+                        if (Main.rand.Next(2) == 0)
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("NymphsPerfume"));
                         break;
 
                     case NPCID.MourningWood:
@@ -8354,7 +8398,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.RuneWizard:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("MysticSkull"));
+                        if (Main.rand.Next(2) == 0)
+                            Item.NewItem(npc.position, npc.Size, mod.ItemType("MysticSkull"));
                         break;
 
                     case NPCID.SnowBalla:
@@ -10172,7 +10217,7 @@ namespace FargowiltasSouls.NPCs
                 if (!p.accFlipper && !p.gills && !p.GetModPlayer<FargoPlayer>().MutantAntibodies)
                     dialogue.Add("The water is bogging you down? Never had an issue with it, personally... Have you tried breathing water instead of air?");
                 if (!p.fireWalk && !p.buffImmune[BuffID.OnFire])
-                    dialogue.Add("The underworld has gotten a lot hotter since the last time I visited. I hear an obsidian skull is a good lucky charm against burning alive, though.");
+                    dialogue.Add("The underworld has gotten a lot hotter since the last time I visited. I hear an obsidian skull is a good luck charm against burning alive, though.");
                 if (!p.buffImmune[BuffID.Suffocation] && !p.GetModPlayer<FargoPlayer>().PureHeart)
                     dialogue.Add("Want to have a breath-holding contest? The empty vacuum of space would be perfect.");
 

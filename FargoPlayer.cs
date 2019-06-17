@@ -2643,7 +2643,7 @@ namespace FargowiltasSouls
         {
             if (ShellHide)
                 return false;
-            if (QueenStinger && !Main.hardMode && proj.type == ProjectileID.Stinger)
+            if (QueenStinger && !Main.hardMode && proj.type == ProjectileID.Stinger && !FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee))
                 return false;
             return true;
         }

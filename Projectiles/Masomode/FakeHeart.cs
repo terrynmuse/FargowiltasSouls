@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             projectile.width = 12;
             projectile.height = 12;
-            projectile.timeLeft = 300;
+            projectile.timeLeft = 600;
             projectile.hostile = true;
             projectile.aiStyle = -1;
             cooldownSlot = 0;

@@ -22,7 +22,7 @@ Grants autofire to all weapons, modifier protection, and you automatically use m
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks, hearts, and inflict a cocktail of Masochist Mode debuffs
 You respawn twice as fast, have improved night vision, and erupt into various attacks when injured
-Attacks have a chance to squeak and deal 1 damage to you
+Prevents boss spawns, increases spawn rate, and attacks may squeak and deal 1 damage to you
 Summons the aid of all Masochist Mode bosses to your side");
         }
 
@@ -133,6 +133,10 @@ Summons the aid of all Masochist Mode bosses to your side");
             }
             if (Soulcheck.GetValue("Pungent Eye Minion"))
                 player.AddBuff(mod.BuffType("PungentEyeball"), 2);
+
+            //sinister icon
+            if (Soulcheck.GetValue("Sinister Icon"))
+                player.GetModPlayer<FargoPlayer>().SinisterIcon = true;
 
             //concentrated rainbow matter
             if (Soulcheck.GetValue("Rainbow Slime Minion"))
@@ -331,6 +335,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("Lethargic")] = true;
             player.buffImmune[mod.BuffType("LightningRod")] = true;
             player.buffImmune[mod.BuffType("LivingWasteland")] = true;
+            player.buffImmune[mod.BuffType("Lovestruck")] = true;
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
             player.buffImmune[mod.BuffType("Midas")] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
@@ -349,6 +354,7 @@ Summons the aid of all Masochist Mode bosses to your side");
         {
             ModRecipe recipe = new ModRecipe(mod);
 
+            recipe.AddIngredient(mod.ItemType("SinisterIcon"));
             recipe.AddIngredient(mod.ItemType("SupremeDeathbringerFairy"));
             recipe.AddIngredient(mod.ItemType("BionomicCluster"));
             recipe.AddIngredient(mod.ItemType("DubiousCircuitry"));

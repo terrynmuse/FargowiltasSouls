@@ -29,6 +29,7 @@ Your attacks occasionally produce hearts");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[BuffID.Lovestruck] = true;
+            player.buffImmune[mod.BuffType("Lovestruck")] = true;
             player.buffImmune[BuffID.Stinky] = true;
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.NymphsPerfume = true;
