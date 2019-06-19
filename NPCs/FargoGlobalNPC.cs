@@ -8077,7 +8077,7 @@ namespace FargowiltasSouls.NPCs
                         if (NPC.downedAncientCultist && dungeon && !sinisterIcon && !BossIsAlive(ref cultBoss, NPCID.CultistBoss))
                             pool[NPCID.CultistBoss] = 0.002f;
 
-                        if (desert)
+                        if (spawnInfo.player.ZoneUndergroundDesert)
                         {
                             if (!hallow && !corruption && !crimson)
                             {
