@@ -13,6 +13,9 @@
 //	default damage = 35
 //	default expertmode damage: *= 0.80
 -sand shark specifically spawn in UNDERGROUND desert
+-wither beasts have reverse aura now
+-updated shadowflame aura enchant visual
+-increased sadisms needed for amalg ammo recipes
 
 -added sprites for:
 	frigid gemstone (+tooltip)

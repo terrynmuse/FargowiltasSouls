@@ -53,7 +53,7 @@ namespace FargowiltasSouls.Items.Ammos
             recipe.AddIngredient(fargos, "ChlorophytePouch");
             recipe.AddIngredient(fargos, "NanoPouch");
             recipe.AddIngredient(fargos, "LuminitePouch");
-            recipe.AddIngredient(mod.ItemType("Sadism"));
+            recipe.AddIngredient(mod.ItemType("Sadism"), 15);
             recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -4340,6 +4340,8 @@ namespace FargowiltasSouls
                     DustID.Shadowflame, 0, 0, 100, Color.White, 1f
                     )];
                 dust.velocity = player.velocity;
+                if (Main.rand.Next(3) == 0)
+                    dust.velocity += Vector2.Normalize(offset) * -5f;
                 dust.noGravity = true;
             }
         }
