@@ -51,7 +51,7 @@ namespace FargowiltasSouls.Items.Ammos
             recipe.AddIngredient(fargos, "VenomQuiver");
             recipe.AddIngredient(fargos, "ChlorophyteQuiver");
             recipe.AddIngredient(fargos, "LuminiteQuiver");
-            recipe.AddIngredient(mod.ItemType("Sadism"));
+            recipe.AddIngredient(mod.ItemType("Sadism"), 15);
             recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);
             recipe.AddRecipe();
