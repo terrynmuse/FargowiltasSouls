@@ -10,7 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class CalamitySoul : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
         public int dragonTimer = 60;
         public const int FireProjectiles = 2;

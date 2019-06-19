@@ -106,7 +106,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 recipe.AddIngredient(thorium.ItemType("DeadEyePatch"));
                 recipe.AddIngredient(fargos != null ? fargos.ItemType("BananarangThrown") : ItemID.Bananarang, 5);
                 recipe.AddIngredient(thorium.ItemType("HotPot"));
-                recipe.AddIngredient(thorium.ItemType("VoltTomahawk"));
+                recipe.AddIngredient(thorium.ItemType("VoltHatchet"));
                 recipe.AddIngredient(thorium.ItemType("SparkTaser"));
                 recipe.AddIngredient(thorium.ItemType("PharaohsSlab"));
                 recipe.AddIngredient(thorium.ItemType("TerraKnife"));

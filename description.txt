@@ -1,27 +1,27 @@
 ﻿NEW UPDATE - v 0.7.3
--Added some missing tooltips
--Buffed Eater of Worlds Staff
--Fixed bug with Mind Break being able to use it with only 1 slot and the minion shooting and then despawning
--Fixed Bulb and Chlorophyte Enchantments crashing with Thorium 
--Big Sting now fires 2 stingers at once
+-Added several Masochist Mode features, changes, and fixes (See wiki page for full notes)
+-Added Hive Staff, The Blender, Dark Star Cannon, Rockeater Launcher, and The Landslide
+-The Big Sting now fires 2 stingers at once
+-Buffed Eater of Worlds Staff damage, gave it a value, and fiddled with segment distance
 -The Dicer works with Yoyo Bag accessories now, also nerfed its damage, range, duration, and speed
 -Nerfed Hell Zone damage
+-The Penetrator has a right click that shoots phantasmal bolts
+-The Penetrator disables mounts and carts while dashing
+-The Penetrator creates explosions as it hits enemies and removes invulnerability frames
+-Slime Rain's slime rain spawns from slightly higher up and has finer randomness
+-Nuke Fishron no longer has a %-based minimum damage, but has increased base damage and uses rockets as ammo
+-Increased Sadisms required for post Fishron EX weapons
+-Amalgamated Bullet Pouch and Quiver are post Duke Fishron EX now
+-Fossil Enchantment no longer spams bones when you're dead
+-Victide Enchantment recipe is now much easier, and several other Calamity Enchantment recipes have been slightly altered
+-Added Gittle's patreon player effect
+-Added some missing tooltips and sprites
+-Fixed bug with Mind Break, being able to use it with only 1 minion slot and the minion shooting and then despawning
+-Fixed Bulb and Chlorophyte Enchantments crashing with Thorium 
 -Fixed Force of Life not giving extra wing time
-
--Fixed Olympian Soul's Thorium effects only working with calamity lool
+-Fixed Olympian's Soul's Thorium effects only working with calamity and its recipe being broken with Thorium
 -Fixed more tooltip errors and altered a few recipes
--Certain effects that occur while atacking dont go crazy when out of mana using a magic weapon
--Added value to Eater of Worlds Staff
-
--Rearanged recipe order for some maso accessrory 
--Cluster now at cooking pots
-
--Victide Enchantment recipe much easier, several other recipes altered and given new effects from new accessories (verify recipes work and add new effects)
-
--Fiddled with Eater of Worlds minion segement distance so it looks alot better
--Added Hive Staff, The Blender, Dark Star Cannon, Rockeater Launcher
-
--Gittle patreon effect
+-Fixed certain effects that occur while attacking going crazy when out of mana and using a magic weapon
 
 This mod adds 2 main things. Souls and Masochist Mode.
 
