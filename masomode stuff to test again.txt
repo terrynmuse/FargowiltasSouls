@@ -16,6 +16,7 @@
 -wither beasts have reverse aura now
 -updated shadowflame aura enchant visual
 -increased sadisms needed for amalg ammo recipes
+-brain illusions can THEORETICALLY debuff player... if they dealt damage...
 
 -added sprites for:
 	frigid gemstone (+tooltip)
