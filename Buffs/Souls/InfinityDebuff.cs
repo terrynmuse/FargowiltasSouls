@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Buffs.Souls
 			Main.buffNoSave[Type] = true;
 			canBeCleared = false;
 			Main.debuff[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "无尽诅咒");
+            Description.AddTranslation(GameCulture.Chinese, "所有物品均不消耗,但有时会对自己造成伤害");
 		}
 
         public override void Update(Player player, ref int buffIndex)

@@ -13,6 +13,7 @@ namespace FargowiltasSouls.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Creeper");
+            DisplayName.AddTranslation(GameCulture.Chinese, "爬行者");
         }
 
         public override void SetDefaults()

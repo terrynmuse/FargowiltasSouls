@@ -12,6 +12,7 @@ namespace FargowiltasSouls.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Brain of Cthulhu");
+            DisplayName.AddTranslation(GameCulture.Chinese, "克苏鲁之脑");
         }
 
         public override void SetDefaults()

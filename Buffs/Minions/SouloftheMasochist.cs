@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Buffs.Minions
             Description.SetDefault("The power of Masochist Mode is with you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "受虐之魂");
+            Description.AddTranslation(GameCulture.Chinese, "受虐模式的力量与你同在");
         }
 
         public override bool Autoload(ref string name, ref string texture)

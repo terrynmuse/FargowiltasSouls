@@ -13,6 +13,8 @@ namespace FargowiltasSouls.Items.Weapons
             DisplayName.SetDefault("Void Bow");
             Tooltip.SetDefault(
                 "'A glimpse to the other side' \nConverts all arrows to void arrows \n40% chance to not consume ammo");
+            DisplayName.AddTranslation(GameCulture.Chinese, "虚空弓");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'另一侧的一瞥' \n所有箭支转化为虚空箭 \n40%概率不消耗弹药");
         }
 
         public override void SetDefaults()

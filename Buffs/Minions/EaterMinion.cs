@@ -11,6 +11,8 @@ namespace FargowiltasSouls.Buffs.Minions
             Description.SetDefault("The mini Eater of Worlds will fight for you");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "世界吞噬者");
+            Description.AddTranslation(GameCulture.Chinese, "迷你世界吞噬者将会为你而战");
         }
 
         public override void Update(Player player, ref int buffIndex)

@@ -17,6 +17,13 @@ You leave behind a trail of fire when you walk
 Flames scale with magic damage
 Eating Pumpkin Pie also heals you to full HP
 Summons a pet Squashling");
+            DisplayName.AddTranslation(GameCulture.Chinese, "南瓜魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你对南瓜的突发渴望永远不会得到满足'
+走路时会留下一道火焰路径
+火焰伤害与魔法伤害挂钩
+南瓜派会使你回满血
+召唤一个宠物南瓜娃娃");
         }
 
         public override void SetDefaults()

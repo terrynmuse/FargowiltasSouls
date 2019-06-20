@@ -20,6 +20,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"''
 ");
+            DisplayName.AddTranslation(GameCulture.Chinese, "学徒魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"''
+");
         }
 
         public override void SetDefaults()

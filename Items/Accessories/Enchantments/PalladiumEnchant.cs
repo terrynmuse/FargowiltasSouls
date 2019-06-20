@@ -15,6 +15,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'You feel your wounds slowly healing' 
 Greatly increases life regeneration after striking an enemy 
 One attack gains 5% life steal every second, capped at 5 HP");
+            DisplayName.AddTranslation(GameCulture.Chinese, "钯金魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你感到你的伤口在慢慢愈合'
+攻击敌人后大大增加生命回复
+一次攻击获得每秒5%的生命窃取,上限为5点");
         }
 
         public override void SetDefaults()

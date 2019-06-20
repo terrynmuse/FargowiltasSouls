@@ -15,6 +15,8 @@ namespace FargowiltasSouls.Items.Misc
 		{
 			DisplayName.SetDefault("Rabies Shot");
             Tooltip.SetDefault("Cures Feral Bite");
+            DisplayName.AddTranslation(GameCulture.Chinese, "狂犬疫苗");
+            Tooltip.AddTranslation(GameCulture.Chinese, "治愈野性咬噬");
 		}
 
 		public override void SetDefaults()

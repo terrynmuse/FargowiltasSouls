@@ -16,6 +16,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
 You also spawn a vortex to draw in and massively damage enemies when you enter stealth
 Summons a pet Companion Cube");
+            DisplayName.AddTranslation(GameCulture.Chinese, "星旋魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'撕裂现实'
+双击'下'键切换潜行,减少敌人攻击你的机会,但减慢移动速度
+进入潜行状态时,会产生一个漩涡,吸引敌人并造成巨大伤害
+召唤一个伙伴方块");
         }
 
         public override void SetDefaults()

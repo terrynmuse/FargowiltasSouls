@@ -10,6 +10,7 @@ namespace FargowiltasSouls.Buffs.Souls
         {
             DisplayName.SetDefault("Time Frozen");
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "时间冻结");
         }
 
         public override bool Autoload(ref string name, ref string texture)

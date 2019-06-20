@@ -14,6 +14,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Works in your inventory
 Grants immunity to Mighty Wind and cactus damage
 You respawn twice as fast when no boss is alive");
+            DisplayName.AddTranslation(GameCulture.Chinese, "时之沙");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'无论你做什么,都不要丢下它'
+放在物品栏中即可生效
+免疫强风和仙人掌伤害
+当没有Boss存活时,重生速度加倍");
         }
 
         public override void SetDefaults()

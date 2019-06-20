@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 		{
 			DisplayName.SetDefault("The Blender");
 			Tooltip.SetDefault("'The reward for slaughtering many..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "绞肉机");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励..'");
 			
 			ItemID.Sets.Yoyo[item.type] = true;
 		}

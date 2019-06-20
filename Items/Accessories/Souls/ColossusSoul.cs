@@ -27,18 +27,31 @@ Grants immunity to knockback and several debuffs
 Enemies are more likely to target you
 Effects of Brain of Confusion, Star Veil, and Sweetheart Necklace
 Effects of Bee Cloak, Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
+            string tooltip_ch =
+@"'没有什么能阻止你'
+增加100最大生命值
+增加15%伤害减免
+增加5点生命再生
+免疫击退和诸多Debuff
+敌人更有可能以你为目标
+拥有混乱之脑,星辰项链和甜心项链的效果
+拥有蜜蜂斗篷,孢子囊,圣骑士护盾和冰霜龟壳的效果";
 
             if (thorium != null)
             {
                 tooltip += "\nEffects of Ocean's Retaliation and Cape of the Survivor\nEffects of Blast Shield and Terrarium Defender";
+                tooltip_ch += "\n拥有海潮之噬和生存者披风的效果\n拥有爆炸盾和界元之庇护的效果";
             }
 
             if (calamity != null)
             {
                 tooltip += "\nEffects of Asgardian Aegis";
+                tooltip_ch += "\n拥有阿斯加德之庇护的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "巨像之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

@@ -29,10 +29,21 @@ Crits deal 5x damage
 All weapons have double knockback
 Increases your maximum mana by 300
 ";
+            string tooltip_ch =
+@"'诸天也向你俯首'
+增加66%所有伤害
+增加50%所有武器使用速度
+增加50%射击速度
+增加25%所有暴击率
+暴击造成5倍伤害
+所有武器双倍击退
+增加300最大法力值
+";
 
             if (thorium != null)
             {
                 tooltip += "Increases maximum inspiration by 30\n";
+                tooltip_ch += "增加30最大灵感值";
             }
 
             tooltip += 
@@ -40,10 +51,17 @@ Increases your maximum mana by 300
 Increases your max number of sentries by 4
 All attacks inflict Flames of the Universe
 Grants all other effects of material Souls";
+            tooltip_ch +=
+@"+8最大召唤栏
++4最大哨兵栏
+所有攻击造成宇宙之火效果
+所有材料魂的效果";
 
             Tooltip.SetDefault(tooltip);
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(12, 5));
+            DisplayName.AddTranslation(GameCulture.Chinese, "寰宇之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

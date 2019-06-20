@@ -15,6 +15,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'I can't believe it's not Palladium' 
 25% chance for your projectiles to explode into shards
 This can only happen every 2 seconds");
+            DisplayName.AddTranslation(GameCulture.Chinese, "钴蓝魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'真不敢相信这不是钯金'
+25%概率使你的抛射物爆炸成碎片
+仅限每2秒一次");
         }
 
         public override void SetDefaults()

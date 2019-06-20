@@ -13,6 +13,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Alarmingly calm'
 Double tap down to spawn a palm tree sentry that throws nuts at enemies
 While in the Ocean or Desert, it attacks twice as fast");
+            DisplayName.AddTranslation(GameCulture.Chinese, "棕榈木魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'出奇的平静'
+双击'下'键生成一个向敌人投掷坚果的棕榈树哨兵
+在海洋或沙漠中,它的攻击速度翻倍");
         }
 
         public override void SetDefaults()

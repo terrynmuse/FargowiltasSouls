@@ -33,6 +33,19 @@ Your wind instrument attacks now attempt to quickly home in on enemies
 If the attack already homes onto enemies, it does so far more quickly
 String weapon projectiles bounce five additional times
 Critical strikes caused by brass instrument attacks release a spread of energy");
+            DisplayName.AddTranslation(GameCulture.Chinese, "吟游诗人之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你的每一个音符都孕育着一个新世界'
+增加30%音波伤害
+增加20%音波演奏速度
+增加15%音波暴击率
+增加20最大灵感值
+增加10%打击乐器暴击伤害
+打击乐器暴击会短暂击晕敌人
+你的管乐器的攻击现在能快速跟踪敌人
+如果它本来就能追踪敌人，那么弹道速度大幅加快
+弦乐器的音波额外弹射5次
+暴击会让铜管类乐器的攻击外放一团能量");
         }
 
         public override void SetDefaults()

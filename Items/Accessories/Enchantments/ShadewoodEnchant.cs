@@ -13,6 +13,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Surprisingly clean'
 When you take damage, blood flies everywhere
 While in the Crimson, you are instead inflicted with Super Bleeding on hit");
+            DisplayName.AddTranslation(GameCulture.Chinese, "阴影木魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'出奇的干净'
+受到伤害时会鲜血四溅
+在血腥地形时,被击中会使敌人造成大出血");
         }
 
         public override void SetDefaults()

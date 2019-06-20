@@ -18,15 +18,22 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Arachniphobia is punishable by arachnid induced death'
 Your minions can now crit with a 10% chance
 ";
+            string tooltip_ch =
+@"'蜘蛛该死'
+召唤物现在有10%的暴击率";
 
             if(thorium != null)
             {
                 tooltip += "Effects of Arachnid's Subwoofer\n";
+                tooltip_ch += "拥有蛛网音箱的效果\n";
             }
 
             tooltip += "Summons a pet Spider";
+            tooltip_ch += "召唤一只宠物蜘蛛";
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "蜘蛛魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

@@ -13,6 +13,12 @@ Grants immunity to Infested
 Increases armor penetration by 10
 Your attacks inflict Poisoned
 Bees and weak Hornets become friendly");
+            DisplayName.AddTranslation(GameCulture.Chinese, "女王的毒刺");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'从一个被打败的敌人身上撕下来'
+免疫感染
+增加10点护甲穿透
+攻击造成中毒效果
+蜜蜂和虚弱黄蜂变得友好");
         }
 
         public override void SetDefaults()

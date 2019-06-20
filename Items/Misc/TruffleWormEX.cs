@@ -15,6 +15,8 @@ namespace FargowiltasSouls.Items.Misc
         {
             DisplayName.SetDefault("Truffle Worm EX");
             Tooltip.SetDefault("Only usable in Masochist Mode\nThe tides surge in its presence");
+            DisplayName.AddTranslation(GameCulture.Chinese, "松露虫 EX");
+            Tooltip.AddTranslation(GameCulture.Chinese, "只能在受虐模式使用\n它出现时潮水汹涌澎湃");
         }
 
         public override void SetDefaults()

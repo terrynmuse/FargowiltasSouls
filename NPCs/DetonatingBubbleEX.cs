@@ -14,6 +14,7 @@ namespace FargowiltasSouls.NPCs
         {
             DisplayName.SetDefault("Detonating Bubble");
             Main.npcFrameCount[npc.type] = 2;
+            DisplayName.AddTranslation(GameCulture.Chinese, "爆炸泡泡");
         }
 
         public override void SetDefaults()

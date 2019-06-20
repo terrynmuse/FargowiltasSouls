@@ -17,6 +17,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 You gain a shield that can reflect projectiles
 Summons an Enchanted Sword familiar that scales with minion damage
 Summons a magical fairy");
+            DisplayName.AddTranslation(GameCulture.Chinese, "神圣魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'愿人都尊你的剑与盾为圣'
+获得一个可以反射抛射物的护盾
+召唤一柄附魔剑,伤害与召唤伤害挂钩
+召唤魔法妖精");
         }
 
         public override void SetDefaults()

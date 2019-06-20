@@ -18,6 +18,14 @@ Your attacks deal increasing damage to low HP enemies
 Greatly enhances Explosive Traps effectiveness
 Effects of Celestial Shell
 Summons a pet Puppy");
+            DisplayName.AddTranslation(GameCulture.Chinese, "红色游侠魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'大坏红帽'
+满月时,攻击概率造成大出血
+对低血量的敌人伤害增加
+大幅加强爆炸陷阱能力
+拥有天界贝壳的效果
+召唤一只小狗");
         }
 
         public override void SetDefaults()

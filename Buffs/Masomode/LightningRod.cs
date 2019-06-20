@@ -15,6 +15,8 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "避雷针");
+            Description.AddTranslation(GameCulture.Chinese, "你将会吸引雷电");
         }
 
         private void SpawnLightning(Entity obj, int type, int damage)

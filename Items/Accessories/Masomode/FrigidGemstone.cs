@@ -13,6 +13,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'A shard of ancient magical ice'
 Grants immunity to Frostburn
 Your attacks summon Frostfireballs to attack your enemies");
+            DisplayName.AddTranslation(GameCulture.Chinese, "寒玉");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'一块古老的魔法冰碎片'
+免疫寒焰
+攻击召唤霜火球攻击敌人");
         }
 
         public override void SetDefaults()

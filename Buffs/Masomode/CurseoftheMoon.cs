@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "月之诅咒");
+            Description.AddTranslation(GameCulture.Chinese, "月亮的愤怒吞噬了你");
         }
 
         public override bool Autoload(ref string name, ref string texture)

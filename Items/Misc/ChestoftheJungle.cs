@@ -15,6 +15,8 @@ namespace FargowiltasSouls.Items.Misc
 		{
 			DisplayName.SetDefault("Chest of the Jungle");
             Tooltip.SetDefault(@"'Charged with the essence of many souls'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "丛林之箱");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'充满了许多灵魂精华'");
 		}
 
 		public override void SetDefaults()

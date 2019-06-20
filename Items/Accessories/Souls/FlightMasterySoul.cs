@@ -17,6 +17,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             Tooltip.SetDefault(
 @"'Ascend'
 Allows for very long lasting flight");
+            DisplayName.AddTranslation(GameCulture.Chinese, "飞行大师之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'飞升'
+允许超长时间飞行");
         }
 
         public override void SetDefaults()

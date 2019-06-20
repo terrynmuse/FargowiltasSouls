@@ -23,17 +23,27 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 20% increased firing speed
 15% increased ranged critical chance
 ";
+            string tooltip_ch =
+@"'准备,瞄准,开火'
+增加30%远程伤害
+增加20%开火速度
+增加15%远程暴击率
+";
 
             if (calamity == null)
             {
                 tooltip += "Effects of Sniper Scope";
+                tooltip_ch += "拥有狙击镜的效果";
             }
             else
             {
                 tooltip += "Effects of Elemental Quiver and Sniper Scope";
+                tooltip_ch += "拥有元素箭袋和狙击镜的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "神枪手之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

@@ -18,13 +18,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip = 
 @"'Have you power enough to wield me?'
 Summons a sword familiar that scales with minion damage";
+            string tooltip_ch =
+@"'你有足够的力量驾驭我吗?'
+召唤一柄伤害与召唤伤害挂钩的剑";
 
             if(thorium != null)
             {
                 tooltip += "\nEffects of Silver Bulwark";
+                tooltip_ch += "\n拥有银壁垒的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "银魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

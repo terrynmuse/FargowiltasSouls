@@ -19,13 +19,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Bigger is always better'
 150% increased sword size
 10% decreased movement and melee speed";
+            string tooltip_ch =
+@"'大就是好'
+增加150%剑的尺寸
+减少10%移动速度和近战速度";
 
             if(thorium != null)
             {
                 tooltip += "\nEffects of Tungsten Bulwark";
+                tooltip_ch += "\n拥有钨壁垒的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "钨金魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

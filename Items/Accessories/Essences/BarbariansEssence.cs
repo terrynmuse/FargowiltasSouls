@@ -16,6 +16,12 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 18% increased melee damage 
 10% increased melee speed 
 5% increased melee crit chance");
+            DisplayName.AddTranslation(GameCulture.Chinese, "野蛮人精华");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'这才刚刚开始..'
+增加18%近战伤害
+增加10%近战速度
+增加5%近战暴击率");
         }
 
         public override void SetDefaults()

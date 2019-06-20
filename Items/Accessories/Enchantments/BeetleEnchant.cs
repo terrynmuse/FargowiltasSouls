@@ -16,8 +16,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'The unseen life of dung courses through your veins'
 Beetles protect you from damage
 Increases flight time by 100%";
+            string tooltip_ch = 
+@"'你的血管里流淌着看不见的粪便生命'
+甲虫保护你免受伤害
+增加100%飞行时间";
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "甲虫魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

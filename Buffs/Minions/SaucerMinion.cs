@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Buffs.Minions
             Description.SetDefault("The Mini Saucer will protect you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "迷你飞碟");
+            Description.AddTranslation(GameCulture.Chinese, "迷你飞碟将会保护你");
         }
 
         public override bool Autoload(ref string name, ref string texture)

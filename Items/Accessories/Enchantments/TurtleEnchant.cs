@@ -18,6 +18,14 @@ Shell Hide protects you from all projectiles, but increases contact damage
 100% of contact damage is reflected
 Enemies may explode into needles on death
 Summons a pet Lizard and Turtle"); //shell hide no happen with SoE
+            DisplayName.AddTranslation(GameCulture.Chinese, "乌龟魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你突然有一种想躲进壳里的冲动'
+当站立不动且不攻击时,获得缩壳Buff
+缩壳能阻挡所有抛射物,但是增加接触伤害
+反弹100%接触伤害
+敌人死亡时爆成针
+召唤一只宠物蜥蜴和宠物海龟");
         }
 
         public override void SetDefaults()

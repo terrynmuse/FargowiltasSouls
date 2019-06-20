@@ -23,6 +23,14 @@ Taking damage will release a poisoning spore explosion
 Flowers grow on the grass you walk on
 All herb collection is doubled
 ";
+            string tooltip_ch = 
+@"'丛林的精华在你上方结晶'
+召唤一个叶绿水晶射击附近的敌人
+每次攻击有机会偷取4点法力
+受到伤害时会释放出有毒的孢子爆炸
+走过的草地上会长出花
+所有草药收集翻倍
+";
 
             if(thorium != null)
             {
@@ -30,15 +38,23 @@ All herb collection is doubled
 @"Your attacks have a chance to poison hit enemies with a spore cloud
 Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer
 ";
+                tooltip_ch +=
+@"攻击有概率释放孢子云使敌人中毒
+拥有影缀花,花之盾和剧毒音箱的效果
+";
             }
             else
             {
                 tooltip += "Effects of Guide to Plant Fiber Cordage\n";
+                tooltip_ch += "拥有植物纤维绳索指南的效果\n";
             }
 
             tooltip += "Summons a pet Seedling";
+            tooltip_ch += "召唤一颗宠物幼苗";
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "叶绿魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()
