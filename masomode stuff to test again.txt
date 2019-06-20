@@ -17,6 +17,7 @@
 -updated shadowflame aura enchant visual
 -increased sadisms needed for amalg ammo recipes
 -brain illusions can THEORETICALLY debuff player... if they dealt damage...
+-fixed cultist fireballs and lightning portals not actually having boosted damage
 
 -added sprites for:
 	frigid gemstone (+tooltip)

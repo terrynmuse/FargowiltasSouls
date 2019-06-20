@@ -786,8 +786,24 @@ namespace FargowiltasSouls.Projectiles
                             projectile.damage = (int)(projectile.damage * (1 + FargoWorld.FishronCount * .0125));
                     }
                     break;
+                    
+                case ProjectileID.VortexLightning:
+                    if (FargoWorld.MasochistMode && !masobool)
+                    {
+                        masobool = true;
+                        projectile.damage *= 2;
+                    }
+                    break;
 
                 case ProjectileID.CultistBossFireBall:
+                    if (FargoWorld.MasochistMode && !masobool)
+                    {
+                        masobool = true;
+                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss))
+                            projectile.damage = (int)(projectile.damage * 1.5 * (1 + FargoWorld.CultistCount * .0125));
+                    }
+                    break;
+
                 case ProjectileID.CultistBossLightningOrb:
                     if (FargoWorld.MasochistMode && !masobool)
                     {
@@ -1178,12 +1194,10 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(60, 300));
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(90, 900));
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(120, 600));
-                        damage = damage * 3 / 2;
                         break;
 
                     case ProjectileID.CultistBossFireBallClone:
                         target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
-                        damage = damage * 3 / 2;
                         break;
 
                     case ProjectileID.PaladinsHammerHostile:
@@ -1268,7 +1282,7 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType("LightningRod"), Main.rand.Next(30, 180));
                         target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(30, 180));
                         break;
-
+                        
                     case ProjectileID.VortexLightning:
                         damage *= 2;
                         target.AddBuff(BuffID.Electrified, Main.rand.Next(30, 300));
