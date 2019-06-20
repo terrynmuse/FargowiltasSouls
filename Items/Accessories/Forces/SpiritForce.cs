@@ -22,6 +22,12 @@ Double tap down to call an ancient storm to the cursor location
 You gain a shield that can reflect projectiles
 Attacks will inflict Infested and spawn damaging and healing orbs
 ";
+            string tooltip_ch =
+@"'从尘世飞升'
+血量为0时避免死亡,回复100生命并产生骨头
+双击'下'键可召唤远古风暴到光标位置
+获得一个可以反射抛射物的护盾
+攻击将造成感染效果,并产生伤害和治疗球";
 
             if (thorium != null)
             {
@@ -29,13 +35,21 @@ Attacks will inflict Infested and spawn damaging and healing orbs
 @"Killing enemies or continually damaging bosses generates soul wisps
 After generating 5 wisps, they are instantly consumed to heal you for 10 life
 ";
+                tooltip_ch +=
+@"杀死敌人或持续攻击Boss会产生灵魂碎片
+集齐5个后,它们会立即被消耗,治疗10点生命";
             }
 
             tooltip += 
 @"Summons an Enchanted Sword familiar
 Summons several pets";
+            tooltip_ch +=
+@"召唤一柄附魔剑
+召唤数个宠物";
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "心灵之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

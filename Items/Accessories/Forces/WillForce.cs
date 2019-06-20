@@ -23,15 +23,28 @@ Spears will rain down on struck enemies
 All attacks will slowly remove enemy knockback immunity
 Effects of Greedy Ring, Celestial Shell, and Shiny Stone
 ";
+            string tooltip_ch =
+@"'坚不可摧的决心'
+攻击造成点金手和大出血
+按下金身热键,使自己被包裹在一个黄金壳中
+敌人20%概率8倍掉落
+长矛将倾泄在被攻击的敌人身上
+所有的攻击都会缓慢地移除敌人的击退免疫
+拥有贪婪戒指,天界贝壳和闪耀石效果
+";
 
             if (thorium != null)
             {
                 tooltip += "Effects of Proof of Avarice\n";
+                tooltip_ch += "拥有贪婪之证的效果\n";
             }
 
             tooltip += "Summons several pets";
+            tooltip_ch += "召唤数个宠物";
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "意志之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

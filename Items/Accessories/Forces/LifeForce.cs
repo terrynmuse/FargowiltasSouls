@@ -27,15 +27,30 @@ When standing still and not attacking, you gain the Shell Hide buff
 Beetles protect you from damage
 Your wings last twice as long
 ";
+            string tooltip_ch =
+@"'罕有活物敢违背你的意愿'
+走路时会留下一道火焰路径
+南瓜派会使你回满血
+反弹100%接触伤害
+敌人死亡时有概率爆炸成针
+33%概率使友善的蜜蜂成为巨型蜜蜂
+召唤物拥有10%的暴击率
+当站立不动且不攻击时,获得缩壳Buff
+甲虫保护你免受伤害
+飞行时间翻倍";
 
             if (thorium != null)
             {
                 tooltip += "Effects of Bee Booties and Arachnid's Subwoofer\n";
+                tooltip_ch += "拥有蜜蜂靴和蛛网音箱的效果\n";
             }
 
             tooltip += "Summons several pets";
+            tooltip_ch += "召唤数个宠物";
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "生命之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()
