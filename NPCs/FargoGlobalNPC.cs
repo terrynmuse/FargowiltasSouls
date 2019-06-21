@@ -4265,17 +4265,6 @@ namespace FargowiltasSouls.NPCs
                             return;
                         }
 
-                        if (npc.ai[2] != 0) //if probe is released
-                        {
-                            Timer--;
-                            if (Timer <= 0) //reactivate light
-                            {
-                                Timer = 1800;
-                                npc.ai[2] = 0;
-                                npc.netUpdate = true;
-                            }
-                        }
-
                         if (npc.buffType[0] != 0)
                             npc.DelBuff(0);
                         break;
