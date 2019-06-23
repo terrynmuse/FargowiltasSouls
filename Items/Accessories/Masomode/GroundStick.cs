@@ -13,6 +13,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Lightning Rod
 Your attacks have a small chance to inflict Lightning Rod
 Two friendly probes fight by your side");
+            DisplayName.AddTranslation(GameCulture.Chinese, "遥控装置");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'被击败敌人的残片,上面粘着天线'
+免疫避雷针
+攻击小概率造成避雷针效果
+召唤2个友善的探测器为你而战");
         }
 
         public override void SetDefaults()

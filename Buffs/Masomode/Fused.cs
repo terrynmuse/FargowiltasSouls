@@ -15,6 +15,8 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
             Main.debuff[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "导火线");
+            Description.AddTranslation(GameCulture.Chinese, "你和爆炸有个约会");
         }
 
         public override void Update(Player player, ref int buffIndex)

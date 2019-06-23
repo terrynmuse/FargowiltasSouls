@@ -16,6 +16,13 @@ namespace FargowiltasSouls.Items.Misc
 Increases night vision
 Minor improvements to all stats
 1 minute duration");
+            DisplayName.AddTranslation(GameCulture.Chinese, "普通的胡萝卜");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'从被打败的敌人的脸上拔下来的'
+提高夜视能力
+小幅提升所有属性
+1分钟持续时间
+(失落军团掉落)");
 		}
 
 		public override void SetDefaults()

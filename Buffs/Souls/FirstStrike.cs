@@ -10,6 +10,8 @@ namespace FargowiltasSouls.Buffs.Souls
             DisplayName.SetDefault("First Strike");
             Description.SetDefault("Your next attack will be enhanced");
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "先发制人");
+            Description.AddTranslation(GameCulture.Chinese, "你的下一次攻击将会得到增强");
         }
 
         public override void Update(Player player, ref int buffIndex)

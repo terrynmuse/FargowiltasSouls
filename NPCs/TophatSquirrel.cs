@@ -10,6 +10,7 @@ namespace FargowiltasSouls.NPCs
         {
             DisplayName.SetDefault("Top Hat Squirrel");
             Main.npcFrameCount[npc.type] = 6;
+            DisplayName.AddTranslation(GameCulture.Chinese, "高顶礼帽松鼠");
         }
 
         public override void SetDefaults()

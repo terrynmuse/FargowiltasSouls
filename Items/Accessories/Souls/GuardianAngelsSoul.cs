@@ -33,6 +33,18 @@ Healing an ally will increase your movement speed and increase their life regen 
 Upon drinking a healing potion, all allies will recover 25 life and 50 mana
 Nearby allies take 10% reduced damage
 Nearby allies that die drop a wisp of spirit energy");
+            DisplayName.AddTranslation(GameCulture.Chinese, "守护天使之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'神圣干涉'
+增加30%光辉伤害
+增加20%治疗和光辉施法速度
+增加15%光辉暴击率
+治疗法术将额外治疗5点生命
+自动指向生命值最低的队友
+治疗一个队友将增加你的移动速度,并增加他们的生命回复和防御
+喝下治疗药水后,所有队友将恢复25点生命和50点法力值
+附近的队友所受伤害减少10%
+附近死亡的队友会掉落一团灵魂能量");
         }
 
         public override void SetDefaults()

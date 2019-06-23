@@ -13,6 +13,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("Slime King's Slasher");
             Tooltip.SetDefault("'Torn from the insides of a defeated foe..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "史莱姆王的屠戮者");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'撕裂敌人内部而得来的..'");
         }
 
         public override void SetDefaults()

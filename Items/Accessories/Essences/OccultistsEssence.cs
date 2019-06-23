@@ -16,6 +16,12 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 18% increased summon damage
 Increases your max number of minions by 1
 Increases your max number of sentries by 1");
+            DisplayName.AddTranslation(GameCulture.Chinese, "术士精华");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'这才刚刚开始..'
+增加18%召唤伤害
++1最大召唤栏
++1最大哨兵栏");
         }
 
         public override void SetDefaults()

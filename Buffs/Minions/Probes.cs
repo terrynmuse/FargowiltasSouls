@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Buffs.Minions
             Description.SetDefault("The probes will protect you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "探测器");
+            Description.AddTranslation(GameCulture.Chinese, "探测器将会保护你");
         }
 
         public override bool Autoload(ref string name, ref string texture)

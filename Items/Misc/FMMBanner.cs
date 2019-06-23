@@ -24,6 +24,8 @@ namespace FargowiltasSouls.Items.Misc
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Banner");
             AddMapEntry(new Color(13, 88, 130), name);
+            
+            name.AddTranslation(GameCulture.Chinese, "旗帜");
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

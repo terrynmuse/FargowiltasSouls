@@ -18,6 +18,10 @@ namespace FargowiltasSouls.Items.Ammos
             Tooltip.SetDefault("Bounces several times\n" +
                 "Each impact explodes, summons falling stars, and fires laser arrows\n" +
                 "Inflicts several debuffs");
+            DisplayName.AddTranslation(GameCulture.Chinese, "混合箭袋");
+            Tooltip.AddTranslation(GameCulture.Chinese, "弹跳多次\n" + 
+                "每次撞击都会爆炸,召唤流星,发射激光箭\n" +
+                "造成多种Debuff");
         }
 
         public override void SetDefaults()

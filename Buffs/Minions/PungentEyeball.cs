@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Buffs.Minions
             Description.SetDefault("The pungent eyeball will protect you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "尖刻眼球");
+            Description.AddTranslation(GameCulture.Chinese, "尖刻眼球将会保护你");
         }
 
         public override bool Autoload(ref string name, ref string texture)

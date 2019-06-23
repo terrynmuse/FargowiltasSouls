@@ -12,6 +12,7 @@ namespace FargowiltasSouls.Buffs.Souls
             Main.buffNoSave[Type] = true;
             canBeCleared = false;
             Main.debuff[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "铅中毒");
         }
 
         public override bool Autoload(ref string name, ref string texture)

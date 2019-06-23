@@ -14,6 +14,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Plantera's Fruit");
+            DisplayName.AddTranslation(GameCulture.Chinese, "世纪之花的果实");
 		}
 
 		public override void SetDefaults()

@@ -25,6 +25,14 @@ All armor bonuses from Daedalus, Reaver, and Astral
 All armor bonuses from Mollusk, Ataxia, and Xeroc
 Effects of Permafrost's Concoction, Astral Arcanum, and Hide of Astrum Deus
 Effects of Plague Hive, Giant Pearl, and Amidias' Pendant");
+            DisplayName.AddTranslation(GameCulture.Chinese, "灾厄之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'只带走生命,只留下废土'
+拥有胜潮,天蓝和斯塔提斯的套装效果
+拥有代达罗斯,掠夺者和星幻的套装效果
+拥有软壳,阿塔西亚和克希洛克的套装效果
+拥有佩码·福洛斯特之融魔台,星陨幻空石和星神游龙外壳的效果
+拥有瘟疫蜂巢,大珍珠和阿米迪亚斯之垂饰的效果");
 
         }
 

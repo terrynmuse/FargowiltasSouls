@@ -24,17 +24,28 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 15% increased magic crit chance
 Increases your maximum mana by 200
 ";
+            string tooltip_ch =
+@"'神秘核心'
+增加30%魔法伤害
+增加20%施法速度
+增加15%魔法暴击率
+增加200最大法力值
+";
 
             if (calamity == null)
             {
                 tooltip += "Effects of Celestial Cuffs and Mana Flower";
+                tooltip_ch += "拥有星体手铐和魔力花的效果";
             }
             else
             {
                 tooltip += "Effects of Celestial Cuffs and Ethereal Talisman";
+                tooltip_ch += "拥有星体手铐和空灵护符的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "巫师之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

@@ -21,13 +21,21 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 18% increased throwing damage
 5% increased throwing critical chance
 5% increased throwing velocity";
+            string tooltip_ch =
+@"'这才刚刚开始..'
+增加18%投掷伤害
+增加5%投掷暴击率
+增加5%投掷物速度";
 
             if (calamity != null)
             {
                 tooltip += "\nBonuses also effect rogue damage";
+                tooltip_ch += "\n加成同样影响盗贼伤害";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "投手精华");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

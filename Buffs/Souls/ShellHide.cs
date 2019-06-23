@@ -15,6 +15,8 @@ namespace FargowiltasSouls.Buffs.Souls
             Main.buffNoSave[Type] = true;
             canBeCleared = false;
             Main.debuff[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "缩壳");
+            Description.AddTranslation(GameCulture.Chinese, "阻挡抛射物,但受到双倍接触伤害");
         }
 
         public override void Update(Player player, ref int buffIndex)

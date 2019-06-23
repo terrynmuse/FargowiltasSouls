@@ -17,6 +17,15 @@ Your attacks inflict Venom
 Bees and weak Hornets become friendly
 May attract baby skeleton heads
 Summons 2 Skeletron arms to whack enemies");
+            DisplayName.AddTranslation(GameCulture.Chinese, "至高告死精灵");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'霸权不一定能得到保证'
+免疫黏糊,狂暴,昏昏欲睡和感染
+增加10%伤害,增加10点护甲穿透
+冲刺或快速奔跑时发射一串血镰
+攻击造成毒液效果
+蜜蜂和虚弱黄蜂变得友好
+可能会吸引宝宝骷髅头
+召唤2个骷髅王手臂重击敌人");
         }
 
         public override void SetDefaults()

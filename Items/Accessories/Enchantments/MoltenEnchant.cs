@@ -15,6 +15,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'They shall know the fury of hell.' 
 Nearby enemies are ignited
 When you die, you violently explode dealing massive damage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "熔融魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"他们将感受到地狱的愤怒.'
+点燃附近敌人
+死亡时剧烈爆炸,造成大量伤害");
         }
 
         public override void SetDefaults()

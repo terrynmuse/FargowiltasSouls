@@ -10,6 +10,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         {
             DisplayName.SetDefault("Mechanical Leash of Cthulhu");
             Tooltip.SetDefault("'The reward for slaughtering many..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "机械克苏鲁连枷");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励..'");
         }
 
         public override void SetDefaults()

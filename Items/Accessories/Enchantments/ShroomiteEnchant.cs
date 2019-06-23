@@ -17,15 +17,24 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Not moving puts you in stealth
 While in stealth, crits deal 4x damage
 ";
+            string tooltip_ch =
+@"'真的是用蘑菇做的!'
+站立不动时潜行
+潜行时,暴击造成4倍伤害
+";
 
             if(thorium != null)
             {
                 tooltip += "Attacks may inflict Fungal Growth\n";
+                tooltip_ch += "攻击概率造成真菌寄生效果";
             }
 
             tooltip += "Summons a pet Truffle";
+            tooltip_ch += "召唤一个小蘑菇人";
 
             Tooltip.SetDefault(tooltip); 
+            DisplayName.AddTranslation(GameCulture.Chinese, "蘑菇魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

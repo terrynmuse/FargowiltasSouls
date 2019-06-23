@@ -20,15 +20,24 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 While attacking, Flameburst shots manifest themselves from your shadows
 Greatly enhances Flameburst effectiveness
 ";
+            string tooltip_ch =
+@"'阴影比看起来更多'
+攻击时,焰爆炮塔的射击会从你的阴影中显现出来
+大大增强焰爆炮塔能力
+";
 
             if(thorium != null)
             {
                 tooltip += "Effects of Dark Effigy\n";
+                tooltip_ch += "拥有阴影雕塑的效果\n";
             }
 
             tooltip += "Summons a pet Flickerwick";
+            tooltip_ch += "召唤一个闪烁烛芯";
 
             Tooltip.SetDefault(tooltip); 
+            DisplayName.AddTranslation(GameCulture.Chinese, "暗黑艺术家魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

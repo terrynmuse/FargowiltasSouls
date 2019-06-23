@@ -24,6 +24,13 @@ You fall quicker and are immune to fall damage
 Taking over 25 damage in one hit causes several homing feathers to fall
 Summons a Valkyrie minion to protect you
 Effects of Gladiator's Locket and Unstable Prism");
+            DisplayName.AddTranslation(GameCulture.Chinese, "天蓝魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"天空向你施以援手...
+下落得更快,免疫坠落伤害
+一次性承受超过25点伤害时,会落下出数根追踪羽毛
+召唤天武神来保护你
+拥有角斗士链坠和不稳定棱镜的效果");
         }
 
         public override void SetDefaults()

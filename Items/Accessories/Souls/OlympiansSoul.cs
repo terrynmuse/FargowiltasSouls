@@ -25,18 +25,27 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 30% increased throwing damage
 20% increased throwing speed
 15% increased throwing critical chance and velocity";
+            string tooltip_ch =
+@"'致命的精准打击'
+增加30%投掷伤害
+增加20%投掷速度
+增加15%投掷暴击率和抛射物速度";
 
             if (thorium != null)
             {
                 tooltip += "Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch";
+                tooltip_ch += "拥有投手大师指导:卷三,美人鱼水壶和亡者眼罩的效果";
             }
 
             if (calamity != null)
             {
                 tooltip += "\nEffects of Nanotech\nBonuses also effect rogue damage";
+                tooltip_ch += "拥有纳米技术的效果\n加成同样影响盗贼伤害";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "奥林匹斯之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

@@ -17,10 +17,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Village Hidden in the Wall'
 Dash into any walls, to teleport through them to the next opening
 ";
+            string tooltip_ch =
+@"'藏在墙中的村庄'
+冲进墙壁时,会直接穿过去
+";
 
             if(thorium != null)
             {
                 tooltip += "50% of the damage you take is staggered over the next 10 seconds\n";
+                tooltip_ch += "接下来的10秒内,闪避收到的50%伤害\n";
             }
 
             tooltip +=
@@ -28,8 +33,14 @@ Dash into any walls, to teleport through them to the next opening
 Greatly enhances Lightning Aura effectiveness
 Effects of Master Ninja Gear
 Summons a pet Gato and Black Cat";
+            tooltip_ch +=
+@"扔烟雾弹进行传送并获得先发制人Buff
+大大加强闪电光环的效果
+召唤一只宠物小喵和黑色小猫咪";
 
             Tooltip.SetDefault(tooltip); 
+            DisplayName.AddTranslation(GameCulture.Chinese, "潜行忍者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

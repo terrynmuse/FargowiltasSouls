@@ -11,6 +11,9 @@ namespace FargowiltasSouls.Items.Misc
             DisplayName.SetDefault("Pandora's Box");
             Tooltip.SetDefault("Summons something at random\n" +
                                 "Much friendlier options during the day");
+            DisplayName.AddTranslation(GameCulture.Chinese, "潘多拉之盒");
+            Tooltip.AddTranslation(GameCulture.Chinese, "随机召唤\n" +
+                                                        "白天时使用是个更友好的选择");
         }
 
         public override void SetDefaults()

@@ -13,6 +13,8 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "狂暴");
+            Description.AddTranslation(GameCulture.Chinese, "你控几不住你记几");
         }
 
         public override void Update(Player player, ref int buffIndex)

@@ -16,6 +16,14 @@ Increases life regeneration
 You periodically fire additional attacks depending on weapon type
 You erupt into Ancient Visions when injured
 Summons a friendly Cultist and plant to fight at your side");
+            DisplayName.AddTranslation(GameCulture.Chinese, "月之杯");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"月亮的微笑
+免疫毒液,燃烧,导火线,死亡标记和着迷
+免疫萎缩,卡壳,反魔力流和反社交
+增加生命回复
+根据武器类型定期发动额外的攻击
+受伤时爆发远古幻象攻击敌人
+召唤友善的邪教徒和植物为你而战");
         }
 
         public override void SetDefaults()

@@ -15,6 +15,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Marked for Death and Hexed
 You may periodically fire additional attacks depending on weapon type
 Taking damage creates a friendly Ancient Vision to attack enemies"); 
+            DisplayName.AddTranslation(GameCulture.Chinese, "天界符文");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'堕落的敌人的咒语,被改换用途'
+免疫死亡标记和着魔
+根据武器类型定期发动额外的攻击
+受伤时创造一个友好的远古幻象来攻击敌人");
         }
 
         public override void SetDefaults()

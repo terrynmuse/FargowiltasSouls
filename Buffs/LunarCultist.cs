@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Buffs
             Description.SetDefault("The Lunar Cultist will protect you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "拜月教徒");
+            Description.AddTranslation(GameCulture.Chinese, "拜月教徒将会保护你");
         }
 
         public override void Update(Player player, ref int buffIndex)

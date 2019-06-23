@@ -15,6 +15,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Melting souls since 1902'
 All of your minions may occasionally spew massive scythes everywhere
 Summons a pet Cursed Sapling and Eyeball Spring");
+            DisplayName.AddTranslation(GameCulture.Chinese, "阴森魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"自1902年以来融化的灵魂
+召唤物偶尔会发射巨大镰刀
+召唤一只万圣小树妖和弹簧眼球");
         }
 
         public override void SetDefaults()

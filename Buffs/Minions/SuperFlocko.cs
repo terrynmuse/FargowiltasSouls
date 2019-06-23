@@ -12,6 +12,8 @@ namespace FargowiltasSouls.Buffs.Minions
             Description.SetDefault("The super Flocko will protect you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "超级圣诞雪灵");
+            Description.AddTranslation(GameCulture.Chinese, "超级圣诞雪灵将会保护你");
         }
 
         public override bool Autoload(ref string name, ref string texture)

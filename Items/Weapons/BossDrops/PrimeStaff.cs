@@ -9,6 +9,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("Prime Staff");
             Tooltip.SetDefault("'An old foe's limbs reanimated for your desires..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "至尊法杖");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'一个老对手的肢体,随你的意愿而复活..'");
         }
 
         public override bool Autoload(ref string name)

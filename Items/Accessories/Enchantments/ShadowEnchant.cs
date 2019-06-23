@@ -16,6 +16,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Your attacks may inflict Darkness on enemies
 Darkened enemies occasionally fire shadowflame tentacles at other enemies
 Summons a pet Eater of Souls and Shadow Orb");
+            DisplayName.AddTranslation(GameCulture.Chinese, "暗影魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你感觉身体陷入了最深的阴影中'
+攻击概率造成黑暗
+陷入黑暗的敌人偶尔会向其他敌人发射暗影烈焰触手
+召唤一只噬魂者宝宝和阴影珍珠");
         }
 
         public override void SetDefaults()

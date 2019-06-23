@@ -24,6 +24,19 @@ Your attacks create additional attacks, hearts, and inflict a cocktail of Masoch
 You respawn twice as fast, have improved night vision, and erupt into various attacks when injured
 Prevents boss spawns, increases spawn rate, and attacks may squeak and deal 1 damage to you
 Summons the aid of all Masochist Mode bosses to your side");
+            DisplayName.AddTranslation(GameCulture.Chinese, "受虐之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'要制造痛苦,首先必须接受它'
+增加200%飞行时间,50点护甲穿透,20%移动速度
+增加60%最大生命值,50%伤害,30%暴击率,20%伤害减免
+极大增加生命恢复速率,+10最大召唤栏和哨兵栏
+重力控制,快速下落,免疫击退,免疫受虐模式的所有Debuff,以及更多
+所有武器自动连发,词缀保护,需要时自动使用魔力药水
+获得超可爱猪鲨,地牢外的装甲和魔法骷髅敌意减小
+攻击造成额外攻击,生成心,并造成混合的受虐模式Debuff
+重生速度加倍,提高夜视能力,受伤时爆发各种攻击
+阻止Boss自然生成,增加刷怪速率,敌人攻击概率发出吱吱声,并只造成1点伤害
+召唤所有受虐模式Boss的援助到你身边");
         }
 
         public override void SetDefaults()

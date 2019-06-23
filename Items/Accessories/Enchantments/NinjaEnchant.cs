@@ -18,6 +18,14 @@ First Strike enhances your next attack
 Melee attacks will crit for 3x damage
 Projectile attacks fire in a barrage of 3
 Summons a pet Black Cat");
+            DisplayName.AddTranslation(GameCulture.Chinese, "忍者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你看到我了,现在又不见了'
+扔烟雾弹进行传送,获得先发制人Buff
+先发制人Buff会强化你的下一次攻击
+近战暴击造成3倍伤害
+抛射物攻击连续射击3次
+召唤一只黑色小猫咪");
         }
 
         public override void SetDefaults()

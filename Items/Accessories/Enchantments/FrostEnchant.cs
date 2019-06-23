@@ -20,19 +20,31 @@ Icicles will start to appear around you
 When there are three, attacking will launch them towards the cursor
 Your attacks inflict Frostburn
 ";
+            string tooltip_ch =
+@"'让我们给世界披上一层厚厚的冰衣'
+周围将出现冰柱
+当冰柱达到三个时,攻击会将它们向光标位置发射
+攻击造成寒焰效果
+";
 
             if (thorium != null)
             {
                 tooltip +=
 @"Effects of Sub-Zero Subwoofer
 Summons a pet Snowman";
+                tooltip_ch +=
+@"拥有零度音箱的效果
+召唤一个小雪人";
             }
             else
             {
                 tooltip += "Summons a pet Penguin and Snowman";
+                tooltip_ch += "召唤一个宠物企鹅和小雪人";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "霜冻魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()
