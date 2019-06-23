@@ -3,6 +3,7 @@ using CalamityMod.Items.CalamityCustomThrowingDamage;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {

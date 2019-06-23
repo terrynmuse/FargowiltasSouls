@@ -1,6 +1,7 @@
 using FargowiltasSouls.Projectiles;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons
 {

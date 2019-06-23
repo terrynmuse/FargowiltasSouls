@@ -3,7 +3,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
- 
+using Terraria.Localization;
+
 namespace FargowiltasSouls.Items.Weapons
     //We need this to basically indicate the folder where it is to be read from, so you the texture will load correctly
 {

@@ -5,6 +5,7 @@ using static Terraria.ID.ItemID;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -25,7 +26,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 15% increased melee crit chance
 Increased melee knockback
 ";
-            string tooltip =
+            string tooltip_ch =
 @"'不留活口'
 增加30%近战伤害
 增加30%近战速度

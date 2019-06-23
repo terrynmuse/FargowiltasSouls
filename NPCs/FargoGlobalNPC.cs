@@ -1181,7 +1181,7 @@ namespace FargowiltasSouls.NPCs
                             if (t != -1 && NPC.CountNPCS(NPCID.Piranha) <= 10 && Main.rand.Next(2) == 0)
                             {
                                 Player player = Main.player[t];
-                                if (player.bleed && Main.netMode != 1)
+                                if (player.bleed && player.ZoneJungle && Main.netMode != 1)
                                 {
                                     masoBool[0] = true;
                                     int piranha = NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-20, 20), (int)npc.Center.Y + Main.rand.Next(-20, 20), NPCID.Piranha);

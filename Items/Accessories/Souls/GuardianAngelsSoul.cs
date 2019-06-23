@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using ThoriumMod;
 using Terraria.ID;
 using System.Collections.Generic;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
