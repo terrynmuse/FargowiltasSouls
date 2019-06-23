@@ -16,6 +16,9 @@
 -wither beasts have reverse aura now
 -updated shadowflame aura enchant visual
 -increased sadisms needed for amalg ammo recipes
+-brain illusions can THEORETICALLY debuff player... if they dealt damage...
+-fixed cultist fireballs and lightning portals not actually having boosted damage
+-further nerfed phantasm/aerial bane against fishron/ML because i can
 
 -added sprites for:
 	frigid gemstone (+tooltip)

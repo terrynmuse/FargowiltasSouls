@@ -69,6 +69,15 @@ namespace FargowiltasSouls.NPCs
             }
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.Confused, Main.rand.Next(300));
+            target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300));
+            target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(300));
+            target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(90));
+            target.AddBuff(BuffID.Rabies, Main.rand.Next(900, 1800));
+        }
+
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)
