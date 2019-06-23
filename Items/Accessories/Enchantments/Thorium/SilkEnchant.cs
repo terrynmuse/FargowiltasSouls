@@ -21,6 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'You feel silky-smooth'
 6% increased magic damage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "丝绸魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'丝般光滑'
+增加6%魔法伤害");
         }
 
         public override void SetDefaults()

@@ -23,6 +23,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Your radiant damage has a 15% chance to release a blinding flash of light
 The flash heals nearby allies equal to your bonus healing and confuses enemies
 Effects of Equalizer");
+            DisplayName.AddTranslation(GameCulture.Chinese, "光辉魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'五颜六色'
+光辉伤害有15%的概率造成闪光爆炸
+闪光爆炸将迷惑敌人并治疗附近队友(受额外治疗量影响)
+拥有平等护符的效果");
         }
 
         public override void SetDefaults()

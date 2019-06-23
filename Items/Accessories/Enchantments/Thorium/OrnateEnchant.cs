@@ -23,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Beautifully crafted'
 Symphonic critical strikes cause the attack's empowerment to ascend to a fourth level of intensity
 Effects of Concert Tickets and Brown Music Player");
+            DisplayName.AddTranslation(GameCulture.Chinese, "华贵魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'精心设计'
+音波暴击使玩家的咒音增幅提升到等级4
+拥有音乐会门票和棕色播放器效果");
         }
 
         public override void SetDefaults()

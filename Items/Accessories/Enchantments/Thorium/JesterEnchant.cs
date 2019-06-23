@@ -22,6 +22,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Clowning around'
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Fan Letter");
+            DisplayName.AddTranslation(GameCulture.Chinese, "小丑魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'开个玩笑'
+音波暴击时将减缓周围敌人的速度
+拥有粉丝的信函的效果");
         }
 
         public override void SetDefaults()

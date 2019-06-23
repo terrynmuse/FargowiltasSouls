@@ -23,6 +23,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Your attacks have a chance to unleash an explosion of Dragon's Flame
 Effects of Dragon Talon Necklace
 Summons a pet Wyvern");
+            DisplayName.AddTranslation(GameCulture.Chinese, "绿龙魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'由神秘鳞片制成'
+攻击有概率释放龙焰爆炸
+拥有龙爪项链的效果
+召唤宠物小飞龙");
         }
 
         public override void SetDefaults()

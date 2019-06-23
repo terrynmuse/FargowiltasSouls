@@ -26,6 +26,14 @@ While above 50% life, every seventh magic cast will unleash damaging mana bolts
 While below 50% life, your defensive capabilities are increased
 Magic critical strikes engulf enemies in a long lasting void flame
 Effects of Mana-Charged Rocketeers and Gray Music Player");
+            DisplayName.AddTranslation(GameCulture.Chinese, "弗古魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'谜一样的男人...'
+神秘屏障环绕周身
+生命值高于50%时, 每7次施法会发射魔法箭
+生命值低于50%时, 增强防御能力
+魔法暴击释放虚空之焰吞没敌人
+拥有魔力充能火箭靴和灰色播放器的效果");
         }
 
         public override void SetDefaults()

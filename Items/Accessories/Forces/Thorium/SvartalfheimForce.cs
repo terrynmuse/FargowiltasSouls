@@ -33,6 +33,20 @@ Effects of Eye of the Storm, Energized Subwoofer, and Spartan's Subwoofer
 Effects of Champion's Rebuttal, Incandescent Spark, and Spiked Bracers
 Effects of the Greedy Magnet, Mask of the Crystal Eye, and Abyssal Shell
 Summons a pet Omega, I.F.O., and Bio-Feeder");
+            DisplayName.AddTranslation(GameCulture.Chinese, "瓦特阿尔海姆之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'黑暗精灵的精湛技艺'
+增加10%伤害和伤害减免
+免疫高温
+攻击时概率释放闪电链和闪电箭
+获得冲刺能力
+右键用盾牌防御
+攻击时每隔几秒召唤一次流星雨
+移动时产生最多5层静电环, 接着产生一个能量泡保护你免受一次伤害
+拥有风暴之眼, 充能音箱, 斯巴达音箱的效果
+拥有反击之盾, 食人魔凉鞋和尖刺锁的效果
+拥有贪婪磁铁, 水晶之眼和深渊贝壳的效果
+召唤宠物欧米茄核心, 天外来客和生化水母");
         }
 
         public override void SetDefaults()

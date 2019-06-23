@@ -21,6 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'The sky is your playing field'
 You can now briefly fly");
+            DisplayName.AddTranslation(GameCulture.Chinese, "飞羽魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'天空是你的游戏场'
+可以短暂飞行");
         }
 
         public override void SetDefaults()

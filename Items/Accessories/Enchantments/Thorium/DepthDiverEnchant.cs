@@ -26,6 +26,13 @@ Grants the ability to swim
 You and nearby allies gain 10% increased damage and movement speed
 Effects of Sea Breeze Pendant, Bubble Magnet, and Deep Dark Subwoofer
 Summons a pet Jellyfish");
+            DisplayName.AddTranslation(GameCulture.Chinese, "深渊潜游者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'成为无私的保卫者'
+使你和附近的队友能够水下呼吸
+获得游泳能力
+你和附近的队友获得10%伤害和移动速度加成
+拥有海洋通行证, 泡泡磁铁和渊暗音箱的效果");
         }
 
         public override void SetDefaults()

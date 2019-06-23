@@ -26,6 +26,14 @@ Moving around generates up to 5 static rings, with each one generating life shie
 When fully charged, a bubble of energy will protect you from one attack 
 When the bubble blocks an attack, an electrical discharge is released at nearby enemies
 Summons a pet Omega, I.F.O., and Bio-Feeder");
+            DisplayName.AddTranslation(GameCulture.Chinese, "电容魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'震惊世界'
+攻击时有概率召唤流星雨
+移动时产生最多5层静电环, 静电环可以回复护盾值
+完全充能时, 产生一个能量泡保护你免受一次伤害
+泡泡消耗时, 向周围敌人放电
+召唤召唤宠物欧米茄核心, 天外来客和生化水母");
         }
 
         public override void SetDefaults()

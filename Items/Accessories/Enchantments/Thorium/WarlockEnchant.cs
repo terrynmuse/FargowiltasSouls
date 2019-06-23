@@ -24,6 +24,13 @@ Radiant critical strikes will generate up to 15 shadow wisps
 Pressing the 'Special Ability' key will unleash every stored shadow wisp towards your cursor's position
 Effects of Demon Tongue
 Summons a Li'l Devil to attack enemies");
+            DisplayName.AddTranslation(GameCulture.Chinese, "术士魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'比巫师更强'
+光辉暴击产生至多15个暗影魂火
+按下'特殊能力'键向光标方向释放所有存留的暗影魂火
+拥有恶魔之舌的效果
+召唤小恶魔攻击敌人");
         }
 
         public override void SetDefaults()

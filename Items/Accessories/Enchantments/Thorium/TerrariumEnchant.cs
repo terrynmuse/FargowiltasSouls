@@ -27,6 +27,13 @@ The energy of Terraria seeks to protect you
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Crietz and Band of Replenishment
 Effects of Fan Letter and Terrarium Surround Sound");
+            DisplayName.AddTranslation(GameCulture.Chinese, "元素之灵魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'万物都臣服于你的力量...'
+泰拉瑞亚的能量试图保护你
+音波暴击短暂缓慢所有附近敌人
+拥有精准项链和大恢复戒指的效果
+拥有粉丝的信函和界元音箱的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

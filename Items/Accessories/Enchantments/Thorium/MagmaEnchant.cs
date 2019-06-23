@@ -26,6 +26,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Fire surrounds your armour and melee weapons
 Enemies that you set on fire or singe will take additional damage over time
 Effects of Spring Steps, Slag Stompers, and Molten Spear Tip");
+            DisplayName.AddTranslation(GameCulture.Chinese, "熔岩魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'充斥热能'
+火焰环绕着你的盔甲和近战武器
+随着时间的推移,被你点燃或烧伤的敌人会受到额外的伤害
+拥有弹簧鞋, 熔渣重踏和炽热枪尖的效果");
         }
 
         public override void SetDefaults()

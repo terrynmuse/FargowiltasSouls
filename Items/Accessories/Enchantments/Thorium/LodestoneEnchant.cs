@@ -24,6 +24,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Damage reduction is increased by 10% at every 25% segment of life
 Maximum damage reduction is reached at 30% while below 50% life
 Effects of Astro-Beetle Husk");
+            DisplayName.AddTranslation(GameCulture.Chinese, "地脉魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'坚实'
+生命值每下降25%, 增加10%伤害减免
+生命值低于50%时达到上限: 30%
+拥有太空甲虫壳效果");
         }
 
         public override void SetDefaults()

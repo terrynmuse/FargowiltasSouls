@@ -27,6 +27,14 @@ While in the Dream, healed allies will become briefly invulnerable and be cured 
 Enemies will be heavily slowed and take 15% more damage from all sources
 Allies will receive greatly increased movement and attack speed
 Summons a pet Maid");
+            DisplayName.AddTranslation(GameCulture.Chinese, "织梦者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'通过你的盟友显化你甜蜜的美梦, 用时间之苦痛束缚你未来的敌人'
+按下'特殊能力'键消耗400法力, 入梦并扭曲现实结构
+入梦时, 治疗队友会使其短暂无敌, 并治愈所有Debuff
+极大减缓敌人, 并增加15%其所受伤害
+队友获得大幅度攻击速度和移动速度加成
+召唤宠物女仆");
         }
 
         public override void SetDefaults()

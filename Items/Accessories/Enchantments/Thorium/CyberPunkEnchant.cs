@@ -23,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Techno rave!'
 Pressing the 'Special Ability' key will cycle you through four states
 Effects of Auto Tuner and Red Music Player");
+            DisplayName.AddTranslation(GameCulture.Chinese, "赛博朋克魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'科技电音狂欢!'
+按下'特殊能力'键循环切换增幅状态
+拥有自动校音器和红色播放器的效果");
         }
 
         public override void SetDefaults()

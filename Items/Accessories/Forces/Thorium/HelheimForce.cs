@@ -32,6 +32,20 @@ Effects of Crash Boots, Dragon Talon Necklace, and Grim Subwoofer
 Effects of Vampire Gland, Demon Blood Badge, and Blood Demon's Subwoofer 
 Effects of Shade Band, Lich's Gaze, and Plague Lord's Flask
 Summons several pets");
+            DisplayName.AddTranslation(GameCulture.Chinese, "海姆冥界之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'从海姆冥界的大厅起始, 一派终末的景象...'
+你的靴子以不真实的频率振动着, 显著提高移动速度
+移动时增加所有伤害和暴击率
+攻击有概率释放龙焰爆炸
+连续攻击敌人时概率掉落肉, 拾取肉会获得额外生命并增加伤害
+生命值高于75%时变得不稳定
+瓦斯持续时间翻倍, 瓦斯反应多造成20%伤害
+杀死敌人会释放灵魂碎片
+拥有震地靴, 龙爪项链和恐惧音箱的效果
+拥有吸血鬼试剂, 魔血纹章和血魔音箱的效果
+拥有暗影护符, 巫妖之视和瘟疫之主药剂瓶的效果
+召唤数个宠物");
         }
 
         public override void SetDefaults()

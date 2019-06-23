@@ -27,6 +27,14 @@ Allows the player to dash into the enemy
 Right Click to guard with your shield
 You attract items from a larger range
 Effects of Iron Shield and Spiked Bracers");
+            DisplayName.AddTranslation(GameCulture.Chinese, "钢魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'铁匠精心打造'
+增加5%伤害减免
+获得冲刺能力
+右键用盾牌防御
+增大拾取物品范围
+拥有铁盾和尖刺锁的效果");
         }
 
         public override void SetDefaults()

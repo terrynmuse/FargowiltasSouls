@@ -22,6 +22,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'This strange wood comes from a far away land'
 After four consecutive non-critical strikes, your next ranged attack will mini-crit for 150% damage
 Effects of Goblin War Shield");
+            DisplayName.AddTranslation(GameCulture.Chinese, "紫杉木魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'这种奇怪的木头来自遥远的大陆'
+连续4次攻击不暴击时, 下一次远程攻击造成150%伤害
+拥有哥布林战盾的效果");
         }
 
         public override void SetDefaults()

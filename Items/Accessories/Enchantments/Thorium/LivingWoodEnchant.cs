@@ -22,6 +22,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Become one with nature'
 Summons a living wood sapling and its attacks will home in on enemies
 Effects of Guide to Plant Fiber Cordage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "生命木魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'与自然融为一体'
+召唤具有追踪攻击能力的小树苗
+拥有植物纤维绳索宝典的效果");
         }
 
         public override void SetDefaults()

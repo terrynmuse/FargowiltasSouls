@@ -33,6 +33,20 @@ You can have up to six tentacles and their damage saps 1 life & mana from the hi
 Effects of Sea Breeze Pendant, Bubble Magnet, and Deep Dark Subwoofer
 Effects of Goblin War Shield, Agnor's Bowl, and Ice Bound Strider Hide
 Summons several pets");
+            DisplayName.AddTranslation(GameCulture.Chinese, "约顿海姆之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'彻骨严寒, 巨人的力量...'
+获得水下呼吸能力
+获得游泳和水下快速移动的能力
+暴击释放飞溅泡沫, 缓慢附近的敌人
+连续4次攻击不暴击时, 下一次远程攻击造成150%伤害
+攻击将产生此次伤害值33%的冰刺攻击敌人, 并对敌人造成冻结效果
+环绕的冰锥将冰冻敌人
+偶尔在地面产生深渊能量触手攻击附近的敌人
+最多产生6根触手, 触手的攻击将会为你偷取1点生命和法力
+拥有海洋通行证, 泡泡磁铁和渊暗音箱的效果
+拥有哥布林战盾, 琵琶鱼球碗和遁蛛契约的效果
+召唤数个宠物");
         }
 
         public override void SetDefaults()

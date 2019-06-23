@@ -24,6 +24,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Shows the location of enemies, traps, and treasures
 Light is emitted from the player
 Summons a pet Magic Lantern, Inspiring Lantern, and Lock Box");
+            DisplayName.AddTranslation(GameCulture.Chinese, "晶体魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'用极尽奢华的材料制成'
+增加50%采掘速度
+显示敌人，陷阱和宝藏位置
+散发光芒
+召唤魔法灯笼, 振奋魔镜和海神宝盒");
         }
 
         public override void SetDefaults()

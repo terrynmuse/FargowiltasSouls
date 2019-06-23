@@ -32,6 +32,21 @@ Effects of Demon Tongue, Aloe Leaf, and Equalizer
 Effects of Wynebgwrthucher and Rebirth Statuette
 Summons a Li'l Cherub and Li'l Devil
 Summons a pet Life Spirit and Holy Goat");
+            DisplayName.AddTranslation(GameCulture.Chinese, "亚尔夫海姆之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'精灵之秘在你眼前展开...'
+治疗法术额外治疗5点生命值, 治疗后短暂增加队友50最大生命值
+每5秒产生一个圣十字架, 上限为3个
+光辉暴击产生至多15个
+按下'特殊能力'键向光标方向释放所有存留的暗影魂火
+召唤一个生物工程探测器协助你队友
+光辉伤害有15%的概率造成闪光爆炸
+受到伤害的15%将治疗附近队友
+队友生命值低于50%时, 增强治疗能力
+拥有恶魔之舌,芦荟叶和平等护符效果
+拥有祝福之盾和重生雕像效果
+召唤小天使和小恶魔
+召唤宠物神圣山羊和生命之灵");
         }
 
         public override void SetDefaults()

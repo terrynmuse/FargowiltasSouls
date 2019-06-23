@@ -25,7 +25,7 @@ Dash into any walls, to teleport through them to the next opening
             if(thorium != null)
             {
                 tooltip += "50% of the damage you take is staggered over the next 10 seconds\n";
-                tooltip_ch += "接下来的10秒内,闪避受到的50%伤害\n";
+                tooltip_ch += "所受伤害的50%将被分摊到接下来的10秒内\n";
             }
 
             tooltip +=

@@ -49,7 +49,7 @@ Summons several pets";
 Effects of Master Ninja Gear and Dark Effigy
 Summons several pets";
                 tooltip_ch +=
-@"接下来的10秒内,闪避受到的50%伤害
+@"所受伤害的50%将被分摊到接下来的10秒内
 拥有忍者极意和阴影雕塑的效果
 召唤数个宠物";
             }

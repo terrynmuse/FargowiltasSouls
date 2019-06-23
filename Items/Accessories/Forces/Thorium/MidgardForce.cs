@@ -34,6 +34,19 @@ Critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Astro-Beetle Husk and Eye of the Beholder
 Effects of Crietz and Terrarium Surround Sound
 Summons a pet Pink Slime");
+            DisplayName.AddTranslation(GameCulture.Chinese, "米德加德之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'人类的力量'
+生命值每下降25%, 增加10%伤害减免
+生命值低于50%时达到上限: 30%
+按'上'键逆转重力
+重力颠倒时增加12%远程伤害
+每3次攻击会发射荧光导弹
+泰拉瑞亚的能量试图保护你
+暴击短暂缓慢所有附近敌人
+拥有太空甲虫壳和注者之眼的效果
+拥有精准项链和界元音箱的效果
+召唤宠物粉红史莱姆");
         }
 
         public override void SetDefaults()

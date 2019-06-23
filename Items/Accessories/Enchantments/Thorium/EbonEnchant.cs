@@ -21,6 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Great for brooding'
 Corrupts your radiant powers, causing them to take on dark forms and deal additional effects");
+            DisplayName.AddTranslation(GameCulture.Chinese, "黑檀魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'适合沉思'
+腐化你的光辉之力, 使它们转化为暗面形态并造成额外效果");
         }
 
         public override void SetDefaults()

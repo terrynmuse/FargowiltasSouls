@@ -23,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'How evil is too evil?'
 Magic critical strikes engulf enemies in a long lasting void flame
 Effects of Mana-Charged Rocketeers");
+            DisplayName.AddTranslation(GameCulture.Chinese, "妖术魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'要多邪恶才能算得上太邪恶呢?'
+魔法暴击释放虚空之焰吞没敌人
+拥有魔力充能火箭靴的效果");
         }
 
         public override void SetDefaults()

@@ -22,6 +22,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Let's get dangerous...'
 While in combat, your life recovery is increased by 2
 You are immune to most damage-inflicting debuffs");
+            DisplayName.AddTranslation(GameCulture.Chinese, "致危魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'Let's get dangerous...'
+战斗时+2生命回复
+免疫大多数造成伤害的Debuff");
         }
 
         public override void SetDefaults()

@@ -23,6 +23,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Minion attacks have a 33% chance to heal you lightly
 Summons a living wood sapling and its attacks will home in on enemies
 Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "树人魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'大自然的一员'
+召唤攻击有33%的概率治疗你
+召唤具有追踪攻击能力的小树苗
+拥有无暇之蛹和植物纤维绳索宝典的效果");
         }
 
         public override void SetDefaults()

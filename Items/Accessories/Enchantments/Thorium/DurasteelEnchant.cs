@@ -25,6 +25,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Grants the ability to dash into the enemy
 Right Click to guard with your shield
 Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
+            DisplayName.AddTranslation(GameCulture.Chinese, "耐刚魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'精工打造'
+增加12%伤害减免
+获得冲刺能力
+右键用盾牌防御
+拥有食人魔凉鞋, 贪婪磁铁和尖刺锁的效果");
         }
 
         public override void SetDefaults()

@@ -23,6 +23,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 An icy aura surrounds you, which freezes nearby enemies after a short delay
 Effects of Frostburn Pouch
 Summons a pet Penguin");
+            DisplayName.AddTranslation(GameCulture.Chinese, "碎冰魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'触感冰凉'
+环绕的冰锥将冰冻敌人
+拥有霜火粉袋的效果
+召唤宠物企鹅");
         }
 
         public override void SetDefaults()

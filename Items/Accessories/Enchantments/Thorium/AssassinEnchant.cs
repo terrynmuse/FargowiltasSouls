@@ -25,6 +25,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Ranged damage applies Cursed Inferno and Ichor to hit enemies
 Ranged damage has a 10% chance to duplicate and become increased by 15%
 Ranged damage has a 5% chance to instantly kill the enemy");
+            DisplayName.AddTranslation(GameCulture.Chinese, "刺客魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'遮蔽天空，抹除弱者'
+远程攻击造成诅咒地狱和脓液效果
+远程攻击有10%概率复制并增加15%伤害
+远程攻击有5%概率即死敌人");
         }
 
         public override void SetDefaults()

@@ -21,6 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Let your inner animal out'
 Melee critical strikes grant Alpha's Roar, briefly increasing the damage of your summoned minions");
+            DisplayName.AddTranslation(GameCulture.Chinese, "兽皮魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'唤醒内心的野兽'
+近战暴击获得野性咆哮效果, 并短暂增加召唤物伤害");
 
             //sacrificial dagger on all hits?
         }

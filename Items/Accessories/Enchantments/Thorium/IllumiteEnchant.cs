@@ -26,6 +26,15 @@ Every 4 arrows fired will unleash a barrage of illumite energy
 Every 3 rockets fired will unleash an illumite missile
 Effects of Pink Music Player
 Summons a pet Pink Slime");
+            DisplayName.AddTranslation(GameCulture.Chinese, "荧光魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'好像还不够粉'
+大多数远程武器具有额外抛射物
+每5颗子弹会发射荧光子弹
+每4支箭会发射一串荧光能量
+每3发导弹会发射荧光导弹
+拥有粉色播放器的效果
+召唤宠物粉红史莱姆");
         }
 
         public override void SetDefaults()

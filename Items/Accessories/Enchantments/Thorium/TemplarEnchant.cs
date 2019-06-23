@@ -21,6 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'For the church!'
 If an ally is below half health, you will gain increased healing abilities");
+            DisplayName.AddTranslation(GameCulture.Chinese, "圣殿骑士魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'为了教堂!'
+队友生命值低于一半时, 增强治疗能力");
         }
 
         public override void SetDefaults()

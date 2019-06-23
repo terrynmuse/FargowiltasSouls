@@ -27,6 +27,15 @@ Critical strikes grant Alpha's Roar, briefly increasing the damage of your summo
 Attacks have a 33% chance to heal you lightly
 Summons a living wood sapling and its attacks will home in on enemies
 Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "穆斯贝尔海姆之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'炽热之火, 史尔特尔的标志...'
+沙暴增强了你的靴子, 能够额外跳跃一次
+免疫一些造成伤害的Debuff
+暴击获得野性咆哮效果, 并短暂增加召唤物伤害
+攻击有33%的概率治疗你
+召唤具有追踪攻击能力的小树苗
+拥有无暇之蛹和植物纤维绳索宝典的效果");
         }
 
         public override void SetDefaults()
