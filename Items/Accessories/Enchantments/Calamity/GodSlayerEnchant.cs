@@ -38,6 +38,24 @@ Summons a god-eating mechworm to fight for you
 While at full HP all of your rogue stats are boosted by 10%
 If you take over 80 damage in one hit you will be given extra immunity frames
 Effects of the Nebulous Core");
+            DisplayName.AddTranslation(GameCulture.Chinese, "弑神者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'足以屠神的力量存于你的体内...'
+2%概率免受伤害
+受到致命伤害时会复活并治疗150生命值
+冷却时间45秒
+一次性承受超过80点伤害时, 释放一群高伤的弑神飞镖
+会发射一群高伤的弑神飞镖
+小于等于80点的伤害将只造成1点伤害
+远程暴击有概率造成4倍伤害
+远程武器有概率发射弑神弹片
+用魔法攻击敌人将会释放弑神之火和治愈之火
+被攻击时释放弑神魔炎爆
+攻击敌人召唤弑神幻影
+召唤噬神机械蠕虫为你而战
+满血时提高10%盗贼属性
+一次性承受超过80点伤害时, 获得额外的无敌帧
+拥有星云之核的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

@@ -40,6 +40,23 @@ Magic projectiles have a 10% chance to cause a massive explosion on enemy hits
 Summons an ancient leaf prism to blast your enemies with life energy
 Rogue weapons have a faster throwing rate while you are above 90% life
 Effects of the Godly Soul Artifact and Yharim's Gift");
+            DisplayName.AddTranslation(GameCulture.Chinese, "始源林海魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你身上流淌出无尽的生命能量'
+免疫几乎所有Debuff
+减少5%所有所受伤害, 该效果独立于伤害减免单独计算
+所有抛射物击中敌人时生成治愈之叶
+增加5%最大奔跑速度和加速度
+生命值减为0时, 10秒内避免死亡并免疫所有伤害
+此效果激活期间, 生命值又跌为0时, 失去100最大生命值
+此效果每条命仅能触发一次
+死亡后最大生命值复原
+纯近战暴击有25%概率造成5倍伤害
+增加所有远程武器攻速
+魔法抛射物击中敌人时有10%概率造成大爆炸
+召唤一个远古叶晶用生命之力轰炸敌人
+生命值高于90%时, 提高盗贼武器攻速
+拥有圣魂神物和魔君的礼物的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

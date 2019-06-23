@@ -24,6 +24,13 @@ When using any weapon you have a 10% chance to throw a returning seashell projec
 This seashell does true damage and does not benefit from any damage class
 Summons a sea urchin to protect you
 Effects of Deep Diver, The Transformer, and Luxor's Gift");
+            DisplayName.AddTranslation(GameCulture.Chinese, "胜潮魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'前海给予你力量...'
+攻击时有10%的概率抛出一个贝壳回旋镖
+贝壳回旋镖造成真实伤害但不受任何增幅
+召唤一个海胆保护你
+拥有深潜者, 变压器和卢克索的礼物的效果");
         }
 
         public override void SetDefaults()
