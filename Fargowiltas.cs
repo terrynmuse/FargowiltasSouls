@@ -46,9 +46,18 @@ namespace FargowiltasSouls
         public override void Load()
         {
             Instance = this;
+            if(Language.ActiveCulture == GameCulture.Chinese)
+            {
+            CheckListKey = RegisterHotKey("灵魂切换", "L");
+            FreezeKey = RegisterHotKey("冻结时间", "P");
+            GoldKey = RegisterHotKey("金身", "O");
+            }
+            else
+            {
             CheckListKey = RegisterHotKey("Soul Toggles", "L");
             FreezeKey = RegisterHotKey("Freeze Time", "P");
             GoldKey = RegisterHotKey("Turn Gold", "O");
+            }
 
             if (!Main.dedServ)
             {
