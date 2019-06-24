@@ -48,7 +48,7 @@ namespace FargowiltasSouls
             Instance = this;
             if(Language.ActiveCulture == GameCulture.Chinese)
             {
-            CheckListKey = RegisterHotKey("灵魂切换", "L");
+            CheckListKey = RegisterHotKey("灵魂切换菜单", "L");
             FreezeKey = RegisterHotKey("冻结时间", "P");
             GoldKey = RegisterHotKey("金身", "O");
             }
