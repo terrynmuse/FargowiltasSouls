@@ -6,6 +6,7 @@ using ThoriumMod;
 using System;
 using CalamityMod;
 using ThoriumMod.Items.Misc;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
