@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using CalamityMod;
 using CalamityMod.Items.CalamityCustomThrowingDamage;
 using System;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
