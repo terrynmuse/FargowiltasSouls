@@ -1181,7 +1181,7 @@ namespace FargowiltasSouls.NPCs
                             if (t != -1 && NPC.CountNPCS(NPCID.Piranha) <= 10 && Main.rand.Next(2) == 0)
                             {
                                 Player player = Main.player[t];
-                                if (player.bleed && player.ZoneJungle && Main.netMode != 1)
+                                if (player.ZoneJungle && player.bleed && Main.netMode != 1)
                                 {
                                     masoBool[0] = true;
                                     int piranha = NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-20, 20), (int)npc.Center.Y + Main.rand.Next(-20, 20), NPCID.Piranha);
@@ -1254,11 +1254,11 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Shark:
-                        if (++Counter2 > 420) //initiate jump
+                        if (npc.life < npc.lifeMax / 2 && ++Counter2 > 420) //initiate jump
                         {
                             Counter2 = 0;
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                            if (npc.life < npc.lifeMax && t != -1 && Main.netMode != 1)
+                            if (t != -1 && Main.netMode != 1)
                             {
                                 const float gravity = 0.3f;
                                 const float time = 120f;
@@ -4263,17 +4263,6 @@ namespace FargowiltasSouls.NPCs
                             npc.active = false;
                             //npc.checkDead();
                             return;
-                        }
-
-                        if (npc.ai[2] != 0) //if probe is released
-                        {
-                            Timer--;
-                            if (Timer <= 0) //reactivate light
-                            {
-                                Timer = 1800;
-                                npc.ai[2] = 0;
-                                npc.netUpdate = true;
-                            }
                         }
 
                         if (npc.buffType[0] != 0)
