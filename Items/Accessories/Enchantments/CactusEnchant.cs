@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -16,6 +17,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 25% of contact damage is reflected
 Enemies may explode into needles on death
 Needles scale with melee damage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "仙人掌魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'太解渴了!'
+反射25%接触伤害
+敌人在死亡时可能会爆出刺
+刺的伤害与近战伤害挂钩");
         }
 
         public override void SetDefaults()

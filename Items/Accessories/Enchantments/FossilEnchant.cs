@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -17,6 +18,13 @@ If you reach zero HP you cheat death, returning with 20 HP
 For a few seconds after reviving, you are immune to all damage and spawn bones
 Bones scale with throwing damage
 Summons a pet Baby Dino");
+            DisplayName.AddTranslation(GameCulture.Chinese, "化石魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'被遗忘的记忆'
+血量为0时避免死亡,以20点生命值重生
+在复活后的几秒钟内,免疫所有伤害,并且可以产生骨头
+骨头伤害与投掷伤害挂钩
+召唤一只小恐龙");
         }
 
         public override void SetDefaults()

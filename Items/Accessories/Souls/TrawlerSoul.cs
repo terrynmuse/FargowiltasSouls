@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
 using ThoriumMod.Items.Misc;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -25,13 +26,23 @@ All fishing rods will have 10 extra lures
 Fishing line will never break
 Decreases chance of bait consumption
 Permanent Sonar and Crate Buffs";
+            string tooltip_ch =
+@"'让鱼自己抓自己'
+极大提升钓鱼能力
+所有鱼竿额外增加10个鱼饵
+钓鱼线永不破坏
+减少鱼饵消耗几率
+永久声呐和板条箱Buff";
 
             if (thorium != null)
             {
                 tooltip += "\nAllows any fishing pole to catch loot in lava";
+                tooltip_ch += "\n任何钓鱼环境都能获得岩浆环境的渔获";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "捕鱼之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

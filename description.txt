@@ -1,27 +1,7 @@
-﻿NEW UPDATE - v 0.7.3
--Added some missing tooltips
--Buffed Eater of Worlds Staff
--Fixed bug with Mind Break being able to use it with only 1 slot and the minion shooting and then despawning
--Fixed Bulb and Chlorophyte Enchantments crashing with Thorium 
--Big Sting now fires 2 stingers at once
--The Dicer works with Yoyo Bag accessories now, also nerfed its damage, range, duration, and speed
--Nerfed Hell Zone damage
--Fixed Force of Life not giving extra wing time
+﻿NEW UPDATE - v 0.7.4
 
--Fixed Olympian Soul's Thorium effects only working with calamity lool
--Fixed more tooltip errors and altered a few recipes
--Certain effects that occur while atacking dont go crazy when out of mana using a magic weapon
--Added value to Eater of Worlds Staff
+-Added chinese localization
 
--Rearanged recipe order for some maso accessrory 
--Cluster now at cooking pots
-
--Victide Enchantment recipe much easier, several other recipes altered and given new effects from new accessories (verify recipes work and add new effects)
-
--Fiddled with Eater of Worlds minion segement distance so it looks alot better
--Added Hive Staff, The Blender, Dark Star Cannon, Rockeater Launcher
-
--Gittle patreon effect
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

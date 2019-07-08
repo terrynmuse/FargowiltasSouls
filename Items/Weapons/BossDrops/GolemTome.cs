@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
@@ -11,37 +12,39 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Golem's Gibs");
+            DisplayName.SetDefault("The Landslide");
             Tooltip.SetDefault("'The crumbling remains of a defeated foe..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "山崩");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'被击败的敌人的破碎残骸'");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 89;//
+            item.damage = 77;//
             item.magic = true;
             item.width = 24;
             item.height = 28;
-            item.useTime = 5;//
-            item.useAnimation = 10;//
+            item.useTime = 8;//
+            item.useAnimation = 8;//
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 2;
             item.value = 100000;//
-            item.rare = 10;//
-            item.mana = 12;//
+            item.rare = 8;//
+            item.mana = 10;//
             item.UseSound = SoundID.Item21;//
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("GolemGib");
-            item.shootSpeed = 10f;//
+            item.shoot = mod.ProjectileType("GolemGib1");
+            item.shootSpeed = 12f;//
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY,
             ref int type, ref int damage, ref float knockBack)
         {
-            float num72 = item.shootSpeed;
-            int num73 = item.damage;
-            float num74 = item.knockBack;
-            num74 = player.GetWeaponKnockback(item, num74);
+            float shootspeed = item.shootSpeed;
+            int dmg = item.damage;
+            float kb = item.knockBack;
+            kb = player.GetWeaponKnockback(item, kb);
             player.itemTime = item.useTime;
             Vector2 vector2 = player.RotatedRelativePoint(player.MountedCenter);
             Vector2.UnitX.RotatedBy(player.fullRotation);
@@ -50,20 +53,21 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             if (player.gravDir == -1f) num79 = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - vector2.Y;
 
             float num80 = (float)Math.Sqrt(num78 * num78 + num79 * num79);
+
             if (float.IsNaN(num78) && float.IsNaN(num79) || num78 == 0f && num79 == 0f)
             {
                 num78 = player.direction;
                 num79 = 0f;
-                num80 = num72;
+                num80 = shootspeed;
             }
             else
             {
-                num80 = num72 / num80;
+                num80 = shootspeed / num80;
             }
 
             num78 *= num80;
             num79 *= num80;
-            int num146 = 4;
+            int num146 = 2;
             if (Main.rand.Next(2) == 0) num146++;
 
             if (Main.rand.Next(4) == 0) num146++;
@@ -77,16 +81,19 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
                 float num148 = num78;
                 float num149 = num79;
                 float num150 = 0.05f * num147;
-                num148 += Main.rand.Next(-35, 36) * num150;
-                num149 += Main.rand.Next(-35, 36) * num150;
+                num148 += Main.rand.Next(-25, 26) * num150;
+                num149 += Main.rand.Next(-25, 26) * num150;
                 num80 = (float)Math.Sqrt(num148 * num148 + num149 * num149);
-                num80 = num72 / num80;
+                num80 = shootspeed / num80;
                 num148 *= num80;
                 num149 *= num80;
                 float x4 = vector2.X;
                 float y4 = vector2.Y;
 
-                Projectile.NewProjectile(x4, y4, num148, num149, type, num73, num74, Main.myPlayer);
+                String gibstring = "GolemGib" + (Main.rand.Next(11) + 1);
+                int gib = mod.ProjectileType(gibstring);
+
+                Projectile.NewProjectile(position.X, position.Y, num148, num149, gib, dmg, kb, Main.myPlayer);
             }
 
             return false;

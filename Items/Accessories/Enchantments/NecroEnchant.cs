@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -15,6 +16,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Welcome to the bone zone' 
 A Dungeon Guardian will occasionally annihilate a foe when struck by any attack
 Summons a pet Skeletron Head");
+            DisplayName.AddTranslation(GameCulture.Chinese, "死灵魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'欢迎来到骸骨领域'
+地牢守卫者偶尔会在你受到攻击时消灭敌人
+召唤一个小骷髅头");
         }
 
         public override void SetDefaults()

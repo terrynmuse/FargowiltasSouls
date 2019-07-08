@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -15,6 +16,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Berserked
 10% increased damage when below half HP
 While dashing or running quickly you will create a trail of demon scythes");
+            DisplayName.AddTranslation(GameCulture.Chinese, "躁动晶状体");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'被打败的敌人的躁动残渣'
+免疫狂暴
+生命低于50%时,增加10%伤害
+冲刺或快速奔跑时发射一串恶魔之镰");
         }
 
         public override void SetDefaults()

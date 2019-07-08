@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
@@ -14,6 +15,8 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "宇宙之火");
+            Description.AddTranslation(GameCulture.Chinese, "来自诸天的亲自审判");
         }
 
         public override void Update(Player player, ref int buffIndex)

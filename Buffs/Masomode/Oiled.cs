@@ -1,6 +1,7 @@
 using FargowiltasSouls.NPCs;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
@@ -14,6 +15,8 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "浸油");
+            Description.AddTranslation(GameCulture.Chinese, "着火时将受到更多伤害");
         }
 
         public override bool Autoload(ref string name, ref string texture)

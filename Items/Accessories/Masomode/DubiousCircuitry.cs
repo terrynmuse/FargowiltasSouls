@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -17,6 +18,13 @@ Your attacks inflict Cursed Inferno and Ichor
 Your attacks have a small chance to inflict Lightning Rod
 Two friendly probes fight by your side
 Reduces damage taken by 6%");
+            DisplayName.AddTranslation(GameCulture.Chinese, "可疑电路");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'里面也许没有恶意软件'
+免疫诅咒地狱,脓液,避雷针,毫无防御,昏迷和击退
+攻击造成诅咒地狱和脓液效果
+攻击小概率造成避雷针效果
+召唤2个友善的探测器为你而战
+减少6%所受伤害");
         }
 
         public override void SetDefaults()

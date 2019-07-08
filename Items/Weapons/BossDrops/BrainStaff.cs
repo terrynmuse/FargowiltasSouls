@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
@@ -10,6 +11,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("Mind Break");
             Tooltip.SetDefault("'An old foe beaten into submission..'\n Needs 2 minion slots");
+            DisplayName.AddTranslation(GameCulture.Chinese, "精神崩坏");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'一个被迫屈服的老对手..'\n需要2个召唤栏");
         }
 
         public override void SetDefaults()

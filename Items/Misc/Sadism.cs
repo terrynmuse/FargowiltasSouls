@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Misc
 {
@@ -15,6 +16,10 @@ namespace FargowiltasSouls.Items.Misc
             Tooltip.SetDefault(@"'Proof of having embraced suffering'
 Grants immunity to almost all Masochist Mode debuffs");
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 3));
+            DisplayName.AddTranslation(GameCulture.Chinese, "施虐狂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'受苦的证明'
+免疫几乎所有受虐模式的Debuff");
         }
 
 		public override void SetDefaults()

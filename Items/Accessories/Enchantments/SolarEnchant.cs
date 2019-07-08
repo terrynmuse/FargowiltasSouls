@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -15,6 +16,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Too hot to handle' 
 Solar shield allows you to dash through enemies
 Melee attacks may inflict the Solar Flare debuff");
+            DisplayName.AddTranslation(GameCulture.Chinese, "日耀魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'太烫了'
+日耀护盾允许你向敌人冲刺
+近战攻击概率造成耀斑效果");
         }
 
         public override void SetDefaults()

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -21,6 +22,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"''
 goes into frost enchant
 You can walk on water and when you do, it freezes and creates spikes
+");
+            DisplayName.AddTranslation(GameCulture.Chinese, "爱斯基摩魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"''
+变为霜冻魔石
+可以水上行走,如此做时,水会结冰并产生尖刺
 ");
         }
 

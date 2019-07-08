@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -20,13 +21,26 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Taking damage will release a poisoning spore explosion
 Spore damage scales with magic damage
 ";
+            string tooltip_ch =
+@"'丛林之怒深藏其中'
+攻击时有25%概率偷取4点法力
+受到伤害会释放出有毒的孢子爆炸
+孢子伤害与魔法伤害挂钩";
 
             if(thorium != null)
+            {
                 tooltip += "Effects of Toxic Subwoofer";
+                tooltip_ch += "拥有剧毒音响的效果";
+            }
             else
+            {
                 tooltip += "Effects of Guide to Plant Fiber Cordage";
+                tooltip_ch += "拥有植物纤维绳索指南的效果";
+            }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "丛林魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

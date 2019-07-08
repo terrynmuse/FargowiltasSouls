@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 {
@@ -16,6 +17,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         {
             DisplayName.SetDefault("Gemini Cannon");
             Tooltip.SetDefault("");
+            DisplayName.AddTranslation(GameCulture.Chinese, "双子机炮");
+            Tooltip.AddTranslation(GameCulture.Chinese, "");
         }
 
         public override void SetDefaults()

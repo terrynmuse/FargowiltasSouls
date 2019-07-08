@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.NPCs
 {
@@ -10,6 +11,7 @@ namespace FargowiltasSouls.NPCs
         {
             DisplayName.SetDefault("Fez Squirrel");
             Main.npcFrameCount[npc.type] = 6;
+            DisplayName.AddTranslation(GameCulture.Chinese, "土耳其毡帽松鼠");
         }
 
         public override bool Autoload(ref string name)

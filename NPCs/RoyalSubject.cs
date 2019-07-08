@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.NPCs
 {
@@ -14,6 +15,7 @@ namespace FargowiltasSouls.NPCs
         {
             DisplayName.SetDefault("Royal Subject");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.QueenBee];
+            DisplayName.AddTranslation(GameCulture.Chinese, "皇家工蜂");
         }
 
         public override void SetDefaults()

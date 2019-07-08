@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
@@ -11,6 +12,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("The Bone Zone");
             Tooltip.SetDefault("'The shattered remains of a defeated foe..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "骸骨领域");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'被击败的敌人的残骸..'");
         }
 
         public override void SetDefaults()

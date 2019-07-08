@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -13,6 +14,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'The cooler wood'
 Every 5th attack will be accompanied by a snowball
 While in the Snow Biome, you shoot 5 snowballs instead");
+            DisplayName.AddTranslation(GameCulture.Chinese, "针叶木魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'冷木'
+每5次攻击附带着一个雪球
+在雪地时,发射5个雪球");
         }
 
         public override void SetDefaults()

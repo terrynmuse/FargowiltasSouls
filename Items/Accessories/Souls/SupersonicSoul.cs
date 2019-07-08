@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -33,13 +34,25 @@ Grants the ability to swim and greatly extends underwater breathing
 Provides the ability to walk on water and lava
 Grants immunity to lava and fall damage
 Effects of Flying Carpet";
+            string tooltip_ch =
+@"'我就是速度'
+获得超音速奔跑,飞行,以及额外的冰上移动力
+在没有装备翅膀时,允许使用者进行四段跳
+增加跳跃高度,跳跃速度,允许自动跳跃
+获得游泳能力以及极长的水下呼吸时间
+获得水/岩浆上行走能力
+免疫岩浆和坠落伤害
+拥有飞毯效果";
 
             if (thorium != null)
             {
                 tooltip += "\nEffects of Air Walkers, Survivalist Boots, and Weighted Winglets";
+                tooltip_ch += "\n拥有履空靴,我命至上主义者之飞靴和举足轻重靴的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "超音速之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

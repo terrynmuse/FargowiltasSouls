@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
 using ThoriumMod.Items.Misc;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -41,6 +42,22 @@ Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
 Effects of Spore Sac, Paladin's Shield, Frozen Turtle Shell, and Arctic Diving Gear
 Effects of Frog Legs, Lava Waders, Angler Tackle Bag
 All other effects of material Souls");
+            DisplayName.AddTranslation(GameCulture.Chinese, "维度之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'泰拉瑞亚维度触手可及'
+增加300最大生命值
+增加20%伤害减免
++8生命回复
+免疫击退和诸多Debuff
+允许超音速奔跑和无限飞行
+大幅提升钓鱼技能,所有鱼竿额外增加10个鱼饵
+增加50%放置物块及墙壁的速度
+近乎无限的放置和采掘距离,采掘速度加倍
+获得开启建造模式的能力
+拥有混乱之脑,星辰项链,甜心项链和蜜蜂斗篷的效果
+拥有孢子囊,圣骑士护盾,冰霜龟壳和北极潜水装备的效果
+拥有蛙腿,熔岩行走靴和渔具包的效果
+拥有所有材料魂的效果");
 
             /*not mentioned in tooltip
             Permanent Sonar and Crate Buffs

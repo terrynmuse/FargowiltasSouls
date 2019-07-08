@@ -5,6 +5,7 @@ using static Terraria.ID.ItemID;
 using ThoriumMod;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -27,6 +28,18 @@ Grants the ability to enable Builder Mode:
 Anything that creates a tile will not be consumed 
 No enemies can spawn
 Effect can be disabled in Soul Toggles menu");
+            DisplayName.AddTranslation(GameCulture.Chinese, "世界塑造者之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'无限的可能性'
+增加50%放置物块及墙壁的速度
+近乎无限的放置和采掘距离
+采掘速度加倍
+自动喷漆和制动器效果
+提供光照和重力控制
+获得开启建造模式的能力:
+放置方块不会消耗
+没有敌人生成
+效果可以在灵魂切换菜单中禁用");
         }
 
         public override void SetDefaults()

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -20,6 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Come again some other day'
 A miniature storm may appear when an enemy dies");
+            DisplayName.AddTranslation(GameCulture.Chinese, "云雨魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'改天再来'
+敌人死亡时可能会出现微型风暴");
         }
 
         public override void SetDefaults()

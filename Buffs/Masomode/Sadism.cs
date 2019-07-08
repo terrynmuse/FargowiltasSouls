@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using FargowiltasSouls.NPCs;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
@@ -12,6 +13,8 @@ namespace FargowiltasSouls.Buffs.Masomode
             DisplayName.SetDefault("Sadism");
             Description.SetDefault("The power of Masochist Mode is with you");
             Main.buffNoSave[Type] = false;
+            DisplayName.AddTranslation(GameCulture.Chinese, "施虐狂");
+            Description.AddTranslation(GameCulture.Chinese, "受虐模式的力量与你同在");
         }
 
         public override bool Autoload(ref string name, ref string texture)

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.FinalUpgrades
 {
@@ -15,6 +16,8 @@ namespace FargowiltasSouls.Items.Weapons.FinalUpgrades
         {
             DisplayName.SetDefault("Phantasmal Leash of Cthulhu");
             Tooltip.SetDefault("''");
+            DisplayName.AddTranslation(GameCulture.Chinese, "幻影克苏鲁连枷");
+            Tooltip.AddTranslation(GameCulture.Chinese, "''");
         }
 
         public override void SetDefaults()

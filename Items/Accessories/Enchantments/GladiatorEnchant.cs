@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -15,6 +16,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Are you not entertained?'
 Spears will rain down on struck enemies 
 Summons a pet Minotaur");
+            DisplayName.AddTranslation(GameCulture.Chinese, "角斗士魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你难道不高兴吗?'
+长矛将倾泄在被攻击的敌人身上
+召唤一个小牛头人");
         }
 
         public override void SetDefaults()

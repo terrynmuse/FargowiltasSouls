@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -20,6 +21,13 @@ Your attacks inflict Curse of the Moon and Oceanic Maul
 Spectral Fishron periodically manifests to support your critical hits
 Spectral Fishron also inflicts Mutant Nibble, disabling enemy healing
 Upgrades Cute Fishron to Cute Fishron EX");
+            DisplayName.AddTranslation(GameCulture.Chinese, "飓风鳍");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'风在咆哮'
+免疫月之诅咒和海洋重击
+攻击造成月之诅咒和海洋重击
+暴击时显现幽灵猪鲨
+幽灵猪鲨会造成突变啃啄,阻止敌人再生
+将超可爱猪鲨升级为超可爱猪鲨 EX");
         }
 
         public override void SetDefaults()

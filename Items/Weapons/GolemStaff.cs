@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons
 {
@@ -18,6 +19,8 @@ namespace FargowiltasSouls.Items.Weapons
 		{
 			DisplayName.SetDefault("Golem Head");
 			Tooltip.SetDefault("'An old foe beaten into submission..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "石巨人之颅");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'一个被迫屈服的老对手..'");
 		}
 		public override void SetDefaults()
 		{

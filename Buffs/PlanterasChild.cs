@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Buffs
 {
@@ -12,6 +13,8 @@ namespace FargowiltasSouls.Buffs
             Description.SetDefault("The child of Plantera will protect you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "世纪之花的孩子");
+            Description.AddTranslation(GameCulture.Chinese, "世纪之花的孩子将会保护你");
         }
 
         public override void Update(Player player, ref int buffIndex)

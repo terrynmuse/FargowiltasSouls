@@ -1,5 +1,6 @@
 using Terraria.Audio;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
@@ -9,6 +10,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("Flesh Hand");
             Tooltip.SetDefault("'The enslaved minions of a defeated foe..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "血肉之手");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'战败敌人的仆从..'");
         }
 
         public override void SetDefaults()

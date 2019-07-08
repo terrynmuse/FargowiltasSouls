@@ -3,7 +3,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
- 
+using Terraria.Localization;
+
 namespace FargowiltasSouls.Items.Weapons
     //We need this to basically indicate the folder where it is to be read from, so you the texture will load correctly
 {
@@ -18,6 +19,8 @@ namespace FargowiltasSouls.Items.Weapons
 		{
 			DisplayName.SetDefault("Dual Saber");
 			Tooltip.SetDefault("ye \n and thus fargo never added a proper description for this item");
+            DisplayName.AddTranslation(GameCulture.Chinese, "双刃光剑");
+            Tooltip.AddTranslation(GameCulture.Chinese, "");
 		}
 		
         public override void SetDefaults()

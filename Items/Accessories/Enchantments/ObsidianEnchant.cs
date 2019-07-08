@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -16,6 +17,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Grants immunity to fire, fall damage, and 5 seconds of lava immunity
 Increases armor penetration by 5
 While standing in lava, you gain 15 more armor penetration, 15% attack speed, and your attacks ignite enemies");
+            DisplayName.AddTranslation(GameCulture.Chinese, "黑曜石魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'大地在呼唤'
+免疫火焰,掉落伤害,获得5秒岩浆免疫
+增加5点护甲穿透
+在岩浆中时,再多获得15点护甲穿透,15%攻击速度,攻击会点燃敌人");
         }
 
         public override void SetDefaults()

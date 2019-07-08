@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -14,6 +15,12 @@ Grants immunity to Flipped, Unstable, Distorted, and Chaos State
 Allows the holder to control gravity
 Summons the true eyes of Cthulhu to protect you
 Increases flight time by 100%");
+            DisplayName.AddTranslation(GameCulture.Chinese, "银河球");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'时刻注视'
+免疫翻转,不稳定,扭曲和混沌
+允许使用者改变重力
+召唤真·克苏鲁之眼保护你
+增加100%飞行时间");
         }
 
         public override void SetDefaults()

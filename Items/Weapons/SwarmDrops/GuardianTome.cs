@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 {
@@ -12,6 +13,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         {
             DisplayName.SetDefault("The Guardian");
             Tooltip.SetDefault("'It's their turn to run'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "守卫者");
+            Tooltip.AddTranslation(GameCulture.Chinese, "现在轮到他们跑了");
         }
 
         public override void SetDefaults()

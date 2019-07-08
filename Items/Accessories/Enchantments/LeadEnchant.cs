@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -19,11 +20,20 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Not recommended for eating'
 Attacks may inflict enemies with Lead Poisoning
 Lead Poisoning deals damage over time and spreads to nearby enemies";
+            string tooltip_ch =
+@"'不建议食用'
+攻击概率使敌人铅中毒
+铅中毒随时间造成伤害,并传播给附近敌人";
 
             if(thorium != null)
+            {
                 tooltip += "\nEffects of Lead Shield";
+                tooltip_ch += "\n拥有铅盾的效果";
+            }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "铅魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

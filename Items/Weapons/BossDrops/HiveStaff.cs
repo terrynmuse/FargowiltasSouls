@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
@@ -11,6 +12,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("Hive Staff");
             Tooltip.SetDefault("'The enslaved minions of a defeated foe..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "蜂巢法杖");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'战败敌人的仆从..'");
         }
 
         public override void SetDefaults()

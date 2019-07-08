@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -16,13 +17,19 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip = 
 @"'Cosmic power builds your magical prowess'
 A meteor shower initiates every few seconds while attacking";
+            string tooltip_ch =
+@"'宇宙之力构建你的超凡魔法'
+攻击时,每隔几秒爆发一次流星雨";
 
             if(thorium != null)
             {
                 tooltip += "\nSummons a pet Bio-Feeder";
+                tooltip_ch += "\n召唤一个奇怪的外星生物";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "陨星魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

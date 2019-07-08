@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.NPCs
 {
@@ -12,6 +13,7 @@ namespace FargowiltasSouls.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Brain of Cthulhu");
+            DisplayName.AddTranslation(GameCulture.Chinese, "克苏鲁之脑");
         }
 
         public override void SetDefaults()

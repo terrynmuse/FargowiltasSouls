@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -16,6 +17,12 @@ Grants immunity to Bloodthirsty
 10% increased max life
 Creepers hover around you blocking some damage
 A new Creeper appears every 15 seconds, and 5 can exist at once");
+            DisplayName.AddTranslation(GameCulture.Chinese, "破碎的心");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'曾经还在敌人的脑中跳动着'
+免疫嗜血
+增加10%最大生命值
+爬行者徘徊周围来阻挡伤害
+每15秒生成一个新的爬行者,最多同时存在5个");
         }
 
         public override void SetDefaults()

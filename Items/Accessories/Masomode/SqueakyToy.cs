@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -13,6 +14,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'The beloved toy of a defeated foe...?'
 Grants immunity to Squeaky Toy and Guilty
 Attacks have a chance to squeak and deal 1 damage to you");
+            DisplayName.AddTranslation(GameCulture.Chinese, "吱吱响的玩具");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'被打败的敌人心爱的玩具...?
+免疫吱吱响的玩具和净化
+敌人攻击概率发出吱吱声,并只造成1点伤害");
         }
 
         public override void SetDefaults()

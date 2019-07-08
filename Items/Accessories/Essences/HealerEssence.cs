@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {
@@ -25,6 +26,12 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 18% increased radiant damage
 5% increased healing and radiant casting speed
 5% increased radiant critical strike chance");
+            DisplayName.AddTranslation(GameCulture.Chinese, "十字军精华");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"''这才刚刚开始..''
+增加18%光辉伤害
+增加5%治疗和光辉施法速度
+增加5%光辉暴击率");
         }
 
         public override void SetDefaults()

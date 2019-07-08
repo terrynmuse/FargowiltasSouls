@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Buffs.Minions
@@ -12,6 +13,8 @@ namespace FargowiltasSouls.Buffs.Minions
             Description.SetDefault("The Skeletron arms will protect you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "骷髅王之手");
+            Description.AddTranslation(GameCulture.Chinese, "骷髅王之手将会保护你");
         }
 
         public override bool Autoload(ref string name, ref string texture)

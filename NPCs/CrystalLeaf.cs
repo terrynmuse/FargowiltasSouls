@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.NPCs
 {
@@ -13,6 +14,7 @@ namespace FargowiltasSouls.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crystal Leaf");
+            DisplayName.AddTranslation(GameCulture.Chinese, "叶绿水晶");
         }
 
         public override void SetDefaults()

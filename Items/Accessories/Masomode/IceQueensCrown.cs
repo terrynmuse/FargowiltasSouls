@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -13,6 +14,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Frozen
 Increases damage reduction by 5%
 Summons a friendly super Flocko");
+            DisplayName.AddTranslation(GameCulture.Chinese, "冰雪女王的皇冠");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'被打败的敌人的皇家象征'
+免疫冻结
+增加5%伤害减免
+召唤一个友善的超级圣诞雪灵");
         }
 
         public override void SetDefaults()

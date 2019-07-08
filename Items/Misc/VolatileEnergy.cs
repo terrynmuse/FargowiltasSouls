@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Misc
 {
@@ -12,6 +13,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Volatile Energy");
+            DisplayName.AddTranslation(GameCulture.Chinese, "不稳定能量");
 		}
 
 		public override void SetDefaults()

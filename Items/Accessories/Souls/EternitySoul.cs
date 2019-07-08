@@ -6,6 +6,7 @@ using ThoriumMod;
 using System;
 using CalamityMod;
 using ThoriumMod.Items.Misc;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -39,6 +40,23 @@ You reflect all projectiles
 When you die, you explode and revive with full HP
 You respawn 10x as fast
 All other effects of material Souls");
+            DisplayName.AddTranslation(GameCulture.Chinese, "永恒之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'不论凡人或不朽,都承认你的神性'
+增加200%所有伤害和攻击速度,增加100%射击速度
+暴击造成10倍伤害
+暴击率设为50%,每次暴击提高10%
+达到100%时所有攻击附带10%的生命偷取,增加10%伤害,增加10防御力
+可叠加200,000次,直到被攻击
+不消耗弹药,法力和消耗品
+最大法力值增至999,+20最大召唤栏,+10最大哨兵栏
+增加400%最大生命值,40%伤害减免,15生命回复
+免疫击退和诸多Debuff
+召唤不可阻挡的死亡之环环绕在周围
+反射所有抛射物
+死亡时,爆炸,复活并且回满生命
+重生速度x10倍
+拥有所有材料魂的效果");
             //all debuffs soon tm
             /*
 Effects of the Yoyo Bag, Sniper Scope, Celestial Cuffs, and Mana Flower

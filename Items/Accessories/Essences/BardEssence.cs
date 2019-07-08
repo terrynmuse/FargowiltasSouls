@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {
@@ -25,6 +26,12 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 18% increased symphonic damage
 5% increased symphonic playing speed
 5% increased symphonic critical strike chance");
+            DisplayName.AddTranslation(GameCulture.Chinese, "音乐家精华");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"''这才刚刚开始..''
+增加18%音波伤害
+增加5%音波演奏速度
+增加5%音波暴击率");
         }
 
         public override void SetDefaults()

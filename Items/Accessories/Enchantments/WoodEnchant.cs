@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -13,6 +14,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Humble beginnings…'
 Critters have massively increased defense
 When critters die, they release their souls to aid you");
+            DisplayName.AddTranslation(GameCulture.Chinese, "木魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'卑微的开始...'
+大幅增加动物防御力
+动物死后,释放它们的灵魂来帮助你");
         }
 
         public override void SetDefaults()

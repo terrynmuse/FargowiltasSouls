@@ -1,6 +1,7 @@
 ﻿using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
@@ -10,6 +11,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("Fish Stick");
             Tooltip.SetDefault("'The carcass of a defeated foe shoved violently on a stick..'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "鱼杖");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'一个被打败的敌人的尸体,用棍子粗暴地串起来..'");
         }
 
         public override void SetDefaults()

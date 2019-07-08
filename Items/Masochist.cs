@@ -13,6 +13,8 @@ namespace FargowiltasSouls.Items
         {
             DisplayName.SetDefault("The Mutant's Gift");
             Tooltip.SetDefault("'Use this to turn on/off Masochist Mode'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "突变体的礼物");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'用开/关受虐模式'");
         }
 
         public override void SetDefaults()

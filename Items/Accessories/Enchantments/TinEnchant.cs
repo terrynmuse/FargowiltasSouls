@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -20,13 +21,21 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Sets your critical strike chance to 4%
 Every crit will increase it by 4%
 Getting hit drops your crit back down";
+            string tooltip_ch =
+@"'暴击回归'
+暴击率设为4%
+每次暴击增加4%
+被击中降低暴击率";
 
             if(thorium != null)
             {
                 tooltip += "\nEffects of Tin Buckler";
+                tooltip_ch += "\n拥有锡制圆盾的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "锡魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

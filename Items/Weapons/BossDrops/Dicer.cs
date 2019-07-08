@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
@@ -10,6 +11,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("The Dicer");
             Tooltip.SetDefault("'A defeated foe's attack now on a string'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "切肉器");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'一个被击败的敌人的攻击,用线拴着'");
 
             ItemID.Sets.Yoyo[item.type] = true;
         }

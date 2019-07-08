@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Misc
 {
@@ -17,6 +18,11 @@ namespace FargowiltasSouls.Items.Misc
             Tooltip.SetDefault(@"Resets all boss kill counts to zero
 Results not guaranteed in multiplayer
 You probably shouldn't be reading this...");
+            DisplayName.AddTranslation(GameCulture.Chinese, "Boss击杀数重置");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"重置所有Boss击杀数为0
+无法保证在多人游戏中的效果
+你也许不应该看到这个...");
 		}
 
 		public override void SetDefaults()

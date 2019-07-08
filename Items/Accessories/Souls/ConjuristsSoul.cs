@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -23,18 +24,28 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 Increases your max number of minions by 4
 Increases your max number of sentries by 2
 Increased minion knockback";
+            string tooltip_ch =
+@"'一支听命于你的军队'
+增加30%召唤伤害
++4最大召唤栏
++2最大哨兵栏
+增加召唤物击退";
 
             if (thorium != null)
             {
                 tooltip += "\nEffects of Phylactery, Crystal Scorpion, and Yuma's Pendant";
+                tooltip_ch += "\n拥有魂匣,魔晶蝎和云码垂饰的效果";
             }
 
             if (calamity != null)
             {
                 tooltip += "\nEffects of Statis' Belt of Curses";
+                tooltip_ch += "\n拥有斯塔提斯的诅咒系带的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "召唤之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

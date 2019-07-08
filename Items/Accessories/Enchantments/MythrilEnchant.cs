@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -14,6 +15,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'You feel the knowledge of your weapons seep into your mind'
 25% increased weapon use speed");
+            DisplayName.AddTranslation(GameCulture.Chinese, "秘银魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"你感觉你对武器的知识渗透到脑海中'
+增加25%武器使用速度");
         }
 
         public override void SetDefaults()

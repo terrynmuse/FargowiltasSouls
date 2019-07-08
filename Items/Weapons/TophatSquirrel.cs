@@ -1,6 +1,7 @@
 using FargowiltasSouls.Projectiles;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons
 {
@@ -10,6 +11,8 @@ namespace FargowiltasSouls.Items.Weapons
         {
             DisplayName.SetDefault("Top Hat Squirrel");
             Tooltip.SetDefault("'Who knew this squirrel had phenomenal cosmic power?'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "高顶礼帽松鼠");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'谁能知道,这只松鼠竟然有着非凡的宇宙力量呢?'");
         }
 
         public override void SetDefaults()

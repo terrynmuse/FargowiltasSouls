@@ -5,12 +5,12 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class CalamitySoul : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
         public int dragonTimer = 60;
         public const int FireProjectiles = 2;
@@ -32,6 +32,14 @@ Effects of Profaned Soul Artifact, Core of the Blood God, and Affliction
 Effects of Nebulous Core, Godly Soul Artifact, and Yharim's Gift
 Effects of Counter Scarf, The Community, Draedon's Heart, and The Amalgam
 Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
+            DisplayName.AddTranslation(GameCulture.Chinese, "暴君之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'于是大地再次恢复了平静...'
+拥有蓝色欧米茄,圣金源和魔影的套装效果
+拥有亵渎神物,血神核心和灾劫之尖啸的效果
+拥有星云之核,圣魂神物和魔君的礼物的效果
+拥有反击围巾,归一元心石,嘉登之心和聚合之脑的效果
+拥有元灵之心,化绵留香石和蚀日尊戒的效果");
 
         }
 

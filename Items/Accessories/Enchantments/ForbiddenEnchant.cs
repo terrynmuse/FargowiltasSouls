@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -18,14 +19,22 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Double tap down to call an ancient storm to the cursor location
 Any projectiles shot through your storm gain double pierce and 50% damage
 ";
+            string tooltip_ch =
+@"'走路像个埃及人Z(￣ｰ￣)Z'
+双击'下'键可召唤一个远古风暴到光标位置
+任何穿过风暴的抛射物都能获得双倍穿透和额外50%伤害";
 
             if(thorium != null)
             {
                 tooltip +=
 @"Effects of Karmic Holder";
+                tooltip_ch +=
+@"拥有业果之握的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "禁忌魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

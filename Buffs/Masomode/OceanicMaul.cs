@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Buffs.Masomode
 {
@@ -12,6 +13,8 @@ namespace FargowiltasSouls.Buffs.Masomode
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "海洋重击");
+            Description.AddTranslation(GameCulture.Chinese, "降低防御力和最大生命值");
         }
 
         public override bool Autoload(ref string name, ref string texture)

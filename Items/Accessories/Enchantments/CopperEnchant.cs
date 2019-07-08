@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -21,13 +22,22 @@ Attacks have a chance to shock enemies with lightning
 If an enemy is wet, the chance and damage is increased
 Attacks that cause Wet cannot proc the lightning
 Lightning scales with magic damage";
+            string tooltip_ch =
+@"'注视'
+攻击有概率用闪电打击敌人
+如果敌人处于潮湿状态,增加概率和伤害
+造成潮湿的攻击不能触发闪电
+闪电伤害与魔法伤害挂钩";
 
             if(thorium != null)
             {
                 tooltip += "\nEffects of the Copper Buckler";
+                tooltip_ch += "\n拥有铜制圆盾的效果";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "铜魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

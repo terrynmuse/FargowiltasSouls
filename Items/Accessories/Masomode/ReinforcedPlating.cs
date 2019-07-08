@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -14,6 +15,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'The sturdiest piece of a defeated foe'
 Grants immunity to Defenseless, Stunned, and knockback
 Reduces damage taken by 10%");
+            DisplayName.AddTranslation(GameCulture.Chinese, "强化钢板");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'被打败的敌人最坚强的一面'
+免疫毫无防御,昏迷和击退
+减少10%所受伤害");
         }
 
         public override void SetDefaults()

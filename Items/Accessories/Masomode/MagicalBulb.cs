@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -15,6 +16,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Venom
 Increases life regeneration
 Attracts a legendary plant's offspring which flourishes in combat");
+            DisplayName.AddTranslation(GameCulture.Chinese, "魔法球茎");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'杀妈?'
+免疫毒液
+增加生命回复
+吸引一个传奇植物的后代,在战斗中茁壮成长");
         }
 
         public override void SetDefaults()

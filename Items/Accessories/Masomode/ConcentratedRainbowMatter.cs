@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -15,6 +16,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Taste the rainbow'
 Grants immunity to Flames of the Universe
 Summons a baby rainbow slime");
+            DisplayName.AddTranslation(GameCulture.Chinese, "浓缩彩虹物质");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'品尝彩虹'
+免疫宇宙之火
+召唤一个彩虹史莱姆宝宝");
         }
 
         public override void SetDefaults()

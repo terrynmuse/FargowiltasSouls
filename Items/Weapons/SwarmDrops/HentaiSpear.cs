@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 {
@@ -12,6 +13,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         {
             DisplayName.SetDefault("The Penetrator");
             Tooltip.SetDefault("'The reward for slaughtering many...'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "洞察者");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励..'");
         }
 
         public override void SetDefaults()

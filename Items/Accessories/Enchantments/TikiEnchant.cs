@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -16,6 +17,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Attacks will inflict Infested on enemies
 Infested deals increasing damage over time
 Summons a pet Tiki Spirit");
+            DisplayName.AddTranslation(GameCulture.Chinese, "提基魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'Aku Aku!'
+攻击造成感染效果
+随着时间的推移,感染造成越来越多的伤害
+召唤提基之灵");
         }
 
         public override void SetDefaults()

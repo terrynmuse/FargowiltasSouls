@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -23,6 +24,17 @@ You may periodically fire additional attacks depending on weapon type
 Your critical strikes inflict Rotting and Betsy's Curse
 Grants effects of Wet debuff while riding Cute Fishron and gravity control
 Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
+            DisplayName.AddTranslation(GameCulture.Chinese, "受虐者之心");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'大多数情况下已经不用受苦了'
+免疫人形废土,冻结,渗入,枯萎武器和枯萎盔甲
+免疫野性咬噬,突变啃啄,翻转,不稳定,扭曲和混沌
+免疫潮湿,带电,月之血蛭,无效诅咒和由水造成的Debuff
+增加10%伤害,暴击率伤害减免
+增加100%飞行时间
+根据武器类型定期发动额外的攻击
+暴击造成贝特希的诅咒
+骑乘超可爱猪鲨时获得潮湿状态,能够控制重力
+召唤一个友善的超级圣诞雪灵,迷你飞碟和真·克苏鲁之眼");
         }
 
         public override void SetDefaults()

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons.BossDrops
 {
@@ -16,6 +17,8 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         {
             DisplayName.SetDefault("Cultist's Spellbook");
             Tooltip.SetDefault("");
+            DisplayName.AddTranslation(GameCulture.Chinese, "邪教徒的魔法书");
+            Tooltip.AddTranslation(GameCulture.Chinese, "");
         }
 
         public override void SetDefaults()

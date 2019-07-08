@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -18,6 +19,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Apprentice Enchantment");
             Tooltip.SetDefault(
+@"''
+");
+            DisplayName.AddTranslation(GameCulture.Chinese, "学徒魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
 @"''
 ");
         }

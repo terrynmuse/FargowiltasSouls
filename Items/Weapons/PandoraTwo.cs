@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Weapons
 {
@@ -16,6 +17,8 @@ namespace FargowiltasSouls.Items.Weapons
         {
             DisplayName.SetDefault("Pandora's Tome");
             Tooltip.SetDefault("A true mess of projectiles");
+            DisplayName.AddTranslation(GameCulture.Chinese, "潘多拉之书");
+            Tooltip.AddTranslation(GameCulture.Chinese, "一大堆抛射物");
         }
 
         public override void SetDefaults()

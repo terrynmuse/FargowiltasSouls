@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -12,6 +13,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Lightly roasted, medium rare'
 Grants immunity to Oozed, Withered Weapon, and Withered Armor
 Your critical strikes inflict Betsy's Curse");
+            DisplayName.AddTranslation(GameCulture.Chinese, "贝特希之心");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'微烤,五分熟'
+免疫渗出,枯萎武器和枯萎盔甲
+暴击造成贝特希的诅咒");
         }
 
         public override void SetDefaults()

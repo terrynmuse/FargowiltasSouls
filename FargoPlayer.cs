@@ -856,7 +856,7 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
-                if (!PureHeart && Main.hardMode && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))
+                if (!PureHeart && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))
                 {
                     Tile currentTile = Framing.GetTileSafely(player.Center);
                     if (currentTile.wall == WallID.None)

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -18,6 +19,11 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Slimed
 15% increased fall speed
 When you land after a jump, slime will fall from the sky over your cursor");
+            DisplayName.AddTranslation(GameCulture.Chinese, "粘液盾");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'从被打败的敌人的内脏中撕裂而来'
+免疫黏糊
+增加15%下落速度
+跳跃落地后,在光标处落下史莱姆");
         }
 
         public override void SetDefaults()

@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Misc
 {
@@ -14,6 +15,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bloodied Skull");
+            DisplayName.AddTranslation(GameCulture.Chinese, "血迹斑斑的头骨");
 		}
 
 		public override void SetDefaults()

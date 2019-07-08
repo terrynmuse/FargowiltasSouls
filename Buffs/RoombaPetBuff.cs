@@ -1,5 +1,7 @@
 ﻿using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
+
 
 namespace FargowiltasSouls.Buffs
 {
@@ -11,6 +13,8 @@ namespace FargowiltasSouls.Buffs
             Description.SetDefault("This Roomba is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
+            DisplayName.AddTranslation(GameCulture.Chinese, "扫地机器人");
+            Description.AddTranslation(GameCulture.Chinese, "这个扫地机器人在跟着你");
         }
 
         public override void Update(Player player, ref int buffIndex)

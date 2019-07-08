@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Masomode
 {
@@ -14,6 +15,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Just keep it in airplane mode'
 Grants immunity to Electrified
 Summons a friendly Mini Saucer");
+            DisplayName.AddTranslation(GameCulture.Chinese, "飞碟控制台");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'保持在飞行模式'
+免疫带电
+召唤一个友善的迷你飞碟");
         }
 
         public override void SetDefaults()

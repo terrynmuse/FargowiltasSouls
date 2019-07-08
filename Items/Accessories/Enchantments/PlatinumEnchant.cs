@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -18,6 +19,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip = @"'Its value is immeasurable'
 10% chance for enemies to drop 4x loot
 If the enemy has Midas, the chance and bonus is doubled";
+            string tooltip_ch = @"'价值不可估量'
+敌人10%概率4倍掉落
+如果敌人带有点金手状态,概率和加成翻倍";
 
             if(thorium != null)
             {
@@ -25,9 +29,15 @@ If the enemy has Midas, the chance and bonus is doubled";
 @"
 Effects of Platinum Aegis
 Summons a pet Glitter";
+                tooltip_ch +=
+@"
+拥有铂金之庇护的效果
+召唤一团闪光";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "铂金魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

@@ -1,5 +1,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Misc
 {
@@ -9,6 +10,8 @@ namespace FargowiltasSouls.Items.Misc
         {
             DisplayName.SetDefault("Crucible of the Cosmos");
             Tooltip.SetDefault("'It seems to be hiding magnificent power'\nFunctions as nearly every crafting station");
+            DisplayName.AddTranslation(GameCulture.Chinese, "宇宙坩埚");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'它似乎隐藏着巨大的力量'\n包含几乎所有制作环境");
         }
 
         public override void SetDefaults()

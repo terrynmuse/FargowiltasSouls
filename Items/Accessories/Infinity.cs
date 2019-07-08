@@ -1,7 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 using static Terraria.ID.ItemID;
+
 
 namespace FargowiltasSouls.Items.Accessories
 {
@@ -14,6 +16,10 @@ namespace FargowiltasSouls.Items.Accessories
 @"'Is it really worth it?
 You consume no ammo, mana, or consumables
 Every few attacks damage you slightly");
+            DisplayName.AddTranslation(GameCulture.Chinese, "无尽遗物");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'这真的值得吗'
+不消耗弹药,魔力和消耗品
+每几次攻击都会对你造成轻微的伤害");
         }
 
         public override void SetDefaults()
