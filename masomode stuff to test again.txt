@@ -14,6 +14,9 @@
 //	default expertmode damage: *= 0.80
 -piranhas only swarm and jump in jungle
 -sharks only jump below half health
+-destroyer lights no longer reactivate
+-reverse mana flow duration is displayed
+-cursed inferno flamethrower goes through walls
 
 -sand shark specifically spawn in UNDERGROUND desert
 -wither beasts have reverse aura now
