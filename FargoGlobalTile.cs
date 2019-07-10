@@ -225,5 +225,11 @@ namespace FargowiltasSouls
             return base.AdjTiles(type);
         }
 
+        public override bool CanExplode(int i, int j, int type)
+        {
+            if (type == TileID.Meteorite)
+                return false;
+            return true;
+        }
     }
 }

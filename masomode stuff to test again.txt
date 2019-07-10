@@ -17,6 +17,10 @@
 -destroyer lights no longer reactivate
 -reverse mana flow duration is displayed
 -cursed inferno flamethrower goes through walls
+-eoc/wandering eye stone
+-meteorite can't be exploded anymore
+-enraged king slime goes through blocks when everyone is dead now
+-auras account for expert duration (no more 0sec)
 
 -sand shark specifically spawn in UNDERGROUND desert
 -wither beasts have reverse aura now
