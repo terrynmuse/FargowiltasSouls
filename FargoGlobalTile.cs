@@ -227,7 +227,7 @@ namespace FargowiltasSouls
 
         public override bool CanExplode(int i, int j, int type)
         {
-            if (type == TileID.Meteorite)
+            if (type == TileID.Meteorite && FargoWorld.MasochistMode)
                 return false;
             return true;
         }

@@ -166,8 +166,11 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Shark:
+                        Counter2 = Main.rand.Next(120);
+                        break;
+
                     case NPCID.Piranha:
-                        Counter2 = Main.rand.Next(180);
+                        Counter2 = Main.rand.Next(120);
                         break;
 
                     case NPCID.DD2SkeletonT1:
@@ -1178,15 +1181,19 @@ namespace FargowiltasSouls.NPCs
                         {
                             Counter = 0;
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                            if (t != -1 && NPC.CountNPCS(NPCID.Piranha) <= 10 && Main.rand.Next(2) == 0)
+                            if (t != -1 && Main.rand.Next(2) == 0)
                             {
                                 Player player = Main.player[t];
-                                if (player.ZoneJungle && player.bleed && Main.netMode != 1)
+                                if (player.bleed && Main.netMode != 1)
                                 {
-                                    masoBool[0] = true;
-                                    int piranha = NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-20, 20), (int)npc.Center.Y + Main.rand.Next(-20, 20), NPCID.Piranha);
-                                    if (piranha != 200 && Main.netMode == 2)
-                                        NetMessage.SendData(23, -1, -1, null, piranha);
+                                    if (player.ZoneJungle)
+                                        masoBool[0] = true;
+                                    if (NPC.CountNPCS(NPCID.Piranha) <= 6)
+                                    {
+                                        int piranha = NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-20, 20), (int)npc.Center.Y + Main.rand.Next(-20, 20), NPCID.Piranha);
+                                        if (piranha != 200 && Main.netMode == 2)
+                                            NetMessage.SendData(23, -1, -1, null, piranha);
+                                    }
                                 }
                             }
                         }
@@ -1214,6 +1221,7 @@ namespace FargowiltasSouls.NPCs
                             npc.velocity.X = npc.ai[2];
                             npc.velocity.Y = npc.ai[3];
                             npc.ai[3] += 0.3f;
+                            masoBool[0] = false;
                         }
                         else
                         {
@@ -1254,9 +1262,9 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Shark:
-                        if (npc.life < npc.lifeMax / 2 && ++Counter2 > 420) //initiate jump
+                        if (npc.life < npc.lifeMax / 2 && --Counter2 < 0) //initiate jump
                         {
-                            Counter2 = 0;
+                            Counter2 = 360;
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                             if (t != -1 && Main.netMode != 1)
                             {
@@ -2246,7 +2254,7 @@ namespace FargowiltasSouls.NPCs
                         if (Counter >= 6) //cursed flamethrower, roughly same direction as head
                         {
                             Counter = 0;
-                            if (Main.netMode != 1 && !Collision.EmptyTile((int)npc.Center.X / 16, (int)npc.Center.Y / 16))
+                            if (Main.netMode != 1)
                             {
                                 Vector2 velocity = new Vector2(5f, 0f).RotatedBy(npc.rotation - Math.PI / 2.0 + MathHelper.ToRadians(Main.rand.Next(-15, 16)));
                                 Projectile.NewProjectile(npc.Center, velocity, ProjectileID.EyeFire, npc.damage / 6, 0f, Main.myPlayer);
