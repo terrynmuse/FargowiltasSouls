@@ -8,10 +8,6 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class SlimyShield : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
-        private bool falling;
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slimy Shield");

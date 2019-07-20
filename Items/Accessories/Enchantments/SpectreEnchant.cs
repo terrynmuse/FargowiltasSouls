@@ -29,11 +29,13 @@ If you crit, you get a burst of healing orbs instead
                 tooltip +=
 @"Killing enemies or continually damaging bosses generates soul wisps
 After generating 5 wisps, they are instantly consumed to heal you for 10 life
-Effects of Ghastly Carapace and Inner Flame";
+Effects of Ghastly Carapace and Inner Flame
+";
                 tooltip_ch +=
 @"杀死敌人或持续攻击Boss会产生灵魂碎片
 在产生5个后,它们会立即被消耗,治疗10点生命
-拥有惊魂甲壳和心灵之火的效果";
+拥有惊魂甲壳和心灵之火的效果
+";
             }
 
             tooltip += "Summons a pet Wisp";
