@@ -96,6 +96,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.EyeLaser:
+                    case ProjectileID.EyeFire:
                         projectile.tileCollide = false;
                         break;
 
