@@ -1,7 +1,11 @@
 ﻿NEW UPDATE - v 0.7.4
-
--Added chinese localization
-
+Updated to tModloader 0.11.1
+-Added a few new sprites 
+-Added some chinese localization
+-piranhas only swarm and jump in jungle
+-sharks only jump below half health
+-Fixed many instances of the Dragon Ball Terraria mod breaking accessories
+-Fixed a few tooltips
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

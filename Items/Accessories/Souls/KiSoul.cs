@@ -70,7 +70,7 @@ Drastically increased ki regen
             //general
             DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
 
-            dbtPlayer.kiDamage += 0.35f;
+            dbtPlayer.KiDamage += 0.35f;
             dbtPlayer.kiCrit += 20;
             dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 2f);
             dbtPlayer.kiKbAddition += 0.3f;

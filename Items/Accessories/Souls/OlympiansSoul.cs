@@ -34,14 +34,14 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             if (thorium != null)
             {
-                tooltip += "Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch";
-                tooltip_ch += "拥有投手大师指导:卷三,美人鱼水壶和亡者眼罩的效果";
+                tooltip += "\nEffects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch";
+                tooltip_ch += "\n拥有投手大师指导:卷三,美人鱼水壶和亡者眼罩的效果";
             }
 
             if (calamity != null)
             {
                 tooltip += "\nEffects of Nanotech\nBonuses also effect rogue damage";
-                tooltip_ch += "拥有纳米技术的效果\n加成同样影响盗贼伤害";
+                tooltip_ch += "\n拥有纳米技术的效果\n加成同样影响盗贼伤害";
             }
 
             Tooltip.SetDefault(tooltip);

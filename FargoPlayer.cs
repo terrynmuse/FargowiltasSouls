@@ -3029,7 +3029,7 @@ namespace FargowiltasSouls
         private void DBTDamage(float dmg)
         {
             DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
-            dbtPlayer.kiDamage += dmg;
+            dbtPlayer.KiDamage += dmg;
         }
 
         public void AllCritUp(int crit)
