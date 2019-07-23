@@ -38,7 +38,7 @@ Attacks cause increased life regen, shadow dodge, meteor showers, reduced enemy 
 Critical chance is set to 25%, Crit to increase it by 5%, At 100% every 10th attack gains 4% life steal
 Getting hit drops your crit back down, releases a spore explosion and reflects damage
 One attack gains 5% life steal every second, capped at 5 HP
-Projectiles may split or shatter, Hearts and Stars heal twice as much";
+Projectiles may split or shatter, Stars heal twice as much";
                 tooltip_ch +=
 @"召唤火球,冰柱,叶绿水晶,神圣剑盾,甲虫和许多宠物
 切换可见度以移除所有宠物,右键用盾防御
@@ -134,7 +134,7 @@ When you die, you explode and revive with 200 HP";
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            //includes revive, both spectres, adamantite, heart and star heal
+            //includes revive, both spectres, adamantite, and star heal
             modPlayer.TerrariaSoul = true;
 
             //WOOD
@@ -192,7 +192,7 @@ When you die, you explode and revive with 200 HP";
 
             if (!Fargowiltas.Instance.ThoriumLoaded)
             {
-                modPlayer.CrimsonEffect(hideVisual); //regen, hearts heal more, pets
+                modPlayer.CrimsonEffect(hideVisual); //regen, pets
             }
 
             modPlayer.MoltenEffect(25); //inferno and explode

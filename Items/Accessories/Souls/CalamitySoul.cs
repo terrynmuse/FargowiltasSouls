@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetMod("CalamityMod") != null;
         }
 
         public override void SetStaticDefaults()
@@ -302,7 +302,7 @@ Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
                 modPlayer.allWaifus = true;
                 modPlayer.elementalHeart = true;
                 int num = NPC.downedMoonlord ? 150 : 90;
-                float num2 = CalamityWorld.downedDoG ? 2f : 1f;
+                float num2 = 2f;
                 if (player.ownedProjectileCounts[calamity.ProjectileType("BigBustyRose")] > 1 || player.ownedProjectileCounts[calamity.ProjectileType("SirenLure")] > 1 || player.ownedProjectileCounts[calamity.ProjectileType("DrewsSandyWaifu")] > 1 || player.ownedProjectileCounts[calamity.ProjectileType("SandyWaifu")] > 1 || player.ownedProjectileCounts[calamity.ProjectileType("CloudWaifu")] > 1)
                 {
                     player.ClearBuff(calamity.BuffType("HotE"));

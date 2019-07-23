@@ -116,7 +116,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         // chain voodoo
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = ModLoader.GetTexture("FargowiltasSouls/Projectiles/BossWeapons/LeashFlailChain");
+            Texture2D texture = ModContent.GetTexture("FargowiltasSouls/Projectiles/BossWeapons/LeashFlailChain");
 
             Vector2 position = projectile.Center;
             Vector2 mountedCenter = Main.player[projectile.owner].MountedCenter;

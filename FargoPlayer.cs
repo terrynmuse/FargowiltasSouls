@@ -41,8 +41,6 @@ namespace FargowiltasSouls
         public bool ShadowEnchant;
         public bool CrimsonEnchant;
         public bool SpectreEnchant;
-        public bool SpecHeal;
-        public int HealTown;
         public bool BeeEnchant;
         public bool SpiderEnchant;
         public bool StardustEnchant;
@@ -2030,29 +2028,13 @@ namespace FargowiltasSouls
 
             if (Soulcheck.GetValue("Spectre Orbs") && !target.immortal)
             {
-                if (SpiritForce && proj.type != ProjectileID.SpectreWrath)
+                if (SpectreEnchant && proj.type != ProjectileID.SpectreWrath)
                 {
-                    SpectreHeal(target, proj);
                     SpectreHurt(proj);
-                }
-                else if (SpectreEnchant && !SpiritForce && proj.magic)
-                {
-                    if (crit)
+
+                    if (SpiritForce || (crit && Main.rand.Next(5) == 0))
                     {
-                        SpecHeal = true;
-                        HealTown++;
-                    }
-                    else
-                    {
-                        if (HealTown != 0 && HealTown <= 10)
-                        {
-                            HealTown++;
-                        }
-                        else
-                        {
-                            SpecHeal = false;
-                            HealTown = 0;
-                        }
+                        SpectreHeal(target, proj);
                     }
                 }
             }
@@ -2376,14 +2358,14 @@ namespace FargowiltasSouls
 
             if (PalladEnchant && palladiumCD == 0 && !target.immortal && !player.moonLeech)
             {
-                int heal = damage / 20;
-                if (heal > 5)
-                    heal = 5;
+                int heal = damage / 10;
+                if (heal > 8)
+                    heal = 8;
                 else if (heal < 1)
                     heal = 1;
                 player.statLife += heal;
                 player.HealEffect(heal);
-                palladiumCD = 60;
+                palladiumCD = 240;
             }
 
             if (NymphsPerfume && NymphsPerfumeCD <= 0 && !target.immortal && !player.moonLeech)
@@ -2486,7 +2468,7 @@ namespace FargowiltasSouls
 
             OnHitNPCEither(target, damage, knockback, crit);
 
-            if (Soulcheck.GetValue("Spectre Orbs") && SpiritForce && !target.immortal)
+            if (SpectreEnchant)
             {
                 //forced orb spawn reeeee
                 float num = 4f;
@@ -2497,8 +2479,11 @@ namespace FargowiltasSouls
                 speedX *= num2;
                 speedY *= num2;
                 Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.position, new Vector2(speedX, speedY), ProjectileID.SpectreWrath, damage / 2, 0, player.whoAmI, target.whoAmI);
-                if (p != null)
+
+                if ((SpiritForce || (crit && Main.rand.Next(5) == 0)) && p != null)
+                {
                     SpectreHeal(target, p);
+                }
             }
 
             if (SolarEnchant && Main.rand.Next(4) == 0)
@@ -3366,7 +3351,6 @@ namespace FargowiltasSouls
         public void CrimsonEffect(bool hideVisual)
         {
             player.crimsonRegen = true;
-            //increase heart heal
             CrimsonEnchant = true;
             AddPet("Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
             AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
@@ -4045,13 +4029,6 @@ namespace FargowiltasSouls
         {
             SpectreEnchant = true;
             AddPet("Wisp Pet", hideVisual, BuffID.Wisp, ProjectileID.Wisp);
-
-            if (SpiritForce) return;
-
-            if (SpecHeal)
-                player.ghostHeal = true;
-            else
-                player.ghostHurt = true;
         }
 
         public void SpectreHeal(NPC npc, Projectile proj)
@@ -4247,9 +4224,6 @@ namespace FargowiltasSouls
 
         public void TitaniumEffect()
         {
-            if(!TerrariaSoul && !ThoriumSoul && player.statLife == player.statLifeMax2 && player.endurance < .9f)
-                player.endurance = .9f;
-
             if (Soulcheck.GetValue("Titanium Shadow Dodge"))
             {
                 player.onHitDodge = true;

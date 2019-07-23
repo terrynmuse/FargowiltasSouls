@@ -18,7 +18,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetMod("ThoriumMod") != null;
         }
 
         public override void SetStaticDefaults()

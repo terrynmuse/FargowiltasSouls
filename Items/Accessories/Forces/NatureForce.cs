@@ -25,7 +25,6 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             {
                 tooltip +=
 @"Greatly increases life regen
-Hearts heal for 1.5x as much
 Nearby enemies are ignited
 When you die, you violently explode dealing massive damage
 Icicles will start to appear around you
@@ -39,7 +38,7 @@ Summons several pets";
             else
             {
                 tooltip +=
-@"Greatly increases life regen and Hearts heal for 1.5x as much
+@"Greatly increases life regen
 Nearby enemies are ignited
 When you die, you violently explode dealing massive damage
 Attack speed is increased by 5% at every 25% segment of life
@@ -74,7 +73,7 @@ Summons several pets";
             //bulb, cryo effect
             modPlayer.NatureForce = true;
 
-            //regen, hearts heal more, pets
+            //regen, pets
             modPlayer.CrimsonEffect(hideVisual);
 
             //inferno and explode

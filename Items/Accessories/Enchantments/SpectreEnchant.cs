@@ -16,13 +16,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip = 
 @"'Their lifeforce will be their undoing'
-Magic damage has a chance to spawn damaging orbs
-If you crit, you get a burst of healing orbs instead
+Damage has a chance to spawn damaging orbs
+If you crit, you might also get a healing orb
 ";
             string tooltip_ch =
 @"'他们的生命力将毁灭自己'
 魔法伤害有机会产生伤害法球
-暴击会造成治疗球爆发";
+暴击会造成治疗球爆发
+";
 
             if(thorium != null)
             {

@@ -126,6 +126,10 @@ namespace FargowiltasSouls.NPCs
                         npc.lifeMax *= 2;
                         break;
 
+                    case NPCID.Mimic:
+                        npc.defense /= 2;
+                        break;
+
                     case NPCID.Salamander:
                     case NPCID.Salamander2:
                     case NPCID.Salamander3:
@@ -6052,7 +6056,7 @@ namespace FargowiltasSouls.NPCs
         {
             float distance = 2f * 16;
 
-            Main.projectile.Where(x => x.active && x.friendly && x.minionSlots <= 0).ToList().ForEach(x =>
+            Main.projectile.Where(x => x.active && x.friendly && !x.minion ).ToList().ForEach(x =>
             {
                 if (Vector2.Distance(x.Center, npc.Center) <= distance)
                 {
@@ -6324,7 +6328,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DemonEyeOwl:
                     case NPCID.DemonEyeSpaceship:
                         if ((Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5) && !target.HasBuff(BuffID.Stoned))
-                            target.AddBuff(BuffID.Stoned, Main.rand.Next(30, 120));
+                            target.AddBuff(BuffID.Stoned, Main.rand.Next(30));
                         break;
 
                     case NPCID.EaterofSouls:
@@ -7843,7 +7847,7 @@ namespace FargowiltasSouls.NPCs
                     if (!surface && normalSpawn)
                     {
                         pool[NPCID.Mimic] = .01f;
-                        if (desert)
+                        if (desert && NPC.downedBoss2)
                             pool[NPCID.DuneSplicerHead] = .005f;
                     }
                 }
@@ -8342,7 +8346,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.PirateCaptain:
-                        if (Main.rand.Next(20) == 0)
+                        if (Main.rand.Next(15) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("GoldenDippingVat"));
                         break;
 

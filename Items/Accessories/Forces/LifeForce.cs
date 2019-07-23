@@ -25,7 +25,7 @@ Enemies may explode into needles on death
 10% chance for minions to crit
 When standing still and not attacking, you gain the Shell Hide buff
 Beetles protect you from damage
-Your wings last twice as long
+Your wings last 1.5X as long
 ";
 
             if (thorium != null)
@@ -59,7 +59,7 @@ Your wings last twice as long
             modPlayer.SpiderEffect(hideVisual);
             //defense beetle bois
             modPlayer.BeetleEffect();
-            modPlayer.wingTimeModifier += 1f;
+            modPlayer.wingTimeModifier += .5f;
             //flame trail, pie heal, pet
             modPlayer.PumpkinEffect(25, hideVisual);
             //shell hide, pets

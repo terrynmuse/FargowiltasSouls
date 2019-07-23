@@ -17,14 +17,13 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             Tooltip.SetDefault(
 @"'Gaia's blessing shines upon you'
 25% chance for your projectiles to explode into shards
-25% increased weapon use speed
+20% increased weapon use speed
 Greatly increases life regeneration after striking an enemy 
-One attack gains 5% life steal every second, capped at 5 HP
+One attack gains 10% life steal every 4 seconds, capped at 8 HP
 Flower petals will cause extra damage to your target 
 Spawns 3 fireballs to rotate around you
 Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split
-Any damage you take while at full HP is reduced by 90%
 Briefly become invulnerable after striking an enemy");
         }
 
@@ -43,7 +42,7 @@ Briefly become invulnerable after striking an enemy");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //mythril
             if (Soulcheck.GetValue("Mythril Speedup"))
-                modPlayer.AttackSpeed *= 1.25f;
+                modPlayer.AttackSpeed *= 1.2f;
             //shards
             modPlayer.CobaltEnchant = true;
             //regen on hit, heals
@@ -52,7 +51,7 @@ Briefly become invulnerable after striking an enemy");
             modPlayer.OrichalcumEffect();
             //split
             modPlayer.AdamantiteEnchant = true;
-            //shadow dodge, full hp resistance
+            //shadow dodge
             modPlayer.TitaniumEffect();
         }
 

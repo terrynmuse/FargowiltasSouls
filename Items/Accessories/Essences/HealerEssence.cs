@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("ThoriumMod");
+            return ModLoader.GetMod("ThoriumMod") != null;
         }
 
         public override string Texture => "FargowiltasSouls/Items/Placeholder";

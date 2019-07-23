@@ -1,11 +1,38 @@
 ﻿NEW UPDATE - v 0.7.4
-Updated to tModloader 0.11.1
+-Updated to tModloader 0.11.2
 -Added a few new sprites 
 -Added some chinese localization
--piranhas only swarm and jump in jungle
--sharks only jump below half health
+-Crimson Enchantment no longer gives hearts bonus healing
+-Palladium Enchantment lifesteal up to 10%, cooldown quadrupled, max heal is up to 8 (more than 50% nerf)
+-Mythril Enchantment gives 5% less attack speed
+-Titanium Enchantment no longer gives any damage resistance
+-Spectre Enchantment now works for all damage types and the healing orbs are much less common
+-Beetle Enchantment is back to 1.5x wing time instead of 2x
+-Updated Ebonwood Enchantment aura visual
+-Destroyer Gun now uses 10 mana
 -Fixed many instances of the Dragon Ball Terraria mod breaking accessories
 -Fixed a few tooltips
+
+Masomode Changes
+-Sharks only jump below half health
+-Piranhas only jump in the Jungle
+-Golden Dipping Vat is slightly more common 1/15 instead of 1/20 FROM PIRATE CAPTAINS BTW
+-Dune Splicers now only spawn post EoW/BoC
+-Wandering Eyes and Eye of Cthulhu now also inflict Stoned
+-Cursed Inferno flamethrower goes through walls
+-Mimics have half defense in prehardmode 
+-Any reflecting will no longer work on any type of minion
+-Destroyer lights no longer reactivate
+-Meteorite can't be exploded until post Skeletron
+-Sand Sharks specifically spawn in the Underground Desert
+-Wither Beasts have a reverse aura now
+-Increased Sadisms needed for Amalgamted ammo recipes
+-Brain illusions can theoretcally debuff player... if they dealt damage...
+-Further nerfed Phantasm/Aerial Bane against Duke Fishron/Moon Lord 
+-Enraged King Slime goes through blocks when everyone is dead now
+-Auras shouldn't say 0 seconds anymore
+-Fixed Reverse Mana Flow duration not displaying
+-Fixed Cultist fireballs and lightning portals not actually having boosted damage
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

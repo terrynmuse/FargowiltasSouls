@@ -119,23 +119,11 @@ namespace FargowiltasSouls.Items
             {
                 switch (item.type)
                 {
-                    case ItemID.Heart:
-                    case ItemID.CandyApple:
-                    case ItemID.CandyCane:
-                        player.HealEffect(40);
-                        player.statLife += 40;
-                        return false;
                     case ItemID.Star:
                         player.ManaEffect(200);
                         player.statMana += 200;
                         return false;
                 }
-            }
-            else if (p.CrimsonEnchant && !p.NatureForce && (item.type == ItemID.Heart || item.type == ItemID.CandyApple || item.type == ItemID.CandyCane))
-            {
-                player.HealEffect(30);
-                player.statLife += 30;
-                return false;
             }
 
             return true;

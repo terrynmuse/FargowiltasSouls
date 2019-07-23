@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("DBZMOD");
+            return ModLoader.GetMod("DBZMOD") != null;
         }
 
         public override void SetStaticDefaults()

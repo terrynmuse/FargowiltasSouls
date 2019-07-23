@@ -25,6 +25,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         public override void SetDefaults()
         {
             item.damage = 45;
+            item.mana = 10;
             item.summon = true;
             item.width = 24;
             item.height = 24;

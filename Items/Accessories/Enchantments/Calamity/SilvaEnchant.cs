@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 
         public override bool Autoload(ref string name)
         {
-            return ModLoader.GetLoadedMods().Contains("CalamityMod");
+            return ModLoader.GetMod("CalamityMod") != null;
         }
 
         public override void SetStaticDefaults()
