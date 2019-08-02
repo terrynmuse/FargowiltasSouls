@@ -1,3 +1,46 @@
+Do this before update @ self ech
+
+
+obsidian post skele
+nerf all hm spawns in phm
+eater immune to clipped wings
+pirate stealing money not working right?
+fart baloon in recipe
+verify copper and palm wood working right
+nurse heals creepr minions
+visual when plat enchant triggers
+nail gun used twice
+boreal enchant with swords
+make sharks jump lower
+evil cactus does more damage and debuffs
+squeaky toy and valadium gravity toggles
+carpet toggle
+tooltips dont have a limit anymore??????????????????????????
+adamantite split always makes friendly
+top hat critters
+zombies dont destroy doors all the time.. very annoying.. only on blood moons, but they can open them anytime
+tungsten increases projectile sizes (not tile collision just enemy collision)
+mod configs? maybe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Antlion Swarmers drop sand when above the player
 
 Spawns
