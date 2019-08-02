@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Items.Misc
             //counts as
             adjTiles = new int[] { TileID.WorkBenches, TileID.HeavyWorkBench, TileID.Anvils, TileID.MythrilAnvil, TileID.Furnaces, TileID.Hellforge, TileID.AdamantiteForge, TileID.Bottles, TileID.AlchemyTable, TileID.Sawmill, TileID.Loom, TileID.CookingPots, TileID.Solidifier, TileID.DyeVat, TileID.TinkerersWorkbench, TileID.DemonAltar, TileID.Bookcases,  TileID.CrystalBall, TileID.Autohammer,  TileID.LunarCraftingStation, TileID.Campfire, TileID.Sinks, TileID.ImbuingStation, TileID.Kegs };
 
-            if (ModLoader.GetLoadedMods().Contains("ThoriumMod"))
+            if (ModLoader.GetMod("ThoriumMod") != null)
             {
                 Array.Resize(ref adjTiles, adjTiles.Length + 3);
                 adjTiles[adjTiles.Length - 1] = ModLoader.GetMod("ThoriumMod").TileType("ThoriumAnvil");

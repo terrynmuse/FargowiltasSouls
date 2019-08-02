@@ -15,18 +15,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'The blood of your enemy is your rebirth'
 Greatly increases life regen
-Hearts heal for 1.5x as much
 Summons a pet Face Monster and Crimson Heart");
             DisplayName.AddTranslation(GameCulture.Chinese, "血腥魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'你从敌人的血中重生'
 大幅度增加生命回复速度
-心的回复量x1.5倍
 召唤巨脸怪宝宝和血腥心脏");
-
-/*
-consider making hearts drop on hit sometimes instead? both hitting enemies and yourself being hit ech
-*/
         }
 
         public override void SetDefaults()

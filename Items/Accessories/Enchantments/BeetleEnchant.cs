@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip =
 @"'The unseen life of dung courses through your veins'
 Beetles protect you from damage
-Increases flight time by 100%";
+Increases flight time by 50%";
             string tooltip_ch = 
 @"'你的血管里流淌着看不见的粪便生命'
 甲虫保护你免受伤害
@@ -42,7 +42,7 @@ Increases flight time by 100%";
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //defense beetle bois
             modPlayer.BeetleEffect();
-            modPlayer.wingTimeModifier += 1f;
+            modPlayer.wingTimeModifier += .5f;
         }
 
         public override void AddRecipes()

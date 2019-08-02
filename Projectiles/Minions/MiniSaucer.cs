@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.netImportant = true;
             projectile.width = 25;
             projectile.height = 25;
-            projectile.scale = 1.5f;
+            projectile.scale = 1f;
             projectile.timeLeft *= 5;
             projectile.aiStyle = -1;
             projectile.friendly = true;

@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Mythril Enchantment");
             Tooltip.SetDefault(
 @"'You feel the knowledge of your weapons seep into your mind'
-25% increased weapon use speed");
+20% increased weapon use speed");
             DisplayName.AddTranslation(GameCulture.Chinese, "秘银魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"你感觉你对武器的知识渗透到脑海中'
@@ -33,7 +33,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= 1.25f;
+            player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= 1.2f;
         }
 
         public override void AddRecipes()
