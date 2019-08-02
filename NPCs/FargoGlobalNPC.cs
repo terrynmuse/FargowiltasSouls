@@ -6385,7 +6385,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DemonEye:
                     case NPCID.DemonEyeOwl:
                     case NPCID.DemonEyeSpaceship:
-                        target.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(300));
+                        if ((Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5) && !target.HasBuff(BuffID.Stoned))
+                            target.AddBuff(BuffID.Stoned, Main.rand.Next(30));
                         break;
 
                     case NPCID.EaterofSouls:
