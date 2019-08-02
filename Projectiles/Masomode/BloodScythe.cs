@@ -20,6 +20,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
             aiType = ProjectileID.DemonSickle;
             projectile.hostile = true;
             projectile.friendly = false;
+            projectile.timeLeft = 300;
+            projectile.tileCollide = false;
             cooldownSlot = 1;
         }
 
