@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         private const float PI = (float)Math.PI;
         private const float rotationPerTick = PI / 140f;
-        private const float threshold = 1600f;
+        private const float threshold = 1400f;
 
         public override void SetStaticDefaults()
         {

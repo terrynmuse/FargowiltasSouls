@@ -1,89 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\references\tModLoader.targets" />
   <PropertyGroup>
-    <ProjectGuid>{836B9E2C-ED10-42CA-BC11-F578A7E9304A}</ProjectGuid>
-    <TargetFramework>net461</TargetFramework>
-    <LangVersion>6</LangVersion>
-    <AssemblyTitle>FargowiltasSouls</AssemblyTitle>
-    <Product>FargowiltasSouls</Product>
-    <Copyright>Copyright ©  2018</Copyright>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <AssemblyName>FargowiltasSouls</AssemblyName>
+    <TargetFramework>net45</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="CalamityMod">
-      <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile')">C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile\CalamityMod.dll</HintPath>
-      <HintPath Condition="Exists('..\folder for wip')">..\folder for wip\CalamityMod.dll</HintPath>
-    </Reference>
-    <Reference Include="Fargowiltas">
-      <HintPath>..\folder for wip\Fargowiltas.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework">
-      <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.dll</HintPath>
-      <HintPath Condition="Exists('C:\Users\dariu\Documents\Microsoft Xna Framework')">C:\Users\dariu\Documents\Microsoft Xna Framework\Microsoft.Xna.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Game">
-      <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.Game.dll</HintPath>
-      <HintPath Condition="Exists('C:\Users\dariu\Documents\Microsoft Xna Framework')">C:\Users\dariu\Documents\Microsoft Xna Framework\Microsoft.Xna.Framework.Game.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Graphics">
-      <HintPath>..\stupid xna refs\Microsoft.Xna.Framework.Graphics.dll</HintPath>
-      <HintPath Condition="Exists('C:\Users\dariu\Documents\Microsoft Xna Framework')">C:\Users\dariu\Documents\Microsoft Xna Framework\Microsoft.Xna.Framework.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Terraria">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terrariamod.exe</HintPath>
-      <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria')">C:\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-    </Reference>
-
-    <Reference Include="ThoriumMod">
-      <HintPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile')">C:\Program Files (x86)\Steam\steamapps\common\Terraria\ModCompile\ThoriumMod.dll</HintPath>
-      <HintPath Condition="Exists('..\folder for wip')">..\folder for wip\ThoriumMod.dll</HintPath>
-      <HintPath Condition="Exists('..\..\References')">..\..\References\ThoriumMod.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="**\*.png" />
-    <Content Include="**\**\*.png" />
-    <Content Include="**\**\**\*.png" />
-    <Content Include="*.png" />
-    <Content Include="Sounds\**\*.wav" />
-    <Content Include="Sounds\*.mp3" />
-    <Content Include="build.txt" />
-    <Content Include="description.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Items\Misc\Nuke.cs" />
-    <Compile Remove="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Remove="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Remove="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Remove="Projectiles\NukeProj.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Buffs\Masomode\FlippedHallow.png" />
-    <None Remove="Buffs\PlaceholderBuff.png" />
-    <None Remove="NPCs\BrainIllusion.png" />
-    <None Remove="Projectiles\Masomode\CelestialRuneIceSpike.png" />
-    <None Remove="Projectiles\Minions\PhantasmalDeathrayTrueEye.png" />
-    <None Remove="Projectiles\Minions\PhantasmalDeathrayTrueEye2.png" />
-    <None Remove="Projectiles\Minions\PhantasmalDeathrayTrueEye3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="lib" />
-  </ItemGroup>
-  <PropertyGroup>
-    <PreBuildEvent>"C:\Users\Liam\Documents/My Games/Terraria/ModLoader/Mod References/TerrariaCompiler.exe" "$(ProjectDir)\"</PreBuildEvent>
-    <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\Terraria/tModLoaderServer.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartAction>Program</StartAction>
-    <StartProgram Condition="'$(Configuration)|$(Platform)' == 'Client|x86'">C:\Program Files (x86)\Steam\steamapps\common\Terraria/Terrariamod.exe</StartProgram>
-    <StartProgram Condition="'$(Configuration)|$(Platform)' == 'Server|x86'">C:\Program Files (x86)\Steam\steamapps\common\Terraria/tModLoaderServer.exe</StartProgram>
-    <StartWorkingDirectory>C:\Program Files (x86)\Steam\steamapps\common\Terraria/</StartWorkingDirectory>
-  </PropertyGroup>
+  <Target Name="BuildMod" AfterTargets="Build">
+    <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define $(DefineConstants) -unsafe $(AllowUnsafeBlocks)" />
+  </Target>
 </Project>

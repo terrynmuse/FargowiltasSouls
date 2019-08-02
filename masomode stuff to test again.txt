@@ -1,5 +1,20 @@
-﻿
-
+﻿retinazer has special extra range burning aura
+retinazer shoots dark stars less often
+eoc bloodscythes last 5sec and ignore tiles
+eoc scythe threshold is 50% (was 40%)
+eoc has scythe rain
+destroyer middle star has higher velocity
+wof aura is tighter
+skeletron/dungeon guardian bones are their own proj now and use ML timer
+mimics no longer have nerfed defense
+wyverns, dune splicers no longer have buffed health in pre-hm
+demon eyes inflict berserked instead of stoned
+eoc/wandering eye no longer inflicts stoned
+cultist, moon lord seals are smaller
+golem fists instantly recover to full when brought below 50% hp (effectively unkillable)
+golem fists are immune to debuffs
+golem has boosted horiz speed outside temple
+golem head only breathes fire outside temple
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

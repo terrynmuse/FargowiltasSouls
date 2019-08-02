@@ -73,15 +73,6 @@ namespace FargowiltasSouls.Projectiles
                             projectile.tileCollide = false;
                         break;
 
-                    case ProjectileID.SkeletonBone:
-                        if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.skeleBoss, NPCID.SkeletronHead)
-                            || FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.guardBoss, NPCID.DungeonGuardian))
-                        {
-                            projectile.light = 1f;
-                            projectile.scale = 1.5f;
-                        }
-                        break;
-
                     case ProjectileID.UnholyTridentHostile:
                         projectile.extraUpdates++;
                         break;
@@ -1117,8 +1108,6 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.Skull:
                         if (Main.rand.Next(4) == 0)
                             target.AddBuff(BuffID.Cursed, Main.rand.Next(60, 360));
-                        goto case ProjectileID.SkeletonBone;
-                    case ProjectileID.SkeletonBone:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.guardBoss, NPCID.DungeonGuardian))
                         {
                             target.AddBuff(mod.BuffType("GodEater"), 420);
