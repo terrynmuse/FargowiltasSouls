@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -22,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Throw with the force of nuclear fusion'
 Critical strikes will unleash ivory flares from the cosmos
 Ivory flares deal 0.1% of the hit target's maximum life as damage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "白矮星魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'以核聚变的伟力抛出'
+暴击将释放宇宙星光
+宇宙星光造成敌人生命上限0.5%的伤害");
         }
 
         public override void SetDefaults()

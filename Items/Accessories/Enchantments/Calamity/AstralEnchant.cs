@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -23,6 +24,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 Whenever you crit an enemy fallen, hallowed, and astral stars will rain down
 This effect has a 1 second cooldown before it can trigger again
 Effects of the Astral Arcanum and Hide of Astrum Deus");
+            DisplayName.AddTranslation(GameCulture.Chinese, "星幻魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'星体瘟疫侵蚀了你...'
+暴击时落下落星, 圣星和彗星攻击敌人
+该效果有1秒的冷却
+拥有星陨幻空石和星神游龙外壳的效果");
         }
 
         public override void SetDefaults()

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"''
 You occasionally birth a tentacle of abyssal energy that attacks nearby enemies
 You can have up to six tentacles and their damage saps 1 life & mana from the hit enemy");
+            DisplayName.AddTranslation(GameCulture.Chinese, "黑暗低语者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"''
+偶尔在地面产生深渊能量触手攻击附近的敌人
+最多产生6根触手, 触手的攻击将会为你偷取1点生命值和法力");
         }
 
         public override void SetDefaults()

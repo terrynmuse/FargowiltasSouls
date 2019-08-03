@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -26,6 +27,15 @@ Ranged attacks spawn Xeroc Fire sparks
 Magic attacks spawn Xeroc Orbs
 Minion attacks spawn Xeroc Bubbles
 Rogue attacks spawn Xeroc Stars");
+            DisplayName.AddTranslation(GameCulture.Chinese, "克希洛克魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'掌握着一位上古之神的力量...'
+所有攻击概率造成着火和诅咒地狱
+近战攻击造成克希洛克爆炸
+远程攻击生成克希洛克火花
+魔法攻击生成克希洛克法球
+召唤攻击生成克希洛克泡泡
+盗贼攻击生成克希洛克之星");
         }
 
         public override void SetDefaults()

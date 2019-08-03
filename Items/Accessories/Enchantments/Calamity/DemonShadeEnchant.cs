@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -29,6 +30,16 @@ Enemies take ungodly damage when they touch you
 Standing still lets you absorb the shadows and boost your life regen
 Press Y to enrage nearby enemies with a dark magic spell for 10 seconds
 This makes them do 1.5 times more damage but they also take five times as much damage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "魔影魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你身上散发着恶魔之力...'
+所有攻击造成恶魔之炎
+被攻击时释放暗影射线和恶魔镰刀
+一个友好的红魔鬼将跟随你
+敌人触碰你时受到鬼魔伤害
+站立不动你将吸收暗影能量并大幅增加生命恢复速度
+按'Y'键用黑魔法激怒附近敌人10秒
+这将使敌人造成1.5倍伤害, 同时受到5倍伤害");
         }
 
         public override void SetDefaults()

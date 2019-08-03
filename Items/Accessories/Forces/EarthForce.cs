@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
@@ -25,6 +26,18 @@ Spawns 3 fireballs to rotate around you
 Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split
 Briefly become invulnerable after striking an enemy");
+            DisplayName.AddTranslation(GameCulture.Chinese, "大地之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'盖亚的祝福照耀着你'
+你的抛射物有25%概率爆炸成碎片
+增加25%武器使用速度
+攻击敌人后大大增加生命回复
+一次攻击获得每秒5%的生命窃取,上限为5点
+花瓣对你的目标造成额外伤害
+召唤3个环绕你的火球
+第8个抛射物将会分裂成3个
+分裂出的抛射物同样可以分裂
+满血状态下所受到的伤害将减少90%在攻击敌人后的瞬间无敌");
         }
 
         public override void SetDefaults()

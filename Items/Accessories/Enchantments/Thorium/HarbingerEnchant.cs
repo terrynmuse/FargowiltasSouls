@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -25,6 +26,14 @@ While above 75% maximum mana, you become unstable
 Magical attacks have a 33% chance to recover some mana
 Effects of Shade Band and White Music Player
 Summons a Moogle pet");
+            DisplayName.AddTranslation(GameCulture.Chinese, "先知魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'末日将至'
+增加50%最大法力值
+法力值高于75%时变得不稳定
+魔法攻击有33%概率回复法力值
+拥有暗影护符和白色播放器的效果
+召唤宠物小喵");
         }
 
         public override void SetDefaults()

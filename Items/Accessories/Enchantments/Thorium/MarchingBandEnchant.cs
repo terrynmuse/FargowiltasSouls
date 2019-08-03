@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -21,6 +22,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Step to the beat'
 Inspiration notes that drop are twice as potent and increase your symphonic damage briefly");
+            DisplayName.AddTranslation(GameCulture.Chinese, "仪仗队魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'脚步合拍'
+掉落的灵感音符双倍强度, 短暂增加音波伤害");
         }
 
         public override void SetDefaults()

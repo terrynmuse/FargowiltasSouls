@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using CalamityMod;
 using CalamityMod.Items.CalamityCustomThrowingDamage;
 using System;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -31,6 +32,15 @@ Attacks have a 2% chance to do no damage to you
 You will freeze enemies near you when you are struck
 All attacks spawn healing auric orbs
 You have a magic carpet");
+            DisplayName.AddTranslation(GameCulture.Chinese, "古圣金源魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你的力量能与丛林暴君的力量相媲美...'
+拥有龙蒿, 血炎, 弑神者和始源林海的套装效果
+站立不动时增加所有伤害和暴击率
+2%概率免受伤害
+被攻击时冻结附近敌人
+所有攻击都会生成治愈金球
+拥有魔毯的效果");
         }
 
         public override void SetDefaults()

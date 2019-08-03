@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Pressing the 'Special Ability' key will summon an incredibly powerful aura around your cursor
 Creating this aura costs 150 mana
 Effects of Ascension Statuette");
+            DisplayName.AddTranslation(GameCulture.Chinese, "天界魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'谐能环绕着你'
+按下'特殊能力'键将在光标处召唤无比强大的光环
+召唤光环消耗150法力
+拥有飞升雕像的效果");
         }
 
         public override void SetDefaults()

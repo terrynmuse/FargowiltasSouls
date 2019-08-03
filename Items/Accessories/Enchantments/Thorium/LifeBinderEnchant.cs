@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -25,6 +26,14 @@ Your radiant damage has a 15% chance to release a blinding flash of light
 The flash heals nearby allies equal to your bonus healing and confuses enemies
 Effects of Aloe Leaf and Equalizer
 Summons a pet Holy Goat");
+            DisplayName.AddTranslation(GameCulture.Chinese, "生命束缚者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'植物从你的之间生长'
+治疗队友将会短暂增加其50最大生命值
+光辉伤害有15%概率造成闪光爆炸
+闪光爆炸将迷惑敌人并治疗队友(受额外治疗量影响)
+拥有芦荟叶和平等护符效果
+召唤宠物神圣山羊");
         }
 
         public override void SetDefaults()

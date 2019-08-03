@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Allows you to breathe underwater
 Grants the ability to swim
 Effects of Sea Breeze Pendant and Bubble Magnet");
+            DisplayName.AddTranslation(GameCulture.Chinese, "海洋魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'与鱼同游'
+获得水下呼吸能力
+获得游泳能力
+拥有海洋通行证和泡泡磁铁的效果");
         }
 
         public override void SetDefaults()

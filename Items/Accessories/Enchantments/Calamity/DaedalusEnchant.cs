@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -28,6 +29,17 @@ If you absorb an attack you are healed for 1/2 of that attack's damage
 A daedalus crystal floats above you to protect you
 Rogue projectiles throw out crystal shards as they travel
 Effects of Permafrost's Concoction");
+            DisplayName.AddTranslation(GameCulture.Chinese, "代达罗斯魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'冰霜魔法保护着你...'
+33%概率将抛射物反射回敌人
+反射时将回复此抛射物伤害1/5的生命值
+被攻击时爆发魔晶碎片
+受攻击时有10%概率吸收物理攻击和抛射物
+吸收时将回复此攻击伤害1/2的生命值
+代达罗斯水晶将保护你
+盗贼抛射物会在飞行中会射出魔晶碎片
+拥有佩码·福洛斯特之融魔台的效果");
         }
 
         public override void SetDefaults()

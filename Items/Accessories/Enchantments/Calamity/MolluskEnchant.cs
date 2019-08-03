@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -22,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 @"'The world is your oyster'
 Two shellfishes aid you in combat
 Effects of Giant Pearl and Amidias' Pendant");
+            DisplayName.AddTranslation(GameCulture.Chinese, "软壳魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'世界任你驰骋'
+召唤2个海贝为你而战
+拥有大珍珠和阿米迪亚斯之垂饰的效果");
         }
 
         public override void SetDefaults()

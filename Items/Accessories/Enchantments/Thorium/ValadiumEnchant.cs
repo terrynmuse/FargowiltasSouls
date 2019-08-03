@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Reverse gravity by pressing UP
 While reversed, ranged damage is increased by 12%
 Effects of Eye of the Beholder");
+            DisplayName.AddTranslation(GameCulture.Chinese, "虚金魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'哪儿是上?'
+按'上'键逆转重力
+重力颠倒时增加12%远程伤害
+拥有注视者之眼的效果");
         }
 
         public override void SetDefaults()

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -22,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Nothing to cry about'
 10% increased inspiration regeneration
 Effects of Music Notes");
+            DisplayName.AddTranslation(GameCulture.Chinese, "传迅员魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'没什么可说的'
+增加10%灵感回复
+拥有音符的效果");
         }
 
         public override void SetDefaults()

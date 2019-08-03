@@ -23,6 +23,13 @@ Sets your critical strike chance to 10%
 Every crit will increase it by 5%
 Getting hit drops your crit back down
 ";
+            string tooltip_ch =
+@"'大地赐予它力量'
+攻击有概率用闪电打击敌人
+暴击率设为10%
+每次暴击增加5%
+被击中降低暴击率
+";
 
             if (thorium == null)
             {
@@ -31,6 +38,10 @@ Getting hit drops your crit back down
 Right Click to guard with your shield
 You attract items from a larger range
 ";
+                tooltip_ch +=
+@"允许玩家向敌人冲刺
+右键用盾牌防御
+拾取物品半径增大";
             }
 
             tooltip +=
@@ -39,8 +50,16 @@ Attacks may inflict enemies with Lead Poisoning
 Grants immunity to fire, fall damage, and lava
 Increases armor penetration by 5
 While standing in lava, you gain 15 more armor penetration, 15% attack speed, and your attacks ignite enemies";
+            tooltip_ch +=
+@"增加150%武器尺寸
+攻击概率使敌人铅中毒
+免疫火焰,坠落伤害和岩浆
+增加5点护甲穿透
+在岩浆中时,再多获得15点护甲穿透,15%攻击速度,攻击会点燃敌人";
                 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "泰拉之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -22,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Extreme danger noodle'
 Every 75 mana spent will dramatically increase your magic damage and casting speed briefly
 Allows quicker movement in water");
+            DisplayName.AddTranslation(GameCulture.Chinese, "娜迦魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'极端危险'
+每消耗75点魔力, 短时间内极大增加施法速度和魔法伤害
+允许在水中快速移动");
         }
 
         public override void SetDefaults()

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -24,6 +25,12 @@ When you take over 100 damage in one hit you become immune to damage for an exte
 Grants an extra jump and increased jump height
 Summons a mini slime god to fight for you, the type depends on what world evil you have
 Effects of Fungal Symbiote");
+            DisplayName.AddTranslation(GameCulture.Chinese, "斯塔提斯魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'斯塔提斯的神秘力量环绕着你...'
+一次性承受超过100点伤害时, 加长无敌时间
+能够多跳跃一次, 增加跳跃高度
+召唤迷你史莱姆之神为你而战, 种类视世界而定");
         }
 
         public override void SetDefaults()

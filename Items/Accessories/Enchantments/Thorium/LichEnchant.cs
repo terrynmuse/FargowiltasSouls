@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Killing an enemy will release a soul fragment
 Touching a soul fragment greatly increases your movement and throwing speed briefly
 Effects of Lich's Gaze");
+            DisplayName.AddTranslation(GameCulture.Chinese, "巫妖魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'拥抱死亡...'
+杀死敌人会释放灵魂碎片
+触摸灵魂碎片会在短时间内极大增加移动速度和投掷速度
+拥有巫妖之视效果");
         }
 
         public override void SetDefaults()

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -25,6 +26,14 @@ Each unique empowerment you have grants you:
 3% increased movement speed,
 2% increased inspiration regeneration,
 1% increased playing speed");
+            DisplayName.AddTranslation(GameCulture.Chinese, "民谣歌手魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'宇宙谣曲在你脑海中回响'
+每拥有一种咒音, 获得以下增益:
+增加8%音波伤害
+增加3%移动速度
+增加2%灵感回复
+增加1%演奏速度");
         }
 
         public override void SetDefaults()

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Taking damage heals nearby allies equal to 15% of the damage taken
 If an ally is below half health, you will gain increased healing abilities
 Effects of Wynebgwrthucher and Rebirth Statuette");
+            DisplayName.AddTranslation(GameCulture.Chinese, "堕落圣骑士魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'静静地在地牢游荡'
+受到伤害的15%将治疗附近队友
+队友生命值低于50%时, 增加治疗量
+拥有祝福之盾和重生雕像的效果");
         }
 
         public override void SetDefaults()

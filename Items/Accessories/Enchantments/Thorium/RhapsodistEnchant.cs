@@ -5,6 +5,7 @@ using System.Linq;
 using ThoriumMod;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -27,6 +28,14 @@ Additionally, they give a random level 1 empowerment to all nearby allies
 Pressing the 'Special Ability' key will grant you infinite inspiration and increased symphonic damage and playing speed
 It also overloads all nearby allies with every empowerment III for 15 seconds
 These effects needs to recharge for 1 minute");
+            DisplayName.AddTranslation(GameCulture.Chinese, "狂想曲魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'歌曲振奋军队, 向所有人证明你的才华独一无二'
+凋落的灵感音符强度增加
+此外, 给予附近所有队友随机的1级咒音增幅
+按下'特殊能力'键获得无限灵感, 增加音波伤害和演奏速度
+同时也会超载附近队友, 给予他们所有种类的3级咒音增幅
+该能力需充能1分钟");
         }
 
         public override void SetDefaults()
