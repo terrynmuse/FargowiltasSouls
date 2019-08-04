@@ -50,7 +50,6 @@ Summons a pet Black Cat");
             recipe.AddIngredient(ItemID.NinjaHood);
             recipe.AddIngredient(ItemID.NinjaShirt);
             recipe.AddIngredient(ItemID.NinjaPants);
-            recipe.AddIngredient(ItemID.ThrowingKnife, 300);
             recipe.AddIngredient(ItemID.Shuriken, 300);
             
             if(Fargowiltas.Instance.ThoriumLoaded)
@@ -64,7 +63,8 @@ Summons a pet Black Cat");
             {
                 recipe.AddIngredient(ItemID.SmokeBomb, 50);
             }
-            
+
+            recipe.AddIngredient(ItemID.SlimySaddle);
             recipe.AddIngredient(ItemID.UnluckyYarn);
             
             recipe.AddTile(TileID.DemonAltar);

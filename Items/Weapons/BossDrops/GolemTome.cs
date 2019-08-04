@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
             item.mana = 10;//
             item.UseSound = SoundID.Item21;//
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("GolemGib1");
+            item.shoot = mod.ProjectileType("GolemGib");
             item.shootSpeed = 12f;//
         }
 
@@ -90,10 +90,10 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
                 float x4 = vector2.X;
                 float y4 = vector2.Y;
 
-                String gibstring = "GolemGib" + (Main.rand.Next(11) + 1);
-                int gib = mod.ProjectileType(gibstring);
+                //String gibstring = "GolemGib" + (Main.rand.Next(11) + 1);
+                //int gib = mod.ProjectileType(gibstring);
 
-                Projectile.NewProjectile(position.X, position.Y, num148, num149, gib, dmg, kb, Main.myPlayer);
+                Projectile.NewProjectile(position.X, position.Y, num148, num149, mod.ProjectileType("GolemGib"), dmg, kb, Main.myPlayer, 0, Main.rand.Next(1, 12));
             }
 
             return false;

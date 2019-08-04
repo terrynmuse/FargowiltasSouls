@@ -123,7 +123,6 @@ All other effects of material Souls");
             player.buffImmune[BuffID.Silenced] = true;
             player.buffImmune[BuffID.Cursed] = true;
             player.buffImmune[BuffID.Darkness] = true;
-            //player.buffImmune[BuffID.ChaosState] = true;
             player.noKnockback = true;
             player.fireWalk = true;
             //brain of confusion
@@ -195,15 +194,22 @@ All other effects of material Souls");
             //magic carpet
             player.carpet = true;
             //frog legs
-            //player.autoJump = true;
-            //player.jumpSpeedBoost += 2.4f;
-            //player.jumpBoost = true;
-            //slime mount
-            //player.maxFallSpeed += 5f;
+            player.autoJump = true;
+            player.jumpSpeedBoost += 2.4f;
+            player.jumpBoost = true;
+            //bundle
+            if (player.wingTime == 0)
+            {
+                player.doubleJumpCloud = true;
+                player.doubleJumpSandstorm = true;
+                player.doubleJumpBlizzard = true;
+                player.doubleJumpFart = true;
+            }
 
             //FLIGHT MASTERY
             player.wingTimeMax = 999999;
             player.ignoreWater = true;
+            player.wingTime = player.wingTimeMax;
 
             //TRAWLER
             //extra lures

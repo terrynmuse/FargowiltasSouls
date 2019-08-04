@@ -80,7 +80,7 @@ Ranged damage has a 5% chance to instantly kill the enemy");
             recipe.AddIngredient(thorium.ItemType("OmniArablastHood"));
             recipe.AddIngredient(thorium.ItemType("OmniBody"));
             recipe.AddIngredient(thorium.ItemType("OmniGreaves"));
-            recipe.AddIngredient(ItemID.NailGun);
+            recipe.AddIngredient(ItemID.ShadowFlameBow);
             recipe.AddIngredient(thorium.ItemType("DMR"));
             recipe.AddIngredient(thorium.ItemType("KillCounter"));
             recipe.AddIngredient(thorium.ItemType("OmniBow"));
