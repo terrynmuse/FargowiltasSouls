@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Weapons
 			DisplayName.SetDefault("Dual Saber");
 			Tooltip.SetDefault("ye \n and thus fargo never added a proper description for this item");
             DisplayName.AddTranslation(GameCulture.Chinese, "双刃光剑");
-            Tooltip.AddTranslation(GameCulture.Chinese, "");
+            Tooltip.AddTranslation(GameCulture.Chinese, "ye\nFargo永远不会给这个物品写上合适的描述");
 		}
 		
         public override void SetDefaults()

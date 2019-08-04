@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Killing enemies or continually damaging bosses generates soul wisps
 After generating 5 wisps, they are instantly consumed to heal you for 10 life
 Effects of Inner Flame");
+            DisplayName.AddTranslation(GameCulture.Chinese, "猎魂者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'这么多失落的灵魂...'
+杀死敌人或持续攻击Boss会产生灵魂碎片
+集齐5个后,它们会立即被消耗,治疗10点生命
+拥有心灵之火效果");
         }
 
         public override void SetDefaults()

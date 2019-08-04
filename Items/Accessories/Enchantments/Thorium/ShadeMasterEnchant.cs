@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -24,6 +25,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 50% of the damage you take is staggered over the next 10 seconds
 Throw a smoke bomb to teleport to it and gain the First Strike Buff
 Summons a pet Black Cat");
+            DisplayName.AddTranslation(GameCulture.Chinese, "暗影大师魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'匿于阴影, 致命一击'
+所受伤害的50%将被分摊到接下来的10秒内
+扔烟雾弹进行传送,获得先发制人Buff
+召唤宠物黑猫");
         }
 
         public override void SetDefaults()

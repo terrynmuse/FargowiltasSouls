@@ -1274,11 +1274,11 @@ namespace FargowiltasSouls.NPCs
                             if (t != -1 && Main.netMode != 1)
                             {
                                 const float gravity = 0.3f;
-                                const float time = 120f;
+                                const float time = 90;
                                 Vector2 distance = Main.player[t].Center - npc.Center;
                                 distance.X = distance.X / time;
                                 distance.Y = distance.Y / time - 0.5f * gravity * time;
-                                npc.ai[1] = 120f;
+                                npc.ai[1] = time;
                                 npc.ai[2] = distance.X;
                                 npc.ai[3] = distance.Y;
                                 npc.netUpdate = true;
@@ -5463,16 +5463,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.EaterofSouls:
                     case NPCID.BigEater:
                     case NPCID.LittleEater:
-                        if (--Counter < 0)
-                        {
-                            Counter = 300;
-                            if (Main.netMode != 1 && npc.HasPlayerTarget && Main.player[npc.target].active && !Main.player[npc.target].dead)
-                            {
-                                Vector2 speed = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 12f;
-                                Projectile.NewProjectile(npc.Center, speed, ProjectileID.CursedFlameHostile, npc.damage / 4, 0f, Main.myPlayer);
-                            }
-                        }
-                        goto case NPCID.Hornet;
+                        
+                        if (++Counter >= 300)
+                            Shoot(npc, 30, 600, 12, ProjectileID.CursedFlameHostile, npc.damage / 4, 0);
+                        break;
+
                     case NPCID.Hornet:
                     case NPCID.HornetFatty:
                     case NPCID.HornetHoney:
@@ -5919,27 +5914,13 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.Zombie:
                     case NPCID.ArmedZombie:
-                    case NPCID.BaldZombie:
-                    case NPCID.PincushionZombie:
                     case NPCID.ArmedZombiePincussion:
-                    case NPCID.SlimedZombie:
                     case NPCID.ArmedZombieSlimed:
-                    case NPCID.SwampZombie:
                     case NPCID.ArmedZombieSwamp:
-                    case NPCID.TwiggyZombie:
                     case NPCID.ArmedZombieTwiggy:
-                    case NPCID.FemaleZombie:
                     case NPCID.ArmedZombieCenx:
-                    case NPCID.ZombieRaincoat:
-                    case NPCID.ZombieEskimo:
                     case NPCID.ArmedZombieEskimo:
-                    case NPCID.ZombieDoctor:
-                    case NPCID.ZombieSuperman:
-                    case NPCID.ZombiePixie:
-                    case NPCID.ZombieXmas:
-                    case NPCID.ZombieSweater:
                         if (npc.ai[2] >= 45f && npc.ai[3] == 0f && Main.netMode != 1)
                         {
                             int tileX = (int)(npc.position.X + npc.width / 2 + 15 * npc.direction) / 16;
@@ -5953,18 +5934,6 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
                         break;
-
-                    //drakin possible meme tm
-                    /*if (!DD2Event.Ongoing)
-                    {
-                        npc.ai[0] = 1;
-
-                        if (npc.lavaWet)
-                        {
-                            npc.velocity.Y -= 2;
-                            npc.velocity.X *= 2;
-                        }
-                    }*/
 
                     default:
                         break;
@@ -6385,7 +6354,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DemonEye:
                     case NPCID.DemonEyeOwl:
                     case NPCID.DemonEyeSpaceship:
-                        target.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(300));
+                        if ((Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5) && !target.HasBuff(BuffID.Stoned))
+                            target.AddBuff(BuffID.Stoned, Main.rand.Next(30));
                         break;
 
                     case NPCID.EaterofSouls:
@@ -7697,92 +7667,69 @@ namespace FargowiltasSouls.NPCs
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            //ZoneCorrupt
-            //ZoneHoly
-            //ZoneMeteor
-            //ZoneJungle
-            //ZoneSnow
-            //ZoneCrimson
+            //layers
+            int y = spawnInfo.spawnTileY;
+            bool cavern = y >= Main.maxTilesY * 0.4f && y <= Main.maxTilesY * 0.8f;
+            bool underground = y > Main.worldSurface && y <= Main.maxTilesY * 0.4f;
+            bool surface = y < Main.worldSurface && !spawnInfo.sky;
+            bool wideUnderground = cavern || underground;
+            bool underworld = spawnInfo.player.ZoneUnderworldHeight;
+            bool sky = spawnInfo.sky;
 
-            //ZoneDesert
-            //ZoneGlowshroom
-            //ZoneUndergroundDesert
-            //ZoneSkyHeight
-            //ZoneOverworldHeight
-            //ZoneDirtLayerHeight
-            //ZoneRockLayerHeight
-            //ZoneUnderworldHeight
-            //ZoneBeach
-            //ZoneRain
-            //ZoneSandstorm
-            //Main.raining
-            //NPC.AnyNPCs(NPCID.IceGolem)
-            //TileID.Sets.Conversion.Sand[spawnInfo.spawnTileType]
-            //spawnInfo.granite
-            //spawnInfo.lihzahrd
-            //spawnInfo.marble
-            //spawnInfo.sky
-            //spawnInfo.spiderCave
-            //spawnInfo.player.adjLava
+            //times
+            bool night = !Main.dayTime;
+            bool day = Main.dayTime;
+
+            //biomes
+            bool noBiome = Fargowiltas.NoBiomeNormalSpawn(spawnInfo);
+            bool ocean = spawnInfo.player.ZoneBeach;
+            bool dungeon = spawnInfo.player.ZoneDungeon;
+            bool meteor = spawnInfo.player.ZoneMeteor;
+            bool spiderCave = spawnInfo.spiderCave;
+            bool mushroom = spawnInfo.player.ZoneGlowshroom;
+            bool jungle = spawnInfo.player.ZoneJungle;
+            bool granite = spawnInfo.granite;
+            bool marble = spawnInfo.marble;
+            bool corruption = spawnInfo.player.ZoneCorrupt;
+            bool crimson = spawnInfo.player.ZoneCrimson;
+            bool snow = spawnInfo.player.ZoneSnow;
+            bool hallow = spawnInfo.player.ZoneHoly;
+            bool desert = spawnInfo.player.ZoneDesert;
+
+            bool nebulaTower = spawnInfo.player.ZoneTowerNebula;
+            bool vortexTower = spawnInfo.player.ZoneTowerVortex;
+            bool stardustTower = spawnInfo.player.ZoneTowerStardust;
+            bool solarTower = spawnInfo.player.ZoneTowerSolar;
+
+            bool water = spawnInfo.water;
+
+            //events
+            bool goblinArmy = Main.invasionType == 1;
+            bool frostLegion = Main.invasionType == 2;
+            bool pirates = Main.invasionType == 3;
+            bool martianMadness = Main.invasionType == 4;
+            bool oldOnesArmy = DD2Event.Ongoing && spawnInfo.player.ZoneOldOneArmy;
+            bool frostMoon = surface && night && Main.snowMoon;
+            bool pumpkinMoon = surface && night && Main.pumpkinMoon;
+            bool solarEclipse = surface && day && Main.eclipse;
+            bool lunarEvents = NPC.LunarApocalypseIsUp && (nebulaTower || vortexTower || stardustTower || solarTower);
+
+            //no work?
+            //is lava on screen
+            bool nearLava = Collision.LavaCollision(spawnInfo.player.position, spawnInfo.spawnTileX, spawnInfo.spawnTileY);
+            bool noInvasion = Fargowiltas.NoInvasion(spawnInfo);
+            bool normalSpawn = !spawnInfo.playerInTown && noInvasion && !oldOnesArmy;
+
+            bool sinisterIcon = spawnInfo.player.GetModPlayer<FargoPlayer>().SinisterIcon;
+
+            if (underworld)
+            {
+                pool[mod.NPCType("DemonSquirrel")] = .05f;
+            }
 
             //MASOCHIST MODE
             if (FargoWorld.MasochistMode)
             {
-                //layers
-                int y = spawnInfo.spawnTileY;
-                bool cavern = y >= Main.maxTilesY * 0.4f && y <= Main.maxTilesY * 0.8f;
-                bool underground = y > Main.worldSurface && y <= Main.maxTilesY * 0.4f;
-                bool surface = y < Main.worldSurface && !spawnInfo.sky;
-                bool wideUnderground = cavern || underground;
-                bool underworld = spawnInfo.player.ZoneUnderworldHeight;
-                bool sky = spawnInfo.sky;
-
-                //times
-                bool night = !Main.dayTime;
-                bool day = Main.dayTime;
-
-                //biomes
-                bool noBiome = Fargowiltas.NoBiomeNormalSpawn(spawnInfo);
-                bool ocean = spawnInfo.player.ZoneBeach;
-                bool dungeon = spawnInfo.player.ZoneDungeon;
-                bool meteor = spawnInfo.player.ZoneMeteor;
-                bool spiderCave = spawnInfo.spiderCave;
-                bool mushroom = spawnInfo.player.ZoneGlowshroom;
-                bool jungle = spawnInfo.player.ZoneJungle;
-                bool granite = spawnInfo.granite;
-                bool marble = spawnInfo.marble;
-                bool corruption = spawnInfo.player.ZoneCorrupt;
-                bool crimson = spawnInfo.player.ZoneCrimson;
-                bool snow = spawnInfo.player.ZoneSnow;
-                bool hallow = spawnInfo.player.ZoneHoly;
-                bool desert = spawnInfo.player.ZoneDesert;
-
-                bool nebulaTower = spawnInfo.player.ZoneTowerNebula;
-                bool vortexTower = spawnInfo.player.ZoneTowerVortex;
-                bool stardustTower = spawnInfo.player.ZoneTowerStardust;
-                bool solarTower = spawnInfo.player.ZoneTowerSolar;
-
-                bool water = spawnInfo.water;
-
-                //events
-                bool goblinArmy = Main.invasionType == 1;
-                bool frostLegion = Main.invasionType == 2;
-                bool pirates = Main.invasionType == 3;
-                bool martianMadness = Main.invasionType == 4;
-                bool oldOnesArmy = DD2Event.Ongoing && spawnInfo.player.ZoneOldOneArmy;
-                bool frostMoon = surface && night && Main.snowMoon;
-                bool pumpkinMoon = surface && night && Main.pumpkinMoon;
-                bool solarEclipse = surface && day && Main.eclipse;
-                bool lunarEvents = NPC.LunarApocalypseIsUp && (nebulaTower || vortexTower || stardustTower || solarTower);
-
-                //no work?
-                //is lava on screen
-                bool nearLava = Collision.LavaCollision(spawnInfo.player.position, spawnInfo.spawnTileX, spawnInfo.spawnTileY);
-                bool noInvasion = Fargowiltas.NoInvasion(spawnInfo);
-                bool normalSpawn = !spawnInfo.playerInTown && noInvasion && !oldOnesArmy;
-
-                bool sinisterIcon = spawnInfo.player.GetModPlayer<FargoPlayer>().SinisterIcon;
-
                 //all the pre hardmode
                 if (!Main.hardMode)
                 {

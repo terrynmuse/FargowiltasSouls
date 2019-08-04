@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Most definitely not alive'
 Prevents Masochist Mode-induced natural boss spawns
 Increases spawn rate");
-            DisplayName.AddTranslation(GameCulture.Chinese, "");
+            DisplayName.AddTranslation(GameCulture.Chinese, "邪恶画像");
             Tooltip.AddTranslation(GameCulture.Chinese, @"'肯定不是活着的'
 阻止受虐模式导致的Boss自然生成
 提高刷怪速率");

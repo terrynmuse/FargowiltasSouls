@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Magical attacks have a 33% chance to recover some mana
 Effects of Shade Band
 Summons a Moogle pet");
+            DisplayName.AddTranslation(GameCulture.Chinese, "白骑士魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'不惜一切代价保护电工妹'
+魔法攻击有33%的概率回复一些法力值
+拥有暗影护符的效果
+召唤宠物小喵");
         }
 
         public override void SetDefaults()

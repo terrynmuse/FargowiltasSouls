@@ -20,6 +20,9 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             string tooltip =
 @"'Tapped into every secret of the wilds'
 ";
+            string tooltip_ch =
+@"'挖掘了野外的每一个秘密'
+";
 
             if (thorium == null)
             {
@@ -34,6 +37,18 @@ Summons a leaf crystal to shoot at nearby enemies
 Not moving puts you in stealth
 While in stealth, crits deal 4x damage
 Summons several pets";
+                tooltip_ch +=
+@"极大增加生命恢复速度
+心获得1.5倍治疗量
+点燃附近敌人
+死亡时剧烈爆炸,造成大量伤害
+冰柱将出现在你周围
+当存在3枚时,攻击会将它们向光标位置发射
+受到伤害会释放出有毒的孢子爆炸
+召唤一个叶绿水晶向射击附近的敌人
+站立不动时潜行
+潜行时,暴击造成4倍伤害
+召唤数个宠物";
             }
             else
             {
@@ -52,9 +67,26 @@ Attacks may inflict Fungal Growth
 Effects of Night Shade Petal, Sub-Zero Subwoofer, and Toxic Subwoofer 
 Effects of Spring Steps and Slag Stompers
 Summons several pets";
+                tooltip_ch +=
+@"极大增加生命恢复速度,心获得1.5倍治疗量
+点燃附近敌人
+死亡时剧烈爆炸,造成大量伤害
+生命值每下降25%,增加5%攻击速度
+随着时间的推移,被你点燃或烧伤的敌人会受到额外的伤害
+冰柱将出现在你周围
+当存在3枚时,攻击会将它们向光标位置发射
+受到伤害会释放出有毒的孢子爆炸
+召唤一个叶绿水晶向射击附近的敌人
+站立不动时潜行,潜行时,暴击造成4倍伤害
+攻击造成真菌寄生效果
+拥有影缀花,零度音箱和剧毒音箱的效果
+拥有弹簧鞋和熔渣重踏的效果
+召唤数个宠物";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "自然之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

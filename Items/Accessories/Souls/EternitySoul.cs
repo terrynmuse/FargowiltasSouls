@@ -228,15 +228,22 @@ and most of SoT not mentioned because meme tooltip length
             //magic carpet
             player.carpet = true;
             //frog legs
-            //player.autoJump = true;
-            //player.jumpSpeedBoost += 2.4f;
-            //player.jumpBoost = true;
-            //slime mount
-            //player.maxFallSpeed += 5f;
+            player.autoJump = true;
+            player.jumpSpeedBoost += 2.4f;
+            player.jumpBoost = true;
+            //bundle
+            if (player.wingTime == 0)
+            {
+                player.doubleJumpCloud = true;
+                player.doubleJumpSandstorm = true;
+                player.doubleJumpBlizzard = true;
+                player.doubleJumpFart = true;
+            }
 
             //FLIGHT MASTERY
             player.wingTimeMax = 999999;
             player.ignoreWater = true;
+            player.wingTime = player.wingTimeMax;
 
             //TRAWLER
             //extra lures

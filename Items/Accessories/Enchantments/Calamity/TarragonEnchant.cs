@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -35,6 +36,22 @@ Summons a life aura around you that damages nearby enemies
 After every 25 rogue critical hits you will gain 5 seconds of damage immunity
 While under the effects of a debuff you gain 10% increased rogue damage
 Effects of the Profaned Soul Artifact");
+            DisplayName.AddTranslation(GameCulture.Chinese, "龙蒿魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'布拉洛的不死之力从你身上流过...'
+增加心拾取范围
+敌人死后有概率掉落额外的心
+被攻击时有25%概率快速回复生命
+按'Y'键将自己笼罩在生命能量中, 极大减少敌人基础伤害, 持续10秒
+远程暴击引发飞叶爆炸
+远程抛射物杀死敌人后有概率分裂生命光束
+每5次魔法暴击后引发叶绿风暴
+魔法抛射物击中敌人时有50%的概率治愈玩家
+满血时, +2最大召唤栏, 增加10%召唤伤害
+召唤生命之环伤害附近的敌人
+投掷暴击25次后, 获得5秒的无敌时间
+Debuff状态下, 增加10%盗贼伤害
+拥有渎魂神物的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

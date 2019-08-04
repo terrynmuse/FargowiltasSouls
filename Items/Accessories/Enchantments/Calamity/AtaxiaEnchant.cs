@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -28,6 +29,16 @@ Magic attacks summon damaging and healing flare orbs on hit
 Summons a chaos spirit to protect you
 Rogue weapons have a 10% chance to unleash a volley of chaos flames around the player
 Effects of the Plague Hive");
+            DisplayName.AddTranslation(GameCulture.Chinese, "阿塔西亚魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'别和禅心搞混了'
+攻击有20%概率释放炎爆
+近战攻击和抛射物会对敌人造成混乱之火
+使用远程武器时有50%概率发射追踪的混乱之火
+魔法攻击召唤治愈和伤害的火球
+召唤混乱之灵保护你
+盗贼武器有10%概率在玩家周围释放一串混乱之火
+拥有瘟疫蜂巢的效果");
         }
 
         public override void SetDefaults()

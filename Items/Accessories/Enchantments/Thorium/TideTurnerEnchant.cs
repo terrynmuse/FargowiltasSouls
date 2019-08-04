@@ -5,6 +5,7 @@ using System.Linq;
 using ThoriumMod;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -29,6 +30,15 @@ Produces a floating globule every half second
 Every globule increases defense and makes your next thrown attack a mini-crit
 Throwing damage overflows hit enemies with energy
 Throwing damage has a 20% chance to unleash aquatic homing daggers all around you");
+            DisplayName.AddTranslation(GameCulture.Chinese, "洪流逆潮者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'像潮水一样势不可挡, 向敌人释放波涛的愤怒'
+按下'特殊能力'键将你包裹在封闭泡泡中
+泡泡激活时, 收到的所有伤害转化为治疗
+每0.5秒产生一颗浮球
+每颗浮球都将增加防御力, 并使下一次投掷攻击变为小型暴击
+溢出的投掷伤害转化为能量攻击附近的敌人
+投掷攻击有20%概率释放6把会追踪的波纹飞刀");
         }
 
         public override void SetDefaults()

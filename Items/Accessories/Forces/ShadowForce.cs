@@ -25,12 +25,23 @@ Dash into any walls, to teleport through them to the next opening
 While attacking, Flameburst shots manifest themselves from your shadows
 Greatly enhances Flameburst effectiveness
 ";
+            string tooltip_ch =@"'Dark, Darker, Yet Darker'
+攻击概率造成黑暗
+地牢守卫者偶尔会在你受到攻击时消灭敌人
+所有召唤物偶尔会发射巨大镰刀
+投掷烟雾弹进行传送,并获得先发制人Buff
+冲进墙壁时,会直接穿过
+攻击时,焰爆炮塔的射击会从你的阴影中显现出来
+大大增强焰爆炮塔能力
+";
 
             if (thorium == null)
             {
                 tooltip +=
 @"Effects of Master Ninja Gear
 Summons several pets";
+                tooltip_ch +=
+@"拥有忍者极意的效果";
             }
             else
             {
@@ -38,9 +49,15 @@ Summons several pets";
 @"50% of the damage you take is staggered over the next 10 seconds
 Effects of Master Ninja Gear and Dark Effigy
 Summons several pets";
+                tooltip_ch +=
+@"所受伤害的50%将被分摊到接下来的10秒内
+拥有忍者极意和阴影雕塑的效果
+召唤数个宠物";
             }
 
             Tooltip.SetDefault(tooltip);
+            DisplayName.AddTranslation(GameCulture.Chinese, "暗影之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
         }
 
         public override void SetDefaults()

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Rich with culture'
 Your symphonic empowerments will last an additional 5 seconds
 Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
+            DisplayName.AddTranslation(GameCulture.Chinese, "贵族魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'富有, 并且有教养'
+咒音Buff能额外持续5秒
+拥有杂集磁带, 团结之戒和恶魔音箱的效果");
         }
 
         public override void SetDefaults()

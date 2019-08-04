@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -22,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'There's a fungus among us'
 Damage done against mycelium infected enemies is increased by 10%
 Dealing damage to enemies infected with mycelium briefly increases throwing speed by 10%");
+            DisplayName.AddTranslation(GameCulture.Chinese, "真菌魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'我们中出了个真菌'
+对真菌寄生状态的敌人加伤10%
+攻击真菌寄生状态的敌人能增加10%投掷速度");
         }
 
         public override void SetDefaults()

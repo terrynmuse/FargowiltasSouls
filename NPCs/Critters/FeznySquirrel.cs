@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace FargowiltasSouls.NPCs
+namespace FargowiltasSouls.NPCs.Critters
 {
     public class FeznySquirrel : ModNPC
     {

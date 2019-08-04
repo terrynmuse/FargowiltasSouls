@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -25,6 +26,13 @@ Consecutive attacks against enemies might drop flesh, which grants bonus life an
 Effects of Vampire Gland, Demon Blood Badge, and Vile Flail-Core
 Effects of Blood Demon's Subwoofer and Yellow Music Player
 Summons a pet Flying Blister");
+            DisplayName.AddTranslation(GameCulture.Chinese, "魔血魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'注满了腐化之血'
+连续攻击敌人时概率掉落肉, 拾取肉会获得额外生命并增加伤害
+拥有吸血鬼试剂, 魔血徽章和邪恶链锤核心的效果
+拥有血魔音箱和黄色播放器的效果
+召唤宠物泡泡虫");
         }
 
         public override void SetDefaults()

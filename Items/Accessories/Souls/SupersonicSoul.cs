@@ -28,7 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             string tooltip = 
 @"'I am speed'
 Allows Supersonic running, flight, and extra mobility on ice
-Allows the holder to quadruple jump if no wings are equipped
+Allows the holder to quuintuple jump if no wings are equipped
 Increases jump height, jump speed, and allows auto-jump
 Grants the ability to swim and greatly extends underwater breathing
 Provides the ability to walk on water and lava
@@ -113,12 +113,10 @@ Effects of Flying Carpet";
                 player.doubleJumpCloud = true;
                 player.doubleJumpSandstorm = true;
                 player.doubleJumpBlizzard = true;
+                player.doubleJumpFart = true;
             }
             //magic carpet
              player.carpet = true;
-            
-            //slime mount
-            //player.maxFallSpeed += 5f;
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
@@ -273,10 +271,10 @@ Effects of Flying Carpet";
                 recipe.AddIngredient(ItemID.FrogLeg);
                 recipe.AddIngredient(ItemID.BundleofBalloons);
             }
-            
+
+            recipe.AddIngredient(ItemID.BalloonHorseshoeFart);
             recipe.AddIngredient(ItemID.FlyingCarpet);
             recipe.AddIngredient(ItemID.MinecartMech);
-            recipe.AddIngredient(ItemID.SlimySaddle);
             recipe.AddIngredient(ItemID.BlessedApple);
             recipe.AddIngredient(ItemID.AncientHorn);
             recipe.AddIngredient(ItemID.ReindeerBells);

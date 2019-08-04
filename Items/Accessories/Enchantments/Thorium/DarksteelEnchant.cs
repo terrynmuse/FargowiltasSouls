@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -27,6 +28,14 @@ Grants the ability to dash into the enemy
 Right Click to guard with your shield
 You attract items from a larger range
 Effects of Iron Shield and Spiked Bracer");
+            DisplayName.AddTranslation(GameCulture.Chinese, "暗金魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'轻巧而耐用'
+增加8%伤害减免
+获得冲刺能力
+右键用盾牌防御
+增大物品拾取范围
+拥有铁盾和尖刺锁的效果");
         }
 
         public override void SetDefaults()

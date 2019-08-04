@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -25,6 +26,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 10% increased damage
 Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Crietz, Band of Replenishment, and Fan Letter");
+            DisplayName.AddTranslation(GameCulture.Chinese, "瑟银魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'发出阵阵能量脉冲'
+增加10%伤害
+音波暴击短暂缓慢所有附近敌人
+拥有精准项链, 大恢复戒指和粉丝的信函的效果");
         }
 
         public override void SetDefaults()

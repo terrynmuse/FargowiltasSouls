@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -25,6 +26,13 @@ Magic damage will duplicate itself for 33% of the damage and apply the Frozen de
 An icy aura surrounds you, which freezes nearby enemies after a short delay
 Effects of Frostburn Pouch, Ice Bound Strider Hide, and Blue Music Player
 Summons a pet Penguin and Owl");
+            DisplayName.AddTranslation(GameCulture.Chinese, "冰法魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'是什么灭绝了恐龙? 冰河时代!'
+魔法攻击将产生此次伤害值33%的冰刺攻击敌人, 并对敌人造成冻结效果
+环绕的冰锥将冰冻敌人
+拥有霜火粉袋, 遁蛛契约和蓝色播放器的效果
+召唤宠物企鹅和猫头鹰");
         }
 
         public override void SetDefaults()

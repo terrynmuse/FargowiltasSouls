@@ -392,13 +392,14 @@ namespace FargowiltasSouls.Projectiles
                 {
                     int factor = (j == 0) ? 1 : -1;
                     split = NewProjectileDirectSafe(projectile.Center, projectile.velocity.RotatedBy(factor * spread * (i + 1)), projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
+
                     if (split != null)
                     {
+                        split.friendly = true;
                         split.GetGlobalProjectile<FargoGlobalProjectile>().numSplits = projectile.GetGlobalProjectile<FargoGlobalProjectile>().numSplits;
                         split.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = projectile.GetGlobalProjectile<FargoGlobalProjectile>().firstTick;
                     }
                 }
-
             }
         }
 

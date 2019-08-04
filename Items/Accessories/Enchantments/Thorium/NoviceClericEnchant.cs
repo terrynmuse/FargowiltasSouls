@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -24,6 +25,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Cleansed of all evil'
 Every 5 seconds you generate up to 3 holy crosses
 When casting healing spells, a cross is used instead of mana");
+            DisplayName.AddTranslation(GameCulture.Chinese, "牧师学徒魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'扫除一切恶'
+每5秒产生一个圣十字架, 上限为3个
+施放治疗法术时, 十字架将代替魔力消耗");
         }
 
         public override void SetDefaults()

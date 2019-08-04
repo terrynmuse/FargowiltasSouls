@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -27,6 +28,13 @@ Press Y to activate abyssal madness for 5 seconds
 Abyssal madness increases damage, critical strike chance, and tentacle aggression/range
 This effect has a 30 second cooldown
 Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
+            DisplayName.AddTranslation(GameCulture.Chinese, "蓝色欧米茄魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'深渊的黑暗淹没了你...'
+增加100点护甲穿透
+触手会吸取敌人的生命治愈你
+按'Y'键开启5秒'深渊狂乱'状态
+此状态下增加攻击, 暴击率, 触手攻击性和射程");
         }
 
         public override void SetDefaults()

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
 {
@@ -30,6 +31,18 @@ Each unique empowerment you have grants you:
 8% increased damage, 
 3% increased movement speed
 Effects of Mana-Charged Rocketeers and Ascension Statuette");
+            DisplayName.AddTranslation(GameCulture.Chinese, "华纳海姆之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'对未来的一瞥...'
+神秘屏障环绕周身
+每7次攻击会释放魔法箭
+暴击释放长时间的宇宙星光和虚空之焰吞没敌人
+按下'特殊能力'键将在光标处召唤无比强大的光环
+召唤光环消耗150法力
+每拥有一种咒音, 获得以下增益:
+增加8%伤害
+增加3%移动速度
+拥有魔力充能火箭靴和飞升雕像效果");
         }
 
         public override void SetDefaults()

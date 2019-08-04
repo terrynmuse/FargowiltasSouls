@@ -1,38 +1,43 @@
-﻿NEW UPDATE - v 0.7.4
--Updated to tModloader 0.11.2
--Added a few new sprites 
--Added some chinese localization
--Crimson Enchantment no longer gives hearts bonus healing
--Palladium Enchantment lifesteal up to 10%, cooldown quadrupled, max heal is up to 8 (more than 50% nerf)
--Mythril Enchantment gives 5% less attack speed
--Titanium Enchantment no longer gives any damage resistance
--Spectre Enchantment now works for all damage types and the healing orbs are much less common
--Beetle Enchantment is back to 1.5x wing time instead of 2x
--Updated Ebonwood Enchantment aura visual
--Destroyer Gun now uses 10 mana
--Fixed many instances of the Dragon Ball Terraria mod breaking accessories
--Fixed a few tooltips
+﻿NEW UPDATE - v 0.7.5
 
-Masomode Changes
--Sharks only jump below half health
--Piranhas only jump in the Jungle
--Golden Dipping Vat is slightly more common 1/15 instead of 1/20 FROM PIRATE CAPTAINS BTW
--Dune Splicers now only spawn post EoW/BoC
--Wandering Eyes and Eye of Cthulhu now also inflict Stoned
--Cursed Inferno flamethrower goes through walls
--Mimics have half defense in prehardmode 
--Any reflecting will no longer work on any type of minion
--Destroyer lights no longer reactivate
--Meteorite can't be exploded until post Skeletron
--Sand Sharks specifically spawn in the Underground Desert
--Wither Beasts have a reverse aura now
--Increased Sadisms needed for Amalgamted ammo recipes
--Brain illusions can theoretcally debuff player... if they dealt damage...
--Further nerfed Phantasm/Aerial Bane against Duke Fishron/Moon Lord 
--Enraged King Slime goes through blocks when everyone is dead now
--Auras shouldn't say 0 seconds anymore
--Fixed Reverse Mana Flow duration not displaying
--Fixed Cultist fireballs and lightning portals not actually having boosted damage
+-Fixed Squeaky Toy multiplayer bug
+
+-Eater of Souls now have a windup before their attack and do not go through walls
+-sharks dont jump as high 
+-only armed zombies break down doors now
+-Nurse now heals creeper minions as well
+-evil and hallowed cactuses deal more damage and inflict Poisoned
+-Projectiles split from Adamantite Enchantment are now always friendly
+-Boreal Enchantment snowballs now fire with swords correctly 
+-Double tapping down with Palm Wood Enchantment replaces the current sentry instead of doing nothing if there is already one
+-Assassin Enchantment: replaced nail gun with shadowflame bow in recipe
+-Copper Enchantment effect no longer goes on cooldown every time it tries to proc (even when it failed making the effect needlessly hard to get)
+-Fixed Top Hat Squirrels sprite sheet clipping into the ground
+-Added Demon Squirrel
+-Removed Throwing Knives for Slimy Saddle in Ninja Enchant
+-Replaced Slimy Saddle with Fart in a Horseshoe Balloon thus adding fart jump to it
+-Soul of Dimensions and Eternity flight is actually infinite
+
+
+retinazer has special extra range burning aura
+retinazer shoots dark stars less often
+eoc bloodscythes last 5sec and ignore tiles
+eoc scythe threshold is 50% (was 40%)
+eoc has scythe rain
+destroyer middle star has higher velocity
+wof aura is tighter
+skeletron/dungeon guardian bones are their own proj now and use ML timer
+mimics no longer have nerfed defense
+wyverns, dune splicers no longer have buffed health in pre-hm
+demon eyes inflict berserked instead of stoned
+eoc/wandering eye no longer inflicts stoned
+cultist, moon lord seals are smaller
+golem fists instantly recover to full when brought below 50% hp (effectively unkillable)
+golem fists are immune to debuffs
+golem has boosted horiz speed outside temple
+golem head only breathes fire outside temple
+
+
 
 This mod adds 2 main things. Souls and Masochist Mode.
 

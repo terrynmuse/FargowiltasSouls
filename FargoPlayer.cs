@@ -917,8 +917,16 @@ namespace FargowiltasSouls
                     Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
                     if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
                     {
+                        int damage = 10;
+
+                        if (player.ZoneCorrupt || player.ZoneCrimson || player.ZoneHoly)
+                        {
+                            damage = 25;
+                            player.AddBuff(BuffID.Poisoned, 300);
+                        }
+
                         if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles
-                            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), 10, 0, false, false, false, 0);
+                            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), damage, 0, false, false, false, 0);
                     }
                 }
 
@@ -2788,15 +2796,6 @@ namespace FargowiltasSouls
                 player.DropCoins();
         }
 
-        public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
-        {
-            //add rando debuff thing
-            //insert check for masomode here
-            // int rng = Main.rand.Next(FargoDebuffs.instance.debuffIDs.Length);
-            //int debuff = FargoDebuffs.instance.debuffIDs[rng];
-            //player.AddBuff(debuff, 300);
-        }
-
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             bool retVal = true;
@@ -2962,9 +2961,12 @@ namespace FargowiltasSouls
 
         public void Squeak(Vector2 center)
         {
-            int rng = Main.rand.Next(6);
+            if (!Main.dedServ)
+            {
+                int rng = Main.rand.Next(6);
 
-            Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/SqueakyToy/squeak" + (rng + 1)).WithVolume(1f).WithPitchVariance(.5f), center);
+                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/SqueakyToy/squeak" + (rng + 1)).WithVolume(1f).WithPitchVariance(.5f), center);
+            }
         }
 
         private int InfestedExtraDot()
@@ -3343,9 +3345,9 @@ namespace FargowiltasSouls
 
                     target = closestNPC;
                 }
-            }
 
-            copperCD = 300;
+                copperCD = 300;
+            }
         }
 
         public void CrimsonEffect(bool hideVisual)
@@ -4324,16 +4326,24 @@ namespace FargowiltasSouls
         {
             if (Soulcheck.GetValue("Palm Tree Sentry") && (player.controlDown && player.releaseDown))
             {
-                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15 && player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] == 0)
+                if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15)
                 {
                     Vector2 mouse = Main.MouseWorld;
 
-                    if (player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] == 0)
+                    if (player.ownedProjectileCounts[mod.ProjectileType("PalmTreeSentry")] > 0)
                     {
-                        Projectile.NewProjectile(mouse.X, mouse.Y - 10, 0f, 0f, mod.ProjectileType("PalmTreeSentry"), WoodForce? 15 : 45, 0f, player.whoAmI);
+                        for (int i = 0; i < 1000; i++)
+                        {
+                            Projectile proj = Main.projectile[i];
 
-                        //dust?
+                            if (proj.type == mod.ProjectileType("PalmTreeSentry"))
+                            {
+                                proj.Kill();
+                            }
+                        }
                     }
+
+                    Projectile.NewProjectile(mouse.X, mouse.Y - 10, 0f, 0f, mod.ProjectileType("PalmTreeSentry"), WoodForce ? 15 : 45, 0f, player.whoAmI);
                 }
             }
         }
@@ -4440,5 +4450,26 @@ namespace FargowiltasSouls
             }
         }
 
+        public override void PostNurseHeal(NPC nurse, int health, bool removeDebuffs, int price)
+        {
+            if (player.whoAmI == Main.myPlayer && GuttedHeart && Soulcheck.GetValue("Creeper Shield"))
+            {
+                for (int i = 0; i < 200; i++)
+                {
+                    NPC npc = Main.npc[i];
+
+                    if (npc.type == mod.NPCType("CreeperGutted") && npc.ai[0] == player.whoAmI)
+                    {
+                        int heal = npc.lifeMax - npc.life;
+
+                        if (heal > 0)
+                        {
+                            npc.HealEffect(heal);
+                            npc.life = npc.lifeMax;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

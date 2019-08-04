@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using CalamityMod;
 using System;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -38,6 +39,23 @@ Magic critical strikes cause flame explosions every 2 seconds
 Summons polterghast mines to circle you
 Rogue critical strikes have a 50% chance to heal you
 Effects of the Core of the Blood God and Affliction");
+            DisplayName.AddTranslation(GameCulture.Chinese, "血炎魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'堕落者的灵魂由你支配...'
+攻击50%血以下的敌人时有几率掉落心
+攻击50%血以上的敌人时有几率掉落法力星
+在血月被杀死的敌人有更高的几率掉落血珠
+近战攻击将会治愈你
+近战攻击同一敌人15次后, 你将进入5秒的'血之狂乱'状态
+'血之狂乱'状态下, 增加25%近战伤害和暴击率, 减免50%接触伤害
+该效果冷却时间30秒
+按'Y'键释放噬魂幽花的失落之魂摧毁你的敌人
+该效果冷却时间30秒
+远程武器有概率发射鲜血爆破
+魔法武器有时会发射幽灵法球
+召唤噬魂幽花雷环绕周围
+盗贼暴击有50%治愈玩家
+拥有血神核心和灾劫之尖啸的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

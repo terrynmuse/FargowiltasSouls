@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -27,6 +28,15 @@ Your attacks have a chance to unleash an explosion of Dragon's Flame
 Effects of Crash Boots, Dragon Talon Necklace, and Cursed Flail-Core
 Effects of Grim Subwoofer and Green Music Player
 Summons a pet Wyvern");
+            DisplayName.AddTranslation(GameCulture.Chinese, "恐惧魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'充满被诅咒的灵魂'
+你的靴子以不真实的频率振动着, 显著提高移动速度
+移动时增加近战伤害和暴击率
+攻击有概率释放龙焰爆炸
+拥有震地, 龙爪项链和诅咒链球核心的效果
+拥有恐惧音箱和绿色播放器的效果
+召唤宠物小飞龙");
         }
 
         public override void SetDefaults()

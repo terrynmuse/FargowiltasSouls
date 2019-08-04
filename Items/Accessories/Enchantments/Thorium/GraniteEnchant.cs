@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -23,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Defensively energized'
 Immune to intense heat and enemy knockback, but your movement speed is slowed down greatly
 Effects of Eye of the Storm and Energized Subwoofer");
+            DisplayName.AddTranslation(GameCulture.Chinese, "花岗岩魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'防御激增'
+免疫火块灼烧和击退，但大幅度降低移动速度
+拥有风暴之眼和充能音箱的效果");
         }
 
         public override void SetDefaults()

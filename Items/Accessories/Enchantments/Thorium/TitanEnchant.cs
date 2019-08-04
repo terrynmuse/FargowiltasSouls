@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -22,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Infused with primordial energy'
 15% increased damage
 Effects of Mask of the Crystal Eye, Abyssal Shell, and Cyan Music Player");
+            DisplayName.AddTranslation(GameCulture.Chinese, "泰坦魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'充溢着原始能量'
+增加15%伤害
+拥有水晶之眼, 深渊贝壳和青色播放器的效果");
         }
 
         public override void SetDefaults()

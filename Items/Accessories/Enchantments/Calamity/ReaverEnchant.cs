@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -26,6 +27,15 @@ Your magic projectiles emit a burst of spore gas on enemy hits
 Summons a reaver orb that emits spore gas when enemies are near
 You emit a cloud of spores when you are hit
 Rage activates when you are damaged");
+            DisplayName.AddTranslation(GameCulture.Chinese, "掠夺者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'痛苦的死亡等待着你的敌人...'
+近战抛射物造成爆炸
+远程攻击有10%概率发射一个强力火箭
+魔法抛射物命中敌人时释放孢子爆炸
+召唤收割者之球向附近敌人发射孢子云
+被攻击时释放孢子云
+被攻击时激活'愤怒'");
         }
 
         public override void SetDefaults()
