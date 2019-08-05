@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,10 +16,14 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 
             string tooltip =
 @"'Ascend from this mortal realm'
-If you reach zero HP you cheat death, returning with 100 HP and spawning bones
+If you reach zero HP you cheat death, returning with 100 HP
+For a few seconds after reviving, you are immune to all damage and spawn bones
 Double tap down to call an ancient storm to the cursor location
+Any projectiles shot through your storm gain double pierce and 50% damage
+Summons an Enchanted Sword familiar
 You gain a shield that can reflect projectiles
 Attacks will inflict Infested
+Infested deals increasing damage over time
 Damage has a chance to spawn damaging orbs
 If you crit, you might also get a healing orb
 ";
@@ -44,8 +46,7 @@ After generating 5 wisps, they are instantly consumed to heal you for 10 life
             }
 
             tooltip += 
-@"Summons an Enchanted Sword familiar
-Summons several pets";
+@"Summons several pets";
             tooltip_ch +=
 @"召唤一柄附魔剑
 召唤数个宠物";

@@ -14,8 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Nebula Enchantment");
             Tooltip.SetDefault(
 @"'The pillars of creation have shined upon you'
-Hurting enemies has a chance to spawn buff boosters
-Reach maxed buff boosters to gain drastically increased magic attack speed");
+Hurting enemies has a chance to spawn buff boosters");
             DisplayName.AddTranslation(GameCulture.Chinese, "星云魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'创造之柱照耀着你'

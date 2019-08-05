@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip = 
 @"'According to all known laws of aviation, there is no way a bee should be able to fly'
-33% chance for any friendly bee to become a Mega Bee
+50% chance for any friendly bee to become a Mega Bee
 Mega Bees ignore most enemy defense, immune frames, and last twice as long
 ";
             string tooltip_ch = 

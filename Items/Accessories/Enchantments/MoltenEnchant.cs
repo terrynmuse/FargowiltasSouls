@@ -15,6 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'They shall know the fury of hell.' 
 Nearby enemies are ignited
+The closer they are to you the more damage they take
 When you die, you violently explode dealing massive damage");
             DisplayName.AddTranslation(GameCulture.Chinese, "熔融魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -35,7 +36,7 @@ When you die, you violently explode dealing massive damage");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MoltenEffect(10);
+            player.GetModPlayer<FargoPlayer>(mod).MoltenEffect(20);
         }
 
         public override void AddRecipes()

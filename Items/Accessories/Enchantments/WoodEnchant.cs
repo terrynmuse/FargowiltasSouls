@@ -13,6 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Humble beginnings…'
 Critters have massively increased defense
+Killing critters no longer inflicts Guilty
 When critters die, they release their souls to aid you");
             DisplayName.AddTranslation(GameCulture.Chinese, "木魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 

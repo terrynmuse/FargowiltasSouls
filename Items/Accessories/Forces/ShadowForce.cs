@@ -18,12 +18,14 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 
             string tooltip = @"'Dark, Darker, Yet Darker'
 Your attacks may inflict Darkness on enemies
+Darkened enemies occasionally fire shadowflame tentacles at other enemies
 A Dungeon Guardian will occasionally annihilate a foe when struck
 All of your minions may occasionally spew massive scythes everywhere
 Throw a smoke bomb to teleport to it and gain the First Strike Buff
+Using the Rod of Discord will also grant this buff
 Dash into any walls, to teleport through them to the next opening
 While attacking, Flameburst shots manifest themselves from your shadows
-Greatly enhances Flameburst effectiveness
+Greatly enhances Flameburst and Lightning Aura effectiveness
 ";
             string tooltip_ch =@"'Dark, Darker, Yet Darker'
 攻击概率造成黑暗

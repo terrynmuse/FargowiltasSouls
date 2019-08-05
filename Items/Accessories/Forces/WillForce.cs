@@ -19,9 +19,12 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 @"'A mind of unbreakable determination'
 Your attacks inflict Midas and Super Bleed
 Press the Gold hotkey to be encased in a Golden Shell
+You will not be able to move or attack, but will be immune to all damage
 20% chance for enemies to drop 8x loot
 Spears will rain down on struck enemies 
+Your attacks deal increasing damage to low HP enemies
 All attacks will slowly remove enemy knockback immunity
+Greatly enhances Ballista and Explosive Traps effectiveness
 Effects of Greedy Ring, Celestial Shell, and Shiny Stone
 ";
             string tooltip_ch =

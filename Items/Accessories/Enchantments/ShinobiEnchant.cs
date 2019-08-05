@@ -31,6 +31,7 @@ Dash into any walls, to teleport through them to the next opening
 
             tooltip +=
 @"Throw a smoke bomb to teleport to it and gain the First Strike Buff
+Using the Rod of Discord will also grant this buff
 Greatly enhances Lightning Aura effectiveness
 Effects of Master Ninja Gear
 Summons a pet Gato and Black Cat";
