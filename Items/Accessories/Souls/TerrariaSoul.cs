@@ -137,7 +137,7 @@ Summons a pet Companion Cube
                 tooltip +=
 @"";
                 tooltip_ch +=
-@"召唤火球,冰柱,叶绿水晶,神圣剑盾,甲虫和许多宠物
+@"
 切换可见度以移除所有宠物,右键用盾防御
 双击'下'键召唤远古风暴,切换潜行,生成一个传送门,指挥你的替身
 按下金身热键,使自己被包裹在一个黄金壳中,按下时间冻结热键时停5秒,召唤物发出镰刀
@@ -176,7 +176,7 @@ Summons a pet Companion Cube
 死亡时,爆炸并且回复200生命";
 
             Tooltip.SetDefault(tooltip);
-            DisplayName.AddTranslation(GameCulture.Chinese, "泰拉瑞亚之魂");
+            DisplayName.AddTranslation(GameCulture.Chinese, "泰拉之魂");
             Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 24));

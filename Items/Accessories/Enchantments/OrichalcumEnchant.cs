@@ -20,7 +20,7 @@ Spawns 6 fireballs to rotate around you");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'自然祝福着你'
 花瓣对你的目标造成额外伤害
-召唤3个环绕你的火球");
+召唤6个环绕你的火球");
         }
 
         public override void SetDefaults()

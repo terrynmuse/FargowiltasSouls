@@ -19,6 +19,7 @@ When critters die, they release their souls to aid you");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'卑微的开始...'
 大幅增加动物防御力
+杀死动物不会再获得内疚Debuff
 动物死后,释放它们的灵魂来帮助你");
         }
 
