@@ -23,6 +23,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.tileCollide = false;
             projectile.timeLeft = 300;
             projectile.alpha = 255;
+            if (Fargowiltas.Instance.MasomodeEX)
+                projectile.extraUpdates = 1;
         }
 
         public override void AI()

@@ -68,6 +68,12 @@ namespace FargowiltasSouls.NPCs
             {
                 npc.Center = brain.Center;
             }
+
+            if (Fargowiltas.Instance.MasomodeEX)
+            {
+                npc.damage = brain.damage;
+                npc.defDamage = brain.defDamage;
+            }
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

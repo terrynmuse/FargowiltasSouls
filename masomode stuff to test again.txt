@@ -1,4 +1,7 @@
-﻿
+﻿eaters of souls go through walls again but half speed/make dust while in wall
+plantera p2 spawns a second set of crystals around the first rotating opposite direction
+maso moss hornets have 50% chance to drop stingers (why is this not vanilla :echprimebegone:)
+brain illusions do damage in maso EX (not that it really helps)
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
