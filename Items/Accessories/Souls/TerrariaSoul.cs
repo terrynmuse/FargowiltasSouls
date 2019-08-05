@@ -20,113 +20,41 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             string tooltip =
 @"'A true master of Terraria'
-
-Summons fireballs, icicles, a leaf crystal, Hallowed sword and shield, Beetles, and lots of pets
+Summons fireballs, icicles, a leaf crystal, hallowed sword and shield, beetles, and several pets
 Toggle vanity to remove all Pets, Right Click to Guard
-Double tap down to call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
-Gold Key to be encased in Gold, Freeze Key to freeze time for 5 seconds, minions spew scythes
+Double tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Gold Key encases you in gold, Freeze Key freezes time for 5 seconds, minions spew scythes
 Solar shield allows you to dash, Dash into any walls, to teleport through them
-Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, or buff boosters
-Attacks cause increased life regen, shadow dodge, meteor showers, reduced enemy knockback immunity
+Throw a smoke bomb to teleport to it and gain the First Strike Buff
+Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, snowballs, spears, or buff boosters
+Attacks cause increased life regen, shadow dodge, Flameburst shots, meteor showers, and reduced enemy knockback immunity
 Critical chance is set to 25%, Crit to increase it by 5%, At 100% every 10th attack gains 4% life steal
-Getting hit drops your crit back down, releases a spore explosion and reflects damage
-One attack gains 5% life steal every second, capped at 5 HP
-Projectiles may split or shatter, Stars heal twice as much,
-Nearby enemies are ignited, You leave behind a trail of fire when you walk
-Most other effects of material Forces
+Getting hit drops your crit back down, inflicts Super Bleeding, releases a spore explosion and reflects damage
+Projectiles may split or shatter, item and projectile size increased, attract items from further away
+Nearby enemies are ignited, You leave behind a trail of fire amd rainbows when you walk
+Grants Crimson regen, immunity to fire, fall damage, and lava, and doubled herb collection
+Grants 50% chance for Mega Bees, 15% chance for minion crits, 20% chance for bonus loot
+Critters have increased defense and their souls will aid you
+All grappling hooks are more effective and fire homing shots, Greatly enhances all DD2 sentries
+Your attacks inflict Midas and Solar Flare, Enemies explode into needles
 When you die, you explode and revive with 200 HP
+Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone
 
 
-
-
-Critters have massively increased defense
-Killing critters no longer inflicts Guilty
-When critters die, they release their souls to aid you
-Every 5th attack will be accompanied by several snowballs
-All grappling hooks pull you in and retract twice as fast
-Any hook will periodically fire homing shots at enemies
+REMOVE EFFECT
 You have a large aura of Shadowflame
-When you take damage, you are inflicted with Super Bleeding
-Double tap down to spawn a palm tree sentry that throws nuts at enemies
-You leave behind a trail of rainbows that may shrink enemies
-
-Attacks have a chance to shock enemies with lightning
-Sets your critical strike chance to 10%
-Every crit will increase it by 5%
-Getting hit drops your crit back down
-Allows the player to dash into the enemy
-Right Click to guard with your shield
-You attract items from a larger range
-150% increased sword size
-100% increased projectile size
-Grants immunity to fire, fall damage, and lava
-
-25% chance for your projectiles to explode into shards
-20% increased weapon use speed
-Greatly increases life regeneration after striking an enemy 
-One attack gains 10% life steal every 4 seconds, capped at 8 HP
-Flower petals will cause extra damage to your target 
-Spawns 6 fireballs to rotate around you
-Every 8th projectile you shoot will split into 3
-Briefly become invulnerable after striking an enemy
-
-Greatly increases life regen
-Nearby enemies are ignited
-When you die, you violently explode dealing massive damage
-Icicles will start to appear around you
-Taking damage will release a poisoning spore explosion
-Summons a leaf crystal to shoot at nearby enemies
-All herb collection is doubled
+Attacks will inflict Infested
+Your attacks may inflict Darkness on enemies
+and Super Bleed
+Your attacks deal increasing damage to low HP enemies
 Not moving puts you in stealth
 While in stealth, crits deal 4x damage
-Effects of Flower Boots
-
-You leave behind a trail of fire when you walk
-Eating Pumpkin Pie heals you to full HP
-100% of contact damage is reflected
-Enemies may explode into needles on death
-50% chance for any friendly bee to become a Mega Bee
-15% chance for minions to crit
+One attack gains 5% life steal every second, capped at 5 HP
+Stars healing twice as much
 When standing still and not attacking, you gain the Shell Hide buff
-Beetles protect you from damage
+Eating Pumpkin Pie heals you to full HP
 
-If you reach zero HP you cheat death, returning with 100 HP
-For a few seconds after reviving, you are immune to all damage and spawn bones
-Double tap down to call an ancient storm to the cursor location
-Summons an Enchanted Sword familiar
-You gain a shield that can reflect projectiles
-Attacks will inflict Infested
-Infested deals increasing damage over time
-Damage has a chance to spawn damaging orbs
-
-Your attacks may inflict Darkness on enemies
-A Dungeon Guardian will occasionally annihilate a foe when struck
-All of your minions may occasionally spew massive scythes everywhere
-Throw a smoke bomb to teleport to it and gain the First Strike Buff
-Using the Rod of Discord will also grant this buff
-Dash into any walls, to teleport through them to the next opening
-While attacking, Flameburst shots manifest themselves from your shadows
-Greatly enhances Flameburst and Lightning Aura effectiveness
-Effects of Master Ninja Gear
-
-Your attacks inflict Midas and Super Bleed
-Press the Gold hotkey to be encased in a Golden Shell
-20% chance for enemies to drop 8x loot
-Spears will rain down on struck enemies 
-Your attacks deal increasing damage to low HP enemies
-All attacks will slowly remove enemy knockback immunity
-Greatly enhances Ballista and Explosive Traps effectiveness
-Effects of Greedy Ring, Celestial Shell, and Shiny Stone
-
-A meteor shower initiates every few seconds while attacking
-Solar shield allows you to dash through enemies
-Attacks may inflict the Solar Flare debuff
-Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
-You also spawn a vortex to draw in and massively damage enemies when you enter stealth
-Hurting enemies has a chance to spawn buff boosters
-Double tap down to direct your guardian
-Press the Freeze Key to freeze time for 5 seconds
-Summons a pet Companion Cube
+Make tungsten effect all weapon sprites from the beginning 
 ";
             string tooltip_ch =
 @"'真·泰拉之主'
