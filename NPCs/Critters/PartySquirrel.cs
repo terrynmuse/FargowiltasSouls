@@ -11,7 +11,7 @@ namespace FargowiltasSouls.NPCs.Critters
         {
             DisplayName.SetDefault("Party Squirrel");
             Main.npcFrameCount[npc.type] = 6;
-            //DisplayName.AddTranslation(GameCulture.Chinese, "高顶礼帽松鼠");
+            DisplayName.AddTranslation(GameCulture.Chinese, "派对松鼠");
         }
 
         public override void SetDefaults()
