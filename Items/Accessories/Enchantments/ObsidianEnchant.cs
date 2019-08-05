@@ -15,8 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'The earth calls'
 Grants immunity to fire, fall damage, and 5 seconds of lava immunity
-Increases armor penetration by 5
-While standing in lava, you gain 15 more armor penetration, 15% attack speed, and your attacks ignite enemies");
+While standing in lava, you gain 20 armor penetration, 15% attack speed, and your attacks ignite enemies");
             DisplayName.AddTranslation(GameCulture.Chinese, "黑曜石魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'大地在呼唤'

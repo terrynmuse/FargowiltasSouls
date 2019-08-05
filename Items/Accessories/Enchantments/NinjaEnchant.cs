@@ -15,6 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Now you see me, now you don’t'
 Throw a smoke bomb to teleport to it and gain the First Strike Buff
+Using the Rod of Discord will also grant this buff
 First Strike enhances your next attack 
 Melee attacks will crit for 3x damage
 Projectile attacks fire in a barrage of 3

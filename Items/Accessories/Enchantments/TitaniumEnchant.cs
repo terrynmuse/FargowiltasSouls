@@ -18,7 +18,6 @@ Briefly become invulnerable after striking an enemy");
             DisplayName.AddTranslation(GameCulture.Chinese, "钛金魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'Hit Me With Your Best Shot(歌名)'
-满血状态下所受到的伤害将减少90%
 在攻击敌人后的瞬间无敌");
         }
 

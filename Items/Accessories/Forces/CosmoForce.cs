@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,12 +28,12 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                 tooltip_ch += "攻击时,每隔几秒就会爆发一次流星雨";
             }
 
-            tooltip += 
+            tooltip +=
 @"Solar shield allows you to dash through enemies
 Attacks may inflict the Solar Flare debuff
-Double tap down to toggle stealth and spawn a vortex
+Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
+You also spawn a vortex to draw in and massively damage enemies when you enter stealth
 Hurting enemies has a chance to spawn buff boosters
-Reach maxed buff boosters to gain drastically increased attack speed
 Double tap down to direct your guardian
 Press the Freeze Key to freeze time for 5 seconds
 There is a 60 second cooldown for this effect, a sound effect plays when it's back

@@ -21,7 +21,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Summons a leaf crystal to shoot at nearby enemies
 Chance to steal 4 mana with each attack
 Taking damage will release a poisoning spore explosion
-Flowers grow on the grass you walk on
 All herb collection is doubled
 ";
             string tooltip_ch = 
@@ -37,7 +36,7 @@ All herb collection is doubled
             {
                 tooltip +=
 @"Your attacks have a chance to poison hit enemies with a spore cloud
-Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer
+Effects of Night Shade Petal, Petal Shield, Toxic Subwoofer, and Flower Boots
 ";
                 tooltip_ch +=
 @"攻击有概率释放孢子云使敌人中毒
@@ -46,7 +45,7 @@ Effects of Night Shade Petal, Petal Shield, and Toxic Subwoofer
             }
             else
             {
-                tooltip += "Effects of Guide to Plant Fiber Cordage\n";
+                tooltip += "Effects of Guide to Plant Fiber Cordage and Flower Boots\n";
                 tooltip_ch += "拥有植物纤维绳索指南的效果\n";
             }
 

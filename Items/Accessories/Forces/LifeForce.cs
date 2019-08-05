@@ -19,14 +19,16 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             string tooltip =
 @"'Rare is a living thing that dare disobey your will'
 You leave behind a trail of fire when you walk
-Eating Pumpkin Pie also heals you to full HP
+Eating Pumpkin Pie heals you to full HP
 100% of contact damage is reflected
 Enemies may explode into needles on death
-33% chance for any friendly bee to become a Mega Bee
-10% chance for minions to crit
+50% chance for any friendly bee to become a Mega Bee
+Mega Bees ignore most enemy defense, immune frames, and last twice as long
+15% chance for minions to crit
 When standing still and not attacking, you gain the Shell Hide buff
+Shell Hide protects you from all projectiles, but increases contact damage
 Beetles protect you from damage
-Your wings last 1.5X as long
+Increases flight time by 50%
 ";
             string tooltip_ch =
 @"'罕有活物敢违背你的意愿'
@@ -75,7 +77,8 @@ Your wings last 1.5X as long
             modPlayer.SpiderEffect(hideVisual);
             //defense beetle bois
             modPlayer.BeetleEffect();
-            modPlayer.wingTimeModifier += .5f;
+            if(!modPlayer.TerrariaSoul)
+                modPlayer.wingTimeModifier += .5f;
             //flame trail, pie heal, pet
             modPlayer.PumpkinEffect(25, hideVisual);
             //shell hide, pets

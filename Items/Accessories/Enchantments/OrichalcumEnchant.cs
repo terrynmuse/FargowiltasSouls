@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Nature blesses you' 
 Flower petals will cause extra damage to your target 
-Spawns 3 fireballs to rotate around you");
+Spawns 6 fireballs to rotate around you");
             DisplayName.AddTranslation(GameCulture.Chinese, "山铜魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'自然祝福着你'
