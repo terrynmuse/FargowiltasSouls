@@ -19,7 +19,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip =
 @"'Bigger is always better'
 150% increased sword size
-10% decreased movement and melee speed";
+100% increased projectile size
+Projectiles still have the same tile collision hitbox";
             string tooltip_ch =
 @"'大就是好'
 增加150%剑的尺寸
@@ -49,8 +50,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>().TungstenEnchant = true;
-            player.meleeSpeed -= .1f;
-            player.moveSpeed -= .1f;
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }

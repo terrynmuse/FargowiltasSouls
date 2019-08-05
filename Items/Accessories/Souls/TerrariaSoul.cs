@@ -18,8 +18,43 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             DisplayName.SetDefault("Soul of Terraria");
 
-            string tooltip = 
+            string tooltip =
 @"'A true master of Terraria'
+Summons fireballs, icicles, a leaf crystal, hallowed sword and shield, beetles, and several pets
+Toggle vanity to remove all Pets, Right Click to Guard
+Double tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Gold Key encases you in gold, Freeze Key freezes time for 5 seconds, minions spew scythes
+Solar shield allows you to dash, Dash into any walls, to teleport through them
+Throw a smoke bomb to teleport to it and gain the First Strike Buff
+Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, snowballs, spears, or buff boosters
+Attacks cause increased life regen, shadow dodge, Flameburst shots, meteor showers, and reduced enemy knockback immunity
+Critical chance is set to 25%, Crit to increase it by 5%, At 100% every 10th attack gains 4% life steal
+Getting hit drops your crit back down, inflicts Super Bleeding, releases a spore explosion and reflects damage
+Projectiles may split or shatter, item and projectile size increased, attract items from further away
+Nearby enemies are ignited, You leave behind a trail of fire amd rainbows when you walk
+Grants Crimson regen, immunity to fire, fall damage, and lava, and doubled herb collection
+Grants 50% chance for Mega Bees, 15% chance for minion crits, 20% chance for bonus loot
+Critters have increased defense and their souls will aid you
+All grappling hooks are more effective and fire homing shots, Greatly enhances all DD2 sentries
+Your attacks inflict Midas and Solar Flare, Enemies explode into needles
+When you die, you explode and revive with 200 HP
+Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone
+
+
+REMOVE EFFECT
+You have a large aura of Shadowflame
+Attacks will inflict Infested
+Your attacks may inflict Darkness on enemies
+and Super Bleed
+Your attacks deal increasing damage to low HP enemies
+Not moving puts you in stealth
+While in stealth, crits deal 4x damage
+One attack gains 5% life steal every second, capped at 5 HP
+Stars healing twice as much
+When standing still and not attacking, you gain the Shell Hide buff
+Eating Pumpkin Pie heals you to full HP
+
+Make tungsten effect all weapon sprites from the beginning 
 ";
             string tooltip_ch =
 @"'真·泰拉之主'
@@ -28,17 +63,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             if (thorium == null)
             {
                 tooltip +=
-@"Summons fireballs, icicles, a leaf crystal, Hallowed sword and shield, Beetles, and lots of pets
-Toggle vanity to remove all Pets, Right Click to Guard
-Double tap down to call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
-Gold Key to be encased in a Gold, Freeze Key to freeze time for 5 seconds, minions spew scythes 
-Solar shield allows you to dash, Dash into any walls, to teleport through them
-Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, or buff boosters
-Attacks cause increased life regen, shadow dodge, meteor showers, reduced enemy knockback immunity
-Critical chance is set to 25%, Crit to increase it by 5%, At 100% every 10th attack gains 4% life steal
-Getting hit drops your crit back down, releases a spore explosion and reflects damage
-One attack gains 5% life steal every second, capped at 5 HP
-Projectiles may split or shatter, Stars heal twice as much";
+@"";
                 tooltip_ch +=
 @"召唤火球,冰柱,叶绿水晶,神圣剑盾,甲虫和许多宠物
 切换可见度以移除所有宠物,右键用盾防御
@@ -55,17 +80,7 @@ Projectiles may split or shatter, Stars heal twice as much";
             else
             {
                 tooltip +=
-@"Summons fireballs, icicles, a leaf crystal, Hallowed sword and shield, Beetles, and lots of pets
-Toggle vanity to remove all Pets
-Double tap down to call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
-Gold Key to be encased in a Gold, Freeze Key to freeze time for 5 seconds, minions spew scythes 
-Solar shield allows you to dash, Dash into any walls, to teleport through them
-Attacks may spawn flower petals, spectre orbs, a Dungeon Guardian, or buff boosters
-Attacks cause increased life regen and reduced enemy knockback immunity
-Critical chance is set to 25%, Crit to increase it by 5%, At 100% every 10th attack gains 4% life steal
-Getting hit drops your crit back down, releases a spore explosion and reflects damage
-One attack gains 5% life steal every second, capped at 5 HP
-Projectiles may split or shatter, Stars heal twice as much";
+@"";
                 tooltip_ch +=
 @"召唤火球,冰柱,叶绿水晶,神圣剑盾,甲虫和许多宠物
 切换可见度以移除所有宠物
@@ -81,10 +96,7 @@ Projectiles may split or shatter, Stars heal twice as much";
             }
 
             tooltip += 
-@"
-Nearby enemies are ignited, You leave behind a trail of fire when you walk
-Most other effects of material Forces
-When you die, you explode and revive with 200 HP";
+@"";
             tooltip_ch +=
 @"
 点燃附近敌人,在身后留下火焰路径
@@ -94,26 +106,6 @@ When you die, you explode and revive with 200 HP";
             Tooltip.SetDefault(tooltip);
             DisplayName.AddTranslation(GameCulture.Chinese, "泰拉瑞亚之魂");
             Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
-
-            /*
-             -not listed
-             Throw a smoke bomb to teleport to it
-             Your attacks inflict Midas
-            20% chance for enemies to drop 8x loot
-            Effects of Hive Pack, Flower Boots, Master Ninja Gear, Celestial Shell, Shiny Stone, and Greedy Ring
-            Your weapon's projectiles occasionally shoot from the shadows of where you used to be
-            Enemies will explode into needles on death  
-            
-            THORIUM
-            Effects of Proof of Avarice
-            Killing enemies or continually damaging bosses generates soul wisps
-            After generating 5 wisps, they are instantly consumed to heal you for 10 life
-
-            Attack speed is increased by 5% at every 25% segment of life
-            Effects of Spring Steps and Slag Stompers
-
-
-             * */
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 24));
         }
@@ -138,135 +130,28 @@ When you die, you explode and revive with 200 HP";
             modPlayer.TerrariaSoul = true;
 
             //WOOD
-            modPlayer.WoodForce = true;
-            //wood
-            modPlayer.WoodEnchant = true;
-            //boreal
-            modPlayer.BorealEnchant = true;
-            //mahogany
-            modPlayer.MahoganyEnchant = true;
-            //ebon
-            modPlayer.EbonEffect();
-            //shade
-            modPlayer.ShadeEnchant = true;
-            //palm
-            modPlayer.PalmEffect();
-            //pearl
-            modPlayer.PearlEffect();
-
+            mod.GetItem("WoodForce").UpdateAccessory(player, hideVisual);
             //TERRA
-            modPlayer.TerraForce = true; //crit effect improved
-
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                modPlayer.CopperEnchant = true; //lightning
-                player.dash = 2;
-                if (Soulcheck.GetValue("Iron Shield"))
-                {
-                    modPlayer.IronEffect();
-                }
-                if (Soulcheck.GetValue("Iron Magnet"))
-                {
-                    modPlayer.IronEnchant = true;
-                }
-            }
-
-            modPlayer.TinEffect(); //crits
-            //tungsten
-            modPlayer.TungstenEnchant = true;
-            //obsidian
-            player.fireWalk = true;
-            player.lavaImmune = true;
-
+            mod.GetItem("TerraForce").UpdateAccessory(player, hideVisual);
             //EARTH
-            modPlayer.CobaltEnchant = true; //shards
-            modPlayer.PalladiumEffect(); //regen on hit, heals
-            modPlayer.OrichalcumEffect(); //fireballs and petals
-            modPlayer.AdamantiteEnchant = true; //split
-
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-                modPlayer.TitaniumEffect(); //shadow dodge, full hp resistance
-
+            mod.GetItem("EarthForce").UpdateAccessory(player, hideVisual);
             //NATURE
-            modPlayer.NatureForce = true;
-
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                modPlayer.CrimsonEffect(hideVisual); //regen, pets
-            }
-
-            modPlayer.MoltenEffect(25); //inferno and explode
-            modPlayer.FrostEffect(75, hideVisual); //icicles, pets
-            modPlayer.JungleEffect(); //spores
-            modPlayer.ChloroEffect(hideVisual, 100); //crystal and pet
-            modPlayer.ShroomiteEffect(hideVisual); //pet
-
+            mod.GetItem("NatureForce").UpdateAccessory(player, hideVisual);
             //LIFE
-            modPlayer.LifeForce = true; 
-            modPlayer.BeeEffect(hideVisual); //bees ignore defense, super bees, pet
-            modPlayer.SpiderEffect(hideVisual); //pet
-            modPlayer.BeetleEffect(); //defense beetle bois
-            modPlayer.PumpkinEffect(50, hideVisual); //flame trail, pie heal, pet
-            modPlayer.TurtleEffect(hideVisual); //thorns, pets
-            player.thorns = 1f;
-            player.turtleThorns = true;
-            modPlayer.CactusEffect(); //needle spray
-
+            mod.GetItem("LifeForce").UpdateAccessory(player, hideVisual);
             //SPIRIT
-            modPlayer.SpiritForce = true; //spectre works for all, spirit trapper works for all
-            modPlayer.FossilEffect(40, hideVisual); //revive, bone zone, pet
-            modPlayer.ForbiddenEffect(); //storm
-            modPlayer.HallowEffect(hideVisual, 100); //sword, shield, pet
-            modPlayer.TikiEffect(hideVisual); //pet
-            modPlayer.SpectreEffect(hideVisual); //pet
-
+            mod.GetItem("SpiritForce").UpdateAccessory(player, hideVisual);
             //SHADOW
-            modPlayer.ShadowForce = true; 
-            modPlayer.DarkArtistEffect(hideVisual); //shoot from where you were meme, pet
-            modPlayer.NecroEffect(hideVisual); //DG meme, pet
-            modPlayer.ShadowEffect(hideVisual); //pets
-            player.blackBelt = true;
-            player.spikedBoots = 2;
-            player.dash = 1;
-            modPlayer.ShinobiEffect(hideVisual); //tele thru walls, pet
-            modPlayer.NinjaEffect(hideVisual); //smoke bomb nonsense, pet
-            modPlayer.SpookyEffect(hideVisual); //scythe doom, pets
-
+            mod.GetItem("ShadowForce").UpdateAccessory(player, hideVisual);
             //WILL
-            modPlayer.WillForce = true; //knockback remove for all
-            modPlayer.GoldEffect(hideVisual); //midas, greedy ring, pet, zhonyas
-            modPlayer.PlatinumEnchant = true; //loot multiply
-            modPlayer.GladiatorEffect(hideVisual); //javelins, pet
-            modPlayer.RedRidingEffect(hideVisual); //pet
-            player.accMerman = true;
-            player.wolfAcc = true;
-            if (hideVisual)
-            {
-                player.hideMerman = true;
-                player.hideWolf = true;
-            }
-            modPlayer.ValhallaEffect(hideVisual); //knockback remove
-            player.shinyStone = true;
-
+            mod.GetItem("WillForce").UpdateAccessory(player, hideVisual);
             //COSMOS
-            modPlayer.CosmoForce = true; 
+            mod.GetItem("CosmoForce").UpdateAccessory(player, hideVisual);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                //meteor shower
-                modPlayer.MeteorEffect(75);
-            }
+            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
 
-            modPlayer.SolarEffect(); //solar shields
-            modPlayer.VortexEffect(hideVisual); //stealth, voids, pet
-            modPlayer.NebulaEffect(); //boosters
-            modPlayer.StardustEffect(); //guardian and time freeze
-            modPlayer.AddPet("Suspicious Eye Pet", hideVisual, BuffID.SuspiciousTentacle, ProjectileID.SuspiciousTentacle);
-
-            if(Fargowiltas.Instance.ThoriumLoaded)
-
-            if (Fargowiltas.Instance.CalamityLoaded)
-                mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
+            //if (Fargowiltas.Instance.CalamityLoaded)
+             //   mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
         }
 
         private void Thorium(Player player, bool hideVisual)
@@ -275,7 +160,6 @@ When you die, you explode and revive with 200 HP";
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             //NATURE
-
             thoriumPlayer.orbital = true;
             thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.075000002980232239, default(Vector2));
             //making divers code less of a meme :scuseme:
@@ -360,9 +244,6 @@ When you die, you explode and revive with 200 HP";
             }
             modPlayer.AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
             modPlayer.AddPet("Glitter Pet", hideVisual, thorium.BuffType("ShineDust"), thorium.ProjectileType("ShinyPet"));
-
-            //COSMOS
-
         }
 
         public override void AddRecipes()
@@ -378,16 +259,14 @@ When you die, you explode and revive with 200 HP";
             recipe.AddIngredient(null, "WillForce");
             recipe.AddIngredient(null, "CosmoForce");
 
-            if (Fargowiltas.Instance.CalamityLoaded)
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
+
+            /*if (Fargowiltas.Instance.CalamityLoaded)
             {
                 recipe.AddIngredient(null, "CalamityForce");
                 recipe.AddTile(ModLoader.GetMod("CalamityMod"), "DraedonsForge");
-            }
-            else
-            {
-                recipe.AddTile(mod, "CrucibleCosmosSheet");
-            }
-                
+            }*/
+
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

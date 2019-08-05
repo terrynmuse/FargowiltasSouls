@@ -8256,6 +8256,17 @@ namespace FargowiltasSouls.NPCs
                         npc.NPCLoot();
                         NPC.killCount[Item.NPCtoBanner(npc.BannerID())]--;
                     }
+
+                    int num1 = 36;
+                    for (int index1 = 0; index1 < num1; ++index1)
+                    {
+                        Vector2 vector2_1 = (Vector2.Normalize(npc.velocity) * new Vector2((float)npc.width / 2f, (float)npc.height) * 0.75f).RotatedBy((double)(index1 - (num1 / 2 - 1)) * 6.28318548202515 / (double)num1, new Vector2()) + npc.Center;
+                        Vector2 vector2_2 = vector2_1 - npc.Center;
+                        int index2 = Dust.NewDust(vector2_1 + vector2_2, 0, 0, DustID.PlatinumCoin, vector2_2.X * 2f, vector2_2.Y * 2f, 100, new Color(), 1.4f);
+                        Main.dust[index2].noGravity = true;
+                        Main.dust[index2].noLight = true;
+                        Main.dust[index2].velocity = vector2_2;
+                    }
                 }
             }
 
@@ -9719,7 +9730,7 @@ namespace FargowiltasSouls.NPCs
                         break;
                 }
 
-                if (npc.catchItem != 0 && npc.lifeMax == 5)
+                if (npc.catchItem != 0 && npc.lifeMax == 5 && !modPlayer.WoodEnchant)
                     player.AddBuff(mod.BuffType("Guilty"), 300);
             }
         }
@@ -9736,7 +9747,7 @@ namespace FargowiltasSouls.NPCs
             if (modPlayer.BeeEnchant && !modPlayer.TerrariaSoul && projectile.type == ProjectileID.GiantBee)
                 damage = (int)(damage + npc.defense * .5);
 
-            if (modPlayer.SpiderEnchant && projectile.minion && Main.rand.Next(10) == 0)
+            if (modPlayer.SpiderEnchant && projectile.minion && Main.rand.Next(100) < 15)
             {
                 crit = true;
                 damage *= 2;
@@ -10101,7 +10112,7 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            if (modPlayer.RedEnchant && !modPlayer.WillForce)
+            if (modPlayer.RedEnchant)
             {
                 switch (npc.life / npc.lifeMax * 100)
                 {

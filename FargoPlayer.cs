@@ -106,8 +106,6 @@ namespace FargowiltasSouls
         public int TinCrit = 4;
         public bool TikiEnchant;
         public bool SolarEnchant;
-        public bool NebulaEnchant;
-        public int NebulaCounter;
         public bool ShinobiEnchant;
         public bool ValhallaEnchant;
         public bool DarkEnchant;
@@ -563,7 +561,6 @@ namespace FargowiltasSouls
             ValhallaEnchant = false;
             DarkEnchant = false;
             RedEnchant = false;
-            NebulaEnchant = false;
             TungstenEnchant = false;
 
             MahoganyEnchant = false;
@@ -1421,15 +1418,6 @@ namespace FargowiltasSouls
             if (ThrowSoul && item.thrown)
             {
                 AttackSpeed *= 1.2f;
-            }
-
-            //works for 5 sec, 15 sec CD
-            if (NebulaEnchant && NebulaCounter >= 900)
-            {
-                if (CosmoForce || player.HeldItem.magic)
-                {
-                    AttackSpeed *= 2f;
-                }
             }
 
             //checks so weapons dont break
@@ -2449,13 +2437,13 @@ namespace FargowiltasSouls
 
                 if (ObsidianEnchant)
                     target.AddBuff(BuffID.OnFire, 600);
+
+                if (LeadEnchant && Main.rand.Next(5) == 0)
+                    target.AddBuff(mod.BuffType("LeadPoison"), 120);
             }
 
             if (GroundStick && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
                 target.AddBuff(mod.BuffType("LightningRod"), 300);
-
-            if (LeadEnchant && Main.rand.Next(5) == 0)
-                target.AddBuff(mod.BuffType("LeadPoison"), 120);
 
             if (GoldEnchant)
                 target.AddBuff(BuffID.Midas, 120, true);
@@ -3291,7 +3279,7 @@ namespace FargowiltasSouls
             int dmg = 20;
             int chance = 20;
 
-            if (target.FindBuffIndex(BuffID.Wet) != -1)
+            if (target.FindBuffIndex(BuffID.Wet) != -1 || target.wet)
             {
                 dmg *= 3;
                 chance /= 5;
@@ -3756,15 +3744,28 @@ namespace FargowiltasSouls
                     for (int i = 0; i < 200; i++)
                     {
                         NPC npc = Main.npc[i];
-                        if (npc.active && !npc.friendly && npc.damage > 0 && !npc.dontTakeDamage && !npc.buffImmune[buff] && Vector2.Distance(player.Center, npc.Center) <= distance)
+                        if (npc.active && !npc.friendly && npc.damage > 0 && !npc.dontTakeDamage && !npc.buffImmune[buff])
                         {
-                            if (npc.FindBuffIndex(buff) == -1)
+                            if (Vector2.Distance(player.Center, npc.Center) <= distance)
                             {
-                                npc.AddBuff(buff, 120);
-                            }
-                            if (doDmg)
-                            {
-                                player.ApplyDamageToNPC(npc, damage, 0f, 0, false);
+                                if (npc.FindBuffIndex(buff) == -1)
+                                {
+                                    npc.AddBuff(buff, 120);
+                                }
+
+                                if (Vector2.Distance(player.Center, npc.Center) <= distance / 4)
+                                {
+                                    damage *= 4;
+                                }
+                                else if (Vector2.Distance(player.Center, npc.Center) <= distance / 2)
+                                {
+                                    damage *= 2;
+                                }
+
+                                if (doDmg)
+                                {
+                                    player.ApplyDamageToNPC(npc, damage, 0f, 0, false);
+                                }
                             }
                         }
                     }
@@ -3774,20 +3775,11 @@ namespace FargowiltasSouls
 
         public void NebulaEffect()
         {
-            NebulaEnchant = true;
-
             if (!Soulcheck.GetValue("Nebula Boosters")) return;
 
             if (player.nebulaCD > 0)
                 player.nebulaCD--;
             player.setNebula = true;
-
-            if (TerrariaSoul) return;
-
-            if (player.nebulaLevelDamage == 3 && player.nebulaLevelLife == 3 && player.nebulaLevelMana == 3 && NebulaCounter == 0)
-                NebulaCounter = 1200;
-            else if(NebulaCounter != 0)
-                NebulaCounter--;
         }
 
         public void NecroEffect(bool hideVisual)
@@ -3802,6 +3794,11 @@ namespace FargowiltasSouls
 
         public void NinjaEffect(bool hideVisual)
         {
+            if (player.controlUseItem && player.HeldItem.type == ItemID.RodofDiscord)
+            {
+                player.AddBuff(mod.BuffType("FirstStrike"), 60);
+            }
+
             NinjaEnchant = true;
             AddPet("Black Cat Pet", hideVisual, BuffID.BlackCat, ProjectileID.BlackCat);
         }
@@ -3820,13 +3817,12 @@ namespace FargowiltasSouls
                 player.lavaMax += 300;
             }
             
-            player.armorPenetration += 5;
             player.noFallDmg = true;
 
             //in lava effects
-            if (player.lavaWet)
+            if (player.lavaWet && !TerrariaSoul)
             {
-                player.armorPenetration += 15;
+                player.armorPenetration += 20;
                 AttackSpeed *= 1.15f;
                 ObsidianEnchant = true;
             }
@@ -3844,7 +3840,7 @@ namespace FargowiltasSouls
             {
                 int[] fireballs = { ProjectileID.BallofFire, ProjectileID.BallofFrost, ProjectileID.CursedFlameFriendly };
 
-                int ballAmt = 3;
+                int ballAmt = 6;
 
                 if(Eternity)
                     ballAmt = 30;

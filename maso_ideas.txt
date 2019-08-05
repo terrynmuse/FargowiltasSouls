@@ -3,11 +3,9 @@ Do this before update @ self ech
 obsidian post skele
 eater immune to clipped wings
 pirate stealing money not working right?
-visual when plat enchant triggers
 
-tooltips dont have a limit anymore??????????????????????????
+tooltips dont have a limit anymore?????????????
 top hat critters*
-tungsten increases projectile sizes (not tile collision just enemy collision)
 
 patreon items 
 2 to 3 of them

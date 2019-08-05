@@ -29,13 +29,17 @@ namespace FargowiltasSouls.Items.Accessories.Forces
                 tooltip +=
 @"Greatly increases life regen
 Nearby enemies are ignited
+The closer they are to you the more damage they take
 When you die, you violently explode dealing massive damage
 Icicles will start to appear around you
 When there are three, attacking will launch them towards the cursor
+Your attacks inflict Frostburn
 Taking damage will release a poisoning spore explosion
 Summons a leaf crystal to shoot at nearby enemies
+All herb collection is doubled
 Not moving puts you in stealth
 While in stealth, crits deal 4x damage
+Effects of Flower Boots
 Summons several pets";
                 tooltip_ch +=
 @"极大增加生命恢复速度
@@ -55,17 +59,20 @@ Summons several pets";
                 tooltip +=
 @"Greatly increases life regen
 Nearby enemies are ignited
+The closer they are to you the more damage they take
 When you die, you violently explode dealing massive damage
 Attack speed is increased by 5% at every 25% segment of life
 Enemies that you set on fire or singe will take additional damage over time
 Icicles will start to appear around you
 When there are three, attacking will launch them towards the cursor
+Your attacks inflict Frostburn
 Taking and dealing damage will release a poisoning spore explosion
 Summons a leaf crystal to shoot at nearby enemies
+All herb collection is doubled
 Not moving puts you in stealth, While in stealth, crits deal 4x damage
 Attacks may inflict Fungal Growth
 Effects of Night Shade Petal, Sub-Zero Subwoofer, and Toxic Subwoofer 
-Effects of Spring Steps and Slag Stompers
+Effects of Flower Boots, Spring Steps and Slag Stompers
 Summons several pets";
                 tooltip_ch +=
 @"极大增加生命恢复速度,心获得1.5倍治疗量
@@ -104,18 +111,17 @@ Summons several pets";
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //bulb, cryo effect
             modPlayer.NatureForce = true;
-
             //regen, pets
             modPlayer.CrimsonEffect(hideVisual);
-
             //inferno and explode
-            modPlayer.MoltenEffect(25);
+            modPlayer.MoltenEffect(30);
             //icicles, pets
             modPlayer.FrostEffect(75, hideVisual);
             //spores
             modPlayer.JungleEffect();
             //crystal and pet
             modPlayer.ChloroEffect(hideVisual, 100);
+            modPlayer.FlowerBoots();
             //stealth, crits, pet
             modPlayer.ShroomiteEffect(hideVisual);
 

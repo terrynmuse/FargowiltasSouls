@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Patreon
 {
@@ -38,33 +39,63 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
             SetUpItem();
         }
 
-        public override bool CanRightClick()
+        public override bool AltFunctionUse(Player player)
         {
             return true;
         }
 
-        public override void RightClick(Player player)
+        public override bool UseItem(Player player)
         {
-            mode++;
-
-            if (mode > 5)
+            //right click
+            if (player.altFunctionUse == 2)
             {
-                mode = 1;
+                Main.NewText("Hi " + mode);
+
+                mode++;
+
+                if (mode > 5)
+                {
+                    mode = 1;
+                }
+
+                SetUpItem();
             }
 
-            SetUpItem();
+            return true;
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            //right click
+            if (player.altFunctionUse == 2)
+            {
+                Main.NewText("Hi " + mode);
+
+                mode++;
+
+                if (mode > 5)
+                {
+                    mode = 1;
+                }
+
+                SetUpItem();
+            }
+
+            return base.Shoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
 
         private void SetUpItem()
         {
+            ResetDamageType();
+
             switch (mode)
             {
                 //melee
                 case 1:
                     item.melee = true;
                     item.useStyle = 1;
-                    item.useTime = 10;
-                    item.useAnimation = 10;
+                    item.useTime = 15;
+                    item.useAnimation = 15;
                     item.UseSound = SoundID.Item1;
                     item.knockBack = 6;
                     item.noMelee = false;
@@ -73,11 +104,22 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
                 //range
                 case 2:
                     item.ranged = true;
+                    //item.shoot = ProjectileID.Bullet;
+                    item.knockBack = 6.5f;
+                    item.useStyle = 5;
+                    item.useAnimation = 45;
+                    item.useTime = 45;
+                    item.shoot = 10;
+                    item.useAmmo = AmmoID.Bullet;
+                    item.UseSound = SoundID.Item36;
+                    item.shootSpeed = 7f;
+                    item.noMelee = true;
                     break;
                 //magic
                 case 3:
                     item.magic = true;
                     item.mana = 15;
+
                     break;
                 //minion
                 case 4:
@@ -99,6 +141,16 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
             item.mana = 12;
             item.shoot = 1;
             item.shootSpeed = 18f;*/
+        }
+
+        private void ResetDamageType()
+        {
+            item.melee = false;
+            item.ranged = false;
+            item.magic = false;
+            item.summon = false;
+            item.ranged = false;
+            item.mana = 0;
         }
 
         public override void AddRecipes()

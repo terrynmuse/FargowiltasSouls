@@ -29,6 +29,7 @@ namespace FargowiltasSouls.Projectiles
         public bool IsRecolor = false;
         private bool stormBoosted = false;
         private int stormTimer;
+        private bool tungstenProjectile = false;
 
         public bool Rotate = false;
         public int RotateDist = 64;
@@ -141,6 +142,13 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
+                    if (modPlayer.TungstenEnchant)
+                    {
+                        projectile.scale *= 2f;
+                        projectile.width *= 2;
+                        projectile.height *= 2;
+                        tungstenProjectile = true;
+                    }
 
                     if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
                         && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99
@@ -190,7 +198,7 @@ namespace FargowiltasSouls.Projectiles
                         }
                     }*/
 
-                    if (modPlayer.BeeEnchant && (projectile.type == ProjectileID.GiantBee || projectile.type == ProjectileID.Bee) && Main.rand.Next(3) == 0)
+                    if (modPlayer.BeeEnchant && (projectile.type == ProjectileID.GiantBee || projectile.type == ProjectileID.Bee) && Main.rand.Next(2) == 0)
                     {
                         projectile.usesLocalNPCImmunity = true;
                         projectile.localNPCHitCooldown = 5;
@@ -925,6 +933,17 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
+        public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough)
+        {
+            if (tungstenProjectile)
+            {
+                width /= 2;
+                height /= 2;
+            }
+
+            return base.TileCollideStyle(projectile, ref width, ref height, ref fallThrough);
+        }
+
         public override Color? GetAlpha(Projectile projectile, Color lightColor)
         {
             if (IsRecolor)
@@ -1040,7 +1059,7 @@ namespace FargowiltasSouls.Projectiles
                     player.Teleport(teleportPos, 1);
                     NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, teleportPos.X, teleportPos.Y, 1);
 
-                    player.AddBuff(mod.BuffType("FirstStrike"), 2);
+                    player.AddBuff(mod.BuffType("FirstStrike"), 60);
                 }
             }
 

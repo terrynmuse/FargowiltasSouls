@@ -14,11 +14,12 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             Tooltip.SetDefault(
 @"'Extremely rigid'
 Critters have massively increased defense
+Killing critters no longer inflicts Guilty
 When critters die, they release their souls to aid you
 Every 5th attack will be accompanied by several snowballs
 All grappling hooks pull you in and retract twice as fast
 Any hook will periodically fire homing shots at enemies
-You have an aura of Shadowflame
+You have a large aura of Shadowflame
 When you take damage, you are inflicted with Super Bleeding
 Double tap down to spawn a palm tree sentry that throws nuts at enemies
 You leave behind a trail of rainbows that may shrink enemies");
@@ -48,6 +49,7 @@ You leave behind a trail of rainbows that may shrink enemies");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            modPlayer.WoodForce = true;
             //wood
             modPlayer.WoodEnchant = true;
             //boreal

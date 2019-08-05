@@ -28,7 +28,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             string tooltip = 
 @"'I am speed'
 Allows Supersonic running, flight, and extra mobility on ice
-Allows the holder to quuintuple jump if no wings are equipped
+Allows the holder to quintuple jump if no wings are equipped
 Increases jump height, jump speed, and allows auto-jump
 Grants the ability to swim and greatly extends underwater breathing
 Provides the ability to walk on water and lava

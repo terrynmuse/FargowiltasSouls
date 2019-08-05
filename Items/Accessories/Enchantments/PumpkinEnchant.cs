@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Your sudden pumpkin craving will never be satisfied'
 You leave behind a trail of fire when you walk
 Flames scale with magic damage
-Eating Pumpkin Pie also heals you to full HP
+Eating Pumpkin Pie heals you to full HP
 Summons a pet Squashling");
             DisplayName.AddTranslation(GameCulture.Chinese, "南瓜魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -50,15 +50,15 @@ Summons a pet Squashling");
             recipe.AddIngredient(ItemID.PumpkinLeggings);
             recipe.AddIngredient(ItemID.MolotovCocktail, 50);
             recipe.AddIngredient(ItemID.Sickle);
-            recipe.AddIngredient(ItemID.BladedGlove);
 
             if (Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("BentZombieArm"));
-                recipe.AddIngredient(ItemID.PumpkinPie);
+                recipe.AddIngredient(ItemID.BladedGlove);
                 recipe.AddIngredient(ItemID.GoodMorning);
             }
-            
+
+            recipe.AddIngredient(ItemID.PumpkinPie);
             recipe.AddIngredient(ItemID.MagicalPumpkinSeed);
             
             recipe.AddTile(TileID.DemonAltar);

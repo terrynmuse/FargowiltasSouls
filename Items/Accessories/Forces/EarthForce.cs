@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 Greatly increases life regeneration after striking an enemy 
 One attack gains 10% life steal every 4 seconds, capped at 8 HP
 Flower petals will cause extra damage to your target 
-Spawns 3 fireballs to rotate around you
+Spawns 6 fireballs to rotate around you
 Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split
 Briefly become invulnerable after striking an enemy");
@@ -54,7 +54,7 @@ Briefly become invulnerable after striking an enemy");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             //mythril
-            if (Soulcheck.GetValue("Mythril Speedup"))
+            if (Soulcheck.GetValue("Mythril Speedup") && !modPlayer.TerrariaSoul)
                 modPlayer.AttackSpeed *= 1.2f;
             //shards
             modPlayer.CobaltEnchant = true;
