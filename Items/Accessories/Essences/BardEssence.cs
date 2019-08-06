@@ -16,8 +16,6 @@ namespace FargowiltasSouls.Items.Accessories.Essences
             return ModLoader.GetMod("ThoriumMod") != null;
         }
         
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Musician's Essence");
