@@ -44,6 +44,9 @@ namespace FargowiltasSouls.NPCs
 
         public override void AI()
         {
+            if (npc.buffType[0] != 0)
+                npc.DelBuff(0);
+
             if (npc.ai[0] < 0f || npc.ai[0] >= 200f)
             {
                 npc.active = false;
@@ -99,7 +102,7 @@ namespace FargowiltasSouls.NPCs
             npc.position = plantera.Center + new Vector2(npc.ai[1], 0f).RotatedBy(npc.ai[3]);
             npc.position.X -= npc.width / 2;
             npc.position.Y -= npc.height / 2;
-            float rotation = 0.03f;
+            float rotation = npc.ai[1] == 130f ? 0.03f : -0.03f;
             npc.ai[3] += rotation;
             if (npc.ai[3] > (float)Math.PI)
             {

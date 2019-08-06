@@ -190,7 +190,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.BigEater:
                     case NPCID.EaterofSouls:
                     case NPCID.LittleEater:
-                        Counter = Main.rand.Next(60);
+                        Counter = 300;
                         break;
 
                     case NPCID.PirateShip:
@@ -3789,6 +3789,24 @@ namespace FargowiltasSouls.NPCs
                             masoBool[1] = true;
                             npc.defense += 21;
 
+                            if (!masoBool[2])
+                            {
+                                masoBool[2] = true;
+                                if (Main.netMode != 1)
+                                {
+                                    const int max = 10;
+                                    const float distance = 180f;
+                                    float rotation = 2f * (float)Math.PI / max;
+                                    for (int i = 0; i < max; i++)
+                                    {
+                                        Vector2 spawnPos = npc.Center + new Vector2(distance, 0f).RotatedBy(rotation * i);
+                                        int n = NPC.NewNPC((int)spawnPos.X, (int)spawnPos.Y, mod.NPCType("CrystalLeaf"), 0, npc.whoAmI, distance, 300, rotation * i);
+                                        if (Main.netMode == 2 && n < 200)
+                                            NetMessage.SendData(23, -1, -1, null, n);
+                                    }
+                                }
+                            }
+
                             Counter++;
                             if (Counter >= 30)
                             {
@@ -5463,10 +5481,14 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.EaterofSouls:
                     case NPCID.BigEater:
                     case NPCID.LittleEater:
-                        
                         if (++Counter >= 300)
                             Shoot(npc, 30, 600, 12, ProjectileID.CursedFlameHostile, npc.damage / 4, 0);
-                        break;
+                        if (Framing.GetTileSafely(npc.Center).nactive())
+                        {
+                            Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, npc.velocity.X, npc.velocity.Y);
+                            npc.position -= npc.velocity / 2f;
+                        }
+                        goto case NPCID.Hornet;
 
                     case NPCID.Hornet:
                     case NPCID.HornetFatty:
@@ -8428,6 +8450,15 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MisterStabby:
                         if (Main.rand.Next(100) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("OrdinaryCarrot"));
+                        break;
+
+                    case NPCID.BigMossHornet:
+                    case NPCID.GiantMossHornet:
+                    case NPCID.LittleMossHornet:
+                    case NPCID.MossHornet:
+                    case NPCID.TinyMossHornet:
+                        if (Main.rand.Next(2) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.Stinger);
                         break;
 
                     #region boss drops

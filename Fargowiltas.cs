@@ -27,6 +27,7 @@ namespace FargowiltasSouls
         internal bool BlueMagicLoaded;
         internal bool CalamityLoaded;
         internal bool DBTLoaded;
+        internal bool MasomodeEX;
 
         public UserInterface CustomResources;
         internal Soulcheck SoulCheck;
@@ -106,6 +107,7 @@ namespace FargowiltasSouls
                 TerraCompLoaded = ModLoader.GetMod("TerraCompilation") != null;
                 ThoriumLoaded = ModLoader.GetMod("ThoriumMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
+                MasomodeEX = ModLoader.GetMod("MasomodeEX") != null;
 
                 DebuffIDs = new List<int> { 20, 22, 23, 24, 36, 39, 44, 46, 47, 67, 68, 69, 70, 80,
                     88, 94, 103, 137, 144, 145, 148, 149, 153, 156, 160, 163, 164, 195, 196, 197, 199 };
