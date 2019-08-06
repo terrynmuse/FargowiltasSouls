@@ -51,12 +51,38 @@ Increases your maximum mana by 300
 @"Increases your max number of minions by 8
 Increases your max number of sentries by 4
 All attacks inflict Flames of the Universe
-Grants all other effects of material Souls";
+Effects of the Fire Gauntlet and Yoyo Bag
+Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
+
             tooltip_ch +=
 @"+8最大召唤栏
 +4最大哨兵栏
 所有攻击造成宇宙之火效果
 所有材料魂的效果";
+
+            if (thorium != null)
+            {
+                tooltip += @"Effects of Phylactery, Crystal Scorpion, and Yuma's Pendant
+                Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
+                Effects of SupportStash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
+                Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw";
+                
+                tooltip_ch += "";
+            }
+            
+            if (calamity != null)
+            {
+                tooltip += "Effects of Elemental Gauntlet, Elemental Quiver, Ethereal Talisman, Statis' Belt of Curses, and Nanotech";
+                
+                tooltip_ch += "";
+            }
+            
+            if(dbzMod != null)
+            {
+                tooltip += "Effects of Zenkai Charm and Aspera Crystallite";
+                
+                tooltip_ch += "";
+            }
 
             Tooltip.SetDefault(tooltip);
 
