@@ -22,12 +22,15 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 Increased block and wall placement speed by 50% 
 Near infinite block placement and mining reach
 Mining speed doubled 
+Shows the location of enemies, traps, and treasures
 Auto paint and actuator effect 
 Provides light and allows gravity control
 Grants the ability to enable Builder Mode:
 Anything that creates a tile will not be consumed 
 No enemies can spawn
-Effect can be disabled in Soul Toggles menu");
+Effect can be disabled in Soul Toggles menu
+Effects of the Cell Phone
+Summons a pet Magic Lantern");
             DisplayName.AddTranslation(GameCulture.Chinese, "世界塑造者之魂");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'无限的可能性'
