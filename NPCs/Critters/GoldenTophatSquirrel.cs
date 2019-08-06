@@ -11,7 +11,7 @@ namespace FargowiltasSouls.NPCs.Critters
         {
             DisplayName.SetDefault("Golden Top Hat Squirrel");
             Main.npcFrameCount[npc.type] = 6;
-            //DisplayName.AddTranslation(GameCulture.Chinese, "高顶礼帽松鼠");
+            DisplayName.AddTranslation(GameCulture.Chinese, "金高顶礼帽松鼠");
         }
 
         public override void SetDefaults()

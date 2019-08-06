@@ -37,6 +37,7 @@ While standing in lava, you gain 20 armor penetration, 15% attack speed, and you
             string tooltip_ch =
 @"'大地赐予它力量'
 攻击有概率用闪电打击敌人
+如果敌人处于潮湿状态,增加概率和伤害
 暴击率设为10%
 每次暴击增加5%
 被击中降低暴击率
@@ -44,10 +45,12 @@ While standing in lava, you gain 20 armor penetration, 15% attack speed, and you
 右键用盾牌防御
 拾取物品半径增大
 增加150%武器尺寸
+增加100%抛射物尺寸
+抛射物仍然具有同样的砖块碰撞箱
 攻击概率使敌人铅中毒
+铅中毒随时间造成伤害,并传播给附近敌人
 免疫火焰,坠落伤害和岩浆
-增加5点护甲穿透
-在岩浆中时,再多获得15点护甲穿透,15%攻击速度,攻击会点燃敌人";
+在岩浆中时,获得20点护甲穿透,15%攻击速度,攻击会点燃敌人";
                 
             Tooltip.SetDefault(tooltip);
             DisplayName.AddTranslation(GameCulture.Chinese, "泰拉之力");

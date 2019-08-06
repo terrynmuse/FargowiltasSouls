@@ -37,6 +37,7 @@ Effects of Master Ninja Gear
 Summons a pet Gato and Black Cat";
             tooltip_ch +=
 @"扔烟雾弹进行传送并获得先发制人Buff
+使用裂位法杖也会获得该Buff
 大大加强闪电光环的效果
 召唤一只宠物小喵和黑色小猫咪";
 

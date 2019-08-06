@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Items.Patreon
         {
             DisplayName.SetDefault("Miss Drakovi's Fishing Pole");
             Tooltip.SetDefault("Right click to cycle through options of attack \nEvery damage type has one");
+            DisplayName.AddTranslation(GameCulture.Chinese, "Drakovi小姐的钓竿");
+            Tooltip.AddTranslation(GameCulture.Chinese, "右键循环切换攻击模式 \n每种伤害类型对应一种模式");
         }
 
         /*

@@ -21,7 +21,7 @@ Your minions can now crit with a 15% chance
 ";
             string tooltip_ch =
 @"'蜘蛛该死'
-召唤物现在有10%的暴击率";
+召唤物现在有15%的暴击率";
 
             if(thorium != null)
             {
