@@ -28,7 +28,6 @@ All herb collection is doubled
 召唤一个叶绿水晶射击附近的敌人
 每次攻击有机会偷取4点法力
 受到伤害时会释放出有毒的孢子爆炸
-走过的草地上会长出花
 所有草药收集翻倍
 ";
 
@@ -40,7 +39,7 @@ Effects of Night Shade Petal, Petal Shield, Toxic Subwoofer, and Flower Boots
 ";
                 tooltip_ch +=
 @"攻击有概率释放孢子云使敌人中毒
-拥有影缀花,花之盾和剧毒音箱的效果
+拥有影缀花,花之盾,剧毒音箱和花之靴的效果
 ";
             }
             else

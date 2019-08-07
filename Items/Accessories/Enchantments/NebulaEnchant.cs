@@ -18,8 +18,7 @@ Hurting enemies has a chance to spawn buff boosters");
             DisplayName.AddTranslation(GameCulture.Chinese, "星云魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'创造之柱照耀着你'
-杀死敌人有概率产生增益效果
-达到最大增益后,大幅提高魔法攻击速度");
+杀死敌人有概率产生增益效果");
         }
 
         public override void SetDefaults()

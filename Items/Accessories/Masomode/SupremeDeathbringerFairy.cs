@@ -13,6 +13,8 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Supremacy not necessarily guaranteed'
 Grants immunity to Slimed, Berserked, Lethargic, and Infested
 Increases damage by 10% and armor penetration by 10
+15% increased fall speed
+When you land after a jump, slime will fall from the sky over your cursor
 While dashing or running quickly you will create a trail of blood scythes
 Your attacks inflict Venom
 Bees and weak Hornets become friendly

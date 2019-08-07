@@ -27,11 +27,12 @@ You leave behind a trail of rainbows that may shrink enemies");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'很刚'
 大幅增加动物防御力
+杀死动物不会再获得内疚Debuff
 动物死后,释放它们的灵魂来帮助你
 每5次攻击附带着数个雪球
 所有抓钩速度翻倍
 所有抓钩会定期向敌人发射追踪射击
-暗影烈焰光环环绕
+周围环绕巨大暗影烈焰光环
 受伤时,对敌人造成大出血
 留下一道可以让敌人退缩的彩虹路径");
         }
@@ -56,8 +57,11 @@ You leave behind a trail of rainbows that may shrink enemies");
             modPlayer.BorealEnchant = true;
             //mahogany
             modPlayer.MahoganyEnchant = true;
+
             //ebon
-            modPlayer.EbonEffect();
+            if (!modPlayer.TerrariaSoul)
+                modPlayer.EbonEffect();
+
             //shade
             modPlayer.ShadeEnchant = true;
             //palm

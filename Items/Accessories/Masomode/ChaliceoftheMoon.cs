@@ -14,8 +14,10 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 Grants immunity to Venom, Burning, Fused, Marked for Death, and Hexed
 Grants immunity to Atrophied, Jammed, Reverse Mana Flow, and Antisocial
 Increases life regeneration
+Press down in the air to fastfall
+Fastfall will create a fiery eruption on impact after falling a certain distance
 You periodically fire additional attacks depending on weapon type
-You erupt into Ancient Visions when injured
+You erupt into spiky balls and Ancient Visions when injured
 Summons a friendly Cultist and plant to fight at your side");
             DisplayName.AddTranslation(GameCulture.Chinese, "月之杯");
             Tooltip.AddTranslation(GameCulture.Chinese, @"月亮的微笑

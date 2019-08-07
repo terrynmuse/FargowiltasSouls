@@ -42,7 +42,7 @@ namespace FargowiltasSouls.Items
             FargoPlayer p = (FargoPlayer) player.GetModPlayer(mod, "FargoPlayer");
             //ignore money, hearts, mana stars
             if (p.IronEnchant && item.type != 71 && item.type != 72 && item.type != 73 && item.type != 74 && item.type != 54 && item.type != 1734 && item.type != 1735 &&
-                item.type != 184 && item.type != ItemID.CandyCane && item.type != ItemID.SugarPlum) grabRange += 250;
+                item.type != 184 && item.type != ItemID.CandyCane && item.type != ItemID.SugarPlum) grabRange += p.TerraForce ? 1000 : 250;
         }
 
         public override void PickAmmo(Item item, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
@@ -114,17 +114,6 @@ namespace FargowiltasSouls.Items
             if (p.ChloroEnchant && item.stack == 1 && (item.type == ItemID.Daybloom || item.type == ItemID.Blinkroot || item.type == ItemID.Deathweed || item.type == ItemID.Fireblossom ||
                                                        item.type == ItemID.Moonglow || item.type == ItemID.Shiverthorn || item.type == ItemID.Waterleaf || item.type == ItemID.Mushroom ||
                                                        item.type == ItemID.VileMushroom || item.type == ItemID.ViciousMushroom || item.type == ItemID.GlowingMushroom)) item.stack = 2;
-
-            if (p.TerrariaSoul)
-            {
-                switch (item.type)
-                {
-                    case ItemID.Star:
-                        player.ManaEffect(200);
-                        player.statMana += 200;
-                        return false;
-                }
-            }
 
             return true;
         }
@@ -336,9 +325,7 @@ namespace FargowiltasSouls.Items
                 player.AddBuff(BuffID.PotionSickness, 10800);
             }
 
-            if (modPlayer.UniverseEffect && item.damage > 0) item.shootSpeed *= 1.5f;
-
-            if (modPlayer.Eternity && item.damage > 0) item.shootSpeed *= 2f;
+            if (modPlayer.UniverseEffect && item.damage > 0) item.shootSpeed *= modPlayer.Eternity ? 2f : 1.5f;
 
             return false;
         }

@@ -1315,7 +1315,7 @@ namespace FargowiltasSouls
 
             if (TungstenEnchant && Soulcheck.GetValue("Tungsten Effect"))
             {
-                if (((item.melee && (item.useStyle == 1 || item.useStyle == 3)) || TerraForce) && item.damage > 0 && item.scale < 2.5f)
+                if (item.damage > 0 && item.scale < 2.5f)
                 {
                     tungstenPrevSizeSave = item.scale;
                     item.scale = 2.5f;
@@ -2016,9 +2016,6 @@ namespace FargowiltasSouls
 
             OnHitNPCEither(target, damage, knockback, crit, proj.type);
 
-            if (CosmoForce && !TerrariaSoul && Main.rand.Next(4) == 0)
-                target.AddBuff(mod.BuffType("SolarFlare"), 300);
-
             if (Array.IndexOf(wetProj, proj.type) > -1)
                 target.AddBuff(BuffID.Wet, 180, true);
 
@@ -2276,30 +2273,28 @@ namespace FargowiltasSouls
 
             if (JungleEnchant && !NatureForce && Main.rand.Next(4) == 0 && !target.immortal)
             {
-                player.ManaEffect(5);
+                player.ManaEffect(4);
                 player.statMana += 4;
             }
 
-            if (GladEnchant && Soulcheck.GetValue("Gladiator Rain") && projectile != ProjectileID.JavelinFriendly)
+            if (GladEnchant && Soulcheck.GetValue("Gladiator Rain") && projectile != ProjectileID.JavelinFriendly && gladCount == 0)
             {
-                gladCount++;
-
-                if (gladCount >= 10)
+                for (int i = 0; i < 5; i++)
                 {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        Vector2 spawn = new Vector2(target.Center.X + Main.rand.Next(-150, 151), target.Center.Y - Main.rand.Next(600, 801));
-                        Vector2 speed = target.Center - spawn;
-                        speed.Normalize();
-                        speed *= 15f;
-                        int p = Projectile.NewProjectile(spawn, speed, ProjectileID.JavelinFriendly, damage / 2, 1f, Main.myPlayer);
-                        Main.projectile[p].tileCollide = false;
-                        Main.projectile[p].penetrate = 1;
-                    }
-
-                    gladCount = 0;
+                    Vector2 spawn = new Vector2(target.Center.X + Main.rand.Next(-150, 151), target.Center.Y - Main.rand.Next(600, 801));
+                    Vector2 speed = target.Center - spawn;
+                    speed.Normalize();
+                    speed *= 15f;
+                    int p = Projectile.NewProjectile(spawn, speed, ProjectileID.JavelinFriendly, damage / 2, 1f, Main.myPlayer);
+                    Main.projectile[p].tileCollide = false;
+                    Main.projectile[p].penetrate = 1;
                 }
+
+                gladCount = WillForce ? 30 : 60;
             }
+
+            if (SolarEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
+                target.AddBuff(mod.BuffType("SolarFlare"), 300);
 
             if (Eternity)
             {
@@ -2352,7 +2347,7 @@ namespace FargowiltasSouls
                     TinCrit += 4;
             }
 
-            if (PalladEnchant && palladiumCD == 0 && !target.immortal && !player.moonLeech)
+            if (PalladEnchant && !TerrariaSoul && palladiumCD == 0 && !target.immortal && !player.moonLeech)
             {
                 int heal = damage / 10;
                 if (heal > 8)
@@ -2481,9 +2476,6 @@ namespace FargowiltasSouls
                     SpectreHeal(target, p);
                 }
             }
-
-            if (SolarEnchant && Main.rand.Next(4) == 0)
-                target.AddBuff(mod.BuffType("SolarFlare"), 300);
 
             if (CyclonicFin)
             {
@@ -3500,6 +3492,13 @@ namespace FargowiltasSouls
         public void GladiatorEffect(bool hideVisual)
         {
             GladEnchant = true;
+
+            if (gladCount > 0)
+            {
+                gladCount--;
+            }
+
+
             AddPet("Mini Minotaur Pet", hideVisual, BuffID.MiniMinotaur, ProjectileID.MiniMinotaur);
         }
 

@@ -22,6 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Helheim");
             Tooltip.SetDefault(
 @"'From the halls of Hel, a vision of the end...'
+Killing enemies or continually damaging bosses generates soul wisps
+After generating 5 wisps, they are instantly consumed to heal you for 10 life
 Your boots vibrate at an unreal frequency, increasing movement speed significantly
 While moving, all damage is increased
 Your attacks have a chance to unleash an explosion of Dragon's Flame
@@ -29,7 +31,7 @@ Consecutive attacks against enemies might drop flesh, which grants bonus life an
 While above 75% maximum life, you become unstable
 Your plague gas will linger in the air twice as long and your plague reactions will deal 20% more damage
 Killing an enemy will release a soul fragment
-Effects of Crash Boots, Dragon Talon Necklace, and Grim Subwoofer
+Effects of Inner Flame, Crash Boots, Dragon Talon Necklace, and Grim Subwoofer
 Effects of Vampire Gland, Demon Blood Badge, and Blood Demon's Subwoofer 
 Effects of Shade Band, Lich's Gaze, and Plague Lord's Flask
 Summons several pets");
@@ -65,6 +67,16 @@ Summons several pets");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+
+            if (Soulcheck.GetValue("Spirit Trapper Wisps"))
+            {
+                //spirit trapper set bonus
+                thoriumPlayer.spiritTrapper = true;
+            }
+
+            //inner flame
+            thoriumPlayer.spiritFlame = true;
+
             //plague lord flask effect
             modPlayer.HelheimForce = true;
 
@@ -161,6 +173,7 @@ Summons several pets");
 
             ModRecipe recipe = new ModRecipe(mod);
 
+            recipe.AddIngredient(null, "SpiritTrapperEnchant");
             recipe.AddIngredient(null, "DreadEnchant");
             recipe.AddIngredient(null, "DemonBloodEnchant");
             recipe.AddIngredient(null, "HarbingerEnchant");

@@ -48,7 +48,7 @@ Summons a sword familiar that scales with minion damage";
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             modPlayer.SilverEnchant = true;
-            modPlayer.AddMinion("Silver Sword Familiar", mod.ProjectileType("SilverSword"), (int) (20 * player.minionDamage), 0f);
+            modPlayer.AddMinion("Silver Sword Familiar", mod.ProjectileType("SilverSword"), (int) (30 * player.minionDamage), 0f);
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player); 
         }

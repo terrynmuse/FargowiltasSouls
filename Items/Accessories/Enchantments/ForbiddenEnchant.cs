@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip =
 @"'Walk like an Egyptian'
 Double tap down to call an ancient storm to the cursor location
-Any projectiles shot through your storm gain double pierce and 50% damage
+Any projectiles shot through your storm gain 50% damage
 ";
             string tooltip_ch =
 @"'走路像个埃及人Z(￣ｰ￣)Z'

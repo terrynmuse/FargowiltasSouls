@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
@@ -26,24 +25,25 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of Dimensions");
-
-            Tooltip.SetDefault(
+            DisplayName.AddTranslation(GameCulture.Chinese, "维度之魂");
+            String tooltip = 
 @"'The dimensions of Terraria at your fingertips'
 Increases HP by 300
 20% damage reduction
 Increases life regeneration by 8
 Grants immunity to knockback and several debuffs
+Enemies are more likely to target you
 Allows Supersonic running and infinite flight
 Increases fishing skill substantially, All fishing rods will have 10 extra lures
 Increased block and wall placement speed by 50% 
 Near infinite block placement and mining reach, Mining speed doubled 
+Shine, Spelunker, Hunter, and Dangersense effects
 Grants the ability to enable Builder Mode
-Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
-Effects of Spore Sac, Paladin's Shield, Frozen Turtle Shell, and Arctic Diving Gear
-Effects of Frog Legs, Lava Waders, Angler Tackle Bag
-All other effects of material Souls");
-            DisplayName.AddTranslation(GameCulture.Chinese, "维度之魂");
-            Tooltip.AddTranslation(GameCulture.Chinese, 
+Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, Bee Cloak, and Spore Sac
+Effects of Paladin's Shield, Frozen Turtle Shell, Arctic Diving Gear, Frog Legs, and Flying Carpet
+Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phone, and Gravity Globe";
+
+            String tooltip_ch =
 @"'泰拉瑞亚维度触手可及'
 增加300最大生命值
 增加20%伤害减免
@@ -57,18 +57,29 @@ All other effects of material Souls");
 拥有混乱之脑,星辰项链,甜心项链和蜜蜂斗篷的效果
 拥有孢子囊,圣骑士护盾,冰霜龟壳和北极潜水装备的效果
 拥有蛙腿,熔岩行走靴和渔具包的效果
-拥有所有材料魂的效果");
+拥有所有材料魂的效果";
 
-            /*not mentioned in tooltip
-            Permanent Sonar and Crate Buffs
-            Provides light 
-            Auto paint and actuator effect 
+            if (thorium != null)
+            {
+                tooltip += @"
+                Effects of Ocean's Retaliation and Cape of the Survivor
+                Effects of Blast Shield and Terrarium Defender
+                Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
+                
+                tooltip_ch += @"
+                拥有海潮之噬和生存者披风的效果\n拥有爆炸盾和界元之庇护的效果
+                拥有履空靴,我命至上主义者之飞靴和举足轻重靴的效果";
 
-            all thorium effects ech
-            */
+            }
 
-            //omega core
-            //Increases movement speed beyond comprehension
+            if (calamity != null)
+            {
+                tooltip += "\nEffects of Asgardian Aegis";
+                tooltip_ch += "\n拥有阿斯加德之庇护的效果";
+            }
+
+            Tooltip.SetDefault(tooltip);
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 18));
         }

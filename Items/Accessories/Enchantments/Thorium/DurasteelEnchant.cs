@@ -23,8 +23,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Masterfully forged by the Blacksmith'
 12% damage reduction
-Grants the ability to dash into the enemy
-Right Click to guard with your shield
 Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
             DisplayName.AddTranslation(GameCulture.Chinese, "耐刚魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -63,17 +61,9 @@ Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
             {
                 thorium.GetItem("GreedyMagnet").HoldItem(player);
             }
-            
-            //EoC Shield
-            player.dash = 2;
+
             //spiked bracers
             player.thorns += 0.25f;
-
-            if (Soulcheck.GetValue("Iron Shield"))
-            {
-                //shield
-                player.GetModPlayer<FargoPlayer>(mod).IronEffect();
-            }
         }
         
         private readonly string[] items =

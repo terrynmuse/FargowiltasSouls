@@ -24,6 +24,7 @@ Summons a pet Black Cat");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'你看到我了,现在又不见了'
 扔烟雾弹进行传送,获得先发制人Buff
+使用裂位法杖也会获得该Buff
 先发制人Buff会强化你的下一次攻击
 近战暴击造成3倍伤害
 抛射物攻击连续射击3次

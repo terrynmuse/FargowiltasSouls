@@ -26,6 +26,7 @@ Spawns 6 fireballs to rotate around you
 Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split
 Briefly become invulnerable after striking an enemy");
+
             DisplayName.AddTranslation(GameCulture.Chinese, "大地之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'盖亚的祝福照耀着你'
@@ -34,7 +35,7 @@ Briefly become invulnerable after striking an enemy");
 攻击敌人后大大增加生命回复
 一次攻击获得每秒5%的生命窃取,上限为5点
 花瓣对你的目标造成额外伤害
-召唤3个环绕你的火球
+召唤6个环绕你的火球
 第8个抛射物将会分裂成3个
 分裂出的抛射物同样可以分裂
 满血状态下所受到的伤害将减少90%在攻击敌人后的瞬间无敌");

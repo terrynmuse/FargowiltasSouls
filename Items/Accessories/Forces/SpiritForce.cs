@@ -19,36 +19,29 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 If you reach zero HP you cheat death, returning with 100 HP
 For a few seconds after reviving, you are immune to all damage and spawn bones
 Double tap down to call an ancient storm to the cursor location
-Any projectiles shot through your storm gain double pierce and 50% damage
+Any projectiles shot through your storm gain 50% damage
 Summons an Enchanted Sword familiar
 You gain a shield that can reflect projectiles
 Attacks will inflict Infested
 Infested deals increasing damage over time
 Damage has a chance to spawn damaging orbs
 If you crit, you might also get a healing orb
+Summons several pets
 ";
+
             string tooltip_ch =
 @"'从尘世飞升'
-血量为0时避免死亡,回复100生命并产生骨头
+血量为0时避免死亡,回复100生命
+重生后几秒内,免疫所有伤害并生成骨头
 双击'下'键可召唤远古风暴到光标位置
+任何穿过风暴的抛射物都能获得双倍穿透和额外50%伤害
+召唤一柄附魔剑
 获得一个可以反射抛射物的护盾
-攻击将造成感染效果,并产生伤害和治疗球";
-
-            if (thorium != null)
-            {
-                tooltip +=
-@"Killing enemies or continually damaging bosses generates soul wisps
-After generating 5 wisps, they are instantly consumed to heal you for 10 life
-";
-                tooltip_ch +=
-@"杀死敌人或持续攻击Boss会产生灵魂碎片
-集齐5个后,它们会立即被消耗,治疗10点生命";
-            }
-
-            tooltip += 
-@"Summons several pets";
-            tooltip_ch +=
-@"召唤一柄附魔剑
+攻击将造成感染效果
+随着时间的推移,感染造成越来越多的伤害
+攻击有概率生成伤害球
+暴击有概率生成治疗球
+召唤一柄附魔剑
 召唤数个宠物";
 
             Tooltip.SetDefault(tooltip);

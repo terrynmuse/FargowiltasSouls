@@ -448,6 +448,7 @@ Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
 
             ModRecipe recipe = new ModRecipe(mod);
 
+            recipe.AddIngredient(null, "CalamityForce");
             recipe.AddIngredient(null, "TarragonEnchant");
             recipe.AddIngredient(null, "BloodflareEnchant");
             recipe.AddIngredient(null, "OmegaBlueEnchant");
@@ -456,7 +457,6 @@ Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
             recipe.AddIngredient(null, "AuricEnchant");
             recipe.AddIngredient(null, "DemonShadeEnchant");
 
-            recipe.AddIngredient(calamity.ItemType("CounterScarf"));
             recipe.AddIngredient(calamity.ItemType("TheCommunity"));
             recipe.AddIngredient(calamity.ItemType("DraedonsHeart"));
             recipe.AddIngredient(calamity.ItemType("HeartoftheElements"));

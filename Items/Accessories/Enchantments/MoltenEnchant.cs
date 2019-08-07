@@ -21,7 +21,8 @@ When you die, you violently explode dealing massive damage");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"他们将感受到地狱的愤怒.'
 点燃附近敌人
-死亡时剧烈爆炸,造成大量伤害");
+敌人距离越近, 收到的伤害越多
+死亡时剧烈爆炸, 造成大量伤害");
         }
 
         public override void SetDefaults()

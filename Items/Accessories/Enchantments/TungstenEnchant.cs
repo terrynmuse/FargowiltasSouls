@@ -24,7 +24,9 @@ Projectiles still have the same tile collision hitbox";
             string tooltip_ch =
 @"'大就是好'
 增加150%剑的尺寸
-减少10%移动速度和近战速度";
+增加100%抛射物尺寸
+减少10%移动速度和近战速度
+抛射物仍然具有同样的砖块碰撞箱";
 
             if(thorium != null)
             {

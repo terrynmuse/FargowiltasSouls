@@ -9750,7 +9750,6 @@ namespace FargowiltasSouls.NPCs
             if (modPlayer.SpiderEnchant && projectile.minion && Main.rand.Next(100) < 15)
             {
                 crit = true;
-                damage *= 2;
             }
 
             if (FargoWorld.MasochistMode)
@@ -10112,7 +10111,7 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            if (modPlayer.RedEnchant)
+            if (modPlayer.RedEnchant && !modPlayer.TerrariaSoul)
             {
                 switch (npc.life / npc.lifeMax * 100)
                 {
@@ -10130,7 +10129,7 @@ namespace FargowiltasSouls.NPCs
 
             if (crit && modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && player.stealth == 0)
             {
-                damage *= 4;
+                damage *= 3;
                 retValue = false;
             }
 

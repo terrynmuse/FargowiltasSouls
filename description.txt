@@ -13,7 +13,7 @@
 -Assassin Enchantment: replaced nail gun with shadowflame bow in recipe
 -Copper Enchantment effect no longer goes on cooldown every time it tries to proc (even when it failed making the effect needlessly hard to get)
 -Fixed Top Hat Squirrels sprite sheet clipping into the ground
--Added Demon Squirrel
+-Added Demon Squirrel, Golden Tophat Squirrel, and Party Squirrel (finish them)
 -Removed Throwing Knives for Slimy Saddle in Ninja Enchant
 -Replaced Slimy Saddle with Fart in a Horseshoe Balloon thus adding fart jump to it
 -Soul of Dimensions and Eternity flight is actually infinite
@@ -35,8 +35,31 @@ Copper Enchant now bonus procs on enemies in water instead of just have the wet 
 -Platinum Enchant effect has a visual now
 -Removed attack speed thing from Nebula Enchant
 -Removed Calamity Force from Soul of Terraria, added to Soul of the Tyrant (soon tm)
--Remove Iron from Steel tree (soon tm)
 -Fixed Force of Wood not having Force of Wood effects somehow lol
+-Fixed several inconsistencies in effects when Thorium is enabled (effects from when thorium enchants were mixed into vanilla forces)
+
+-Soul of Terraria no longer gains Palladium life steal (since its effect is combined with Tins), double mana star heals, or shadowflame aura
+-Fixed Jungle Enchantment mana steal saying it healed 5 when it actually healed 4
+-Shroomite Enchantment crit bonus from 4x to 3x
+-Fixed Spider Enchantment actually doing 4X damage on crits
+-Tungsten Enchantment makes all weapons larger
+-Removed Expert line from some items
+-Removed Meteor Enchantment from Conduit Enchantment (Added Electro Rebounder) and Iron from Steel (Added Katana), Spirit Trapper from Spectre (added to Force of Helheim )
+-Removed Dark Effigy effect from Shadow Force onward
+-Changed Gladiator Enchantment effect to occur once every second at most, then every half second on force of Will
+-Silver Enchantment minion now has 50% more damage
+-Shadow Enchantment Darkness no longer targets critters and town NPCs
+-Iron Enchantment's magnet has quadrupled range in Terra Force and beyond
+-Fixed Sandstone Enchantment recipe being broken
+-Infinity Relic now crafted at the Crucible of the Cosmos
+-Fixed Forbidden Enchantments damage boost running out and actually making projectiles deal 0 damage, mostly affecting minions
+-Also no longer gives bonus pierce
+-Updated all soul tooltips to include their full effects
+
+-Added even more Chinese translation
+-Adjusted some of Soul of the Masochist's stat buffs
+-Gave Soul of Eternity way more defense
+
 
 
 retinazer has special extra range burning aura
