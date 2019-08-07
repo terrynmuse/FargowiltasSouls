@@ -28,7 +28,6 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             DisplayName.AddTranslation(GameCulture.Chinese, "电容魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'震惊世界'
-攻击时有概率召唤流星雨
 移动时产生最多5层静电环, 静电环可以回复护盾值
 完全充能时, 产生一个能量泡保护你免受一次伤害
 泡泡消耗时, 向周围敌人放电

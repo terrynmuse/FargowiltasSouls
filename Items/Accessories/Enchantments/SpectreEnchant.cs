@@ -28,7 +28,7 @@ If you crit, you might also get a healing orb
             if(thorium != null)
             {
                 tooltip += "Effects of Ghastly Carapace\n";
-                tooltip_ch += "拥有惊魂甲壳和心灵之火的效果\n";
+                tooltip_ch += "拥有惊魂甲壳的效果\n";
             }
 
             tooltip += "Summons a pet Wisp";

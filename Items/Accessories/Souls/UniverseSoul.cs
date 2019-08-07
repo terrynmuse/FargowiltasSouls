@@ -44,7 +44,7 @@ Increases your maximum mana by 300
             if (thorium != null)
             {
                 tooltip += "Increases maximum inspiration by 30\n";
-                tooltip_ch += "增加30最大灵感值";
+                tooltip_ch += "增加30最大灵感值\n";
             }
 
             tooltip += 
@@ -58,30 +58,34 @@ Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
 @"+8最大召唤栏
 +4最大哨兵栏
 所有攻击造成宇宙之火效果
-所有材料魂的效果";
+拥有烈火手套和悠悠球袋的效果
+拥有狙击镜, 星体手铐和魔力花的效果";
 
             if (thorium != null)
             {
                 tooltip += @"Effects of Phylactery, Crystal Scorpion, and Yuma's Pendant
                 Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
-                Effects of SupportStash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
+                Effects of Support Sash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
                 Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw";
                 
-                tooltip_ch += "";
+                tooltip_ch += @"拥有拥有魂匣, 魔晶蝎和云码垂饰的效果
+                拥有投手大师指导:卷三, 美人鱼水壶和亡者眼罩的效果
+                拥有支援腰带, 救世恩典, 灵魂庇佑, 大恶魔之咒, 圣天使之心和医疗包的效果
+                拥有史诗吹口, 金属弱音器, 数码调谐器和吉他拨片的效果";
             }
             
             if (calamity != null)
             {
                 tooltip += "Effects of Elemental Gauntlet, Elemental Quiver, Ethereal Talisman, Statis' Belt of Curses, and Nanotech";
                 
-                tooltip_ch += "";
+                tooltip_ch += "拥有元素之握, 元素箭袋, 空灵护符, 斯塔提斯的诅咒系带和纳米技术的效果";
             }
             
             if(dbzMod != null)
             {
                 tooltip += "Effects of Zenkai Charm and Aspera Crystallite";
                 
-                tooltip_ch += "";
+                tooltip_ch += "拥有全开符咒和原始晶粒的效果";
             }
 
             Tooltip.SetDefault(tooltip);

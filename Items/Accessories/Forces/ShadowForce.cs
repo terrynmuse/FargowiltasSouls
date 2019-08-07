@@ -54,7 +54,8 @@ Greatly enhances Flameburst and Lightning Aura effectiveness
 @"Effects of Master Ninja Gear
 Summons several pets";
             tooltip_ch +=
-@"拥有忍者极意的效果";
+@"拥有忍者极意的效果
+召唤数个宠物";
 
             Tooltip.SetDefault(tooltip);
             DisplayName.AddTranslation(GameCulture.Chinese, "暗影之力");
