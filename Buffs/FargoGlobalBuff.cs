@@ -45,7 +45,7 @@ namespace FargowiltasSouls.Buffs
                         for (int i = 0; i < 200; i++)
                         {
                             NPC target = Main.npc[i];
-                            if (target.active && Vector2.Distance(npc.Center, target.Center) < 200)
+                            if (target.active && !target.friendly && Vector2.Distance(npc.Center, target.Center) < 200)
                             {
                                 Vector2 velocity = Vector2.Normalize(target.Center - npc.Center) * 5;
                                 Projectile.NewProjectile(npc.Center, velocity, ProjectileID.ShadowFlame, npc.damage / 2, 0, Main.myPlayer);

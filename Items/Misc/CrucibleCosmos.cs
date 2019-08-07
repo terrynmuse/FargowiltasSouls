@@ -1,6 +1,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Terraria;
 
 namespace FargowiltasSouls.Items.Misc
 {
@@ -12,6 +15,17 @@ namespace FargowiltasSouls.Items.Misc
             Tooltip.SetDefault("'It seems to be hiding magnificent power'\nFunctions as nearly every crafting station");
             DisplayName.AddTranslation(GameCulture.Chinese, "宇宙坩埚");
             Tooltip.AddTranslation(GameCulture.Chinese, "'它似乎隐藏着巨大的力量'\n包含几乎所有制作环境");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB));
+                }
+            }
         }
 
         public override void SetDefaults()
@@ -26,7 +40,6 @@ namespace FargowiltasSouls.Items.Misc
             item.useStyle = 1;
             item.consumable = true;
             item.createTile = mod.TileType("CrucibleCosmosSheet");
-            item.expert = true;
         }
 
         public override void AddRecipes()

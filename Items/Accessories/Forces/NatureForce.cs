@@ -19,15 +19,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 
             string tooltip =
 @"'Tapped into every secret of the wilds'
-";
-            string tooltip_ch =
-@"'挖掘了野外的每一个秘密'
-";
-
-            if (thorium == null)
-            {
-                tooltip +=
-@"Greatly increases life regen
+Greatly increases life regen
 Nearby enemies are ignited
 The closer they are to you the more damage they take
 When you die, you violently explode dealing massive damage
@@ -38,9 +30,18 @@ Taking damage will release a poisoning spore explosion
 Summons a leaf crystal to shoot at nearby enemies
 All herb collection is doubled
 Not moving puts you in stealth
-While in stealth, crits deal 4x damage
-Effects of Flower Boots
+While in stealth, crits deal 3x damage
+";
+            string tooltip_ch =
+@"'挖掘了野外的每一个秘密'
+";
+
+            if (thorium == null)
+            {
+                tooltip +=
+@"Effects of Flower Boots
 Summons several pets";
+
                 tooltip_ch +=
 @"极大增加生命恢复速度
 心获得1.5倍治疗量
@@ -61,23 +62,14 @@ Summons several pets";
             else
             {
                 tooltip +=
-@"Greatly increases life regen
-Nearby enemies are ignited
-The closer they are to you the more damage they take
-When you die, you violently explode dealing massive damage
-Attack speed is increased by 5% at every 25% segment of life
+@"Attack speed is increased by 5% at every 25% segment of life
 Enemies that you set on fire or singe will take additional damage over time
-Icicles will start to appear around you
-When there are three, attacking will launch them towards the cursor
-Your attacks inflict Frostburn
-Taking and dealing damage will release a poisoning spore explosion
-Summons a leaf crystal to shoot at nearby enemies
-All herb collection is doubled
-Not moving puts you in stealth, While in stealth, crits deal 4x damage
+Dealing damage will release a poisoning spore explosion
 Attacks may inflict Fungal Growth
 Effects of Night Shade Petal, Sub-Zero Subwoofer, and Toxic Subwoofer 
 Effects of Flower Boots, Spring Steps and Slag Stompers
 Summons several pets";
+
                 tooltip_ch +=
 @"极大增加生命恢复速度,心获得1.5倍治疗量
 点燃附近敌人

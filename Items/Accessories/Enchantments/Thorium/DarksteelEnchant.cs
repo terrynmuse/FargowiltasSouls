@@ -24,10 +24,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Light yet durable'
 8% damage reduction
-Grants the ability to dash into the enemy
-Right Click to guard with your shield
-You attract items from a larger range
-Effects of Iron Shield and Spiked Bracer");
+Nothing will stop your movement 
+Double tap to dash
+Effects of Spiked Bracer");
             DisplayName.AddTranslation(GameCulture.Chinese, "暗金魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'轻巧而耐用'
@@ -58,39 +57,11 @@ Effects of Iron Shield and Spiked Bracer");
             //darksteel bonuses
             player.noKnockback = true;
             player.iceSkate = true;
-            //EoC Shield
-            player.dash = 2;
+            player.dash = 1;
             //steel set bonus
             thoriumPlayer.thoriumEndurance += 0.08f;
             //spiked bracers
             player.thorns += 0.35f;
-            if (Soulcheck.GetValue("Iron Shield"))
-            {
-                //iron shield raise
-                modPlayer.IronEffect();
-            }
-            //magnet
-            if (Soulcheck.GetValue("Iron Magnet"))
-            {
-                modPlayer.IronEnchant = true;
-            }
-            //iron shield
-            timer++;
-            if (timer >= 30)
-            {
-                int num = 12;
-                if (thoriumPlayer.shieldHealth <= num)
-                {
-                    thoriumPlayer.shieldHealthTimerStop = true;
-                }
-                if (thoriumPlayer.shieldHealth < num)
-                {
-                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                    thoriumPlayer.shieldHealth++;
-                    player.statLife++;
-                }
-                timer = 0;
-            }
         }
         
         private readonly string[] items =

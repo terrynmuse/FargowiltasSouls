@@ -183,21 +183,6 @@ namespace FargowiltasSouls.Projectiles
                         projectile.timeLeft = 600;
                     }
 
-                    /*if (modPlayer.UniverseEffect)
-                    {
-                        projectile.melee = true;
-                        projectile.ranged = true;
-                        projectile.magic = true;
-                        projectile.minion = true;
-                        projectile.thrown = true;
-
-                        /*if (thoriumLoaded)
-                        {
-
-
-                        }
-                    }*/
-
                     if (modPlayer.BeeEnchant && (projectile.type == ProjectileID.GiantBee || projectile.type == ProjectileID.Bee) && Main.rand.Next(2) == 0)
                     {
                         projectile.usesLocalNPCImmunity = true;
@@ -230,11 +215,6 @@ namespace FargowiltasSouls.Projectiles
 
                         if (nearestProj != null)
                         {
-                            if (projectile.maxPenetrate != -1)
-                            {
-                                projectile.maxPenetrate *= 2;
-                            }
-
                             projectile.damage = (int)(projectile.damage * 1.5);
 
                             stormBoosted = true;
@@ -248,12 +228,7 @@ namespace FargowiltasSouls.Projectiles
 
                         if (stormTimer == 0)
                         {
-                            if (projectile.maxPenetrate != -1)
-                            {
-                                projectile.maxPenetrate /= 2;
-                            }
-
-                            projectile.damage = (int)(projectile.damage * (2 / 3));
+                            projectile.damage = (int)(projectile.damage * (2f / 3f));
                             stormBoosted = false;
                         }
                     }

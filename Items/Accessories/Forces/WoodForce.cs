@@ -57,8 +57,11 @@ You leave behind a trail of rainbows that may shrink enemies");
             modPlayer.BorealEnchant = true;
             //mahogany
             modPlayer.MahoganyEnchant = true;
+
             //ebon
-            modPlayer.EbonEffect();
+            if (!modPlayer.TerrariaSoul)
+                modPlayer.EbonEffect();
+
             //shade
             modPlayer.ShadeEnchant = true;
             //palm

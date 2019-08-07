@@ -24,10 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Expertly forged by the Blacksmith'
 5% damage reduction
-Allows the player to dash into the enemy
-Right Click to guard with your shield
-You attract items from a larger range
-Effects of Iron Shield and Spiked Bracers");
+Effects of Spiked Bracers");
             DisplayName.AddTranslation(GameCulture.Chinese, "钢魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'铁匠精心打造'
@@ -53,52 +50,12 @@ Effects of Iron Shield and Spiked Bracers");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //steel set bonus
             thoriumPlayer.thoriumEndurance += 0.05f;
             //spiked bracers
             player.thorns += 0.25f;
-            //iron shield raise
-            player.GetModPlayer<FargoPlayer>(mod).IronEffect();
-            //item attract
-            if (Soulcheck.GetValue("Iron Magnet"))
-            {
-                modPlayer.IronEnchant = true;
-            }
-            //EoC Shield
-            player.dash = 2;
-            //iron sheild
-            if (!thoriumPlayer.outOfCombat)
-            {
-                timer++;
-                if (timer >= 30)
-                {
-                    int num = 22;
-                    if (thoriumPlayer.shieldHealth < num)
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), new Color(51, 255, 255), 1, false, true);
-                        thoriumPlayer.shieldHealth++;
-                    }
-                    timer = 0;
-                    return;
-                }
-            }
-            else
-            {
-                timer = 0;
-            }
         }
-        
-        private readonly string[] items =
-        {
-            "SpikedBracer",
-            "SteelAxe",
-            "SteelMallet",
-            "SteelBlade",
-            "WarForger",
-            "SuperAnvil"
-        };
 
         public override void AddRecipes()
         {
@@ -109,9 +66,13 @@ Effects of Iron Shield and Spiked Bracers");
             recipe.AddIngredient(thorium.ItemType("SteelHelmet"));
             recipe.AddIngredient(thorium.ItemType("SteelChestplate"));
             recipe.AddIngredient(thorium.ItemType("SteelGreaves"));
-            recipe.AddIngredient(null, "IronEnchant");
-
-            foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
+            recipe.AddIngredient(thorium.ItemType("SpikedBracer"));
+            recipe.AddIngredient(ItemID.Katana);
+            recipe.AddIngredient(thorium.ItemType("SteelAxe"));
+            recipe.AddIngredient(thorium.ItemType("SteelMallet"));
+            recipe.AddIngredient(thorium.ItemType("SteelBlade"));
+            recipe.AddIngredient(thorium.ItemType("WarForger"));
+            recipe.AddIngredient(thorium.ItemType("SuperAnvil"));
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

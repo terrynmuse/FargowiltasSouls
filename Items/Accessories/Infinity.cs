@@ -56,7 +56,7 @@ Every few attacks damage you slightly");
             recipe.AddIngredient(Stake, 999);
             recipe.AddIngredient(ManaCrystal, 100);
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -27,15 +27,8 @@ If you crit, you might also get a healing orb
 
             if(thorium != null)
             {
-                tooltip +=
-@"Killing enemies or continually damaging bosses generates soul wisps
-After generating 5 wisps, they are instantly consumed to heal you for 10 life
-Effects of Ghastly Carapace and Inner Flame
-";
-                tooltip_ch +=
-@"杀死敌人或持续攻击Boss会产生灵魂碎片
-集齐5个后,它们会立即被消耗,治疗10点生命
-拥有惊魂甲壳和心灵之火的效果";
+                tooltip += "Effects of Ghastly Carapace\n";
+                tooltip_ch += "拥有惊魂甲壳和心灵之火的效果\n";
             }
 
             tooltip += "Summons a pet Wisp";
@@ -74,15 +67,6 @@ Effects of Ghastly Carapace and Inner Flame
                     player.AddBuff(thorium.BuffType("GhastlySoul"), 60, true);
                 }
             }
-
-            if(Soulcheck.GetValue("Spirit Trapper Wisps"))
-            {
-                //spirit trapper set bonus
-                thoriumPlayer.spiritTrapper = true;
-            }
-            
-            //inner flame
-            thoriumPlayer.spiritFlame = true;
         }
 
         public override void AddRecipes()
@@ -95,11 +79,11 @@ Effects of Ghastly Carapace and Inner Flame
                 recipe.AddIngredient(ItemID.SpectreHood);
                 recipe.AddIngredient(ItemID.SpectreRobe);
                 recipe.AddIngredient(ItemID.SpectrePants);
-                recipe.AddIngredient(null, "SpiritTrapperEnchant");
                 recipe.AddIngredient(thorium.ItemType("GhastlyCarapace"));
                 recipe.AddIngredient(ItemID.Keybrand);
                 recipe.AddIngredient(ItemID.MagicalHarp);
                 recipe.AddIngredient(ItemID.SpectreStaff);
+                recipe.AddIngredient(ItemID.UnholyTrident);
             }
             else
             {

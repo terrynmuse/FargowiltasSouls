@@ -22,14 +22,9 @@ namespace FargowiltasSouls.Items.Accessories.Forces
 @"'自宇宙大爆炸以来就一直存在'
 ";
 
-            if (thorium == null)
-            {
-                tooltip += "A meteor shower initiates every few seconds while attacking\n";
-                tooltip_ch += "攻击时,每隔几秒就会爆发一次流星雨";
-            }
-
             tooltip +=
-@"Solar shield allows you to dash through enemies
+@"A meteor shower initiates every few seconds while attacking
+Solar shield allows you to dash through enemies
 Attacks may inflict the Solar Flare debuff
 Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
 You also spawn a vortex to draw in and massively damage enemies when you enter stealth
@@ -38,8 +33,10 @@ Double tap down to direct your guardian
 Press the Freeze Key to freeze time for 5 seconds
 There is a 60 second cooldown for this effect, a sound effect plays when it's back
 Summons a pet Companion Cube";
+
             tooltip_ch +=
-@"日耀护盾允许你向敌人冲刺
+@"攻击时,每隔几秒就会爆发一次流星雨
+日耀护盾允许你向敌人冲刺
 攻击概率造成耀斑效果
 双击'下'键切换潜行,减少敌人攻击你的概率,但减少移动速度
 进入潜行时,生成一个漩涡,聚拢敌人并造成大量伤害
@@ -70,12 +67,8 @@ Summons a pet Companion Cube";
             //meme speed, solar flare, white dwarf flames, tide turner daggers, pyro bursts, assassin insta kill
             modPlayer.CosmoForce = true;
 
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                //meteor shower
-                modPlayer.MeteorEffect(75);
-            }
-
+            //meteor shower
+            modPlayer.MeteorEffect(75);
             //solar shields
             modPlayer.SolarEffect();
             //flare debuff
@@ -93,11 +86,7 @@ Summons a pet Companion Cube";
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            if (!Fargowiltas.Instance.ThoriumLoaded)
-            {
-                recipe.AddIngredient(null, "MeteorEnchant");
-            }
-            
+            recipe.AddIngredient(null, "MeteorEnchant");
             recipe.AddIngredient(null, "SolarEnchant");
             recipe.AddIngredient(null, "VortexEnchant");
             recipe.AddIngredient(null, "NebulaEnchant");

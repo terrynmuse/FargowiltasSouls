@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
@@ -39,7 +38,6 @@ Increases fishing skill substantially, All fishing rods will have 10 extra lures
 Increased block and wall placement speed by 50% 
 Near infinite block placement and mining reach, Mining speed doubled 
 Shine, Spelunker, Hunter, and Dangersense effects
-Auto paint and actuator effect 
 Grants the ability to enable Builder Mode
 Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, Bee Cloak, and Spore Sac
 Effects of Paladin's Shield, Frozen Turtle Shell, Arctic Diving Gear, Frog Legs, and Flying Carpet
@@ -64,7 +62,8 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
             if (thorium != null)
             {
                 tooltip += @"
-                Effects of Ocean's Retaliation and Cape of the Survivor\nEffects of Blast Shield and Terrarium Defender
+                Effects of Ocean's Retaliation and Cape of the Survivor
+                Effects of Blast Shield and Terrarium Defender
                 Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
                 
                 tooltip_ch += @"

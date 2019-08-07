@@ -16,6 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terra Force");
+
             string tooltip =
 @"'The land lends its strength'
 Attacks have a chance to shock enemies with lightning

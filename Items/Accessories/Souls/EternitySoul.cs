@@ -24,24 +24,34 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of Eternity");
-            Tooltip.SetDefault(
+
+            String tooltip =
 @"'Mortal or Immortal, all things acknowledge your claim to divinity'
-200% increased all damage and attack speed, 100% increased shoot speed
-Crits deal 10x damage
-Crit chance is set to 50%, Crit to increase it by 10% 
-At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense
-This stacks up to 200,000 times until you get hit
-You never use ammo, mana, or consumables
-Increases your maximum mana to 999, minions by 20, sentries by 10
-400% increased HP, 40% damage reduction, 15 life regeneration
-Grants immunity to knockback and most debuffs
-Summon an impenatrable ring of death around you
-You reflect all projectiles
-When you die, you explode and revive with full HP
-You respawn 10x as fast
-All other effects of material Souls");
-            DisplayName.AddTranslation(GameCulture.Chinese, "永恒之魂");
-            Tooltip.AddTranslation(GameCulture.Chinese, 
+250% increased damage and attack speed, 100% increased shoot speed and knockback, Increases armor penetration by 50, Crits deal 10x damage, Crit chance is set to 50%
+Crit to increase it by 10%, At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense, This stacks up to 200,000 times until you get hit
+All attacks inflict Flames of the Universe, Sadism, and Midas, You never use ammo, mana, or consumables
+Increases your maximum mana to 999, minions by 30, sentries by 20, 500% increased HP, 50% damage reduction, drastically increased life regeneration
+Grants immunity to knockback and most debuffs, Allows Supersonic running and infinite flight, Increases fishing skill substantially, All fishing rods will have 10 extra lures
+Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed doubled, Shine, Spelunker, Hunter, Dangersense, and Builder Mode effects
+Summons icicles, a leaf crystal, hallowed sword and shield, beetles, several pets, and all Masochist Mode bosses to your side
+Double tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Right Click to Guard, Gold Key encases you in gold, Freeze Key freezes time for 5 seconds, minions spew scythes
+Solar shield allows you to dash, Dash into any walls, to teleport through them, Throw a smoke bomb to teleport to it and gain the First Strike Buff
+Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, snowballs, spears, or buff boosters
+Attacks cause increased life regen, shadow dodge, Flameburst shots, meteor showers, and reduced enemy knockback immunity
+Projectiles may split or shatter, item and projectile size increased, attract items from further away
+Nearby enemies are ignited, You have a trail of fire and rainbows, Getting inflicts Super Bleeding, releases a spore explosion and reflects damage
+Grants Crimson regen, immunity to fire, fall damage, and lava, doubled herb collection, 50% chance for Mega Bees, 15% chance for minion crits, 20% chance for bonus loot
+Critters have increased defense and their souls will aid you, Enemies explode into needles, Grappling hooks are enhanced, Greatly enhances all DD2 sentries
+Summon an impenatrable ring of death around you and you reflect all projectiles, When you die, you explode and revive with full HP
+Grants autofire, modifier protection, gravity control, fastfall, and immunity to knockback, all Masochist Mode debuffs, and more
+Empowers Cute Fishron, makes skeletons less hostile outside the Dungeon, Your attacks create additional attacks, and hearts
+You respawn 10x as fast, and erupt into various attacks when injured, Prevents boss spawns, increases spawn rate, and attacks may squeak
+Effects of the Fire Gauntlet, Yoyo Bag, Sniper Scope, Celestial Cuffs, Mana Flower, Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
+Effects of the Spore Sac, Paladin's Shield, Frozen Turtle Shell, Arctic Diving Gear, Frog Legs, Flying Carpet, Lava Waders, and Angler Tackle Bag
+Effects of Paint Sprayer, Presserator, Cell Phone, Gravity Globe, Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone";
+
+            String tooltip_ch =
 @"'不论凡人或不朽,都承认你的神性'
 增加200%所有伤害和攻击速度,增加100%射击速度
 暴击造成10倍伤害
@@ -56,7 +66,42 @@ All other effects of material Souls");
 反射所有抛射物
 死亡时,爆炸,复活并且回满生命
 重生速度x10倍
-拥有所有材料魂的效果");
+拥有所有材料魂的效果";
+
+            if (thorium != null)
+            {
+                tooltip += @"Effects of Phylactery, Crystal Scorpion, and Yuma's Pendant
+                Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
+                Effects of SupportStash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
+                Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw
+                Effects of Ocean's Retaliation and Cape of the Survivor
+                Effects of Blast Shield and Terrarium Defender
+                Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
+
+                tooltip_ch += "";
+            }
+
+            if (calamity != null)
+            {
+                tooltip += @"Effects of Elemental Gauntlet, Elemental Quiver, Ethereal Talisman, Statis' Belt of Curses, and Nanotech
+Effects of Asgardian Aegis";
+
+                tooltip_ch += "";
+            }
+
+            if (dbzMod != null)
+            {
+                tooltip += "Effects of Zenkai Charm and Aspera Crystallite";
+
+                tooltip_ch += "";
+            }
+
+
+            DisplayName.AddTranslation(GameCulture.Chinese, "永恒之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
+
+            Tooltip.SetDefault(tooltip);
+
             //all debuffs soon tm
             /*
 Effects of the Yoyo Bag, Sniper Scope, Celestial Cuffs, and Mana Flower
@@ -78,7 +123,7 @@ and most of SoT not mentioned because meme tooltip length
             item.rare = 10;
             item.value = 100000000;
             item.shieldSlot = 5;
-            item.defense = 50;
+            item.defense = 100;
         }
 
         public override void UpdateInventory(Player player)

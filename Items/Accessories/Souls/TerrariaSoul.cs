@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
 using Terraria.Localization;
+using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -31,39 +32,29 @@ Attacks cause increased life regen, shadow dodge, Flameburst shots, meteor showe
 Critical chance is set to 25%, Crit to increase it by 5%, At 100% every 10th attack gains 4% life steal
 Getting hit drops your crit back down, inflicts Super Bleeding, releases a spore explosion and reflects damage
 Projectiles may split or shatter, item and projectile size increased, attract items from further away
-Nearby enemies are ignited, You leave behind a trail of fire amd rainbows when you walk
+Nearby enemies are ignited, You leave behind a trail of fire and rainbows when you walk
 Grants Crimson regen, immunity to fire, fall damage, and lava, and doubled herb collection
 Grants 50% chance for Mega Bees, 15% chance for minion crits, 20% chance for bonus loot
 Critters have increased defense and their souls will aid you
 All grappling hooks are more effective and fire homing shots, Greatly enhances all DD2 sentries
-Your attacks inflict Midas and Solar Flare, Enemies explode into needles
+Your attacks inflict Midas, Enemies explode into needles
 When you die, you explode and revive with 200 HP
-Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone
+Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone";
 
+            //uh yea chinese needs help now xD
 
-REMOVE EFFECT
-You have a large aura of Shadowflame
-Attacks will inflict Infested
-Your attacks may inflict Darkness on enemies
-and Super Bleed
-Your attacks deal increasing damage to low HP enemies
-Not moving puts you in stealth
-While in stealth, crits deal 4x damage
-One attack gains 5% life steal every second, capped at 5 HP
-Stars healing twice as much
-When standing still and not attacking, you gain the Shell Hide buff
-Eating Pumpkin Pie heals you to full HP
-
-Make tungsten effect all weapon sprites from the beginning 
-";
             string tooltip_ch =
 @"'真·泰拉之主'
 ";
 
-            if (thorium == null)
+            if (thorium != null)
             {
                 tooltip +=
-@"";
+@"Effects of Spring Steps, Slag Stompers, and Proof of Avarice";
+            }
+
+            if (thorium == null)
+            {
                 tooltip_ch +=
 @"
 切换可见度以移除所有宠物,右键用盾防御
@@ -95,8 +86,6 @@ Make tungsten effect all weapon sprites from the beginning
 抛射物可能会分裂或散开,心的回复加倍";
             }
 
-            tooltip += 
-@"";
             tooltip_ch +=
 @"
 点燃附近敌人,在身后留下火焰路径
@@ -110,6 +99,17 @@ Make tungsten effect all weapon sprites from the beginning
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 24));
         }
 
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB));
+                }
+            }
+        }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -120,7 +120,6 @@ Make tungsten effect all weapon sprites from the beginning
             item.shieldSlot = 5;
 
             item.rare = -12;
-            item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -160,29 +159,6 @@ Make tungsten effect all weapon sprites from the beginning
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
             //NATURE
-            thoriumPlayer.orbital = true;
-            thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.075000002980232239, default(Vector2));
-            //making divers code less of a meme :scuseme:
-            if (player.statLife > player.statLifeMax * 0.75)
-            {
-                thoriumPlayer.berserkStage = 1;
-            }
-            else if (player.statLife > player.statLifeMax * 0.5)
-            {
-                modPlayer.AttackSpeed *= 1.05f;
-                thoriumPlayer.berserkStage = 2;
-            }
-            else if (player.statLife > player.statLifeMax * 0.25)
-            {
-                modPlayer.AttackSpeed *= 1.1f;
-                thoriumPlayer.berserkStage = 3;
-            }
-            else
-            {
-                modPlayer.AttackSpeed *= 1.15f;
-                thoriumPlayer.berserkStage = 4;
-            }
-
             //spring steps
             player.extraFall += 10;
             if (player.velocity.Y < 0f && allowJump)
@@ -244,6 +220,7 @@ Make tungsten effect all weapon sprites from the beginning
             }
             modPlayer.AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
             modPlayer.AddPet("Glitter Pet", hideVisual, thorium.BuffType("ShineDust"), thorium.ProjectileType("ShinyPet"));
+            modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
         }
 
         public override void AddRecipes()
@@ -260,12 +237,6 @@ Make tungsten effect all weapon sprites from the beginning
             recipe.AddIngredient(null, "CosmoForce");
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
-
-            /*if (Fargowiltas.Instance.CalamityLoaded)
-            {
-                recipe.AddIngredient(null, "CalamityForce");
-                recipe.AddTile(ModLoader.GetMod("CalamityMod"), "DraedonsForge");
-            }*/
 
             recipe.SetResult(this);
             recipe.AddRecipe();

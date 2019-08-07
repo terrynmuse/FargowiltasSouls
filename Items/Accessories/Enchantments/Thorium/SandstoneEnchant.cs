@@ -64,7 +64,7 @@ Desert winds will augment your boots, giving you a double jump");
             recipe.AddIngredient(thorium.ItemType("Wreath"));
             recipe.AddIngredient(thorium.ItemType("BaseballBat"));
             recipe.AddIngredient(thorium.ItemType("StoneThrowingSpear"), 300);
-            recipe.AddIngredient(thorium.ItemType("OceanThrowingAxe"), 300);
+            recipe.AddIngredient(thorium.ItemType("OceanTomahawk"), 300);
             recipe.AddIngredient(thorium.ItemType("gSandStoneThrowingKnife"), 300);
             recipe.AddIngredient(thorium.ItemType("TalonBurst"));
             recipe.AddIngredient(ItemID.BlackScorpion);

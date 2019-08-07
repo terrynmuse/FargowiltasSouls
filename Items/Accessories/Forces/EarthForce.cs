@@ -26,6 +26,7 @@ Spawns 6 fireballs to rotate around you
 Every 8th projectile you shoot will split into 3
 Any secondary projectiles may also split
 Briefly become invulnerable after striking an enemy");
+
             DisplayName.AddTranslation(GameCulture.Chinese, "大地之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'盖亚的祝福照耀着你'
