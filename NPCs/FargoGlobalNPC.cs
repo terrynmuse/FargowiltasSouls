@@ -9747,10 +9747,8 @@ namespace FargowiltasSouls.NPCs
             if (modPlayer.BeeEnchant && !modPlayer.TerrariaSoul && projectile.type == ProjectileID.GiantBee)
                 damage = (int)(damage + npc.defense * .5);
 
-            if (modPlayer.SpiderEnchant && projectile.minion && Main.rand.Next(100) < 15)
-            {
+            if (modPlayer.SpiderEnchant && projectile.minion && Main.rand.Next(5) == 0)
                 crit = true;
-            }
 
             if (FargoWorld.MasochistMode)
             {
@@ -10129,7 +10127,7 @@ namespace FargowiltasSouls.NPCs
 
             if (crit && modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && player.stealth == 0)
             {
-                damage *= 3;
+                damage *= 2;
                 retValue = false;
             }
 
