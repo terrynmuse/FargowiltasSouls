@@ -7,6 +7,7 @@ nerfed squeaky toy drop rate to 2%
 all demon eyes inflict berserked now, no more stoned
 eow segments drop no loot unless they're the final segment
 creepers drop no loot
+skeletron/dg bones ignore walls
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

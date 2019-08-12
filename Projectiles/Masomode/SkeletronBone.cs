@@ -21,6 +21,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
             aiType = ProjectileID.SkeletonBone;
             projectile.light = 1f;
             projectile.scale = 1.5f;
+            projectile.timeLeft = 300;
+            projectile.tileCollide = false;
             cooldownSlot = 1;
         }
 
