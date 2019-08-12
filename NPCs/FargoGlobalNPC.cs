@@ -8826,17 +8826,18 @@ namespace FargowiltasSouls.NPCs
                             if (n < 200 && Main.netMode == 2)
                                 NetMessage.SendData(23, -1, -1, null, n);
                         }
-
-                        bool increment = true;
+                        
                         for (int i = 0; i < 200; i++)
                         {
                             if (Main.npc[i].active && i != npc.whoAmI && (Main.npc[i].type == 13 || Main.npc[i].type == 14 || Main.npc[i].type == 15))
                             {
-                                increment = false;
-                                break;
+                                Main.PlaySound(npc.DeathSound, npc.Center);
+                                npc.active = false;
+                                return false;
                             }
                         }
-                        if (increment && FargoWorld.EaterCount < FargoWorld.MaxCountPreHM)
+
+                        if (FargoWorld.EaterCount < FargoWorld.MaxCountPreHM)
                             FargoWorld.EaterCount++;
                         break;
 
@@ -8844,6 +8845,11 @@ namespace FargowiltasSouls.NPCs
                         if (FargoWorld.BrainCount < FargoWorld.MaxCountPreHM)
                             FargoWorld.BrainCount++;
                         break;
+
+                    case NPCID.Creeper:
+                        Main.PlaySound(npc.DeathSound, npc.Center);
+                        npc.active = false;
+                        return false;
 
                     case NPCID.QueenBee:
                         if (FargoWorld.BeeCount < FargoWorld.MaxCountPreHM)
