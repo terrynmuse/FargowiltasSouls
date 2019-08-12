@@ -33,25 +33,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             {
                 target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
                 target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
-                bool isVenomed = false;
-                for (int i = 0; i < 22; i++)
-                {
-                    if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
-                    {
-                        isVenomed = true;
-                        target.buffTime[i] += Main.rand.Next(60, 300);
-                        if (target.buffTime[i] > 1200)
-                        {
-                            target.AddBuff(mod.BuffType("Infested"), target.buffTime[i]);
-                            Main.PlaySound(15, (int)target.Center.X, (int)target.Center.Y, 0);
-                        }
-                        break;
-                    }
-                }
-                if (!isVenomed)
-                {
-                    target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
-                }
+                target.AddBuff(mod.BuffType("IvyVenom"), Main.rand.Next(60, 300));
             }
         }
     }
