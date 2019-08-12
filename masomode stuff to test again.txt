@@ -1,4 +1,12 @@
-﻿spider ench now gives 20% crit rate
+﻿shadowflame is now a modded debuff to avoid thorium double DOT memes
+betsy is once again post-golem because FUCKING REDCODEEEEE
+nerfed crippled duration in wof fight
+lost girl/nymph are lava immune
+fake hearts now ignore defense and DR
+nerfed squeaky toy drop rate to 2%
+all demon eyes inflict berserked now, no more stoned
+
+spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits
 
 eaters of souls go through walls again but half speed/make dust while in wall

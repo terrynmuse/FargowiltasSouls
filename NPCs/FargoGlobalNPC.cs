@@ -157,6 +157,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.LostGirl:
                     case NPCID.Nymph:
+                        npc.lavaImmune = true;
                         npc.buffImmune[BuffID.Confused] = true;
                         if (Main.hardMode)
                         {
@@ -5156,7 +5157,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.ShadowFlameApparition:
-                        Aura(npc, 100, BuffID.ShadowFlame, false, DustID.Shadowflame);
+                        Aura(npc, 100, mod.BuffType("Shadowflame"), false, DustID.Shadowflame);
                         break;
 
                     case NPCID.BlueJellyfish:
@@ -5439,7 +5440,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.GoblinSummoner:
-                        Aura(npc, 200, BuffID.ShadowFlame, false, DustID.Shadowflame);
+                        Aura(npc, 200, mod.BuffType("Shadowflame"), false, DustID.Shadowflame);
                         if (++Counter > 180)
                         {
                             Counter = 0;
@@ -6373,13 +6374,6 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("FlamesoftheUniverse"), Main.rand.Next(30, 120));
                         break;
 
-                    case NPCID.DemonEye:
-                    case NPCID.DemonEyeOwl:
-                    case NPCID.DemonEyeSpaceship:
-                        if ((Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5) && !target.HasBuff(BuffID.Stoned))
-                            target.AddBuff(BuffID.Stoned, Main.rand.Next(30));
-                        break;
-
                     case NPCID.EaterofSouls:
                     case NPCID.Crimera:
                         target.AddBuff(BuffID.Weak, Main.rand.Next(300, 1800));
@@ -6387,6 +6381,9 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.EyeofCthulhu:
                     case NPCID.WanderingEye:
+                    case NPCID.DemonEye:
+                    case NPCID.DemonEyeOwl:
+                    case NPCID.DemonEyeSpaceship:
                         target.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(60, 600));
                         break;
 
@@ -6411,7 +6408,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.TheHungryII:
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 300));
                         target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300, 600));
-                        target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Crippled"), 240);
                         if (!BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
                         {
                             NPC.SpawnWOF(target.Center);
@@ -6550,7 +6547,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.LeechHead:
-                        target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(300, 900));
+                        target.AddBuff(mod.BuffType("Crippled"), 240);
                         target.AddBuff(BuffID.Bleeding, Main.rand.Next(300, 900));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(300, 900));
                         break;
@@ -6591,7 +6588,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ChaosBall:
                     case NPCID.ShadowFlameApparition:
-                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(60, 300));
+                        target.AddBuff(mod.BuffType("Shadowflame"), Main.rand.Next(60, 300));
                         break;
 
                     case NPCID.Tumbleweed:
@@ -6718,7 +6715,7 @@ namespace FargowiltasSouls.NPCs
                     //CULTIST OP
                     case NPCID.AncientDoom:
                         target.AddBuff(mod.BuffType("MarkedforDeath"), 120);
-                        target.AddBuff(BuffID.ShadowFlame, 300);
+                        target.AddBuff(mod.BuffType("Shadowflame"), 300);
                         break;
                     case NPCID.AncientLight:
                         target.AddBuff(mod.BuffType("Purified"), Main.rand.Next(60, 180));
@@ -6827,25 +6824,7 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("MutantNibble"), Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
-                        bool isVenomed1 = false;
-                        for (int i = 0; i < 22; i++)
-                        {
-                            if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
-                            {
-                                isVenomed1 = true;
-                                target.buffTime[i] += 300;
-                                if (target.buffTime[i] > 1200)
-                                {
-                                    target.AddBuff(mod.BuffType("Infested"), target.buffTime[i]);
-                                    Main.PlaySound(15, (int)target.Center.X, (int)target.Center.Y, 0);
-                                }
-                                break;
-                            }
-                        }
-                        if (!isVenomed1)
-                        {
-                            target.AddBuff(BuffID.Venom, 300);
-                        }
+                        target.AddBuff(mod.BuffType("IvyVenom"), 600);
                         break;
 
                     case NPCID.PlanterasHook:
@@ -6853,25 +6832,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Spore:
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
-                        bool isVenomed = false;
-                        for (int i = 0; i < 22; i++)
-                        {
-                            if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
-                            {
-                                isVenomed = true;
-                                target.buffTime[i] += Main.rand.Next(60, 180);
-                                if (target.buffTime[i] > 1200)
-                                {
-                                    target.AddBuff(mod.BuffType("Infested"), target.buffTime[i]);
-                                    Main.PlaySound(15, (int)target.Center.X, (int)target.Center.Y, 0);
-                                }
-                                break;
-                            }
-                        }
-                        if (!isVenomed)
-                        {
-                            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 300));
-                        }
+                        target.AddBuff(mod.BuffType("IvyVenom"), Main.rand.Next(60, 300));
                         break;
 
                     case NPCID.ChaosElemental:
@@ -7071,7 +7032,7 @@ namespace FargowiltasSouls.NPCs
                         int duration1 = Main.rand.Next(120, 240);
                         target.AddBuff(BuffID.OnFire, duration1);
                         target.AddBuff(BuffID.CursedInferno, duration1);
-                        target.AddBuff(BuffID.ShadowFlame, duration1);
+                        target.AddBuff(mod.BuffType("Shadowflame"), duration1);
                         break;
 
                     case NPCID.Poltergeist:
@@ -7202,7 +7163,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DD2SkeletonT1:
                     case NPCID.DD2SkeletonT3:
-                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Shadowflame"), Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(1200, 2400));
                         break;
 
@@ -8143,8 +8104,8 @@ namespace FargowiltasSouls.NPCs
                             pool[NPCID.RaggedCaster] = .002f;
                             pool[NPCID.RaggedCasterOpenCoat] = .002f;
                         }
-
-                        if (DD2Event.DownedInvasionT3 && !sinisterIcon && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
+                        
+                        if (NPC.downedGolemBoss && !sinisterIcon && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
                             pool[NPCID.DD2Betsy] = .01f;
                     }
                     else if (sky)
@@ -8310,7 +8271,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CrimsonGoldfish:
                     case NPCID.CorruptPenguin:
                     case NPCID.CrimsonPenguin:
-                        if (Main.rand.Next(20) == 0)
+                        if (Main.rand.Next(50) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("SqueakyToy"));
                         break;
 

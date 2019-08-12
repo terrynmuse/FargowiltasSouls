@@ -1076,7 +1076,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.DemonSickle:
                         target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
-                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Shadowflame"), Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.HarpyFeather:
@@ -1115,11 +1115,12 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.EyeLaser:
                     case ProjectileID.GoldenShowerHostile:
+                    case ProjectileID.CursedFlameHostile:
                         if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.wallBoss, NPCID.WallofFlesh))
                         {
                             target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 300));
                             target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 240));
-                            target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(120, 240));
+                            target.AddBuff(mod.BuffType("Crippled"), 60);
                         }
                         break;
 
@@ -1182,7 +1183,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.CultistBossFireBallClone:
-                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Shadowflame"), Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.PaladinsHammerHostile:
@@ -1199,21 +1200,8 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.PoisonSeedPlantera:
                     case ProjectileID.SeedPlantera:
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
-                        bool isVenomed = false;
-                        for (int i = 0; i < 22; i++)
-                        {
-                            if (target.buffType[i] == BuffID.Venom && target.buffTime[i] > 1)
-                            {
-                                isVenomed = true;
-                                target.buffTime[i] += Main.rand.Next(60, 180);
-                                break;
-                            }
-                        }
-                        if (!isVenomed)
-                        {
-                            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 180));
-                        }
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
+                        target.AddBuff(mod.BuffType("IvyVenom"), Main.rand.Next(60, 300));
                         break;
 
                     case ProjectileID.DesertDjinnCurse:
@@ -1259,7 +1247,7 @@ namespace FargowiltasSouls.Projectiles
                         int duration = Main.rand.Next(90, 120);
                         target.AddBuff(BuffID.OnFire, duration);
                         target.AddBuff(BuffID.CursedInferno, duration);
-                        target.AddBuff(BuffID.ShadowFlame, duration);
+                        target.AddBuff(mod.BuffType("Shadowflame"), duration);
                         break;
 
                     case ProjectileID.VortexAcid:
@@ -1287,7 +1275,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.ShadowBeamHostile:
                         target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(1800, 3600));
-                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Shadowflame"), Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType("Atrophied"), Main.rand.Next(180, 360));
                         break;
 
@@ -1335,7 +1323,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.DD2DrakinShot:
-                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Shadowflame"), Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.NebulaSphere:
@@ -1383,7 +1371,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.UnholyTridentHostile:
                         target.AddBuff(BuffID.Blackout, Main.rand.Next(300, 600));
-                        target.AddBuff(BuffID.ShadowFlame, Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("Shadowflame"), Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.BombSkeletronPrime:
@@ -1403,7 +1391,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.AncientDoomProjectile:
                         target.AddBuff(mod.BuffType("MarkedforDeath"), 120);
-                        target.AddBuff(BuffID.ShadowFlame, 300);
+                        target.AddBuff(mod.BuffType("Shadowflame"), 300);
                         break;
 
                     case ProjectileID.SandnadoHostile:
