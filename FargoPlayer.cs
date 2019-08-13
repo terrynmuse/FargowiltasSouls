@@ -2772,7 +2772,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (Midas)
+            if (Midas && Main.netMode == 0)
                 player.DropCoins();
         }
 

@@ -230,7 +230,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DesertBeast:
-                        npc.lifeMax *= 3;
+                        npc.lifeMax *= 2;
                         npc.knockBackResist = 0f;
                         break;
 
@@ -238,7 +238,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DuneSplicerBody:
                     case NPCID.DuneSplicerTail:
                         if (Main.hardMode)
-                            npc.lifeMax *= 5;
+                            npc.lifeMax *= 3;
                         break;
 
                     case NPCID.StardustCellSmall:
@@ -623,7 +623,7 @@ namespace FargowiltasSouls.NPCs
                 #endregion
 
                 if (npc.boss)
-                    npc.npcSlots += 30;
+                    npc.npcSlots += 100;
             }
         }
 
@@ -2385,7 +2385,7 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         Main.npc[n].ai[0] = (Counter == 1) ? 1f : -1f;
                                         Main.npc[n].ai[1] = npc.whoAmI;
-                                        Main.npc[n].life = Main.npc[n].lifeMax / 2;
+                                        Main.npc[n].life = Main.npc[n].lifeMax / 4;
                                         Main.npc[n].netUpdate = true;
                                         if (Main.netMode == 2)
                                             NetMessage.SendData(23, -1, -1, null, n);
@@ -4007,7 +4007,7 @@ namespace FargowiltasSouls.NPCs
                             if (npc.ai[0] != 1f) //limb is dead and needs reviving
                             {
                                 npc.ai[3]++;
-                                if (npc.ai[3] > 1200f) //revive a dead limb
+                                if (npc.ai[3] > 1800f) //revive a dead limb
                                 {
                                     npc.ai[3] = 0;
                                     npc.netUpdate = true;
@@ -4033,7 +4033,7 @@ namespace FargowiltasSouls.NPCs
                                         }
                                         if (n < 200)
                                         {
-                                            Main.npc[n].life = Main.npc[n].lifeMax / 5;
+                                            Main.npc[n].life = Main.npc[n].lifeMax / 4;
                                             Main.npc[n].netUpdate = true;
                                         }
                                     }
@@ -5366,7 +5366,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SnowmanGangsta:
-                        if (++Counter > 180)
+                        if (++Counter > 300)
                         {
                             Counter = 0;
                             if (Main.netMode != 1 && npc.HasPlayerTarget)

@@ -8,6 +8,14 @@ all demon eyes inflict berserked now, no more stoned
 eow segments drop no loot unless they're the final segment
 creepers drop no loot
 skeletron/dg bones ignore walls
+nerfed snowman gangsta rate of fire to 5sec
+nerfed skeletron limb revive life to 25%
+nerfed prime limb revive rate to 30sec (was 20), but slightly buffed hp to 25% (was 20%)
+nerfed prime cannons to inflict defenseless (was fused)
+midas coin drop only works in SP now, will fix it duping cash in MP later :ech:
+nerfed dune splicer hp to x3
+nerfed basilisk hp to x2 (1080)
+added friendly proj checks for first strike and tungsten effect
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

@@ -129,7 +129,7 @@ namespace FargowiltasSouls.Projectiles
                 {
                     firstTick = false;
 
-                    if (modPlayer.FirstStrike && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99 && CanSplit && Array.IndexOf(noSplit, projectile.type) <= -1)
+                    if (modPlayer.FirstStrike && projectile.friendly && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99 && CanSplit && Array.IndexOf(noSplit, projectile.type) <= -1)
                     {
                         Projectile p = NewProjectileDirectSafe(projectile.position + projectile.velocity * 2, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
                         p.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = false;
@@ -142,7 +142,7 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
-                    if (modPlayer.TungstenEnchant)
+                    if (modPlayer.TungstenEnchant && projectile.friendly)
                     {
                         projectile.scale *= 2f;
                         projectile.width *= 2;
@@ -1375,8 +1375,7 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.BombSkeletronPrime:
-                        if (Main.rand.Next(3) == 0 && !target.HasBuff(mod.BuffType("Fused")))
-                            target.AddBuff(mod.BuffType("Fused"), 360);
+                        target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
                         break;
 
                     case ProjectileID.DeathLaser:
