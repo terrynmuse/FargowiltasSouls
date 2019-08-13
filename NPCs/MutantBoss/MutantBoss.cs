@@ -70,7 +70,9 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (npc.alpha > 255)
                     {
                         npc.alpha = 255;
+                        npc.NPCLoot();
                         npc.life = 0;
+                        npc.active = false;
                         if (Main.netMode != 1 && Fargowiltas.Instance.FargosLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant")))
                         {
                             int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
