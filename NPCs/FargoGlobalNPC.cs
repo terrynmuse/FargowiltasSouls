@@ -79,6 +79,7 @@ namespace FargowiltasSouls.NPCs
         public static int guardBoss = -1;
         public static int fishBossEX = -1;
         public static bool spawnFishronEX;
+        public static int mutantBoss = -1;
 
         public override void ResetEffects(NPC npc)
         {

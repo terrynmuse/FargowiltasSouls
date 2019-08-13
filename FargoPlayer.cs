@@ -264,6 +264,7 @@ namespace FargowiltasSouls
         public bool OceanicMaul;
         public int MaxLifeReduction;
         public bool Midas;
+        public bool MutantPresence;
 
         public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
@@ -684,6 +685,7 @@ namespace FargowiltasSouls
             OceanicMaul = false;
             DeathMarked = false;
             Midas = false;
+            MutantPresence = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -1358,8 +1360,13 @@ namespace FargowiltasSouls
                 }
             }
 
-
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumPostUpdate();
+            
+            if (MutantPresence)
+            {
+                player.statDefense /= 2;
+                player.endurance /= 2;
+            }
         }
 
         private void ThoriumPostUpdate()
@@ -1498,6 +1505,17 @@ namespace FargowiltasSouls
             if (Oiled && player.lifeRegen < 0)
             {
                 player.lifeRegen *= 2;
+            }
+
+            if (MutantPresence)
+            {
+                if (player.lifeRegen > 0)
+                    player.lifeRegen = 0;
+
+                if (player.lifeRegenCount > 0)
+                    player.lifeRegenCount--;
+
+                player.lifeRegenTime = 0;
             }
         }
 
