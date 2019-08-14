@@ -16,6 +16,9 @@ midas coin drop only works in SP now, will fix it duping cash in MP later :ech:
 nerfed dune splicer hp to x3
 nerfed basilisk hp to x2 (1080)
 added friendly proj checks for first strike and tungsten effect
+boosted pumpking/ice queen maso item drop rates to 10%
+nerfed goblin thieves to only steal your current selected item
+nerfed horseman's blade to spawn 6 pumpkins (was 12)
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

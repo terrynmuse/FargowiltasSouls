@@ -144,9 +144,11 @@ namespace FargowiltasSouls.Projectiles
 
                     if (modPlayer.TungstenEnchant && projectile.friendly)
                     {
+                        projectile.position = projectile.Center;
                         projectile.scale *= 2f;
                         projectile.width *= 2;
                         projectile.height *= 2;
+                        projectile.Center = projectile.position;
                         tungstenProjectile = true;
                     }
 

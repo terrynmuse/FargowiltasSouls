@@ -37,8 +37,7 @@ namespace FargowiltasSouls.Items.Misc
                     int mutant = NPC.FindFirstNPC(ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
                     if (abominationn > -1 && Main.npc[abominationn].active)
                     {
-                        Main.npc[abominationn].life = 0;
-                        Main.npc[abominationn].checkDead();
+                        Main.npc[abominationn].StrikeNPC(9999, 0f, 0);
                         if (mutant > -1 && Main.npc[mutant].active)
                         {
                             Main.npc[mutant].Transform(mod.NPCType("MutantBoss"));

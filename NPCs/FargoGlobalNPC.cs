@@ -6847,7 +6847,7 @@ namespace FargowiltasSouls.NPCs
                             if (!StealFromInventory(target, ref Main.mouseItem))
                                 StealFromInventory(target, ref target.inventory[target.selectedItem]);
 
-                            byte extraTries = 30;
+                            /*byte extraTries = 30;
                             for (int i = 0; i < 3; i++)
                             {
                                 bool successfulSteal = StealFromInventory(target, ref target.inventory[Main.rand.Next(target.inventory.Length)]);
@@ -6857,7 +6857,7 @@ namespace FargowiltasSouls.NPCs
                                     extraTries--;
                                     i--;
                                 }
-                            }
+                            }*/
                         }
                         target.AddBuff(mod.BuffType("Midas"), Main.rand.Next(300, 900));
                         if (Main.hardMode)
@@ -8367,7 +8367,7 @@ namespace FargowiltasSouls.NPCs
                         Item.NewItem(npc.position, npc.Size, ItemID.GoodieBag);
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.Size, ItemID.BladedGlove);
-                        if (Main.pumpkinMoon && Main.rand.Next(25) == 0)
+                        if (Main.pumpkinMoon && Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("PumpkingsCape"));
                         break;
 
@@ -8378,7 +8378,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.IceQueen:
                         Item.NewItem(npc.Hitbox, ItemID.Present);
-                        if (Main.snowMoon && Main.rand.Next(25) == 0)
+                        if (Main.snowMoon && Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("IceQueensCrown"));
                         break;
 

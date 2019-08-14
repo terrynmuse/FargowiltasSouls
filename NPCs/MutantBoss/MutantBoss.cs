@@ -22,7 +22,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             npc.width = 18;
             npc.height = 40;
-            npc.damage = 200;
+            npc.damage = 250;
             npc.defense = 200;
             npc.lifeMax = 7000000;
             npc.HitSound = SoundID.NPCHit57;
@@ -40,7 +40,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.damage = 200;
+            npc.damage = 250;
             npc.lifeMax = (int)(7000000 * bossLifeScale);
         }
 
@@ -52,7 +52,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 npc.localAI[3] = 1;
                 Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual"), npc.damage / 6, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual"), npc.damage / 5, 0f, Main.myPlayer, 0f, npc.whoAmI);
             }
 
             if (Main.player[Main.myPlayer].active && npc.Distance(Main.player[Main.myPlayer].Center) < 3000f)
@@ -85,13 +85,16 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 case -1: //defeated
                     npc.dontTakeDamage = true;
                     npc.velocity *= 0.9f;
+                    if (npc.buffType[0] != 0)
+                        npc.DelBuff(0);
                     if (++npc.ai[1] > 120 && npc.velocity.Length() < 0.5f)
                     {
                         npc.velocity = Vector2.Zero;
                         npc.ai[0]--;
+                        npc.ai[3] = (float)-Math.PI / 2;
                         npc.netUpdate = true;
                         if (Main.netMode != 1) //shoot harmless mega rays
-                            Main.NewText("cinematic ray placeholder");
+                            Projectile.NewProjectile(npc.Center, Vector2.UnitY * -1, mod.ProjectileType("MutantGiantDeathray"), 0, 0f, Main.myPlayer, 0, npc.whoAmI);
                     }
                     break;
 
@@ -134,7 +137,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         npc.netUpdate = true;
                         npc.ai[1] = 60;
-                        if (++npc.ai[2] > 3)
+                        if (++npc.ai[2] > 5)
                         {
                             npc.ai[0]++;
                             npc.ai[1] = 0;
@@ -143,18 +146,18 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         }
                         else if (Main.netMode != 1)
                         {
-                            Main.NewText("penetrator placeholder");
+                            Projectile.NewProjectile(npc.Center, npc.DirectionTo(player.Center) * 20f, mod.ProjectileType("MutantSpearThrown"), npc.damage / 4, 0f, Main.myPlayer, npc.target);
                         }
                     }
                     break;
 
                 case 1: //slow drift, shoot phantasmal rings
-                    Aura(800f, mod.BuffType("GodEater"), true, 86);
+                    //Aura(800f, mod.BuffType("GodEater"), true, 86);
                     if (--npc.ai[1] < 0)
                     {
                         npc.netUpdate = true;
-                        npc.ai[1] = 120;
-                        if (++npc.ai[2] > 2)
+                        npc.ai[1] = 90;
+                        if (++npc.ai[2] > 4)
                         {
                             npc.ai[0]++;
                             npc.ai[1] = 0;
@@ -164,7 +167,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         }
                         else if (Main.netMode != 1)
                         {
-                            Main.NewText("phantasmal ring placeholder");
+                            SpawnSphereRing(6, 9f, npc.damage / 5, 1f);
+                            SpawnSphereRing(6, 9f, npc.damage / 5, -0.5f);
                         }
                     }
                     break;
@@ -214,6 +218,9 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[0]++;
                         npc.ai[1] = 0;
                         npc.netUpdate = true;
+                        Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                        if (Main.netMode != 1)
+                            Projectile.NewProjectile(npc.Center, npc.DirectionTo(player.Center) * 20f, mod.ProjectileType("MutantSpearThrown"), npc.damage / 4, 0f, Main.myPlayer, npc.target);
                     }
                     break;
 
@@ -228,9 +235,25 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             npc.ai[2] = 0;
                             npc.netUpdate = true;
                         }
-                        else if (Main.netMode != 1)
+                        else
                         {
-                            Main.NewText("true eye placeholder");
+                            if (Main.netMode != 1)
+                            {
+                                int type = mod.ProjectileType("MutantTrueEyeL");
+                                if (npc.ai[2] == 2)
+                                    type = mod.ProjectileType("MutantTrueEyeR");
+                                else if (npc.ai[2] == 3)
+                                    type = mod.ProjectileType("MutantTrueEyeS");
+                                Projectile.NewProjectile(npc.Center, Vector2.Zero, type, npc.damage / 5, 0f, Main.myPlayer, npc.target);
+                            }
+                            Main.PlaySound(SoundID.Item92, npc.Center);
+                            for (int i = 0; i < 30; i++)
+                            {
+                                int d = Dust.NewDust(npc.position, npc.width, npc.height, 135, 0f, 0f, 0, default(Color), 3f);
+                                Main.dust[d].noGravity = true;
+                                Main.dust[d].noLight = true;
+                                Main.dust[d].velocity *= 12f;
+                            }
                         }
                     }
                     break;
@@ -242,7 +265,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             break;
                         npc.ai[3] = 1;
                         if (Main.netMode != 1)
-                            Main.NewText("spinning penetrator placeholder");
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearSpin"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI);
                     }
                     targetPos = player.Center;
                     targetPos.Y += 400f;
@@ -271,7 +294,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         if (npc.velocity.Y > 0)
                             npc.velocity.Y -= speedModifier * 2;
                     }
-                    if (++npc.ai[1] > 120)
+                    if (++npc.ai[1] > 240)
                     {
                         npc.netUpdate = true;
                         npc.ai[0]++;
@@ -296,7 +319,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         {
                             npc.velocity = npc.DirectionTo(player.Center + player.velocity) * 30f;
                             if (Main.netMode != 1)
-                                Main.NewText("dashing penetrator placeholder");
+                                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearDash"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI);
                         }
                     }
                     break;
@@ -316,6 +339,21 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             }
         }
 
+        private void SpawnSphereRing(int max, float speed, int damage, float rotationModifier)
+        {
+            float rotation = 2f * (float)Math.PI / max;
+            Vector2 vel = Main.player[npc.target].Center - npc.Center;
+            vel.Normalize();
+            vel *= speed;
+            int type = mod.ProjectileType("MutantSphereRing");
+            for (int i = 0; i < max; i++)
+            {
+                vel = vel.RotatedBy(rotation);
+                Projectile.NewProjectile(npc.Center, vel, type, damage, 0f, Main.myPlayer, rotationModifier * npc.spriteDirection, speed);
+            }
+            Main.PlaySound(4, (int)npc.Center.X, (int)npc.Center.Y, 6, 1f, 0.0f);
+        }
+
         private void Aura(float distance, int buff, bool reverse = false, int dustid = DustID.GoldFlame, bool checkDuration = false)
         {
             //works because buffs are client side anyway :ech:
@@ -324,7 +362,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             if (reverse ? range > distance && range < 3000f : range < distance)
                 p.AddBuff(buff, checkDuration && Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 30; i++)
             {
                 Vector2 offset = new Vector2();
                 double angle = Main.rand.NextDouble() * 2d * Math.PI;
@@ -332,8 +370,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 offset.Y += (float)(Math.Cos(angle) * distance);
                 Dust dust = Main.dust[Dust.NewDust(
                     npc.Center + offset - new Vector2(4, 4), 0, 0,
-                    dustid, 0, 0, 100, Color.White, 1f
-                    )];
+                    dustid, 0, 0, 100, Color.White, 1.5f)];
                 dust.velocity = npc.velocity;
                 if (Main.rand.Next(3) == 0)
                     dust.velocity += Vector2.Normalize(offset) * (reverse ? 5f : -5f);
@@ -356,7 +393,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(mod.BuffType("MutantFang"), 420);
+            target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
+            target.AddBuff(mod.BuffType("MutantFang"), 300);
         }
 
         public override void HitEffect(int hitDirection, double damage)
