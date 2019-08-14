@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -12,16 +13,16 @@ namespace FargowiltasSouls.NPCs.MutantBoss
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("???");
-            //Main.npcFrameCount[npc.type] = 4;
-            NPCID.Sets.TrailCacheLength[npc.type] = 8;
+            DisplayName.SetDefault("Mutant");
+            Main.npcFrameCount[npc.type] = 4;
+            NPCID.Sets.TrailCacheLength[npc.type] = 10;
             NPCID.Sets.TrailingMode[npc.type] = 1;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 18;
-            npc.height = 40;
+            npc.width = 34;
+            npc.height = 50;
             npc.damage = 250;
             npc.defense = 200;
             npc.lifeMax = 7000000;
@@ -59,6 +60,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 Main.player[Main.myPlayer].AddBuff(mod.BuffType("MutantPresence"), 2);
 
             Player player = Main.player[npc.target];
+            npc.direction = npc.spriteDirection = npc.position.X < player.position.X ? 1 : -1;
             Vector2 targetPos;
             float speedModifier;
             switch ((int)npc.ai[0])
@@ -103,35 +105,38 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         break;
                     targetPos = player.Center;
                     targetPos.X += 500 * (npc.Center.X < targetPos.X ? -1 : 1);
-                    speedModifier = 0.5f;
-                    if (npc.Center.X < targetPos.X)
+                    if (npc.Distance(targetPos) > 50)
                     {
-                        npc.velocity.X += speedModifier;
-                        if (npc.velocity.X < 0)
-                            npc.velocity.X += speedModifier * 2;
+                        speedModifier = 0.5f;
+                        if (npc.Center.X < targetPos.X)
+                        {
+                            npc.velocity.X += speedModifier;
+                            if (npc.velocity.X < 0)
+                                npc.velocity.X += speedModifier * 2;
+                        }
+                        else
+                        {
+                            npc.velocity.X -= speedModifier;
+                            if (npc.velocity.X > 0)
+                                npc.velocity.X -= speedModifier * 2;
+                        }
+                        if (npc.Center.Y < targetPos.Y)
+                        {
+                            npc.velocity.Y += speedModifier;
+                            if (npc.velocity.Y < 0)
+                                npc.velocity.Y += speedModifier * 2;
+                        }
+                        else
+                        {
+                            npc.velocity.Y -= speedModifier;
+                            if (npc.velocity.Y > 0)
+                                npc.velocity.Y -= speedModifier * 2;
+                        }
+                        if (Math.Abs(npc.velocity.X) > 24)
+                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
+                        if (Math.Abs(npc.velocity.Y) > 24)
+                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
                     }
-                    else
-                    {
-                        npc.velocity.X -= speedModifier;
-                        if (npc.velocity.X > 0)
-                            npc.velocity.X -= speedModifier * 2;
-                    }
-                    if (npc.Center.Y < targetPos.Y)
-                    {
-                        npc.velocity.Y += speedModifier;
-                        if (npc.velocity.Y < 0)
-                            npc.velocity.Y += speedModifier * 2;
-                    }
-                    else
-                    {
-                        npc.velocity.Y -= speedModifier;
-                        if (npc.velocity.Y > 0)
-                            npc.velocity.Y -= speedModifier * 2;
-                    }
-                    if (Math.Abs(npc.velocity.X) > 24)
-                        npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                    if (Math.Abs(npc.velocity.Y) > 24)
-                        npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
 
                     if (++npc.ai[1] > 120)
                     {
@@ -219,8 +224,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[1] = 0;
                         npc.netUpdate = true;
                         Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
-                        if (Main.netMode != 1)
-                            Projectile.NewProjectile(npc.Center, npc.DirectionTo(player.Center) * 20f, mod.ProjectileType("MutantSpearThrown"), npc.damage / 4, 0f, Main.myPlayer, npc.target);
                     }
                     break;
 
@@ -422,7 +425,68 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void NPCLoot()
         {
+            FargoWorld.downedMutant = true;
+            if (Main.netMode == 2)
+                NetMessage.SendData(7); //sync world
             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            if (++npc.frameCounter > 6)
+            {
+                npc.frameCounter = 0;
+                npc.frame.Y += frameHeight;
+                if (npc.frame.Y >= 4 * frameHeight)
+                    npc.frame.Y = 0;
+            }
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            SpriteEffects spriteEffects = SpriteEffects.None;
+            Microsoft.Xna.Framework.Color color24 = lightColor;
+            color24 = npc.GetAlpha(color24);
+            Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)npc.position.X + (double)npc.width * 0.5) / 16, (int)(((double)npc.position.Y + (double)npc.height * 0.5) / 16.0));
+            Texture2D texture2D3 = Main.npcTexture[npc.type];
+            int num156 = Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type];
+            int y3 = num156 * (int)npc.frameCounter;
+            Microsoft.Xna.Framework.Rectangle rectangle = new Microsoft.Xna.Framework.Rectangle(0, y3, texture2D3.Width, num156);
+            Vector2 origin2 = rectangle.Size() / 2f;
+            int arg_5ADA_0 = npc.type;
+            int arg_5AE7_0 = npc.type;
+            int arg_5AF4_0 = npc.type;
+            int num157 = 6;
+            int num158 = 2;
+            int num159 = 1;
+            float num160 = 0f;
+            int num161 = num159;
+            while ((num158 > 0 && num161 < num157) || (num158 < 0 && num161 > num157))
+            {
+                Microsoft.Xna.Framework.Color color26 = color25;
+                color26 = npc.GetAlpha(color26);
+                {
+                    goto IL_6899;
+                }
+                IL_6881:
+                num161 += num158;
+                continue;
+                IL_6899:
+                float num164 = (float)(num157 - num161);
+                if (num158 < 0)
+                {
+                    num164 = (float)(num159 - num161);
+                }
+                color26 *= num164 / ((float)NPCID.Sets.TrailCacheLength[npc.type] * 1.5f);
+                Vector2 value4 = (npc.oldPos[num161]);
+                float num165 = npc.rotation;
+                SpriteEffects effects = spriteEffects;
+                Main.spriteBatch.Draw(texture2D3, value4 + npc.Size / 2f - Main.screenPosition + new Vector2(0, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, npc.scale, effects, 0f);
+                goto IL_6881;
+            }
+            var something = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            spriteBatch.Draw(Main.npcTexture[npc.type], npc.Center - Main.screenPosition + new Vector2(0, npc.gfxOffY), npc.frame, color24, npc.rotation, npc.frame.Size() / 2, npc.scale, something, 0);
+            return false;
         }
     }
 }

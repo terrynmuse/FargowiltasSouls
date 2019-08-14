@@ -19,6 +19,9 @@ added friendly proj checks for first strike and tungsten effect
 boosted pumpking/ice queen maso item drop rates to 10%
 nerfed goblin thieves to only steal your current selected item
 nerfed horseman's blade to spawn 6 pumpkins (was 12)
+removed sadism from soul of maso recipe
+fish EX now drops abominationn voodoo doll instead of sadism
+mutant added to boss checklist
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

@@ -9006,7 +9006,9 @@ namespace FargowiltasSouls.NPCs
                                 Main.PlaySound(npc.DeathSound, npc.Center);
                                 npc.DropBossBags();
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CyclonicFin"));
-                                npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);
+                                int maxEX = Main.rand.Next(5) + 1;
+                                for (int i = 0; i < maxEX; i++)
+                                    npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("AbominationnVoodooDoll"));
                                 npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(3) + 1);
 
                                 int max = Main.rand.Next(5) + 5;
@@ -10259,8 +10261,10 @@ namespace FargowiltasSouls.NPCs
                 if (NPC.downedMoonlord && !FargoWorld.downedFishronEX)
                     dialogue.Add("When you're ready, go fishing with a Truffle Worm EX. But until then... yeah, keep farming. So what are you buying today?");
 
+                if (FargoWorld.downedMutant)
+                    dialogue.Add("What's that? You want to fight me? ...sure, I guess.");
                 if (FargoWorld.downedFishronEX)
-                    dialogue.Add("What's that? You want to fight me? ...maybe tomorrow.");
+                    dialogue.Add("What's that? You want to fight me? ...maybe if I have a reason to.");
 
                 chat = dialogue[Main.rand.Next(dialogue.Count)];
             }

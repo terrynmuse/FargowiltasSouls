@@ -14,8 +14,8 @@ namespace FargowiltasSouls.Items.Misc
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("???");
-            Tooltip.SetDefault("???");
+			DisplayName.SetDefault("Abominationn Voodoo Doll");
+            Tooltip.SetDefault("'You are a terrible person'");
 		}
 
 		public override void SetDefaults()
