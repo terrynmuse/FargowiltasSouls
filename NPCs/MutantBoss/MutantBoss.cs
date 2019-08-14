@@ -68,8 +68,14 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 case -2: //fade out, drop a mutant
                     npc.dontTakeDamage = true;
                     npc.damage = 0;
-                    npc.alpha++;
-                    if (npc.alpha > 255)
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].noLight = true;
+                        Main.dust[d].velocity *= 4f;
+                    }
+                    if (++npc.alpha > 255)
                     {
                         npc.alpha = 255;
                         npc.NPCLoot();
@@ -402,8 +408,13 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            for (int k = 0; k < 5; k++)
-                Dust.NewDust(npc.position, npc.width, npc.height, 5, hitDirection, -1f, 0, default(Color), 0.6f);
+            for (int i = 0; i < 3; i++)
+            {
+                int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1f);
+                Main.dust[d].noGravity = true;
+                Main.dust[d].noLight = true;
+                Main.dust[d].velocity *= 3f;
+            }
         }
 
         public override bool CheckDead()
@@ -440,53 +451,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 if (npc.frame.Y >= 4 * frameHeight)
                     npc.frame.Y = 0;
             }
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            SpriteEffects spriteEffects = SpriteEffects.None;
-            Microsoft.Xna.Framework.Color color24 = lightColor;
-            color24 = npc.GetAlpha(color24);
-            Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)npc.position.X + (double)npc.width * 0.5) / 16, (int)(((double)npc.position.Y + (double)npc.height * 0.5) / 16.0));
-            Texture2D texture2D3 = Main.npcTexture[npc.type];
-            int num156 = Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type];
-            int y3 = num156 * (int)npc.frameCounter;
-            Microsoft.Xna.Framework.Rectangle rectangle = new Microsoft.Xna.Framework.Rectangle(0, y3, texture2D3.Width, num156);
-            Vector2 origin2 = rectangle.Size() / 2f;
-            int arg_5ADA_0 = npc.type;
-            int arg_5AE7_0 = npc.type;
-            int arg_5AF4_0 = npc.type;
-            int num157 = 6;
-            int num158 = 2;
-            int num159 = 1;
-            float num160 = 0f;
-            int num161 = num159;
-            while ((num158 > 0 && num161 < num157) || (num158 < 0 && num161 > num157))
-            {
-                Microsoft.Xna.Framework.Color color26 = color25;
-                color26 = npc.GetAlpha(color26);
-                {
-                    goto IL_6899;
-                }
-                IL_6881:
-                num161 += num158;
-                continue;
-                IL_6899:
-                float num164 = (float)(num157 - num161);
-                if (num158 < 0)
-                {
-                    num164 = (float)(num159 - num161);
-                }
-                color26 *= num164 / ((float)NPCID.Sets.TrailCacheLength[npc.type] * 1.5f);
-                Vector2 value4 = (npc.oldPos[num161]);
-                float num165 = npc.rotation;
-                SpriteEffects effects = spriteEffects;
-                Main.spriteBatch.Draw(texture2D3, value4 + npc.Size / 2f - Main.screenPosition + new Vector2(0, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, npc.scale, effects, 0f);
-                goto IL_6881;
-            }
-            var something = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            spriteBatch.Draw(Main.npcTexture[npc.type], npc.Center - Main.screenPosition + new Vector2(0, npc.gfxOffY), npc.frame, color24, npc.rotation, npc.frame.Size() / 2, npc.scale, something, 0);
-            return false;
         }
     }
 }
