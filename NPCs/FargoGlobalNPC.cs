@@ -737,7 +737,7 @@ namespace FargowiltasSouls.NPCs
                             break;
 
                         case NPCID.RedDevil:
-                            if (Main.rand.Next(5) == 0)
+                            if (Main.hardMode && Main.rand.Next(5) == 0)
                                 Horde(npc, 5);
                             break;
 
@@ -7782,7 +7782,8 @@ namespace FargowiltasSouls.NPCs
                     {
                         pool[NPCID.LeechHead] = .05f;
                         pool[NPCID.BlazingWheel] = .1f;
-                        pool[NPCID.RedDevil] = .025f;
+                        if (!BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
+                            pool[NPCID.RedDevil] = .025f;
                     }
                     else if (sky)
                     {

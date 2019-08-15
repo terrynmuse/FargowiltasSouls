@@ -22,6 +22,9 @@ nerfed horseman's blade to spawn 6 pumpkins (was 12)
 removed sadism from soul of maso recipe
 fish EX now drops abominationn voodoo doll instead of sadism
 mutant added to boss checklist
+soul of eternity requires 30 sadism
+red devil no longer hordes in pre hm
+red devil cannot spawn pre-hm during wof fight
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits
