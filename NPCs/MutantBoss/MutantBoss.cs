@@ -70,10 +70,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     npc.damage = 0;
                     for (int i = 0; i < 5; i++)
                     {
-                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
+                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 2.5f);
                         Main.dust[d].noGravity = true;
                         Main.dust[d].noLight = true;
-                        Main.dust[d].velocity *= 4f;
+                        Main.dust[d].velocity *= 12f;
                     }
                     if (++npc.alpha > 255)
                     {
@@ -108,6 +108,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
                 case 0: //track player, throw penetrators
                     if (!AliveCheck(player))
+                        break;
+                    if (Phase2Check())
                         break;
                     targetPos = player.Center;
                     targetPos.X += 500 * (npc.Center.X < targetPos.X ? -1 : 1);
@@ -186,6 +188,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
                 case 2: //fly up to corner above player and then dive
                     if (!AliveCheck(player))
+                        break;
+                    if (Phase2Check())
                         break;
 
                     targetPos = player.Center;
@@ -272,6 +276,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         if (!AliveCheck(player))
                             break;
+                        if (Phase2Check())
+                            break;
                         npc.ai[3] = 1;
                         if (Main.netMode != 1)
                             Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearSpin"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI);
@@ -322,11 +328,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         if (++npc.ai[2] > 5)
                         {
                             npc.ai[0]++; //go to next attack after dashes
-                            npc.ai[2] = player.DirectionTo(npc.Center).ToRotation();
-                            npc.ai[3] = (float)Math.PI / 10f;
-                            if (player.Center.X < npc.Center.X)
-                                npc.ai[3] *= -1;
-                            npc.velocity = Vector2.Zero;
+                            npc.ai[2] = 0;
                         }
                         else
                         {
@@ -346,7 +348,171 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     break;
 
-                case 7: //fire lasers in ring
+                case 7: //approach for lasers
+                    if (!AliveCheck(player))
+                        break;
+                    if (Phase2Check())
+                        break;
+                    targetPos = player.Center + player.DirectionTo(npc.Center) * 250;
+                    if (npc.Distance(targetPos) > 50)
+                    {
+                        speedModifier = 0.5f;
+                        if (npc.Center.X < targetPos.X)
+                        {
+                            npc.velocity.X += speedModifier;
+                            if (npc.velocity.X < 0)
+                                npc.velocity.X += speedModifier * 2;
+                        }
+                        else
+                        {
+                            npc.velocity.X -= speedModifier;
+                            if (npc.velocity.X > 0)
+                                npc.velocity.X -= speedModifier * 2;
+                        }
+                        if (npc.Center.Y < targetPos.Y)
+                        {
+                            npc.velocity.Y += speedModifier;
+                            if (npc.velocity.Y < 0)
+                                npc.velocity.Y += speedModifier * 2;
+                        }
+                        else
+                        {
+                            npc.velocity.Y -= speedModifier;
+                            if (npc.velocity.Y > 0)
+                                npc.velocity.Y -= speedModifier * 2;
+                        }
+                        if (Math.Abs(npc.velocity.X) > 24)
+                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
+                        if (Math.Abs(npc.velocity.Y) > 24)
+                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                    }
+                    else
+                    {
+                        npc.netUpdate = true;
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = player.DirectionTo(npc.Center).ToRotation();
+                        npc.ai[3] = (float)Math.PI / 10f;
+                        if (player.Center.X < npc.Center.X)
+                            npc.ai[3] *= -1;
+                    }
+                    break;
+                
+                case 8: //fire lasers in ring
+                    npc.velocity = Vector2.Zero;
+                    if (--npc.ai[1] < 0)
+                    {
+                        if (Main.netMode != 1)
+                            Projectile.NewProjectile(npc.Center, new Vector2(2, 0).RotatedBy(npc.ai[2]), mod.ProjectileType("MutantMark1"), npc.damage / 4, 0f, Main.myPlayer);
+                        npc.ai[1] = 5;
+                        npc.ai[2] += npc.ai[3];
+                        if (npc.localAI[0]++ == 20)
+                        {
+                            npc.netUpdate = true;
+                            npc.ai[2] -= npc.ai[3] / 2;
+                        }
+                        else if (npc.localAI[0] == 40)
+                        {
+                            npc.netUpdate = true;
+                            npc.ai[0]++;
+                            npc.ai[1] = 0;
+                            npc.ai[2] = 0;
+                            npc.ai[3] = 0;
+                            npc.localAI[0] = 0;
+                        }
+                    }
+                    break;
+
+                case 9:
+                    npc.ai[0] = 0;
+                    goto case 0;
+
+                case 10: //phase 2 begins
+                    npc.velocity *= 0.9f;
+                    if (npc.buffType[0] != 0)
+                        npc.DelBuff(0);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].noLight = true;
+                        Main.dust[d].velocity *= 4f;
+                    }
+                    if (++npc.ai[1] > 120)
+                    {
+                        if (++npc.ai[2] > 10)
+                        {
+                            int heal = (int)(npc.lifeMax / 2 / 60 * Main.rand.NextFloat(1.5f, 2f));
+                            npc.life += heal;
+                            if (npc.life > npc.lifeMax)
+                                npc.life = npc.lifeMax;
+                            CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
+                        }
+                        if (npc.ai[1] > 180)
+                        {
+                            npc.ai[0]++;
+                            npc.ai[1] = 0;
+                            npc.ai[2] = 0;
+                            npc.ai[3] = 0;
+                            npc.netUpdate = true;
+                        }
+                    }
+                    else if (npc.ai[1] == 120)
+                    {
+                        Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                    }
+                    break;
+
+                case 11: //approach for laser
+                    if (!AliveCheck(player))
+                        break;
+                    targetPos = player.Center + player.DirectionTo(npc.Center) * 250;
+                    if (npc.Distance(targetPos) > 50)
+                    {
+                        speedModifier = 0.5f;
+                        if (npc.Center.X < targetPos.X)
+                        {
+                            npc.velocity.X += speedModifier;
+                            if (npc.velocity.X < 0)
+                                npc.velocity.X += speedModifier * 2;
+                        }
+                        else
+                        {
+                            npc.velocity.X -= speedModifier;
+                            if (npc.velocity.X > 0)
+                                npc.velocity.X -= speedModifier * 2;
+                        }
+                        if (npc.Center.Y < targetPos.Y)
+                        {
+                            npc.velocity.Y += speedModifier;
+                            if (npc.velocity.Y < 0)
+                                npc.velocity.Y += speedModifier * 2;
+                        }
+                        else
+                        {
+                            npc.velocity.Y -= speedModifier;
+                            if (npc.velocity.Y > 0)
+                                npc.velocity.Y -= speedModifier * 2;
+                        }
+                        if (Math.Abs(npc.velocity.X) > 24)
+                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
+                        if (Math.Abs(npc.velocity.Y) > 24)
+                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                    }
+                    else
+                    {
+                        npc.netUpdate = true;
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = player.DirectionTo(npc.Center).ToRotation();
+                        npc.ai[3] = (float)Math.PI / 10f;
+                        if (player.Center.X < npc.Center.X)
+                            npc.ai[3] *= -1;
+                    }
+                    break;
+
+                case 12: //fire lasers in ring
+                    npc.velocity = Vector2.Zero;
                     if (--npc.ai[1] < 0)
                     {
                         if (Main.netMode != 1)
@@ -371,8 +537,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 default:
-                    npc.ai[0] = 0;
-                    goto case 0;
+                    npc.ai[0] = 11;
+                    goto case 10;
             }
         }
 
@@ -388,7 +554,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 vel = vel.RotatedBy(rotation);
                 Projectile.NewProjectile(npc.Center, vel, type, damage, 0f, Main.myPlayer, rotationModifier * npc.spriteDirection, speed);
             }
-            Main.PlaySound(4, (int)npc.Center.X, (int)npc.Center.Y, 6, 1f, 0.0f);
+            Main.PlaySound(SoundID.Item84, npc.Center);
         }
 
         private void Aura(float distance, int buff, bool reverse = false, int dustid = DustID.GoldFlame, bool checkDuration = false)
@@ -415,7 +581,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             }
         }
 
-        public bool AliveCheck(Player player)
+        private bool AliveCheck(Player player)
         {
             if (!player.active || player.dead || Vector2.Distance(npc.Center, player.Center) > 5000f)
             {
@@ -425,6 +591,27 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 npc.velocity.Y -= 1f;
                 return false;
             }
+            return true;
+        }
+
+        private bool Phase2Check()
+        {
+            if (npc.life < npc.lifeMax / 2)
+            {
+                npc.ai[0] = 10;
+                npc.ai[1] = 0;
+                npc.ai[2] = 0;
+                npc.ai[3] = 0;
+                npc.netUpdate = true;
+                return true;
+            }
+            return false;
+        }
+
+        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        {
+            if (npc.ai[0] == 10)
+                damage = 0;
             return true;
         }
 

@@ -2400,20 +2400,11 @@ namespace FargowiltasSouls
             {
                 if (target.FindBuffIndex(mod.BuffType("Sadism")) < 0 && target.aiStyle != 37)
                 {
-                    /*target.buffImmune[BuffID.Poisoned] = true;
-                    target.buffImmune[BuffID.Venom] = true;
-                    target.buffImmune[BuffID.Ichor] = true;
-                    target.buffImmune[BuffID.CursedInferno] = true;
-                    target.buffImmune[BuffID.BetsysCurse] = true;
-                    target.buffImmune[BuffID.Electrified] = true;
-                    target.buffImmune[mod.BuffType("OceanicMaul")] = true;
-                    target.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
-                    target.buffImmune[mod.BuffType("Infested")] = true;
-                    target.buffImmune[mod.BuffType("Rotting")] = true;
-                    target.buffImmune[mod.BuffType("MutantNibble")] = true;*/
-
-                    target.DelBuff(4);
-                    target.buffImmune[mod.BuffType("Sadism")] = false;
+                    if (target.type != mod.NPCType("MutantBoss"))
+                    {
+                        target.DelBuff(4);
+                        target.buffImmune[mod.BuffType("Sadism")] = false;
+                    }
                     target.AddBuff(mod.BuffType("Sadism"), 600);
                 }
             }

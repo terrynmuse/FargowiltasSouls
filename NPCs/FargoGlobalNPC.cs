@@ -10266,7 +10266,7 @@ namespace FargowiltasSouls.NPCs
 
                 if (FargoWorld.downedMutant)
                     dialogue.Add("What's that? You want to fight me? ...sure, I guess.");
-                if (FargoWorld.downedFishronEX)
+                else if (FargoWorld.downedFishronEX)
                     dialogue.Add("What's that? You want to fight me? ...maybe if I have a reason to.");
 
                 chat = dialogue[Main.rand.Next(dialogue.Count)];
