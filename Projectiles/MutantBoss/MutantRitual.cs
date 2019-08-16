@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mutant's Seal");
+            DisplayName.SetDefault("Mutant Seal");
             Main.projFrames[projectile.type] = 2;
         }
 
@@ -47,7 +47,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 projectile.velocity /= 60f;
 
                 Player player = Main.player[Main.myPlayer];
-                if (player.active && !player.dead)
+                if (player.active && !player.dead && projectile.scale == 2f)
                 {
                     float distance = player.Distance(projectile.Center);
                     if (Math.Abs(distance - threshold) < 46f && player.hurtCooldowns[0] == 0 && projectile.alpha == 0)
@@ -55,7 +55,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                         int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
                         player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
                             projectile.damage, hitDirection, false, false, false, 0);
-                        player.AddBuff(mod.BuffType("MutantFang"), Main.rand.Next(300, 600));
+                        player.AddBuff(mod.BuffType("MutantFang"), 300);
                     }
                     if (distance > threshold && distance < threshold * 5f)
                     {

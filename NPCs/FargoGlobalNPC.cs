@@ -3815,7 +3815,7 @@ namespace FargowiltasSouls.NPCs
                                 Counter = 0;
 
                                 int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                                if (t != -1)
+                                if (t != -1 && Main.netMode != 1)
                                 {
                                     int damage = 22;
                                     int type = ProjectileID.SeedPlantera;
@@ -7404,6 +7404,8 @@ namespace FargowiltasSouls.NPCs
 
         private void SpawnRazorbladeRing(NPC npc, int max, float speed, int damage, float rotationModifier)
         {
+            if (Main.netMode == 1)
+                return;
             float rotation = 2f * (float)Math.PI / max;
             Vector2 vel = Main.player[npc.target].Center - npc.Center;
             vel.Normalize();

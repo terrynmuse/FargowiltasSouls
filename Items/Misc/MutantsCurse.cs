@@ -31,17 +31,12 @@ namespace FargowiltasSouls.Items.Misc
             item.value = Item.buyPrice(1);
         }
 
-        public override bool CanUseItem(Player player)
-        {
-            return Fargowiltas.Instance.FargosLoaded && NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
-        }
-
         public override bool UseItem(Player player)
         {
-            if (Fargowiltas.Instance.FargosLoaded && Main.netMode != 1)
+            if (Fargowiltas.Instance.FargosLoaded)
             {
                 int mutant = NPC.FindFirstNPC(ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
-                if (mutant > -1 && Main.npc[mutant].active && !NPC.AnyNPCs(mod.NPCType("MutantBoss")))
+                if (mutant > -1 && Main.npc[mutant].active)
                 {
                     Main.npc[mutant].Transform(mod.NPCType("MutantBoss"));
                     if (Main.netMode == 0)
@@ -49,6 +44,14 @@ namespace FargowiltasSouls.Items.Misc
                     else if (Main.netMode == 2)
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Mutant has awoken!"), new Color(175, 75, 255));
                 }
+                else
+                {
+                    NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("MutantBoss"));
+                }
+            }
+            else
+            {
+                NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("MutantBoss"));
             }
             return true;
         }

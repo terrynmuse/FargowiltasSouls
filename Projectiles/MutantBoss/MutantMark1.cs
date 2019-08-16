@@ -1,12 +1,15 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls.Projectiles.MutantBoss
 {
-    public class MutantSphereSmall : ModProjectile
+    public class MutantMark1 : ModProjectile
     {
         public override string Texture => "Terraria/Projectile_454";
 
@@ -20,45 +23,29 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         {
             projectile.width = 46;
             projectile.height = 46;
-            projectile.aiStyle = -1;
-            projectile.hostile = true;
-            projectile.penetrate = 1;
-            projectile.timeLeft = 120;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            projectile.alpha = 200;
-            cooldownSlot = 1;
+            projectile.hostile = true;
+            projectile.timeLeft = 90;
+            projectile.aiStyle = -1;
+            projectile.scale = 0.5f;
+            projectile.alpha = 0;
+        }
+
+        public override bool? CanHitNPC(NPC target)
+        {
+            return false;
         }
 
         public override void AI()
         {
-            //dust!
-            /*int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width / 2, projectile.height + 5, 56, projectile.velocity.X * 0.2f,
-                projectile.velocity.Y * 0.2f, 100, default(Color), .5f);
-            Main.dust[dustId].noGravity = true;
-            int dustId3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width / 2, projectile.height + 5, 56, projectile.velocity.X * 0.2f,
-                projectile.velocity.Y * 0.2f, 100, default(Color), .5f);
-            Main.dust[dustId3].noGravity = true;*/
-
-            const int aislotHomingCooldown = 1;
-            const int homingDelay = 20;
-            const float desiredFlySpeedInPixelsPerFrame = 5;
-            const float amountOfFramesToLerpBy = 20; // minimum of 1, please keep in full numbers even though it's a float!
-            if (++projectile.ai[aislotHomingCooldown] > homingDelay)
+            if (projectile.localAI[0] == 0)
             {
-                int foundTarget = (int)projectile.ai[0];
-                Player p = Main.player[foundTarget];
-                Vector2 desiredVelocity = projectile.DirectionTo(p.Center) * desiredFlySpeedInPixelsPerFrame;
-                projectile.velocity = Vector2.Lerp(projectile.velocity, desiredVelocity, 1f / amountOfFramesToLerpBy);
+                projectile.localAI[0] = 1;
+                Main.PlaySound(4, (int)projectile.Center.X, (int)projectile.Center.Y, 6, 1f, 0.0f);
             }
+            //projectile.velocity *= 0.96f;
 
-            if (projectile.alpha > 0)
-            {
-                projectile.alpha -= 20;
-                if (projectile.alpha < 0)
-                    projectile.alpha = 0;
-            }
-            projectile.scale = (1f - projectile.alpha / 255f) * .75f;
             for (int i = 0; i < 2; i++)
             {
                 float num = Main.rand.NextFloat(-0.5f, 0.5f);
@@ -81,30 +68,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
             target.AddBuff(mod.BuffType("MutantFang"), 180);
         }
-
-        /*private int HomeOnTarget()
-        {
-            const bool homingCanAimAtWetEnemies = true;
-            const float homingMaximumRangeInPixels = 1000;
-
-            int selectedTarget = -1;
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                NPC n = Main.npc[i];
-                if (n.CanBeChasedBy(projectile) && (!n.wet || homingCanAimAtWetEnemies))
-                {
-                    float distance = projectile.Distance(n.Center);
-                    if (distance <= homingMaximumRangeInPixels &&
-                        (
-                            selectedTarget == -1 || //there is no selected target
-                            projectile.Distance(Main.npc[selectedTarget].Center) > distance) //or we are closer to this target than the already selected target
-                    )
-                        selectedTarget = i;
-                }
-            }
-
-            return selectedTarget;
-        }*/
 
         public override void Kill(int timeleft)
         {
@@ -130,6 +93,9 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 dust2.velocity = dust2.velocity * 1f;
                 Main.dust[index3].noGravity = true;
             }
+
+            if (Main.netMode != 1)
+                Projectile.NewProjectile(projectile.Center, Vector2.Normalize(projectile.velocity), mod.ProjectileType("MutantDeathray1"), projectile.damage, 0f, projectile.owner);
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -322,7 +322,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         if (++npc.ai[2] > 5)
                         {
                             npc.ai[0]++; //go to next attack after dashes
-                            npc.ai[2] = 0;
+                            npc.ai[2] = player.DirectionTo(npc.Center).ToRotation();
+                            npc.ai[3] = (float)Math.PI / 10f;
+                            if (player.Center.X < npc.Center.X)
+                                npc.ai[3] *= -1;
+                            npc.velocity = Vector2.Zero;
                         }
                         else
                         {
@@ -339,6 +343,30 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.netUpdate = true;
                         npc.ai[0]--;
                         npc.ai[1] = 0;
+                    }
+                    break;
+
+                case 7: //fire lasers in ring
+                    if (--npc.ai[1] < 0)
+                    {
+                        if (Main.netMode != 1)
+                            Projectile.NewProjectile(npc.Center, new Vector2(2, 0).RotatedBy(npc.ai[2]), mod.ProjectileType("MutantMark1"), npc.damage / 4, 0f, Main.myPlayer);
+                        npc.ai[1] = 3;
+                        npc.ai[2] += npc.ai[3];
+                        if (npc.localAI[0]++ == 20 || npc.localAI[0] == 40)
+                        {
+                            npc.netUpdate = true;
+                            npc.ai[2] -= npc.ai[3] / 2;
+                        }
+                        else if (npc.localAI[0] == 60)
+                        {
+                            npc.netUpdate = true;
+                            npc.ai[0]++;
+                            npc.ai[1] = 0;
+                            npc.ai[2] = 0;
+                            npc.ai[3] = 0;
+                            npc.localAI[0] = 0;
+                        }
                     }
                     break;
 
