@@ -57,7 +57,7 @@ namespace FargowiltasSouls.Buffs
                     break;
 
                 case BuffID.Electrified:
-                    npc.GetGlobalNPC<NPCs.FargoGlobalNPC>().Electrified = true;
+                    npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().Electrified = true;
                     break;
 
                 default:

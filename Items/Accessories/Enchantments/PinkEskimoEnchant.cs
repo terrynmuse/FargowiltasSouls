@@ -5,7 +5,7 @@ using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
-    public class EskimoEnchant : ModItem
+    public class PinkEskimoEnchant : ModItem
     {
     public override bool Autoload(ref string name)
         {

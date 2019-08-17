@@ -53,7 +53,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             if (Main.netMode == 1)
                 return;
 
-            NPCs.FargoGlobalNPC fargoNPC = npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod);
+            NPCs.FargoSoulsGlobalNPC fargoNPC = npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>(mod);
             fargoNPC.lightningRodTimer++;
             if (fargoNPC.lightningRodTimer >= 60)
             {

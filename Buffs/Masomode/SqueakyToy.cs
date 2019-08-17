@@ -27,7 +27,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<FargoGlobalNPC>().SqueakyToy = true;
+            npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SqueakyToy = true;
         }
     }
 }

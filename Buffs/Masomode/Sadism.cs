@@ -67,7 +67,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            FargoGlobalNPC fargoNPC = npc.GetGlobalNPC<FargoGlobalNPC>();
+            FargoSoulsGlobalNPC fargoNPC = npc.GetGlobalNPC<FargoSoulsGlobalNPC>();
             npc.poisoned = true;
             npc.venom = true;
             npc.ichor = true;

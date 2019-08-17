@@ -32,7 +32,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<NPCs.FargoGlobalNPC>(mod).CurseoftheMoon = true;
+            npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>(mod).CurseoftheMoon = true;
         }
     }
 }

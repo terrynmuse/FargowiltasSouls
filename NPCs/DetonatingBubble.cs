@@ -40,7 +40,7 @@ namespace FargowiltasSouls.NPCs
         {
             npc.damage = (int)(npc.damage * 0.75);
             npc.lifeMax = 1;
-            if (FargoWorld.downedFishronEX || !FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBossEX, NPCID.DukeFishron))
+            if (FargoWorld.downedFishronEX || !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
                 npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
         }
 
@@ -70,7 +70,7 @@ namespace FargowiltasSouls.NPCs
 
         public override bool CheckDead()
         {
-            npc.GetGlobalNPC<FargoGlobalNPC>().Needles = false;
+            npc.GetGlobalNPC<FargoSoulsGlobalNPC>().Needles = false;
             return true;
         }
 

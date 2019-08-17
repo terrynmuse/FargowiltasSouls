@@ -35,15 +35,15 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.GetModPlayer<FargoPlayer>(mod).noSupersonic = true;
             player.moonLeech = true;
 
-            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.fishBoss, NPCID.DukeFishron))
+            if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBoss, NPCID.DukeFishron))
             {
                 player.buffTime[buffIndex] = 2;
-                if (player.whoAmI == Main.npc[FargoGlobalNPC.fishBoss].target
+                if (player.whoAmI == Main.npc[FargoSoulsGlobalNPC.fishBoss].target
                     && player.whoAmI == Main.myPlayer
                     && player.ownedProjectileCounts[mod.ProjectileType("FishronRitual2")] < 1)
                 {
-                    Projectile.NewProjectile(Main.npc[FargoGlobalNPC.fishBoss].Center, Vector2.Zero,
-                        mod.ProjectileType("FishronRitual2"), 0, 0f, player.whoAmI, 0f, FargoGlobalNPC.fishBoss);
+                    Projectile.NewProjectile(Main.npc[FargoSoulsGlobalNPC.fishBoss].Center, Vector2.Zero,
+                        mod.ProjectileType("FishronRitual2"), 0, 0f, player.whoAmI, 0f, FargoSoulsGlobalNPC.fishBoss);
                 }
             }
             else
@@ -51,7 +51,7 @@ namespace FargowiltasSouls.Buffs.Masomode
                 return;
             }
 
-            /*float distance = player.Distance(Main.npc[FargoGlobalNPC.fishBoss].Center);
+            /*float distance = player.Distance(Main.npc[FargoSoulsGlobalNPC.fishBoss].Center);
             const float threshold = 1200f;
             if (distance > threshold)
             {
@@ -72,7 +72,7 @@ namespace FargowiltasSouls.Buffs.Masomode
                     player.velocity.Y = -0.4f;
                 }
 
-                Vector2 movement = Main.npc[FargoGlobalNPC.fishBoss].Center - player.Center;
+                Vector2 movement = Main.npc[FargoSoulsGlobalNPC.fishBoss].Center - player.Center;
                 float difference = movement.Length() - 1200f;
                 movement.Normalize();
                 movement *= difference < 17f ? difference : 17f;

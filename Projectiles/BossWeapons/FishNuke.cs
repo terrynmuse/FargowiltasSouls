@@ -97,7 +97,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         /*public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (target.whoAmI == NPCs.FargoGlobalNPC.fishBossEX)
+            if (target.whoAmI == NPCs.FargoSoulsGlobalNPC.fishBossEX)
             {
                 target.life += damage;
                 if (target.life > target.lifeMax)

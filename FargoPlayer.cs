@@ -451,7 +451,7 @@ namespace FargowiltasSouls
                     }
                     else
                     {
-                        Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().SetDefaults(Main.npc[i]);
+                        Main.npc[i].GetGlobalNPC<FargoSoulsGlobalNPC>().SetDefaults(Main.npc[i]);
                         Main.npc[i].life = Main.npc[i].lifeMax;
                     }
                 }
@@ -692,7 +692,7 @@ namespace FargowiltasSouls
         {
             if (Eternity)
                 player.respawnTimer = (int)(player.respawnTimer * .1);
-            else if (SandsofTime && (!FargoGlobalNPC.AnyBossAlive() || MasochistSoul))
+            else if (SandsofTime && (!FargoSoulsGlobalNPC.AnyBossAlive() || MasochistSoul))
                 player.respawnTimer = (int)(player.respawnTimer * .5);
         }
 
@@ -2659,7 +2659,7 @@ namespace FargowiltasSouls
         {
             if (ShellHide)
                 return false;
-            if (QueenStinger && !Main.hardMode && proj.type == ProjectileID.Stinger && !FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee))
+            if (QueenStinger && !Main.hardMode && proj.type == ProjectileID.Stinger && !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.beeBoss, NPCID.QueenBee))
                 return false;
             return true;
         }
@@ -4408,10 +4408,10 @@ namespace FargowiltasSouls
                             spawned = true;
                             if (Main.netMode == 0) //singleplayer
                             {
-                                FargoGlobalNPC.spawnFishronEX = true;
+                                FargoSoulsGlobalNPC.spawnFishronEX = true;
                                 NPC.NewNPC((int)Main.projectile[i].Center.X, (int)Main.projectile[i].Center.Y + 100,
                                     NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, player.whoAmI);
-                                FargoGlobalNPC.spawnFishronEX = false;
+                                FargoSoulsGlobalNPC.spawnFishronEX = false;
                                 Main.NewText("Duke Fishron EX has awoken!", 50, 100, 255);
                             }
                             else if (Main.netMode == 1) //MP, broadcast(?) packet from spawning player's client
@@ -4435,9 +4435,9 @@ namespace FargowiltasSouls
                     if (Main.netMode != 1)
                     {
                         Main.NewText("now spawning");
-                        FargoGlobalNPC.spawnFishronEX = true;
+                        FargoSoulsGlobalNPC.spawnFishronEX = true;
                         NPC.SpawnOnPlayer(bait.owner, NPCID.DukeFishron);
-                        FargoGlobalNPC.spawnFishronEX = false;
+                        FargoSoulsGlobalNPC.spawnFishronEX = false;
                     }
                     else
                     {

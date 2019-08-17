@@ -48,7 +48,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void AI()
         {
-            if (!FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee)
+            if (!FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.beeBoss, NPCID.QueenBee)
                 && !NPC.AnyNPCs(NPCID.QueenBee))
             {
                 npc.StrikeNPCNoInteraction(9999, 0f, 0);

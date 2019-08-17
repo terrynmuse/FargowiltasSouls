@@ -27,29 +27,30 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             String tooltip =
 @"'Mortal or Immortal, all things acknowledge your claim to divinity'
-250% increased damage and attack speed, 100% increased shoot speed and knockback, Increases armor penetration by 50, Crits deal 10x damage, Crit chance is set to 50%
-Crit to increase it by 10%, At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense, This stacks up to 200,000 times until you get hit
-All attacks inflict Flames of the Universe, Sadism, and Midas, You never use ammo, mana, or consumables
-Increases your maximum mana to 999, minions by 30, sentries by 20, 500% increased HP, 50% damage reduction, drastically increased life regeneration
-Grants immunity to knockback and most debuffs, Allows Supersonic running and infinite flight, Increases fishing skill substantially, All fishing rods will have 10 extra lures
-Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed doubled, Shine, Spelunker, Hunter, Dangersense, and Builder Mode effects
-Summons icicles, a leaf crystal, hallowed sword and shield, beetles, several pets, and all Masochist Mode bosses to your side
-Double tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
-Right Click to Guard, Gold Key encases you in gold, Freeze Key freezes time for 5 seconds, minions spew scythes
-Solar shield allows you to dash, Dash into any walls, to teleport through them, Throw a smoke bomb to teleport to it and gain the First Strike Buff
+Drastically increases life regeneration, increases your maximum mana to 999, minions by 30, sentries by 20, HP by 500%, damage reduction by 50%
+250% increased damage and attack speed; 100% increased shoot speed and knockback; Increases armor penetration by 50; Crits deal 10x damage and Crit chance is set to 50%
+Crit to increase it by 10%, At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense; This stacks up to 200,000 times until you get hit
+All attacks inflict Flames of the Universe, Sadism, Midas and reduce enemy knockback immunity
+Summons icicles, a leaf crystal, hallowed sword and shield, beetles, several pets, orichalcum fireballs and all Masochist Mode bosses to your side
 Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, snowballs, spears, or buff boosters
-Attacks cause increased life regen, shadow dodge, Flameburst shots, meteor showers, and reduced enemy knockback immunity
-Projectiles may split or shatter, item and projectile size increased, attract items from further away
-Nearby enemies are ignited, You have a trail of fire and rainbows, Getting inflicts Super Bleeding, releases a spore explosion and reflects damage
+Attacks cause increased life regen, shadow dodge, Flameburst shots and meteor showers
+Projectiles may split or shatter, item and projectile size increased, attacks create additional attacks and spawn hearts
+You leave a trail of fire and rainbows; Nearby enemies are ignited and minions occasionally spew scythes 
+Critters have increased defense and their souls will aid you; Enemies explode into needles; Greatly enhances all DD2 sentries
+Double-tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Right Click to Guard; Press the Gold Key to encase yourself in gold; Press the Freeze Key to freeze time for 5 seconds
+Solar shield allows you to dash, dashing into solid blocks teleports you through them; Throw a smoke bomb to teleport to it and gain the first strike buff
+Getting hit reflects damage, releases a spore explosion, inflicts super bleeding, may squeak and causes you to erupt into various things when injured
 Grants Crimson regen, immunity to fire, fall damage, and lava, doubled herb collection, 50% chance for Mega Bees, 15% chance for minion crits, 20% chance for bonus loot
-Critters have increased defense and their souls will aid you, Enemies explode into needles, Grappling hooks are enhanced, Greatly enhances all DD2 sentries
-Summon an impenatrable ring of death around you and you reflect all projectiles, When you die, you explode and revive with full HP
-Grants autofire, modifier protection, gravity control, fastfall, and immunity to knockback, all Masochist Mode debuffs, and more
-Empowers Cute Fishron, makes skeletons less hostile outside the Dungeon, Your attacks create additional attacks, and hearts
-You respawn 10x as fast, and erupt into various attacks when injured, Prevents boss spawns, increases spawn rate, and attacks may squeak
+Grants immunity to knockback and most debuffs; Allows Supersonic running and infinite flight; Increases fishing skill substantially and all fishing rods will have 10 extra lures
+You respawn 10x as fast; Prevents boss spawns, increases spawn rates, reduces skeletons hostility outside of the dungeon and empowers Cute Fishron
+Grants autofire, modifier protection, gravity control, fast fall, and immunity to knockback, all Masochist Mode debuffs, enhances grappling hooks and more
+Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed doubled
+Summons an impenatrable ring of death around you and you reflect all projectiles; When you die, you explode and revive with full HP
 Effects of the Fire Gauntlet, Yoyo Bag, Sniper Scope, Celestial Cuffs, Mana Flower, Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
 Effects of the Spore Sac, Paladin's Shield, Frozen Turtle Shell, Arctic Diving Gear, Frog Legs, Flying Carpet, Lava Waders, and Angler Tackle Bag
-Effects of Paint Sprayer, Presserator, Cell Phone, Gravity Globe, Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone";
+Effects of Paint Sprayer, Presserator, Cell Phone, Gravity Globe, Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone
+Effects of Shine, Spelunker, Hunter and Dangersense potions; Effects of Builder Mode, Infinity Relic and you attract items from further away";
 
             String tooltip_ch =
 @"'不论凡人或不朽,都承认你的神性'
