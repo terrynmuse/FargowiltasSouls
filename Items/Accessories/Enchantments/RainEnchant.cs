@@ -12,7 +12,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             return false;
         }
         
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()

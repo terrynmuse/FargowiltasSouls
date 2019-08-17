@@ -1,4 +1,41 @@
-﻿eaters of souls go through walls again but half speed/make dust while in wall
+﻿shadowflame is now a modded debuff to avoid thorium double DOT memes
+betsy is once again post-golem because FUCKING REDCODEEEEE
+nerfed crippled duration in wof fight
+lost girl/nymph are lava immune
+fake hearts now ignore defense and DR
+nerfed squeaky toy drop rate to 2%
+all demon eyes inflict berserked now, no more stoned
+eow segments drop no loot unless they're the final segment
+creepers drop no loot
+skeletron/dg bones ignore walls
+nerfed snowman gangsta rate of fire to 5sec
+nerfed skeletron limb revive life to 25%
+nerfed prime limb revive rate to 30sec (was 20), but slightly buffed hp to 25% (was 20%)
+nerfed prime cannons to inflict defenseless (was fused)
+midas coin drop only works in SP now, will fix it duping cash in MP later :ech:
+nerfed dune splicer hp to x3
+nerfed basilisk hp to x2 (1080)
+added friendly proj checks for first strike and tungsten effect
+boosted pumpking/ice queen maso item drop rates to 10%
+nerfed goblin thieves to only steal your current selected item
+nerfed horseman's blade to spawn 6 pumpkins (was 12)
+removed sadism from soul of maso recipe
+fish EX now drops abominationn voodoo doll instead of sadism
+mutant added to boss checklist
+soul of eternity requires 30 sadism
+red devil no longer hordes in pre hm
+red devil cannot spawn pre-hm during wof fight
+added lunatic sigil
+removed ancient doom damage buff to fix prophecy end doing 400 damage
+nerfed RMF damage inflicted when using magic weapons
+RMF is now -150% magic damage and halves speed of magic weapons too
+fishron and moon lord now resist razorpine
+fishron and moon lord resists are now 80%
+
+spider ench now gives 20% crit rate
+shroomite ench nerfed to 2x damage crits
+
+eaters of souls go through walls again but half speed/make dust while in wall
 plantera p2 spawns a second set of crystals around the first rotating opposite direction
 maso moss hornets have 50% chance to drop stingers (why is this not vanilla :echprimebegone:)
 brain illusions do damage in maso EX (not that it really helps)

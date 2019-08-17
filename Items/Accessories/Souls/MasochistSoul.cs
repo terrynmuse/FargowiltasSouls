@@ -18,7 +18,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 Increases wing time by 200%, armor penetration by 50, and movement speed by 20%
 Increases max life by 100%, damage by 50%, and damage reduction by 10%
 Increases life regen drastically, increases max number of minions and sentries by 10
-Grants gravity control, fastfall, and immunity to knockback, all Masochist Mode debuffs, and more
+Grants gravity control, fastfall, and immunity to knockback, almost all Masochist Mode debuffs, and more
 Grants autofire to all weapons, modifier protection, and you automatically use mana potions when needed
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks, hearts, and inflict a cocktail of Masochist Mode debuffs
@@ -29,15 +29,15 @@ Summons the aid of all Masochist Mode bosses to your side");
             DisplayName.AddTranslation(GameCulture.Chinese, "受虐之魂");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'要制造痛苦,首先必须接受它'
-增加200%飞行时间,50点护甲穿透,20%移动速度
-增加60%最大生命值,50%伤害,30%暴击率,20%伤害减免
-极大增加生命恢复速率,+10最大召唤栏和哨兵栏
-重力控制,快速下落,免疫击退,免疫受虐模式的所有Debuff,以及更多
-所有武器自动连发,词缀保护,需要时自动使用魔力药水
-获得超可爱猪鲨,地牢外的装甲和魔法骷髅敌意减小
-攻击造成额外攻击,生成心,并造成混合的受虐模式Debuff
-重生速度加倍,提高夜视能力,受伤时爆发各种攻击
-阻止Boss自然生成,增加刷怪速率,敌人攻击概率发出吱吱声,并只造成1点伤害
+增加200%飞行时间, 50点护甲穿透, 20%移动速度
+增加100%最大生命值, 50%伤害, 10%伤害减免
+极大增加生命恢复速率, +10最大召唤栏和哨兵栏
+重力控制, 快速下落, 免疫击退, 免疫受虐模式的所有Debuff, 以及更多其他效果
+所有武器自动连发, 词缀保护, 需要时自动使用魔力药水
+获得超可爱猪鲨, 地牢外的装甲和魔法骷髅敌意减小
+攻击造成额外攻击, 生成心, 并造成混合的受虐模式Debuff
+重生速度加倍, 提高夜视能力, 受伤时爆发各种攻击
+阻止Boss自然生成, 增加刷怪速率, 敌人攻击概率发出吱吱声, 并只造成1点伤害
 召唤所有受虐模式Boss的援助到你身边");
         }
 
@@ -327,6 +327,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("Guilty")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.buffImmune[mod.BuffType("Infested")] = true;
+            player.buffImmune[mod.BuffType("IvyVenom")] = true;
             player.buffImmune[mod.BuffType("Jammed")] = true;
             player.buffImmune[mod.BuffType("Lethargic")] = true;
             player.buffImmune[mod.BuffType("LightningRod")] = true;
@@ -341,6 +342,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("Purified")] = true;
             player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;
             player.buffImmune[mod.BuffType("Rotting")] = true;
+            player.buffImmune[mod.BuffType("Shadowflame")] = true;
             player.buffImmune[mod.BuffType("SqueakyToy")] = true;
             player.buffImmune[mod.BuffType("Stunned")] = true;
             player.buffImmune[mod.BuffType("Unstable")] = true;
@@ -359,7 +361,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             recipe.AddIngredient(mod.ItemType("ChaliceoftheMoon"));
             recipe.AddIngredient(mod.ItemType("HeartoftheMasochist"));
             recipe.AddIngredient(mod.ItemType("CyclonicFin"));
-            recipe.AddIngredient(mod.ItemType("Sadism"), 30);
+            //recipe.AddIngredient(mod.ItemType("Sadism"), 30);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
 

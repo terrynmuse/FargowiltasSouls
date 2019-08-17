@@ -60,7 +60,13 @@ namespace FargowiltasSouls.Projectiles.Masomode
             if (projectile.Colliding(projectile.Hitbox, target.Hitbox))
             {
                 target.hurtCooldowns[0] = 0;
+                int defense = target.statDefense;
+                float endurance = target.endurance;
+                target.statDefense = 0;
+                target.endurance = 0;
                 target.Hurt(PlayerDeathReason.ByProjectile(target.whoAmI, projectile.whoAmI), projectile.damage, 0, false, false, false, 0);
+                target.statDefense = defense;
+                target.endurance = endurance;
                 projectile.timeLeft = 0;
             }
             return false;

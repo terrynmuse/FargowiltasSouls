@@ -72,7 +72,7 @@ Effects of Paint Sprayer, Presserator, Cell Phone, Gravity Globe, Flower Boots, 
             {
                 tooltip += @"Effects of Phylactery, Crystal Scorpion, and Yuma's Pendant
                 Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
-                Effects of SupportStash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
+                Effects of Support Sash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
                 Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw
                 Effects of Ocean's Retaliation and Cape of the Survivor
                 Effects of Blast Shield and Terrarium Defender
@@ -697,6 +697,8 @@ and most of SoT not mentioned because meme tooltip length
             }
                 
             recipe.AddIngredient(null, "Infinity");
+
+            recipe.AddIngredient(null, "Sadism", 30);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
 

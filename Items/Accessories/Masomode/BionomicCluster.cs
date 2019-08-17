@@ -74,6 +74,7 @@ Summons a friendly rainbow slime");
 
             //wretched pouch
             player.buffImmune[BuffID.ShadowFlame] = true;
+            player.buffImmune[mod.BuffType("Shadowflame")] = true;
             player.GetModPlayer<FargoPlayer>().WretchedPouch = true;
 
             //sands of time

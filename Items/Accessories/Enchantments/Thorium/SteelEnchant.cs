@@ -29,10 +29,7 @@ Effects of Spiked Bracers");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'铁匠精心打造'
 增加5%伤害减免
-获得冲刺能力
-右键用盾牌防御
-增大拾取物品范围
-拥有铁盾和尖刺锁的效果");
+拥有尖刺索的效果");
         }
 
         public override void SetDefaults()

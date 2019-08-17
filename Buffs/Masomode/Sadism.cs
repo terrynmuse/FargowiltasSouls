@@ -41,6 +41,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("Guilty")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.buffImmune[mod.BuffType("Infested")] = true;
+            player.buffImmune[mod.BuffType("IvyVenom")] = true;
             player.buffImmune[mod.BuffType("Jammed")] = true;
             player.buffImmune[mod.BuffType("Lethargic")] = true;
             player.buffImmune[mod.BuffType("LightningRod")] = true;
@@ -55,9 +56,13 @@ namespace FargowiltasSouls.Buffs.Masomode
             player.buffImmune[mod.BuffType("Purified")] = true;
             player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;
             player.buffImmune[mod.BuffType("Rotting")] = true;
+            player.buffImmune[mod.BuffType("Shadowflame")] = true;
             player.buffImmune[mod.BuffType("SqueakyToy")] = true;
             player.buffImmune[mod.BuffType("Stunned")] = true;
             player.buffImmune[mod.BuffType("Unstable")] = true;
+
+            player.buffImmune[mod.BuffType("MutantPresence")] = true;
+            player.buffImmune[mod.BuffType("MutantFang")] = true;
         }
 
         public override void Update(NPC npc, ref int buffIndex)

@@ -38,6 +38,7 @@ Increases fishing skill substantially, All fishing rods will have 10 extra lures
 Increased block and wall placement speed by 50% 
 Near infinite block placement and mining reach, Mining speed doubled 
 Shine, Spelunker, Hunter, and Dangersense effects
+Auto paint and actuator effect
 Grants the ability to enable Builder Mode
 Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, Bee Cloak, and Spore Sac
 Effects of Paladin's Shield, Frozen Turtle Shell, Arctic Diving Gear, Frog Legs, and Flying Carpet
@@ -49,15 +50,16 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
 增加20%伤害减免
 +8生命回复
 免疫击退和诸多Debuff
+敌人更有可能以你为目标
 允许超音速奔跑和无限飞行
 大幅提升钓鱼技能,所有鱼竿额外增加10个鱼饵
 增加50%放置物块及墙壁的速度
 近乎无限的放置和采掘距离,采掘速度加倍
+获得发光, 探索者, 猎人和危险感知效果
 获得开启建造模式的能力
-拥有混乱之脑,星辰项链,甜心项链和蜜蜂斗篷的效果
-拥有孢子囊,圣骑士护盾,冰霜龟壳和北极潜水装备的效果
-拥有蛙腿,熔岩行走靴和渔具包的效果
-拥有所有材料魂的效果";
+拥有混乱之脑, 星辰项链, 甜心项链, 蜜蜂斗篷和孢子囊的效果
+拥有圣骑士护盾, 冰霜龟壳, 北极潜水装备, 蛙腿和飞毯的效果
+拥有熔岩行走靴, 渔具包, 油漆喷雾器, 促动安装器, 手机和重力球的效果";
 
             if (thorium != null)
             {
@@ -67,8 +69,9 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
                 Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
                 
                 tooltip_ch += @"
-                拥有海潮之噬和生存者披风的效果\n拥有爆炸盾和界元之庇护的效果
-                拥有履空靴,我命至上主义者之飞靴和举足轻重靴的效果";
+                拥有海潮之噬和生存者披风的效果
+                拥有爆炸盾和界元之庇护的效果
+                拥有履空靴, 我命至上主义者之飞靴和举足轻重靴的效果";
 
             }
 

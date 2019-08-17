@@ -41,9 +41,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 projectile.velocity.X *= 0.97f;
                 projectile.velocity.Y += 0.45f;
             }
-            else if (projectile.ai[1] == 60f)
+            else if (projectile.ai[1] == 60f && Main.netMode != 1)
             {
-                const int max = 12;
+                const int max = 6;
                 for (int i = 0; i < max; i++)
                     Projectile.NewProjectile(projectile.Center, Vector2.Normalize(projectile.velocity).RotatedBy(2 * Math.PI / max * i) * 8f,
                         mod.ProjectileType("FlamingJack"), projectile.damage, 0f, Main.myPlayer, projectile.ai[0], 30f);

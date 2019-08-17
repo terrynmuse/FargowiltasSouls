@@ -28,9 +28,7 @@ Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'精工打造'
 增加12%伤害减免
-获得冲刺能力
-右键用盾牌防御
-拥有食人魔凉鞋, 贪婪磁铁和尖刺锁的效果");
+拥有炽热火花, 尖刺索和贪婪磁铁的效果");
         }
 
         public override void SetDefaults()

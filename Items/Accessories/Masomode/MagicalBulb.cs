@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Magical Bulb");
             Tooltip.SetDefault(@"'Matricide?'
-Grants immunity to Venom
+Grants immunity to Venom and Ivy Venom
 Increases life regeneration
 Attracts a legendary plant's offspring which flourishes in combat");
             DisplayName.AddTranslation(GameCulture.Chinese, "魔法球茎");
@@ -35,6 +35,7 @@ Attracts a legendary plant's offspring which flourishes in combat");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[BuffID.Venom] = true;
+            player.buffImmune[mod.BuffType("IvyVenom")] = true;
             player.lifeRegen += 2;
             if (Soulcheck.GetValue("Plantera Minion"))
                 player.AddBuff(mod.BuffType("PlanterasChild"), 2);

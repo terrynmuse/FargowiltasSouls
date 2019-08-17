@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
             string tooltip = 
 @"'Arachniphobia is punishable by arachnid induced death'
-Your minions can now crit with a 15% chance
+Your minions can now crit with a 20% chance
 ";
             string tooltip_ch =
 @"'蜘蛛该死'

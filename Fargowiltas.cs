@@ -148,6 +148,7 @@ namespace FargowiltasSouls
                 if (bossChecklist != null)
                 {
                     bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 14.1f, (Func<bool>)(() => FargoWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
+                    bossChecklist.Call("AddBossWithInfo", "Mutant", 14.2f, (Func<bool>)(() => FargoWorld.downedMutant), "Spawn by throwing [i:" + ItemType("AbominationnVoodooDoll") + "] in lava in Mutant's presence");
                 }
 
                 if (ThoriumLoaded)
