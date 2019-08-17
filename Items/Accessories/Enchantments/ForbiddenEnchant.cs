@@ -22,7 +22,7 @@ Any projectiles shot through your storm gain 50% damage
             string tooltip_ch =
 @"'走路像个埃及人Z(￣ｰ￣)Z'
 双击'下'键可召唤一个远古风暴到光标位置
-任何穿过风暴的抛射物都能获得双倍穿透和额外50%伤害";
+任何穿过风暴的抛射物获得额外50%伤害";
 
             if(thorium != null)
             {

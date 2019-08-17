@@ -31,10 +31,9 @@ Effects of Spiked Bracer");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'轻巧而耐用'
 增加8%伤害减免
+没有什么能阻止你的移动
 获得冲刺能力
-右键用盾牌防御
-增大物品拾取范围
-拥有铁盾和尖刺锁的效果");
+拥有尖刺索的效果");
         }
 
         public override void SetDefaults()
