@@ -26,6 +26,11 @@ soul of eternity requires 30 sadism
 red devil no longer hordes in pre hm
 red devil cannot spawn pre-hm during wof fight
 added lunatic sigil
+removed ancient doom damage buff to fix prophecy end doing 400 damage
+nerfed RMF damage inflicted when using magic weapons
+RMF is now -150% magic damage and halves speed of magic weapons too
+fishron and moon lord now resist razorpine
+fishron and moon lord resists are now 80%
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits
