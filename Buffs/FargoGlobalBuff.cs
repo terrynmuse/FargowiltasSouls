@@ -12,9 +12,9 @@ namespace FargowiltasSouls.Buffs
         {
             switch(type)
             {
-                case BuffID.ShadowFlame:
+                /*case BuffID.ShadowFlame:
                     player.GetModPlayer<FargoPlayer>().Shadowflame = true;
-                    break;
+                    break;*/
 
                 case BuffID.Slimed:
                     Main.buffNoTimeDisplay[type] = false;

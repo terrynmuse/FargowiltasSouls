@@ -698,6 +698,8 @@ and most of SoT not mentioned because meme tooltip length
                 
             recipe.AddIngredient(null, "Infinity");
 
+            recipe.AddIngredient(null, "Sadism", 30);
+
             recipe.AddTile(mod, "CrucibleCosmosSheet");
 
             recipe.SetResult(this);

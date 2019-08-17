@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             aiType = ProjectileID.DemonSickle;
             projectile.hostile = true;
             projectile.friendly = false;
+            projectile.magic = false;
             projectile.timeLeft = 300;
             projectile.tileCollide = false;
             cooldownSlot = 1;
@@ -32,7 +33,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.ShadowFlame, 300);
+            target.AddBuff(mod.BuffType("Shadowflame"), 300);
             target.AddBuff(BuffID.Bleeding, 600);
         }
     }

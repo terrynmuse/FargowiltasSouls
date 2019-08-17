@@ -18,7 +18,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 Increases wing time by 200%, armor penetration by 50, and movement speed by 20%
 Increases max life by 100%, damage by 50%, and damage reduction by 10%
 Increases life regen drastically, increases max number of minions and sentries by 10
-Grants gravity control, fastfall, and immunity to knockback, all Masochist Mode debuffs, and more
+Grants gravity control, fastfall, and immunity to knockback, almost all Masochist Mode debuffs, and more
 Grants autofire to all weapons, modifier protection, and you automatically use mana potions when needed
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks, hearts, and inflict a cocktail of Masochist Mode debuffs
@@ -327,6 +327,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("Guilty")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.buffImmune[mod.BuffType("Infested")] = true;
+            player.buffImmune[mod.BuffType("IvyVenom")] = true;
             player.buffImmune[mod.BuffType("Jammed")] = true;
             player.buffImmune[mod.BuffType("Lethargic")] = true;
             player.buffImmune[mod.BuffType("LightningRod")] = true;
@@ -341,6 +342,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("Purified")] = true;
             player.buffImmune[mod.BuffType("ReverseManaFlow")] = true;
             player.buffImmune[mod.BuffType("Rotting")] = true;
+            player.buffImmune[mod.BuffType("Shadowflame")] = true;
             player.buffImmune[mod.BuffType("SqueakyToy")] = true;
             player.buffImmune[mod.BuffType("Stunned")] = true;
             player.buffImmune[mod.BuffType("Unstable")] = true;
@@ -359,7 +361,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             recipe.AddIngredient(mod.ItemType("ChaliceoftheMoon"));
             recipe.AddIngredient(mod.ItemType("HeartoftheMasochist"));
             recipe.AddIngredient(mod.ItemType("CyclonicFin"));
-            recipe.AddIngredient(mod.ItemType("Sadism"), 30);
+            //recipe.AddIngredient(mod.ItemType("Sadism"), 30);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
 

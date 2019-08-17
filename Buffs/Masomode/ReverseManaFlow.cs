@@ -23,7 +23,9 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             //mana cost also damages
             player.GetModPlayer<FargoPlayer>(mod).ReverseManaFlow = true;
-            player.magicDamage -= 0.9f;
+            player.magicDamage -= 1.5f;
+            if (player.HeldItem.magic)
+                player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= 0.5f;
         }
     }
 }

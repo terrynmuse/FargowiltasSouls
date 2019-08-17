@@ -32,6 +32,7 @@ You erupt into Shadowflame tentacles when injured");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[BuffID.ShadowFlame] = true;
+            player.buffImmune[mod.BuffType("Shadowflame")] = true;
             player.GetModPlayer<FargoPlayer>().WretchedPouch = true;
         }
     }
