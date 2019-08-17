@@ -25,6 +25,7 @@ mutant added to boss checklist
 soul of eternity requires 30 sadism
 red devil no longer hordes in pre hm
 red devil cannot spawn pre-hm during wof fight
+added lunatic sigil
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

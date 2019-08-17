@@ -2016,6 +2016,13 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CultistBoss:
                         cultBoss = npc.whoAmI;
 
+                        if (!masoBool[0])
+                        {
+                            masoBool[0] = true;
+                            if (Main.netMode != 1 && !NPC.downedAncientCultist)
+                                Item.NewItem(npc.position, npc.Size, mod.ItemType("LunaticSigil"));
+                        }
+
                         Timer++;
                         if (Timer >= 1200)
                         {
