@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Items.Misc
 		{
 			DisplayName.SetDefault("Mutant's Curse");
             Tooltip.SetDefault("'At least this way, you don't need that doll'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "突变体的诅咒");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'至少不需要用娃娃了'");
 		}
 
 		public override void SetDefaults()
