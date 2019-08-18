@@ -14,6 +14,8 @@ namespace FargowiltasSouls.Buffs.MutantBoss
         {
             DisplayName.SetDefault("Mutant Fang");
             Description.SetDefault("You cannot heal at all");
+            DisplayName.AddTranslation(GameCulture.Chinese, "突变毒牙");
+            Description.AddTranslation(GameCulture.Chinese, "无法恢复生命");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             longerExpertDebuff = false;
