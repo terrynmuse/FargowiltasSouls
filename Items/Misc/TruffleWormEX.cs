@@ -35,13 +35,13 @@ namespace FargowiltasSouls.Items.Misc
 
         /*public override bool CanUseItem(Player player)
         {
-            return FargoWorld.MasochistMode;
+            return FargoSoulsWorld.MasochistMode;
         }
 
         public override bool UseItem(Player player)
         {
-            FargoWorld.FishronEX = !FargoWorld.FishronEX;
-            string text = FargoWorld.FishronEX ? "The ocean stirs..." : "The ocean settles.";
+            FargoSoulsWorld.FishronEX = !FargoSoulsWorld.FishronEX;
+            string text = FargoSoulsWorld.FishronEX ? "The ocean stirs..." : "The ocean settles.";
             Color color = new Color(0, 100, 200);
             if (Main.netMode == 0)
             {

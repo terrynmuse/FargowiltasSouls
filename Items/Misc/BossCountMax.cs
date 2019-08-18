@@ -40,22 +40,22 @@ You probably shouldn't be reading this...");
         {
             if (player.itemAnimation > 0 && player.itemTime == 0)
             {
-                FargoWorld.SlimeCount = FargoWorld.MaxCountPreHM;
-                FargoWorld.EyeCount = FargoWorld.MaxCountPreHM;
-                FargoWorld.EaterCount = FargoWorld.MaxCountPreHM;
-                FargoWorld.BrainCount = FargoWorld.MaxCountPreHM;
-                FargoWorld.BeeCount = FargoWorld.MaxCountPreHM;
-                FargoWorld.SkeletronCount = FargoWorld.MaxCountPreHM;
-                FargoWorld.WallCount = FargoWorld.MaxCountPreHM;
+                FargoSoulsWorld.SlimeCount = FargoSoulsWorld.MaxCountPreHM;
+                FargoSoulsWorld.EyeCount = FargoSoulsWorld.MaxCountPreHM;
+                FargoSoulsWorld.EaterCount = FargoSoulsWorld.MaxCountPreHM;
+                FargoSoulsWorld.BrainCount = FargoSoulsWorld.MaxCountPreHM;
+                FargoSoulsWorld.BeeCount = FargoSoulsWorld.MaxCountPreHM;
+                FargoSoulsWorld.SkeletronCount = FargoSoulsWorld.MaxCountPreHM;
+                FargoSoulsWorld.WallCount = FargoSoulsWorld.MaxCountPreHM;
 
-                FargoWorld.TwinsCount = FargoWorld.MaxCountHM;
-                FargoWorld.DestroyerCount = FargoWorld.MaxCountHM;
-                FargoWorld.PrimeCount = FargoWorld.MaxCountHM;
-                FargoWorld.PlanteraCount = FargoWorld.MaxCountHM;
-                FargoWorld.GolemCount = FargoWorld.MaxCountHM;
-                FargoWorld.FishronCount = FargoWorld.MaxCountHM;
-                FargoWorld.CultistCount = FargoWorld.MaxCountHM;
-                FargoWorld.MoonlordCount = FargoWorld.MaxCountHM;
+                FargoSoulsWorld.TwinsCount = FargoSoulsWorld.MaxCountHM;
+                FargoSoulsWorld.DestroyerCount = FargoSoulsWorld.MaxCountHM;
+                FargoSoulsWorld.PrimeCount = FargoSoulsWorld.MaxCountHM;
+                FargoSoulsWorld.PlanteraCount = FargoSoulsWorld.MaxCountHM;
+                FargoSoulsWorld.GolemCount = FargoSoulsWorld.MaxCountHM;
+                FargoSoulsWorld.FishronCount = FargoSoulsWorld.MaxCountHM;
+                FargoSoulsWorld.CultistCount = FargoSoulsWorld.MaxCountHM;
+                FargoSoulsWorld.MoonlordCount = FargoSoulsWorld.MaxCountHM;
                 Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
             }
             return true;

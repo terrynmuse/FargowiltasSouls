@@ -42,8 +42,8 @@ namespace FargowiltasSouls.NPCs
             npc.lifeMax = (int)(npc.lifeMax * 0.7 * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.9);
 
-            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.BeeCount * .025));
-            npc.damage = (int)(npc.damage * (1 + FargoWorld.BeeCount * .0125));
+            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.BeeCount * .025));
+            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.BeeCount * .0125));
         }
 
         public override void AI()

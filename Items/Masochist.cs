@@ -43,9 +43,9 @@ namespace FargowiltasSouls.Items
 
             if (!bossExists)
             {
-                FargoWorld.MasochistMode = !FargoWorld.MasochistMode;
+                FargoSoulsWorld.MasochistMode = !FargoSoulsWorld.MasochistMode;
                 Main.expertMode = true;
-                string text = FargoWorld.MasochistMode ? "Masochist Mode initiated!" : "Masochist Mode deactivated!";
+                string text = FargoSoulsWorld.MasochistMode ? "Masochist Mode initiated!" : "Masochist Mode deactivated!";
                 if (Main.netMode == 0)
                 {
                     Main.NewText(text, 175, 75, 255);

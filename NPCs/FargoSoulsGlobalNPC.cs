@@ -102,7 +102,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void SetDefaults(NPC npc)
         {
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 ResetRegenTimer(npc);
 
@@ -450,43 +450,43 @@ namespace FargowiltasSouls.NPCs
                 {
                     case NPCID.EyeofCthulhu:
                     case NPCID.ServantofCthulhu:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.EyeCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.EyeCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.EyeCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.EyeCount * .0125));
                         break;
 
                     case NPCID.KingSlime:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.SlimeCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.SlimeCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.SlimeCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.SlimeCount * .0125));
                         break;
                     case NPCID.BlueSlime:
                     case NPCID.SlimeSpiked:
                         if (BossIsAlive(ref slimeBoss, NPCID.KingSlime))
                         {
-                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.SlimeCount * .025));
-                            npc.damage = (int)(npc.damage * (1 + FargoWorld.SlimeCount * .0125));
+                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.SlimeCount * .025));
+                            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.SlimeCount * .0125));
                         }
                         break;
 
                     case NPCID.EaterofWorldsHead:
                     case NPCID.EaterofWorldsBody:
                     case NPCID.EaterofWorldsTail:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.EaterCount* .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.EaterCount* .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.EaterCount* .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.EaterCount* .0125));
                         break;
                     case NPCID.VileSpit:
                         if (BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
-                            npc.damage = (int)(npc.damage * (1 + FargoWorld.EaterCount* .0125));
+                            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.EaterCount* .0125));
                         break;
 
                     case NPCID.BrainofCthulhu:
                     case NPCID.Creeper:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.BrainCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.BrainCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.BrainCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.BrainCount * .0125));
                         break;
 
                     case NPCID.QueenBee:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.BeeCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.BeeCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.BeeCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.BeeCount * .0125));
                         break;
                     case NPCID.Hornet:
                     case NPCID.HornetFatty:
@@ -498,21 +498,21 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.BeeSmall:
                         if (BossIsAlive(ref beeBoss, NPCID.QueenBee))
                         {
-                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.BeeCount * .025));
-                            npc.damage = (int)(npc.damage * (1 + FargoWorld.BeeCount * .0125));
+                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.BeeCount * .025));
+                            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.BeeCount * .0125));
                         }
                         break;
 
                     case NPCID.SkeletronHead:
                     case NPCID.SkeletronHand:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.SkeletronCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.SkeletronCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.SkeletronCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.SkeletronCount * .0125));
                         break;
 
                     case NPCID.WallofFlesh:
                     case NPCID.WallofFleshEye:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.WallCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.WallCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.WallCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.WallCount * .0125));
                         break;
                     case NPCID.TheHungry:
                     case NPCID.TheHungryII:
@@ -521,8 +521,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.LeechTail:
                         if (BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
                         {
-                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.WallCount * .025));
-                            npc.damage = (int)(npc.damage * (1 + FargoWorld.WallCount * .0125));
+                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.WallCount * .025));
+                            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.WallCount * .0125));
                         }
                         break;
 
@@ -530,8 +530,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.TheDestroyerBody:
                     case NPCID.TheDestroyerTail:
                     case NPCID.Probe:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.DestroyerCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.DestroyerCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.DestroyerCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.DestroyerCount * .0125));
                         break;
 
                     case NPCID.SkeletronPrime:
@@ -539,21 +539,21 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PrimeLaser:
                     case NPCID.PrimeSaw:
                     case NPCID.PrimeVice:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PrimeCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PrimeCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.PrimeCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.PrimeCount * .0125));
                         break;
 
                     case NPCID.Retinazer:
                     case NPCID.Spazmatism:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.TwinsCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.TwinsCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.TwinsCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.TwinsCount * .0125));
                         break;
 
                     case NPCID.Plantera:
                     case NPCID.PlanterasHook:
                     case NPCID.PlanterasTentacle:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.PlanteraCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.PlanteraCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.PlanteraCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.PlanteraCount * .0125));
                         break;
 
                     case NPCID.Golem:
@@ -561,8 +561,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemFistRight:
                     case NPCID.GolemHead:
                     case NPCID.GolemHeadFree:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.GolemCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.GolemCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.GolemCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.GolemCount * .0125));
                         break;
 
                     case NPCID.CultistBoss:
@@ -575,36 +575,36 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CultistDragonBody3:
                     case NPCID.CultistDragonBody4:
                     case NPCID.CultistDragonTail:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.CultistCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.CultistCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.CultistCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.CultistCount * .0125));
                         break;
 
                     case NPCID.AncientLight:
                     case NPCID.SolarGoop:
                         if (BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
-                            npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
+                            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                         else if (BossIsAlive(ref cultBoss, NPCID.CultistBoss))
-                            npc.damage = (int)(npc.damage * (1 + FargoWorld.CultistCount * .0125));
+                            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.CultistCount * .0125));
                         break;
 
                     case NPCID.DukeFishron:
-                        if (FargoWorld.downedFishronEX || !spawnFishronEX)
+                        if (FargoSoulsWorld.downedFishronEX || !spawnFishronEX)
                         {
-                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.FishronCount * .025));
-                            npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
+                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.FishronCount * .025));
+                            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
                         }
                         break;
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
-                        if (FargoWorld.downedFishronEX || !BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
+                        if (FargoSoulsWorld.downedFishronEX || !BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
-                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.FishronCount * .025));
-                            npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
+                            npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.FishronCount * .025));
+                            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
                         }
                         break;
                     case NPCID.DetonatingBubble:
-                        if (FargoWorld.downedFishronEX || !BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
-                            npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
+                        if (FargoSoulsWorld.downedFishronEX || !BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
+                            npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
                         break;
 
                     case NPCID.MoonLordCore:
@@ -612,8 +612,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHead:
                     case NPCID.MoonLordFreeEye:
                     case NPCID.MoonLordLeechBlob:
-                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoWorld.MoonlordCount * .025));
-                        npc.damage = (int)(npc.damage * (1 + FargoWorld.MoonlordCount * .0125));
+                        npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.MoonlordCount * .025));
+                        npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                         break;
 
                     default:
@@ -653,7 +653,7 @@ namespace FargowiltasSouls.NPCs
             if (npc.boss)
                 boss = npc.whoAmI;
 
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 if (RegenTimer > 0)
                     RegenTimer--;
@@ -1731,7 +1731,7 @@ namespace FargowiltasSouls.NPCs
                                                 Speed *= 12f;
                                                 Damage = 25;
                                             }
-                                            Damage = (int)(Damage * (1 + FargoWorld.TwinsCount * .0125));
+                                            Damage = (int)(Damage * (1 + FargoSoulsWorld.TwinsCount * .0125));
                                             Speed.X += Main.rand.Next(-40, 41) * 0.05f;
                                             Speed.Y += Main.rand.Next(-40, 41) * 0.05f;
                                             Projectile.NewProjectile(npc.Center + Speed * 4f, Speed, ProjectileID.CursedFlameHostile, Damage, 0f, Main.myPlayer);
@@ -3187,7 +3187,7 @@ namespace FargowiltasSouls.NPCs
                             masoBool[3] = true;
                             if (Main.netMode != 1)
                                 Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("LunarRitual"),
-                                    (int)(100.0 * (1.0 + FargoWorld.MoonlordCount * .0125)), 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                    (int)(100.0 * (1.0 + FargoSoulsWorld.MoonlordCount * .0125)), 0f, Main.myPlayer, 0f, npc.whoAmI);
                         }
 
                         if (!masoBool[0])
@@ -3255,7 +3255,7 @@ namespace FargowiltasSouls.NPCs
                                                         Vector2 speed = Main.player[npc.target].Center - bodyPart.Center;
                                                         speed.Normalize();
                                                         speed *= 6f;
-                                                        int damage = (int)(25 * (1 + FargoWorld.MoonlordCount * .0125));
+                                                        int damage = (int)(25 * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                                                         for (int j = 0; j < 4; j++)
                                                         {
                                                             Projectile.NewProjectile(bodyPart.Center, speed,
@@ -3288,7 +3288,7 @@ namespace FargowiltasSouls.NPCs
                                                 Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, 578, 0, 1f, Main.myPlayer);
                                             }
                                             Projectile.NewProjectile(npc.Center, Vector2.Zero, ProjectileID.CultistBossLightningOrb,
-                                                (int)(30 * (1 + FargoWorld.MoonlordCount * .0125)), 0f, Main.myPlayer);
+                                                (int)(30 * (1 + FargoSoulsWorld.MoonlordCount * .0125)), 0f, Main.myPlayer);
                                             break;
                                         case 2: //magic
                                             for (int i = 0; i < 3; i++)
@@ -3302,7 +3302,7 @@ namespace FargowiltasSouls.NPCs
                                                     Vector2 distance = Main.player[npc.target].Center - bodyPart.Center;
                                                     distance.Normalize();
                                                     distance *= 6f;
-                                                    int damage = (int)(35 * (1 + FargoWorld.MoonlordCount * .0125));
+                                                    int damage = (int)(35 * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                                                     for (int j = -1; j <= 1; j += 2) //aim above and below player
                                                     {
                                                         Vector2 speed = distance.RotatedBy(Math.PI / 24 * j);
@@ -4979,7 +4979,7 @@ namespace FargowiltasSouls.NPCs
                                             if (difference < 0f)
                                                 rotationDirection *= -1f;
                                             Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[0]);
-                                            int damage = (int)(60 * (1 + FargoWorld.MoonlordCount * .0125));
+                                            int damage = (int)(60 * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                                             if (Main.netMode != 1)
                                                 Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayML"),
                                                     damage, 0f, Main.myPlayer, rotationDirection, npc.whoAmI);
@@ -6288,7 +6288,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
         {
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 switch (npc.type)
                 {
@@ -6380,6 +6380,13 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("FlamesoftheUniverse"), Main.rand.Next(30, 120));
                         break;
 
+                    case NPCID.DemonEye:
+                    case NPCID.DemonEyeOwl:
+                    case NPCID.DemonEyeSpaceship:
+                        if ((Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5) && !target.HasBuff(BuffID.Stoned))
+                            target.AddBuff(BuffID.Obstructed, Main.rand.Next(60));
+                        break;
+
                     case NPCID.EaterofSouls:
                     case NPCID.Crimera:
                         target.AddBuff(BuffID.Weak, Main.rand.Next(300, 1800));
@@ -6387,9 +6394,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.EyeofCthulhu:
                     case NPCID.WanderingEye:
-                    case NPCID.DemonEye:
-                    case NPCID.DemonEyeOwl:
-                    case NPCID.DemonEyeSpaceship:
                         target.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(60, 600));
                         break;
 
@@ -7436,7 +7440,7 @@ namespace FargowiltasSouls.NPCs
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             int dmg;
 
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 if (!npc.dontTakeDamage && !npc.friendly && RegenTimer <= 0)
                 {
@@ -7630,7 +7634,7 @@ namespace FargowiltasSouls.NPCs
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 spawnRate = (int)(spawnRate * 0.8);
                 maxSpawns = (int)(maxSpawns * 1.5f);
@@ -7719,7 +7723,7 @@ namespace FargowiltasSouls.NPCs
             }
 
             //MASOCHIST MODE
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 //all the pre hardmode
                 if (!Main.hardMode)
@@ -8242,7 +8246,7 @@ namespace FargowiltasSouls.NPCs
 
             firstLoot = false;
 
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 switch (npc.type)
                 {
@@ -8612,7 +8616,7 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 switch (npc.type)
                 {
@@ -8815,13 +8819,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        if (FargoWorld.EyeCount < FargoWorld.MaxCountPreHM)
-                            FargoWorld.EyeCount++;
+                        if (FargoSoulsWorld.EyeCount < FargoSoulsWorld.MaxCountPreHM)
+                            FargoSoulsWorld.EyeCount++;
                         break;
 
                     case NPCID.KingSlime:
-                        if (FargoWorld.SlimeCount < FargoWorld.MaxCountPreHM)
-                            FargoWorld.SlimeCount++;
+                        if (FargoSoulsWorld.SlimeCount < FargoSoulsWorld.MaxCountPreHM)
+                            FargoSoulsWorld.SlimeCount++;
                         break;
 
                     case NPCID.EaterofWorldsHead:
@@ -8846,13 +8850,13 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
-                        if (FargoWorld.EaterCount < FargoWorld.MaxCountPreHM)
-                            FargoWorld.EaterCount++;
+                        if (FargoSoulsWorld.EaterCount < FargoSoulsWorld.MaxCountPreHM)
+                            FargoSoulsWorld.EaterCount++;
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        if (FargoWorld.BrainCount < FargoWorld.MaxCountPreHM)
-                            FargoWorld.BrainCount++;
+                        if (FargoSoulsWorld.BrainCount < FargoSoulsWorld.MaxCountPreHM)
+                            FargoSoulsWorld.BrainCount++;
                         break;
 
                     case NPCID.Creeper:
@@ -8861,8 +8865,8 @@ namespace FargowiltasSouls.NPCs
                         return false;
 
                     case NPCID.QueenBee:
-                        if (FargoWorld.BeeCount < FargoWorld.MaxCountPreHM)
-                            FargoWorld.BeeCount++;
+                        if (FargoSoulsWorld.BeeCount < FargoSoulsWorld.MaxCountPreHM)
+                            FargoSoulsWorld.BeeCount++;
                         break;
 
                     case NPCID.SkeletronHead:
@@ -8878,20 +8882,20 @@ namespace FargowiltasSouls.NPCs
                             npc.netUpdate = true;
                             return false;
                         }
-                        else if (FargoWorld.SkeletronCount < FargoWorld.MaxCountPreHM)
+                        else if (FargoSoulsWorld.SkeletronCount < FargoSoulsWorld.MaxCountPreHM)
                         {
-                            FargoWorld.SkeletronCount++;
+                            FargoSoulsWorld.SkeletronCount++;
                         }
                         break;
 
                     case NPCID.WallofFlesh:
-                        if (FargoWorld.WallCount < FargoWorld.MaxCountPreHM)
-                            FargoWorld.WallCount++;
+                        if (FargoSoulsWorld.WallCount < FargoSoulsWorld.MaxCountPreHM)
+                            FargoSoulsWorld.WallCount++;
                         break;
 
                     case NPCID.TheDestroyer:
-                        if (FargoWorld.DestroyerCount < FargoWorld.MaxCountHM)
-                            FargoWorld.DestroyerCount++;
+                        if (FargoSoulsWorld.DestroyerCount < FargoSoulsWorld.MaxCountHM)
+                            FargoSoulsWorld.DestroyerCount++;
                         break;
 
                     case NPCID.SkeletronPrime:
@@ -8909,30 +8913,30 @@ namespace FargowiltasSouls.NPCs
                             npc.netUpdate = true;
                             return false;
                         }
-                        else if (FargoWorld.PrimeCount < FargoWorld.MaxCountHM)
+                        else if (FargoSoulsWorld.PrimeCount < FargoSoulsWorld.MaxCountHM)
                         {
-                            FargoWorld.PrimeCount++;
+                            FargoSoulsWorld.PrimeCount++;
                         }
                         break;
 
                     case NPCID.Retinazer:
-                        if (FargoWorld.TwinsCount < FargoWorld.MaxCountHM && !NPC.AnyNPCs(NPCID.Spazmatism))
-                            FargoWorld.TwinsCount++;
+                        if (FargoSoulsWorld.TwinsCount < FargoSoulsWorld.MaxCountHM && !NPC.AnyNPCs(NPCID.Spazmatism))
+                            FargoSoulsWorld.TwinsCount++;
                         break;
 
                     case NPCID.Spazmatism:
-                        if (FargoWorld.TwinsCount < FargoWorld.MaxCountHM && !NPC.AnyNPCs(NPCID.Retinazer))
-                            FargoWorld.TwinsCount++;
+                        if (FargoSoulsWorld.TwinsCount < FargoSoulsWorld.MaxCountHM && !NPC.AnyNPCs(NPCID.Retinazer))
+                            FargoSoulsWorld.TwinsCount++;
                         break;
 
                     case NPCID.Plantera:
-                        if (FargoWorld.PlanteraCount < FargoWorld.MaxCountHM)
-                            FargoWorld.PlanteraCount++;
+                        if (FargoSoulsWorld.PlanteraCount < FargoSoulsWorld.MaxCountHM)
+                            FargoSoulsWorld.PlanteraCount++;
                         break;
 
                     case NPCID.Golem:
-                        if (FargoWorld.GolemCount < FargoWorld.MaxCountHM)
-                            FargoWorld.GolemCount++;
+                        if (FargoSoulsWorld.GolemCount < FargoSoulsWorld.MaxCountHM)
+                            FargoSoulsWorld.GolemCount++;
                         break;
 
                     case NPCID.DukeFishron:
@@ -9000,12 +9004,12 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
-                            if (FargoWorld.FishronCount < FargoWorld.MaxCountHM)
-                                FargoWorld.FishronCount++;
+                            if (FargoSoulsWorld.FishronCount < FargoSoulsWorld.MaxCountHM)
+                                FargoSoulsWorld.FishronCount++;
 
                             if (fishBossEX == npc.whoAmI) //drop loot here (avoids the vanilla "fishron defeated" message)
                             {
-                                FargoWorld.downedFishronEX = true;
+                                FargoSoulsWorld.downedFishronEX = true;
                                 if (Main.netMode == 0)
                                     Main.NewText("Duke Fishron EX has been defeated!", 50, 100, 255);
                                 else if (Main.netMode == 2)
@@ -9028,13 +9032,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.CultistBoss:
-                        if (FargoWorld.CultistCount < FargoWorld.MaxCountHM)
-                            FargoWorld.CultistCount++;
+                        if (FargoSoulsWorld.CultistCount < FargoSoulsWorld.MaxCountHM)
+                            FargoSoulsWorld.CultistCount++;
                         break;
 
                     case NPCID.MoonLordCore:
-                        if (FargoWorld.MoonlordCount < FargoWorld.MaxCountHM)
-                            FargoWorld.MoonlordCount++;
+                        if (FargoSoulsWorld.MoonlordCount < FargoSoulsWorld.MaxCountHM)
+                            FargoSoulsWorld.MoonlordCount++;
                         break;
 
                     case NPCID.FlyingSnake:
@@ -9490,7 +9494,7 @@ namespace FargowiltasSouls.NPCs
                 Needles = true;
             }
 
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 switch (npc.type)
                 {
@@ -9728,7 +9732,7 @@ namespace FargowiltasSouls.NPCs
             if (modPlayer.SpiderEnchant && projectile.minion && Main.rand.Next(5) == 0)
                 crit = true;
 
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 switch (npc.type)
                 {
@@ -10044,7 +10048,7 @@ namespace FargowiltasSouls.NPCs
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 if (PaladinsShield)
                     damage /= 2;
@@ -10228,7 +10232,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void GetChat(NPC npc, ref string chat)
         {
-            if (FargoWorld.MasochistMode && Fargowiltas.Instance.FargosLoaded && npc.type == ModLoader.GetMod("Fargowiltas").NPCType("Mutant") && Main.rand.Next(2) == 0)
+            if (FargoSoulsWorld.MasochistMode && Fargowiltas.Instance.FargosLoaded && npc.type == ModLoader.GetMod("Fargowiltas").NPCType("Mutant") && Main.rand.Next(2) == 0)
             {
                 Player p = Main.player[Main.myPlayer];
 
@@ -10266,12 +10270,12 @@ namespace FargowiltasSouls.NPCs
                 if (NPC.downedPlantBoss)
                     dialogue.Add("Trick or treat? Merry Christmas? I don't have anything for you, go ask Pumpking or Ice Queen.");
 
-                if (NPC.downedMoonlord && !FargoWorld.downedFishronEX)
+                if (NPC.downedMoonlord && !FargoSoulsWorld.downedFishronEX)
                     dialogue.Add("When you're ready, go fishing with a Truffle Worm EX. But until then... yeah, keep farming. So what are you buying today?");
 
-                if (FargoWorld.downedMutant)
+                if (FargoSoulsWorld.downedMutant)
                     dialogue.Add("What's that? You want to fight me? ...sure, I guess.");
-                else if (FargoWorld.downedFishronEX)
+                else if (FargoSoulsWorld.downedFishronEX)
                     dialogue.Add("What's that? You want to fight me? ...maybe if I have a reason to.");
 
                 chat = dialogue[Main.rand.Next(dialogue.Count)];

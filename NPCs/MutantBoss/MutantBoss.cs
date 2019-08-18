@@ -651,7 +651,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void NPCLoot()
         {
-            FargoWorld.downedMutant = true;
+            FargoSoulsWorld.downedMutant = true;
             if (Main.netMode == 2)
                 NetMessage.SendData(7); //sync world
             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(10) + 1);

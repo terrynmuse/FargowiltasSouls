@@ -755,7 +755,7 @@ namespace FargowiltasSouls
             
             player.npcTypeNoAggro[0] = true;
 
-            if (FargoWorld.MasochistMode)
+            if (FargoSoulsWorld.MasochistMode)
             {
                 //falling gives you dazed even with protection. wings save you
                 if (player.velocity.Y == 0f && player.wings == 0)
@@ -4403,7 +4403,7 @@ namespace FargowiltasSouls
                         Main.projectile[i].netUpdate = true;
 
                         if (!spawned && Main.projectile[i].wet && Main.projectile[i].velocity.Y == 0f
-                            && FargoWorld.MasochistMode && !NPC.AnyNPCs(NPCID.DukeFishron)) //should spawn boss
+                            && FargoSoulsWorld.MasochistMode && !NPC.AnyNPCs(NPCID.DukeFishron)) //should spawn boss
                         {
                             spawned = true;
                             if (Main.netMode == 0) //singleplayer
@@ -4430,7 +4430,7 @@ namespace FargowiltasSouls
                         }
                     }
                 }
-                /*if (FargoWorld.MasochistMode && bait.owner == Main.myPlayer && !NPC.AnyNPCs(NPCID.DukeFishron))
+                /*if (FargoSoulsWorld.MasochistMode && bait.owner == Main.myPlayer && !NPC.AnyNPCs(NPCID.DukeFishron))
                 {
                     if (Main.netMode != 1)
                     {

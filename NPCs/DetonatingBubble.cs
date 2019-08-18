@@ -40,8 +40,8 @@ namespace FargowiltasSouls.NPCs
         {
             npc.damage = (int)(npc.damage * 0.75);
             npc.lifeMax = 1;
-            if (FargoWorld.downedFishronEX || !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
-                npc.damage = (int)(npc.damage * (1 + FargoWorld.FishronCount * .0125));
+            if (FargoSoulsWorld.downedFishronEX || !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
+                npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
         }
 
         public override void AI()

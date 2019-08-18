@@ -40,21 +40,21 @@ You probably shouldn't be reading this...");
         {
             if (player.itemAnimation > 0 && player.itemTime == 0)
             {
-                FargoWorld.SlimeCount = 0;
-                FargoWorld.EyeCount = 0;
-                FargoWorld.EaterCount = 0;
-                FargoWorld.BrainCount = 0;
-                FargoWorld.BeeCount = 0;
-                FargoWorld.SkeletronCount = 0;
-                FargoWorld.WallCount = 0;
-                FargoWorld.TwinsCount = 0;
-                FargoWorld.DestroyerCount = 0;
-                FargoWorld.PrimeCount = 0;
-                FargoWorld.PlanteraCount = 0;
-                FargoWorld.GolemCount = 0;
-                FargoWorld.FishronCount = 0;
-                FargoWorld.CultistCount = 0;
-                FargoWorld.MoonlordCount = 0;
+                FargoSoulsWorld.SlimeCount = 0;
+                FargoSoulsWorld.EyeCount = 0;
+                FargoSoulsWorld.EaterCount = 0;
+                FargoSoulsWorld.BrainCount = 0;
+                FargoSoulsWorld.BeeCount = 0;
+                FargoSoulsWorld.SkeletronCount = 0;
+                FargoSoulsWorld.WallCount = 0;
+                FargoSoulsWorld.TwinsCount = 0;
+                FargoSoulsWorld.DestroyerCount = 0;
+                FargoSoulsWorld.PrimeCount = 0;
+                FargoSoulsWorld.PlanteraCount = 0;
+                FargoSoulsWorld.GolemCount = 0;
+                FargoSoulsWorld.FishronCount = 0;
+                FargoSoulsWorld.CultistCount = 0;
+                FargoSoulsWorld.MoonlordCount = 0;
                 Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
             }
             return true;
