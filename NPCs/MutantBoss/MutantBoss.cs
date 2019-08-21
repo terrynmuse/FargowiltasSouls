@@ -625,6 +625,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     npc.velocity = Vector2.Zero;
                     if (++npc.ai[1] > 2)
                     {
+                        Main.PlaySound(4, (int)npc.Center.X, (int)npc.Center.Y, 6, 1f, 0.0f);
                         npc.ai[1] = 0;
                         npc.ai[2] += (float)Math.PI / 87f + (float)Math.PI / 23f * npc.ai[3] / 360;
                         if (Main.netMode != 1)
@@ -642,6 +643,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case 18: //spawn illusions for next attack
+                    Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
                     if (Main.netMode != 1)
                     {
                         int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("MutantIllusion"), npc.whoAmI, npc.whoAmI, -1, 1, 60);
