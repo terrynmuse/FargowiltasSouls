@@ -10,9 +10,9 @@ using FargowiltasSouls.Buffs.Masomode;
 
 namespace FargowiltasSouls.Projectiles.MutantBoss
 {
-    public class MutantDeathray1 : ModProjectile
+    public class MutantDeathray2 : ModProjectile
     {
-        private const float maxTime = 60;
+        private const float maxTime = 180;
 
         public override void SetStaticDefaults()
 		{
@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override bool CanDamage()
         {
-            return projectile.scale >= 1;
+            return projectile.scale >= .7f;
         }
 
         public override bool? CanHitNPC(NPC target)
@@ -66,14 +66,14 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 Main.PlaySound(29, (int)projectile.position.X, (int)projectile.position.Y, 104, 1f, 0f);
             }
-            float num801 = 1f;
+            float num801 = .7f;
             projectile.localAI[0] += 1f;
             if (projectile.localAI[0] >= maxTime)
             {
                 projectile.Kill();
                 return;
             }
-            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 4f * num801;
+            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 2.5f * num801;
             if (projectile.scale > num801)
             {
                 projectile.scale = num801;
@@ -96,7 +96,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             float[] array3 = new float[(int)num805];
             //Collision.LaserScan(samplingPoint, projectile.velocity, num806 * projectile.scale, 3000f, array3);
             for (int i = 0; i < array3.Length; i++)
-                array3[i] = 3000f;
+                array3[i] = 4000f;
             float num807 = 0f;
             int num3;
             for (int num808 = 0; num808 < array3.Length; num808 = num3 + 1)

@@ -36,6 +36,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.lavaImmune = true;
             npc.aiStyle = -1;
             npc.netAlways = true;
+            npc.buffImmune[mod.BuffType("Sadism")] = true;
+            npc.buffImmune[mod.BuffType("MutantNibble")] = true;
             npc.buffImmune[mod.BuffType("TimeFrozen")] = true;
             music = MusicID.TheTowers;
         }
@@ -534,6 +536,175 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             npc.ai[3] = 0;
                             npc.localAI[0] = 0;
                         }
+                    }
+                    break;
+
+                case 13: //maneuvering above player while spinning penetrator
+                    if (npc.ai[3] == 0)
+                    {
+                        if (!AliveCheck(player))
+                            break;
+                        npc.ai[3] = 1;
+                        if (Main.netMode != 1)
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearSpin"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI);
+                    }
+                    targetPos = player.Center;
+                    targetPos.Y -= 400f;
+                    speedModifier = 0.7f;
+                    if (npc.Center.X < targetPos.X)
+                    {
+                        npc.velocity.X += speedModifier;
+                        if (npc.velocity.X < 0)
+                            npc.velocity.X += speedModifier;
+                    }
+                    else
+                    {
+                        npc.velocity.X -= speedModifier;
+                        if (npc.velocity.X > 0)
+                            npc.velocity.X -= speedModifier;
+                    }
+                    if (npc.Center.Y < targetPos.Y)
+                    {
+                        npc.velocity.Y += speedModifier;
+                        if (npc.velocity.Y < 0)
+                            npc.velocity.Y += speedModifier * 2;
+                    }
+                    else
+                    {
+                        npc.velocity.Y -= speedModifier;
+                        if (npc.velocity.Y > 0)
+                            npc.velocity.Y -= speedModifier * 2;
+                    }
+                    if (++npc.ai[1] > 240)
+                    {
+                        npc.netUpdate = true;
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[3] = 0;
+                    }
+                    break;
+
+                case 14: //pause and then initiate dash
+                    npc.velocity *= 0.9f;
+                    if (++npc.ai[1] > 30)
+                    {
+                        npc.netUpdate = true;
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        if (++npc.ai[2] > 5)
+                        {
+                            npc.ai[0]++; //go to next attack after dashes
+                            npc.ai[2] = 0;
+                        }
+                        else
+                        {
+                            npc.velocity = npc.DirectionTo(player.Center + player.velocity * 30f) * 30f;
+                            if (Main.netMode != 1)
+                            {
+                                Vector2 spawnPos = npc.Center - Vector2.Normalize(npc.velocity) * 1000f;
+                                Projectile.NewProjectile(spawnPos, Vector2.Normalize(npc.velocity), mod.ProjectileType("MutantDeathray2"), npc.damage / 5, 0f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearDash"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 1f);
+                            }
+                        }
+                    }
+                    break;
+
+                case 15: //while dashing
+                    if (++npc.ai[1] > 30)
+                    {
+                        npc.netUpdate = true;
+                        npc.ai[0]--;
+                        npc.ai[1] = 0;
+                    }
+                    break;
+
+                case 16: //approach for bullet hell
+                    goto case 11;
+
+                case 17: //BOUNDARY OF WAVE AND PARTICLE
+                    npc.velocity = Vector2.Zero;
+                    if (++npc.ai[1] > 2)
+                    {
+                        npc.ai[1] = 0;
+                        npc.ai[2] += (float)Math.PI / 87f + (float)Math.PI / 23f * npc.ai[3] / 360;
+                        if (Main.netMode != 1)
+                            for (int i = 0; i < 4; i++)
+                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 2 * i), mod.ProjectileType("MutantEye"), npc.damage / 5, 0f, Main.myPlayer);
+                    }
+                    if (++npc.ai[3] > 360)
+                    {
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = 0;
+                        npc.ai[3] = 0;
+                        npc.netUpdate = true;
+                    }
+                    break;
+
+                case 18: //spawn illusions for next attack
+                    if (Main.netMode != 1)
+                    {
+                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("MutantIllusion"), npc.whoAmI, npc.whoAmI, -1, 1, 60);
+                        if (n != 200 && Main.netMode == 2)
+                            NetMessage.SendData(23, -1, -1, null, n);
+                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("MutantIllusion"), npc.whoAmI, npc.whoAmI, 1, -1, 240);
+                        if (n != 200 && Main.netMode == 2)
+                            NetMessage.SendData(23, -1, -1, null, n);
+                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("MutantIllusion"), npc.whoAmI, npc.whoAmI, 1, 1, 420);
+                        if (n != 200 && Main.netMode == 2)
+                            NetMessage.SendData(23, -1, -1, null, n);
+                    }
+                    npc.ai[0]++;
+                    break;
+
+                case 19: //QUADRUPLE PILLAR ROAD ROLLER
+                    if (!AliveCheck(player))
+                        break;
+                    targetPos = player.Center;
+                    targetPos.X += 600 * (npc.Center.X < targetPos.X ? -1 : 1);
+                    targetPos.Y += 300;
+                    if (npc.Distance(targetPos) > 50)
+                    {
+                        speedModifier = 0.6f;
+                        if (npc.Center.X < targetPos.X)
+                        {
+                            npc.velocity.X += speedModifier;
+                            if (npc.velocity.X < 0)
+                                npc.velocity.X += speedModifier * 2;
+                        }
+                        else
+                        {
+                            npc.velocity.X -= speedModifier;
+                            if (npc.velocity.X > 0)
+                                npc.velocity.X -= speedModifier * 2;
+                        }
+                        if (npc.Center.Y < targetPos.Y)
+                        {
+                            npc.velocity.Y += speedModifier;
+                            if (npc.velocity.Y < 0)
+                                npc.velocity.Y += speedModifier * 2;
+                        }
+                        else
+                        {
+                            npc.velocity.Y -= speedModifier;
+                            if (npc.velocity.Y > 0)
+                                npc.velocity.Y -= speedModifier * 2;
+                        }
+                        if (Math.Abs(npc.velocity.X) > 24)
+                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
+                        if (Math.Abs(npc.velocity.Y) > 24)
+                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                    }
+                    if (++npc.ai[1] > 840)
+                    {
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.netUpdate = true;
+                    }
+                    else if (npc.ai[1] == 600)
+                    {
+                        if (Main.netMode != 1)
+                            Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10, mod.ProjectileType("MutantPillar"), npc.damage / 4, 0, Main.myPlayer, 3, npc.whoAmI);
                     }
                     break;
 

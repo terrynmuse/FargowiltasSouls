@@ -53,7 +53,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 projectile.rotation = mutant.velocity.ToRotation() + MathHelper.ToRadians(135f);
                 projectile.Center = mutant.Center + mutant.velocity;
-                if (--projectile.localAI[0] < 0)
+                if (projectile.ai[1] == 0f && --projectile.localAI[0] < 0)
                 {
                     projectile.localAI[0] = 2;
                     if (Main.netMode != 1)
