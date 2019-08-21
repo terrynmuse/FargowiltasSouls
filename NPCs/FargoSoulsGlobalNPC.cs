@@ -4592,7 +4592,6 @@ namespace FargowiltasSouls.NPCs
                         brainBoss = npc.whoAmI;
                         if (!npc.dontTakeDamage) //vulnerable
                         {
-                            npc.position += npc.velocity / 4f; //faster
                             if (npc.buffType[0] != 0) //constant debuff cleanse
                             {
                                 npc.buffImmune[npc.buffType[0]] = true;
@@ -4612,6 +4611,7 @@ namespace FargowiltasSouls.NPCs
                                     n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, 1, 1);
                                     if (n != 200 && Main.netMode == 2)
                                         NetMessage.SendData(23, -1, -1, null, n);
+                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainClone"), npc.whoAmI, npc.whoAmI);
                                 }
                             }
                         }
@@ -4920,9 +4920,9 @@ namespace FargowiltasSouls.NPCs
                                 Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FuseBomb"), npc.damage / 4, 0f, Main.myPlayer);
                         }
                         masoBool[0] = npc.ai[0] != 0f;
-                        if (npc.life < npc.lifeMax / 2) //fully heal when below half health
+                        if (npc.life < npc.lifeMax / 2 && NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                         {
-                            npc.life = npc.lifeMax;
+                            npc.life = npc.lifeMax; //fully heal when below half health and golem still alive
                             Timer = 75; //immediately display heal
                         }
                         npc.life += 167;
