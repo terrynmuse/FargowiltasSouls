@@ -27,58 +27,75 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             String tooltip =
 @"'Mortal or Immortal, all things acknowledge your claim to divinity'
-250% increased damage and attack speed, 100% increased shoot speed and knockback, Increases armor penetration by 50, Crits deal 10x damage, Crit chance is set to 50%
-Crit to increase it by 10%, At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense, This stacks up to 200,000 times until you get hit
-All attacks inflict Flames of the Universe, Sadism, and Midas, You never use ammo, mana, or consumables
-Increases your maximum mana to 999, minions by 30, sentries by 20, 500% increased HP, 50% damage reduction, drastically increased life regeneration
-Grants immunity to knockback and most debuffs, Allows Supersonic running and infinite flight, Increases fishing skill substantially, All fishing rods will have 10 extra lures
-Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed doubled, Shine, Spelunker, Hunter, Dangersense, and Builder Mode effects
-Summons icicles, a leaf crystal, hallowed sword and shield, beetles, several pets, and all Masochist Mode bosses to your side
-Double tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
-Right Click to Guard, Gold Key encases you in gold, Freeze Key freezes time for 5 seconds, minions spew scythes
-Solar shield allows you to dash, Dash into any walls, to teleport through them, Throw a smoke bomb to teleport to it and gain the First Strike Buff
+Drastically increases life regeneration, increases your maximum mana to 999, minions by 30, sentries by 20, HP by 500%, damage reduction by 50%
+250% increased damage and attack speed; 100% increased shoot speed and knockback; Increases armor penetration by 50; Crits deal 10x damage and Crit chance is set to 50%
+Crit to increase it by 10%, At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense; This stacks up to 200,000 times until you get hit
+All attacks inflict Flames of the Universe, Sadism, Midas and reduce enemy knockback immunity
+Summons icicles, a leaf crystal, hallowed sword and shield, beetles, several pets, orichalcum fireballs and all Masochist Mode bosses to your side
 Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, snowballs, spears, or buff boosters
-Attacks cause increased life regen, shadow dodge, Flameburst shots, meteor showers, and reduced enemy knockback immunity
-Projectiles may split or shatter, item and projectile size increased, attract items from further away
-Nearby enemies are ignited, You have a trail of fire and rainbows, Getting inflicts Super Bleeding, releases a spore explosion and reflects damage
+Attacks cause increased life regen, shadow dodge, Flameburst shots and meteor showers
+Projectiles may split or shatter, item and projectile size increased, attacks create additional attacks and spawn hearts
+You leave a trail of fire and rainbows; Nearby enemies are ignited and minions occasionally spew scythes 
+Critters have increased defense and their souls will aid you; Enemies explode into needles; Greatly enhances all DD2 sentries
+Double-tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Right Click to Guard; Press the Gold Key to encase yourself in gold; Press the Freeze Key to freeze time for 5 seconds
+Solar shield allows you to dash, dashing into solid blocks teleports you through them; Throw a smoke bomb to teleport to it and gain the first strike buff
+Getting hit reflects damage, releases a spore explosion, inflicts super bleeding, may squeak and causes you to erupt into various things when injured
 Grants Crimson regen, immunity to fire, fall damage, and lava, doubled herb collection, 50% chance for Mega Bees, 15% chance for minion crits, 20% chance for bonus loot
-Critters have increased defense and their souls will aid you, Enemies explode into needles, Grappling hooks are enhanced, Greatly enhances all DD2 sentries
-Summon an impenatrable ring of death around you and you reflect all projectiles, When you die, you explode and revive with full HP
-Grants autofire, modifier protection, gravity control, fastfall, and immunity to knockback, all Masochist Mode debuffs, and more
-Empowers Cute Fishron, makes skeletons less hostile outside the Dungeon, Your attacks create additional attacks, and hearts
-You respawn 10x as fast, and erupt into various attacks when injured, Prevents boss spawns, increases spawn rate, and attacks may squeak
+Grants immunity to knockback and most debuffs; Allows Supersonic running and infinite flight; Increases fishing skill substantially and all fishing rods will have 10 extra lures
+You respawn 10x as fast; Prevents boss spawns, increases spawn rates, reduces skeletons hostility outside of the dungeon and empowers Cute Fishron
+Grants autofire, modifier protection, gravity control, fast fall, and immunity to knockback, all Masochist Mode debuffs, enhances grappling hooks and more
+Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed doubled
+Summons an impenatrable ring of death around you and you reflect all projectiles; When you die, you explode and revive with full HP
 Effects of the Fire Gauntlet, Yoyo Bag, Sniper Scope, Celestial Cuffs, Mana Flower, Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
 Effects of the Spore Sac, Paladin's Shield, Frozen Turtle Shell, Arctic Diving Gear, Frog Legs, Flying Carpet, Lava Waders, and Angler Tackle Bag
-Effects of Paint Sprayer, Presserator, Cell Phone, Gravity Globe, Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone";
+Effects of Paint Sprayer, Presserator, Cell Phone, Gravity Globe, Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone
+Effects of Shine, Spelunker, Hunter and Dangersense potions; Effects of Builder Mode, Infinity Relic and you attract items from further away";
 
             String tooltip_ch =
 @"'不论凡人或不朽,都承认你的神性'
-增加200%所有伤害和攻击速度,增加100%射击速度
-暴击造成10倍伤害
-暴击率设为50%,每次暴击提高10%
-达到100%时所有攻击附带10%的生命偷取,增加10%伤害,增加10防御力
-可叠加200,000次,直到被攻击
-不消耗弹药,法力和消耗品
-最大法力值增至999,+20最大召唤栏,+10最大哨兵栏
-增加400%最大生命值,40%伤害减免,15生命回复
-免疫击退和诸多Debuff
-召唤不可阻挡的死亡之环环绕在周围
-反射所有抛射物
-死亡时,爆炸,复活并且回满生命
-重生速度x10倍
-拥有所有材料魂的效果";
+大幅增加生命回复, 最大法力值增至999 ,+30最大召唤栏, +20最大哨兵栏, 增加500%最大生命值 , 50%伤害减免
+增加250%所有类型伤害和攻击速度; 增加100%射击速度与击退; 增加50点护甲穿透; 暴击造成10倍伤害, 暴击率设为50%
+每次暴击提高10%, 达到100%时所有攻击附带10%的生命偷取, 增加10%伤害, 增加10防御力; 可叠加200,000次, 直至被攻击
+所有攻击造成宇宙之火, 施虐狂, 点金术效果, 并削减敌人的击退免疫
+召唤冰柱, 叶绿水晶, 神圣剑盾，甲虫, 数个宠物, 山铜火球和所有受虐模式的Boss到你身边
+攻击概率产生闪电, 花瓣, 幽灵球, 地牢守卫者, 雪球, 长矛或者增益
+攻击造成生命回复增加, 暗影闪避, 焰爆射击和流星雨
+抛射物可能会分裂或散开, 物品和抛射物尺寸增加, 攻击造成额外攻击并生成心
+身后留下火焰与彩虹路径; 点燃附近敌人, 召唤物偶尔发射镰刀
+大幅增加动物防御力, 它们的灵魂会在死后帮助你; 敌人会爆炸成刺; 极大增强所有地牢守卫者2(联动的塔防内容)的哨兵
+双击'下'键生成一个哨兵, 召唤远古风暴, 切换潜行, 生成一个传送门, 指挥你的替身
+右键格挡; 按下金身热键, 使自己被包裹在一个黄金壳中; 按下时间冻结热键时停5秒
+日耀护盾允许你双击冲刺, 遇到墙壁自动穿透; 扔烟雾弹进行传送, 获得先发制人Buff
+受击反弹伤害, 释放包孢子爆炸, 使敌人大出血, 敌人攻击概率无效化, 受伤时爆发各种乱七八糟的玩意
+获得血腥套的生命回复效果, 免疫火焰, 坠落伤害和岩浆, 药草收获翻倍, 蜜蜂50%概率变为巨型蜜蜂, 召唤物获得15%暴击率, 20%概率获得额外掉落
+免疫击退和诸多Debuff; 允许超音速奔跑和无限飞行; 大幅提升钓鱼能力, 所有钓竿获得额外10个鱼饵
+重生速度x10倍；阻止Boss自然生成, 增加刷怪速率, 减少地牢外骷髅的敌意, 增强超可爱猪鲨
+武器自动连发, 获得词缀保护, 能够控制重力, 增加掉落速度, 免疫击退和所有受虐模式的Debuff, 增强抓钩以及更多其他效果
+增加50%放置物块及墙壁的速度, 近乎无限的放置和采掘距离, 采掘速度加倍
+召唤无可阻挡的死亡之环环绕周围, 反弹所有抛射物; 死亡时爆炸并满血复活
+拥有烈火手套, 悠悠球袋, 狙击镜, 星体手铐, 魔力花, 混乱之脑, 星辰项链, 甜心项链和蜜蜂斗篷的效果
+拥有孢子囊, 圣骑士护盾, 冰霜龟壳, 北极潜水装备, 蛙腿, 飞毯, 熔岩行走靴和渔具包的效果
+拥有油漆喷雾器, 促动安装器, 手机, 重力球, 花之靴, 忍者极意, 贪婪戒指, 天界贝壳和闪耀石的效果
+获得发光, 探索者, 猎人和危险感知效果; 获得建造模式权限, 拥有无尽遗物的效果, 可以超远程拾取物品";
 
             if (thorium != null)
             {
                 tooltip += @"Effects of Phylactery, Crystal Scorpion, and Yuma's Pendant
                 Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
-                Effects of SupportStash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
+                Effects of Support Sash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
                 Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw
                 Effects of Ocean's Retaliation and Cape of the Survivor
                 Effects of Blast Shield and Terrarium Defender
                 Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
 
-                tooltip_ch += "";
+                tooltip_ch += @"拥有魂匣, 魔晶蝎和云码垂饰的效果
+                拥有投手大师指导:卷三, 美人鱼水壶和亡者眼罩的效果
+                拥有支援腰带, 救世恩典, 灵魂庇佑, 大恶魔之咒, 圣天使之心和医疗包的效果
+                拥有史诗吹口, 金属弱音器, 数码调谐器和吉他拨片的效果
+                拥有海潮之噬和生存者披风的效果
+                拥有爆炸盾和界元之庇护的效果
+                拥有履空靴, 我命至上主义者之飞靴和举足轻重靴的效果";
             }
 
             if (calamity != null)
@@ -86,14 +103,15 @@ Effects of Paint Sprayer, Presserator, Cell Phone, Gravity Globe, Flower Boots, 
                 tooltip += @"Effects of Elemental Gauntlet, Elemental Quiver, Ethereal Talisman, Statis' Belt of Curses, and Nanotech
 Effects of Asgardian Aegis";
 
-                tooltip_ch += "";
+                tooltip_ch += @"拥有元素之握, 元素箭袋, 空灵护符, 斯塔提斯的诅咒系带和纳米技术的效果
+                拥有阿斯加德之庇护的效果";
             }
 
             if (dbzMod != null)
             {
                 tooltip += "Effects of Zenkai Charm and Aspera Crystallite";
 
-                tooltip_ch += "";
+                tooltip_ch += "拥有全开符咒和原始晶粒的效果";
             }
 
 

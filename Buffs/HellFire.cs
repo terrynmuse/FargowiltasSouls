@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Buffs.Souls
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<FargoGlobalNPC>().HellFire = true;
+            npc.GetGlobalNPC<FargoSoulsGlobalNPC>().HellFire = true;
         }
     }
 }

@@ -80,6 +80,8 @@ golem fists are immune to debuffs
 golem has boosted horiz speed outside temple
 golem head only breathes fire outside temple
 
+-plantera extra crystals and they move out and in
+-Demon Eyes Obstruct instead of Stone now and no Berserked ree
 
 
 This mod adds 2 main things. Souls and Masochist Mode.

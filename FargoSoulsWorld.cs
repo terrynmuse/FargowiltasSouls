@@ -7,7 +7,7 @@ using Terraria.ModLoader.IO;
 namespace FargowiltasSouls
 {
     // ReSharper disable once ClassNeverInstantiated.Global
-    public class FargoWorld : ModWorld
+    public class FargoSoulsWorld : ModWorld
     {
         private static bool _downedBetsy;
         private static bool _downedBoss;
@@ -187,7 +187,7 @@ namespace FargowiltasSouls
             #region commented
 
             //right when day starts
-            /*if(/*Main.time == 0 && Main.dayTime && !Main.eclipse && FargoWorld.masochistMode)
+            /*if(/*Main.time == 0 && Main.dayTime && !Main.eclipse && FargoSoulsWorld.masochistMode)
 			{
 					Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0, 1f, 0f);
 					

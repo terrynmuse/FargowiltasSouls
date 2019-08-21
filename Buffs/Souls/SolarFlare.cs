@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Buffs.Souls
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<FargoGlobalNPC>().SolarFlare = true;
+            npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SolarFlare = true;
 
             if (npc.buffTime[buffIndex] < 3)
             {

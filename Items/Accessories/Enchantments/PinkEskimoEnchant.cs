@@ -5,7 +5,7 @@ using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
-    public class RainEnchant : ModItem
+    public class PinkEskimoEnchant : ModItem
     {
     public override bool Autoload(ref string name)
         {
@@ -16,14 +16,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Rain Enchantment");
+            DisplayName.SetDefault("Pink Eskimo Enchantment");
             Tooltip.SetDefault(
-@"'Come again some other day'
-A miniature storm may appear when an enemy dies");
-            DisplayName.AddTranslation(GameCulture.Chinese, "云雨魔石");
+@"''");
+            DisplayName.AddTranslation(GameCulture.Chinese, "爱斯基摩魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
-@"'改天再来'
-敌人死亡时可能会出现微型风暴");
+@"''
+变为霜冻魔石
+可以水上行走,如此做时,水会结冰并产生尖刺
+");
         }
 
         public override void SetDefaults()
@@ -39,9 +40,17 @@ A miniature storm may appear when an enemy dies");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             /*
-             * Rain
+             * if(player.walkingOnWater)
+{
+	Create Ice Rod Projectile right below you
+}
 
-spawn rain clouds when a enemy dies, or spawn rain drops everywhere above them, or circling storm clouds that shoot lightning 
+NearbyEffects:
+
+if(modPlayer.EskimoEnchant && tile.type == IceRodBlock)
+{
+	Create spikes
+}
              */
         }
 
@@ -49,13 +58,14 @@ spawn rain clouds when a enemy dies, or spawn rain drops everywhere above them, 
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(ItemID.RainHat);
-            recipe.AddIngredient(ItemID.RainCoat);
-            recipe.AddIngredient(ItemID.RainCloud);
-            recipe.AddIngredient(ItemID.Umbrella);
-            recipe.AddIngredient(ItemID.UmbrellaHat);
-            recipe.AddIngredient(ItemID.NimbusRod);
-            //
+            recipe.AddIngredient(ItemID.PinkEskimoHood);
+            recipe.AddIngredient(ItemID.PinkEskimoCoat);
+            recipe.AddIngredient(ItemID.PinkEskimoPants);
+            //recipe.AddIngredient(ItemID.IceRod);
+            recipe.AddIngredient(ItemID.FrostMinnow);
+            recipe.AddIngredient(ItemID.AtlanticCod);
+            recipe.AddIngredient(ItemID.MarshmallowonaStick);
+            
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

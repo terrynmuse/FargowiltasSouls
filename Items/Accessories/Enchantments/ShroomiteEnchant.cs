@@ -21,7 +21,7 @@ While in stealth, crits deal 2x damage
             string tooltip_ch =
 @"'真的是用蘑菇做的!'
 站立不动时潜行
-潜行时,暴击造成4倍伤害
+潜行时,暴击造成2倍伤害
 ";
 
             if(thorium != null)

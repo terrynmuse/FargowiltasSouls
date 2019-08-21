@@ -79,7 +79,7 @@ namespace FargowiltasSouls.NPCs
                             damage = damage * 2;
                         else if (Main.expertMode)
                             damage = damage * 9 / 10;
-                        damage = (int)(damage * (1 + FargoWorld.PlanteraCount * .0125));
+                        damage = (int)(damage * (1 + FargoSoulsWorld.PlanteraCount * .0125));
                         Projectile.NewProjectile(npc.Center, distance, mod.ProjectileType("CrystalLeafShot"), damage, 0f, Main.myPlayer);
                     }
                     for (int index1 = 0; index1 < 30; ++index1)
@@ -102,7 +102,7 @@ namespace FargowiltasSouls.NPCs
             npc.position = plantera.Center + new Vector2(npc.ai[1], 0f).RotatedBy(npc.ai[3]);
             npc.position.X -= npc.width / 2;
             npc.position.Y -= npc.height / 2;
-            float rotation = npc.ai[1] == 130f ? 0.03f : -0.03f;
+            float rotation = npc.ai[1] == 125f ? 0.03f : -0.01f;
             npc.ai[3] += rotation;
             if (npc.ai[3] > (float)Math.PI)
             {
@@ -110,6 +110,41 @@ namespace FargowiltasSouls.NPCs
                 npc.netUpdate = true;
             }
             npc.rotation = npc.ai[3] + (float)Math.PI / 2f;
+
+            if (npc.ai[1] > 125)
+            {
+                if (npc.localAI[1] == 0)
+                {
+                    if (npc.localAI[0] == 1)
+                    {
+                        npc.ai[1] -= 10;
+                    }
+                    else
+                    {
+                        npc.ai[1] += 10;
+                    }
+
+                    if (npc.ai[1] >= 1000)
+                    {
+                        npc.localAI[0] = 1;
+                        npc.localAI[1] = 120;
+                    }
+                    else if (npc.ai[1] <= 250)
+                    {
+                        npc.localAI[0] = 0;
+                        npc.localAI[1] = 120;
+                    }
+                }
+                else
+                {
+                    npc.localAI[1]--;
+                }
+
+
+
+
+                
+            }
         }
 
         public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)

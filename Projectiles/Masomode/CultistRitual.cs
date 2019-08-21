@@ -35,7 +35,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void AI()
         {
-            if (FargoGlobalNPC.BossIsAlive(ref FargoGlobalNPC.cultBoss, NPCID.CultistBoss))
+            if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.cultBoss, NPCID.CultistBoss))
             {
                 projectile.alpha -= 2;
                 if (projectile.alpha < 0)
@@ -49,7 +49,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                     {
                         int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
                         player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
-                            Main.npc[FargoGlobalNPC.cultBoss].damage, hitDirection, false, false, false, 0);
+                            Main.npc[FargoSoulsGlobalNPC.cultBoss].damage, hitDirection, false, false, false, 0);
                         player.AddBuff(mod.BuffType("CurseoftheMoon"), Main.rand.Next(300, 600));
                     }
                     if (distance > threshold && distance < threshold * 4f)

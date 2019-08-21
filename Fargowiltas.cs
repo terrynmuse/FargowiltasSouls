@@ -147,8 +147,8 @@ namespace FargowiltasSouls
                 Mod bossChecklist = ModLoader.GetMod("BossChecklist");
                 if (bossChecklist != null)
                 {
-                    bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 14.1f, (Func<bool>)(() => FargoWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
-                    bossChecklist.Call("AddBossWithInfo", "Mutant", 14.2f, (Func<bool>)(() => FargoWorld.downedMutant), "Spawn by throwing [i:" + ItemType("AbominationnVoodooDoll") + "] in lava in Mutant's presence");
+                    bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 14.1f, (Func<bool>)(() => FargoSoulsWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
+                    bossChecklist.Call("AddBossWithInfo", "Mutant", 14.2f, (Func<bool>)(() => FargoSoulsWorld.downedMutant), "Spawn by throwing [i:" + ItemType("AbominationnVoodooDoll") + "] in lava in Mutant's presence");
                 }
 
                 if (ThoriumLoaded)
@@ -421,17 +421,17 @@ namespace FargowiltasSouls
                     if (Main.netMode == 2)
                     {
                         byte pillar = reader.ReadByte();
-                        if (!Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoBool[1])
+                        if (!Main.npc[pillar].GetGlobalNPC<FargoSoulsGlobalNPC>().masoBool[1])
                         {
-                            Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().masoBool[1] = true;
-                            Main.npc[pillar].GetGlobalNPC<FargoGlobalNPC>().SetDefaults(Main.npc[pillar]);
+                            Main.npc[pillar].GetGlobalNPC<FargoSoulsGlobalNPC>().masoBool[1] = true;
+                            Main.npc[pillar].GetGlobalNPC<FargoSoulsGlobalNPC>().SetDefaults(Main.npc[pillar]);
                             Main.npc[pillar].life = Main.npc[pillar].lifeMax;
                         }
                     }
                     break;
 
                 case 2: //net updating maso
-                    FargoGlobalNPC fargoNPC = Main.npc[reader.ReadByte()].GetGlobalNPC<FargoGlobalNPC>();
+                    FargoSoulsGlobalNPC fargoNPC = Main.npc[reader.ReadByte()].GetGlobalNPC<FargoSoulsGlobalNPC>();
                     fargoNPC.masoBool[0] = reader.ReadBoolean();
                     fargoNPC.masoBool[1] = reader.ReadBoolean();
                     fargoNPC.masoBool[2] = reader.ReadBoolean();
@@ -456,8 +456,8 @@ namespace FargowiltasSouls
                     if (Main.netMode == 1)
                     {
                         int ML = reader.ReadByte();
-                        Main.npc[ML].GetGlobalNPC<FargoGlobalNPC>().Counter = reader.ReadInt32();
-                        FargoGlobalNPC.masoStateML = reader.ReadByte();
+                        Main.npc[ML].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter = reader.ReadInt32();
+                        FargoSoulsGlobalNPC.masoStateML = reader.ReadByte();
                     }
                     break;
 
@@ -465,8 +465,8 @@ namespace FargowiltasSouls
                     if (Main.netMode == 1)
                     {
                         int reti = reader.ReadByte();
-                        Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().masoBool[2] = reader.ReadBoolean();
-                        Main.npc[reti].GetGlobalNPC<FargoGlobalNPC>().Counter = reader.ReadInt32();
+                        Main.npc[reti].GetGlobalNPC<FargoSoulsGlobalNPC>().masoBool[2] = reader.ReadBoolean();
+                        Main.npc[reti].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter = reader.ReadInt32();
                     }
                     break;
 
@@ -474,7 +474,7 @@ namespace FargowiltasSouls
                     if (Main.netMode == 1)
                     {
                         int shark = reader.ReadByte();
-                        Main.npc[shark].GetGlobalNPC<FargoGlobalNPC>().SharkCount = reader.ReadByte();
+                        Main.npc[shark].GetGlobalNPC<FargoSoulsGlobalNPC>().SharkCount = reader.ReadByte();
                     }
                     break;
 
@@ -482,8 +482,8 @@ namespace FargowiltasSouls
                     if (Main.netMode == 2)
                     {
                         int caster = reader.ReadByte();
-                        if (Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 == 0)
-                            Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 = reader.ReadInt32();
+                        if (Main.npc[caster].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter2 == 0)
+                            Main.npc[caster].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter2 = reader.ReadInt32();
                     }
                     break;
 
@@ -491,7 +491,7 @@ namespace FargowiltasSouls
                     if (Main.netMode == 1)
                     {
                         int caster = reader.ReadByte();
-                        Main.npc[caster].GetGlobalNPC<FargoGlobalNPC>().Counter2 = 0;
+                        Main.npc[caster].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter2 = 0;
                     }
                     break;
 
@@ -507,7 +507,7 @@ namespace FargowiltasSouls
                     if (Main.netMode == 2)
                     {
                         int cult = reader.ReadByte();
-                        FargoGlobalNPC cultNPC = Main.npc[cult].GetGlobalNPC<FargoGlobalNPC>();
+                        FargoSoulsGlobalNPC cultNPC = Main.npc[cult].GetGlobalNPC<FargoSoulsGlobalNPC>();
                         cultNPC.Counter += reader.ReadInt32();
                         cultNPC.Counter2 += reader.ReadInt32();
                         cultNPC.Timer += reader.ReadInt32();
@@ -538,9 +538,9 @@ namespace FargowiltasSouls
                         byte target = reader.ReadByte();
                         int x = reader.ReadInt32();
                         int y = reader.ReadInt32();
-                        FargoGlobalNPC.spawnFishronEX = true;
+                        FargoSoulsGlobalNPC.spawnFishronEX = true;
                         NPC.NewNPC(x, y, NPCID.DukeFishron, 0, 0f, 0f, 0f, 0f, target);
-                        FargoGlobalNPC.spawnFishronEX = false;
+                        FargoSoulsGlobalNPC.spawnFishronEX = false;
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Duke Fishron EX has awoken!"), new Color(50, 100, 255));
                     }
                     break;

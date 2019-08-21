@@ -14,6 +14,8 @@ namespace FargowiltasSouls.Buffs.MutantBoss
         {
             DisplayName.SetDefault("Mutant Presence");
             Description.SetDefault("An overwhelming presence weakens your existence");
+            DisplayName.AddTranslation(GameCulture.Chinese, "突变驾到");
+            Description.AddTranslation(GameCulture.Chinese, "一位压倒性的存在削弱了你的存在性");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
