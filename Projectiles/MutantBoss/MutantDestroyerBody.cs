@@ -28,6 +28,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.alpha = 255;
             projectile.netImportant = true;
             projectile.hide = true;
+            cooldownSlot = 1;
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -206,6 +206,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             Projectile.NewProjectile(npc.Center, npc.DirectionTo(player.Center) * 25f, mod.ProjectileType("MutantSpearThrown"), npc.damage / 4, 0f, Main.myPlayer, npc.target);
                         }
                     }
+                    else if (npc.ai[1] == 60 && npc.ai[2] < 5 && Main.netMode != 1)
+                    {
+                        Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearAim"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI);
+                    }
                     break;
 
                 case 1: //slow drift, shoot phantasmal rings
@@ -234,40 +238,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         break;
                     if (Phase2Check())
                         break;
-
                     targetPos = player.Center;
                     targetPos.X += 700 * (npc.Center.X < targetPos.X ? -1 : 1);
                     targetPos.Y -= 400;
-                    speedModifier = 0.6f;
-                    if (npc.Center.X < targetPos.X)
-                    {
-                        npc.velocity.X += speedModifier;
-                        if (npc.velocity.X < 0)
-                            npc.velocity.X += speedModifier * 2;
-                    }
-                    else
-                    {
-                        npc.velocity.X -= speedModifier;
-                        if (npc.velocity.X > 0)
-                            npc.velocity.X -= speedModifier * 2;
-                    }
-                    if (npc.Center.Y < targetPos.Y)
-                    {
-                        npc.velocity.Y += speedModifier;
-                        if (npc.velocity.Y < 0)
-                            npc.velocity.Y += speedModifier * 2;
-                    }
-                    else
-                    {
-                        npc.velocity.Y -= speedModifier;
-                        if (npc.velocity.Y > 0)
-                            npc.velocity.Y -= speedModifier * 2;
-                    }
-                    if (Math.Abs(npc.velocity.X) > 24)
-                        npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                    if (Math.Abs(npc.velocity.Y) > 24)
-                        npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
-                    if (npc.Distance(targetPos) < 50 || ++npc.ai[1] > 180)
+                    Movement(targetPos, 0.6f);
+                    if (npc.Distance(targetPos) < 50 || ++npc.ai[1] > 180) //dive here
                     {
                         npc.velocity.X = 35f * (npc.position.X < player.position.X ? 1 : -1);
                         if (npc.velocity.Y < 0)
@@ -327,31 +302,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     targetPos = player.Center;
                     targetPos.Y += 400f;
-                    speedModifier = 0.7f;
-                    if (npc.Center.X < targetPos.X)
-                    {
-                        npc.velocity.X += speedModifier;
-                        if (npc.velocity.X < 0)
-                            npc.velocity.X += speedModifier;
-                    }
-                    else
-                    {
-                        npc.velocity.X -= speedModifier;
-                        if (npc.velocity.X > 0)
-                            npc.velocity.X -= speedModifier;
-                    }
-                    if (npc.Center.Y < targetPos.Y)
-                    {
-                        npc.velocity.Y += speedModifier;
-                        if (npc.velocity.Y < 0)
-                            npc.velocity.Y += speedModifier * 2;
-                    }
-                    else
-                    {
-                        npc.velocity.Y -= speedModifier;
-                        if (npc.velocity.Y > 0)
-                            npc.velocity.Y -= speedModifier * 2;
-                    }
+                    Movement(targetPos, 0.7f, false);
                     if (++npc.ai[1] > 240)
                     {
                         npc.netUpdate = true;
@@ -399,35 +350,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     targetPos = player.Center + player.DirectionTo(npc.Center) * 250;
                     if (npc.Distance(targetPos) > 50 && ++npc.ai[2] < 180)
                     {
-                        speedModifier = 0.5f;
-                        if (npc.Center.X < targetPos.X)
-                        {
-                            npc.velocity.X += speedModifier;
-                            if (npc.velocity.X < 0)
-                                npc.velocity.X += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.X -= speedModifier;
-                            if (npc.velocity.X > 0)
-                                npc.velocity.X -= speedModifier * 2;
-                        }
-                        if (npc.Center.Y < targetPos.Y)
-                        {
-                            npc.velocity.Y += speedModifier;
-                            if (npc.velocity.Y < 0)
-                                npc.velocity.Y += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.Y -= speedModifier;
-                            if (npc.velocity.Y > 0)
-                                npc.velocity.Y -= speedModifier * 2;
-                        }
-                        if (Math.Abs(npc.velocity.X) > 24)
-                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                        if (Math.Abs(npc.velocity.Y) > 24)
-                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                        Movement(targetPos, 0.5f);
                     }
                     else
                     {
@@ -551,35 +474,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     targetPos = player.Center + player.DirectionTo(npc.Center) * 250;
                     if (npc.Distance(targetPos) > 50 && ++npc.ai[2] < 180)
                     {
-                        speedModifier = 0.5f;
-                        if (npc.Center.X < targetPos.X)
-                        {
-                            npc.velocity.X += speedModifier;
-                            if (npc.velocity.X < 0)
-                                npc.velocity.X += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.X -= speedModifier;
-                            if (npc.velocity.X > 0)
-                                npc.velocity.X -= speedModifier * 2;
-                        }
-                        if (npc.Center.Y < targetPos.Y)
-                        {
-                            npc.velocity.Y += speedModifier;
-                            if (npc.velocity.Y < 0)
-                                npc.velocity.Y += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.Y -= speedModifier;
-                            if (npc.velocity.Y > 0)
-                                npc.velocity.Y -= speedModifier * 2;
-                        }
-                        if (Math.Abs(npc.velocity.X) > 24)
-                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                        if (Math.Abs(npc.velocity.Y) > 24)
-                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                        Movement(targetPos, 0.8f);
                     }
                     else
                     {
@@ -630,31 +525,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     targetPos = player.Center;
                     targetPos.Y += 400f;
-                    speedModifier = 0.7f;
-                    if (npc.Center.X < targetPos.X)
-                    {
-                        npc.velocity.X += speedModifier;
-                        if (npc.velocity.X < 0)
-                            npc.velocity.X += speedModifier;
-                    }
-                    else
-                    {
-                        npc.velocity.X -= speedModifier;
-                        if (npc.velocity.X > 0)
-                            npc.velocity.X -= speedModifier;
-                    }
-                    if (npc.Center.Y < targetPos.Y)
-                    {
-                        npc.velocity.Y += speedModifier;
-                        if (npc.velocity.Y < 0)
-                            npc.velocity.Y += speedModifier * 2;
-                    }
-                    else
-                    {
-                        npc.velocity.Y -= speedModifier;
-                        if (npc.velocity.Y > 0)
-                            npc.velocity.Y -= speedModifier * 2;
-                    }
+                    Movement(targetPos, 0.7f, false);
                     if (++npc.ai[1] > 240)
                     {
                         npc.netUpdate = true;
@@ -747,35 +618,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     targetPos.Y += 300;
                     if (npc.Distance(targetPos) > 50)
                     {
-                        speedModifier = 0.6f;
-                        if (npc.Center.X < targetPos.X)
-                        {
-                            npc.velocity.X += speedModifier;
-                            if (npc.velocity.X < 0)
-                                npc.velocity.X += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.X -= speedModifier;
-                            if (npc.velocity.X > 0)
-                                npc.velocity.X -= speedModifier * 2;
-                        }
-                        if (npc.Center.Y < targetPos.Y)
-                        {
-                            npc.velocity.Y += speedModifier;
-                            if (npc.velocity.Y < 0)
-                                npc.velocity.Y += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.Y -= speedModifier;
-                            if (npc.velocity.Y > 0)
-                                npc.velocity.Y -= speedModifier * 2;
-                        }
-                        if (Math.Abs(npc.velocity.X) > 24)
-                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                        if (Math.Abs(npc.velocity.Y) > 24)
-                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                        Movement(targetPos, 0.6f);
                     }
                     if (++npc.ai[1] > 360)
                     {
@@ -793,41 +636,12 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case 20: //aproach for sickles
-                    npc.dontTakeDamage = false;
                     if (!AliveCheck(player))
                         break;
                     targetPos = player.Center + player.DirectionTo(npc.Center) * 400;
                     if (npc.Distance(targetPos) > 50)
                     {
-                        speedModifier = 0.5f;
-                        if (npc.Center.X < targetPos.X)
-                        {
-                            npc.velocity.X += speedModifier;
-                            if (npc.velocity.X < 0)
-                                npc.velocity.X += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.X -= speedModifier;
-                            if (npc.velocity.X > 0)
-                                npc.velocity.X -= speedModifier * 2;
-                        }
-                        if (npc.Center.Y < targetPos.Y)
-                        {
-                            npc.velocity.Y += speedModifier;
-                            if (npc.velocity.Y < 0)
-                                npc.velocity.Y += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.Y -= speedModifier;
-                            if (npc.velocity.Y > 0)
-                                npc.velocity.Y -= speedModifier * 2;
-                        }
-                        if (Math.Abs(npc.velocity.X) > 24)
-                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                        if (Math.Abs(npc.velocity.Y) > 24)
-                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                        Movement(targetPos, 0.5f);
                     }
                     if (++npc.ai[1] > 120)
                     {
@@ -861,35 +675,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     targetPos = player.Center + npc.DirectionFrom(player.Center) * 300;
                     if (npc.Distance(targetPos) > 50)
                     {
-                        speedModifier = 0.9f;
-                        if (npc.Center.X < targetPos.X)
-                        {
-                            npc.velocity.X += speedModifier;
-                            if (npc.velocity.X < 0)
-                                npc.velocity.X += speedModifier;
-                        }
-                        else
-                        {
-                            npc.velocity.X -= speedModifier;
-                            if (npc.velocity.X > 0)
-                                npc.velocity.X -= speedModifier;
-                        }
-                        if (npc.Center.Y < targetPos.Y)
-                        {
-                            npc.velocity.Y += speedModifier;
-                            if (npc.velocity.Y < 0)
-                                npc.velocity.Y += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.Y -= speedModifier;
-                            if (npc.velocity.Y > 0)
-                                npc.velocity.Y -= speedModifier * 2;
-                        }
-                        if (Math.Abs(npc.velocity.X) > 24)
-                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                        if (Math.Abs(npc.velocity.Y) > 24)
-                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                        Movement(targetPos, 0.9f);
                     }
                     if (++npc.ai[1] > 180)
                     {
@@ -926,35 +712,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     targetPos.X += 500 * (npc.Center.X < targetPos.X ? -1 : 1);
                     if (npc.Distance(targetPos) > 50)
                     {
-                        speedModifier = 0.4f;
-                        if (npc.Center.X < targetPos.X)
-                        {
-                            npc.velocity.X += speedModifier;
-                            if (npc.velocity.X < 0)
-                                npc.velocity.X += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.X -= speedModifier;
-                            if (npc.velocity.X > 0)
-                                npc.velocity.X -= speedModifier * 2;
-                        }
-                        if (npc.Center.Y < targetPos.Y)
-                        {
-                            npc.velocity.Y += speedModifier;
-                            if (npc.velocity.Y < 0)
-                                npc.velocity.Y += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.Y -= speedModifier;
-                            if (npc.velocity.Y > 0)
-                                npc.velocity.Y -= speedModifier * 2;
-                        }
-                        if (Math.Abs(npc.velocity.X) > 24)
-                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                        if (Math.Abs(npc.velocity.Y) > 24)
-                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                        Movement(targetPos, 0.4f);
                     }
                     if (++npc.ai[1] > 120)
                     {
@@ -974,6 +732,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("MutantSpearThrown"), npc.damage / 4, 0f, Main.myPlayer, npc.target, 1f);
                         }
                     }
+                    else if (npc.ai[1] == 60 && npc.ai[2] < 5 && Main.netMode != 1)
+                    {
+                        Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearAim"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI);
+                    }
                     break;
 
                 case 24: //back away, prepare for ultra laser spam
@@ -984,35 +746,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     targetPos.Y -= 250;
                     if (npc.Distance(targetPos) > 50)
                     {
-                        speedModifier = 0.5f;
-                        if (npc.Center.X < targetPos.X)
-                        {
-                            npc.velocity.X += speedModifier;
-                            if (npc.velocity.X < 0)
-                                npc.velocity.X += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.X -= speedModifier;
-                            if (npc.velocity.X > 0)
-                                npc.velocity.X -= speedModifier * 2;
-                        }
-                        if (npc.Center.Y < targetPos.Y)
-                        {
-                            npc.velocity.Y += speedModifier;
-                            if (npc.velocity.Y < 0)
-                                npc.velocity.Y += speedModifier * 2;
-                        }
-                        else
-                        {
-                            npc.velocity.Y -= speedModifier;
-                            if (npc.velocity.Y > 0)
-                                npc.velocity.Y -= speedModifier * 2;
-                        }
-                        if (Math.Abs(npc.velocity.X) > 24)
-                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                        if (Math.Abs(npc.velocity.Y) > 24)
-                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                        Movement(targetPos, 0.5f);
                     }
                     if (++npc.ai[1] > 120)
                     {
@@ -1043,7 +777,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             Projectile.NewProjectile(npc.Center, -Vector2.UnitX, mod.ProjectileType("MutantDeathray3"), npc.damage / 4, 0, Main.myPlayer, MathHelper.ToRadians(260) / 90f, npc.whoAmI);
                         }
                     }
-                    if (++npc.ai[3] > 300)
+                    if (++npc.ai[3] > 240)
                     {
                         npc.ai[0]++;
                         npc.ai[1] = 0;
@@ -1078,12 +812,130 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             Projectile.NewProjectile(spawnPos, vel, mod.ProjectileType("MutantGuardian"), npc.damage / 3, 0f, Main.myPlayer);
                         }
                     }
-                    if (++npc.ai[3] > 180)
+                    if (++npc.ai[3] > 180) //also backdash for next attack
                     {
                         npc.ai[0]++;
                         npc.ai[1] = 0;
                         npc.ai[3] = 0;
                         npc.netUpdate = true;
+                    }
+                    break;
+
+                case 27: //prepare to fishron dive
+                    if (!AliveCheck(player))
+                        break;
+                    npc.ai[0]++;
+                    npc.velocity.X = 35f * (npc.position.X < player.position.X ? 1 : -1);
+                    npc.velocity.Y = -10f;
+                    break;
+
+                case 28: //spawn fishrons
+                    npc.velocity *= 0.99f;
+                    if (--npc.ai[1] < 0)
+                    {
+                        npc.ai[1] = 20;
+                        if (++npc.ai[2] > 3)
+                        {
+                            npc.ai[0]++;
+                            npc.ai[2] = 0;
+                            npc.netUpdate = true;
+                        }
+                        else
+                        {
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, Vector2.UnitY * -3f, mod.ProjectileType("MutantFishron"), npc.damage / 5, 0f, Main.myPlayer, npc.target);
+                            for (int i = 0; i < 30; i++)
+                            {
+                                int d = Dust.NewDust(npc.position, npc.width, npc.height, 135, 0f, 0f, 0, default(Color), 3f);
+                                Main.dust[d].noGravity = true;
+                                Main.dust[d].noLight = true;
+                                Main.dust[d].velocity *= 12f;
+                            }
+                        }
+                    }
+                    break;
+
+                case 29: //maneuver nearby for dive
+                    if (!AliveCheck(player))
+                        break;
+                    targetPos = player.Center;
+                    targetPos.X += 700 * (npc.Center.X < targetPos.X ? -1 : 1);
+                    targetPos.Y += 400;
+                    Movement(targetPos, 0.8f);
+                    if (++npc.ai[1] > 180) //dive here
+                    {
+                        npc.velocity.X = 35f * (npc.position.X < player.position.X ? 1 : -1);
+                        if (npc.velocity.Y > 0)
+                            npc.velocity.Y *= -1;
+                        npc.velocity.Y *= 0.3f;
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.netUpdate = true;
+                    }
+                    break;
+
+                case 30: //spawn eyes
+                    goto case 3;
+
+                case 31: //toss nuke, set vel
+                    if (!AliveCheck(player))
+                        break;
+                    targetPos = player.Center;
+                    targetPos.Y -= 400;
+                    Movement(targetPos, 0.6f, false);
+                    if (++npc.ai[1] > 180)
+                    {
+                        Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                        if (Main.netMode != 1)
+                        {
+                            float gravity = 0.2f;
+                            const float time = 240f;
+                            Vector2 distance = player.Center - npc.Center;
+                            distance.X = distance.X / time;
+                            distance.Y = distance.Y / time - 0.5f * gravity * time;
+                            Projectile.NewProjectile(npc.Center, distance, mod.ProjectileType("MutantNuke"), npc.damage / 3, 0f, Main.myPlayer, gravity);
+                        }
+                        npc.ai[0]++;
+                        npc.netUpdate = true;
+                    }
+                    break;
+
+                case 32: //slow drift, protective aura above self
+                    if (!AliveCheck(player))
+                        break;
+                    npc.velocity.Normalize();
+                    npc.velocity *= 2f;
+                    if (npc.ai[1] > 240 && Main.netMode != 1)
+                    {
+                        Vector2 safeZone = npc.Center;
+                        safeZone.Y -= 200;
+                        const float safeRange = 700;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Vector2 spawnPos = npc.Center + Main.rand.NextVector2Circular(1200, 1200);
+                            if (Vector2.Distance(safeZone, spawnPos) > safeRange)
+                                Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("MutantBomb"), npc.damage / 5, 0f, Main.myPlayer);
+                        }
+                    }
+                    if (++npc.ai[1] > 420)
+                    {
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = 0;
+                        npc.netUpdate = true;
+                    }
+                    for (int i = 0; i < 30; i++)
+                    {
+                        Vector2 offset = new Vector2();
+                        offset.Y -= 200;
+                        double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                        offset.X += (float)(Math.Sin(angle) * 250);
+                        offset.Y += (float)(Math.Cos(angle) * 250);
+                        Dust dust = Main.dust[Dust.NewDust(npc.Center + offset - new Vector2(4, 4), 0, 0, 229, 0, 0, 100, Color.White, 1.5f)];
+                        dust.velocity = npc.velocity;
+                        if (Main.rand.Next(3) == 0)
+                            dust.velocity += Vector2.Normalize(offset) * 5f;
+                        dust.noGravity = true;
                     }
                     break;
 
@@ -1163,6 +1015,38 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 return true;
             }
             return false;
+        }
+
+        private void Movement(Vector2 targetPos, float speedModifier, bool fastX = true)
+        {
+            if (npc.Center.X < targetPos.X)
+            {
+                npc.velocity.X += speedModifier;
+                if (npc.velocity.X < 0)
+                    npc.velocity.X += speedModifier * (fastX ? 2 : 1);
+            }
+            else
+            {
+                npc.velocity.X -= speedModifier;
+                if (npc.velocity.X > 0)
+                    npc.velocity.X -= speedModifier * (fastX ? 2 : 1);
+            }
+            if (npc.Center.Y < targetPos.Y)
+            {
+                npc.velocity.Y += speedModifier;
+                if (npc.velocity.Y < 0)
+                    npc.velocity.Y += speedModifier * 2;
+            }
+            else
+            {
+                npc.velocity.Y -= speedModifier;
+                if (npc.velocity.Y > 0)
+                    npc.velocity.Y -= speedModifier * 2;
+            }
+            if (Math.Abs(npc.velocity.X) > 24)
+                npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
+            if (Math.Abs(npc.velocity.Y) > 24)
+                npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

@@ -25,7 +25,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 			projectile.penetrate = -1;
 			projectile.tileCollide = false;
 			projectile.timeLeft = 300;
-		}
+            cooldownSlot = 1;
+        }
 		
         public override void AI()
         {

@@ -30,6 +30,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.aiStyle = -1;
             projectile.scale = 0.5f;
             projectile.alpha = 0;
+            cooldownSlot = 1;
         }
 
         public override bool? CanHitNPC(NPC target)
