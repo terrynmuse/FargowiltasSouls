@@ -1,0 +1,138 @@
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace FargowiltasSouls.Projectiles.MutantBoss
+{
+    public class MutantDestroyerTail : ModProjectile
+    {
+        public override string Texture => "Terraria/NPC_136";
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("The Destroyer");
+        }
+
+        public override void SetDefaults()
+        {
+            projectile.width = 24;
+            projectile.height = 24;
+            projectile.penetrate = -1;
+            projectile.timeLeft = 300;
+            projectile.hostile = true;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = false;
+            projectile.alpha = 255;
+            projectile.netImportant = true;
+            projectile.hide = true;
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
+        }
+
+        public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles,
+            List<int> drawCacheProjsOverWiresUI)
+        {
+            drawCacheProjsBehindProjectiles.Add(index);
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Texture2D texture2D13 = Main.projectileTexture[projectile.type];
+            int num214 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type];
+            int y6 = num214 * projectile.frame;
+            Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Rectangle(0, y6, texture2D13.Width, num214),
+                projectile.GetAlpha(Color.White), projectile.rotation, new Vector2(texture2D13.Width / 2f, num214 / 2f), projectile.scale,
+                projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
+            return false;
+        }
+
+        public override void AI()
+        {
+            if ((int) Main.time % 120 == 0) projectile.netUpdate = true;
+
+            int num1038 = 30;
+
+            //dust!
+            int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f,
+                projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+            Main.dust[dustId].noGravity = true;
+            int dustId3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f,
+                projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+            Main.dust[dustId3].noGravity = true;
+
+            bool flag67 = false;
+            Vector2 value67 = Vector2.Zero;
+            Vector2 arg_2D865_0 = Vector2.Zero;
+            float num1052 = 0f;
+            if (projectile.ai[1] == 1f)
+            {
+                projectile.ai[1] = 0f;
+                projectile.netUpdate = true;
+            }
+
+            int byUUID = Projectile.GetByUUID(projectile.owner, (int) projectile.ai[0]);
+            if (byUUID >= 0 && Main.projectile[byUUID].active)
+            {
+                flag67 = true;
+                value67 = Main.projectile[byUUID].Center;
+                Vector2 arg_2D957_0 = Main.projectile[byUUID].velocity;
+                num1052 = Main.projectile[byUUID].rotation;
+                float num1053 = MathHelper.Clamp(Main.projectile[byUUID].scale, 0f, 50f);
+                int arg_2D9AD_0 = Main.projectile[byUUID].alpha;
+                Main.projectile[byUUID].localAI[0] = projectile.localAI[0] + 1f;
+            }
+
+            if (!flag67) return;
+            if (projectile.alpha > 0)
+                for (int num1054 = 0; num1054 < 2; num1054++)
+                {
+                    int num1055 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 100, default(Color), 2f);
+                    Main.dust[num1055].noGravity = true;
+                    Main.dust[num1055].noLight = true;
+                }
+
+            projectile.alpha -= 42;
+            if (projectile.alpha < 0) projectile.alpha = 0;
+            projectile.velocity = Vector2.Zero;
+            Vector2 vector134 = value67 - projectile.Center;
+            if (num1052 != projectile.rotation)
+            {
+                float num1056 = MathHelper.WrapAngle(num1052 - projectile.rotation);
+                vector134 = vector134.RotatedBy(num1056 * 0.1f, default(Vector2));
+            }
+
+            projectile.rotation = vector134.ToRotation() + 1.57079637f;
+            projectile.position = projectile.Center;
+            projectile.width = projectile.height = (int) (num1038 * projectile.scale);
+            projectile.Center = projectile.position;
+            if (vector134 != Vector2.Zero) projectile.Center = value67 - Vector2.Normalize(vector134) * 36;
+            projectile.spriteDirection = vector134.X > 0f ? 1 : -1;
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 60, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 2f;
+                dust = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 60, -projectile.velocity.X * 0.2f,
+                    -projectile.velocity.Y * 0.2f, 100);
+                Main.dust[dust].velocity *= 2f;
+            }
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(mod.BuffType("LightningRod"), Main.rand.Next(300, 1200));
+            target.AddBuff(mod.BuffType("MutantFang"), 180);
+        }
+    }
+}

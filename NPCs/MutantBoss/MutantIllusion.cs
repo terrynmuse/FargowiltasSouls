@@ -51,7 +51,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 return;
             }
             NPC mutant = Main.npc[(int)npc.ai[0]];
-            if (!mutant.active || mutant.type != mod.NPCType("MutantBoss") || mutant.ai[0] > 19)
+            if (!mutant.active || mutant.type != mod.NPCType("MutantBoss") || mutant.ai[0] > 19 || mutant.life <= 1)
             {
                 npc.StrikeNPCNoInteraction(9999, 0f, 0);
                 npc.active = false;

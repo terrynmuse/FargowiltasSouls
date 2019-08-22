@@ -18,8 +18,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void SetDefaults()
         {
-            projectile.width = 40;
-            projectile.height = 40;
+            projectile.width = 30;
+            projectile.height = 30;
             projectile.aiStyle = -1;
             projectile.hostile = true;
             projectile.penetrate = -1;
@@ -45,7 +45,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             if (--projectile.localAI[0] < 0)
             {
                 projectile.localAI[0] = 4;
-                if (Main.netMode != 1)
+                if (projectile.ai[1] == 0 && Main.netMode != 1)
                     Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("MutantSphereSmall"), projectile.damage, 0f, projectile.owner, projectile.ai[0]);
             }
 
