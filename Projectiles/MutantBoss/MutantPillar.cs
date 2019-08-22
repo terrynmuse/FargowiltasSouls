@@ -192,7 +192,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 const float rotationInterval = 2f * (float)Math.PI / max;
                 for (int j = 0; j < 4; j++)
                 {
-                    Vector2 speed = new Vector2(0f, 8f * (j + 1) + 4f).RotatedBy(projectile.rotation);
+                    Vector2 speed = new Vector2(0f, 4f * (j + 1) + 4f).RotatedBy(projectile.rotation);
                     for (int i = 0; i < max; i++)
                         Projectile.NewProjectile(projectile.Center, speed.RotatedBy(rotationInterval * i),
                             mod.ProjectileType("MutantFragment"), projectile.damage / 3, 0f, Main.myPlayer, projectile.ai[0]);

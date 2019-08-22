@@ -16,8 +16,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             DisplayName.SetDefault("Mutant");
             DisplayName.AddTranslation(GameCulture.Chinese, "突变体");
             Main.npcFrameCount[npc.type] = 4;
-            NPCID.Sets.TrailCacheLength[npc.type] = 10;
-            NPCID.Sets.TrailingMode[npc.type] = 1;
         }
 
         public override void SetDefaults()
@@ -36,6 +34,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.lavaImmune = true;
             npc.aiStyle = -1;
             npc.netAlways = true;
+            npc.hide = true;
             npc.buffImmune[mod.BuffType("Sadism")] = true;
             npc.buffImmune[mod.BuffType("ClippedWings")] = true;
             npc.buffImmune[mod.BuffType("MutantNibble")] = true;
@@ -59,10 +58,39 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             if (npc.localAI[3] == 0)
             {
                 npc.TargetClosest();
-                if (npc.Distance(Main.player[npc.target].Center) < 1500)
+                if (npc.timeLeft < 60)
+                    npc.timeLeft = 60;
+                if (npc.Distance(Main.player[npc.target].Center) < 2000)
                 {
                     npc.localAI[3] = 1;
                     Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                    if (Main.netMode != 1)
+                    {
+                        int number = 0;
+                        for (int index = 999; index >= 0; --index)
+                        {
+                            if (!Main.projectile[index].active)
+                            {
+                                number = index;
+                                break;
+                            }
+                        }
+                        if (number >= 0)
+                        {
+                            Projectile projectile = Main.projectile[number];
+                            projectile.SetDefaults(mod.ProjectileType("MutantBoss"));
+                            projectile.Center = npc.Center;
+                            projectile.owner = Main.myPlayer;
+                            projectile.velocity.X = 0;
+                            projectile.velocity.Y = 0;
+                            projectile.damage = 0;
+                            projectile.knockBack = 0f;
+                            projectile.identity = number;
+                            projectile.gfxOffY = 0f;
+                            projectile.stepSpeed = 1f;
+                            projectile.ai[1] = npc.whoAmI;
+                        }
+                    }
                 }
             }
             if (npc.localAI[3] == 1)
@@ -127,7 +155,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     targetPos.X += 500 * (npc.Center.X < targetPos.X ? -1 : 1);
                     if (npc.Distance(targetPos) > 50)
                     {
-                        speedModifier = 0.5f;
+                        speedModifier = npc.localAI[3] > 0 ? 0.5f : 2f;
                         if (npc.Center.X < targetPos.X)
                         {
                             npc.velocity.X += speedModifier;
@@ -152,16 +180,20 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             if (npc.velocity.Y > 0)
                                 npc.velocity.Y -= speedModifier * 2;
                         }
-                        if (Math.Abs(npc.velocity.X) > 24)
-                            npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
-                        if (Math.Abs(npc.velocity.Y) > 24)
-                            npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                        if (npc.localAI[3] > 0)
+                        {
+                            if (Math.Abs(npc.velocity.X) > 24)
+                                npc.velocity.X = 24 * Math.Sign(npc.velocity.X);
+                            if (Math.Abs(npc.velocity.Y) > 24)
+                                npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
+                        }
                     }
-
-                    if (++npc.ai[1] > 180)
+                    if (npc.localAI[3] > 0)
+                        npc.ai[1]++;
+                    if (npc.ai[1] > 120)
                     {
                         npc.netUpdate = true;
-                        npc.ai[1] = 120;
+                        npc.ai[1] = 60;
                         if (++npc.ai[2] > 5)
                         {
                             npc.ai[0]++;
@@ -697,10 +729,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("MutantIllusion"), npc.whoAmI, npc.whoAmI, -1, 1, 60);
                         if (n != 200 && Main.netMode == 2)
                             NetMessage.SendData(23, -1, -1, null, n);
-                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("MutantIllusion"), npc.whoAmI, npc.whoAmI, 1, -1, 180);
+                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("MutantIllusion"), npc.whoAmI, npc.whoAmI, 1, -1, 120);
                         if (n != 200 && Main.netMode == 2)
                             NetMessage.SendData(23, -1, -1, null, n);
-                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("MutantIllusion"), npc.whoAmI, npc.whoAmI, 1, 1, 300);
+                        n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("MutantIllusion"), npc.whoAmI, npc.whoAmI, 1, 1, 180);
                         if (n != 200 && Main.netMode == 2)
                             NetMessage.SendData(23, -1, -1, null, n);
                     }
@@ -745,7 +777,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         if (Math.Abs(npc.velocity.Y) > 24)
                             npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
                     }
-                    if (++npc.ai[1] > 600)
+                    if (++npc.ai[1] > 360)
                     {
                         npc.ai[0]++;
                         npc.ai[1] = 0;
@@ -753,7 +785,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[3] = 0;
                         npc.netUpdate = true;
                     }
-                    else if (npc.ai[1] == 420)
+                    else if (npc.ai[1] == 240)
                     {
                         if (Main.netMode != 1)
                             Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10, mod.ProjectileType("MutantPillar"), npc.damage / 4, 0, Main.myPlayer, 3, npc.whoAmI);
@@ -812,10 +844,15 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (Main.netMode != 1)
                     {
                         for (int i = 0; i < 8; i++)
+                        {
                             Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 4 * i) * 10f, mod.ProjectileType("MutantScythe1"), npc.damage / 5, 0f, Main.myPlayer, npc.whoAmI);
+                            Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 4 * i), mod.ProjectileType("MutantScythe2"), npc.damage / 5, 0f, Main.myPlayer, npc.whoAmI);
+                        }
                     }
                     npc.velocity = npc.DirectionFrom(player.Center) * 15f;
                     npc.ai[0]++;
+                    npc.netUpdate = true;
+                    Main.PlaySound(36, (int)npc.Center.X, (int)npc.Center.Y, -1, 1f, 0f);
                     break;
 
                 case 22: //destroyers
@@ -854,10 +891,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         if (Math.Abs(npc.velocity.Y) > 24)
                             npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
                     }
-                    if (++npc.ai[1] > 90)
+                    if (++npc.ai[1] > 180)
                     {
                         npc.netUpdate = true;
-                        npc.ai[1] = 60;
+                        npc.ai[1] = 120;
                         if (++npc.ai[2] > 3)
                         {
                             npc.ai[0]++;
@@ -879,12 +916,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                                 Main.projectile[previous].netUpdate = true;
                             }
                         }
-                    }
-                    if (++npc.ai[3] > 6)
-                    {
-                        npc.ai[3] = 0;
-                        if (Main.netMode != 1)
-                            Projectile.NewProjectile(npc.Center, npc.DirectionTo(player.Center), mod.ProjectileType("MutantScythe2"), npc.damage / 5, 0f, Main.myPlayer);
                     }
                     break;
 
@@ -925,10 +956,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         if (Math.Abs(npc.velocity.Y) > 24)
                             npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
                     }
-                    if (++npc.ai[1] > 150)
+                    if (++npc.ai[1] > 120)
                     {
                         npc.netUpdate = true;
-                        npc.ai[1] = 90;
+                        npc.ai[1] = 60;
                         if (++npc.ai[2] > 5)
                         {
                             npc.ai[0]++;
@@ -994,10 +1025,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     for (int i = 0; i < 3; i++)
                     {
-                        int d = Dust.NewDust(npc.Center, 0, 0, 229, 0f, 0f, 0, default(Color), 1.5f);
+                        int d = Dust.NewDust(npc.Center, 0, 0, DustID.Fire, 0f, 0f, 0, default(Color), 3f);
                         Main.dust[d].noGravity = true;
                         Main.dust[d].noLight = true;
-                        Main.dust[d].velocity *= 4f;
+                        Main.dust[d].velocity *= 12f;
                     }
                     break;
 
@@ -1022,10 +1053,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     for (int i = 0; i < 3; i++)
                     {
-                        int d = Dust.NewDust(npc.Center, 0, 0, 229, 0f, 0f, 0, default(Color), 1.5f);
+                        int d = Dust.NewDust(npc.Center, 0, 0, DustID.Fire, 0f, 0f, 0, default(Color), 3f);
                         Main.dust[d].noGravity = true;
                         Main.dust[d].noLight = true;
-                        Main.dust[d].velocity *= 4f;
+                        Main.dust[d].velocity *= 12f;
                     }
                     break;
 

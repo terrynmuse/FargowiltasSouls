@@ -1609,7 +1609,7 @@ namespace FargowiltasSouls.NPCs
                             //    npc.netUpdate = true;
                             //}
 
-                            if (Counter2++ > 240)
+                            /*if (Counter2++ > 240)
                             {
                                 Counter2 = 0;
                                 if (Main.netMode != 1 && npc.HasPlayerTarget)
@@ -1621,7 +1621,7 @@ namespace FargowiltasSouls.NPCs
                                         Projectile.NewProjectile(npc.Center, distance.RotatedBy(2 * Math.PI / 12 * i),
                                             mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
                                 }
-                            }
+                            }*/
 
                             //dust code
                             if (Main.rand.Next(4) < 3)
@@ -1752,7 +1752,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
 
-                            if (Counter2++ > 180)
+                            /*if (Counter2++ > 180)
                             {
                                 Counter2 = 0;
                                 if (Main.netMode != 1 && npc.HasPlayerTarget)
@@ -1764,7 +1764,7 @@ namespace FargowiltasSouls.NPCs
                                         Projectile.NewProjectile(npc.Center, distance.RotatedBy(2 * Math.PI / 8 * i),
                                             mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
                                 }
-                            }
+                            }*/
 
                             //dust code
                             if (Main.rand.Next(4) < 3)
@@ -4335,13 +4335,13 @@ namespace FargowiltasSouls.NPCs
                                     if (Main.netMode != 1 && npc.HasPlayerTarget)
                                     {
                                         Vector2 distance = Main.player[npc.target].Center - npc.Center;
-                                        double angleModifier = MathHelper.ToRadians(5) * distance.Length() / 1800.0;
+                                        //double angleModifier = MathHelper.ToRadians(5) * distance.Length() / 1800.0;
                                         distance.Normalize();
                                         distance *= 10f;
                                         int type = mod.ProjectileType("DarkStar");
-                                        Projectile.NewProjectile(npc.Center, distance.RotatedBy(-angleModifier), type, npc.damage / 5, 0f, Main.myPlayer);
+                                        //Projectile.NewProjectile(npc.Center, distance.RotatedBy(-angleModifier), type, npc.damage / 5, 0f, Main.myPlayer);
                                         Projectile.NewProjectile(npc.Center, distance * 1.5f, type, npc.damage / 5, 0f, Main.myPlayer);
-                                        Projectile.NewProjectile(npc.Center, distance.RotatedBy(angleModifier), type, npc.damage / 5, 0f, Main.myPlayer);
+                                        //Projectile.NewProjectile(npc.Center, distance.RotatedBy(angleModifier), type, npc.damage / 5, 0f, Main.myPlayer);
                                     }
                                 }
                             }
