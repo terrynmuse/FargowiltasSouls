@@ -1519,7 +1519,8 @@ namespace FargowiltasSouls
                 if (player.lifeRegenCount > 0)
                     player.lifeRegenCount--;
 
-                player.lifeRegenTime = 0;
+                if (player.lifeRegenTime > 0)
+                    player.lifeRegenTime--;
             }
         }
 

@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
+using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls
 {
@@ -448,7 +449,7 @@ namespace FargowiltasSouls
         {
             bool ret;
             ToggleDict.TryGetValue(buff, out ret);
-            return ret;
+            return ret && !Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().MutantPresence;
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)

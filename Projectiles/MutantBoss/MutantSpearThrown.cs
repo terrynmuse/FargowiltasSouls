@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 120;
+            projectile.timeLeft = 180;
             projectile.extraUpdates = 1;
             projectile.scale = 1.3f;
             projectile.alpha = 0;

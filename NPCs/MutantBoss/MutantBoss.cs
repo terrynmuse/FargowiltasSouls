@@ -38,8 +38,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.netAlways = true;
             npc.buffImmune[mod.BuffType("Sadism")] = true;
             npc.buffImmune[mod.BuffType("MutantNibble")] = true;
+            npc.buffImmune[mod.BuffType("OceanicMaul")] = true;
             npc.buffImmune[mod.BuffType("TimeFrozen")] = true;
-            music = MusicID.TheTowers;
+            npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
+            //music = MusicID.TheTowers;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -50,16 +53,17 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void AI()
         {
+            FargoSoulsGlobalNPC.mutantBoss = npc.whoAmI;
+
             if (npc.localAI[3] == 0)
             {
                 npc.TargetClosest();
                 npc.localAI[3] = 1;
                 Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
-                if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual"), npc.damage / 5, 0f, Main.myPlayer, 0f, npc.whoAmI);
             }
-
-            if (Main.player[Main.myPlayer].active && npc.Distance(Main.player[Main.myPlayer].Center) < 3000f)
+            if (npc.localAI[3] == 1)
+                Aura(2000f, mod.BuffType("GodEater"), true, 86);
+            else if (Main.player[Main.myPlayer].active && npc.Distance(Main.player[Main.myPlayer].Center) < 3000f)
                 Main.player[Main.myPlayer].AddBuff(mod.BuffType("MutantPresence"), 2);
 
             Player player = Main.player[npc.target];
@@ -162,13 +166,12 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         }
                         else if (Main.netMode != 1)
                         {
-                            Projectile.NewProjectile(npc.Center, npc.DirectionTo(player.Center) * 20f, mod.ProjectileType("MutantSpearThrown"), npc.damage / 4, 0f, Main.myPlayer, npc.target);
+                            Projectile.NewProjectile(npc.Center, npc.DirectionTo(player.Center) * 25f, mod.ProjectileType("MutantSpearThrown"), npc.damage / 4, 0f, Main.myPlayer, npc.target);
                         }
                     }
                     break;
 
                 case 1: //slow drift, shoot phantasmal rings
-                    //Aura(800f, mod.BuffType("GodEater"), true, 86);
                     if (--npc.ai[1] < 0)
                     {
                         npc.netUpdate = true;
@@ -357,7 +360,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (Phase2Check())
                         break;
                     targetPos = player.Center + player.DirectionTo(npc.Center) * 250;
-                    if (npc.Distance(targetPos) > 50)
+                    if (npc.Distance(targetPos) > 50 && ++npc.ai[2] < 180)
                     {
                         speedModifier = 0.5f;
                         if (npc.Center.X < targetPos.X)
@@ -432,18 +435,20 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
                 case 10: //phase 2 begins
                     npc.velocity *= 0.9f;
+                    npc.dontTakeDamage = true;
                     if (npc.buffType[0] != 0)
                         npc.DelBuff(0);
-                    for (int i = 0; i < 5; i++)
-                    {
-                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
-                        Main.dust[d].noGravity = true;
-                        Main.dust[d].noLight = true;
-                        Main.dust[d].velocity *= 4f;
-                    }
                     if (++npc.ai[1] > 120)
                     {
-                        if (++npc.ai[2] > 10)
+                        npc.localAI[3] = 2;
+                        for (int i = 0; i < 5; i++)
+                        {
+                            int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
+                            Main.dust[d].noGravity = true;
+                            Main.dust[d].noLight = true;
+                            Main.dust[d].velocity *= 4f;
+                        }
+                        if (++npc.ai[2] > 15)
                         {
                             int heal = (int)(npc.lifeMax / 2 / 60 * Main.rand.NextFloat(1.5f, 2f));
                             npc.life += heal;
@@ -451,7 +456,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                                 npc.life = npc.lifeMax;
                             CombatText.NewText(npc.Hitbox, CombatText.HealLife, heal);
                         }
-                        if (npc.ai[1] > 180)
+                        if (npc.ai[1] > 210)
                         {
                             npc.ai[0]++;
                             npc.ai[1] = 0;
@@ -462,15 +467,25 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     else if (npc.ai[1] == 120)
                     {
+                        if (Main.netMode != 1)
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual"), npc.damage / 5, 0f, Main.myPlayer, 0f, npc.whoAmI);
                         Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                        for (int i = 0; i < 50; i++)
+                        {
+                            int d = Dust.NewDust(Main.player[Main.myPlayer].position, Main.player[Main.myPlayer].width, Main.player[Main.myPlayer].height, 229, 0f, 0f, 0, default(Color), 2.5f);
+                            Main.dust[d].noGravity = true;
+                            Main.dust[d].noLight = true;
+                            Main.dust[d].velocity *= 9f;
+                        }
                     }
                     break;
 
                 case 11: //approach for laser
+                    npc.dontTakeDamage = false;
                     if (!AliveCheck(player))
                         break;
                     targetPos = player.Center + player.DirectionTo(npc.Center) * 250;
-                    if (npc.Distance(targetPos) > 50)
+                    if (npc.Distance(targetPos) > 50 && ++npc.ai[2] < 180)
                     {
                         speedModifier = 0.5f;
                         if (npc.Center.X < targetPos.X)
@@ -598,11 +613,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         }
                         else
                         {
-                            npc.velocity = npc.DirectionTo(player.Center + player.velocity * 30f) * 30f;
+                            npc.velocity = npc.DirectionTo(player.Center + player.velocity * 30f) * 45f;
                             if (Main.netMode != 1)
                             {
-                                Vector2 spawnPos = npc.Center - Vector2.Normalize(npc.velocity) * 1000f;
-                                Projectile.NewProjectile(spawnPos, Vector2.Normalize(npc.velocity), mod.ProjectileType("MutantDeathray2"), npc.damage / 5, 0f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.Center, Vector2.Normalize(npc.velocity), mod.ProjectileType("MutantDeathray2"), npc.damage / 5, 0f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.Center, -Vector2.Normalize(npc.velocity), mod.ProjectileType("MutantDeathray2"), npc.damage / 5, 0f, Main.myPlayer);
                                 Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearDash"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 1f);
                             }
                         }
@@ -736,7 +751,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             //works because buffs are client side anyway :ech:
             Player p = Main.player[Main.myPlayer];
             float range = npc.Distance(p.Center);
-            if (reverse ? range > distance && range < 3000f : range < distance)
+            if (reverse ? range > distance && range < 5000f : range < distance)
                 p.AddBuff(buff, checkDuration && Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
             for (int i = 0; i < 30; i++)
@@ -777,16 +792,15 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 npc.ai[2] = 0;
                 npc.ai[3] = 0;
                 npc.netUpdate = true;
+                if (Main.netMode != 1)
+                {
+                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual2"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual3"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual4"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                }
                 return true;
             }
             return false;
-        }
-
-        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
-        {
-            if (npc.ai[0] == 10)
-                damage = 0;
-            return true;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
