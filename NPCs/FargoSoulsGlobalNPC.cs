@@ -9030,6 +9030,9 @@ namespace FargowiltasSouls.NPCs
                                 int maxEX = Main.rand.Next(5) + 1;
                                 for (int i = 0; i < maxEX; i++)
                                     npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("AbominationnVoodooDoll"));
+                                maxEX = Main.rand.Next(5) + 5;
+                                for (int i = 0; i < maxEX; i++)
+                                    npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantScale"));
                                 npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(3) + 1);
 
                                 int max = Main.rand.Next(5) + 5;

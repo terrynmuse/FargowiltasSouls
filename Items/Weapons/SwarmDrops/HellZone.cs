@@ -62,8 +62,9 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             {
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(null, "Bonezone");
+                recipe.AddIngredient(null, "MutantScale", 10);
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerSkele"));
-                recipe.AddTile(TileID.MythrilAnvil);
+                recipe.AddTile(mod, "CrucibleCosmosSheet");
                 recipe.SetResult(this);
                 recipe.AddRecipe();
             }
