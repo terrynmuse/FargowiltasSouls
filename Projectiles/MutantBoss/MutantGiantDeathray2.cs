@@ -10,9 +10,9 @@ using FargowiltasSouls.Buffs.Masomode;
 
 namespace FargowiltasSouls.Projectiles.MutantBoss
 {
-    public class MutantGiantDeathray : ModProjectile
+    public class MutantGiantDeathray2 : ModProjectile
     {
-        private const float maxTime = 255;
+        private const float maxTime = 600;
 
         public override void SetStaticDefaults()
 		{
@@ -28,7 +28,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.timeLeft = 600;
-            cooldownSlot = 1;
         }
 
         public override void AI()
@@ -40,7 +39,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             }
             if (Main.npc[(int)projectile.ai[1]].active && Main.npc[(int)projectile.ai[1]].type == mod.NPCType("MutantBoss"))
             {
-                projectile.Center = Main.npc[(int)projectile.ai[1]].Center + Main.rand.NextVector2Circular(5, 5);
+                projectile.Center = Main.npc[(int)projectile.ai[1]].Center + Vector2.UnitX.RotatedBy(Main.npc[(int)projectile.ai[1]].ai[3]) * 175 + Main.rand.NextVector2Circular(5, 5);
             }
             else
             {
