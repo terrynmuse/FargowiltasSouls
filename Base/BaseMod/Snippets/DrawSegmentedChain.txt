@@ -1,0 +1,29 @@
+		public void DrawLeg(SpriteBatch sb, Texture2D chainTex, Color dColor, Vector2 start, Vector2 end, float differenceAddon = 0f, float rotAddon = 0.25f) 
+		{
+			//make distanceAddon higher or lower to make the legs have varied distance between up and down.
+			//make rotAddon higher or lower to make the legs have more extreme angles.
+			float rotDir = BaseUtility.RotationTo(start, end);
+			float difference = Vector2.Distance(start, end);
+			Vector2 top = start + BaseUtility.RotateVector(default, new Vector2((difference * 0.25f) + differenceAddon, 0f), rotDir - rotAddon);
+			Vector2 middle = start + BaseUtility.RotateVector(default, new Vector2((difference * 0.5f), 0f), rotDir + rotAddon);			
+			Vector2 bottom = start + BaseUtility.RotateVector(default, new Vector2((difference * 0.75f) - differenceAddon, 0f), rotDir - rotAddon);
+			Fargowiltas.BaseDrawing.DrawChain(sb, chainTex, 0, start, top); //pass in other things if you want to do something fancier
+			Fargowiltas.BaseDrawing.DrawChain(sb, chainTex, 0, top, middle);
+			Fargowiltas.BaseDrawing.DrawChain(sb, chainTex, 0, middle, bottom);			
+			Fargowiltas.BaseDrawing.DrawChain(sb, chainTex, 0, bottom, end);			
+		}
+		//this version does not scale size with distance.
+		public void DrawLeg2(SpriteBatch sb, Texture2D chainTex, Color dColor, Vector2 start, Vector2 end, float differenceAddon = 20f, float rotAddon = 0.25f) 
+		{
+			//make distanceAddon higher or lower to make the legs have varied distance between up and down.
+			//make rotAddon higher or lower to make the legs have more extreme angles.
+			float rotDir = BaseUtility.RotationTo(start, end);
+			Vector2 diffVec = end - start;
+			Vector2 top = start + (diffVec * 0.25f) + BaseUtility.RotateVector(default, new Vector2(differenceAddon, 0f), rotDir - rotAddon);
+			Vector2 middle = start + (diffVec * 0.5f) + BaseUtility.RotateVector(default, new Vector2(differenceAddon, 0f), rotDir + rotAddon);			
+			Vector2 bottom = start + (diffVec * 0.75f) + BaseUtility.RotateVector(default, new Vector2(differenceAddon, 0f), rotDir - rotAddon);
+			Fargowiltas.BaseDrawing.DrawChain(sb, chainTex, 0, start, top); //pass in other things if you want to do something fancier			
+			Fargowiltas.BaseDrawing.DrawChain(sb, chainTex, 0, top, middle);
+			Fargowiltas.BaseDrawing.DrawChain(sb, chainTex, 0, middle, bottom);			
+			Fargowiltas.BaseDrawing.DrawChain(sb, chainTex, 0, bottom, end);			
+		}	

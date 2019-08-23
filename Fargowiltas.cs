@@ -553,6 +553,46 @@ namespace FargowiltasSouls
                 default:
                     break;
             }
+
+            //BaseMod Stuff
+            MsgType msg = (MsgType)reader.ReadByte();
+            if (msg == MsgType.ProjectileHostility) //projectile hostility and ownership
+            {
+                int owner = reader.ReadInt32();
+                int projID = reader.ReadInt32();
+                bool friendly = reader.ReadBoolean();
+                bool hostile = reader.ReadBoolean();
+                if (Main.projectile[projID] != null)
+                {
+                    Main.projectile[projID].owner = owner;
+                    Main.projectile[projID].friendly = friendly;
+                    Main.projectile[projID].hostile = hostile;
+                }
+                if (Main.netMode == 2) MNet.SendBaseNetMessage(0, owner, projID, friendly, hostile);
+            }
+            else
+            if (msg == MsgType.SyncAI) //sync AI array
+            {
+                int classID = reader.ReadByte();
+                int id = reader.ReadInt16();
+                int aitype = reader.ReadByte();
+                int arrayLength = reader.ReadByte();
+                float[] newAI = new float[arrayLength];
+                for (int m = 0; m < arrayLength; m++)
+                {
+                    newAI[m] = reader.ReadSingle();
+                }
+                if (classID == 0 && Main.npc[id] != null && Main.npc[id].active && Main.npc[id].modNPC != null && Main.npc[id].modNPC is ParentNPC)
+                {
+                    ((ParentNPC)Main.npc[id].modNPC).SetAI(newAI, aitype);
+                }
+                else
+                if (classID == 1 && Main.projectile[id] != null && Main.projectile[id].active && Main.projectile[id].modProjectile != null && Main.projectile[id].modProjectile is ParentProjectile)
+                {
+                    ((ParentProjectile)Main.projectile[id].modProjectile).SetAI(newAI, aitype);
+                }
+                if (Main.netMode == 2) BaseNet.SyncAI(classID, id, newAI, aitype);
+            }
         }
 
         public static bool NoInvasion(NPCSpawnInfo spawnInfo)
@@ -596,5 +636,11 @@ namespace FargowiltasSouls
         {
             return NormalSpawn(spawnInfo) && NoBiome(spawnInfo) && NoZone(spawnInfo);
         }
+    }
+
+    enum MsgType : byte
+    {
+        ProjectileHostility,
+        SyncAI
     }
 }
