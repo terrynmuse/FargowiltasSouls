@@ -22,7 +22,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             npc.width = 34;
             npc.height = 50;
-            npc.damage = 350;
+            npc.damage = 300;
             npc.defense = 100;
             npc.lifeMax = 7000000;
             npc.HitSound = SoundID.NPCHit57;
@@ -47,7 +47,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.damage = 350;
+            npc.damage = 300;
             npc.lifeMax = (int)(7000000 * bossLifeScale);
         }
 
