@@ -36,6 +36,7 @@ maso on hit effects now only proc every 20 ticks max
 brain is no longer faster in p2, but has a shadow clone
 REMOVED ML SOCKET LASERS
 squeaky toy on hit is now a toggle
+brain now confuses you for 5 sec every 10 seconds in p2, no longer confuses on hit
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

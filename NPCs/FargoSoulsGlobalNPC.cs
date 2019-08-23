@@ -4616,6 +4616,14 @@ namespace FargowiltasSouls.NPCs
                                         NetMessage.SendData(23, -1, -1, null, n);
                                 }
                             }
+                            if (--Counter < 0) //confuse player
+                            {
+                                Counter = 0;
+                                Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                                Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
+                                if (npc.Distance(Main.player[Main.myPlayer].Center) < 3000)
+                                    Main.player[Main.myPlayer].AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 150 : 300);
+                            }
                         }
                         break;
 
@@ -6638,7 +6646,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        target.AddBuff(BuffID.Confused, Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(90));
@@ -9598,13 +9605,13 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.BrainofCthulhu:
+                    /*case NPCID.BrainofCthulhu:
                         if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
                         {
                             player.AddBuff(BuffID.Confused, Main.rand.Next(150));
                             Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
                         }
-                        break;
+                        break;*/
 
                     case NPCID.IceTortoise:
                         float reduction = (float)npc.life / npc.lifeMax;

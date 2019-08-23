@@ -584,6 +584,13 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             Main.dust[d].noLight = true;
                             Main.dust[d].velocity *= 9f;
                         }
+                        if (Fargowiltas.Instance.CalamityLoaded && player.GetModPlayer<FargoPlayer>().TerrariaSoul) //edgy boss text
+                        {
+                            if (Main.netMode == 0)
+                                Main.NewText("Hand it over. That thing, your soul toggles.", Color.Teal);
+                            else if (Main.netMode == 2)
+                                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Hand it over. That thing, your soul toggles."), Color.Teal);
+                        }
                     }
                     break;
 
@@ -1025,7 +1032,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     targetPos.X += 700 * (npc.Center.X < targetPos.X ? -1 : 1);
                     targetPos.Y += 400;
                     Movement(targetPos, 0.8f);
-                    if (++npc.ai[1] > 180) //dive here
+                    if (++npc.ai[1] > 120) //dive here
                     {
                         npc.velocity.X = 30f * (npc.position.X < player.position.X ? 1 : -1);
                         if (npc.velocity.Y > 0)
@@ -1140,7 +1147,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     targetPos.X += 400 * (npc.Center.X < targetPos.X ? -1 : 1);
                     targetPos.Y -= 400;
                     Movement(targetPos, 0.9f);
-                    if (++npc.ai[1] > 120) //dive here
+                    if (++npc.ai[1] > 60) //dive here
                     {
                         npc.velocity.X = 35f * (npc.position.X < player.position.X ? 1 : -1);
                         npc.velocity.Y = -10f;
@@ -1183,13 +1190,56 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     else if (npc.ai[1] == 91 && npc.ai[2] < 5 && Main.netMode != 1)
                     {
-                        Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearAim"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSpearAim"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 1);
+                    }
+                    break;
+
+                case 40: //spawn leaf crystals
+                    Main.PlaySound(SoundID.Item84, npc.Center);
+                    if (Main.netMode != 1)
+                    {
+                        Projectile.NewProjectile(npc.Center, Vector2.UnitY * 10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 60);
+                        Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 180);
+                    }
+                    npc.ai[0]++;
+                    break;
+
+                case 41: //boomerangs
+                    npc.velocity = Vector2.Zero;
+                    if (++npc.ai[1] > 60)
+                    {
+                        npc.netUpdate = true;
+                        npc.ai[1] = 0;
+                        Main.PlaySound(SoundID.Item92, npc.Center);
+                        npc.ai[2] = npc.ai[2] > 0 ? -1 : 1;
+                        if (Main.netMode != 1)
+                        {
+                            const float retiRad = 500;
+                            const float spazRad = 250;
+                            float retiSpeed = 2 * (float)Math.PI * retiRad / 240;
+                            float spazSpeed = 2 * (float)Math.PI * spazRad / 120;
+                            float retiAcc = retiSpeed * retiSpeed / retiRad * npc.ai[2];
+                            float spazAcc = spazSpeed * spazSpeed / spazRad * -npc.ai[2];
+                            for (int i = 0; i < 4; i++)
+                            {
+                                Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 2 * i) * retiSpeed, mod.ProjectileType("MutantRetirang"), npc.damage / 5, 0f, Main.myPlayer, retiAcc, 240);
+                                Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 2 * i + Math.PI / 4) * spazSpeed, mod.ProjectileType("MutantSpazmarang"), npc.damage / 5, 0f, Main.myPlayer, spazAcc, 120);
+                            }
+                        }
+                    }
+                    if (++npc.ai[3] > 360)
+                    {
+                        npc.netUpdate = true;
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = 0;
+                        npc.ai[3] = 0;
                     }
                     break;
 
                 default:
                     npc.ai[0] = 11;
-                    goto case 10;
+                    goto case 11;
             }
         }
 

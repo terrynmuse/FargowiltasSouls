@@ -53,6 +53,13 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 projectile.Kill();
             }
+
+            if (projectile.localAI[0] == 0)
+            {
+                projectile.localAI[0] = 1;
+                if (projectile.ai[1] == 1)
+                    projectile.timeLeft -= 30;
+            }
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
