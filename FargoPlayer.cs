@@ -2685,7 +2685,7 @@ namespace FargowiltasSouls
                 return false;
             }
 
-            if (SqueakyAcc && Main.rand.Next(10) == 0)
+            if (SqueakyAcc && Soulcheck.GetValue("Squeaky Toy On Hit") && Main.rand.Next(10) == 0)
             {
                 Squeak(player.Center);
                 damage = 1;

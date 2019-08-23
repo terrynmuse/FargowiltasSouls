@@ -4941,7 +4941,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead:
                         RegenTimer = 2;
-                        if (npc.ai[0] == -2f) //eye socket is empty
+                        /*if (npc.ai[0] == -2f) //eye socket is empty
                         {
                             if (npc.ai[1] == 0f //happens every 32 ticks
                                 && Main.npc[(int)npc.ai[3]].ai[0] != 2f) //will stop when ML dies
@@ -4990,7 +4990,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                                 npc.netUpdate = true;
                             }
-                        }
+                        }*/
                         break;
 
                     case NPCID.AncientLight:

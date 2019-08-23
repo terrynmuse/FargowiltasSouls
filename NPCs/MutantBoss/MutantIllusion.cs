@@ -10,6 +10,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
     [AutoloadBossHead]
     public class MutantIllusion : ModNPC
     {
+        public override string Texture => "FargowiltasSouls/NPCs/MutantBoss/MutantBoss";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mutant");
@@ -21,8 +23,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             npc.width = 34;
             npc.height = 50;
-            npc.damage = 250;
-            npc.defense = 200;
+            npc.damage = 300;
+            npc.defense = 100;
             npc.lifeMax = 7000000;
             npc.dontTakeDamage = true;
             npc.HitSound = SoundID.NPCHit57;
@@ -31,13 +33,18 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.knockBackResist = 0f;
             npc.lavaImmune = true;
             npc.aiStyle = -1;
+            npc.buffImmune[mod.BuffType("Sadism")] = true;
+            npc.buffImmune[mod.BuffType("ClippedWings")] = true;
+            npc.buffImmune[mod.BuffType("MutantNibble")] = true;
+            npc.buffImmune[mod.BuffType("OceanicMaul")] = true;
             npc.buffImmune[mod.BuffType("TimeFrozen")] = true;
+            npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.damage = 250;
-            npc.lifeMax = 7000000;
+            npc.damage = 300;
+            npc.lifeMax = (int)(7000000 * bossLifeScale);
         }
 
         public override void AI()
@@ -93,7 +100,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 else
                     ai0 = 2;
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10, mod.ProjectileType("MutantPillar"), npc.damage / 4, 0, Main.myPlayer, ai0, npc.whoAmI);
+                    Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10, mod.ProjectileType("MutantPillar"), npc.damage / 3, 0, Main.myPlayer, ai0, npc.whoAmI);
             }
         }
 

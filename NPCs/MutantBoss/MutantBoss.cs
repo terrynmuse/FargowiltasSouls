@@ -93,10 +93,19 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                 }
             }
-            if (npc.localAI[3] == 1)
+            else if (npc.localAI[3] == 1)
+            {
                 Aura(2000f, mod.BuffType("GodEater"), true, 86);
+            }
             else if (Main.player[Main.myPlayer].active && npc.Distance(Main.player[Main.myPlayer].Center) < 3000f)
+            {
                 Main.player[Main.myPlayer].AddBuff(mod.BuffType("MutantPresence"), 2);
+                if (Fargowiltas.Instance.CalamityLoaded)
+                {
+                    Main.player[Main.myPlayer].buffImmune[ModLoader.GetMod("CalamityMod").BuffType("RageMode")] = true;
+                    Main.player[Main.myPlayer].buffImmune[ModLoader.GetMod("CalamityMod").BuffType("AdrenalineMode")] = true;
+                }
+            }
 
             Player player = Main.player[npc.target];
             npc.direction = npc.spriteDirection = npc.position.X < player.position.X ? 1 : -1;
@@ -720,7 +729,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         break;
                     targetPos = player.Center;
                     targetPos.X += 600 * (npc.Center.X < targetPos.X ? -1 : 1);
-                    targetPos.Y += 300;
+                    targetPos.Y += 200;
                     if (npc.Distance(targetPos) > 50)
                     {
                         Movement(targetPos, 0.6f);
@@ -736,7 +745,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     else if (npc.ai[1] == 240)
                     {
                         if (Main.netMode != 1)
-                            Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10, mod.ProjectileType("MutantPillar"), npc.damage / 4, 0, Main.myPlayer, 3, npc.whoAmI);
+                            Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10, mod.ProjectileType("MutantPillar"), npc.damage / 3, 0, Main.myPlayer, 3, npc.whoAmI);
                     }
                     break;
 
@@ -750,7 +759,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     if (++npc.ai[1] > 120)
                     {
-                        npc.ai[1] = 0;
+                        npc.ai[1] = 30;
                         if (++npc.ai[2] > 3)
                         {
                             npc.ai[0]++;
@@ -825,11 +834,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         Movement(targetPos, 0.9f);
                     }
-                    if (++npc.ai[1] > 120)
+                    if (++npc.ai[1] > 60)
                     {
                         npc.netUpdate = true;
-                        npc.ai[1] = 90;
-                        if (++npc.ai[2] > 3)
+                        npc.ai[1] = 30;
+                        if (++npc.ai[2] > 5)
                         {
                             npc.ai[0]++;
                             npc.ai[1] = 0;
@@ -916,7 +925,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
                 case 27: //DEATHRAY SPAM
                     npc.velocity = Vector2.Zero;
-                    if (++npc.ai[1] > 20)
+                    if (++npc.ai[1] > 15)
                     {
                         npc.ai[1] = 0;
                         if (Main.netMode != 1)
@@ -925,7 +934,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             Projectile.NewProjectile(npc.Center, -Vector2.UnitX, mod.ProjectileType("MutantDeathray3"), npc.damage / 4, 0, Main.myPlayer, MathHelper.ToRadians(260) / 90f, npc.whoAmI);
                         }
                     }
-                    if (++npc.ai[3] > 240)
+                    if (++npc.ai[3] > 180)
                     {
                         npc.ai[0]++;
                         npc.ai[1] = 0;
@@ -1057,8 +1066,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (npc.ai[1] > 240 && Main.netMode != 1)
                     {
                         Vector2 safeZone = npc.Center;
-                        safeZone.Y -= 200;
-                        const float safeRange = 500;
+                        safeZone.Y -= 100;
+                        const float safeRange = 150 + 250;
                         for (int i = 0; i < 3; i++)
                         {
                             Vector2 spawnPos = npc.Center + Main.rand.NextVector2Circular(1200, 1200);
@@ -1073,13 +1082,13 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[2] = 0;
                         npc.netUpdate = true;
                     }
-                    for (int i = 0; i < 30; i++)
+                    for (int i = 0; i < 20; i++)
                     {
                         Vector2 offset = new Vector2();
-                        offset.Y -= 200;
+                        offset.Y -= 100;
                         double angle = Main.rand.NextDouble() * 2d * Math.PI;
-                        offset.X += (float)(Math.Sin(angle) * 250);
-                        offset.Y += (float)(Math.Cos(angle) * 250);
+                        offset.X += (float)(Math.Sin(angle) * 150);
+                        offset.Y += (float)(Math.Cos(angle) * 150);
                         Dust dust = Main.dust[Dust.NewDust(npc.Center + offset - new Vector2(4, 4), 0, 0, 229, 0, 0, 100, Color.White, 1.5f)];
                         dust.velocity = npc.velocity;
                         if (Main.rand.Next(3) == 0)
@@ -1088,15 +1097,66 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     break;
 
-                case 35: //throw penetrator again
+                case 35: //flee while slime raining
+                    if (!AliveCheck(player))
+                        break;
+                    targetPos = player.Center;
+                    targetPos.X += 700 * (npc.Center.X < targetPos.X ? -1 : 1);
+                    targetPos.Y -= 150;
+                    if (npc.Distance(targetPos) > 50)
+                        Movement(targetPos, 0.7f);
+                    if (++npc.ai[1] > 6)
+                    {
+                        npc.ai[1] = 0;
+                        Main.PlaySound(SoundID.Item34, player.Center);
+                        if (Main.netMode != 1)
+                        {
+                            Vector2 spawnPos = npc.Center;
+                            spawnPos.X += (npc.Center.X < player.Center.X) ? 900 : -900;
+                            spawnPos.Y -= 1200;
+                            for (int i = 0; i < 15; i++)
+                                Projectile.NewProjectile(spawnPos.X + Main.rand.Next(-300, 301), spawnPos.Y + Main.rand.Next(-100, 101), Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(30f, 35f), mod.ProjectileType("MutantSlimeBall"), npc.damage / 5, 0f, Main.myPlayer);
+                        }
+                    }
+                    if (++npc.ai[2] > 180)
+                    {
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = 0;
+                        npc.netUpdate = true;
+                    }
+                    break;
+
+                case 36: //go below to initiate dash
+                    if (!AliveCheck(player))
+                        break;
+                    targetPos = player.Center;
+                    targetPos.X += 400 * (npc.Center.X < targetPos.X ? -1 : 1);
+                    targetPos.Y -= 400;
+                    Movement(targetPos, 0.9f);
+                    if (++npc.ai[1] > 120) //dive here
+                    {
+                        npc.velocity.X = 35f * (npc.position.X < player.position.X ? 1 : -1);
+                        npc.velocity.Y = -10f;
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.netUpdate = true;
+                    }
+                    break;
+
+                case 37: //spawn fishrons
+                    goto case 30;
+
+                case 38: //rain slime again
+                    goto case 35;
+
+                case 39: //throw penetrator again
                     if (!AliveCheck(player))
                         break;
                     targetPos = player.Center;
                     targetPos.X += 500 * (npc.Center.X < targetPos.X ? -1 : 1);
                     if (npc.Distance(targetPos) > 50)
-                    {
                         Movement(targetPos, 0.4f);
-                    }
                     if (++npc.ai[1] > 120)
                     {
                         npc.netUpdate = true;
