@@ -22,7 +22,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             npc.width = 34;
             npc.height = 50;
-            npc.damage = 300;
+            npc.damage = 250;
             npc.defense = 100;
             npc.lifeMax = 7000000;
             npc.HitSound = SoundID.NPCHit57;
@@ -49,6 +49,12 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             npc.damage = 300;
             npc.lifeMax = (int)(7000000 * bossLifeScale);
+        }
+
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
+        {
+            cooldownSlot = 1;
+            return true;
         }
 
         public override void AI()
