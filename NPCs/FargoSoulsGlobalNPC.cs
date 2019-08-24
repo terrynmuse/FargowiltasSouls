@@ -4618,7 +4618,7 @@ namespace FargowiltasSouls.NPCs
                             }
                             if (--Counter < 0) //confuse player
                             {
-                                Counter = 0;
+                                Counter = 600;
                                 Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
                                 Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
                                 if (npc.Distance(Main.player[Main.myPlayer].Center) < 3000)
@@ -9608,14 +9608,6 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    /*case NPCID.BrainofCthulhu:
-                        if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
-                        {
-                            player.AddBuff(BuffID.Confused, Main.rand.Next(150));
-                            Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
-                        }
-                        break;*/
-
                     case NPCID.IceTortoise:
                         float reduction = (float)npc.life / npc.lifeMax;
                         if (reduction < 0.5f)
@@ -9870,14 +9862,6 @@ namespace FargowiltasSouls.NPCs
                         }
                         if (projectile.type == ProjectileID.HallowStar)
                             damage /= 4;
-                        break;
-
-                    case NPCID.BrainofCthulhu:
-                        if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
-                        {
-                            player.AddBuff(BuffID.Confused, Main.rand.Next(150));
-                            Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
-                        }
                         break;
 
                     case NPCID.IceTortoise:
