@@ -1468,9 +1468,12 @@ namespace FargowiltasSouls
             {
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
+                player.lifeRegen -= 170;
 
                 player.lifeRegenTime = 0;
-                player.lifeRegen -= 90;
+
+                if (player.lifeRegenCount > 0)
+                    player.lifeRegenCount = 0;
             }
 
             if (MutantNibble)

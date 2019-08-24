@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,6 +30,18 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.netImportant = true;
             projectile.hide = true;
             cooldownSlot = 1;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(projectile.localAI[0]);
+            writer.Write(projectile.localAI[1]);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            projectile.localAI[0] = reader.ReadFloat();
+            projectile.localAI[1] = reader.ReadFloat();
         }
 
         public override Color? GetAlpha(Color lightColor)

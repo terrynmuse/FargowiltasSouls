@@ -19,6 +19,7 @@ namespace FargowiltasSouls
         public static bool MasochistMode;
         public static bool downedFishronEX;
         public static bool downedMutant;
+        public static bool AngryMutant;
         public static int EyeCount;
         public static int SlimeCount;
         public static int EaterCount;
@@ -43,6 +44,7 @@ namespace FargowiltasSouls
             //masomode
             MasochistMode = false;
             downedFishronEX = false;
+            AngryMutant = false;
             EyeCount = 0;
             SlimeCount = 0;
             EaterCount = 0;
@@ -87,6 +89,7 @@ namespace FargowiltasSouls
             if (MasochistMode) downed.Add("masochist");
             if (downedFishronEX) downed.Add("downedFishronEX");
             if (downedMutant) downed.Add("downedMutant");
+            if (AngryMutant) downed.Add("AngryMutant");
 
             return new TagCompound
             {
@@ -122,6 +125,7 @@ namespace FargowiltasSouls
             MasochistMode = downed.Contains("masochist");
             downedFishronEX = downed.Contains("downedFishronEX");
             downedMutant = downed.Contains("downedMutant");
+            AngryMutant = downed.Contains("AngryMutant");
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -148,6 +152,7 @@ namespace FargowiltasSouls
             MasochistMode = flags[2];
             downedFishronEX = flags[3];
             downedMutant = flags[4];
+            AngryMutant = flags[5];
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -174,7 +179,8 @@ namespace FargowiltasSouls
                 [1] = _downedBoss,
                 [2] = MasochistMode,
                 [3] = downedFishronEX,
-                [4] = downedMutant
+                [4] = downedMutant,
+                [5] = AngryMutant
             };
 
             writer.Write(flags);
