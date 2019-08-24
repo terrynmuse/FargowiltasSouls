@@ -40,6 +40,16 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.buffImmune[mod.BuffType("MutantNibble")] = true;
             npc.buffImmune[mod.BuffType("OceanicMaul")] = true;
             npc.buffImmune[mod.BuffType("TimeFrozen")] = true;
+            if (Fargowiltas.Instance.CalamityLoaded)
+            {
+                npc.lifeMax = 170000000;
+                npc.damage *= 2;
+                npc.defense *= 10;
+                npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("Exofreeze")] = true;
+                npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("GlacialState")] = true;
+                npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("TemporalSadness")] = true;
+                npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("SilvaStun")] = true;
+            }
             npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
             //music = MusicID.TheTowers;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue");
@@ -49,6 +59,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             npc.damage = 250;
             npc.lifeMax = (int)(7000000 * bossLifeScale);
+            if (Fargowiltas.Instance.CalamityLoaded)
+            {
+                npc.lifeMax = (int)(170000000 * bossLifeScale);
+                npc.damage *= 2;
+            }
         }
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)
@@ -141,12 +156,15 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             if (n != 200 && Main.netMode == 2)
                                 NetMessage.SendData(23, -1, -1, null, n);
                         }
+                        EdgyBossText("Oh, right... my revive...");
                     }
                     break;
 
                 case -4: //actually defeated
+                    if (!AliveCheck(player))
+                        break;
                     npc.ai[3] -= (float)Math.PI / 6f / 60f;
-                    if (++npc.ai[1] > 120 && AliveCheck(player))
+                    if (++npc.ai[1] > 120)
                     {
                         npc.netUpdate = true;
                         npc.ai[0]--;
@@ -155,6 +173,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.netUpdate = true;
                         if (Main.netMode != 1) //shoot harmless mega ray
                             Projectile.NewProjectile(npc.Center, Vector2.UnitY * -1, mod.ProjectileType("MutantGiantDeathray"), 0, 0f, Main.myPlayer, 0, npc.whoAmI);
+                        EdgyBossText("I have not a single regret in my existence!");
                     }
                     for (int i = 0; i < 5; i++)
                     {
@@ -166,6 +185,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case -3: //FINAL SPARK
+                    if (!AliveCheck(player))
+                        break;
                     npc.velocity = Vector2.Zero;
                     if (++npc.ai[1] > 90)
                     {
@@ -190,11 +211,14 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         npc.ai[3] = npc.DirectionFrom(player.Center).ToRotation();
                         Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.ai[3]), mod.ProjectileType("MutantGiantDeathray2"), npc.damage / 2, 0f, Main.myPlayer, 0, npc.whoAmI);
+                        EdgyBossText("This is my final attack!");
                     }
                     npc.ai[3] -= 2f * (float)Math.PI * 1f / 6.5f / 60f;
                     break;
 
                 case -2: //final void rays
+                    if (!AliveCheck(player))
+                        break;
                     npc.velocity = Vector2.Zero;
                     if (--npc.ai[1] < 0)
                     {
@@ -592,13 +616,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             Main.dust[d].noLight = true;
                             Main.dust[d].velocity *= 9f;
                         }
-                        if (Fargowiltas.Instance.CalamityLoaded && player.GetModPlayer<FargoPlayer>().TerrariaSoul) //edgy boss text
-                        {
-                            if (Main.netMode == 0)
-                                Main.NewText("Hand it over. That thing, your soul toggles.", Color.Green);
-                            else if (Main.netMode == 2)
-                                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Hand it over. That thing, your soul toggles."), Color.Green);
-                        }
+                        if (player.GetModPlayer<FargoPlayer>().TerrariaSoul)
+                            EdgyBossText("Hand it over. That thing, your soul toggles.");
                     }
                     break;
 
@@ -1295,10 +1314,13 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             if ((!player.active || player.dead || Vector2.Distance(npc.Center, player.Center) > 5000f) && npc.localAI[3] > 0)
             {
                 npc.TargetClosest();
-                if (npc.timeLeft > 60)
-                    npc.timeLeft = 60;
-                npc.velocity.Y -= 1f;
-                return false;
+                if (!player.active || player.dead || Vector2.Distance(npc.Center, player.Center) > 5000f)
+                {
+                    if (npc.timeLeft > 60)
+                        npc.timeLeft = 60;
+                    npc.velocity.Y -= 1f;
+                    return false;
+                }
             }
             return true;
         }
@@ -1361,6 +1383,17 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 npc.velocity.Y = 24 * Math.Sign(npc.velocity.Y);
         }
 
+        private void EdgyBossText(string text)
+        {
+            if (Fargowiltas.Instance.CalamityLoaded) //edgy boss text
+            {
+                if (Main.netMode == 0)
+                    Main.NewText(text, Color.LimeGreen);
+                else if (Main.netMode == 2)
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(text), Color.LimeGreen);
+            }
+        }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
@@ -1394,6 +1427,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 for (int i = 0; i < 1000; i++)
                     if (Main.projectile[i].active && Main.projectile[i].hostile)
                         Main.projectile[i].Kill();
+                EdgyBossText("You're pretty good...");
             }
             return false;
         }

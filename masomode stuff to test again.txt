@@ -39,6 +39,7 @@ squeaky toy on hit is now a toggle
 brain now confuses you for 5 sec every 10 seconds in p2, no longer confuses on hit
 brain clone actually works
 plantera p2 ring now wiggles!!!! also nerfed chloro fire rate by 1sec
+maso soul no longer gives faster respawn during boss fights
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

@@ -701,7 +701,7 @@ namespace FargowiltasSouls
         {
             if (Eternity)
                 player.respawnTimer = (int)(player.respawnTimer * .1);
-            else if (SandsofTime && (!FargoSoulsGlobalNPC.AnyBossAlive() || MasochistSoul))
+            else if (SandsofTime && !FargoSoulsGlobalNPC.AnyBossAlive())
                 player.respawnTimer = (int)(player.respawnTimer * .5);
         }
 
@@ -2830,7 +2830,7 @@ namespace FargowiltasSouls
                 player.HealEffect(player.statLifeMax2);
                 player.immune = true;
                 player.immuneTime = player.longInvince ? 180 : 120;
-                Main.NewText("You've been revived!", Color.Green);
+                Main.NewText("You've been revived!", Color.LimeGreen);
                 player.AddBuff(mod.BuffType("MutantRebirth"), 7200);
                 Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(400 * player.magicDamage), 10f, player.whoAmI);
                 retVal = false;
