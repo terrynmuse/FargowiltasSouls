@@ -19,12 +19,12 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override void SetDefaults()
         {
-            item.damage = 180;//
+            item.damage = 160;//
             item.magic = true;
             item.width = 24;
             item.height = 28;
-            item.useTime = 30;//
-            item.useAnimation = 30;//
+            item.useTime = 60;//
+            item.useAnimation = 60;//
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 2;

@@ -333,6 +333,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case 1: //slow drift, shoot phantasmal rings
+                    if (Phase2Check())
+                        break;
                     if (--npc.ai[1] < 0)
                     {
                         npc.netUpdate = true;
@@ -433,6 +435,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case 5: //pause and then initiate dash
+                    if (Phase2Check())
+                        break;
                     npc.velocity *= 0.9f;
                     if (++npc.ai[1] > 10)
                     {
@@ -485,6 +489,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
                 
                 case 8: //fire lasers in ring
+                    if (Phase2Check())
+                        break;
                     npc.velocity = Vector2.Zero;
                     if (--npc.ai[1] < 0)
                     {
@@ -512,11 +518,13 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 case 9: //boundary lite
                     if (npc.ai[3] == 0)
                     {
-                        if (AliveCheck(player) && !Phase2Check())
+                        if (AliveCheck(player))
                             npc.ai[3] = 1;
                         else
                             break;
                     }
+                    if (Phase2Check())
+                        break;
                     npc.velocity = Vector2.Zero;
                     if (++npc.ai[1] > 2)
                     {

@@ -39,8 +39,9 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         public override void AI()
         {
             if (projectile.timeLeft > 120) projectile.timeLeft = 120;
-            if (projectile.ai[1] > 5f)
+            if (projectile.ai[1] > 2f)
             {
+                projectile.ai[1] = 0;
                 Dust dust;
                 int dustIndex = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.SolarFlare, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100);
                 dust = Main.dust[dustIndex];
