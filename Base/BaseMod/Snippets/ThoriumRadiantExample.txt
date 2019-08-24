@@ -1,0 +1,69 @@
+	public class ModSupportPlayer : ModPlayer
+	{
+		public Mod thorium
+		{
+			get
+			{
+				return ModLoader.GetMod("ThoriumMod");
+			}
+		}
+		#region thorium variables
+		public float thorium_radiantBoost
+		{
+			get
+			{ 
+				if(thorium != null) 
+				{
+					float? boost = (float?)thorium.Call("GetRadiantBoost", player.whoAmI);
+					if(boost != null) return (float)boost;
+				}
+				return 1f;
+			} 
+			set
+			{
+				if(thorium != null) 
+				{
+					thorium.Call("SetRadiantBoost", player.whoAmI, value);
+				}			
+			} 
+		}
+		public int thorium_radiantCrit
+		{
+			get
+			{
+				if(thorium != null) 
+				{
+					int? boost = (int?)thorium.Call("GetRadiantCrit", player.whoAmI);
+					if(boost != null) return (int)boost;
+				}
+				return 0;
+			}
+			set
+			{
+				if(thorium != null) 
+				{
+					thorium.Call("SetRadiantCrit", player.whoAmI, value);
+				}			
+			} 
+		}
+		public int thorium_healBonus
+		{
+			get
+			{ 
+				if(thorium != null) 
+				{
+					int? boost = (int?)thorium.Call("GetHealBonus", player.whoAmI);
+					if(boost != null) return (int)boost;
+				}
+				return 0;
+			}
+			set
+			{
+				if(thorium != null) 
+				{
+					thorium.Call("SetHealBonus", player.whoAmI, value);
+				}			
+			}
+		}
+		#endregion
+	}	
