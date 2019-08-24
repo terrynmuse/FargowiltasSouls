@@ -76,7 +76,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             Color color26 = lightColor;
             color26 = projectile.GetAlpha(color26);
 
-            SpriteEffects effects = projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            SpriteEffects effects = projectile.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i += 2)
             {
