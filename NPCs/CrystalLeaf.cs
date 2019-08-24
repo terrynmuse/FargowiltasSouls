@@ -63,11 +63,9 @@ namespace FargowiltasSouls.NPCs
 
             if (npc.HasPlayerTarget && Main.player[npc.target].active)
             {
-                npc.ai[2]++;
-                if (npc.ai[2] > 240f) //projectile timer
+                if (--npc.localAI[2] < 0) //projectile timer
                 {
-                    npc.ai[2] = 0;
-                    npc.netUpdate = true;
+                    npc.localAI[2] = 300;
                     Main.PlaySound(6, (int)npc.position.X, (int)npc.position.Y);
                     if (Main.netMode != -1)
                     {
@@ -102,7 +100,7 @@ namespace FargowiltasSouls.NPCs
             npc.position = plantera.Center + new Vector2(npc.ai[1], 0f).RotatedBy(npc.ai[3]);
             npc.position.X -= npc.width / 2;
             npc.position.Y -= npc.height / 2;
-            float rotation = npc.ai[1] == 125f ? 0.03f : -0.01f;
+            float rotation = npc.ai[1] == 125f ? 0.03f : -0.015f;
             npc.ai[3] += rotation;
             if (npc.ai[3] > (float)Math.PI)
             {
@@ -113,37 +111,10 @@ namespace FargowiltasSouls.NPCs
 
             if (npc.ai[1] > 125)
             {
-                if (npc.localAI[1] == 0)
-                {
-                    if (npc.localAI[0] == 1)
-                    {
-                        npc.ai[1] -= 10;
-                    }
-                    else
-                    {
-                        npc.ai[1] += 10;
-                    }
-
-                    if (npc.ai[1] >= 1000)
-                    {
-                        npc.localAI[0] = 1;
-                        npc.localAI[1] = 120;
-                    }
-                    else if (npc.ai[1] <= 250)
-                    {
-                        npc.localAI[0] = 0;
-                        npc.localAI[1] = 120;
-                    }
-                }
-                else
-                {
-                    npc.localAI[1]--;
-                }
-
-
-
-
-                
+                npc.ai[2] += 2 * (float)Math.PI / 300;
+                if (npc.ai[2] > (float)Math.PI)
+                    npc.ai[2] -= 2 * (float)Math.PI;
+                npc.ai[1] += (float)Math.Sin(npc.ai[2]) * 5;
             }
         }
 

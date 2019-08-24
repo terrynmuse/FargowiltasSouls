@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.height = 14;
             projectile.aiStyle = 14;
             projectile.hostile = true;
-            projectile.timeLeft = 120;
+            projectile.timeLeft = 180;
             cooldownSlot = 1;
         }
 

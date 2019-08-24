@@ -37,18 +37,24 @@ namespace FargowiltasSouls.NPCs
 
         public override void AI()
         {
-            if (npc.ai[0] < 0f || npc.ai[0] >= 200f)
+            if (FargoSoulsGlobalNPC.brainBoss < 0f || FargoSoulsGlobalNPC.brainBoss >= 200f)
             {
                 npc.StrikeNPCNoInteraction(9999, 0f, 0);
                 npc.active = false;
                 return;
             }
-            NPC brain = Main.npc[(int)npc.ai[0]];
+            NPC brain = Main.npc[FargoSoulsGlobalNPC.brainBoss];
             if (!brain.active || brain.type != NPCID.BrainofCthulhu)
             {
                 npc.StrikeNPCNoInteraction(9999, 0f, 0);
                 npc.active = false;
                 return;
+            }
+
+            if (npc.buffType[0] != 0) //constant debuff cleanse
+            {
+                npc.buffImmune[npc.buffType[0]] = true;
+                npc.DelBuff(0);
             }
 
             npc.target = brain.target;
@@ -68,7 +74,41 @@ namespace FargowiltasSouls.NPCs
             float num5 = num2 * num3;
             npc.velocity.X = (npc.velocity.X * 50 + num4) / 51f;
             npc.velocity.Y = (npc.velocity.Y * 50 + num5) / 51f;
-            if (npc.ai[0] == -1)
+            if (npc.ai[0] == -2)
+            {
+                npc.velocity *= 0.9f;
+                if (Main.netMode != 0)
+                    npc.ai[3] += 15f;
+                else
+                    npc.ai[3] += 25f;
+                if (npc.ai[3] >= 255)
+                {
+                    npc.ai[3] = 255;
+                    npc.position.X = npc.ai[1] * 16f - (float)(npc.width / 2);
+                    npc.position.Y = npc.ai[2] * 16f - (float)(npc.height / 2);
+                    Main.PlaySound(SoundID.Item8, npc.Center);
+                    npc.ai[0] = -3f;
+                    npc.netUpdate = true;
+                    npc.netSpam = 0;
+                }
+                npc.alpha = (int)npc.ai[3];
+            }
+            else if (npc.ai[0] == -3)
+            {
+                if (Main.netMode != 0)
+                    npc.ai[3] -= 15f;
+                else
+                    npc.ai[3] -= 25f;
+                if (npc.ai[3] <= 0)
+                {
+                    npc.ai[3] = 0.0f;
+                    npc.ai[0] = -1f;
+                    npc.netUpdate = true;
+                    npc.netSpam = 0;
+                }
+                npc.alpha = (int)npc.ai[3];
+            }
+            else
             {
                 if (Main.netMode != 1)
                 {
@@ -105,52 +145,20 @@ namespace FargowiltasSouls.NPCs
                     }
                 }
             }
-            else if (npc.ai[0] == -2)
-            {
-                npc.velocity *= 0.9f;
-                if (Main.netMode != 0)
-                    npc.ai[3] += 15f;
-                else
-                    npc.ai[3] += 25f;
-                if (npc.ai[3] >= 255)
-                {
-                    npc.ai[3] = 255;
-                    npc.position.X = npc.ai[1] * 16f - (float)(npc.width / 2);
-                    npc.position.Y = npc.ai[2] * 16f - (float)(npc.height / 2);
-                    Main.PlaySound(SoundID.Item8, npc.Center);
-                    npc.ai[0] = -3f;
-                    npc.netUpdate = true;
-                    npc.netSpam = 0;
-                }
-                npc.alpha = (int)npc.ai[3];
-            }
-            else if (npc.ai[0] == -3)
-            {
-                if (Main.netMode != 0)
-                    npc.ai[3] -= 15f;
-                else
-                    npc.ai[3] -= 25f;
-                if (npc.ai[3] <= 0)
-                {
-                    npc.ai[3] = 0.0f;
-                    npc.ai[0] = -1f;
-                    npc.netUpdate = true;
-                    npc.netSpam = 0;
-                }
-                npc.alpha = (int)npc.ai[3];
-            }
         }
 
         public override void FindFrame(int frameHeight)
         {
-            NPC brain = Main.npc[(int)npc.ai[0]];
-            if (brain.active && brain.type == NPCID.BrainofCthulhu)
-                npc.frame.Y = brain.frame.Y;
+            if (FargoSoulsGlobalNPC.brainBoss > -1 && FargoSoulsGlobalNPC.brainBoss < 200)
+            {
+                NPC brain = Main.npc[FargoSoulsGlobalNPC.brainBoss];
+                if (brain.active && brain.type == NPCID.BrainofCthulhu)
+                    npc.frame.Y = brain.frame.Y;
+            }
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.Confused, Main.rand.Next(300));
             target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300));
             target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(300));
             target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(90));
@@ -178,14 +186,22 @@ namespace FargowiltasSouls.NPCs
 
         public override bool CheckDead()
         {
-            NPC brain = Main.npc[(int)npc.ai[0]];
-            if (brain.active && brain.type == NPCID.BrainofCthulhu)
+            if (FargoSoulsGlobalNPC.brainBoss > -1 && FargoSoulsGlobalNPC.brainBoss < 200)
             {
-                npc.active = true;
-                npc.life = brain.life;
-                return false;
+                NPC brain = Main.npc[FargoSoulsGlobalNPC.brainBoss];
+                if (brain.active && brain.type == NPCID.BrainofCthulhu)
+                {
+                    npc.active = true;
+                    npc.life = brain.life;
+                    return false;
+                }
             }
             return true;
+        }
+
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
         }
 
         public override bool PreNPCLoot()

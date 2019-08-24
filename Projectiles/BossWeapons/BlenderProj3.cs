@@ -19,6 +19,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.melee = true;
             projectile.scale = 1f;
             projectile.timeLeft = 120;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = false;
         }
 
         public override void AI()

@@ -233,9 +233,9 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (++npc.ai[1] > 120)
                     {
                         targetPos = player.Center;
-                        targetPos.Y -= 500;
+                        targetPos.Y -= 300;
                         Movement(targetPos, 1f);
-                        if (npc.Distance(targetPos) < 50)
+                        if (npc.Distance(targetPos) < 50 || npc.ai[1] > 300)
                         {
                             npc.netUpdate = true;
                             npc.velocity = Vector2.Zero;
@@ -412,11 +412,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case 4: //maneuvering under player while spinning penetrator
+                    if (Phase2Check())
+                        break;
                     if (npc.ai[3] == 0)
                     {
                         if (!AliveCheck(player))
-                            break;
-                        if (Phase2Check())
                             break;
                         npc.ai[3] = 1;
                         if (Main.netMode != 1)
@@ -1123,7 +1123,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         break;
                     targetPos = player.Center;
                     targetPos.X += 700 * (npc.Center.X < targetPos.X ? -1 : 1);
-                    targetPos.Y -= 150;
+                    targetPos.Y += 200;
                     if (npc.Distance(targetPos) > 50)
                         Movement(targetPos, 0.7f);
                     if (++npc.ai[1] > 6)
