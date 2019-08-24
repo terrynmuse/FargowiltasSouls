@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             // Vanilla values range from 3f(Wood) to 16f(Chik), and defaults to -1f. Leaving as -1 will make the time infinite.
             ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type] = -1f;
             // Vanilla values range from 130f(Wood) to 400f(Terrarian), and defaults to 200f
-            ProjectileID.Sets.YoyosMaximumRange[projectile.type] = 400f;
+            ProjectileID.Sets.YoyosMaximumRange[projectile.type] = 600f;
             // Vanilla values range from 9f(Wood) to 17.5f(Terrarian), and defaults to 10f
             ProjectileID.Sets.YoyosTopSpeed[projectile.type] = 17.5f;
         }
@@ -39,11 +39,9 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             if (Counter < 5)
             {
                 int type = mod.ProjectileType("BlenderProj2");
-
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 5f, type, (int) (projectile.damage * 0.5f), 2 , projectile.owner);
+                Counter++;
             }
-
-            Counter++;
         }
 
         public override void PostAI()

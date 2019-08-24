@@ -31,6 +31,12 @@ nerfed RMF damage inflicted when using magic weapons
 RMF is now -150% magic damage and halves speed of magic weapons too
 fishron and moon lord now resist razorpine
 fishron and moon lord resists are now 80%
+fixed golem fists not dying after golem dies because of their instaheal mechanic
+maso on hit effects now only proc every 20 ticks max
+brain is no longer faster in p2, but has a shadow clone
+REMOVED ML SOCKET LASERS
+squeaky toy on hit is now a toggle
+brain now confuses you for 5 sec every 10 seconds in p2, no longer confuses on hit
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

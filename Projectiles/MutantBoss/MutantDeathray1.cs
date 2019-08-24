@@ -32,6 +32,11 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             cooldownSlot = 1;
         }
 
+        public override bool CanDamage()
+        {
+            return projectile.scale >= 1;
+        }
+
         public override bool? CanHitNPC(NPC target)
         {
             return false;
@@ -68,7 +73,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 projectile.Kill();
                 return;
             }
-            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 5f * num801;
+            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 4f * num801;
             if (projectile.scale > num801)
             {
                 projectile.scale = num801;

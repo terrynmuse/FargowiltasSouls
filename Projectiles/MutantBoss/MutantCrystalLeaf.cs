@@ -1,0 +1,92 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using FargowiltasSouls.NPCs;
+
+namespace FargowiltasSouls.Projectiles.MutantBoss
+{
+    public class MutantCrystalLeaf : ModProjectile
+    {
+        public override string Texture => "Terraria/Projectile_226";
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Crystal Leaf");
+        }
+
+        public override void SetDefaults()
+        {
+            projectile.width = 20;
+            projectile.height = 20;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = false;
+            projectile.hostile = true;
+            projectile.timeLeft = 420;
+            projectile.aiStyle = -1;
+            cooldownSlot = 1;
+        }
+
+        public override void AI()
+        {
+            if (projectile.localAI[0] == 0) //spawn surrounding crystals
+            {
+                projectile.localAI[0] = 1;
+                for (int index1 = 0; index1 < 30; ++index1)
+                {
+                    int index2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 157, 0f, 0f, 0, new Color(), 2f);
+                    Main.dust[index2].noGravity = true;
+                    Main.dust[index2].velocity *= 5f;
+                }
+            }
+
+            Lighting.AddLight(projectile.Center, 0.1f, 0.4f, 0.2f);
+            projectile.scale = (Main.mouseTextColor / 200f - 0.35f) * 0.2f + 0.95f;
+            projectile.scale *= 2;
+
+            int ai0 = (int)projectile.ai[0];
+            if (ai0 > -1 && ai0 < 200 && Main.projectile[ai0].active && Main.projectile[ai0].type == mod.ProjectileType("MutantMark2"))
+            {
+                Vector2 offset = new Vector2(125, 0).RotatedBy(projectile.ai[1]);
+                projectile.Center = Main.projectile[ai0].Center + offset;
+                projectile.ai[1] += 0.09f;
+                projectile.rotation = projectile.ai[1] + (float)Math.PI / 2f;
+            }
+            else
+            {
+                projectile.Kill();
+            }
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
+            target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
+            target.AddBuff(mod.BuffType("IvyVenom"), Main.rand.Next(60, 300));
+            target.AddBuff(mod.BuffType("MutantFang"), 180);
+        }
+
+        public override Color? GetAlpha(Color drawColor)
+        {
+            float num4 = Main.mouseTextColor / 200f - 0.3f;
+            int num5 = (int)(byte.MaxValue * num4) + 50;
+            if (num5 > byte.MaxValue)
+                num5 = byte.MaxValue;
+            return new Color(num5, num5, num5, 200);
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Texture2D texture2D13 = Main.projectileTexture[projectile.type];
+            int num156 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]; //ypos of lower right corner of sprite to draw
+            int y3 = num156 * projectile.frame; //ypos of upper left corner of sprite to draw
+            Rectangle rectangle = new Rectangle(0, y3, texture2D13.Width, num156);
+            Vector2 origin2 = rectangle.Size() / 2f;
+            Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), projectile.GetAlpha(lightColor), projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+            return false;
+        }
+    }
+}

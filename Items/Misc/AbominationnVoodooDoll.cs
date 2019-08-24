@@ -33,22 +33,29 @@ namespace FargowiltasSouls.Items.Misc
             if (item.lavaWet)
             {
                 item.active = false;
-                if (Fargowiltas.Instance.FargosLoaded && Main.netMode != 1)
+                if (Fargowiltas.Instance.FargosLoaded)
                 {
-                    int abominationn = NPC.FindFirstNPC(ModLoader.GetMod("Fargowiltas").NPCType("Abominationn"));
-                    int mutant = NPC.FindFirstNPC(ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
-                    if (abominationn > -1 && Main.npc[abominationn].active)
+                    if (Main.netMode != 1)
                     {
-                        Main.npc[abominationn].StrikeNPC(9999, 0f, 0);
-                        if (mutant > -1 && Main.npc[mutant].active)
+                        int abominationn = NPC.FindFirstNPC(ModLoader.GetMod("Fargowiltas").NPCType("Abominationn"));
+                        int mutant = NPC.FindFirstNPC(ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
+                        if (abominationn > -1 && Main.npc[abominationn].active)
                         {
-                            Main.npc[mutant].Transform(mod.NPCType("MutantBoss"));
-                            if (Main.netMode == 0)
-                                Main.NewText("Mutant has been enraged by the death of his brother!", 175, 75, 255);
-                            else if (Main.netMode == 2)
-                                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Mutant has been enraged by the death of his brother!"), new Color(175, 75, 255));
+                            Main.npc[abominationn].StrikeNPC(9999, 0f, 0);
+                            if (mutant > -1 && Main.npc[mutant].active)
+                            {
+                                Main.npc[mutant].Transform(mod.NPCType("MutantBoss"));
+                                if (Main.netMode == 0)
+                                    Main.NewText("Mutant has been enraged by the death of his brother!", 175, 75, 255);
+                                else if (Main.netMode == 2)
+                                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Mutant has been enraged by the death of his brother!"), new Color(175, 75, 255));
+                            }
                         }
                     }
+                }
+                else
+                {
+                    NPC.SpawnOnPlayer(Player.FindClosest(item.position, 0, 0), mod.NPCType("MutantBoss"));
                 }
             }
         }

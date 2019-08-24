@@ -46,7 +46,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 projectile.localAI[0] = 0;
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(projectile.position + Main.rand.NextVector2Square(0f, projectile.width), Vector2.UnitX.RotatedByRandom(Math.PI) * 8f, ProjectileID.PhantasmalEye, projectile.damage, 0f, projectile.owner);
+                    Projectile.NewProjectile(projectile.position + Main.rand.NextVector2Square(0f, projectile.width), Vector2.UnitX.RotatedByRandom(Math.PI) * 6f, ProjectileID.PhantasmalEye, projectile.damage, 0f, projectile.owner);
             }
 
             if (--projectile.localAI[1] < 0f)
@@ -56,7 +56,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             }
 
             NPC mutant = Main.npc[(int)projectile.ai[0]];
-            if (mutant.active && mutant.type == mod.NPCType("MutantBoss") && mutant.ai[0] == 4)
+            if (mutant.active && mutant.type == mod.NPCType("MutantBoss") && (mutant.ai[0] == 4 || mutant.ai[0] == 13 || mutant.ai[0] == 21))
             {
                 projectile.rotation += (float)Math.PI / 6.85f * mutant.direction;
                 projectile.Center = mutant.Center;

@@ -172,6 +172,7 @@ namespace FargowiltasSouls
         public bool FishSoul2;
         public bool TerrariaSoul;
         public int HealTimer;
+        public int HurtTimer;
         public bool Eternity;
         private float eternityDamage = 0;
 
@@ -753,6 +754,9 @@ namespace FargowiltasSouls
 
         public override void PreUpdate()
         {
+            if (HurtTimer > 0)
+                HurtTimer--;
+
             IsStandingStill = Math.Abs(player.velocity.X) < 0.05 && Math.Abs(player.velocity.Y) < 0.05;
             
             player.npcTypeNoAggro[0] = true;
@@ -1515,9 +1519,10 @@ namespace FargowiltasSouls
                     player.lifeRegen = 0;
 
                 if (player.lifeRegenCount > 0)
-                    player.lifeRegenCount--;
+                    player.lifeRegenCount -= 7;
 
-                player.lifeRegenTime = 0;
+                if (player.lifeRegenTime > 0)
+                    player.lifeRegenTime -= 7;
             }
         }
 
@@ -2682,7 +2687,7 @@ namespace FargowiltasSouls
                 return false;
             }
 
-            if (SqueakyAcc && Main.rand.Next(10) == 0)
+            if (SqueakyAcc && Soulcheck.GetValue("Squeaky Toy On Hit") && Main.rand.Next(10) == 0)
             {
                 Squeak(player.Center);
                 damage = 1;
@@ -2735,53 +2740,58 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (MoonChalice)
+            if (HurtTimer <= 0)
             {
-                if (Soulcheck.GetValue("Ancient Visions On Hit"))
+                if (MoonChalice)
                 {
-                    int dam = 50;
+                    if (Soulcheck.GetValue("Ancient Visions On Hit"))
+                    {
+                        int dam = 50;
+                        if (MasochistSoul)
+                            dam *= 2;
+                        for (int i = 0; i < 5; i++)
+                            Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11),
+                                mod.ProjectileType("AncientVision"), (int)(dam * player.minionDamage), 6f, player.whoAmI);
+                    }
+                }
+                else if (CelestialRune && Soulcheck.GetValue("Ancient Visions On Hit"))
+                {
+                    Projectile.NewProjectile(player.Center, new Vector2(0, -10), mod.ProjectileType("AncientVision"),
+                        (int)(40 * player.minionDamage), 3f, player.whoAmI);
+                }
+
+                if (LihzahrdTreasureBox && Soulcheck.GetValue("Spiky Balls On Hit"))
+                {
+                    int dam = 60;
                     if (MasochistSoul)
                         dam *= 2;
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 9; i++)
                         Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11),
-                            mod.ProjectileType("AncientVision"), (int)(dam * player.minionDamage), 6f, player.whoAmI);
+                            mod.ProjectileType("LihzahrdSpikyBallFriendly"), (int)(dam * player.meleeDamage), 2f, player.whoAmI);
                 }
-            }
-            else if (CelestialRune && Soulcheck.GetValue("Ancient Visions On Hit"))
-            {
-                Projectile.NewProjectile(player.Center, new Vector2(0, -10), mod.ProjectileType("AncientVision"),
-                    (int)(40 * player.minionDamage), 3f, player.whoAmI);
-            }
 
-            if (LihzahrdTreasureBox && Soulcheck.GetValue("Spiky Balls On Hit"))
-            {
-                int dam = 60;
-                if (MasochistSoul)
-                    dam *= 2;
-                for (int i = 0; i < 9; i++)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11),
-                        mod.ProjectileType("LihzahrdSpikyBallFriendly"), (int)(dam * player.meleeDamage), 2f, player.whoAmI);
-            }
-
-            if (WretchedPouch && Soulcheck.GetValue("Tentacles On Hit"))
-            {
-                Vector2 vel = new Vector2(9f, 0f).RotatedByRandom(2 * Math.PI);
-                int dam = 30;
-                if (MasochistSoul)
-                    dam *= 3;
-                for (int i = 0; i < 6; i++)
+                if (WretchedPouch && Soulcheck.GetValue("Tentacles On Hit"))
                 {
-                    Vector2 speed = vel.RotatedBy(2 * Math.PI / 6 * (i + Main.rand.NextDouble() - 0.5));
-                    float ai1 = Main.rand.Next(10, 80) * (1f / 1000f);
-                    if (Main.rand.Next(2) == 0)
-                        ai1 *= -1f;
-                    float ai0 = Main.rand.Next(10, 80) * (1f / 1000f);
-                    if (Main.rand.Next(2) == 0)
-                        ai0 *= -1f;
-                    Projectile.NewProjectile(player.Center, speed, mod.ProjectileType("ShadowflameTentacle"),
-                        (int)(dam * player.magicDamage), 3.75f, player.whoAmI, ai0, ai1);
+                    Vector2 vel = new Vector2(9f, 0f).RotatedByRandom(2 * Math.PI);
+                    int dam = 30;
+                    if (MasochistSoul)
+                        dam *= 3;
+                    for (int i = 0; i < 6; i++)
+                    {
+                        Vector2 speed = vel.RotatedBy(2 * Math.PI / 6 * (i + Main.rand.NextDouble() - 0.5));
+                        float ai1 = Main.rand.Next(10, 80) * (1f / 1000f);
+                        if (Main.rand.Next(2) == 0)
+                            ai1 *= -1f;
+                        float ai0 = Main.rand.Next(10, 80) * (1f / 1000f);
+                        if (Main.rand.Next(2) == 0)
+                            ai0 *= -1f;
+                        Projectile.NewProjectile(player.Center, speed, mod.ProjectileType("ShadowflameTentacle"),
+                            (int)(dam * player.magicDamage), 3.75f, player.whoAmI, ai0, ai1);
+                    }
                 }
             }
+
+            HurtTimer = 20;
 
             if (Midas && Main.netMode == 0)
                 player.DropCoins();

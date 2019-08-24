@@ -30,6 +30,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.aiStyle = -1;
             projectile.scale = 0.5f;
             projectile.alpha = 0;
+            cooldownSlot = 1;
         }
 
         public override bool? CanHitNPC(NPC target)
@@ -42,7 +43,13 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             if (projectile.localAI[0] == 0)
             {
                 projectile.localAI[0] = 1;
-                Main.PlaySound(4, (int)projectile.Center.X, (int)projectile.Center.Y, 6, 1f, 0.0f);
+                Vector2 offset = Vector2.Normalize(projectile.velocity) * 10f;
+                for (int i = 0; i < 200; i++) //dust warning line for laser
+                {
+                    int d = Dust.NewDust(projectile.Center + offset * i, 1, 1, 111, 0f, 0f, 0, default(Color), 1f);
+                    Main.dust[d].noGravity = true;
+                    Main.dust[d].velocity *= 0.5f;
+                }
             }
             //projectile.velocity *= 0.96f;
 

@@ -1609,7 +1609,7 @@ namespace FargowiltasSouls.NPCs
                             //    npc.netUpdate = true;
                             //}
 
-                            if (Counter2++ > 240)
+                            /*if (Counter2++ > 240)
                             {
                                 Counter2 = 0;
                                 if (Main.netMode != 1 && npc.HasPlayerTarget)
@@ -1621,7 +1621,7 @@ namespace FargowiltasSouls.NPCs
                                         Projectile.NewProjectile(npc.Center, distance.RotatedBy(2 * Math.PI / 12 * i),
                                             mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
                                 }
-                            }
+                            }*/
 
                             //dust code
                             if (Main.rand.Next(4) < 3)
@@ -1752,7 +1752,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
 
-                            if (Counter2++ > 180)
+                            /*if (Counter2++ > 180)
                             {
                                 Counter2 = 0;
                                 if (Main.netMode != 1 && npc.HasPlayerTarget)
@@ -1764,7 +1764,7 @@ namespace FargowiltasSouls.NPCs
                                         Projectile.NewProjectile(npc.Center, distance.RotatedBy(2 * Math.PI / 8 * i),
                                             mod.ProjectileType("DarkStar"), npc.damage / 5, 0f, Main.myPlayer);
                                 }
-                            }
+                            }*/
 
                             //dust code
                             if (Main.rand.Next(4) < 3)
@@ -4335,13 +4335,13 @@ namespace FargowiltasSouls.NPCs
                                     if (Main.netMode != 1 && npc.HasPlayerTarget)
                                     {
                                         Vector2 distance = Main.player[npc.target].Center - npc.Center;
-                                        double angleModifier = MathHelper.ToRadians(5) * distance.Length() / 1800.0;
+                                        //double angleModifier = MathHelper.ToRadians(5) * distance.Length() / 1800.0;
                                         distance.Normalize();
                                         distance *= 10f;
                                         int type = mod.ProjectileType("DarkStar");
-                                        Projectile.NewProjectile(npc.Center, distance.RotatedBy(-angleModifier), type, npc.damage / 5, 0f, Main.myPlayer);
+                                        //Projectile.NewProjectile(npc.Center, distance.RotatedBy(-angleModifier), type, npc.damage / 5, 0f, Main.myPlayer);
                                         Projectile.NewProjectile(npc.Center, distance * 1.5f, type, npc.damage / 5, 0f, Main.myPlayer);
-                                        Projectile.NewProjectile(npc.Center, distance.RotatedBy(angleModifier), type, npc.damage / 5, 0f, Main.myPlayer);
+                                        //Projectile.NewProjectile(npc.Center, distance.RotatedBy(angleModifier), type, npc.damage / 5, 0f, Main.myPlayer);
                                     }
                                 }
                             }
@@ -4592,7 +4592,6 @@ namespace FargowiltasSouls.NPCs
                         brainBoss = npc.whoAmI;
                         if (!npc.dontTakeDamage) //vulnerable
                         {
-                            npc.position += npc.velocity / 4f; //faster
                             if (npc.buffType[0] != 0) //constant debuff cleanse
                             {
                                 npc.buffImmune[npc.buffType[0]] = true;
@@ -4612,7 +4611,18 @@ namespace FargowiltasSouls.NPCs
                                     n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, 1, 1);
                                     if (n != 200 && Main.netMode == 2)
                                         NetMessage.SendData(23, -1, -1, null, n);
+                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainClone"), npc.whoAmI, npc.whoAmI);
+                                    if (n != 200 && Main.netMode == 2)
+                                        NetMessage.SendData(23, -1, -1, null, n);
                                 }
+                            }
+                            if (--Counter < 0) //confuse player
+                            {
+                                Counter = 0;
+                                Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                                Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
+                                if (npc.Distance(Main.player[Main.myPlayer].Center) < 3000)
+                                    Main.player[Main.myPlayer].AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 150 : 300);
                             }
                         }
                         break;
@@ -4920,9 +4930,9 @@ namespace FargowiltasSouls.NPCs
                                 Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FuseBomb"), npc.damage / 4, 0f, Main.myPlayer);
                         }
                         masoBool[0] = npc.ai[0] != 0f;
-                        if (npc.life < npc.lifeMax / 2) //fully heal when below half health
+                        if (npc.life < npc.lifeMax / 2 && NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                         {
-                            npc.life = npc.lifeMax;
+                            npc.life = npc.lifeMax; //fully heal when below half health and golem still alive
                             Timer = 75; //immediately display heal
                         }
                         npc.life += 167;
@@ -4939,7 +4949,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead:
                         RegenTimer = 2;
-                        if (npc.ai[0] == -2f) //eye socket is empty
+                        /*if (npc.ai[0] == -2f) //eye socket is empty
                         {
                             if (npc.ai[1] == 0f //happens every 32 ticks
                                 && Main.npc[(int)npc.ai[3]].ai[0] != 2f) //will stop when ML dies
@@ -4988,7 +4998,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                                 npc.netUpdate = true;
                             }
-                        }
+                        }*/
                         break;
 
                     case NPCID.AncientLight:
@@ -6636,7 +6646,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        target.AddBuff(BuffID.Confused, Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(90));
@@ -9021,6 +9030,9 @@ namespace FargowiltasSouls.NPCs
                                 int maxEX = Main.rand.Next(5) + 1;
                                 for (int i = 0; i < maxEX; i++)
                                     npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("AbominationnVoodooDoll"));
+                                maxEX = Main.rand.Next(5) + 5;
+                                for (int i = 0; i < maxEX; i++)
+                                    npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantScale"));
                                 npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(3) + 1);
 
                                 int max = Main.rand.Next(5) + 5;
@@ -9596,13 +9608,13 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.BrainofCthulhu:
+                    /*case NPCID.BrainofCthulhu:
                         if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
                         {
                             player.AddBuff(BuffID.Confused, Main.rand.Next(150));
                             Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
                         }
-                        break;
+                        break;*/
 
                     case NPCID.IceTortoise:
                         float reduction = (float)npc.life / npc.lifeMax;

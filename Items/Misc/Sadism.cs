@@ -35,7 +35,7 @@ Grants immunity to almost all Masochist Mode debuffs");
             item.buffType = mod.BuffType("Sadism");
             item.buffTime = 25200;
             item.UseSound = SoundID.Item3;
-            item.value = Item.sellPrice(0, 1);
+            item.value = Item.sellPrice(1);
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)
