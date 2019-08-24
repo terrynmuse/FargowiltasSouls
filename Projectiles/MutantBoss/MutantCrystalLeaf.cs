@@ -32,7 +32,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void AI()
         {
-            if (projectile.localAI[0] == 0) //spawn surrounding crystals
+            if (projectile.localAI[0] == 0)
             {
                 projectile.localAI[0] = 1;
                 for (int index1 = 0; index1 < 30; ++index1)
