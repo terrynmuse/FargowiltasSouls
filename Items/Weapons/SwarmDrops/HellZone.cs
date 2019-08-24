@@ -18,9 +18,9 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override void SetDefaults()
         {
-            item.damage = 125; //
+            item.damage = 180; //
             item.knockBack = 0.5f;
-            item.shootSpeed = 10f; //
+            item.shootSpeed = 12f; //
 
             item.useStyle = 5;
             item.autoReuse = true;
@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             
             item.noMelee = true;
             item.value = Item.sellPrice(0, 15); //
-            item.rare = 6; //
+            item.rare = 11; //
             item.ranged = true;
         }
 

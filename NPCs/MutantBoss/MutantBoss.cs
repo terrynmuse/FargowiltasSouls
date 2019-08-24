@@ -864,7 +864,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             {
                                 Vector2 vel = Vector2.Normalize(npc.velocity) * 10f;
                                 int current = Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("MutantDestroyerHead"), npc.damage / 4, 0f, Main.myPlayer, npc.target);
-                                for (int i = 0; i < 9; i++)
+                                for (int i = 0; i < 18; i++)
                                     current = Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("MutantDestroyerBody"), npc.damage / 4, 0f, Main.myPlayer, current);
                                 int previous = current;
                                 current = Projectile.NewProjectile(npc.Center, vel, mod.ProjectileType("MutantDestroyerTail"), npc.damage / 4, 0f, Main.myPlayer, current);
@@ -1309,6 +1309,12 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual2"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
                     Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual3"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
                     Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual4"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                    for (int i = 0; i < 1000; i++)
+                        if (Main.projectile[i].active && Main.projectile[i].hostile)
+                            Main.projectile[i].Kill();
+                    for (int i = 0; i < 1000; i++)
+                        if (Main.projectile[i].active && Main.projectile[i].hostile)
+                            Main.projectile[i].Kill();
                 }
                 return true;
             }
@@ -1366,9 +1372,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override bool CheckDead()
         {
-            if (npc.ai[0] == -2)
-                return true;
-
             npc.life = 1;
             npc.active = true;
             if (Main.netMode != 1)
@@ -1377,6 +1380,12 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 npc.ai[1] = 0;
                 npc.dontTakeDamage = true;
                 npc.netUpdate = true;
+                for (int i = 0; i < 1000; i++)
+                    if (Main.projectile[i].active && Main.projectile[i].hostile)
+                        Main.projectile[i].Kill();
+                for (int i = 0; i < 1000; i++)
+                    if (Main.projectile[i].active && Main.projectile[i].hostile)
+                        Main.projectile[i].Kill();
             }
             return false;
         }
