@@ -1383,13 +1383,52 @@ namespace FargowiltasSouls.NPCs
 
                         if (npc.life < npc.lifeMax / 2)
                         {
+                            if (npc.ai[0] == 3 && (npc.ai[1] == 0 || npc.ai[1] == 5))
+                            {
+                                if (npc.ai[2] < 2)
+                                {
+                                    npc.position -= npc.velocity / 2;
+                                    npc.ai[2]--;
+                                    npc.alpha += 8;
+                                    if (npc.alpha > 255)
+                                    {
+                                        npc.alpha = 255;
+                                        if (Main.netMode != 1 && npc.HasPlayerTarget)
+                                        {
+                                            Vector2 distance = npc.Center - Main.player[npc.target].Center;
+                                            if (distance.Y > 0)
+                                                distance.Y /= 2;
+                                            npc.Center = Main.player[npc.target].Center;
+                                            npc.position.X -= distance.X;
+                                            npc.position.Y += distance.Y;
+                                            npc.netUpdate = true;
+                                            npc.ai[2] = 2;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    npc.alpha -= 8;
+                                    if (npc.alpha < 0)
+                                    {
+                                        npc.alpha = 0;
+                                    }
+                                    else
+                                    {
+                                        npc.ai[2]--;
+                                        npc.position -= npc.velocity / 2;
+                                    }
+                                }
+                            }
+
                             if (npc.ai[1] == 3f) //during dashes in phase 2
                             {
                                 Counter2 = 30;
+                                masoBool[0] = false;
                                 if (Main.netMode != 1)
                                     FargoGlobalProjectile.XWay(8, npc.Center, mod.ProjectileType("BloodScythe"), 2, npc.damage / 4, 1f);
                             }
-                            if (++Timer > 600)
+                            /*if (++Timer > 600)
                             {
                                 Timer = 0;
                                 if (npc.HasValidTarget)
@@ -1415,7 +1454,7 @@ namespace FargowiltasSouls.NPCs
                                         }
                                     }
                                 }
-                            }
+                            }*/
                         }
 
                         if (Counter2 > 0 && Counter2 % 5 == 0 && Main.netMode != 1)

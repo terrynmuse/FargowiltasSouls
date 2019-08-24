@@ -40,6 +40,8 @@ brain now confuses you for 5 sec every 10 seconds in p2, no longer confuses on h
 brain clone actually works
 plantera p2 ring now wiggles!!!! also nerfed chloro fire rate by 1sec
 maso soul no longer gives faster respawn during boss fights
+eoc no longer scythe walls
+EOC TELEPORTS BEHIND YOU
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits
