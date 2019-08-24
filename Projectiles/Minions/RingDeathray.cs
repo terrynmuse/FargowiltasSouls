@@ -6,13 +6,12 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Enums;
-using FargowiltasSouls.Buffs.Masomode;
 
-namespace FargowiltasSouls.Projectiles.MutantBoss
+namespace FargowiltasSouls.Projectiles.Minions
 {
-    public class MutantDeathray2 : ModProjectile
+    public class RingDeathray : ModProjectile
     {
-        private const float maxTime = 180;
+        private const float maxTime = 90;
 
         public override void SetStaticDefaults()
 		{
@@ -23,23 +22,15 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         {
             projectile.width = 48;
             projectile.height = 48;
-            projectile.hostile = true;
+            projectile.friendly = true;
+            projectile.minion = true;
             projectile.alpha = 255;
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.timeLeft = 600;
-            projectile.aiStyle = -1;
-            cooldownSlot = 1;
-        }
-
-        public override bool CanDamage()
-        {
-            return projectile.scale >= .7f;
-        }
-
-        public override bool? CanHitNPC(NPC target)
-        {
-            return false;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+            projectile.usesIDStaticNPCImmunity = true;
+            projectile.idStaticNPCHitCooldown = 5;
         }
 
         public override void AI()
@@ -49,31 +40,35 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 projectile.velocity = -Vector2.UnitY;
             }
-            /*if (Main.npc[(int)projectile.ai[1]].active && Main.npc[(int)projectile.ai[1]].type == mod.NPCType("MutantBoss"))
+            int ai0 = (int)projectile.ai[0];
+            if (ai0 >= 0 && ai0 < 200 && Main.projectile[ai0].active && Main.projectile[ai0].type == mod.ProjectileType("PhantasmalRing"))
             {
-                projectile.Center = Main.npc[(int)projectile.ai[1]].Center;
+                projectile.Center = Main.projectile[ai0].Center;
+                projectile.position += Vector2.UnitX.RotatedBy(2 * Math.PI / 7 * projectile.ai[1] + Main.projectile[ai0].ai[0]) * 350 * 0.25f;
+                if (projectile.whoAmI < ai0)
+                    projectile.position += Main.player[Main.projectile[ai0].owner].position - Main.player[Main.projectile[ai0].owner].oldPosition;
             }
             else
             {
                 projectile.Kill();
                 return;
-            }*/
+            }
             if (projectile.velocity.HasNaNs() || projectile.velocity == Vector2.Zero)
             {
                 projectile.velocity = -Vector2.UnitY;
             }
             if (projectile.localAI[0] == 0f)
             {
-                Main.PlaySound(29, (int)projectile.position.X, (int)projectile.position.Y, 104, 1f, 0f);
+                Main.PlaySound(SoundID.Item12, projectile.Center);
             }
-            float num801 = .7f;
+            float num801 = 0.5f;
             projectile.localAI[0] += 1f;
             if (projectile.localAI[0] >= maxTime)
             {
                 projectile.Kill();
                 return;
             }
-            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 2.5f * num801;
+            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 3f * num801;
             if (projectile.scale > num801)
             {
                 projectile.scale = num801;
@@ -81,11 +76,11 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             //float num804 = projectile.velocity.ToRotation();
             //num804 += projectile.ai[0];
             //projectile.rotation = num804 - 1.57079637f;
-            //float num804 = Main.npc[(int)projectile.ai[1]].ai[3] - 1.57079637f;
+            float num804 = projectile.velocity.ToRotation() - 1.57079637f;
             //if (projectile.ai[0] != 0f) num804 -= (float)Math.PI;
-            //projectile.rotation = num804;
-            //num804 += 1.57079637f;
-            //projectile.velocity = num804.ToRotationVector2();
+            projectile.rotation = num804;
+            num804 += 1.57079637f;
+            projectile.velocity = num804.ToRotationVector2();
             float num805 = 3f;
             float num806 = (float)projectile.width;
             Vector2 samplingPoint = projectile.Center;
@@ -128,9 +123,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             }
             //DelegateMethods.v3_1 = new Vector3(0.3f, 0.65f, 0.7f);
             //Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * projectile.localAI[1], (float)projectile.width * projectile.scale, new Utils.PerLinePoint(DelegateMethods.CastLight));
-
-            projectile.position -= projectile.velocity;
-            projectile.rotation = projectile.velocity.ToRotation() - 1.57079637f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -201,10 +193,10 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             return false;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
-            target.AddBuff(mod.BuffType("MutantFang"), 300);
+            target.AddBuff(mod.BuffType("MutantNibble"), 300);
         }
     }
 }

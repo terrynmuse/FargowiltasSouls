@@ -225,6 +225,9 @@ namespace FargowiltasSouls
         public bool TribalCharm;
         public bool TribalAutoFire;
         public bool SupremeDeathbringerFairy;
+        public bool GodEaterImbue;
+        public bool MutantSetBonus;
+        public bool Abominationn;
 
         //debuffs
         private int webCounter = 0;
@@ -658,6 +661,9 @@ namespace FargowiltasSouls
             MiniSaucer = false;
             TribalCharm = false;
             SupremeDeathbringerFairy = false;
+            GodEaterImbue = false;
+            MutantSetBonus = false;
+            Abominationn = false;
 
             //debuffs
             Hexed = false;
@@ -2264,6 +2270,16 @@ namespace FargowiltasSouls
 
         public void OnHitNPCEither(NPC target, int damage, float knockback, bool crit, int projectile = -1)
         {
+            if (GodEaterImbue)
+            {
+                if (target.FindBuffIndex(mod.BuffType("GodEater")) < 0 && target.aiStyle != 37)
+                {
+                    target.DelBuff(4);
+                    target.buffImmune[mod.BuffType("GodEater")] = false;
+                    target.AddBuff(mod.BuffType("GodEater"), 420);
+                }
+            }
+
             if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
                 CopperEffect(target);
 
@@ -2808,7 +2824,19 @@ namespace FargowiltasSouls
                     p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
 
-            if (player.whoAmI == Main.myPlayer && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
+            if (player.whoAmI == Main.myPlayer && retVal && player.FindBuffIndex(mod.BuffType("MutantRebirth")) == -1)
+            {
+                player.statLife = player.statLifeMax2;
+                player.HealEffect(player.statLifeMax2);
+                player.immune = true;
+                player.immuneTime = player.longInvince ? 180 : 120;
+                Main.NewText("You've been revived!", Color.Green);
+                player.AddBuff(mod.BuffType("MutantRebirth"), 7200);
+                Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(400 * player.magicDamage), 10f, player.whoAmI);
+                retVal = false;
+            }
+
+            if (player.whoAmI == Main.myPlayer && retVal && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
             {
                 if(Eternity)
                 {

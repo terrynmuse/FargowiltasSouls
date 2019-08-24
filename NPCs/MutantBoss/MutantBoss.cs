@@ -595,9 +595,9 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         if (Fargowiltas.Instance.CalamityLoaded && player.GetModPlayer<FargoPlayer>().TerrariaSoul) //edgy boss text
                         {
                             if (Main.netMode == 0)
-                                Main.NewText("Hand it over. That thing, your soul toggles.", Color.Teal);
+                                Main.NewText("Hand it over. That thing, your soul toggles.", Color.Green);
                             else if (Main.netMode == 2)
-                                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Hand it over. That thing, your soul toggles."), Color.Teal);
+                                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Hand it over. That thing, your soul toggles."), Color.Green);
                         }
                     }
                     break;

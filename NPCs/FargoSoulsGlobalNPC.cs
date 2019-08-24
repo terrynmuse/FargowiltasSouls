@@ -43,6 +43,7 @@ namespace FargowiltasSouls.NPCs
         public bool OceanicMaul;
         public bool MutantNibble;
         public int LifePrevious = -1;
+        public bool GodEater;
 
         public bool SpecialEnchantImmune;
 
@@ -98,6 +99,7 @@ namespace FargowiltasSouls.NPCs
             Sadism = false;
             OceanicMaul = false;
             MutantNibble = false;
+            GodEater = false;
         }
 
         public override void SetDefaults(NPC npc)
@@ -6294,6 +6296,23 @@ namespace FargowiltasSouls.NPCs
                     Main.dust[d].scale += 0.5f;
                 }
             }
+
+            if (GodEater)
+            {
+                if (Main.rand.Next(7) < 6)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 86, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.2f;
+                    Main.dust[dust].velocity.Y -= 0.15f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.15f, 0.03f, 0.09f);
+            }
         }
 
         public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
@@ -7617,6 +7636,17 @@ namespace FargowiltasSouls.NPCs
             else
             {
                 LifePrevious = npc.life;
+            }
+
+            if (GodEater)
+            {
+                if (npc.lifeRegen > 0)
+                    npc.lifeRegen = 0;
+                npc.lifeRegen -= 4200;
+                if (damage < 777)
+                {
+                    damage = 777;
+                }
             }
         }
 
