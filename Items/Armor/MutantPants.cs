@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Armor
         {
             DisplayName.SetDefault("True Mutant Pants");
             Tooltip.SetDefault(@"20% increased damage and critical strike chance
-20% increased movement and melee speed
+40% increased movement and melee speed
 Hold DOWN and JUMP to hover");
         }
 
@@ -41,8 +41,8 @@ Hold DOWN and JUMP to hover");
             player.magicCrit += critUp;
             player.thrownCrit += critUp;
 
-            player.moveSpeed += 0.2f;
-            player.meleeSpeed += 0.2f;
+            player.moveSpeed += 0.4f;
+            player.meleeSpeed += 0.4f;
 
             if (player.controlDown && player.controlJump && !player.mount.Active)
             {

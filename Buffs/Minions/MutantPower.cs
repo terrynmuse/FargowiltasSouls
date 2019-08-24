@@ -31,7 +31,7 @@ namespace FargowiltasSouls.Buffs.Minions
                 {
                     fargoPlayer.Abominationn = true;
                     if (player.ownedProjectileCounts[mod.ProjectileType("Abominationn")] < 1)
-                        Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("Abominationn"), 0, 10f, player.whoAmI);
+                        Projectile.NewProjectile(player.Center, Vector2.Zero, mod.ProjectileType("Abominationn"), 0, 10f, player.whoAmI, -1);
                 }
                 
                 if (player.ownedProjectileCounts[mod.ProjectileType("PhantasmalRing")] < 1)

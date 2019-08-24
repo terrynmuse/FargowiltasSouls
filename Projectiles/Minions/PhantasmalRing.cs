@@ -88,8 +88,11 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         private int HomeOnTarget()
         {
-            const float homingMaximumRangeInPixels = 2000;
+            NPC minionAttackTargetNpc = projectile.OwnerMinionAttackTargetNPC;
+            if (minionAttackTargetNpc != null && minionAttackTargetNpc.CanBeChasedBy(projectile))
+                return minionAttackTargetNpc.whoAmI;
 
+            const float homingMaximumRangeInPixels = 2000;
             int selectedTarget = -1;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
