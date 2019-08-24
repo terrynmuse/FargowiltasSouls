@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<FargoSoulsWorld>().GodEater = true;
+            npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().GodEater = true;
         }
     }
 }

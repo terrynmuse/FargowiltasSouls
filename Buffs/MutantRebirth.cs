@@ -16,7 +16,6 @@ namespace FargowiltasSouls.Buffs
             Description.SetDefault("Deathray revive is recharging");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            Main.buffNoTimeDisplay[Type] = true;
             longerExpertDebuff = false;
             canBeCleared = false;
         }
