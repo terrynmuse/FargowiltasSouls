@@ -105,6 +105,7 @@ namespace FargowiltasSouls
         public bool TinEnchant;
         public int TinCrit = 4;
         public bool TikiEnchant;
+        public bool TikiMinion;
         public bool SolarEnchant;
         public bool ShinobiEnchant;
         public bool ValhallaEnchant;
@@ -557,6 +558,7 @@ namespace FargowiltasSouls
             ObsidianEnchant = false;
             TinEnchant = false;
             TikiEnchant = false;
+            TikiMinion = false;
             SolarEnchant = false;
             ShinobiEnchant = false;
             ValhallaEnchant = false;

@@ -2,20 +2,22 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Microsoft.Xna.Framework;
+using Terraria.GameInput;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
     public class TikiEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private int actualMinions;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tiki Enchantment");
             Tooltip.SetDefault(
 @"'Aku Aku!'
-Attacks will inflict Infested on enemies
-Infested deals increasing damage over time
+You may continue to summon temporary minions after maxing out on your slots
 Summons a pet Tiki Spirit");
             DisplayName.AddTranslation(GameCulture.Chinese, "提基魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -38,6 +40,14 @@ Summons a pet Tiki Spirit");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).TikiEffect(hideVisual);
+
+            actualMinions = player.maxMinions + 1; //the free one is not counted
+            player.maxMinions = 100;
+
+            if (player.numMinions >= actualMinions)
+            {
+                player.GetModPlayer<FargoPlayer>(mod).TikiMinion = true;
+            }
         }
 
         public override void AddRecipes()
