@@ -4618,7 +4618,7 @@ namespace FargowiltasSouls.NPCs
                             }
                             if (--Counter < 0) //confuse player
                             {
-                                Counter = 0;
+                                Counter = 600;
                                 Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
                                 Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
                                 if (npc.Distance(Main.player[Main.myPlayer].Center) < 3000)
@@ -9608,14 +9608,6 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    /*case NPCID.BrainofCthulhu:
-                        if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
-                        {
-                            player.AddBuff(BuffID.Confused, Main.rand.Next(150));
-                            Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
-                        }
-                        break;*/
-
                     case NPCID.IceTortoise:
                         float reduction = (float)npc.life / npc.lifeMax;
                         if (reduction < 0.5f)
@@ -9872,14 +9864,6 @@ namespace FargowiltasSouls.NPCs
                             damage /= 4;
                         break;
 
-                    case NPCID.BrainofCthulhu:
-                        if (!player.HasBuff(BuffID.Confused) && Main.rand.Next(10) == 0)
-                        {
-                            player.AddBuff(BuffID.Confused, Main.rand.Next(150));
-                            Projectile.NewProjectile(npc.Center, new Vector2(-5, 0), ProjectileID.BrainOfConfusion, 0, 0, Main.myPlayer);
-                        }
-                        break;
-
                     case NPCID.IceTortoise:
                         float reduction = (float)npc.life / npc.lifeMax;
                         if (reduction < 0.5f)
@@ -10121,7 +10105,7 @@ namespace FargowiltasSouls.NPCs
 
             if (crit && modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && player.stealth == 0)
             {
-                damage *= 2;
+                damage *= 3;
                 retValue = false;
             }
 
@@ -10239,58 +10223,6 @@ namespace FargowiltasSouls.NPCs
                 shop.item[nextSlot].SetDefaults(ItemID.RocketI);
                 shop.item[nextSlot].value = 500;
                 nextSlot++;
-            }
-        }
-
-        public override void GetChat(NPC npc, ref string chat)
-        {
-            if (FargoSoulsWorld.MasochistMode && Fargowiltas.Instance.FargosLoaded && npc.type == ModLoader.GetMod("Fargowiltas").NPCType("Mutant") && Main.rand.Next(2) == 0)
-            {
-                Player p = Main.player[Main.myPlayer];
-
-                IList<string> dialogue = new List<string>();
-
-                dialogue.Add("You're more masochistic than I thought, aren't you?");
-                dialogue.Add("Seems like everyone's learning to project auras these days. If you look at the particles, you can see whether it'll affect you at close range or a distance.");
-                dialogue.Add("There's probably a thousand items to protect against all these debuffs. It's a shame you don't have a thousand hands to carry them all at once.");
-                dialogue.Add("I've always wondered why those other monsters never bothered to carry any healing potions. Well, you probably shouldn't wait and see if they actually do.");
-                dialogue.Add("Powerful enemies can drop all sorts of helpful loot. They'll also come back for revenge after you beat them, so keep an eye out for that.");
-                dialogue.Add("Why bother fishing when you can massacre bosses for the same goods? With spawners provided by yours truly, naturally!");
-
-                if (!p.accFlipper && !p.gills && !p.GetModPlayer<FargoPlayer>().MutantAntibodies)
-                    dialogue.Add("The water is bogging you down? Never had an issue with it, personally... Have you tried breathing water instead of air?");
-                if (!p.fireWalk && !p.buffImmune[BuffID.OnFire])
-                    dialogue.Add("The underworld has gotten a lot hotter since the last time I visited. I hear an obsidian skull is a good luck charm against burning alive, though.");
-                if (!p.buffImmune[BuffID.Suffocation] && !p.GetModPlayer<FargoPlayer>().PureHeart)
-                    dialogue.Add("Want to have a breath-holding contest? The empty vacuum of space would be perfect.");
-
-                if (p.statLifeMax < 400)
-                    dialogue.Add("I don't have any Life Crystals for you, but Cthulhu's eye is going on a new diet of them. Not that they would share...");
-                if (NPC.downedBoss3)
-                    dialogue.Add("Dungeon Guardian sent me photos of their kids earlier. Cute little skull demons hiding in other skeletons, aren't they? Oh, and their drop wards off random boss spawns, I guess.");
-
-                if (Main.hardMode)
-                {
-                    if (!p.GetModPlayer<FargoPlayer>().PureHeart)
-                        dialogue.Add("The spirits of light and dark stopped by and they sounded pretty upset with you. Don't be too surprised if something happens to you for entering their territory.");
-                    dialogue.Add("They're not in my shop, but why not go hunting for some rare monsters every once in a while? Plenty of treasure to be looted and all that.");
-                    dialogue.Add("The desert monsters keep sending me letters about all the fossils they're collecting. I don't get the craze about it, myself.");
-                    if (p.statLifeMax < 500)
-                        dialogue.Add("If you ask me, Plantera is really letting herself go. Chlorophyte and Life Fruit aren't THAT healthy!");
-                }
-
-                if (NPC.downedPlantBoss)
-                    dialogue.Add("Trick or treat? Merry Christmas? I don't have anything for you, go ask Pumpking or Ice Queen.");
-
-                if (NPC.downedMoonlord && !FargoSoulsWorld.downedFishronEX)
-                    dialogue.Add("When you're ready, go fishing with a Truffle Worm EX. But until then... yeah, keep farming. So what are you buying today?");
-
-                if (FargoSoulsWorld.downedMutant)
-                    dialogue.Add("What's that? You want to fight me? ...sure, I guess.");
-                else if (FargoSoulsWorld.downedFishronEX)
-                    dialogue.Add("What's that? You want to fight me? ...maybe if I have a reason to.");
-
-                chat = dialogue[Main.rand.Next(dialogue.Count)];
             }
         }
     }

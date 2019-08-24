@@ -30,6 +30,8 @@ namespace FargowiltasSouls.Projectiles
         private bool stormBoosted = false;
         private int stormTimer;
         private bool tungstenProjectile = false;
+        private bool tikiMinion = false;
+        private int tikiTimer = 300;
 
         public bool Rotate = false;
         public int RotateDist = 64;
@@ -152,6 +154,12 @@ namespace FargowiltasSouls.Projectiles
                         tungstenProjectile = true;
                     }
 
+                    if (modPlayer.TikiEnchant && modPlayer.TikiMinion && projectile.minion && projectile.minionSlots > 0)
+                    {
+
+                        tikiMinion = true;
+                    }
+
                     if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
                         && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99
                         && Soulcheck.GetValue("Adamantite Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
@@ -195,7 +203,46 @@ namespace FargowiltasSouls.Projectiles
                         projectile.damage = (int)(projectile.damage * 1.5);
                     }
                 }
-                
+
+                if (tikiMinion)
+                {
+                    
+                    projectile.alpha = 120;
+
+                    //dust
+                    if (Main.rand.Next(4) < 2)
+                    {
+                        int dust = Dust.NewDust(new Vector2(projectile.position.X - 2f, projectile.position.Y - 2f), projectile.width + 4, projectile.height + 4, 44, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 100, Color.LimeGreen, .8f);
+                        Main.dust[dust].noGravity = true;
+                        Main.dust[dust].velocity *= 1.8f;
+                        Dust expr_1CCF_cp_0 = Main.dust[dust];
+                        expr_1CCF_cp_0.velocity.Y = expr_1CCF_cp_0.velocity.Y - 0.5f;
+                        if (Main.rand.Next(4) == 0)
+                        {
+                            Main.dust[dust].noGravity = false;
+                            Main.dust[dust].scale *= 0.5f;
+                        }
+                    }
+
+                    tikiTimer--;
+
+                    if (tikiTimer <= 0)
+                    {
+                        for (int num468 = 0; num468 < 20; num468++)
+                        {
+                            int num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 44, -projectile.velocity.X * 0.2f,
+                                -projectile.velocity.Y * 0.2f, 100, Color.LimeGreen, 1f);
+                            Main.dust[num469].noGravity = true;
+                            Main.dust[num469].velocity *= 2f;
+                            num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 44, -projectile.velocity.X * 0.2f,
+                                -projectile.velocity.Y * 0.2f, 100, Color.LimeGreen, .5f);
+                            Main.dust[num469].velocity *= 2f;
+                        }
+
+                        projectile.Kill();
+                    }
+                }
+
                 if (projectile.friendly && !projectile.hostile)
                 {
                     if (modPlayer.ForbiddenEnchant && projectile.damage > 0 && projectile.type != ProjectileID.SandnadoFriendly && !stormBoosted)

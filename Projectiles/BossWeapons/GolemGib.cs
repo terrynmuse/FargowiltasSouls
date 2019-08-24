@@ -127,7 +127,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Texture2D tex = mod.GetTexture("Projectiles/BossWeapons/" + GetType().Name + projectile.ai[1]);
-            FargoDraw.DrawTexture(spriteBatch, tex, 0, projectile, lightColor, true);
+            BaseDrawing.DrawTexture(spriteBatch, tex, 0, projectile, lightColor, true);
 
             return false;
         }

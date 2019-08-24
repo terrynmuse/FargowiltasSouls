@@ -59,9 +59,12 @@ Copper Enchant now bonus procs on enemies in water instead of just have the wet 
 -Added even more Chinese translation
 -Adjusted some of Soul of the Masochist's stat buffs
 -Gave Soul of Eternity way more defense
+-Added the Golden Carp to the Trawler Soul recipe
 
+-Reworked Tiki Enchantment
+-removed masomode dialogue from the mutant
 
-
+-Fused now always deals half HP as damage
 retinazer has special extra range burning aura
 retinazer shoots dark stars less often
 eoc bloodscythes last 5sec and ignore tiles
