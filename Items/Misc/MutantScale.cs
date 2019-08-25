@@ -15,6 +15,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mutant Scale");
+            DisplayName.AddTranslation(GameCulture.Chinese, "突变鳞片");
         }
 
 		public override void SetDefaults()

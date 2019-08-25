@@ -15,6 +15,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         {
             DisplayName.SetDefault("Destroyer Gun EX");
             Tooltip.SetDefault("'text'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "毁灭者之枪 EX");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'text'");
         }
 
         public override void SetDefaults()
