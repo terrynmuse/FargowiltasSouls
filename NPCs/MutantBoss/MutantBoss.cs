@@ -23,7 +23,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.width = 34;
             npc.height = 50;
             npc.damage = 300;
-            npc.defense = 100;
+            npc.defense = 400;
             npc.lifeMax = 7000000;
             npc.HitSound = SoundID.NPCHit57;
             npc.noGravity = true;
@@ -44,7 +44,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             {
                 npc.lifeMax = 170000000;
                 npc.damage *= 2;
-                npc.defense *= 10;
+                npc.defense *= 5;
                 if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("Exofreeze")] = true;
