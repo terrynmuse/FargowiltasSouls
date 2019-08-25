@@ -7168,21 +7168,18 @@ namespace FargowiltasSouls.NPCs
                             if (!StealFromInventory(target, ref Main.mouseItem))
                                 StealFromInventory(target, ref target.inventory[target.selectedItem]);
 
-                            StealFromInventory(target, ref target.armor[Main.rand.Next(3)]);
+                            //StealFromInventory(target, ref target.armor[Main.rand.Next(3)]);
 
                             byte maxAttempts = 15;
-                            for (int i = 0; i < 3; i++)
+                            int toss = Main.rand.Next(3, 8 + target.extraAccessorySlots); //pick random accessory slot
+                            if (Main.rand.Next(3) == 0 && target.armor[toss + 10].stack > 0) //chance to pick vanity slot if accessory is there
+                                toss += 10;
+                            while (maxAttempts > 0)
                             {
-                                int toss = Main.rand.Next(3, 8 + target.extraAccessorySlots); //pick random accessory slot
-                                if (Main.rand.Next(3) == 0 && target.armor[toss + 10].stack > 0) //chance to pick vanity slot if accessory is there
-                                    toss += 10;
-
                                 bool successfulSteal = StealFromInventory(target, ref target.armor[toss]);
-                                if (!successfulSteal && maxAttempts > 0)
-                                {
-                                    maxAttempts--;
-                                    i--;
-                                }
+                                if (successfulSteal)
+                                    break;
+                                maxAttempts--;
                             }
                         }
                         break;
