@@ -202,8 +202,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[1] = 0;
                         if (Main.netMode != 1)
                         {
-                            SpawnSphereRing(6, 7f, npc.damage / 3, 0.5f);
-                            SpawnSphereRing(6, 7f, npc.damage / 3, -.5f);
+                            SpawnSphereRing(6, 7f, npc.defDamage / 3, 0.5f);
+                            SpawnSphereRing(6, 7f, npc.defDamage / 3, -.5f);
                         }
                     }
                     if (++npc.ai[2] > 1020)
@@ -219,7 +219,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     else if (npc.ai[2] == 420 && Main.netMode != 1)
                     {
                         npc.ai[3] = npc.DirectionFrom(player.Center).ToRotation();
-                        Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.ai[3]), mod.ProjectileType("MutantGiantDeathray2"), npc.damage / 2, 0f, Main.myPlayer, 0, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.ai[3]), mod.ProjectileType("MutantGiantDeathray2"), npc.defDamage / 2, 0f, Main.myPlayer, 0, npc.whoAmI);
                         EdgyBossText("This is my final attack!");
                     }
                     npc.ai[3] -= 2f * (float)Math.PI * 1f / 6.5f / 60f;
@@ -232,7 +232,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (--npc.ai[1] < 0)
                     {
                         if (Main.netMode != 1)
-                            Projectile.NewProjectile(npc.Center, new Vector2(2, 0).RotatedBy(npc.ai[2]), mod.ProjectileType("MutantMark1"), npc.damage / 4, 0f, Main.myPlayer);
+                            Projectile.NewProjectile(npc.Center, new Vector2(2, 0).RotatedBy(npc.ai[2]), mod.ProjectileType("MutantMark1"), npc.defDamage / 4, 0f, Main.myPlayer);
                         npc.ai[1] = 2;
                         npc.ai[2] += npc.ai[3];
                         if (npc.localAI[0]++ == 30 || npc.localAI[0] == 60)
