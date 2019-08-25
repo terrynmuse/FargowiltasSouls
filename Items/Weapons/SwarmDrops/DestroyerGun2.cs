@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Destroyer Gun EX");
-            Tooltip.SetDefault("'text'");
+            Tooltip.SetDefault("'The reward for slaughtering many...'");
         }
 
         public override void SetDefaults()
