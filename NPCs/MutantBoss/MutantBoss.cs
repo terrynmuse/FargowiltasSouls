@@ -146,7 +146,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             {
                 case -5: //fade out, drop a mutant
                     npc.dontTakeDamage = true;
-                    npc.damage = 0;
                     for (int i = 0; i < 5; i++)
                     {
                         int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 2.5f);
@@ -262,6 +261,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
                 case -1: //defeated
                     npc.dontTakeDamage = true;
+                    npc.damage = 0;
                     if (npc.buffType[0] != 0)
                         npc.DelBuff(0);
                     if (++npc.ai[1] > 120)
