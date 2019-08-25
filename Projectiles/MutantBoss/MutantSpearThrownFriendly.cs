@@ -33,6 +33,9 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.extraUpdates = 1;
             projectile.scale = 1.3f;
             projectile.alpha = 0;
+
+            projectile.localNPCHitCooldown = 0;
+            projectile.usesLocalNPCImmunity = true;
         }
 
         public override void AI()
