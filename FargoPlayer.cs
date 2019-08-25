@@ -2827,15 +2827,17 @@ namespace FargowiltasSouls
                     p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
 
-            if (player.whoAmI == Main.myPlayer && retVal && player.FindBuffIndex(mod.BuffType("MutantRebirth")) == -1)
+            if (MutantSetBonus && player.whoAmI == Main.myPlayer && retVal && player.FindBuffIndex(mod.BuffType("MutantRebirth")) == -1)
             {
                 player.statLife = player.statLifeMax2;
                 player.HealEffect(player.statLifeMax2);
                 player.immune = true;
                 player.immuneTime = player.longInvince ? 180 : 120;
                 Main.NewText("You've been revived!", Color.LimeGreen);
+                player.ClearBuff(mod.BuffType("MutantFang"));
+                player.buffImmune[mod.BuffType("MutantFang")] = true;
                 player.AddBuff(mod.BuffType("MutantRebirth"), 7200);
-                Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(400 * player.magicDamage), 10f, player.whoAmI);
+                Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(1000 * player.magicDamage), 10f, player.whoAmI);
                 retVal = false;
             }
 

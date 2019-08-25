@@ -1477,7 +1477,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ItemID.GreaterHealingPotion;
+            potionType = ItemID.SuperHealingPotion;
         }
 
         public override void FindFrame(int frameHeight)
