@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Slime Ball");
+            DisplayName.SetDefault("Slime Rain");
         }
 
         public override void SetDefaults()

@@ -52,10 +52,10 @@ namespace FargowiltasSouls.Projectiles.Minions
 
             projectile.timeLeft = 2;
             projectile.scale = (1f - projectile.alpha / 255f) * 0.5f;
-            projectile.ai[0] -= rotationPerTick;
-            if (projectile.ai[0] < PI)
+            projectile.ai[0] += rotationPerTick;
+            if (projectile.ai[0] > PI)
             {
-                projectile.ai[0] += 2f * PI;
+                projectile.ai[0] -= 2f * PI;
                 projectile.netUpdate = true;
             }
 
@@ -136,7 +136,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 {
                     Color color27 = color26;
                     color27 *= (float)(max - i) / max;
-                    Vector2 value4 = projectile.Center + drawOffset.RotatedBy(rotationPerTick * i);
+                    Vector2 value4 = projectile.Center + drawOffset.RotatedBy(rotationPerTick * -i);
                     float num165 = projectile.rotation;
                     Main.spriteBatch.Draw(texture2D13, value4 - Main.screenPosition + new Vector2(0, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color27, num165, origin2, projectile.scale, SpriteEffects.None, 0f);
                 }

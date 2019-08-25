@@ -1133,7 +1133,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         Vector2 safeZone = npc.Center;
                         safeZone.Y -= 100;
-                        const float safeRange = 150 + 250;
+                        const float safeRange = 150 + 354;
                         for (int i = 0; i < 3; i++)
                         {
                             Vector2 spawnPos = npc.Center + Main.rand.NextVector2Circular(1200, 1200);
@@ -1185,11 +1185,18 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                                 Projectile.NewProjectile(spawnPos.X + Main.rand.Next(-300, 301), spawnPos.Y + Main.rand.Next(-100, 101), Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(30f, 35f), mod.ProjectileType("MutantSlimeBall"), npc.damage / 5, 0f, Main.myPlayer);
                         }
                     }
+                    if (npc.ai[3] == 0)
+                    {
+                        npc.ai[3] = 1;
+                        if (Main.netMode != 1)
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSlimeRain"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI);
+                    }
                     if (++npc.ai[2] > 180)
                     {
                         npc.ai[0]++;
                         npc.ai[1] = 0;
                         npc.ai[2] = 0;
+                        npc.ai[3] = 0;
                         npc.netUpdate = true;
                         npc.TargetClosest();
                     }
@@ -1255,8 +1262,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     Main.PlaySound(SoundID.Item84, npc.Center);
                     if (Main.netMode != 1)
                     {
-                        Projectile.NewProjectile(npc.Center, Vector2.UnitY * 10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 60);
-                        Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 180);
+                        Projectile.NewProjectile(npc.Center, Vector2.UnitY * 10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 120);
+                        Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 240);
                     }
                     npc.ai[0]++;
                     break;
@@ -1446,7 +1453,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             npc.life = 1;
             npc.active = true;
-            if (Main.netMode != 1)
+            if (Main.netMode != 1 && npc.ai[0] > -1)
             {
                 npc.ai[0] = -1;
                 npc.ai[1] = 0;

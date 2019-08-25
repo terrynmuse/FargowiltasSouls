@@ -1387,7 +1387,6 @@ namespace FargowiltasSouls.NPCs
                             {
                                 if (npc.ai[2] < 2)
                                 {
-                                    npc.position -= npc.velocity / 2;
                                     npc.ai[2]--;
                                     npc.alpha += 8;
                                     if (npc.alpha > 255)
@@ -1396,9 +1395,9 @@ namespace FargowiltasSouls.NPCs
                                         if (Main.netMode != 1 && npc.HasPlayerTarget)
                                         {
                                             Vector2 distance = npc.Center - Main.player[npc.target].Center;
-                                            if (distance.Y > 0)
-                                                distance.Y /= 2;
                                             npc.Center = Main.player[npc.target].Center;
+                                            if (distance.Y > 0)
+                                                distance.Y *= -1;
                                             npc.position.X -= distance.X;
                                             npc.position.Y += distance.Y;
                                             npc.netUpdate = true;

@@ -1,62 +1,57 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls.Projectiles.MutantBoss
 {
-    public class MutantBoss : ModProjectile
+    public class MutantSlimeRain : ModProjectile
     {
-        public override string Texture => "FargowiltasSouls/NPCs/MutantBoss/MutantBoss";
+        public override string Texture => "FargowiltasSouls/Items/Weapons/FinalUpgrades/SlimeRain";
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mutant");
-            Main.projFrames[projectile.type] = 4;
+            DisplayName.SetDefault("Slime Rain");
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
             ProjectileID.Sets.TrailingMode[projectile.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 34;
-            projectile.height = 50;
+            projectile.width = 90;
+            projectile.height = 28;
+            projectile.aiStyle = -1;
+            projectile.hostile = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
+            cooldownSlot = 1;
         }
 
         public override void AI()
         {
-            int ai1 = (int)projectile.ai[1];
-            if (projectile.ai[1] >= 0f && projectile.ai[1] < 200f &&
-                Main.npc[ai1].active && Main.npc[ai1].type == mod.NPCType("MutantBoss"))
+            int ai0 = (int)projectile.ai[0];
+            if (ai0 > -1 && ai0 < 200 && Main.npc[ai0].active && Main.npc[ai0].type == mod.NPCType("MutantBoss") 
+                && (Main.npc[ai0].ai[0] == 35 || Main.npc[ai0].ai[0] == 38))
             {
-                projectile.Center = Main.npc[ai1].Center;
-                projectile.alpha = Main.npc[ai1].alpha;
-                projectile.direction = projectile.spriteDirection = Main.npc[ai1].direction;
                 projectile.timeLeft = 2;
+                projectile.Center = Main.npc[ai0].Center;
+                projectile.position.X += projectile.width / 2 * Main.npc[ai0].spriteDirection;
+                projectile.spriteDirection = Main.npc[ai0].spriteDirection;
+                projectile.rotation = (float)Math.PI / 4 * projectile.spriteDirection;
             }
             else
             {
                 projectile.Kill();
                 return;
             }
-
-            if (++projectile.frameCounter > 6)
-            {
-                projectile.frameCounter = 0;
-                if (++projectile.frame >= 4)
-                    projectile.frame = 0;
-            }
         }
 
-        public override bool CanDamage()
+        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            return false;
+            target.AddBuff(BuffID.Slimed, 300);
+            target.AddBuff(mod.BuffType("MutantFang"), 180);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -70,7 +65,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             Color color26 = lightColor;
             color26 = projectile.GetAlpha(color26);
 
-            SpriteEffects effects = projectile.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            SpriteEffects effects = projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i += 2)
             {

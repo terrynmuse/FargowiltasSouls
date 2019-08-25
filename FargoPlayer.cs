@@ -4203,21 +4203,20 @@ namespace FargowiltasSouls
 
             if (FreezeTime && freezeLength != 0)
             {
-                for (int i = 0; i < 200; i++)
+                if (!FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
                 {
-                    NPC npc = Main.npc[i];
-                    if (npc.active && !npc.HasBuff(mod.BuffType("TimeFrozen")))
+                    for (int i = 0; i < 200; i++)
                     {
-                        npc.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
+                        NPC npc = Main.npc[i];
+                        if (npc.active && !npc.HasBuff(mod.BuffType("TimeFrozen")))
+                            npc.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
                     }
-                }
 
-                for (int i = 0; i < 1000; i++)
-                {
-                    Projectile p = Main.projectile[i];
-                    if (p.active && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
+                    for (int i = 0; i < 1000; i++)
                     {
-                        p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
+                        Projectile p = Main.projectile[i];
+                        if (p.active && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
+                            p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
                     }
                 }
 
