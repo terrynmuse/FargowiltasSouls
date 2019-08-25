@@ -270,6 +270,7 @@ namespace FargowiltasSouls
         public int MaxLifeReduction;
         public bool Midas;
         public bool MutantPresence;
+        public bool Swarming;
 
         public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
@@ -695,6 +696,7 @@ namespace FargowiltasSouls
             DeathMarked = false;
             Midas = false;
             MutantPresence = false;
+            Swarming = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)

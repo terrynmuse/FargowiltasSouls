@@ -5545,15 +5545,8 @@ namespace FargowiltasSouls.NPCs
                             Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, npc.velocity.X, npc.velocity.Y);
                             npc.position -= npc.velocity / 2f;
                         }
-                        goto case NPCID.Hornet;
-
-                    case NPCID.Hornet:
-                    case NPCID.HornetFatty:
-                    case NPCID.HornetHoney:
-                    case NPCID.HornetLeafy:
-                    case NPCID.HornetSpikey:
-                    case NPCID.HornetStingy:
-                    case NPCID.MossHornet:
+                        goto case NPCID.Harpy;
+                        
                     case NPCID.Harpy:
                         if (!masoBool[0] && ++Counter2 > 15)
                         {
@@ -5566,6 +5559,24 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
                         npc.noTileCollide = masoBool[1];
+                        break;
+
+                    case NPCID.Hornet:
+                    case NPCID.HornetFatty:
+                    case NPCID.HornetHoney:
+                    case NPCID.HornetLeafy:
+                    case NPCID.HornetSpikey:
+                    case NPCID.HornetStingy:
+                    case NPCID.MossHornet:
+                        if (npc.HasPlayerTarget)
+                        {
+                            bool shouldNotTileCollide = Main.player[npc.target].active && !Main.player[npc.target].dead && Main.player[npc.target].GetModPlayer<FargoPlayer>().Swarming;
+                            if (shouldNotTileCollide)
+                                npc.noTileCollide = true;
+                            else if (npc.noTileCollide && !Collision.SolidCollision(npc.position, npc.width, npc.height)) //still intangible, but should stop, and isnt on tiles
+                                npc.noTileCollide = false;
+                            
+                        }
                         break;
 
                     case NPCID.GoblinThief:
@@ -6811,6 +6822,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MossHornet:
                     case NPCID.TinyMossHornet:
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(30, 300));
+                        target.AddBuff(mod.BuffType("Swarming"), Main.rand.Next(300, 900));
                         break;
 
                     case NPCID.Paladin:
