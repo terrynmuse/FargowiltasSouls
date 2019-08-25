@@ -17,10 +17,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Chlorophyte Enchantment");
 
             string tooltip =
-@"'The jungle's essence crystallizes above you'
-Summons a leaf crystal to shoot at nearby enemies
-Chance to steal 4 mana with each attack
-Taking damage will release a poisoning spore explosion
+@"'The jungle's essence crystallizes around you'
+Summons a ring of leaf crystals to shoot at nearby enemies
+Taking damage will release a lingering spore explosion
 All herb collection is doubled
 ";
             string tooltip_ch = 

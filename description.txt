@@ -61,9 +61,22 @@ Copper Enchant now bonus procs on enemies in water instead of just have the wet 
 -Gave Soul of Eternity way more defense
 -Added the Golden Carp to the Trawler Soul recipe
 
--Reworked Tiki Enchantment
+-Miner Enchantment buffed to 50% mining speed from 30%, all further upgrades increased dramatically
+-Jungle Enchant lost mana steal, gained herb doubling and spore clouds linger
+-Chloro now has 5 leaf crystals around you
+-Frost Enchantment , cooldown after launching icicles lowered from 5 to 2 seconds, icicles spawn closer to the player and spawn quicker, use a new projectile instead of a vanilla one
+-Orichalcum Enchant fireballs move faster
+-Reworked Tiki Enchantment, nolonger inflicts Infested, now grants infinte temporary minions
+-Stardust Enchantment now makes Stardust Guardian deal 5x damage and attack faster, he also continues to attack in stopped time
 -removed masomode dialogue from the mutant
 
+-Changed all spreads to be more circular, such as Cactus, Jungle, Cobalt effects
+-Added Shackled immunity to Darksteel Enchantment
+
+
+
+-All Hardmode spawns in phm drop 1 to 2 gold and have reduced HP and/or damage
+-Black Recluses drop Spider Egg 2% chance in Masomode
 -Fused now always deals half HP as damage
 retinazer has special extra range burning aura
 retinazer shoots dark stars less often

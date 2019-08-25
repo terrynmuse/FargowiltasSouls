@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             Tooltip.SetDefault(
 @"'Behold the craftsmanship of the Dark Elves...'
 10% increased damage and damage reduction
-Immune to intense heat
+Immune to intense heat shambler chain-balls
 Attacks have a chance to cause a lightning bolt to strike
 Grants the ability to dash into the enemy
 Right Click to guard with your shield

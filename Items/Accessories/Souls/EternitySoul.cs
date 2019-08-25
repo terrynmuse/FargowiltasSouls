@@ -30,14 +30,14 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 Drastically increases life regeneration, increases your maximum mana to 999, minions by 30, sentries by 20, HP by 500%, damage reduction by 50%
 250% increased damage and attack speed; 100% increased shoot speed and knockback; Increases armor penetration by 50; Crits deal 10x damage and Crit chance is set to 50%
 Crit to increase it by 10%, At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense; This stacks up to 200,000 times until you get hit
-All attacks inflict Flames of the Universe, Sadism, Midas and reduce enemy knockback immunity
-Summons icicles, a leaf crystal, hallowed sword and shield, beetles, several pets, orichalcum fireballs and all Masochist Mode bosses to your side
+All attacks inflict Flames of the Universe, Sadism, Midas, and reduce enemy knockback immunity
+Summons icicles, leaf crystals, hallowed sword and shield, beetles, several pets, orichalcum fireballs and all Masochist Mode bosses to your side
 Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, snowballs, spears, or buff boosters
 Attacks cause increased life regen, shadow dodge, Flameburst shots and meteor showers
 Projectiles may split or shatter, item and projectile size increased, attacks create additional attacks and spawn hearts
-You leave a trail of fire and rainbows; Nearby enemies are ignited and minions occasionally spew scythes 
+You leave a trail of fire and rainbows; Nearby enemies are ignited; minions occasionally spew scythes, and you may spawn temporary minions
 Critters have increased defense and their souls will aid you; Enemies explode into needles; Greatly enhances all DD2 sentries
-Double-tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Double-tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your empowered guardian
 Right Click to Guard; Press the Gold Key to encase yourself in gold; Press the Freeze Key to freeze time for 5 seconds
 Solar shield allows you to dash, dashing into solid blocks teleports you through them; Throw a smoke bomb to teleport to it and gain the first strike buff
 Getting hit reflects damage, releases a spore explosion, inflicts super bleeding, may squeak and causes you to erupt into various things when injured
@@ -45,7 +45,7 @@ Grants Crimson regen, immunity to fire, fall damage, and lava, doubled herb coll
 Grants immunity to knockback and most debuffs; Allows Supersonic running and infinite flight; Increases fishing skill substantially and all fishing rods will have 10 extra lures
 You respawn 10x as fast; Prevents boss spawns, increases spawn rates, reduces skeletons hostility outside of the dungeon and empowers Cute Fishron
 Grants autofire, modifier protection, gravity control, fast fall, and immunity to knockback, all Masochist Mode debuffs, enhances grappling hooks and more
-Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed doubled
+Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed dramatically increased
 Summons an impenatrable ring of death around you and you reflect all projectiles; When you die, you explode and revive with full HP
 Effects of the Fire Gauntlet, Yoyo Bag, Sniper Scope, Celestial Cuffs, Mana Flower, Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
 Effects of the Spore Sac, Paladin's Shield, Frozen Turtle Shell, Arctic Diving Gear, Frog Legs, Flying Carpet, Lava Waders, and Angler Tackle Bag
@@ -210,19 +210,6 @@ and most of SoT not mentioned because meme tooltip length
             player.noKnockback = true;
             player.fireWalk = true;
 
-            //soon tm
-            //buffloader.buffcount something or other meme
-            /*for(int i = 0; i < BuffLoa; i ++)
-            {
-                ModLoader.B
-
-                if()
-                {
-
-                }
-                player.buffImmune[i] = true;
-            }*/
-
             //brain of confusion
             player.brainOfConfusion = true;
             //charm of myths
@@ -329,7 +316,7 @@ and most of SoT not mentioned because meme tooltip length
             //gizmo pack
             player.autoPaint = true;
             //pick speed
-            player.pickSpeed -= 0.50f;
+            player.pickSpeed -= 0.90f;
             //mining helmet
             if (Soulcheck.GetValue("Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator

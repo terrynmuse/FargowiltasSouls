@@ -120,6 +120,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WyvernHead:
                         if (Main.hardMode)
                             npc.lifeMax *= 2;
+                        else
+                            npc.lifeMax /= 2;
                         Counter = Main.rand.Next(180);
                         break;
 
@@ -239,6 +241,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DuneSplicerTail:
                         if (Main.hardMode)
                             npc.lifeMax *= 3;
+                        else
+                        {
+                            npc.lifeMax /= 2;
+                            npc.damage /= 2;
+                        }
                         break;
 
                     case NPCID.StardustCellSmall:
@@ -317,6 +324,33 @@ namespace FargowiltasSouls.NPCs
                         npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         break;
 
+                    case NPCID.PigronCorruption:
+                    case NPCID.PigronCrimson:
+                    case NPCID.PigronHallow:
+                        if (!Main.hardMode)
+                            npc.damage /= 2;
+                        break;
+
+                    case NPCID.RedDevil:
+                        if (!Main.hardMode)
+                        {
+                            npc.lifeMax /= 2;
+                            npc.damage /= 2;
+                        }
+                        break;
+
+                    case NPCID.AngryNimbus:
+                    case NPCID.Mimic:
+                    case NPCID.IchorSticker:
+                    case NPCID.SeekerHead:
+                    case NPCID.MushiLadybug:
+                    case NPCID.AnomuraFungus:
+                    case NPCID.ZombieMushroom:
+                    case NPCID.ZombieMushroomHat:
+                    case NPCID.Medusa:
+                        if (!Main.hardMode)
+                            npc.lifeMax /= 2;
+                        break;
 
                     #region maso bosses
                     case NPCID.ServantofCthulhu:
@@ -8413,6 +8447,12 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.Size, ItemID.LavaCharm);
                         break;
 
+                    case NPCID.BlackRecluse:
+                    case NPCID.BlackRecluseWall:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.SpiderEgg);
+                        break;
+
                     case NPCID.DesertDjinn:
                         if (Main.rand.Next(50) == 0)
                             Item.NewItem(npc.position, npc.Size, ItemID.FlyingCarpet);
@@ -9291,8 +9331,13 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WyvernHead:
                     case NPCID.DuneSplicerHead:
                     case NPCID.AngryNimbus:
+                    case NPCID.PigronCorruption:
+                    case NPCID.PigronCrimson:
+                    case NPCID.PigronHallow:
                         if (!Main.hardMode) //in pre-hm, fake death
                         {
+                            Item.NewItem(npc.position, npc.Size, ItemID.GoldCoin, 1 + Main.rand.Next(2));
+
                             npc.active = false;
                             Main.PlaySound(npc.DeathSound, npc.Center);
                             return false;
@@ -9300,6 +9345,8 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Mimic:
+                        Item.NewItem(npc.position, npc.Size, ItemID.GoldCoin, 1 + Main.rand.Next(2));
+
                         if (Main.netMode != 1)
                         {
                             int max = Main.rand.Next(5) + 5;

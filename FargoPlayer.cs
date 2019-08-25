@@ -106,6 +106,7 @@ namespace FargowiltasSouls
         public int TinCrit = 4;
         public bool TikiEnchant;
         public bool TikiMinion;
+        private int actualMinions;
         public bool SolarEnchant;
         public bool ShinobiEnchant;
         public bool ValhallaEnchant;
@@ -2296,12 +2297,6 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (JungleEnchant && !NatureForce && Main.rand.Next(4) == 0 && !target.immortal)
-            {
-                player.ManaEffect(4);
-                player.statMana += 4;
-            }
-
             if (GladEnchant && Soulcheck.GetValue("Gladiator Rain") && projectile != ProjectileID.JavelinFriendly && gladCount == 0)
             {
                 for (int i = 0; i < 5; i++)
@@ -2439,9 +2434,6 @@ namespace FargowiltasSouls
 
                 if (ShadowEnchant && Main.rand.Next(15) == 0)
                     target.AddBuff(BuffID.Darkness, 600, true);
-
-                if (TikiEnchant)
-                    target.AddBuff(mod.BuffType("Infested"), 1800, true);
 
                 if (FrostEnchant)
                     target.AddBuff(BuffID.Frostburn, 300);
@@ -2707,8 +2699,7 @@ namespace FargowiltasSouls
             {
                 int dmg = NatureForce ? 100 : 30;
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
-                Projectile[] projs = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 5, (int)(dmg * player.magicDamage), 5f);
-                Projectile[] projs2 = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
+                Projectile[] projs2 = FargoGlobalProjectile.XWay(10, player.Center, mod.ProjectileType("SporeBoom"), 3f, dmg, 0f);
             }
 
             if (ShadeEnchant && Soulcheck.GetValue("Super Blood On Hit"))
@@ -3283,7 +3274,20 @@ namespace FargowiltasSouls
 
         public void ChloroEffect(bool hideVisual, int dmg)
         {
-            AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
+            //AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
+
+            if (Soulcheck.GetValue("Chlorophyte Leaf Crystal") && player.ownedProjectileCounts[mod.ProjectileType("Chlorofuck")] == 0)
+            {
+                const int max = 5;
+                float rotation = 2f * (float)Math.PI / max;
+
+                for (int i = 0; i < max; i++)
+                {
+                    Vector2 spawnPos = player.Center + new Vector2(60, 0f).RotatedBy(rotation * i);
+                    int p = Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("Chlorofuck"), dmg, 10f, player.whoAmI, 0, rotation * i);
+                }
+            }
+
             AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
         }
 
@@ -3469,17 +3473,14 @@ namespace FargowiltasSouls
             {
                 if (icicleCD == 0 && IcicleCount < 3)
                 {
-                    Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, ProjectileID.Blizzard, 0, 0, player.whoAmI);
+                    Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, mod.ProjectileType("FrostIcicle"), 0, 0, player.whoAmI, 2.5f);
+
                     if (p != null)
                     {
-                        p.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                        p.width = 10;
-                        p.height = 10;
-                        p.timeLeft = 2;
                         icicles[IcicleCount] = p;
                         IcicleCount++;
                     }
-                    icicleCD = 120;
+                    icicleCD = 30;
                 }
 
                 if (icicleCD != 0)
@@ -3493,14 +3494,14 @@ namespace FargowiltasSouls
                     {
                         Vector2 vel = (Main.MouseWorld - icicles[i].Center).SafeNormalize(-Vector2.UnitY) * 5;
 
-                        int p = Projectile.NewProjectile(icicles[i].Center, vel, icicles[i].type, dmg, 1f, player.whoAmI);
+                        int p = Projectile.NewProjectile(icicles[i].Center, vel, ProjectileID.Blizzard, dmg, 1f, player.whoAmI);
                         icicles[i].Kill();
 
                         Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                     }
 
                     IcicleCount = 0;
-                    icicleCD = 300;
+                    icicleCD = 120;
                 }
             }
             
@@ -3870,11 +3871,11 @@ namespace FargowiltasSouls
                     for (int i = 0; i < ballAmt; i++)
                     {
                         float degree = (360 / ballAmt) * i;
-                        Projectile fireball = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, fireballs[i % 3], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
+                        Projectile fireball = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, fireballs[i % 3], (int)(10 * player.magicDamage), 0f, player.whoAmI, 5, degree);
                         if (fireball != null)
                         {
                             fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                            fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
+                            fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 120;
                             fireball.timeLeft = 2;
                             fireball.penetrate = -1;
                             fireball.ignoreWater = true;
@@ -4182,7 +4183,7 @@ namespace FargowiltasSouls
                 for (int i = 0; i < 1000; i++)
                 {
                     Projectile p = Main.projectile[i];
-                    if (p.active && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
+                    if (p.active && p.type != ProjectileID.StardustGuardian && p.type != ProjectileID.StardustGuardianExplosion && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
                     {
                         p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
                     }
@@ -4221,6 +4222,15 @@ namespace FargowiltasSouls
         public void TikiEffect(bool hideVisual)
         {
             TikiEnchant = true;
+
+            actualMinions = player.maxMinions + 1; //the free one is not counted
+            player.maxMinions = 100;
+
+            if (player.numMinions >= actualMinions)
+            {
+                player.GetModPlayer<FargoPlayer>(mod).TikiMinion = true;
+            }
+
             AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
         }
 

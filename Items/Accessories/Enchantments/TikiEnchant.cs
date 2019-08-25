@@ -10,7 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     public class TikiEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        private int actualMinions;
 
         public override void SetStaticDefaults()
         {
@@ -40,14 +39,6 @@ Summons a pet Tiki Spirit");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).TikiEffect(hideVisual);
-
-            actualMinions = player.maxMinions + 1; //the free one is not counted
-            player.maxMinions = 100;
-
-            if (player.numMinions >= actualMinions)
-            {
-                player.GetModPlayer<FargoPlayer>(mod).TikiMinion = true;
-            }
         }
 
         public override void AddRecipes()

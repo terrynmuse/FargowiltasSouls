@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 @"'Limitless possibilities'
 Increased block and wall placement speed by 50% 
 Near infinite block placement and mining reach
-Mining speed doubled 
+Mining speed tripled 
 Shows the location of enemies, traps, and treasures
 Auto paint and actuator effect 
 Provides light and allows gravity control
@@ -89,7 +89,7 @@ Summons a pet Magic Lantern");
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //mining speed, spelunker, dangersense, light, hunter, pet
-            modPlayer.MinerEffect(hideVisual, .5f);
+            modPlayer.MinerEffect(hideVisual, .66f);
             //placing speed up
             player.tileSpeed += 0.5f;
             player.wallSpeed += 0.5f;

@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Projectiles
         private int tikiTimer = 300;
 
         public bool Rotate = false;
-        public int RotateDist = 64;
+        public int RotateDist = 32;
         public int RotateDir = 1;
 
         private bool firstTick = true;
@@ -156,8 +156,25 @@ namespace FargowiltasSouls.Projectiles
 
                     if (modPlayer.TikiEnchant && modPlayer.TikiMinion && projectile.minion && projectile.minionSlots > 0)
                     {
-
                         tikiMinion = true;
+
+                        if (projectile.type == mod.ProjectileType("EaterBody") || projectile.type == ProjectileID.StardustDragon2)
+                        {
+                            for (int i = 0; i < 1000; i++)
+                            {
+                                Projectile pro = Main.projectile[i];
+
+                                if (pro.type == ProjectileID.StardustDragon1 || pro.type == ProjectileID.StardustDragon4 || pro.type == mod.ProjectileType("EaterHead") || pro.type == mod.ProjectileType("EaterTail"))
+                                {
+                                    pro.GetGlobalProjectile<FargoGlobalProjectile>().tikiMinion = true;
+                                }
+                            }
+                        }
+                    }
+
+                    if (modPlayer.StardustEnchant && projectile.type == ProjectileID.StardustGuardianExplosion)
+                    {
+                        projectile.damage *= 5;
                     }
 
                     if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
@@ -242,6 +259,12 @@ namespace FargowiltasSouls.Projectiles
                         projectile.Kill();
                     }
                 }
+
+                if (modPlayer.StardustEnchant && projectile.type == ProjectileID.StardustGuardian)
+                {
+                    projectile.localAI[0] = 0f;
+                }
+
 
                 if (projectile.friendly && !projectile.hostile)
                 {
@@ -351,17 +374,11 @@ namespace FargowiltasSouls.Projectiles
                 //increase/decrease degrees
                 if(RotateDir == 1)
                 {
-                    projectile.ai[1] += 2.5f;
+                    projectile.ai[1] += projectile.ai[0];
                 }
                 else
                 {
-                    projectile.ai[1] -= 2.5f;
-                }
-
-                if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && Soulcheck.GetValue("Frost Icicles"))
-                {
-                    projectile.rotation = (Main.MouseWorld - projectile.Center).ToRotation() - 5;
-                    projectile.timeLeft = 2;
+                    projectile.ai[1] -= projectile.ai[0];
                 }
 
                 if (modPlayer.OriEnchant && (projectile.type == ProjectileID.BallofFire || projectile.type == ProjectileID.CursedFlameFriendly || projectile.type == ProjectileID.BallofFrost) && Soulcheck.GetValue("Orichalcum Fireballs"))
@@ -1529,21 +1546,8 @@ namespace FargowiltasSouls.Projectiles
                 modPlayer.CobaltCD = 60;
             }
 
-            switch (projectile.type)
-            {
-                case ProjectileID.Blizzard:
-                    if (Rotate)
-                        modPlayer.IcicleCount--;
-                    break;
-
-                case ProjectileID.Bone:
-                    break;
-
-                default:
-                    if (modPlayer.OriEnchant && Rotate)
-                        modPlayer.OriSpawn = false;
-                    break;
-            }
+            if (modPlayer.OriEnchant && Rotate && projectile.type != ProjectileID.Bone)
+                modPlayer.OriSpawn = false;
         }
 
         public override void GrapplePullSpeed(Projectile projectile, Player player, ref float speed)
@@ -1569,13 +1573,16 @@ namespace FargowiltasSouls.Projectiles
 
         public static Projectile[] XWay(int num, Vector2 pos, int type, float speed, int damage, float knockback)
         {
-            float[] _x = { 0, speed, 0, -speed, speed, -speed, speed, -speed, speed / 2, speed, -speed, speed / 2, speed, -speed / 2, -speed, -speed / 2 };
-            float[] _y = { speed, 0, -speed, 0, speed, -speed, -speed, speed, speed, speed / 2, speed / 2, -speed, -speed / 2, speed, -speed / 2, -speed };
-
             Projectile[] projs = new Projectile[16];
 
+            double spread = (2 * Math.PI) / num;
+
             for (int i = 0; i < num; i++)
-                projs[i] = NewProjectileDirectSafe(pos, new Vector2(_x[i], _y[i]), type, damage, knockback, Main.myPlayer);
+            {
+                projs[i] = NewProjectileDirectSafe(pos, new Vector2(speed, speed), type, damage, knockback, Main.myPlayer);
+                projs[i].velocity = projs[i].velocity.RotatedBy(spread * i);
+            }
+                
 
             return projs;
         }

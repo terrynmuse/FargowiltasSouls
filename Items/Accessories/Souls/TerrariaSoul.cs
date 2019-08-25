@@ -21,9 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             string tooltip =
 @"'A true master of Terraria'
-Summons fireballs, icicles, a leaf crystal, hallowed sword and shield, beetles, and several pets
+Summons fireballs, icicles, leaf crystals, hallowed sword and shield, beetles, and several pets
 Toggle vanity to remove all Pets, Right Click to Guard
-Double tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Double tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your empowered guardian
 Gold Key encases you in gold, Freeze Key freezes time for 5 seconds, minions spew scythes
 Solar shield allows you to dash, Dash into any walls, to teleport through them
 Throw a smoke bomb to teleport to it and gain the First Strike Buff
@@ -35,7 +35,7 @@ Projectiles may split or shatter, item and projectile size increased, attract it
 Nearby enemies are ignited, You leave behind a trail of fire and rainbows when you walk
 Grants Crimson regen, immunity to fire, fall damage, and lava, and doubled herb collection
 Grants 50% chance for Mega Bees, 15% chance for minion crits, 20% chance for bonus loot
-Critters have increased defense and their souls will aid you
+Critters have increased defense and their souls will aid you, You may summon temporary minions
 All grappling hooks are more effective and fire homing shots, Greatly enhances all DD2 sentries
 Your attacks inflict Midas, Enemies explode into needles
 When you die, you explode and revive with 200 HP

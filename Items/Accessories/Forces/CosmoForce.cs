@@ -29,7 +29,7 @@ Attacks may inflict the Solar Flare debuff
 Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
 You also spawn a vortex to draw in and massively damage enemies when you enter stealth
 Hurting enemies has a chance to spawn buff boosters
-Double tap down to direct your guardian
+Double tap down to direct your empowered guardian
 Press the Freeze Key to freeze time for 5 seconds
 There is a 60 second cooldown for this effect, a sound effect plays when it's back
 Summons a pet Companion Cube";

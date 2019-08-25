@@ -23,6 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Masterfully forged by the Blacksmith'
 12% damage reduction
+Grants immunity to shambler chain-balls
 Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
             DisplayName.AddTranslation(GameCulture.Chinese, "耐刚魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -59,7 +60,8 @@ Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
             {
                 thorium.GetItem("GreedyMagnet").HoldItem(player);
             }
-
+            //ball n chain
+            thoriumPlayer.ballnChain = true;
             //spiked bracers
             player.thorns += 0.25f;
         }

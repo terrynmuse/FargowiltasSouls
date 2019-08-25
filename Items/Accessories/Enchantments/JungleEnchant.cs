@@ -15,11 +15,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Jungle Enchantment");
 
-            string tooltip = 
+            string tooltip =
 @"'The wrath of the jungle dwells within'
-25% chance to steal 4 mana with each attack
-Taking damage will release a poisoning spore explosion
+Taking damage will release a lingering spore explosion
 Spore damage scales with magic damage
+All herb collection is doubled
 ";
             string tooltip_ch =
 @"'丛林之怒深藏其中'
