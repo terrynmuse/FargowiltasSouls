@@ -15,6 +15,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         {
             DisplayName.SetDefault("The Landslide EX");
             Tooltip.SetDefault("'text'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "山崩 EX");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'text'");
         }
 
         public override void SetDefaults()

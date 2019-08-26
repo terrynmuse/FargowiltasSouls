@@ -21,8 +21,7 @@ Summons a pet Tiki Spirit");
             DisplayName.AddTranslation(GameCulture.Chinese, "提基魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'Aku Aku!'
-攻击造成感染效果
-随着时间的推移,感染造成越来越多的伤害
+召唤数量达到上限后, 仍然可以召唤临时召唤物
 召唤提基之灵");
         }
 
