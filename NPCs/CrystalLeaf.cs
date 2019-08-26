@@ -115,10 +115,10 @@ namespace FargowiltasSouls.NPCs
 
             if (npc.ai[1] > 125)
             {
-                npc.ai[2] += 2 * (float)Math.PI / 300;
+                npc.ai[2] += 2 * (float)Math.PI / 420;
                 if (npc.ai[2] > (float)Math.PI)
                     npc.ai[2] -= 2 * (float)Math.PI;
-                npc.ai[1] += (float)Math.Sin(npc.ai[2]) * 5;
+                npc.ai[1] += (float)Math.Sin(npc.ai[2]) * 7;
             }
         }
 
