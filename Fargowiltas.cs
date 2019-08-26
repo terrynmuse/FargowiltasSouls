@@ -636,6 +636,26 @@ namespace FargowiltasSouls
         {
             return NormalSpawn(spawnInfo) && NoBiome(spawnInfo) && NoZone(spawnInfo);
         }
+
+        public override void UpdateMusic(ref int music, ref MusicPriority priority)
+        {
+            if (Main.gameMenu)
+                return;
+            if (priority > MusicPriority.Environment)
+                return;
+            Player player = Main.LocalPlayer;
+            if (!player.active)
+                return;
+
+            if (Main.myPlayer != -1 && !Main.gameMenu)
+            {
+                if (MMWorld.MMArmy)
+                {
+                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/MonsterMadhouse");
+                    priority = MusicPriority.Event;
+                }
+            }
+        }
     }
 
     enum MsgType : byte

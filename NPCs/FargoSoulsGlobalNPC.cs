@@ -629,7 +629,6 @@ namespace FargowiltasSouls.NPCs
         public override bool PreAI(NPC npc)
         {
             Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (TimeFrozen)
             {
@@ -8201,6 +8200,34 @@ namespace FargowiltasSouls.NPCs
                     pool[NPCID.CultistDragonHead] = .5f;
                 }
             }
+
+            if (MMWorld.MMArmy)
+            {
+                pool.Clear();
+                pool.Add(mod.NPCType("GreatMMenWarrior"), 20f);
+                pool.Add(mod.NPCType("MMenMan"), 30f);
+                pool.Add(mod.NPCType("ShieldedMMenMan"), 30f);
+                pool.Add(mod.NPCType("MMenCavalry"), 27f);
+                pool.Add(mod.NPCType("MMen"), 30f);
+                if (!NPC.AnyNPCs(mod.NPCType("TrojanMMen")) && MMWorld.MMPoints >= 5 && MMWorld.MMPoints <= 150 && !NPC.AnyNPCs(mod.NPCType("RoosterKing")))
+                {
+                    pool.Add(mod.NPCType("TrojanMMen"), 10f);
+                }
+                if (MMWorld.MMPoints >= 15)
+                {
+                    pool.Add(mod.NPCType("MMenBallista"), 10f);
+                }
+                if (MMWorld.MMPoints >= 30)
+                {
+                    pool.Add(mod.NPCType("MMmanMMromancer"), 15f);
+                    pool.Add(mod.NPCType("MMmanArchmage"), 15f);
+                }
+                pool.Add(mod.NPCType("BomberMMen"), 20f);
+                if (MMWorld.MMPoints >= 175 && !NPC.AnyNPCs(mod.NPCType("RoosterKing")))
+                {
+                    pool.Add(mod.NPCType("RoosterKing"), 90f);
+                }
+            }
         }
 
         private bool firstLoot = true;
@@ -10281,5 +10308,6 @@ namespace FargowiltasSouls.NPCs
                 chat = dialogue[Main.rand.Next(dialogue.Count)];
             }
         }
+
     }
 }
