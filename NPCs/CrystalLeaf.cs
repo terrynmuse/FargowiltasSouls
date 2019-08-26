@@ -21,7 +21,7 @@ namespace FargowiltasSouls.NPCs
         {
             npc.width = 32;
             npc.height = 32;
-            npc.damage = 100;
+            npc.damage = 90;
             npc.defense = 9999;
             npc.lifeMax = 9999;
             npc.HitSound = SoundID.NPCHit1;
@@ -38,7 +38,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.damage = (int)(100 * (1 + FargoSoulsWorld.PlanteraCount * .0125))
+            npc.damage = (int)(90 * (1 + FargoSoulsWorld.PlanteraCount * .0125));
             npc.lifeMax = 9999;
             npc.life = 9999;
         }
