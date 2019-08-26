@@ -9963,8 +9963,8 @@ namespace FargowiltasSouls.NPCs
                         damage = damage * 2;
                         goto case NPCID.MoonLordHand;
                     case NPCID.MoonLordHand:
-                        if (projectile.type == ProjectileID.DD2BetsyArrow || projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.PineNeedleFriendly)
-                            damage /= 5;
+                        if (projectile.type == ProjectileID.DD2BetsyArrow || projectile.type == ProjectileID.PhantasmArrow)
+                            damage /= 4;
                         break;
 
                     case NPCID.CultistDragonBody1:
@@ -9979,8 +9979,10 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
-                        if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.DD2BetsyArrow || projectile.type == ProjectileID.PineNeedleFriendly)
-                            damage /= 5;
+                        if (projectile.type == ProjectileID.PineNeedleFriendly)
+                            damage /= 2;
+                        else if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.DD2BetsyArrow)
+                            damage /= 4;
                         if (masoBool[2])
                             damage = 0;
                         break;
