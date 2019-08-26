@@ -78,7 +78,6 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
                 speed *= 3.7f * 32 / player.itemAnimationMax;
                 speedX = speed.X;
                 speedY = speed.Y;
-                damage /= 3;
                 return true;
             }
 
