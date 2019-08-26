@@ -48,7 +48,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.Center = Main.player[projectile.owner].Center;
 
             if (projectile.damage == 0)
-                projectile.damage = (int)(600 * Main.player[projectile.owner].minionDamage);
+                projectile.damage = (int)(900 * Main.player[projectile.owner].minionDamage);
 
             projectile.timeLeft = 2;
             projectile.scale = (1f - projectile.alpha / 255f) * 0.5f;

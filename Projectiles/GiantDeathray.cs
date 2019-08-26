@@ -23,14 +23,14 @@ namespace FargowiltasSouls.Projectiles
             projectile.width = 48;
             projectile.height = 48;
             projectile.friendly = true;
-            projectile.magic = true;
+            projectile.minion = true;
             projectile.alpha = 255;
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.timeLeft = 600;
             projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
-            projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 3;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 0;
         }
 
         public override void AI()

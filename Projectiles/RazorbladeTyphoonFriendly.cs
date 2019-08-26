@@ -31,7 +31,7 @@ namespace FargowiltasSouls.Projectiles
             projectile.penetrate = -1;
 
             projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 3;
+            projectile.idStaticNPCHitCooldown = 1;
 
             projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
         }
