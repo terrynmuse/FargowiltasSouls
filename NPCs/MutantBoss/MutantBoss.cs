@@ -22,9 +22,9 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             npc.width = 34;
             npc.height = 50;
-            npc.damage = 300;
+            npc.damage = 360;
             npc.defense = 400;
-            npc.lifeMax = 7000000;
+            npc.lifeMax = 7700000;
             npc.HitSound = SoundID.NPCHit57;
             npc.noGravity = true;
             npc.noTileCollide = true;
@@ -42,7 +42,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.buffImmune[mod.BuffType("TimeFrozen")] = true;
             if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
             {
-                npc.lifeMax = 170000000;
+                npc.lifeMax = 177000000;
                 npc.damage *= 2;
                 npc.defense *= 5;
                 if (Fargowiltas.Instance.CalamityLoaded)
@@ -60,11 +60,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.damage = 300;
-            npc.lifeMax = (int)(7000000 * bossLifeScale);
+            npc.damage = 360;
+            npc.lifeMax = (int)(7700000 * bossLifeScale);
             if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
             {
-                npc.lifeMax = (int)(170000000 * bossLifeScale);
+                npc.lifeMax = (int)(177000000 * bossLifeScale);
                 npc.damage *= 2;
             }
         }
@@ -619,7 +619,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         if (Main.netMode != 1)
                         {
-                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual"), npc.damage / 5, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual"), npc.damage, 0f, Main.myPlayer, 0f, npc.whoAmI);
                             Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual5"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
                         }
                         Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);

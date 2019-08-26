@@ -44,6 +44,7 @@ namespace FargowiltasSouls
             //masomode
             MasochistMode = false;
             downedFishronEX = false;
+            downedMutant = false;
             AngryMutant = false;
             EyeCount = 0;
             SlimeCount = 0;
