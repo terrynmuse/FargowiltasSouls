@@ -49,6 +49,7 @@ plant crystals now have contact damage
 plantera p2 crystals no longer shoot
 plantera p2 has reverse ivy venom aura
 nerfed pillar hp from 100k to 60k
+halved all prime limbs max life
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

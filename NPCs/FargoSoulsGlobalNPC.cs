@@ -349,6 +349,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PrimeLaser:
                     case NPCID.PrimeSaw:
                     case NPCID.PrimeVice:
+                        npc.lifeMax /= 2;
                         npc.trapImmune = true;
                         npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         break;
