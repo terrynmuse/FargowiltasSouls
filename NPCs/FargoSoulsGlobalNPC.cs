@@ -3833,6 +3833,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (npc.life <= npc.lifeMax / 2) //phase 2
                         {
+                            Aura(npc, 700, mod.BuffType("IvyVenom"), true, 188);
                             masoBool[1] = true;
                             npc.defense += 21;
 
