@@ -292,7 +292,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.LunarTowerNebula:
                     case NPCID.LunarTowerStardust:
                     case NPCID.LunarTowerVortex:
-                        npc.lifeMax *= 5;
+                        npc.lifeMax *= 3;
                         npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         break;
 
