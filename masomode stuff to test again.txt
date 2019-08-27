@@ -59,6 +59,9 @@ sharknado cant damage for half a second after spawning
 -Reworked Tiki Enchantment, nolonger inflicts Infested, now grants infinte temporary minions
 -Stardust Enchantment now makes Stardust Guardian deal 5x damage and attack faster, he also continues to attack in stopped time
 -Changed all spreads to be more circular, such as Cactus, Jungle, Cobalt effects
+halved detonating bubble EX health
+fishron EX now aims bubbles at player while dashing in p1/p2
+fish ex p3 nados happen every 15sec (was 10)
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

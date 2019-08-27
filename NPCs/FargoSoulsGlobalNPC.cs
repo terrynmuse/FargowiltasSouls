@@ -2882,6 +2882,14 @@ namespace FargowiltasSouls.NPCs
                                             int n = NPC.NewNPC((int)npc.position.X + Main.rand.Next(npc.width), (int)npc.position.Y + Main.rand.Next(npc.height), NPCID.DetonatingBubble);
                                             if (n != 200 && Main.netMode == 2)
                                                 NetMessage.SendData(23, -1, -1, null, n);
+                                            n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("DetonatingBubbleEX"));
+                                            if (n < 200)
+                                            {
+                                                Main.npc[n].velocity = npc.DirectionTo(Main.player[npc.target].Center);
+                                                Main.npc[n].netUpdate = true;
+                                                if (Main.netMode == 2)
+                                                    NetMessage.SendData(23, -1, -1, null, n);
+                                            }
                                         }
                                     }
                                     break;
@@ -3006,7 +3014,7 @@ namespace FargowiltasSouls.NPCs
                                     masoBool[2] = false;
                                     Timer++;
                                     //if (Timer >= 60 + (int)(540.0 * npc.life / npc.lifeMax)) //yes that needs to be a double
-                                    if (Timer >= 600)
+                                    if (Timer >= 900)
                                     {
                                         Timer = 0;
                                         if (Main.netMode != 1) //spawn cthulhunado
