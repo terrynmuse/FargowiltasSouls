@@ -68,11 +68,11 @@ Copper Enchant now bonus procs on enemies in water instead of just have the wet 
 -Orichalcum Enchant fireballs move faster
 -Reworked Tiki Enchantment, nolonger inflicts Infested, now grants infinte temporary minions
 -Stardust Enchantment now makes Stardust Guardian deal 5x damage and attack faster, he also continues to attack in stopped time
--removed masomode dialogue from the mutant
-
 -Changed all spreads to be more circular, such as Cactus, Jungle, Cobalt effects
--Added Shackled immunity to Darksteel Enchantment
 
+
+-Added Shackled immunity to Darksteel Enchantment
+-removed masomode dialogue from the mutant
 
 
 -All Hardmode spawns in phm drop 1 to 2 gold and have reduced HP and/or damage
