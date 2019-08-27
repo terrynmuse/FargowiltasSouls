@@ -51,6 +51,7 @@ plantera p2 has reverse ivy venom aura
 nerfed pillar hp from 100k to 60k
 halved all prime limbs max life
 removed DOT from oceanic maul
+sharknado cant damage for half a second after spawning
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

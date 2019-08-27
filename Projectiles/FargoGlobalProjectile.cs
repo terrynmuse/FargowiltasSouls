@@ -71,6 +71,10 @@ namespace FargowiltasSouls.Projectiles
                             projectile.extraUpdates++;
                         break;
 
+                    case ProjectileID.Sharknado:
+                        projectile.hostile = false;
+                        break;
+
                     case ProjectileID.FlamesTrap:
                         if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                             projectile.tileCollide = false;
@@ -821,11 +825,18 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Sharknado: //spawns from sharks too but whatever
-                    if (FargoSoulsWorld.MasochistMode && !masobool)
+                    if (FargoSoulsWorld.MasochistMode)
                     {
-                        masobool = true;
-                        if (FargoSoulsWorld.downedFishronEX || !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
-                            projectile.damage = (int)(projectile.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
+                        if (!masobool)
+                        {
+                            masobool = true;
+                            if (FargoSoulsWorld.downedFishronEX || !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
+                                projectile.damage = (int)(projectile.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
+                        }
+                        if (counter > 30)
+                        {
+                            projectile.hostile = true;
+                        }
                     }
                     break;
                     
