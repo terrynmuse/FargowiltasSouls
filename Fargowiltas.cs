@@ -71,9 +71,12 @@ namespace FargowiltasSouls
 
         public override void Unload()
         {
-            Soulcheck.ToggleDict.Clear();
-            Soulcheck.checkboxDict.Clear();
-            DebuffIDs.Clear();
+            if (Soulcheck.ToggleDict != null)
+                Soulcheck.ToggleDict.Clear();
+            if (Soulcheck.checkboxDict != null)
+                Soulcheck.checkboxDict.Clear();
+            if (DebuffIDs != null)
+                DebuffIDs.Clear();
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -94,6 +97,16 @@ namespace FargowiltasSouls
                 },
                 InterfaceScaleType.UI)
             );
+        }
+
+        public override object Call(params object[] args)
+        {
+            if ((string)args[0] == "FargoSoulsAI")
+            {
+                int n = (int)args[1];
+                Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>().AI(Main.npc[n]);
+            }
+            return base.Call(args);
         }
 
         //bool sheet
