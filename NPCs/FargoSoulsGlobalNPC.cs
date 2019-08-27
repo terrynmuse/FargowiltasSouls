@@ -3014,7 +3014,7 @@ namespace FargowiltasSouls.NPCs
                                     masoBool[2] = false;
                                     Timer++;
                                     //if (Timer >= 60 + (int)(540.0 * npc.life / npc.lifeMax)) //yes that needs to be a double
-                                    if (Timer >= 900)
+                                    if (Timer >= 600)
                                     {
                                         Timer = 0;
                                         if (Main.netMode != 1) //spawn cthulhunado

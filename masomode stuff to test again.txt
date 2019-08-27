@@ -61,7 +61,6 @@ sharknado cant damage for half a second after spawning
 -Changed all spreads to be more circular, such as Cactus, Jungle, Cobalt effects
 halved detonating bubble EX health
 fishron EX now aims bubbles at player while dashing in p1/p2
-fish ex p3 nados happen every 15sec (was 10)
 nymph shoots fake hearts
 
 spider ench now gives 20% crit rate
