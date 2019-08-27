@@ -23,5 +23,10 @@ namespace FargowiltasSouls.Buffs.Masomode
             //defense removed, endurance removed, colossal DOT (45 per second)
             player.GetModPlayer<FargoPlayer>(mod).GodEater = true;
         }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().GodEater = true;
+        }
     }
 }

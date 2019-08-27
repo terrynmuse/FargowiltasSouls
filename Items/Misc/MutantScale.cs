@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Items.Misc
             item.height = 20;
             item.maxStack = 99;
             item.rare = 11;
-            item.value = Item.sellPrice(0, 5, 0, 0);
+            item.value = Item.sellPrice(0, 4, 0, 0);
         }
     }
 }

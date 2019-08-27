@@ -109,14 +109,16 @@ namespace FargowiltasSouls
             ["Saucer Minion"] = new Color(81, 181, 113),
             ["Cultist Minion"] = new Color(81, 181, 113),
             ["True Eyes Minion"] = new Color(81, 181, 113),
+            ["Abominationn Minion"] = new Color(81, 181, 113),
+            ["Phantasmal Ring Minion"] = new Color(81, 181, 113),
             ["Squeaky Toy On Hit"] = new Color(81, 181, 113),
             ["Tentacles On Hit"] = new Color(81, 181, 113),
             ["Spiky Balls On Hit"] = new Color(81, 181, 113),
             ["Ancient Visions On Hit"] = new Color(81, 181, 113),
             ["Stars On Hit"] = new Color(81, 181, 113),
-            ["Bees On Hit"] = new Color(81, 181, 113),
-            ["Super Blood On Hit"] = new Color(81, 181, 113),
-            ["Eternity Stacking"] = new Color(81, 181, 113),
+            ["Bees On Hit"] = new Color(81, 181, 113)
+            //["Super Blood On Hit"] = new Color(81, 181, 113),
+            //["Eternity Stacking"] = new Color(81, 181, 113),
             #endregion
         };
 

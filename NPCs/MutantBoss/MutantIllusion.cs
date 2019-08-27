@@ -77,6 +77,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             }
 
             npc.target = mutant.target;
+            npc.damage = mutant.damage;
+            npc.defDamage = mutant.damage;
             if (npc.HasPlayerTarget)
             {
                 Vector2 distance = Main.player[npc.target].Center - mutant.Center;

@@ -37,6 +37,20 @@ brain is no longer faster in p2, but has a shadow clone
 REMOVED ML SOCKET LASERS
 squeaky toy on hit is now a toggle
 brain now confuses you for 5 sec every 10 seconds in p2, no longer confuses on hit
+brain clone actually works
+plantera p2 ring now wiggles!!!! also nerfed chloro fire rate by 1sec
+maso soul no longer gives faster respawn during boss fights
+eoc no longer scythe walls
+EOC TELEPORTS BEHIND YOU
+timestop doesnt work on mutant oh shit
+SWARMING DEBUFFFFFFFF
+krampus now only steals held item and 1 accessory
+plant crystals now have contact damage
+plantera p2 crystals no longer shoot
+plantera p2 has reverse ivy venom aura
+nerfed pillar hp from 100k to 60k
+halved all prime limbs max life
+removed DOT from oceanic maul
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

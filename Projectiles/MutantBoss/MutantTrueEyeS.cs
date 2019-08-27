@@ -140,12 +140,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 vel.Normalize();
                 vel *= 8f;
-                for (int i = -1; i <= 1; i++)
-                {
-                    if (Main.netMode != 1)
-                        Projectile.NewProjectile(spawn, vel.RotatedBy(Math.PI / 24 * i), ProjectileID.PhantasmalBolt,
-                            projectile.damage, 0f, projectile.owner);
-                }
+                if (Main.netMode != 1)
+                    Projectile.NewProjectile(spawn, vel, ProjectileID.PhantasmalBolt, projectile.damage, 0f, projectile.owner);
             }
         }
 

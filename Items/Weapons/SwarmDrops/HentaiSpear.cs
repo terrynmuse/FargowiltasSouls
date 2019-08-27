@@ -14,12 +14,12 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             DisplayName.SetDefault("The Penetrator");
             Tooltip.SetDefault("'The reward for slaughtering many...'");
             DisplayName.AddTranslation(GameCulture.Chinese, "洞察者");
-            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励..'");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励...'");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 350;
+            item.damage = 400;
             item.useStyle = 5;
             item.useAnimation = 16;
             item.useTime = 16;
@@ -78,7 +78,6 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
                 speed *= 3.7f * 32 / player.itemAnimationMax;
                 speedX = speed.X;
                 speedY = speed.Y;
-                damage /= 3;
                 return true;
             }
 

@@ -226,6 +226,9 @@ namespace FargowiltasSouls
         public bool TribalCharm;
         public bool TribalAutoFire;
         public bool SupremeDeathbringerFairy;
+        public bool GodEaterImbue;
+        public bool MutantSetBonus;
+        public bool Abominationn;
 
         //debuffs
         private int webCounter = 0;
@@ -268,6 +271,7 @@ namespace FargowiltasSouls
         public int MaxLifeReduction;
         public bool Midas;
         public bool MutantPresence;
+        public bool Swarming;
 
         public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
@@ -450,7 +454,7 @@ namespace FargowiltasSouls
                         netMessage.Write((byte)1);
                         netMessage.Write((byte)i);
                         netMessage.Send();
-                        Main.npc[i].lifeMax *= 5;
+                        Main.npc[i].lifeMax *= 3;
                     }
                     else
                     {
@@ -659,6 +663,9 @@ namespace FargowiltasSouls
             MiniSaucer = false;
             TribalCharm = false;
             SupremeDeathbringerFairy = false;
+            GodEaterImbue = false;
+            MutantSetBonus = false;
+            Abominationn = false;
 
             //debuffs
             Hexed = false;
@@ -690,13 +697,14 @@ namespace FargowiltasSouls
             DeathMarked = false;
             Midas = false;
             MutantPresence = false;
+            Swarming = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
             if (Eternity)
                 player.respawnTimer = (int)(player.respawnTimer * .1);
-            else if (SandsofTime && (!FargoSoulsGlobalNPC.AnyBossAlive() || MasochistSoul))
+            else if (SandsofTime && !FargoSoulsGlobalNPC.AnyBossAlive())
                 player.respawnTimer = (int)(player.respawnTimer * .5);
         }
 
@@ -1463,9 +1471,12 @@ namespace FargowiltasSouls
             {
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
+                player.lifeRegen -= 170;
 
                 player.lifeRegenTime = 0;
-                player.lifeRegen -= 90;
+
+                if (player.lifeRegenCount > 0)
+                    player.lifeRegenCount = 0;
             }
 
             if (MutantNibble)
@@ -2265,6 +2276,16 @@ namespace FargowiltasSouls
 
         public void OnHitNPCEither(NPC target, int damage, float knockback, bool crit, int projectile = -1)
         {
+            if (GodEaterImbue)
+            {
+                if (target.FindBuffIndex(mod.BuffType("GodEater")) < 0 && target.aiStyle != 37)
+                {
+                    target.DelBuff(4);
+                    target.buffImmune[mod.BuffType("GodEater")] = false;
+                    target.AddBuff(mod.BuffType("GodEater"), 420);
+                }
+            }
+
             if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
                 CopperEffect(target);
 
@@ -2799,7 +2820,21 @@ namespace FargowiltasSouls
                     p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
 
-            if (player.whoAmI == Main.myPlayer && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
+            if (MutantSetBonus && player.whoAmI == Main.myPlayer && retVal && player.FindBuffIndex(mod.BuffType("MutantRebirth")) == -1)
+            {
+                player.statLife = player.statLifeMax2;
+                player.HealEffect(player.statLifeMax2);
+                player.immune = true;
+                player.immuneTime = player.longInvince ? 180 : 120;
+                Main.NewText("You've been revived!", Color.LimeGreen);
+                player.ClearBuff(mod.BuffType("MutantFang"));
+                player.buffImmune[mod.BuffType("MutantFang")] = true;
+                player.AddBuff(mod.BuffType("MutantRebirth"), 7200);
+                Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(2700 * player.minionDamage), 10f, player.whoAmI);
+                retVal = false;
+            }
+
+            if (player.whoAmI == Main.myPlayer && retVal && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
             {
                 if(Eternity)
                 {
@@ -4171,21 +4206,22 @@ namespace FargowiltasSouls
 
             if (FreezeTime && freezeLength != 0)
             {
-                for (int i = 0; i < 200; i++)
+                if (!FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
                 {
-                    NPC npc = Main.npc[i];
-                    if (npc.active && !npc.HasBuff(mod.BuffType("TimeFrozen")))
+                    for (int i = 0; i < 200; i++)
                     {
-                        npc.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
+                        NPC npc = Main.npc[i];
+                        if (npc.active && !npc.HasBuff(mod.BuffType("TimeFrozen")))
+                            npc.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
                     }
-                }
 
-                for (int i = 0; i < 1000; i++)
-                {
-                    Projectile p = Main.projectile[i];
-                    if (p.active && p.type != ProjectileID.StardustGuardian && p.type != ProjectileID.StardustGuardianExplosion && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
+                    for (int i = 0; i < 1000; i++)
                     {
-                        p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
+                        Projectile p = Main.projectile[i];
+                        if (p.active && p.type != ProjectileID.StardustGuardian && p.type != ProjectileID.StardustGuardianExplosion && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
+                        {
+                            p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
+                        }
                     }
                 }
 

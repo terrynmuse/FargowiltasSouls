@@ -161,7 +161,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             for (int i = 0; i < max; i++)
             {
                 vel = vel.RotatedBy(rotation);
-                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage / 2,
+                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage,
                     projectile.knockBack, projectile.owner, rotationModifier, 6f);
             }
         }

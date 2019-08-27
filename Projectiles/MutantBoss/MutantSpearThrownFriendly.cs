@@ -11,25 +11,31 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
     {
         public override string Texture => "FargowiltasSouls/Projectiles/BossWeapons/HentaiSpear";
 
+        //throw with 25 velocity, 1000 damage, 10 knockback
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Penetrator");
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
+            ProjectileID.Sets.TrailingMode[projectile.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 40;
-            projectile.height = 40;
+            projectile.width = 58;
+            projectile.height = 58;
             projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 120;
+            projectile.timeLeft = 180;
             projectile.extraUpdates = 1;
             projectile.scale = 1.3f;
             projectile.alpha = 0;
-            cooldownSlot = 1;
+
+            projectile.localNPCHitCooldown = 0;
+            projectile.usesLocalNPCImmunity = true;
         }
 
         public override void AI()
@@ -46,7 +52,10 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 projectile.localAI[0] = 4;
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("MutantSphereSmall"), projectile.damage, 0f, projectile.owner, projectile.ai[0]);
+                {
+                    int p = Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("PhantasmalSphere"), projectile.damage, projectile.knockBack / 2, projectile.owner);
+                    Main.projectile[p].melee = false;
+                }
             }
 
             if (projectile.localAI[1] == 0f)
@@ -58,11 +67,15 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            Projectile.NewProjectile(target.Center + Main.rand.NextVector2Circular(100, 100), Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), 0, 0f, projectile.owner);
-            target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
-            target.AddBuff(mod.BuffType("MutantFang"), 300);
+            if (Main.netMode != 1)
+            {
+                int p = Projectile.NewProjectile(target.position + new Vector2(Main.rand.Next(target.width), Main.rand.Next(target.height)), Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage, 0f, projectile.owner);
+                Main.projectile[p].melee = false;
+            }
+            target.AddBuff(mod.BuffType("Sadism"), 600);
+            target.AddBuff(mod.BuffType("GodEater"), 600);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

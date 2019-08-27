@@ -144,7 +144,7 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
-                    if (modPlayer.TungstenEnchant && projectile.friendly)
+                    if (modPlayer.TungstenEnchant && projectile.friendly && Soulcheck.GetValue("Tungsten Effect"))
                     {
                         projectile.position = projectile.Center;
                         projectile.scale *= 2f;
@@ -1164,6 +1164,7 @@ namespace FargowiltasSouls.Projectiles
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.beeBoss, NPCID.QueenBee))
                             target.AddBuff(BuffID.Venom, Main.rand.Next(30, 300));
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(120, 1200));
+                        target.AddBuff(mod.BuffType("Swarming"), Main.rand.Next(120, 600));
                         break;
 
                     case ProjectileID.Skull:

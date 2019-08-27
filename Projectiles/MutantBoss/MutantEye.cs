@@ -76,7 +76,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 Main.gore[index2].velocity.X += (float)Main.rand.Next(-10, 11) * 0.05f;
                 Main.gore[index2].velocity.Y += (float)Main.rand.Next(-10, 11) * 0.05f;
             }
-            projectile.Damage();
         }
 
         public override Color? GetAlpha(Color lightColor)
