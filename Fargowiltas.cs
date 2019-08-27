@@ -8,6 +8,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using FargowiltasSouls.NPCs;
+using FargowiltasSouls.Items.Accessories.Enchantments;
+using FargowiltasSouls.Items.Accessories.Forces;
 
 namespace FargowiltasSouls
 {
@@ -59,7 +61,12 @@ namespace FargowiltasSouls
             FreezeKey = RegisterHotKey("Freeze Time", "P");
             GoldKey = RegisterHotKey("Turn Gold", "O");
             }
-
+            ModTranslation text = CreateTranslation("WoodHeader");
+            text.SetDefault("[i:" + Instance.ItemType<WoodForce>() + "] Force of Wood");
+            AddTranslation(text);
+            ModTranslation borealtrans = CreateTranslation("BorealConfig");
+            borealtrans.SetDefault("[i:" + Instance.ItemType<BorealWoodEnchant>() + "][c/8B7464: Boreal Snowballs]");
+            AddTranslation(borealtrans);
             if (!Main.dedServ)
             {
                 CustomResources = new UserInterface();

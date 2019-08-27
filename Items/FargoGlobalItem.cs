@@ -154,7 +154,7 @@ namespace FargowiltasSouls.Items
             if (modPlayer.BorealEnchant && ++modPlayer.BorealCount >= 4)
             {
                 modPlayer.BorealCount = 0;
-                if (Soulcheck.GetValue("Boreal Snowball Support"))
+                if (SoulConfig.Instance.enchantToggles["Boreal Snowballs"])
                 {
                     Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * (item.shootSpeed > 0 ? item.shootSpeed : 10) * .75f;
                     int p = Projectile.NewProjectile(player.Center, velocity, ProjectileID.SnowBallFriendly, (int)(item.damage * .5f), 1, Main.myPlayer);
