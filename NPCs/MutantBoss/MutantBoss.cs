@@ -1311,9 +1311,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         private void SpawnSphereRing(int max, float speed, int damage, float rotationModifier)
         {
             float rotation = 2f * (float)Math.PI / max;
-            Vector2 vel = Main.player[npc.target].Center - npc.Center;
-            vel.Normalize();
-            vel *= speed;
+            Vector2 vel = Vector2.UnitY * speed;
             int type = mod.ProjectileType("MutantSphereRing");
             for (int i = 0; i < max; i++)
             {
