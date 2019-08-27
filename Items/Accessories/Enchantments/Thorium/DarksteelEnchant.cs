@@ -26,6 +26,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 8% damage reduction
 Nothing will stop your movement 
 Double tap to dash
+Grants immunity to shambler chain-balls
 Effects of Spiked Bracer");
             DisplayName.AddTranslation(GameCulture.Chinese, "暗金魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -61,6 +62,8 @@ Effects of Spiked Bracer");
             thoriumPlayer.thoriumEndurance += 0.08f;
             //spiked bracers
             player.thorns += 0.35f;
+            //ball n chain
+            thoriumPlayer.ballnChain = true;
         }
         
         private readonly string[] items =

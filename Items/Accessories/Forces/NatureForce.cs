@@ -26,8 +26,8 @@ When you die, you violently explode dealing massive damage
 Icicles will start to appear around you
 When there are three, attacking will launch them towards the cursor
 Your attacks inflict Frostburn
-Taking damage will release a poisoning spore explosion
-Summons a leaf crystal to shoot at nearby enemies
+Summons a ring of leaf crystals to shoot at nearby enemies
+Taking damage will release a lingering spore explosion
 All herb collection is doubled
 Not moving puts you in stealth
 While in stealth, crits deal 3x damage

@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Miner Enchantment");
             Tooltip.SetDefault(
 @"'The planet trembles with each swing of your pick'
-30% increased mining speed
+50% increased mining speed
 Shows the location of enemies, traps, and treasures
 Light is emitted from the player
 Summons a pet Magic Lantern");
@@ -39,7 +39,7 @@ Summons a pet Magic Lantern");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MinerEffect(hideVisual, .3f);
+            player.GetModPlayer<FargoPlayer>(mod).MinerEffect(hideVisual, .5f);
         }
 
         public override void AddRecipes()

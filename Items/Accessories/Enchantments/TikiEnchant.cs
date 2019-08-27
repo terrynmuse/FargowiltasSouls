@@ -10,7 +10,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
     public class TikiEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
-        private int actualMinions;
 
         public override void SetStaticDefaults()
         {
@@ -22,8 +21,7 @@ Summons a pet Tiki Spirit");
             DisplayName.AddTranslation(GameCulture.Chinese, "提基魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'Aku Aku!'
-攻击造成感染效果
-随着时间的推移,感染造成越来越多的伤害
+召唤数量达到上限后, 仍然可以召唤临时召唤物
 召唤提基之灵");
         }
 
@@ -40,14 +38,6 @@ Summons a pet Tiki Spirit");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>(mod).TikiEffect(hideVisual);
-
-            actualMinions = player.maxMinions + 1; //the free one is not counted
-            player.maxMinions = 100;
-
-            if (player.numMinions >= actualMinions)
-            {
-                player.GetModPlayer<FargoPlayer>(mod).TikiMinion = true;
-            }
         }
 
         public override void AddRecipes()

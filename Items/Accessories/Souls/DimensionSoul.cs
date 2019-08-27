@@ -36,7 +36,7 @@ Enemies are more likely to target you
 Allows Supersonic running and infinite flight
 Increases fishing skill substantially, All fishing rods will have 10 extra lures
 Increased block and wall placement speed by 50% 
-Near infinite block placement and mining reach, Mining speed doubled 
+Near infinite block placement and mining reach, Mining speed quadrupled 
 Shine, Spelunker, Hunter, and Dangersense effects
 Auto paint and actuator effect
 Grants the ability to enable Builder Mode
@@ -246,7 +246,7 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
             //gizmo pack
             player.autoPaint = true;
             //pick speed
-            player.pickSpeed -= 0.50f;
+            player.pickSpeed -= 0.75f;
             //mining helmet
             if (Soulcheck.GetValue("Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
