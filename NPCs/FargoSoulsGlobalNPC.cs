@@ -5787,20 +5787,12 @@ namespace FargowiltasSouls.NPCs
                         Aura(npc, 250, mod.BuffType("Lovestruck"), true, DustID.PinkFlame);
                         if (--Counter < 0)
                         {
-                            Counter = 600;
-                            if (Main.netMode != 1)
+                            Counter = 300;
+                            if (Main.netMode != 1 && npc.HasPlayerTarget)
                             {
-                                for (int i = 0; i < 8; i++)
-                                {
-                                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y,
-                                        Main.rand.Next(2) == 0 ? NPCID.Bee : NPCID.BeeSmall);
-                                    if (n != 200)
-                                    {
-                                        Main.npc[n].velocity = Main.rand.NextVector2Square(-10f, 10f);
-                                        if (Main.netMode == 2)
-                                            NetMessage.SendData(23, -1, -1, null, n);
-                                    }
-                                }
+                                Vector2 spawnVel = npc.DirectionFrom(Main.player[npc.target].Center) * 10f;
+                                for (int i = -3; i < 3; i++)
+                                    Projectile.NewProjectile(npc.Center, spawnVel.RotatedBy(Math.PI / 7 * i), mod.ProjectileType("FakeHeart2"), 20, 0f, Main.myPlayer, 30, 90 + 10 * i);
                             }
                         }
                         break;
