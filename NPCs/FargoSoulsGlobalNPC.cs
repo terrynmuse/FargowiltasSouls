@@ -3056,8 +3056,8 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         if (Main.netMode != 1)
                                         {
-                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, 1f);
-                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, -0.5f);
+                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, 1f, true);
+                                            SpawnRazorbladeRing(npc, 5, 9f, npc.damage / 6, -0.5f, true);
                                         }
                                     }
                                     else if (npc.ai[2] == 16f)
@@ -7522,7 +7522,7 @@ namespace FargowiltasSouls.NPCs
             }
         }
 
-        private void SpawnRazorbladeRing(NPC npc, int max, float speed, int damage, float rotationModifier)
+        private void SpawnRazorbladeRing(NPC npc, int max, float speed, int damage, float rotationModifier, bool reduceTimeleft = false)
         {
             if (Main.netMode == 1)
                 return;
@@ -7534,7 +7534,9 @@ namespace FargowiltasSouls.NPCs
             for (int i = 0; i < max; i++)
             {
                 vel = vel.RotatedBy(rotation);
-                Projectile.NewProjectile(npc.Center, vel, type, damage, 0f, Main.myPlayer, rotationModifier * npc.spriteDirection, speed);
+                int p = Projectile.NewProjectile(npc.Center, vel, type, damage, 0f, Main.myPlayer, rotationModifier * npc.spriteDirection, speed);
+                if (reduceTimeleft && p < 1000)
+                    Main.projectile[p].timeLeft /= 2;
             }
             Main.PlaySound(SoundID.Item84, npc.Center);
         }
