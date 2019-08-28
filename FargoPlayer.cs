@@ -3850,7 +3850,7 @@ namespace FargowiltasSouls
 
         public void OrichalcumEffect()
         {
-            if (!Soulcheck.GetValue("Orichalcum Fireballs")) return;
+            if (!SoulConfig.Instance.GetValue("Orichalcum Fireballs")) return;
 
             player.onHitPetal = true;
 
@@ -3891,7 +3891,7 @@ namespace FargowiltasSouls
             //no lifesteal needed here for SoE
             if (Eternity) return;
 
-            if (Soulcheck.GetValue("Palladium Healing"))
+            if (SoulConfig.Instance.GetValue("Palladium Healing"))
             {
                 player.onHitRegen = true;
                 PalladEnchant = true;
@@ -4242,7 +4242,7 @@ namespace FargowiltasSouls
 
         public void TitaniumEffect()
         {
-            if (Soulcheck.GetValue("Titanium Shadow Dodge"))
+            if (SoulConfig.Instance.GetValue("Titanium Shadow Dodge"))
             {
                 player.onHitDodge = true;
             }

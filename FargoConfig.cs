@@ -54,19 +54,19 @@ namespace FargowiltasSouls
                 public bool palmSentry = true;
                 [Label("$Mods.FargowiltasSouls.PearlConfig")]
                 public bool pearlTrail = true;
-                [Header("[i:3] Force of Earth")]
-                [Label("[i:391][c/dd557d: Adamantite Projectile Splitting]")]
-                public bool adamsplit = true;
-                [Label("[i:381][c/3da4c4: Cobalt Shards]")]
-                public bool cobaltshards = true;
-                [Label("[i:382][c/9dd290: Mythril Weapon Speed]")]
-                public bool mythspeed = true;
-                [Label("[i:1191][c/eb3291: Orichalcum Fireballs]")]
-                public bool orifire = true;
-                [Label("[i:1184][c/f5ac28: Palladium Healing]")]
-                public bool palheal = true;
-                [Label("[i:1198][c/828c88: Titanium Shadow Dodge]")]
-                public bool titdodge = true;
+                [Header("$Mods.FargowiltasSouls.EarthHeader")]
+                [Label("$Mods.FargowiltasSouls.AdamantiteConfig")]
+                public bool adamSplit = true;
+                [Label("$Mods.FargowiltasSouls.CobaltConfig")]
+                public bool cobaltShards = true;
+                [Label("$Mods.FargowiltasSouls.MythrilConfig")]
+                public bool mythSpeed = true;
+                [Label("$Mods.FargowiltasSouls.OrichalcumConfig")]
+                public bool oriFire = true;
+                [Label("$Mods.FargowiltasSouls.PalladiumConfig")]
+                public bool palHeal = true;
+                [Label("$Mods.FargowiltasSouls.TitaniumConfig")]
+                public bool titDodge = true;
                 [Header("[i:3509] Terra Force")]
 
                 [Label("[i:20][c/d56617: Copper Lightning]")]
@@ -96,6 +96,12 @@ namespace FargowiltasSouls
                     SoulConfig.Instance.enchantToggles["Mahogany Hook Speed"] = mahoganyHook;
                     SoulConfig.Instance.enchantToggles["Palmwood Sentry"] = palmSentry;
                     SoulConfig.Instance.enchantToggles["Pearlwood Rainbow"] = pearlTrail;
+                    SoulConfig.Instance.enchantToggles["Adamantite Projectile Splitting"] = adamSplit;
+                    SoulConfig.Instance.enchantToggles["Cobalt Shards"] = cobaltShards;
+                    SoulConfig.Instance.enchantToggles["Mythril Weapon Speed"] = mythSpeed;
+                    SoulConfig.Instance.enchantToggles["Orichalcum Fireballs"] = oriFire;
+                    SoulConfig.Instance.enchantToggles["Palladium Healing"] = palHeal;
+                    SoulConfig.Instance.enchantToggles["Titanium Shadow Dodge"] = titDodge;
                 }
                 //[Label("[i:][c/: ]")]
                 //public bool ech = true;
@@ -125,7 +131,12 @@ namespace FargowiltasSouls
             enchantToggles.Add("Mahogany Hook Speed", terrmenu.terenchmenu.mahoganyHook);
             enchantToggles.Add("Palmwood Sentry", terrmenu.terenchmenu.palmSentry);
             enchantToggles.Add("Pearlwood Rainbow", terrmenu.terenchmenu.pearlTrail);
-
+            enchantToggles.Add("Adamantite Projectile Splitting", terrmenu.terenchmenu.adamSplit);
+            enchantToggles.Add("Cobalt Shards", terrmenu.terenchmenu.cobaltShards);
+            enchantToggles.Add("Mythril Weapon Speed", terrmenu.terenchmenu.mythSpeed);
+            enchantToggles.Add("Orichalcum Fireballs", terrmenu.terenchmenu.oriFire);
+            enchantToggles.Add("Palladium Healing", terrmenu.terenchmenu.palHeal);
+            enchantToggles.Add("Titanium Shadow Dodge", terrmenu.terenchmenu.titDodge);
             //enchantToggles.Add("Boreal Snowballs", terrmenu.terenchmenu.borealsnow);
 
         }

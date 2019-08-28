@@ -162,7 +162,7 @@ namespace FargowiltasSouls.Projectiles
 
                     if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
                         && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99
-                        && Soulcheck.GetValue("Adamantite Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
+                        && SoulConfig.Instance.GetValue("Adamantite Projectile Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
                     {
                         if (adamantiteCD != 0)
                         {
@@ -1509,7 +1509,7 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.CobaltEnchant && Soulcheck.GetValue("Cobalt Shards") && modPlayer.CobaltCD == 0 && CanSplit && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
+            if (modPlayer.CobaltEnchant && SoulConfig.Instance.GetValue("Cobalt Shards") && modPlayer.CobaltCD == 0 && CanSplit && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
             {
                 int damage = 40;
                 if(modPlayer.EarthForce)

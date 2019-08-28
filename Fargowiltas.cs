@@ -79,6 +79,27 @@ namespace FargowiltasSouls
             text = CreateTranslation("PearlConfig");
             text.SetDefault("[i:" + Instance.ItemType<PearlwoodEnchant>() + "][c/ad9a5f: Pearlwood Rainbow]");
             AddTranslation(text);
+            text = CreateTranslation("EarthHeader");
+            text.SetDefault("[i:" + Instance.ItemType<EarthForce>() + "] Force of Earth");
+            AddTranslation(text);
+            text = CreateTranslation("AdamantiteConfig");
+            text.SetDefault("[i:" + Instance.ItemType<AdamantiteEnchant>() + "][c/dd557d: Adamantite Projectile Splitting]");
+            AddTranslation(text);
+            text = CreateTranslation("CobaltConfig");
+            text.SetDefault("[i:" + Instance.ItemType<CobaltEnchant>() + "][c/3da4c4: Cobalt Shards]");
+            AddTranslation(text);
+            text = CreateTranslation("MythrilConfig");
+            text.SetDefault("[i:" + Instance.ItemType<MythrilEnchant>() + "][c/9dd290: Mythril Weapon Speed]");
+            AddTranslation(text);
+            text = CreateTranslation("OrichalcumConfig");
+            text.SetDefault("[i:" + Instance.ItemType<OrichalcumEnchant>() + "][c/eb3291: Orichalcum Fireballs]");
+            AddTranslation(text);
+            text = CreateTranslation("PalladiumConfig");
+            text.SetDefault("[i:" + Instance.ItemType<PalladiumEnchant>() + "][c/f5ac28: Palladium Healing]");
+            AddTranslation(text);
+            text = CreateTranslation("TitaniumConfig");
+            text.SetDefault("[i:" + Instance.ItemType<TitaniumEnchant>() + "][c/828c88: Titanium Shadow Dodge]");
+            AddTranslation(text);
             if (!Main.dedServ)
             {
                 CustomResources = new UserInterface();
