@@ -4306,7 +4306,7 @@ namespace FargowiltasSouls
 
         public void EbonEffect()
         {
-            if (!Soulcheck.GetValue("Shadowflame Aura"))
+            if (!SoulConfig.Instance.GetValue("Ebonwood Shadowflame"))
                 return;
 
             int dist = 150;
@@ -4340,7 +4340,7 @@ namespace FargowiltasSouls
 
         public void PalmEffect()
         {
-            if (Soulcheck.GetValue("Palm Tree Sentry") && (player.controlDown && player.releaseDown))
+            if (SoulConfig.Instance.GetValue("Palmwood Sentry") && (player.controlDown && player.releaseDown))
             {
                 if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15)
                 {
@@ -4371,7 +4371,7 @@ namespace FargowiltasSouls
             if (pearlCounter >= 4)
             {
                 pearlCounter = 0;
-                if (Soulcheck.GetValue("Rainbow Trail") && player.velocity.Length() > 1 && player.whoAmI == Main.myPlayer)
+                if (SoulConfig.Instance.GetValue("Pearlwood Rainbow") && player.velocity.Length() > 1 && player.whoAmI == Main.myPlayer)
                 {
                     int direction = player.velocity.X > 0 ? 1 : -1;
                     int p = Projectile.NewProjectile(player.Center, player.velocity, ProjectileID.RainbowBack, 30, 0, Main.myPlayer);

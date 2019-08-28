@@ -24,10 +24,7 @@ namespace FargowiltasSouls
         public override ConfigScope Mode => ConfigScope.ServerSide;
         public static SoulConfig Instance;
         [JsonIgnore]
-        public Dictionary<string, bool> enchantToggles = new Dictionary<string, bool>()
-        {
-            {"Boreal Snowballs", true}
-        };
+        public Dictionary<string, bool> enchantToggles = new Dictionary<string, bool>();
         [Label("test effect")]
         public bool loltesto = true;
         [Label("Terraria")]
@@ -48,15 +45,15 @@ namespace FargowiltasSouls
                 //public s string get = SoulConfig.Instance.mod.ItemType("WoodForce").ToString;
                 [Header("$Mods.FargowiltasSouls.WoodHeader")]
                 [Label("$Mods.FargowiltasSouls.BorealConfig")]
-                public bool borealsnow = true;
-                [Label("[i:619][c/645a8d: Ebonwood Shadowflame]")]
-                public bool ebonflame = true;
-                [Label("[i:620][c/b56c64: Mahogany Hook Speed]")]
-                public bool mahoganyhook = true;
-                [Label("[i:2504][c/b78d56: Palmwood Sentry]")]
-                public bool palmsentry = true;
-                [Label("[i:621][c/ad9a5f: Pearlwood Rainbow]")]
-                public bool pearltrail = true;
+                public bool borealSnow = true;
+                [Label("$Mods.FargowiltasSouls.EbonConfig")]
+                public bool ebonFlame = true;
+                [Label("$Mods.FargowiltasSouls.MahoganyConfig")]
+                public bool mahoganyHook = true;
+                [Label("$Mods.FargowiltasSouls.PalmConfig")]
+                public bool palmSentry = true;
+                [Label("$Mods.FargowiltasSouls.PearlConfig")]
+                public bool pearlTrail = true;
                 [Header("[i:3] Force of Earth")]
                 [Label("[i:391][c/dd557d: Adamantite Projectile Splitting]")]
                 public bool adamsplit = true;
@@ -94,7 +91,11 @@ namespace FargowiltasSouls
                 public bool valhalknock = true;
                 public void Change()
                 {
-                    SoulConfig.Instance.enchantToggles["Boreal Snowballs"] = borealsnow;
+                    SoulConfig.Instance.enchantToggles["Boreal Snowballs"] = borealSnow;
+                    SoulConfig.Instance.enchantToggles["Ebonwood Shadowflame"] = ebonFlame;
+                    SoulConfig.Instance.enchantToggles["Mahogany Hook Speed"] = mahoganyHook;
+                    SoulConfig.Instance.enchantToggles["Palmwood Sentry"] = palmSentry;
+                    SoulConfig.Instance.enchantToggles["Pearlwood Rainbow"] = pearlTrail;
                 }
                 //[Label("[i:][c/: ]")]
                 //public bool ech = true;
@@ -119,8 +120,18 @@ namespace FargowiltasSouls
         public override void OnLoaded()
         {
             SoulConfig.Instance = this;
+            enchantToggles.Add("Boreal Snowballs", terrmenu.terenchmenu.borealSnow);
+            enchantToggles.Add("Ebonwood Shadowflame", terrmenu.terenchmenu.ebonFlame);
+            enchantToggles.Add("Mahogany Hook Speed", terrmenu.terenchmenu.mahoganyHook);
+            enchantToggles.Add("Palmwood Sentry", terrmenu.terenchmenu.palmSentry);
+            enchantToggles.Add("Pearlwood Rainbow", terrmenu.terenchmenu.pearlTrail);
 
+            //enchantToggles.Add("Boreal Snowballs", terrmenu.terenchmenu.borealsnow);
 
+        }
+        public bool GetValue(string input)
+        {
+            return enchantToggles[input];
         }
     }
 }

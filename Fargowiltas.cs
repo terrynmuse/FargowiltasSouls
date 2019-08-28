@@ -67,6 +67,18 @@ namespace FargowiltasSouls
             ModTranslation borealtrans = CreateTranslation("BorealConfig");
             borealtrans.SetDefault("[i:" + Instance.ItemType<BorealWoodEnchant>() + "][c/8B7464: Boreal Snowballs]");
             AddTranslation(borealtrans);
+            text = CreateTranslation("MahoganyConfig");
+            text.SetDefault("[i:" + Instance.ItemType<RichMahoganyEnchant>() + "][c/b56c64: Mahogany Hook Speed]");
+            AddTranslation(text);
+            text = CreateTranslation("EbonConfig");
+            text.SetDefault("[i:" + Instance.ItemType<EbonwoodEnchant>() + "][c/645a8d: Ebonwood Shadowflame]");
+            AddTranslation(text);
+            text = CreateTranslation("PalmConfig");
+            text.SetDefault("[i:" + Instance.ItemType<PalmWoodEnchant>() + "][c/b78d56: Palmwood Sentry]");
+            AddTranslation(text);
+            text = CreateTranslation("PearlConfig");
+            text.SetDefault("[i:" + Instance.ItemType<PearlwoodEnchant>() + "][c/ad9a5f: Pearlwood Rainbow]");
+            AddTranslation(text);
             if (!Main.dedServ)
             {
                 CustomResources = new UserInterface();

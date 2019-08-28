@@ -315,7 +315,7 @@ namespace FargowiltasSouls.Projectiles
 
                 //hook AI
                 if (modPlayer.MahoganyEnchant && projectile.aiStyle == 7 && (player.ZoneJungle || modPlayer.WoodForce) && counter >= 60
-                    && Soulcheck.GetValue("Mahogany Hook Support"))
+                    && SoulConfig.Instance.GetValue("Mahogany Hook Speed"))
                 {
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
