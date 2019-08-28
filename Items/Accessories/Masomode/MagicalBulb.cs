@@ -18,9 +18,9 @@ Increases life regeneration
 Attracts a legendary plant's offspring which flourishes in combat");
             DisplayName.AddTranslation(GameCulture.Chinese, "魔法球茎");
             Tooltip.AddTranslation(GameCulture.Chinese, @"'杀妈?'
-免疫毒液和常春藤毒
+免疫毒液, 常春藤毒和蜂群
 增加生命回复
-吸引一个传奇植物的后代,在战斗中茁壮成长");
+吸引一株传奇植物的后代, 其会在战斗中茁壮成长");
         }
 
         public override void SetDefaults()

@@ -20,10 +20,11 @@ While time is frozen, your guardian will continue to attack
 There is a 60 second cooldown for this effect, a sound effect plays when it's back");
             DisplayName.AddTranslation(GameCulture.Chinese, "星尘魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
-@"'砸瓦鲁多!'
-双击'下'键指挥你的替身
+@"'屎蛋多帕瓦!'
+双击'下'键指挥你的强化替身
 按下时间冻结热键时停5秒
-60秒的冷却时间,冷却结束时会播放音效");
+时间停止时, 替身仍可以攻击
+60秒的冷却时间, 冷却结束时会播放音效");
         }
 
         public override void SetDefaults()

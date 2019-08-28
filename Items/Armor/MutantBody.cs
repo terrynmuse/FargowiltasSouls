@@ -17,6 +17,11 @@ namespace FargowiltasSouls.Items.Armor
 Increases max life and mana by 200
 Increases damage reduction by 20%
 Your attacks inflict God Eater");
+            DisplayName.AddTranslation(GameCulture.Chinese, "真·突变之躯");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"增加35%伤害和暴击率
+增加200最大生命和法力值
+增加20%伤害减免
+攻击造成噬神者效果");
         }
 
         public override void SetDefaults()

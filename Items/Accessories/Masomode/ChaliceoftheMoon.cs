@@ -22,7 +22,7 @@ Summons a friendly Cultist and plant to fight at your side");
             DisplayName.AddTranslation(GameCulture.Chinese, "月之杯");
             Tooltip.AddTranslation(GameCulture.Chinese, @"月亮的微笑
 免疫毒液, 常春藤毒, 燃烧, 导火线, 死亡标记和着迷
-免疫萎缩, 卡壳, 反魔力流和反社交
+免疫蜂群, 萎缩, 卡壳, 反魔力流和反社交
 增加生命回复
 在空中按'下'键快速下落
 在一定高度使用快速下落, 会在撞击地面时产生猛烈的火焰喷发
