@@ -67,18 +67,16 @@ namespace FargowiltasSouls
                 public bool palHeal = true;
                 [Label("$Mods.FargowiltasSouls.TitaniumConfig")]
                 public bool titDodge = true;
-                [Header("[i:3509] Terra Force")]
-
-                [Label("[i:20][c/d56617: Copper Lightning]")]
-                public bool coplight = true;
-                [Label("[i:22][c/988e83: Iron Magnet]")]
-                [Header("$Mods.FargowiltasSouls.ConfigHeader")]
-                public bool ironmag = true;
-                [Label("[i:22][c/988e83: Iron Shield]")]
-                public bool ironshield = true;
-                [Label("[i:703][c/a28b4e: Tin Crits]")]
-                public bool tincrit = true;
-                [Label("[i:705][c/b0d2b2: Tungsten Effect]")]
+                [Header("$Mods.FargowiltasSouls.TerraHeader")]
+                [Label("$Mods.FargowiltasSouls.CopperConfig")]
+                public bool copLight = true;
+                [Label("$Mods.FargowiltasSouls.IronMConfig")]
+                public bool ironMag = true;
+                [Label("$Mods.FargowiltasSouls.IronSConfig")]
+                public bool ironShield = true;
+                [Label("$Mods.FargowiltasSouls.TinConfig")]
+                public bool tinCrit = true;
+                [Label("$Mods.FargowiltasSouls.TungstenConfig")]
                 public bool tung = true;
                 [Header("[i:4] Force of Will")]
                 [Label("[i:3094][c/9c924e: Gladiator Rain]")]
@@ -102,6 +100,11 @@ namespace FargowiltasSouls
                     SoulConfig.Instance.enchantToggles["Orichalcum Fireballs"] = oriFire;
                     SoulConfig.Instance.enchantToggles["Palladium Healing"] = palHeal;
                     SoulConfig.Instance.enchantToggles["Titanium Shadow Dodge"] = titDodge;
+                    SoulConfig.Instance.enchantToggles["Copper Lightning"] = copLight;
+                    SoulConfig.Instance.enchantToggles["Iron Magnet"] = ironMag;
+                    SoulConfig.Instance.enchantToggles["Iron Shield"] = ironShield;
+                    SoulConfig.Instance.enchantToggles["Tin Crits"] = tinCrit;
+                    SoulConfig.Instance.enchantToggles["Tungsten Effect"] = tung;
                 }
                 //[Label("[i:][c/: ]")]
                 //public bool ech = true;
@@ -137,6 +140,11 @@ namespace FargowiltasSouls
             enchantToggles.Add("Orichalcum Fireballs", terrmenu.terenchmenu.oriFire);
             enchantToggles.Add("Palladium Healing", terrmenu.terenchmenu.palHeal);
             enchantToggles.Add("Titanium Shadow Dodge", terrmenu.terenchmenu.titDodge);
+            enchantToggles.Add("Copper Lightning", terrmenu.terenchmenu.copLight);
+            enchantToggles.Add("Iron Magnet", terrmenu.terenchmenu.ironMag);
+            enchantToggles.Add("Iron Shield", terrmenu.terenchmenu.ironShield);
+            enchantToggles.Add("Tin Crits", terrmenu.terenchmenu.tinCrit);
+            enchantToggles.Add("Tungsten Effect", terrmenu.terenchmenu.tung);
             //enchantToggles.Add("Boreal Snowballs", terrmenu.terenchmenu.borealsnow);
 
         }

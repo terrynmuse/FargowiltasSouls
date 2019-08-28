@@ -86,13 +86,13 @@ While standing in lava, you gain 20 armor penetration, 15% attack speed, and you
             modPlayer.ObsidianEffect();
             //EoC Shield
             player.dash = 2;
-            if (Soulcheck.GetValue("Iron Shield"))
+            if (SoulConfig.Instance.GetValue("Iron Shield"))
             {
                 //shield
                 modPlayer.IronEffect();
             }
             //magnet
-            if (Soulcheck.GetValue("Iron Magnet"))
+            if (SoulConfig.Instance.GetValue("Iron Magnet"))
             {
                 modPlayer.IronEnchant = true;
             }

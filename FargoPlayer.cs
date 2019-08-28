@@ -1320,8 +1320,8 @@ namespace FargowiltasSouls
                 player.statManaMax2 += 300;
 
             Item item = player.HeldItem;
-
-            if (TungstenEnchant && Soulcheck.GetValue("Tungsten Effect"))
+            //fix your toggles terry
+            if (TungstenEnchant && SoulConfig.Instance.GetValue("Tungsten Effect"))
             {
                 if (item.damage > 0 && item.scale < 2.5f)
                 {
@@ -1329,7 +1329,7 @@ namespace FargowiltasSouls
                     item.scale = 2.5f;
                 }
             }
-            else if ((!Soulcheck.GetValue("Tungsten Effect") || !TungstenEnchant) && tungstenPrevSizeSave != -1)
+            else if ((!SoulConfig.Instance.GetValue("Tungsten Effect") || !TungstenEnchant) && tungstenPrevSizeSave != -1)
             {
                 item.scale = tungstenPrevSizeSave;
             }
@@ -2264,7 +2264,7 @@ namespace FargowiltasSouls
 
         public void OnHitNPCEither(NPC target, int damage, float knockback, bool crit, int projectile = -1)
         {
-            if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
+            if (CopperEnchant && SoulConfig.Instance.GetValue("Copper Lightning") && copperCD == 0)
                 CopperEffect(target);
 
             if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian"))
@@ -4226,7 +4226,7 @@ namespace FargowiltasSouls
 
         public void TinEffect()
         {
-            if (!Soulcheck.GetValue("Tin Crit")) return;
+            if (!SoulConfig.Instance.GetValue("Tin Crits")) return;
 
             TinEnchant = true;
             AllCritEquals(TinCrit);

@@ -100,6 +100,24 @@ namespace FargowiltasSouls
             text = CreateTranslation("TitaniumConfig");
             text.SetDefault("[i:" + Instance.ItemType<TitaniumEnchant>() + "][c/828c88: Titanium Shadow Dodge]");
             AddTranslation(text);
+            text = CreateTranslation("TerraHeader");
+            text.SetDefault("[i:" + Instance.ItemType<TerraForce>() + "] Terra Force");
+            AddTranslation(text);
+            text = CreateTranslation("CopperConfig");
+            text.SetDefault("[i:" + Instance.ItemType<CopperEnchant>() + "][c/d56617: Copper Lightning]");
+            AddTranslation(text);
+            text = CreateTranslation("IronMConfig");
+            text.SetDefault("[i:" + Instance.ItemType<IronEnchant>() + "][c/988e83: Iron Magnet]");
+            AddTranslation(text);
+            text = CreateTranslation("IronSConfig");
+            text.SetDefault("[i:" + Instance.ItemType<IronEnchant>() + "][c/988e83: Iron Shield]");
+            AddTranslation(text);
+            text = CreateTranslation("TinConfig");
+            text.SetDefault("[i:" + Instance.ItemType<TinEnchant>() + "][c/a28b4e: Tin Crits]");
+            AddTranslation(text);
+            text = CreateTranslation("TungstenConfig");
+            text.SetDefault("[i:" + Instance.ItemType<TungstenEnchant>() + "][c/b0d2b2: Tungsten Effect]");
+            AddTranslation(text);
             if (!Main.dedServ)
             {
                 CustomResources = new UserInterface();
