@@ -4977,15 +4977,20 @@ namespace FargowiltasSouls.NPCs
                                             Main.PlaySound(15, (int)Main.player[t].position.X, (int)Main.player[t].position.Y, 0);
                                             npc.ai[2] = -2f;
                                             npc.ai[3] = (npc.Center - Main.player[t].Center).ToRotation();
-                                            Vector2 offset = Vector2.UnitX.RotatedBy(npc.ai[3] + Math.PI) * 10f;
+                                            /*Vector2 offset = Vector2.UnitX.RotatedBy(npc.ai[3] + Math.PI) * 10f;
                                             for (int i = 0; i < 240; i++) //dust warning line for laser
                                             {
                                                 int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 112, 0f, 0f, 0, default(Color), 1.5f);
                                                 Main.dust[d].noGravity = true;
                                                 Main.dust[d].velocity *= 0.5f;
-                                            }
+                                            }*/
                                             if (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0)
                                                 npc.ai[3] += (float)Math.PI;
+
+                                            float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
+                                            Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
+                                            if (Main.netMode != 1)
+                                                Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayWOFS"), 0, 0f, Main.myPlayer, ai0, npc.whoAmI);
                                         }
                                     }
                                     npc.netUpdate = true;

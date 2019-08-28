@@ -8,15 +8,15 @@ using Terraria.ModLoader;
 using Terraria.Enums;
 using FargowiltasSouls.Buffs.Masomode;
 
-namespace FargowiltasSouls.Projectiles.MutantBoss
+namespace FargowiltasSouls.Projectiles.Masomode
 {
-    public class MutantDeathraySmall : ModProjectile
+    public class PhantasmalDeathrayWOFS : ModProjectile
     {
         private const float maxTime = 30;
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Phantasmal Deathray");
+			DisplayName.SetDefault("Divine Deathray");
 		}
     	
         public override void SetDefaults()
@@ -28,8 +28,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.timeLeft = 600;
-            projectile.aiStyle = -1;
-            cooldownSlot = 1;
         }
 
         public override bool CanDamage()
@@ -44,15 +42,24 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 projectile.velocity = -Vector2.UnitY;
             }
-            /*if (Main.npc[(int)projectile.ai[1]].active && Main.npc[(int)projectile.ai[1]].type == mod.NPCType("MutantBoss"))
+            if (Main.npc[(int)projectile.ai[1]].active && Main.npc[(int)projectile.ai[1]].type == NPCID.WallofFleshEye)
             {
-                projectile.Center = Main.npc[(int)projectile.ai[1]].Center;
+                //Vector2 value21 = new Vector2(27f, 59f);
+                //Vector2 fireFrom = new Vector2(Main.npc[(int)projectile.ai[1]].Center.X, Main.npc[(int)projectile.ai[1]].Center.Y);
+                //Vector2 value22 = Utils.Vector2FromElipse(Main.npc[(int)projectile.ai[1]].localAI[2].ToRotationVector2(), value21 * Main.npc[(int)projectile.ai[1]].localAI[3]);
+                //projectile.position = fireFrom + value22 - new Vector2(projectile.width, projectile.height) / 2f;
+                Vector2 offset;
+                if (projectile.ai[0] == 0f)
+                    offset = new Vector2(Main.npc[(int)projectile.ai[1]].width - 36, 6).RotatedBy(Main.npc[(int)projectile.ai[1]].rotation + Math.PI);
+                else
+                    offset = new Vector2(Main.npc[(int)projectile.ai[1]].width - 36, -6).RotatedBy(Main.npc[(int)projectile.ai[1]].rotation);
+                projectile.Center = Main.npc[(int)projectile.ai[1]].Center + offset;
             }
             else
             {
                 projectile.Kill();
                 return;
-            }*/
+            }
             if (projectile.velocity.HasNaNs() || projectile.velocity == Vector2.Zero)
             {
                 projectile.velocity = -Vector2.UnitY;
@@ -76,11 +83,12 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             //float num804 = projectile.velocity.ToRotation();
             //num804 += projectile.ai[0];
             //projectile.rotation = num804 - 1.57079637f;
-            //float num804 = Main.npc[(int)projectile.ai[1]].ai[3] - 1.57079637f;
-            //if (projectile.ai[0] != 0f) num804 -= (float)Math.PI;
-            //projectile.rotation = num804;
-            //num804 += 1.57079637f;
-            //projectile.velocity = num804.ToRotationVector2();
+            float num804 = Main.npc[(int)projectile.ai[1]].rotation + 1.57079637f;
+            if (projectile.ai[0] != 0f)
+                num804 -= (float)Math.PI;
+            projectile.rotation = num804;
+            num804 += 1.57079637f;
+            projectile.velocity = num804.ToRotationVector2();
             float num805 = 3f;
             float num806 = (float)projectile.width;
             Vector2 samplingPoint = projectile.Center;
@@ -123,9 +131,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             }
             //DelegateMethods.v3_1 = new Vector3(0.3f, 0.65f, 0.7f);
             //Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * projectile.localAI[1], (float)projectile.width * projectile.scale, new Utils.PerLinePoint(DelegateMethods.CastLight));
-
-            projectile.position -= projectile.velocity;
-            projectile.rotation = projectile.velocity.ToRotation() - 1.57079637f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -135,10 +140,10 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 return false;
             }
             Texture2D texture2D19 = Main.projectileTexture[projectile.type];
-            Texture2D texture2D20 = mod.GetTexture("Projectiles/Minions/PhantasmalDeathrayTrueEye2");
-            Texture2D texture2D21 = mod.GetTexture("Projectiles/Minions/PhantasmalDeathrayTrueEye3");
+            Texture2D texture2D20 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayWOF2");
+            Texture2D texture2D21 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayWOF3");
             float num223 = projectile.localAI[1];
-            Microsoft.Xna.Framework.Color color44 = new Microsoft.Xna.Framework.Color(255, 255, 255, 0) * 0.45f;
+            Microsoft.Xna.Framework.Color color44 = new Microsoft.Xna.Framework.Color(255, 255, 255, 0) * 0.9f;
             SpriteBatch arg_ABD8_0 = Main.spriteBatch;
             Texture2D arg_ABD8_1 = texture2D19;
             Vector2 arg_ABD8_2 = projectile.Center - Main.screenPosition;
@@ -198,8 +203,11 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
-            target.AddBuff(mod.BuffType("MutantFang"), 300);
+            target.AddBuff(mod.BuffType("Flipped"), 300);
+            target.AddBuff(BuffID.Confused, 300);
+            target.AddBuff(mod.BuffType<ClippedWings>(), 300);
+            target.AddBuff(mod.BuffType<Crippled>(), 300);
+            target.velocity = target.velocity / 4;
         }
     }
 }
