@@ -63,6 +63,7 @@ halved detonating bubble EX health
 fishron EX now aims bubbles at player while dashing in p1/p2
 nymph shoots fake hearts
 halved fish EX timeLeft on p3 razors
+boss deathrays no longer emit light
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits
