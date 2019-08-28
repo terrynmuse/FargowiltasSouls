@@ -118,6 +118,21 @@ namespace FargowiltasSouls
             text = CreateTranslation("TungstenConfig");
             text.SetDefault("[i:" + Instance.ItemType<TungstenEnchant>() + "][c/b0d2b2: Tungsten Effect]");
             AddTranslation(text);
+            text = CreateTranslation("WillHeader");
+            text.SetDefault("[i:" + Instance.ItemType<WillForce>() + "] Force of Will");
+            AddTranslation(text);
+            text = CreateTranslation("GladiatorConfig");
+            text.SetDefault("[i:" + Instance.ItemType<GladiatorEnchant>() + "][c/9c924e: Gladiator Rain]");
+            AddTranslation(text);
+            text = CreateTranslation("GoldConfig");
+            text.SetDefault("[i:" + Instance.ItemType<GoldEnchant>() + "][c/e7b21c: Gold Lucky Coin]");
+            AddTranslation(text);
+            text = CreateTranslation("RedRidingConfig");
+            text.SetDefault("[i:" + Instance.ItemType<RedRidingEnchant>() + "][c/c01b3c: Red Riding Super Bleed]");
+            AddTranslation(text);
+            text = CreateTranslation("ValhallaConfig");
+            text.SetDefault("[i:" + Instance.ItemType<ValhallaKnightEnchant>() + "][c/93651e: Valhalla Knockback]");
+            AddTranslation(text);
             if (!Main.dedServ)
             {
                 CustomResources = new UserInterface();

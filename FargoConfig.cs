@@ -78,15 +78,15 @@ namespace FargowiltasSouls
                 public bool tinCrit = true;
                 [Label("$Mods.FargowiltasSouls.TungstenConfig")]
                 public bool tung = true;
-                [Header("[i:4] Force of Will")]
-                [Label("[i:3094][c/9c924e: Gladiator Rain]")]
-                public bool gladrain = true;
-                [Label("[i:19][c/e7b21c: Gold Lucky Coin]")]
-                public bool goldcoin = true;
-                [Label("[i:3877][c/c01b3c: Red Riding Super Bleed]")]
-                public bool redbleed = true;
-                [Label("[i:3871][c/93651e: Valhalla Knockback]")]
-                public bool valhalknock = true;
+                [Header("$Mods.FargowiltasSouls.WillHeader")]
+                [Label("$Mods.FargowiltasSouls.GladiatorConfig")]
+                public bool gladRain = true;
+                [Label("$Mods.FargowiltasSouls.GoldConfig")]
+                public bool goldCoin = true;
+                [Label("$Mods.FargowiltasSouls.RedRidingConfig")]
+                public bool redBleed = true;
+                [Label("$Mods.FargowiltasSouls.ValhallaConfig")]
+                public bool valhalKnock = true;
                 public void Change()
                 {
                     SoulConfig.Instance.enchantToggles["Boreal Snowballs"] = borealSnow;
@@ -105,6 +105,10 @@ namespace FargowiltasSouls
                     SoulConfig.Instance.enchantToggles["Iron Shield"] = ironShield;
                     SoulConfig.Instance.enchantToggles["Tin Crits"] = tinCrit;
                     SoulConfig.Instance.enchantToggles["Tungsten Effect"] = tung;
+                    SoulConfig.Instance.enchantToggles["Gladiator Rain"] = gladRain;
+                    SoulConfig.Instance.enchantToggles["Gold Lucky Coin"] = goldCoin;
+                    SoulConfig.Instance.enchantToggles["Red Riding Super Bleed"] = redBleed;
+                    SoulConfig.Instance.enchantToggles["Valhalla Knockback"] = valhalKnock;
                 }
                 //[Label("[i:][c/: ]")]
                 //public bool ech = true;
@@ -145,6 +149,10 @@ namespace FargowiltasSouls
             enchantToggles.Add("Iron Shield", terrmenu.terenchmenu.ironShield);
             enchantToggles.Add("Tin Crits", terrmenu.terenchmenu.tinCrit);
             enchantToggles.Add("Tungsten Effect", terrmenu.terenchmenu.tung);
+            enchantToggles.Add("Gladiator Rain", terrmenu.terenchmenu.gladRain);
+            enchantToggles.Add("Gold Lucky Coin", terrmenu.terenchmenu.goldCoin);
+            enchantToggles.Add("Red Riding Super Bleed", terrmenu.terenchmenu.redBleed);
+            enchantToggles.Add("Valhalla Knockback", terrmenu.terenchmenu.valhalKnock);
             //enchantToggles.Add("Boreal Snowballs", terrmenu.terenchmenu.borealsnow);
 
         }

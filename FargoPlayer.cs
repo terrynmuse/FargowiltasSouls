@@ -2302,7 +2302,7 @@ namespace FargowiltasSouls
                 player.statMana += 4;
             }
 
-            if (GladEnchant && Soulcheck.GetValue("Gladiator Rain") && projectile != ProjectileID.JavelinFriendly && gladCount == 0)
+            if (GladEnchant && SoulConfig.Instance.GetValue("Gladiator Rain") && projectile != ProjectileID.JavelinFriendly && gladCount == 0)
             {
                 for (int i = 0; i < 5; i++)
                 {
@@ -2433,7 +2433,7 @@ namespace FargowiltasSouls
             if (!TerrariaSoul)
             {
                 //full moon
-                if (RedEnchant && Soulcheck.GetValue("Red Riding Super Bleed")
+                if (RedEnchant && SoulConfig.Instance.GetValue("Red Riding Super Bleed")
                     && Main.rand.Next(5) == 0 && (Main.moonPhase == 0 || WillForce))
                     target.AddBuff(mod.BuffType("SuperBleed"), 240, true);
 
@@ -3528,7 +3528,7 @@ namespace FargowiltasSouls
             //gold ring
             player.goldRing = true;
             //lucky coin
-            if (Soulcheck.GetValue("Gold Lucky Coin"))
+            if (SoulConfig.Instance.GetValue("Gold Lucky Coin"))
                 player.coins = true;
             //discount card
             player.discount = true;
