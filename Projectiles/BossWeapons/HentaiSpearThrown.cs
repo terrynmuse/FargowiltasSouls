@@ -5,9 +5,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargowiltasSouls.Projectiles.MutantBoss
+namespace FargowiltasSouls.Projectiles.BossWeapons
 {
-    public class MutantSpearThrownFriendly : ModProjectile
+    public class HentaiSpearThrown : ModProjectile
     {
         public override string Texture => "FargowiltasSouls/Projectiles/BossWeapons/HentaiSpear";
 
@@ -50,18 +50,16 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
             if (--projectile.localAI[0] < 0)
             {
-                projectile.localAI[0] = 4;
-                if (Main.netMode != 1)
+                projectile.localAI[0] = 3;
+                if (projectile.owner == Main.myPlayer)
                 {
                     int p = Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("PhantasmalSphere"), projectile.damage, projectile.knockBack / 2, projectile.owner);
-                    Main.projectile[p].melee = false;
+                    if (p < 1000)
+                    {
+                        Main.projectile[p].melee = false;
+                        Main.projectile[p].thrown = true;
+                    }
                 }
-            }
-
-            if (projectile.localAI[1] == 0f)
-            {
-                projectile.localAI[1] = 1f;
-                Main.PlaySound(SoundID.Item1, projectile.Center);
             }
 
             projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
@@ -69,13 +67,16 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.netMode != 1)
+            if (projectile.owner == Main.myPlayer)
             {
                 int p = Projectile.NewProjectile(target.position + new Vector2(Main.rand.Next(target.width), Main.rand.Next(target.height)), Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage, 0f, projectile.owner);
-                Main.projectile[p].melee = false;
+                if (p < 1000)
+                {
+                    Main.projectile[p].melee = false;
+                    Main.projectile[p].thrown = true;
+                }
             }
-            target.AddBuff(mod.BuffType("Sadism"), 600);
-            target.AddBuff(mod.BuffType("GodEater"), 600);
+            target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
