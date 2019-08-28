@@ -31,6 +31,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.alpha = 0;
             projectile.timeLeft = 60;
             cooldownSlot = 1;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = true;
         }
 
         public override void AI()

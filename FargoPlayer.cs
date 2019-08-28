@@ -4206,23 +4206,22 @@ namespace FargowiltasSouls
 
             if (FreezeTime && freezeLength != 0)
             {
-                if (!FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
-                {
-                    for (int i = 0; i < 200; i++)
-                    {
-                        NPC npc = Main.npc[i];
-                        if (npc.active && !npc.HasBuff(mod.BuffType("TimeFrozen")))
-                            npc.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
-                    }
+                if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
+                    for (int i = 0; i < 255; i++)
+                        Main.player[i].AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
 
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        Projectile p = Main.projectile[i];
-                        if (p.active && p.type != ProjectileID.StardustGuardian && p.type != ProjectileID.StardustGuardianExplosion && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
-                        {
-                            p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
-                        }
-                    }
+                for (int i = 0; i < 200; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.active && !npc.HasBuff(mod.BuffType("TimeFrozen")))
+                        npc.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
+                }
+
+                for (int i = 0; i < 1000; i++)
+                {
+                    Projectile p = Main.projectile[i];
+                    if (p.active && !p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
+                        p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
                 }
 
                 freezeLength--;

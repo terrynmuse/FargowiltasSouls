@@ -40,6 +40,7 @@ namespace FargowiltasSouls.Projectiles
         private bool firstTick = true;
         private bool squeakyToy = false;
         public int TimeFrozen = 0;
+        public bool TimeFreezeImmune;
 
         public bool Rainbow = false;
 
@@ -53,6 +54,11 @@ namespace FargowiltasSouls.Projectiles
             {
                 switch (projectile.type)
                 {
+                    case ProjectileID.StardustGuardian:
+                    case ProjectileID.StardustGuardianExplosion:
+                        TimeFreezeImmune = true;
+                        break;
+
                     case ProjectileID.SaucerLaser:
                         projectile.tileCollide = false;
                         break;
