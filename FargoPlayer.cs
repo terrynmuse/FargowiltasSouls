@@ -4207,8 +4207,7 @@ namespace FargowiltasSouls
             if (FreezeTime && freezeLength != 0)
             {
                 if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
-                    for (int i = 0; i < 255; i++)
-                        Main.player[i].AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
+                    player.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
 
                 for (int i = 0; i < 200; i++)
                 {
@@ -4234,11 +4233,8 @@ namespace FargowiltasSouls
                     for (int i = 0; i < 200; i++)
                     {
                         NPC npc = Main.npc[i];
-
                         if (npc.active && npc.life == 1)
-                        {
                             npc.StrikeNPC(9999, 0f, 0);
-                        }
                     }
                 }
             }
@@ -4248,9 +4244,7 @@ namespace FargowiltasSouls
                 FreezeCD--;
 
                 if (FreezeCD == 0)
-                {
                     Main.PlaySound(SoundID.MaxMana, player.Center);
-                }
             }
         }
 
