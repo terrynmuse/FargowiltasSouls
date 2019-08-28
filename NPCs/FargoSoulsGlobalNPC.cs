@@ -10013,7 +10013,7 @@ namespace FargowiltasSouls.NPCs
                         goto case NPCID.MoonLordHand;
                     case NPCID.MoonLordHand:
                         if (projectile.type == ProjectileID.DD2BetsyArrow || projectile.type == ProjectileID.PhantasmArrow)
-                            damage /= 4;
+                            damage /= 3;
                         break;
 
                     case NPCID.CultistDragonBody1:
@@ -10031,7 +10031,7 @@ namespace FargowiltasSouls.NPCs
                         if (projectile.type == ProjectileID.PineNeedleFriendly)
                             damage /= 2;
                         else if (projectile.type == ProjectileID.PhantasmArrow || projectile.type == ProjectileID.DD2BetsyArrow)
-                            damage /= 4;
+                            damage /= 3;
                         if (masoBool[2])
                             damage = 0;
                         break;
