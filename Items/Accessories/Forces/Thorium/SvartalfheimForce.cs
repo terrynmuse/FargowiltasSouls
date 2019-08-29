@@ -38,7 +38,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'黑暗精灵的精湛技艺'
 增加10%伤害和伤害减免
-免疫高温
+免疫高温以及蹒跚者的链球效果
 攻击时概率释放闪电链和闪电箭
 获得冲刺能力
 右键用盾牌防御

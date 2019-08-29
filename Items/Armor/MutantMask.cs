@@ -17,6 +17,11 @@ namespace FargowiltasSouls.Items.Armor
 Increases max number of minions and sentries by 10
 25% reduced mana usage
 25% chance not to consume ammo");
+            DisplayName.AddTranslation(GameCulture.Chinese, "真·突变之颅");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"增加15%伤害和暴击率
+增加10最大召唤栏和哨兵栏
+减少25%法力消耗
+25%概率不消耗弹药");
         }
 
         public override void SetDefaults()

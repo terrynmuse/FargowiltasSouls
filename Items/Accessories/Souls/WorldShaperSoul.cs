@@ -31,12 +31,12 @@ No enemies can spawn
 Effect can be disabled in Soul Toggles menu
 Effects of the Cell Phone
 Summons a pet Magic Lantern");
-            DisplayName.AddTranslation(GameCulture.Chinese, "世界塑造者之魂");
+            DisplayName.AddTranslation(GameCulture.Chinese, "铸世者之魂");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'无限的可能性'
 增加50%放置物块及墙壁的速度
 近乎无限的放置和采掘距离
-采掘速度加倍
+四倍采掘速度
 显示敌人,陷阱和宝藏
 自动喷漆和制动器效果
 提供光照和重力控制

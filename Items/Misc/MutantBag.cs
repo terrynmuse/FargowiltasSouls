@@ -10,6 +10,8 @@ namespace FargowiltasSouls.Items.Misc
         {
             DisplayName.SetDefault("The Mutant's Grab Bag");
             Tooltip.SetDefault("Right click to open");
+            DisplayName.AddTranslation(GameCulture.Chinese, "突变体的摸彩袋");
+            Tooltip.AddTranslation(GameCulture.Chinese, "右键打开");
         }
 
         public override void SetDefaults()

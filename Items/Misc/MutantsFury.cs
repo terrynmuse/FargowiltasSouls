@@ -16,6 +16,8 @@ namespace FargowiltasSouls.Items.Misc
 		{
 			DisplayName.SetDefault("Mutant's Fury");
             Tooltip.SetDefault("'REALLY enrages Mutant... or doesn't'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "突变狂怒");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'真·正激怒突变体... 也许并不'");
 		}
 
 		public override void SetDefaults()

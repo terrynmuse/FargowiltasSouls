@@ -10,6 +10,8 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             DisplayName.SetDefault("Swarming");
             Description.SetDefault("Hornets are attacking from every direction!");
+            DisplayName.AddTranslation(GameCulture.Chinese, "蜂群");
+            Description.AddTranslation(GameCulture.Chinese, "黄蜂正从四面八方向你发起进攻!");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = true;
