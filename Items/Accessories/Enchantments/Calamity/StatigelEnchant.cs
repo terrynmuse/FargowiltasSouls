@@ -99,6 +99,8 @@ Effects of Fungal Symbiote");
             recipe.AddIngredient(calamity.ItemType("CursedDagger"));
             recipe.AddIngredient(calamity.ItemType("IchorSpear"));
 
+            //fuse helmets, add carnage, add Spear of Destiny in place of Ichor Spear, add Clothiers Wrath, add Bloody Vein, add Hermits Box..
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

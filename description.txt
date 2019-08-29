@@ -69,11 +69,19 @@ Copper Enchant now bonus procs on enemies in water instead of just have the wet 
 -Reworked Tiki Enchantment, nolonger inflicts Infested, now grants infinte temporary minions
 -Stardust Enchantment now makes Stardust Guardian deal 5x damage and attack faster, he also continues to attack in stopped time
 -Changed all spreads to be more circular, such as Cactus, Jungle, Cobalt effects
-
+-Removed Infinity Relic
+-Hive Staff bees now actually do summon damage
+-Pumpkin Enchantment now lets you know that pumpkin pies will inflict Potion sicknes
+-Removed Bone Pickaxe from Miner Enchantment, added Copper Pickaxe
+-Added Bone Pickaxe to World Shaper Soul, removed  Laser Drill
 
 -Added Shackled immunity to Darksteel Enchantment
 -removed masomode dialogue from the mutant
 
+
+EoC
+servants are spawned less often, 
+sickles are spawned slightly less while dashing, initial spread has less scythes
 
 -All Hardmode spawns in phm drop 1 to 2 gold and have reduced HP and/or damage
 -Black Recluses drop Spider Egg 2% chance in Masomode

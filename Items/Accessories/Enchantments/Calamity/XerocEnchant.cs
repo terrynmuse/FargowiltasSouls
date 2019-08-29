@@ -80,6 +80,8 @@ Rogue attacks spawn Xeroc Stars");
             recipe.AddIngredient(calamity.ItemType("SpatialLance"));
             recipe.AddIngredient(calamity.ItemType("ElementalBlaster"));
 
+            //fuse helmets, remove Elemental Lance, add Grand Dad, add Infinity, add Lead Wizard, add Thorn Blossom
+
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

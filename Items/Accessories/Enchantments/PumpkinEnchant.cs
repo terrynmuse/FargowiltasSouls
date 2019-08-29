@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Your sudden pumpkin craving will never be satisfied'
 You leave behind a trail of fire when you walk
 Flames scale with magic damage
-Eating Pumpkin Pie heals you to full HP
+Eating Pumpkin Pie heals you to full HP and inflicts Potion Sickness for 3 minutes
 Summons a pet Squashling");
             DisplayName.AddTranslation(GameCulture.Chinese, "南瓜魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 

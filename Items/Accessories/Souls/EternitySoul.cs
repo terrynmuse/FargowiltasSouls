@@ -344,9 +344,6 @@ and most of SoT not mentioned because meme tooltip length
             //MASOCHIST
             mod.GetItem("MasochistSoul").UpdateAccessory(player, hideVisual);
 
-            //INFINITY
-            modPlayer.Infinity = true;
-
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
 
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player, hideVisual);
@@ -700,13 +697,10 @@ and most of SoT not mentioned because meme tooltip length
                 recipe.AddIngredient(null, "CalamitySoul");
                 recipe.AddIngredient(calamity.ItemType("Rock"));
             }
-                
-            recipe.AddIngredient(null, "Infinity");
 
             recipe.AddIngredient(null, "Sadism", 30);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
-
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

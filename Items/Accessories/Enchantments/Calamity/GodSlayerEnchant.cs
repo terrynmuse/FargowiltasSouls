@@ -316,6 +316,8 @@ Effects of the Nebulous Core");
             recipe.AddIngredient(calamity.ItemType("DevilsDevastation"));
             recipe.AddIngredient(calamity.ItemType("StarfleetMK2"));
 
+            //fuse helmets, add Nadir, add Norfleet, add Skullmasher, add Cosmic Plushie
+
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);
             recipe.AddRecipe();

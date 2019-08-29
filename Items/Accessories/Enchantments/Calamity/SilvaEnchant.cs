@@ -189,6 +189,8 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
             recipe.AddIngredient(calamity.ItemType("Climax"));
             recipe.AddIngredient(calamity.ItemType("YharimsCrystal"));
 
+            //fuse helmets, add Swordplosion, add Void Vortex, add Forgotten Dragon Egg, add Fox Drive
+
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);
             recipe.AddRecipe();

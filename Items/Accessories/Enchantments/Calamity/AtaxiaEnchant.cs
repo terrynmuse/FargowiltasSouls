@@ -150,7 +150,9 @@ Effects of the Plague Hive");
             recipe.AddIngredient(calamity.ItemType("Malachite"));
             recipe.AddIngredient(calamity.ItemType("Impaler"));
             recipe.AddIngredient(calamity.ItemType("HolidayHalberd"));
-            
+
+            //fuse helmets, add Hellborn, add Charred Relic
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

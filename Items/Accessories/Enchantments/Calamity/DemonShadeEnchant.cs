@@ -112,6 +112,9 @@ This makes them do 1.5 times more damage but they also take five times as much d
             recipe.AddIngredient(calamity.ItemType("Apotheosis"));
             recipe.AddIngredient(calamity.ItemType("RoyalKnives"));
             recipe.AddIngredient(calamity.ItemType("TriactisTruePaladinianMageHammerofMight"));
+
+            //add Levi pet
+
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);
             recipe.AddRecipe();

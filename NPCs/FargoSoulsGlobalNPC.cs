@@ -680,6 +680,11 @@ namespace FargowiltasSouls.NPCs
                 Stop--;
                 npc.position = npc.oldPosition;
                 npc.frameCounter = 0;
+
+                if (npc.type == NPCID.EyeofCthulhu)
+                {
+                    return false;
+                }
             }
 
             return true;
@@ -1397,7 +1402,7 @@ namespace FargowiltasSouls.NPCs
                         eyeBoss = npc.whoAmI;
 
                         Counter++;
-                        if (Counter >= 300)
+                        if (Counter >= 600)
                         {
                             Counter = 0;
                             if (npc.life <= npc.lifeMax * 0.65 && NPC.CountNPCS(NPCID.ServantofCthulhu) < 12 && Main.netMode != 1)
@@ -1436,7 +1441,8 @@ namespace FargowiltasSouls.NPCs
                                             npc.position.X -= distance.X;
                                             npc.position.Y += distance.Y;
                                             npc.netUpdate = true;
-                                            npc.ai[2] = 2;
+                                            npc.ai[2] = 60;
+                                            npc.ai[1] = 5f;//
                                         }
                                     }
                                 }
@@ -1460,7 +1466,7 @@ namespace FargowiltasSouls.NPCs
                                 Counter2 = 30;
                                 masoBool[0] = false;
                                 if (Main.netMode != 1)
-                                    FargoGlobalProjectile.XWay(8, npc.Center, mod.ProjectileType("BloodScythe"), 2, npc.damage / 4, 1f);
+                                    FargoGlobalProjectile.XWay(6, npc.Center, mod.ProjectileType("BloodScythe"), 1.5f, npc.damage / 4, 1f);
                             }
                             /*if (++Timer > 600)
                             {
@@ -1491,7 +1497,7 @@ namespace FargowiltasSouls.NPCs
                             }*/
                         }
 
-                        if (Counter2 > 0 && Counter2 % 5 == 0 && Main.netMode != 1)
+                        if (Counter2 > 0 && Counter2 % 6 == 0 && Main.netMode != 1)
                             Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
                                 npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 1f, Main.myPlayer);
                         Counter2--;

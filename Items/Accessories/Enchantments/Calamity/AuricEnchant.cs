@@ -269,6 +269,8 @@ You have a magic carpet");
             recipe.AddIngredient(calamity.ItemType("CosmicImmaterializer"));
             recipe.AddIngredient(calamity.ItemType("Celestus"));
 
+            //fuse helmets, add orcale, dragon pow, fox drive?
+
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -106,7 +106,9 @@ Rage activates when you are damaged");
             recipe.AddIngredient(calamity.ItemType("Triploon"));
             recipe.AddIngredient(calamity.ItemType("Aeries"));
             recipe.AddIngredient(calamity.ItemType("MagnaStriker"));
-            
+
+            //fuse helmets, remove Aeries, add Pearl God, add Evil Smasher, add Conference Call, Fabled Tortoise Shell?
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

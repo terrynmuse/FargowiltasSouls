@@ -96,7 +96,9 @@ Effects of Giant Pearl and Amidias' Pendant");
             recipe.AddIngredient(calamity.ItemType("AmidiasTrident"));
             recipe.AddIngredient(calamity.ItemType("EutrophicShank"));
             recipe.AddIngredient(calamity.ItemType("Serpentine"));
-            
+
+            //add Trash can
+
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

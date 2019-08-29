@@ -124,6 +124,8 @@ Debuff状态下, 增加10%盗贼伤害
             recipe.AddIngredient(calamity.ItemType("HandheldTank"));
             recipe.AddIngredient(calamity.ItemType("Mistlestorm"));
 
+            //fuse helmets, add Thunderstorm
+
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

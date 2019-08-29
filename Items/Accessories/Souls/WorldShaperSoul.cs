@@ -139,10 +139,9 @@ Summons a pet Magic Lantern");
             recipe.AddIngredient(PutridScent);
             recipe.AddIngredient(CellPhone);
             recipe.AddIngredient(GravityGlobe);
-
+            recipe.AddIngredient(BonePickaxe);
             recipe.AddRecipeGroup("FargowiltasSouls:AnyDrax");
             recipe.AddIngredient(ShroomiteDiggingClaw);
-            recipe.AddIngredient(LaserDrill);
             recipe.AddIngredient(DrillContainmentUnit);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");

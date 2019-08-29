@@ -94,7 +94,9 @@ Effects of Gladiator's Locket and Unstable Prism");
             recipe.AddIngredient(calamity.ItemType("SkyGlaze"));
             recipe.AddIngredient(calamity.ItemType("PerfectDark"));
             recipe.AddIngredient(calamity.ItemType("SausageMaker"));
-            
+
+            //fuse helmets, add Romajeda ORchid
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -160,9 +160,6 @@ namespace FargowiltasSouls
         #endregion
 
         //soul effects
-        public bool Infinity;
-        public int InfinityCounter = 0;
-
         public bool MagicSoul;
         public bool ThrowSoul;
         public bool RangedSoul;
@@ -511,7 +508,6 @@ namespace FargowiltasSouls
             wingTimeModifier = 1f;
 
             QueenStinger = false;
-            Infinity = false;
 
             BrainMinion = false;
             EaterMinion = false;
@@ -1316,11 +1312,6 @@ namespace FargowiltasSouls
             else
             {
                 MaxLifeReduction = 0;
-            }
-
-            if (Infinity)
-            {
-                player.manaCost -= 1f;
             }
 
             if (Eternity)
@@ -2894,16 +2885,6 @@ namespace FargowiltasSouls
             return retVal;
         }
 
-        public override bool ConsumeAmmo(Item weapon, Item ammo)
-        {
-            if (Infinity)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         public override void PostUpdateEquips()
         {
             player.wingTimeMax = (int)(player.wingTimeMax * wingTimeModifier);
@@ -2922,13 +2903,6 @@ namespace FargowiltasSouls
             {
                 player.bodyFrame.Y = player.bodyFrame.Height * 10;
             }
-        }
-
-        public void InfinityHurt()
-        {
-            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " self destructed."), Main.rand.Next(2, 6), 0);
-            player.immune = false;
-            InfinityCounter = 0;
         }
 
         public void AddPet(string toggle, bool vanityToggle, int buff, int proj)

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Misc
 {
-    public class MutantGrabBag : ModItem
+    public class MutantBag : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -109,6 +109,8 @@ Effects of Permafrost's Concoction");
             recipe.AddIngredient(calamity.ItemType("ProporsePistol"));
             recipe.AddIngredient(calamity.ItemType("SHPC"));
 
+            //fuse helmets, add Cryophobia, add Arbalest, add Bears Eye, add regenerator?
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

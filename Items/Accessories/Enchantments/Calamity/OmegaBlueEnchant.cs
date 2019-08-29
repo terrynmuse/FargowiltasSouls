@@ -126,6 +126,8 @@ Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
             recipe.AddIngredient(calamity.ItemType("SDFMG"));
             recipe.AddIngredient(calamity.ItemType("NeptunesBounty"));
 
+            //add The LAst Mourning, add strange orb
+
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

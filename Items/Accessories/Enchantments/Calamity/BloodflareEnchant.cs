@@ -140,6 +140,8 @@ Effects of the Core of the Blood God and Affliction");
             recipe.AddIngredient(calamity.ItemType("AethersWhisper"));
             recipe.AddIngredient(calamity.ItemType("DarkSpark"));
 
+            //fuse helmets, add Dodus Handcannon
+
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

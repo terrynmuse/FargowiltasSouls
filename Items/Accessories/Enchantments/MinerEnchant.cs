@@ -48,13 +48,13 @@ Summons a pet Magic Lantern");
             recipe.AddIngredient(ItemID.MiningHelmet);
             recipe.AddIngredient(ItemID.MiningShirt);
             recipe.AddIngredient(ItemID.MiningPants);
-            
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            recipe.AddIngredient(ItemID.CopperPickaxe);
+
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("aSandstonePickaxe"));
                 recipe.AddIngredient(ItemID.CnadyCanePickaxe); //gj 
                 recipe.AddIngredient(ItemID.GoldPickaxe);
-                recipe.AddIngredient(ItemID.BonePickaxe);
                 recipe.AddIngredient(thorium.ItemType("EnforcedThoriumPax"));
                 recipe.AddIngredient(ItemID.MoltenPickaxe);
             }

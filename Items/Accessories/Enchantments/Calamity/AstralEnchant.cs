@@ -78,6 +78,8 @@ Effects of the Astral Arcanum and Hide of Astrum Deus");
             recipe.AddIngredient(calamity.ItemType("Lazhar"));
             recipe.AddIngredient(calamity.ItemType("SolsticeClaymore"));
 
+            //add Quasar
+
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
