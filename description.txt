@@ -1,83 +1,62 @@
-﻿NEW UPDATE - v 0.7.5
+﻿NEW UPDATE - v 1.0.0
 
--Fixed Squeaky Toy multiplayer bug
+Enchantment Changes:
 
--Eater of Souls now have a windup before their attack and do not go through walls
--sharks dont jump as high 
--only armed zombies break down doors now
--Nurse now heals creeper minions as well
--evil and hallowed cactuses deal more damage and inflict Poisoned
--Projectiles split from Adamantite Enchantment are now always friendly
+-Miner Enchantment's mining speed buffed to 50% from 30%, all further upgrades also have increased mining speed
+-Wood Enchantment is not effected by the Guilty debuff anymore
 -Boreal Enchantment snowballs now fire with swords correctly 
--Double tapping down with Palm Wood Enchantment replaces the current sentry instead of doing nothing if there is already one
--Assassin Enchantment: replaced nail gun with shadowflame bow in recipe
--Copper Enchantment effect no longer goes on cooldown every time it tries to proc (even when it failed making the effect needlessly hard to get)
--Fixed Top Hat Squirrels sprite sheet clipping into the ground
--Added Demon Squirrel, Golden Tophat Squirrel, and Party Squirrel (finish them)
--Removed Throwing Knives for Slimy Saddle in Ninja Enchant
--Replaced Slimy Saddle with Fart in a Horseshoe Balloon thus adding fart jump to it
--Soul of Dimensions and Eternity flight is actually infinite
+-Palm Wood Enchanment sentry will be replaced in new location if you double tap down again
 
--Bee Enchant now has Super Bees 50% instead of 33%
--Wood Enchantment is not effected by Guilty
--Spider Enchant buffed to 15% from 10%
--Changed Pumpkin Enchant recipe slighlty (Pumpkin pie needed always, bladed glove only in thorium)
--Obsidian Enchant now only gives armor pen in lava
-Tungsten Enchant now works with projectiles and no longer lowers speed
-Copper Enchant now bonus procs on enemies in water instead of just have the wet debuff
--Orichalcum now has 6 fireballs instead of 3
--Ninja First Strike now activates when using Rod of Discord as well
+-Jungle Enchantment no longer has mana steal, it gained herb doubling, and spore clouds linger for awhile now
+-Pumpkin Enchantment recipe altered (Pumpkin Pie is needed always, Bladed Glove only with Thorium)
+-Obsidian Enchantment now only gives armor penetration in lava
+-Tungsten Enchantment now works with projectiles and no longer lowers speed
+-Copper Enchantment effect no longer goes on cooldown every time it tries to proc (making the effect needlessly hard to get)
+-Copper Enchantment now bonus procs on enemies in water instead of just enemies with the Wet debuff
+-Ninja Enchantment's First Strike now activates when using Rod of Discord as well
 -First Strike should no longer disappear before being used up
--Molten Enchant does 20 damage per second to enemies within the inferno instead of 10
+-Molten Enchantment does 20 damage per second to enemies within the inferno instead of 10
 -Additionally the closer enemies are to you, the more they take up to 80 damage per second
--Flower Boots effect is now carried on from Chlorophyte Enchant onward
--Red Riding Enchant damage to low HP enemies now carries over to Will Force and beyond
--Platinum Enchant effect has a visual now
--Removed attack speed thing from Nebula Enchant
--Removed Calamity Force from Soul of Terraria, added to Soul of the Tyrant (soon tm)
--Fixed Force of Wood not having Force of Wood effects somehow lol
--Fixed several inconsistencies in effects when Thorium is enabled (effects from when thorium enchants were mixed into vanilla forces)
 
--Soul of Terraria no longer gains Palladium life steal (since its effect is combined with Tins), double mana star heals, or shadowflame aura
--Fixed Jungle Enchantment mana steal saying it healed 5 when it actually healed 4
--Shroomite Enchantment crit bonus from 4x to 3x
--Fixed Spider Enchantment actually doing 4X damage on crits
--Tungsten Enchantment makes all weapons larger
--Removed Expert line from some items
--Removed Meteor Enchantment from Conduit Enchantment (Added Electro Rebounder) and Iron from Steel (Added Katana), Spirit Trapper from Spectre (added to Force of Helheim )
--Removed Dark Effigy effect from Shadow Force onward
+
+-Chlorophyte Enchantment now spawns 5 leaf crystals around you
+-Flower Boots effect is now carried on from Chlorophyte Enchantment onward
+-Frost Enchantment cooldown after launching icicles lowered from 5 to 2 seconds, icicles spawn closer to the player and spawn quicker as well
+-Orichalcum Enchantment spawns 6 fireballs instead of 3 and fireballs move faster
+-Tiki Enchantment no longer inflicts Infested, now it grants infinite temporary minions
+-Stardust Enchantment now makes Stardust Guardian deal 5x damage and attack faster, he also continues to attack in stopped time
+-Bee Enchantment now has Super Bees 50% of the time instead of 33%
+-Spider Enchantment crits buffed to 20% from 10%
+
+-Red Riding Enchantment's damage to low HP enemies now carries over to Force of Will and beyond
+-Platinum Enchantment effect has a visual when it procs
+-Nebula Enchantment no longer has bonus attack speed
+-Adamantite Enchantment's split projectiles are now always friendly
+-Assassin Enchantment recipe altered (replaced Nail Gun with Shadowflame Bow)
+
 -Changed Gladiator Enchantment effect to occur once every second at most, then every half second on force of Will
 -Silver Enchantment minion now has 50% more damage
 -Shadow Enchantment Darkness no longer targets critters and town NPCs
 -Iron Enchantment's magnet has quadrupled range in Terra Force and beyond
 -Fixed Sandstone Enchantment recipe being broken
--Infinity Relic now crafted at the Crucible of the Cosmos
 -Fixed Forbidden Enchantments damage boost running out and actually making projectiles deal 0 damage, mostly affecting minions
 -Also no longer gives bonus pierce
--Updated all soul tooltips to include their full effects
-
--Added even more Chinese translation
--Adjusted some of Soul of the Masochist's stat buffs
--Gave Soul of Eternity way more defense
--Added the Golden Carp to the Trawler Soul recipe
-
--Miner Enchantment buffed to 50% mining speed from 30%, all further upgrades increased dramatically
--Jungle Enchant lost mana steal, gained herb doubling and spore clouds linger
--Chloro now has 5 leaf crystals around you
--Frost Enchantment , cooldown after launching icicles lowered from 5 to 2 seconds, icicles spawn closer to the player and spawn quicker, use a new projectile instead of a vanilla one
--Orichalcum Enchant fireballs move faster
--Reworked Tiki Enchantment, nolonger inflicts Infested, now grants infinte temporary minions
--Stardust Enchantment now makes Stardust Guardian deal 5x damage and attack faster, he also continues to attack in stopped time
--Changed all spreads to be more circular, such as Cactus, Jungle, Cobalt effects
--Removed Infinity Relic
--Hive Staff bees now actually do summon damage
--Pumpkin Enchantment now lets you know that pumpkin pies will inflict Potion sicknes
--Removed Bone Pickaxe from Miner Enchantment, added Copper Pickaxe
--Added Bone Pickaxe to World Shaper Soul, removed  Laser Drill
-
+-Removed Meteor Enchantment from Conduit Enchantment (Added Electro Rebounder) and Iron from Steel (Added Katana), Spirit Trapper from Spectre (added to Force of Helheim )
 -Added Shackled immunity to Darksteel Enchantment
--removed masomode dialogue from the mutant
 
+
+
+
+
+
+
+
+
+
+Masochist Mode Changes:
+-Eater of Souls now have a windup before their attack and do not go through walls
+-sharks dont jump as high 
+-only armed zombies break down doors now
 
 EoC
 servants are spawned less often, 
@@ -106,6 +85,120 @@ golem head only breathes fire outside temple
 
 -plantera extra crystals and they move out and in
 -Demon Eyes Obstruct instead of Stone now and no Berserked ree
+
+﻿shadowflame is now a modded debuff to avoid thorium double DOT memes
+betsy is once again post-golem because FUCKING REDCODEEEEE
+nerfed crippled duration in wof fight
+lost girl/nymph are lava immune
+fake hearts now ignore defense and DR
+nerfed squeaky toy drop rate to 2%
+all demon eyes inflict berserked now, no more stoned
+eow segments drop no loot unless they're the final segment
+creepers drop no loot
+skeletron/dg bones ignore walls
+nerfed snowman gangsta rate of fire to 5sec
+nerfed skeletron limb revive life to 25%
+nerfed prime limb revive rate to 30sec (was 20), but slightly buffed hp to 25% (was 20%)
+nerfed prime cannons to inflict defenseless (was fused)
+midas coin drop only works in SP now, will fix it duping cash in MP later :ech:
+nerfed dune splicer hp to x3
+nerfed basilisk hp to x2 (1080)
+added friendly proj checks for first strike and tungsten effect
+boosted pumpking/ice queen maso item drop rates to 10%
+nerfed goblin thieves to only steal your current selected item
+nerfed horseman's blade to spawn 6 pumpkins (was 12)
+removed sadism from soul of maso recipe
+fish EX now drops abominationn voodoo doll instead of sadism
+mutant added to boss checklist
+soul of eternity requires 30 sadism
+red devil no longer hordes in pre hm
+red devil cannot spawn pre-hm during wof fight
+added lunatic sigil
+removed ancient doom damage buff to fix prophecy end doing 400 damage
+nerfed RMF damage inflicted when using magic weapons
+RMF is now -150% magic damage and halves speed of magic weapons too
+fishron and moon lord now resist razorpine
+fishron and moon lord resists are now 80%
+fixed golem fists not dying after golem dies because of their instaheal mechanic
+maso on hit effects now only proc every 20 ticks max
+brain is no longer faster in p2, but has a shadow clone
+REMOVED ML SOCKET LASERS
+squeaky toy on hit is now a toggle
+brain now confuses you for 5 sec every 10 seconds in p2, no longer confuses on hit
+brain clone actually works
+plantera p2 ring now wiggles!!!! also nerfed chloro fire rate by 1sec
+maso soul no longer gives faster respawn during boss fights
+eoc no longer scythe walls
+EOC TELEPORTS BEHIND YOU
+timestop doesnt work on mutant oh shit
+SWARMING DEBUFFFFFFFF
+krampus now only steals held item and 1 accessory
+plant crystals now have contact damage
+plantera p2 crystals no longer shoot
+plantera p2 has reverse ivy venom aura
+nerfed pillar hp from 100k to 60k
+halved all prime limbs max life
+removed DOT from oceanic maul
+
+spider ench now gives 20% crit rate
+shroomite ench nerfed to 2x damage crits
+
+eaters of souls go through walls again but half speed/make dust while in wall
+plantera p2 spawns a second set of crystals around the first rotating opposite direction
+maso moss hornets have 50% chance to drop stingers (why is this not vanilla :echprimebegone:)
+brain illusions do damage in maso EX (not that it really helps)
+
+
+
+Bug Fixes:
+-Fixed Squeaky Toy crashing servers in multiplayer
+
+
+
+
+
+
+-Nurse now heals creeper minions as well
+-evil and hallowed cactuses deal more damage and inflict Poisoned
+
+
+-Fixed Top Hat Squirrels sprite sheet clipping into the ground
+-Added Demon Squirrel, Golden Tophat Squirrel, and Party Squirrel (finish them)
+-Removed Throwing Knives for Slimy Saddle in Ninja Enchant
+-Replaced Slimy Saddle with Fart in a Horseshoe Balloon thus adding fart jump to it
+-Soul of Dimensions and Eternity flight is now actually infinite
+
+
+-Removed Calamity Force from Soul of Terraria, added to Soul of the Tyrant (soon tm)
+-Fixed Force of Wood not having Force of Wood effects somehow lol
+-Fixed several inconsistencies in effects when Thorium is enabled (effects from when thorium enchants were mixed into vanilla forces)
+
+-Soul of Terraria no longer gains Palladium life steal (since its effect is combined with Tins), double mana star heals, or shadowflame aura
+-Shroomite Enchantment crit bonus from 4x to 3x
+-Fixed Spider Enchantment actually doing 4X damage on crits
+-Tungsten Enchantment makes all weapons larger
+-Removed Expert line from some items
+
+-Removed Dark Effigy effect from Shadow Force onward
+
+-Updated all soul tooltips to include their full effects
+
+-Added even more Chinese translation
+-Adjusted some of Soul of the Masochist's stat buffs
+-Gave Soul of Eternity way more defense
+-Added the Golden Carp to the Trawler Soul recipe
+
+
+-Changed all spreads to be more circular, such as Cactus, Jungle, Cobalt effects
+-Removed Infinity Relic
+-Hive Staff bees now actually do summon damage
+-Pumpkin Enchantment now lets you know that pumpkin pies will inflict Potion sicknes
+-Removed Bone Pickaxe from Miner Enchantment, added Copper Pickaxe
+-Added Bone Pickaxe to World Shaper Soul, removed  Laser Drill
+
+
+-removed masomode dialogue from the mutant
+
 
 
 This mod adds 2 main things. Souls and Masochist Mode.
