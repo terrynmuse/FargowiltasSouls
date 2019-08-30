@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         public override void AI()
         {
             const int aislotHomingCooldown = 0;
-            const int homingDelay = 30;
+            const int homingDelay = 10;
             const float desiredFlySpeedInPixelsPerFrame = 60;
             const float amountOfFramesToLerpBy = 30; // minimum of 1, please keep in full numbers even though it's a float!
 
