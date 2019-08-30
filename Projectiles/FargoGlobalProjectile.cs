@@ -297,7 +297,7 @@ namespace FargowiltasSouls.Projectiles
                         projectile.Kill();
                     }
 
-                    if (modPlayer.SpookyEnchant && Soulcheck.GetValue("Spooky Scythes") && projectile.owner == Main.myPlayer
+                    if (modPlayer.SpookyEnchant && SoulConfig.Instance.GetValue("Spooky Scythes") && projectile.owner == Main.myPlayer
                         && projectile.minion && projectile.minionSlots > 0
                         && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
                     {
@@ -358,13 +358,13 @@ namespace FargowiltasSouls.Projectiles
                     projectile.ai[1] -= 2.5f;
                 }
 
-                if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && Soulcheck.GetValue("Frost Icicles"))
+                if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && SoulConfig.Instance.GetValue("Frost Icicles"))
                 {
                     projectile.rotation = (Main.MouseWorld - projectile.Center).ToRotation() - 5;
                     projectile.timeLeft = 2;
                 }
 
-                if (modPlayer.OriEnchant && (projectile.type == ProjectileID.BallofFire || projectile.type == ProjectileID.CursedFlameFriendly || projectile.type == ProjectileID.BallofFrost) && Soulcheck.GetValue("Orichalcum Fireballs"))
+                if (modPlayer.OriEnchant && (projectile.type == ProjectileID.BallofFire || projectile.type == ProjectileID.CursedFlameFriendly || projectile.type == ProjectileID.BallofFrost) && SoulConfig.Instance.GetValue("Orichalcum Fireballs"))
                 {
                     projectile.timeLeft = 2;
                 }

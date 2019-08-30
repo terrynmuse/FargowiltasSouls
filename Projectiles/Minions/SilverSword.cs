@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (!modPlayer.SilverEnchant || !Soulcheck.GetValue("Silver Sword Familiar"))
+            if (!modPlayer.SilverEnchant || !SoulConfig.Instance.GetValue("Silver Sword Familiar"))
             {
                 projectile.Kill();
                 return;

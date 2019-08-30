@@ -64,6 +64,21 @@ namespace FargowiltasSouls
             ModTranslation text = CreateTranslation("WoodHeader");
             text.SetDefault("[i:" + Instance.ItemType<WoodForce>() + "] Force of Wood");
             AddTranslation(text);
+            text = CreateTranslation("LifeHeader");
+            text.SetDefault("[i:" + Instance.ItemType<LifeForce>() + "] Force of Life");
+            AddTranslation(text);
+            text = CreateTranslation("NatureHeader");
+            text.SetDefault("[i:" + Instance.ItemType<NatureForce>() + "] Force of Nature");
+            AddTranslation(text);
+            text = CreateTranslation("ShadowHeader");
+            text.SetDefault("[i:" + Instance.ItemType<ShadowForce>() + "] Shadow Force");
+            AddTranslation(text);
+            text = CreateTranslation("SpiritHeader");
+            text.SetDefault("[i:" + Instance.ItemType<SpiritForce>() + "] Force of Spirit");
+            AddTranslation(text);
+            text = CreateTranslation("CosmoHeader");
+            text.SetDefault("[i:" + Instance.ItemType<CosmoForce>() + "] Force of Cosmos");
+            AddTranslation(text);
             ModTranslation borealtrans = CreateTranslation("BorealConfig");
             borealtrans.SetDefault("[i:" + Instance.ItemType<BorealWoodEnchant>() + "][c/8B7464: Boreal Snowballs]");
             AddTranslation(borealtrans);
@@ -133,6 +148,145 @@ namespace FargowiltasSouls
             text = CreateTranslation("ValhallaConfig");
             text.SetDefault("[i:" + Instance.ItemType<ValhallaKnightEnchant>() + "][c/93651e: Valhalla Knockback]");
             AddTranslation(text);
+            string[] EnchConfig = {
+            //force of life
+            "BeetleConfig",
+            "CactusConfig",
+            "PumpkinConfig",
+            "SpiderConfig",
+            "TurtleConfig",
+            //force of nature
+            "ChlorophyteConfig",
+            "FrostConfig",
+            "JungleConfig",
+            "MoltenConfig",
+            "ShroomiteConfig",
+            //shadow force
+            "DarkArtConfig",
+            "NecroConfig",
+            "ShadowConfig",
+            "ShinobiConfig",
+            "SpookyConfig",
+            //force of spirit
+            "ForbiddenConfig",
+            "HallowedConfig",
+            "HalllowSConfig",
+            "SilverConfig",
+            "SpectreConfig",
+            //force of cosmos
+            "MeteorConfig",
+            "NebulaConfig",
+            "SolarConfig",
+            "StardustConfig",
+            "VortexSConfig",
+            "VortexVConfig"
+            };
+            string[] EnchName = {
+            //force of life
+            "Beetles",
+            "Cactus Needles",
+            "Pumpkin Fire",
+            "Spider Swarm",
+            "Turtle Shell Buff",
+            //force of nature
+            "Chlorophyte Leaf Crystal",
+            "Frost Icicles",
+            "Jungle Spores",
+            "Molten Inferno Buff",
+            "Shroomite Stealth",
+            //shadow force
+            "Dark Artist Effect",
+            "Necro Guardian",
+            "Shadow Darkness",
+            "Shinobi Through Walls",
+            "Spooky Scythes",
+            //force of spirit
+            "Forbidden Storm",
+            "Hallowed Enchanted Sword Familiar",
+            "Hallowed Shield",
+            "Silver Sword Familiar",
+            "Spectre Orbs",
+            //force of cosmos
+            "Meteor Shower",
+            "Nebula Boosters",
+            "Solar Shield",
+            "Stardust Guardian",
+            "Vortex Stealth",
+            "Vortex Voids"
+            };
+            string[] EnchColor = {
+            //force of life
+            "3357e4",
+            "799e1d",
+            "e3651c",
+            "6d4e45",
+            "f89c5c",
+            //force of nature
+            "248900",
+            "7abdb9",
+            "71971f",
+            "c12b2b",
+            "008cf4",
+            //shadow force
+            "9b5cb0",
+            "565643",
+            "42356f",
+            "935b18",
+            "644e74",
+            //force of spirit
+            "e7b21c",
+            "968564",
+            "968564",
+            "b4b4cc",
+            "accdfc",
+            //force of cosmos
+            "5f4752",
+            "fe7ee5",
+            "fe9e23",
+            "00aeee",
+            "00f2aa",
+            "00f2aa"
+            };
+            string[] EnchItem = {
+            //force of life
+            "BeetleEnchant",
+            "CactusEnchant",
+            "PumpkinEnchant",
+            "SpiderEnchant",
+            "TurtleEnchant",
+            //force of nature
+            "ChlorophyteEnchant",
+            "FrostEnchant",
+            "JungleEnchant",
+            "MoltenEnchant",
+            "ShroomiteEnchant",
+            //shadow force
+            "DarkArtistEnchant",
+            "NecroEnchant",
+            "ShadowEnchant",
+            "ShinobiEnchant",
+            "SpookyEnchant",
+            //force of spirit
+            "ForbiddenEnchant",
+            "HallowEnchant",
+            "HallowEnchant",
+            "SilverEnchant",
+            "SpectreEnchant",
+            //force of cosmos
+            "MeteorEnchant",
+            "NebulaEnchant",
+            "SolarEnchant",
+            "StardustEnchant",
+            "VortexEnchant",
+            "VortexEnchant"
+            };
+        for(int x = 0; x <= 25; x++)
+            {
+                text = CreateTranslation(EnchConfig[x]);
+                text.SetDefault("[i:" + Instance.ItemType(EnchItem[x]) + "][c/" + EnchColor[x] + ": " + EnchName[x] + "]");
+                AddTranslation(text);
+            }
+
             if (!Main.dedServ)
             {
                 CustomResources = new UserInterface();

@@ -2043,8 +2043,7 @@ namespace FargowiltasSouls
 
             if (Array.IndexOf(wetProj, proj.type) > -1)
                 target.AddBuff(BuffID.Wet, 180, true);
-
-            if (Soulcheck.GetValue("Spectre Orbs") && !target.immortal)
+            if (SoulConfig.Instance.GetValue("Spectre Orbs") && !target.immortal)
             {
                 if (SpectreEnchant && proj.type != ProjectileID.SpectreWrath)
                 {
@@ -2267,7 +2266,7 @@ namespace FargowiltasSouls
             if (CopperEnchant && SoulConfig.Instance.GetValue("Copper Lightning") && copperCD == 0)
                 CopperEffect(target);
 
-            if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian"))
+            if (NecroEnchant && necroCD == 0 && SoulConfig.Instance.GetValue("Necro Guardian"))
             {
                 necroCD = 1200;
                 float screenX = Main.screenPosition.X;
@@ -2703,7 +2702,7 @@ namespace FargowiltasSouls
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
-            if (JungleEnchant && Soulcheck.GetValue("Jungle Spores"))
+            if (JungleEnchant && SoulConfig.Instance.GetValue("Jungle Spores"))
             {
                 int dmg = NatureForce ? 100 : 30;
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
@@ -3182,7 +3181,7 @@ namespace FargowiltasSouls
 
         public void BeetleEffect()
         {
-            if (!Soulcheck.GetValue("Beetles")) return;
+            if (!SoulConfig.Instance.GetValue("Beetles")) return;
 
             player.beetleDefense = true;
             player.beetleCounter += 1f;
@@ -3275,7 +3274,7 @@ namespace FargowiltasSouls
 
         public void CactusEffect()
         {
-            if(Soulcheck.GetValue("Cactus Needles"))
+            if(SoulConfig.Instance.GetValue("Cactus Needles"))
             {
                 CactusEnchant = true;
             }
@@ -3365,7 +3364,7 @@ namespace FargowiltasSouls
             player.setApprenticeT3 = true;
 
             //shadow shoot meme
-            if (Soulcheck.GetValue("Dark Artist Effect"))
+            if (SoulConfig.Instance.GetValue("Dark Artist Effect"))
             {
                 Item heldItem = player.HeldItem;
 
@@ -3400,7 +3399,7 @@ namespace FargowiltasSouls
 
         public void ForbiddenEffect()
         {
-            if (!Soulcheck.GetValue("Forbidden Storm")) return;
+            if (!SoulConfig.Instance.GetValue("Forbidden Storm")) return;
 
             player.setForbidden = true;
             player.UpdateForbiddenSetLock();
@@ -3465,7 +3464,7 @@ namespace FargowiltasSouls
         {
             FrostEnchant = true;
 
-            if (Soulcheck.GetValue("Frost Icicles"))
+            if (SoulConfig.Instance.GetValue("Frost Icicles"))
             {
                 if (icicleCD == 0 && IcicleCount < 3)
                 {
@@ -3544,7 +3543,7 @@ namespace FargowiltasSouls
             AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(dmg * player.minionDamage), 0f);
 
             //reflect proj
-            if (Soulcheck.GetValue("Hallowed Shield") && !noDodge)
+            if (SoulConfig.Instance.GetValue("Hallowed Shield") && !noDodge)
             {
                 const int focusRadius = 50;
 
@@ -3678,7 +3677,7 @@ namespace FargowiltasSouls
         {
             MeteorEnchant = true;
 
-            if (Soulcheck.GetValue("Meteor Shower"))
+            if (SoulConfig.Instance.GetValue("Meteor Shower"))
             {
                 if (meteorShower)
                 {
@@ -3750,7 +3749,7 @@ namespace FargowiltasSouls
         {
             MoltenEnchant = true;
 
-            if (Soulcheck.GetValue("Molten Inferno"))
+            if (SoulConfig.Instance.GetValue("Molten Inferno Buff"))
             {
                 player.inferno = true;
                 Lighting.AddLight((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
@@ -3795,7 +3794,7 @@ namespace FargowiltasSouls
 
         public void NebulaEffect()
         {
-            if (!Soulcheck.GetValue("Nebula Boosters")) return;
+            if (!SoulConfig.Instance.GetValue("Nebula Boosters")) return;
 
             if (player.nebulaCD > 0)
                 player.nebulaCD--;
@@ -3906,7 +3905,7 @@ namespace FargowiltasSouls
             //pumpkin pies
             PumpkinEnchant = true;
 
-            if (Soulcheck.GetValue("Pumpkin Fire") && (player.controlLeft || player.controlRight) && !IsStandingStill)
+            if (SoulConfig.Instance.GetValue("Pumpkin Fire") && (player.controlLeft || player.controlRight) && !IsStandingStill)
             {
                 if (pumpkinCD <= 0)
                 {
@@ -3943,7 +3942,7 @@ namespace FargowiltasSouls
             player.setMonkT2 = true;
             player.setMonkT3 = true;
             //tele through wall until open space on dash into wall
-            if (Soulcheck.GetValue("Shinobi Through Walls") && player.dashDelay > 0 && player.mount.Type == -1 && player.velocity.X == 0)
+            if (SoulConfig.Instance.GetValue("Shinobi Through Walls") && player.dashDelay > 0 && player.mount.Type == -1 && player.velocity.X == 0)
             {
                 var teleportPos = new Vector2();
                 int direction = player.direction;
@@ -3975,7 +3974,7 @@ namespace FargowiltasSouls
 
         public void ShroomiteEffect(bool hideVisual)
         {
-            if (!TerrariaSoul && Soulcheck.GetValue("Shroomite Stealth"))
+            if (!TerrariaSoul && SoulConfig.Instance.GetValue("Shroomite Stealth"))
                 player.shroomiteStealth = true;
 
             ShroomEnchant = true;
@@ -3984,7 +3983,7 @@ namespace FargowiltasSouls
 
         public void SolarEffect()
         {  
-            if (!Soulcheck.GetValue("Solar Shield")) return;
+            if (!SoulConfig.Instance.GetValue("Solar Shield")) return;
 
             player.AddBuff(BuffID.SolarShield3, 5, false);
             player.setSolar = true;
@@ -4254,7 +4253,7 @@ namespace FargowiltasSouls
             AddPet("Turtle Pet", hideVisual, BuffID.PetTurtle, ProjectileID.Turtle);
             AddPet("Lizard Pet", hideVisual, BuffID.PetLizard, ProjectileID.PetLizard);
 
-            if (!TerrariaSoul && Soulcheck.GetValue("Turtle Shell Buff") && IsStandingStill && !player.controlUseItem && !noDodge)
+            if (!TerrariaSoul && SoulConfig.Instance.GetValue("Turtle Shell Buff") && IsStandingStill && !player.controlUseItem && !noDodge)
                 player.AddBuff(mod.BuffType("ShellHide"), 2);
         }
 
@@ -4272,12 +4271,12 @@ namespace FargowiltasSouls
             //portal spawn
             VortexEnchant = true;
             //stealth memes
-            if (Soulcheck.GetValue("Vortex Stealth") && (player.controlDown && player.releaseDown))
+            if (SoulConfig.Instance.GetValue("Vortex Stealth") && (player.controlDown && player.releaseDown))
             {
                 if (player.doubleTapCardinalTimer[0] > 0 && player.doubleTapCardinalTimer[0] != 15)
                 {
                     VortexStealth = !VortexStealth;
-                    if(Soulcheck.GetValue("Vortex Voids") && vortexCD == 0 && VortexStealth)
+                    if(SoulConfig.Instance.GetValue("Vortex Voids") && vortexCD == 0 && VortexStealth)
                     {
                         int p = Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("Void"), 60, 5f, player.whoAmI);
 

@@ -40,7 +40,7 @@ namespace FargowiltasSouls.Projectiles.Souls
 				modPlayer.ChloroEnchant = false;
 			}
 
-            if (!(modPlayer.ChloroEnchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue("Chlorophyte Leaf Crystal"))
+            if (!(modPlayer.ChloroEnchant || modPlayer.TerrariaSoul) || !SoulConfig.Instance.GetValue("Chlorophyte Leaf Crystal"))
             {
                 projectile.Kill();
                 return;
