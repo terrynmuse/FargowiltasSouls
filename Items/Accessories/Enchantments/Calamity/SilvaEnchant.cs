@@ -40,7 +40,7 @@ Increases your rate of fire with all ranged weapons
 Magic projectiles have a 10% chance to cause a massive explosion on enemy hits
 Summons an ancient leaf prism to blast your enemies with life energy
 Rogue weapons have a faster throwing rate while you are above 90% life
-Effects of the Godly Soul Artifact and Yharim's Gift");
+Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
             DisplayName.AddTranslation(GameCulture.Chinese, "始源林海魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'你身上流淌出无尽的生命能量'
@@ -118,6 +118,24 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
                 }
             }
 
+            //THE AMALGAM
+            modPlayer.aBrain = true;
+            if (Soulcheck.GetValue("Fungal Clump Minion"))
+            {
+                modPlayer.fungalClump = true;
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    if (player.FindBuffIndex(calamity.BuffType("FungalClump")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("FungalClump"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("FungalClump")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("FungalClump"), 250, 1f, Main.myPlayer, 0f, 0f);
+                    }
+                }
+            }
+
             if (Soulcheck.GetValue("Godly Soul Artifact"))
             {
                 //godly soul artifact
@@ -166,6 +184,8 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
                     }
                 }
             }
+
+            //pet soon tm
         }
 
         public override void AddRecipes()
@@ -174,22 +194,20 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("SilvaHelm"));
-            recipe.AddIngredient(calamity.ItemType("SilvaHornedHelm"));
-            recipe.AddIngredient(calamity.ItemType("SilvaMaskedCap"));
-            recipe.AddIngredient(calamity.ItemType("SilvaHelmet"));
-            recipe.AddIngredient(calamity.ItemType("SilvaMask"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnySilvaHelmet");
             recipe.AddIngredient(calamity.ItemType("SilvaArmor"));
             recipe.AddIngredient(calamity.ItemType("SilvaLeggings"));
+            recipe.AddIngredient(calamity.ItemType("TheAmalgam"));
             recipe.AddIngredient(calamity.ItemType("GodlySoulArtifact"));
             recipe.AddIngredient(calamity.ItemType("YharimsGift"));
-            recipe.AddIngredient(calamity.ItemType("LightGodsBrilliance"));
             recipe.AddIngredient(calamity.ItemType("AlphaRay"));
             recipe.AddIngredient(calamity.ItemType("ScourgeoftheCosmos"));
+            recipe.AddIngredient(calamity.ItemType("Swordplosion"));
             recipe.AddIngredient(calamity.ItemType("Climax"));
+            recipe.AddIngredient(calamity.ItemType("VoidVortex"));
             recipe.AddIngredient(calamity.ItemType("YharimsCrystal"));
-
-            //fuse helmets, add Swordplosion, add Void Vortex, add Forgotten Dragon Egg, add Fox Drive
+            recipe.AddIngredient(calamity.ItemType("ForgottenDragonEgg"));
+            recipe.AddIngredient(calamity.ItemType("FoxDrive"));
 
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);

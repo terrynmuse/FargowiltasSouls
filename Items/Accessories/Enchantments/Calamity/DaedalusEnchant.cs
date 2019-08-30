@@ -28,7 +28,7 @@ You have a 10% chance to absorb physical attacks and projectiles when hit
 If you absorb an attack you are healed for 1/2 of that attack's damage
 A daedalus crystal floats above you to protect you
 Rogue projectiles throw out crystal shards as they travel
-Effects of Permafrost's Concoction");
+Effects of Permafrost's Concoction and Regenerator");
             DisplayName.AddTranslation(GameCulture.Chinese, "代达罗斯魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'冰霜魔法保护着你...'
@@ -86,6 +86,11 @@ Effects of Permafrost's Concoction");
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("DaedalusCrystal"), 0, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
+
+            //regenerator
+            modPlayer.regenator = true;
+
+            //pet soon tm
         }
 
         public override void AddRecipes()
@@ -94,22 +99,20 @@ Effects of Permafrost's Concoction");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("DaedalusHelm"));
-            recipe.AddIngredient(calamity.ItemType("DaedalusHelmet"));
-            recipe.AddIngredient(calamity.ItemType("DaedalusHat"));
-            recipe.AddIngredient(calamity.ItemType("DaedalusHeadgear"));
-            recipe.AddIngredient(calamity.ItemType("DaedalusVisor"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyDaedalusHelmet");
             recipe.AddIngredient(calamity.ItemType("DaedalusBreastplate"));
             recipe.AddIngredient(calamity.ItemType("DaedalusLeggings"));
-            recipe.AddIngredient(calamity.ItemType("FrostFlare"));
             recipe.AddIngredient(calamity.ItemType("PermafrostsConcoction"));
+            recipe.AddIngredient(calamity.ItemType("Cryophobia"));
+            recipe.AddIngredient(calamity.ItemType("Roxcalibur"));
             recipe.AddIngredient(calamity.ItemType("CrystalBlade"));
             recipe.AddIngredient(calamity.ItemType("CrystalFlareStaff"));
+            recipe.AddIngredient(calamity.ItemType("KelvinCatalyst"));
             recipe.AddIngredient(calamity.ItemType("SlagMagnum"));
-            recipe.AddIngredient(calamity.ItemType("ProporsePistol"));
+            recipe.AddIngredient(calamity.ItemType("Arbalest"));
             recipe.AddIngredient(calamity.ItemType("SHPC"));
-
-            //fuse helmets, add Cryophobia, add Arbalest, add Bears Eye, add regenerator?
+            recipe.AddIngredient(calamity.ItemType("HermitsBox"));
+            recipe.AddIngredient(calamity.ItemType("BearsEye"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

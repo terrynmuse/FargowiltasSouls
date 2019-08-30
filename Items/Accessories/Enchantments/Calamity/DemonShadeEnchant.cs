@@ -91,6 +91,8 @@ This makes them do 1.5 times more damage but they also take five times as much d
                     }
                 }
             }
+
+            //pet soon tm
         }
 
         public override void AddRecipes()
@@ -101,19 +103,17 @@ This makes them do 1.5 times more damage but they also take five times as much d
             recipe.AddIngredient(calamity.ItemType("DemonshadeHelm"));
             recipe.AddIngredient(calamity.ItemType("DemonshadeBreastplate"));
             recipe.AddIngredient(calamity.ItemType("DemonshadeGreaves"));
-            recipe.AddIngredient(calamity.ItemType("Animus"));
             recipe.AddIngredient(calamity.ItemType("Earth"));
-            recipe.AddIngredient(calamity.ItemType("Azathoth"));
-            recipe.AddIngredient(calamity.ItemType("CrystylCrusher"));
+            recipe.AddIngredient(calamity.ItemType("Animus"));
             recipe.AddIngredient(calamity.ItemType("Contagion"));
             recipe.AddIngredient(calamity.ItemType("Megafleet"));
             recipe.AddIngredient(calamity.ItemType("SomaPrime"));
             recipe.AddIngredient(calamity.ItemType("Judgement"));
             recipe.AddIngredient(calamity.ItemType("Apotheosis"));
             recipe.AddIngredient(calamity.ItemType("RoyalKnives"));
+            recipe.AddIngredient(calamity.ItemType("NanoblackReaper"));
             recipe.AddIngredient(calamity.ItemType("TriactisTruePaladinianMageHammerofMight"));
-
-            //add Levi pet
+            recipe.AddIngredient(calamity.ItemType("Levi"));
 
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);

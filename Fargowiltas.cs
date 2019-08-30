@@ -297,6 +297,48 @@ namespace FargowiltasSouls
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyThoriumYoyo", group);
             }
 
+            if (Instance.CalamityLoaded)
+            {
+                Mod calamity = ModLoader.GetMod("CalamityMod");
+
+                //aerospec
+                group = new RecipeGroup(() => Lang.misc[37] + " Aerospec Helmet", calamity.ItemType("AerospecHat"), calamity.ItemType("AerospecHeadgear"), calamity.ItemType("AerospecHelm"), calamity.ItemType("AerospecHood"), calamity.ItemType("AerospecHelmet"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAerospecHelmet", group);
+                //ataxia
+                group = new RecipeGroup(() => Lang.misc[37] + " Ataxia Helmet", calamity.ItemType("AtaxiaHeadgear"), calamity.ItemType("AtaxiaHelm"), calamity.ItemType("AtaxiaHood"), calamity.ItemType("AtaxiaHelmet"), calamity.ItemType("AtaxiaMask"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAtaxiaHelmet", group);
+                //auric
+                group = new RecipeGroup(() => Lang.misc[37] + " Auric Helmet", calamity.ItemType("AuricTeslaHelm"), calamity.ItemType("AuricTeslaPlumedHelm"), calamity.ItemType("AuricTeslaHoodedFacemask"), calamity.ItemType("AuricTeslaSpaceHelmet"), calamity.ItemType("AuricTeslaWireHemmedVisage"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAuricHelmet", group);
+                //bloodflare
+                group = new RecipeGroup(() => Lang.misc[37] + " Bloodflare Helmet", calamity.ItemType("BloodflareHelm"), calamity.ItemType("BloodflareHelmet"), calamity.ItemType("BloodflareHornedHelm"), calamity.ItemType("BloodflareHornedMask"), calamity.ItemType("BloodflareMask"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyBloodflareHelmet", group);
+                //daedalus
+                group = new RecipeGroup(() => Lang.misc[37] + " Daedalus Helmet", calamity.ItemType("DaedalusHelm"), calamity.ItemType("DaedalusHelmet"), calamity.ItemType("DaedalusHat"), calamity.ItemType("DaedalusHeadgear"), calamity.ItemType("DaedalusVisor"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyDaedalusHelmet", group);
+                //godslayer
+                group = new RecipeGroup(() => Lang.misc[37] + " Godslayer Helmet", calamity.ItemType("GodSlayerHelm"), calamity.ItemType("GodSlayerHelmet"), calamity.ItemType("GodSlayerVisage"), calamity.ItemType("GodSlayerHornedHelm"), calamity.ItemType("GodSlayerMask"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyGodslayerHelmet", group);
+                //reaver
+                group = new RecipeGroup(() => Lang.misc[37] + " Reaver Helmet", calamity.ItemType("ReaverHelm"), calamity.ItemType("ReaverVisage"), calamity.ItemType("ReaverMask"), calamity.ItemType("ReaverHelmet"), calamity.ItemType("ReaverCap"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyReaverHelmet", group);
+                //silva
+                group = new RecipeGroup(() => Lang.misc[37] + " Silva Helmet", calamity.ItemType("SilvaHelm"), calamity.ItemType("SilvaHornedHelm"), calamity.ItemType("SilvaMaskedCap"), calamity.ItemType("SilvaHelmet"), calamity.ItemType("SilvaMask"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnySilvaHelmet", group);
+                //statigel
+                group = new RecipeGroup(() => Lang.misc[37] + " Statigel Helmet", calamity.ItemType("StatigelHelm"), calamity.ItemType("StatigelHeadgear"), calamity.ItemType("StatigelCap"), calamity.ItemType("StatigelHood"), calamity.ItemType("StatigelMask"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyStatigelHelmet", group);
+                //tarragon
+                group = new RecipeGroup(() => Lang.misc[37] + " Tarragon Helmet", calamity.ItemType("TarragonHelm"), calamity.ItemType("TarragonVisage"), calamity.ItemType("TarragonMask"), calamity.ItemType("TarragonHornedHelm"), calamity.ItemType("TarragonHelmet"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyTarragonHelmet", group);
+                //victide
+                group = new RecipeGroup(() => Lang.misc[37] + " Victide Helmet", calamity.ItemType("VictideHelm"), calamity.ItemType("VictideVisage"), calamity.ItemType("VictideMask"), calamity.ItemType("VictideHelmet"), calamity.ItemType("VictideHeadgear"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyVictideHelmet", group);
+                //wulfrum
+                group = new RecipeGroup(() => Lang.misc[37] + " Wulfrum Helmet", calamity.ItemType("WulfrumHelm"), calamity.ItemType("WulfrumHeadgear"), calamity.ItemType("WulfrumHood"), calamity.ItemType("WulfrumHelmet"), calamity.ItemType("WulfrumMask"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyWulfrumHelmet", group);
+            }
+
             //evil wood
             group = new RecipeGroup(() => Lang.misc[37] + " Evil Wood", ItemID.Ebonwood, ItemID.Shadewood);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyEvilWood", group);

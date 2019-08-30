@@ -74,6 +74,8 @@ Copper Enchant now bonus procs on enemies in water instead of just have the wet 
 -Pumpkin Enchantment now lets you know that pumpkin pies will inflict Potion sicknes
 -Removed Bone Pickaxe from Miner Enchantment, added Copper Pickaxe
 -Added Bone Pickaxe to World Shaper Soul, removed  Laser Drill
+-All calamity Enchantment recipes reworked, no longer needing all helmets, all rare variants and pets added, PHM require less items, Statigel now PHM
+-Force of Calamities split into Force of..
 
 -Added Shackled immunity to Darksteel Enchantment
 -removed masomode dialogue from the mutant

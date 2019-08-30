@@ -125,22 +125,20 @@ Effects of the Core of the Blood God and Affliction");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("BloodflareMask"));
-            recipe.AddIngredient(calamity.ItemType("BloodflareHornedHelm"));
-            recipe.AddIngredient(calamity.ItemType("BloodflareHornedMask"));
-            recipe.AddIngredient(calamity.ItemType("BloodflareHelmet"));
-            recipe.AddIngredient(calamity.ItemType("BloodflareHelm"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyBloodflareHelmet");
             recipe.AddIngredient(calamity.ItemType("BloodflareBodyArmor"));
             recipe.AddIngredient(calamity.ItemType("BloodflareCuisses"));
             recipe.AddIngredient(calamity.ItemType("CoreOfTheBloodGod"));
             recipe.AddIngredient(calamity.ItemType("EldritchSoulArtifact"));
             recipe.AddIngredient(calamity.ItemType("Affliction"));
-            recipe.AddIngredient(calamity.ItemType("Lacerator"));
+            recipe.AddIngredient(calamity.ItemType("DevilsSunrise"));
             recipe.AddIngredient(calamity.ItemType("MolecularManipulator"));
             recipe.AddIngredient(calamity.ItemType("AethersWhisper"));
             recipe.AddIngredient(calamity.ItemType("DarkSpark"));
-
-            //fuse helmets, add Dodus Handcannon
+            recipe.AddIngredient(calamity.ItemType("DodusHandcannon"));
+            recipe.AddIngredient(calamity.ItemType("TheLastMourning"));
+            recipe.AddIngredient(calamity.ItemType("TimeBolt"));
+            recipe.AddIngredient(calamity.ItemType("LightGodsBrilliance"));
 
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);

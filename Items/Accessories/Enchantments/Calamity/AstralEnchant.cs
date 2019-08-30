@@ -70,15 +70,13 @@ Effects of the Astral Arcanum and Hide of Astrum Deus");
             recipe.AddIngredient(calamity.ItemType("HideofAstrumDeus"));
             recipe.AddIngredient(calamity.ItemType("EyeofMagnus"));
             recipe.AddIngredient(calamity.ItemType("Nebulash"));
+            recipe.AddIngredient(calamity.ItemType("Quasar"));
             recipe.AddIngredient(calamity.ItemType("HivePod"));
-            recipe.AddIngredient(calamity.ItemType("AstralStaff"));
             recipe.AddIngredient(calamity.ItemType("HeavenfallenStardisk"));
             recipe.AddIngredient(calamity.ItemType("AegisBlade"));
             recipe.AddIngredient(calamity.ItemType("Omniblade"));
             recipe.AddIngredient(calamity.ItemType("Lazhar"));
             recipe.AddIngredient(calamity.ItemType("SolsticeClaymore"));
-
-            //add Quasar
 
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);

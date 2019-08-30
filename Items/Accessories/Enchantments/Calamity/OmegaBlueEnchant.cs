@@ -102,6 +102,8 @@ Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
             player.armorPenetration += 100;
             //aquatic emblem
             modPlayer.aquaticEmblem = true;
+
+            //pet soon tm
         }
 
         public override void AddRecipes()
@@ -110,7 +112,6 @@ Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            //Strange Orb one day
             recipe.AddIngredient(calamity.ItemType("OmegaBlueHelmet"));
             recipe.AddIngredient(calamity.ItemType("OmegaBlueChestplate"));
             recipe.AddIngredient(calamity.ItemType("OmegaBlueLeggings"));
@@ -121,12 +122,10 @@ Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
             recipe.AddIngredient(calamity.ItemType("HalibutCannon"));
             recipe.AddIngredient(calamity.ItemType("CalamarisLament"));
             recipe.AddIngredient(calamity.ItemType("TheReaper"));
-            recipe.AddIngredient(calamity.ItemType("SulphuricAcidCannon"));
             recipe.AddIngredient(calamity.ItemType("EidolicWail"));
             recipe.AddIngredient(calamity.ItemType("SDFMG"));
             recipe.AddIngredient(calamity.ItemType("NeptunesBounty"));
-
-            //add The LAst Mourning, add strange orb
+            recipe.AddIngredient(calamity.ItemType("StrangeOrb"));
 
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);

@@ -30,7 +30,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 All armor bonuses from Omega Blue, Auric Tesla, and Demon Shade
 Effects of Profaned Soul Artifact, Core of the Blood God, and Affliction
 Effects of Nebulous Core, Godly Soul Artifact, and Yharim's Gift
-Effects of Counter Scarf, The Community, Draedon's Heart, and The Amalgam
+Effects of Counter Scarf, The Community, , and The Amalgam
 Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
             DisplayName.AddTranslation(GameCulture.Chinese, "暴君之魂");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -214,32 +214,10 @@ Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
             //DEMONSHADE
             mod.GetItem("DemonShadeEnchant").UpdateAccessory(player, hideVisual);
 
-            //counter scarf
-            modPlayer.dodgeScarf = true;
-            modPlayer.dashMod = 1;
-            //the community
-            modPlayer.community = true;
-            //draedons heart
-            modPlayer.draedonsHeart = true;
-            player.buffImmune[calamity.BuffType("Horror")] = true;
-            modPlayer.draedonsStressGain = true;
-            //THE AMALGAM
-            modPlayer.aBrain = true;
-            if (Soulcheck.GetValue("Fungal Clump Minion"))
-            {
-                modPlayer.fungalClump = true;
-                if (player.whoAmI == Main.myPlayer)
-                {
-                    if (player.FindBuffIndex(calamity.BuffType("FungalClump")) == -1)
-                    {
-                        player.AddBuff(calamity.BuffType("FungalClump"), 3600, true);
-                    }
-                    if (player.ownedProjectileCounts[calamity.ProjectileType("FungalClump")] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("FungalClump"), 250, 1f, Main.myPlayer, 0f, 0f);
-                    }
-                }
-            }
+            
+            
+           
+            
             
             if (Soulcheck.GetValue("Poisonous Sea Water") && (player.velocity.X > 0.0 || player.velocity.Y > 0.0 || player.velocity.X < -0.1 || player.velocity.Y < -0.1) && player.whoAmI == Main.myPlayer)
             {
@@ -296,150 +274,8 @@ Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
                     }
                 }
             }
-            if (Soulcheck.GetValue("Elemental Waifus"))
-            {
-                //HEART OF THE ELEMENTS
-                modPlayer.allWaifus = true;
-                modPlayer.elementalHeart = true;
-                int num = NPC.downedMoonlord ? 150 : 90;
-                float num2 = 2f;
-                if (player.ownedProjectileCounts[calamity.ProjectileType("BigBustyRose")] > 1 || player.ownedProjectileCounts[calamity.ProjectileType("SirenLure")] > 1 || player.ownedProjectileCounts[calamity.ProjectileType("DrewsSandyWaifu")] > 1 || player.ownedProjectileCounts[calamity.ProjectileType("SandyWaifu")] > 1 || player.ownedProjectileCounts[calamity.ProjectileType("CloudWaifu")] > 1)
-                {
-                    player.ClearBuff(calamity.BuffType("HotE"));
-                }
-                if (player.FindBuffIndex(calamity.BuffType("HotE")) == -1)
-                {
-                    player.AddBuff(calamity.BuffType("HotE"), 3600, true);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("BigBustyRose")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("BigBustyRose"), (int)(num * num2), 2f, Main.myPlayer, 0f, 0f);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("SirenLure")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SirenLure"), 0, 0f, Main.myPlayer, 0f, 0f);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("DrewsSandyWaifu")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("DrewsSandyWaifu"), (int)(num * num2), 2f, Main.myPlayer, 0f, 0f);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("SandyWaifu")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SandyWaifu"), (int)(num * num2), 2f, Main.myPlayer, 0f, 0f);
-                }
-                if (player.ownedProjectileCounts[calamity.ProjectileType("CloudyWaifu")] < 1)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("CloudyWaifu"), (int)(num * num2), 2f, Main.myPlayer, 0f, 0f);
-                }
-                if (player.velocity.Y == 0f && player.grappling[0] == -1)
-                {
-                    int num3 = (int)player.Center.X / 16;
-                    int num4 = (int)(player.position.Y + player.height - 1f) / 16;
-                    if (Main.tile[num3, num4] == null)
-                    {
-                        Main.tile[num3, num4] = new Tile();
-                    }
-                    if (!Main.tile[num3, num4].active() && Main.tile[num3, num4].liquid == 0 && Main.tile[num3, num4 + 1] != null && WorldGen.SolidTile(num3, num4 + 1))
-                    {
-                        Main.tile[num3, num4].frameY = 0;
-                        Main.tile[num3, num4].slope(0);
-                        Main.tile[num3, num4].halfBrick(false);
-                        if (Main.tile[num3, num4 + 1].type == 0)
-                        {
-                            if (Main.rand.Next(1000) == 0)
-                            {
-                                Main.tile[num3, num4].active(true);
-                                Main.tile[num3, num4].type = 227;
-                                Main.tile[num3, num4].frameX = (short)(34 * Main.rand.Next(1, 13));
-                                while (Main.tile[num3, num4].frameX == 144)
-                                {
-                                    Main.tile[num3, num4].frameX = (short)(34 * Main.rand.Next(1, 13));
-                                }
-                            }
-                            if (Main.netMode == 1)
-                            {
-                                NetMessage.SendTileSquare(-1, num3, num4, 1, 0);
-                            }
-                        }
-                        if (Main.tile[num3, num4 + 1].type == 2)
-                        {
-                            if (Main.rand.Next(2) == 0)
-                            {
-                                Main.tile[num3, num4].active(true);
-                                Main.tile[num3, num4].type = 3;
-                                Main.tile[num3, num4].frameX = (short)(18 * Main.rand.Next(6, 11));
-                                while (Main.tile[num3, num4].frameX == 144)
-                                {
-                                    Main.tile[num3, num4].frameX = (short)(18 * Main.rand.Next(6, 11));
-                                }
-                            }
-                            else
-                            {
-                                Main.tile[num3, num4].active(true);
-                                Main.tile[num3, num4].type = 73;
-                                Main.tile[num3, num4].frameX = (short)(18 * Main.rand.Next(6, 21));
-                                while (Main.tile[num3, num4].frameX == 144)
-                                {
-                                    Main.tile[num3, num4].frameX = (short)(18 * Main.rand.Next(6, 21));
-                                }
-                            }
-                            if (Main.netMode == 1)
-                            {
-                                NetMessage.SendTileSquare(-1, num3, num4, 1, 0);
-                                return;
-                            }
-                        }
-                        else if (Main.tile[num3, num4 + 1].type == 109)
-                        {
-                            if (Main.rand.Next(2) == 0)
-                            {
-                                Main.tile[num3, num4].active(true);
-                                Main.tile[num3, num4].type = 110;
-                                Main.tile[num3, num4].frameX = (short)(18 * Main.rand.Next(4, 7));
-                                while (Main.tile[num3, num4].frameX == 90)
-                                {
-                                    Main.tile[num3, num4].frameX = (short)(18 * Main.rand.Next(4, 7));
-                                }
-                            }
-                            else
-                            {
-                                Main.tile[num3, num4].active(true);
-                                Main.tile[num3, num4].type = 113;
-                                Main.tile[num3, num4].frameX = (short)(18 * Main.rand.Next(2, 8));
-                                while (Main.tile[num3, num4].frameX == 90)
-                                {
-                                    Main.tile[num3, num4].frameX = (short)(18 * Main.rand.Next(2, 8));
-                                }
-                            }
-                            if (Main.netMode == 1)
-                            {
-                                NetMessage.SendTileSquare(-1, num3, num4, 1, 0);
-                                return;
-                            }
-                        }
-                        else if (Main.tile[num3, num4 + 1].type == 60)
-                        {
-                            Main.tile[num3, num4].active(true);
-                            Main.tile[num3, num4].type = 74;
-                            Main.tile[num3, num4].frameX = (short)(18 * Main.rand.Next(9, 17));
-                            if (Main.netMode == 1)
-                            {
-                                NetMessage.SendTileSquare(-1, num3, num4, 1, 0);
-                            }
-                        }
-                    }
-                }
-            }
             
-            //the sponge
-            modPlayer.beeResist = true;
-            modPlayer.aSpark = true;
-            modPlayer.gShell = true;
-            modPlayer.fCarapace = true;
-            modPlayer.absorber = true;
-            modPlayer.aAmpoule = true;
-            //dark sun ring
-            modPlayer.darkSunRing = true;
+            
         }
 
         public override void AddRecipes()
@@ -457,12 +293,7 @@ Effects of Heart of the Elements, The Sponge, and Dark Sun Ring");
             recipe.AddIngredient(null, "AuricEnchant");
             recipe.AddIngredient(null, "DemonShadeEnchant");
 
-            recipe.AddIngredient(calamity.ItemType("TheCommunity"));
-            recipe.AddIngredient(calamity.ItemType("DraedonsHeart"));
-            recipe.AddIngredient(calamity.ItemType("HeartoftheElements"));
-            recipe.AddIngredient(calamity.ItemType("TheAmalgam"));
-            recipe.AddIngredient(calamity.ItemType("Sponge"));
-            recipe.AddIngredient(calamity.ItemType("DarkSunRing"));
+            
 
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);
