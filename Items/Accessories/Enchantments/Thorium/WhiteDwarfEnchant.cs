@@ -44,7 +44,7 @@ Ivory flares deal 0.1% of the hit target's maximum life as damage");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            player.GetModPlayer<ThoriumPlayer>(thorium).whiteDwarfSet = true;
+            player.GetModPlayer<FargoPlayer>().WhiteDwarfEnchant = true;
         }
         
         private readonly string[] items =

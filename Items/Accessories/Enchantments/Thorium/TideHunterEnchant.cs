@@ -21,8 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Tide Hunter Enchantment");
             Tooltip.SetDefault(
 @"'Not just for hunting fish'
-Ranged critical strikes release a splash of foam, slowing nearby enemies
-After four consecutive non-critical strikes, your next ranged attack will mini-crit for 150% damage
+Critical strikes release a splash of foam, slowing nearby enemies
+After four consecutive non-critical strikes, your next attack will mini-crit for 150% damage
 Effects of Goblin War Shield and Agnor's Bowl");
             DisplayName.AddTranslation(GameCulture.Chinese, "猎潮者魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -46,13 +46,13 @@ Effects of Goblin War Shield and Agnor's Bowl");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //tide hunter set bonus
-            thoriumPlayer.tideHunterSet = true;
+            modPlayer.TideHunterEnchant = true;
             //angler bowl
             thorium.GetItem("AnglerBowl").UpdateAccessory(player, hideVisual);
             //yew set bonus
-            thoriumPlayer.yewCharging = true;
+            modPlayer.YewEnchant = true;
             //goblin war shield
             thorium.GetItem("GoblinWarshield").UpdateAccessory(player, hideVisual);
         }

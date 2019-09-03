@@ -22,11 +22,11 @@ namespace FargowiltasSouls
         internal static Fargowiltas Instance;
         //loaded
         internal bool FargosLoaded;
-        internal bool TerraCompLoaded;
         internal bool ThoriumLoaded;
         internal bool BlueMagicLoaded;
         internal bool CalamityLoaded;
         internal bool DBTLoaded;
+        internal bool SOALoaded;
         internal bool MasomodeEX;
 
         public UserInterface CustomResources;
@@ -104,9 +104,9 @@ namespace FargowiltasSouls
                 FargosLoaded = ModLoader.GetMod("Fargowiltas") != null;
                 BlueMagicLoaded = ModLoader.GetMod("Bluemagic") != null;
                 CalamityLoaded = ModLoader.GetMod("CalamityMod") != null;
-                TerraCompLoaded = ModLoader.GetMod("TerraCompilation") != null;
                 ThoriumLoaded = ModLoader.GetMod("ThoriumMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
+                SOALoaded = ModLoader.GetMod("SacredTools") != null;
                 MasomodeEX = ModLoader.GetMod("MasomodeEX") != null;
 
                 DebuffIDs = new List<int> { 20, 22, 23, 24, 36, 39, 44, 46, 47, 67, 68, 69, 70, 80,
@@ -255,38 +255,17 @@ namespace FargowiltasSouls
             RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Drax", ItemID.Drax, ItemID.PickaxeAxe);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyDrax", group);
 
-            //does this mod even exist anymore tbh
-            if (Instance.TerraCompLoaded)
-            {
-                //cobalt
-                group = new RecipeGroup(() => Lang.misc[37] + " Cobalt Repeater", ItemID.CobaltRepeater, ItemID.PalladiumRepeater,
-                    ModLoader.GetMod("TerraCompilation").ItemType("CobaltComp"), ModLoader.GetMod("TerraCompilation").ItemType("PaladiumComp"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyCobaltRepeater", group);
+            //cobalt
+            group = new RecipeGroup(() => Lang.misc[37] + " Cobalt Repeater", ItemID.CobaltRepeater, ItemID.PalladiumRepeater);
+            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyCobaltRepeater", group);
 
-                //mythril
-                group = new RecipeGroup(() => Lang.misc[37] + " Mythril Repeater", ItemID.MythrilRepeater, ItemID.OrichalcumRepeater,
-                    ModLoader.GetMod("TerraCompilation").ItemType("MythrilComp"), ModLoader.GetMod("TerraCompilation").ItemType("OrichalcumComp"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyMythrilRepeater", group);
+            //mythril
+            group = new RecipeGroup(() => Lang.misc[37] + " Mythril Repeater", ItemID.MythrilRepeater, ItemID.OrichalcumRepeater);
+            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyMythrilRepeater", group);
 
-                //adamantite
-                group = new RecipeGroup(() => Lang.misc[37] + " Adamantite Repeater", ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater,
-                    ModLoader.GetMod("TerraCompilation").ItemType("AdamantiteComp"), ModLoader.GetMod("TerraCompilation").ItemType("TitaniumComp"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
-            }
-            else
-            {
-                //cobalt
-                group = new RecipeGroup(() => Lang.misc[37] + " Cobalt Repeater", ItemID.CobaltRepeater, ItemID.PalladiumRepeater);
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyCobaltRepeater", group);
-
-                //mythril
-                group = new RecipeGroup(() => Lang.misc[37] + " Mythril Repeater", ItemID.MythrilRepeater, ItemID.OrichalcumRepeater);
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyMythrilRepeater", group);
-
-                //adamantite
-                group = new RecipeGroup(() => Lang.misc[37] + " Adamantite Repeater", ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater);
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
-            }
+            //adamantite
+            group = new RecipeGroup(() => Lang.misc[37] + " Adamantite Repeater", ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater);
+            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
 
             if (Instance.ThoriumLoaded)
             {
@@ -337,6 +316,18 @@ namespace FargowiltasSouls
                 //wulfrum
                 group = new RecipeGroup(() => Lang.misc[37] + " Wulfrum Helmet", calamity.ItemType("WulfrumHelm"), calamity.ItemType("WulfrumHeadgear"), calamity.ItemType("WulfrumHood"), calamity.ItemType("WulfrumHelmet"), calamity.ItemType("WulfrumMask"));
                 RecipeGroup.RegisterGroup("FargowiltasSouls:AnyWulfrumHelmet", group);
+            }
+
+            if (Instance.SOALoaded)
+            {
+                Mod soa = ModLoader.GetMod("SacredTools");
+
+                //flarium
+                group = new RecipeGroup(() => Lang.misc[37] + " Flarium Helmet", soa.ItemType("FlariumCowl"), soa.ItemType("FlariumHelmet"), soa.ItemType("FlariumHood"), soa.ItemType("FlariumCrown"), soa.ItemType("FlariumMask"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyFlariumHelmet", group);
+                //asthraltite
+                group = new RecipeGroup(() => Lang.misc[37] + " Asthraltite Helmet", soa.ItemType("AsthralMelee"), soa.ItemType("AsthralRanged"), soa.ItemType("AsthralMage"), soa.ItemType("AsthralSummon"), soa.ItemType("AsthralThrown"));
+                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAstralHelmet", group);
             }
 
             //evil wood

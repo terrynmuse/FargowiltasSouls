@@ -71,7 +71,7 @@ Effects of Lich's Gaze");
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddIngredient(thorium.ItemType("DeathGripPro"), 300);
+            recipe.AddIngredient(thorium.ItemType("SoulBomb"), 300);
             recipe.AddIngredient(thorium.ItemType("CadaverCornet"));
             recipe.AddIngredient(thorium.ItemType("TitanJavelin"), 300);
             recipe.AddIngredient(thorium.ItemType("PumpkinPaint"));

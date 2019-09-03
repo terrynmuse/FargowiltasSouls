@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Warlock Enchantment");
             Tooltip.SetDefault(
 @"'Better than a wizard'
-Radiant critical strikes will generate up to 15 shadow wisps
+Critical strikes will generate up to 15 shadow wisps
 Pressing the 'Special Ability' key will unleash every stored shadow wisp towards your cursor's position
 Effects of Demon Tongue
 Summons a Li'l Devil to attack enemies");
@@ -50,17 +50,12 @@ Summons a Li'l Devil to attack enemies");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            if (Soulcheck.GetValue("Warlock Wisps"))
-            {
-                //set bonus
-                thoriumPlayer.warlockSet = true;
-            }
-            
+            //set bonus
+            modPlayer.WarlockEnchant = true;
             //demon tongue
             thoriumPlayer.darkAura = true;
             thoriumPlayer.radiantLifeCost = 2;
             //lil devil
-            modPlayer.WarlockEnchant = true;
             modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);
         }
         

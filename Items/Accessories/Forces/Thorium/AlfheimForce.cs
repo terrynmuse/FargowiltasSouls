@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
 @"'Elven mysteries unfold before you...'
 Healing spells heal an additional 5 life and shortly increase the healed player's maximum life by 50
 Every 5 seconds you generate up to 3 holy crosses
-Radiant critical strikes will generate up to 15 shadow wisps
+Critical strikes will generate up to 15 shadow wisps
 Pressing the 'Special Ability' key will unleash them towards your cursor's position
 A biotech probe will assist you in healing your allies
 Your radiant damage has a 15% chance to release a blinding flash of light

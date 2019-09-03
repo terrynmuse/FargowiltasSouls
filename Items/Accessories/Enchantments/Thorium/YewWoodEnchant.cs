@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Yew-Wood Enchantment");
             Tooltip.SetDefault(
 @"'This strange wood comes from a far away land'
-After four consecutive non-critical strikes, your next ranged attack will mini-crit for 150% damage
+After four consecutive non-critical strikes, your next attack will mini-crit for 150% damage
 Effects of Goblin War Shield");
             DisplayName.AddTranslation(GameCulture.Chinese, "紫杉木魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -44,9 +44,9 @@ Effects of Goblin War Shield");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //yew set bonus
-            thoriumPlayer.yewCharging = true;
+            modPlayer.YewEnchant = true;
             //goblin war shield
             thorium.GetItem("GoblinWarshield").UpdateAccessory(player, hideVisual);
         }

@@ -79,9 +79,6 @@ Summons several pets");
             //inner flame
             thoriumPlayer.spiritFlame = true;
 
-            //plague lord flask effect
-            modPlayer.HelheimForce = true;
-
             if (Soulcheck.GetValue("Dread Speed"))
             {
                 //dread
@@ -167,6 +164,7 @@ Summons several pets");
             thoriumPlayer.plagueSet = true;
             //lich gaze
             thoriumPlayer.lichGaze = true;
+            modPlayer.PlagueAcc = true;
         }
 
         public override void AddRecipes()

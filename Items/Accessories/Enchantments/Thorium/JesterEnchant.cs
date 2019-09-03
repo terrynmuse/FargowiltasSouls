@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Jester Enchantment");
             Tooltip.SetDefault(
 @"'Clowning around'
-Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
+Critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Fan Letter");
             DisplayName.AddTranslation(GameCulture.Chinese, "小丑魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -44,8 +44,9 @@ Effects of Fan Letter");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.jesterSet = true;
+            modPlayer.JesterEnchant = true;
             //fan letter
             thoriumPlayer.bardResourceMax2 += 2;
         }

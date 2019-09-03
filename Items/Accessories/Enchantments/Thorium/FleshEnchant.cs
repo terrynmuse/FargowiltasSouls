@@ -67,7 +67,7 @@ Summons a pet Flying Blister");
             "ToothOfTheConsumer",
             "FleshMace",
             "BloodBelcher",
-            "BloodDrinker",
+            "TlordsTsword",
             "BlisterSack"
         };
 

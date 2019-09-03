@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Bronze Enchantment");
             Tooltip.SetDefault(
 @"'You have the favor of Zeus'
-Thrown damage has a chance to cause a lightning bolt to strike
+Attacks have a chance to cause a lightning bolt to strike
 Effects of Olympic Torch, Champion's Rebuttal, Spartan Sadals, and Spartan's Subwoofer");
             DisplayName.AddTranslation(GameCulture.Chinese, "青铜魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -46,9 +46,10 @@ Effects of Olympic Torch, Champion's Rebuttal, Spartan Sadals, and Spartan's Sub
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //lightning
-            thoriumPlayer.greekSet = true;
+            modPlayer.BronzeEnchant = true;
             //rebuttal
             thoriumPlayer.championShield = true;
             //sandles

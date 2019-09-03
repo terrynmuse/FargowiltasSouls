@@ -111,8 +111,8 @@ Effects of Permafrost's Concoction and Regenerator");
             recipe.AddIngredient(calamity.ItemType("SlagMagnum"));
             recipe.AddIngredient(calamity.ItemType("Arbalest"));
             recipe.AddIngredient(calamity.ItemType("SHPC"));
-            recipe.AddIngredient(calamity.ItemType("HermitsBox"));
-            recipe.AddIngredient(calamity.ItemType("BearsEye"));
+            recipe.AddIngredient(calamity.ItemType("IbarakiBox"));
+            recipe.AddIngredient(calamity.ItemType("BearEye"));
 
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);

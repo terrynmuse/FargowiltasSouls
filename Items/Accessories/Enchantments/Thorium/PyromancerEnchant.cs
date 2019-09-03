@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Pyromancer Enchantment");
             Tooltip.SetDefault(
 @"'Your magma fortified army's molten gaze shall be feared'
-Magic damage will heavily burn and damage all adjacent enemies
+Attacks will heavily burn and damage all adjacent enemies
 Pressing the 'Special Ability' key will unleash an echo of Slag Fury's power");
             DisplayName.AddTranslation(GameCulture.Chinese, "炎法魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -57,10 +57,10 @@ Pressing the 'Special Ability' key will unleash an echo of Slag Fury's power");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //pyro magic set
-            thoriumPlayer.pyro = true;
-            thoriumPlayer.pyroSet = true;
+            modPlayer.PyroEnchant = true;
             //pyro summon bonus
             thoriumPlayer.napalmSet = true;
         }

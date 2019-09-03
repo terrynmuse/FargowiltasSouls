@@ -100,7 +100,6 @@ Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
                 modPlayer.silvaThrowing = true;
             }
             
-
             if (Soulcheck.GetValue("Silva Crystal Minion"))
             {
                 //summon
@@ -202,7 +201,7 @@ Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
             recipe.AddIngredient(calamity.ItemType("YharimsGift"));
             recipe.AddIngredient(calamity.ItemType("AlphaRay"));
             recipe.AddIngredient(calamity.ItemType("ScourgeoftheCosmos"));
-            recipe.AddIngredient(calamity.ItemType("Swordplosion"));
+            recipe.AddIngredient(calamity.ItemType("Swordsplosion"));
             recipe.AddIngredient(calamity.ItemType("Climax"));
             recipe.AddIngredient(calamity.ItemType("VoidVortex"));
             recipe.AddIngredient(calamity.ItemType("YharimsCrystal"));

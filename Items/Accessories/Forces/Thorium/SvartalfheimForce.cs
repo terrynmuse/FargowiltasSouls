@@ -67,8 +67,6 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //includes bronze lightning
-            modPlayer.SvartalfheimForce = true;
             //granite
             player.fireWalk = true;
             player.lavaImmune = true;
@@ -93,6 +91,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             }
 
             //bronze
+            modPlayer.BronzeEnchant = true;
             //rebuttal
             thoriumPlayer.championShield = true;
 

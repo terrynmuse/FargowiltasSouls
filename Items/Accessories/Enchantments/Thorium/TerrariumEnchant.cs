@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'All will fall before your might...'
 The energy of Terraria seeks to protect you
-Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
+Critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Crietz and Band of Replenishment
 Effects of Fan Letter and Terrarium Surround Sound");
             DisplayName.AddTranslation(GameCulture.Chinese, "元素之灵魔石");
@@ -62,6 +62,7 @@ Effects of Fan Letter and Terrarium Surround Sound");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //terrarium set bonus
             timer++;
@@ -91,7 +92,7 @@ Effects of Fan Letter and Terrarium Surround Sound");
             //band of replenishment
             thoriumPlayer.BandofRep = true;
             //jester bonus
-            thoriumPlayer.jesterSet = true;
+            modPlayer.JesterEnchant = true;
             //fan letter
             thoriumPlayer.bardResourceMax2 += 2;
         }

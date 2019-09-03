@@ -406,7 +406,7 @@ Effects of Heart of the Elements and The Sponge");
             recipe.AddIngredient(calamity.ItemType("DraedonsExoblade"));
             recipe.AddIngredient(calamity.ItemType("ArkoftheCosmos"));
             recipe.AddIngredient(calamity.ItemType("DragonPow"));
-            recipe.AddIngredient(calamity.ItemType("TheOracle"));
+            recipe.AddIngredient(calamity.ItemType("Oracle"));
             recipe.AddIngredient(calamity.ItemType("Drataliornus"));
             recipe.AddIngredient(calamity.ItemType("Photoviscerator"));
             recipe.AddIngredient(calamity.ItemType("VividClarity"));

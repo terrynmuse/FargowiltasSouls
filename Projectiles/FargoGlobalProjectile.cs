@@ -1034,7 +1034,7 @@ namespace FargowiltasSouls.Projectiles
             if (Soulcheck.GetValue("Jester Bell"))
             {
                 //jester effect
-                if (modPlayer.MidgardForce && crit)
+                if (modPlayer.JesterEnchant && crit)
                 {
                     for (int m = 0; m < 1000; m++)
                     {
