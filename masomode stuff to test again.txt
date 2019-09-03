@@ -65,6 +65,10 @@ nymph shoots fake hearts
 halved fish EX timeLeft on p3 razors
 boss deathrays no longer emit light
 reduced ML/fish resists to 33%
+added screm painting (post-mutant painter drop, only when mutant boss is present)
+voodoo demon incinerating doll actually kills guide
+lava in hell inflicts shadowflame
+king slime shoots aimed slime spikes
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

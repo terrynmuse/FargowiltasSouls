@@ -1207,11 +1207,16 @@ namespace FargowiltasSouls.NPCs
                             Timer--;
                             if (Timer <= 0 && !BossIsAlive(ref wallBoss, NPCID.WallofFlesh) && npc.HasPlayerTarget && Main.netMode != 1)
                             {
-                                NPC.SpawnWOF(Main.player[npc.target].Center);
-                                if (Main.netMode == 0)
-                                    Main.NewText("Wall of Flesh has awoken!", 175, 75, 255);
-                                else if (Main.netMode == 2)
-                                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Wall of Flesh has awoken!"), new Color(175, 75, 255));
+                                int guide = NPC.FindFirstNPC(NPCID.Guide);
+                                if (guide != -1 && Main.npc[guide].active)
+                                {
+                                    Main.npc[guide].StrikeNPC(9999, 0f, 0);
+                                    NPC.SpawnWOF(Main.player[npc.target].Center);
+                                    /*if (Main.netMode == 0)
+                                        Main.NewText("Wall of Flesh has awoken!", 175, 75, 255);
+                                    else if (Main.netMode == 2)
+                                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Wall of Flesh has awoken!"), new Color(175, 75, 255));*/
+                                }
                                 npc.Transform(NPCID.Demon);
                             }
                         }
@@ -2298,6 +2303,21 @@ namespace FargowiltasSouls.NPCs
                                         speed = speed.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-5, 5)));
                                         Projectile.NewProjectile(spawn, speed, mod.ProjectileType("SlimeBallHostile"), npc.damage / 5, 0f, Main.myPlayer);
                                     }
+                                }
+                            }
+
+                            if (++Timer > 300)
+                            {
+                                Timer = 0;
+                                const float gravity = 0.15f;
+                                const float time = 120f;
+                                Vector2 distance = Main.player[npc.target].Center - npc.Center + Main.player[npc.target].velocity * 30f;
+                                distance.X = distance.X / time;
+                                distance.Y = distance.Y / time - 0.5f * gravity * time;
+                                for (int i = 0; i < 10; i++)
+                                {
+                                    Projectile.NewProjectile(npc.Center, distance + Main.rand.NextVector2Square(-0.5f, 0.5f),
+                                        mod.ProjectileType("SlimeSpike"), npc.damage / 5, 0f, Main.myPlayer);
                                 }
                             }
                         }
@@ -8704,6 +8724,11 @@ namespace FargowiltasSouls.NPCs
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("SinisterIcon"));
                         break;
                     #endregion
+
+                    case NPCID.Painter:
+                        if (FargoSoulsWorld.downedMutant && NPC.AnyNPCs(mod.NPCType("MutantBoss")))
+                            Item.NewItem(npc.Hitbox, mod.ItemType("ScremPainting"));
+                        break;
 
                     default:
                         break;

@@ -813,8 +813,13 @@ namespace FargowiltasSouls
                     player.fallStart = (int)(player.position.Y / 16f);
                 }
 
-                if (player.ZoneUnderworldHeight && !(player.fireWalk || PureHeart))
-                    player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                if (player.ZoneUnderworldHeight)
+                {
+                    if (!(player.fireWalk || PureHeart))
+                        player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                    if (player.lavaWet)
+                        player.AddBuff(mod.BuffType("Shadowflame"), 2);
+                }
 
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
                     player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
@@ -882,16 +887,18 @@ namespace FargowiltasSouls
                 {
                     bool inLiquid = Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
                     if (!inLiquid)
-                        player.breath -= 3;
-                    if (++MasomodeSpaceBreathTimer > 10)
                     {
-                        MasomodeSpaceBreathTimer = 0;
-                        player.breath--;
+                        player.breath -= 3;
+                        if (++MasomodeSpaceBreathTimer > 10)
+                        {
+                            MasomodeSpaceBreathTimer = 0;
+                            player.breath--;
+                        }
+                        if (player.breath == 0)
+                            Main.PlaySound(23);
+                        if (player.breath <= 0)
+                            player.AddBuff(BuffID.Suffocation, 2);
                     }
-                    if (player.breath == 0)
-                        Main.PlaySound(23);
-                    if (player.breath <= 0)
-                        player.AddBuff(BuffID.Suffocation, 2);
                 }
 
                 if (!PureHeart && !player.buffImmune[BuffID.Webbed] && player.stickyBreak > 0)
