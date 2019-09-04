@@ -77,7 +77,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 projectile.velocity.Y += 10f / 120f;
                 projectile.rotation += projectile.velocity.Length() / 20f;
-
+                projectile.localAI[1] += projectile.velocity.Y;
                 projectile.alpha -= 2;
                 if (projectile.alpha <= 0)
                 {
@@ -103,6 +103,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 {
                     NPC npc = Main.npc[(int)projectile.ai[1]];
                     projectile.Center = npc.Center;
+                    projectile.position.Y += projectile.localAI[1];
                 }
 
                 if (target >= 0 && Main.player[target].active && !Main.player[target].dead)

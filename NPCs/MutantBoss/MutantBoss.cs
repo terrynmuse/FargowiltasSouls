@@ -202,8 +202,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[1] = 0;
                         if (Main.netMode != 1)
                         {
-                            SpawnSphereRing(10, 7f, npc.defDamage / 2, 0.5f);
-                            SpawnSphereRing(10, 7f, npc.defDamage / 2, -.5f);
+                            SpawnSphereRing(7, 7f, npc.defDamage / 2, 0.5f);
+                            SpawnSphereRing(7, 7f, npc.defDamage / 2, -.5f);
                         }
                     }
                     if (++npc.ai[2] > 1020)
@@ -236,19 +236,21 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (!AliveCheck(player))
                         break;
                     npc.velocity = Vector2.Zero;
-                    if (++npc.ai[1] > 2)
+                    if (++npc.ai[1] > 3)
                     {
                         Main.PlaySound(SoundID.Item12, npc.Center);
                         npc.ai[1] = 0;
-                        npc.ai[2] += 0.7f;
+                        npc.ai[2] += (float)Math.PI / 9 / 480 * npc.ai[3];
+                        if (npc.ai[2] > (float)Math.PI)
+                            npc.ai[2] -= (float)Math.PI * 2;
                         if (Main.netMode != 1)
-                            for (int i = 0; i < 4; i++)
-                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 2 * i), mod.ProjectileType("MutantEye"), npc.defDamage / 3, 0f, Main.myPlayer);
+                            for (int i = 0; i < 8; i++)
+                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 4 * i), mod.ProjectileType("MutantEye"), npc.defDamage / 3, 0f, Main.myPlayer);
                     }
-                    if (++npc.ai[3] > 360)
+                    if (++npc.ai[3] > 480)
                     {
                         npc.TargetClosest();
-                        npc.ai[0]++;
+                        npc.ai[0]--;
                         npc.ai[1] = 0;
                         npc.ai[2] = 0;
                         npc.ai[3] = 0;
@@ -267,16 +269,16 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (!AliveCheck(player))
                         break;
                     npc.velocity = Vector2.Zero;
-                    if (++npc.ai[1] > 10 && npc.ai[3] > 60)
+                    if (++npc.ai[1] > 10 && npc.ai[3] > 60 && npc.ai[3] < 300)
                     {
                         npc.ai[1] = 0;
                         SpawnSphereRing(12, 12f, npc.defDamage / 3, -1f);
                         SpawnSphereRing(12, 12f, npc.defDamage / 3, 1f);
                     }
-                    if (++npc.ai[3] > 300)
+                    if (++npc.ai[3] > 420)
                     {
                         npc.netUpdate = true;
-                        npc.ai[0]++;
+                        npc.ai[0]--;
                         npc.ai[1] = 0;
                         npc.ai[2] = 0;
                         npc.ai[3] = 0;
@@ -814,10 +816,12 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         Main.PlaySound(SoundID.Item12, npc.Center);
                         npc.ai[1] = 0;
-                        npc.ai[2] += (float)Math.PI / 87f + (float)Math.PI / 23f * npc.ai[3] / 360;
+                        npc.ai[2] += (float)Math.PI / 9 / 480 * npc.ai[3];
+                        if (npc.ai[2] > (float)Math.PI)
+                            npc.ai[2] -= (float)Math.PI * 2;
                         if (Main.netMode != 1)
-                            for (int i = 0; i < 4; i++)
-                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 2 * i), mod.ProjectileType("MutantEye"), npc.damage / 5, 0f, Main.myPlayer);
+                            for (int i = 0; i < 6; i++)
+                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 3 * i), mod.ProjectileType("MutantEye"), npc.defDamage / 3, 0f, Main.myPlayer);
                     }
                     if (++npc.ai[3] > 360)
                     {
@@ -1548,6 +1552,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             npc.life = 1;
             npc.active = true;
+            npc.localAI[3] = 2;
             if (Main.netMode != 1 && npc.ai[0] > -1)
             {
                 if (npc.ai[0] < 11 && Main.netMode != 1)
