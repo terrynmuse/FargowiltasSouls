@@ -21,7 +21,7 @@ Summons a pet Squashling");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'你对南瓜的突发渴望永远不会得到满足'
 走路时会留下一道火焰路径
-南瓜派会使你回满血
+南瓜派会使你回满血, 并获得3分钟的抗药性
 召唤一个宠物南瓜娃娃");
         }
 
