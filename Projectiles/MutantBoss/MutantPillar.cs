@@ -102,7 +102,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 else
                 {
                     NPC npc = Main.npc[(int)projectile.ai[1]];
-                    projectile.position += npc.position - npc.oldPosition;
+                    projectile.Center = npc.Center;
                 }
 
                 if (target >= 0 && Main.player[target].active && !Main.player[target].dead)

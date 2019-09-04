@@ -144,7 +144,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             float speedModifier;
             switch ((int)npc.ai[0])
             {
-                case -5: //fade out, drop a mutant
+                case -7: //fade out, drop a mutant
                     npc.dontTakeDamage = true;
                     for (int i = 0; i < 5; i++)
                     {
@@ -169,7 +169,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     break;
 
-                case -4: //actually defeated
+                case -6: //actually defeated
                     if (!AliveCheck(player))
                         break;
                     npc.ai[3] -= (float)Math.PI / 6f / 60f;
@@ -193,7 +193,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     break;
 
-                case -3: //FINAL SPARK
+                case -5: //FINAL SPARK
                     if (!AliveCheck(player))
                         break;
                     npc.velocity = Vector2.Zero;
@@ -202,8 +202,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[1] = 0;
                         if (Main.netMode != 1)
                         {
-                            SpawnSphereRing(6, 7f, npc.defDamage / 3, 0.5f);
-                            SpawnSphereRing(6, 7f, npc.defDamage / 3, -.5f);
+                            SpawnSphereRing(10, 7f, npc.defDamage / 2, 0.5f);
+                            SpawnSphereRing(10, 7f, npc.defDamage / 2, -.5f);
                         }
                     }
                     if (++npc.ai[2] > 1020)
@@ -219,7 +219,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     else if (npc.ai[2] == 420 && Main.netMode != 1)
                     {
                         npc.ai[3] = npc.DirectionFrom(player.Center).ToRotation();
-                        Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.ai[3]), mod.ProjectileType("MutantGiantDeathray2"), npc.defDamage / 2, 0f, Main.myPlayer, 0, npc.whoAmI);
+                        Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.ai[3]), mod.ProjectileType("MutantGiantDeathray2"), npc.defDamage, 0f, Main.myPlayer, 0, npc.whoAmI);
                         EdgyBossText("This is my final attack!");
                     }
                     for (int i = 0; i < 5; i++)
@@ -229,7 +229,62 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         Main.dust[d].noLight = true;
                         Main.dust[d].velocity *= 4f;
                     }
-                    npc.ai[3] -= 2f * (float)Math.PI * 1f / 6.5f / 60f;
+                    npc.ai[3] -= 2f * (float)Math.PI * 1f / 6f / 60f;
+                    break;
+
+                case -4: //true boundary
+                    npc.velocity = Vector2.Zero;
+                    if (++npc.ai[1] > 2)
+                    {
+                        Main.PlaySound(SoundID.Item12, npc.Center);
+                        npc.ai[1] = 0;
+                        npc.ai[2] += 0.7f;
+                        if (Main.netMode != 1)
+                            for (int i = 0; i < 4; i++)
+                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 2 * i), mod.ProjectileType("MutantEye"), npc.defDamage / 3, 0f, Main.myPlayer);
+                    }
+                    if (++npc.ai[3] > 360)
+                    {
+                        npc.TargetClosest();
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = 0;
+                        npc.ai[3] = 0;
+                        npc.netUpdate = true;
+                    }
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].noLight = true;
+                        Main.dust[d].velocity *= 4f;
+                    }
+                    break;
+
+                case -3: //okuu nonspell
+                    npc.velocity = Vector2.Zero;
+                    if (++npc.ai[1] > 10 && npc.ai[3] > 60)
+                    {
+                        npc.ai[1] = 0;
+                        SpawnSphereRing(12, 12f, npc.defDamage / 3, -1f);
+                        SpawnSphereRing(12, 12f, npc.defDamage / 3, 1f);
+                    }
+                    if (++npc.ai[3] > 300)
+                    {
+                        npc.netUpdate = true;
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = 0;
+                        npc.ai[3] = 0;
+                        npc.TargetClosest();
+                    }
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].noLight = true;
+                        Main.dust[d].velocity *= 4f;
+                    }
                     break;
 
                 case -2: //final void rays
@@ -239,7 +294,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (--npc.ai[1] < 0)
                     {
                         if (Main.netMode != 1)
-                            Projectile.NewProjectile(npc.Center, new Vector2(2, 0).RotatedBy(npc.ai[2]), mod.ProjectileType("MutantMark1"), npc.defDamage / 4, 0f, Main.myPlayer);
+                            Projectile.NewProjectile(npc.Center, new Vector2(2, 0).RotatedBy(npc.ai[2]), mod.ProjectileType("MutantMark1"), npc.defDamage / 3, 0f, Main.myPlayer);
                         npc.ai[1] = 2;
                         npc.ai[2] += npc.ai[3];
                         if (npc.localAI[0]++ == 30 || npc.localAI[0] == 60)
