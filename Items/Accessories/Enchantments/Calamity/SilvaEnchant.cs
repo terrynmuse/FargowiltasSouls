@@ -57,7 +57,7 @@ Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
 魔法抛射物击中敌人时有10%概率造成大爆炸
 召唤一个远古叶晶用生命之力轰炸敌人
 生命值高于90%时, 提高盗贼武器攻速
-拥有圣魂神物和魔君的礼物的效果");
+拥有聚合之脑, 圣魂神物和魔君的礼物的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

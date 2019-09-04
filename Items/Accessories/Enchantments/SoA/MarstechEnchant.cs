@@ -26,6 +26,13 @@ Dealing damage charges up an energy forcefield around you that damages enemies a
 Can be instantly discharged by pressing [Ability], which will cause a shockwave to damage all nearby enemies 
 Damage, range and debuff duration are increased by forcefield strength 
 Has a cooldown of 1 minute");
+            DisplayName.AddTranslation(GameCulture.Chinese, "火星科技魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'有了科技, 谁还需要魔法呢?'
+造成伤害会充能一层随时间衰退的能量力场, 对敌人造成伤害
+按下[特殊能力]键会立即进行能量放出, 造成冲击波对附近所有敌人造成伤害
+力场会增加伤害, 射程和Debuff持续时间
+1分钟冷却");
         }
 
         public override void SetDefaults()

@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Summons a sword familiar that scales with minion damage";
             string tooltip_ch =
 @"'你有足够的力量驾驭我吗?'
-召唤一柄伤害与召唤伤害挂钩的剑";
+召唤一柄剑";
 
             if(thorium != null)
             {

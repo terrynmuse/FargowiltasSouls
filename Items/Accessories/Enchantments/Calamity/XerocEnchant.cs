@@ -36,7 +36,8 @@ Effects of The Community");
 远程攻击生成克希洛克火花
 魔法攻击生成克希洛克法球
 召唤攻击生成克希洛克泡泡
-盗贼攻击生成克希洛克之星");
+盗贼攻击生成克希洛克之星
+拥有归一元心石的效果");
         }
 
         public override void SetDefaults()

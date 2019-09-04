@@ -26,6 +26,13 @@ Pressing [Ability] will activate 'Dreadfire Aura'.
 'Dreadfire Aura' increases minion damage greatly for a minute. 
 3 minute cooldown
 Effects of Pumpkin Amulet");
+            DisplayName.AddTranslation(GameCulture.Chinese, "惧焰魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'拉内克的灵魂指引着你'
+按[特殊能力]键将激活'恐怖火环'.
+'恐怖火环'大大增加召唤伤害, 持续时间1分钟.
+3分钟冷却时间
+拥有南瓜护身符的效果");
         }
 
         public override void SetDefaults()

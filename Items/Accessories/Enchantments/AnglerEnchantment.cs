@@ -16,7 +16,7 @@ Increases fishing skill
 All fishing rods will have 4 extra lures");
             DisplayName.AddTranslation(GameCulture.Chinese, "渔夫魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
-@"'只要不全是鞋子,你可以高高兴兴地回家'
+@"'只要不全是鞋子, 你可以高高兴兴地回家'
 增加钓鱼技能
 所有鱼竿将会增加4个额外的鱼饵");
         }

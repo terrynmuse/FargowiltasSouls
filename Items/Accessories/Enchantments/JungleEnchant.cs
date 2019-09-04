@@ -24,7 +24,6 @@ All herb collection is doubled
             string tooltip_ch =
 @"'丛林之怒深藏其中'
 受到伤害会释放出有毒的孢子爆炸
-孢子伤害与魔法伤害挂钩
 所有草药收获翻倍";
 
             if(thorium != null)

@@ -24,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"''
 
 Effects of Stone of Resonance");
+            DisplayName.AddTranslation(GameCulture.Chinese, "卢克斯魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"''
+
+拥有夜明共振石的效果");
         }
 
         public override void SetDefaults()

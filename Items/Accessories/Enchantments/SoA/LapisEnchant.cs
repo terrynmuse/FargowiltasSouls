@@ -23,6 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
             Tooltip.SetDefault(
 @"'Gotta go fast'
 ");
+            DisplayName.AddTranslation(GameCulture.Chinese, "青金魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'Gotta go fast'
+");
         }
 
         public override void SetDefaults()

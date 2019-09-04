@@ -20,8 +20,7 @@ Enemies may explode into needles on death");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'太解渴了!'
 反射25%接触伤害
-敌人在死亡时可能会爆出刺
-刺的伤害与近战伤害挂钩");
+敌人在死亡时可能会爆出刺");
         }
 
         public override void SetDefaults()

@@ -28,14 +28,15 @@ Effects of Gladiator's Locket and Unstable Prism
 Effects of Counter Scarf and Fungal Symbiote
 Effects of Permafrost's Concoction and Regenerator
 Effects of the Core of the Blood God and Affliction");
-            DisplayName.AddTranslation(GameCulture.Chinese, "灾厄之力");
+            DisplayName.AddTranslation(GameCulture.Chinese, "天启之力");
             Tooltip.AddTranslation(GameCulture.Chinese,
-@"'只带走生命,只留下废土'
-拥有胜潮,天蓝和斯塔提斯的套装效果
-拥有代达罗斯,掠夺者和星幻的套装效果
-拥有软壳,阿塔西亚和克希洛克的套装效果
-拥有佩码·福洛斯特之融魔台,星陨幻空石和星神游龙外壳的效果
-拥有瘟疫蜂巢,大珍珠和阿米迪亚斯之垂饰的效果");
+@"'此地曾充满生命与光明, 现在只余废墟'
+拥有天蓝, 斯塔提斯, 代达罗斯和血炎的套装效果
+拥有灵魂浮雕, 掠袭者护符和气之挂坠的效果
+拥有角斗士链坠和不稳定棱镜的效果
+拥有反击围巾和真菌共生体的效果
+拥有佩码·福洛斯特之融魔台和再生器的效果
+拥有血神核心和灾劫之尖啸的效果");
 
         }
 

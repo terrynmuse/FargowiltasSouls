@@ -39,7 +39,7 @@ Effects of Permafrost's Concoction and Regenerator");
 吸收时将回复此攻击伤害1/2的生命值
 代达罗斯水晶将保护你
 盗贼抛射物会在飞行中会射出魔晶碎片
-拥有佩码·福洛斯特之融魔台的效果");
+拥有佩码·福洛斯特之融魔台和再生器的效果");
         }
 
         public override void SetDefaults()
