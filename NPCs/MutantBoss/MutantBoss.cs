@@ -1550,6 +1550,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.active = true;
             if (Main.netMode != 1 && npc.ai[0] > -1)
             {
+                if (npc.ai[0] < 11 && Main.netMode != 1)
+                {
+                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual"), npc.damage, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual5"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                }
                 npc.ai[0] = -1;
                 npc.ai[1] = 0;
                 npc.dontTakeDamage = true;
