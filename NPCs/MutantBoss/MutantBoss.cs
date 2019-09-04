@@ -233,6 +233,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case -4: //true boundary
+                    if (!AliveCheck(player))
+                        break;
                     npc.velocity = Vector2.Zero;
                     if (++npc.ai[1] > 2)
                     {
@@ -262,6 +264,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case -3: //okuu nonspell
+                    if (!AliveCheck(player))
+                        break;
                     npc.velocity = Vector2.Zero;
                     if (++npc.ai[1] > 10 && npc.ai[3] > 60)
                     {
