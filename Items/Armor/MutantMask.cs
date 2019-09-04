@@ -63,12 +63,14 @@ Increases max number of minions and sentries by 10
         {
             player.setBonus = @"Phantasmal Spheres shoot deathrays at nearby enemies
 Abominationn's Visage fights alongside you
+Your attacks inflict God Eater
 You can survive fatal damage and recover with 100% life every two minutes
 20% increased weapon use speed";
 
             player.AddBuff(mod.BuffType("MutantPower"), 2);
 
             player.GetModPlayer<FargoPlayer>().MutantSetBonus = true;
+            player.GetModPlayer<FargoPlayer>().GodEaterImbue = true;
             player.GetModPlayer<FargoPlayer>().AttackSpeed *= 1.2f;
         }
 

@@ -28,6 +28,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.hide = true;
             projectile.extraUpdates = 1;
             cooldownSlot = 1;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = true;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

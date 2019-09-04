@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Armor
             Tooltip.SetDefault(@"35% increased damage and critical strike chance
 Increases max life and mana by 200
 Increases damage reduction by 20%
-Your attacks inflict God Eater");
+Drastically increases life regen");
         }
 
         public override void SetDefaults()
@@ -46,8 +46,10 @@ Your attacks inflict God Eater");
             player.statManaMax2 += 200;
 
             player.endurance += 0.2f;
-            
-            player.GetModPlayer<FargoPlayer>().GodEaterImbue = true;
+
+            player.lifeRegen += 7;
+            player.lifeRegenCount += 7;
+            player.lifeRegenTime += 7;
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

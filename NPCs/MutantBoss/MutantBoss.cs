@@ -240,7 +240,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         Main.PlaySound(SoundID.Item12, npc.Center);
                         npc.ai[1] = 0;
-                        npc.ai[2] += (float)Math.PI / 9 / 480 * npc.ai[3];
+                        npc.ai[2] += (float)Math.PI / 6 / 480 * npc.ai[3];
                         if (npc.ai[2] > (float)Math.PI)
                             npc.ai[2] -= (float)Math.PI * 2;
                         if (Main.netMode != 1)
@@ -816,7 +816,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         Main.PlaySound(SoundID.Item12, npc.Center);
                         npc.ai[1] = 0;
-                        npc.ai[2] += (float)Math.PI / 9 / 480 * npc.ai[3];
+                        npc.ai[2] += (float)Math.PI / 8 / 480 * npc.ai[3];
                         if (npc.ai[2] > (float)Math.PI)
                             npc.ai[2] -= (float)Math.PI * 2;
                         if (Main.netMode != 1)
