@@ -36,11 +36,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.rotation = projectile.velocity.ToRotation() + 1.570796f;
         }
 
-        public override bool CanHitPlayer(Player target)
-        {
-            return target.hurtCooldowns[1] == 0;
-        }
-
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);

@@ -99,7 +99,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 }
             }
 
-            if (++projectile.frameCounter > 6)
+            if (++projectile.frameCounter > 4)
             {
                 projectile.frameCounter = 0;
                 if (++projectile.frame >= 4)

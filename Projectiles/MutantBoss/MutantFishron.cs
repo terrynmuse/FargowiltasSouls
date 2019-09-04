@@ -146,7 +146,10 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         {
             Main.PlaySound(SoundID.Item84, projectile.Center);
             if (Main.netMode != 1)
-                SpawnRazorbladeRing(6, 9f, 1f);
+            {
+                SpawnRazorbladeRing(6, 12f, 1f);
+                SpawnRazorbladeRing(6, 12f, -1f);
+            }
         }
 
         private void SpawnRazorbladeRing(int max, float speed, float rotationModifier)
@@ -159,7 +162,9 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             for (int i = 0; i < max; i++)
             {
                 vel = vel.RotatedBy(rotation);
-                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage, 0f, Main.myPlayer, rotationModifier * Math.Sign(projectile.velocity.X), speed);
+                int p = Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage, 0f, Main.myPlayer, rotationModifier * Math.Sign(projectile.velocity.X), speed);
+                if (p != 1000)
+                    Main.projectile[p].timeLeft = 240;
             }
             Main.PlaySound(SoundID.Item84, projectile.Center);
         }
