@@ -40,6 +40,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.buffImmune[mod.BuffType("MutantNibble")] = true;
             npc.buffImmune[mod.BuffType("OceanicMaul")] = true;
             npc.buffImmune[mod.BuffType("TimeFrozen")] = true;
+            npc.timeLeft = NPC.activeTime * 30;
             if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
             {
                 npc.lifeMax = 177000000;
@@ -1459,6 +1460,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     return false;
                 }
             }
+            if (npc.timeLeft < 600)
+                npc.timeLeft = 600;
             return true;
         }
 
