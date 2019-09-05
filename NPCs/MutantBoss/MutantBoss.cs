@@ -146,6 +146,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             switch ((int)npc.ai[0])
             {
                 case -7: //fade out, drop a mutant
+                    npc.velocity = Vector2.Zero;
                     npc.dontTakeDamage = true;
                     for (int i = 0; i < 5; i++)
                     {
@@ -174,6 +175,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (!AliveCheck(player))
                         break;
                     npc.ai[3] -= (float)Math.PI / 6f / 60f;
+                    npc.velocity = Vector2.Zero;
                     if (++npc.ai[1] > 120)
                     {
                         npc.netUpdate = true;
@@ -241,7 +243,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         Main.PlaySound(SoundID.Item12, npc.Center);
                         npc.ai[1] = 0;
-                        npc.ai[2] += (float)Math.PI / 6 / 480 * npc.ai[3];
+                        npc.ai[2] += (float)Math.PI / 5 / 480 * npc.ai[3];
                         if (npc.ai[2] > (float)Math.PI)
                             npc.ai[2] -= (float)Math.PI * 2;
                         if (Main.netMode != 1)
