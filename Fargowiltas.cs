@@ -24,6 +24,7 @@ namespace FargowiltasSouls
         internal bool FargosLoaded;
         internal bool TerraCompLoaded;
         internal bool ThoriumLoaded;
+        internal bool AALoaded;
         internal bool BlueMagicLoaded;
         internal bool CalamityLoaded;
         internal bool DBTLoaded;
@@ -106,6 +107,7 @@ namespace FargowiltasSouls
                 CalamityLoaded = ModLoader.GetMod("CalamityMod") != null;
                 TerraCompLoaded = ModLoader.GetMod("TerraCompilation") != null;
                 ThoriumLoaded = ModLoader.GetMod("ThoriumMod") != null;
+                AALoaded = ModLoader.GetMod("AAMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
                 MasomodeEX = ModLoader.GetMod("MasomodeEX") != null;
 

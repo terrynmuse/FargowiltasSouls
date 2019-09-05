@@ -155,6 +155,9 @@ namespace FargowiltasSouls
 
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
+        //AA
+
+        public bool TrueCopper;
         #endregion
 
         //soul effects
@@ -980,7 +983,7 @@ namespace FargowiltasSouls
                     0f + Main.rand.Next(-5, 5),  Main.rand.Next(-6, -2), mod.ProjectileType("SuperBlood"), 5, 0f, Main.myPlayer);
             }
 
-            if (CopperEnchant && copperCD > 0)
+            if ((CopperEnchant || TrueCopper) && copperCD > 0)
                 copperCD--;
 
             if (GoldEnchant && goldCD > 0)
@@ -2257,8 +2260,17 @@ namespace FargowiltasSouls
 
         public void OnHitNPCEither(NPC target, int damage, float knockback, bool crit, int projectile = -1)
         {
-            if (CopperEnchant && Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
-                CopperEffect(target);
+            if (Soulcheck.GetValue("Copper Lightning") && copperCD == 0)
+            {
+                if (TrueCopper)
+                {
+                    TrueCopperEffect(target);
+                }
+                else if (CopperEnchant && !TrueCopper)
+                {
+                    CopperEffect(target);
+                }
+            }
 
             if (NecroEnchant && necroCD == 0 && Soulcheck.GetValue("Necro Guardian"))
             {
@@ -3317,6 +3329,94 @@ namespace FargowiltasSouls
                         Vector2 velocity = Vector2.Normalize(ai) * 20;
 
                         Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, ProjectileID.CultistBossLightningOrbArc, (int)(dmg * player.magicDamage), 0f, player.whoAmI, ai.ToRotation(), ai2);
+                        if (p != null)
+                        {
+                            p.friendly = true;
+                            p.hostile = false;
+                            p.penetrate = -1;
+                            p.timeLeft = 60;
+                            p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                        }
+                        target.AddBuff(mod.BuffType("Shock"), 60);
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                    target = closestNPC;
+                }
+
+                copperCD = 300;
+            }
+        }
+
+
+        public void TrueCopperEffect(NPC target)
+        {
+            int dmg = 80;
+            int chance = 20;
+
+            if (target.FindBuffIndex(BuffID.Wet) != -1 || target.wet)
+            {
+                dmg *= 3;
+                chance /= 5;
+            }
+
+            if (TerraForce)
+            {
+                dmg *= 2;
+            }
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            if (modPlayer.MeleeHighest(player))
+            {
+                dmg = (int)(dmg * player.meleeDamage);
+            }
+            else if (modPlayer.RangedHighest(player))
+            {
+                dmg = (int)(dmg * player.rangedDamage);
+            }
+            else if (modPlayer.MagicHighest(player))
+            {
+                dmg = (int)(dmg * player.magicDamage);
+            }
+            else if (modPlayer.SummonHighest(player))
+            {
+                dmg = (int)(dmg * player.minionDamage);
+            }
+            else if (modPlayer.ThrownHighest(player))
+            {
+                dmg = (int)(dmg * player.thrownDamage);
+            }
+
+            if (Main.rand.Next(chance) == 0)
+            {
+                float closestDist = 500f;
+                NPC closestNPC;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    closestNPC = null;
+
+                    for (int j = 0; j < 200; j++)
+                    {
+                        NPC npc = Main.npc[j];
+                        if (npc.active && npc != target && !npc.HasBuff(mod.BuffType("Shock")) && npc.Distance(target.Center) < closestDist && npc.Distance(target.Center) >= 50)
+                        {
+                            closestNPC = npc;
+                            break;
+                        }
+                    }
+
+                    if (closestNPC != null)
+                    {
+                        Vector2 ai = closestNPC.Center - target.Center;
+                        float ai2 = Main.rand.Next(100);
+                        Vector2 velocity = Vector2.Normalize(ai) * 20;
+
+                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, mod.ProjectileType< Projectiles.Souls.AA.TrueCopperShock>(), (int)(dmg), 0f, player.whoAmI, ai.ToRotation(), ai2);
                         if (p != null)
                         {
                             p.friendly = true;
@@ -4474,6 +4574,46 @@ namespace FargowiltasSouls
                     }
                 }
             }
+        }
+
+        public bool MeleeHighest(Player player)
+        {
+            return player.meleeDamage > player.rangedDamage &&
+                player.meleeDamage > player.magicDamage &&
+                player.meleeDamage > player.minionDamage &&
+                player.meleeDamage > player.thrownDamage;
+        }
+
+        public bool RangedHighest(Player player)
+        {
+            return player.rangedDamage > player.meleeDamage &&
+                player.rangedDamage > player.magicDamage &&
+                player.rangedDamage > player.minionDamage &&
+                player.rangedDamage > player.thrownDamage;
+        }
+
+        public bool MagicHighest(Player player)
+        {
+            return player.magicDamage > player.rangedDamage &&
+                player.magicDamage > player.meleeDamage &&
+                player.magicDamage > player.minionDamage &&
+                player.magicDamage > player.thrownDamage;
+        }
+
+        public bool SummonHighest(Player player)
+        {
+            return player.minionDamage > player.rangedDamage &&
+                player.minionDamage > player.magicDamage &&
+                player.minionDamage > player.meleeDamage &&
+                player.minionDamage > player.thrownDamage;
+        }
+
+        public bool ThrownHighest(Player player)
+        {
+            return player.thrownDamage > player.rangedDamage &&
+                player.thrownDamage > player.magicDamage &&
+                player.thrownDamage > player.minionDamage &&
+                player.thrownDamage > player.meleeDamage;
         }
     }
 }
