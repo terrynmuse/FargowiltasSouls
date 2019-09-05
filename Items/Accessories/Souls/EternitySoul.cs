@@ -163,25 +163,6 @@ and most of SoT not mentioned because meme tooltip length
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            if (!modPlayer.DownedMutant && player.active && !player.dead)
-            {
-                if (!NPC.AnyNPCs(mod.NPCType("MutantBoss")))
-                {
-                    if (!FargoSoulsWorld.AngryMutant)
-                    {
-                        FargoSoulsWorld.AngryMutant = true;
-                        NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("MutantBoss"));
-                        FargoSoulsWorld.AngryMutant = false;
-                    }
-                    else
-                    {
-                        NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("MutantBoss"));
-                    }
-                }
-                return;
-            }
-
             //auto use, debuffs, mana up
             modPlayer.Eternity = true;
 
