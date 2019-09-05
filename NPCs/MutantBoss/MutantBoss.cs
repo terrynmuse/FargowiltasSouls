@@ -1583,6 +1583,9 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             FargoSoulsWorld.downedMutant = true;
             if (Main.netMode == 2)
                 NetMessage.SendData(7); //sync world
+            for (int i = 0; i < Main.maxPlayers; i++)
+                if (Main.player[i].active)
+                    Main.player[i].GetModPlayer<FargoPlayer>().DownedMutant = true;
             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("Sadism"), Main.rand.Next(5) + 5);
             if (Fargowiltas.Instance.FargosLoaded)
                 npc.DropItemInstanced(npc.position, npc.Size, ModLoader.GetMod("Fargowiltas").ItemType("MutantGrabBag"), Main.rand.Next(5) + 1);

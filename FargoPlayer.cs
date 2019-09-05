@@ -229,6 +229,7 @@ namespace FargowiltasSouls
         public bool GodEaterImbue;
         public bool MutantSetBonus;
         public bool Abominationn;
+        public bool DownedMutant;
 
         //debuffs
         private int webCounter = 0;
@@ -301,6 +302,8 @@ namespace FargowiltasSouls
 
                 if (CelestialSeal)
                     FargoDisabledSouls.Add("CelestialSeal");
+                if (DownedMutant)
+                    FargoDisabledSouls.Add("DownedMutant");
 
                 return new TagCompound {
                     {name, FargoDisabledSouls}
@@ -318,6 +321,7 @@ namespace FargowiltasSouls
             disabledSouls = tag.GetList<string>(name);
 
             CelestialSeal = disabledSouls.Contains("CelestialSeal");
+            DownedMutant = disabledSouls.Contains("DownedMutant");
 
             //var FargoDisabledSouls = tag.GetList<string>(name);
             //foreach (string disabledSoul in FargoDisabledSouls)
