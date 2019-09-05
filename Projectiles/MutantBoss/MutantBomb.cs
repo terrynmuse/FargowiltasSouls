@@ -31,10 +31,15 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = true;
         }
 
+        public override bool CanHitPlayer(Player target)
+        {
+            return target.hurtCooldowns[1] == 0;
+        }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
-            target.AddBuff(mod.BuffType("OceanicMaul"), 900);
+            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
             target.AddBuff(mod.BuffType("MutantNibble"), 900);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
             target.AddBuff(mod.BuffType("MutantFang"), 300);

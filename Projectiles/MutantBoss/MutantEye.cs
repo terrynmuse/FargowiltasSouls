@@ -38,8 +38,10 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
+            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
-            target.AddBuff(mod.BuffType("MutantFang"), 180);
+            target.AddBuff(mod.BuffType("MutantFang"), 300);
             projectile.timeLeft = 0;
         }
 

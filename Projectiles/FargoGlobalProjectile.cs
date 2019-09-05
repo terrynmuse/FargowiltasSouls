@@ -1372,7 +1372,11 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.PhantasmalSphere:
                         target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
-                            target.AddBuff(mod.BuffType("MutantFang"), 180);
+                        {
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+                            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+                            target.AddBuff(mod.BuffType("MutantFang"), 300);
+                        }
                         break;
 
                     case ProjectileID.RocketSkeleton:

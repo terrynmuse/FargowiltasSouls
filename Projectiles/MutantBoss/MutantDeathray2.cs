@@ -42,6 +42,11 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             return false;
         }
 
+        public override bool CanHitPlayer(Player target)
+        {
+            return target.hurtCooldowns[1] == 0;
+        }
+
         public override void AI()
         {
             Vector2? vector78 = null;
@@ -203,6 +208,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
+            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
             target.AddBuff(mod.BuffType("MutantFang"), 300);
         }

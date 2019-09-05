@@ -641,7 +641,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[2] += (float)Math.PI / 77f;
                         if (Main.netMode != 1)
                             for (int i = 0; i < 4; i++)
-                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 2 * i), mod.ProjectileType("MutantEye"), npc.damage / 5, 0f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 2 * i), mod.ProjectileType("MutantEye"), npc.damage / 4, 0f, Main.myPlayer);
                     }
                     if (++npc.ai[3] > 241)
                     {
@@ -1138,7 +1138,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         else
                         {
                             if (Main.netMode != 1)
-                                Projectile.NewProjectile(npc.Center, Vector2.UnitY * -3f, mod.ProjectileType("MutantFishron"), npc.damage / 5, 0f, Main.myPlayer, npc.target);
+                                Projectile.NewProjectile(npc.Center, Vector2.UnitY * -3f, mod.ProjectileType("MutantFishron"), npc.damage / 4, 0f, Main.myPlayer, npc.target);
                             for (int i = 0; i < 30; i++)
                             {
                                 int d = Dust.NewDust(npc.position, npc.width, npc.height, 135, 0f, 0f, 0, default(Color), 3f);
@@ -1210,8 +1210,13 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         for (int i = 0; i < 3; i++)
                         {
                             Vector2 spawnPos = npc.Center + Main.rand.NextVector2Circular(1200, 1200);
-                            if (Vector2.Distance(safeZone, spawnPos) > safeRange)
-                                Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("MutantBomb"), npc.damage / 5, 0f, Main.myPlayer);
+                            if (Vector2.Distance(safeZone, spawnPos) < safeRange)
+                            {
+                                Vector2 directionOut = spawnPos - safeZone;
+                                directionOut.Normalize();
+                                spawnPos = safeZone + directionOut * safeRange;
+                            }
+                            Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("MutantBomb"), npc.damage / 4, 0f, Main.myPlayer);
                         }
                     }
                     if (++npc.ai[1] > 360)
@@ -1390,8 +1395,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             float spazAcc = spazSpeed * spazSpeed / spazRad * -npc.ai[2];
                             for (int i = 0; i < 4; i++)
                             {
-                                Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 2 * i) * retiSpeed, mod.ProjectileType("MutantRetirang"), npc.damage / 5, 0f, Main.myPlayer, retiAcc, 240);
-                                Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 2 * i + Math.PI / 4) * spazSpeed, mod.ProjectileType("MutantSpazmarang"), npc.damage / 5, 0f, Main.myPlayer, spazAcc, 120);
+                                Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 2 * i) * retiSpeed, mod.ProjectileType("MutantRetirang"), npc.damage / 4, 0f, Main.myPlayer, retiAcc, 240);
+                                Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 2 * i + Math.PI / 4) * spazSpeed, mod.ProjectileType("MutantSpazmarang"), npc.damage / 4, 0f, Main.myPlayer, spazAcc, 120);
                             }
                         }
                     }
@@ -1538,6 +1543,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
+            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
             target.AddBuff(mod.BuffType("MutantFang"), 300);
         }
