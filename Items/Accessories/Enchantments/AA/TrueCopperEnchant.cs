@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.AA
 Attacks have a chance to shock enemies with lightning
 If an enemy is wet, the chance and damage is increased
 Attacks that cause Wet cannot proc the lightning
-Lightning scales with highest damage";
+Lightning scales with highest damage
+Cannot be equipped with the copper enchantment";
             string tooltip_ch =
 @"'注视'
 攻击有概率用闪电打击敌人
@@ -120,44 +121,20 @@ Lightning scales with highest damage";
             return false;
         }
 
-        public bool MeleeHighest(Player player)
+        public override bool CanEquipAccessory(Player player, int slot)
         {
-            return player.meleeDamage > player.rangedDamage &&
-                player.meleeDamage > player.magicDamage &&
-                player.meleeDamage > player.minionDamage &&
-                player.meleeDamage > player.thrownDamage;
-        }
-
-        public bool RangedHighest(Player player)
-        {
-            return player.rangedDamage > player.meleeDamage &&
-                player.rangedDamage > player.magicDamage &&
-                player.rangedDamage > player.minionDamage &&
-                player.rangedDamage > player.thrownDamage;
-        }
-
-        public bool MagicHighest(Player player)
-        {
-            return player.magicDamage > player.rangedDamage &&
-                player.magicDamage > player.meleeDamage &&
-                player.magicDamage > player.minionDamage &&
-                player.magicDamage > player.thrownDamage;
-        }
-
-        public bool SummonHighest(Player player)
-        {
-            return player.minionDamage > player.rangedDamage &&
-                player.minionDamage > player.magicDamage &&
-                player.minionDamage > player.meleeDamage &&
-                player.minionDamage > player.thrownDamage;
-        }
-
-        public bool ThrownHighest(Player player)
-        {
-            return player.thrownDamage > player.rangedDamage &&
-                player.thrownDamage > player.magicDamage &&
-                player.thrownDamage > player.minionDamage &&
-                player.thrownDamage > player.meleeDamage;
+            if (slot < 10)
+            {
+                int maxAccessoryIndex = 5 + player.extraAccessorySlots;
+                for (int i = 3; i < 3 + maxAccessoryIndex; i++)
+                {
+                    if (slot != i && player.armor[i].type == mod.ItemType<CopperEnchant>())
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

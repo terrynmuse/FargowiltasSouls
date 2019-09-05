@@ -109,5 +109,21 @@ Lightning scales with magic damage";
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
+
+        public override bool CanEquipAccessory(Player player, int slot)
+        {
+            if (slot < 10)
+            {
+                int maxAccessoryIndex = 5 + player.extraAccessorySlots;
+                for (int i = 3; i < 3 + maxAccessoryIndex; i++)
+                {
+                    if (slot != i && player.armor[i].type == mod.ItemType<AA.TrueCopperEnchant>())
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
 }
