@@ -831,6 +831,7 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Sharknado: //spawns from sharks too but whatever
+                case ProjectileID.Cthulunado:
                     if (FargoSoulsWorld.MasochistMode)
                     {
                         if (!masobool)
