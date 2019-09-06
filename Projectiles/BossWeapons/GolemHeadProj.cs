@@ -67,8 +67,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
         {
-            width = projectile.width / 2;
-            height = projectile.height / 2;
+            width = projectile.width / 4;
+            height = projectile.height / 4;
             return base.TileCollideStyle(ref width, ref height, ref fallThrough);
         }
 
