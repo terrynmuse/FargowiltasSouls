@@ -43,9 +43,9 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.timeLeft = NPC.activeTime * 30;
             if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
             {
-                npc.lifeMax = 177000000;
+                npc.lifeMax = 777000000;
                 npc.damage *= 2;
-                npc.defense *= 5;
+                npc.defense *= 10;
                 if (Fargowiltas.Instance.CalamityLoaded)
                 {
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("Exofreeze")] = true;
@@ -65,7 +65,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.lifeMax = (int)(7700000 * bossLifeScale);
             if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
             {
-                npc.lifeMax = (int)(177000000 * bossLifeScale);
+                npc.lifeMax = (int)(777000000 * bossLifeScale);
                 npc.damage *= 2;
             }
         }
