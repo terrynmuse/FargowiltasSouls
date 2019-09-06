@@ -817,7 +817,7 @@ namespace FargowiltasSouls
                 {
                     if (!(player.fireWalk || PureHeart))
                         player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
-                    if (player.lavaWet)
+                    if (player.lavaWet && !MutantAntibodies)
                         player.AddBuff(mod.BuffType("Shadowflame"), 2);
                 }
 
