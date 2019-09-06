@@ -3459,12 +3459,12 @@ namespace FargowiltasSouls
                             randY = Main.rand.Next(-10, 10);
                         } while (randY <= 4f && randY >= -4f);
 
-                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, new Vector2(randX, randY), ProjectileID.BoneGloveProj, (int)(dmg * player.thrownDamage), 2, Main.myPlayer);
+                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, new Vector2(randX, randY), ProjectileID.BoneGloveProj, HighestDamageTypeScaling(dmg), 2, Main.myPlayer);
                         if (p != null)
                             p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     }
 
-                    Projectile p2 = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, ProjectileID.Bone, (int)(dmg * 1.5 * player.thrownDamage), 0f, player.whoAmI);
+                    Projectile p2 = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, ProjectileID.Bone, HighestDamageTypeScaling((int)(dmg * 1.5f)), 0f, player.whoAmI);
                     if (p2 != null)
                     {
                         p2.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;

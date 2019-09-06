@@ -22,7 +22,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
             DisplayName.SetDefault("Lapis Enchantment");
             Tooltip.SetDefault(
 @"'Gotta go fast'
-");
+20% increased movement speed
+Effects of Lapis Pendant
+Summons a pet Nicky and Buzzy Beetle");
         }
 
         public override void SetDefaults()
@@ -42,20 +44,27 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();
 
             //set bonus
-           // modPlayer. = true;
+            player.moveSpeed += 0.2f;
+
+            //lapis pendant
+            modPlayer.LapisPendant = true;
+
+            //pets soon tm
+
         }
 
         private readonly string[] items =
         {
             "LapisHelmet",
             "LapisChest",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "LapisLegs",
+            "LapisPendant",
+            "LapisStaff",
+            "LapisBow",
+            "LapisJavelin",
+            "Haven",
+            "LapisPick",
+            "SpiritLink"
         };
 
         public override void AddRecipes()
@@ -66,9 +75,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 
             foreach (string i in items) recipe.AddIngredient(soa.ItemType(i));
 
-            recipe.AddIngredient(ItemID.RainbowRod);
-
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

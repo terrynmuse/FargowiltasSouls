@@ -44,6 +44,7 @@ namespace FargowiltasSouls.NPCs
         public bool MutantNibble;
         public int LifePrevious = -1;
         public bool GodEater;
+        public bool Villain = false;
 
         public bool SpecialEnchantImmune;
 
@@ -6319,11 +6320,30 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            if (Infested)
+            /*if (Infested)
             {
                 if (Main.rand.Next(4) < 3)
                 {
                     int dust = Dust.NewDust(new Vector2(npc.position.X - 2f, npc.position.Y - 2f), npc.width + 4, npc.height + 4, 44, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, Color.LimeGreen, InfestedDust);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Dust expr_1CCF_cp_0 = Main.dust[dust];
+                    expr_1CCF_cp_0.velocity.Y = expr_1CCF_cp_0.velocity.Y - 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+
+                Lighting.AddLight((int)(npc.position.X / 16f), (int)(npc.position.Y / 16f + 1f), 1f, 0.3f, 0.1f);
+            }*/
+
+            if (Villain)
+            {
+                if (Main.rand.Next(4) < 3)
+                {
+                    int dust = Dust.NewDust(new Vector2(npc.position.X - 2f, npc.position.Y - 2f), npc.width + 4, npc.height + 4, DustID.AncientLight, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Dust expr_1CCF_cp_0 = Main.dust[dust];
@@ -10237,6 +10257,11 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
+            if (modPlayer.KnightEnchant && Villain && !npc.boss)
+            {
+                damage *= 2;
+            }
+
             if (crit && modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && player.stealth == 0)
             {
                 damage *= 3;
@@ -10278,6 +10303,16 @@ namespace FargowiltasSouls.NPCs
                 && !npc.boss && !SpecialEnchantImmune)
             {
                 npc.scale = .5f;
+            }
+        }
+
+        public override void OnHitNPC(NPC npc, NPC target, int damage, float knockback, bool crit)
+        {
+            FargoPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>(mod);
+
+            if (modPlayer.KnightEnchant && !npc.friendly && target.townNPC)
+            {
+                Villain = true;
             }
         }
 

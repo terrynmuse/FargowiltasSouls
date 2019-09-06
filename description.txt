@@ -66,8 +66,9 @@ Enchantment Changes:
 -All calamity Enchantment recipes reworked, no longer needing all helmets, all rare variants and pets added, PHM require less items, Statigel now PHM
 -Force of Calamities split into Force of..
 
--All vanilla enchantments that scaled with a certain damage type will now scale with whatever damage type is highest : Cactus, Copper, Pumpkin
+-All vanilla enchantments that scaled with a certain damage type will now scale with whatever damage type is highest : Cactus, Copper, Pumpkin, Fossil
 -Several Thorium Enchantments now work for all damage types: Jester, Illumite, Malignant, White Dwarf, Cryo Magus, Yew Wood, Tide Hunter, Warlock, Bronze, Assassin, Pyro, Tide Turner, 
+-custom effects for several Thorium enchantments: White Knight
 
 
 Masochist Mode Changes:
@@ -216,7 +217,7 @@ Bug Fixes:
 
 -Replaced Force of Calamities with Force of Desolation, Force of Devastation, and Force of the Apocalypse
 
--Added Shadows of Abadon Enchantments*
+-Added 20 Shadows of Abaddon Enchantments, 3 Forces, 1 Soul
 
 
 -removed masomode dialogue from the mutant
