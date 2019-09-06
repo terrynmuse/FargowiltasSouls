@@ -89,6 +89,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 {
                     npc.localAI[3] = 1;
                     Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                    EdgyBossText("I hope you're ready to embrace suffering.");
                     if (Main.netMode != 1)
                     {
                         int number = 0;
@@ -223,7 +224,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         npc.ai[3] = npc.DirectionFrom(player.Center).ToRotation();
                         Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.ai[3]), mod.ProjectileType("MutantGiantDeathray2"), npc.defDamage, 0f, Main.myPlayer, 0, npc.whoAmI);
-                        EdgyBossText("This is my final attack!");
                     }
                     for (int i = 0; i < 5; i++)
                     {
@@ -352,9 +352,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
                             if (player.Center.X < npc.Center.X)
                                 npc.ai[3] *= -1;
-                            for (int i = 0; i < 1000; i++)
-                                if (Main.projectile[i].active && Main.projectile[i].hostile)
-                                    Main.projectile[i].active = false;
+                            EdgyBossText("But we're not done yet!");
                         }
                     }
                     else
@@ -1492,6 +1490,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     for (int i = 0; i < 1000; i++)
                         if (Main.projectile[i].active && Main.projectile[i].hostile)
                             Main.projectile[i].Kill();
+                    EdgyBossText("Time to stop playing around.");
                 }
                 return true;
             }
