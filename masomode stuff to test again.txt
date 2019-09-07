@@ -69,6 +69,7 @@ added screm painting (post-mutant painter drop, only when mutant boss is present
 voodoo demon incinerating doll actually kills guide
 lava in hell inflicts shadowflame
 king slime shoots aimed slime spikes
+post-mutant gear buffed
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

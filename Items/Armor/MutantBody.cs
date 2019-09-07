@@ -13,9 +13,9 @@ namespace FargowiltasSouls.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("True Mutant Body");
-            Tooltip.SetDefault(@"35% increased damage and critical strike chance
+            Tooltip.SetDefault(@"70% increased damage and 30% increased critical strike chance
 Increases max life and mana by 200
-Increases damage reduction by 20%
+Increases damage reduction by 50%
 Drastically increases life regen");
         }
 
@@ -30,8 +30,8 @@ Drastically increases life regen");
 
         public override void UpdateEquip(Player player)
         {
-            const float damageUp = 0.35f;
-            const int critUp = 35;
+            const float damageUp = 0.7f;
+            const int critUp = 30;
             player.meleeDamage += damageUp;
             player.rangedDamage += damageUp;
             player.magicDamage += damageUp;
@@ -45,7 +45,7 @@ Drastically increases life regen");
             player.statLifeMax2 += 200;
             player.statManaMax2 += 200;
 
-            player.endurance += 0.2f;
+            player.endurance += 0.5f;
 
             player.lifeRegen += 7;
             player.lifeRegenCount += 7;

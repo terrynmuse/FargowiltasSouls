@@ -10247,6 +10247,11 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
+            if (modPlayer.MutantSetBonus && crit)
+            {
+                damage *= 2;
+            }
+
             if (modPlayer.RedEnchant && !modPlayer.TerrariaSoul)
             {
                 switch (npc.life / npc.lifeMax * 100)

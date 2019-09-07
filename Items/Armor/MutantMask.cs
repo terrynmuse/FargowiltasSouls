@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("True Mutant Head");
-            Tooltip.SetDefault(@"15% increased damage and critical strike chance
+            Tooltip.SetDefault(@"50% increased damage and 20% increased critical strike chance
 Increases max number of minions and sentries by 10
 25% reduced mana usage
 25% chance not to consume ammo");
@@ -25,13 +25,13 @@ Increases max number of minions and sentries by 10
             item.height = 18;
             item.rare = 11;
             item.value = Item.sellPrice(0, 50);
-            item.defense = 40;
+            item.defense = 50;
         }
 
         public override void UpdateEquip(Player player)
         {
-            const float damageUp = 0.15f;
-            const int critUp = 15;
+            const float damageUp = 0.5f;
+            const int critUp = 20;
             player.meleeDamage += damageUp;
             player.rangedDamage += damageUp;
             player.magicDamage += damageUp;
@@ -63,15 +63,22 @@ Increases max number of minions and sentries by 10
         {
             player.setBonus = @"Phantasmal Spheres shoot deathrays at nearby enemies
 Abominationn's Visage fights alongside you
-Your attacks inflict God Eater
+Your attacks inflict God Eater and crits deal 2x damage
 You can survive fatal damage and recover with 100% life every two minutes
-20% increased weapon use speed";
+100% increased damage and 20% increased weapon use speed";
 
             player.AddBuff(mod.BuffType("MutantPower"), 2);
 
             player.GetModPlayer<FargoPlayer>().MutantSetBonus = true;
             player.GetModPlayer<FargoPlayer>().GodEaterImbue = true;
             player.GetModPlayer<FargoPlayer>().AttackSpeed *= 1.2f;
+
+            const float damageUp = 1f;
+            player.meleeDamage += damageUp;
+            player.rangedDamage += damageUp;
+            player.magicDamage += damageUp;
+            player.thrownDamage += damageUp;
+            player.minionDamage += damageUp;
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

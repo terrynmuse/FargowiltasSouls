@@ -30,9 +30,6 @@ namespace FargowiltasSouls.Projectiles
             projectile.alpha = 100;
             projectile.penetrate = -1;
 
-            projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 1;
-
             projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
         }
 
@@ -83,7 +80,7 @@ namespace FargowiltasSouls.Projectiles
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.immune[projectile.owner] = 0;
+            target.immune[projectile.owner] = 1;
             target.AddBuff(mod.BuffType("OceanicMaul"), 900);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
         }

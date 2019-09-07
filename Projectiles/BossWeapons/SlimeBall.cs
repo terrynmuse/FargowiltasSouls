@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.aiStyle = 14;
             projectile.friendly = true;
             projectile.melee = true;
-            projectile.timeLeft = 120;
+            projectile.timeLeft = 180;
         }
 
         public override void AI()

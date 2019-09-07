@@ -2837,7 +2837,7 @@ namespace FargowiltasSouls
                 player.ClearBuff(mod.BuffType("MutantFang"));
                 player.buffImmune[mod.BuffType("MutantFang")] = true;
                 player.AddBuff(mod.BuffType("MutantRebirth"), 7200);
-                Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(2700 * player.minionDamage), 10f, player.whoAmI);
+                Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(7000 * player.minionDamage), 10f, player.whoAmI);
                 retVal = false;
             }
 
