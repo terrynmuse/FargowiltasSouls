@@ -189,7 +189,7 @@ namespace FargowiltasSouls
                 [2] = MasochistMode,
                 [3] = downedFishronEX,
                 [4] = downedMutant,
-                [5] = AngryMutant
+                [5] = AngryMutant,
                 [6] = downedMM
             };
 

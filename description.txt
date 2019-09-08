@@ -182,6 +182,18 @@ plantera p2 has reverse ivy venom aura
 nerfed pillar hp from 100k to 60k
 halved all prime limbs max life
 removed DOT from oceanic maul
+sharknado cant damage for half a second after spawning
+halved detonating bubble EX health
+fishron EX now aims bubbles at player while dashing in p1/p2
+nymph shoots fake hearts
+halved fish EX timeLeft on p3 razors
+boss deathrays no longer emit light
+reduced ML/fish resists to 33%
+added screm painting (post-mutant painter drop, only when mutant boss is present)
+voodoo demon incinerating doll actually kills guide
+lava in hell inflicts shadowflame
+king slime shoots aimed slime spikes
+post-mutant gear buffed
 
 eaters of souls go through walls again but half speed/make dust while in wall
 plantera p2 spawns a second set of crystals around the first rotating opposite direction

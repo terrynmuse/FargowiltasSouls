@@ -73,9 +73,9 @@ namespace FargowiltasSouls.Projectiles.Souls.AA
                     float num32 = projectile.rotation + 1.57079637f + ((Main.rand.Next(2) == 1) ? -1f : 1f) * 1.57079637f;
                     float num33 = (float)Main.rand.NextDouble() * 2f + 2f;
                     Vector2 vector2 = new Vector2((float)Math.Cos(num32) * num33, (float)Math.Sin(num32) * num33);
-                    int num34 = Dust.NewDust(projectile.oldPos[projectile.oldPos.Length - 1], 0, 0, mod.DustType<Dusts.VoidDust>(), vector2.X, vector2.Y, 0);
-                    Main.dust[num34].noGravity = true;
-                    Main.dust[num34].scale = 1.7f;
+                    //int num34 = Dust.NewDust(projectile.oldPos[projectile.oldPos.Length - 1], 0, 0, mod.DustType<Dusts.VoidDust>(), vector2.X, vector2.Y, 0);
+                    //Main.dust[num34].noGravity = true;
+                    //Main.dust[num34].scale = 1.7f;
                 }
             }
             projectile.frameCounter++;

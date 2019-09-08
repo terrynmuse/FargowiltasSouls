@@ -83,7 +83,7 @@ Cannot be equipped with the copper enchantment";
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            /*ModRecipe recipe = new ModRecipe(mod);
             if (Fargowiltas.Instance.AALoaded)
             {
                 recipe.AddIngredient(AA, "TrueCopperHelm");
@@ -95,7 +95,7 @@ Cannot be equipped with the copper enchantment";
 
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
-            recipe.AddRecipe();
+            recipe.AddRecipe();*/
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
