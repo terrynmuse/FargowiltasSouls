@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Thorium Enchantment");
             Tooltip.SetDefault(
 @"'It pulses with energy'
-10% increased damage
+Shortlived Divermen will occasionally spawn when hitting enemies
 Critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Crietz, Band of Replenishment, and Fan Letter");
             DisplayName.AddTranslation(GameCulture.Chinese, "瑟银魔石");
@@ -50,8 +50,8 @@ Effects of Crietz, Band of Replenishment, and Fan Letter");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //thorium set bonus 
-            player.GetModPlayer<FargoPlayer>().AllDamageUp(.1f);
+            //diverman meme
+            modPlayer.ThoriumEnchant = true;
             //crietz
             thoriumPlayer.crietzAcc = true;
             //band of replenish

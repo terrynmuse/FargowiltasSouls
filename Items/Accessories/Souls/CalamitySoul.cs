@@ -101,14 +101,9 @@ Effects of the Profaned Soul Artifact and Dark Sun Ring");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(null, "CalamityForce");
-            recipe.AddIngredient(null, "TarragonEnchant");
-            recipe.AddIngredient(null, "BloodflareEnchant");
-            recipe.AddIngredient(null, "OmegaBlueEnchant");
-            recipe.AddIngredient(null, "GodSlayerEnchant");
-            recipe.AddIngredient(null, "SilvaEnchant");
-            recipe.AddIngredient(null, "AuricEnchant");
-            recipe.AddIngredient(null, "DemonShadeEnchant");
+            recipe.AddIngredient(null, "ApocalypseForce");
+            recipe.AddIngredient(null, "DevastationForce");
+            recipe.AddIngredient(null, "DesolationForce");
 
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);

@@ -46,9 +46,10 @@ Effects of Lich's Gaze");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
-            thoriumPlayer.lichSet = true;
+            //lich effect
+            modPlayer.LichEnchant = true;
             //lich gaze
             thoriumPlayer.lichGaze = true;
         }

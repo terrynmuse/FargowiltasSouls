@@ -102,8 +102,8 @@ Every globule increases defense and makes your next attack a mini-crit
             modPlayer.ThoriumSoul = true;
 
             //MUSPELHEIM
-            //life bloom heals
-            modPlayer.MuspelheimForce = true;
+            //life bloom effect
+            modPlayer.LifeBloomEnchant = true;
             //chrysalis
             thoriumPlayer.cocoonAcc = true;
             //living wood set bonus
@@ -166,7 +166,7 @@ Every globule increases defense and makes your next attack a mini-crit
             }
             
             //ALFHEIM
-            //lil cherub
+            //lil cherub and sacred effect
             modPlayer.SacredEnchant = true;
             modPlayer.AddMinion("Li'l Cherub Minion", thorium.ProjectileType("Angel"), 0, 0f);
             //twinkle pet
@@ -302,6 +302,8 @@ Every globule increases defense and makes your next attack a mini-crit
                     terrariumTimer = 0;
                 }
             }
+            //diverman meme
+            modPlayer.ThoriumEnchant = true;
             //jester
             modPlayer.JesterEnchant = true;
             if (Soulcheck.GetValue("Crietz"))
@@ -328,6 +330,8 @@ Every globule increases defense and makes your next attack a mini-crit
             modPlayer.WhiteDwarfEnchant = true;
 
             //HELHEIM
+            //spirit trapper
+            modPlayer.SpiritTrapperEnchant = true;
             if (Soulcheck.GetValue("Dread Speed"))
             {
                 //dread
@@ -358,6 +362,8 @@ Every globule increases defense and makes your next attack a mini-crit
             }
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
+            //demon blood effect
+            modPlayer.DemonBloodEnchant = true;
             //demon blood badge
             thoriumPlayer.CrimsonBadge = true;
             if (Soulcheck.GetValue("Flesh Drops"))

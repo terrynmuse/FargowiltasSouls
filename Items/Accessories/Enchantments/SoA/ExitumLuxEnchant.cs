@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
             DisplayName.SetDefault("Exitum Lux Enchantment");
             Tooltip.SetDefault(
 @"''
-
+Does something soon TM
 Effects of Stone of Resonance");
             DisplayName.AddTranslation(GameCulture.Chinese, "卢克斯魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -48,7 +48,9 @@ Effects of Stone of Resonance");
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();
 
             //set bonus
-
+            modPlayer.exodusHelmet = true;
+            modPlayer.exodusChest = true;
+            modPlayer.exodusLegs = true;
 
             //stone of resonance
             ModLoader.GetMod("SacredTools").GetItem("StoneOfResonance").UpdateAccessory(player, hideVisual);

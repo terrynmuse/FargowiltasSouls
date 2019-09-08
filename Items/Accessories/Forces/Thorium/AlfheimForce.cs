@@ -21,7 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Alfheim");
             Tooltip.SetDefault(
 @"'Elven mysteries unfold before you...'
-Healing spells heal an additional 5 life and shortly increase the healed player's maximum life by 50
+Healing potions heal 50% more life
+Healing spells shortly increase the healed player's maximum life by 50
 Every 5 seconds you generate up to 3 holy crosses
 Critical strikes will generate up to 15 shadow wisps
 Pressing the 'Special Ability' key will unleash them towards your cursor's position

@@ -53,7 +53,6 @@ Has a cooldown of 1 minute");
 
             //set bonus
             modPlayer.marsArmor = true;
-
             //space junk
             modPlayer.spaceJunk = true;
         }
