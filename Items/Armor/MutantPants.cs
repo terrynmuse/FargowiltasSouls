@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Armor
@@ -16,6 +17,10 @@ namespace FargowiltasSouls.Items.Armor
             Tooltip.SetDefault(@"50% increased damage and 20% increased critical strike chance
 40% increased movement and melee speed
 Hold DOWN and JUMP to hover");
+            DisplayName.AddTranslation(GameCulture.Chinese, "真·突变之胫");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"增加20%伤害和暴击率
+增加40%移动和近战攻击速度
+按住'上'和'跳跃'键悬停");
         }
 
         public override void SetDefaults()

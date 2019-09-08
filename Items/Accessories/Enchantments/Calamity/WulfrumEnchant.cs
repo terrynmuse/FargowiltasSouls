@@ -64,11 +64,7 @@ Effects of the Spirit Glyph, Raider's Talisman, and Trinket of Chi");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("WulfrumHelm"));
-            recipe.AddIngredient(calamity.ItemType("WulfrumHeadgear"));
-            recipe.AddIngredient(calamity.ItemType("WulfrumHood"));
-            recipe.AddIngredient(calamity.ItemType("WulfrumHelmet"));
-            recipe.AddIngredient(calamity.ItemType("WulfrumMask"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyWulfrumHelmet");
             recipe.AddIngredient(calamity.ItemType("WulfrumArmor"));
             recipe.AddIngredient(calamity.ItemType("WulfrumLeggings"));
             recipe.AddIngredient(calamity.ItemType("SpiritGenerator"));

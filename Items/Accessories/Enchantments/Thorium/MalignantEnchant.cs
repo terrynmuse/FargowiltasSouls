@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Malignant Enchantment");
             Tooltip.SetDefault(
 @"'How evil is too evil?'
-Magic critical strikes engulf enemies in a long lasting void flame
+Critical strikes engulf enemies in a long lasting void flame
 Effects of Mana-Charged Rocketeers");
             DisplayName.AddTranslation(GameCulture.Chinese, "妖术魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -45,8 +45,8 @@ Effects of Mana-Charged Rocketeers");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.malignantSet = true;
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            modPlayer.MalignantEnchant = true;
             //mana charge rockets
             thorium.GetItem("ManaChargedRocketeers").UpdateAccessory(player, hideVisual);
         }

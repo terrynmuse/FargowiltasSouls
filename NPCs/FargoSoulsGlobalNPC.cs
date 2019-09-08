@@ -44,6 +44,7 @@ namespace FargowiltasSouls.NPCs
         public bool MutantNibble;
         public int LifePrevious = -1;
         public bool GodEater;
+        public bool Villain = false;
 
         public bool SpecialEnchantImmune;
 
@@ -680,6 +681,11 @@ namespace FargowiltasSouls.NPCs
                 Stop--;
                 npc.position = npc.oldPosition;
                 npc.frameCounter = 0;
+
+                if (npc.type == NPCID.EyeofCthulhu)
+                {
+                    return false;
+                }
             }
 
             return true;
@@ -1402,7 +1408,7 @@ namespace FargowiltasSouls.NPCs
                         eyeBoss = npc.whoAmI;
 
                         Counter++;
-                        if (Counter >= 300)
+                        if (Counter >= 600)
                         {
                             Counter = 0;
                             if (npc.life <= npc.lifeMax * 0.65 && NPC.CountNPCS(NPCID.ServantofCthulhu) < 12 && Main.netMode != 1)
@@ -1441,7 +1447,8 @@ namespace FargowiltasSouls.NPCs
                                             npc.position.X -= distance.X;
                                             npc.position.Y += distance.Y;
                                             npc.netUpdate = true;
-                                            npc.ai[2] = 2;
+                                            npc.ai[2] = 60;
+                                            npc.ai[1] = 5f;//
                                         }
                                     }
                                 }
@@ -1465,7 +1472,7 @@ namespace FargowiltasSouls.NPCs
                                 Counter2 = 30;
                                 masoBool[0] = false;
                                 if (Main.netMode != 1)
-                                    FargoGlobalProjectile.XWay(8, npc.Center, mod.ProjectileType("BloodScythe"), 2, npc.damage / 4, 1f);
+                                    FargoGlobalProjectile.XWay(6, npc.Center, mod.ProjectileType("BloodScythe"), 1.5f, npc.damage / 4, 1f);
                             }
                             /*if (++Timer > 600)
                             {
@@ -1496,7 +1503,7 @@ namespace FargowiltasSouls.NPCs
                             }*/
                         }
 
-                        if (Counter2 > 0 && Counter2 % 5 == 0 && Main.netMode != 1)
+                        if (Counter2 > 0 && Counter2 % 6 == 0 && Main.netMode != 1)
                             Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
                                 npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 1f, Main.myPlayer);
                         Counter2--;
@@ -6338,11 +6345,30 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            if (Infested)
+            /*if (Infested)
             {
                 if (Main.rand.Next(4) < 3)
                 {
                     int dust = Dust.NewDust(new Vector2(npc.position.X - 2f, npc.position.Y - 2f), npc.width + 4, npc.height + 4, 44, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, Color.LimeGreen, InfestedDust);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Dust expr_1CCF_cp_0 = Main.dust[dust];
+                    expr_1CCF_cp_0.velocity.Y = expr_1CCF_cp_0.velocity.Y - 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+
+                Lighting.AddLight((int)(npc.position.X / 16f), (int)(npc.position.Y / 16f + 1f), 1f, 0.3f, 0.1f);
+            }*/
+
+            if (Villain)
+            {
+                if (Main.rand.Next(4) < 3)
+                {
+                    int dust = Dust.NewDust(new Vector2(npc.position.X - 2f, npc.position.Y - 2f), npc.width + 4, npc.height + 4, DustID.AncientLight, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Dust expr_1CCF_cp_0 = Main.dust[dust];
@@ -8763,7 +8789,7 @@ namespace FargowiltasSouls.NPCs
                     numNeedles = 16;
                 }
 
-                Projectile[] projs = FargoGlobalProjectile.XWay(numNeedles, npc.Center, ProjectileID.PineNeedleFriendly, 5, (int)(dmg * player.meleeDamage), 5f);
+                Projectile[] projs = FargoGlobalProjectile.XWay(numNeedles, npc.Center, ProjectileID.PineNeedleFriendly, 5,  modPlayer.HighestDamageTypeScaling(dmg), 5f);
 
                 for (int i = 0; i < projs.Length; i++)
                 {
@@ -10268,6 +10294,11 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
+            if (modPlayer.KnightEnchant && Villain && !npc.boss)
+            {
+                damage *= 2;
+            }
+
             if (crit && modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && player.stealth == 0)
             {
                 damage *= 3;
@@ -10309,6 +10340,16 @@ namespace FargowiltasSouls.NPCs
                 && !npc.boss && !SpecialEnchantImmune)
             {
                 npc.scale = .5f;
+            }
+        }
+
+        public override void OnHitNPC(NPC npc, NPC target, int damage, float knockback, bool crit)
+        {
+            FargoPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>(mod);
+
+            if (modPlayer.KnightEnchant && !npc.friendly && target.townNPC)
+            {
+                Villain = true;
             }
         }
 

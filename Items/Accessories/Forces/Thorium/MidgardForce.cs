@@ -66,8 +66,6 @@ Summons a pet Pink Slime");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //includes illumite rocket and jester bell
-            modPlayer.MidgardForce = true;
 
             //lodestone
             mod.GetItem("LodestoneEnchant").UpdateAccessory(player, hideVisual);
@@ -118,6 +116,7 @@ Summons a pet Pink Slime");
                     thoriumPlayer.empowerTerrarium = true;
                 }
             }
+            modPlayer.JesterEnchant = true;
 
             if (Soulcheck.GetValue("Crietz"))
             {

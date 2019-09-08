@@ -16,7 +16,6 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 @"'Beyond a forgotten age'
 If you reach zero HP you cheat death, returning with 20 HP
 For a few seconds after reviving, you are immune to all damage and spawn bones
-Bones scale with throwing damage
 Summons a pet Baby Dino");
             DisplayName.AddTranslation(GameCulture.Chinese, "化石魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 

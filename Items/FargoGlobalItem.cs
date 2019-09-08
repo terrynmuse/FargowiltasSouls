@@ -56,8 +56,6 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (p.Infinity && item.createTile == -1 && item.type != ItemID.LifeFruit) return false;
-
             if (p.BuilderMode && (item.createTile != -1 || item.createWall != -1)) return false;
             return true;
         }
@@ -136,16 +134,6 @@ namespace FargowiltasSouls.Items
                 player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was destroyed by their own magic."), item.mana + item.damage, 0);
                 player.immune = false;
                 player.immuneTime = 0;
-            }
-
-            if (modPlayer.Infinity && !modPlayer.Eternity && (item.useAmmo != AmmoID.None || item.mana > 0 || item.consumable))
-            {
-                modPlayer.InfinityCounter++;
-
-                if (modPlayer.InfinityCounter >= 4)
-                {
-                    modPlayer.InfinityHurt();
-                }
             }
 
             //non weapons and weapons with no ammo begone
@@ -249,7 +237,7 @@ namespace FargowiltasSouls.Items
             if (Soulcheck.GetValue("Illumite Rocket"))
             {
                 //illumite effect
-                if (modPlayer.MidgardForce)
+                if (modPlayer.IllumiteEnchant)
                 {
                     thoriumPlayer.rocketsFired++;
                     if (thoriumPlayer.rocketsFired >= 3)
@@ -263,10 +251,10 @@ namespace FargowiltasSouls.Items
                 }
             }
 
-            if (Soulcheck.GetValue("Plague Lord's Flask"))
+            //plague flask
+            if (modPlayer.PlagueAcc && Soulcheck.GetValue("Plague Lord's Flask"))
             {
-                //plague flask
-                if (modPlayer.HelheimForce && item.damage >= 1 && Main.rand.Next(5) == 0)
+                if (item.damage >= 1 && Main.rand.Next(5) == 0)
                 {
                     Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed;
 
@@ -282,7 +270,7 @@ namespace FargowiltasSouls.Items
             }
             
             //folv effect
-            if (modPlayer.VanaheimForce && Soulcheck.GetValue("Folv's Bolts"))
+            if (modPlayer.FolvEnchant && Soulcheck.GetValue("Folv's Bolts"))
             {
                 thoriumPlayer.magicCast++;
                 if (thoriumPlayer.magicCast >= 7)

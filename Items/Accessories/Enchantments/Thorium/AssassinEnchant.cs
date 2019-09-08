@@ -23,9 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Assassin Enchantment");
             Tooltip.SetDefault(
 @"'Blacken the skies and cull the weak'
-Ranged damage applies Cursed Inferno and Ichor to hit enemies
-Ranged damage has a 10% chance to duplicate and become increased by 15%
-Ranged damage has a 5% chance to instantly kill the enemy");
+Attacks have a 10% chance to duplicate and become increased by 15%
+Attacks have a 5% chance to instantly kill the enemy");
             DisplayName.AddTranslation(GameCulture.Chinese, "刺客魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'遮蔽天空，抹除弱者'
@@ -59,15 +58,8 @@ Ranged damage has a 5% chance to instantly kill the enemy");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //damage duplicate
-            thoriumPlayer.omniArcherSet = true;
-            //ichor and death arrows 2hich dont work I guess
-            thoriumPlayer.omniArrowHat = true;
-            //insta kill
-            thoriumPlayer.omniBulletSet = true;
-            //cursed flame
-            thoriumPlayer.omniBulletHat = true;
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            modPlayer.AssassinEnchant = true;
         }
 
         public override void AddRecipes()

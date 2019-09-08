@@ -26,7 +26,8 @@ Melee attacks create Xeroc Blast explosions
 Ranged attacks spawn Xeroc Fire sparks
 Magic attacks spawn Xeroc Orbs
 Minion attacks spawn Xeroc Bubbles
-Rogue attacks spawn Xeroc Stars");
+Rogue attacks spawn Xeroc Stars
+Effects of The Community");
             DisplayName.AddTranslation(GameCulture.Chinese, "克希洛克魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'掌握着一位上古之神的力量...'
@@ -52,11 +53,16 @@ Rogue attacks spawn Xeroc Stars");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+
             if (Soulcheck.GetValue("Xeroc Effects"))
             {
-                CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+               
                 modPlayer.xerocSet = true;
             }
+
+            //the community
+            modPlayer.community = true;
         }
 
         public override void AddRecipes()
@@ -68,16 +74,16 @@ Rogue attacks spawn Xeroc Stars");
             recipe.AddIngredient(calamity.ItemType("XerocMask"));
             recipe.AddIngredient(calamity.ItemType("XerocPlateMail"));
             recipe.AddIngredient(calamity.ItemType("XerocCuisses"));
+            recipe.AddIngredient(calamity.ItemType("TheCommunity"));
             recipe.AddIngredient(calamity.ItemType("BrinyBaron"));
             recipe.AddIngredient(calamity.ItemType("StormRuler"));
-            recipe.AddIngredient(calamity.ItemType("Hydra"));
+            recipe.AddIngredient(calamity.ItemType("ThornBlossom"));
             recipe.AddIngredient(calamity.ItemType("Interfacer"));
             recipe.AddIngredient(calamity.ItemType("ElephantKiller"));
-            recipe.AddIngredient(calamity.ItemType("Effervescence"));
-            recipe.AddIngredient(calamity.ItemType("PlagueKeeper"));
             recipe.AddIngredient(calamity.ItemType("UltraLiquidator"));
             recipe.AddIngredient(calamity.ItemType("Shredder"));
-            recipe.AddIngredient(calamity.ItemType("SpatialLance"));
+            recipe.AddIngredient(calamity.ItemType("Infinity"));
+            recipe.AddIngredient(calamity.ItemType("GrandDad"));
             recipe.AddIngredient(calamity.ItemType("ElementalBlaster"));
 
             recipe.AddTile(TileID.LunarCraftingStation);

@@ -128,6 +128,8 @@ Effects of the Plague Hive");
                     }
                 }
             }
+
+            //pet soon tm
         }
 
         public override void AddRecipes()
@@ -136,21 +138,21 @@ Effects of the Plague Hive");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("AtaxiaHelm"));
-            recipe.AddIngredient(calamity.ItemType("AtaxiaHeadgear"));
-            recipe.AddIngredient(calamity.ItemType("AtaxiaMask"));
-            recipe.AddIngredient(calamity.ItemType("AtaxiaHelmet"));
-            recipe.AddIngredient(calamity.ItemType("AtaxiaHood"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyAtaxiaHelmet");
             recipe.AddIngredient(calamity.ItemType("AtaxiaArmor"));
             recipe.AddIngredient(calamity.ItemType("AtaxiaSubligar"));
             recipe.AddIngredient(calamity.ItemType("PlagueHive"));
+            recipe.AddIngredient(calamity.ItemType("SpearofDestiny"));
+            recipe.AddIngredient(calamity.ItemType("Hellborn"));
+            recipe.AddIngredient(calamity.ItemType("Lucrecia"));
             recipe.AddIngredient(calamity.ItemType("BarracudaGun"));
             recipe.AddIngredient(calamity.ItemType("Vesuvius"));
-            recipe.AddIngredient(calamity.ItemType("SoulHarvester"));
+            recipe.AddIngredient(calamity.ItemType("LeadWizard"));
             recipe.AddIngredient(calamity.ItemType("Malachite"));
             recipe.AddIngredient(calamity.ItemType("Impaler"));
             recipe.AddIngredient(calamity.ItemType("HolidayHalberd"));
-            
+            recipe.AddIngredient(calamity.ItemType("CharredRelic"));
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

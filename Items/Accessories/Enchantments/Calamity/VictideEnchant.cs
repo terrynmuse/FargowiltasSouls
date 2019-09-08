@@ -82,11 +82,7 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("VictideHelm"));
-            recipe.AddIngredient(calamity.ItemType("VictideVisage"));
-            recipe.AddIngredient(calamity.ItemType("VictideMask"));
-            recipe.AddIngredient(calamity.ItemType("VictideHelmet"));
-            recipe.AddIngredient(calamity.ItemType("VictideHeadgear"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyVictideHelmet");
             recipe.AddIngredient(calamity.ItemType("VictideBreastplate"));
             recipe.AddIngredient(calamity.ItemType("VictideLeggings"));
             recipe.AddIngredient(calamity.ItemType("DeepDiver"));

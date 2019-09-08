@@ -20,9 +20,9 @@ Light is emitted from the player
 Summons a pet Magic Lantern");
             DisplayName.AddTranslation(GameCulture.Chinese, "矿工魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
-@"'你每挥一下镐子,行星都会震动'
-增加30%采掘速度
-显示敌人,陷阱和宝藏
+@"'你每挥一下镐子, 行星都会震动'
+增加50%采掘速度
+显示敌人, 陷阱和宝藏
 照亮周围
 召唤一个魔法灯笼");
         }
@@ -48,13 +48,13 @@ Summons a pet Magic Lantern");
             recipe.AddIngredient(ItemID.MiningHelmet);
             recipe.AddIngredient(ItemID.MiningShirt);
             recipe.AddIngredient(ItemID.MiningPants);
-            
-            if(Fargowiltas.Instance.ThoriumLoaded)
+            recipe.AddIngredient(ItemID.CopperPickaxe);
+
+            if (Fargowiltas.Instance.ThoriumLoaded)
             {      
                 recipe.AddIngredient(thorium.ItemType("aSandstonePickaxe"));
                 recipe.AddIngredient(ItemID.CnadyCanePickaxe); //gj 
                 recipe.AddIngredient(ItemID.GoldPickaxe);
-                recipe.AddIngredient(ItemID.BonePickaxe);
                 recipe.AddIngredient(thorium.ItemType("EnforcedThoriumPax"));
                 recipe.AddIngredient(ItemID.MoltenPickaxe);
             }

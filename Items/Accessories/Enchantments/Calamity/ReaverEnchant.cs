@@ -26,7 +26,8 @@ While using a ranged weapon you have a 10% chance to fire a powerful rocket
 Your magic projectiles emit a burst of spore gas on enemy hits
 Summons a reaver orb that emits spore gas when enemies are near
 You emit a cloud of spores when you are hit
-Rage activates when you are damaged");
+Rage activates when you are damaged
+Effects of Fabled Tortoise Shell");
             DisplayName.AddTranslation(GameCulture.Chinese, "掠夺者魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'痛苦的死亡等待着你的敌人...'
@@ -84,6 +85,12 @@ Rage activates when you are damaged");
                     }
                 }
             }
+
+            //fabled tortoise shell
+            modPlayer.fabledTortoise = true;
+            player.moveSpeed -= 0.5f;
+            player.thorns = 0.25f;
+            player.statDefense += 42;
         }
 
         public override void AddRecipes()
@@ -92,21 +99,21 @@ Rage activates when you are damaged");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("ReaverHelm"));
-            recipe.AddIngredient(calamity.ItemType("ReaverVisage"));
-            recipe.AddIngredient(calamity.ItemType("ReaverMask"));
-            recipe.AddIngredient(calamity.ItemType("ReaverHelmet"));
-            recipe.AddIngredient(calamity.ItemType("ReaverCap"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyReaverHelmet");
             recipe.AddIngredient(calamity.ItemType("ReaverScaleMail"));
             recipe.AddIngredient(calamity.ItemType("ReaverCuisses"));
+            recipe.AddIngredient(calamity.ItemType("FabledTortoiseShell"));
+            recipe.AddIngredient(calamity.ItemType("EvilSmasher"));
             recipe.AddIngredient(calamity.ItemType("Animosity"));
             recipe.AddIngredient(calamity.ItemType("Tumbleweed"));
+            recipe.AddIngredient(calamity.ItemType("SandSharknadoStaff"));
             recipe.AddIngredient(calamity.ItemType("Leviatitan"));
             recipe.AddIngredient(calamity.ItemType("Keelhaul"));
             recipe.AddIngredient(calamity.ItemType("Triploon"));
-            recipe.AddIngredient(calamity.ItemType("Aeries"));
             recipe.AddIngredient(calamity.ItemType("MagnaStriker"));
-            
+            recipe.AddIngredient(calamity.ItemType("PearlGod"));
+            recipe.AddIngredient(calamity.ItemType("ConferenceCall"));
+
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

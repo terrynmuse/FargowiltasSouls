@@ -72,6 +72,8 @@ Effects of Gladiator's Locket and Unstable Prism");
 
             calamity.GetItem("GladiatorsLocket").UpdateAccessory(player, hideVisual);
             calamity.GetItem("UnstablePrism").UpdateAccessory(player, hideVisual);
+
+            //spawn pet soon tm
         }
 
         public override void AddRecipes()
@@ -80,21 +82,17 @@ Effects of Gladiator's Locket and Unstable Prism");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("AerospecHelm"));
-            recipe.AddIngredient(calamity.ItemType("AerospecHood"));
-            recipe.AddIngredient(calamity.ItemType("AerospecHat"));
-            recipe.AddIngredient(calamity.ItemType("AerospecHelmet"));
-            recipe.AddIngredient(calamity.ItemType("AerospecHeadgear"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyAerospecHelmet");
             recipe.AddIngredient(calamity.ItemType("AerospecBreastplate"));
             recipe.AddIngredient(calamity.ItemType("AerospecLeggings"));
             recipe.AddIngredient(calamity.ItemType("GladiatorsLocket"));
             recipe.AddIngredient(calamity.ItemType("UnstablePrism"));
-            recipe.AddIngredient(calamity.ItemType("Galeforce"));
             recipe.AddIngredient(calamity.ItemType("StormSurge"));
             recipe.AddIngredient(calamity.ItemType("SkyGlaze"));
             recipe.AddIngredient(calamity.ItemType("PerfectDark"));
             recipe.AddIngredient(calamity.ItemType("SausageMaker"));
-            
+            recipe.AddIngredient(calamity.ItemType("RomajedaOrchid"));
+
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Cryo-Magus Enchantment");
             Tooltip.SetDefault(
 @"'What killed the dinosaurs? The ice age!'
-Magic damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies
+Damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies
 An icy aura surrounds you, which freezes nearby enemies after a short delay
 Effects of Frostburn Pouch, Ice Bound Strider Hide, and Blue Music Player
 Summons a pet Penguin and Owl");
@@ -52,7 +52,7 @@ Summons a pet Penguin and Owl");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //cryo set bonus, dmg duplicate
-            thoriumPlayer.cryoSet = true;
+            modPlayer.CryoEnchant = true;
             //strider hide
             thoriumPlayer.frostBonusDamage = true;
             //music player
