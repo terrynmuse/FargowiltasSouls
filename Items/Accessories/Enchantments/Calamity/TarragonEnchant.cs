@@ -51,7 +51,7 @@ Effects of the Profaned Soul Artifact and Dark Sun Ring");
 召唤生命之环伤害附近的敌人
 投掷暴击25次后, 获得5秒的无敌时间
 Debuff状态下, 增加10%盗贼伤害
-拥有渎魂神物的效果");
+拥有渎魂神物和蚀日尊戒的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

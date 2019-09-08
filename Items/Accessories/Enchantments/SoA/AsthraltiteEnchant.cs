@@ -27,6 +27,14 @@ Press [Ability (Primary)] and Up/Down to cycle between the spells
 Deploying a spell will initiate a cooldown of 1 minute
 Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster
 Summons a memory of Anthee and the Insignia of Extinction");
+            DisplayName.AddTranslation(GameCulture.Chinese, "阿斯德罗特魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'Asph-... Asthath-... 这玩意怎么读?'
+按下[特殊能力]键释放4种法术之一
+按下按下[特殊能力]键和上/下切换法术类型
+施放法术有1分钟的冷却
+拥有堕落之戒, 死亡意志和魔法奥秘的效果
+召唤安西的记忆和灭绝天使的徽记");
         }
 
         public override void SetDefaults()

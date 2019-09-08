@@ -28,7 +28,7 @@ Effects of Olympic Torch, Champion's Rebuttal, Spartan Sadals, and Spartan's Sub
             DisplayName.AddTranslation(GameCulture.Chinese, "青铜魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'宙斯的青睐'
-投掷伤害有概率释放闪电链
+攻击有概率释放闪电链
 拥有奥林匹克圣火, 反击之盾, 斯巴达凉鞋和斯巴达音箱的效果");
         }
 

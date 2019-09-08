@@ -26,6 +26,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 Ranged projectiles frostburn enemies
 Effects of Frigid Pendant
 Summons a Howling Death pup and a Tabby Slime to follow you around");
+            DisplayName.AddTranslation(GameCulture.Chinese, "霜冻猎人魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'现在, 猎人成了猎物, 猎物成了掠食者'
+在冰雪地形时, 增加15%远程伤害
+远程抛射物将使敌人霜燃
+拥有极寒吊坠的效果
+召唤一只哀嚎的死亡小狗和虎斑史莱姆跟随你");
         }
 
         public override void SetDefaults()

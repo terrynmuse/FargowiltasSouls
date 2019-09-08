@@ -24,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'Creeper? Aw man…'
 Minion damage grants increased life regeneration
 Summons a Crimson Sigil to shine blood red light");
+            DisplayName.AddTranslation(GameCulture.Chinese, "怪诞魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'Creeper? Aw man…'
+召唤伤害增加生命回复
+召唤一个发出血红色亮光的猩红符文");
         }
 
         public override void SetDefaults()

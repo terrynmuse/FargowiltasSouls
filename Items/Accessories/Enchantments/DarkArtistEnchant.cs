@@ -23,7 +23,7 @@ Greatly enhances Flameburst effectiveness
 ";
             string tooltip_ch =
 @"'阴影比看起来更多'
-攻击时,焰爆炮塔的射击会从你的阴影中显现出来
+攻击时, 焰爆炮塔的射击会从你的阴影中显现出来
 大大增强焰爆炮塔能力
 ";
 

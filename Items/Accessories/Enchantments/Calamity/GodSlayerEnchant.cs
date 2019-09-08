@@ -55,7 +55,7 @@ Effects of the Nebulous Core and Draedon's Heart");
 召唤噬神机械蠕虫为你而战
 满血时提高10%盗贼属性
 一次性承受超过80点伤害时, 获得额外的无敌帧
-拥有星云之核的效果");
+拥有星云之核和嘉登之心的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

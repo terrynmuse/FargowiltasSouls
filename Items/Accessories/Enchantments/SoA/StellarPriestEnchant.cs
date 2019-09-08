@@ -25,6 +25,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'Stand proud'
 Summons a Stellar Guardian behind you that attacks enemies
 Summons a Dark Star to shine Darkness upon you");
+            DisplayName.AddTranslation(GameCulture.Chinese, "恒星牧师魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'STAND PROUD'
+在身后召唤一个替身攻击敌人
+召唤一颗黑星照亮你");
         }
 
         public override void SetDefaults()

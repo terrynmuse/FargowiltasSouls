@@ -24,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'Reap the rewards of your near-endless grind'
 Provides immunity to Flarium Inferno and Obsidian Curse
 Summons a dragon spirit");
+            DisplayName.AddTranslation(GameCulture.Chinese, "火神收割者魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'收获你那近乎无休止的苦差事的回报'
+免疫地狱之火和黑曜石诅咒
+召唤龙魂");
         }
 
         public override void SetDefaults()

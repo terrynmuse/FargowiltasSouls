@@ -26,6 +26,13 @@ Hitting enemies has a chance to summon an energy blade behind you (Max of 5).
 Every newly acquired blade increases the damage of pre-existing ones by 20%
 Pressing [Ability] will launch the blades at nearby enemies
 Effects of Novaniel's Resolve");
+            DisplayName.AddTranslation(GameCulture.Chinese, "堕落王子魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'舍弃继承权, 换取力量'
+攻击敌人有概率在身后召唤一柄能量剑(最多5柄)
+每柄新获得的剑会增加20%先前存在剑的伤害
+按[特殊能力]键将会把剑射向附近敌人
+拥有诺瓦尼尔的决心的效果");
         }
 
         public override void SetDefaults()

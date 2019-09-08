@@ -23,6 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
             Tooltip.SetDefault(
 @"'It takes every color to make a rainbow'
 Hitting enemies has a chance to summon a bismuth hammer for extra damage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "铋魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'五颜六色汇成彩虹'
+攻击敌人概率召唤一柄铋锤造成额外伤害");
         }
 
         public override void SetDefaults()

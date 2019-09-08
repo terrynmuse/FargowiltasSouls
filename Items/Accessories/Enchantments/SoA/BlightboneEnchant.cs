@@ -24,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'Your spooks and scares will send shivers down your enemies' spines'
 Empowers certain bone-related weapons
 Effects Dreadflame Emblem");
+            DisplayName.AddTranslation(GameCulture.Chinese, "荒骨魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你的幽影和恐惧会让你的敌人毛骨悚然'
+增强特定骨头相关的武器
+拥有恐惧火焰徽记的效果");
         }
 
         public override void SetDefaults()

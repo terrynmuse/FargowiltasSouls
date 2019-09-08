@@ -30,7 +30,8 @@ Effects of Counter Scarf and Fungal Symbiote");
 @"'斯塔提斯的神秘力量环绕着你...'
 一次性承受超过100点伤害时, 加长无敌时间
 能够多跳跃一次, 增加跳跃高度
-召唤迷你史莱姆之神为你而战, 种类视世界而定");
+召唤迷你史莱姆之神为你而战, 种类视世界而定
+拥有反击围巾和真菌共生体的效果");
         }
 
         public override void SetDefaults()

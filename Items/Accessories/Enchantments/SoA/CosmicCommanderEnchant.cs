@@ -26,6 +26,13 @@ Pressing [Ability] puts you in 'Sniper State'
 Your damage is upped in this state however you are frozen in place and have reduced defense 
 State is toggled upon button press and has a cooldown of 5 seconds after switching
 Summons Chibi Voxa to follow you around");
+            DisplayName.AddTranslation(GameCulture.Chinese, "宇宙指挥官魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'让索兰再次伟大'
+按[特殊能力]键进入'狙击状态'
+该状态下, 提升攻击力, 但不能移动且降低防御力
+该状态可开关, 拥有5秒的切换冷却
+召唤小沃萨跟随你");
         }
 
         public override void SetDefaults()

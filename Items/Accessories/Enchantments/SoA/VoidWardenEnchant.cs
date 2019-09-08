@@ -26,6 +26,13 @@ Taking damage has a chance to freeze all enemies nearby
 Bosses and enemies with over 8000 HP are unaffected 
 Attacking has a 5% chance to make nearby enemies take double damage
 Summons a friendly Bullet Kin");
+            DisplayName.AddTranslation(GameCulture.Chinese, "虚空守望魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'旅程永无止境'
+受到伤害有概率冻结附近敌人
+Boss和8000血以上的敌人不受该效果影响
+攻击有5%概率使附近敌人收到双倍伤害
+召唤一个友善的子弹伙伴");
         }
 
         public override void SetDefaults()

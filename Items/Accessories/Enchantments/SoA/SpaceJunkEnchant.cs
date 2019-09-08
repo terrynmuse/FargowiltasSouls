@@ -24,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"''I'm da spaceman!'
 33% chance to not consume thrown items
 Damaging enemies will occasionally call upon a meteor to fall from the sky");
+            DisplayName.AddTranslation(GameCulture.Chinese, "太空垃圾魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'我是太空人!'
+33%概率不消耗投掷物
+攻击敌人概率召唤陨石从天而降");
         }
 
         public override void SetDefaults()
