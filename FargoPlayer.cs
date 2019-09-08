@@ -2283,7 +2283,7 @@ namespace FargowiltasSouls
             }
 
             //feral fure
-            if (!FeralFurEnchant && crit)
+            if (FeralFurEnchant && crit)
             {
                 for (int m = 0; m < 5; m++)
                 {
@@ -2734,7 +2734,7 @@ namespace FargowiltasSouls
             }
 
             //feral fure
-            if (!FeralFurEnchant && crit)
+            if (FeralFurEnchant && crit)
             {
                 for (int m = 0; m < 5; m++)
                 {
