@@ -31,7 +31,7 @@ Summons a pet Life Spirit");
             DisplayName.AddTranslation(GameCulture.Chinese, "圣骑士魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'闪耀抚慰人心的力量'
-治疗法术额外治疗5点生命值
+生命药水额外回复50%生命值
 每5秒产生一个圣十字架, 上限为3个
 施放治疗法术时, 十字架将代替魔力消耗
 召唤小天使周期性治疗队友

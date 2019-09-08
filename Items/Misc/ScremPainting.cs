@@ -13,6 +13,8 @@ namespace FargowiltasSouls.Items.Misc
         {
             DisplayName.SetDefault("Screm Painting");
             Tooltip.SetDefault("'Merry N. Tuse'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "尖叫猫猫");
+            Tooltip.AddTranslation(GameCulture.Chinese, "Merry N. Tuse");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

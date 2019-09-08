@@ -19,6 +19,7 @@ namespace FargowiltasSouls.Buffs.Souls
             longerExpertDebuff = false;
             canBeCleared = false;
             DisplayName.AddTranslation(GameCulture.Chinese, "时间冻结");
+            Description.AddTranslation(GameCulture.Chinese, "你停止了时间");
         }
 
         public override bool Autoload(ref string name, ref string texture)

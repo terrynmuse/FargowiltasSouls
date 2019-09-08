@@ -32,7 +32,7 @@ Summons a pet Wyvern");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'充满被诅咒的灵魂'
 你的靴子以不真实的频率振动着, 显著提高移动速度
-移动时增加近战伤害和暴击率
+移动时增加伤害和暴击率
 攻击有概率释放龙焰爆炸
 拥有震地, 龙爪项链和诅咒链球核心的效果
 拥有恐惧音箱和绿色播放器的效果

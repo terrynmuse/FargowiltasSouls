@@ -33,6 +33,7 @@ Effects of Fan Letter and Terrarium Surround Sound");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'万物都臣服于你的力量...'
 泰拉瑞亚的能量试图保护你
+攻击敌人时偶尔会召唤暂时存在的潜水员
 暴击短暂缓慢所有附近敌人
 拥有精准项链和大恢复戒指的效果
 拥有粉丝的信函和界元音箱的效果");

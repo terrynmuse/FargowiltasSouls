@@ -27,6 +27,13 @@ All armor bonuses from Blazing Brute, Cosmic Commander, and Nebulous Apprentice
 All armor bonuses from Stellar Priest and Fallen Prince
 Effects of Nuba's Blessing, Novaniel's Resolve, and Celestial Ring
 Summons several pets");
+            DisplayName.AddTranslation(GameCulture.Chinese, "索兰之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'索兰的真正力量'
+拥有赤炎, 宇宙指挥官和星云学徒的套装效果
+拥有恒星牧师和堕落王子的套装效果
+拥有努巴的祝福, 诺瓦尼尔的决心和天体星环的效果
+召唤数个宠物");
         }
 
         public override void SetDefaults()

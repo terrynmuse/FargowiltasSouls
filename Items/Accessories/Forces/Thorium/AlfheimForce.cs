@@ -37,7 +37,8 @@ Summons a pet Life Spirit and Holy Goat");
             DisplayName.AddTranslation(GameCulture.Chinese, "亚尔夫海姆之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'精灵之秘在你眼前展开...'
-治疗法术额外治疗5点生命值, 治疗后短暂增加队友50最大生命值
+生命药水额外回复50%生命值
+治疗法术短暂增加队友50最大生命值
 每5秒产生一个圣十字架, 上限为3个
 暴击产生至多15个暗影魂火
 按下'特殊能力'键向光标方向释放所有存留的暗影魂火

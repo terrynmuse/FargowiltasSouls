@@ -31,7 +31,7 @@ Effects of Spiked Bracer");
             DisplayName.AddTranslation(GameCulture.Chinese, "暗金魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'轻巧而耐用'
-增加8%伤害减免
+满血时增加50%伤害减免
 没有什么能阻止你的移动
 获得冲刺能力
 免疫蹒跚者的链球效果
