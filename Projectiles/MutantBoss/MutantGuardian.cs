@@ -27,7 +27,12 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 			projectile.timeLeft = 300;
             cooldownSlot = 1;
         }
-		
+
+        public override bool CanHitPlayer(Player target)
+        {
+            return target.hurtCooldowns[1] == 0;
+        }
+
         public override void AI()
         {
             projectile.frame = 2;
@@ -36,6 +41,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
+            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
             target.AddBuff(mod.BuffType("GodEater"), 420);
             target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 420);
             target.AddBuff(mod.BuffType("MarkedforDeath"), 420);

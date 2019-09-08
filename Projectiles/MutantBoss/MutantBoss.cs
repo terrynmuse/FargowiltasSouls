@@ -27,6 +27,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.height = 50;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = true;
         }
 
         public override void AI()
@@ -46,7 +47,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 return;
             }
 
-            if (++projectile.frameCounter > 6)
+            if (++projectile.frameCounter > 4)
             {
                 projectile.frameCounter = 0;
                 if (++projectile.frame >= 4)

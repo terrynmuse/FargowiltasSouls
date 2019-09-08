@@ -163,7 +163,7 @@ and most of SoT not mentioned because meme tooltip length
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //auto use, debuffs, mana up
             modPlayer.Eternity = true;
 

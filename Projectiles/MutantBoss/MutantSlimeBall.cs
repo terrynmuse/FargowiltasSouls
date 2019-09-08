@@ -48,7 +48,12 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(BuffID.Slimed, 240);
-            target.AddBuff(mod.BuffType("MutantFang"), 180);
+            target.AddBuff(mod.BuffType("MutantFang"), 300);
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
         }
     }
 }

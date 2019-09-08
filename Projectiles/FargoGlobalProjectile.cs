@@ -40,6 +40,7 @@ namespace FargowiltasSouls.Projectiles
         private bool firstTick = true;
         private bool squeakyToy = false;
         public int TimeFrozen = 0;
+        public bool TimeFreezeImmune;
 
         public bool Rainbow = false;
 
@@ -53,6 +54,11 @@ namespace FargowiltasSouls.Projectiles
             {
                 switch (projectile.type)
                 {
+                    case ProjectileID.StardustGuardian:
+                    case ProjectileID.StardustGuardianExplosion:
+                        TimeFreezeImmune = true;
+                        break;
+
                     case ProjectileID.SaucerLaser:
                         projectile.tileCollide = false;
                         break;
@@ -69,6 +75,10 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.SharknadoBolt:
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
                             projectile.extraUpdates++;
+                        break;
+
+                    case ProjectileID.Sharknado:
+                        projectile.hostile = false;
                         break;
 
                     case ProjectileID.FlamesTrap:
@@ -821,11 +831,19 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Sharknado: //spawns from sharks too but whatever
-                    if (FargoSoulsWorld.MasochistMode && !masobool)
+                case ProjectileID.Cthulunado:
+                    if (FargoSoulsWorld.MasochistMode)
                     {
-                        masobool = true;
-                        if (FargoSoulsWorld.downedFishronEX || !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
-                            projectile.damage = (int)(projectile.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
+                        if (!masobool)
+                        {
+                            masobool = true;
+                            if (FargoSoulsWorld.downedFishronEX || !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
+                                projectile.damage = (int)(projectile.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
+                        }
+                        if (counter > 30)
+                        {
+                            projectile.hostile = true;
+                        }
                     }
                     break;
                     
@@ -1355,7 +1373,11 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.PhantasmalSphere:
                         target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
-                            target.AddBuff(mod.BuffType("MutantFang"), 180);
+                        {
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+                            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+                            target.AddBuff(mod.BuffType("MutantFang"), 300);
+                        }
                         break;
 
                     case ProjectileID.RocketSkeleton:

@@ -5,11 +5,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace FargowiltasSouls.Projectiles.MutantBoss
+namespace FargowiltasSouls.Projectiles.BossWeapons
 {
-    public class MutantSpearDash : ModProjectile
+    public class HentaiSpearThrown : ModProjectile
     {
         public override string Texture => "FargowiltasSouls/Projectiles/BossWeapons/HentaiSpear";
+
+        //throw with 25 velocity, 1000 damage, 10 knockback
 
         public override void SetStaticDefaults()
         {
@@ -20,17 +22,20 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void SetDefaults()
         {
-            projectile.width = 40;
-            projectile.height = 40;
+            projectile.width = 58;
+            projectile.height = 58;
             projectile.aiStyle = -1;
-            projectile.hostile = true;
+            projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
+            projectile.timeLeft = 180;
+            projectile.extraUpdates = 1;
             projectile.scale = 1.3f;
             projectile.alpha = 0;
-            cooldownSlot = 1;
-            projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = true;
+
+            projectile.localNPCHitCooldown = 0;
+            projectile.usesLocalNPCImmunity = true;
         }
 
         public override void AI()
@@ -43,37 +48,35 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
             Main.dust[dustId3].noGravity = true;
 
-            if (projectile.localAI[1] == 0f)
+            if (--projectile.localAI[0] < 0)
             {
-                projectile.localAI[1] = 1f;
-                Main.PlaySound(SoundID.Item1, projectile.Center);
-            }
-
-            NPC mutant = Main.npc[(int)projectile.ai[0]];
-            if (mutant.active && mutant.type == mod.NPCType("MutantBoss") && (mutant.ai[0] == 6 || mutant.ai[0] == 15 || mutant.ai[0] == 23))
-            {
-                projectile.rotation = mutant.velocity.ToRotation() + MathHelper.ToRadians(135f);
-                projectile.Center = mutant.Center + mutant.velocity;
-                if (projectile.ai[1] == 0f && --projectile.localAI[0] < 0)
+                projectile.localAI[0] = 3;
+                if (projectile.owner == Main.myPlayer)
                 {
-                    projectile.localAI[0] = 2;
-                    if (Main.netMode != 1)
-                        Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("MutantSphereSmall"), projectile.damage, 0f, projectile.owner, mutant.target);
+                    int p = Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("PhantasmalSphere"), projectile.damage, projectile.knockBack / 2, projectile.owner);
+                    if (p < 1000)
+                    {
+                        Main.projectile[p].melee = false;
+                        Main.projectile[p].thrown = true;
+                    }
                 }
             }
-            else
-            {
-                projectile.Kill();
-            }
+
+            projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            Projectile.NewProjectile(target.Center + Main.rand.NextVector2Circular(100, 100), Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), 0, 0f, projectile.owner);
-            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
-            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+            if (projectile.owner == Main.myPlayer)
+            {
+                int p = Projectile.NewProjectile(target.position + new Vector2(Main.rand.Next(target.width), Main.rand.Next(target.height)), Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage, 0f, projectile.owner);
+                if (p < 1000)
+                {
+                    Main.projectile[p].melee = false;
+                    Main.projectile[p].thrown = true;
+                }
+            }
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
-            target.AddBuff(mod.BuffType("MutantFang"), 300);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

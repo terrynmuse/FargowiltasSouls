@@ -14,15 +14,10 @@ namespace FargowiltasSouls.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("True Mutant Body");
-            Tooltip.SetDefault(@"35% increased damage and critical strike chance
+            Tooltip.SetDefault(@"70% increased damage and 30% increased critical strike chance
 Increases max life and mana by 200
-Increases damage reduction by 20%
-Your attacks inflict God Eater");
-            DisplayName.AddTranslation(GameCulture.Chinese, "真·突变之躯");
-            Tooltip.AddTranslation(GameCulture.Chinese, @"增加35%伤害和暴击率
-增加200最大生命和法力值
-增加20%伤害减免
-攻击造成噬神者效果");
+Increases damage reduction by 50%
+Drastically increases life regen");
         }
 
         public override void SetDefaults()
@@ -36,8 +31,8 @@ Your attacks inflict God Eater");
 
         public override void UpdateEquip(Player player)
         {
-            const float damageUp = 0.35f;
-            const int critUp = 35;
+            const float damageUp = 0.7f;
+            const int critUp = 30;
             player.meleeDamage += damageUp;
             player.rangedDamage += damageUp;
             player.magicDamage += damageUp;
@@ -51,9 +46,11 @@ Your attacks inflict God Eater");
             player.statLifeMax2 += 200;
             player.statManaMax2 += 200;
 
-            player.endurance += 0.2f;
-            
-            player.GetModPlayer<FargoPlayer>().GodEaterImbue = true;
+            player.endurance += 0.5f;
+
+            player.lifeRegen += 7;
+            player.lifeRegenCount += 7;
+            player.lifeRegenTime += 7;
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

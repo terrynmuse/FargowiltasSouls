@@ -14,7 +14,7 @@ namespace FargowiltasSouls.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("True Mutant Pants");
-            Tooltip.SetDefault(@"20% increased damage and critical strike chance
+            Tooltip.SetDefault(@"50% increased damage and 20% increased critical strike chance
 40% increased movement and melee speed
 Hold DOWN and JUMP to hover");
             DisplayName.AddTranslation(GameCulture.Chinese, "真·突变之胫");
@@ -34,8 +34,8 @@ Hold DOWN and JUMP to hover");
 
         public override void UpdateEquip(Player player)
         {
-            const float damageUp = 0.2f;
-            const int critUp = 2;
+            const float damageUp = 0.5f;
+            const int critUp = 20;
             player.meleeDamage += damageUp;
             player.rangedDamage += damageUp;
             player.magicDamage += damageUp;

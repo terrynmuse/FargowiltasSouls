@@ -833,8 +833,13 @@ namespace FargowiltasSouls
                     player.fallStart = (int)(player.position.Y / 16f);
                 }
 
-                if (player.ZoneUnderworldHeight && !(player.fireWalk || PureHeart))
-                    player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                if (player.ZoneUnderworldHeight)
+                {
+                    if (!(player.fireWalk || PureHeart))
+                        player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                    if (player.lavaWet && !MutantAntibodies)
+                        player.AddBuff(mod.BuffType("Shadowflame"), 2);
+                }
 
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
                     player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
@@ -902,16 +907,18 @@ namespace FargowiltasSouls
                 {
                     bool inLiquid = Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
                     if (!inLiquid)
-                        player.breath -= 3;
-                    if (++MasomodeSpaceBreathTimer > 10)
                     {
-                        MasomodeSpaceBreathTimer = 0;
-                        player.breath--;
+                        player.breath -= 3;
+                        if (++MasomodeSpaceBreathTimer > 10)
+                        {
+                            MasomodeSpaceBreathTimer = 0;
+                            player.breath--;
+                        }
+                        if (player.breath == 0)
+                            Main.PlaySound(23);
+                        if (player.breath <= 0)
+                            player.AddBuff(BuffID.Suffocation, 2);
                     }
-                    if (player.breath == 0)
-                        Main.PlaySound(23);
-                    if (player.breath <= 0)
-                        player.AddBuff(BuffID.Suffocation, 2);
                 }
 
                 if (!PureHeart && !player.buffImmune[BuffID.Webbed] && player.stickyBreak > 0)
@@ -2930,7 +2937,7 @@ namespace FargowiltasSouls
                 player.ClearBuff(mod.BuffType("MutantFang"));
                 player.buffImmune[mod.BuffType("MutantFang")] = true;
                 player.AddBuff(mod.BuffType("MutantRebirth"), 7200);
-                Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(2700 * player.minionDamage), 10f, player.whoAmI);
+                Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(7000 * player.minionDamage), 10f, player.whoAmI);
                 retVal = false;
             }
 
@@ -4296,23 +4303,21 @@ namespace FargowiltasSouls
 
             if (FreezeTime && freezeLength != 0)
             {
-                if (!FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
-                {
-                    for (int i = 0; i < 200; i++)
-                    {
-                        NPC npc = Main.npc[i];
-                        if (npc.active && !npc.HasBuff(mod.BuffType("TimeFrozen")))
-                            npc.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
-                    }
+                if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
+                    player.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
 
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        Projectile p = Main.projectile[i];
-                        if (p.active && p.type != ProjectileID.StardustGuardian && p.type != ProjectileID.StardustGuardianExplosion && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
-                        {
-                            p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
-                        }
-                    }
+                for (int i = 0; i < 200; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.active && !npc.HasBuff(mod.BuffType("TimeFrozen")))
+                        npc.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
+                }
+
+                for (int i = 0; i < 1000; i++)
+                {
+                    Projectile p = Main.projectile[i];
+                    if (p.active && !p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
+                        p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
                 }
 
                 freezeLength--;
@@ -4325,11 +4330,8 @@ namespace FargowiltasSouls
                     for (int i = 0; i < 200; i++)
                     {
                         NPC npc = Main.npc[i];
-
                         if (npc.active && npc.life == 1)
-                        {
                             npc.StrikeNPC(9999, 0f, 0);
-                        }
                     }
                 }
             }
@@ -4339,9 +4341,7 @@ namespace FargowiltasSouls
                 FreezeCD--;
 
                 if (FreezeCD == 0)
-                {
                     Main.PlaySound(SoundID.MaxMana, player.Center);
-                }
             }
         }
 

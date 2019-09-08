@@ -31,6 +31,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.alpha = 0;
             projectile.timeLeft = 60;
             cooldownSlot = 1;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = true;
         }
 
         public override void AI()
@@ -65,6 +66,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             Projectile.NewProjectile(target.Center + Main.rand.NextVector2Circular(100, 100), Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), 0, 0f, projectile.owner);
+            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
             target.AddBuff(mod.BuffType("MutantFang"), 300);
         }
