@@ -131,6 +131,8 @@ Summons several pets";
                     thoriumPlayer.empowerFrost = true;
                 }
             }
+            //bulb 
+            modPlayer.BulbEnchant = true;
             //night shade petal
             thoriumPlayer.nightshadeBoost = true;
 

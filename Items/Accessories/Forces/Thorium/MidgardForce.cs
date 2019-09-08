@@ -31,6 +31,7 @@ Reverse gravity by pressing UP
 While reversed, all damage is increased by 12%
 Every third attack will unleash an illumite missile
 The energy of Terraria seeks to protect you
+Shortlived Divermen will occasionally spawn when hitting enemies
 Critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Astro-Beetle Husk and Eye of the Beholder
 Effects of Crietz and Terrarium Surround Sound
@@ -116,6 +117,9 @@ Summons a pet Pink Slime");
                     thoriumPlayer.empowerTerrarium = true;
                 }
             }
+            //diverman meme
+            modPlayer.ThoriumEnchant = true;
+            //jester
             modPlayer.JesterEnchant = true;
 
             if (Soulcheck.GetValue("Crietz"))

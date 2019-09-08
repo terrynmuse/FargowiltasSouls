@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Bulb Enchantment");
             Tooltip.SetDefault(
 @"'Has a surprisingly sweet aroma'
-Your magic damage has a chance to poison hit enemies with a spore cloud
+Your damage has a chance to poison hit enemies with a spore cloud
 Effects of Night Shade Petal and Petal Shield");
             DisplayName.AddTranslation(GameCulture.Chinese, "花瓣魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -45,9 +45,10 @@ Effects of Night Shade Petal and Petal Shield");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //bulb set bonus
-            thoriumPlayer.bulbSpore = true;
+            modPlayer.BulbEnchant = true;
             //petal shield
             thorium.GetItem("PetalShield").UpdateAccessory(player, hideVisual);
             player.statDefense -= 2;

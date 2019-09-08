@@ -22,6 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Demon Blood Enchantment");
             Tooltip.SetDefault(
 @"'Infused with Corrupt Blood'
+Dealing damage will grant you a 'Blood Charge'
+At maximum charges, your next attack will deal 2x damage and heal you for 20% of the damage dealt
 Consecutive attacks against enemies might drop flesh, which grants bonus life and damage
 Effects of Vampire Gland, Demon Blood Badge, and Vile Flail-Core
 Effects of Blood Demon's Subwoofer and Yellow Music Player
@@ -51,7 +53,8 @@ Summons a pet Flying Blister");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.demonbloodSet = true;
+            //demon blood effect
+            modPlayer.DemonBloodEnchant = true;
             //demon blood badge
             thoriumPlayer.CrimsonBadge = true;
             //vile core

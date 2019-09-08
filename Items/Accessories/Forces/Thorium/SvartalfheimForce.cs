@@ -23,7 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Svartalfheim");
             Tooltip.SetDefault(
 @"'Behold the craftsmanship of the Dark Elves...'
-10% increased damage and damage reduction
+10% increased damage
+90% damage reduction at Full HP
 Immune to intense heat shambler chain-balls
 Attacks have a chance to cause a lightning bolt to strike
 Grants the ability to dash into the enemy
@@ -97,7 +98,6 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
 
             //durasteel
             mod.GetItem("DurasteelEnchant").UpdateAccessory(player, hideVisual);
-            thoriumPlayer.thoriumEndurance -= 0.02f; //meme way to make it 10%
 
             //titan
             modPlayer.AllDamageUp(.1f);

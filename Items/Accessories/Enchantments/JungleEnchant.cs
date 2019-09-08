@@ -87,8 +87,8 @@ All herb collection is doubled
                 recipe.AddIngredient(ItemID.JungleRose);
                 recipe.AddIngredient(ItemID.ThornChakram);
                 recipe.AddIngredient(ItemID.Boomstick);
-                recipe.AddIngredient(thorium.ItemType("MantisCane"));
                 recipe.AddIngredient(ItemID.PoisonedKnife, 300);
+                recipe.AddIngredient(thorium.ItemType("WeirdMud"));
                 recipe.AddIngredient(ItemID.Buggy);
             }
             else

@@ -157,8 +157,14 @@ namespace FargowiltasSouls
         public bool TideTurnerEnchant;
         public bool AssassinEnchant;
         public bool PyroEnchant;
+        public bool ThoriumEnchant;
+        public bool SpiritTrapperEnchant;
+        public bool LifeBloomEnchant;
+        public bool LichEnchant;
+        public bool DemonBloodEnchant;
+        public bool FeralFurEnchant;
+        public bool BulbEnchant;
 
-        public bool MuspelheimForce;
         public bool ThoriumSoul;
 
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
@@ -609,8 +615,17 @@ namespace FargowiltasSouls
             TideHunterEnchant = false;
             BronzeEnchant = false;
             PlagueAcc = false;
+            TideTurnerEnchant = false;
+            AssassinEnchant = false;
+            PyroEnchant = false;
+            ThoriumEnchant = false;
+            SpiritTrapperEnchant = false;
+            LifeBloomEnchant = false;
+            LichEnchant = false;
+            DemonBloodEnchant = false;
+            FeralFurEnchant = false;
+            BulbEnchant = false;
 
-            MuspelheimForce = false;
             ThoriumSoul = false;
 
             #endregion
@@ -1674,6 +1689,21 @@ namespace FargowiltasSouls
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            if (Eternity)
+            {
+                if (crit)
+                {
+                    damage *= 5;
+                }
+            }
+            else if (UniverseEffect)
+            {
+                if (crit)
+                {
+                    damage = (int)(damage * 2.5f);
+                }
+            }
+
             if (Hexed)
             {
                 target.life += damage;
@@ -2189,14 +2219,14 @@ namespace FargowiltasSouls
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (ChloroEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
+            if (BulbEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
             {
                 Main.PlaySound(2, (int)proj.position.X, (int)proj.position.Y, 34, 1f, 0f);
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloud"), 0, 0f, proj.owner, 0f, 0f);
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, proj.owner, 0f, 0f);
             }
 
-            if (SpiritForce && Soulcheck.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && Soulcheck.GetValue("Spirit Trapper Wisps"))
             {
                 if (target.life < 0 && target.value > 0f)
                 {
@@ -2227,31 +2257,64 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (MuspelheimForce)
+            if (LichEnchant && target.life <= 0)
             {
-                //feral fure
-                if (!ThoriumSoul && crit)
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("SoulFragment"), 0, 0f, proj.owner, 0f, 0f);
+                for (int num26 = 0; num26 < 5; num26++)
                 {
-                    for (int m = 0; m < 5; m++)
-                    {
-                        int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
-                        Main.dust[num9].noGravity = true;
-                    }
-                    Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
-                    player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
+                    int num27 = Dust.NewDust(proj.position, proj.width, proj.height, 55, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 150, default(Color), 0.75f);
+                    Main.dust[num27].noGravity = true;
                 }
-                //life bloom
-                if (target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+                for (int num28 = 0; num28 < 5; num28++)
                 {
-                    for (int l = 0; l < 10; l++)
-                    {
-                        int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
-                        Main.dust[num7].noGravity = true;
-                    }
-                    int num8 = Main.rand.Next(1, 4);
-                    player.statLife += num8;
-                    player.HealEffect(num8, true);
-                    thoriumPlayer.lifeBloomMax += num8;
+                    int num29 = Dust.NewDust(proj.position, proj.width, proj.height, thorium.DustType("HarbingerDust"), (float)Main.rand.Next(-3, 3), (float)Main.rand.Next(-3, 3), 100, default(Color), 1f);
+                    Main.dust[num29].noGravity = true;
+                }
+            }
+
+            //feral fure
+            if (!FeralFurEnchant && crit)
+            {
+                for (int m = 0; m < 5; m++)
+                {
+                    int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
+                    Main.dust[num9].noGravity = true;
+                }
+                Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
+                player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
+            }
+
+            //life bloom
+            if (LifeBloomEnchant && target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+            {
+                for (int l = 0; l < 10; l++)
+                {
+                    int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
+                    Main.dust[num7].noGravity = true;
+                }
+                int num8 = Main.rand.Next(1, 4);
+                player.statLife += num8;
+                player.HealEffect(num8, true);
+                thoriumPlayer.lifeBloomMax += num8;
+            }
+
+            //demon blood
+            if (target.type != 488 && !thoriumPlayer.bloodChargeExhaust)
+            {
+                thoriumPlayer.bloodCharge++;
+                thoriumPlayer.bloodChargeTimer = 120;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("DemonBloodVisual")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("DemonBloodVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                }
+                if (thoriumPlayer.bloodCharge >= 5)
+                {
+                    player.statLife += damage / 5;
+                    player.HealEffect(damage / 5, true);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("BloodBoom"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    damage = (int)((float)damage * 2f);
+                    player.AddBuff(thorium.BuffType("DemonBloodExhaust"), 600, true);
+                    thoriumPlayer.bloodCharge = 0;
                 }
             }
 
@@ -2333,6 +2396,12 @@ namespace FargowiltasSouls
                 }
 
                 gladCount = WillForce ? 30 : 60;
+            }
+
+            if (ThoriumEnchant && Main.rand.Next(12) == 0)
+            {
+                int diver = NPC.NewNPC((int)target.Center.X, (int)target.Center.Y, thorium.NPCType("Diverman"));
+                Main.npc[diver].AddBuff(BuffID.Frostburn, 3600);
             }
 
             if (SolarEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
@@ -2592,14 +2661,14 @@ namespace FargowiltasSouls
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (ChloroEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
+            if (BulbEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
             {
                 Main.PlaySound(2, (int)player.Center.X, (int)player.Center.Y, 34, 1f, 0f);
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloud"), 0, 0f, player.whoAmI, 0f, 0f);
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, player.whoAmI, 0f, 0f);
             }
 
-            if (SpiritForce && Soulcheck.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && Soulcheck.GetValue("Spirit Trapper Wisps"))
             {
                 if (target.life < 0 && target.value > 0f)
                 {
@@ -2630,31 +2699,64 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (MuspelheimForce)
+            if (LichEnchant && target.life <= 0)
             {
-                //feral fure
-                if (!ThoriumSoul && crit)
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("SoulFragment"), 0, 0f, player.whoAmI, 0f, 0f);
+                for (int num26 = 0; num26 < 5; num26++)
                 {
-                    for (int m = 0; m < 5; m++)
-                    {
-                        int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
-                        Main.dust[num9].noGravity = true;
-                    }
-                    Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
-                    player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
+                    int num27 = Dust.NewDust(target.position, target.width, target.height, 55, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 150, default(Color), 0.75f);
+                    Main.dust[num27].noGravity = true;
                 }
-                //life bloom
-                if (target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+                for (int num28 = 0; num28 < 5; num28++)
                 {
-                    for (int l = 0; l < 10; l++)
-                    {
-                        int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
-                        Main.dust[num7].noGravity = true;
-                    }
-                    int num8 = Main.rand.Next(1, 4);
-                    player.statLife += num8;
-                    player.HealEffect(num8, true);
-                    thoriumPlayer.lifeBloomMax += num8;
+                    int num29 = Dust.NewDust(target.position, target.width, target.height, thorium.DustType("HarbingerDust"), (float)Main.rand.Next(-3, 3), (float)Main.rand.Next(-3, 3), 100, default(Color), 1f);
+                    Main.dust[num29].noGravity = true;
+                }
+            }
+
+            //feral fure
+            if (!FeralFurEnchant && crit)
+            {
+                for (int m = 0; m < 5; m++)
+                {
+                    int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
+                    Main.dust[num9].noGravity = true;
+                }
+                Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
+                player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
+            }
+
+            //life bloom
+            if (LifeBloomEnchant && target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+            {
+                for (int l = 0; l < 10; l++)
+                {
+                    int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
+                    Main.dust[num7].noGravity = true;
+                }
+                int num8 = Main.rand.Next(1, 4);
+                player.statLife += num8;
+                player.HealEffect(num8, true);
+                thoriumPlayer.lifeBloomMax += num8;
+            }
+
+            //demon blood
+            if (target.type != 488 && !thoriumPlayer.bloodChargeExhaust)
+            {
+                thoriumPlayer.bloodCharge++;
+                thoriumPlayer.bloodChargeTimer = 120;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("DemonBloodVisual")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("DemonBloodVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                }
+                if (thoriumPlayer.bloodCharge >= 5)
+                {
+                    player.statLife += item.damage / 5;
+                    player.HealEffect(item.damage / 5, true);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("BloodBoom"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    item.damage = (int)((float)item.damage * 2f);
+                    player.AddBuff(thorium.BuffType("DemonBloodExhaust"), 600, true);
+                    thoriumPlayer.bloodCharge = 0;
                 }
             }
 

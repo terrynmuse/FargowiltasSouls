@@ -25,6 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'All will fall before your might...'
 The energy of Terraria seeks to protect you
+Shortlived Divermen will occasionally spawn when hitting enemies
 Critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Crietz and Band of Replenishment
 Effects of Fan Letter and Terrarium Surround Sound");
@@ -87,6 +88,8 @@ Effects of Fan Letter and Terrarium Surround Sound");
                     thoriumPlayer.empowerTerrarium = true;
                 }
             }
+            //diverman meme
+            modPlayer.ThoriumEnchant = true;
             //crietz
             thoriumPlayer.crietzAcc = true;
             //band of replenishment

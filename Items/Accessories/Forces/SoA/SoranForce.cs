@@ -82,8 +82,8 @@ Summons several pets");
             recipe.AddIngredient(null, "NebulousApprenticeEnchant");
             recipe.AddIngredient(null, "StellarPriestEnchant");
             recipe.AddIngredient(null, "FallenPrinceEnchant");
-            recipe.AddIngredient(null, "LunarRing");
-            recipe.AddIngredient(null, "TrueMoonEdgedPandolarra");
+            recipe.AddIngredient(soa.ItemType("LunarRing"));
+            recipe.AddIngredient(soa.ItemType("TrueMoonEdgedPandolarra"));
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
             recipe.SetResult(this);
