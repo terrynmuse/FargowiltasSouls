@@ -24,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'Nuba would be proud'
 Attacking enemies may sometimes release buff wisps which can be picked up for different stacking buffs
 Effects of Nuba's Blessing");
+            DisplayName.AddTranslation(GameCulture.Chinese, "星云学徒魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'努巴会为你感到骄傲'
+攻击敌人概率释放强化焰, 拾取后获得可堆叠Buff
+拥有努巴的祝福的效果");
         }
 
         public override void SetDefaults()

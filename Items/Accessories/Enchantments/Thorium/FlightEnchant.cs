@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Flight Enchantment");
             Tooltip.SetDefault(
 @"'The sky is your playing field'
-You can now briefly fly");
+Increases flight time by 100%");
             DisplayName.AddTranslation(GameCulture.Chinese, "飞羽魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'天空是你的游戏场'
@@ -42,8 +42,8 @@ You can now briefly fly");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.flightSet = true;
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            modPlayer.wingTimeModifier += 1f;
         }
         
         private readonly string[] items =

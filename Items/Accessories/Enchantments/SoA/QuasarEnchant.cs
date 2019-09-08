@@ -24,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'It's time to shine'
 Throwing damage creates surges of energy around you
 Energy surges attempt to home into enemies");
+            DisplayName.AddTranslation(GameCulture.Chinese, "类星体魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'是时候大放异彩了'
+投掷伤害会在玩家周围激发能量激流
+能量激流会尝试追踪敌人");
         }
 
         public override void SetDefaults()

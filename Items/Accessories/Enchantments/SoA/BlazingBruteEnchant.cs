@@ -24,6 +24,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'Your spirit ignites like the brightest flame. Soon, your enemies will too'
 Standing still for 5 seconds charges a shield that increases damage reduction by 25% per level (max of 4) 
 Getting hit or moving resets the counter");
+            DisplayName.AddTranslation(GameCulture.Chinese, "赤炎魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'你的灵魂燃烧如炽火. 很快, 你的敌人也将如此'
+站立不动5秒将会蓄能一层护盾, 每一层增加25%伤害减免(上限4层)
+被攻击或移动后重置");
         }
 
         public override void SetDefaults()

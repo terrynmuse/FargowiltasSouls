@@ -21,7 +21,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Alfheim");
             Tooltip.SetDefault(
 @"'Elven mysteries unfold before you...'
-Healing spells heal an additional 5 life and shortly increase the healed player's maximum life by 50
+Healing potions heal 50% more life
+Healing spells shortly increase the healed player's maximum life by 50
 Every 5 seconds you generate up to 3 holy crosses
 Critical strikes will generate up to 15 shadow wisps
 Pressing the 'Special Ability' key will unleash them towards your cursor's position
@@ -38,7 +39,7 @@ Summons a pet Life Spirit and Holy Goat");
 @"'精灵之秘在你眼前展开...'
 治疗法术额外治疗5点生命值, 治疗后短暂增加队友50最大生命值
 每5秒产生一个圣十字架, 上限为3个
-光辉暴击产生至多15个
+暴击产生至多15个暗影魂火
 按下'特殊能力'键向光标方向释放所有存留的暗影魂火
 召唤一个生物工程探测器协助你队友
 光辉伤害有15%的概率造成闪光爆炸

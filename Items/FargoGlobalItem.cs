@@ -313,6 +313,12 @@ namespace FargowiltasSouls.Items
                 player.AddBuff(BuffID.PotionSickness, 10800);
             }
 
+            if (modPlayer.SacredEnchant && item.healLife > 0)
+            {
+                player.HealEffect(item.healLife / 2);
+                player.statLife += item.healLife / 2;
+            }
+
             if (modPlayer.UniverseEffect && item.damage > 0) item.shootSpeed *= modPlayer.Eternity ? 2f : 1.5f;
 
             return false;

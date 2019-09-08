@@ -40,17 +40,19 @@ Soul and Enchantment Changes:
 -Fixed Force of Wood not having Force of Wood effects somehow
 -Soul of Terraria no longer gains Palladium life steal, double mana star heals, or shadowflame aura
 
+-Jungle Enchantment recipe altered with Thorium (Added Annoying Mud, Removed Mantis Cane)
 -Meteor Enchantment removed from Conduit Enchantment (Added Electro Rebounder)
 -Iron Enchantment removed from Steel Enchantment (Added Katana)
 -Spirit Trapper Enchantment removed from Spectre Enchantment (Added to Force of Helheim )
 
+-Crier Enchantment recipe altered (Added Cardinal, Removed Bird)
 -Sandstone, Flesh, and Lich Enchantment recipes fixed 
 -Darksteel Enchantment now gives Shackled immunity
 -Assassin Enchantment recipe altered (replaced Nail Gun with Shadowflame Bow)
 -Fixed several inconsistencies in effects when Thorium is enabled (effects from when Thorium Enchantments were mixed into vanilla Forces)
 -Removed Dark Effigy effect from Shadow Force onward
--Several Thorium Enchantments now work for all damage types: Jester, Illumite, Malignant, White Dwarf, Cryo Magus, Yew Wood, Tide Hunter, Warlock, Bronze, Assassin, Pyro, Tide Turner, 
--New custom effects for several Thorium enchantments: White Knight
+-Several Thorium Enchantments now work for all damage types: Jester, Illumite, Malignant, White Dwarf, Cryo Magus, Yew Wood, Tide Hunter, Warlock, Bronze, Assassin, Pyro, Tide Turner, Valadium, Spirit Trapper, Life Bloom, Lich, Dread, Feral Fur
+-New custom effects for several Thorium enchantments: White Knight, Thorium, Naga Skin, Flight, Sacred, Steel, Darksteel, Durasteel
 
 
 -All Calamity Enchantment recipes reworked, no longer needing all helmets, all rare variants and pets added, PreHard Mode Enchantments require less items, Statigel is now PreHard Mode
@@ -64,6 +66,8 @@ Soul and Enchantment Changes:
 -Trawler Soul recipe altered (Added Golden Carp)
 -World Shaper Soul recipe altered (Added Bone Pickaxe, Removed  Laser Drill)
 -Soul of Dimensions and Eternity flight is now actually infinite
+
+-Fixed Soul of the Universe and Soul of Eternity crit multipliers not working in multiplayer
 
 -Adjusted some of Soul of the Masochist's stat buffs
 
@@ -87,6 +91,12 @@ Soul and Enchantment Changes:
 
 
 Masochist Mode Changes:
+QB
+-Queen Bee will only spawn bees and stingers while Royal Subjects are alive, and take 50% damage
+-Royal Subjects now only have the ability to dash
+-Royal Subjects are spawned right on Queen Bee now
+
+
 -Eater of Souls now have a windup before their attack and do not go through walls
 -sharks dont jump as high 
 -only armed zombies break down doors now

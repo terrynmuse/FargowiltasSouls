@@ -29,14 +29,16 @@ Effects of The Community, Abyssal Diving Suit, and Lumenous Amulet
 Effects of the Aquatic Emblem, Nebulous Core, and Draedon's Heart
 Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift
 Effects of Heart of the Elements and The Sponge");
-            DisplayName.AddTranslation(GameCulture.Chinese, "灾厄之力");
+            DisplayName.AddTranslation(GameCulture.Chinese, "荒芜之力");
             Tooltip.AddTranslation(GameCulture.Chinese,
-@"'只带走生命,只留下废土'
-拥有胜潮,天蓝和斯塔提斯的套装效果
-拥有代达罗斯,掠夺者和星幻的套装效果
-拥有软壳,阿塔西亚和克希洛克的套装效果
-拥有佩码·福洛斯特之融魔台,星陨幻空石和星神游龙外壳的效果
-拥有瘟疫蜂巢,大珍珠和阿米迪亚斯之垂饰的效果");
+@"'你将成为这个荒芜寒冷世界的最后幸存者'
+拥有胜潮, 克希洛克和蓝色欧米茄的套装效果
+拥有弑神者,  始源林海和古圣金源的套装效果
+拥有深潜者, 变压器和祖玛的礼物的效果
+拥有归一元心石, 幽影潜渊服和流明护身符的效果
+拥有海波纹章, 星云之核和嘉登之心的效果
+拥有聚合之脑, 圣魂神物和魔君的礼物的效果
+拥有元灵之心和化绵留香石的效果");
 
         }
 

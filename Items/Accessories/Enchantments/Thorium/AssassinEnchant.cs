@@ -28,9 +28,8 @@ Attacks have a 5% chance to instantly kill the enemy");
             DisplayName.AddTranslation(GameCulture.Chinese, "刺客魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'遮蔽天空，抹除弱者'
-远程攻击造成诅咒地狱和脓液效果
-远程攻击有10%概率复制并增加15%伤害
-远程攻击有5%概率即死敌人");
+攻击有10%概率复制并增加15%伤害
+攻击有5%概率即死敌人");
         }
 
         public override void SetDefaults()

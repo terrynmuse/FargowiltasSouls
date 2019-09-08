@@ -45,9 +45,10 @@ Effects of Inner Flame");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
-            thoriumPlayer.spiritTrapper = true;
+            modPlayer.SpiritTrapperEnchant = true;
             //inner flame
             thoriumPlayer.spiritFlame = true;
         }

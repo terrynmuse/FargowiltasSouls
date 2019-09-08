@@ -21,7 +21,7 @@ While in the Corruption, the radius is doubled
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'未开发的潜力'
 环绕一个暗影烈焰光环
-在腐地时,半径加倍
+在腐地时, 半径加倍
 ");
         }
 

@@ -79,6 +79,7 @@ Effects of Night Shade Petal, Petal Shield, Toxic Subwoofer, and Flower Boots
 
         private void Thorium(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //subwoofer
             thoriumPlayer.bardRangeBoost += 450;
@@ -90,6 +91,8 @@ Effects of Night Shade Petal, Petal Shield, Toxic Subwoofer, and Flower Boots
                     thoriumPlayer.empowerPoison = true;
                 }
             }
+            //bulb
+            modPlayer.BulbEnchant = true;
             //petal shield
             thorium.GetItem("PetalShield").UpdateAccessory(player, hideVisual);
             player.statDefense -= 2;

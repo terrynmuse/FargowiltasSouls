@@ -36,7 +36,8 @@ Effects of Fabled Tortoise Shell");
 魔法抛射物命中敌人时释放孢子爆炸
 召唤收割者之球向附近敌人发射孢子云
 被攻击时释放孢子云
-被攻击时激活'愤怒'");
+被攻击时激活'愤怒'
+拥有寓言龟壳的效果");
         }
 
         public override void SetDefaults()

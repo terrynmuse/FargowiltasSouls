@@ -41,7 +41,8 @@ Effects of Heart of the Elements and The Sponge");
 2%概率免受伤害
 被攻击时冻结附近敌人
 所有攻击都会生成治愈金球
-拥有魔毯的效果");
+拥有魔毯的效果
+拥有元灵之心和化绵留香石的效果");
         }
 
         public override void SetDefaults()

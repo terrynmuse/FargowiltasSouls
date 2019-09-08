@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Protect e-girls at all costs'
 Enemies that attack friendly NPCs are marked as Villains
-You deal bonus damage to Villains
+You deal 50% bonus damage to Villains
 Effects of Shade Band
 Summons a Moogle pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "白骑士魔石");

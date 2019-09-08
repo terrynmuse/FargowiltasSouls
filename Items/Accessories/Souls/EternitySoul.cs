@@ -349,6 +349,8 @@ and most of SoT not mentioned because meme tooltip length
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player, hideVisual);
 
             if (Fargowiltas.Instance.DBTLoaded) DBT(player);
+
+            if (Fargowiltas.Instance.SOALoaded) SOA(player, hideVisual);
         }
 
         private void Thorium(Player player, bool hideVisual)
@@ -665,6 +667,13 @@ and most of SoT not mentioned because meme tooltip length
             dbtPlayer.zenkaiCharm = true;
         }
 
+        private void SOA(Player player, bool hideVisual)
+        {
+            mod.GetItem("GenerationsForce").UpdateAccessory(player, hideVisual);
+            mod.GetItem("SoranForce").UpdateAccessory(player, hideVisual);
+            mod.GetItem("SyranForce").UpdateAccessory(player, hideVisual);
+        }
+
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
@@ -696,6 +705,11 @@ and most of SoT not mentioned because meme tooltip length
             {
                 recipe.AddIngredient(null, "CalamitySoul");
                 recipe.AddIngredient(calamity.ItemType("Rock"));
+            }
+
+            if (Fargowiltas.Instance.SOALoaded)
+            {
+                recipe.AddIngredient(null, "SoASoul");
             }
 
             recipe.AddIngredient(null, "Sadism", 30);
