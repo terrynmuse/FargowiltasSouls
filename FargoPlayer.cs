@@ -2309,7 +2309,7 @@ namespace FargowiltasSouls
             }
 
             //demon blood
-            if (target.type != 488 && !thoriumPlayer.bloodChargeExhaust)
+            if (DemonBloodEnchant && target.type != 488 && !thoriumPlayer.bloodChargeExhaust)
             {
                 thoriumPlayer.bloodCharge++;
                 thoriumPlayer.bloodChargeTimer = 120;
@@ -2760,7 +2760,7 @@ namespace FargowiltasSouls
             }
 
             //demon blood
-            if (target.type != 488 && !thoriumPlayer.bloodChargeExhaust)
+            if (DemonBloodEnchant && target.type != 488 && !thoriumPlayer.bloodChargeExhaust)
             {
                 thoriumPlayer.bloodCharge++;
                 thoriumPlayer.bloodChargeTimer = 120;
