@@ -667,7 +667,6 @@ namespace FargowiltasSouls.NPCs
         public override bool PreAI(NPC npc)
         {
             Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (TimeFrozen)
             {
@@ -7915,12 +7914,13 @@ namespace FargowiltasSouls.NPCs
             bool goblinArmy = Main.invasionType == 1;
             bool frostLegion = Main.invasionType == 2;
             bool pirates = Main.invasionType == 3;
-            bool martianMadness = Main.invasionType == 4;
             bool oldOnesArmy = DD2Event.Ongoing && spawnInfo.player.ZoneOldOneArmy;
             bool frostMoon = surface && night && Main.snowMoon;
             bool pumpkinMoon = surface && night && Main.pumpkinMoon;
             bool solarEclipse = surface && day && Main.eclipse;
+            bool martianMadness = Main.invasionType == 4;
             bool lunarEvents = NPC.LunarApocalypseIsUp && (nebulaTower || vortexTower || stardustTower || solarTower);
+            bool monsterMadhouse = MMWorld.MMArmy;
 
             //no work?
             //is lava on screen
@@ -8412,6 +8412,51 @@ namespace FargowiltasSouls.NPCs
 
                     pool[NPCID.AncientCultistSquidhead] = 3f;
                     pool[NPCID.CultistDragonHead] = .5f;
+                }
+            }
+
+            if (monsterMadhouse)
+            {
+                pool.Clear();
+                if (MMWorld.MMPoints >= 0) //Goblin Army
+                {
+
+                }
+                if (MMWorld.MMPoints >= 90 && MMWorld.MMPoints < 270) //OOA 1
+                {
+
+                }
+                if (MMWorld.MMPoints >= 180) //Pirates
+                {
+
+                }
+                if (MMWorld.MMPoints >= 270 && MMWorld.MMPoints < 630) //OOA2
+                {
+
+                }
+                if (MMWorld.MMPoints >= 360) //Eclipse
+                {
+
+                }
+                if (MMWorld.MMPoints >= 450) //Pumpkin Moon
+                {
+
+                }
+                if (MMWorld.MMPoints >= 540) //Frost Moon
+                {
+
+                }
+                if (MMWorld.MMPoints >= 540) //Martians
+                {
+
+                }
+                if (MMWorld.MMPoints >= 630) //OOA3
+                {
+
+                }
+                if (MMWorld.MMPoints >= 720) //Lunar Events
+                {
+
                 }
             }
         }
