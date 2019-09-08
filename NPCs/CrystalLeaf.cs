@@ -21,7 +21,7 @@ namespace FargowiltasSouls.NPCs
         {
             npc.width = 32;
             npc.height = 32;
-            npc.damage = 0;
+            npc.damage = 90;
             npc.defense = 9999;
             npc.lifeMax = 9999;
             npc.HitSound = SoundID.NPCHit1;
@@ -38,6 +38,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
+            npc.damage = (int)(90 * (1 + FargoSoulsWorld.PlanteraCount * .0125));
             npc.lifeMax = 9999;
             npc.life = 9999;
         }
@@ -63,30 +64,31 @@ namespace FargowiltasSouls.NPCs
 
             if (npc.HasPlayerTarget && Main.player[npc.target].active)
             {
-                npc.ai[2]++;
-                if (npc.ai[2] > 240f) //projectile timer
+                if (--npc.localAI[2] < 0) //projectile timer
                 {
-                    npc.ai[2] = 0;
-                    npc.netUpdate = true;
-                    Main.PlaySound(6, (int)npc.position.X, (int)npc.position.Y);
-                    if (Main.netMode != -1)
+                    npc.localAI[2] = 300;
+                    if (npc.ai[1] == 125)
                     {
-                        Vector2 distance = Main.player[npc.target].Center - npc.Center + Main.player[npc.target].velocity * 30f;
-                        distance.Normalize();
-                        distance *= 16f;
-                        int damage = 24;
-                        if (!Main.player[npc.target].ZoneJungle)
-                            damage = damage * 2;
-                        else if (Main.expertMode)
-                            damage = damage * 9 / 10;
-                        damage = (int)(damage * (1 + FargoSoulsWorld.PlanteraCount * .0125));
-                        Projectile.NewProjectile(npc.Center, distance, mod.ProjectileType("CrystalLeafShot"), damage, 0f, Main.myPlayer);
-                    }
-                    for (int index1 = 0; index1 < 30; ++index1)
-                    {
-                        int index2 = Dust.NewDust(npc.position, npc.width, npc.height, 157, 0f, 0f, 0, new Color(), 2f);
-                        Main.dust[index2].noGravity = true;
-                        Main.dust[index2].velocity *= 5f;
+                        Main.PlaySound(6, (int)npc.position.X, (int)npc.position.Y);
+                        if (Main.netMode != -1)
+                        {
+                            Vector2 distance = Main.player[npc.target].Center - npc.Center + Main.player[npc.target].velocity * 30f;
+                            distance.Normalize();
+                            distance *= 16f;
+                            int damage = 24;
+                            if (!Main.player[npc.target].ZoneJungle)
+                                damage = damage * 2;
+                            else if (Main.expertMode)
+                                damage = damage * 9 / 10;
+                            damage = (int)(damage * (1 + FargoSoulsWorld.PlanteraCount * .0125));
+                            Projectile.NewProjectile(npc.Center, distance, mod.ProjectileType("CrystalLeafShot"), damage, 0f, Main.myPlayer);
+                        }
+                        for (int index1 = 0; index1 < 30; ++index1)
+                        {
+                            int index2 = Dust.NewDust(npc.position, npc.width, npc.height, 157, 0f, 0f, 0, new Color(), 2f);
+                            Main.dust[index2].noGravity = true;
+                            Main.dust[index2].velocity *= 5f;
+                        }
                     }
                 }
             }
@@ -102,7 +104,7 @@ namespace FargowiltasSouls.NPCs
             npc.position = plantera.Center + new Vector2(npc.ai[1], 0f).RotatedBy(npc.ai[3]);
             npc.position.X -= npc.width / 2;
             npc.position.Y -= npc.height / 2;
-            float rotation = npc.ai[1] == 125f ? 0.03f : -0.01f;
+            float rotation = npc.ai[1] == 125f ? 0.03f : -0.015f;
             npc.ai[3] += rotation;
             if (npc.ai[3] > (float)Math.PI)
             {
@@ -113,38 +115,18 @@ namespace FargowiltasSouls.NPCs
 
             if (npc.ai[1] > 125)
             {
-                if (npc.localAI[1] == 0)
-                {
-                    if (npc.localAI[0] == 1)
-                    {
-                        npc.ai[1] -= 10;
-                    }
-                    else
-                    {
-                        npc.ai[1] += 10;
-                    }
-
-                    if (npc.ai[1] >= 1000)
-                    {
-                        npc.localAI[0] = 1;
-                        npc.localAI[1] = 120;
-                    }
-                    else if (npc.ai[1] <= 250)
-                    {
-                        npc.localAI[0] = 0;
-                        npc.localAI[1] = 120;
-                    }
-                }
-                else
-                {
-                    npc.localAI[1]--;
-                }
-
-
-
-
-                
+                npc.ai[2] += 2 * (float)Math.PI / 420;
+                if (npc.ai[2] > (float)Math.PI)
+                    npc.ai[2] -= 2 * (float)Math.PI;
+                npc.ai[1] += (float)Math.Sin(npc.ai[2]) * 7;
             }
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
+            target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
+            target.AddBuff(mod.BuffType("IvyVenom"), Main.rand.Next(60, 300));
         }
 
         public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)

@@ -40,7 +40,7 @@ Increases your rate of fire with all ranged weapons
 Magic projectiles have a 10% chance to cause a massive explosion on enemy hits
 Summons an ancient leaf prism to blast your enemies with life energy
 Rogue weapons have a faster throwing rate while you are above 90% life
-Effects of the Godly Soul Artifact and Yharim's Gift");
+Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
             DisplayName.AddTranslation(GameCulture.Chinese, "始源林海魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'你身上流淌出无尽的生命能量'
@@ -57,7 +57,7 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
 魔法抛射物击中敌人时有10%概率造成大爆炸
 召唤一个远古叶晶用生命之力轰炸敌人
 生命值高于90%时, 提高盗贼武器攻速
-拥有圣魂神物和魔君的礼物的效果");
+拥有聚合之脑, 圣魂神物和魔君的礼物的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)
@@ -100,7 +100,6 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
                 modPlayer.silvaThrowing = true;
             }
             
-
             if (Soulcheck.GetValue("Silva Crystal Minion"))
             {
                 //summon
@@ -114,6 +113,24 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
                     if (player.ownedProjectileCounts[calamity.ProjectileType("SilvaCrystal")] < 1)
                     {
                         Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("SilvaCrystal"), (int)(1500.0 * (double)player.minionDamage), 0f, Main.myPlayer, 0f, 0f);
+                    }
+                }
+            }
+
+            //THE AMALGAM
+            modPlayer.aBrain = true;
+            if (Soulcheck.GetValue("Fungal Clump Minion"))
+            {
+                modPlayer.fungalClump = true;
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    if (player.FindBuffIndex(calamity.BuffType("FungalClump")) == -1)
+                    {
+                        player.AddBuff(calamity.BuffType("FungalClump"), 3600, true);
+                    }
+                    if (player.ownedProjectileCounts[calamity.ProjectileType("FungalClump")] < 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("FungalClump"), 250, 1f, Main.myPlayer, 0f, 0f);
                     }
                 }
             }
@@ -166,6 +183,8 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
                     }
                 }
             }
+
+            //pet soon tm
         }
 
         public override void AddRecipes()
@@ -174,20 +193,20 @@ Effects of the Godly Soul Artifact and Yharim's Gift");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("SilvaHelm"));
-            recipe.AddIngredient(calamity.ItemType("SilvaHornedHelm"));
-            recipe.AddIngredient(calamity.ItemType("SilvaMaskedCap"));
-            recipe.AddIngredient(calamity.ItemType("SilvaHelmet"));
-            recipe.AddIngredient(calamity.ItemType("SilvaMask"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnySilvaHelmet");
             recipe.AddIngredient(calamity.ItemType("SilvaArmor"));
             recipe.AddIngredient(calamity.ItemType("SilvaLeggings"));
+            recipe.AddIngredient(calamity.ItemType("TheAmalgam"));
             recipe.AddIngredient(calamity.ItemType("GodlySoulArtifact"));
             recipe.AddIngredient(calamity.ItemType("YharimsGift"));
-            recipe.AddIngredient(calamity.ItemType("LightGodsBrilliance"));
             recipe.AddIngredient(calamity.ItemType("AlphaRay"));
             recipe.AddIngredient(calamity.ItemType("ScourgeoftheCosmos"));
+            recipe.AddIngredient(calamity.ItemType("Swordsplosion"));
             recipe.AddIngredient(calamity.ItemType("Climax"));
+            recipe.AddIngredient(calamity.ItemType("VoidVortex"));
             recipe.AddIngredient(calamity.ItemType("YharimsCrystal"));
+            recipe.AddIngredient(calamity.ItemType("ForgottenDragonEgg"));
+            recipe.AddIngredient(calamity.ItemType("FoxDrive"));
 
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);

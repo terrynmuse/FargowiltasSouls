@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Naga-Skin Enchantment");
             Tooltip.SetDefault(
 @"'Extreme danger noodle'
-Every 75 mana spent will dramatically increase your magic damage and casting speed briefly
+20% increased attack speed while in water
 Allows quicker movement in water");
             DisplayName.AddTranslation(GameCulture.Chinese, "娜迦魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -44,9 +44,14 @@ Allows quicker movement in water");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //naga set bonus
-            thoriumPlayer.nagaManaEffect = true;
+            //naga effect
+            if (player.wet)
+            {
+                modPlayer.AttackSpeed *= 1.2f;
+            }
+
             //quicker in water
             player.ignoreWater = true;
             if (player.wet)

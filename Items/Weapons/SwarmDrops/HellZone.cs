@@ -11,16 +11,16 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hell Zone");
-            Tooltip.SetDefault("'The reward for slaughtering many..'");
+            Tooltip.SetDefault("'The reward for slaughtering many...'");
             DisplayName.AddTranslation(GameCulture.Chinese, "地狱领域");
-            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励..'");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励...'");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 125; //
+            item.damage = 220; //
             item.knockBack = 0.5f;
-            item.shootSpeed = 10f; //
+            item.shootSpeed = 12f; //
 
             item.useStyle = 5;
             item.autoReuse = true;
@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             
             item.noMelee = true;
             item.value = Item.sellPrice(0, 15); //
-            item.rare = 6; //
+            item.rare = 11; //
             item.ranged = true;
         }
 
@@ -62,8 +62,9 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             {
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(null, "Bonezone");
+                recipe.AddIngredient(null, "MutantScale", 10);
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerSkele"));
-                recipe.AddTile(TileID.MythrilAnvil);
+                recipe.AddTile(mod, "CrucibleCosmosSheet");
                 recipe.SetResult(this);
                 recipe.AddRecipe();
             }

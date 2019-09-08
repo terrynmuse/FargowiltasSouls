@@ -56,8 +56,6 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (p.Infinity && item.createTile == -1 && item.type != ItemID.LifeFruit) return false;
-
             if (p.BuilderMode && (item.createTile != -1 || item.createWall != -1)) return false;
             return true;
         }
@@ -111,7 +109,7 @@ namespace FargowiltasSouls.Items
         {
             FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (p.ChloroEnchant && item.stack == 1 && (item.type == ItemID.Daybloom || item.type == ItemID.Blinkroot || item.type == ItemID.Deathweed || item.type == ItemID.Fireblossom ||
+            if (p.JungleEnchant && item.stack == 1 && (item.type == ItemID.Daybloom || item.type == ItemID.Blinkroot || item.type == ItemID.Deathweed || item.type == ItemID.Fireblossom ||
                                                        item.type == ItemID.Moonglow || item.type == ItemID.Shiverthorn || item.type == ItemID.Waterleaf || item.type == ItemID.Mushroom ||
                                                        item.type == ItemID.VileMushroom || item.type == ItemID.ViciousMushroom || item.type == ItemID.GlowingMushroom)) item.stack = 2;
 
@@ -136,16 +134,6 @@ namespace FargowiltasSouls.Items
                 player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was destroyed by their own magic."), item.mana + item.damage, 0);
                 player.immune = false;
                 player.immuneTime = 0;
-            }
-
-            if (modPlayer.Infinity && !modPlayer.Eternity && (item.useAmmo != AmmoID.None || item.mana > 0 || item.consumable))
-            {
-                modPlayer.InfinityCounter++;
-
-                if (modPlayer.InfinityCounter >= 4)
-                {
-                    modPlayer.InfinityHurt();
-                }
             }
 
             //non weapons and weapons with no ammo begone
@@ -249,7 +237,7 @@ namespace FargowiltasSouls.Items
             if (Soulcheck.GetValue("Illumite Rocket"))
             {
                 //illumite effect
-                if (modPlayer.MidgardForce)
+                if (modPlayer.IllumiteEnchant)
                 {
                     thoriumPlayer.rocketsFired++;
                     if (thoriumPlayer.rocketsFired >= 3)
@@ -263,10 +251,10 @@ namespace FargowiltasSouls.Items
                 }
             }
 
-            if (Soulcheck.GetValue("Plague Lord's Flask"))
+            //plague flask
+            if (modPlayer.PlagueAcc && Soulcheck.GetValue("Plague Lord's Flask"))
             {
-                //plague flask
-                if (modPlayer.HelheimForce && item.damage >= 1 && Main.rand.Next(5) == 0)
+                if (item.damage >= 1 && Main.rand.Next(5) == 0)
                 {
                     Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed;
 
@@ -282,7 +270,7 @@ namespace FargowiltasSouls.Items
             }
             
             //folv effect
-            if (modPlayer.VanaheimForce && Soulcheck.GetValue("Folv's Bolts"))
+            if (modPlayer.FolvEnchant && Soulcheck.GetValue("Folv's Bolts"))
             {
                 thoriumPlayer.magicCast++;
                 if (thoriumPlayer.magicCast >= 7)
@@ -323,6 +311,12 @@ namespace FargowiltasSouls.Items
                 player.HealEffect(heal);
                 player.statLife += heal;
                 player.AddBuff(BuffID.PotionSickness, 10800);
+            }
+
+            if (modPlayer.SacredEnchant && item.healLife > 0)
+            {
+                player.HealEffect(item.healLife / 2);
+                player.statLife += item.healLife / 2;
             }
 
             if (modPlayer.UniverseEffect && item.damage > 0) item.shootSpeed *= modPlayer.Eternity ? 2f : 1.5f;

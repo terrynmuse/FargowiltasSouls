@@ -97,7 +97,6 @@ Permanent Sonar and Crate Buffs";
             {
                 recipe.AddIngredient(thorium.ItemType("MagmaBoundFishingLine"));
                 recipe.AddIngredient(thorium.ItemType("AquaticSonarDevice"));
-                recipe.AddIngredient(ItemID.SittingDucksFishingRod);
                 recipe.AddIngredient(thorium.ItemType("CartlidgedCatcher"));
                 recipe.AddIngredient(thorium.ItemType("TerrariumFisher"));
             }
@@ -107,11 +106,12 @@ Permanent Sonar and Crate Buffs";
                 recipe.AddIngredient(ItemID.GoldenFishingRod);
             }
 
-            recipe.AddIngredient(ItemID.FuzzyCarrot);
+            recipe.AddIngredient(ItemID.GoldenCarp);
             recipe.AddIngredient(ItemID.ReaverShark);
             recipe.AddIngredient(ItemID.Toxikarp);
             recipe.AddIngredient(ItemID.Bladetongue);
             recipe.AddIngredient(ItemID.ObsidianSwordfish);
+            recipe.AddIngredient(ItemID.FuzzyCarrot);
             recipe.AddIngredient(ItemID.HardySaddle);
             recipe.AddIngredient(ItemID.ZephyrFish);
 

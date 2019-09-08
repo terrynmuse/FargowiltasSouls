@@ -49,7 +49,8 @@ If an ally is below half health, you will gain increased healing abilities");
                 Player player2 = Main.player[i];
                 if (player2.active && !player2.dead && player2.statLife < (int)(player2.statLifeMax2 * 0.5) && player2 != player)
                 {
-                    player.AddBuff(thorium.BuffType("HealingMastery"), 120, false);
+                    player.lifeRegen += 3;
+                    player.moveSpeed += .1f;
                 }
             }
         }

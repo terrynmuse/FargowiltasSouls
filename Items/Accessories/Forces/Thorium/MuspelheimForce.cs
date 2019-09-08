@@ -55,8 +55,7 @@ Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //feral fur buff, life bloom heals
-            modPlayer.MuspelheimForce = true;
+
             //sandstone
             player.doubleJumpSandstorm = true;
 
@@ -66,7 +65,10 @@ Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
             player.buffImmune[BuffID.OnFire] = true;
             player.buffImmune[BuffID.Bleeding] = true;
             player.buffImmune[BuffID.Venom] = true;
-
+            //feral fur
+            modPlayer.FeralFurEnchant = true;
+            //life bloom effect
+            modPlayer.LifeBloomEnchant = true;
             //chrysalis
             thoriumPlayer.cocoonAcc = true;
             //living wood set bonus

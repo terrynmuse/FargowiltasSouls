@@ -134,7 +134,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             Main.PlaySound(SoundID.Item84, projectile.Center);
             if (projectile.owner == Main.myPlayer)
             {
-                SpawnRazorbladeRing(8, 17f, projectile.velocity.X > 0 ? -1f : 1f);
+                SpawnRazorbladeRing(6, 17f, -1f);
+                SpawnRazorbladeRing(6, 17f, 1f);
                 if (projectile.owner == Main.myPlayer)
                     Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("FishNukeExplosion"),
                         projectile.damage, projectile.knockBack * 2f, projectile.owner);
@@ -161,7 +162,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             for (int i = 0; i < max; i++)
             {
                 vel = vel.RotatedBy(rotation);
-                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage / 2,
+                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage,
                     projectile.knockBack, projectile.owner, rotationModifier, 6f);
             }
         }

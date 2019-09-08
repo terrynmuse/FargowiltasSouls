@@ -25,14 +25,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'All will fall before your might...'
 The energy of Terraria seeks to protect you
-Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
+Shortlived Divermen will occasionally spawn when hitting enemies
+Critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Crietz and Band of Replenishment
 Effects of Fan Letter and Terrarium Surround Sound");
             DisplayName.AddTranslation(GameCulture.Chinese, "元素之灵魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'万物都臣服于你的力量...'
 泰拉瑞亚的能量试图保护你
-音波暴击短暂缓慢所有附近敌人
+暴击短暂缓慢所有附近敌人
 拥有精准项链和大恢复戒指的效果
 拥有粉丝的信函和界元音箱的效果");
         }
@@ -62,6 +63,7 @@ Effects of Fan Letter and Terrarium Surround Sound");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //terrarium set bonus
             timer++;
@@ -86,12 +88,14 @@ Effects of Fan Letter and Terrarium Surround Sound");
                     thoriumPlayer.empowerTerrarium = true;
                 }
             }
+            //diverman meme
+            modPlayer.ThoriumEnchant = true;
             //crietz
             thoriumPlayer.crietzAcc = true;
             //band of replenishment
             thoriumPlayer.BandofRep = true;
             //jester bonus
-            thoriumPlayer.jesterSet = true;
+            modPlayer.JesterEnchant = true;
             //fan letter
             thoriumPlayer.bardResourceMax2 += 2;
         }

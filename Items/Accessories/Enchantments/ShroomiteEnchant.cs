@@ -16,12 +16,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             string tooltip = 
 @"'Made with real shrooms!'
 Not moving puts you in stealth
-While in stealth, crits deal 2x damage
+While in stealth, crits deal 3x damage
 ";
             string tooltip_ch =
 @"'真的是用蘑菇做的!'
 站立不动时潜行
-潜行时,暴击造成2倍伤害
+潜行时, 暴击造成3倍伤害
 ";
 
             if(thorium != null)

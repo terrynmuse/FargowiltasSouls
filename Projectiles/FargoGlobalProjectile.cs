@@ -30,14 +30,17 @@ namespace FargowiltasSouls.Projectiles
         private bool stormBoosted = false;
         private int stormTimer;
         private bool tungstenProjectile = false;
+        private bool tikiMinion = false;
+        private int tikiTimer = 300;
 
         public bool Rotate = false;
-        public int RotateDist = 64;
+        public int RotateDist = 32;
         public int RotateDir = 1;
 
         private bool firstTick = true;
         private bool squeakyToy = false;
         public int TimeFrozen = 0;
+        public bool TimeFreezeImmune;
 
         public bool Rainbow = false;
 
@@ -51,6 +54,11 @@ namespace FargowiltasSouls.Projectiles
             {
                 switch (projectile.type)
                 {
+                    case ProjectileID.StardustGuardian:
+                    case ProjectileID.StardustGuardianExplosion:
+                        TimeFreezeImmune = true;
+                        break;
+
                     case ProjectileID.SaucerLaser:
                         projectile.tileCollide = false;
                         break;
@@ -67,6 +75,10 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.SharknadoBolt:
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
                             projectile.extraUpdates++;
+                        break;
+
+                    case ProjectileID.Sharknado:
+                        projectile.hostile = false;
                         break;
 
                     case ProjectileID.FlamesTrap:
@@ -142,7 +154,7 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
-                    if (modPlayer.TungstenEnchant && projectile.friendly)
+                    if (modPlayer.TungstenEnchant && projectile.friendly && Soulcheck.GetValue("Tungsten Effect"))
                     {
                         projectile.position = projectile.Center;
                         projectile.scale *= 2f;
@@ -150,6 +162,29 @@ namespace FargowiltasSouls.Projectiles
                         projectile.height *= 2;
                         projectile.Center = projectile.position;
                         tungstenProjectile = true;
+                    }
+
+                    if (modPlayer.TikiEnchant && modPlayer.TikiMinion && projectile.minion && projectile.minionSlots > 0)
+                    {
+                        tikiMinion = true;
+
+                        if (projectile.type == mod.ProjectileType("EaterBody") || projectile.type == ProjectileID.StardustDragon2)
+                        {
+                            for (int i = 0; i < 1000; i++)
+                            {
+                                Projectile pro = Main.projectile[i];
+
+                                if (pro.type == ProjectileID.StardustDragon1 || pro.type == ProjectileID.StardustDragon4 || pro.type == mod.ProjectileType("EaterHead") || pro.type == mod.ProjectileType("EaterTail"))
+                                {
+                                    pro.GetGlobalProjectile<FargoGlobalProjectile>().tikiMinion = true;
+                                }
+                            }
+                        }
+                    }
+
+                    if (modPlayer.StardustEnchant && projectile.type == ProjectileID.StardustGuardianExplosion)
+                    {
+                        projectile.damage *= 5;
                     }
 
                     if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
@@ -195,7 +230,52 @@ namespace FargowiltasSouls.Projectiles
                         projectile.damage = (int)(projectile.damage * 1.5);
                     }
                 }
-                
+
+                if (tikiMinion)
+                {
+                    
+                    projectile.alpha = 120;
+
+                    //dust
+                    if (Main.rand.Next(4) < 2)
+                    {
+                        int dust = Dust.NewDust(new Vector2(projectile.position.X - 2f, projectile.position.Y - 2f), projectile.width + 4, projectile.height + 4, 44, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 100, Color.LimeGreen, .8f);
+                        Main.dust[dust].noGravity = true;
+                        Main.dust[dust].velocity *= 1.8f;
+                        Dust expr_1CCF_cp_0 = Main.dust[dust];
+                        expr_1CCF_cp_0.velocity.Y = expr_1CCF_cp_0.velocity.Y - 0.5f;
+                        if (Main.rand.Next(4) == 0)
+                        {
+                            Main.dust[dust].noGravity = false;
+                            Main.dust[dust].scale *= 0.5f;
+                        }
+                    }
+
+                    tikiTimer--;
+
+                    if (tikiTimer <= 0)
+                    {
+                        for (int num468 = 0; num468 < 20; num468++)
+                        {
+                            int num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 44, -projectile.velocity.X * 0.2f,
+                                -projectile.velocity.Y * 0.2f, 100, Color.LimeGreen, 1f);
+                            Main.dust[num469].noGravity = true;
+                            Main.dust[num469].velocity *= 2f;
+                            num469 = Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), projectile.width, projectile.height, 44, -projectile.velocity.X * 0.2f,
+                                -projectile.velocity.Y * 0.2f, 100, Color.LimeGreen, .5f);
+                            Main.dust[num469].velocity *= 2f;
+                        }
+
+                        projectile.Kill();
+                    }
+                }
+
+                if (modPlayer.StardustEnchant && projectile.type == ProjectileID.StardustGuardian)
+                {
+                    projectile.localAI[0] = 0f;
+                }
+
+
                 if (projectile.friendly && !projectile.hostile)
                 {
                     if (modPlayer.ForbiddenEnchant && projectile.damage > 0 && projectile.type != ProjectileID.SandnadoFriendly && !stormBoosted)
@@ -304,17 +384,11 @@ namespace FargowiltasSouls.Projectiles
                 //increase/decrease degrees
                 if(RotateDir == 1)
                 {
-                    projectile.ai[1] += 2.5f;
+                    projectile.ai[1] += projectile.ai[0];
                 }
                 else
                 {
-                    projectile.ai[1] -= 2.5f;
-                }
-
-                if (modPlayer.FrostEnchant && projectile.type == ProjectileID.Blizzard && Soulcheck.GetValue("Frost Icicles"))
-                {
-                    projectile.rotation = (Main.MouseWorld - projectile.Center).ToRotation() - 5;
-                    projectile.timeLeft = 2;
+                    projectile.ai[1] -= projectile.ai[0];
                 }
 
                 if (modPlayer.OriEnchant && (projectile.type == ProjectileID.BallofFire || projectile.type == ProjectileID.CursedFlameFriendly || projectile.type == ProjectileID.BallofFrost) && Soulcheck.GetValue("Orichalcum Fireballs"))
@@ -757,11 +831,19 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.Sharknado: //spawns from sharks too but whatever
-                    if (FargoSoulsWorld.MasochistMode && !masobool)
+                case ProjectileID.Cthulunado:
+                    if (FargoSoulsWorld.MasochistMode)
                     {
-                        masobool = true;
-                        if (FargoSoulsWorld.downedFishronEX || !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
-                            projectile.damage = (int)(projectile.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
+                        if (!masobool)
+                        {
+                            masobool = true;
+                            if (FargoSoulsWorld.downedFishronEX || !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
+                                projectile.damage = (int)(projectile.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
+                        }
+                        if (counter > 30)
+                        {
+                            projectile.hostile = true;
+                        }
                     }
                     break;
                     
@@ -970,7 +1052,7 @@ namespace FargowiltasSouls.Projectiles
             if (Soulcheck.GetValue("Jester Bell"))
             {
                 //jester effect
-                if (modPlayer.MidgardForce && crit)
+                if (modPlayer.JesterEnchant && crit)
                 {
                     for (int m = 0; m < 1000; m++)
                     {
@@ -1100,6 +1182,7 @@ namespace FargowiltasSouls.Projectiles
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.beeBoss, NPCID.QueenBee))
                             target.AddBuff(BuffID.Venom, Main.rand.Next(30, 300));
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(120, 1200));
+                        target.AddBuff(mod.BuffType("Swarming"), Main.rand.Next(120, 600));
                         break;
 
                     case ProjectileID.Skull:
@@ -1289,6 +1372,12 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.PhantasmalEye:
                     case ProjectileID.PhantasmalSphere:
                         target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
+                        if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
+                        {
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+                            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+                            target.AddBuff(mod.BuffType("MutantFang"), 300);
+                        }
                         break;
 
                     case ProjectileID.RocketSkeleton:
@@ -1480,21 +1569,8 @@ namespace FargowiltasSouls.Projectiles
                 modPlayer.CobaltCD = 60;
             }
 
-            switch (projectile.type)
-            {
-                case ProjectileID.Blizzard:
-                    if (Rotate)
-                        modPlayer.IcicleCount--;
-                    break;
-
-                case ProjectileID.Bone:
-                    break;
-
-                default:
-                    if (modPlayer.OriEnchant && Rotate)
-                        modPlayer.OriSpawn = false;
-                    break;
-            }
+            if (modPlayer.OriEnchant && Rotate && projectile.type != ProjectileID.Bone)
+                modPlayer.OriSpawn = false;
         }
 
         public override void GrapplePullSpeed(Projectile projectile, Player player, ref float speed)
@@ -1520,13 +1596,16 @@ namespace FargowiltasSouls.Projectiles
 
         public static Projectile[] XWay(int num, Vector2 pos, int type, float speed, int damage, float knockback)
         {
-            float[] _x = { 0, speed, 0, -speed, speed, -speed, speed, -speed, speed / 2, speed, -speed, speed / 2, speed, -speed / 2, -speed, -speed / 2 };
-            float[] _y = { speed, 0, -speed, 0, speed, -speed, -speed, speed, speed, speed / 2, speed / 2, -speed, -speed / 2, speed, -speed / 2, -speed };
-
             Projectile[] projs = new Projectile[16];
 
+            double spread = (2 * Math.PI) / num;
+
             for (int i = 0; i < num; i++)
-                projs[i] = NewProjectileDirectSafe(pos, new Vector2(_x[i], _y[i]), type, damage, knockback, Main.myPlayer);
+            {
+                projs[i] = NewProjectileDirectSafe(pos, new Vector2(speed, speed), type, damage, knockback, Main.myPlayer);
+                projs[i].velocity = projs[i].velocity.RotatedBy(spread * i);
+            }
+                
 
             return projs;
         }

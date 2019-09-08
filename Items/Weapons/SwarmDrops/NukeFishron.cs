@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override void SetDefaults()
         {
-            item.damage = 370;
+            item.damage = 700;
             item.ranged = true;
             item.width = 24;
             item.height = 24;
@@ -70,7 +70,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
                 recipe.AddIngredient(mod.ItemType("FishStick"), 10);
                 recipe.AddIngredient(mod.ItemType("CyclonicFin"), 5);
-                recipe.AddIngredient(mod.ItemType("Sadism"), 30);
+                recipe.AddIngredient(mod.ItemType("Sadism"), 15);
                 recipe.AddIngredient(ItemID.ShrimpyTruffle);
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerFish"));
 

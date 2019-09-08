@@ -25,6 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
 @"'A bitter cold, the power of the Jotuns...'
 Allows you to breathe underwater
 Grants the ability to swim and quicker movement in water
+20% increased attack speed while in water
 Critical strikes release a splash of foam, slowing nearby enemies
 After four consecutive non-critical strikes, your next attack will mini-crit for 150% damage
 Damage will duplicate itself for 33% of the damage and apply the Frozen debuff to hit enemies
@@ -66,8 +67,6 @@ Summons several pets");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //tide hunter foam, yew crits, cryo duplicate
-            modPlayer.JotunheimForce = true;
 
             //water bonuses
             if (player.breath <= player.breathMax + 2)
@@ -80,6 +79,7 @@ Summons several pets");
             {
                 player.AddBuff(thorium.BuffType("AquaticAptitude"), 60, true);
                 player.GetModPlayer<FargoPlayer>().AllDamageUp(.1f);
+                modPlayer.AttackSpeed *= 1.2f;
             }
             //bubble magnet
             thoriumPlayer.bubbleMagnet = true;
@@ -104,6 +104,7 @@ Summons several pets");
             modPlayer.AddPet("Jellyfish Pet", hideVisual, thorium.BuffType("JellyPet"), thorium.ProjectileType("JellyfishPet"));
 
             //tide hunter
+            modPlayer.TideHunterEnchant = true;
             //angler bowl
             if (!hideVisual)
             {
@@ -116,6 +117,8 @@ Summons several pets");
                     Projectile.NewProjectile(player.Center.X - 56f, player.Center.Y - 10f, 0f, 0f, thorium.ProjectileType("AnglerLight"), 0, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
+            //yew wood
+            modPlayer.YewEnchant = true;
             //goblin war shield
             if (player.velocity.X == 0f)
             {
@@ -139,6 +142,8 @@ Summons several pets");
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
                 }
             }
+            //cryo
+            modPlayer.CryoEnchant = true;
             
             if (Soulcheck.GetValue("Whispering Tentacles"))
             {

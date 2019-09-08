@@ -30,14 +30,14 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 Drastically increases life regeneration, increases your maximum mana to 999, minions by 30, sentries by 20, HP by 500%, damage reduction by 50%
 250% increased damage and attack speed; 100% increased shoot speed and knockback; Increases armor penetration by 50; Crits deal 10x damage and Crit chance is set to 50%
 Crit to increase it by 10%, At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense; This stacks up to 200,000 times until you get hit
-All attacks inflict Flames of the Universe, Sadism, Midas and reduce enemy knockback immunity
-Summons icicles, a leaf crystal, hallowed sword and shield, beetles, several pets, orichalcum fireballs and all Masochist Mode bosses to your side
+All attacks inflict Flames of the Universe, Sadism, Midas, and reduce enemy knockback immunity
+Summons icicles, leaf crystals, hallowed sword and shield, beetles, several pets, orichalcum fireballs and all Masochist Mode bosses to your side
 Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, snowballs, spears, or buff boosters
 Attacks cause increased life regen, shadow dodge, Flameburst shots and meteor showers
 Projectiles may split or shatter, item and projectile size increased, attacks create additional attacks and spawn hearts
-You leave a trail of fire and rainbows; Nearby enemies are ignited and minions occasionally spew scythes 
+You leave a trail of fire and rainbows; Nearby enemies are ignited; minions occasionally spew scythes, and you may spawn temporary minions
 Critters have increased defense and their souls will aid you; Enemies explode into needles; Greatly enhances all DD2 sentries
-Double-tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Double-tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your empowered guardian
 Right Click to Guard; Press the Gold Key to encase yourself in gold; Press the Freeze Key to freeze time for 5 seconds
 Solar shield allows you to dash, dashing into solid blocks teleports you through them; Throw a smoke bomb to teleport to it and gain the first strike buff
 Getting hit reflects damage, releases a spore explosion, inflicts super bleeding, may squeak and causes you to erupt into various things when injured
@@ -45,7 +45,7 @@ Grants Crimson regen, immunity to fire, fall damage, and lava, doubled herb coll
 Grants immunity to knockback and most debuffs; Allows Supersonic running and infinite flight; Increases fishing skill substantially and all fishing rods will have 10 extra lures
 You respawn 10x as fast; Prevents boss spawns, increases spawn rates, reduces skeletons hostility outside of the dungeon and empowers Cute Fishron
 Grants autofire, modifier protection, gravity control, fast fall, and immunity to knockback, all Masochist Mode debuffs, enhances grappling hooks and more
-Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed doubled
+Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed dramatically increased
 Summons an impenatrable ring of death around you and you reflect all projectiles; When you die, you explode and revive with full HP
 Effects of the Fire Gauntlet, Yoyo Bag, Sniper Scope, Celestial Cuffs, Mana Flower, Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
 Effects of the Spore Sac, Paladin's Shield, Frozen Turtle Shell, Arctic Diving Gear, Frog Legs, Flying Carpet, Lava Waders, and Angler Tackle Bag
@@ -53,7 +53,7 @@ Effects of Paint Sprayer, Presserator, Cell Phone, Gravity Globe, Flower Boots, 
 Effects of Shine, Spelunker, Hunter and Dangersense potions; Effects of Builder Mode, Infinity Relic and you attract items from further away";
 
             String tooltip_ch =
-@"'不论凡人或不朽,都承认你的神性'
+@"'不论凡人或不朽, 都承认你的神性'
 大幅增加生命回复, 最大法力值增至999 ,+30最大召唤栏, +20最大哨兵栏, 增加500%最大生命值 , 50%伤害减免
 增加250%所有类型伤害和攻击速度; 增加100%射击速度与击退; 增加50点护甲穿透; 暴击造成10倍伤害, 暴击率设为50%
 每次暴击提高10%, 达到100%时所有攻击附带10%的生命偷取, 增加10%伤害, 增加10防御力; 可叠加200,000次, 直至被攻击
@@ -62,7 +62,7 @@ Effects of Shine, Spelunker, Hunter and Dangersense potions; Effects of Builder 
 攻击概率产生闪电, 花瓣, 幽灵球, 地牢守卫者, 雪球, 长矛或者增益
 攻击造成生命回复增加, 暗影闪避, 焰爆射击和流星雨
 抛射物可能会分裂或散开, 物品和抛射物尺寸增加, 攻击造成额外攻击并生成心
-身后留下火焰与彩虹路径; 点燃附近敌人, 召唤物偶尔发射镰刀
+身后留下火焰与彩虹路径; 点燃附近敌人; 召唤物偶尔发射镰刀, 有概率生成临时召唤物
 大幅增加动物防御力, 它们的灵魂会在死后帮助你; 敌人会爆炸成刺; 极大增强所有地牢守卫者2(联动的塔防内容)的哨兵
 双击'下'键生成一个哨兵, 召唤远古风暴, 切换潜行, 生成一个传送门, 指挥你的替身
 右键格挡; 按下金身热键, 使自己被包裹在一个黄金壳中; 按下时间冻结热键时停5秒
@@ -72,7 +72,7 @@ Effects of Shine, Spelunker, Hunter and Dangersense potions; Effects of Builder 
 免疫击退和诸多Debuff; 允许超音速奔跑和无限飞行; 大幅提升钓鱼能力, 所有钓竿获得额外10个鱼饵
 重生速度x10倍；阻止Boss自然生成, 增加刷怪速率, 减少地牢外骷髅的敌意, 增强超可爱猪鲨
 武器自动连发, 获得词缀保护, 能够控制重力, 增加掉落速度, 免疫击退和所有受虐模式的Debuff, 增强抓钩以及更多其他效果
-增加50%放置物块及墙壁的速度, 近乎无限的放置和采掘距离, 采掘速度加倍
+增加50%放置物块及墙壁的速度, 近乎无限的放置和采掘距离, 极大提高采掘速度
 召唤无可阻挡的死亡之环环绕周围, 反弹所有抛射物; 死亡时爆炸并满血复活
 拥有烈火手套, 悠悠球袋, 狙击镜, 星体手铐, 魔力花, 混乱之脑, 星辰项链, 甜心项链和蜜蜂斗篷的效果
 拥有孢子囊, 圣骑士护盾, 冰霜龟壳, 北极潜水装备, 蛙腿, 飞毯, 熔岩行走靴和渔具包的效果
@@ -163,7 +163,7 @@ and most of SoT not mentioned because meme tooltip length
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //auto use, debuffs, mana up
             modPlayer.Eternity = true;
 
@@ -209,19 +209,6 @@ and most of SoT not mentioned because meme tooltip length
             player.buffImmune[BuffID.ChaosState] = true;
             player.noKnockback = true;
             player.fireWalk = true;
-
-            //soon tm
-            //buffloader.buffcount something or other meme
-            /*for(int i = 0; i < BuffLoa; i ++)
-            {
-                ModLoader.B
-
-                if()
-                {
-
-                }
-                player.buffImmune[i] = true;
-            }*/
 
             //brain of confusion
             player.brainOfConfusion = true;
@@ -329,7 +316,7 @@ and most of SoT not mentioned because meme tooltip length
             //gizmo pack
             player.autoPaint = true;
             //pick speed
-            player.pickSpeed -= 0.50f;
+            player.pickSpeed -= 0.90f;
             //mining helmet
             if (Soulcheck.GetValue("Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
@@ -357,14 +344,13 @@ and most of SoT not mentioned because meme tooltip length
             //MASOCHIST
             mod.GetItem("MasochistSoul").UpdateAccessory(player, hideVisual);
 
-            //INFINITY
-            modPlayer.Infinity = true;
-
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
 
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player, hideVisual);
 
             if (Fargowiltas.Instance.DBTLoaded) DBT(player);
+
+            if (Fargowiltas.Instance.SOALoaded) SOA(player, hideVisual);
         }
 
         private void Thorium(Player player, bool hideVisual)
@@ -681,6 +667,13 @@ and most of SoT not mentioned because meme tooltip length
             dbtPlayer.zenkaiCharm = true;
         }
 
+        private void SOA(Player player, bool hideVisual)
+        {
+            mod.GetItem("GenerationsForce").UpdateAccessory(player, hideVisual);
+            mod.GetItem("SoranForce").UpdateAccessory(player, hideVisual);
+            mod.GetItem("SyranForce").UpdateAccessory(player, hideVisual);
+        }
+
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
@@ -713,13 +706,15 @@ and most of SoT not mentioned because meme tooltip length
                 recipe.AddIngredient(null, "CalamitySoul");
                 recipe.AddIngredient(calamity.ItemType("Rock"));
             }
-                
-            recipe.AddIngredient(null, "Infinity");
+
+            if (Fargowiltas.Instance.SOALoaded)
+            {
+                recipe.AddIngredient(null, "SoASoul");
+            }
 
             recipe.AddIngredient(null, "Sadism", 30);
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
-
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

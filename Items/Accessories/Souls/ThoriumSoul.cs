@@ -40,20 +40,20 @@ Effects of Eye of the Beholder, Crietz, Mana-Charged Rocketeers, and Crash Boots
 Effects of Vampire Gland, Demon Blood Badge, Lich's Gaze, and Plague Lord's Flask
 Lots of other effects from material Forces, Summons several pets");
             DisplayName.AddTranslation(GameCulture.Chinese, "世界树之魂");
-            Tooltip.AddTranslation(GameCulture.Chinese, @"'九界的真正力量属于你!'
-冰霜光环围绕着你,在短暂的延迟后冻结附近的敌人
-偶尔会产生一个深渊能量触手,攻击附近的敌人
-召唤一个生命之木树苗,一个生物工程探测器,一个小天使和一个小恶魔
-获得向敌人冲刺的能力,右键用盾牌保护你
-泰拉瑞亚的能量试图保护你,攻击时每隔几秒钟就会有一场流星雨
-攻击有机会释放追踪水匕首,复制自身,或即死敌人
-按下'特殊能力'键将会释放出影子,召唤鬼魂,用泡泡盾保护你,释放熔火之灵,
-拥有无暇之蛹,植物纤维绳索宝典和琵琶鱼球碗的效果
-拥有遁蛛契约,杂集磁带和风暴之眼的效果
-拥有反击之盾,食人魔的凉鞋,贪婪磁铁和深远贝壳的效果
-拥有注视者之眼,精准项链,魔力充能火箭靴和震地靴的效果
-拥有吸血鬼腺体,魔血徽章,巫妖之视和瘟疫之主的药剂瓶的效果
-许多材料魂的效果,召唤数个宠物");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"'九界的真正力量归于汝身!'
+冰霜光环围绕着你, 在短暂的延迟后冻结附近的敌人
+偶尔会产生一个深渊能量触手, 攻击附近的敌人
+召唤一个生命之木树苗, 一个生物工程探测器, 一个小天使和一个小恶魔
+获得向敌人冲刺的能力, 右键用盾牌保护你
+泰拉瑞亚的能量试图保护你, 攻击时每隔几秒钟就会有一场流星雨
+攻击有机会释放追踪水匕首, 复制自身, 或即死敌人
+按下'特殊能力'键将会释放出影子, 召唤鬼魂, 用泡泡盾保护你, 释放熔火之灵,
+拥有无暇之蛹, 植物纤维绳索宝典和琵琶鱼球碗的效果
+拥有遁蛛契约, 杂集磁带和风暴之眼的效果
+拥有反击之盾, 食人魔的凉鞋, 贪婪磁铁和深远贝壳的效果
+拥有注视者之眼, 精准项链, 魔力充能火箭靴和震地靴的效果
+拥有吸血鬼腺体, 魔血徽章, 巫妖之视和瘟疫之主的药剂瓶的效果
+许多材料魂的效果, 召唤数个宠物");
 
             /*
              -not listed
@@ -98,12 +98,12 @@ Every globule increases defense and makes your next attack a mini-crit
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //warlock wisps, mix tape
+            //mix tape
             modPlayer.ThoriumSoul = true;
 
             //MUSPELHEIM
-            //life bloom heals
-            modPlayer.MuspelheimForce = true;
+            //life bloom effect
+            modPlayer.LifeBloomEnchant = true;
             //chrysalis
             thoriumPlayer.cocoonAcc = true;
             //living wood set bonus
@@ -115,11 +115,10 @@ Every globule increases defense and makes your next attack a mini-crit
             player.cordage = true;
 
             //JOTUNHEIM
-            //tide hunter foam, yew crits, cryo duplicate
-            modPlayer.JotunheimForce = true;
             modPlayer.DepthEnchant = true;
             modPlayer.AddPet("Jellyfish Pet", hideVisual, thorium.BuffType("JellyPet"), thorium.ProjectileType("JellyfishPet"));
             //tide hunter
+            modPlayer.TideHunterEnchant = true;
             //angler bowl
             if (!hideVisual)
             {
@@ -132,6 +131,8 @@ Every globule increases defense and makes your next attack a mini-crit
                     Projectile.NewProjectile(player.Center.X - 56f, player.Center.Y - 10f, 0f, 0f, thorium.ProjectileType("AnglerLight"), 0, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
+            //yew wood
+            modPlayer.YewEnchant = true;
             //strider hide
             thoriumPlayer.frostBonusDamage = true;
             //pets
@@ -147,6 +148,8 @@ Every globule increases defense and makes your next attack a mini-crit
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("IcyAura"), 0, 0f, player.whoAmI, 0f, 0f);
                 }
             }
+            //cryo
+            modPlayer.CryoEnchant = true;
             if (Soulcheck.GetValue("Whispering Tentacles"))
             {
                 //whispering
@@ -163,18 +166,16 @@ Every globule increases defense and makes your next attack a mini-crit
             }
             
             //ALFHEIM
-            //lil cherub
+            //lil cherub and sacred effect
             modPlayer.SacredEnchant = true;
             modPlayer.AddMinion("Li'l Cherub Minion", thorium.ProjectileType("Angel"), 0, 0f);
             //twinkle pet
             modPlayer.AddPet("Life Spirit Pet", hideVisual, thorium.BuffType("LifeSpiritBuff"), thorium.ProjectileType("LifeSpirit"));
-            //lil devil
+            //wisps and lil devil
             modPlayer.WarlockEnchant = true;
             modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);
             //biotech
             mod.GetItem("BiotechEnchant").UpdateAccessory(player, hideVisual);
-            //warlock
-            thoriumPlayer.warlockSet = true;
             //goat pet
             modPlayer.BinderEnchant = true;
             modPlayer.AddPet("Holy Goat Pet", hideVisual, thorium.BuffType("HolyGoatBuff"), thorium.ProjectileType("HolyGoat"));
@@ -185,13 +186,13 @@ Every globule increases defense and makes your next attack a mini-crit
             thoriumPlayer.conductorSet = true;
 
             //SVARTALFHEIM
-            //includes bronze lightning
-            modPlayer.SvartalfheimForce = true;
             if (Soulcheck.GetValue("Eye of the Storm"))
             {
                 //eye of the storm
                 thorium.GetItem("EyeoftheStorm").UpdateAccessory(player, hideVisual);
             }
+            //bronze
+            modPlayer.BronzeEnchant = true;
             //rebuttal
             thoriumPlayer.championShield = true;
 
@@ -256,8 +257,6 @@ Every globule increases defense and makes your next attack a mini-crit
             modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
 
             //MIDGARD
-            //includes illumite rocket and jester bell
-            modPlayer.MidgardForce = true;
             if (Soulcheck.GetValue("Lodestone Resistance"))
             {
                 //lodestone
@@ -303,6 +302,10 @@ Every globule increases defense and makes your next attack a mini-crit
                     terrariumTimer = 0;
                 }
             }
+            //diverman meme
+            modPlayer.ThoriumEnchant = true;
+            //jester
+            modPlayer.JesterEnchant = true;
             if (Soulcheck.GetValue("Crietz"))
             {
                 //crietz
@@ -310,25 +313,25 @@ Every globule increases defense and makes your next attack a mini-crit
             }
 
             //VANAHEIM
-            //includes malignant debuff, folv bolts, white dwarf flares
-            modPlayer.VanaheimForce = true;
-
+            //folv
+            modPlayer.MalignantEnchant = true;
+            modPlayer.FolvEnchant = true;
             if (Soulcheck.GetValue("Folv's Aura"))
             {
-                //folv
                 thoriumPlayer.folvSet = true;
                 thoriumPlayer.folvBonus2 = true;
             }
-
             if (Soulcheck.GetValue("Mana-Charged Rocketeers"))
             {
                 //mana charge rockets
                 thorium.GetItem("ManaChargedRocketeers").UpdateAccessory(player, hideVisual);
             }
+            //white dwarf
+            modPlayer.WhiteDwarfEnchant = true;
 
             //HELHEIM
-            //plague lord flask effect
-            modPlayer.HelheimForce = true;
+            //spirit trapper
+            modPlayer.SpiritTrapperEnchant = true;
             if (Soulcheck.GetValue("Dread Speed"))
             {
                 //dread
@@ -359,6 +362,8 @@ Every globule increases defense and makes your next attack a mini-crit
             }
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
+            //demon blood effect
+            modPlayer.DemonBloodEnchant = true;
             //demon blood badge
             thoriumPlayer.CrimsonBadge = true;
             if (Soulcheck.GetValue("Flesh Drops"))
@@ -378,11 +383,12 @@ Every globule increases defense and makes your next attack a mini-crit
             modPlayer.KnightEnchant = true;
             //lich gaze
             thoriumPlayer.lichGaze = true;
+            modPlayer.PlagueAcc = true;
 
             //ASGARD
-            //includes tide turner daggers, assassin duplicate and insta kill, pyro burst
-            modPlayer.AsgardForce = true;
             //tide turner
+            //mini crits and daggers
+            modPlayer.TideTurnerEnchant = true;
             if (Soulcheck.GetValue("Tide Turner Globules"))
             {
                 //floating globs and defense
@@ -414,6 +420,10 @@ Every globule increases defense and makes your next attack a mini-crit
             }
             //set bonus damage to healing hot key
             thoriumPlayer.tideSet = true;
+            //assassin
+            modPlayer.AssassinEnchant = true;
+            //pyro
+            modPlayer.PyroEnchant = true;
             //pyro summon bonus
             thoriumPlayer.napalmSet = true;
             //maid pet

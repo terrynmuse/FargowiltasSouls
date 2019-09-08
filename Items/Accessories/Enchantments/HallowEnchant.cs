@@ -22,7 +22,7 @@ Summons a magical fairy");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'愿人都尊你的剑与盾为圣'
 获得一个可以反射抛射物的护盾
-召唤一柄附魔剑,伤害与召唤伤害挂钩
+召唤一柄附魔剑
 召唤魔法妖精");
         }
 

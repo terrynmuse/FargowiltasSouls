@@ -22,7 +22,7 @@ Double tap down to call an ancient storm to the cursor location
 Any projectiles shot through your storm gain 50% damage
 Summons an Enchanted Sword familiar
 You gain a shield that can reflect projectiles
-Attacks will inflict Infested
+You may continue to summon temporary minions after maxing out on your slots
 Infested deals increasing damage over time
 Damage has a chance to spawn damaging orbs
 If you crit, you might also get a healing orb
@@ -37,7 +37,7 @@ Summons several pets
 任何穿过风暴的抛射物获得额外50%伤害
 召唤一柄附魔剑
 获得一个可以反射抛射物的护盾
-攻击将造成感染效果
+召唤数量达到上限后, 仍然可以召唤临时召唤物
 随着时间的推移, 感染造成越来越多的伤害
 攻击有概率生成伤害球
 暴击有概率生成治疗球

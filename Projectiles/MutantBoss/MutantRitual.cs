@@ -27,7 +27,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         {
             projectile.width = 46;
             projectile.height = 46;
-            projectile.scale *= 2f;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
             projectile.alpha = 255;
@@ -47,7 +46,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 projectile.velocity /= 60f;
 
                 Player player = Main.player[Main.myPlayer];
-                if (player.active && !player.dead && projectile.scale == 2f)
+                if (player.active && !player.dead)
                 {
                     float distance = player.Distance(projectile.Center);
                     if (Math.Abs(distance - threshold) < 46f && player.hurtCooldowns[0] == 0 && projectile.alpha == 0)
@@ -55,6 +54,9 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                         int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
                         player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
                             projectile.damage, hitDirection, false, false, false, 0);
+                        player.GetModPlayer<FargoPlayer>().MaxLifeReduction += 200;
+                        player.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+                        player.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
                         player.AddBuff(mod.BuffType("MutantFang"), 300);
                     }
                     if (distance > threshold && distance < threshold * 5f)

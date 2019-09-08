@@ -26,7 +26,7 @@ You can walk on water and when you do, it freezes and creates spikes
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"''
 变为霜冻魔石
-可以水上行走,如此做时,水会结冰并产生尖刺
+可以水上行走, 如此做时, 水会结冰并产生尖刺
 ");
         }
 

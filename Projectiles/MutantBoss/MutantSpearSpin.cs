@@ -30,6 +30,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.scale = 1.3f;
             projectile.alpha = 0;
             cooldownSlot = 1;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = true;
         }
 
         public override void AI()
@@ -46,7 +47,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 projectile.localAI[0] = 0;
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(projectile.position + Main.rand.NextVector2Square(0f, projectile.width), Vector2.UnitX.RotatedByRandom(Math.PI) * 8f, ProjectileID.PhantasmalEye, projectile.damage, 0f, projectile.owner);
+                    Projectile.NewProjectile(projectile.position + Main.rand.NextVector2Square(0f, projectile.width), Vector2.UnitX.RotatedByRandom(Math.PI) * 6f, ProjectileID.PhantasmalEye, projectile.damage, 0f, projectile.owner);
             }
 
             if (--projectile.localAI[1] < 0f)
@@ -56,7 +57,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             }
 
             NPC mutant = Main.npc[(int)projectile.ai[0]];
-            if (mutant.active && mutant.type == mod.NPCType("MutantBoss") && mutant.ai[0] == 4)
+            if (mutant.active && mutant.type == mod.NPCType("MutantBoss") && (mutant.ai[0] == 4 || mutant.ai[0] == 13 || mutant.ai[0] == 21))
             {
                 projectile.rotation += (float)Math.PI / 6.85f * mutant.direction;
                 projectile.Center = mutant.Center;
@@ -70,6 +71,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             Projectile.NewProjectile(target.Center + Main.rand.NextVector2Circular(100, 100), Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), 0, 0f, projectile.owner);
+            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
             target.AddBuff(mod.BuffType("MutantFang"), 300);
         }

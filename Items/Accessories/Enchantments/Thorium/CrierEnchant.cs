@@ -72,7 +72,7 @@ Effects of Music Notes");
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
             //because bards attract birds?
-            recipe.AddIngredient(ItemID.Bird);
+            recipe.AddIngredient(ItemID.Cardinal);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);

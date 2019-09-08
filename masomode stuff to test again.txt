@@ -31,6 +31,45 @@ nerfed RMF damage inflicted when using magic weapons
 RMF is now -150% magic damage and halves speed of magic weapons too
 fishron and moon lord now resist razorpine
 fishron and moon lord resists are now 80%
+fixed golem fists not dying after golem dies because of their instaheal mechanic
+maso on hit effects now only proc every 20 ticks max
+brain is no longer faster in p2, but has a shadow clone
+REMOVED ML SOCKET LASERS
+squeaky toy on hit is now a toggle
+brain now confuses you for 5 sec every 10 seconds in p2, no longer confuses on hit
+brain clone actually works
+plantera p2 ring now wiggles!!!! also nerfed chloro fire rate by 1sec
+maso soul no longer gives faster respawn during boss fights
+eoc no longer scythe walls
+EOC TELEPORTS BEHIND YOU
+timestop doesnt work on mutant oh shit
+SWARMING DEBUFFFFFFFF
+krampus now only steals held item and 1 accessory
+plant crystals now have contact damage
+plantera p2 crystals no longer shoot
+plantera p2 has reverse ivy venom aura
+nerfed pillar hp from 100k to 60k
+halved all prime limbs max life
+removed DOT from oceanic maul
+sharknado cant damage for half a second after spawning
+-Jungle Enchant lost mana steal, gained herb doubling and spore clouds linger
+-Chloro now has 5 leaf crystals around you
+-Frost Enchantment , cooldown after launching icicles lowered from 5 to 2 seconds, icicles spawn closer to the player and spawn quicker, use a new projectile instead of a vanilla one
+-Orichalcum Enchant fireballs move faster
+-Reworked Tiki Enchantment, nolonger inflicts Infested, now grants infinte temporary minions
+-Stardust Enchantment now makes Stardust Guardian deal 5x damage and attack faster, he also continues to attack in stopped time
+-Changed all spreads to be more circular, such as Cactus, Jungle, Cobalt effects
+halved detonating bubble EX health
+fishron EX now aims bubbles at player while dashing in p1/p2
+nymph shoots fake hearts
+halved fish EX timeLeft on p3 razors
+boss deathrays no longer emit light
+reduced ML/fish resists to 33%
+added screm painting (post-mutant painter drop, only when mutant boss is present)
+voodoo demon incinerating doll actually kills guide
+lava in hell inflicts shadowflame
+king slime shoots aimed slime spikes
+post-mutant gear buffed
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

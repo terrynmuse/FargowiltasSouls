@@ -23,9 +23,10 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Darksteel Enchantment");
             Tooltip.SetDefault(
 @"'Light yet durable'
-8% damage reduction
+50% damage reduction at Full HP
 Nothing will stop your movement 
 Double tap to dash
+Grants immunity to shambler chain-balls
 Effects of Spiked Bracer");
             DisplayName.AddTranslation(GameCulture.Chinese, "暗金魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -33,6 +34,7 @@ Effects of Spiked Bracer");
 增加8%伤害减免
 没有什么能阻止你的移动
 获得冲刺能力
+免疫蹒跚者的链球效果
 拥有尖刺索的效果");
         }
 
@@ -57,10 +59,15 @@ Effects of Spiked Bracer");
             player.noKnockback = true;
             player.iceSkate = true;
             player.dash = 1;
-            //steel set bonus
-            thoriumPlayer.thoriumEndurance += 0.08f;
+            //steel effect
+            if (player.statLife == player.statLifeMax2)
+            {
+                player.endurance += .5f;
+            }
             //spiked bracers
             player.thorns += 0.35f;
+            //ball n chain
+            thoriumPlayer.ballnChain = true;
         }
         
         private readonly string[] items =

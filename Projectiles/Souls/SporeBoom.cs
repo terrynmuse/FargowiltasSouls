@@ -18,8 +18,8 @@ namespace FargowiltasSouls.Projectiles.Souls
 			projectile.height = 16;
 			projectile.aiStyle = 0;
 			projectile.friendly = true;
-			projectile.penetrate = 2;
-			projectile.timeLeft = 30;
+			projectile.penetrate = -1;
+			projectile.timeLeft = 300;
 			projectile.tileCollide = false;
 			aiType = ProjectileID.Bullet;
 		}
@@ -34,6 +34,13 @@ namespace FargowiltasSouls.Projectiles.Souls
 				int dustId2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width + 5, projectile.height + 5, 107, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 1.6f);
 				Main.dust[dustId2].noGravity = true;
 			}
+
+            projectile.ai[1]++;
+
+            if (projectile.ai[1] > 15)
+            {
+                projectile.velocity /= 2;
+            }
 		}
 		
 		public override void Kill(int timeLeft)

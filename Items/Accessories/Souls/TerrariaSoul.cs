@@ -21,9 +21,9 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
             string tooltip =
 @"'A true master of Terraria'
-Summons fireballs, icicles, a leaf crystal, hallowed sword and shield, beetles, and several pets
+Summons fireballs, icicles, leaf crystals, hallowed sword and shield, beetles, and several pets
 Toggle vanity to remove all Pets, Right Click to Guard
-Double tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your guardian
+Double tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your empowered guardian
 Gold Key encases you in gold, Freeze Key freezes time for 5 seconds, minions spew scythes
 Solar shield allows you to dash, Dash into any walls, to teleport through them
 Throw a smoke bomb to teleport to it and gain the First Strike Buff
@@ -35,7 +35,7 @@ Projectiles may split or shatter, item and projectile size increased, attract it
 Nearby enemies are ignited, You leave behind a trail of fire and rainbows when you walk
 Grants Crimson regen, immunity to fire, fall damage, and lava, and doubled herb collection
 Grants 50% chance for Mega Bees, 15% chance for minion crits, 20% chance for bonus loot
-Critters have increased defense and their souls will aid you
+Critters have increased defense and their souls will aid you, You may summon temporary minions
 All grappling hooks are more effective and fire homing shots, Greatly enhances all DD2 sentries
 Your attacks inflict Midas, Enemies explode into needles
 When you die, you explode and revive with 200 HP
@@ -46,7 +46,7 @@ Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Sh
 @"'真·泰拉之主'
 召唤火球, 冰柱, 叶绿水晶, 神圣剑盾, 甲虫和许多宠物
 切换可见度以移除所有宠物, 右键防御
-双击'下'键生成一个哨兵, 召唤远古风暴, 切换潜行, 生成一个传送门, 指挥你的替身
+双击'下'键生成一个哨兵, 召唤远古风暴, 切换潜行, 生成一个传送门, 指挥你的强化替身
 按下金身热键, 使自己被包裹在一个黄金壳中, 按下时间冻结热键时停5秒, 召唤物发出镰刀
 日耀护盾允许你双击冲刺, 遇到墙壁自动穿透
 扔烟雾弹进行传送, 获得先发制人Buff
@@ -58,7 +58,7 @@ Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Sh
 点燃附近敌人, 在身后留下火焰路径
 获得血腥套的生命回复效果, 免疫火焰, 坠落伤害和岩浆, 药草收获翻倍
 蜜蜂有50%概率变为巨型蜜蜂, 召唤物获得15%暴击率, 20%获得额外掉落
-大幅增加动物防御力, 它们的灵魂会在死后帮助你
+大幅增加动物防御力, 它们的灵魂会在死后帮助你, 你有可能召唤临时召唤物
 增强所有抓钩, 抓钩会发射追踪射击, 极大增强所有地牢守卫者2(联动的塔防内容)的哨兵
 攻击造成点金术, 敌人会爆炸成刺
 死亡时爆炸并以200生命值重生

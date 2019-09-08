@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             DisplayName.SetDefault("Chalice of the Moon");
             Tooltip.SetDefault(@"'The moon smiles'
 Grants immunity to Venom, Ivy Venom, Burning, Fused, Marked for Death, and Hexed
-Grants immunity to Atrophied, Jammed, Reverse Mana Flow, and Antisocial
+Grants immunity to Swarming, Atrophied, Jammed, Reverse Mana Flow, and Antisocial
 Increases life regeneration
 Press down in the air to fastfall
 Fastfall will create a fiery eruption on impact after falling a certain distance
@@ -22,7 +22,7 @@ Summons a friendly Cultist and plant to fight at your side");
             DisplayName.AddTranslation(GameCulture.Chinese, "月之杯");
             Tooltip.AddTranslation(GameCulture.Chinese, @"月亮的微笑
 免疫毒液, 常春藤毒, 燃烧, 导火线, 死亡标记和着迷
-免疫萎缩, 卡壳, 反魔力流和反社交
+免疫蜂群, 萎缩, 卡壳, 反魔力流和反社交
 增加生命回复
 在空中按'下'键快速下落
 在一定高度使用快速下落, 会在撞击地面时产生猛烈的火焰喷发
@@ -49,6 +49,7 @@ Summons a friendly Cultist and plant to fight at your side");
             player.lifeRegen += 2;
             player.buffImmune[BuffID.Venom] = true;
             player.buffImmune[mod.BuffType("IvyVenom")] = true;
+            player.buffImmune[mod.BuffType("Swarming")] = true;
             if (Soulcheck.GetValue("Plantera Minion"))
                 player.AddBuff(mod.BuffType("PlanterasChild"), 2);
 

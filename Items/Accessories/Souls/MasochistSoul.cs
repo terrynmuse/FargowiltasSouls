@@ -323,7 +323,6 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("Flipped")] = true;
             player.buffImmune[mod.BuffType("FlippedHallow")] = true;
             player.buffImmune[mod.BuffType("Fused")] = true;
-            player.buffImmune[mod.BuffType("GodEater")] = true;
             player.buffImmune[mod.BuffType("Guilty")] = true;
             player.buffImmune[mod.BuffType("Hexed")] = true;
             player.buffImmune[mod.BuffType("Infested")] = true;
@@ -344,6 +343,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[mod.BuffType("Rotting")] = true;
             player.buffImmune[mod.BuffType("Shadowflame")] = true;
             player.buffImmune[mod.BuffType("SqueakyToy")] = true;
+            player.buffImmune[mod.BuffType("Swarming")] = true;
             player.buffImmune[mod.BuffType("Stunned")] = true;
             player.buffImmune[mod.BuffType("Unstable")] = true;
         }

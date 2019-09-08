@@ -14,12 +14,12 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             DisplayName.SetDefault("The Penetrator");
             Tooltip.SetDefault("'The reward for slaughtering many...'");
             DisplayName.AddTranslation(GameCulture.Chinese, "洞察者");
-            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励..'");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励...'");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 350;
+            item.damage = 1700;
             item.useStyle = 5;
             item.useAnimation = 16;
             item.useTime = 16;
@@ -31,7 +31,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.rare = 11;
             item.UseSound = SoundID.Item1;
             item.shoot = mod.ProjectileType("HentaiSpear");
-            item.value = 10000;
+            item.value = Item.sellPrice(0, 70);
             item.noMelee = true; // Important because the spear is acutally a projectile instead of an item. This prevents the melee hitbox of this item.
             item.noUseGraphic = true; // Important, it's kind of wired if people see two spears at one time. This prevents the melee animation of this item.
             item.melee = true;
@@ -78,7 +78,6 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
                 speed *= 3.7f * 32 / player.itemAnimationMax;
                 speedX = speed.X;
                 speedY = speed.Y;
-                damage /= 3;
                 return true;
             }
 

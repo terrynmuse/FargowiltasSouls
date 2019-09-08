@@ -23,8 +23,9 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Svartalfheim");
             Tooltip.SetDefault(
 @"'Behold the craftsmanship of the Dark Elves...'
-10% increased damage and damage reduction
-Immune to intense heat
+10% increased damage
+90% damage reduction at Full HP
+Immune to intense heat shambler chain-balls
 Attacks have a chance to cause a lightning bolt to strike
 Grants the ability to dash into the enemy
 Right Click to guard with your shield
@@ -38,7 +39,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'黑暗精灵的精湛技艺'
 增加10%伤害和伤害减免
-免疫高温
+免疫高温以及蹒跚者的链球效果
 攻击时概率释放闪电链和闪电箭
 获得冲刺能力
 右键用盾牌防御
@@ -67,8 +68,6 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //includes bronze lightning
-            modPlayer.SvartalfheimForce = true;
             //granite
             player.fireWalk = true;
             player.lavaImmune = true;
@@ -93,12 +92,12 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             }
 
             //bronze
+            modPlayer.BronzeEnchant = true;
             //rebuttal
             thoriumPlayer.championShield = true;
 
             //durasteel
             mod.GetItem("DurasteelEnchant").UpdateAccessory(player, hideVisual);
-            thoriumPlayer.thoriumEndurance -= 0.02f; //meme way to make it 10%
 
             //titan
             modPlayer.AllDamageUp(.1f);
