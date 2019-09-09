@@ -26,6 +26,13 @@ Taking fatal damage will revive you with 1/3rd of your max health
 You will have one minute of increased strength after rebirth
 5 minute cooldown
 Summons Chibi Araghur and the Sigil of Solace");
+            DisplayName.AddTranslation(GameCulture.Chinese, "熔火魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'用阿拉古尔之焰焚尽你的敌人'
+受到致命伤害时回复1/3血量
+重生后1分钟内获得强化
+5分钟冷却
+召唤赤炎阿拉胡尔和熔火光环");
         }
 
         public override void SetDefaults()

@@ -23,6 +23,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'Subdued Serenity'
 40% increased thrown velocity
 5% increased thrown and ranged damage");
+            DisplayName.AddTranslation(GameCulture.Chinese, "草原魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'柔和宁静'
+增加40%投掷物速度
+增加5%投掷和远程伤害");
         }
 
         public override void SetDefaults()

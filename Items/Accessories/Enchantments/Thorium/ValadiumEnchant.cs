@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Which way is up?'
 Reverse gravity by pressing UP
-While reversed, ranged damage is increased by 12%
+While reversed, damage is increased by 12%
 Effects of Eye of the Beholder");
             DisplayName.AddTranslation(GameCulture.Chinese, "虚金魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -46,13 +46,13 @@ Effects of Eye of the Beholder");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             player.gravControl = true;
             if (player.gravDir == -1f)
             {
-                player.rangedDamage += 0.12f;
-                player.AddBuff(thorium.BuffType("GravityDamage"), 60, true);
+                modPlayer.AllDamageUp(.12f);
             }
             if (Soulcheck.GetValue("Eye of the Beholder"))
             {

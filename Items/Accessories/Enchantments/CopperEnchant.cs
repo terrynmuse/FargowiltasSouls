@@ -25,8 +25,7 @@ Attacks that cause Wet cannot proc the lightning";
 @"'注视'
 攻击有概率用闪电打击敌人
 如果敌人处于潮湿状态,增加概率和伤害
-造成潮湿的攻击不能触发闪电
-闪电伤害与魔法伤害挂钩";
+造成潮湿的攻击不能触发闪电";
 
             if(thorium != null)
             {

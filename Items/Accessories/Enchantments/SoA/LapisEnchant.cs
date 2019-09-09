@@ -25,6 +25,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 20% increased movement speed
 Effects of Lapis Pendant
 Summons a pet Nicky and Buzzy Beetle");
+
+DisplayName.AddTranslation(GameCulture.Chinese, "青金魔石");
+
         }
 
         public override void SetDefaults()

@@ -23,7 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 @"'Doom comes next'
 Maximum mana increased by 50%
 While above 75% maximum mana, you become unstable
-Magical attacks have a 33% chance to recover some mana
+Enemies that attack friendly NPCs are marked as Villains
+You deal 50% bonus damage to Villains
 Effects of Shade Band and White Music Player
 Summons a Moogle pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "先知魔石");
@@ -63,12 +64,11 @@ Summons a Moogle pet");
             //music player
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3MaxLife = 2;
-            //white knight set bonus
-            thoriumPlayer.whiteKnightSet = true;
             //shade band
             thoriumPlayer.shadeBand = true;
             //pet
             modPlayer.AddPet("Moogle Pet", hideVisual, thorium.BuffType("LilMogBuff"), thorium.ProjectileType("LilMog"));
+            //villain damage 
             modPlayer.KnightEnchant = true;
         }
         

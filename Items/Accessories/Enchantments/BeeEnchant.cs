@@ -20,9 +20,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 Mega Bees ignore most enemy defense, immune frames, and last twice as long
 ";
             string tooltip_ch = 
-@"'根据目前所知的所有航空原理,蜜蜂应该根本不可能会飞'
+@"'根据目前所知的所有航空原理, 蜜蜂应该根本不可能会飞'
 50%概率使友善的蜜蜂成为巨型蜜蜂
-巨型蜜蜂忽略大多数敌人的防御,无敌帧,并持续两倍的时间
+巨型蜜蜂忽略大多数敌人的防御, 无敌帧, 并持续双倍的时间
 ";
             if(thorium != null)
             {

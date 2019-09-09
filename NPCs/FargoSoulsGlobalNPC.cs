@@ -2427,14 +2427,52 @@ namespace FargowiltasSouls.NPCs
                         if (!masoBool[0] && npc.life < npc.lifeMax / 3 * 2 && npc.HasPlayerTarget)
                         {
                             masoBool[0] = true;
-                            NPC.SpawnOnPlayer(npc.target, mod.NPCType("RoyalSubject"));
+
+                            Vector2 vector72 = new Vector2(npc.position.X + (float)(npc.width / 2) + (float)(Main.rand.Next(20) * npc.direction), npc.position.Y + (float)npc.height * 0.8f);
+
+                            int num594 = NPC.NewNPC((int)vector72.X, (int)vector72.Y, mod.NPCType("RoyalSubject"), 0, 0f, 0f, 0f, 0f, 255);
+                            Main.npc[num594].velocity.X = (float)Main.rand.Next(-200, 201) * 0.002f;
+                            Main.npc[num594].velocity.Y = (float)Main.rand.Next(-200, 201) * 0.002f;
+                            Main.npc[num594].localAI[0] = 60f;
+                            Main.npc[num594].netUpdate = true;
+
+                            if (Main.netMode == 0)
+                                Main.NewText("A Royal Subject has awoken!", 175, 75, 255);
+                            else if (Main.netMode == 2)
+                                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Royal Subject has awoken!"), new Color(175, 75, 255));
                         }
 
                         if (!masoBool[1] && npc.life < npc.lifeMax / 3 && npc.HasPlayerTarget)
                         {
                             masoBool[1] = true;
-                            NPC.SpawnOnPlayer(npc.target, mod.NPCType("RoyalSubject"));
-                            NPC.SpawnOnPlayer(npc.target, mod.NPCType("RoyalSubject"));
+
+                            for (int i = 0; i < 2; i++)
+                            {
+                                Vector2 vector72 = new Vector2(npc.position.X + (float)(npc.width / 2) + (float)(Main.rand.Next(20) * npc.direction), npc.position.Y + (float)npc.height * 0.8f);
+
+                                int num594 = NPC.NewNPC((int)vector72.X, (int)vector72.Y, mod.NPCType("RoyalSubject"), 0, 0f, 0f, 0f, 0f, 255);
+                                Main.npc[num594].velocity.X = (float)Main.rand.Next(-200, 201) * 0.1f;
+                                Main.npc[num594].velocity.Y = (float)Main.rand.Next(-200, 201) * 0.1f;
+                                Main.npc[num594].localAI[0] = 60f;
+                                Main.npc[num594].netUpdate = true;
+
+                                if (Main.netMode == 0)
+                                    Main.NewText("A Royal Subject has awoken!", 175, 75, 255);
+                                else if (Main.netMode == 2)
+                                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Royal Subject has awoken!"), new Color(175, 75, 255));
+                            }
+                        }
+
+                        if (NPC.AnyNPCs(mod.NPCType("RoyalSubject")))
+                        {
+                            //tries to charge, force back to bee spawn or stingers
+                            if (npc.ai[0] == 2 || npc.ai[0] == 0)
+                            {
+                                npc.ai[0] = Main.rand.Next(2) == 0 ? 1 : 3;
+                                npc.ai[1] = 0f;
+                                npc.ai[2] = 0f;
+                                npc.netUpdate = true;
+                            }
                         }
 
                         //only while stationary mode
@@ -10235,6 +10273,9 @@ namespace FargowiltasSouls.NPCs
                 if (PaladinsShield)
                     damage /= 2;
 
+                if (npc.type == NPCID.QueenBee && NPC.AnyNPCs(mod.NPCType("RoyalSubject")))
+                    damage /= 2;
+
                 if (npc.realLife == -1)
                     ResetRegenTimer(npc);
                 else
@@ -10256,28 +10297,6 @@ namespace FargowiltasSouls.NPCs
                 damage += 5;
             }
 
-            if (modPlayer.Eternity)
-            {
-                if (crit)
-                {
-                    damage *= 10;
-                    retValue = false;
-                }
-            }
-            else if (modPlayer.UniverseEffect)
-            {
-                if (crit)
-                {
-                    damage *= 5;
-                    retValue = false;
-                }
-            }
-
-            if (modPlayer.MutantSetBonus && crit)
-            {
-                damage *= 2;
-            }
-
             if (modPlayer.RedEnchant && !modPlayer.TerrariaSoul)
             {
                 switch (npc.life / npc.lifeMax * 100)
@@ -10296,7 +10315,7 @@ namespace FargowiltasSouls.NPCs
 
             if (modPlayer.KnightEnchant && Villain && !npc.boss)
             {
-                damage *= 2;
+                damage *= 1.5;
             }
 
             if (crit && modPlayer.ShroomEnchant && !modPlayer.TerrariaSoul && player.stealth == 0)
