@@ -88,7 +88,8 @@ Effects of Permafrost's Concoction and Regenerator");
             }
 
             //regenerator
-            modPlayer.regenator = true;
+            if (Soulcheck.GetValue("Regenator"))
+                modPlayer.regenator = true;
 
             //pet soon tm
         }

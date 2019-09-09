@@ -73,7 +73,8 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift");
 
             calamity.GetItem("DeepDiver").UpdateAccessory(player, hideVisual);
             calamity.GetItem("TheTransformer").UpdateAccessory(player, hideVisual);
-            calamity.GetItem("LuxorsGift").UpdateAccessory(player, hideVisual);
+            if (Soulcheck.GetValue("Luxor's Gift"))
+                calamity.GetItem("LuxorsGift").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()
