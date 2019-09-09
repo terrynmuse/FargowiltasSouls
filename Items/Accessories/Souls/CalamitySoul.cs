@@ -90,9 +90,9 @@ Effects of the Profaned Soul Artifact and Dark Sun Ring");
             //Apocalypse
             mod.GetItem("ApocalypseForce").UpdateAccessory(player, hideVisual);
             //Desolation
-            mod.GetItem("DesolationEnchant").UpdateAccessory(player, hideVisual);
+            mod.GetItem("DesolationForce").UpdateAccessory(player, hideVisual);
             //Devastation
-            mod.GetItem("DevastationEnchant").UpdateAccessory(player, hideVisual);
+            mod.GetItem("DevastationForce").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()
