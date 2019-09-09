@@ -6,8 +6,6 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class SinisterIcon : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sinister Icon");
