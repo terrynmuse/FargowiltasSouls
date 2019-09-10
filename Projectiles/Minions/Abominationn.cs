@@ -44,7 +44,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 projectile.timeLeft = 2;
 
             if (projectile.damage == 0)
-                projectile.damage = (int)(1700f * player.minionDamage);
+                projectile.damage = (int)(900f * player.minionDamage);
 
             if (projectile.ai[0] >= 0 && projectile.ai[0] < 200) //has target
             {
