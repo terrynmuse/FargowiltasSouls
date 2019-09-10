@@ -52,6 +52,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("GlacialState")] = true;
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("TemporalSadness")] = true;
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("SilvaStun")] = true;
+                    npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("TimeSlow")] = true;
+                    npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("PearlAura")] = true;
                 }
             }
             npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
