@@ -48,7 +48,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 npc.defense *= 10;
                 if (Fargowiltas.Instance.CalamityLoaded)
                 {
-                    npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("Exofreeze")] = true;
+                    npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("ExoFreeze")] = true;
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("GlacialState")] = true;
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("TemporalSadness")] = true;
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("SilvaStun")] = true;

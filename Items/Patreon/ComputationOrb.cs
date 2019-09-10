@@ -11,6 +11,8 @@ namespace FargowiltasSouls.Items.Patreon
 {
     public class ComputationOrb : ModItem
     {
+        public override string Texture => "FargowiltasSouls/Items/Placeholder";
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Computation Orb");

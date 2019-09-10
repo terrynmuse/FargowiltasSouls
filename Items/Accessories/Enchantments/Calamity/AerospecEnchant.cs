@@ -70,8 +70,10 @@ Effects of Gladiator's Locket and Unstable Prism");
                 }
             }
 
-            calamity.GetItem("GladiatorsLocket").UpdateAccessory(player, hideVisual);
-            calamity.GetItem("UnstablePrism").UpdateAccessory(player, hideVisual);
+            if (Soulcheck.GetValue("Gladiator's Locket"))
+                calamity.GetItem("GladiatorsLocket").UpdateAccessory(player, hideVisual);
+            if (Soulcheck.GetValue("Unstable Prism"))
+                calamity.GetItem("UnstablePrism").UpdateAccessory(player, hideVisual);
 
             //spawn pet soon tm
         }

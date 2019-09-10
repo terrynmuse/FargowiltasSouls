@@ -287,6 +287,10 @@ namespace FargowiltasSouls
             ["Auric Tesla Effects"] = new Color(81, 181, 113),
 
             ["Elemental Quiver"] = new Color(81, 181, 113),
+            ["Luxor's Gift"] = new Color(81, 181, 113),
+            ["Gladiator's Locket"] = new Color(81, 181, 113),
+            ["Unstable Prism"] = new Color(81, 181, 113),
+            ["Regenator"] = new Color(81, 181, 113),
             //[""] = new Color(81, 181, 113),
             //abyssal diving gear
         };
