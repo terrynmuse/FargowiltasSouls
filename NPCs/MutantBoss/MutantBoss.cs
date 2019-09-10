@@ -1411,6 +1411,41 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     break;
 
+                case 43: //spawn sword
+                    npc.velocity = Vector2.Zero;
+                    if (Main.netMode != 1)
+                    {
+                        npc.ai[2] = npc.position.X < player.position.X ? -(float)Math.PI / 4 : (float)Math.PI / 4;
+                        for (int i = 0; i < 12; i++)
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 50 * i);
+                    }
+                    if (++npc.ai[1] > 120)
+                    {
+                        targetPos = player.Center;
+                        targetPos.X += 300 * (npc.Center.X < targetPos.X ? -1 : 1);
+                        npc.velocity = (targetPos - npc.Center) / 30;
+
+                        npc.ai[3] = npc.ai[2] * -3;
+                        npc.ai[2] += npc.ai[3];
+
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.netUpdate = true;
+                    }
+                    break;
+
+                case 44: //swinging sword dash
+                    npc.ai[2] += npc.ai[3];
+                    if (++npc.ai[1] > 35)
+                    {
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = 0;
+                        npc.ai[3] = 0;
+                        npc.netUpdate = true;
+                    }
+                    break;
+
                 default:
                     npc.ai[0] = 11;
                     goto case 11;
