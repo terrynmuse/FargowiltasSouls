@@ -70,6 +70,11 @@ voodoo demon incinerating doll actually kills guide
 lava in hell inflicts shadowflame
 king slime shoots aimed slime spikes
 post-mutant gear buffed
+all post-plant skeletons drop a bone when killed
+added sprites:
+	necro brew
+	sinister icon
+	abom doll
 
 spider ench now gives 20% crit rate
 shroomite ench nerfed to 2x damage crits

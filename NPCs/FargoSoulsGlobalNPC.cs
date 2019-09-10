@@ -8522,6 +8522,21 @@ namespace FargowiltasSouls.NPCs
                                 Main.rand.Next(2) == 0 ? ItemID.Starfish : ItemID.Seashell, Main.rand.Next(3) + 1);
                         break;
 
+                    case NPCID.BlueArmoredBones:
+                    case NPCID.BlueArmoredBonesMace:
+                    case NPCID.BlueArmoredBonesNoPants:
+                    case NPCID.BlueArmoredBonesSword:
+                    case NPCID.HellArmoredBones:
+                    case NPCID.HellArmoredBonesMace:
+                    case NPCID.HellArmoredBonesSpikeShield:
+                    case NPCID.HellArmoredBonesSword:
+                    case NPCID.RustyArmoredBonesAxe:
+                    case NPCID.RustyArmoredBonesFlail:
+                    case NPCID.RustyArmoredBonesSword:
+                    case NPCID.RustyArmoredBonesSwordNoArmor:
+                        Item.NewItem(npc.position, npc.Size, ItemID.Bone);
+                        break;
+
                     case NPCID.SkeletonSniper:
                     case NPCID.TacticalSkeleton:
                     case NPCID.SkeletonCommando:
@@ -8531,6 +8546,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.NecromancerArmored:
                     case NPCID.RaggedCaster:
                     case NPCID.RaggedCasterOpenCoat:
+                        Item.NewItem(npc.position, npc.Size, ItemID.Bone);
                         if (Main.rand.Next(100) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("SkullCharm"));
                         break;
