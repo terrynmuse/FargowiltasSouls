@@ -6586,7 +6586,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DemonEye:
                     case NPCID.DemonEyeOwl:
                     case NPCID.DemonEyeSpaceship:
-                        if ((Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5) && !target.HasBuff(BuffID.Stoned))
+                        if (Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5)
                             target.AddBuff(BuffID.Obstructed, Main.rand.Next(60));
                         break;
 
@@ -6597,6 +6597,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.EyeofCthulhu:
                     case NPCID.WanderingEye:
+                        target.AddBuff(BuffID.Obstructed, Main.rand.Next(180));
                         target.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(60, 600));
                         break;
 
