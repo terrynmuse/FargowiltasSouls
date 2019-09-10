@@ -28,7 +28,8 @@ Summons a Moogle pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "白骑士魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'不惜一切代价保护电工妹'
-魔法攻击有33%的概率回复一些法力值
+攻击友善NPC的敌人将被标记为恶棍
+对恶棍造成50%额外伤害
 拥有暗影护符的效果
 召唤宠物小喵");
         }

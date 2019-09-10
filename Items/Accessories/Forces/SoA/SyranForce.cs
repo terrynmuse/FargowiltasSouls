@@ -27,6 +27,13 @@ All armor bonuses from Void Warden, Vulcan Reaper, and Flarium
 All armor bonuses from Asthraltite
 Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster
 Summons several pets");
+            DisplayName.AddTranslation(GameCulture.Chinese, "赛伦之力");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'胸腔中充斥着龙之怒, 激励着你继续前进'
+拥有虚空守望, 火神收割者和熔火的套装效果
+拥有阿斯德罗特的套装效果
+拥有堕落之戒, 死亡意志和魔法奥秘的效果
+召唤数个宠物");
         }
 
         public override void SetDefaults()

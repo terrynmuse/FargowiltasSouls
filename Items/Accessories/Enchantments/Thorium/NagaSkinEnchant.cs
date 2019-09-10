@@ -26,7 +26,7 @@ Allows quicker movement in water");
             DisplayName.AddTranslation(GameCulture.Chinese, "娜迦魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'极端危险'
-每消耗75点魔力, 短时间内极大增加施法速度和魔法伤害
+在水中时, 增加20%攻击速度
 允许在水中快速移动");
         }
 

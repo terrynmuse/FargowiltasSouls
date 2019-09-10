@@ -25,7 +25,7 @@ Critical strikes grant Alpha's Roar, briefly increasing the damage of your summo
             DisplayName.AddTranslation(GameCulture.Chinese, "兽皮魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'唤醒内心的野兽'
-近战暴击获得野性咆哮效果, 并短暂增加召唤物伤害");
+暴击获得野性咆哮效果, 并短暂增加召唤物伤害");
         }
 
         public override void SetDefaults()

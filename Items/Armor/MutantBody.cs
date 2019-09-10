@@ -18,6 +18,11 @@ namespace FargowiltasSouls.Items.Armor
 Increases max life and mana by 200
 Increases damage reduction by 50%
 Drastically increases life regen");
+            DisplayName.AddTranslation(GameCulture.Chinese, "真·突变之躯");
+            Tooltip.AddTranslation(GameCulture.Chinese, @"增加70%伤害和30%暴击率
+增加200最大生命和法力值
+增加50%伤害抗性
+极大提升生命回复");
         }
 
         public override void SetDefaults()

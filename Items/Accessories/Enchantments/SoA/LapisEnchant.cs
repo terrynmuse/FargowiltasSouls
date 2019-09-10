@@ -26,8 +26,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 Effects of Lapis Pendant
 Summons a pet Nicky and Buzzy Beetle");
 
-DisplayName.AddTranslation(GameCulture.Chinese, "青金魔石");
-
+            DisplayName.AddTranslation(GameCulture.Chinese, "青金魔石");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'Gotta go fast'
+增加20%移动速度
+拥有青金石挂饰的效果
+召唤宠物Nicky和嗡嗡甲虫");
         }
 
         public override void SetDefaults()

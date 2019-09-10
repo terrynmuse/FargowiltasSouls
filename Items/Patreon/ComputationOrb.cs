@@ -18,6 +18,9 @@ namespace FargowiltasSouls.Items.Patreon
             DisplayName.SetDefault("Computation Orb");
             Tooltip.SetDefault(
 @"Non magic attacks will deal 25% extra damage and consume 10 mana");
+            DisplayName.AddTranslation(GameCulture.Chinese, "演算宝珠");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"非魔法攻击将额外造成25%伤害, 并消耗10法力");
 
         }
 

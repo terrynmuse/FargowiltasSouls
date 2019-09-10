@@ -25,7 +25,7 @@ Increases flight time by 100%");
             DisplayName.AddTranslation(GameCulture.Chinese, "飞羽魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'天空是你的游戏场'
-可以短暂飞行");
+增加100%飞行时间");
         }
 
         public override void SetDefaults()

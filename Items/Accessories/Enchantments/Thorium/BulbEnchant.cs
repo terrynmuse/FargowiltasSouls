@@ -27,7 +27,7 @@ Effects of Night Shade Petal and Petal Shield");
             DisplayName.AddTranslation(GameCulture.Chinese, "花瓣魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'香气逼人'
-魔法攻击有概率召唤使敌人中毒的毒孢子云
+攻击有概率召唤使敌人中毒的毒孢子云
 拥有影缀花和花之盾的效果");
         }
 

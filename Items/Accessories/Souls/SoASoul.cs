@@ -35,6 +35,19 @@ Effects of Dreadflame Emblem, Lapis Pendant, Frigid Pendant, and Pumpkin Amulet
 Effects of Nuba's Blessing, Novaniel's Resolve, and Celestial Ring
 Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster
 Summons several pets");
+            DisplayName.AddTranslation(GameCulture.Chinese, "两界之魂");
+            Tooltip.AddTranslation(GameCulture.Chinese, 
+@"'两个世界, 现在显现合一'
+拥有铋, 霜冻猎人和荒骨的套装效果
+拥有惧焰, 太空垃圾和火星科技的套装效果
+拥有赤炎, 宇宙指挥官和星云学徒的套装效果
+拥有恒星牧师和堕落王子的套装效果
+拥有虚空守望, 火神收割者和熔火的套装效果
+拥有阿斯德罗特的套装效果
+拥有恐惧火焰徽记, 青金石挂饰, 极寒吊坠和南瓜护身符的效果
+拥有努巴的祝福, 诺瓦尼尔的决心和天体星环的效果
+拥有堕落之戒, 死亡意志和魔法奥秘的效果
+召唤数个宠物");
         }
 
         public override void SetDefaults()

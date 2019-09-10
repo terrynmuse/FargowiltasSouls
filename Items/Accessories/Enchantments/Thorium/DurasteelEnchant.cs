@@ -28,7 +28,7 @@ Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
             DisplayName.AddTranslation(GameCulture.Chinese, "耐刚魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'精工打造'
-增加12%伤害减免
+满血时增加90%伤害减免
 免疫蹒跚者的链球效果
 拥有炽热火花, 尖刺索和贪婪磁铁的效果");
         }
