@@ -43,7 +43,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.timeLeft = NPC.activeTime * 30;
             if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
             {
-                npc.lifeMax = 477000000;
+                npc.lifeMax = 377000000;
                 npc.damage *= 2;
                 npc.defense *= 10;
                 if (Fargowiltas.Instance.CalamityLoaded)
@@ -67,7 +67,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.lifeMax = (int)(7700000 * bossLifeScale);
             if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
             {
-                npc.lifeMax = (int)(477000000 * bossLifeScale);
+                npc.lifeMax = (int)(377000000 * bossLifeScale);
                 npc.damage *= 2;
             }
         }
@@ -679,7 +679,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         }
                         if (npc.ai[1] > 210)
                         {
-                            npc.ai[0]++;
+                            npc.ai[0] = 40;
                             npc.ai[1] = 0;
                             npc.ai[2] = 0;
                             npc.ai[3] = 0;
@@ -1411,22 +1411,26 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     break;
 
-                case 43: //spawn sword
+                /*case 43: //spawn sword
                     npc.velocity = Vector2.Zero;
-                    if (Main.netMode != 1)
+                    if (npc.ai[2] == 0 && Main.netMode != 1)
                     {
-                        npc.ai[2] = npc.position.X < player.position.X ? -(float)Math.PI / 4 : (float)Math.PI / 4;
+                        double angle = npc.position.X < player.position.X ? -Math.PI / 4 : Math.PI / 4;
+                        npc.ai[2] = (float)angle * -4f / 30;
+                        const int spacing = 80;
+                        Vector2 offset = Vector2.UnitY.RotatedBy(angle) * -spacing;
                         for (int i = 0; i < 12; i++)
-                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 50 * i);
+                            Projectile.NewProjectile(npc.Center + offset * i, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, spacing * i);
+                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
                     }
                     if (++npc.ai[1] > 120)
                     {
                         targetPos = player.Center;
                         targetPos.X += 300 * (npc.Center.X < targetPos.X ? -1 : 1);
                         npc.velocity = (targetPos - npc.Center) / 30;
-
-                        npc.ai[3] = npc.ai[2] * -3;
-                        npc.ai[2] += npc.ai[3];
 
                         npc.ai[0]++;
                         npc.ai[1] = 0;
@@ -1435,7 +1439,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case 44: //swinging sword dash
-                    npc.ai[2] += npc.ai[3];
+                    npc.ai[3] += npc.ai[2];
                     if (++npc.ai[1] > 35)
                     {
                         npc.ai[0]++;
@@ -1444,7 +1448,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[3] = 0;
                         npc.netUpdate = true;
                     }
-                    break;
+                    break;*/
 
                 default:
                     npc.ai[0] = 11;

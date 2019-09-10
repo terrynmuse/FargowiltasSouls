@@ -40,8 +40,14 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             int ai0 = (int)projectile.ai[0];
             if (ai0 > -1 && ai0 < 200 && Main.npc[ai0].active && Main.npc[ai0].type == mod.NPCType("MutantBoss"))
             {
-                Vector2 offset = new Vector2(projectile.ai[1], 0).RotatedBy(Main.npc[ai0].ai[2]);
-                projectile.Center = Main.npc[ai0].Center;
+                if (projectile.localAI[0] == 0)
+                {
+                    projectile.localAI[0] = 1;
+                    projectile.localAI[1] = projectile.DirectionFrom(Main.npc[ai0].Center).ToRotation();
+                }
+
+                Vector2 offset = new Vector2(projectile.ai[1], 0).RotatedBy(Main.npc[ai0].ai[3] + projectile.localAI[1]);
+                projectile.Center = Main.npc[ai0].Center + offset;
             }
             else
             {
@@ -49,6 +55,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 return;
             }
 
+            //not important part
             if (projectile.alpha > 0)
             {
                 projectile.alpha -= 20;
