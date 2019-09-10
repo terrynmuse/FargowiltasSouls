@@ -23,7 +23,7 @@ namespace FargowiltasSouls.NPCs
             npc.width = 36;
             npc.height = 36;
             npc.damage = 100;
-            npc.lifeMax = 2500;
+            npc.lifeMax = 1250;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.noGravity = true;

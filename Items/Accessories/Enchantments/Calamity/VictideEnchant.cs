@@ -31,7 +31,7 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift");
 攻击时有10%的概率抛出一个贝壳回旋镖
 贝壳回旋镖造成真实伤害但不受任何增幅
 召唤一个海胆保护你
-拥有深潜者, 变压器和卢克索的礼物的效果");
+拥有深潜者, 变压器和祖玛的礼物的效果");
         }
 
         public override void SetDefaults()
@@ -73,7 +73,8 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift");
 
             calamity.GetItem("DeepDiver").UpdateAccessory(player, hideVisual);
             calamity.GetItem("TheTransformer").UpdateAccessory(player, hideVisual);
-            calamity.GetItem("LuxorsGift").UpdateAccessory(player, hideVisual);
+            if (Soulcheck.GetValue("Luxor's Gift"))
+                calamity.GetItem("LuxorsGift").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()
@@ -82,11 +83,7 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("VictideHelm"));
-            recipe.AddIngredient(calamity.ItemType("VictideVisage"));
-            recipe.AddIngredient(calamity.ItemType("VictideMask"));
-            recipe.AddIngredient(calamity.ItemType("VictideHelmet"));
-            recipe.AddIngredient(calamity.ItemType("VictideHeadgear"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyVictideHelmet");
             recipe.AddIngredient(calamity.ItemType("VictideBreastplate"));
             recipe.AddIngredient(calamity.ItemType("VictideLeggings"));
             recipe.AddIngredient(calamity.ItemType("DeepDiver"));

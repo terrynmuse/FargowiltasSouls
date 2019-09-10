@@ -26,8 +26,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.hostile = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            projectile.timeLeft = 240;
+            projectile.timeLeft = 180;
             cooldownSlot = 1;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = true;
         }
 
         public override void AI()

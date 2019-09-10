@@ -23,12 +23,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Steel Enchantment");
             Tooltip.SetDefault(
 @"'Expertly forged by the Blacksmith'
-5% damage reduction
+33% damage reduction at Full HP
 Effects of Spiked Bracers");
             DisplayName.AddTranslation(GameCulture.Chinese, "钢魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'铁匠精心打造'
-增加5%伤害减免
+满血时增加33%伤害减免
 拥有尖刺索的效果");
         }
 
@@ -48,8 +48,12 @@ Effects of Spiked Bracers");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //steel set bonus
-            thoriumPlayer.thoriumEndurance += 0.05f;
+            //steel effect
+            if (player.statLife == player.statLifeMax2)
+            {
+                player.endurance += .33f;
+            }
+            
             //spiked bracers
             player.thorns += 0.25f;
         }

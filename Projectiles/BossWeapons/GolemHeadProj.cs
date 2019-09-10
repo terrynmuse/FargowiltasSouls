@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         public override void AI()
         {
             const int aislotHomingCooldown = 0;
-            const int homingDelay = 30;
+            const int homingDelay = 10;
             const float desiredFlySpeedInPixelsPerFrame = 60;
             const float amountOfFramesToLerpBy = 30; // minimum of 1, please keep in full numbers even though it's a float!
 
@@ -63,6 +63,13 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             }
 
             return selectedTarget;
+        }
+
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+        {
+            width = projectile.width / 4;
+            height = projectile.height / 4;
+            return base.TileCollideStyle(ref width, ref height, ref fallThrough);
         }
 
         public override void Kill(int timeLeft)

@@ -27,7 +27,7 @@ Effects of the Spirit Glyph, Raider's Talisman, and Trinket of Chi");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'别和钨金魔石搞混了...'
 生命值低于50%时, 增加5点防御
-拥有灵魂浮雕, 古墓护符和极之挂坠的效果");
+拥有灵魂浮雕, 掠袭者护符和气之挂坠的效果");
         }
 
         public override void SetDefaults()
@@ -64,11 +64,7 @@ Effects of the Spirit Glyph, Raider's Talisman, and Trinket of Chi");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("WulfrumHelm"));
-            recipe.AddIngredient(calamity.ItemType("WulfrumHeadgear"));
-            recipe.AddIngredient(calamity.ItemType("WulfrumHood"));
-            recipe.AddIngredient(calamity.ItemType("WulfrumHelmet"));
-            recipe.AddIngredient(calamity.ItemType("WulfrumMask"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyWulfrumHelmet");
             recipe.AddIngredient(calamity.ItemType("WulfrumArmor"));
             recipe.AddIngredient(calamity.ItemType("WulfrumLeggings"));
             recipe.AddIngredient(calamity.ItemType("SpiritGenerator"));

@@ -21,19 +21,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Illumite Enchantment");
             Tooltip.SetDefault(
 @"'As if you weren't pink enough'
-Most of your ranged weapons take on special properties
-Every 5 bullets fired will unleash a multi-hit illumite bullet
-Every 4 arrows fired will unleash a barrage of illumite energy
-Every 3 rockets fired will unleash an illumite missile
+Every third attack will unleash an illumite missile
 Effects of Pink Music Player
 Summons a pet Pink Slime");
             DisplayName.AddTranslation(GameCulture.Chinese, "荧光魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'好像还不够粉'
-大多数远程武器具有额外抛射物
-每5颗子弹会发射荧光子弹
-每4支箭会发射一串荧光能量
-每3发导弹会发射荧光导弹
+每3次攻击会发射荧光导弹
 拥有粉色播放器的效果
 召唤宠物粉红史莱姆");
         }
@@ -54,13 +48,12 @@ Summons a pet Pink Slime");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.illumiteSet = true;
+            modPlayer.IllumiteEnchant = true;
             //music player
             thoriumPlayer.musicPlayer = true;
             thoriumPlayer.MP3LifeRegen = 2;
             //slime pet
             modPlayer.AddPet("Pink Slime Pet", hideVisual, thorium.BuffType("PinkSlimeBuff"), thorium.ProjectileType("PinkSlime"));
-            modPlayer.IllumiteEnchant = true;
         }
         
         private readonly string[] items =

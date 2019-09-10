@@ -71,8 +71,6 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
             //right click
             if (player.altFunctionUse == 2)
             {
-                Main.NewText("Hi " + mode);
-
                 mode++;
 
                 if (mode > 5)
@@ -81,9 +79,53 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
                 }
 
                 SetUpItem();
+
+                Main.NewText("Hi " + mode);
+
+                return false;
             }
 
-            return base.Shoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+            switch (mode)
+            {
+                //melee
+                case 1:
+                    break;
+                //range
+                case 2:
+                    int num129 = Main.rand.Next(4, 6);
+                    for (int num130 = 0; num130 < num129; num130++)
+                    {
+                        float num131 = (float)Main.mouseX + Main.screenPosition.X - position.X;
+                        float num132 = (float)Main.mouseY + Main.screenPosition.Y - position.Y;
+                        num131 += (float)Main.rand.Next(-40, 41) * 0.05f;
+                        num132 += (float)Main.rand.Next(-40, 41) * 0.05f;
+                        Projectile.NewProjectile(position, new Vector2(num131, num132), ProjectileID.Bullet, damage, knockBack, player.whoAmI);
+                    }
+                    break;
+                //magic
+                case 3:
+                    for (int num178 = 0; num178 < 3; num178++)
+                    {
+                        float num179 = (float)Main.mouseX + Main.screenPosition.X - position.X;
+                        float num180 = (float)Main.mouseY + Main.screenPosition.Y - position.Y;
+                        num179 += (float)Main.rand.Next(-40, 41) * 0.1f;
+                        num180 += (float)Main.rand.Next(-40, 41) * 0.1f;
+                        Projectile.NewProjectile(position, new Vector2(num179, num180), ProjectileID.Bubble, damage, knockBack, player.whoAmI);
+                    }
+                    break;
+                //summon
+                case 4:
+                    break;
+                //throwing
+                default:
+                    for (int i = 0; i < 0; i++)
+                    {
+                        Projectile.NewProjectile(position, new Vector2(speedX + Main.rand.Next(-2, 2), speedY + Main.rand.Next(-2, 2)), ProjectileID.SpikyBall, damage, knockBack, player.whoAmI);
+                    }
+                    break;
+            }
+
+            return false;
         }
 
         private void SetUpItem()

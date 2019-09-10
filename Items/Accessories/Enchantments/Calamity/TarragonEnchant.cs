@@ -35,7 +35,7 @@ At full health you gain +2 max minions and 10% increased minion damage
 Summons a life aura around you that damages nearby enemies
 After every 25 rogue critical hits you will gain 5 seconds of damage immunity
 While under the effects of a debuff you gain 10% increased rogue damage
-Effects of the Profaned Soul Artifact");
+Effects of the Profaned Soul Artifact and Dark Sun Ring");
             DisplayName.AddTranslation(GameCulture.Chinese, "龙蒿魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'布拉洛的不死之力从你身上流过...'
@@ -51,7 +51,7 @@ Effects of the Profaned Soul Artifact");
 召唤生命之环伤害附近的敌人
 投掷暴击25次后, 获得5秒的无敌时间
 Debuff状态下, 增加10%盗贼伤害
-拥有渎魂神物的效果");
+拥有渎魂神物和蚀日尊戒的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)
@@ -101,6 +101,9 @@ Debuff状态下, 增加10%盗贼伤害
                 //profaned soul artifact
                 modPlayer.pArtifact = true;
             }
+
+            //dark sun ring
+            modPlayer.darkSunRing = true;
         }
 
         public override void AddRecipes()
@@ -109,20 +112,20 @@ Debuff状态下, 增加10%盗贼伤害
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("TarragonHelm"));
-            recipe.AddIngredient(calamity.ItemType("TarragonVisage"));
-            recipe.AddIngredient(calamity.ItemType("TarragonMask"));
-            recipe.AddIngredient(calamity.ItemType("TarragonHornedHelm"));
-            recipe.AddIngredient(calamity.ItemType("TarragonHelmet"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyTarragonHelmet");
             recipe.AddIngredient(calamity.ItemType("TarragonBreastplate"));
             recipe.AddIngredient(calamity.ItemType("TarragonLeggings"));
             recipe.AddIngredient(calamity.ItemType("ProfanedSoulArtifact"));
+            recipe.AddIngredient(calamity.ItemType("DarkSunRing"));
             recipe.AddIngredient(calamity.ItemType("AquaticDissolution"));
+            recipe.AddIngredient(calamity.ItemType("AngelicShotgun"));
             recipe.AddIngredient(calamity.ItemType("TrueTyrantYharimsUltisword"));
+            recipe.AddIngredient(calamity.ItemType("PlasmaRifle"));
             recipe.AddIngredient(calamity.ItemType("Spyker"));
             recipe.AddIngredient(calamity.ItemType("DivineRetribution"));
             recipe.AddIngredient(calamity.ItemType("HandheldTank"));
             recipe.AddIngredient(calamity.ItemType("Mistlestorm"));
+            recipe.AddIngredient(calamity.ItemType("Thunderstorm"));
 
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);

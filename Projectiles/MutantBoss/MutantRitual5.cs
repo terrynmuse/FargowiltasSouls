@@ -31,6 +31,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
             projectile.alpha = 255;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = true;
         }
 
         public override void AI()

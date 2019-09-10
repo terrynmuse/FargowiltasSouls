@@ -42,6 +42,11 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             return false;
         }
 
+        public override bool CanHitPlayer(Player target)
+        {
+            return target.hurtCooldowns[1] == 0;
+        }
+
         public override void AI()
         {
             Vector2? vector78 = null;
@@ -126,8 +131,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 dust.velocity *= 0.5f;
                 Main.dust[num813].velocity.Y = -Math.Abs(Main.dust[num813].velocity.Y);
             }
-            DelegateMethods.v3_1 = new Vector3(0.3f, 0.65f, 0.7f);
-            Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * projectile.localAI[1], (float)projectile.width * projectile.scale, new Utils.PerLinePoint(DelegateMethods.CastLight));
+            //DelegateMethods.v3_1 = new Vector3(0.3f, 0.65f, 0.7f);
+            //Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * projectile.localAI[1], (float)projectile.width * projectile.scale, new Utils.PerLinePoint(DelegateMethods.CastLight));
 
             projectile.position -= projectile.velocity;
             projectile.rotation = projectile.velocity.ToRotation() - 1.57079637f;
@@ -203,6 +208,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
+            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
             target.AddBuff(mod.BuffType("MutantFang"), 300);
         }

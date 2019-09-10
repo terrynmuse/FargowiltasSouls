@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void SetDefaults()
         {
-            projectile.width = 150;
+            projectile.width = 100;
             projectile.height = 100;
             projectile.aiStyle = -1;
             projectile.penetrate = -1;
@@ -31,6 +31,11 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.timeLeft = 180;
             projectile.alpha = 100;
             cooldownSlot = 1;
+        }
+
+        public override bool CanHitPlayer(Player target)
+        {
+            return target.hurtCooldowns[1] == 0;
         }
 
         public override void AI()
@@ -135,8 +140,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
-            target.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(1800, 3600));
+            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
             target.AddBuff(mod.BuffType("MutantNibble"), 900);
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
             target.AddBuff(mod.BuffType("MutantFang"), 300);
@@ -146,7 +151,10 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         {
             Main.PlaySound(SoundID.Item84, projectile.Center);
             if (Main.netMode != 1)
-                SpawnRazorbladeRing(6, 9f, 1f);
+            {
+                SpawnRazorbladeRing(6, 12f, 1f);
+                SpawnRazorbladeRing(6, 12f, -1f);
+            }
         }
 
         private void SpawnRazorbladeRing(int max, float speed, float rotationModifier)
@@ -159,7 +167,9 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             for (int i = 0; i < max; i++)
             {
                 vel = vel.RotatedBy(rotation);
-                Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage, 0f, Main.myPlayer, rotationModifier * Math.Sign(projectile.velocity.X), speed);
+                int p = Projectile.NewProjectile(projectile.Center, vel, type, projectile.damage, 0f, Main.myPlayer, rotationModifier * Math.Sign(projectile.velocity.X), speed);
+                if (p != 1000)
+                    Main.projectile[p].timeLeft = 240;
             }
             Main.PlaySound(SoundID.Item84, projectile.Center);
         }

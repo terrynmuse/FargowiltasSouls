@@ -24,13 +24,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 When you take over 100 damage in one hit you become immune to damage for an extended period of time
 Grants an extra jump and increased jump height
 Summons a mini slime god to fight for you, the type depends on what world evil you have
-Effects of Fungal Symbiote");
+Effects of Counter Scarf and Fungal Symbiote");
             DisplayName.AddTranslation(GameCulture.Chinese, "斯塔提斯魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'斯塔提斯的神秘力量环绕着你...'
 一次性承受超过100点伤害时, 加长无敌时间
 能够多跳跃一次, 增加跳跃高度
-召唤迷你史莱姆之神为你而战, 种类视世界而定");
+召唤迷你史莱姆之神为你而战, 种类视世界而定
+拥有反击围巾和真菌共生体的效果");
         }
 
         public override void SetDefaults()
@@ -76,6 +77,10 @@ Effects of Fungal Symbiote");
             }
 
             calamity.GetItem("FungalSymbiote").UpdateAccessory(player, hideVisual);
+
+            //counter scarf
+            calamityPlayer.dodgeScarf = true;
+            calamityPlayer.dashMod = 1;
         }
 
         public override void AddRecipes()
@@ -84,22 +89,18 @@ Effects of Fungal Symbiote");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("StatigelHelm"));
-            recipe.AddIngredient(calamity.ItemType("StatigelHeadgear"));
-            recipe.AddIngredient(calamity.ItemType("StatigelCap"));
-            recipe.AddIngredient(calamity.ItemType("StatigelHood"));
-            recipe.AddIngredient(calamity.ItemType("StatigelMask"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyStatigelHelmet");
             recipe.AddIngredient(calamity.ItemType("StatigelArmor"));
             recipe.AddIngredient(calamity.ItemType("StatigelGreaves"));
+            recipe.AddIngredient(calamity.ItemType("CounterScarf"));
             recipe.AddIngredient(calamity.ItemType("ManaOverloader"));
             recipe.AddIngredient(calamity.ItemType("FungalSymbiote"));
+            recipe.AddIngredient(calamity.ItemType("Carnage"));
             recipe.AddIngredient(calamity.ItemType("Waraxe"));
-            recipe.AddIngredient(calamity.ItemType("MarkedMagnum"));
-            recipe.AddIngredient(calamity.ItemType("HeartRapier"));
-            recipe.AddIngredient(calamity.ItemType("CursedDagger"));
-            recipe.AddIngredient(calamity.ItemType("IchorSpear"));
+            recipe.AddIngredient(calamity.ItemType("ClothiersWrath"));
+            recipe.AddIngredient(calamity.ItemType("BloodyVein"));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

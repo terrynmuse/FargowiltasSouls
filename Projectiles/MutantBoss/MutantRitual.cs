@@ -54,6 +54,9 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                         int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
                         player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
                             projectile.damage, hitDirection, false, false, false, 0);
+                        player.GetModPlayer<FargoPlayer>().MaxLifeReduction += 200;
+                        player.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+                        player.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
                         player.AddBuff(mod.BuffType("MutantFang"), 300);
                     }
                     if (distance > threshold && distance < threshold * 5f)

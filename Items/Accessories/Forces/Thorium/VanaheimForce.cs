@@ -61,12 +61,13 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //includes malignant debuff, folv bolts, white dwarf flares
-            modPlayer.VanaheimForce = true;
 
+            //folv
+            modPlayer.MalignantEnchant = true;
+            modPlayer.FolvEnchant = true;
             if (Soulcheck.GetValue("Folv's Aura"))
             {
-                //folv
+                
                 thoriumPlayer.folvSet = true;
                 Lighting.AddLight(player.position, 0.03f, 0.3f, 0.5f);
                 thoriumPlayer.folvBonus2 = true;
@@ -91,6 +92,9 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
                     }
                 }
             }
+
+            //white dwarf
+            modPlayer.WhiteDwarfEnchant = true;
             
             if (Soulcheck.GetValue("Celestial Aura"))
             {

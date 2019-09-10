@@ -17,18 +17,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Chlorophyte Enchantment");
 
             string tooltip =
-@"'The jungle's essence crystallizes above you'
-Summons a leaf crystal to shoot at nearby enemies
-Chance to steal 4 mana with each attack
-Taking damage will release a poisoning spore explosion
+@"'The jungle's essence crystallizes around you'
+Summons a ring of leaf crystals to shoot at nearby enemies
+Taking damage will release a lingering spore explosion
 All herb collection is doubled
 ";
             string tooltip_ch = 
-@"'丛林的精华在你上方结晶'
-召唤一个叶绿水晶射击附近的敌人
-每次攻击有机会偷取4点法力
+@"'丛林的精华凝结在你周围'
+召唤一圈叶绿水晶射击附近的敌人
 受到伤害时会释放出有毒的孢子爆炸
-所有草药收集翻倍
+所有草药收获翻倍
 ";
 
             if(thorium != null)
@@ -39,7 +37,7 @@ Effects of Night Shade Petal, Petal Shield, Toxic Subwoofer, and Flower Boots
 ";
                 tooltip_ch +=
 @"攻击有概率释放孢子云使敌人中毒
-拥有影缀花,花之盾,剧毒音箱和花之靴的效果
+拥有影缀花, 花之盾, 剧毒音箱和花之靴的效果
 ";
             }
             else
@@ -81,6 +79,7 @@ Effects of Night Shade Petal, Petal Shield, Toxic Subwoofer, and Flower Boots
 
         private void Thorium(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //subwoofer
             thoriumPlayer.bardRangeBoost += 450;
@@ -92,6 +91,8 @@ Effects of Night Shade Petal, Petal Shield, Toxic Subwoofer, and Flower Boots
                     thoriumPlayer.empowerPoison = true;
                 }
             }
+            //bulb
+            modPlayer.BulbEnchant = true;
             //petal shield
             thorium.GetItem("PetalShield").UpdateAccessory(player, hideVisual);
             player.statDefense -= 2;

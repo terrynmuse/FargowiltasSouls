@@ -29,7 +29,7 @@ Attacks may inflict the Solar Flare debuff
 Double tap down to toggle stealth, reducing chance for enemies to target you but slowing movement
 You also spawn a vortex to draw in and massively damage enemies when you enter stealth
 Hurting enemies has a chance to spawn buff boosters
-Double tap down to direct your guardian
+Double tap down to direct your empowered guardian
 Press the Freeze Key to freeze time for 5 seconds
 There is a 60 second cooldown for this effect, a sound effect plays when it's back
 Summons a pet Companion Cube";
@@ -38,12 +38,12 @@ Summons a pet Companion Cube";
 @"攻击时,每隔几秒就会爆发一次流星雨
 日耀护盾允许你向敌人冲刺
 攻击概率造成耀斑效果
-双击'下'键切换潜行,减少敌人攻击你的概率,但减少移动速度
-进入潜行时,生成一个漩涡,聚拢敌人并造成大量伤害
+双击'下'键切换潜行,减少敌人攻击你的概率, 但减少移动速度
+进入潜行时, 生成一个漩涡, 聚拢敌人并造成大量伤害
 杀死敌人有概率产生增益效果
-双击'下'键控制你的替身
+双击'下'键控制你的强化替身
 按下时间冻结热键时停5秒
-该能力有60秒的冷却时间,冷却结束时会播放音效
+该能力有60秒的冷却时间, 冷却结束时会播放音效
 召唤一个伙伴方块";
 
             Tooltip.SetDefault(tooltip);

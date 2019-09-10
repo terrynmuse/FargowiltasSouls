@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'Infused with souls of the damned'
 Your boots vibrate at an unreal frequency, increasing movement speed significantly
-While moving, your melee damage and critical strike chance are increased
+While moving, your damage and critical strike chance are increased
 Your attacks have a chance to unleash an explosion of Dragon's Flame
 Effects of Crash Boots, Dragon Talon Necklace, and Cursed Flail-Core
 Effects of Grim Subwoofer and Green Music Player
@@ -32,7 +32,7 @@ Summons a pet Wyvern");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'充满被诅咒的灵魂'
 你的靴子以不真实的频率振动着, 显著提高移动速度
-移动时增加近战伤害和暴击率
+移动时增加伤害和暴击率
 攻击有概率释放龙焰爆炸
 拥有震地, 龙爪项链和诅咒链球核心的效果
 拥有恐惧音箱和绿色播放器的效果
@@ -63,8 +63,8 @@ Summons a pet Wyvern");
                 player.runAcceleration += 0.05f;
                 if (player.velocity.X > 0f || player.velocity.X < 0f)
                 {
-                    player.meleeDamage += 0.35f;
-                    player.meleeCrit += 26;
+                    modPlayer.AllDamageUp(.25f);
+                    modPlayer.AllCritUp(20);
                     player.endurance += 0.1f;
                     for (int i = 0; i < 2; i++)
                     {

@@ -21,13 +21,13 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Life Bloom Enchantment");
             Tooltip.SetDefault(
 @"'You are one with nature'
-Minion attacks have a 33% chance to heal you lightly
+Attacks have a 33% chance to heal you lightly
 Summons a living wood sapling and its attacks will home in on enemies
 Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
             DisplayName.AddTranslation(GameCulture.Chinese, "树人魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'大自然的一员'
-召唤攻击有33%的概率治疗你
+攻击有33%的概率治疗你
 召唤具有追踪攻击能力的小树苗
 拥有无暇之蛹和植物纤维绳索宝典的效果");
         }
@@ -48,8 +48,8 @@ Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
-            thoriumPlayer.lifeBloom = true;
+            //life bloom effect
+            modPlayer.LifeBloomEnchant = true;
             //chrysalis
             thoriumPlayer.cocoonAcc = true;
             //living wood set bonus

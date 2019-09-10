@@ -37,7 +37,7 @@ Hitting enemies will summon god slayer phantoms
 Summons a god-eating mechworm to fight for you
 While at full HP all of your rogue stats are boosted by 10%
 If you take over 80 damage in one hit you will be given extra immunity frames
-Effects of the Nebulous Core");
+Effects of the Nebulous Core and Draedon's Heart");
             DisplayName.AddTranslation(GameCulture.Chinese, "弑神者魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'足以屠神的力量存于你的体内...'
@@ -55,7 +55,7 @@ Effects of the Nebulous Core");
 召唤噬神机械蠕虫为你而战
 满血时提高10%盗贼属性
 一次性承受超过80点伤害时, 获得额外的无敌帧
-拥有星云之核的效果");
+拥有星云之核和嘉登之心的效果");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)
@@ -293,6 +293,11 @@ Effects of the Nebulous Core");
                     }
                 }
             }
+
+            //draedons heart
+            modPlayer.draedonsHeart = true;
+            player.buffImmune[calamity.BuffType("Horror")] = true;
+            modPlayer.draedonsStressGain = true;
         }
 
         public override void AddRecipes()
@@ -301,20 +306,22 @@ Effects of the Nebulous Core");
 
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(calamity.ItemType("GodSlayerHelm"));
-            recipe.AddIngredient(calamity.ItemType("GodSlayerHelmet"));
-            recipe.AddIngredient(calamity.ItemType("GodSlayerVisage"));
-            recipe.AddIngredient(calamity.ItemType("GodSlayerHornedHelm"));
-            recipe.AddIngredient(calamity.ItemType("GodSlayerMask"));
+            recipe.AddRecipeGroup("FargowiltasSouls:AnyGodslayerHelmet");
             recipe.AddIngredient(calamity.ItemType("GodSlayerChestplate"));
             recipe.AddIngredient(calamity.ItemType("GodSlayerLeggings"));
             recipe.AddIngredient(calamity.ItemType("NebulousCore"));
             recipe.AddIngredient(calamity.ItemType("DimensionalSoulArtifact"));
+            recipe.AddIngredient(calamity.ItemType("DraedonsHeart"));
             recipe.AddIngredient(calamity.ItemType("ThePack"));
             recipe.AddIngredient(calamity.ItemType("Onyxia"));
             recipe.AddIngredient(calamity.ItemType("PrimordialAncient"));
             recipe.AddIngredient(calamity.ItemType("DevilsDevastation"));
             recipe.AddIngredient(calamity.ItemType("StarfleetMK2"));
+            recipe.AddIngredient(calamity.ItemType("Norfleet"));
+            recipe.AddIngredient(calamity.ItemType("Skullmasher"));
+            recipe.AddIngredient(calamity.ItemType("Nadir"));
+
+            //add Cosmic Plushie
 
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);

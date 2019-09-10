@@ -15,17 +15,16 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
         {
             DisplayName.SetDefault("Jungle Enchantment");
 
-            string tooltip = 
+            string tooltip =
 @"'The wrath of the jungle dwells within'
-25% chance to steal 4 mana with each attack
-Taking damage will release a poisoning spore explosion
+Taking damage will release a lingering spore explosion
 Spore damage scales with magic damage
+All herb collection is doubled
 ";
             string tooltip_ch =
 @"'丛林之怒深藏其中'
-攻击时有25%概率偷取4点法力
 受到伤害会释放出有毒的孢子爆炸
-孢子伤害与魔法伤害挂钩";
+所有草药收获翻倍";
 
             if(thorium != null)
             {
@@ -87,8 +86,8 @@ Spore damage scales with magic damage
                 recipe.AddIngredient(ItemID.JungleRose);
                 recipe.AddIngredient(ItemID.ThornChakram);
                 recipe.AddIngredient(ItemID.Boomstick);
-                recipe.AddIngredient(thorium.ItemType("MantisCane"));
                 recipe.AddIngredient(ItemID.PoisonedKnife, 300);
+                recipe.AddIngredient(thorium.ItemType("WeirdMud"));
                 recipe.AddIngredient(ItemID.Buggy);
             }
             else

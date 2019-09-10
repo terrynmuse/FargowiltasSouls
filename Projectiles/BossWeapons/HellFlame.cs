@@ -29,6 +29,8 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.extraUpdates = 2;
             projectile.ranged = true;
             projectile.aiStyle = -1;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = false;
         }
 
         public override Color? GetAlpha(Color lightColor)

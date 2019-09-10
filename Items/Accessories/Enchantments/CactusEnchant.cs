@@ -15,14 +15,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'It's the quenchiest!' 
 25% of contact damage is reflected
-Enemies may explode into needles on death
-Needles scale with melee damage");
+Enemies may explode into needles on death");
             DisplayName.AddTranslation(GameCulture.Chinese, "仙人掌魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'太解渴了!'
 反射25%接触伤害
-敌人在死亡时可能会爆出刺
-刺的伤害与近战伤害挂钩");
+敌人在死亡时可能会爆出刺");
         }
 
         public override void SetDefaults()

@@ -23,14 +23,14 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Thorium Enchantment");
             Tooltip.SetDefault(
 @"'It pulses with energy'
-10% increased damage
-Symphonic critical strikes ring a bell over your head, slowing all nearby enemies briefly
+Shortlived Divermen will occasionally spawn when hitting enemies
+Critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Crietz, Band of Replenishment, and Fan Letter");
             DisplayName.AddTranslation(GameCulture.Chinese, "瑟银魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'发出阵阵能量脉冲'
-增加10%伤害
-音波暴击短暂缓慢所有附近敌人
+攻击敌人时偶尔会召唤暂时存在的潜水员
+暴击短暂缓慢所有附近敌人
 拥有精准项链, 大恢复戒指和粉丝的信函的效果");
         }
 
@@ -48,15 +48,16 @@ Effects of Crietz, Band of Replenishment, and Fan Letter");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //thorium set bonus 
-            player.GetModPlayer<FargoPlayer>().AllDamageUp(.1f);
+            //diverman meme
+            modPlayer.ThoriumEnchant = true;
             //crietz
             thoriumPlayer.crietzAcc = true;
             //band of replenish
             thoriumPlayer.BandofRep = true;
             //jester bonus
-            thoriumPlayer.jesterSet = true;
+            modPlayer.JesterEnchant = true;
             //fan letter
             thoriumPlayer.bardResourceMax2 += 2;
         }

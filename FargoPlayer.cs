@@ -106,6 +106,7 @@ namespace FargowiltasSouls
         public int TinCrit = 4;
         public bool TikiEnchant;
         public bool TikiMinion;
+        private int actualMinions;
         public bool SolarEnchant;
         public bool ShinobiEnchant;
         public bool ValhallaEnchant;
@@ -144,24 +145,36 @@ namespace FargowiltasSouls
         public bool KnightEnchant;
         public bool DreamEnchant;
         public bool IllumiteEnchant;
+        public bool JesterEnchant;
+        public bool FolvEnchant;
+        public bool MalignantEnchant;
+        public bool WhiteDwarfEnchant;
+        public bool YewEnchant;
+        public bool CryoEnchant;
+        public bool TideHunterEnchant;
+        public bool BronzeEnchant;
+        public bool PlagueAcc;
+        public bool TideTurnerEnchant;
+        public bool AssassinEnchant;
+        public bool PyroEnchant;
+        public bool ThoriumEnchant;
+        public bool SpiritTrapperEnchant;
+        public bool LifeBloomEnchant;
+        public bool LichEnchant;
+        public bool DemonBloodEnchant;
+        public bool FeralFurEnchant;
+        public bool BulbEnchant;
 
-        public bool AsgardForce;
-        public bool MidgardForce;
-        public bool SvartalfheimForce;
-        public bool HelheimForce;
-        public bool VanaheimForce;
-        public bool MuspelheimForce;
-        public bool JotunheimForce;
         public bool ThoriumSoul;
 
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
+        //AA
+
+        public bool TrueCopper;
         #endregion
 
         //soul effects
-        public bool Infinity;
-        public int InfinityCounter = 0;
-
         public bool MagicSoul;
         public bool ThrowSoul;
         public bool RangedSoul;
@@ -225,6 +238,9 @@ namespace FargowiltasSouls
         public bool TribalCharm;
         public bool TribalAutoFire;
         public bool SupremeDeathbringerFairy;
+        public bool GodEaterImbue;
+        public bool MutantSetBonus;
+        public bool Abominationn;
 
         //debuffs
         private int webCounter = 0;
@@ -267,6 +283,7 @@ namespace FargowiltasSouls
         public int MaxLifeReduction;
         public bool Midas;
         public bool MutantPresence;
+        public bool Swarming;
 
         public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
@@ -449,7 +466,7 @@ namespace FargowiltasSouls
                         netMessage.Write((byte)1);
                         netMessage.Write((byte)i);
                         netMessage.Send();
-                        Main.npc[i].lifeMax *= 5;
+                        Main.npc[i].lifeMax *= 3;
                     }
                     else
                     {
@@ -506,7 +523,6 @@ namespace FargowiltasSouls
             wingTimeModifier = 1f;
 
             QueenStinger = false;
-            Infinity = false;
 
             BrainMinion = false;
             EaterMinion = false;
@@ -593,14 +609,26 @@ namespace FargowiltasSouls
             KnightEnchant = false;
             DreamEnchant = false;
             IllumiteEnchant = false;
+            JesterEnchant = false;
+            FolvEnchant = false;
+            MalignantEnchant = false;
+            WhiteDwarfEnchant = false;
+            YewEnchant = false;
+            CryoEnchant = false;
+            TideHunterEnchant = false;
+            BronzeEnchant = false;
+            PlagueAcc = false;
+            TideTurnerEnchant = false;
+            AssassinEnchant = false;
+            PyroEnchant = false;
+            ThoriumEnchant = false;
+            SpiritTrapperEnchant = false;
+            LifeBloomEnchant = false;
+            LichEnchant = false;
+            DemonBloodEnchant = false;
+            FeralFurEnchant = false;
+            BulbEnchant = false;
 
-            AsgardForce = false;
-            MidgardForce = false;
-            SvartalfheimForce = false;
-            HelheimForce = false;
-            VanaheimForce = false;
-            MuspelheimForce = false;
-            JotunheimForce = false;
             ThoriumSoul = false;
 
             #endregion
@@ -658,6 +686,9 @@ namespace FargowiltasSouls
             MiniSaucer = false;
             TribalCharm = false;
             SupremeDeathbringerFairy = false;
+            GodEaterImbue = false;
+            MutantSetBonus = false;
+            Abominationn = false;
 
             //debuffs
             Hexed = false;
@@ -689,13 +720,14 @@ namespace FargowiltasSouls
             DeathMarked = false;
             Midas = false;
             MutantPresence = false;
+            Swarming = false;
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
             if (Eternity)
                 player.respawnTimer = (int)(player.respawnTimer * .1);
-            else if (SandsofTime && (!FargoSoulsGlobalNPC.AnyBossAlive() || MasochistSoul))
+            else if (SandsofTime && !FargoSoulsGlobalNPC.AnyBossAlive())
                 player.respawnTimer = (int)(player.respawnTimer * .5);
         }
 
@@ -804,8 +836,13 @@ namespace FargowiltasSouls
                     player.fallStart = (int)(player.position.Y / 16f);
                 }
 
-                if (player.ZoneUnderworldHeight && !(player.fireWalk || PureHeart))
-                    player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                if (player.ZoneUnderworldHeight)
+                {
+                    if (!(player.fireWalk || PureHeart))
+                        player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                    if (player.lavaWet && !MutantAntibodies)
+                        player.AddBuff(mod.BuffType("Shadowflame"), 2);
+                }
 
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
                     player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
@@ -873,16 +910,18 @@ namespace FargowiltasSouls
                 {
                     bool inLiquid = Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
                     if (!inLiquid)
-                        player.breath -= 3;
-                    if (++MasomodeSpaceBreathTimer > 10)
                     {
-                        MasomodeSpaceBreathTimer = 0;
-                        player.breath--;
+                        player.breath -= 3;
+                        if (++MasomodeSpaceBreathTimer > 10)
+                        {
+                            MasomodeSpaceBreathTimer = 0;
+                            player.breath--;
+                        }
+                        if (player.breath == 0)
+                            Main.PlaySound(23);
+                        if (player.breath <= 0)
+                            player.AddBuff(BuffID.Suffocation, 2);
                     }
-                    if (player.breath == 0)
-                        Main.PlaySound(23);
-                    if (player.breath <= 0)
-                        player.AddBuff(BuffID.Suffocation, 2);
                 }
 
                 if (!PureHeart && !player.buffImmune[BuffID.Webbed] && player.stickyBreak > 0)
@@ -986,7 +1025,7 @@ namespace FargowiltasSouls
                     0f + Main.rand.Next(-5, 5),  Main.rand.Next(-6, -2), mod.ProjectileType("SuperBlood"), 5, 0f, Main.myPlayer);
             }
 
-            if (CopperEnchant && copperCD > 0)
+            if ((CopperEnchant || TrueCopper) && copperCD > 0)
                 copperCD--;
 
             if (GoldEnchant && goldCD > 0)
@@ -1309,11 +1348,6 @@ namespace FargowiltasSouls
                 MaxLifeReduction = 0;
             }
 
-            if (Infinity)
-            {
-                player.manaCost -= 1f;
-            }
-
             if (Eternity)
                 player.statManaMax2 = 999;
             else if (UniverseEffect)
@@ -1462,9 +1496,12 @@ namespace FargowiltasSouls
             {
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
+                player.lifeRegen -= 170;
 
                 player.lifeRegenTime = 0;
-                player.lifeRegen -= 90;
+
+                if (player.lifeRegenCount > 0)
+                    player.lifeRegenCount = 0;
             }
 
             if (MutantNibble)
@@ -1662,6 +1699,21 @@ namespace FargowiltasSouls
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            if (Eternity)
+            {
+                if (crit)
+                {
+                    damage *= 5;
+                }
+            }
+            else if (UniverseEffect)
+            {
+                if (crit)
+                {
+                    damage = (int)(damage * 2.5f);
+                }
+            }
+
             if (Hexed)
             {
                 target.life += damage;
@@ -1702,7 +1754,7 @@ namespace FargowiltasSouls
                 return;
             }
 
-            if (AsgardForce)
+            if (TideTurnerEnchant)
             {
                 //tide turner daggers
                 if (Soulcheck.GetValue("Tide Turner Daggers") && player.ownedProjectileCounts[thorium.ProjectileType("TideDagger")] < 24 && proj.type != thorium.ProjectileType("ThrowingGuideFollowup") && proj.type != thorium.ProjectileType("TideDagger") && target.type != 488 && Main.rand.Next(5) == 0)
@@ -1732,6 +1784,10 @@ namespace FargowiltasSouls
                     damage = (int)((double)damage * 0.75);
                     thoriumPlayer.tideOrb--;
                 }
+            }
+
+            if (AssassinEnchant)
+            {
                 //assassin duplicate damage
                 if (Soulcheck.GetValue("Assassin Damage") && Utils.NextFloat(Main.rand) < 0.1f)
                 {
@@ -1755,7 +1811,10 @@ namespace FargowiltasSouls
                         Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasma"), 0, 0f, Main.myPlayer, 0f, 0f);
                     }
                 }
+            }
 
+            if (PyroEnchant)
+            {
                 //pyro
                 target.AddBuff(24, 300, true);
                 target.AddBuff(thorium.BuffType("Singed"), 300, true);
@@ -1767,69 +1826,64 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (SvartalfheimForce && Soulcheck.GetValue("Bronze Lightning") && Main.rand.Next(5) == 0 && proj.type != thorium.ProjectileType("LightStrike") && proj.type != thorium.ProjectileType("ThrowingGuideFollowup"))
+            if (BronzeEnchant && Soulcheck.GetValue("Bronze Lightning") && Main.rand.Next(5) == 0 && proj.type != thorium.ProjectileType("LightStrike") && proj.type != thorium.ProjectileType("ThrowingGuideFollowup"))
             {
                 target.immune[proj.owner] = 5;
                 Projectile.NewProjectile(target.Center.X, target.Center.Y - 600f, 0f, 15f, thorium.ProjectileType("LightStrike"), (int)(proj.damage / 4), 1f, proj.owner, 0f, 0f);
             }
 
-            if (VanaheimForce)
+            //malignant
+            if (MalignantEnchant && crit)
             {
-                //malignant
-                if (crit)
+                target.AddBuff(24, 900, true);
+                target.AddBuff(thorium.BuffType("lightCurse"), 900, true);
+                for (int i = 0; i < 8; i++)
                 {
-                    target.AddBuff(24, 900, true);
-                    target.AddBuff(thorium.BuffType("lightCurse"), 900, true);
-                    for (int i = 0; i < 8; i++)
-                    {
-                        int num5 = Dust.NewDust(target.position, target.width, target.height, 127, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
-                        Main.dust[num5].noGravity = true;
-                    }
-                    for (int j = 0; j < 8; j++)
-                    {
-                        int num6 = Dust.NewDust(target.position, target.width, target.height, 65, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
-                        Main.dust[num6].noGravity = true;
-                    }
+                    int num5 = Dust.NewDust(target.position, target.width, target.height, 127, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
+                    Main.dust[num5].noGravity = true;
                 }
-                //white dwarf
-                if (Soulcheck.GetValue("White Dwarf Flares") && crit)
+                for (int j = 0; j < 8; j++)
                 {
-                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
-                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)((float)target.lifeMax * 0.001f), 0f, Main.myPlayer, 0f, 0f);
+                    int num6 = Dust.NewDust(target.position, target.width, target.height, 65, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
+                    Main.dust[num6].noGravity = true;
                 }
             }
 
-            if (JotunheimForce)
+            //white dwarf
+            if (WhiteDwarfEnchant && Soulcheck.GetValue("White Dwarf Flares") && crit)
             {
-                //yew wood
-                if (Soulcheck.GetValue("Yew Wood Crits") && !crit)
-                {
-                    thoriumPlayer.yewChargeTimer = 120;
-                    if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
-                    }
-                    if (thoriumPlayer.yewCharge < 4)
-                    {
-                        thoriumPlayer.yewCharge++;
-                    }
-                    else
-                    {
-                        crit = true;
-                        damage = (int)((double)damage * 0.75);
-                        thoriumPlayer.yewCharge = 0;
-                    }
-                }
+                Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
+                Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)((float)target.lifeMax * 0.001f), 0f, Main.myPlayer, 0f, 0f);
+            }
 
-                //cryo
-                if (Soulcheck.GetValue("Cryo-Magus Damage") && proj.type != thorium.ProjectileType("CryoDamage"))
+            //yew wood
+            if (YewEnchant && Soulcheck.GetValue("Yew Wood Crits") && !crit)
+            {
+                thoriumPlayer.yewChargeTimer = 120;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
                 {
-                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), proj.damage / 3, 5f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                }
+                if (thoriumPlayer.yewCharge < 4)
+                {
+                    thoriumPlayer.yewCharge++;
+                }
+                else
+                {
+                    crit = true;
+                    damage = (int)((double)damage * 0.75);
+                    thoriumPlayer.yewCharge = 0;
                 }
             }
 
-            if (Soulcheck.GetValue("Warlock Wisps") && ThoriumSoul && !(proj.modProjectile is ThoriumProjectile && ((ThoriumProjectile)proj.modProjectile).radiant))
+            //cryo
+            if (CryoEnchant && Soulcheck.GetValue("Cryo-Magus Damage") && proj.type != thorium.ProjectileType("CryoDamage"))
+            {
+                Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), proj.damage / 3, 5f, Main.myPlayer, 0f, 0f);
+            }
+
+            if (WarlockEnchant && Soulcheck.GetValue("Warlock Wisps") && !(proj.modProjectile is ThoriumProjectile && ((ThoriumProjectile)proj.modProjectile).radiant))
             {
                 //warlock
                 if (crit && player.ownedProjectileCounts[thorium.ProjectileType("ShadowWisp")] < 15)
@@ -1883,7 +1937,7 @@ namespace FargowiltasSouls
             if (ShroomEnchant && !TerrariaSoul && Main.rand.Next(5) == 0)
                 target.AddBuff(thorium.BuffType("Mycelium"), 120);
 
-            if (AsgardForce)
+            if (TideTurnerEnchant)
             {
                 //tide turner daggers
                 if (Soulcheck.GetValue("Tide Turner Daggers") && player.ownedProjectileCounts[thorium.ProjectileType("TideDagger")] < 24 && target.type != 488 && Main.rand.Next(5) == 0)
@@ -1913,6 +1967,10 @@ namespace FargowiltasSouls
                     damage = (int)((double)damage * 0.75);
                     thoriumPlayer.tideOrb--;
                 }
+            }
+
+            if (AssassinEnchant)
+            {
                 //assassin duplicate damage
                 if (Soulcheck.GetValue("Assassin Damage") && Utils.NextFloat(Main.rand) < 0.1f)
                 {
@@ -1936,7 +1994,10 @@ namespace FargowiltasSouls
                         Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasma"), 0, 0f, Main.myPlayer, 0f, 0f);
                     }
                 }
+            }
 
+            if (PyroEnchant)
+            {
                 //pyro
                 target.AddBuff(24, 300, true);
                 target.AddBuff(thorium.BuffType("Singed"), 300, true);
@@ -1948,69 +2009,64 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (SvartalfheimForce && Soulcheck.GetValue("Bronze Lightning") && Main.rand.Next(5) == 0)
+            if (BronzeEnchant && Soulcheck.GetValue("Bronze Lightning") && Main.rand.Next(5) == 0)
             {
                 target.immune[player.whoAmI] = 5;
                 Projectile.NewProjectile(target.Center.X, target.Center.Y - 600f, 0f, 15f, thorium.ProjectileType("LightStrike"), (int)(item.damage / 4), 1f, player.whoAmI, 0f, 0f);
             }
 
-            if (VanaheimForce)
+            //malignant
+            if (MalignantEnchant && crit)
             {
-                //malignant
-                if (crit)
+                target.AddBuff(24, 900, true);
+                target.AddBuff(thorium.BuffType("lightCurse"), 900, true);
+                for (int i = 0; i < 8; i++)
                 {
-                    target.AddBuff(24, 900, true);
-                    target.AddBuff(thorium.BuffType("lightCurse"), 900, true);
-                    for (int i = 0; i < 8; i++)
-                    {
-                        int num5 = Dust.NewDust(target.position, target.width, target.height, 127, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
-                        Main.dust[num5].noGravity = true;
-                    }
-                    for (int j = 0; j < 8; j++)
-                    {
-                        int num6 = Dust.NewDust(target.position, target.width, target.height, 65, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
-                        Main.dust[num6].noGravity = true;
-                    }
+                    int num5 = Dust.NewDust(target.position, target.width, target.height, 127, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
+                    Main.dust[num5].noGravity = true;
                 }
-                //white dwarf
-                if (Soulcheck.GetValue("White Dwarf Flares") && crit)
+                for (int j = 0; j < 8; j++)
                 {
-                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
-                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)((float)target.lifeMax * 0.001f), 0f, Main.myPlayer, 0f, 0f);
+                    int num6 = Dust.NewDust(target.position, target.width, target.height, 65, (float)Main.rand.Next(-6, 6), (float)Main.rand.Next(-10, 10), 0, default(Color), 1.2f);
+                    Main.dust[num6].noGravity = true;
                 }
             }
 
-            if (JotunheimForce)
+            //white dwarf
+            if (WhiteDwarfEnchant && Soulcheck.GetValue("White Dwarf Flares") && crit)
             {
-                //yew wood
-                if (Soulcheck.GetValue("Yew Wood Crits") && !crit)
-                {
-                    thoriumPlayer.yewChargeTimer = 120;
-                    if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
-                    {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
-                    }
-                    if (thoriumPlayer.yewCharge < 4)
-                    {
-                        thoriumPlayer.yewCharge++;
-                    }
-                    else
-                    {
-                        crit = true;
-                        damage = (int)((double)damage * 0.75);
-                        thoriumPlayer.yewCharge = 0;
-                    }
-                }
+                Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
+                Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)((float)target.lifeMax * 0.001f), 0f, Main.myPlayer, 0f, 0f);
+            }
 
-                if (Soulcheck.GetValue("Cryo-Magus Damage"))
+            //yew wood
+            if (YewEnchant && Soulcheck.GetValue("Yew Wood Crits") && !crit)
+            {
+                thoriumPlayer.yewChargeTimer = 120;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
                 {
-                    //cryo
-                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), item.damage / 3, 5f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("YewVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                }
+                if (thoriumPlayer.yewCharge < 4)
+                {
+                    thoriumPlayer.yewCharge++;
+                }
+                else
+                {
+                    crit = true;
+                    damage = (int)((double)damage * 0.75);
+                    thoriumPlayer.yewCharge = 0;
                 }
             }
 
-            if (Soulcheck.GetValue("Warlock Wisps") && ThoriumSoul)
+            if (CryoEnchant && Soulcheck.GetValue("Cryo-Magus Damage"))
+            {
+                //cryo
+                Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), item.damage / 3, 5f, Main.myPlayer, 0f, 0f);
+            }
+
+            if (WarlockEnchant && Soulcheck.GetValue("Warlock Wisps"))
             {
                 //warlock
                 if (crit && player.ownedProjectileCounts[thorium.ProjectileType("ShadowWisp")] < 15)
@@ -2172,14 +2228,14 @@ namespace FargowiltasSouls
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (ChloroEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
+            if (BulbEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
             {
                 Main.PlaySound(2, (int)proj.position.X, (int)proj.position.Y, 34, 1f, 0f);
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloud"), 0, 0f, proj.owner, 0f, 0f);
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, proj.owner, 0f, 0f);
             }
 
-            if (SpiritForce && Soulcheck.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && Soulcheck.GetValue("Spirit Trapper Wisps"))
             {
                 if (target.life < 0 && target.value > 0f)
                 {
@@ -2191,53 +2247,83 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (JotunheimForce)
+            //tide hunter
+            if (TideHunterEnchant && Soulcheck.GetValue("Depth Diver Foam") && crit)
             {
-                //tide hunter
-                if (Soulcheck.GetValue("Depth Diver Foam") && crit)
+                for (int n = 0; n < 10; n++)
                 {
-                    for (int n = 0; n < 10; n++)
+                    int num10 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
+                    Main.dust[num10].noGravity = true;
+                    Main.dust[num10].noLight = true;
+                }
+                for (int num11 = 0; num11 < 200; num11++)
+                {
+                    NPC npc = Main.npc[num11];
+                    if (npc.active && npc.FindBuffIndex(thorium.BuffType("Oozed")) < 0 && !npc.friendly && Vector2.Distance(npc.Center, target.Center) < 80f)
                     {
-                        int num10 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
-                        Main.dust[num10].noGravity = true;
-                        Main.dust[num10].noLight = true;
-                    }
-                    for (int num11 = 0; num11 < 200; num11++)
-                    {
-                        NPC npc = Main.npc[num11];
-                        if (npc.active && npc.FindBuffIndex(thorium.BuffType("Oozed")) < 0 && !npc.friendly && Vector2.Distance(npc.Center, target.Center) < 80f)
-                        {
-                            npc.AddBuff(thorium.BuffType("Oozed"), 90, false);
-                        }
+                        npc.AddBuff(thorium.BuffType("Oozed"), 90, false);
                     }
                 }
             }
 
-            if (MuspelheimForce)
+            if (LichEnchant && target.life <= 0)
             {
-                //feral fure
-                if (!ThoriumSoul && crit)
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("SoulFragment"), 0, 0f, proj.owner, 0f, 0f);
+                for (int num26 = 0; num26 < 5; num26++)
                 {
-                    for (int m = 0; m < 5; m++)
-                    {
-                        int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
-                        Main.dust[num9].noGravity = true;
-                    }
-                    Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
-                    player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
+                    int num27 = Dust.NewDust(proj.position, proj.width, proj.height, 55, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 150, default(Color), 0.75f);
+                    Main.dust[num27].noGravity = true;
                 }
-                //life bloom
-                if (target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+                for (int num28 = 0; num28 < 5; num28++)
                 {
-                    for (int l = 0; l < 10; l++)
-                    {
-                        int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
-                        Main.dust[num7].noGravity = true;
-                    }
-                    int num8 = Main.rand.Next(1, 4);
-                    player.statLife += num8;
-                    player.HealEffect(num8, true);
-                    thoriumPlayer.lifeBloomMax += num8;
+                    int num29 = Dust.NewDust(proj.position, proj.width, proj.height, thorium.DustType("HarbingerDust"), (float)Main.rand.Next(-3, 3), (float)Main.rand.Next(-3, 3), 100, default(Color), 1f);
+                    Main.dust[num29].noGravity = true;
+                }
+            }
+
+            //feral fure
+            if (FeralFurEnchant && crit)
+            {
+                for (int m = 0; m < 5; m++)
+                {
+                    int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
+                    Main.dust[num9].noGravity = true;
+                }
+                Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
+                player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
+            }
+
+            //life bloom
+            if (LifeBloomEnchant && target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+            {
+                for (int l = 0; l < 10; l++)
+                {
+                    int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
+                    Main.dust[num7].noGravity = true;
+                }
+                int num8 = Main.rand.Next(1, 4);
+                player.statLife += num8;
+                player.HealEffect(num8, true);
+                thoriumPlayer.lifeBloomMax += num8;
+            }
+
+            //demon blood
+            if (DemonBloodEnchant && target.type != 488 && !thoriumPlayer.bloodChargeExhaust)
+            {
+                thoriumPlayer.bloodCharge++;
+                thoriumPlayer.bloodChargeTimer = 120;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("DemonBloodVisual")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("DemonBloodVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                }
+                if (thoriumPlayer.bloodCharge >= 5)
+                {
+                    player.statLife += damage / 5;
+                    player.HealEffect(damage / 5, true);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("BloodBoom"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    damage = (int)((float)damage * 2f);
+                    player.AddBuff(thorium.BuffType("DemonBloodExhaust"), 600, true);
+                    thoriumPlayer.bloodCharge = 0;
                 }
             }
 
@@ -2263,8 +2349,27 @@ namespace FargowiltasSouls
 
         public void OnHitNPCEither(NPC target, int damage, float knockback, bool crit, int projectile = -1)
         {
-            if (CopperEnchant && SoulConfig.Instance.GetValue("Copper Lightning") && copperCD == 0)
-                CopperEffect(target);
+            if (SoulConfig.Instance.GetValue("Copper Lightning") && copperCD == 0)
+            {
+                if (TrueCopper)
+                {
+                    TrueCopperEffect(target);
+                }
+                else if (CopperEnchant)
+                {
+                    CopperEffect(target);
+                }
+            }
+
+            if (GodEaterImbue)
+            {
+                if (target.FindBuffIndex(mod.BuffType("GodEater")) < 0 && target.aiStyle != 37)
+                {
+                    target.DelBuff(4);
+                    target.buffImmune[mod.BuffType("GodEater")] = false;
+                    target.AddBuff(mod.BuffType("GodEater"), 420);
+                }
+            }
 
             if (NecroEnchant && necroCD == 0 && SoulConfig.Instance.GetValue("Necro Guardian"))
             {
@@ -2295,12 +2400,6 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (JungleEnchant && !NatureForce && Main.rand.Next(4) == 0 && !target.immortal)
-            {
-                player.ManaEffect(4);
-                player.statMana += 4;
-            }
-
             if (GladEnchant && SoulConfig.Instance.GetValue("Gladiator Rain") && projectile != ProjectileID.JavelinFriendly && gladCount == 0)
             {
                 for (int i = 0; i < 5; i++)
@@ -2315,6 +2414,12 @@ namespace FargowiltasSouls
                 }
 
                 gladCount = WillForce ? 30 : 60;
+            }
+
+            if (ThoriumEnchant && Main.rand.Next(12) == 0)
+            {
+                int diver = NPC.NewNPC((int)target.Center.X, (int)target.Center.Y, thorium.NPCType("Diverman"));
+                Main.npc[diver].AddBuff(BuffID.Frostburn, 3600);
             }
 
             if (SolarEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
@@ -2438,9 +2543,6 @@ namespace FargowiltasSouls
 
                 if (ShadowEnchant && Main.rand.Next(15) == 0)
                     target.AddBuff(BuffID.Darkness, 600, true);
-
-                if (TikiEnchant)
-                    target.AddBuff(mod.BuffType("Infested"), 1800, true);
 
                 if (FrostEnchant)
                     target.AddBuff(BuffID.Frostburn, 300);
@@ -2577,14 +2679,14 @@ namespace FargowiltasSouls
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (ChloroEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
+            if (BulbEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
             {
                 Main.PlaySound(2, (int)player.Center.X, (int)player.Center.Y, 34, 1f, 0f);
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloud"), 0, 0f, player.whoAmI, 0f, 0f);
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, player.whoAmI, 0f, 0f);
             }
 
-            if (SpiritForce && Soulcheck.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && Soulcheck.GetValue("Spirit Trapper Wisps"))
             {
                 if (target.life < 0 && target.value > 0f)
                 {
@@ -2596,53 +2698,83 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (JotunheimForce)
+            //tide hunter
+            if (TideHunterEnchant && Soulcheck.GetValue("Depth Diver Foam") && crit)
             {
-                //tide hunter
-                if (Soulcheck.GetValue("Depth Diver Foam") && crit)
+                for (int n = 0; n < 10; n++)
                 {
-                    for (int n = 0; n < 10; n++)
+                    int num10 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
+                    Main.dust[num10].noGravity = true;
+                    Main.dust[num10].noLight = true;
+                }
+                for (int num11 = 0; num11 < 200; num11++)
+                {
+                    NPC npc = Main.npc[num11];
+                    if (npc.active && npc.FindBuffIndex(thorium.BuffType("Oozed")) < 0 && !npc.friendly && Vector2.Distance(npc.Center, target.Center) < 80f)
                     {
-                        int num10 = Dust.NewDust(target.position, target.width, target.height, 217, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 100, default(Color), 1f);
-                        Main.dust[num10].noGravity = true;
-                        Main.dust[num10].noLight = true;
-                    }
-                    for (int num11 = 0; num11 < 200; num11++)
-                    {
-                        NPC npc = Main.npc[num11];
-                        if (npc.active && npc.FindBuffIndex(thorium.BuffType("Oozed")) < 0 && !npc.friendly && Vector2.Distance(npc.Center, target.Center) < 80f)
-                        {
-                            npc.AddBuff(thorium.BuffType("Oozed"), 90, false);
-                        }
+                        npc.AddBuff(thorium.BuffType("Oozed"), 90, false);
                     }
                 }
             }
 
-            if (MuspelheimForce)
+            if (LichEnchant && target.life <= 0)
             {
-                //feral fure
-                if (!ThoriumSoul && crit)
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("SoulFragment"), 0, 0f, player.whoAmI, 0f, 0f);
+                for (int num26 = 0; num26 < 5; num26++)
                 {
-                    for (int m = 0; m < 5; m++)
-                    {
-                        int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
-                        Main.dust[num9].noGravity = true;
-                    }
-                    Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
-                    player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
+                    int num27 = Dust.NewDust(target.position, target.width, target.height, 55, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 150, default(Color), 0.75f);
+                    Main.dust[num27].noGravity = true;
                 }
-                //life bloom
-                if (target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+                for (int num28 = 0; num28 < 5; num28++)
                 {
-                    for (int l = 0; l < 10; l++)
-                    {
-                        int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
-                        Main.dust[num7].noGravity = true;
-                    }
-                    int num8 = Main.rand.Next(1, 4);
-                    player.statLife += num8;
-                    player.HealEffect(num8, true);
-                    thoriumPlayer.lifeBloomMax += num8;
+                    int num29 = Dust.NewDust(target.position, target.width, target.height, thorium.DustType("HarbingerDust"), (float)Main.rand.Next(-3, 3), (float)Main.rand.Next(-3, 3), 100, default(Color), 1f);
+                    Main.dust[num29].noGravity = true;
+                }
+            }
+
+            //feral fure
+            if (FeralFurEnchant && crit)
+            {
+                for (int m = 0; m < 5; m++)
+                {
+                    int num9 = Dust.NewDust(target.position, target.width, target.height, 5, (float)Main.rand.Next(-4, 4), (float)Main.rand.Next(-4, 4), 0, default(Color), 1.8f);
+                    Main.dust[num9].noGravity = true;
+                }
+                Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
+                player.AddBuff(thorium.BuffType("AlphaRage"), 300, true);
+            }
+
+            //life bloom
+            if (LifeBloomEnchant && target.type != 488 && Main.rand.Next(4) == 0 && thoriumPlayer.lifeBloomMax < 50)
+            {
+                for (int l = 0; l < 10; l++)
+                {
+                    int num7 = Dust.NewDust(target.position, target.width, target.height, 44, (float)Main.rand.Next(-5, 5), (float)Main.rand.Next(-5, 5), 0, default(Color), 1f);
+                    Main.dust[num7].noGravity = true;
+                }
+                int num8 = Main.rand.Next(1, 4);
+                player.statLife += num8;
+                player.HealEffect(num8, true);
+                thoriumPlayer.lifeBloomMax += num8;
+            }
+
+            //demon blood
+            if (DemonBloodEnchant && target.type != 488 && !thoriumPlayer.bloodChargeExhaust)
+            {
+                thoriumPlayer.bloodCharge++;
+                thoriumPlayer.bloodChargeTimer = 120;
+                if (player.ownedProjectileCounts[thorium.ProjectileType("DemonBloodVisual")] < 1)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, thorium.ProjectileType("DemonBloodVisual"), 0, 0f, player.whoAmI, 0f, 0f);
+                }
+                if (thoriumPlayer.bloodCharge >= 5)
+                {
+                    player.statLife += item.damage / 5;
+                    player.HealEffect(item.damage / 5, true);
+                    Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("BloodBoom"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    item.damage = (int)((float)item.damage * 2f);
+                    player.AddBuff(thorium.BuffType("DemonBloodExhaust"), 600, true);
+                    thoriumPlayer.bloodCharge = 0;
                 }
             }
 
@@ -2706,8 +2838,7 @@ namespace FargowiltasSouls
             {
                 int dmg = NatureForce ? 100 : 30;
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
-                Projectile[] projs = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 5, (int)(dmg * player.magicDamage), 5f);
-                Projectile[] projs2 = FargoGlobalProjectile.XWay(8, player.Center, mod.ProjectileType("SporeBoom"), 2.5f, 0, 0f);
+                Projectile[] projs2 = FargoGlobalProjectile.XWay(10, player.Center, mod.ProjectileType("SporeBoom"), 3f, dmg, 0f);
             }
 
             if (ShadeEnchant && Soulcheck.GetValue("Super Blood On Hit"))
@@ -2807,7 +2938,21 @@ namespace FargowiltasSouls
                     p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
             }
 
-            if (player.whoAmI == Main.myPlayer && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
+            if (MutantSetBonus && player.whoAmI == Main.myPlayer && retVal && player.FindBuffIndex(mod.BuffType("MutantRebirth")) == -1)
+            {
+                player.statLife = player.statLifeMax2;
+                player.HealEffect(player.statLifeMax2);
+                player.immune = true;
+                player.immuneTime = player.longInvince ? 180 : 120;
+                Main.NewText("You've been revived!", Color.LimeGreen);
+                player.ClearBuff(mod.BuffType("MutantFang"));
+                player.buffImmune[mod.BuffType("MutantFang")] = true;
+                player.AddBuff(mod.BuffType("MutantRebirth"), 7200);
+                Projectile.NewProjectile(player.Center, -Vector2.UnitY, mod.ProjectileType("GiantDeathray"), (int)(7000 * player.minionDamage), 10f, player.whoAmI);
+                retVal = false;
+            }
+
+            if (player.whoAmI == Main.myPlayer && retVal && player.FindBuffIndex(mod.BuffType("Revived")) == -1)
             {
                 if(Eternity)
                 {
@@ -2867,16 +3012,6 @@ namespace FargowiltasSouls
             return retVal;
         }
 
-        public override bool ConsumeAmmo(Item weapon, Item ammo)
-        {
-            if (Infinity)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         public override void PostUpdateEquips()
         {
             player.wingTimeMax = (int)(player.wingTimeMax * wingTimeModifier);
@@ -2895,13 +3030,6 @@ namespace FargowiltasSouls
             {
                 player.bodyFrame.Y = player.bodyFrame.Height * 10;
             }
-        }
-
-        public void InfinityHurt()
-        {
-            player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " self destructed."), Main.rand.Next(2, 6), 0);
-            player.immune = false;
-            InfinityCounter = 0;
         }
 
         public void AddPet(string toggle, bool vanityToggle, int buff, int proj)
@@ -3074,13 +3202,20 @@ namespace FargowiltasSouls
 
         private void CalamityCritEquals(int crit)
         {
-            //CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit = crit;
+            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit = crit;
         }
 
         private void DBTCritEquals(int crit)
         {
-            //DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
-            //dbtPlayer.kiCrit = crit;
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            dbtPlayer.kiCrit = crit;
+        }
+
+        public int HighestDamageTypeScaling(int dmg)
+        {
+            List<float> types = new List<float> { player.meleeDamage, player.rangedDamage, player.magicDamage, player.minionDamage, player.thrownDamage};
+            
+            return (int)(types.Max() * dmg);
         }
 
         public void FlowerBoots()
@@ -3282,7 +3417,20 @@ namespace FargowiltasSouls
 
         public void ChloroEffect(bool hideVisual, int dmg)
         {
-            AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
+            //AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
+
+            if (Soulcheck.GetValue("Chlorophyte Leaf Crystal") && player.ownedProjectileCounts[mod.ProjectileType("Chlorofuck")] == 0)
+            {
+                const int max = 5;
+                float rotation = 2f * (float)Math.PI / max;
+
+                for (int i = 0; i < max; i++)
+                {
+                    Vector2 spawnPos = player.Center + new Vector2(60, 0f).RotatedBy(rotation * i);
+                    int p = Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("Chlorofuck"), dmg, 10f, player.whoAmI, 0, rotation * i);
+                }
+            }
+
             AddPet("Seedling Pet", hideVisual, BuffID.PetSapling, ProjectileID.Sapling);
         }
 
@@ -3327,7 +3475,95 @@ namespace FargowiltasSouls
                         float ai2 = Main.rand.Next(100);
                         Vector2 velocity = Vector2.Normalize(ai) * 20;
 
-                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, ProjectileID.CultistBossLightningOrbArc, (int)(dmg * player.magicDamage), 0f, player.whoAmI, ai.ToRotation(), ai2);
+                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, ProjectileID.CultistBossLightningOrbArc, HighestDamageTypeScaling(dmg), 0f, player.whoAmI, ai.ToRotation(), ai2);
+                        if (p != null)
+                        {
+                            p.friendly = true;
+                            p.hostile = false;
+                            p.penetrate = -1;
+                            p.timeLeft = 60;
+                            p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
+                        }
+                        target.AddBuff(mod.BuffType("Shock"), 60);
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                    target = closestNPC;
+                }
+
+                copperCD = 300;
+            }
+        }
+
+
+        public void TrueCopperEffect(NPC target)
+        {
+            int dmg = 80;
+            int chance = 20;
+
+            if (target.FindBuffIndex(BuffID.Wet) != -1 || target.wet)
+            {
+                dmg *= 3;
+                chance /= 5;
+            }
+
+            if (TerraForce)
+            {
+                dmg *= 2;
+            }
+
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            if (modPlayer.MeleeHighest(player))
+            {
+                dmg = (int)(dmg * player.meleeDamage);
+            }
+            else if (modPlayer.RangedHighest(player))
+            {
+                dmg = (int)(dmg * player.rangedDamage);
+            }
+            else if (modPlayer.MagicHighest(player))
+            {
+                dmg = (int)(dmg * player.magicDamage);
+            }
+            else if (modPlayer.SummonHighest(player))
+            {
+                dmg = (int)(dmg * player.minionDamage);
+            }
+            else if (modPlayer.ThrownHighest(player))
+            {
+                dmg = (int)(dmg * player.thrownDamage);
+            }
+
+            if (Main.rand.Next(chance) == 0)
+            {
+                float closestDist = 500f;
+                NPC closestNPC;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    closestNPC = null;
+
+                    for (int j = 0; j < 200; j++)
+                    {
+                        NPC npc = Main.npc[j];
+                        if (npc.active && npc != target && !npc.HasBuff(mod.BuffType("Shock")) && npc.Distance(target.Center) < closestDist && npc.Distance(target.Center) >= 50)
+                        {
+                            closestNPC = npc;
+                            break;
+                        }
+                    }
+
+                    if (closestNPC != null)
+                    {
+                        Vector2 ai = closestNPC.Center - target.Center;
+                        float ai2 = Main.rand.Next(100);
+                        Vector2 velocity = Vector2.Normalize(ai) * 20;
+
+                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, mod.ProjectileType< Projectiles.Souls.AA.TrueCopperShock>(), (int)(dmg), 0f, player.whoAmI, ai.ToRotation(), ai2);
                         if (p != null)
                         {
                             p.friendly = true;
@@ -3431,12 +3667,12 @@ namespace FargowiltasSouls
                             randY = Main.rand.Next(-10, 10);
                         } while (randY <= 4f && randY >= -4f);
 
-                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, new Vector2(randX, randY), ProjectileID.BoneGloveProj, (int)(dmg * player.thrownDamage), 2, Main.myPlayer);
+                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, new Vector2(randX, randY), ProjectileID.BoneGloveProj, HighestDamageTypeScaling(dmg), 2, Main.myPlayer);
                         if (p != null)
                             p.GetGlobalProjectile<FargoGlobalProjectile>().IsRecolor = true;
                     }
 
-                    Projectile p2 = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, ProjectileID.Bone, (int)(dmg * 1.5 * player.thrownDamage), 0f, player.whoAmI);
+                    Projectile p2 = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, ProjectileID.Bone, HighestDamageTypeScaling((int)(dmg * 1.5f)), 0f, player.whoAmI);
                     if (p2 != null)
                     {
                         p2.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
@@ -3468,17 +3704,14 @@ namespace FargowiltasSouls
             {
                 if (icicleCD == 0 && IcicleCount < 3)
                 {
-                    Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, ProjectileID.Blizzard, 0, 0, player.whoAmI);
+                    Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, mod.ProjectileType("FrostIcicle"), 0, 0, player.whoAmI, 2.5f);
+
                     if (p != null)
                     {
-                        p.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                        p.width = 10;
-                        p.height = 10;
-                        p.timeLeft = 2;
                         icicles[IcicleCount] = p;
                         IcicleCount++;
                     }
-                    icicleCD = 120;
+                    icicleCD = 30;
                 }
 
                 if (icicleCD != 0)
@@ -3492,14 +3725,14 @@ namespace FargowiltasSouls
                     {
                         Vector2 vel = (Main.MouseWorld - icicles[i].Center).SafeNormalize(-Vector2.UnitY) * 5;
 
-                        int p = Projectile.NewProjectile(icicles[i].Center, vel, icicles[i].type, dmg, 1f, player.whoAmI);
+                        int p = Projectile.NewProjectile(icicles[i].Center, vel, ProjectileID.Blizzard, dmg, 1f, player.whoAmI);
                         icicles[i].Kill();
 
                         Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                     }
 
                     IcicleCount = 0;
-                    icicleCD = 300;
+                    icicleCD = 120;
                 }
             }
             
@@ -3869,11 +4102,11 @@ namespace FargowiltasSouls
                     for (int i = 0; i < ballAmt; i++)
                     {
                         float degree = (360 / ballAmt) * i;
-                        Projectile fireball = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, fireballs[i % 3], (int)(10 * player.magicDamage), 0f, player.whoAmI, 0, degree);
+                        Projectile fireball = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, fireballs[i % 3], (int)(10 * player.magicDamage), 0f, player.whoAmI, 5, degree);
                         if (fireball != null)
                         {
                             fireball.GetGlobalProjectile<FargoGlobalProjectile>().Rotate = true;
-                            fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 96;
+                            fireball.GetGlobalProjectile<FargoGlobalProjectile>().RotateDist = 120;
                             fireball.timeLeft = 2;
                             fireball.penetrate = -1;
                             fireball.ignoreWater = true;
@@ -3909,7 +4142,7 @@ namespace FargowiltasSouls
             {
                 if (pumpkinCD <= 0)
                 {
-                    int p = Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileID.MolotovFire, (int)(dmg * player.magicDamage), 1f, player.whoAmI);
+                    int p = Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileID.MolotovFire, HighestDamageTypeScaling(dmg), 1f, player.whoAmI);
 
                     Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                     pumpkinCD = 20;
@@ -4169,22 +4402,21 @@ namespace FargowiltasSouls
 
             if (FreezeTime && freezeLength != 0)
             {
+                if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
+                    player.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
+
                 for (int i = 0; i < 200; i++)
                 {
                     NPC npc = Main.npc[i];
                     if (npc.active && !npc.HasBuff(mod.BuffType("TimeFrozen")))
-                    {
                         npc.AddBuff(mod.BuffType("TimeFrozen"), freezeLength);
-                    }
                 }
 
                 for (int i = 0; i < 1000; i++)
                 {
                     Projectile p = Main.projectile[i];
-                    if (p.active && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
-                    {
+                    if (p.active && !p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune && p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen == 0)
                         p.GetGlobalProjectile<FargoGlobalProjectile>().TimeFrozen = freezeLength;
-                    }
                 }
 
                 freezeLength--;
@@ -4197,11 +4429,8 @@ namespace FargowiltasSouls
                     for (int i = 0; i < 200; i++)
                     {
                         NPC npc = Main.npc[i];
-
                         if (npc.active && npc.life == 1)
-                        {
                             npc.StrikeNPC(9999, 0f, 0);
-                        }
                     }
                 }
             }
@@ -4211,15 +4440,22 @@ namespace FargowiltasSouls
                 FreezeCD--;
 
                 if (FreezeCD == 0)
-                {
                     Main.PlaySound(SoundID.MaxMana, player.Center);
-                }
             }
         }
 
         public void TikiEffect(bool hideVisual)
         {
             TikiEnchant = true;
+
+            actualMinions = player.maxMinions + 1; //the free one is not counted
+            player.maxMinions = 100;
+
+            if (player.numMinions >= actualMinions)
+            {
+                player.GetModPlayer<FargoPlayer>(mod).TikiMinion = true;
+            }
+
             AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
         }
 
@@ -4485,6 +4721,46 @@ namespace FargowiltasSouls
                     }
                 }
             }
+        }
+
+        public bool MeleeHighest(Player player)
+        {
+            return player.meleeDamage > player.rangedDamage &&
+                player.meleeDamage > player.magicDamage &&
+                player.meleeDamage > player.minionDamage &&
+                player.meleeDamage > player.thrownDamage;
+        }
+
+        public bool RangedHighest(Player player)
+        {
+            return player.rangedDamage > player.meleeDamage &&
+                player.rangedDamage > player.magicDamage &&
+                player.rangedDamage > player.minionDamage &&
+                player.rangedDamage > player.thrownDamage;
+        }
+
+        public bool MagicHighest(Player player)
+        {
+            return player.magicDamage > player.rangedDamage &&
+                player.magicDamage > player.meleeDamage &&
+                player.magicDamage > player.minionDamage &&
+                player.magicDamage > player.thrownDamage;
+        }
+
+        public bool SummonHighest(Player player)
+        {
+            return player.minionDamage > player.rangedDamage &&
+                player.minionDamage > player.magicDamage &&
+                player.minionDamage > player.meleeDamage &&
+                player.minionDamage > player.thrownDamage;
+        }
+
+        public bool ThrownHighest(Player player)
+        {
+            return player.thrownDamage > player.rangedDamage &&
+                player.thrownDamage > player.magicDamage &&
+                player.thrownDamage > player.minionDamage &&
+                player.thrownDamage > player.meleeDamage;
         }
     }
 }

@@ -36,7 +36,7 @@ Enemies are more likely to target you
 Allows Supersonic running and infinite flight
 Increases fishing skill substantially, All fishing rods will have 10 extra lures
 Increased block and wall placement speed by 50% 
-Near infinite block placement and mining reach, Mining speed doubled 
+Near infinite block placement and mining reach, Mining speed quadrupled 
 Shine, Spelunker, Hunter, and Dangersense effects
 Auto paint and actuator effect
 Grants the ability to enable Builder Mode
@@ -54,7 +54,7 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
 允许超音速奔跑和无限飞行
 大幅提升钓鱼技能,所有鱼竿额外增加10个鱼饵
 增加50%放置物块及墙壁的速度
-近乎无限的放置和采掘距离,采掘速度加倍
+近乎无限的放置和采掘距离, 四倍采掘速度
 获得发光, 探索者, 猎人和危险感知效果
 获得开启建造模式的能力
 拥有混乱之脑, 星辰项链, 甜心项链, 蜜蜂斗篷和孢子囊的效果
@@ -246,7 +246,7 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
             //gizmo pack
             player.autoPaint = true;
             //pick speed
-            player.pickSpeed -= 0.50f;
+            player.pickSpeed -= 0.75f;
             //mining helmet
             if (SoulConfig.Instance.GetValue("Mining Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator

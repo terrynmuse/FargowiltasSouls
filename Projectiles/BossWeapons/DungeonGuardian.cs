@@ -22,11 +22,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 			projectile.magic = true;
 			projectile.penetrate = -1;
 			projectile.tileCollide = false;
-			projectile.timeLeft = 1000;
-			
-			//ignore immune frame
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 1;
+			projectile.timeLeft = 600;
 		}
 		
         public override void AI()
@@ -76,6 +72,11 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             }
 
             return selectedTarget;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.immune[projectile.owner] = 1;
         }
 
         public override void Kill(int timeLeft)

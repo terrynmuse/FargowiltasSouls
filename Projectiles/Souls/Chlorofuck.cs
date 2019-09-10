@@ -30,9 +30,7 @@ namespace FargowiltasSouls.Projectiles.Souls
 		
 		public override void AI()
         {
-			bool flag64 = projectile.type == mod.ProjectileType("Chlorofuck");
-
-			Player player = Main.player[projectile.owner];
+            Player player = Main.player[projectile.owner];
 			FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
 			if (player.dead)
@@ -48,46 +46,52 @@ namespace FargowiltasSouls.Projectiles.Souls
 
             float cooldown = 50f;
 			
-			projectile.position.X = Main.player[projectile.owner].Center.X - projectile.width / 2;
-			projectile.position.Y = Main.player[projectile.owner].Center.Y - projectile.height / 2 + Main.player[projectile.owner].gfxOffY - 60f;
-			if (Main.player[projectile.owner].gravDir == -1f)
-			{
-				projectile.position.Y = projectile.position.Y + 120f;
-				projectile.rotation = 3.14f;
-			}
-			else
-			{
-				projectile.rotation = 0f;
-			}
-
-			projectile.position.X = (int)projectile.position.X;
-			projectile.position.Y = (int)projectile.position.Y;
 			float num395 = Main.mouseTextColor / 200f - 0.35f;
 			num395 *= 0.2f;
 			projectile.scale = num395 + 0.95f;
 
-			if (projectile.owner == Main.myPlayer)
+            if (projectile.owner == Main.myPlayer)
 			{
-				if (projectile.ai[0] != 0f)
+                //rotation mumbo jumbo
+                float distanceFromPlayer = 75;
+
+                Lighting.AddLight(projectile.Center, 0.1f, 0.4f, 0.2f);
+
+                projectile.position = player.Center + new Vector2(distanceFromPlayer, 0f).RotatedBy(projectile.ai[1]);
+                projectile.position.X -= projectile.width / 2;
+                projectile.position.Y -= projectile.height / 2;
+                float rotation = 0.03f;
+                projectile.ai[1] -= rotation;
+                if (projectile.ai[1] > (float)Math.PI)
+                {
+                    projectile.ai[1] -= 2f * (float)Math.PI;
+                    projectile.netUpdate = true;
+                }
+                projectile.rotation = projectile.ai[1] + (float)Math.PI / 2f;
+
+
+                //wait for CD
+                if (projectile.ai[0] != 0f)
 				{
 					projectile.ai[0] -= 1f;
 					return;
 				}
 
+                //trying to shoot
 				float num396 = projectile.position.X;
 				float num397 = projectile.position.Y;
 				float num398 = 700f;
 				bool flag11 = false;
 
-				for (int num399 = 0; num399 < 200; num399++)
+				for (int i = 0; i < 200; i++)
 				{
-					if (Main.npc[num399].CanBeChasedBy(projectile, true))
+					if (Main.npc[i].CanBeChasedBy(projectile, true))
 					{
-						float num400 = Main.npc[num399].position.X + Main.npc[num399].width / 2;
-						float num401 = Main.npc[num399].position.Y + Main.npc[num399].height / 2;
+						float num400 = Main.npc[i].position.X + Main.npc[i].width / 2;
+						float num401 = Main.npc[i].position.Y + Main.npc[i].height / 2;
 						float num402 = Math.Abs(projectile.position.X + projectile.width / 2 - num400) + Math.Abs(projectile.position.Y + projectile.height / 2 - num401);
 
-						if (num402 < num398 && Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[num399].position, Main.npc[num399].width, Main.npc[num399].height))
+						if (num402 < num398 && Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height))
 						{
 							num398 = num402;
 							num396 = num400;
@@ -97,6 +101,7 @@ namespace FargowiltasSouls.Projectiles.Souls
 					}
 				}
 
+                //shoot
 				if (flag11)
 				{
 					Vector2 vector29 = new Vector2(projectile.position.X + projectile.width * 0.5f, projectile.position.Y + projectile.height * 0.5f);
@@ -106,11 +111,10 @@ namespace FargowiltasSouls.Projectiles.Souls
 					num406 = 10f / num406;
 					num404 *= num406;
 					num405 *= num406;
-					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, num404, num405, 227, 100/*dmg*/, 10, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, num404, num405, 227, projectile.damage, projectile.knockBack, projectile.owner);
 					projectile.ai[0] = cooldown;
-				}
+                }
 			}
-		}
-
+        }
 	}
 }

@@ -18,7 +18,7 @@ While in the Snow Biome, you shoot 5 snowballs instead");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'冷木'
 每5次攻击附带着一个雪球
-在雪地时,发射5个雪球");
+在冰雪地形时, 发射5个雪球");
         }
 
         public override void SetDefaults()

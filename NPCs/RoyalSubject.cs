@@ -53,6 +53,13 @@ namespace FargowiltasSouls.NPCs
             {
                 npc.StrikeNPCNoInteraction(9999, 0f, 0);
             }
+
+            //tries to stinger, force into dash
+            if (npc.ai[0] == 1 || npc.ai[0] == 3)
+            {
+                npc.ai[0] = 0f;
+                npc.netUpdate = true;
+            }
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

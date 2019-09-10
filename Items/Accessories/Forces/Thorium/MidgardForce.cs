@@ -31,6 +31,7 @@ Reverse gravity by pressing UP
 While reversed, all damage is increased by 12%
 Every third attack will unleash an illumite missile
 The energy of Terraria seeks to protect you
+Shortlived Divermen will occasionally spawn when hitting enemies
 Critical strikes ring a bell over your head, slowing all nearby enemies briefly
 Effects of Astro-Beetle Husk and Eye of the Beholder
 Effects of Crietz and Terrarium Surround Sound
@@ -44,6 +45,7 @@ Summons a pet Pink Slime");
 重力颠倒时增加12%远程伤害
 每3次攻击会发射荧光导弹
 泰拉瑞亚的能量试图保护你
+攻击敌人时偶尔会召唤暂时存在的潜水员
 暴击短暂缓慢所有附近敌人
 拥有太空甲虫壳和注者之眼的效果
 拥有精准项链和界元音箱的效果
@@ -66,8 +68,6 @@ Summons a pet Pink Slime");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //includes illumite rocket and jester bell
-            modPlayer.MidgardForce = true;
 
             //lodestone
             mod.GetItem("LodestoneEnchant").UpdateAccessory(player, hideVisual);
@@ -118,6 +118,10 @@ Summons a pet Pink Slime");
                     thoriumPlayer.empowerTerrarium = true;
                 }
             }
+            //diverman meme
+            modPlayer.ThoriumEnchant = true;
+            //jester
+            modPlayer.JesterEnchant = true;
 
             if (Soulcheck.GetValue("Crietz"))
             {

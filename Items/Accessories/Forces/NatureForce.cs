@@ -26,8 +26,8 @@ When you die, you violently explode dealing massive damage
 Icicles will start to appear around you
 When there are three, attacking will launch them towards the cursor
 Your attacks inflict Frostburn
-Taking damage will release a poisoning spore explosion
-Summons a leaf crystal to shoot at nearby enemies
+Summons a ring of leaf crystals to shoot at nearby enemies
+Taking damage will release a lingering spore explosion
 All herb collection is doubled
 Not moving puts you in stealth
 While in stealth, crits deal 3x damage
@@ -41,8 +41,8 @@ While in stealth, crits deal 3x damage
 你的周围将出现冰柱
 当存在3枚时, 攻击会将它们向光标位置发射
 攻击造成霜火效果
-受到伤害会释放出有毒的孢子爆炸
-召唤一个叶绿水晶射击附近的敌人
+受到伤害会释放出挥之不去的孢子爆炸
+召唤一圈叶绿水晶射击附近的敌人
 所有药草收获翻倍
 站立不动时潜行
 潜行时, 暴击造成3倍伤害
@@ -131,6 +131,8 @@ Summons several pets";
                     thoriumPlayer.empowerFrost = true;
                 }
             }
+            //bulb 
+            modPlayer.BulbEnchant = true;
             //night shade petal
             thoriumPlayer.nightshadeBoost = true;
 

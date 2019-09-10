@@ -6,7 +6,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 {
     internal class BlenderProj2 : ModProjectile
     {
-        public int Counter = 1;
+        public int Counter = 0;
 
         public override string Texture => "FargowiltasSouls/Projectiles/BossWeapons/DicerProj";
 
@@ -32,7 +32,6 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.penetrate = -1;
             projectile.melee = true;
             projectile.scale = 1f;
-            //Counter = Main.rand.Next(30);
         }
 
         public override void AI()

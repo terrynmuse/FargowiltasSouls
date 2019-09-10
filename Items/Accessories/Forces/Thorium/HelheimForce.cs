@@ -25,10 +25,14 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
 Killing enemies or continually damaging bosses generates soul wisps
 After generating 5 wisps, they are instantly consumed to heal you for 10 life
 Your boots vibrate at an unreal frequency, increasing movement speed significantly
-While moving, all damage is increased
+While moving, your damage and critical strike chance are increased
 Your attacks have a chance to unleash an explosion of Dragon's Flame
+Dealing damage will grant you a 'Blood Charge'
+At maximum charges, your next attack will deal 2x damage and heal you for 20% of the damage dealt
 Consecutive attacks against enemies might drop flesh, which grants bonus life and damage
 While above 75% maximum life, you become unstable
+Enemies that attack friendly NPCs are marked as Villains
+You deal 50% bonus damage to Villains
 Your plague gas will linger in the air twice as long and your plague reactions will deal 20% more damage
 Killing an enemy will release a soul fragment
 Effects of Inner Flame, Crash Boots, Dragon Talon Necklace, and Grim Subwoofer
@@ -41,10 +45,14 @@ Summons several pets");
 杀死敌人或持续攻击Boss会产生灵魂碎片
 集齐5个后, 它们会立即被消耗, 治疗10点生命
 你的靴子以不真实的频率振动着, 显著提高移动速度
-移动时增加所有伤害和暴击率
+移动时增加伤害和暴击率
 攻击有概率释放龙焰爆炸
+攻击提供'蓄血'Buff
+充能完毕时, 你的下一次攻击会造成双倍伤害, 并将伤害的20%转化为治疗
 连续攻击敌人时概率掉落肉, 拾取肉会获得额外生命并增加伤害
 生命值高于75%时变得不稳定
+攻击友善NPC的敌人将被标记为恶棍
+对恶棍造成50%额外伤害
 瓦斯持续时间翻倍, 瓦斯反应多造成20%伤害
 杀死敌人会释放灵魂碎片
 拥有心灵之火, 震地靴, 龙爪项链和恐惧音箱的效果
@@ -70,17 +78,11 @@ Summons several pets");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (Soulcheck.GetValue("Spirit Trapper Wisps"))
-            {
-                //spirit trapper set bonus
-                thoriumPlayer.spiritTrapper = true;
-            }
+            //spirit trapper
+            modPlayer.SpiritTrapperEnchant = true;
 
             //inner flame
             thoriumPlayer.spiritFlame = true;
-
-            //plague lord flask effect
-            modPlayer.HelheimForce = true;
 
             if (Soulcheck.GetValue("Dread Speed"))
             {
@@ -91,6 +93,7 @@ Summons several pets");
                 if (player.velocity.X > 0f || player.velocity.X < 0f)
                 {
                     modPlayer.AllDamageUp(.25f);
+                    modPlayer.AllCritUp(20);
 
                     for (int i = 0; i < 2; i++)
                     {
@@ -130,8 +133,8 @@ Summons several pets");
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
             thoriumPlayer.wyvernPet = true;
 
-            //demon blood
-            thoriumPlayer.demonbloodSet = true;
+            //demon blood effect
+            modPlayer.DemonBloodEnchant = true;
             //demon blood badge
             thoriumPlayer.CrimsonBadge = true;
             if (Soulcheck.GetValue("Flesh Drops"))
@@ -157,6 +160,8 @@ Summons several pets");
                     modPlayer.AllDamageUp(.5f);
                 }
             }
+            //villain damage 
+            modPlayer.KnightEnchant = true;
             //shade band
             thoriumPlayer.shadeBand = true;
             //pet
@@ -167,6 +172,7 @@ Summons several pets");
             thoriumPlayer.plagueSet = true;
             //lich gaze
             thoriumPlayer.lichGaze = true;
+            modPlayer.PlagueAcc = true;
         }
 
         public override void AddRecipes()

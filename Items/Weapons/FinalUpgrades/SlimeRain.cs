@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Items.Weapons.FinalUpgrades
 
         public override void SetDefaults()
         {
-            item.damage = 300;
+            item.damage = 4000;
             item.melee = true;
             item.width = 72;
             item.height = 90;

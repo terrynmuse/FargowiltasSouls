@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Sacred Enchantment");
             Tooltip.SetDefault(
 @"'It glimmers with comforting power'
-Healing spells heal an additional 5 life
+Healing potions heal 50% more life
 Every 5 seconds you generate up to 3 holy crosses
 When casting healing spells, a cross is used instead of mana
 Summons a Li'l Cherub to periodically heal damaged allies
@@ -31,7 +31,7 @@ Summons a pet Life Spirit");
             DisplayName.AddTranslation(GameCulture.Chinese, "圣骑士魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'闪耀抚慰人心的力量'
-治疗法术额外治疗5点生命值
+生命药水额外回复50%生命值
 每5秒产生一个圣十字架, 上限为3个
 施放治疗法术时, 十字架将代替魔力消耗
 召唤小天使周期性治疗队友
@@ -54,8 +54,8 @@ Summons a pet Life Spirit");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //sacred set bonus
-            thoriumPlayer.healBonus += 5;
+            //sacred effect
+            modPlayer.SacredEnchant = true;
             //novice cleric set bonus
             thoriumPlayer.clericSet = true;
             thoriumPlayer.orbital = true;
@@ -75,7 +75,6 @@ Summons a pet Life Spirit");
                 timer = 0;
             }
             //lil cherub
-            modPlayer.SacredEnchant = true;
             modPlayer.AddMinion("Li'l Cherub Minion", thorium.ProjectileType("Angel"), 0, 0f);
             //twinkle pet
             modPlayer.AddPet("Life Spirit Pet", hideVisual, thorium.BuffType("LifeSpiritBuff"), thorium.ProjectileType("LifeSpirit"));

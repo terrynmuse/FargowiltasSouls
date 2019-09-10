@@ -14,12 +14,14 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Landslide EX");
-            Tooltip.SetDefault("'text'");
+            Tooltip.SetDefault("'The reward for slaughtering many...'");
+            DisplayName.AddTranslation(GameCulture.Chinese, "山崩 EX");
+            Tooltip.AddTranslation(GameCulture.Chinese, "'屠戮众多的奖励'");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 160;//
+            item.damage = 230;//
             item.magic = true;
             item.width = 24;
             item.height = 28;

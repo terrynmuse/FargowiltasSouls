@@ -48,12 +48,13 @@ Effects of Lich's Gaze and Plague Lord's Flask");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.plagueSet = true;
             //plague lords fask
-            thoriumPlayer.blightAcc = true;
+            modPlayer.PlagueAcc = true;
             //lich set bonus
-            thoriumPlayer.lichSet = true;
+            modPlayer.LichEnchant = true;
             //lich gaze
             thoriumPlayer.lichGaze = true;
         }

@@ -46,9 +46,10 @@ Effects of Lich's Gaze");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //set bonus
-            thoriumPlayer.lichSet = true;
+            //lich effect
+            modPlayer.LichEnchant = true;
             //lich gaze
             thoriumPlayer.lichGaze = true;
         }
@@ -71,7 +72,7 @@ Effects of Lich's Gaze");
             
             foreach (string i in items) recipe.AddIngredient(thorium.ItemType(i));
 
-            recipe.AddIngredient(thorium.ItemType("DeathGripPro"), 300);
+            recipe.AddIngredient(thorium.ItemType("SoulBomb"), 300);
             recipe.AddIngredient(thorium.ItemType("CadaverCornet"));
             recipe.AddIngredient(thorium.ItemType("TitanJavelin"), 300);
             recipe.AddIngredient(thorium.ItemType("PumpkinPaint"));

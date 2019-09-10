@@ -13,9 +13,9 @@ namespace FargowiltasSouls.Buffs.MutantBoss
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Mutant Presence");
-            Description.SetDefault("Defense, damage reduction, and life regen reduced; all soul toggles disabled");
+            Description.SetDefault("Defense, damage reduction, and life regen reduced; all soul toggles disabled; Chaos State effect");
             DisplayName.AddTranslation(GameCulture.Chinese, "突变驾到");
-            Description.AddTranslation(GameCulture.Chinese, "一位压倒性的存在削弱了你的存在性");
+            Description.AddTranslation(GameCulture.Chinese, "减少防御, 伤害减免和生命回复; 关闭所有魂效果; 附带混沌效果");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;

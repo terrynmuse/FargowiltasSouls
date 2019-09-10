@@ -71,10 +71,11 @@ Summons a pet Maid");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //includes tide turner daggers, assassin duplicate and insta kill, pyro burst
-            modPlayer.AsgardForce = true;
 
             //tide turner
+            //mini crits and daggers
+            modPlayer.TideTurnerEnchant = true;
+
             if (Soulcheck.GetValue("Tide Turner Globules"))
             {
                 //floating globs and defense
@@ -104,10 +105,14 @@ Summons a pet Maid");
                     }
                 }
             }
-            
             //set bonus damage to healing hot key
             thoriumPlayer.tideSet = true;
 
+            //assassin
+            modPlayer.AssassinEnchant = true;
+
+            //pyro
+            modPlayer.PyroEnchant = true;
             //pyro summon bonus
             thoriumPlayer.napalmSet = true;
 

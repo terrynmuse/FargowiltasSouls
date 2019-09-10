@@ -21,13 +21,15 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("White Knight Enchantment");
             Tooltip.SetDefault(
 @"'Protect e-girls at all costs'
-Magical attacks have a 33% chance to recover some mana
+Enemies that attack friendly NPCs are marked as Villains
+You deal 50% bonus damage to Villains
 Effects of Shade Band
 Summons a Moogle pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "白骑士魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'不惜一切代价保护电工妹'
-魔法攻击有33%的概率回复一些法力值
+攻击友善NPC的敌人将被标记为恶棍
+对恶棍造成50%额外伤害
 拥有暗影护符的效果
 召唤宠物小喵");
         }
@@ -48,7 +50,6 @@ Summons a Moogle pet");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            thoriumPlayer.whiteKnightSet = true;
             //shade band
             thoriumPlayer.shadeBand = true;
             //pet
