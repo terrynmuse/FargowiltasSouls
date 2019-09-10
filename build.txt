@@ -5,3 +5,5 @@ homepage = http://forums.terraria.org/index.php?threads/fargos-mutant-mod-summon
 weakReferences = ThoriumMod@1.2.13.3, CalamityMod@1.4.2.101, SpiritMod@1.1.1.6, Bluemagic@1.1, DBZMOD@1.0.9.4, SacredTools@1.1.0.8
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, lib\*, .git\*
 languageVersion = 6
+hideCode = true
+hideResources = true
