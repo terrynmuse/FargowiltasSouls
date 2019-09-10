@@ -679,7 +679,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         }
                         if (npc.ai[1] > 210)
                         {
-                            npc.ai[0] = 40;
+                            npc.ai[0]++;
                             npc.ai[1] = 0;
                             npc.ai[2] = 0;
                             npc.ai[3] = 0;

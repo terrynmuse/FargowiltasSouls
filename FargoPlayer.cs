@@ -1119,6 +1119,15 @@ namespace FargowiltasSouls
 
         public override void PostUpdateMiscEffects()
         {
+            if (TikiEnchant)
+            {
+                actualMinions = player.maxMinions + 1; //the free one is not counted
+                player.maxMinions = 100;
+
+                if (player.numMinions >= actualMinions)
+                    TikiMinion = true;
+            }
+
             if (Atrophied)
             {
                 player.meleeSpeed = 0f; //melee silence
@@ -4348,15 +4357,6 @@ namespace FargowiltasSouls
         public void TikiEffect(bool hideVisual)
         {
             TikiEnchant = true;
-
-            actualMinions = player.maxMinions + 1; //the free one is not counted
-            player.maxMinions = 100;
-
-            if (player.numMinions >= actualMinions)
-            {
-                player.GetModPlayer<FargoPlayer>(mod).TikiMinion = true;
-            }
-
             AddPet("Tiki Pet", hideVisual, BuffID.TikiSpirit, ProjectileID.TikiSpirit);
         }
 
