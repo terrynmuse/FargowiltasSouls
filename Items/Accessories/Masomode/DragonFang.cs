@@ -35,7 +35,7 @@ Your attacks have a 10% chance to inflict Clipped Wings on non-boss enemies");
         {
             player.buffImmune[mod.BuffType("ClippedWings")] = true;
             player.buffImmune[mod.BuffType("Crippled")] = true;
-            if (Soulcheck.GetValue("Inflict Clipped Wings"))
+            if (SoulConfig.Instance.GetValue("Inflict Clipped Wings"))
                 player.GetModPlayer<FargoPlayer>().DragonFang = true;
         }
     }

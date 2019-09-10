@@ -103,18 +103,18 @@ Effects of Bee Cloak, Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
             //charm of myths
             player.pStone = true;
             //bee cloak, sweet heart necklace, star veil
-            if (Soulcheck.GetValue("Stars On Hit"))
+            if (SoulConfig.Instance.GetValue("Stars On Hit"))
             {
                 player.starCloak = true;
             }
-            if (Soulcheck.GetValue("Bees On Hit"))
+            if (SoulConfig.Instance.GetValue("Bees On Hit"))
             {
                 player.bee = true;
             }
             player.panic = true;
             player.longInvince = true;
             //spore sac
-            if (Soulcheck.GetValue("Spore Sac"))
+            if (SoulConfig.Instance.GetValue("Spore Sac"))
             {
                 player.SporeSac();
                 player.sporeSac = true;

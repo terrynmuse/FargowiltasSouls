@@ -170,7 +170,7 @@ namespace FargowiltasSouls.Items
                 Vector2 position = player.Center;
                 Vector2 velocity = Vector2.Normalize(Main.MouseWorld - position);
 
-                if (modPlayer.CelestialRune && Soulcheck.GetValue("Celestial Rune Support"))
+                if (modPlayer.CelestialRune && SoulConfig.Instance.GetValue("Celestial Rune Support"))
                 {
                     if (item.melee) //fireball
                     {
@@ -198,7 +198,7 @@ namespace FargowiltasSouls.Items
                     }
                 }
 
-                if (modPlayer.PumpkingsCape && Soulcheck.GetValue("Pumpking's Cape Support"))
+                if (modPlayer.PumpkingsCape && SoulConfig.Instance.GetValue("Pumpking's Cape Support"))
                 {
                     if (item.melee) //flaming jack
                     {
@@ -336,20 +336,20 @@ namespace FargowiltasSouls.Items
             {
                 switch(item.prefix)
                 {
-                    case PrefixID.Warding:  if (Soulcheck.GetValue("Warding"))  return false; break;
-                    case PrefixID.Violent:  if (Soulcheck.GetValue("Violent"))  return false; break;
-                    case PrefixID.Quick:    if (Soulcheck.GetValue("Quick"))    return false; break;
-                    case PrefixID.Lucky:    if (Soulcheck.GetValue("Lucky"))    return false; break;
-                    case PrefixID.Menacing: if (Soulcheck.GetValue("Menacing")) return false; break;
-                    case PrefixID.Legendary:if (Soulcheck.GetValue("Legendary"))return false; break;
-                    case PrefixID.Unreal:   if (Soulcheck.GetValue("Unreal"))   return false; break;
-                    case PrefixID.Mythical: if (Soulcheck.GetValue("Mythical")) return false; break;
-                    case PrefixID.Godly:    if (Soulcheck.GetValue("Godly"))    return false; break;
-                    case PrefixID.Demonic:  if (Soulcheck.GetValue("Demonic"))  return false; break;
-                    case PrefixID.Ruthless: if (Soulcheck.GetValue("Ruthless")) return false; break;
-                    case PrefixID.Light:    if (Soulcheck.GetValue("Light"))    return false; break;
-                    case PrefixID.Deadly:   if (Soulcheck.GetValue("Deadly"))   return false; break;
-                    case PrefixID.Rapid:    if (Soulcheck.GetValue("Rapid"))    return false; break;
+                    case PrefixID.Warding:  if (SoulConfig.Instance.GetValue("Warding"))  return false; break;
+                    case PrefixID.Violent:  if (SoulConfig.Instance.GetValue("Violent"))  return false; break;
+                    case PrefixID.Quick:    if (SoulConfig.Instance.GetValue("Quick"))    return false; break;
+                    case PrefixID.Lucky:    if (SoulConfig.Instance.GetValue("Lucky"))    return false; break;
+                    case PrefixID.Menacing: if (SoulConfig.Instance.GetValue("Menacing")) return false; break;
+                    case PrefixID.Legendary:if (SoulConfig.Instance.GetValue("Legendary"))return false; break;
+                    case PrefixID.Unreal:   if (SoulConfig.Instance.GetValue("Unreal"))   return false; break;
+                    case PrefixID.Mythical: if (SoulConfig.Instance.GetValue("Mythical")) return false; break;
+                    case PrefixID.Godly:    if (SoulConfig.Instance.GetValue("Godly"))    return false; break;
+                    case PrefixID.Demonic:  if (SoulConfig.Instance.GetValue("Demonic"))  return false; break;
+                    case PrefixID.Ruthless: if (SoulConfig.Instance.GetValue("Ruthless")) return false; break;
+                    case PrefixID.Light:    if (SoulConfig.Instance.GetValue("Light"))    return false; break;
+                    case PrefixID.Deadly:   if (SoulConfig.Instance.GetValue("Deadly"))   return false; break;
+                    case PrefixID.Rapid:    if (SoulConfig.Instance.GetValue("Rapid"))    return false; break;
                     default: break;
                 }
             }

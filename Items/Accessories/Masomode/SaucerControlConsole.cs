@@ -31,7 +31,7 @@ Summons a friendly Mini Saucer");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[BuffID.Electrified] = true;
-            if (Soulcheck.GetValue("Saucer Minion"))
+            if (SoulConfig.Instance.GetValue("Saucer Minion"))
                 player.AddBuff(mod.BuffType("SaucerMinion"), 2);
         }
     }

@@ -25,20 +25,32 @@ namespace FargowiltasSouls
         public static SoulConfig Instance;
         [JsonIgnore]
         public Dictionary<string, bool> enchantToggles = new Dictionary<string, bool>();
-        [Label("test effect")]
-        public bool loltesto = true;
+        [JsonIgnore]
+        public Dictionary<string, bool> masoTogDict = new Dictionary<string, bool>();
+        [JsonIgnore]
+        public Dictionary<string, bool> petToggles = new Dictionary<string, bool>();
+        [JsonIgnore]
+        public Dictionary<string, bool> walletToggles = new Dictionary<string, bool>();
+        [JsonIgnore]
+        public Dictionary<string, bool> soulToggles = new Dictionary<string, bool>();
         [Label("Terraria")]
         public TerraMenu terrmenu = new TerraMenu();
         [Label("Calamity")]
         public CalamMenu calamenu = new CalamMenu();
         [Label("Thorium")]
         public ThorMenu thoriummenu = new ThorMenu();
+        [Label("Masochist Mode")]
+        public MasoMenu masomenu = new MasoMenu();
+        [Label("Pets")]
+        public PetMenu petmenu = new PetMenu();
         [SeparatePage]
         public class TerraMenu
         {
             public bool loltesta = true;
             [Label("Enchants")]
             public TerEncMenu terenchmenu = new TerEncMenu();
+            [Label("Souls")]
+            public SoulMenu soulmenu = new SoulMenu();
             [SeparatePage]
             public class TerEncMenu
             {
@@ -205,6 +217,57 @@ namespace FargowiltasSouls
                 //public bool ech = true;
 
             }
+            [SeparatePage]
+            public class SoulMenu
+            {
+                [Label("$Mods.FargowiltasSouls.MeleeConfig")]
+                public bool gladSpeed = true;
+                [Label("$Mods.FargowiltasSouls.SniperConfig")]
+                public bool sharpSniper = true;
+                [Label("$Mods.FargowiltasSouls.UniverseConfig")]
+                public bool universeSpeed = true;
+                //dimensions
+                [Label("$Mods.FargowiltasSouls.MiningHuntConfig")]
+                public bool mineHunt = true;
+                [Label("$Mods.FargowiltasSouls.MiningDangerConfig")]
+                public bool mineDanger = true;
+                [Label("$Mods.FargowiltasSouls.MiningSpelunkConfig")]
+                public bool mineSpelunk = true;
+                [Label("$Mods.FargowiltasSouls.MiningShineConfig")]
+                public bool mineShine = true;
+                [Label("$Mods.FargowiltasSouls.BuilderConfig")]
+                public bool worldBuild = true;
+                [Label("$Mods.FargowiltasSouls.DefenseSporeConfig")]
+                public bool colSpore = true;
+                [Label("$Mods.FargowiltasSouls.DefenseStarConfig")]
+                public bool colStar = true;
+                [Label("$Mods.FargowiltasSouls.DefenseBeeConfig")]
+                public bool colBee = true;
+                [Label("$Mods.FargowiltasSouls.SupersonicConfig")]
+                public bool supersonicSpeed = true;
+                //idk 
+                [Label("$Mods.FargowiltasSouls.EternityConfig")]
+                public bool eternityStack = true;
+                public void Change()
+                {
+                    //Universe
+                    SoulConfig.Instance.soulToggles["Melee Speed"] = gladSpeed;
+                    SoulConfig.Instance.soulToggles["Sniper Scope"] = sharpSniper;
+                    SoulConfig.Instance.soulToggles["Universe Attack Speed"] = universeSpeed;
+                    //dimensions
+                    SoulConfig.Instance.soulToggles["Mining Hunter Buff"] = mineHunt;
+                    SoulConfig.Instance.soulToggles["Mining Dangersense Buff"] = mineDanger;
+                    SoulConfig.Instance.soulToggles["Mining Spelunker Buff"] = mineSpelunk;
+                    SoulConfig.Instance.soulToggles["Mining Shine Buff"] = mineShine;
+                    SoulConfig.Instance.soulToggles["Builder Mode"] = worldBuild;
+                    SoulConfig.Instance.soulToggles["Spore Sac"] = colSpore;
+                    SoulConfig.Instance.soulToggles["Stars On Hit"] = colStar;
+                    SoulConfig.Instance.soulToggles["Bees On Hit"] = colBee;
+                    SoulConfig.Instance.soulToggles["Supersonic Speed Boosts"] = supersonicSpeed;
+                    //idk 
+                    SoulConfig.Instance.soulToggles["Eternity Stacking"] = eternityStack;
+                }
+            }
 
         }
         [SeparatePage]
@@ -217,8 +280,275 @@ namespace FargowiltasSouls
         {
             public bool loltesthor = true;
         }
+        [SeparatePage]
+        public class MasoMenu
+        {
+            [Label("$Mods.FargowiltasSouls.MasoSlimeConfig")]
+            public bool slimeShield = true;
+            [Label("$Mods.FargowiltasSouls.MasoEyeConfig")]
+            public bool eyeScythes = true;
+            [Label("$Mods.FargowiltasSouls.MasoSkeleConfig")]
+            public bool skeleArms = true;
+            //pure heart
+            [Label("$Mods.FargowiltasSouls.MasoEaterConfig")]
+            public bool tinyEaters = true;
+            [Label("$Mods.FargowiltasSouls.MasoBrainConfig")]
+            public bool awwMan = true;
+            //bionomic cluster
+            [Label("$Mods.FargowiltasSouls.MasoRainbowConfig")]
+            public bool rainSlime = true;
+            [Label("$Mods.FargowiltasSouls.MasoFrigidConfig")]
+            public bool frostFire = true;
+            [Label("$Mods.FargowiltasSouls.MasoNymphConfig")]
+            public bool heartAttacks = true;
+            [Label("$Mods.FargowiltasSouls.MasoSqueakConfig")]
+            public bool squeakToy = true;
+            [Label("$Mods.FargowiltasSouls.MasoPouchConfig")]
+            public bool pouchTentacles = true;
+            [Label("$Mods.FargowiltasSouls.MasoClippedConfig")]
+            public bool clipAttack = true;
+            [Label("Security wallet")]
+            public WalletMenu wallet = new WalletMenu();
+
+            //dubious circutry
+            [Label("$Mods.FargowiltasSouls.MasoLightningConfig")]
+            public bool lightRod = true;
+            [Label("$Mods.FargowiltasSouls.MasoProbeConfig")]
+            public bool destroyProbe = true;
+            //heart of the masochist
+            [Label("$Mods.FargowiltasSouls.MasoGravConfig")]
+            public bool gravGlobe = true;
+            [Label("$Mods.FargowiltasSouls.MasoPump")]
+            public bool pumpCape = true;
+            [Label("$Mods.FargowiltasSouls.MasoFlockoConfig")]
+            public bool flockoMinion = true;
+            [Label("$Mods.FargowiltasSouls.MasoUfoConfig")]
+            public bool ufoMinion = true;
+            [Label("$Mods.FargowiltasSouls.MasoTrueEyeConfig")]
+            public bool trueEoc = true;
+            //chalice of the moon
+            [Label("$Mods.FargowiltasSouls.MasoCelestConfig")]
+            public bool celestRune = true;
+            [Label("$Mods.FargowiltasSouls.MasoPlantConfig")]
+            public bool plantMinion = true;
+            [Label("$Mods.FargowiltasSouls.MasoGolemConfig")]
+            public bool golemGround = true;
+            [Label("$Mods.FargowiltasSouls.MasoVisionConfig")]
+            public bool ancientVision = true;
+            [Label("$Mods.FargowiltasSouls.MasoCultistConfig")]
+            public bool cultMinion = true;
+            [Label("$Mods.FargowiltasSouls.MasoFishronConfig")]
+            public bool fishMinion = true;
+            //lump of flesh
+            [Label("$Mods.FargowiltasSouls.MasoPugentConfig")]
+            public bool pungentEye = true;
+            //mutant armor
+            [Label("$Mods.FargowiltasSouls.MasoAbomConfig")]
+            public bool abomMinion = true;
+            [Label("$Mods.FargowiltasSouls.MasoRingConfig")]
+            public bool ringMinion = true;
+            //other
+            [Label("$Mods.FargowiltasSouls.MasoSpikeConfig")]
+            public bool spikeHit = true;
+            [Label("$Mods.FargowiltasSouls.MasoIconConfig")]
+            public bool sinIcon = true;
+            public class WalletMenu
+            {
+                [Label("$Mods.FargowiltasSouls.WalletWardingConfig")]
+                public bool warding = true;
+                [Label("$Mods.FargowiltasSouls.WalletViolentConfig")]
+                public bool violent = true;
+                [Label("$Mods.FargowiltasSouls.WalletQuickConfig")]
+                public bool quick = true;
+                [Label("$Mods.FargowiltasSouls.WalletLuckyConfig")]
+                public bool lucky = true;
+                [Label("$Mods.FargowiltasSouls.WalletMenacingConfig")]
+                public bool menacing = true;
+                [Label("$Mods.FargowiltasSouls.WalletLegendaryConfig")]
+                public bool legendary = true;
+                [Label("$Mods.FargowiltasSouls.WalletUnrealConfig")]
+                public bool unreal = true;
+                [Label("$Mods.FargowiltasSouls.WalletMythicalConfig")]
+                public bool mythical = true;
+                [Label("$Mods.FargowiltasSouls.WalletGodlyConfig")]
+                public bool godly = true;
+                [Label("$Mods.FargowiltasSouls.WalletDemonicConfig")]
+                public bool demonic = true;
+                [Label("$Mods.FargowiltasSouls.WalletRuthlessConfig")]
+                public bool ruthless = true;
+                [Label("$Mods.FargowiltasSouls.WalletLightConfig")]
+                public bool light = true;
+                [Label("$Mods.FargowiltasSouls.WalletDeadlyConfig")]
+                public bool deadly = true;
+                [Label("$Mods.FargowiltasSouls.WalletRapidConfig")]
+                public bool rapid = true;
+                public void Change()
+                {
+                    SoulConfig.Instance.walletToggles["Warding"] = warding;
+                    SoulConfig.Instance.walletToggles["Violent"] = violent;
+                    SoulConfig.Instance.walletToggles["Quick"] = quick;
+                    SoulConfig.Instance.walletToggles["Lucky"] = lucky;
+                    SoulConfig.Instance.walletToggles["Menacing"] = menacing;
+                    SoulConfig.Instance.walletToggles["Legendary"] = legendary;
+                    SoulConfig.Instance.walletToggles["Unreal"] = unreal;
+                    SoulConfig.Instance.walletToggles["Mythical"] = mythical;
+                    SoulConfig.Instance.walletToggles["Godly"] = godly;
+                    SoulConfig.Instance.walletToggles["Demonic"] = demonic;
+                    SoulConfig.Instance.walletToggles["Ruthless"] = ruthless;
+                    SoulConfig.Instance.walletToggles["Light"] = light;
+                    SoulConfig.Instance.walletToggles["Deadly"] = deadly;
+                    SoulConfig.Instance.walletToggles["Rapid"] = rapid;
+                }
+            }
+
+            public void Change()
+            {
+                SoulConfig.Instance.masoTogDict["Slimy Shield Effects"] = slimeShield;
+                SoulConfig.Instance.masoTogDict["Scythes When Dashing"] = eyeScythes;
+                SoulConfig.Instance.masoTogDict["Skeletron Arms Minion"] = skeleArms;
+                //pure heart
+                SoulConfig.Instance.masoTogDict["Tiny Eaters"] = tinyEaters;
+                SoulConfig.Instance.masoTogDict["Creeper Shield"] = awwMan;
+                //bionomic cluster
+                SoulConfig.Instance.masoTogDict["Rainbow Slime Minion"] = rainSlime;
+                SoulConfig.Instance.masoTogDict["Frostfireballs"] = frostFire;
+                SoulConfig.Instance.masoTogDict["Attacks Spawn Hearts"] = heartAttacks;
+                SoulConfig.Instance.masoTogDict["Squeaky Toy On Hit"] = squeakToy;
+                SoulConfig.Instance.masoTogDict["Tentacles On Hit"] = pouchTentacles;
+                SoulConfig.Instance.masoTogDict["Inflict Clipped Wings"] = clipAttack;
+                //dubious circutry
+                SoulConfig.Instance.masoTogDict["Inflict Lightning Rod"] = lightRod;
+                SoulConfig.Instance.masoTogDict["Probes Minion"] = destroyProbe;
+                //heart of the masochist
+                SoulConfig.Instance.masoTogDict["Gravity Control"] = gravGlobe;
+                SoulConfig.Instance.masoTogDict["Pumpking's Cape Support"] = pumpCape;
+                SoulConfig.Instance.masoTogDict["Flocko Minion"] = flockoMinion;
+                SoulConfig.Instance.masoTogDict["Saucer Minion"] = ufoMinion;
+                SoulConfig.Instance.masoTogDict["True Eyes Minion"] = trueEoc;
+                //chalice of the moon
+                SoulConfig.Instance.masoTogDict["Celestial Rune Support"] = celestRune;
+                SoulConfig.Instance.masoTogDict["Plantera Minion"] = plantMinion;
+                SoulConfig.Instance.masoTogDict["Lihzahrd Ground Pound"] = golemGround;
+                SoulConfig.Instance.masoTogDict["Ancient Visions On Hit"] = ancientVision;
+                SoulConfig.Instance.masoTogDict["Cultist Minion"] = cultMinion;
+                SoulConfig.Instance.masoTogDict["Spectral Fishron"] = fishMinion;
+                //lump of flesh
+                SoulConfig.Instance.masoTogDict["Pungent Eye Minion"] = pungentEye;
+                //mutant armor
+                SoulConfig.Instance.masoTogDict["Abominationn Minion"] = abomMinion;
+                SoulConfig.Instance.masoTogDict["Phantasmal Ring Minion"] = ringMinion;
+                //other
+                SoulConfig.Instance.masoTogDict["Spiky Balls On Hit"] = spikeHit;
+                SoulConfig.Instance.masoTogDict["Sinister Icon"] = sinIcon;
+
+
+            }
+        }
+        [SeparatePage]
+        public class PetMenu
+        {
+            [Label("$Mods.FargowiltasSouls.PetCatConfig")]
+            public bool bCat = true;
+            [Label("$Mods.FargowiltasSouls.PetCubeConfig")]
+            public bool cCube = true;
+            [Label("$Mods.FargowiltasSouls.PetCurseSapConfig")]
+            public bool cSapling = true;
+            [Label("$Mods.FargowiltasSouls.PetDinoConfig")]
+            public bool dino = true;
+            [Label("$Mods.FargowiltasSouls.PetDragonConfig")]
+            public bool dragon = true;
+            [Label("$Mods.FargowiltasSouls.PetEaterConfig")]
+            public bool eater = true;
+            [Label("$Mods.FargowiltasSouls.PetEyeSpringConfig")]
+            public bool eSpring = true;
+            [Label("$Mods.FargowiltasSouls.PetFaceMonsterConfig")]
+            public bool fMonster = true;
+            [Label("$Mods.FargowiltasSouls.PetGatoConfig")]
+            public bool gato = true;
+            [Label("$Mods.FargowiltasSouls.PetHornetConfig")]
+            public bool hornet = true;
+            [Label("$Mods.FargowiltasSouls.PetLizardConfig")]
+            public bool lizard = true;
+            [Label("$Mods.FargowiltasSouls.PetMinitaurConfig")]
+            public bool mMinitaur = true;
+            [Label("$Mods.FargowiltasSouls.PetParrotConfig")]
+            public bool parrot = true;
+            [Label("$Mods.FargowiltasSouls.PetPenguinConfig")]
+            public bool penguin = true;
+            [Label("$Mods.FargowiltasSouls.PetPupConfig")]
+            public bool puppy = true;
+            [Label("$Mods.FargowiltasSouls.PetSeedConfig")]
+            public bool seedling = true;
+            [Label("$Mods.FargowiltasSouls.PetDGConfig")]
+            public bool dGuard = true;
+            [Label("$Mods.FargowiltasSouls.PetSnowmanConfig")]
+            public bool snowman = true;
+            [Label("$Mods.FargowiltasSouls.PetSpiderConfig")]
+            public bool spider = true;
+            [Label("$Mods.FargowiltasSouls.PetSquashConfig")]
+            public bool squash = true;
+            [Label("$Mods.FargowiltasSouls.PetTikiConfig")]
+            public bool tiki = true;
+            [Label("$Mods.FargowiltasSouls.PetShroomConfig")]
+            public bool truffle = true;
+            [Label("$Mods.FargowiltasSouls.PetTurtleConfig")]
+            public bool turtle = true;
+            [Label("$Mods.FargowiltasSouls.PetZephyrConfig")]
+            public bool zFish = true;
+            //LIGHT PETS
+            [Label("$Mods.FargowiltasSouls.PetHeartConfig")]
+            public bool cHeart = true;
+            [Label("$Mods.FargowiltasSouls.PetNaviConfig")]
+            public bool fairy = true;
+            [Label("$Mods.FargowiltasSouls.PetFlickerConfig")]
+            public bool flick = true;
+            [Label("$Mods.FargowiltasSouls.PetLanturnConfig")]
+            public bool mLanturn = true;
+            [Label("$Mods.FargowiltasSouls.PetOrbConfig")]
+            public bool sOrb = true;
+            [Label("$Mods.FargowiltasSouls.PetSuspEyeConfig")]
+            public bool sEye = true;
+            [Label("$Mods.FargowiltasSouls.PetWispConfig")]
+            public bool wisp = true;
+            public void Change()
+            {
+                SoulConfig.Instance.petToggles["Black Cat Pet"] = bCat;
+                SoulConfig.Instance.petToggles["Companion Cube Pet"] = cCube;
+                SoulConfig.Instance.petToggles["Cursed Sapling Pet"] = cSapling;
+                SoulConfig.Instance.petToggles["Dino Pet"] = dino;
+                SoulConfig.Instance.petToggles["Dragon Pet"] = dragon;
+                SoulConfig.Instance.petToggles["Eater Pet"] = eater;
+                SoulConfig.Instance.petToggles["Eye Spring Pet"] = eSpring;
+                SoulConfig.Instance.petToggles["Face Monster Pet"] = fMonster;
+                SoulConfig.Instance.petToggles["Gato Pet"] = gato;
+                SoulConfig.Instance.petToggles["Hornet Pet"] = hornet;
+                SoulConfig.Instance.petToggles["Lizard Pet"] = lizard;
+                SoulConfig.Instance.petToggles["Mini Minotaur Pet"] = mMinitaur;
+                SoulConfig.Instance.petToggles["Parrot Pet"] = parrot;
+                SoulConfig.Instance.petToggles["Penguin Pet"] = penguin;
+                SoulConfig.Instance.petToggles["Puppy Pet"] = puppy;
+                SoulConfig.Instance.petToggles["Seedling Pet"] = seedling;
+                SoulConfig.Instance.petToggles["Skeletron Pet"] = dGuard;
+                SoulConfig.Instance.petToggles["Snowman Pet"] = snowman;
+                SoulConfig.Instance.petToggles["Spider Pet"] = spider;
+                SoulConfig.Instance.petToggles["Squashling Pet"] = squash;
+                SoulConfig.Instance.petToggles["Tiki Pet"] = tiki;
+                SoulConfig.Instance.petToggles["Truffle Pet"] = truffle;
+                SoulConfig.Instance.petToggles["Turtle Pet"] = turtle;
+                SoulConfig.Instance.petToggles["Zephyr Fish Pet"] = zFish;
+                //LIGHT PETS
+                SoulConfig.Instance.petToggles["Crimson Heart Pet"] = cHeart;
+                SoulConfig.Instance.petToggles["Fairy Pet"] = fairy;
+                SoulConfig.Instance.petToggles["Flickerwick Pet"] = flick;
+                SoulConfig.Instance.petToggles["Magic Lantern Pet"] = mLanturn;
+                SoulConfig.Instance.petToggles["Shadow Orb Pet"] = sOrb;
+                SoulConfig.Instance.petToggles["Suspicious Eye Pet"] = sEye;
+                SoulConfig.Instance.petToggles["Wisp Pet"] = wisp;
+            }
+        }
         public override void OnChanged()
         {
+
             terrmenu.terenchmenu.Change();
         }
         public override void OnLoaded()
@@ -277,21 +607,142 @@ namespace FargowiltasSouls
             enchantToggles.Add("Vortex Stealth", terrmenu.terenchmenu.vortSneak);
             enchantToggles.Add("Vortex Voids", terrmenu.terenchmenu.vortVoid);
 
+            masoTogDict.Add("Slimy Shield Effects", masomenu.slimeShield);
+            masoTogDict.Add("Scythes When Dashing", masomenu.eyeScythes);
+            masoTogDict.Add("Skeletron Arms Minion", masomenu.skeleArms);
+            //pure heart
+            masoTogDict.Add("Tiny Eaters", masomenu.tinyEaters);
+            masoTogDict.Add("Creeper Shield", masomenu.awwMan);
+            //bionomic cluster
+            masoTogDict.Add("Rainbow Slime Minion", masomenu.rainSlime);
+            masoTogDict.Add("Frostfireballs", masomenu.frostFire);
+            masoTogDict.Add("Attacks Spawn Hearts", masomenu.heartAttacks);
+            masoTogDict.Add("Squeaky Toy On Hit", masomenu.squeakToy);
+            masoTogDict.Add("Tentacles On Hit", masomenu.pouchTentacles);
+            masoTogDict.Add("Inflict Clipped Wings", masomenu.clipAttack);
+            //dubious circutry
+            masoTogDict.Add("Inflict Lightning Rod", masomenu.lightRod);
+            masoTogDict.Add("Probes Minion", masomenu.destroyProbe);
+            //heart of the masochist
+            masoTogDict.Add("Gravity Control", masomenu.gravGlobe);
+            masoTogDict.Add("Pumpking's Cape Support", masomenu.pumpCape);
+            masoTogDict.Add("Flocko Minion", masomenu.flockoMinion);
+            masoTogDict.Add("Saucer Minion", masomenu.ufoMinion);
+            masoTogDict.Add("True Eyes Minion", masomenu.trueEoc);
+            //chalice of the moon
+            masoTogDict.Add("Celestial Rune Support", masomenu.celestRune);
+            masoTogDict.Add("Plantera Minion", masomenu.plantMinion);
+            masoTogDict.Add("Lihzahrd Ground Pound", masomenu.golemGround);
+            masoTogDict.Add("Ancient Visions On Hit", masomenu.ancientVision);
+            masoTogDict.Add("Cultist Minion", masomenu.cultMinion);
+            masoTogDict.Add("Spectral Fishron", masomenu.fishMinion);
+            //lump of flesh
+            masoTogDict.Add("Pungent Eye Minion", masomenu.pungentEye);
+            //mutant armor
+            masoTogDict.Add("Abominationn Minion", masomenu.abomMinion);
+            masoTogDict.Add("Phantasmal Ring Minion", masomenu.ringMinion);
+            //other
+            masoTogDict.Add("Spiky Balls On Hit", masomenu.spikeHit);
+            masoTogDict.Add("Sinister Icon", masomenu.sinIcon);
+            petToggles.Add("Black Cat Pet", petmenu.bCat);
+            petToggles.Add("Companion Cube Pet", petmenu.cCube);
+            petToggles.Add("Cursed Sapling Pet", petmenu.cSapling);
+            petToggles.Add("Dino Pet", petmenu.dino);
+            petToggles.Add("Dragon Pet", petmenu.dragon);
+            petToggles.Add("Eater Pet", petmenu.eater);
+            petToggles.Add("Eye Spring Pet", petmenu.eSpring);
+            petToggles.Add("Face Monster Pet", petmenu.fMonster);
+            petToggles.Add("Gato Pet", petmenu.gato);
+            petToggles.Add("Hornet Pet", petmenu.hornet);
+            petToggles.Add("Lizard Pet", petmenu.lizard);
+            petToggles.Add("Mini Minotaur Pet", petmenu.mMinitaur);
+            petToggles.Add("Parrot Pet", petmenu.parrot);
+            petToggles.Add("Penguin Pet", petmenu.penguin);
+            petToggles.Add("Puppy Pet", petmenu.puppy);
+            petToggles.Add("Seedling Pet", petmenu.seedling);
+            petToggles.Add("Skeletron Pet", petmenu.dGuard);
+            petToggles.Add("Snowman Pet", petmenu.snowman);
+            petToggles.Add("Spider Pet", petmenu.spider);
+            petToggles.Add("Squashling Pet", petmenu.squash);
+            petToggles.Add("Tiki Pet", petmenu.tiki);
+            petToggles.Add("Truffle Pet", petmenu.truffle);
+            petToggles.Add("Turtle Pet", petmenu.turtle);
+            petToggles.Add("Zephyr Fish Pet", petmenu.zFish);
+            //LIGHT PETS
+            petToggles.Add("Crimson Heart Pet", petmenu.cHeart);
+            petToggles.Add("Fairy Pet", petmenu.fairy);
+            petToggles.Add("Flickerwick Pet", petmenu.flick);
+            petToggles.Add("Magic Lantern Pet", petmenu.mLanturn);
+            petToggles.Add("Shadow Orb Pet", petmenu.sOrb);
+            petToggles.Add("Suspicious Eye Pet", petmenu.sEye);
+            petToggles.Add("Wisp Pet", petmenu.wisp);
+            walletToggles.Add("Warding", masomenu.wallet.warding);
+            walletToggles.Add("Violent", masomenu.wallet.violent);
+            walletToggles.Add("Quick", masomenu.wallet.quick);
+            walletToggles.Add("Lucky", masomenu.wallet.lucky);
+            walletToggles.Add("Menacing", masomenu.wallet.menacing);
+            walletToggles.Add("Legendary", masomenu.wallet.legendary);
+            walletToggles.Add("Unreal", masomenu.wallet.unreal);
+            walletToggles.Add("Mythical", masomenu.wallet.mythical);
+            walletToggles.Add("Godly", masomenu.wallet.godly);
+            walletToggles.Add("Demonic", masomenu.wallet.demonic);
+            walletToggles.Add("Ruthless", masomenu.wallet.ruthless);
+            walletToggles.Add("Light", masomenu.wallet.light);
+            walletToggles.Add("Deadly", masomenu.wallet.deadly);
+            walletToggles.Add("Rapid", masomenu.wallet.rapid);
+
+            //Universe
+            soulToggles.Add("Melee Speed", terrmenu.soulmenu.gladSpeed);
+            soulToggles.Add("Sniper Scope", terrmenu.soulmenu.sharpSniper);
+            soulToggles.Add("Universe Attack Speed", terrmenu.soulmenu.universeSpeed);
+            //dimensions
+            soulToggles.Add("Mining Hunter Buff", terrmenu.soulmenu.mineHunt);
+            soulToggles.Add("Mining Dangersense Buff", terrmenu.soulmenu.mineDanger);
+            soulToggles.Add("Mining Spelunker Buff", terrmenu.soulmenu.mineSpelunk);
+            soulToggles.Add("Mining Shine Buff", terrmenu.soulmenu.mineShine);
+            soulToggles.Add("Builder Mode", terrmenu.soulmenu.worldBuild);
+            soulToggles.Add("Spore Sac", terrmenu.soulmenu.colSpore);
+            soulToggles.Add("Stars On Hit", terrmenu.soulmenu.colStar);
+            soulToggles.Add("Bees On Hit", terrmenu.soulmenu.colBee);
+            soulToggles.Add("Supersonic Speed Boosts", terrmenu.soulmenu.supersonicSpeed);
+            //idk 
+            soulToggles.Add("Eternity Stacking", terrmenu.soulmenu.eternityStack);
 
 
 
 
+            //enchantToggles.Add("Boreal Snowballs", terrmenu.terenchmenu.borealsnow);
 
-
-
-
-
-        //enchantToggles.Add("Boreal Snowballs", terrmenu.terenchmenu.borealsnow);
-
-    }
+        }
     public bool GetValue(string input)
         {
-            return enchantToggles[input];
+            if(Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().MutantPresence)
+                {
+                return false;
+            }
+            bool tryget;
+            bool oooout;
+            if(enchantToggles.TryGetValue(input, out oooout))
+            {
+                return oooout;
+            }
+            if (petToggles.TryGetValue(input, out oooout))
+            {
+                return oooout;
+            }
+            if (soulToggles.TryGetValue(input, out oooout))
+            {
+                return oooout;
+            }
+            if (walletToggles.TryGetValue(input, out oooout))
+            {
+                return oooout;
+            }
+            if (masoTogDict.TryGetValue(input, out oooout))
+            {
+                return oooout;
+            }
+            return false;
         }
     }
 }

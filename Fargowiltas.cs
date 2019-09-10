@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FargowiltasSouls.Items.Accessories.Enchantments;
+using FargowiltasSouls.Items.Accessories.Forces;
+using FargowiltasSouls.NPCs;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,9 +10,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using FargowiltasSouls.NPCs;
-using FargowiltasSouls.Items.Accessories.Enchantments;
-using FargowiltasSouls.Items.Accessories.Forces;
 
 namespace FargowiltasSouls
 {
@@ -18,7 +18,7 @@ namespace FargowiltasSouls
         internal static ModHotKey CheckListKey;
         internal static ModHotKey FreezeKey;
         internal static ModHotKey GoldKey;
-        
+
         internal static List<int> DebuffIDs;
 
         internal static Fargowiltas Instance;
@@ -49,18 +49,20 @@ namespace FargowiltasSouls
         public override void Load()
         {
             Instance = this;
-            if(Language.ActiveCulture == GameCulture.Chinese)
+            if (Language.ActiveCulture == GameCulture.Chinese)
             {
-            CheckListKey = RegisterHotKey("灵魂切换菜单", "L");
-            FreezeKey = RegisterHotKey("冻结时间", "P");
-            GoldKey = RegisterHotKey("金身", "O");
+                CheckListKey = RegisterHotKey("灵魂切换菜单", "L");
+                FreezeKey = RegisterHotKey("冻结时间", "P");
+                GoldKey = RegisterHotKey("金身", "O");
             }
             else
             {
-            CheckListKey = RegisterHotKey("Soul Toggles", "L");
-            FreezeKey = RegisterHotKey("Freeze Time", "P");
-            GoldKey = RegisterHotKey("Turn Gold", "O");
+                CheckListKey = RegisterHotKey("Soul Toggles", "L");
+                FreezeKey = RegisterHotKey("Freeze Time", "P");
+                GoldKey = RegisterHotKey("Turn Gold", "O");
             }
+            #region Toggles
+            #region enchants
             ModTranslation text = CreateTranslation("WoodHeader");
             text.SetDefault("[i:" + Instance.ItemType<WoodForce>() + "] Force of Wood");
             AddTranslation(text);
@@ -280,13 +282,370 @@ namespace FargowiltasSouls
             "VortexEnchant",
             "VortexEnchant"
             };
-        for(int x = 0; x <= 25; x++)
+            for (int x = 0; x <= 25; x++)
             {
                 text = CreateTranslation(EnchConfig[x]);
                 text.SetDefault("[i:" + Instance.ItemType(EnchItem[x]) + "][c/" + EnchColor[x] + ": " + EnchName[x] + "]");
                 AddTranslation(text);
             }
+            #endregion
+            #region masomode toggles
+            string[] masoTogName = { 
+            //deathbringer fairy
+            "Slimy Shield Effects",
+            "Scythes When Dashing",
+            "Skeletron Arms Minion",
+            //pure heart
+            "Tiny Eaters",
+            "Creeper Shield",
+            //bionomic cluster
+            "Rainbow Slime Minion",
+            "Frostfireballs",
+            "Attacks Spawn Hearts",
+            "Squeaky Toy On Hit",
+            "Tentacles On Hit",
+            "Inflict Clipped Wings",
+            //dubious circutry
+            "Inflict Lightning Rod",
+            "Probes Minion",
+            //heart of the masochist
+            "Gravity Control",
+            "Pumpking's Cape Support",
+            "Flocko Minion",
+            "Saucer Minion",
+            "True Eyes Minion",
+            //chalice of the moon
+            "Celestial Rune Support",
+            "Plantera Minion",
+            "Lihzahrd Ground Pound",
+            "Ancient Visions On Hit",
+            "Cultist Minion",
+            "Spectral Fishron",
+            //lump of flesh
+            "Pungent Eye Minion",
+            //mutant armor
+            "Abominationn Minion",
+            "Phantasmal Ring Minion",
+            //other
+            "Spiky Balls On Hit",
+            "Sinister Icon"};
+            string[] masoTogNameCh = { 
+            //deathbringer fairy
+            "Slimy Shield Effects",
+            "Scythes When Dashing",
+            "Skeletron Arms Minion",
+            //pure heart
+            "Tiny Eaters",
+            "Creeper Shield",
+            //bionomic cluster
+            "Rainbow Slime Minion",
+            "Frostfireballs",
+            "Attacks Spawn Hearts",
+            "Squeaky Toy On Hit",
+            "Tentacles On Hit",
+            "Inflict Clipped Wings",
+            //dubious circutry
+            "Inflict Lightning Rod",
+            "Probes Minion",
+            //heart of the masochist
+            "Gravity Control",
+            "Pumpking's Cape Support",
+            "Flocko Minion",
+            "Saucer Minion",
+            "True Eyes Minion",
+            //chalice of the moon
+            "Celestial Rune Support",
+            "Plantera Minion",
+            "Lihzahrd Ground Pound",
+            "Ancient Visions On Hit",
+            "Cultist Minion",
+            "Spectral Fishron",
+            //lump of flesh
+            "Pungent Eye Minion",
+            //mutant armor
+            "Abominationn Minion",
+            "Phantasmal Ring Minion",
+            //other
+            "Spiky Balls On Hit",
+            "Sinister Icon"};
+            string[] masoTogConfigName = {
+            //deathbringer fairy
+            "MasoSlimeConfig",
+            "MasoEyeConfig",
+            "MasoSkeleConfig",
+            //pure heart
+            "MasoEaterConfig",
+            "MasoBrainConfig",
+            //bionomic cluster
+            "MasoRainbowConfig",
+            "MasoFrigidConfig",
+            "MasoNymphConfig",
+            "MasoSqueakConfig",
+            "MasoPouchConfig",
+            "MasoClippedConfig",
+            //dubious circutry
+            "MasoLightningConfig",
+            "MasoProbeConfig",
+            //heart of the masochist
+            "MasoGravConfig",
+            "MasoPump",
+            "MasoFlockoConfig",
+            "MasoUfoConfig",
+            "MasoTrueEyeConfig",
+            //chalice of the moon
+            "MasoCelestConfig",
+            "MasoPlantConfig",
+            "MasoGolemConfig",
+            "MasoVisionConfig",
+            "MasoCultistConfig",
+            "MasoFishronConfig",
+            //lump of flesh
+            "MasoPugentConfig",
+            //mutant armor
+            "MasoAbomConfig",
+            "MasoRingConfig",
+            //other
+            "MasoSpikeConfig",
+            "MasoIconConfig"};
+            for (int x = 0; x <= 28; x++)
+            {
+                text = CreateTranslation(masoTogConfigName[x]);
+                if (Language.ActiveCulture == GameCulture.Chinese)
+                {
+                    text.SetDefault(masoTogNameCh[x]);
+                }
+                else
+                {
+                    text.SetDefault(masoTogName[x]);
+                }
+                AddTranslation(text);
+            }
+            #endregion
+            #region pet toggles
+            int[] petnums = {
+            //NORMAL PETS
+            1810,//black cat
+            3628,//companion cube
+            1837, //cursed sapling
+            1242, //dino pet
+            3857, //dragon
+            994, //eater
+            1311, //eye spring
+            3060, //face monster
+            3855, //gato
+            1170, //hornet
+            1172, //lizard
+            2587, //mini minitaur
+            1180, //parrot
+            669, //penguin
+            1927, //puppy
+            1182, //seedling
+            1169, //dungeon guardian
+            1312, // snowman
+            1798, // spider
+            1799, //squashling
+            1171, //tiki
+            1181, //truffle
+            753, //turtle
+            2420, //zephyr fish
+                  //LIGHT PETS
+            3062, //crimson heart
+            425, //fairy
+            3856, //flickerwick
+            3043, //magic lanturn
+            115, //shadow orb
+            3577, //suspicious eye
+            1183//wisp
+            };
+            string[] petTogName = {
+            "Black Cat Pet",
+            "Companion Cube Pet",
+            "Cursed Sapling Pet",
+            "Dino Pet",
+            "Dragon Pet",
+            "Eater Pet",
+            "Eye Spring Pet",
+            "Face Monster Pet",
+            "Gato Pet",
+            "Hornet Pet",
+            "Lizard Pet",
+            "Mini Minotaur Pet",
+            "Parrot Pet",
+            "Penguin Pet",
+            "Puppy Pet",
+            "Seedling Pet",
+            "Skeletron Pet",
+            "Snowman Pet",
+            "Spider Pet",
+            "Squashling Pet",
+            "Tiki Pet",
+            "Truffle Pet",
+            "Turtle Pet",
+            "Zephyr Fish Pet",
+            //LIGHT PETS
+            "Crimson Heart Pet",
+            "Fairy Pet",
+            "Flickerwick Pet",
+            "Magic Lantern Pet",
+            "Shadow Orb Pet",
+            "Suspicious Eye Pet",
+            "Wisp Pet" };
+            string[] petTogConfigName = {
+            "PetCatConfig",
+            "PetCubeConfig",
+            "PetCurseSapConfig",
+            "PetDinoConfig",
+            "PetDragonConfig",
+            "PetEaterConfig",
+            "PetEyeSpringConfig",
+            "PetFaceMonsterConfig",
+            "PetGatoConfig",
+            "PetHornetConfig",
+            "PetLizardConfig",
+            "PetMinitaurConfig",
+            "PetParrotConfig",
+            "PetPenguinConfig",
+            "PetPupConfig",
+            "PetSeedConfig",
+            "PetDGConfig",
+            "PetSnowmanConfig",
+            "PetSpiderConfig",
+            "PetSquashConfig",
+            "PetTikiConfig",
+            "PetShroomConfig",
+            "PetTurtleConfig",
+            "PetZephyrConfig",
+            //LIGHT PETS
+            "PetHeartConfig",
+            "PetNaviConfig",
+            "PetFlickerConfig",
+            "PetLanturnConfig",
+            "PetOrbConfig",
+            "PetSuspEyeConfig",
+            "PetWispConfig" };
+            for (int x = 0; x <= 30; x++)
+            {
+                text = CreateTranslation(petTogConfigName[x]);
+                text.SetDefault("[I:" + petnums[x] + "] " + petTogName[x]);
+                AddTranslation(text);
+            }
+            #endregion
+            #region wallet toggles
+            string[] prefix = {
+        "Warding",
+        "Violent",
+        "Quick",
+        "Lucky",
+        "Menacing",
+        "Legendary",
+        "Unreal",
+        "Mythical",
+        "Godly",
+        "Demonic",
+        "Ruthless",
+        "Light",
+        "Deadly",
+        "Rapid"};
+            string[] prefixconf = {
+        "WalletWardingConfig",
+        "WalletViolentConfig",
+        "WalletQuickConfig",
+        "WalletLuckyConfig",
+        "WalletMenacingConfig",
+        "WalletLegendaryConfig",
+        "WalletUnrealConfig",
+        "WalletMythicalConfig",
+        "WalletGodlyConfig",
+        "WalletDemonicConfig",
+        "WalletRuthlessConfig",
+        "WalletLightConfig",
+        "WalletDeadlyConfig",
+        "WalletRapidConfig" };
+            for (int x = 0; x <= 13; x++)
+            {
+                text = CreateTranslation(prefixconf[x]);
+                text.SetDefault(prefix[x]);
+                AddTranslation(text);
+            }
+            #endregion
+            #region soul toggles
+            string[] soultognames = {
+            //Universe
+            "Melee Speed",
+            "Sniper Scope",
+            "Universe Attack Speed",
+            //dimensions
+            "Mining Hunter Buff",
+            "Mining Dangersense Buff",
+            "Mining Spelunker Buff",
+            "Mining Shine Buff",
+            "Builder Mode",
+            "Spore Sac",
+            "Stars On Hit",
+            "Bees On Hit",
+            "Supersonic Speed Boosts",
+            //idk 
+            "Eternity Stacking"};
+            string[] soultogconfig = {
+            //Universe
+            "MeleeConfig",
+            "SniperConfig",
+            "UniverseConfig",
+            //dimensions
+            "MiningHuntConfig",
+            "MiningDangerConfig",
+            "MiningSpelunkConfig",
+            "MiningShineConfig",
+            "BuilderConfig",
+            "DefenseSporeConfig",
+            "DefenseStarConfig",
+            "DefenseBeeConfig",
+            "SupersonicConfig",
+            //idk 
+            "EternityConfig" };
+            string[] soultogitemnames = {
+            //Universe
+            "GladiatorsSoul",
+            "SharpshootersSoul",
+            "UniverseSoul",
+            //dimensions
+            "MinerEnchant",
+            "MinerEnchant",
+            "MinerEnchant",
+            "MinerEnchant",
+            "WorldShaperSoul",
+            "ColossusSoul",
+            "ColossusSoul",
+            "ColossusSoul",
+            "SupersonicSoul",
+            //idk 
+            "EternitySoul" };
+            string[] soulcolor = {
+            //Universe
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            //dimensions
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            //idk 
+            "ffffff" };
+            for (int x = 0; x <= 12; x++)
+            {
+                text = CreateTranslation(soultogconfig[x]);
+                text.SetDefault("[i:" + Instance.ItemType(soultogitemnames[x]) + "][c/" + soulcolor[x] + ": " + soultognames[x] + "]");
+                AddTranslation(text);
+            }
+            #endregion
 
+            #endregion
             if (!Main.dedServ)
             {
                 CustomResources = new UserInterface();

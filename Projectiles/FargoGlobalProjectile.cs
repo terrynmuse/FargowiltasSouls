@@ -441,7 +441,7 @@ namespace FargowiltasSouls.Projectiles
 
             if (player.FindBuffIndex(buff) == -1)
             {
-                if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle) || (!modPlayer.PetsActive && !minion))
+                if (!(enchant || modPlayer.TerrariaSoul) || !SoulConfig.Instance.GetValue(toggle) || (!modPlayer.PetsActive && !minion))
                     projectile.Kill();
             }
         }

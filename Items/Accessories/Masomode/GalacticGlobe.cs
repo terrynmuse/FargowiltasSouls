@@ -41,10 +41,10 @@ Increases flight time by 100%");
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.ChaosState] = true;
 
-            if (Soulcheck.GetValue("Gravity Control"))
+            if (SoulConfig.Instance.GetValue("Gravity Control"))
                 player.gravControl = true;
 
-            if (Soulcheck.GetValue("True Eyes Minion"))
+            if (SoulConfig.Instance.GetValue("True Eyes Minion"))
                 player.AddBuff(mod.BuffType("TrueEyes"), 2);
             
             player.GetModPlayer<FargoPlayer>().GravityGlobeEX = true;

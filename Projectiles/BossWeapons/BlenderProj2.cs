@@ -32,7 +32,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             projectile.penetrate = -1;
             projectile.melee = true;
             projectile.scale = 1f;
-            Counter = Main.rand.Next(30);
+            //Counter = Main.rand.Next(30);
         }
 
         public override void AI()

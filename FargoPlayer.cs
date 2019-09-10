@@ -1020,7 +1020,7 @@ namespace FargowiltasSouls
             if (CobaltEnchant && CobaltCD > 0)
                 CobaltCD--;
 
-            if (LihzahrdTreasureBox && player.gravDir > 0 && Soulcheck.GetValue("Lihzahrd Ground Pound"))
+            if (LihzahrdTreasureBox && player.gravDir > 0 && SoulConfig.Instance.GetValue("Lihzahrd Ground Pound"))
             {
                 if (player.controlDown && !player.mount.Active && !player.controlJump)
                 {
@@ -1103,7 +1103,7 @@ namespace FargowiltasSouls
                     if (player.velocity.Y == 0f)
                     {
                         SlimyShieldFalling = false;
-                        if (player.whoAmI == Main.myPlayer && player.gravDir > 0 && Soulcheck.GetValue("Slimy Shield Effects"))
+                        if (player.whoAmI == Main.myPlayer && player.gravDir > 0 && SoulConfig.Instance.GetValue("Slimy Shield Effects"))
                         {
                             Main.PlaySound(SoundID.Item21, player.Center);
                             Vector2 mouse = Main.MouseWorld;
@@ -1135,7 +1135,7 @@ namespace FargowiltasSouls
                 if (AgitatingLensCD++ > 10)
                 {
                     AgitatingLensCD = 0;
-                    if (player.velocity.Length() >= 6f && player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Scythes When Dashing"))
+                    if (player.velocity.Length() >= 6f && player.whoAmI == Main.myPlayer && SoulConfig.Instance.GetValue("Scythes When Dashing"))
                     {
                         int damage = 20;
                         if (SupremeDeathbringerFairy)
@@ -1156,7 +1156,7 @@ namespace FargowiltasSouls
                 if (GuttedHeartCD <= 0)
                 {
                     GuttedHeartCD = 900;
-                    if (player.whoAmI == Main.myPlayer && Soulcheck.GetValue("Creeper Shield"))
+                    if (player.whoAmI == Main.myPlayer && SoulConfig.Instance.GetValue("Creeper Shield"))
                     {
                         int count = 0;
                         for (int i = 0; i < 200; i++)
@@ -2112,7 +2112,7 @@ namespace FargowiltasSouls
             if (CorruptHeart && CorruptHeartCD <= 0)
             {
                 CorruptHeartCD = 60;
-                if (proj.type != ProjectileID.TinyEater && Soulcheck.GetValue("Tiny Eaters"))
+                if (proj.type != ProjectileID.TinyEater && SoulConfig.Instance.GetValue("Tiny Eaters"))
                 {
                     Main.PlaySound(3, (int)player.Center.X, (int)player.Center.Y, 1, 1f, 0.0f);
                     for (int index1 = 0; index1 < 20; ++index1)
@@ -2334,7 +2334,7 @@ namespace FargowiltasSouls
                         player.HealEffect(damage / 10);
                     }
 
-                    if (Soulcheck.GetValue("Eternity Stacking"))
+                    if (SoulConfig.Instance.GetValue("Eternity Stacking"))
                     {
                         eternityDamage += .1f;
                     }
@@ -2519,7 +2519,7 @@ namespace FargowiltasSouls
             if (CorruptHeart && CorruptHeartCD <= 0)
             {
                 CorruptHeartCD = 60;
-                if (Soulcheck.GetValue("Tiny Eaters"))
+                if (SoulConfig.Instance.GetValue("Tiny Eaters"))
                 {
                     Main.PlaySound(3, (int)player.Center.X, (int)player.Center.Y, 1, 1f, 0.0f);
                     for (int index1 = 0; index1 < 20; ++index1)
@@ -2686,7 +2686,7 @@ namespace FargowiltasSouls
                 return false;
             }
 
-            if (SqueakyAcc && Soulcheck.GetValue("Squeaky Toy On Hit") && Main.rand.Next(10) == 0)
+            if (SqueakyAcc && SoulConfig.Instance.GetValue("Squeaky Toy On Hit") && Main.rand.Next(10) == 0)
             {
                 Squeak(player.Center);
                 damage = 1;
@@ -2743,7 +2743,7 @@ namespace FargowiltasSouls
             {
                 if (MoonChalice)
                 {
-                    if (Soulcheck.GetValue("Ancient Visions On Hit"))
+                    if (SoulConfig.Instance.GetValue("Ancient Visions On Hit"))
                     {
                         int dam = 50;
                         if (MasochistSoul)
@@ -2753,13 +2753,13 @@ namespace FargowiltasSouls
                                 mod.ProjectileType("AncientVision"), (int)(dam * player.minionDamage), 6f, player.whoAmI);
                     }
                 }
-                else if (CelestialRune && Soulcheck.GetValue("Ancient Visions On Hit"))
+                else if (CelestialRune && SoulConfig.Instance.GetValue("Ancient Visions On Hit"))
                 {
                     Projectile.NewProjectile(player.Center, new Vector2(0, -10), mod.ProjectileType("AncientVision"),
                         (int)(40 * player.minionDamage), 3f, player.whoAmI);
                 }
 
-                if (LihzahrdTreasureBox && Soulcheck.GetValue("Spiky Balls On Hit"))
+                if (LihzahrdTreasureBox && SoulConfig.Instance.GetValue("Spiky Balls On Hit"))
                 {
                     int dam = 60;
                     if (MasochistSoul)
@@ -2769,7 +2769,7 @@ namespace FargowiltasSouls
                             mod.ProjectileType("LihzahrdSpikyBallFriendly"), (int)(dam * player.meleeDamage), 2f, player.whoAmI);
                 }
 
-                if (WretchedPouch && Soulcheck.GetValue("Tentacles On Hit"))
+                if (WretchedPouch && SoulConfig.Instance.GetValue("Tentacles On Hit"))
                 {
                     Vector2 vel = new Vector2(9f, 0f).RotatedByRandom(2 * Math.PI);
                     int dam = 30;
@@ -2912,7 +2912,7 @@ namespace FargowiltasSouls
                 return;
             }
 
-            if (Soulcheck.GetValue(toggle) && player.FindBuffIndex(buff) == -1 && player.ownedProjectileCounts[proj] < 1)
+            if (SoulConfig.Instance.GetValue(toggle) && player.FindBuffIndex(buff) == -1 && player.ownedProjectileCounts[proj] < 1)
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, 0, 0f, player.whoAmI);
             }
@@ -3720,22 +3720,22 @@ namespace FargowiltasSouls
         {
             player.pickSpeed -= pickSpeed;
 
-            if (Soulcheck.GetValue("Spelunker Buff"))
+            if (SoulConfig.Instance.GetValue("Mining Spelunker Buff"))
             {
                 player.findTreasure = true;
             }
 
-            if (Soulcheck.GetValue("Hunter Buff"))
+            if (SoulConfig.Instance.GetValue("Mining Hunter Buff"))
             {
                 player.detectCreature = true;
             }
 
-            if (Soulcheck.GetValue("Dangersense Buff"))
+            if (SoulConfig.Instance.GetValue("Mining Dangersense Buff"))
             {
                 player.dangerSense = true;
             }
 
-            if (Soulcheck.GetValue("Shine Buff"))
+            if (SoulConfig.Instance.GetValue("Mining Shine Buff"))
             {
                 Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             }
@@ -4467,7 +4467,7 @@ namespace FargowiltasSouls
 
         public override void PostNurseHeal(NPC nurse, int health, bool removeDebuffs, int price)
         {
-            if (player.whoAmI == Main.myPlayer && GuttedHeart && Soulcheck.GetValue("Creeper Shield"))
+            if (player.whoAmI == Main.myPlayer && GuttedHeart && SoulConfig.Instance.GetValue("Creeper Shield"))
             {
                 for (int i = 0; i < 200; i++)
                 {
