@@ -80,7 +80,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                             for (int i = -2; i <= 2; i++)
                             {
                                 Projectile.NewProjectile(projectile.Center, vel.RotatedBy(Math.PI / 36 * i), mod.ProjectileType("PhantasmalBolt"),
-                                    projectile.damage / 3, projectile.knockBack, projectile.owner);
+                                    projectile.damage, projectile.knockBack, projectile.owner);
                             }
                         }
                     }
@@ -114,10 +114,10 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                         Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
 
                 }
-                else if (projectile.numHits % 4 == 0)
+                else if (projectile.numHits % 3 == 0)
                 {
                     Projectile.NewProjectile(target.position + new Vector2(Main.rand.Next(target.width), Main.rand.Next(target.height)),
-                        Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
+                        Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage / 2, projectile.knockBack * 3f, projectile.owner);
                 }
             }
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);

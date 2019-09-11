@@ -306,14 +306,14 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         if (Main.netMode != 1)
                             Projectile.NewProjectile(npc.Center, new Vector2(2, 0).RotatedBy(npc.ai[2]), mod.ProjectileType("MutantMark1"), npc.defDamage / 3, 0f, Main.myPlayer);
-                        npc.ai[1] = 2;
+                        npc.ai[1] = 1;
                         npc.ai[2] += npc.ai[3];
-                        if (npc.localAI[0]++ == 30 || npc.localAI[0] == 60)
+                        if (npc.localAI[0]++ == 40 || npc.localAI[0] == 80)
                         {
                             npc.netUpdate = true;
                             npc.ai[2] -= npc.ai[3] / 2;
                         }
-                        else if (npc.localAI[0] == 90)
+                        else if (npc.localAI[0] == 120)
                         {
                             npc.netUpdate = true;
                             npc.ai[0]--;
@@ -350,7 +350,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             npc.ai[0]--;
                             npc.ai[1] = 0;
                             npc.ai[2] = npc.DirectionFrom(player.Center).ToRotation();
-                            npc.ai[3] = (float)Math.PI / 15f;
+                            npc.ai[3] = (float)Math.PI / 20f;
                             Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
                             if (player.Center.X < npc.Center.X)
                                 npc.ai[3] *= -1;
