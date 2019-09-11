@@ -10,9 +10,9 @@ using FargowiltasSouls.Buffs.Masomode;
 
 namespace FargowiltasSouls.Projectiles.Masomode
 {
-    public class PhantasmalDeathrayML : ModProjectile
+    public class PhantasmalDeathrayMLSmall : ModProjectile
     {
-        private const float maxTime = 180;
+        private const float maxTime = 30;
 
         public override void SetStaticDefaults()
 		{
@@ -56,14 +56,14 @@ namespace FargowiltasSouls.Projectiles.Masomode
             {
                 Main.PlaySound(29, (int)projectile.position.X, (int)projectile.position.Y, 104, 1f, 0f);
             }
-            float num801 = 5f;
+            float num801 = 0.3f;
             projectile.localAI[0] += 1f;
             if (projectile.localAI[0] >= maxTime)
             {
                 projectile.Kill();
                 return;
             }
-            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 5f * num801;
+            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 0.6f * num801;
             if (projectile.scale > num801)
                 projectile.scale = num801;
             float num804 = projectile.velocity.ToRotation();
