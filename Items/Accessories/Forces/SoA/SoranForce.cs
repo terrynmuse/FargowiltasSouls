@@ -88,6 +88,7 @@ Summons several pets");
             recipe.AddIngredient(null, "CosmicCommanderEnchant");
             recipe.AddIngredient(null, "NebulousApprenticeEnchant");
             recipe.AddIngredient(null, "StellarPriestEnchant");
+            recipe.AddIngredient(null, "QuasarEnchant");
             recipe.AddIngredient(null, "FallenPrinceEnchant");
             recipe.AddIngredient(soa.ItemType("LunarRing"));
             recipe.AddIngredient(soa.ItemType("TrueMoonEdgedPandolarra"));
