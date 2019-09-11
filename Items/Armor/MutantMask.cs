@@ -69,7 +69,7 @@ Increases max number of minions and sentries by 10
         {
             player.setBonus = @"Phantasmal Spheres shoot deathrays at nearby enemies
 Abominationn's Visage fights alongside you
-Your attacks inflict God Eater and crits deal 2x damage
+Your attacks inflict God Eater
 You can survive fatal damage and recover with 100% life every two minutes
 100% increased damage and 20% increased weapon use speed";
 

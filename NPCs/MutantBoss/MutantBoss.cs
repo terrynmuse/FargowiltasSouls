@@ -43,7 +43,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.timeLeft = NPC.activeTime * 30;
             if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
             {
-                npc.lifeMax = 777000000;
+                npc.lifeMax = 377000000;
                 npc.damage *= 2;
                 npc.defense *= 10;
                 if (Fargowiltas.Instance.CalamityLoaded)
@@ -52,6 +52,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("GlacialState")] = true;
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("TemporalSadness")] = true;
                     npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("SilvaStun")] = true;
+                    npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("TimeSlow")] = true;
+                    npc.buffImmune[ModLoader.GetMod("CalamityMod").BuffType("PearlAura")] = true;
                 }
             }
             npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
@@ -65,7 +67,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.lifeMax = (int)(7700000 * bossLifeScale);
             if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
             {
-                npc.lifeMax = (int)(777000000 * bossLifeScale);
+                npc.lifeMax = (int)(377000000 * bossLifeScale);
                 npc.damage *= 2;
             }
         }
@@ -1408,6 +1410,45 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.TargetClosest();
                     }
                     break;
+
+                /*case 43: //spawn sword
+                    npc.velocity = Vector2.Zero;
+                    if (npc.ai[2] == 0 && Main.netMode != 1)
+                    {
+                        double angle = npc.position.X < player.position.X ? -Math.PI / 4 : Math.PI / 4;
+                        npc.ai[2] = (float)angle * -4f / 30;
+                        const int spacing = 80;
+                        Vector2 offset = Vector2.UnitY.RotatedBy(angle) * -spacing;
+                        for (int i = 0; i < 12; i++)
+                            Projectile.NewProjectile(npc.Center + offset * i, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, spacing * i);
+                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                    }
+                    if (++npc.ai[1] > 120)
+                    {
+                        targetPos = player.Center;
+                        targetPos.X += 300 * (npc.Center.X < targetPos.X ? -1 : 1);
+                        npc.velocity = (targetPos - npc.Center) / 30;
+
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.netUpdate = true;
+                    }
+                    break;
+
+                case 44: //swinging sword dash
+                    npc.ai[3] += npc.ai[2];
+                    if (++npc.ai[1] > 35)
+                    {
+                        npc.ai[0]++;
+                        npc.ai[1] = 0;
+                        npc.ai[2] = 0;
+                        npc.ai[3] = 0;
+                        npc.netUpdate = true;
+                    }
+                    break;*/
 
                 default:
                     npc.ai[0] = 11;

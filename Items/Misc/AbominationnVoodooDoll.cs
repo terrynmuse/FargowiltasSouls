@@ -10,8 +10,6 @@ namespace FargowiltasSouls.Items.Misc
 {
 	public class AbominationnVoodooDoll : ModItem
 	{
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Abominationn Voodoo Doll");
