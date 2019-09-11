@@ -672,8 +672,6 @@ and most of SoT not mentioned because meme tooltip length
             modPlayer.IBoots = !hideVisual;
             modPlayer.elysianFire = !hideVisual;
             modPlayer.cTracers = true;
-            //TERRARIA
-            mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
             //TYRANT
             mod.GetItem("CalamitySoul").UpdateAccessory(player, hideVisual);
         }

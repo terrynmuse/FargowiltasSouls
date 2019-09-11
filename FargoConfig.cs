@@ -37,6 +37,10 @@ namespace FargowiltasSouls
         public TerraMenu terrmenu = new TerraMenu();
         [Label("Calamity")]
         public CalamMenu calamenu = new CalamMenu();
+
+
+        [JsonIgnore]
+        public Dictionary<string, bool> thoriumToggles = new Dictionary<string, bool>();
         [Label("Thorium")]
         public ThorMenu thoriummenu = new ThorMenu();
         [Label("Masochist Mode")]
@@ -281,7 +285,210 @@ namespace FargowiltasSouls
         [SeparatePage]
         public class ThorMenu
         {
-            public bool loltesthor = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumAirWalkersConfig")]
+            public bool airWalkers = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumCrystalScorpionConfig")]
+            public bool crystalScorpion = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumYumasPendantConfig")]
+            public bool yumasPendant = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumHeadMirrorConfig")]
+            public bool headMirror = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumCelestialAuraConfig")]
+            public bool celestialAura = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumAscensionStatueConfig")]
+            public bool ascensionStatue = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumManaBootsConfig")]
+            public bool manaBoots = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumBronzeLightningConfig")]
+            public bool bronzeLightning = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumIllumiteMissileConfig")]
+            public bool illumiteMissile = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumJesterBellConfig")]
+            public bool jesterBell = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumBeholderEyeConfig")]
+            public bool beholderEye = true;
+
+            [Label("$Mods.FargowiltasSouls.ThoriumTerrariumSpiritsConfig")]
+            public bool terrariumSpirits = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumCrietzConfig")]
+            public bool crietz = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumYewCritsConfig")]
+            public bool yewCrits = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumCryoDamageConfig")]
+            public bool cryoDamage = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumWhiteDwarfConfig")]
+            public bool whiteDwarf = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideFoamConfig")]
+            public bool tideFoam = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumWhisperingTentaclesConfig")]
+            public bool whisperingTentacles = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumIcyBarrierConfig")]
+            public bool icyBarrier = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumPlagueFlaskConfig")]
+            public bool plagueFlask = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool tideGlobules = true;
+
+            [Label("$Mods.FargowiltasSouls.ThoriumTideDaggersConfig")]
+            public bool tideDaggers = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumFolvAuraConfig")]
+            public bool folvAura = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumFolvBoltsConfig")]
+            public bool folvBolts = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumVampireGlandConfig")]
+            public bool vampireGland = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumFleshDropsConfig")]
+            public bool fleshDrops = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumDragonFlamesConfig")]
+            public bool dragonFlames = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumHarbingerOverchargeConfig")]
+            public bool harbingerOvercharge = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumAssassinDamageConfig")]
+            public bool assassinDamage = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumpyromancerBurstsConfig")]
+            public bool pyromancerBursts = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumConduitShieldConfig")]
+            public bool conduitShield = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumIncandescentSparkConfig")]
+            public bool incandescentSpark = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumGreedyMagnetConfig")]
+            public bool greedyMagnet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumCyberStatesConfig")]
+            public bool cyberStates = true;
+
+
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool metronome = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool mixTape = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool lodestoneResist = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool biotechProbe = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool proofAvarice = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool slagStompers = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool beeBooties = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool ghastlyCarapace = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool spiritWisps = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool warlockWisps = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool dreadSpeed = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool devilMinion = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool cherubMinion = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool saplingMinion = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool omegaPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool ifoPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool bioFeederPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool blisterPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool wyvernPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool lanternPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool boxPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool spiritPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool goatPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool owlPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool jellyfishPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool mooglePet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool maidPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool slimePet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool glitterPet = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            public bool coinPet = true;
+
+            public void Change()
+            {
+                SoulConfig.Instance.thoriumToggles["Air Walkers"] = airWalkers;
+                SoulConfig.Instance.thoriumToggles["Crystal Scorpion"] = crystalScorpion;
+                SoulConfig.Instance.thoriumToggles["Yuma's Pendant"] = yumasPendant;
+                SoulConfig.Instance.thoriumToggles["Head Mirror"] = headMirror;
+                SoulConfig.Instance.thoriumToggles["Celestial Aura"] = celestialAura;
+                SoulConfig.Instance.thoriumToggles["Ascension Statuette"] = ascensionStatue;
+                SoulConfig.Instance.thoriumToggles["Mana-Charged Rocketeers"] = manaBoots;
+                SoulConfig.Instance.thoriumToggles["Bronze Lightning"] = bronzeLightning;
+                SoulConfig.Instance.thoriumToggles["Illumite Missile"] = illumiteMissile;
+                SoulConfig.Instance.thoriumToggles["Jester Bell"] = jesterBell;
+                SoulConfig.Instance.thoriumToggles["Eye of the Beholder"] = beholderEye;
+                                    
+                SoulConfig.Instance.thoriumToggles["Terrarium Spirits"] = terrariumSpirits;
+                SoulConfig.Instance.thoriumToggles["Crietz"] = crietz;
+                SoulConfig.Instance.thoriumToggles["Yew Wood Crits"] = yewCrits;
+                SoulConfig.Instance.thoriumToggles["Cryo-Magus Damage"] = cryoDamage;
+                SoulConfig.Instance.thoriumToggles["White Dwarf Flares"] = whiteDwarf;
+                SoulConfig.Instance.thoriumToggles["Tide Hunter Foam"] = tideFoam;
+                SoulConfig.Instance.thoriumToggles["Whispering Tentacles"] = whisperingTentacles;
+                SoulConfig.Instance.thoriumToggles["Icy Barrier"] = icyBarrier;
+                SoulConfig.Instance.thoriumToggles["Plague Lord's Flask"] = plagueFlask;
+                SoulConfig.Instance.thoriumToggles["Tide Turner Globules"] = tideGlobules;
+
+                SoulConfig.Instance.thoriumToggles["Tide Turner Daggers"] = tideDaggers;
+                SoulConfig.Instance.thoriumToggles["Folv's Aura"] = folvAura;
+                SoulConfig.Instance.thoriumToggles["Folv's Bolts"] = folvBolts;
+                SoulConfig.Instance.thoriumToggles["Vampire Gland"] = vampireGland;
+                SoulConfig.Instance.thoriumToggles["Flesh Drops"] = fleshDrops;
+                SoulConfig.Instance.thoriumToggles["Dragon Flames"] = dragonFlames;
+                SoulConfig.Instance.thoriumToggles["Harbinger Overcharge"] = harbingerOvercharge;
+                SoulConfig.Instance.thoriumToggles["Assassin Damage"] = assassinDamage;
+                SoulConfig.Instance.thoriumToggles["Pyromancer Bursts"] = pyromancerBursts;
+                SoulConfig.Instance.thoriumToggles["Conduit Shield"] = conduitShield;
+                SoulConfig.Instance.thoriumToggles["Incandescent Spark"] = incandescentSpark;
+                SoulConfig.Instance.thoriumToggles["Greedy Magnet"] = greedyMagnet;
+                SoulConfig.Instance.thoriumToggles["Cyber Punk States"] = cyberStates;
+                SoulConfig.Instance.thoriumToggles["Metronome"] = metronome;
+                SoulConfig.Instance.thoriumToggles["Mix Tape"] = mixTape;
+                SoulConfig.Instance.thoriumToggles["Lodestone Resistance"] = lodestoneResist;
+                SoulConfig.Instance.thoriumToggles["Biotech Probe"] = biotechProbe;
+                SoulConfig.Instance.thoriumToggles["Proof of Avarice"] = proofAvarice;
+                SoulConfig.Instance.thoriumToggles["Slag Stompers"] = slagStompers;
+                SoulConfig.Instance.thoriumToggles["Bee Booties"] = beeBooties;
+                SoulConfig.Instance.thoriumToggles["Ghastly Carapace"] = ghastlyCarapace;
+                SoulConfig.Instance.thoriumToggles["Spirit Trapper Wisps"] = spiritWisps;
+                SoulConfig.Instance.thoriumToggles["Warlock Wisps"] = warlockWisps;
+                SoulConfig.Instance.thoriumToggles["Dread Speed"] = dreadSpeed;
+
+                SoulConfig.Instance.thoriumToggles["Li'l Devil Minion"] = devilMinion;
+                SoulConfig.Instance.thoriumToggles["Li'l Cherub Minion"] = cherubMinion;
+                SoulConfig.Instance.thoriumToggles["Sapling Minion"] = saplingMinion;
+
+                SoulConfig.Instance.thoriumToggles["Omega Pet"] = omegaPet;
+                SoulConfig.Instance.thoriumToggles["I.F.O. Pet"] = ifoPet;
+                SoulConfig.Instance.thoriumToggles["Bio-Feeder Pet"] = bioFeederPet;
+                SoulConfig.Instance.thoriumToggles["Blister Pet"] = blisterPet;
+                SoulConfig.Instance.thoriumToggles["Wyvern Pet"] = wyvernPet;
+                SoulConfig.Instance.thoriumToggles["Inspiring Lantern Pet"] = lanternPet;
+                SoulConfig.Instance.thoriumToggles["Lock Box Pet"] = boxPet;
+                SoulConfig.Instance.thoriumToggles["Life Spirit Pet"] = spiritPet;
+                SoulConfig.Instance.thoriumToggles["Holy Goat Pet"] = goatPet;
+                SoulConfig.Instance.thoriumToggles["Owl Pet"] = owlPet;
+                SoulConfig.Instance.thoriumToggles["Jellyfish Pet"] = jellyfishPet;
+                SoulConfig.Instance.thoriumToggles["Moogle Pet"] = mooglePet;
+                SoulConfig.Instance.thoriumToggles["Maid Pet"] = maidPet;
+                SoulConfig.Instance.thoriumToggles["Pink Slime Pet"] = slimePet;
+                SoulConfig.Instance.thoriumToggles["Glitter Pet"] = glitterPet;
+                SoulConfig.Instance.thoriumToggles["Coin Bag Pet"] = coinPet;
+            }
         }
         [SeparatePage]
         public class MasoMenu
@@ -719,7 +926,9 @@ namespace FargowiltasSouls
 
 
 
-            //enchantToggles.Add("Boreal Snowballs", terrmenu.terenchmenu.borealsnow);
+            //thorium
+            thoriumToggles.Add("Air Walkers", thoriummenu.airWalkers);
+
 
         }
     public bool GetValue(string input)
@@ -728,7 +937,7 @@ namespace FargowiltasSouls
                 {
                 return false;
             }
-            bool tryget;
+
             bool oooout;
             if(enchantToggles.TryGetValue(input, out oooout))
             {

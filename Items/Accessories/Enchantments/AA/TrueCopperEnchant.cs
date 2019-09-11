@@ -13,6 +13,11 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.AA
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMody");
         public int timer;
 
+        public override bool Autoload(ref string name)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Copper Enchantment");

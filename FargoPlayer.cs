@@ -2126,7 +2126,7 @@ namespace FargowiltasSouls
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
                 //target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
 
-                if (crit && CyclonicFinCD <= 0 && proj.type != mod.ProjectileType("RazorbladeTyphoonFriendly") && Soulcheck.GetValue("Spectral Fishron"))
+                if (crit && CyclonicFinCD <= 0 && proj.type != mod.ProjectileType("RazorbladeTyphoonFriendly") && SoulConfig.Instance.GetValue("Spectral Fishron"))
                 {
                     CyclonicFinCD = 360;
 
