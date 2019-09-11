@@ -62,6 +62,7 @@ namespace FargowiltasSouls
                 FreezeKey = RegisterHotKey("Freeze Time", "P");
                 GoldKey = RegisterHotKey("Turn Gold", "O");
             }
+
             #region Toggles
             #region enchants
             ModTranslation text = CreateTranslation("WoodHeader");
@@ -176,6 +177,7 @@ namespace FargowiltasSouls
             "HalllowSConfig",
             "SilverConfig",
             "SpectreConfig",
+            "TikiConfig",
             //force of cosmos
             "MeteorConfig",
             "NebulaConfig",
@@ -209,6 +211,7 @@ namespace FargowiltasSouls
             "Hallowed Shield",
             "Silver Sword Familiar",
             "Spectre Orbs",
+            "Tiki Minions",
             //force of cosmos
             "Meteor Shower",
             "Nebula Boosters",
@@ -242,6 +245,7 @@ namespace FargowiltasSouls
             "968564",
             "b4b4cc",
             "accdfc",
+            "56A52B",
             //force of cosmos
             "5f4752",
             "fe7ee5",
@@ -275,6 +279,7 @@ namespace FargowiltasSouls
             "HallowEnchant",
             "SilverEnchant",
             "SpectreEnchant",
+            "TikiEnchant",
             //force of cosmos
             "MeteorEnchant",
             "NebulaEnchant",

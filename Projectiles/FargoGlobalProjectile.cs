@@ -154,7 +154,7 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
-                    if (modPlayer.TungstenEnchant && projectile.friendly && Soulcheck.GetValue("Tungsten Effect"))
+                    if (modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect"))
                     {
                         projectile.position = projectile.Center;
                         projectile.scale *= 2f;
@@ -168,7 +168,7 @@ namespace FargowiltasSouls.Projectiles
                     {
                         tikiMinion = true;
 
-                        if (projectile.type == mod.ProjectileType("EaterBody") || projectile.type == ProjectileID.StardustDragon2)
+                        if (projectile.type == mod.ProjectileType("EaterBody") || projectile.type == ProjectileID.StardustDragon2 || projectile.type == ProjectileID.StardustDragon3)
                         {
                             for (int i = 0; i < 1000; i++)
                             {
@@ -231,9 +231,18 @@ namespace FargowiltasSouls.Projectiles
                     }
                 }
 
+                if (tungstenProjectile && (!modPlayer.TungstenEnchant || !SoulConfig.Instance.GetValue("Tungsten Effect")))
+                {
+                    projectile.position = projectile.Center;
+                    projectile.scale /= 2f;
+                    projectile.width /= 2;
+                    projectile.height /= 2;
+                    projectile.Center = projectile.position;
+                    tungstenProjectile = false;
+                }
+
                 if (tikiMinion)
                 {
-                    
                     projectile.alpha = 120;
 
                     //dust

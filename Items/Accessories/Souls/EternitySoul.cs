@@ -108,12 +108,12 @@ Efectos de pociones de Brillo, Espeleólogo, Cazador, y Sentido del peligro; Efe
             if (thorium != null)
             {
                 tooltip += @"Effects of Phylactery, Crystal Scorpion, and Yuma's Pendant
-                Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
-                Effects of Support Sash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
-                Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw
-                Effects of Ocean's Retaliation and Cape of the Survivor
-                Effects of Blast Shield and Terrarium Defender
-                Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
+Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
+Effects of Support Sash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
+Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw
+Effects of Ocean's Retaliation and Cape of the Survivor
+Effects of Blast Shield and Terrarium Defender
+Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
 
                 tooltip_ch += @"拥有魂匣, 魔晶蝎和云码垂饰的效果
                 拥有投手大师指导:卷三, 美人鱼水壶和亡者眼罩的效果
@@ -672,8 +672,6 @@ and most of SoT not mentioned because meme tooltip length
             modPlayer.IBoots = !hideVisual;
             modPlayer.elysianFire = !hideVisual;
             modPlayer.cTracers = true;
-            //TERRARIA
-            mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
             //TYRANT
             mod.GetItem("CalamitySoul").UpdateAccessory(player, hideVisual);
         }

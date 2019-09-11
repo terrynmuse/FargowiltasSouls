@@ -50,6 +50,7 @@ Summons a friendly Cultist and plant to fight at your side");
             player.buffImmune[BuffID.Venom] = true;
             player.buffImmune[mod.BuffType("IvyVenom")] = true;
             player.buffImmune[mod.BuffType("Swarming")] = true;
+
             if (SoulConfig.Instance.GetValue("Plantera Minion"))
                 player.AddBuff(mod.BuffType("PlanterasChild"), 2);
 
