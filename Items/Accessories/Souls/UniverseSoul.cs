@@ -115,7 +115,7 @@ Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
             //use speed, velocity, debuffs, crit dmg, mana up, double knockback
             modPlayer.UniverseEffect = true;
             
-            if (Soulcheck.GetValue("Universe Attack Speed"))
+            if (SoulConfig.Instance.GetValue("Universe Attack Speed"))
             {
                 modPlayer.AttackSpeed *= 1.5f;
             }
@@ -127,7 +127,7 @@ Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
             player.counterWeight = 556 + Main.rand.Next(6);
             player.yoyoGlove = true;
             player.yoyoString = true;
-            if (Soulcheck.GetValue("Sniper Scope"))
+            if (SoulConfig.Instance.GetValue("Sniper Scope"))
             {
                 player.scope = true;
             }

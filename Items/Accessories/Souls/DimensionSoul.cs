@@ -144,18 +144,18 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
             //charm of myths
             player.pStone = true;
             //bee cloak, sweet heart necklace, star veil
-            if (Soulcheck.GetValue("Stars On Hit"))
+            if (SoulConfig.Instance.GetValue("Stars On Hit"))
             {
                 player.starCloak = true;
             }
-            if (Soulcheck.GetValue("Bees On Hit"))
+            if (SoulConfig.Instance.GetValue("Bees On Hit"))
             {
                 player.bee = true;
             }
             player.panic = true;
             player.longInvince = true;
             //spore sac
-            if (Soulcheck.GetValue("Spore Sac"))
+            if (SoulConfig.Instance.GetValue("Spore Sac"))
             {
                 player.SporeSac();
                 player.sporeSac = true;
@@ -178,7 +178,7 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
 
             //SUPERSONIC
             //frost spark plus super speed
-            if (Soulcheck.GetValue("Supersonic Speed Boosts") && !player.GetModPlayer<FargoPlayer>().noSupersonic)
+            if (SoulConfig.Instance.GetValue("Supersonic Speed Boosts") && !player.GetModPlayer<FargoPlayer>().noSupersonic)
             {
                 player.maxRunSpeed += 15f;
                 player.runAcceleration += .25f;
@@ -248,11 +248,11 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
             //pick speed
             player.pickSpeed -= 0.75f;
             //mining helmet
-            if (Soulcheck.GetValue("Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
+            if (SoulConfig.Instance.GetValue("Mining Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
             player.autoActuator = true;
             //builder mode
-            if (Soulcheck.GetValue("Builder Mode"))
+            if (SoulConfig.Instance.GetValue("Builder Mode"))
                 modPlayer.BuilderMode = true;
             //cell phone
             player.accWatch = 3;
@@ -461,7 +461,7 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
         {
-            speed = Soulcheck.GetValue("Dimension Speed Boosts") ? 25f : 15f;
+            speed = SoulConfig.Instance.GetValue("Dimension Speed Boosts") ? 25f : 15f;
             acceleration *= 3.5f;
         }
 

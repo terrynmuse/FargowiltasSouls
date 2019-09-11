@@ -74,7 +74,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             player.rangedDamage += .3f;
             player.rangedCrit += 15;
 
-            if (Soulcheck.GetValue("Sniper Scope"))
+            if (SoulConfig.Instance.GetValue("Sniper Scope"))
             {
                 player.scope = true;
             }

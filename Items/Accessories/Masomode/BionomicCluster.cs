@@ -54,18 +54,18 @@ Summons a friendly rainbow slime");
 
             //concentrated rainbow matter
             player.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
-            if (Soulcheck.GetValue("Rainbow Slime Minion"))
+            if (SoulConfig.Instance.GetValue("Rainbow Slime Minion"))
                 player.AddBuff(mod.BuffType("RainbowSlime"), 2);
 
             //dragon fang
             player.buffImmune[mod.BuffType("ClippedWings")] = true;
             player.buffImmune[mod.BuffType("Crippled")] = true;
-            if (Soulcheck.GetValue("Inflict Clipped Wings"))
+            if (SoulConfig.Instance.GetValue("Inflict Clipped Wings"))
                 fargoPlayer.DragonFang = true;
 
             //frigid gemstone
             player.buffImmune[BuffID.Frostburn] = true;
-            if (Soulcheck.GetValue("Frostfireballs"))
+            if (SoulConfig.Instance.GetValue("Frostfireballs"))
             {
                 fargoPlayer.FrigidGemstone = true;
                 if (fargoPlayer.FrigidGemstoneCD > 0)
@@ -106,7 +106,7 @@ Summons a friendly rainbow slime");
             player.buffImmune[BuffID.Lovestruck] = true;
             player.buffImmune[mod.BuffType("Lovestruck")] = true;
             player.buffImmune[BuffID.Stinky] = true;
-            if (Soulcheck.GetValue("Attacks Spawn Hearts"))
+            if (SoulConfig.Instance.GetValue("Attacks Spawn Hearts"))
             {
                 fargoPlayer.NymphsPerfume = true;
                 if (fargoPlayer.NymphsPerfumeCD > 0)

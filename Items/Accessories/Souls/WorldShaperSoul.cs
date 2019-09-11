@@ -101,7 +101,7 @@ Summons a pet Magic Lantern");
             //presserator
             player.autoActuator = true;
 
-            if (Soulcheck.GetValue("Builder Mode"))
+            if (SoulConfig.Instance.GetValue("Builder Mode"))
                 modPlayer.BuilderMode = true;
 
             //cell phone

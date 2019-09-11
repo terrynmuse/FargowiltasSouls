@@ -224,7 +224,7 @@ Every globule increases defense and makes your next attack a mini-crit
             }  
             //EoC Shield
             player.dash = 2;
-            if (Soulcheck.GetValue("Iron Shield"))
+            if (SoulConfig.Instance.GetValue("Iron Shield"))
             {
                 //iron shield raise
                 modPlayer.IronEffect();

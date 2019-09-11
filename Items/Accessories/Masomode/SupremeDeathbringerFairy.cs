@@ -50,7 +50,7 @@ Summons 2 Skeletron arms to whack enemies");
 
             //slimy shield
             player.buffImmune[BuffID.Slimed] = true;
-            if (Soulcheck.GetValue("Slimy Shield Effects"))
+            if (SoulConfig.Instance.GetValue("Slimy Shield Effects"))
             {
                 player.maxFallSpeed *= 2f;
                 player.GetModPlayer<FargoPlayer>().SlimyShield = true;
@@ -77,7 +77,7 @@ Summons 2 Skeletron arms to whack enemies");
             //necromantic brew
             player.buffImmune[mod.BuffType("Lethargic")] = true;
             fargoPlayer.NecromanticBrew = true;
-            if (Soulcheck.GetValue("Skeletron Arms Minion"))
+            if (SoulConfig.Instance.GetValue("Skeletron Arms Minion"))
                 player.AddBuff(mod.BuffType("SkeletronArms"), 2);
         }
 
