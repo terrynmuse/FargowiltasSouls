@@ -1122,7 +1122,7 @@ namespace FargowiltasSouls
 
         public override void PostUpdateMiscEffects()
         {
-            if (TikiEnchant)
+            if (TikiEnchant && SoulConfig.Instance.GetValue("Tiki Minions"))
             {
                 actualMinions = player.maxMinions + 1; //the free one is not counted
                 player.maxMinions = 100;
@@ -2563,7 +2563,7 @@ namespace FargowiltasSouls
                     target.AddBuff(mod.BuffType("LeadPoison"), 120);
             }
 
-            if (GroundStick && Main.rand.Next(10) == 0 && Soulcheck.GetValue("Inflict Lightning Rod"))
+            if (GroundStick && Main.rand.Next(10) == 0 && SoulConfig.Instance.GetValue("Inflict Lightning Rod"))
                 target.AddBuff(mod.BuffType("LightningRod"), 300);
 
             if (GoldEnchant)

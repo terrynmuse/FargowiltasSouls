@@ -146,6 +146,8 @@ namespace FargowiltasSouls
                 public bool silverSword = true;
                 [Label("$Mods.FargowiltasSouls.SpectreConfig")]
                 public bool spectreOrb = true;
+                [Label("$Mods.FargowiltasSouls.TikiConfig")]
+                public bool tikiMinion = true;
                 //force of cosmos
                 [Header("$Mods.FargowiltasSouls.CosmoHeader")]
                 [Label("$Mods.FargowiltasSouls.MeteorConfig")]
@@ -204,6 +206,7 @@ namespace FargowiltasSouls
                     SoulConfig.Instance.enchantToggles["Hallowed Enchanted Sword Familiar"] = hallowSword;
                     SoulConfig.Instance.enchantToggles["Hallowed Shield"] = hallowShield;
                     SoulConfig.Instance.enchantToggles["Silver Sword Familiar"] = silverSword;
+                    SoulConfig.Instance.enchantToggles["Tiki Minions"] = tikiMinion;
                     SoulConfig.Instance.enchantToggles["Spectre Orbs"] = spectreOrb;
                     //force of cosmos
                     SoulConfig.Instance.enchantToggles["Meteor Shower"] = meteorShow;
@@ -550,6 +553,10 @@ namespace FargowiltasSouls
         {
 
             terrmenu.terenchmenu.Change();
+            terrmenu.soulmenu.Change();
+            petmenu.Change();
+            masomenu.Change();
+            masomenu.wallet.Change();
         }
         public override void OnLoaded()
         {
@@ -598,6 +605,7 @@ namespace FargowiltasSouls
             enchantToggles.Add("Hallowed Enchanted Sword Familiar", terrmenu.terenchmenu.hallowSword);
             enchantToggles.Add("Hallowed Shield", terrmenu.terenchmenu.hallowShield);
             enchantToggles.Add("Silver Sword Familiar", terrmenu.terenchmenu.silverSword);
+            enchantToggles.Add("Tiki Minions", terrmenu.terenchmenu.tikiMinion);
             enchantToggles.Add("Spectre Orbs", terrmenu.terenchmenu.spectreOrb);
             //force of cosmos
             enchantToggles.Add("Meteor Shower", terrmenu.terenchmenu.meteorShow);
@@ -738,10 +746,18 @@ namespace FargowiltasSouls
             {
                 return oooout;
             }
-            if (masoTogDict.TryGetValue(input, out oooout))
+            /*if (masoTogDict.TryGetValue(input, out oooout))
             {
                 return oooout;
+            }*/
+            if (masoTogDict.ContainsKey(input))
+            {
+                return masoTogDict[input];
             }
+
+            
+
+
             return false;
         }
     }
