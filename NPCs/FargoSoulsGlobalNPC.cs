@@ -3495,20 +3495,21 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
 
-                            if (--Counter2 < 0)
+                            /*if (--Counter2 < 0)
                             {
                                 Counter2 = 600;
                                 Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
                                 if (Main.netMode != 1 && npc.HasPlayerTarget)
                                 {
-                                    npc.ai[3] = (Main.player[npc.target].Center - npc.Center).ToRotation();
-                                    npc.netUpdate = true;
-                                    Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
                                     for (int i = 0; i < 3; i++)
                                     {
                                         NPC bodyPart = Main.npc[(int)npc.localAI[i]];
                                         if (bodyPart.active)
+                                        {
+                                            bodyPart.localAI[0] = (Main.player[npc.target].Center - bodyPart.Center).ToRotation();
+                                            Vector2 speed = Vector2.UnitX.RotatedBy(bodyPart.localAI[0]);
                                             Projectile.NewProjectile(bodyPart.Center, speed, mod.ProjectileType("PhantasmalDeathrayMLSmall"), 0, 0f, Main.myPlayer, 0f, bodyPart.whoAmI);
+                                        }
                                     }
                                 }
                             }
@@ -3516,16 +3517,18 @@ namespace FargowiltasSouls.NPCs
                             {
                                 if (Main.netMode != 1)
                                 {
-                                    Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
-                                    int damage = (int)(75 * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                                     for (int i = 0; i < 3; i++)
                                     {
                                         NPC bodyPart = Main.npc[(int)npc.localAI[i]];
                                         if (bodyPart.active)
+                                        {
+                                            Vector2 speed = Vector2.UnitX.RotatedBy(bodyPart.localAI[0]);
+                                            int damage = (int)(75 * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                                             Projectile.NewProjectile(bodyPart.Center, speed, mod.ProjectileType("PhantasmalDeathrayML"), damage, 0f, Main.myPlayer, 0f, bodyPart.whoAmI);
+                                        }
                                     }
                                 }
-                            }
+                            }*/
                         }
 
                         if (npc.ai[0] == 2f) //moon lord is dead
