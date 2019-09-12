@@ -56,7 +56,7 @@ Effects of The Community");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Xeroc Effects"))
+            if (SoulConfig.Instance.GetValue("Xeroc Effects"))
             {
                
                 modPlayer.xerocSet = true;

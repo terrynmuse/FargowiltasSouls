@@ -85,7 +85,7 @@ Effects of the Core of the Blood God and Affliction");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Bloodflare Effects"))
+            if (SoulConfig.Instance.GetValue("Bloodflare Effects"))
             {
                 modPlayer.bloodflareSet = true;
                 modPlayer.bloodflareMelee = true;
@@ -94,7 +94,7 @@ Effects of the Core of the Blood God and Affliction");
                 modPlayer.bloodflareThrowing = true;
             }
            
-            if (Soulcheck.GetValue("Polterghast Mines"))
+            if (SoulConfig.Instance.GetValue("Polterghast Mines"))
             {
                 modPlayer.bloodflareSummon = true;
             }

@@ -344,113 +344,6 @@ namespace FargowiltasSouls
 
         public override void OnEnterWorld(Player player)
         {
-            foreach (KeyValuePair<string, Color> buff in Soulcheck.toggles)
-            {
-                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                {
-                    if (disabledSouls.Contains(buff.Key))
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = false;
-                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                    }
-                    else
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = true;
-                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                    }
-                }
-            }
-
-            foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesPets)
-            {
-                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                {
-                    if (disabledSouls.Contains(buff.Key))
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = false;
-                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                    }
-                    else
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = true;
-                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                    }
-                }
-            }
-
-            foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesReforges)
-            {
-                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                {
-                    if (disabledSouls.Contains(buff.Key))
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = false;
-                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                    }
-                    else
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = true;
-                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                    }
-                }
-                else
-                {
-                    if (disabledSouls.Contains(buff.Key))
-                    {
-                        Soulcheck.ToggleDict.Add(buff.Key, false);
-                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                    }
-                    else
-                    {
-                        Soulcheck.ToggleDict.Add(buff.Key, true);
-                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                    }
-                }
-            }
-
-            if (Fargowiltas.Instance.ThoriumLoaded)
-            {
-                foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesThorium)
-                {
-                    if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                    {
-                        if (disabledSouls.Contains(buff.Key))
-                        {
-                            Soulcheck.ToggleDict[buff.Key] = false;
-                            Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                        }
-                        else
-                        {
-                            Soulcheck.ToggleDict[buff.Key] = true;
-                            Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                        }
-                    }
-                }
-            }
-
-            if (Fargowiltas.Instance.CalamityLoaded)
-            {
-                foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesCalamity)
-                {
-                    if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                    {
-                        if (disabledSouls.Contains(buff.Key))
-                        {
-                            Soulcheck.ToggleDict[buff.Key] = false;
-                            Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                        }
-                        else
-                        {
-                            Soulcheck.ToggleDict[buff.Key] = true;
-                            Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                        }
-                    }
-                }
-            }
-
-            Soulcheck.owner = player.name;
-            Soulcheck.PlaceBoxes();
-
             disabledSouls.Clear();
 
             for (int i = 0; i < 200; i++)
@@ -479,18 +372,6 @@ namespace FargowiltasSouls
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (Fargowiltas.CheckListKey.JustPressed)
-            {
-                if (Soulcheck.Visible == false)
-                {
-                    Soulcheck.Visible = true;
-                }
-                else
-                {
-                    Soulcheck.Visible = false;
-                }
-            }
-
             if(Fargowiltas.FreezeKey.JustPressed && StardustEnchant && FreezeCD == 0)
             {
                 FreezeTime = true;

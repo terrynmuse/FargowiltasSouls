@@ -87,7 +87,7 @@ Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Silva Effects"))
+            if (SoulConfig.Instance.GetValue("Silva Effects"))
             {
                 modPlayer.silvaSet = true;
                 //melee
@@ -100,7 +100,7 @@ Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
                 modPlayer.silvaThrowing = true;
             }
             
-            if (Soulcheck.GetValue("Silva Crystal Minion"))
+            if (SoulConfig.Instance.GetValue("Silva Crystal Minion"))
             {
                 //summon
                 modPlayer.silvaSummon = true;
@@ -119,7 +119,7 @@ Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
 
             //THE AMALGAM
             modPlayer.aBrain = true;
-            if (Soulcheck.GetValue("Fungal Clump Minion"))
+            if (SoulConfig.Instance.GetValue("Fungal Clump Minion"))
             {
                 modPlayer.fungalClump = true;
                 if (player.whoAmI == Main.myPlayer)
@@ -135,13 +135,13 @@ Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
                 }
             }
 
-            if (Soulcheck.GetValue("Godly Soul Artifact"))
+            if (SoulConfig.Instance.GetValue("Godly Soul Artifact"))
             {
                 //godly soul artifact
                 modPlayer.gArtifact = true;
             }
 
-            if (Soulcheck.GetValue("Yharim's Gift"))
+            if (SoulConfig.Instance.GetValue("Yharim's Gift"))
             {
                 //yharims gift
                 if (player.velocity.X > 0.0 || player.velocity.Y > 0.0 || player.velocity.X < -0.1 || player.velocity.Y < -0.1)

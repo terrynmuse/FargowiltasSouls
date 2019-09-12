@@ -58,7 +58,7 @@ Effects of Permafrost's Concoction and Regenerator");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Daedalus Effects"))
+            if (SoulConfig.Instance.GetValue("Daedalus Effects"))
             {
                 modPlayer.daedalusReflect = true;
                 modPlayer.daedalusShard = true;
@@ -67,7 +67,7 @@ Effects of Permafrost's Concoction and Regenerator");
                 modPlayer.daedalusSplit = true;
             }
             
-            if (Soulcheck.GetValue("Permafrost's Concoction"))
+            if (SoulConfig.Instance.GetValue("Permafrost's Concoction"))
             {
                 //permafrost concoction
                 modPlayer.permafrostsConcoction = true;
@@ -75,7 +75,7 @@ Effects of Permafrost's Concoction and Regenerator");
             
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            if (Soulcheck.GetValue("Daedalus Crystal Minion") && player.whoAmI == Main.myPlayer)
+            if (SoulConfig.Instance.GetValue("Daedalus Crystal Minion") && player.whoAmI == Main.myPlayer)
             {
                 if (player.FindBuffIndex(calamity.BuffType("DaedalusCrystal")) == -1)
                 {
@@ -88,7 +88,7 @@ Effects of Permafrost's Concoction and Regenerator");
             }
 
             //regenerator
-            if (Soulcheck.GetValue("Regenator"))
+            if (SoulConfig.Instance.GetValue("Regenator"))
                 modPlayer.regenator = true;
 
             //pet soon tm

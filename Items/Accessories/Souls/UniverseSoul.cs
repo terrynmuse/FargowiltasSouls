@@ -249,7 +249,7 @@ Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
             player.meleeSpeed -= .15f;
             player.meleeCrit -= 5;
 
-            if (Soulcheck.GetValue("Elemental Quiver"))
+            if (SoulConfig.Instance.GetValue("Elemental Quiver"))
             {
                 //range
                 modPlayer.eQuiver = true;

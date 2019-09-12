@@ -48,7 +48,7 @@ Effects of the Astral Arcanum and Hide of Astrum Deus");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Astral Stars"))
+            if (SoulConfig.Instance.GetValue("Astral Stars"))
             {
                 modPlayer.astralStarRain = true;
             }

@@ -76,7 +76,7 @@ This makes them do 1.5 times more damage but they also take five times as much d
             //set bonus
             modPlayer.dsSetBonus = true;
 
-            if (Soulcheck.GetValue("Red Devil Minion"))
+            if (SoulConfig.Instance.GetValue("Red Devil Minion"))
             {
                 modPlayer.redDevil = true;
                 if (player.whoAmI == Main.myPlayer)
