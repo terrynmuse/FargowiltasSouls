@@ -117,7 +117,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
                 else if (projectile.numHits % 3 == 0)
                 {
                     Projectile.NewProjectile(target.position + new Vector2(Main.rand.Next(target.width), Main.rand.Next(target.height)),
-                        Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage / 2, projectile.knockBack * 3f, projectile.owner);
+                        Vector2.Zero, mod.ProjectileType("PhantasmalBlast"), projectile.damage, projectile.knockBack * 3f, projectile.owner);
                 }
             }
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
