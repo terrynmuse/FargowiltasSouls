@@ -357,65 +357,65 @@ namespace FargowiltasSouls
             public bool cyberStates = true;
 
 
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumMetronomeConfig")]
             public bool metronome = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumMixTapeConfig")]
             public bool mixTape = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumLodestoneConfig")]
             public bool lodestoneResist = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumBiotechProbeConfig")]
             public bool biotechProbe = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumProofAvariceConfig")]
             public bool proofAvarice = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumSlagStompersConfig")]
             public bool slagStompers = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumBeeBootiesConfig")]
             public bool beeBooties = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumGhastlyCarapaceConfig")]
             public bool ghastlyCarapace = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumSpiritWispsConfig")]
             public bool spiritWisps = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumWarlockWispsConfig")]
             public bool warlockWisps = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumDreadConfig")]
             public bool dreadSpeed = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumDevilMinionConfig")]
             public bool devilMinion = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumCherubMinionConfig")]
             public bool cherubMinion = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumSaplingMinionConfig")]
             public bool saplingMinion = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumOmegaPetConfig")]
             public bool omegaPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumIFOPetConfig")]
             public bool ifoPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumBioFeederPetConfig")]
             public bool bioFeederPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumBlisterPetConfig")]
             public bool blisterPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumWyvernPetConfig")]
             public bool wyvernPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumLanternPetConfig")]
             public bool lanternPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumBoxPetConfig")]
             public bool boxPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumSpiritPetConfig")]
             public bool spiritPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumGoatPetConfig")]
             public bool goatPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumOwlPetConfig")]
             public bool owlPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumJellyfishPetConfig")]
             public bool jellyfishPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumMooglePetConfig")]
             public bool mooglePet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumMaidPetConfig")]
             public bool maidPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumSlimePetConfig")]
             public bool slimePet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumGlitterPetConfig")]
             public bool glitterPet = true;
-            [Label("$Mods.FargowiltasSouls.ThoriumTideGlobulesConfig")]
+            [Label("$Mods.FargowiltasSouls.ThoriumCoinPetConfig")]
             public bool coinPet = true;
 
             public void Change()
@@ -928,8 +928,73 @@ namespace FargowiltasSouls
 
             //thorium
             thoriumToggles.Add("Air Walkers", thoriummenu.airWalkers);
-
-
+            thoriumToggles.Add("Crystal Scorpion", thoriummenu.crystalScorpion);
+            thoriumToggles.Add("Yuma's Pendant", thoriummenu.yumasPendant);
+            thoriumToggles.Add("Head Mirror", thoriummenu.headMirror);
+            thoriumToggles.Add("Celestial Aura", thoriummenu.celestialAura);
+            thoriumToggles.Add("Ascension Statuette", thoriummenu.ascensionSta
+            thoriumToggles.Add("Mana-Charged Rocketeers", thoriummenu.manaBoot);
+            thoriumToggles.Add("Bronze Lightning", thoriummenu.bronzeLightning);
+            thoriumToggles.Add("Illumite Missile", thoriummenu.illumiteMissile);
+            thoriumToggles.Add("Jester Bell", thoriummenu.jesterBell);
+            thoriumToggles.Add("Eye of the Beholder", thoriummenu.beholderEye);
+            
+            thoriumToggles.Add("Terrarium Spirits", thoriummenu.terrariumSpirits);
+            thoriumToggles.Add("Crietz", thoriummenu.crietz);
+            thoriumToggles.Add("Yew Wood Crits", thoriummenu.yewCrits);
+            thoriumToggles.Add("Cryo-Magus Damage", thoriummenu.cryoDamage);
+            thoriumToggles.Add("White Dwarf Flares", thoriummenu.whiteDwarf);
+            thoriumToggles.Add("Tide Hunter Foam", thoriummenu.tideFoam);
+            thoriumToggles.Add("Whispering Tentacles", thoriummenu.whisperingTentacles);
+            thoriumToggles.Add("Icy Barrier", thoriummenu.icyBarrier);
+            thoriumToggles.Add("Plague Lord's Flask", thoriummenu.plagueFlask);
+            thoriumToggles.Add("Tide Turner Globules", thoriummenu.tideGlobules);
+            thoriumToggles.Add("Tide Turner Daggers", thoriummenu.tideDaggers);
+            thoriumToggles.Add("Folv's Aura", thoriummenu.folvAura);
+            thoriumToggles.Add("Folv's Bolts", thoriummenu.folvBolts);
+            thoriumToggles.Add("Vampire Gland", thoriummenu.vampireGland);
+            thoriumToggles.Add("Flesh Drops", thoriummenu.fleshDrops);
+            thoriumToggles.Add("Dragon Flames", thoriummenu.dragonFlames);
+            thoriumToggles.Add("Harbinger Overcharge", thoriummenu.harbingerOvercharge);
+            
+            thoriumToggles.Add("Assassin Damage", thoriummenu.assassinDamage);
+            thoriumToggles.Add("Pyromancer Bursts", thoriummenu.pyromancerBursts);
+            thoriumToggles.Add("Conduit Shield"] = thoriummenu.conduitShield);
+            thoriumToggles.Add("Incandescent Spark", thoriummenu.incandescentSpark;
+            thoriumToggles.Add("Greedy Magnet", thoriummenu.greedyMagnet);
+            thoriumToggles.Add("Cyber Punk States", thoriummenu.cyberStates);
+            thoriumToggles.Add("Metronome", thoriummenu.metronome);
+            thoriumToggles.Add("Mix Tape", thoriummenu.mixTape);
+            thoriumToggles.Add("Lodestone Resistance", thoriummenu.lodestoneResist);
+            
+            thoriumToggles.Add("Biotech Probe", thoriummenu.biotechProbe);
+            thoriumToggles.Add("Proof of Avarice", thoriummenu.proofAvarice);
+            thoriumToggles.Add("Slag Stompers", thoriummenu.slagStompers);
+            thoriumToggles.Add("Bee Booties", thoriummenu.beeBooties);
+            thoriumToggles.Add("Ghastly Carapace", thoriummenu.ghastlyCarapace);
+            thoriumToggles.Add("Spirit Trapper Wisps", thoriummenu.spiritWisps);
+            
+            thoriumToggles.Add("Warlock Wisps", thoriummenu.warlockWisps);
+            thoriumToggles.Add("Dread Speed", thoriummenu.dreadSpeed);
+            thoriumToggles.Add("Li'l Devil Minion", thoriummenu.devilMinion);
+            thoriumToggles.Add("Li'l Cherub Minion", thoriummenu.cherubMinion);
+            thoriumToggles.Add("Sapling Minion", thoriummenu.saplingMinion);
+            thoriumToggles.Add("Omega Pet", thoriummenu.omegaPet);
+            thoriumToggles.Add("I.F.O. Pet", thoriummenu.ifoPet);
+            thoriumToggles.Add("Bio-Feeder Pet", thoriummenu.bioFeederPet);
+            thoriumToggles.Add("Blister Pet", thoriummenublisterPet);
+            thoriumToggles.Add("Wyvern Pet", thoriummenu.wyvernPet);
+            thoriumToggles.Add("Inspiring Lantern Pet", thoriummenu.lanternPet;
+            thoriumToggles.Add("Lock Box Pet", thoriummenu.boxPet);
+            thoriumToggles.Add("Life Spirit Pet", thoriummenu.spiritPet);
+            thoriumToggles.Add("Holy Goat Pet", thoriummenu.goatPet);
+            thoriumToggles.Add("Owl Pet", thoriummenu.owlPet);
+            thoriumToggles.Add("Jellyfish Pet", thoriummenu.jellyfishPet);
+            thoriumToggles.Add("Moogle Pet", thoriummenu.mooglePet);
+            thoriumToggles.Add("Maid Pet", thoriummenu.maidPet);
+            thoriumToggles.Add("Pink Slime Pet", thoriummenu.slimePet);
+            thoriumToggles.Add("Glitter Pet", thoriummenu.glitterPet);
+            thoriumToggles.Add("Coin Bag Pet", thoriummenu.coinPet);
         }
     public bool GetValue(string input)
         {
