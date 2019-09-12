@@ -29,6 +29,7 @@ namespace FargowiltasSouls.Buffs.Masomode
             npc.defense = 0;
             npc.defDefense = 0;
             npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().GodEater = true;
+            npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().HellFire = true;
         }
     }
 }

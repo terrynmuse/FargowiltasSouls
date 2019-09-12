@@ -123,9 +123,9 @@ namespace FargowiltasSouls
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
                 SOALoaded = ModLoader.GetMod("SacredTools") != null;
                 MasomodeEX = ModLoader.GetMod("MasomodeEX") != null;
-
+                
                 DebuffIDs = new List<int> { 20, 22, 23, 24, 36, 39, 44, 46, 47, 67, 68, 69, 70, 80,
-                    88, 94, 103, 137, 144, 145, 148, 149, 153, 156, 160, 163, 164, 195, 196, 197, 199 };
+                    88, 94, 103, 137, 144, 145, 148, 149, 156, 160, 163, 164, 195, 196, 197, 199 };
                 DebuffIDs.Add(BuffType("Antisocial"));
                 DebuffIDs.Add(BuffType("Atrophied"));
                 DebuffIDs.Add(BuffType("Berserked"));
@@ -142,10 +142,12 @@ namespace FargowiltasSouls
                 DebuffIDs.Add(BuffType("Guilty"));
                 DebuffIDs.Add(BuffType("Hexed"));
                 DebuffIDs.Add(BuffType("Infested"));
+                DebuffIDs.Add(BuffType("IvyVenom"));
                 DebuffIDs.Add(BuffType("Jammed"));
                 DebuffIDs.Add(BuffType("Lethargic"));
                 DebuffIDs.Add(BuffType("LightningRod"));
                 DebuffIDs.Add(BuffType("LivingWasteland"));
+                DebuffIDs.Add(BuffType("Lovestruck"));
                 DebuffIDs.Add(BuffType("MarkedforDeath"));
                 DebuffIDs.Add(BuffType("Midas"));
                 DebuffIDs.Add(BuffType("MutantNibble"));
@@ -153,17 +155,25 @@ namespace FargowiltasSouls
                 DebuffIDs.Add(BuffType("Oiled"));
                 DebuffIDs.Add(BuffType("OceanicMaul"));
                 DebuffIDs.Add(BuffType("Purified"));
+                DebuffIDs.Add(BuffType("Recovering"));
                 DebuffIDs.Add(BuffType("ReverseManaFlow"));
                 DebuffIDs.Add(BuffType("Rotting"));
+                DebuffIDs.Add(BuffType("Shadowflame"));
                 DebuffIDs.Add(BuffType("SqueakyToy"));
                 DebuffIDs.Add(BuffType("Stunned"));
+                DebuffIDs.Add(BuffType("Swarming"));
                 DebuffIDs.Add(BuffType("Unstable"));
+
+                DebuffIDs.Add(BuffType("MutantFang"));
+                DebuffIDs.Add(BuffType("MutantPresence"));
+
+                DebuffIDs.Add(BuffType("TimeFrozen"));
 
                 Mod bossChecklist = ModLoader.GetMod("BossChecklist");
                 if (bossChecklist != null)
                 {
-                    bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 14.1f, (Func<bool>)(() => FargoSoulsWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
-                    bossChecklist.Call("AddBossWithInfo", "Mutant", 14.2f, (Func<bool>)(() => FargoSoulsWorld.downedMutant), "Spawn by throwing [i:" + ItemType("AbominationnVoodooDoll") + "] in lava in Mutant's presence");
+                    bossChecklist.Call("AddBossWithInfo", "Duke Fishron EX", 14.01f, (Func<bool>)(() => FargoSoulsWorld.downedFishronEX), "Fish using a [i:" + ItemType("TruffleWormEX") + "]");
+                    bossChecklist.Call("AddBossWithInfo", "Mutant", 14.02f, (Func<bool>)(() => FargoSoulsWorld.downedMutant), "Spawn by throwing [i:" + ItemType("AbominationnVoodooDoll") + "] in lava in Mutant's presence");
                 }
 
                 if (ThoriumLoaded)
