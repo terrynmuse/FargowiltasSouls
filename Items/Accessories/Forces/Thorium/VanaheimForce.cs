@@ -65,7 +65,7 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
             //folv
             modPlayer.MalignantEnchant = true;
             modPlayer.FolvEnchant = true;
-            if (Soulcheck.GetValue("Folv's Aura"))
+            if (SoulConfig.Instance.GetValue("Folv's Aura"))
             {
                 
                 thoriumPlayer.folvSet = true;
@@ -73,7 +73,7 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
                 thoriumPlayer.folvBonus2 = true;
             }
 
-            if (Soulcheck.GetValue("Mana-Charged Rocketeers"))
+            if (SoulConfig.Instance.GetValue("Mana-Charged Rocketeers"))
             {
                 //mana charge rockets
                 player.manaRegen++;
@@ -96,13 +96,13 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
             //white dwarf
             modPlayer.WhiteDwarfEnchant = true;
             
-            if (Soulcheck.GetValue("Celestial Aura"))
+            if (SoulConfig.Instance.GetValue("Celestial Aura"))
             {
                 //celestial
                 thoriumPlayer.celestialSet = true;
             }
 
-            if (Soulcheck.GetValue("Ascension Statuette"))
+            if (SoulConfig.Instance.GetValue("Ascension Statuette"))
             {
                 //ascension statue
                 thoriumPlayer.ascension = true;

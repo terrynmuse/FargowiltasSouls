@@ -56,7 +56,7 @@ Effects of Spring Steps, Slag Stompers, and Molten Spear Tip");
             //spring steps
             thorium.GetItem("SpringSteps").UpdateAccessory(player, hideVisual);
 
-            if (Soulcheck.GetValue("Slag Stompers"))
+            if (SoulConfig.Instance.GetValue("Slag Stompers"))
             {
                 //slag stompers
                 timer++;

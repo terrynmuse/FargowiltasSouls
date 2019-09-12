@@ -74,7 +74,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             player.lavaImmune = true;
             player.buffImmune[24] = true;
 
-            if (Soulcheck.GetValue("Eye of the Storm"))
+            if (SoulConfig.Instance.GetValue("Eye of the Storm"))
             {
                 //eye of the storm
                 thorium.GetItem("EyeoftheStorm").UpdateAccessory(player, hideVisual);

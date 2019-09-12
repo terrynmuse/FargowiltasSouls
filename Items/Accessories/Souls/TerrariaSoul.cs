@@ -194,7 +194,7 @@ Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Sh
             }
 
             //WILL
-            if (Soulcheck.GetValue("Proof of Avarice"))
+            if (SoulConfig.Instance.GetValue("Proof of Avarice"))
             {
                 //proof of avarice
                 thoriumPlayer.avarice2 = true;

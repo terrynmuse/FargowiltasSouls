@@ -366,7 +366,7 @@ Effects of Lava Waders, Angler Tackle Bag, Paint Sprayer, Presserator, Cell Phon
                 }
             }
             //air walkers
-            if (Soulcheck.GetValue("Air Walkers"))
+            if (SoulConfig.Instance.GetValue("Air Walkers"))
             {
                 if (player.controlDown)
                 {

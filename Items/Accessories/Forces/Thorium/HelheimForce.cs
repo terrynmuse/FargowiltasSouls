@@ -84,7 +84,7 @@ Summons several pets");
             //inner flame
             thoriumPlayer.spiritFlame = true;
 
-            if (Soulcheck.GetValue("Dread Speed"))
+            if (SoulConfig.Instance.GetValue("Dread Speed"))
             {
                 //dread
                 player.moveSpeed += 0.8f;
@@ -122,7 +122,7 @@ Summons several pets");
                     thoriumPlayer.empowerIchor = true;
                 }
             }
-            if (Soulcheck.GetValue("Dragon Flames"))
+            if (SoulConfig.Instance.GetValue("Dragon Flames"))
             {
                 //dragon 
                 thoriumPlayer.dragonSet = true;
@@ -137,12 +137,12 @@ Summons several pets");
             modPlayer.DemonBloodEnchant = true;
             //demon blood badge
             thoriumPlayer.CrimsonBadge = true;
-            if (Soulcheck.GetValue("Flesh Drops"))
+            if (SoulConfig.Instance.GetValue("Flesh Drops"))
             {
                 //flesh set bonus
                 thoriumPlayer.Symbiotic = true;
             }
-            if (Soulcheck.GetValue("Vampire Gland"))
+            if (SoulConfig.Instance.GetValue("Vampire Gland"))
             {
                 //vampire gland
                 thoriumPlayer.vampireGland = true;
@@ -151,7 +151,7 @@ Summons several pets");
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
             thoriumPlayer.blisterPet = true;
 
-            if (Soulcheck.GetValue("Harbinger Overcharge"))
+            if (SoulConfig.Instance.GetValue("Harbinger Overcharge"))
             {
                 //harbinger
                 if (player.statLife > (int)(player.statLifeMax2 * 0.75))

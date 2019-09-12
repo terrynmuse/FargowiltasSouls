@@ -76,7 +76,7 @@ Summons a pet Maid");
             //mini crits and daggers
             modPlayer.TideTurnerEnchant = true;
 
-            if (Soulcheck.GetValue("Tide Turner Globules"))
+            if (SoulConfig.Instance.GetValue("Tide Turner Globules"))
             {
                 //floating globs and defense
                 thoriumPlayer.tideHelmet = true;

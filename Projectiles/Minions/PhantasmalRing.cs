@@ -71,7 +71,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             if (++projectile.localAI[0] > 20)
             {
                 projectile.localAI[0] = 0;
-                if (projectile.owner == Main.myPlayer && Soulcheck.GetValue("Phantasmal Ring Minion"))
+                if (projectile.owner == Main.myPlayer && SoulConfig.Instance.GetValue("Phantasmal Ring Minion"))
                 {
                     if (++projectile.localAI[1] >= 7)
                         projectile.localAI[1] = 0;

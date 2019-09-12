@@ -29,7 +29,7 @@ namespace FargowiltasSouls.Buffs.Minions
             {
                 FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
 
-                if (Soulcheck.GetValue("Abominationn Minion"))
+                if (SoulConfig.Instance.GetValue("Abominationn Minion"))
                 {
                     fargoPlayer.Abominationn = true;
                     if (player.ownedProjectileCounts[mod.ProjectileType("Abominationn")] < 1)

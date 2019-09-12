@@ -35,6 +35,9 @@ namespace FargowiltasSouls
         public Dictionary<string, bool> soulToggles = new Dictionary<string, bool>();
         [Label("Terraria")]
         public TerraMenu terrmenu = new TerraMenu();
+		
+		[JsonIgnore]
+        public Dictionary<string, bool> calamityToggles = new Dictionary<string, bool>();
         [Label("Calamity")]
         public CalamMenu calamenu = new CalamMenu();
 
@@ -280,7 +283,124 @@ namespace FargowiltasSouls
         [SeparatePage]
         public class CalamMenu
         {
-            public bool loltest = true;
+            [Label("$Mods.FargowiltasSouls.CalamityUrchinConfig")]
+            public bool urchin = true;
+			[Label("$Mods.FargowiltasSouls.CalamityProfanedArtifactConfig")]
+            public bool profanedSoulArtifact = true;
+			[Label("$Mods.FargowiltasSouls.CalamitySlimeMinionConfig")]
+            public bool slimeMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityReaverMinionConfig")]
+            public bool reaverMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityOmegaTentaclesConfig")]
+            public bool omegaTentacles = true;
+			[Label("$Mods.FargowiltasSouls.CalamitySilvaMinionConfig")]
+            public bool silvaMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityGodlyArtifactConfig")]
+            public bool godlySoulArtifact = true;
+			[Label("$Mods.FargowiltasSouls.CalamityMechwormMinionConfig")]
+            public bool mechwormMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityNebulousCoreConfig")]
+            public bool nebulousCore = true;
+			[Label("$Mods.FargowiltasSouls.CalamityDevilMinionConfig")]
+            public bool devilMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityPermafrostPotionConfig")]
+            public bool permafrostPotion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityDaedalusMinionConfig")]
+            public bool daedalusMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityPolterMinesConfig")]
+            public bool polterMines = true;
+			[Label("$Mods.FargowiltasSouls.CalamityPlagueHiveConfig")]
+            public bool plagueHive = true;
+			[Label("$Mods.FargowiltasSouls.CalamityChaosMinionConfig")]
+            public bool chaosMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityValkyrieMinionConfig")]
+            public bool valkyrieMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityYharimGiftConfig")]
+            public bool yharimGift = true;
+			[Label("$Mods.FargowiltasSouls.CalamityFungalMinionConfig")]
+            public bool fungalMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityWaifuMinionsConfig")]
+            public bool waifuMinions = true;
+			[Label("$Mods.FargowiltasSouls.CalamityShellfishMinionConfig")]
+            public bool shellfishMinion = true;
+			[Label("$Mods.FargowiltasSouls.CalamityAmidiasPendantConfig")]
+            public bool amidiasPendant = true;
+			[Label("$Mods.FargowiltasSouls.CalamityGiantPearlConfig")]
+            public bool giantPearl = true;
+			[Label("$Mods.FargowiltasSouls.CalamityPoisonSeawaterConfig")]
+            public bool poisonSeawater = true;
+			[Label("$Mods.FargowiltasSouls.CalamityDaedalusEffectsConfig")]
+            public bool daedalusEffects = true;
+			[Label("$Mods.FargowiltasSouls.CalamityReaverEffectsConfig")]
+            public bool reaverEffects = true;
+			[Label("$Mods.FargowiltasSouls.CalamityAstralStarsConfig")]
+            public bool astralStars = true;
+			[Label("$Mods.FargowiltasSouls.CalamityAtaxiaEffectsConfig")]
+            public bool ataxiaEffects = true;
+			[Label("$Mods.FargowiltasSouls.CalamityXerocEffectsConfig")]
+            public bool xerocEffects = true;
+			[Label("$Mods.FargowiltasSouls.CalamityTarragonEffectsConfig")]
+            public bool tarragonEffects = true;
+			[Label("$Mods.FargowiltasSouls.CalamityBloodflareEffectsConfig")]
+            public bool bloodflareEffects = true;
+			[Label("$Mods.FargowiltasSouls.CalamityGodSlayerEffectsConfig")]
+            public bool godSlayerEffects = true;
+			[Label("$Mods.FargowiltasSouls.CalamitySilvaEffectsConfig")]
+            public bool silvaEffects = true;
+			[Label("$Mods.FargowiltasSouls.CalamityAuricEffectsConfig")]
+            public bool auricEffects = true;
+			[Label("$Mods.FargowiltasSouls.CalamityElementalQuiverConfig")]
+            public bool elementalQuiver = true;
+			[Label("$Mods.FargowiltasSouls.CalamityLuxorGiftConfig")]
+            public bool luxorGift = true;
+			[Label("$Mods.FargowiltasSouls.CalamityGladiatorLocketConfig")]
+            public bool gladiatorLocket = true;
+			[Label("$Mods.FargowiltasSouls.CalamityUnstablePrismConfig")]
+            public bool unstablePrism = true;
+			[Label("$Mods.FargowiltasSouls.CalamityRegeneratorConfig")]
+            public bool regenerator = true;
+			
+			public void Change()
+            {
+                SoulConfig.Instance.calamityToggles["Victide Sea Urchin"] = urchin;
+				SoulConfig.Instance.calamityToggles["Profaned Soul Artifact"] = profanedSoulArtifact;
+				SoulConfig.Instance.calamityToggles["Slime God Minion"] = slimeMinion;
+				SoulConfig.Instance.calamityToggles["Reaver Orb Minion"] = reaverMinion;
+				SoulConfig.Instance.calamityToggles["Omega Blue Tentacles"] = omegaTentacles;
+				SoulConfig.Instance.calamityToggles["Silva Crystal Minion"] = silvaMinion;
+				SoulConfig.Instance.calamityToggles["Godly Soul Artifact"] = godlySoulArtifact;
+				SoulConfig.Instance.calamityToggles["Mechworm Minion"] = mechwormMinion;
+				SoulConfig.Instance.calamityToggles["Nebulous Core"] = nebulousCore;
+				SoulConfig.Instance.calamityToggles["Red Devil Minion"] = devilMinion;
+				SoulConfig.Instance.calamityToggles["Permafrost's Concoction"] = permafrostPotion;
+				SoulConfig.Instance.calamityToggles["Daedalus Crystal Minion"] = daedalusMinion;
+				SoulConfig.Instance.calamityToggles["Polterghast Mines"] = polterMines;
+				SoulConfig.Instance.calamityToggles["Plague Hive"] = plagueHive;
+				SoulConfig.Instance.calamityToggles["Chaos Spirit Minion"] = chaosMinion;
+				SoulConfig.Instance.calamityToggles["Valkyrie Minion"] = valkyrieMinion;
+				SoulConfig.Instance.calamityToggles["Yharim's Gift"] = yharimGift;
+				SoulConfig.Instance.calamityToggles["Fungal Clump Minion"] = fungalMinion;
+				SoulConfig.Instance.calamityToggles["Elemental Waifus"] = waifuMinions;
+				SoulConfig.Instance.calamityToggles["Shellfish Minions"] = shellfishMinion;
+				SoulConfig.Instance.calamityToggles["Amidias' Pendant"] = amidiasPendant;
+				SoulConfig.Instance.calamityToggles["Giant Pearl"] = giantPearl;
+				SoulConfig.Instance.calamityToggles["Poisonous Sea Water"] = poisonSeawater;
+				SoulConfig.Instance.calamityToggles["Daedalus Effects"] = daedalusEffects;
+				SoulConfig.Instance.calamityToggles["Reaver Effects"] = reaverEffects;
+				SoulConfig.Instance.calamityToggles["Astral Stars"] = astralStars;
+				SoulConfig.Instance.calamityToggles["Ataxia Effects"] = ataxiaEffects;
+				SoulConfig.Instance.calamityToggles["Xeroc Effects"] = xerocEffects;
+				SoulConfig.Instance.calamityToggles["Tarragon Effects"] = tarragonEffects;
+				SoulConfig.Instance.calamityToggles["Bloodflare Effects"] = bloodflareEffects;
+				SoulConfig.Instance.calamityToggles["God Slayer Effects"] = godSlayerEffects;
+				SoulConfig.Instance.calamityToggles["Silva Effects"] = silvaEffects;
+				SoulConfig.Instance.calamityToggles["Auric Tesla Effects"] = auricEffects;
+				SoulConfig.Instance.calamityToggles["Elemental Quiver"] = elementalQuiver;
+				SoulConfig.Instance.calamityToggles["Luxor's Gift"] = luxorGift;
+				SoulConfig.Instance.calamityToggles["Gladiator's Locket"] = gladiatorLocket;
+				SoulConfig.Instance.calamityToggles["Unstable Prism"] = unstablePrism;
+				SoulConfig.Instance.calamityToggles["Regenator"] = regenerator;
+			}
         }
         [SeparatePage]
         public class ThorMenu
@@ -758,12 +878,13 @@ namespace FargowiltasSouls
         }
         public override void OnChanged()
         {
-
             terrmenu.terenchmenu.Change();
             terrmenu.soulmenu.Change();
             petmenu.Change();
             masomenu.Change();
             masomenu.wallet.Change();
+			thoriummenu.Change();
+			calamenu.Change();
         }
         public override void OnLoaded()
         {
@@ -995,6 +1116,47 @@ namespace FargowiltasSouls
             thoriumToggles.Add("Pink Slime Pet", thoriummenu.slimePet);
             thoriumToggles.Add("Glitter Pet", thoriummenu.glitterPet);
             thoriumToggles.Add("Coin Bag Pet", thoriummenu.coinPet);
+			
+			//calamity
+			calamityToggles.Add("Victide Sea Urchin", calamenu.);
+			calamityToggles.Add("Profaned Soul Artifact", calamenu.);
+			calamityToggles.Add("Slime God Minion", calamenu.);
+			calamityToggles.Add("Reaver Orb Minion", calamenu.);
+			calamityToggles.Add("Omega Blue Tentacles", calamenu.);
+			calamityToggles.Add("Silva Crystal Minion", calamenu.);
+			calamityToggles.Add("Godly Soul Artifact", calamenu.);
+			calamityToggles.Add("Mechworm Minion", calamenu.);
+			calamityToggles.Add("Nebulous Core", calamenu.);
+			calamityToggles.Add("Red Devil Minion", calamenu.);
+			calamityToggles.Add("Permafrost's Concoction", calamenu.);
+			calamityToggles.Add("Daedalus Crystal Minion", calamenu.);
+			calamityToggles.Add("Polterghast Mines", calamenu.);
+			calamityToggles.Add("Plague Hive", calamenu.);
+			calamityToggles.Add("Chaos Spirit Minion", calamenu.);
+			calamityToggles.Add("Valkyrie Minion", calamenu.);
+			calamityToggles.Add("Yharim's Gift", calamenu.);
+			calamityToggles.Add("Fungal Clump Minion", calamenu.);
+			calamityToggles.Add("Elemental Waifus", calamenu.);
+			calamityToggles.Add("Shellfish Minions", calamenu.);
+			calamityToggles.Add("Amidias' Pendant", calamenu.);
+			calamityToggles.Add("Giant Pearl", calamenu.);
+			calamityToggles.Add("Poisonous Sea Water", calamenu.);
+			calamityToggles.Add("Daedalus Effects", calamenu.);
+			calamityToggles.Add("Reaver Effects", calamenu.);
+			calamityToggles.Add("Astral Stars", calamenu.);
+			calamityToggles.Add("Ataxia Effects", calamenu.);
+			calamityToggles.Add("Xeroc Effects", calamenu.);
+			calamityToggles.Add("Tarragon Effects", calamenu.); 
+			calamityToggles.Add("Bloodflare Effects", calamenu.);
+			calamityToggles.Add("God Slayer Effects", calamenu.);
+			calamityToggles.Add("Silva Effects", calamenu.);
+			calamityToggles.Add("Auric Tesla Effects", calamenu.);
+			calamityToggles.Add("Elemental Quiver", calamenu.);
+			calamityToggles.Add("Luxor's Gift", calamenu.);
+			calamityToggles.Add("Gladiator's Locket", calamenu.);
+			calamityToggles.Add("Unstable Prism", calamenu.);
+			calamityToggles.Add("Regenator", calamenu.);
+			
         }
     public bool GetValue(string input)
         {

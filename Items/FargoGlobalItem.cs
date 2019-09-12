@@ -234,7 +234,7 @@ namespace FargowiltasSouls.Items
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (Soulcheck.GetValue("Illumite Rocket"))
+            if (SoulConfig.Instance.GetValue("Illumite Rocket"))
             {
                 //illumite effect
                 if (modPlayer.IllumiteEnchant)
@@ -252,7 +252,7 @@ namespace FargowiltasSouls.Items
             }
 
             //plague flask
-            if (modPlayer.PlagueAcc && Soulcheck.GetValue("Plague Lord's Flask"))
+            if (modPlayer.PlagueAcc && SoulConfig.Instance.GetValue("Plague Lord's Flask"))
             {
                 if (item.damage >= 1 && Main.rand.Next(5) == 0)
                 {
@@ -270,7 +270,7 @@ namespace FargowiltasSouls.Items
             }
             
             //folv effect
-            if (modPlayer.FolvEnchant && Soulcheck.GetValue("Folv's Bolts"))
+            if (modPlayer.FolvEnchant && SoulConfig.Instance.GetValue("Folv's Bolts"))
             {
                 thoriumPlayer.magicCast++;
                 if (thoriumPlayer.magicCast >= 7)

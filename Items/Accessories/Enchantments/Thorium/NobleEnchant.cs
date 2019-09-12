@@ -51,7 +51,7 @@ Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
             //ring of unity
             thorium.GetItem("RingofUnity").UpdateAccessory(player, hideVisual);
 
-            if (Soulcheck.GetValue("Mix Tape"))
+            if (SoulConfig.Instance.GetValue("Mix Tape"))
             {
                 //mix tape
                 thoriumPlayer.mixtapeBool = true;

@@ -58,7 +58,7 @@ Mega Bees ignore most enemy defense, immune frames, and last twice as long
         private void Thorium(Player player, bool hideVisual)
         {
             //bee booties
-            if (Soulcheck.GetValue("Bee Booties"))
+            if (SoulConfig.Instance.GetValue("Bee Booties"))
             {
                 thorium.GetItem("BeeBoots").UpdateAccessory(player, hideVisual);
                 player.moveSpeed -= 0.15f;

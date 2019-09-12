@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Projectiles.Souls
                 modPlayer.GoldShell = false;
             }
 
-            if (!(modPlayer.GoldShell))// || !Soulcheck.GetValue("Chlorophyte Leaf Crystal"))
+            if (!(modPlayer.GoldShell))
             {
                 projectile.Kill();
                 return;
