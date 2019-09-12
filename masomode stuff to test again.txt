@@ -1,4 +1,4 @@
-﻿vored
+﻿nurse heal now causes recovering debuff during boss fights
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

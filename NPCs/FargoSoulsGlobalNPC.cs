@@ -2408,6 +2408,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.EaterofWorldsHead:
                         eaterBoss = npc.whoAmI;
+                        boss = npc.whoAmI;
                         Counter++;
                         if (Counter >= 6) //cursed flamethrower, roughly same direction as head
                         {
@@ -10519,7 +10520,7 @@ namespace FargowiltasSouls.NPCs
         {
             if (boss == -1)
                 return false;
-            if (Main.npc[boss].active && Main.npc[boss].boss)
+            if (Main.npc[boss].active && (Main.npc[boss].boss || Main.npc[boss].type == NPCID.EaterofWorldsHead))
                 return true;
             boss = -1;
             return false;
@@ -10547,6 +10548,18 @@ namespace FargowiltasSouls.NPCs
                 shop.item[nextSlot].value = 500;
                 nextSlot++;
             }
+        }
+
+        public override bool PreChatButtonClicked(NPC npc, bool firstButton)
+        {
+            if (FargoSoulsWorld.MasochistMode && npc.type == NPCID.Nurse && firstButton)
+            {
+                if (Main.player[Main.myPlayer].HasBuff(mod.BuffType("Recovering")))
+                    return false;
+                else if (AnyBossAlive())
+                    Main.player[Main.myPlayer].AddBuff(mod.BuffType("Recovering"), 3600);
+            }
+            return true;
         }
     }
 }
