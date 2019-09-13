@@ -296,28 +296,16 @@ namespace FargowiltasSouls
 
         public override TagCompound Save()
         {
-            if (Soulcheck.owner == player.name) //to prevent newly made characters from taking the toggles of another char
-            {
-                string name = "FargoDisabledSouls" + player.name;
+            //idk ech
+            string name = "FargoDisabledSouls" + player.name;
+            var FargoDisabledSouls = new List<string>();
 
-                var FargoDisabledSouls = new List<string>();
-                foreach (KeyValuePair<string, bool> entry in Soulcheck.ToggleDict)
-                {
-                    if (!entry.Value)
-                    {
-                        FargoDisabledSouls.Add(entry.Key);
-                    }
-                }
+            if (CelestialSeal)
+                FargoDisabledSouls.Add("CelestialSeal");
 
-                //ErrorLogger.Log(log);
-
-                if (CelestialSeal)
-                    FargoDisabledSouls.Add("CelestialSeal");
-
-                return new TagCompound {
+            return new TagCompound {
                     {name, FargoDisabledSouls}
                 }; ;
-            }
 
             return null;
         }

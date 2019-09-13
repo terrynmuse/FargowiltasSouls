@@ -15,7 +15,6 @@ namespace FargowiltasSouls
 {
     internal class Fargowiltas : Mod
     {
-        internal static ModHotKey CheckListKey;
         internal static ModHotKey FreezeKey;
         internal static ModHotKey GoldKey;
 
@@ -49,18 +48,27 @@ namespace FargowiltasSouls
         public override void Load()
         {
             Instance = this;
+
             if (Language.ActiveCulture == GameCulture.Chinese)
             {
-                CheckListKey = RegisterHotKey("灵魂切换菜单", "L");
                 FreezeKey = RegisterHotKey("冻结时间", "P");
                 GoldKey = RegisterHotKey("金身", "O");
             }
             else
             {
-                CheckListKey = RegisterHotKey("Soul Toggles", "L");
                 FreezeKey = RegisterHotKey("Freeze Time", "P");
                 GoldKey = RegisterHotKey("Turn Gold", "O");
             }
+
+
+
+
+
+
+
+
+
+            
 
             #region Toggles
             #region enchants
@@ -915,7 +923,7 @@ namespace FargowiltasSouls
             "ffffff",
             "ffffff"};
             
-            for (int x = 0; x <= thoriumTogNames.size(); x++)
+            for (int x = 0; x < thoriumTogNames.Length; x++)
             {
                 text = CreateTranslation(thoriumTogConfig[x]);
                 text.SetDefault("[i:" + Instance.ItemType(thoriumTogItems[x]) + "][c/" + thoriumColor[x] + ": " + thoriumTogNames[x] + "]");
@@ -1045,7 +1053,7 @@ namespace FargowiltasSouls
             "GladiatorsSoul",
             "GladiatorsSoul"};
             
-            string[] thoriumColor = {
+            string[] calamityColor = {
             "ffffff",
             "ffffff",
             "ffffff",
@@ -1085,7 +1093,7 @@ namespace FargowiltasSouls
             "ffffff",
             "ffffff"};
             
-            for (int x = 0; x <= calamityTogNames.size(); x++)
+            for (int x = 0; x < calamityTogNames.Length; x++)
             {
                 text = CreateTranslation(calamityTogConfig[x]);
                 text.SetDefault("[i:" + Instance.ItemType(calamityTogItems[x]) + "][c/" + calamityColor[x] + ": " + calamityTogNames[x] + "]");
@@ -1094,6 +1102,8 @@ namespace FargowiltasSouls
             #endregion
 
             #endregion
+
+            
         }
 
         public override void Unload()

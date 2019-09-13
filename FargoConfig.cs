@@ -1053,8 +1053,8 @@ namespace FargowiltasSouls
             thoriumToggles.Add("Yuma's Pendant", thoriummenu.yumasPendant);
             thoriumToggles.Add("Head Mirror", thoriummenu.headMirror);
             thoriumToggles.Add("Celestial Aura", thoriummenu.celestialAura);
-            thoriumToggles.Add("Ascension Statuette", thoriummenu.ascensionSta
-            thoriumToggles.Add("Mana-Charged Rocketeers", thoriummenu.manaBoot);
+            thoriumToggles.Add("Ascension Statuette", thoriummenu.ascensionStatue);
+            thoriumToggles.Add("Mana-Charged Rocketeers", thoriummenu.manaBoots);
             thoriumToggles.Add("Bronze Lightning", thoriummenu.bronzeLightning);
             thoriumToggles.Add("Illumite Missile", thoriummenu.illumiteMissile);
             thoriumToggles.Add("Jester Bell", thoriummenu.jesterBell);
@@ -1080,8 +1080,8 @@ namespace FargowiltasSouls
             
             thoriumToggles.Add("Assassin Damage", thoriummenu.assassinDamage);
             thoriumToggles.Add("Pyromancer Bursts", thoriummenu.pyromancerBursts);
-            thoriumToggles.Add("Conduit Shield"] = thoriummenu.conduitShield);
-            thoriumToggles.Add("Incandescent Spark", thoriummenu.incandescentSpark;
+            thoriumToggles.Add("Conduit Shield", thoriummenu.conduitShield);
+            thoriumToggles.Add("Incandescent Spark", thoriummenu.incandescentSpark);
             thoriumToggles.Add("Greedy Magnet", thoriummenu.greedyMagnet);
             thoriumToggles.Add("Cyber Punk States", thoriummenu.cyberStates);
             thoriumToggles.Add("Metronome", thoriummenu.metronome);
@@ -1103,9 +1103,9 @@ namespace FargowiltasSouls
             thoriumToggles.Add("Omega Pet", thoriummenu.omegaPet);
             thoriumToggles.Add("I.F.O. Pet", thoriummenu.ifoPet);
             thoriumToggles.Add("Bio-Feeder Pet", thoriummenu.bioFeederPet);
-            thoriumToggles.Add("Blister Pet", thoriummenublisterPet);
+            thoriumToggles.Add("Blister Pet", thoriummenu.blisterPet);
             thoriumToggles.Add("Wyvern Pet", thoriummenu.wyvernPet);
-            thoriumToggles.Add("Inspiring Lantern Pet", thoriummenu.lanternPet;
+            thoriumToggles.Add("Inspiring Lantern Pet", thoriummenu.lanternPet);
             thoriumToggles.Add("Lock Box Pet", thoriummenu.boxPet);
             thoriumToggles.Add("Life Spirit Pet", thoriummenu.spiritPet);
             thoriumToggles.Add("Holy Goat Pet", thoriummenu.goatPet);
@@ -1181,16 +1181,23 @@ namespace FargowiltasSouls
             {
                 return oooout;
             }
-            /*if (masoTogDict.TryGetValue(input, out oooout))
-            {
-                return oooout;
-            }*/
+
             if (masoTogDict.ContainsKey(input))
             {
                 return masoTogDict[input];
             }
 
-            
+            if (thoriumToggles.ContainsKey(input))
+            {
+                return thoriumToggles[input];
+            }
+
+            if (calamityToggles.ContainsKey(input))
+            {
+                return calamityToggles[input];
+            }
+
+
 
 
             return false;
