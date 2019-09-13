@@ -464,6 +464,7 @@ namespace FargowiltasSouls.NPCs
                         break;
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead:
+                    case NPCID.MoonLordFreeEye:
                         npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         isMasoML = true;
                         break;
