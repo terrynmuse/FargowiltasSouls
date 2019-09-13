@@ -1,4 +1,5 @@
 ﻿nurse heal now causes recovering debuff during boss fights
+fixed undead miner ignoring security wallet
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

@@ -7357,11 +7357,10 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("Lethargic"), length * 2);
                         target.AddBuff(BuffID.Blackout, length);
                         target.AddBuff(BuffID.NoBuilding, length);
-                        for (int i = 0; i < 59; i++)
-                        {
-                            if (target.inventory[i].pick != 0 || target.inventory[i].hammer != 0 || target.inventory[i].axe != 0)
-                                StealFromInventory(target, ref target.inventory[i]);
-                        }
+                        if (target.whoAmI == Main.myPlayer && !target.GetModPlayer<FargoPlayer>().SecurityWallet)
+                            for (int i = 0; i < 59; i++)
+                                if (target.inventory[i].pick != 0 || target.inventory[i].hammer != 0 || target.inventory[i].axe != 0)
+                                    StealFromInventory(target, ref target.inventory[i]);
                         break;
 
                     case NPCID.Golem:
