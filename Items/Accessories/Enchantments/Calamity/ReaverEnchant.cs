@@ -56,7 +56,7 @@ Effects of Fabled Tortoise Shell");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Reaver Effects"))
+            if (SoulConfig.Instance.GetValue("Reaver Effects"))
             {
                 //melee
                 modPlayer.reaverBlast = true;
@@ -70,7 +70,7 @@ Effects of Fabled Tortoise Shell");
             
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            if (Soulcheck.GetValue("Reaver Orb Minion"))
+            if (SoulConfig.Instance.GetValue("Reaver Orb Minion"))
             {
                 //summon
                 modPlayer.reaverOrb = true;

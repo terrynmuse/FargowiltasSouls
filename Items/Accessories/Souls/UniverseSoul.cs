@@ -115,7 +115,7 @@ Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
             //use speed, velocity, debuffs, crit dmg, mana up, double knockback
             modPlayer.UniverseEffect = true;
             
-            if (Soulcheck.GetValue("Universe Attack Speed"))
+            if (SoulConfig.Instance.GetValue("Universe Attack Speed"))
             {
                 modPlayer.AttackSpeed *= 1.5f;
             }
@@ -127,7 +127,7 @@ Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
             player.counterWeight = 556 + Main.rand.Next(6);
             player.yoyoGlove = true;
             player.yoyoString = true;
-            if (Soulcheck.GetValue("Sniper Scope"))
+            if (SoulConfig.Instance.GetValue("Sniper Scope"))
             {
                 player.scope = true;
             }
@@ -151,12 +151,12 @@ Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
                 player.AddBuff(thorium.BuffType("LichActive"), 60, true);
             }
             //crystal scorpion
-            if (Soulcheck.GetValue("Crystal Scorpion"))
+            if (SoulConfig.Instance.GetValue("Crystal Scorpion"))
             {
                 thoriumPlayer.crystalScorpion = true;
             }
             //yumas pendant
-            if (Soulcheck.GetValue("Yuma's Pendant"))
+            if (SoulConfig.Instance.GetValue("Yuma's Pendant"))
             {
                 thoriumPlayer.yuma = true;
             }
@@ -197,7 +197,7 @@ Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
             //medical bag
             thoriumPlayer.medicalAcc = true;
             //head mirror arrow 
-            if (Soulcheck.GetValue("Head Mirror"))
+            if (SoulConfig.Instance.GetValue("Head Mirror"))
             {
                 float num = 0f;
                 int num2 = player.whoAmI;
@@ -249,7 +249,7 @@ Effects of Sniper Scope, Celestial Cuffs and Mana Flower";
             player.meleeSpeed -= .15f;
             player.meleeCrit -= 5;
 
-            if (Soulcheck.GetValue("Elemental Quiver"))
+            if (SoulConfig.Instance.GetValue("Elemental Quiver"))
             {
                 //range
                 modPlayer.eQuiver = true;

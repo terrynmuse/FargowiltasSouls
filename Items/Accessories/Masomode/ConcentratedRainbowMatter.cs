@@ -34,7 +34,7 @@ Summons a baby rainbow slime");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[mod.BuffType("FlamesoftheUniverse")] = true;
-            if (Soulcheck.GetValue("Rainbow Slime Minion"))
+            if (SoulConfig.Instance.GetValue("Rainbow Slime Minion"))
                 player.AddBuff(mod.BuffType("RainbowSlime"), 2);
         }
     }

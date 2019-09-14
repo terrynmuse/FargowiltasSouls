@@ -56,7 +56,7 @@ You attract items from a larger range";
             //sheild raise
             modPlayer.IronEffect();
             //magnet
-            if (Soulcheck.GetValue("Iron Magnet"))
+            if (SoulConfig.Instance.GetValue("Iron Magnet"))
             {
                 modPlayer.IronEnchant = true;
             }

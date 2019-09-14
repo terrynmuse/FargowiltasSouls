@@ -57,7 +57,7 @@ Effects of the Plague Hive");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Ataxia Effects"))
+            if (SoulConfig.Instance.GetValue("Ataxia Effects"))
             {
                 //all
                 modPlayer.ataxiaBlaze = true;
@@ -71,7 +71,7 @@ Effects of the Plague Hive");
                 modPlayer.ataxiaVolley = true;
             }
             
-            if (Soulcheck.GetValue("Plague Hive"))
+            if (SoulConfig.Instance.GetValue("Plague Hive"))
             {
                 //plague hive
                 player.buffImmune[calamity.BuffType("Plague")] = true;
@@ -112,7 +112,7 @@ Effects of the Plague Hive");
             
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            if (Soulcheck.GetValue("Chaos Spirit Minion"))
+            if (SoulConfig.Instance.GetValue("Chaos Spirit Minion"))
             {
                 //summon
                 modPlayer.chaosSpirit = true;

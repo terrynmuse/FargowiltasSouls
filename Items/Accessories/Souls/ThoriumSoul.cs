@@ -139,7 +139,7 @@ Every globule increases defense and makes your next attack a mini-crit
             modPlayer.IcyEnchant = true;
             modPlayer.AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
             modPlayer.AddPet("Owl Pet", hideVisual, thorium.BuffType("SnowyOwlBuff"), thorium.ProjectileType("SnowyOwlPet"));
-            if (Soulcheck.GetValue("Icy Barrier"))
+            if (SoulConfig.Instance.GetValue("Icy Barrier"))
             {
                 //icy set bonus
                 thoriumPlayer.icySet = true;
@@ -150,7 +150,7 @@ Every globule increases defense and makes your next attack a mini-crit
             }
             //cryo
             modPlayer.CryoEnchant = true;
-            if (Soulcheck.GetValue("Whispering Tentacles"))
+            if (SoulConfig.Instance.GetValue("Whispering Tentacles"))
             {
                 //whispering
                 thoriumPlayer.whisperingSet = true;
@@ -186,7 +186,7 @@ Every globule increases defense and makes your next attack a mini-crit
             thoriumPlayer.conductorSet = true;
 
             //SVARTALFHEIM
-            if (Soulcheck.GetValue("Eye of the Storm"))
+            if (SoulConfig.Instance.GetValue("Eye of the Storm"))
             {
                 //eye of the storm
                 thorium.GetItem("EyeoftheStorm").UpdateAccessory(player, hideVisual);
@@ -196,11 +196,11 @@ Every globule increases defense and makes your next attack a mini-crit
             //rebuttal
             thoriumPlayer.championShield = true;
 
-            if (Soulcheck.GetValue("Incandescent Spark"))
+            if (SoulConfig.Instance.GetValue("Incandescent Spark"))
             {
                 thorium.GetItem("IncandescentSpark").UpdateAccessory(player, hideVisual);
             }
-            if (Soulcheck.GetValue("Greedy Magnet"))
+            if (SoulConfig.Instance.GetValue("Greedy Magnet"))
             {
                 //greedy magnet
                 for (int i = 0; i < 400; i++)
@@ -224,14 +224,14 @@ Every globule increases defense and makes your next attack a mini-crit
             }  
             //EoC Shield
             player.dash = 2;
-            if (Soulcheck.GetValue("Iron Shield"))
+            if (SoulConfig.Instance.GetValue("Iron Shield"))
             {
                 //iron shield raise
                 modPlayer.IronEffect();
             }
             //abyssal shell
             thoriumPlayer.AbyssalShell = true;
-            if (Soulcheck.GetValue("Conduit Shield"))
+            if (SoulConfig.Instance.GetValue("Conduit Shield"))
             {
                 //conduit set bonus
                 thoriumPlayer.conduitSet = true;
@@ -257,7 +257,7 @@ Every globule increases defense and makes your next attack a mini-crit
             modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
 
             //MIDGARD
-            if (Soulcheck.GetValue("Lodestone Resistance"))
+            if (SoulConfig.Instance.GetValue("Lodestone Resistance"))
             {
                 //lodestone
                 thoriumPlayer.orbital = true;
@@ -278,7 +278,7 @@ Every globule increases defense and makes your next attack a mini-crit
                     thoriumPlayer.lodestoneStage = 3;
                 }
             }
-            if (Soulcheck.GetValue("Eye of the Beholder"))
+            if (SoulConfig.Instance.GetValue("Eye of the Beholder"))
             {
                 //eye of beholder
                 thorium.GetItem("EyeofBeholder").UpdateAccessory(player, hideVisual);
@@ -286,7 +286,7 @@ Every globule increases defense and makes your next attack a mini-crit
             //slime pet
             modPlayer.AddPet("Pink Slime Pet", hideVisual, thorium.BuffType("PinkSlimeBuff"), thorium.ProjectileType("PinkSlime"));
             modPlayer.IllumiteEnchant = true;
-            if (Soulcheck.GetValue("Terrarium Spirits"))
+            if (SoulConfig.Instance.GetValue("Terrarium Spirits"))
             {
                 //terrarium set bonus
                 terrariumTimer++;
@@ -306,7 +306,7 @@ Every globule increases defense and makes your next attack a mini-crit
             modPlayer.ThoriumEnchant = true;
             //jester
             modPlayer.JesterEnchant = true;
-            if (Soulcheck.GetValue("Crietz"))
+            if (SoulConfig.Instance.GetValue("Crietz"))
             {
                 //crietz
                 thoriumPlayer.crietzAcc = true;
@@ -316,12 +316,12 @@ Every globule increases defense and makes your next attack a mini-crit
             //folv
             modPlayer.MalignantEnchant = true;
             modPlayer.FolvEnchant = true;
-            if (Soulcheck.GetValue("Folv's Aura"))
+            if (SoulConfig.Instance.GetValue("Folv's Aura"))
             {
                 thoriumPlayer.folvSet = true;
                 thoriumPlayer.folvBonus2 = true;
             }
-            if (Soulcheck.GetValue("Mana-Charged Rocketeers"))
+            if (SoulConfig.Instance.GetValue("Mana-Charged Rocketeers"))
             {
                 //mana charge rockets
                 thorium.GetItem("ManaChargedRocketeers").UpdateAccessory(player, hideVisual);
@@ -332,7 +332,7 @@ Every globule increases defense and makes your next attack a mini-crit
             //HELHEIM
             //spirit trapper
             modPlayer.SpiritTrapperEnchant = true;
-            if (Soulcheck.GetValue("Dread Speed"))
+            if (SoulConfig.Instance.GetValue("Dread Speed"))
             {
                 //dread
                 player.moveSpeed += 0.8f;
@@ -355,7 +355,7 @@ Every globule increases defense and makes your next attack a mini-crit
             thorium.GetItem("CrashBoots").UpdateAccessory(player, hideVisual);
             player.moveSpeed -= 0.15f;
             player.maxRunSpeed -= 1f;
-            if (Soulcheck.GetValue("Dragon Flames"))
+            if (SoulConfig.Instance.GetValue("Dragon Flames"))
             {
                 //dragon 
                 thoriumPlayer.dragonSet = true;
@@ -366,12 +366,12 @@ Every globule increases defense and makes your next attack a mini-crit
             modPlayer.DemonBloodEnchant = true;
             //demon blood badge
             thoriumPlayer.CrimsonBadge = true;
-            if (Soulcheck.GetValue("Flesh Drops"))
+            if (SoulConfig.Instance.GetValue("Flesh Drops"))
             {
                 //flesh set bonus
                 thoriumPlayer.Symbiotic = true;
             }
-            if (Soulcheck.GetValue("Vampire Gland"))
+            if (SoulConfig.Instance.GetValue("Vampire Gland"))
             {
                 //vampire gland
                 thoriumPlayer.vampireGland = true;
@@ -389,7 +389,7 @@ Every globule increases defense and makes your next attack a mini-crit
             //tide turner
             //mini crits and daggers
             modPlayer.TideTurnerEnchant = true;
-            if (Soulcheck.GetValue("Tide Turner Globules"))
+            if (SoulConfig.Instance.GetValue("Tide Turner Globules"))
             {
                 //floating globs and defense
                 thoriumPlayer.tideHelmet = true;

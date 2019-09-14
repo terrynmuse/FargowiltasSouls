@@ -154,7 +154,7 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
-                    if (modPlayer.TungstenEnchant && projectile.friendly && Soulcheck.GetValue("Tungsten Effect"))
+                    if (modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect"))
                     {
                         projectile.position = projectile.Center;
                         projectile.scale *= 2f;
@@ -168,7 +168,7 @@ namespace FargowiltasSouls.Projectiles
                     {
                         tikiMinion = true;
 
-                        if (projectile.type == mod.ProjectileType("EaterBody") || projectile.type == ProjectileID.StardustDragon2)
+                        if (projectile.type == mod.ProjectileType("EaterBody") || projectile.type == ProjectileID.StardustDragon2 || projectile.type == ProjectileID.StardustDragon3)
                         {
                             for (int i = 0; i < 1000; i++)
                             {
@@ -189,7 +189,7 @@ namespace FargowiltasSouls.Projectiles
 
                     if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
                         && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99
-                        && Soulcheck.GetValue("Adamantite Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
+                        && SoulConfig.Instance.GetValue("Adamantite Projectile Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
                     {
                         if (adamantiteCD != 0)
                         {
@@ -231,9 +231,18 @@ namespace FargowiltasSouls.Projectiles
                     }
                 }
 
+                if (tungstenProjectile && (!modPlayer.TungstenEnchant || !SoulConfig.Instance.GetValue("Tungsten Effect")))
+                {
+                    projectile.position = projectile.Center;
+                    projectile.scale /= 2f;
+                    projectile.width /= 2;
+                    projectile.height /= 2;
+                    projectile.Center = projectile.position;
+                    tungstenProjectile = false;
+                }
+
                 if (tikiMinion)
                 {
-                    
                     projectile.alpha = 120;
 
                     //dust
@@ -330,7 +339,7 @@ namespace FargowiltasSouls.Projectiles
                         projectile.Kill();
                     }
 
-                    if (modPlayer.SpookyEnchant && Soulcheck.GetValue("Spooky Scythes") && projectile.owner == Main.myPlayer
+                    if (modPlayer.SpookyEnchant && SoulConfig.Instance.GetValue("Spooky Scythes") && projectile.owner == Main.myPlayer
                         && projectile.minion && projectile.minionSlots > 0
                         && counter % 60 == 0 && Main.rand.Next(8 + Main.player[projectile.owner].maxMinions) == 0)
                     {
@@ -348,7 +357,7 @@ namespace FargowiltasSouls.Projectiles
 
                 //hook AI
                 if (modPlayer.MahoganyEnchant && projectile.aiStyle == 7 && (player.ZoneJungle || modPlayer.WoodForce) && counter >= 60
-                    && Soulcheck.GetValue("Mahogany Hook Support"))
+                    && SoulConfig.Instance.GetValue("Mahogany Hook Speed"))
                 {
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
@@ -391,7 +400,7 @@ namespace FargowiltasSouls.Projectiles
                     projectile.ai[1] -= projectile.ai[0];
                 }
 
-                if (modPlayer.OriEnchant && (projectile.type == ProjectileID.BallofFire || projectile.type == ProjectileID.CursedFlameFriendly || projectile.type == ProjectileID.BallofFrost) && Soulcheck.GetValue("Orichalcum Fireballs"))
+                if (modPlayer.OriEnchant && (projectile.type == ProjectileID.BallofFire || projectile.type == ProjectileID.CursedFlameFriendly || projectile.type == ProjectileID.BallofFrost) && SoulConfig.Instance.GetValue("Orichalcum Fireballs"))
                 {
                     projectile.timeLeft = 2;
                 }
@@ -468,7 +477,7 @@ namespace FargowiltasSouls.Projectiles
 
             if (player.FindBuffIndex(buff) == -1)
             {
-                if (!(enchant || modPlayer.TerrariaSoul) || !Soulcheck.GetValue(toggle) || (!modPlayer.PetsActive && !minion))
+                if (!(enchant || modPlayer.TerrariaSoul) || !SoulConfig.Instance.GetValue(toggle) || (!modPlayer.PetsActive && !minion))
                     projectile.Kill();
             }
         }
@@ -1049,7 +1058,7 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (Soulcheck.GetValue("Jester Bell"))
+            if (SoulConfig.Instance.GetValue("Jester Bell"))
             {
                 //jester effect
                 if (modPlayer.JesterEnchant && crit)
@@ -1549,7 +1558,7 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.CobaltEnchant && Soulcheck.GetValue("Cobalt Shards") && modPlayer.CobaltCD == 0 && CanSplit && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
+            if (modPlayer.CobaltEnchant && SoulConfig.Instance.GetValue("Cobalt Shards") && modPlayer.CobaltCD == 0 && CanSplit && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
             {
                 int damage = 40;
                 if(modPlayer.EarthForce)

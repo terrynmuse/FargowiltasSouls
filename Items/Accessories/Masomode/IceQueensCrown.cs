@@ -35,7 +35,7 @@ Summons a friendly super Flocko");
         {
             player.endurance += 0.05f;
             player.buffImmune[BuffID.Frozen] = true;
-            if (Soulcheck.GetValue("Flocko Minion"))
+            if (SoulConfig.Instance.GetValue("Flocko Minion"))
                 player.AddBuff(mod.BuffType("SuperFlocko"), 2);
         }
     }

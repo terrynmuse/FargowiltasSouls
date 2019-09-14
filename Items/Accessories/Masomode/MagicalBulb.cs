@@ -38,7 +38,7 @@ Attracts a legendary plant's offspring which flourishes in combat");
             player.buffImmune[mod.BuffType("IvyVenom")] = true;
             player.buffImmune[mod.BuffType("Swarming")] = true;
             player.lifeRegen += 2;
-            if (Soulcheck.GetValue("Plantera Minion"))
+            if (SoulConfig.Instance.GetValue("Plantera Minion"))
                 player.AddBuff(mod.BuffType("PlanterasChild"), 2);
         }
     }

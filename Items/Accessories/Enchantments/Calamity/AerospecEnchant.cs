@@ -54,7 +54,7 @@ Effects of Gladiator's Locket and Unstable Prism");
 
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            if (Soulcheck.GetValue("Valkyrie Minion"))
+            if (SoulConfig.Instance.GetValue("Valkyrie Minion"))
             {
                 modPlayer.valkyrie = true;
                 if (player.whoAmI == Main.myPlayer)
@@ -70,9 +70,9 @@ Effects of Gladiator's Locket and Unstable Prism");
                 }
             }
 
-            if (Soulcheck.GetValue("Gladiator's Locket"))
+            if (SoulConfig.Instance.GetValue("Gladiator's Locket"))
                 calamity.GetItem("GladiatorsLocket").UpdateAccessory(player, hideVisual);
-            if (Soulcheck.GetValue("Unstable Prism"))
+            if (SoulConfig.Instance.GetValue("Unstable Prism"))
                 calamity.GetItem("UnstablePrism").UpdateAccessory(player, hideVisual);
 
             //spawn pet soon tm

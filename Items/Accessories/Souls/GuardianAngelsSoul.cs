@@ -104,7 +104,7 @@ Nearby allies that die drop a wisp of spirit energy");
             //medical bag
             thoriumPlayer.medicalAcc = true;
             //head mirror arrow 
-            if (Soulcheck.GetValue("Head Mirror"))
+            if (SoulConfig.Instance.GetValue("Head Mirror"))
             {
                 float num = 0f;
                 int num2 = player.whoAmI;

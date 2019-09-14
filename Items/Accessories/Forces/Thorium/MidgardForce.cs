@@ -80,7 +80,7 @@ Summons a pet Pink Slime");
                 modPlayer.AllDamageUp(.12f);
             }
 
-            if (Soulcheck.GetValue("Eye of the Beholder"))
+            if (SoulConfig.Instance.GetValue("Eye of the Beholder"))
             {
                 //eye of beholder
                 thorium.GetItem("EyeofBeholder").UpdateAccessory(player, hideVisual);
@@ -91,7 +91,7 @@ Summons a pet Pink Slime");
             modPlayer.AddPet("Pink Slime Pet", hideVisual, thorium.BuffType("PinkSlimeBuff"), thorium.ProjectileType("PinkSlime"));
             modPlayer.IllumiteEnchant = true;
 
-            if (Soulcheck.GetValue("Terrarium Spirits"))
+            if (SoulConfig.Instance.GetValue("Terrarium Spirits"))
             {
                 //terrarium set bonus
                 timer++;
@@ -123,7 +123,7 @@ Summons a pet Pink Slime");
             //jester
             modPlayer.JesterEnchant = true;
 
-            if (Soulcheck.GetValue("Crietz"))
+            if (SoulConfig.Instance.GetValue("Crietz"))
             {
                 //crietz
                 thoriumPlayer.crietzAcc = true;

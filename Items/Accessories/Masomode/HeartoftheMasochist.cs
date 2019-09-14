@@ -61,12 +61,12 @@ Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
 
             //ice queen's crown
             player.buffImmune[BuffID.Frozen] = true;
-            if (Soulcheck.GetValue("Flocko Minion"))
+            if (SoulConfig.Instance.GetValue("Flocko Minion"))
                 player.AddBuff(mod.BuffType("SuperFlocko"), 2);
 
             //saucer control console
             player.buffImmune[BuffID.Electrified] = true;
-            if (Soulcheck.GetValue("Saucer Minion"))
+            if (SoulConfig.Instance.GetValue("Saucer Minion"))
                 player.AddBuff(mod.BuffType("SaucerMinion"), 2);
 
             //betsy's heart
@@ -90,9 +90,9 @@ Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
             //player.buffImmune[mod.BuffType("CurseoftheMoon")] = true;
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.ChaosState] = true;
-            if (Soulcheck.GetValue("Gravity Control"))
+            if (SoulConfig.Instance.GetValue("Gravity Control"))
                 player.gravControl = true;
-            if (Soulcheck.GetValue("True Eyes Minion"))
+            if (SoulConfig.Instance.GetValue("True Eyes Minion"))
                 player.AddBuff(mod.BuffType("TrueEyes"), 2);
             fargoPlayer.GravityGlobeEX = true;
             fargoPlayer.wingTimeModifier += 1f;

@@ -97,7 +97,7 @@ Effects of Greedy Ring, Celestial Shell, and Shiny Stone
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (Soulcheck.GetValue("Proof of Avarice"))
+            if (SoulConfig.Instance.GetValue("Proof of Avarice"))
             {
                 //proof of avarice
                 thoriumPlayer.avarice2 = true;

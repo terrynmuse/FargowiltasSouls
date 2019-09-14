@@ -61,7 +61,7 @@ Makes armed and magic skeletons less hostile outside the Dungeon");
             }
             player.maxMinions += 2;
             player.maxTurrets += 2;
-            if (Soulcheck.GetValue("Pungent Eye Minion"))
+            if (SoulConfig.Instance.GetValue("Pungent Eye Minion"))
                 player.AddBuff(mod.BuffType("PungentEyeball"), 5);
         }
 

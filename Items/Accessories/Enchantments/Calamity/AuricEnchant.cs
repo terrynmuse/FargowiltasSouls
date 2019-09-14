@@ -72,7 +72,7 @@ Effects of Heart of the Elements and The Sponge");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Auric Tesla Effects"))
+            if (SoulConfig.Instance.GetValue("Auric Tesla Effects"))
             {
                 //legs
                 player.carpet = true;
@@ -112,14 +112,14 @@ Effects of Heart of the Elements and The Sponge");
 
             //summon head
             modPlayer.tarraSummon = true;
-            if (Soulcheck.GetValue("Polterghast Mines"))
+            if (SoulConfig.Instance.GetValue("Polterghast Mines"))
             {
                 modPlayer.bloodflareSummon = true;
             }
 
             if (player.whoAmI == Main.myPlayer)
             {
-                if (Soulcheck.GetValue("Silva Crystal Minion"))
+                if (SoulConfig.Instance.GetValue("Silva Crystal Minion"))
                 {
                     modPlayer.silvaSummon = true;
                     if (player.FindBuffIndex(calamity.BuffType("SilvaCrystal")) == -1)
@@ -132,7 +132,7 @@ Effects of Heart of the Elements and The Sponge");
                     }
                 }
 
-                if (Soulcheck.GetValue("Mechworm Minion"))
+                if (SoulConfig.Instance.GetValue("Mechworm Minion"))
                 {
                     modPlayer.godSlayerSummon = true;
                     if (player.FindBuffIndex(calamity.BuffType("Mechworm")) == -1)
@@ -249,7 +249,7 @@ Effects of Heart of the Elements and The Sponge");
                 }      
             }
 
-            if (Soulcheck.GetValue("Elemental Waifus"))
+            if (SoulConfig.Instance.GetValue("Elemental Waifus"))
             {
                 //HEART OF THE ELEMENTS
                 modPlayer.allWaifus = true;

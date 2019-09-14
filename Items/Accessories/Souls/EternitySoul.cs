@@ -78,16 +78,42 @@ Effects of Shine, Spelunker, Hunter and Dangersense potions; Effects of Builder 
 拥有孢子囊, 圣骑士护盾, 冰霜龟壳, 北极潜水装备, 蛙腿, 飞毯, 熔岩行走靴和渔具包的效果
 拥有油漆喷雾器, 促动安装器, 手机, 重力球, 花之靴, 忍者极意, 贪婪戒指, 天界贝壳和闪耀石的效果
 获得发光, 探索者, 猎人和危险感知效果; 获得建造模式权限, 拥有无尽遗物的效果, 可以超远程拾取物品";
+            String tooltip_sp = @"'Mortal o Inmortal, todas las cosas reconocen tu reclamación a la divinidad'
+Drasticamente incrementa regeneración de vida, incrementa tu mana máximo a 999, súbditos por 30, torretas por 20, vida maxima por 500%, reducción de daño por 50%
+250% daño incrementado y velocidad de ataque; 100% velocidad de disparo y retroceso; Incrementa penetración de armadura por 50; Críticos hacen 10x daño y la probabilidad de Crítico se vuelve 50%
+Consigue un crítico para incrementarlo por 10%, a 100% cada ataque gana 10% robo de vida y ganas +10% daño y +10 defensa; Esto se apila hasta 200,000 veces hasta que te golpeen
+Todos los ataques inflijen Llamas del Universo, Sadismo, Midas y reduce inmunidad de retroceso de los enemigos
+Invoca estalactitas, un cristal de hojas, espada y escudo benditos, escarabajos, varias mascotas, bolas de fuego de oricalco y todos los jefes del Modo Masoquista a tu lado
+Ataques pueden crear rayos, pétalos, orbes espectrales, un Guardián de la mazmorra, bolas de nieve, lanzas, o potenciadores
+Ataques provocan regeneración de vida incrementada, Sombra de Esquivo, explociones de llamas y lluvias de meteoros
+Projectiles pueden dividirse o quebrarse, tamaño de objetos y projectiles incrementado, ataques crean ataques adicionales y corazones
+Dejas un rastro de fuego y arcoirises; Enemigos cercanos son incinerados y súbditos escupen guadañas ocasionalmente
+Animales tienen defensa incrementada y sus almas te ayudarán; Enemigos explotan en agujas; Mejora todas las torretas DD2 grandemente
+Tocar dos veces abajo para invocar una torreta, llamar a una tormenta antigua, activar sigilo, invocar un portal, y dirigir tu guardián
+Click derecho para Defender; Presiona la Llave dorada para encerrarte en oro; Presiona la Llave congelada para congelar el tiempo por 5 segundos
+Escudo de bengala solar te permite embestir, embestir bloques sólidos te teletransporta a través de ellos; Tira una bomba de huma para teletransportarte a ella y obtener el buff de primer golpe
+Ser golpeado refleja el daño, suelta una exploción de esporas, inflije super sangrado, puede chillar y causa que erupciones en varias cosas cuando seas dañado
+Otorga regeneración carmesí, inmunidad al fuego, daño por caída, y lava, duplica la colección de hierbas
+50% probabilidad de Abejas gigantes, 15% probabilidad de críticos de súbditos, 20% probabilidad de botín extra
+Otorga inmunidad a la mayoría de estados alterados; Permite velocidad Supersónica y vuelo infinito; Incrementa poder de pesca substancialmente y todas las cañas de pescar tienen 10 señuelos extra 
+Revives 10x más rapido; Evita invocación de jefes, incrementa generación de enemigos, reduce la hostilidad de esqueletos fuera de la mazmorra y fortalece a Cute Fishron
+Otorga ataque continuo, protección de modificadores, control de gravedad, caída rápida, e inmunidad a retroceso, todos los estados alterados del Modo Masoquista, mejora ganchos y más
+Incrementa velocidad de colocación de bloques y paredes por 50%, Casi infinito alcance de colocación de bloques y alcance de minar, Velocidad de minería duplicada 
+Invoca un anillo de la muerte inpenetrable alrededor de tí y tu reflejas todos los projectiles; Cuando mueres, explotas y revives con vida al máximo
+Efectos del Guantelete de fuego, Bolsa yoyó, Mira de francotirador, Esposas celestiales, Flor de maná, Cerebro de confusión, Velo estelar, Collar del cariño, y Capa de abejas
+Efectos del Saco de esporas, Escudo de paladín, Caparazón de tortuga congelado, Equipo de buceo ártico, Anca de rana, Alfombra voladora, Katiuskas de lava, y Bolsa de aparejos de pescador
+Efectos del Spray de pintura, Pulsificador, Móvil, Globo gravitacional, Botas floridas, Equipo de maestro ninja, Anillo codicioso, Caparazón celestial, y Piedra brillante
+Efectos de pociones de Brillo, Espeleólogo, Cazador, y Sentido del peligro; Efectos del Modo Constructor, Reliquia del Infinito y atraes objectos desde más lejos";
 
             if (thorium != null)
             {
                 tooltip += @"Effects of Phylactery, Crystal Scorpion, and Yuma's Pendant
-                Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
-                Effects of Support Sash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
-                Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw
-                Effects of Ocean's Retaliation and Cape of the Survivor
-                Effects of Blast Shield and Terrarium Defender
-                Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
+Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
+Effects of Support Sash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
+Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw
+Effects of Ocean's Retaliation and Cape of the Survivor
+Effects of Blast Shield and Terrarium Defender
+Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
 
                 tooltip_ch += @"拥有魂匣, 魔晶蝎和云码垂饰的效果
                 拥有投手大师指导:卷三, 美人鱼水壶和亡者眼罩的效果
@@ -116,7 +142,9 @@ Effects of Asgardian Aegis";
 
 
             DisplayName.AddTranslation(GameCulture.Chinese, "永恒之魂");
+            DisplayName.AddTranslation(GameCulture.Spanish, "Alma de la Eternidad");
             Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
+            Tooltip.AddTranslation(GameCulture.Spanish, tooltip_sp);
 
             Tooltip.SetDefault(tooltip);
 
@@ -170,7 +198,7 @@ and most of SoT not mentioned because meme tooltip length
             //UNIVERSE
             modPlayer.UniverseEffect = true;
             modPlayer.AllDamageUp(2f);
-            if (Soulcheck.GetValue("Universe Attack Speed"))
+            if (SoulConfig.Instance.GetValue("Universe Attack Speed"))
             {
                 modPlayer.AttackSpeed *= 2;
             }
@@ -180,7 +208,7 @@ and most of SoT not mentioned because meme tooltip length
             player.counterWeight = 556 + Main.rand.Next(6);
             player.yoyoGlove = true;
             player.yoyoString = true;
-            if (Soulcheck.GetValue("Universe Scope"))
+            if (SoulConfig.Instance.GetValue("Universe Scope"))
             {
                 player.scope = true;
             }
@@ -215,18 +243,18 @@ and most of SoT not mentioned because meme tooltip length
             //charm of myths
             player.pStone = true;
             //bee cloak, sweet heart necklace, star veil
-            if (Soulcheck.GetValue("Stars On Hit"))
+            if (SoulConfig.Instance.GetValue("Stars On Hit"))
             {
                 player.starCloak = true;
             }
-            if (Soulcheck.GetValue("Bees On Hit"))
+            if (SoulConfig.Instance.GetValue("Bees On Hit"))
             {
                 player.bee = true;
             }
             player.panic = true;
             player.longInvince = true;
             //spore sac
-            if (Soulcheck.GetValue("Spore Sac"))
+            if (SoulConfig.Instance.GetValue("Spore Sac"))
             {
                 player.SporeSac();
                 player.sporeSac = true;
@@ -249,7 +277,7 @@ and most of SoT not mentioned because meme tooltip length
 
             //SUPERSONIC
             //frost spark plus super speed
-            if (Soulcheck.GetValue("Supersonic Speed Boosts") && !player.GetModPlayer<FargoPlayer>().noSupersonic)
+            if (SoulConfig.Instance.GetValue("Supersonic Speed Boosts") && !player.GetModPlayer<FargoPlayer>().noSupersonic)
             {
                 player.maxRunSpeed += 15f;
                 player.runAcceleration += .25f;
@@ -318,11 +346,11 @@ and most of SoT not mentioned because meme tooltip length
             //pick speed
             player.pickSpeed -= 0.90f;
             //mining helmet
-            if (Soulcheck.GetValue("Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
+            if (SoulConfig.Instance.GetValue("Mining Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
             player.autoActuator = true;
             //builder mode
-            if (Soulcheck.GetValue("Builder Mode"))
+            if (SoulConfig.Instance.GetValue("Builder Mode"))
                 modPlayer.BuilderMode = true;
             //cell phone
             player.accWatch = 3;
@@ -363,12 +391,12 @@ and most of SoT not mentioned because meme tooltip length
                 player.AddBuff(thorium.BuffType("LichActive"), 60, true);
             }
             //crystal scorpion
-            if (Soulcheck.GetValue("Crystal Scorpion"))
+            if (SoulConfig.Instance.GetValue("Crystal Scorpion"))
             {
                 thoriumPlayer.crystalScorpion = true;
             }
             //yumas pendant
-            if (Soulcheck.GetValue("Yuma's Pendant"))
+            if (SoulConfig.Instance.GetValue("Yuma's Pendant"))
             {
                 thoriumPlayer.yuma = true;
             }
@@ -409,7 +437,7 @@ and most of SoT not mentioned because meme tooltip length
             //medical bag
             thoriumPlayer.medicalAcc = true;
             //head mirror arrow 
-            if (Soulcheck.GetValue("Head Mirror"))
+            if (SoulConfig.Instance.GetValue("Head Mirror"))
             {
                 float num = 0f;
                 int num2 = player.whoAmI;
@@ -538,7 +566,7 @@ and most of SoT not mentioned because meme tooltip length
                 }
             }
             //air walkers
-            if (Soulcheck.GetValue("Air Walkers"))
+            if (SoulConfig.Instance.GetValue("Air Walkers"))
             {
                 if (player.controlDown)
                 {
@@ -614,7 +642,7 @@ and most of SoT not mentioned because meme tooltip length
             player.meleeSpeed -= .15f;
             player.meleeCrit -= 5;
 
-            if (Soulcheck.GetValue("Elemental Quiver"))
+            if (SoulConfig.Instance.GetValue("Elemental Quiver"))
             {
                 //range
                 modPlayer.eQuiver = true;
@@ -644,8 +672,6 @@ and most of SoT not mentioned because meme tooltip length
             modPlayer.IBoots = !hideVisual;
             modPlayer.elysianFire = !hideVisual;
             modPlayer.cTracers = true;
-            //TERRARIA
-            mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
             //TYRANT
             mod.GetItem("CalamitySoul").UpdateAccessory(player, hideVisual);
         }
@@ -686,7 +712,7 @@ and most of SoT not mentioned because meme tooltip length
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
         {
-            speed = Soulcheck.GetValue("Dimension Speed Boosts") ? 25f : 15f;
+            speed = SoulConfig.Instance.GetValue("Dimension Speed Boosts") ? 25f : 15f;
             acceleration *= 3.5f;
         }
 

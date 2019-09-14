@@ -55,7 +55,7 @@ Summons a pet Wyvern");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            if (Soulcheck.GetValue("Dread Speed"))
+            if (SoulConfig.Instance.GetValue("Dread Speed"))
             {
                 //dread set bonus
                 player.moveSpeed += 0.8f;

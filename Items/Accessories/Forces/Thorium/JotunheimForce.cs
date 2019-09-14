@@ -134,7 +134,7 @@ Summons several pets");
             modPlayer.AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);
             modPlayer.AddPet("Owl Pet", hideVisual, thorium.BuffType("SnowyOwlBuff"), thorium.ProjectileType("SnowyOwlPet"));
 
-            if (Soulcheck.GetValue("Icy Barrier"))
+            if (SoulConfig.Instance.GetValue("Icy Barrier"))
             {
                 //icy set bonus
                 thoriumPlayer.icySet = true;
@@ -146,7 +146,7 @@ Summons several pets");
             //cryo
             modPlayer.CryoEnchant = true;
             
-            if (Soulcheck.GetValue("Whispering Tentacles"))
+            if (SoulConfig.Instance.GetValue("Whispering Tentacles"))
             {
                 thoriumPlayer.whisperingSet = true;
                 if (player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle")] + player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacle2")] < 6 && player.ownedProjectileCounts[thorium.ProjectileType("WhisperingTentacleSpawn")] < 1)

@@ -84,7 +84,7 @@ Summons the aid of all Masochist Mode bosses to your side");
 
             //slimy shield
             player.buffImmune[BuffID.Slimed] = true;
-            if (Soulcheck.GetValue("Slimy Shield Effects"))
+            if (SoulConfig.Instance.GetValue("Slimy Shield Effects"))
             {
                 player.maxFallSpeed *= 2f;
                 fargoPlayer.SlimyShield = true;
@@ -147,16 +147,16 @@ Summons the aid of all Masochist Mode bosses to your side");
             }
 
             //sinister icon
-            if (Soulcheck.GetValue("Sinister Icon"))
+            if (SoulConfig.Instance.GetValue("Sinister Icon"))
                 player.GetModPlayer<FargoPlayer>().SinisterIcon = true;
 
             //dragon fang
-            if (Soulcheck.GetValue("Inflict Clipped Wings"))
+            if (SoulConfig.Instance.GetValue("Inflict Clipped Wings"))
                 fargoPlayer.DragonFang = true;
 
             //frigid gemstone
             player.buffImmune[BuffID.Frostburn] = true;
-            if (Soulcheck.GetValue("Frostfireballs"))
+            if (SoulConfig.Instance.GetValue("Frostfireballs"))
             {
                 fargoPlayer.FrigidGemstone = true;
                 if (fargoPlayer.FrigidGemstoneCD > 0)
@@ -191,7 +191,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             //nymph's perfume
             player.buffImmune[BuffID.Lovestruck] = true;
             player.buffImmune[BuffID.Stinky] = true;
-            if (Soulcheck.GetValue("Attacks Spawn Hearts"))
+            if (SoulConfig.Instance.GetValue("Attacks Spawn Hearts"))
             {
                 fargoPlayer.NymphsPerfume = true;
                 if (fargoPlayer.NymphsPerfumeCD > 0)
@@ -238,7 +238,7 @@ Summons the aid of all Masochist Mode bosses to your side");
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.ChaosState] = true;
             fargoPlayer.GravityGlobeEX = true;
-            if (Soulcheck.GetValue("Gravity Control"))
+            if (SoulConfig.Instance.GetValue("Gravity Control"))
                 player.gravControl = true;
 
             //heart of maso

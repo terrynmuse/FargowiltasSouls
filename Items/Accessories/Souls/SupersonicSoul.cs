@@ -78,7 +78,7 @@ Effects of Flying Carpet";
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             //frost spark plus super speed
-            if (Soulcheck.GetValue("Supersonic Speed Boosts") && !player.GetModPlayer<FargoPlayer>().noSupersonic)
+            if (SoulConfig.Instance.GetValue("Supersonic Speed Boosts") && !player.GetModPlayer<FargoPlayer>().noSupersonic)
             {
                 player.maxRunSpeed += 10f;
                 player.runAcceleration += .25f;
@@ -185,7 +185,7 @@ Effects of Flying Carpet";
                 }
             }
             //air walkers
-            if (Soulcheck.GetValue("Air Walkers"))
+            if (SoulConfig.Instance.GetValue("Air Walkers"))
             {
                 if (player.controlDown)
                 {
