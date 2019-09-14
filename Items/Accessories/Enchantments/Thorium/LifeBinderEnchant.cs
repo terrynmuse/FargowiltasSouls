@@ -61,7 +61,7 @@ Summons a pet Holy Goat");
             modPlayer.AddPet("Holy Goat Pet", hideVisual, thorium.BuffType("HolyGoatBuff"), thorium.ProjectileType("HolyGoat"));
             thoriumPlayer.goatPet = true;
 
-            if (Soulcheck.GetValue("Iridescent Flash"))
+            if (SoulConfig.Instance.GetValue("Iridescent Flash"))
             {
                 //iridescent set bonus
                 thoriumPlayer.iridescentSet = true;

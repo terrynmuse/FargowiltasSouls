@@ -79,7 +79,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
                 player.scope = true;
             }
 
-            if (Fargowiltas.Instance.CalamityLoaded && Soulcheck.GetValue("Elemental Quiver")) Calamity(player);
+            if (Fargowiltas.Instance.CalamityLoaded && SoulConfig.Instance.GetValue("Elemental Quiver")) Calamity(player);
         }
 
         private void Calamity(Player player)

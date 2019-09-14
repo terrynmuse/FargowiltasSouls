@@ -51,7 +51,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
-            if (Soulcheck.GetValue("Conduit Shield"))
+            if (SoulConfig.Instance.GetValue("Conduit Shield"))
             {
                 //conduit set bonus
                 thoriumPlayer.conduitSet = true;

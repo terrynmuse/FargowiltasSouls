@@ -54,7 +54,7 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift");
 
             if (player.GetModPlayer<FargoPlayer>().Eternity) return;
 
-            if (Soulcheck.GetValue("Victide Sea Urchin"))
+            if (SoulConfig.Instance.GetValue("Victide Sea Urchin"))
             {
                 //summon
                 modPlayer.urchin = true;
@@ -73,7 +73,7 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift");
 
             calamity.GetItem("DeepDiver").UpdateAccessory(player, hideVisual);
             calamity.GetItem("TheTransformer").UpdateAccessory(player, hideVisual);
-            if (Soulcheck.GetValue("Luxor's Gift"))
+            if (SoulConfig.Instance.GetValue("Luxor's Gift"))
                 calamity.GetItem("LuxorsGift").UpdateAccessory(player, hideVisual);
         }
 

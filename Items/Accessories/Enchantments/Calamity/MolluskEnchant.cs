@@ -46,7 +46,7 @@ Effects of Giant Pearl and Amidias' Pendant");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Shellfish Minions"))
+            if (SoulConfig.Instance.GetValue("Shellfish Minions"))
             {
                 //set bonus clams
                 modPlayer.molluskSet = true;
@@ -64,13 +64,13 @@ Effects of Giant Pearl and Amidias' Pendant");
                 }
             }
 
-            if (Soulcheck.GetValue("Giant Pearl"))
+            if (SoulConfig.Instance.GetValue("Giant Pearl"))
             {
                 modPlayer.giantPearl = true;
                 Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.45f, 0.8f, 0.8f);
             }
 
-            if (Soulcheck.GetValue("Amidias' Pendant"))
+            if (SoulConfig.Instance.GetValue("Amidias' Pendant"))
             {
                 calamity.GetItem("AmidiasPendant").UpdateAccessory(player, hideVisual);
             }

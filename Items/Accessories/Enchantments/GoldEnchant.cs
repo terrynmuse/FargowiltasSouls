@@ -77,7 +77,7 @@ Summons a pet Parrot";
         private void Thorium(Player player, bool hideVisual)
         {
             ThoriumPlayer thoriumPlayer = (ThoriumPlayer)player.GetModPlayer(thorium, "ThoriumPlayer");
-            if (Soulcheck.GetValue("Proof of Avarice"))
+            if (SoulConfig.Instance.GetValue("Proof of Avarice"))
             {
                 //proof of avarice
                 thoriumPlayer.avarice2 = true;

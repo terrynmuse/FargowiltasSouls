@@ -85,7 +85,7 @@ Effects of the Nebulous Core and Draedon's Heart");
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("God Slayer Effects"))
+            if (SoulConfig.Instance.GetValue("God Slayer Effects"))
             {
                 //body
                 modPlayer.godSlayerReflect = true;
@@ -101,7 +101,7 @@ Effects of the Nebulous Core and Draedon's Heart");
                 modPlayer.godSlayerThrowing = true;
             }
             
-            if (Soulcheck.GetValue("Mechworm Minion"))
+            if (SoulConfig.Instance.GetValue("Mechworm Minion"))
             {
                 //summon
                 modPlayer.godSlayerSummon = true;
@@ -220,7 +220,7 @@ Effects of the Nebulous Core and Draedon's Heart");
                 }
             }
             
-            if (Soulcheck.GetValue("Nebulous Core"))
+            if (SoulConfig.Instance.GetValue("Nebulous Core"))
             {
                 //nebulous core
                 modPlayer.nCore = true;

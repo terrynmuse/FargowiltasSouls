@@ -391,12 +391,12 @@ and most of SoT not mentioned because meme tooltip length
                 player.AddBuff(thorium.BuffType("LichActive"), 60, true);
             }
             //crystal scorpion
-            if (Soulcheck.GetValue("Crystal Scorpion"))
+            if (SoulConfig.Instance.GetValue("Crystal Scorpion"))
             {
                 thoriumPlayer.crystalScorpion = true;
             }
             //yumas pendant
-            if (Soulcheck.GetValue("Yuma's Pendant"))
+            if (SoulConfig.Instance.GetValue("Yuma's Pendant"))
             {
                 thoriumPlayer.yuma = true;
             }
@@ -437,7 +437,7 @@ and most of SoT not mentioned because meme tooltip length
             //medical bag
             thoriumPlayer.medicalAcc = true;
             //head mirror arrow 
-            if (Soulcheck.GetValue("Head Mirror"))
+            if (SoulConfig.Instance.GetValue("Head Mirror"))
             {
                 float num = 0f;
                 int num2 = player.whoAmI;
@@ -566,7 +566,7 @@ and most of SoT not mentioned because meme tooltip length
                 }
             }
             //air walkers
-            if (Soulcheck.GetValue("Air Walkers"))
+            if (SoulConfig.Instance.GetValue("Air Walkers"))
             {
                 if (player.controlDown)
                 {
@@ -642,7 +642,7 @@ and most of SoT not mentioned because meme tooltip length
             player.meleeSpeed -= .15f;
             player.meleeCrit -= 5;
 
-            if (Soulcheck.GetValue("Elemental Quiver"))
+            if (SoulConfig.Instance.GetValue("Elemental Quiver"))
             {
                 //range
                 modPlayer.eQuiver = true;

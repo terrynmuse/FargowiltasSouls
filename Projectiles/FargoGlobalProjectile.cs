@@ -1058,7 +1058,7 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (Soulcheck.GetValue("Jester Bell"))
+            if (SoulConfig.Instance.GetValue("Jester Bell"))
             {
                 //jester effect
                 if (modPlayer.JesterEnchant && crit)

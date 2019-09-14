@@ -185,7 +185,7 @@ Effects of Flying Carpet";
                 }
             }
             //air walkers
-            if (Soulcheck.GetValue("Air Walkers"))
+            if (SoulConfig.Instance.GetValue("Air Walkers"))
             {
                 if (player.controlDown)
                 {

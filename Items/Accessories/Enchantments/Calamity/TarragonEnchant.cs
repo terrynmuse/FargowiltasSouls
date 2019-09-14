@@ -81,7 +81,7 @@ Debuff状态下, 增加10%盗贼伤害
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
 
-            if (Soulcheck.GetValue("Tarragon Effects"))
+            if (SoulConfig.Instance.GetValue("Tarragon Effects"))
             {
                 modPlayer.tarraSet = true;
                 //melee
@@ -96,7 +96,7 @@ Debuff状态下, 增加10%盗贼伤害
                 modPlayer.tarraThrowing = true;
             }
             
-            if (Soulcheck.GetValue("Profaned Soul Artifact"))
+            if (SoulConfig.Instance.GetValue("Profaned Soul Artifact"))
             {
                 //profaned soul artifact
                 modPlayer.pArtifact = true;

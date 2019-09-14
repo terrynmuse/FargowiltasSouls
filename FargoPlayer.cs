@@ -296,28 +296,16 @@ namespace FargowiltasSouls
 
         public override TagCompound Save()
         {
-            if (Soulcheck.owner == player.name) //to prevent newly made characters from taking the toggles of another char
-            {
-                string name = "FargoDisabledSouls" + player.name;
+            //idk ech
+            string name = "FargoDisabledSouls" + player.name;
+            var FargoDisabledSouls = new List<string>();
 
-                var FargoDisabledSouls = new List<string>();
-                foreach (KeyValuePair<string, bool> entry in Soulcheck.ToggleDict)
-                {
-                    if (!entry.Value)
-                    {
-                        FargoDisabledSouls.Add(entry.Key);
-                    }
-                }
+            if (CelestialSeal)
+                FargoDisabledSouls.Add("CelestialSeal");
 
-                //ErrorLogger.Log(log);
-
-                if (CelestialSeal)
-                    FargoDisabledSouls.Add("CelestialSeal");
-
-                return new TagCompound {
+            return new TagCompound {
                     {name, FargoDisabledSouls}
                 }; ;
-            }
 
             return null;
         }
@@ -344,113 +332,6 @@ namespace FargowiltasSouls
 
         public override void OnEnterWorld(Player player)
         {
-            foreach (KeyValuePair<string, Color> buff in Soulcheck.toggles)
-            {
-                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                {
-                    if (disabledSouls.Contains(buff.Key))
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = false;
-                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                    }
-                    else
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = true;
-                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                    }
-                }
-            }
-
-            foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesPets)
-            {
-                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                {
-                    if (disabledSouls.Contains(buff.Key))
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = false;
-                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                    }
-                    else
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = true;
-                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                    }
-                }
-            }
-
-            foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesReforges)
-            {
-                if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                {
-                    if (disabledSouls.Contains(buff.Key))
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = false;
-                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                    }
-                    else
-                    {
-                        Soulcheck.ToggleDict[buff.Key] = true;
-                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                    }
-                }
-                else
-                {
-                    if (disabledSouls.Contains(buff.Key))
-                    {
-                        Soulcheck.ToggleDict.Add(buff.Key, false);
-                        Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                    }
-                    else
-                    {
-                        Soulcheck.ToggleDict.Add(buff.Key, true);
-                        Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                    }
-                }
-            }
-
-            if (Fargowiltas.Instance.ThoriumLoaded)
-            {
-                foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesThorium)
-                {
-                    if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                    {
-                        if (disabledSouls.Contains(buff.Key))
-                        {
-                            Soulcheck.ToggleDict[buff.Key] = false;
-                            Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                        }
-                        else
-                        {
-                            Soulcheck.ToggleDict[buff.Key] = true;
-                            Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                        }
-                    }
-                }
-            }
-
-            if (Fargowiltas.Instance.CalamityLoaded)
-            {
-                foreach (KeyValuePair<string, Color> buff in Soulcheck.togglesCalamity)
-                {
-                    if (Soulcheck.ToggleDict.ContainsKey(buff.Key))
-                    {
-                        if (disabledSouls.Contains(buff.Key))
-                        {
-                            Soulcheck.ToggleDict[buff.Key] = false;
-                            Soulcheck.checkboxDict[buff.Key].Color = Color.Gray;
-                        }
-                        else
-                        {
-                            Soulcheck.ToggleDict[buff.Key] = true;
-                            Soulcheck.checkboxDict[buff.Key].Color = new Color(81, 181, 113);
-                        }
-                    }
-                }
-            }
-
-            Soulcheck.owner = player.name;
-            Soulcheck.PlaceBoxes();
-
             disabledSouls.Clear();
 
             for (int i = 0; i < 200; i++)
@@ -479,18 +360,6 @@ namespace FargowiltasSouls
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (Fargowiltas.CheckListKey.JustPressed)
-            {
-                if (Soulcheck.Visible == false)
-                {
-                    Soulcheck.Visible = true;
-                }
-                else
-                {
-                    Soulcheck.Visible = false;
-                }
-            }
-
             if(Fargowiltas.FreezeKey.JustPressed && StardustEnchant && FreezeCD == 0)
             {
                 FreezeTime = true;
@@ -1766,7 +1635,7 @@ namespace FargowiltasSouls
             if (TideTurnerEnchant)
             {
                 //tide turner daggers
-                if (Soulcheck.GetValue("Tide Turner Daggers") && player.ownedProjectileCounts[thorium.ProjectileType("TideDagger")] < 24 && proj.type != thorium.ProjectileType("ThrowingGuideFollowup") && proj.type != thorium.ProjectileType("TideDagger") && target.type != 488 && Main.rand.Next(5) == 0)
+                if (SoulConfig.Instance.GetValue("Tide Turner Daggers") && player.ownedProjectileCounts[thorium.ProjectileType("TideDagger")] < 24 && proj.type != thorium.ProjectileType("ThrowingGuideFollowup") && proj.type != thorium.ProjectileType("TideDagger") && target.type != 488 && Main.rand.Next(5) == 0)
                 {
                     FargoGlobalProjectile.XWay(4, player.position, thorium.ProjectileType("TideDagger"), 3, (int)(proj.damage * 0.75), 3);
                     Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 43, 1f, 0f);
@@ -1798,7 +1667,7 @@ namespace FargowiltasSouls
             if (AssassinEnchant)
             {
                 //assassin duplicate damage
-                if (Soulcheck.GetValue("Assassin Damage") && Utils.NextFloat(Main.rand) < 0.1f)
+                if (SoulConfig.Instance.GetValue("Assassin Damage") && Utils.NextFloat(Main.rand) < 0.1f)
                 {
                     Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
                     Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasmaDamage"), (int)((float)proj.damage * 1.15f), 0f, Main.myPlayer, 0f, 0f);
@@ -1828,14 +1697,14 @@ namespace FargowiltasSouls
                 target.AddBuff(24, 300, true);
                 target.AddBuff(thorium.BuffType("Singed"), 300, true);
 
-                if (Soulcheck.GetValue("Pyromancer Bursts") && proj.type != thorium.ProjectileType("PyroBurst"))
+                if (SoulConfig.Instance.GetValue("Pyromancer Bursts") && proj.type != thorium.ProjectileType("PyroBurst"))
                 {
                     Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("PyroBurst"), 100, 1f, Main.myPlayer, 0f, 0f);
                     Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("PyroExplosion2"), 0, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
 
-            if (BronzeEnchant && Soulcheck.GetValue("Bronze Lightning") && Main.rand.Next(5) == 0 && proj.type != thorium.ProjectileType("LightStrike") && proj.type != thorium.ProjectileType("ThrowingGuideFollowup"))
+            if (BronzeEnchant && SoulConfig.Instance.GetValue("Bronze Lightning") && Main.rand.Next(5) == 0 && proj.type != thorium.ProjectileType("LightStrike") && proj.type != thorium.ProjectileType("ThrowingGuideFollowup"))
             {
                 target.immune[proj.owner] = 5;
                 Projectile.NewProjectile(target.Center.X, target.Center.Y - 600f, 0f, 15f, thorium.ProjectileType("LightStrike"), (int)(proj.damage / 4), 1f, proj.owner, 0f, 0f);
@@ -1859,14 +1728,14 @@ namespace FargowiltasSouls
             }
 
             //white dwarf
-            if (WhiteDwarfEnchant && Soulcheck.GetValue("White Dwarf Flares") && crit)
+            if (WhiteDwarfEnchant && SoulConfig.Instance.GetValue("White Dwarf Flares") && crit)
             {
                 Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
                 Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)((float)target.lifeMax * 0.001f), 0f, Main.myPlayer, 0f, 0f);
             }
 
             //yew wood
-            if (YewEnchant && Soulcheck.GetValue("Yew Wood Crits") && !crit)
+            if (YewEnchant && SoulConfig.Instance.GetValue("Yew Wood Crits") && !crit)
             {
                 thoriumPlayer.yewChargeTimer = 120;
                 if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
@@ -1886,13 +1755,13 @@ namespace FargowiltasSouls
             }
 
             //cryo
-            if (CryoEnchant && Soulcheck.GetValue("Cryo-Magus Damage") && proj.type != thorium.ProjectileType("CryoDamage"))
+            if (CryoEnchant && SoulConfig.Instance.GetValue("Cryo-Magus Damage") && proj.type != thorium.ProjectileType("CryoDamage"))
             {
                 Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
                 Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), proj.damage / 3, 5f, Main.myPlayer, 0f, 0f);
             }
 
-            if (WarlockEnchant && Soulcheck.GetValue("Warlock Wisps") && !(proj.modProjectile is ThoriumProjectile && ((ThoriumProjectile)proj.modProjectile).radiant))
+            if (WarlockEnchant && SoulConfig.Instance.GetValue("Warlock Wisps") && !(proj.modProjectile is ThoriumProjectile && ((ThoriumProjectile)proj.modProjectile).radiant))
             {
                 //warlock
                 if (crit && player.ownedProjectileCounts[thorium.ProjectileType("ShadowWisp")] < 15)
@@ -1949,7 +1818,7 @@ namespace FargowiltasSouls
             if (TideTurnerEnchant)
             {
                 //tide turner daggers
-                if (Soulcheck.GetValue("Tide Turner Daggers") && player.ownedProjectileCounts[thorium.ProjectileType("TideDagger")] < 24 && target.type != 488 && Main.rand.Next(5) == 0)
+                if (SoulConfig.Instance.GetValue("Tide Turner Daggers") && player.ownedProjectileCounts[thorium.ProjectileType("TideDagger")] < 24 && target.type != 488 && Main.rand.Next(5) == 0)
                 {
                     FargoGlobalProjectile.XWay(4, player.position, thorium.ProjectileType("TideDagger"), 3, (int)(item.damage * 0.75), 3);
                     Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 43, 1f, 0f);
@@ -1981,7 +1850,7 @@ namespace FargowiltasSouls
             if (AssassinEnchant)
             {
                 //assassin duplicate damage
-                if (Soulcheck.GetValue("Assassin Damage") && Utils.NextFloat(Main.rand) < 0.1f)
+                if (SoulConfig.Instance.GetValue("Assassin Damage") && Utils.NextFloat(Main.rand) < 0.1f)
                 {
                     Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
                     Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("MeteorPlasmaDamage"), (int)((float)item.damage * 1.15f), 0f, Main.myPlayer, 0f, 0f);
@@ -2011,14 +1880,14 @@ namespace FargowiltasSouls
                 target.AddBuff(24, 300, true);
                 target.AddBuff(thorium.BuffType("Singed"), 300, true);
 
-                if (Soulcheck.GetValue("Pyromancer Bursts"))
+                if (SoulConfig.Instance.GetValue("Pyromancer Bursts"))
                 {
                     Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("PyroBurst"), 100, 1f, Main.myPlayer, 0f, 0f);
                     Projectile.NewProjectile(((int)target.Center.X), ((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("PyroExplosion2"), 0, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
 
-            if (BronzeEnchant && Soulcheck.GetValue("Bronze Lightning") && Main.rand.Next(5) == 0)
+            if (BronzeEnchant && SoulConfig.Instance.GetValue("Bronze Lightning") && Main.rand.Next(5) == 0)
             {
                 target.immune[player.whoAmI] = 5;
                 Projectile.NewProjectile(target.Center.X, target.Center.Y - 600f, 0f, 15f, thorium.ProjectileType("LightStrike"), (int)(item.damage / 4), 1f, player.whoAmI, 0f, 0f);
@@ -2042,14 +1911,14 @@ namespace FargowiltasSouls
             }
 
             //white dwarf
-            if (WhiteDwarfEnchant && Soulcheck.GetValue("White Dwarf Flares") && crit)
+            if (WhiteDwarfEnchant && SoulConfig.Instance.GetValue("White Dwarf Flares") && crit)
             {
                 Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 92, 1f, 0f);
                 Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("WhiteFlare"), (int)((float)target.lifeMax * 0.001f), 0f, Main.myPlayer, 0f, 0f);
             }
 
             //yew wood
-            if (YewEnchant && Soulcheck.GetValue("Yew Wood Crits") && !crit)
+            if (YewEnchant && SoulConfig.Instance.GetValue("Yew Wood Crits") && !crit)
             {
                 thoriumPlayer.yewChargeTimer = 120;
                 if (player.ownedProjectileCounts[thorium.ProjectileType("YewVisual")] < 1)
@@ -2068,14 +1937,14 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (CryoEnchant && Soulcheck.GetValue("Cryo-Magus Damage"))
+            if (CryoEnchant && SoulConfig.Instance.GetValue("Cryo-Magus Damage"))
             {
                 //cryo
                 Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("ReactionNitrogen"), 0, 5f, Main.myPlayer, 0f, 0f);
                 Projectile.NewProjectile((float)((int)target.Center.X), (float)((int)target.Center.Y), 0f, 0f, thorium.ProjectileType("CryoDamage"), item.damage / 3, 5f, Main.myPlayer, 0f, 0f);
             }
 
-            if (WarlockEnchant && Soulcheck.GetValue("Warlock Wisps"))
+            if (WarlockEnchant && SoulConfig.Instance.GetValue("Warlock Wisps"))
             {
                 //warlock
                 if (crit && player.ownedProjectileCounts[thorium.ProjectileType("ShadowWisp")] < 15)
@@ -2244,7 +2113,7 @@ namespace FargowiltasSouls
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, proj.owner, 0f, 0f);
             }
 
-            if (SpiritTrapperEnchant && Soulcheck.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps"))
             {
                 if (target.life < 0 && target.value > 0f)
                 {
@@ -2257,7 +2126,7 @@ namespace FargowiltasSouls
             }
 
             //tide hunter
-            if (TideHunterEnchant && Soulcheck.GetValue("Depth Diver Foam") && crit)
+            if (TideHunterEnchant && SoulConfig.Instance.GetValue("Depth Diver Foam") && crit)
             {
                 for (int n = 0; n < 10; n++)
                 {
@@ -2344,7 +2213,7 @@ namespace FargowiltasSouls
             if (ThoriumSoul)
             {
                 //mixtape
-                if (Soulcheck.GetValue("Mix Tape") && crit && proj.type != thorium.ProjectileType("MixtapeNote"))
+                if (SoulConfig.Instance.GetValue("Mix Tape") && crit && proj.type != thorium.ProjectileType("MixtapeNote"))
                 {
                     int num23 = Main.rand.Next(3);
                     Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 73, 1f, 0f);
@@ -2608,7 +2477,7 @@ namespace FargowiltasSouls
                 target.AddBuff(mod.BuffType("OceanicMaul"), 900);
                 //target.AddBuff(mod.BuffType("CurseoftheMoon"), 900);
 
-                if (crit && CyclonicFinCD <= 0 && Soulcheck.GetValue("Spectral Fishron"))
+                if (crit && CyclonicFinCD <= 0 && SoulConfig.Instance.GetValue("Spectral Fishron"))
                 {
                     CyclonicFinCD = 360;
 
@@ -2695,7 +2564,7 @@ namespace FargowiltasSouls
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, player.whoAmI, 0f, 0f);
             }
 
-            if (SpiritTrapperEnchant && Soulcheck.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps"))
             {
                 if (target.life < 0 && target.value > 0f)
                 {
@@ -2708,7 +2577,7 @@ namespace FargowiltasSouls
             }
 
             //tide hunter
-            if (TideHunterEnchant && Soulcheck.GetValue("Depth Diver Foam") && crit)
+            if (TideHunterEnchant && SoulConfig.Instance.GetValue("Depth Diver Foam") && crit)
             {
                 for (int n = 0; n < 10; n++)
                 {
@@ -2790,7 +2659,7 @@ namespace FargowiltasSouls
             if (ThoriumSoul)
             {
                 //mixtape
-                if (Soulcheck.GetValue("Mix Tape") && crit)
+                if (SoulConfig.Instance.GetValue("Mix Tape") && crit)
                 {
                     int num23 = Main.rand.Next(3);
                     Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 73, 1f, 0f);
@@ -2850,7 +2719,7 @@ namespace FargowiltasSouls
                 Projectile[] projs2 = FargoGlobalProjectile.XWay(10, player.Center, mod.ProjectileType("SporeBoom"), 3f, dmg, 0f);
             }
 
-            if (ShadeEnchant && Soulcheck.GetValue("Super Blood On Hit"))
+            if (ShadeEnchant && SoulConfig.Instance.GetValue("Super Bleed On Hit"))
             {
                 if (player.ZoneCrimson || WoodForce)
                     player.AddBuff(mod.BuffType("SuperBleed"), 300);
@@ -3057,7 +2926,7 @@ namespace FargowiltasSouls
 
         public void AddMinion(string toggle, int proj, int damage, float knockback)
         {
-            if(player.ownedProjectileCounts[proj] < 1 && player.whoAmI == Main.myPlayer && Soulcheck.GetValue(toggle))
+            if(player.ownedProjectileCounts[proj] < 1 && player.whoAmI == Main.myPlayer && SoulConfig.Instance.GetValue(toggle))
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, proj, damage, knockback, Main.myPlayer);
         }
 
@@ -3428,7 +3297,7 @@ namespace FargowiltasSouls
         {
             //AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
 
-            if (Soulcheck.GetValue("Chlorophyte Leaf Crystal") && player.ownedProjectileCounts[mod.ProjectileType("Chlorofuck")] == 0)
+            if (SoulConfig.Instance.GetValue("Chlorophyte Leaf Crystal") && player.ownedProjectileCounts[mod.ProjectileType("Chlorofuck")] == 0)
             {
                 const int max = 5;
                 float rotation = 2f * (float)Math.PI / max;

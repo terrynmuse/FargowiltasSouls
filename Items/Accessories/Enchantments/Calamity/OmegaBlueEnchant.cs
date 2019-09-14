@@ -54,7 +54,7 @@ Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
             player.ignoreWater = true;
 
-            if (Soulcheck.GetValue("Omega Blue Tentacles"))
+            if (SoulConfig.Instance.GetValue("Omega Blue Tentacles"))
             {
                 modPlayer.omegaBlueSet = true;
                 if (modPlayer.omegaBlueCooldown > 0)

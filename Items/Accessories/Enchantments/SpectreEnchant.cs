@@ -59,7 +59,7 @@ If you crit, you might also get a healing orb
         private void Thorium(Player player)
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            if (Soulcheck.GetValue("Ghastly Carapace"))
+            if (SoulConfig.Instance.GetValue("Ghastly Carapace"))
             {
                 //ghastly carapace
                 if (!thoriumPlayer.lifePrevent)

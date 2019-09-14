@@ -49,7 +49,7 @@ Effects of Metronome and Purple Music Player");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             thoriumPlayer.conductorSet = true;
 
-            if (Soulcheck.GetValue("Metronome"))
+            if (SoulConfig.Instance.GetValue("Metronome"))
             {
                 thorium.GetItem("Metronome").UpdateAccessory(player, hideVisual);
             }

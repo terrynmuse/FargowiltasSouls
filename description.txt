@@ -1,5 +1,8 @@
 ﻿NEW UPDATE - v 1.0.0
 
+MUTANT BOSS
+Mod config
+
 Soul and Enchantment Changes:
 -Wood Enchantment is not effected by the Guilty debuff anymore
 -Boreal Enchantment snowballs now fire with swords correctly 

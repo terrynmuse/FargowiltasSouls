@@ -206,7 +206,7 @@ Summons several pets";
                 Main.PlaySound(SoundID.Item74, player.position);
                 thoriumPlayer.jumps = 0;
             }
-            if (Soulcheck.GetValue("Slag Stompers"))
+            if (SoulConfig.Instance.GetValue("Slag Stompers"))
             {
                 //slag stompers
                 timer++;

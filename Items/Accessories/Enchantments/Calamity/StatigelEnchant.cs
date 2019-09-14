@@ -54,7 +54,7 @@ Effects of Counter Scarf and Fungal Symbiote");
             player.doubleJumpSail = true;
             player.jumpBoost = true;
 
-            if (Soulcheck.GetValue("Slime God Minion"))
+            if (SoulConfig.Instance.GetValue("Slime God Minion"))
             {
                 //summon
                 calamityPlayer.slimeGod = true;

@@ -15,7 +15,6 @@ namespace FargowiltasSouls
 {
     internal class Fargowiltas : Mod
     {
-        internal static ModHotKey CheckListKey;
         internal static ModHotKey FreezeKey;
         internal static ModHotKey GoldKey;
 
@@ -33,7 +32,6 @@ namespace FargowiltasSouls
         internal bool MasomodeEX;
 
         public UserInterface CustomResources;
-        internal Soulcheck SoulCheck;
 
         internal static readonly Dictionary<int, int> ModProjDict = new Dictionary<int, int>();
 
@@ -50,18 +48,27 @@ namespace FargowiltasSouls
         public override void Load()
         {
             Instance = this;
+
             if (Language.ActiveCulture == GameCulture.Chinese)
             {
-                CheckListKey = RegisterHotKey("灵魂切换菜单", "L");
                 FreezeKey = RegisterHotKey("冻结时间", "P");
                 GoldKey = RegisterHotKey("金身", "O");
             }
             else
             {
-                CheckListKey = RegisterHotKey("Soul Toggles", "L");
                 FreezeKey = RegisterHotKey("Freeze Time", "P");
                 GoldKey = RegisterHotKey("Turn Gold", "O");
             }
+
+
+
+
+
+
+
+
+
+            
 
             #region Toggles
             #region enchants
@@ -916,52 +923,193 @@ namespace FargowiltasSouls
             "ffffff",
             "ffffff"};
             
-            for (int x = 0; x <= 12; x++)
+            for (int x = 0; x < thoriumTogNames.Length; x++)
             {
                 text = CreateTranslation(thoriumTogConfig[x]);
                 text.SetDefault("[i:" + Instance.ItemType(thoriumTogItems[x]) + "][c/" + thoriumColor[x] + ": " + thoriumTogNames[x] + "]");
                 AddTranslation(text);
             }
             #endregion
+			
+			#region calamity
+            string[] calamityTogNames = {
+				
+			"Victide Sea Urchin",
+			"Profaned Soul Artifact",
+			"Slime God Minion",
+			"Reaver Orb Minion",
+			"Omega Blue Tentacles",
+			"Silva Crystal Minion",
+			"Godly Soul Artifact",
+			"Mechworm Minion",
+			"Nebulous Core",
+			"Red Devil Minion",
+			"Permafrost's Concoction",
+			"Daedalus Crystal Minion",
+			"Polterghast Mines",
+			"Plague Hive",
+			"Chaos Spirit Minion",
+			"Valkyrie Minion",
+			"Yharim's Gift",
+			"Fungal Clump Minion",
+			"Elemental Waifus",
+			"Shellfish Minions",
+			"Amidias' Pendant",
+			"Giant Pearl",
+			"Poisonous Sea Water",
+			"Daedalus Effects",
+			"Reaver Effects",
+			"Astral Stars",
+			"Ataxia Effects",
+			"Xeroc Effects",
+			"Tarragon Effects",
+			"Bloodflare Effects",
+			"God Slayer Effects",
+			"Silva Effects",
+			"Auric Tesla Effects",
+			"Elemental Quiver",
+			"Luxor's Gift",
+			"Gladiator's Locket",
+			"Unstable Prism",
+			"Regenator"};
+            
+            string[] calamityTogConfig = {
+            "CalamityUrchinConfig",
+            "CalamityProfanedArtifactConfig",
+            "CalamitySlimeMinionConfig",
+            "CalamityReaverMinionConfig",
+            "CalamityOmegaTentaclesConfig",
+            "CalamitySilvaMinionConfig",
+            "CalamityGodlyArtifactConfig",
+            "CalamityMechwormMinionConfig",
+            "CalamityNebulousCoreConfig",
+            "CalamityDevilMinionConfig",
+            "CalamityPermafrostPotionConfig",
+            "CalamityDaedalusMinionConfig",
+            "CalamityPolterMinesConfig",
+            "CalamityPlagueHiveConfig",
+            "CalamityChaosMinionConfig",
+            "CalamityValkyrieMinionConfig",
+            "CalamityYharimGiftConfig",
+            "CalamityFungalMinionConfig",
+            "CalamityWaifuMinionsConfig",
+            "CalamityShellfishMinionConfig",
+            "CalamityAmidiasPendantConfig",
+            "CalamityGiantPearlConfig",
+            "CalamityPoisonSeawaterConfig",
+            "CalamityDaedalusEffectsConfig",
+            "CalamityReaverEffectsConfig",
+            "CalamityAstralStarsConfig",
+            "CalamityAtaxiaEffectsConfig",
+            "CalamityXerocEffectsConfig",
+            "CalamityTarragonEffectsConfig",
+            "CalamityBloodflareEffectsConfig",
+            "CalamityGodSlayerEffectsConfig",
+            "CalamitySilvaEffectsConfig",
+            "CalamityAuricEffectsConfig",
+            "CalamityElementalQuiverConfig",
+            "CalamityLuxorGiftConfig",
+            "CalamityGladiatorLocketConfig",
+            "CalamityUnstablePrismConfig",
+            "CalamityRegeneratorConfig"};
+            
+            string[] calamityTogItems = {
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul",
+            "GladiatorsSoul"};
+            
+            string[] calamityColor = {
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff"};
+            
+            for (int x = 0; x < calamityTogNames.Length; x++)
+            {
+                text = CreateTranslation(calamityTogConfig[x]);
+                text.SetDefault("[i:" + Instance.ItemType(calamityTogItems[x]) + "][c/" + calamityColor[x] + ": " + calamityTogNames[x] + "]");
+                AddTranslation(text);
+            }
+            #endregion
 
             #endregion
-            if (!Main.dedServ)
-            {
-                CustomResources = new UserInterface();
-                SoulCheck = new Soulcheck();
-                Soulcheck.Visible = false;
-                CustomResources.SetState(SoulCheck);
-            }
+
+            
         }
 
         public override void Unload()
         {
-            if (Soulcheck.ToggleDict != null)
-                Soulcheck.ToggleDict.Clear();
-            if (Soulcheck.checkboxDict != null)
-                Soulcheck.checkboxDict.Clear();
             if (DebuffIDs != null)
                 DebuffIDs.Clear();
-        }
-
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
-            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-            layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                "CustomBars: Custom Resource Bar",
-                delegate
-                {
-                    if (Soulcheck.Visible)
-                    {
-                        //Update CustomBars
-                        CustomResources.Update(Main._drawInterfaceGameTime);
-                        SoulCheck.Draw(Main.spriteBatch);
-                    }
-
-                    return true;
-                },
-                InterfaceScaleType.UI)
-            );
         }
 
         public override object Call(params object[] args)
