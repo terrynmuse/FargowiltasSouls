@@ -178,6 +178,11 @@ namespace FargowiltasSouls
             ["Rapid"] = new Color(81, 181, 113)
         };
 
+        public static readonly Dictionary<string, Color> togglesThorium = new Dictionary<string, Color>
+        {
+            ["dummy"] = new Color(81, 181, 113)
+        };
+
         public static readonly Dictionary<string, Color> togglesCalamity = new Dictionary<string, Color>
         {
             ["Victide Sea Urchin"] = new Color(81, 181, 113),

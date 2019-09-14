@@ -36,6 +36,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.netAlways = true;
             npc.hide = true;
             npc.buffImmune[mod.BuffType("Sadism")] = true;
+            npc.buffImmune[mod.BuffType("GodEater")] = true;
             npc.buffImmune[mod.BuffType("ClippedWings")] = true;
             npc.buffImmune[mod.BuffType("MutantNibble")] = true;
             npc.buffImmune[mod.BuffType("OceanicMaul")] = true;

@@ -2243,8 +2243,11 @@ namespace FargowiltasSouls
             {
                 if (target.FindBuffIndex(mod.BuffType("GodEater")) < 0 && target.aiStyle != 37)
                 {
-                    target.DelBuff(4);
-                    target.buffImmune[mod.BuffType("GodEater")] = false;
+                    if (target.type != mod.NPCType("MutantBoss"))
+                    {
+                        target.DelBuff(4);
+                        target.buffImmune[mod.BuffType("GodEater")] = false;
+                    }
                     target.AddBuff(mod.BuffType("GodEater"), 420);
                 }
             }
