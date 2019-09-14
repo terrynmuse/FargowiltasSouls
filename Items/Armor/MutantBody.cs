@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Armor
             DisplayName.SetDefault("True Mutant Body");
             Tooltip.SetDefault(@"70% increased damage and 30% increased critical strike chance
 Increases max life and mana by 200
-Increases damage reduction by 50%
+Increases damage reduction by 30%
 Drastically increases life regen");
             DisplayName.AddTranslation(GameCulture.Chinese, "真·突变之躯");
             Tooltip.AddTranslation(GameCulture.Chinese, @"增加70%伤害和30%暴击率
@@ -51,7 +51,7 @@ Drastically increases life regen");
             player.statLifeMax2 += 200;
             player.statManaMax2 += 200;
 
-            player.endurance += 0.5f;
+            player.endurance += 0.3f;
 
             player.lifeRegen += 7;
             player.lifeRegenCount += 7;
