@@ -953,6 +953,10 @@ namespace FargowiltasSouls.NPCs
                 }*/
                 switch (npc.type)
                 {
+                    case NPCID.DesertBeast:
+                        Aura(npc, 250, mod.BuffType("Infested"), false, 188);
+                        break;
+
                     case NPCID.Tim:
                         Aura(npc, 450, BuffID.Silenced, true, 15, true);
                         Aura(npc, 150, BuffID.Cursed, false, 20, true);
@@ -1044,6 +1048,20 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Derpling:
                         Aura(npc, 600, BuffID.Confused, true, 15, true);
+                        break;
+
+                    case NPCID.Crimera:
+                        npc.noTileCollide = true;
+                        if (Framing.GetTileSafely(npc.Center).nactive())
+                        {
+                            int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, npc.velocity.X, npc.velocity.Y);
+                            Main.dust[d].noGravity = true;
+                            npc.position -= npc.velocity / 2f;
+                        }
+                        break;
+
+                    case NPCID.FaceMonster:
+                        Aura(npc, 400, BuffID.Obstructed, false, 199);
                         break;
 
                     case NPCID.IlluminantBat:
@@ -1171,7 +1189,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WallCreeperWall:
                     case NPCID.BloodCrawlerWall:
                     case NPCID.JungleCreeperWall:
-                        if (++Counter >= 600)
+                        if (++Counter >= 360)
                             Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, 9, 0);
                         break;
 
@@ -5233,6 +5251,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DemonEye:
                     case NPCID.DemonEyeOwl:
                     case NPCID.DemonEyeSpaceship:
+                        npc.position += npc.velocity;
                         Counter++;
                         if (Counter >= 420 && Main.rand.Next(60) == 0)
                         {
@@ -5687,13 +5706,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EaterofSouls:
-                    case NPCID.BigEater:
-                    case NPCID.LittleEater:
                         if (++Counter >= 300)
                             Shoot(npc, 30, 600, 12, ProjectileID.CursedFlameHostile, npc.damage / 4, 0);
                         if (Framing.GetTileSafely(npc.Center).nactive())
                         {
-                            Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, npc.velocity.X, npc.velocity.Y);
+                            int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, npc.velocity.X, npc.velocity.Y);
+                            Main.dust[d].noGravity = true;
                             npc.position -= npc.velocity / 2f;
                         }
                         goto case NPCID.Harpy;
@@ -7233,6 +7251,8 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(600, 1200));
                         target.AddBuff(BuffID.Venom, Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(300, 600));
+                        if (!target.HasBuff(BuffID.Stoned))
+                            target.AddBuff(BuffID.Stoned, Main.rand.Next(30, 120));
                         break;
 
                     case NPCID.FlyingSnake:

@@ -716,9 +716,9 @@ namespace FargowiltasSouls
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
                     player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
-                if (player.ZoneSnow && Main.hardMode && !Main.dayTime)
+                if (player.ZoneSnow)
                 {
-                    if (!PureHeart)
+                    if (!PureHeart && !Main.dayTime && Framing.GetTileSafely(player.Center).wall == WallID.None)
                         player.AddBuff(BuffID.Chilled, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
                     if (player.wet && !MutantAntibodies)
@@ -741,7 +741,20 @@ namespace FargowiltasSouls
                     MasomodeFreezeTimer = 0;
                 }
 
-                if (player.ZoneCorrupt && Main.hardMode)
+                if (player.wet && !MutantAntibodies)
+                {
+                    if (player.ZoneDesert)
+                        player.AddBuff(BuffID.Slow, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                    if (player.ZoneDungeon)
+                        player.AddBuff(BuffID.Cursed, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                    Tile currentTile = Framing.GetTileSafely(player.Center);
+                    if (currentTile.wall == WallID.GraniteUnsafe)
+                        player.AddBuff(BuffID.Weak, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                    if (currentTile.wall == WallID.MarbleUnsafe)
+                        player.AddBuff(BuffID.BrokenArmor, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                }
+
+                if (player.ZoneCorrupt)
                 {
                     if (!PureHeart)
                         player.AddBuff(BuffID.Darkness, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
@@ -749,7 +762,7 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.CursedInferno, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
-                if (player.ZoneCrimson && Main.hardMode)
+                if (player.ZoneCrimson)
                 {
                     if (!PureHeart)
                         player.AddBuff(BuffID.Bleeding, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
@@ -822,6 +835,10 @@ namespace FargowiltasSouls
                         webCounter = 0;
                     }*/
                 }
+
+                if (!PureHeart && Main.bloodMoon)
+                    player.AddBuff(BuffID.WaterCandle, 2);
+
                 if (!SandsofTime)
                 {
                     Vector2 tileCenter = player.Center;

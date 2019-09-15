@@ -32,7 +32,8 @@ namespace FargowiltasSouls.Buffs.MutantBoss
         {
             player.GetModPlayer<FargoPlayer>(mod).MutantNibble = true;
             player.potionDelay = player.buffTime[buffIndex];
-            if (Fargowiltas.Instance.MasomodeEX && !FargoSoulsWorld.downedFishronEX && player.buffTime[buffIndex] > 1)
+            if (Fargowiltas.Instance.MasomodeEX && !FargoSoulsWorld.downedFishronEX && player.buffTime[buffIndex] > 1
+                && FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
             {
                 player.AddBuff(ModLoader.GetMod("MasomodeEX").BuffType("MutantJudgement"), player.buffTime[buffIndex]);
                 player.buffTime[buffIndex] = 1;

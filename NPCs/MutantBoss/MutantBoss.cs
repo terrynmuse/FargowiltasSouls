@@ -60,6 +60,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
             //music = MusicID.TheTowers;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue");
+            musicPriority = MusicPriority.BossHigh;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
