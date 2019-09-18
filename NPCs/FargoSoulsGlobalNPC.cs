@@ -8936,6 +8936,13 @@ namespace FargowiltasSouls.NPCs
                 return false;
             }
 
+            if (npc.boss && BossIsAlive(ref mutantBoss, mod.NPCType("MutantBoss")) && npc.type != mod.NPCType("MutantBoss"))
+            {
+                npc.active = false;
+                Main.PlaySound(npc.DeathSound, npc.Center);
+                return false;
+            }
+
             if (modPlayer.WoodEnchant && npc.damage == 0 && !npc.townNPC && npc.lifeMax == 5)
             {
                 Projectile.NewProjectile(npc.Center, new Vector2(0, -4), ProjectileID.LostSoulFriendly, 20, 0, Main.myPlayer);
