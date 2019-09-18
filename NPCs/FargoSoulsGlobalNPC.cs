@@ -464,6 +464,7 @@ namespace FargowiltasSouls.NPCs
                         break;
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead:
+                    case NPCID.MoonLordFreeEye:
                         npc.buffImmune[mod.BuffType("ClippedWings")] = true;
                         isMasoML = true;
                         break;
@@ -952,6 +953,10 @@ namespace FargowiltasSouls.NPCs
                 }*/
                 switch (npc.type)
                 {
+                    case NPCID.DesertBeast:
+                        Aura(npc, 250, mod.BuffType("Infested"), false, 188);
+                        break;
+
                     case NPCID.Tim:
                         Aura(npc, 450, BuffID.Silenced, true, 15, true);
                         Aura(npc, 150, BuffID.Cursed, false, 20, true);
@@ -1043,6 +1048,20 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Derpling:
                         Aura(npc, 600, BuffID.Confused, true, 15, true);
+                        break;
+
+                    case NPCID.Crimera:
+                        npc.noTileCollide = true;
+                        if (Framing.GetTileSafely(npc.Center).nactive())
+                        {
+                            int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, npc.velocity.X, npc.velocity.Y);
+                            Main.dust[d].noGravity = true;
+                            npc.position -= npc.velocity / 2f;
+                        }
+                        break;
+
+                    case NPCID.FaceMonster:
+                        Aura(npc, 400, BuffID.Obstructed, false, 199);
                         break;
 
                     case NPCID.IlluminantBat:
@@ -1170,7 +1189,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WallCreeperWall:
                     case NPCID.BloodCrawlerWall:
                     case NPCID.JungleCreeperWall:
-                        if (++Counter >= 600)
+                        if (++Counter >= 360)
                             Shoot(npc, 60, 400, 14, ProjectileID.WebSpit, 9, 0);
                         break;
 
@@ -2408,6 +2427,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.EaterofWorldsHead:
                         eaterBoss = npc.whoAmI;
+                        boss = npc.whoAmI;
                         Counter++;
                         if (Counter >= 6) //cursed flamethrower, roughly same direction as head
                         {
@@ -3494,6 +3514,41 @@ namespace FargowiltasSouls.NPCs
                                     }
                                 }
                             }
+
+                            /*if (--Counter2 < 0)
+                            {
+                                Counter2 = 600;
+                                Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                                if (Main.netMode != 1 && npc.HasPlayerTarget)
+                                {
+                                    for (int i = 0; i < 3; i++)
+                                    {
+                                        NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+                                        if (bodyPart.active)
+                                        {
+                                            bodyPart.localAI[0] = (Main.player[npc.target].Center - bodyPart.Center).ToRotation();
+                                            Vector2 speed = Vector2.UnitX.RotatedBy(bodyPart.localAI[0]);
+                                            Projectile.NewProjectile(bodyPart.Center, speed, mod.ProjectileType("PhantasmalDeathrayMLSmall"), 0, 0f, Main.myPlayer, 0f, bodyPart.whoAmI);
+                                        }
+                                    }
+                                }
+                            }
+                            else if (Counter2 == 540)
+                            {
+                                if (Main.netMode != 1)
+                                {
+                                    for (int i = 0; i < 3; i++)
+                                    {
+                                        NPC bodyPart = Main.npc[(int)npc.localAI[i]];
+                                        if (bodyPart.active)
+                                        {
+                                            Vector2 speed = Vector2.UnitX.RotatedBy(bodyPart.localAI[0]);
+                                            int damage = (int)(75 * (1 + FargoSoulsWorld.MoonlordCount * .0125));
+                                            Projectile.NewProjectile(bodyPart.Center, speed, mod.ProjectileType("PhantasmalDeathrayML"), damage, 0f, Main.myPlayer, 0f, bodyPart.whoAmI);
+                                        }
+                                    }
+                                }
+                            }*/
                         }
 
                         if (npc.ai[0] == 2f) //moon lord is dead
@@ -3517,6 +3572,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                             Counter = 0;
+                            Counter2 = 600;
                         }
                         else //moon lord isn't dead
                         {
@@ -5195,6 +5251,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DemonEye:
                     case NPCID.DemonEyeOwl:
                     case NPCID.DemonEyeSpaceship:
+                        npc.position += npc.velocity;
                         Counter++;
                         if (Counter >= 420 && Main.rand.Next(60) == 0)
                         {
@@ -5443,6 +5500,12 @@ namespace FargowiltasSouls.NPCs
                             }
                             npc.netUpdate = true;
                         }
+                        if (!DD2Event.Ongoing && npc.HasPlayerTarget && (!Main.player[npc.target].active || Main.player[npc.target].dead))
+                        {
+                            int p = Player.FindClosest(npc.Center, 0, 0);
+                            if (p < 0 || !Main.player[p].active || Main.player[p].dead || npc.Distance(Main.player[p].Center) > 3000)
+                                npc.active = false;
+                        }
                         break;
 
                     case NPCID.DungeonGuardian:
@@ -5649,13 +5712,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EaterofSouls:
-                    case NPCID.BigEater:
-                    case NPCID.LittleEater:
                         if (++Counter >= 300)
                             Shoot(npc, 30, 600, 12, ProjectileID.CursedFlameHostile, npc.damage / 4, 0);
                         if (Framing.GetTileSafely(npc.Center).nactive())
                         {
-                            Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, npc.velocity.X, npc.velocity.Y);
+                            int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, npc.velocity.X, npc.velocity.Y);
+                            Main.dust[d].noGravity = true;
                             npc.position -= npc.velocity / 2f;
                         }
                         goto case NPCID.Harpy;
@@ -7195,6 +7257,8 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.Poisoned, Main.rand.Next(600, 1200));
                         target.AddBuff(BuffID.Venom, Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(300, 600));
+                        if (!target.HasBuff(BuffID.Stoned))
+                            target.AddBuff(BuffID.Stoned, Main.rand.Next(30, 120));
                         break;
 
                     case NPCID.FlyingSnake:
@@ -7319,11 +7383,10 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("Lethargic"), length * 2);
                         target.AddBuff(BuffID.Blackout, length);
                         target.AddBuff(BuffID.NoBuilding, length);
-                        for (int i = 0; i < 59; i++)
-                        {
-                            if (target.inventory[i].pick != 0 || target.inventory[i].hammer != 0 || target.inventory[i].axe != 0)
-                                StealFromInventory(target, ref target.inventory[i]);
-                        }
+                        if (target.whoAmI == Main.myPlayer && !target.GetModPlayer<FargoPlayer>().SecurityWallet)
+                            for (int i = 0; i < 59; i++)
+                                if (target.inventory[i].pick != 0 || target.inventory[i].hammer != 0 || target.inventory[i].axe != 0)
+                                    StealFromInventory(target, ref target.inventory[i]);
                         break;
 
                     case NPCID.Golem:
@@ -10483,7 +10546,7 @@ namespace FargowiltasSouls.NPCs
         {
             if (boss == -1)
                 return false;
-            if (Main.npc[boss].active && Main.npc[boss].boss)
+            if (Main.npc[boss].active && (Main.npc[boss].boss || Main.npc[boss].type == NPCID.EaterofWorldsHead))
                 return true;
             boss = -1;
             return false;
@@ -10511,6 +10574,18 @@ namespace FargowiltasSouls.NPCs
                 shop.item[nextSlot].value = 500;
                 nextSlot++;
             }
+        }
+
+        public override bool PreChatButtonClicked(NPC npc, bool firstButton)
+        {
+            if (FargoSoulsWorld.MasochistMode && npc.type == NPCID.Nurse && firstButton)
+            {
+                if (Main.player[Main.myPlayer].HasBuff(mod.BuffType("Recovering")))
+                    return false;
+                else if (AnyBossAlive())
+                    Main.player[Main.myPlayer].AddBuff(mod.BuffType("Recovering"), 3600);
+            }
+            return true;
         }
     }
 }

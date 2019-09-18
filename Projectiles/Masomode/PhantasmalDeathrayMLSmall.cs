@@ -8,15 +8,15 @@ using Terraria.ModLoader;
 using Terraria.Enums;
 using FargowiltasSouls.Buffs.Masomode;
 
-namespace FargowiltasSouls.Projectiles.MutantBoss
+namespace FargowiltasSouls.Projectiles.Masomode
 {
-    public class MutantGiantDeathray2 : ModProjectile
+    public class PhantasmalDeathrayMLSmall : ModProjectile
     {
-        private const float maxTime = 600;
+        private const float maxTime = 30;
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Phantasmal Deathray");
+			DisplayName.SetDefault("Phantasmal Deathray II");
 		}
     	
         public override void SetDefaults()
@@ -28,6 +28,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.timeLeft = 600;
+            cooldownSlot = 1;
         }
 
         public override void AI()
@@ -37,9 +38,10 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             {
                 projectile.velocity = -Vector2.UnitY;
             }
-            if (Main.npc[(int)projectile.ai[1]].active && Main.npc[(int)projectile.ai[1]].type == mod.NPCType("MutantBoss"))
+            int ai1 = (int)projectile.ai[1];
+            if (Main.npc[ai1].active && (Main.npc[ai1].type == NPCID.MoonLordHand || Main.npc[ai1].type == NPCID.MoonLordHead))
             {
-                projectile.Center = Main.npc[(int)projectile.ai[1]].Center + Vector2.UnitX.RotatedBy(Main.npc[(int)projectile.ai[1]].ai[3]) * 175 + Main.rand.NextVector2Circular(5, 5);
+                projectile.Center = Main.npc[ai1].Center;
             }
             else
             {
@@ -52,27 +54,20 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             }
             if (projectile.localAI[0] == 0f)
             {
-                Main.PlaySound(29, (int)Main.player[Main.myPlayer].Center.X, (int)Main.player[Main.myPlayer].Center.Y, 104, 1f, 0f);
+                Main.PlaySound(29, (int)projectile.position.X, (int)projectile.position.Y, 104, 1f, 0f);
             }
-            float num801 = 10f;
+            float num801 = 0.3f;
             projectile.localAI[0] += 1f;
             if (projectile.localAI[0] >= maxTime)
             {
                 projectile.Kill();
                 return;
             }
-            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 5f * num801;
+            projectile.scale = (float)Math.Sin(projectile.localAI[0] * 3.14159274f / maxTime) * 0.6f * num801;
             if (projectile.scale > num801)
-            {
                 projectile.scale = num801;
-            }
-            //float num804 = projectile.velocity.ToRotation();
-            //num804 += projectile.ai[0];
-            //projectile.rotation = num804 - 1.57079637f;
-            float num804 = Main.npc[(int)projectile.ai[1]].ai[3] - 1.57079637f;
-            //if (projectile.ai[0] != 0f) num804 -= (float)Math.PI;
-            projectile.rotation = num804;
-            num804 += 1.57079637f;
+            float num804 = projectile.velocity.ToRotation();
+            projectile.rotation = num804 - 1.57079637f;
             projectile.velocity = num804.ToRotationVector2();
             float num805 = 3f;
             float num806 = (float)projectile.width;
@@ -125,8 +120,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 return false;
             }
             Texture2D texture2D19 = Main.projectileTexture[projectile.type];
-            Texture2D texture2D20 = mod.GetTexture("Projectiles/Minions/PhantasmalDeathrayTrueEye2");
-            Texture2D texture2D21 = mod.GetTexture("Projectiles/Minions/PhantasmalDeathrayTrueEye3");
+            Texture2D texture2D20 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayML2");
+            Texture2D texture2D21 = mod.GetTexture("Projectiles/Masomode/PhantasmalDeathrayML3");
             float num223 = projectile.localAI[1];
             Microsoft.Xna.Framework.Color color44 = new Microsoft.Xna.Framework.Color(255, 255, 255, 0) * 0.9f;
             SpriteBatch arg_ABD8_0 = Main.spriteBatch;
@@ -188,12 +183,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
-            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
-            target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
-            target.AddBuff(mod.BuffType("MutantFang"), 300);
-            if (Fargowiltas.Instance.MasomodeEX)
-                target.AddBuff(ModLoader.GetMod("MasomodeEX").BuffType("MutantJudgement"), 3600);
+            target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
         }
     }
 }

@@ -36,6 +36,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.netAlways = true;
             npc.hide = true;
             npc.buffImmune[mod.BuffType("Sadism")] = true;
+            npc.buffImmune[mod.BuffType("GodEater")] = true;
             npc.buffImmune[mod.BuffType("ClippedWings")] = true;
             npc.buffImmune[mod.BuffType("MutantNibble")] = true;
             npc.buffImmune[mod.BuffType("OceanicMaul")] = true;
@@ -59,6 +60,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
             //music = MusicID.TheTowers;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue");
+            musicPriority = MusicPriority.BossHigh;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -94,6 +96,9 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     EdgyBossText("I hope you're ready to embrace suffering.");
                     if (Main.netMode != 1)
                     {
+                        if (Fargowiltas.Instance.MasomodeEX)
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, ModLoader.GetMod("MasomodeEX").ProjectileType("MutantText"), 0, 0f, Main.myPlayer, npc.whoAmI);
+
                         int number = 0;
                         for (int index = 999; index >= 0; --index)
                         {
@@ -208,8 +213,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.ai[1] = 0;
                         if (Main.netMode != 1)
                         {
-                            SpawnSphereRing(7, 7f, npc.defDamage / 2, 0.5f);
-                            SpawnSphereRing(7, 7f, npc.defDamage / 2, -.5f);
+                            SpawnSphereRing(8, 7f, npc.defDamage / 2, 0.5f);
+                            SpawnSphereRing(8, 7f, npc.defDamage / 2, -.5f);
                         }
                     }
                     if (++npc.ai[2] > 1020)
@@ -306,14 +311,14 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         if (Main.netMode != 1)
                             Projectile.NewProjectile(npc.Center, new Vector2(2, 0).RotatedBy(npc.ai[2]), mod.ProjectileType("MutantMark1"), npc.defDamage / 3, 0f, Main.myPlayer);
-                        npc.ai[1] = 2;
+                        npc.ai[1] = 1;
                         npc.ai[2] += npc.ai[3];
-                        if (npc.localAI[0]++ == 30 || npc.localAI[0] == 60)
+                        if (npc.localAI[0]++ == 40 || npc.localAI[0] == 80)
                         {
                             npc.netUpdate = true;
                             npc.ai[2] -= npc.ai[3] / 2;
                         }
-                        else if (npc.localAI[0] == 90)
+                        else if (npc.localAI[0] == 120)
                         {
                             npc.netUpdate = true;
                             npc.ai[0]--;
@@ -350,7 +355,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             npc.ai[0]--;
                             npc.ai[1] = 0;
                             npc.ai[2] = npc.DirectionFrom(player.Center).ToRotation();
-                            npc.ai[3] = (float)Math.PI / 15f;
+                            npc.ai[3] = (float)Math.PI / 20f;
                             Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
                             if (player.Center.X < npc.Center.X)
                                 npc.ai[3] *= -1;
@@ -690,7 +695,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     {
                         if (Main.netMode != 1)
                         {
-                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual"), npc.damage, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual"), npc.damage / 2, 0f, Main.myPlayer, 0f, npc.whoAmI);
                             Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantRitual5"), 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
                         }
                         Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
@@ -1458,6 +1463,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         private void SpawnSphereRing(int max, float speed, int damage, float rotationModifier)
         {
+            if (Main.netMode == 1) return;
             float rotation = 2f * (float)Math.PI / max;
             Vector2 vel = Vector2.UnitY * speed;
             int type = mod.ProjectileType("MutantSphereRing");

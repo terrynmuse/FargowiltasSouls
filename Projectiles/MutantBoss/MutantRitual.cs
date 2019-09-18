@@ -49,7 +49,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 if (player.active && !player.dead)
                 {
                     float distance = player.Distance(projectile.Center);
-                    if (Math.Abs(distance - threshold) < 46f && player.hurtCooldowns[0] == 0 && projectile.alpha == 0)
+                    if (Math.Abs(distance - threshold) < 46f && player.hurtCooldowns[0] == 0 && projectile.alpha == 0 && player.whoAmI == Main.npc[ai1].target)
                     {
                         int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
                         player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),

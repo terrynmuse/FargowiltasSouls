@@ -1,4 +1,23 @@
-﻿vored
+﻿nurse heal now causes recovering debuff during boss fights
+fixed undead miner ignoring security wallet
+
+crimera always ignores walls, but moves slower/emits dust while in walls
+face monster has obstructed aura
+buffed spiders to shoot web spit more often
+basilisk stones on touch and has aura of infested
+demon eyes have 200% movement speed
+desert water inflicts slow
+dungeon water inflicts cursed
+evil biome debuffs happen in pre-hm now too
+snow now chills at night in pre-hm too
+snow only chills at night if player is not in front of a wall
+granite water inflicts weak
+marble water inflicts broken armor
+blood moon inflicts water candle
+increased mutant's theme priority (overrides other themes)
+changed mutant's final spark sphere rings to 8 (was 7) for better symmetry
+betsy actually despawns
+space suffocation mechanics function underwater too unless you have gills effect
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
