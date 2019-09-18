@@ -791,7 +791,7 @@ namespace FargowiltasSouls
                 if (!PureHeart && !player.buffImmune[BuffID.Suffocation] && player.ZoneSkyHeight && player.whoAmI == Main.myPlayer)
                 {
                     bool inLiquid = Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
-                    if (!inLiquid)
+                    if (!inLiquid || !player.gills)
                     {
                         player.breath -= 3;
                         if (++MasomodeSpaceBreathTimer > 10)
