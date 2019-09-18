@@ -93,7 +93,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 {
                     npc.localAI[3] = 1;
                     Main.PlaySound(15, (int)npc.Center.X, (int)npc.Center.Y, 0);
-                    SpawnAllBosses();
                     EdgyBossText("I hope you're ready to embrace suffering.");
                     if (Main.netMode != 1)
                     {
@@ -1656,39 +1655,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 if (npc.frame.Y >= 4 * frameHeight)
                     npc.frame.Y = 0;
             }
-        }
-
-        private void SpawnAllBosses()
-        {
-            NPC.SpawnOnPlayer(npc.target, NPCID.KingSlime);
-            NPC.SpawnOnPlayer(npc.target, NPCID.EyeofCthulhu);
-            NPC.SpawnOnPlayer(npc.target, NPCID.EaterofWorldsHead);
-            NPC.SpawnOnPlayer(npc.target, NPCID.BrainofCthulhu);
-            NPC.SpawnOnPlayer(npc.target, NPCID.QueenBee);
-            NPC.SpawnOnPlayer(npc.target, NPCID.SkeletronHead);
-            NPC.SpawnOnPlayer(npc.target, NPCID.Retinazer);
-            NPC.SpawnOnPlayer(npc.target, NPCID.Spazmatism);
-            NPC.SpawnOnPlayer(npc.target, NPCID.SkeletronPrime);
-            NPC.SpawnOnPlayer(npc.target, NPCID.Golem);
-            NPC.SpawnOnPlayer(npc.target, NPCID.Plantera);
-            NPC.SpawnOnPlayer(npc.target, NPCID.DukeFishron);
-            NPC.SpawnOnPlayer(npc.target, NPCID.DD2Betsy);
-            NPC.SpawnOnPlayer(npc.target, NPCID.CultistBoss);
-            if (Main.netMode != 1)
-            {
-                int n = NPC.NewNPC((int)Main.player[npc.target].Center.X, (int)Main.player[npc.target].Center.Y - 400, NPCID.MoonLordCore);
-                if (n < 200 && Main.netMode == 2)
-                    NetMessage.SendData(23, -1, -1, null, n);
-            }
-            NPC.SpawnOnPlayer(npc.target, NPCID.TheDestroyer);
-
-            if (Main.dayTime)
-            {
-                Main.dayTime = false;
-                Main.time = 0;
-            }
-            if (Main.netMode == 2)
-                NetMessage.SendData(7); //sync world
         }
     }
 }
