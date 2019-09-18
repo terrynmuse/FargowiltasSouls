@@ -5500,6 +5500,12 @@ namespace FargowiltasSouls.NPCs
                             }
                             npc.netUpdate = true;
                         }
+                        if (!DD2Event.Ongoing && npc.HasPlayerTarget && (!Main.player[npc.target].active || Main.player[npc.target].dead))
+                        {
+                            int p = Player.FindClosest(npc.Center, 0, 0);
+                            if (p < 0 || !Main.player[p].active || Main.player[p].dead || npc.Distance(Main.player[p].Center) > 3000)
+                                npc.active = false;
+                        }
                         break;
 
                     case NPCID.DungeonGuardian:
