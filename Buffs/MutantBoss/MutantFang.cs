@@ -13,9 +13,7 @@ namespace FargowiltasSouls.Buffs.MutantBoss
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Mutant Fang");
-            Description.SetDefault("You cannot heal at all");
-            DisplayName.AddTranslation(GameCulture.Chinese, "突变毒牙");
-            Description.AddTranslation(GameCulture.Chinese, "无法恢复生命");
+            Description.SetDefault("The power of Masochist Mode compels you");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             longerExpertDebuff = false;
@@ -30,7 +28,22 @@ namespace FargowiltasSouls.Buffs.MutantBoss
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MutantNibble = true;
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            player.poisoned = true;
+            player.venom = true;
+            player.ichor = true;
+            player.onFire2 = true;
+            player.electrified = true;
+            //fargoPlayer.OceanicMaul = true;
+            fargoPlayer.CurseoftheMoon = true;
+            if (fargoPlayer.FirstInfection)
+            {
+                fargoPlayer.MaxInfestTime = player.buffTime[buffIndex];
+                fargoPlayer.FirstInfection = false;
+            }
+            fargoPlayer.Infested = true;
+            fargoPlayer.Rotting = true;
+            fargoPlayer.MutantNibble = true;
             player.potionDelay = player.buffTime[buffIndex];
             if (Fargowiltas.Instance.MasomodeEX && !FargoSoulsWorld.downedFishronEX && player.buffTime[buffIndex] > 1
                 && FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
