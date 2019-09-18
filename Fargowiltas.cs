@@ -1665,6 +1665,24 @@ namespace FargowiltasSouls
             }
         }
 
+        public override void UpdateMusic(ref int music, ref MusicPriority priority)
+        {
+            if (Main.musicVolume != 0 && Main.myPlayer != -1 && !Main.gameMenu && Main.LocalPlayer.active)
+            {
+                if (MMWorld.MMArmy && priority <= MusicPriority.Environment)
+                {
+                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/MonsterMadhouse");
+                    priority = MusicPriority.Event;
+                }
+
+                if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, NPCType("MutantBoss")))
+                {
+                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue");
+                    priority = MusicPriority.BossHigh;
+                }
+            }
+        }
+
         public static bool NoInvasion(NPCSpawnInfo spawnInfo)
         {
             return !spawnInfo.invasion && (!Main.pumpkinMoon && !Main.snowMoon || spawnInfo.spawnTileY > Main.worldSurface || Main.dayTime) &&
@@ -1705,26 +1723,6 @@ namespace FargowiltasSouls
         public static bool NoBiomeNormalSpawn(NPCSpawnInfo spawnInfo)
         {
             return NormalSpawn(spawnInfo) && NoBiome(spawnInfo) && NoZone(spawnInfo);
-        }
-
-        public override void UpdateMusic(ref int music, ref MusicPriority priority)
-        {
-            if (Main.gameMenu)
-                return;
-            if (priority > MusicPriority.Environment)
-                return;
-            Player player = Main.LocalPlayer;
-            if (!player.active)
-                return;
-
-            if (Main.myPlayer != -1 && !Main.gameMenu)
-            {
-                if (MMWorld.MMArmy)
-                {
-                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/MonsterMadhouse");
-                    priority = MusicPriority.Event;
-                }
-            }
         }
     }
 
