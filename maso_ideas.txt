@@ -4,13 +4,7 @@ obsidian post skele
 eater immune to clipped wings
 pirate stealing money not working right?
 
-tooltips dont have a limit anymore?????????????
-top hat critters*
-
-patreon items 
-2 to 3 of them
-
-squeaky toy and valadium gravity toggles
+valadium gravity toggles
 carpet toggle
 
 
@@ -39,8 +33,6 @@ Spawns
 -mummies spawn in pyramids always 
 
 AI
-QB -(take less damage while guards are alive? maybe only in stationary form spraying spike too?? and guards are always charging?)
-crippled only when charging?
 -also not all demon eyes dashing?
 -icy merman shoots twice as fast if he’s in water (also dust ofc)
 -Paladins can throw hammers without having to not be currently attacked
@@ -65,9 +57,7 @@ top hat squirrel terrarium
 add fishing rod, one form for now lol
 add deaths meme idea from doc
 add cats king slime minion
-tiki rework
 -add dust to wings
--make flight actually infinite in SoD +
 -statigel to phm?
 -world shaper makes block use time 1
 -bugle recipe group
@@ -75,8 +65,6 @@ tiki rework
 shield of cth dash
 
 FOr MUtANT mod
-truffle EX in mutants shop
-dark mage summon?
 
 Antisocial          4
 Atrophied           4
