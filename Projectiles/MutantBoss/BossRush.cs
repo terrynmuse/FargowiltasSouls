@@ -42,7 +42,19 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             NPC npc = Main.npc[ai0];
             projectile.Center = npc.Center;
             projectile.timeLeft = 2;
-            
+
+            if (projectile.localAI[0] > 10 && (npc.ai[0] > 10 || (npc.ai[0] == 10 && npc.ai[1] > 120))) //noontime and selfdestruct in p2 and after ML spawns
+            {
+                if (!Main.dayTime)
+                {
+                    Main.dayTime = true;
+                    Main.time = 27000;
+                    if (Main.netMode == 2)
+                        NetMessage.SendData(7); //sync world
+                }
+                projectile.Kill();
+            }
+
             if (--projectile.ai[1] < 0)
             {
                 projectile.ai[1] = 180;
