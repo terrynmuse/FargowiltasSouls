@@ -44,7 +44,7 @@ Effects of Wynebgwrthucher and Rebirth Statuette");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.ThoriumLoaded) return;
+            if (!Fargowiltas.Instance.ThoriumLoaded || player.GetModPlayer<FargoPlayer>().ThoriumSoul) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //paladin set bonus

@@ -71,16 +71,12 @@ Summons a pet Life Spirit and Holy Goat");
 
             //sacred
             mod.GetItem("SacredEnchant").UpdateAccessory(player, hideVisual);
-
             //warlock
             mod.GetItem("WarlockEnchant").UpdateAccessory(player, hideVisual);
-
             //biotech
             mod.GetItem("BiotechEnchant").UpdateAccessory(player, hideVisual);
-
             //life binder
             mod.GetItem("LifeBinderEnchant").UpdateAccessory(player, hideVisual);
-
             //fallen paladin
             mod.GetItem("FallenPaladinEnchant").UpdateAccessory(player, hideVisual);
         }

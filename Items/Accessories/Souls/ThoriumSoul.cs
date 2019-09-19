@@ -164,22 +164,9 @@ Every globule increases defense and makes your next attack a mini-crit
                     }
                 }
             }
-            
+
             //ALFHEIM
-            //lil cherub and sacred effect
-            modPlayer.SacredEnchant = true;
-            modPlayer.AddMinion("Li'l Cherub Minion", thorium.ProjectileType("Angel"), 0, 0f);
-            //twinkle pet
-            modPlayer.AddPet("Life Spirit Pet", hideVisual, thorium.BuffType("LifeSpiritBuff"), thorium.ProjectileType("LifeSpirit"));
-            //wisps and lil devil
-            modPlayer.WarlockEnchant = true;
-            modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);
-            //biotech
-            mod.GetItem("BiotechEnchant").UpdateAccessory(player, hideVisual);
-            //goat pet
-            modPlayer.BinderEnchant = true;
-            modPlayer.AddPet("Holy Goat Pet", hideVisual, thorium.BuffType("HolyGoatBuff"), thorium.ProjectileType("HolyGoat"));
-            thoriumPlayer.goatPet = true;
+            mod.GetItem("AlfheimForce").UpdateAccessory(player, hideVisual);
 
             //NIFLHEIM
             //conductor

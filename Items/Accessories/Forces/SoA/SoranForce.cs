@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.SoA
             Tooltip.SetDefault(
 @"'The true power of the Soraniti'
 All armor bonuses from Blazing Brute, Cosmic Commander, and Nebulous Apprentice
-All armor bonuses from Stellar Priest and Fallen Prince
+All armor bonuses from Stellar Priest, Quasar, and Fallen Prince
 Effects of Nuba's Blessing, Novaniel's Resolve, and Celestial Ring
 Summons several pets");
             DisplayName.AddTranslation(GameCulture.Chinese, "索兰之力");
@@ -67,6 +67,8 @@ Summons several pets");
             {
                 Projectile.NewProjectile(player.Center, Vector2.Zero, soa.ProjectileType("StellarGuardian"), (int)(1000f * player.minionDamage), 0f, player.whoAmI, 0f, 0f);
             }
+            //quasar
+            modPlayer.NovaSetEffect = true;
             //fallen prince
             modPlayer.NovanielArmor = true;
             //novaniels resolve

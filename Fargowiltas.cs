@@ -60,16 +60,6 @@ namespace FargowiltasSouls
                 GoldKey = RegisterHotKey("Turn Gold", "O");
             }
 
-
-
-
-
-
-
-
-
-            
-
             #region Toggles
             #region enchants
             ModTranslation text = CreateTranslation("WoodHeader");
@@ -295,7 +285,7 @@ namespace FargowiltasSouls
             "VortexEnchant",
             "VortexEnchant"
             };
-            for (int x = 0; x <= 25; x++)
+            for (int x = 0; x <= 26; x++)
             {
                 text = CreateTranslation(EnchConfig[x]);
                 text.SetDefault("[i:" + Instance.ItemType(EnchItem[x]) + "][c/" + EnchColor[x] + ": " + EnchName[x] + "]");
@@ -657,8 +647,9 @@ namespace FargowiltasSouls
                 AddTranslation(text);
             }
             #endregion
-            
+
             #region thorium
+
             string[] thoriumTogNames = {
             "Air Walkers",
             "Crystal Scorpion",
@@ -724,7 +715,7 @@ namespace FargowiltasSouls
             "Pink Slime Pet",
             "Glitter Pet",
             "Coin Bag Pet"};
-            
+
             string[] thoriumTogConfig = {
             "ThoriumAirWalkersConfig",
             "ThoriumCrystalScorpionConfig",
@@ -790,7 +781,7 @@ namespace FargowiltasSouls
             "ThoriumSlimePetConfig",
             "ThoriumGlitterPetConfig",
             "ThoriumCoinPetConfig"};
-            
+
             string[] thoriumTogItems = {
             "GladiatorsSoul",
             "GladiatorsSoul",
@@ -856,7 +847,7 @@ namespace FargowiltasSouls
             "GladiatorsSoul",
             "GladiatorsSoul",
             "GladiatorsSoul"};
-            
+
             string[] thoriumColor = {
             "ffffff",
             "ffffff",
@@ -922,57 +913,58 @@ namespace FargowiltasSouls
             "ffffff",
             "ffffff",
             "ffffff"};
-            
+
             for (int x = 0; x < thoriumTogNames.Length; x++)
             {
                 text = CreateTranslation(thoriumTogConfig[x]);
                 text.SetDefault("[i:" + Instance.ItemType(thoriumTogItems[x]) + "][c/" + thoriumColor[x] + ": " + thoriumTogNames[x] + "]");
                 AddTranslation(text);
             }
+
             #endregion
-			
-			#region calamity
+
+            #region calamity
             string[] calamityTogNames = {
-				
-			"Victide Sea Urchin",
-			"Profaned Soul Artifact",
-			"Slime God Minion",
-			"Reaver Orb Minion",
-			"Omega Blue Tentacles",
-			"Silva Crystal Minion",
-			"Godly Soul Artifact",
-			"Mechworm Minion",
-			"Nebulous Core",
-			"Red Devil Minion",
-			"Permafrost's Concoction",
-			"Daedalus Crystal Minion",
-			"Polterghast Mines",
-			"Plague Hive",
-			"Chaos Spirit Minion",
-			"Valkyrie Minion",
-			"Yharim's Gift",
-			"Fungal Clump Minion",
-			"Elemental Waifus",
-			"Shellfish Minions",
-			"Amidias' Pendant",
-			"Giant Pearl",
-			"Poisonous Sea Water",
-			"Daedalus Effects",
-			"Reaver Effects",
-			"Astral Stars",
-			"Ataxia Effects",
-			"Xeroc Effects",
-			"Tarragon Effects",
-			"Bloodflare Effects",
-			"God Slayer Effects",
-			"Silva Effects",
-			"Auric Tesla Effects",
-			"Elemental Quiver",
-			"Luxor's Gift",
-			"Gladiator's Locket",
-			"Unstable Prism",
-			"Regenator"};
-            
+
+            "Victide Sea Urchin",
+            "Profaned Soul Artifact",
+            "Slime God Minion",
+            "Reaver Orb Minion",
+            "Omega Blue Tentacles",
+            "Silva Crystal Minion",
+            "Godly Soul Artifact",
+            "Mechworm Minion",
+            "Nebulous Core",
+            "Red Devil Minion",
+            "Permafrost's Concoction",
+            "Daedalus Crystal Minion",
+            "Polterghast Mines",
+            "Plague Hive",
+            "Chaos Spirit Minion",
+            "Valkyrie Minion",
+            "Yharim's Gift",
+            "Fungal Clump Minion",
+            "Elemental Waifus",
+            "Shellfish Minions",
+            "Amidias' Pendant",
+            "Giant Pearl",
+            "Poisonous Sea Water",
+            "Daedalus Effects",
+            "Reaver Effects",
+            "Astral Stars",
+            "Ataxia Effects",
+            "Xeroc Effects",
+            "Tarragon Effects",
+            "Bloodflare Effects",
+            "God Slayer Effects",
+            "Silva Effects",
+            "Auric Tesla Effects",
+            "Elemental Quiver",
+            "Luxor's Gift",
+            "Gladiator's Locket",
+            "Unstable Prism",
+            "Regenator"};
+
             string[] calamityTogConfig = {
             "CalamityUrchinConfig",
             "CalamityProfanedArtifactConfig",
@@ -1012,7 +1004,7 @@ namespace FargowiltasSouls
             "CalamityGladiatorLocketConfig",
             "CalamityUnstablePrismConfig",
             "CalamityRegeneratorConfig"};
-            
+
             string[] calamityTogItems = {
             "GladiatorsSoul",
             "GladiatorsSoul",
@@ -1052,7 +1044,7 @@ namespace FargowiltasSouls
             "GladiatorsSoul",
             "GladiatorsSoul",
             "GladiatorsSoul"};
-            
+
             string[] calamityColor = {
             "ffffff",
             "ffffff",
@@ -1092,18 +1084,19 @@ namespace FargowiltasSouls
             "ffffff",
             "ffffff",
             "ffffff"};
-            
+
             for (int x = 0; x < calamityTogNames.Length; x++)
             {
                 text = CreateTranslation(calamityTogConfig[x]);
                 text.SetDefault("[i:" + Instance.ItemType(calamityTogItems[x]) + "][c/" + calamityColor[x] + ": " + calamityTogNames[x] + "]");
                 AddTranslation(text);
             }
-            #endregion
 
             #endregion
 
-            
+            #endregion
+
+
         }
 
         public override void Unload()
