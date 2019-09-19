@@ -57,7 +57,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
             if (--projectile.ai[1] < 0)
             {
-                projectile.ai[1] = 180;
+                projectile.ai[1] = 300;
                 projectile.netUpdate = true;
                 switch((int)projectile.localAI[0]++)
                 {

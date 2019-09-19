@@ -110,7 +110,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         if (Fargowiltas.Instance.MasomodeEX)
                             Projectile.NewProjectile(npc.Center, Vector2.Zero, ModLoader.GetMod("MasomodeEX").ProjectileType("MutantText"), 0, 0f, Main.myPlayer, npc.whoAmI);
 
-                        Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("BossRush"), 0, 0f, Main.myPlayer, npc.whoAmI);
+                        if (Fargowiltas.Instance.MasomodeEX || FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("BossRush"), 0, 0f, Main.myPlayer, npc.whoAmI);
 
                         int number = 0;
                         for (int index = 999; index >= 0; --index)
@@ -221,13 +222,13 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (!AliveCheck(player))
                         break;
                     npc.velocity = Vector2.Zero;
-                    if (++npc.ai[1] > 90)
+                    if (++npc.ai[1] > 120)
                     {
                         npc.ai[1] = 0;
                         if (Main.netMode != 1)
                         {
-                            SpawnSphereRing(8, 7f, npc.defDamage / 2, 0.5f);
-                            SpawnSphereRing(8, 7f, npc.defDamage / 2, -.5f);
+                            SpawnSphereRing(8, 6f, npc.defDamage / 2, 0.5f);
+                            SpawnSphereRing(8, 6f, npc.defDamage / 2, -.5f);
                         }
                     }
                     if (++npc.ai[2] > 1020)
@@ -295,8 +296,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (++npc.ai[1] > 10 && npc.ai[3] > 60 && npc.ai[3] < 300)
                     {
                         npc.ai[1] = 0;
-                        SpawnSphereRing(12, 12f, npc.defDamage / 3, -2f);
-                        SpawnSphereRing(12, 12f, npc.defDamage / 3, 2f);
+                        SpawnSphereRing(12, 12f, npc.defDamage / 3, -0.8f);
+                        SpawnSphereRing(12, 12f, npc.defDamage / 3, 0.8f);
                     }
                     if (++npc.ai[3] > 420)
                     {
