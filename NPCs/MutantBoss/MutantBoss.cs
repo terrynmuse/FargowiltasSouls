@@ -284,8 +284,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (++npc.ai[1] > 10 && npc.ai[3] > 60 && npc.ai[3] < 300)
                     {
                         npc.ai[1] = 0;
-                        SpawnSphereRing(12, 12f, npc.defDamage / 3, -1f);
-                        SpawnSphereRing(12, 12f, npc.defDamage / 3, 1f);
+                        SpawnSphereRing(12, 12f, npc.defDamage / 3, -2f);
+                        SpawnSphereRing(12, 12f, npc.defDamage / 3, 2f);
                     }
                     if (++npc.ai[3] > 420)
                     {
