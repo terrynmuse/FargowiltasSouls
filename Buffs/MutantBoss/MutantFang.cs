@@ -44,6 +44,10 @@ namespace FargowiltasSouls.Buffs.MutantBoss
             fargoPlayer.Infested = true;
             fargoPlayer.Rotting = true;
             fargoPlayer.MutantNibble = true;
+            fargoPlayer.noDodge = true;
+            fargoPlayer.noSupersonic = true;
+            fargoPlayer.MutantPresence = true;
+            player.moonLeech = true;
             player.potionDelay = player.buffTime[buffIndex];
             if (Fargowiltas.Instance.MasomodeEX && !FargoSoulsWorld.downedFishronEX && player.buffTime[buffIndex] > 1
                 && FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
