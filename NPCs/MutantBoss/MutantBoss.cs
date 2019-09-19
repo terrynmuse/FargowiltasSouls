@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.IO;
 
 namespace FargowiltasSouls.NPCs.MutantBoss
 {
@@ -78,6 +79,16 @@ namespace FargowiltasSouls.NPCs.MutantBoss
         {
             cooldownSlot = 1;
             return true;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(npc.localAI[2]);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            npc.localAI[2] = reader.ReadFloat();
         }
 
         public override void AI()
@@ -382,6 +393,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         break;
                     if (Phase2Check())
                         break;
+                    npc.localAI[2] = 0;
                     npc.dontTakeDamage = false;
                     targetPos = player.Center;
                     targetPos.X += 500 * (npc.Center.X < targetPos.X ? -1 : 1);
@@ -631,33 +643,81 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     break;
 
                 case 9: //boundary lite
-                    if (npc.ai[3] == 0)
+                    switch ((int)npc.localAI[2])
                     {
-                        if (AliveCheck(player))
-                            npc.ai[3] = 1;
-                        else
+                        case 0:
+                            if (npc.ai[3] == 0)
+                            {
+                                if (AliveCheck(player))
+                                    npc.ai[3] = 1;
+                                else
+                                    break;
+                            }
+                            if (Phase2Check())
+                                break;
+                            npc.velocity = Vector2.Zero;
+                            if (++npc.ai[1] > 2)
+                            {
+                                Main.PlaySound(SoundID.Item12, npc.Center);
+                                npc.ai[1] = 0;
+                                npc.ai[2] += (float)Math.PI / 77f;
+                                if (Main.netMode != 1)
+                                    for (int i = 0; i < 4; i++)
+                                        Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 2 * i), mod.ProjectileType("MutantEye"), npc.damage / 4, 0f, Main.myPlayer);
+                            }
+                            if (++npc.ai[3] > 241)
+                            {
+                                npc.TargetClosest();
+                                npc.localAI[2]++;
+                                npc.ai[1] = 0;
+                                npc.ai[2] = 0;
+                                npc.ai[3] = 0;
+                                npc.netUpdate = true;
+                            }
                             break;
-                    }
-                    if (Phase2Check())
-                        break;
-                    npc.velocity = Vector2.Zero;
-                    if (++npc.ai[1] > 2)
-                    {
-                        Main.PlaySound(SoundID.Item12, npc.Center);
-                        npc.ai[1] = 0;
-                        npc.ai[2] += (float)Math.PI / 77f;
-                        if (Main.netMode != 1)
-                            for (int i = 0; i < 4; i++)
-                                Projectile.NewProjectile(npc.Center, new Vector2(6f, 0).RotatedBy(npc.ai[2] + Math.PI / 2 * i), mod.ProjectileType("MutantEye"), npc.damage / 4, 0f, Main.myPlayer);
-                    }
-                    if (++npc.ai[3] > 241)
-                    {
-                        npc.TargetClosest();
-                        npc.ai[0] = 0;
-                        npc.ai[1] = 0;
-                        npc.ai[2] = 0;
-                        npc.ai[3] = 0;
-                        npc.netUpdate = true;
+
+                        case 1: //spawn sword
+                            npc.velocity = Vector2.Zero;
+                            if (npc.ai[2] == 0 && Main.netMode != 1)
+                            {
+                                double angle = npc.position.X < player.position.X ? -Math.PI / 4 : Math.PI / 4;
+                                npc.ai[2] = (float)angle * -4f / 30;
+                                const int spacing = 80;
+                                Vector2 offset = Vector2.UnitY.RotatedBy(angle) * -spacing;
+                                for (int i = 0; i < 12; i++)
+                                    Projectile.NewProjectile(npc.Center + offset * i, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, spacing * i);
+                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                            }
+                            if (++npc.ai[1] > 120)
+                            {
+                                targetPos = player.Center;
+                                targetPos.X += 300 * (npc.Center.X < targetPos.X ? -1 : 1);
+                                npc.velocity = (targetPos - npc.Center) / 30;
+
+                                npc.localAI[2]++;
+                                npc.ai[1] = 0;
+                                npc.netUpdate = true;
+                            }
+                            break;
+
+                        case 2: //swinging sword dash
+                            npc.ai[3] += npc.ai[2];
+                            if (++npc.ai[1] > 35)
+                            {
+                                npc.ai[0] = 0;
+                                npc.ai[1] = 0;
+                                npc.ai[2] = 0;
+                                npc.ai[3] = 0;
+                                npc.localAI[2] = 0;
+                                npc.netUpdate = true;
+                            }
+                            break;
+
+                        default:
+                            break;
                     }
                     break;
 
@@ -1417,45 +1477,6 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.TargetClosest();
                     }
                     break;
-
-                /*case 43: //spawn sword
-                    npc.velocity = Vector2.Zero;
-                    if (npc.ai[2] == 0 && Main.netMode != 1)
-                    {
-                        double angle = npc.position.X < player.position.X ? -Math.PI / 4 : Math.PI / 4;
-                        npc.ai[2] = (float)angle * -4f / 30;
-                        const int spacing = 80;
-                        Vector2 offset = Vector2.UnitY.RotatedBy(angle) * -spacing;
-                        for (int i = 0; i < 12; i++)
-                            Projectile.NewProjectile(npc.Center + offset * i, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, spacing * i);
-                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
-                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
-                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
-                        Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
-                    }
-                    if (++npc.ai[1] > 120)
-                    {
-                        targetPos = player.Center;
-                        targetPos.X += 300 * (npc.Center.X < targetPos.X ? -1 : 1);
-                        npc.velocity = (targetPos - npc.Center) / 30;
-
-                        npc.ai[0]++;
-                        npc.ai[1] = 0;
-                        npc.netUpdate = true;
-                    }
-                    break;
-
-                case 44: //swinging sword dash
-                    npc.ai[3] += npc.ai[2];
-                    if (++npc.ai[1] > 35)
-                    {
-                        npc.ai[0]++;
-                        npc.ai[1] = 0;
-                        npc.ai[2] = 0;
-                        npc.ai[3] = 0;
-                        npc.netUpdate = true;
-                    }
-                    break;*/
 
                 default:
                     npc.ai[0] = 11;
