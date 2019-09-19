@@ -441,6 +441,10 @@ namespace FargowiltasSouls.NPCs
                         npc.lavaImmune = true;
                         break;
 
+                    case NPCID.DD2Betsy:
+                        npc.boss = true;
+                        break;
+
                     case NPCID.CultistBoss:
                         npc.lifeMax = (int)(npc.lifeMax * 1.5);
                         Timer = 0;
@@ -8936,6 +8940,13 @@ namespace FargowiltasSouls.NPCs
                 return false;
             }
 
+            if (npc.boss && BossIsAlive(ref mutantBoss, mod.NPCType("MutantBoss")) && npc.type != mod.NPCType("MutantBoss"))
+            {
+                npc.active = false;
+                Main.PlaySound(npc.DeathSound, npc.Center);
+                return false;
+            }
+
             if (modPlayer.WoodEnchant && npc.damage == 0 && !npc.townNPC && npc.lifeMax == 5)
             {
                 Projectile.NewProjectile(npc.Center, new Vector2(0, -4), ProjectileID.LostSoulFriendly, 20, 0, Main.myPlayer);
@@ -9180,6 +9191,13 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.EaterofWorldsHead:
                     case NPCID.EaterofWorldsBody:
                     case NPCID.EaterofWorldsTail:
+                        if (BossIsAlive(ref mutantBoss, mod.NPCType("MutantBoss")))
+                        {
+                            npc.active = false;
+                            Main.PlaySound(npc.DeathSound, npc.Center);
+                            return false;
+                        }
+
                         if (Main.netMode != 1)
                         {
                             int type = Main.rand.Next(2) == 0 ? NPCID.EaterofSouls
