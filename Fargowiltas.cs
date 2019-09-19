@@ -60,15 +60,7 @@ namespace FargowiltasSouls
                 GoldKey = RegisterHotKey("Turn Gold", "O");
             }
 
-
-
-
-
-
-
-
-
-            
+            AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue"), ItemType("MutantMusicBox"), TileType("MutantMusicBoxSheet"));
 
             #region Toggles
             #region enchants
@@ -1102,8 +1094,6 @@ namespace FargowiltasSouls
             #endregion
 
             #endregion
-
-            
         }
 
         public override void Unload()
