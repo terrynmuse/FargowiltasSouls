@@ -145,7 +145,9 @@ Effects of Auto Tuner and Red Music Player");
                     }
                 }
             }
-            
+
+            if (player.GetModPlayer<FargoPlayer>().ThoriumSoul) return;
+
             //auto tuner
             thoriumPlayer.autoTunerBool = true;
             //music player

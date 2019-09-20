@@ -21,18 +21,10 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Alfheim");
             Tooltip.SetDefault(
 @"'Elven mysteries unfold before you...'
-Healing potions heal 50% more life
-Healing spells shortly increase the healed player's maximum life by 50
-Every 5 seconds you generate up to 3 holy crosses
-Critical strikes will generate up to 15 shadow wisps
-Pressing the 'Special Ability' key will unleash them towards your cursor's position
-A biotech probe will assist you in healing your allies
-Your radiant damage has a 15% chance to release a blinding flash of light
-Taking damage heals nearby allies equal to 15% of the damage taken
-If an ally is below half health, you will gain increased healing abilities
+All armor bonuses from Novice Cleric, Sacred, Warlock, and Biotech
+All armor bonuses from Iridescent, Life Binder, Templar, and Fallen Paladin
 Effects of Demon Tongue, Aloe Leaf, and Equalizer 
 Effects of Wynebgwrthucher and Rebirth Statuette
-Summons a Li'l Cherub and Li'l Devil
 Summons a pet Life Spirit and Holy Goat");
             DisplayName.AddTranslation(GameCulture.Chinese, "亚尔夫海姆之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 

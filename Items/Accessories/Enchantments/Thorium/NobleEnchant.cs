@@ -45,18 +45,22 @@ Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //noble set bonus
-            thoriumPlayer.bardBuffDuration += 300;
+            
             //ring of unity
             thorium.GetItem("RingofUnity").UpdateAccessory(player, hideVisual);
 
             if (SoulConfig.Instance.GetValue("Mix Tape"))
             {
                 //mix tape
-                thoriumPlayer.mixtapeBool = true;
+                modPlayer.MixTape = true;
             }
             
+            if (modPlayer.ThoriumSoul) return;
+
+            //noble set bonus
+            thoriumPlayer.bardBuffDuration += 300;
             //molten woofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)

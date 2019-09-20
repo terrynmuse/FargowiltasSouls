@@ -9,6 +9,9 @@ NEW UPDATE - v 1.0.0
 *See wiki for complete changelog
 
 
+-Simplified all Thorium Force and Soul tooltips
+
+
 Bug Fixes:
 
 -Fixed Top Hat Squirrels sprite sheet clipping into the ground

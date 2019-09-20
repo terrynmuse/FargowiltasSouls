@@ -1,9 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
-using Microsoft.Xna.Framework;
 using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
@@ -22,11 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Muspelheim");
             Tooltip.SetDefault(
 @"'A blazing heat, the mark of Surtr...'
-Desert winds will augment your boots, giving you a double jump
-You are immune to several damage-inflicting debuffs
-Critical strikes grant Alpha's Roar, briefly increasing the damage of your summoned minions
-Attacks have a 33% chance to heal you lightly
-Summons a living wood sapling and its attacks will home in on enemies
+All armor bonuses from Sandstone, Danger, and Feral Fur
+All armor bonuses from Living Wood and Life Bloom
 Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
             DisplayName.AddTranslation(GameCulture.Chinese, "穆斯贝尔海姆之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -55,18 +50,7 @@ Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-
-            //sandstone
-            player.doubleJumpSandstorm = true;
-
-            //danger
-            player.buffImmune[BuffID.Frostburn] = true;
-            player.buffImmune[BuffID.Poisoned] = true;
-            player.buffImmune[BuffID.OnFire] = true;
-            player.buffImmune[BuffID.Bleeding] = true;
-            player.buffImmune[BuffID.Venom] = true;
-            //feral fur
-            modPlayer.FeralFurEnchant = true;
+            
             //life bloom effect
             modPlayer.LifeBloomEnchant = true;
             //chrysalis
@@ -76,8 +60,22 @@ Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
             //free boi
             modPlayer.LivingWoodEnchant = true;
             modPlayer.AddMinion("Sapling Minion", thorium.ProjectileType("MinionSapling"), 25, 2f);
+
+            if (modPlayer.ThoriumSoul) return;
+
+            //sandstone
+            player.doubleJumpSandstorm = true;
+            //danger
+            player.buffImmune[BuffID.Frostburn] = true;
+            player.buffImmune[BuffID.Poisoned] = true;
+            player.buffImmune[BuffID.OnFire] = true;
+            player.buffImmune[BuffID.Bleeding] = true;
+            player.buffImmune[BuffID.Venom] = true;
+            //feral fur
+            modPlayer.FeralFurEnchant = true;
             //vine rope thing
             player.cordage = true;
+
         }
 
         public override void AddRecipes()

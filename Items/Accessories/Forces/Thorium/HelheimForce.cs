@@ -22,19 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Helheim");
             Tooltip.SetDefault(
 @"'From the halls of Hel, a vision of the end...'
-Killing enemies or continually damaging bosses generates soul wisps
-After generating 5 wisps, they are instantly consumed to heal you for 10 life
-Your boots vibrate at an unreal frequency, increasing movement speed significantly
-While moving, your damage and critical strike chance are increased
-Your attacks have a chance to unleash an explosion of Dragon's Flame
-Dealing damage will grant you a 'Blood Charge'
-At maximum charges, your next attack will deal 2x damage and heal you for 20% of the damage dealt
-Consecutive attacks against enemies might drop flesh, which grants bonus life and damage
-While above 75% maximum life, you become unstable
-Enemies that attack friendly NPCs are marked as Villains
-You deal 50% bonus damage to Villains
-Your plague gas will linger in the air twice as long and your plague reactions will deal 20% more damage
-Killing an enemy will release a soul fragment
+All armor bonuses from Spirit Trapper, Dragon, Dread, Flesh, and Demon Blood
+All armor bonuses from White Knight, and Harbinger, Lich, and Plague Doctor
 Effects of Inner Flame, Crash Boots, Dragon Talon Necklace, and Grim Subwoofer
 Effects of Vampire Gland, Demon Blood Badge, and Blood Demon's Subwoofer 
 Effects of Shade Band, Lich's Gaze, and Plague Lord's Flask
@@ -80,7 +69,6 @@ Summons several pets");
 
             //spirit trapper
             modPlayer.SpiritTrapperEnchant = true;
-
             //inner flame
             thoriumPlayer.spiritFlame = true;
 
@@ -106,29 +94,15 @@ Summons several pets");
                     }
                 }
             }
-
             //crash boots
             thorium.GetItem("CrashBoots").UpdateAccessory(player, hideVisual);
             player.moveSpeed -= 0.15f;
             player.maxRunSpeed -= 1f;
-            //woofers
-            thoriumPlayer.bardRangeBoost += 450;
-            for (int i = 0; i < 255; i++)
-            {
-                Player player2 = Main.player[i];
-                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
-                {
-                    thoriumPlayer.empowerCursed = true;
-                    thoriumPlayer.empowerIchor = true;
-                }
-            }
             if (SoulConfig.Instance.GetValue("Dragon Flames"))
             {
                 //dragon 
                 thoriumPlayer.dragonSet = true;
             }
-            //dragon tooth necklace
-            player.armorPenetration += 15;
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
             thoriumPlayer.wyvernPet = true;
@@ -150,6 +124,28 @@ Summons several pets");
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
             thoriumPlayer.blisterPet = true;
+            //pet
+            modPlayer.AddPet("Moogle Pet", hideVisual, thorium.BuffType("LilMogBuff"), thorium.ProjectileType("LilMog"));
+            modPlayer.KnightEnchant = true;
+            //lich gaze
+            thoriumPlayer.lichGaze = true;
+            modPlayer.PlagueAcc = true;
+
+            if (modPlayer.ThoriumSoul) return;
+
+            //woofers
+            thoriumPlayer.bardRangeBoost += 450;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerCursed = true;
+                    thoriumPlayer.empowerIchor = true;
+                }
+            }
+            //dragon tooth necklace
+            player.armorPenetration += 15;
 
             if (SoulConfig.Instance.GetValue("Harbinger Overcharge"))
             {
@@ -160,19 +156,12 @@ Summons several pets");
                     modPlayer.AllDamageUp(.5f);
                 }
             }
-            //villain damage 
-            modPlayer.KnightEnchant = true;
             //shade band
             thoriumPlayer.shadeBand = true;
-            //pet
-            modPlayer.AddPet("Moogle Pet", hideVisual, thorium.BuffType("LilMogBuff"), thorium.ProjectileType("LilMog"));
-            modPlayer.KnightEnchant = true;
-
+            //lich set bonus
+            modPlayer.LichEnchant = true;
             //plague doctor
             thoriumPlayer.plagueSet = true;
-            //lich gaze
-            thoriumPlayer.lichGaze = true;
-            modPlayer.PlagueAcc = true;
         }
 
         public override void AddRecipes()

@@ -10509,7 +10509,7 @@ namespace FargowiltasSouls.NPCs
         {
             FargoPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.KnightEnchant && !npc.friendly && target.townNPC)
+            if (!modPlayer.ThoriumSoul && modPlayer.KnightEnchant && !npc.friendly && target.townNPC)
             {
                 Villain = true;
             }
