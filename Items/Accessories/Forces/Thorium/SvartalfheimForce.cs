@@ -23,14 +23,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Svartalfheim");
             Tooltip.SetDefault(
 @"'Behold the craftsmanship of the Dark Elves...'
-10% increased damage
-90% damage reduction at Full HP
-Immune to intense heat shambler chain-balls
-Attacks have a chance to cause a lightning bolt to strike
-Grants the ability to dash into the enemy
-Right Click to guard with your shield
-A meteor shower initiates every few seconds while attacking
-Moving around generates up to 5 static rings, then a bubble of energy will protect you from one attack
+All armor bonuses from Granite, Bronze, and Darksteel
+All armor bonuses from Durasteel, Titan, and Conduit
 Effects of Eye of the Storm, Energized Subwoofer, and Spartan's Subwoofer
 Effects of Champion's Rebuttal, Incandescent Spark, and Spiked Bracers
 Effects of the Greedy Magnet, Mask of the Crystal Eye, and Abyssal Shell
@@ -69,10 +63,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //granite
-            player.fireWalk = true;
-            player.lavaImmune = true;
-            player.buffImmune[24] = true;
+            
 
             if (SoulConfig.Instance.GetValue("Eye of the Storm"))
             {
@@ -80,6 +71,26 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
                 thorium.GetItem("EyeoftheStorm").UpdateAccessory(player, hideVisual);
             }
             
+            //bronze
+            modPlayer.BronzeEnchant = true;
+            //rebuttal
+            thoriumPlayer.championShield = true;
+
+            //durasteel
+            mod.GetItem("DurasteelEnchant").UpdateAccessory(player, hideVisual);
+            
+            //abyssal shell
+            thoriumPlayer.AbyssalShell = true;
+
+            //conduit
+            mod.GetItem("ConduitEnchant").UpdateAccessory(player, hideVisual);
+
+            if (modPlayer.ThoriumSoul) return;
+
+            //granite
+            player.fireWalk = true;
+            player.lavaImmune = true;
+            player.buffImmune[24] = true;
             //woofers
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
@@ -91,24 +102,10 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
                     thoriumPlayer.empowerMarble = true;
                 }
             }
-
-            //bronze
-            modPlayer.BronzeEnchant = true;
-            //rebuttal
-            thoriumPlayer.championShield = true;
-
-            //durasteel
-            mod.GetItem("DurasteelEnchant").UpdateAccessory(player, hideVisual);
-
             //titan
             modPlayer.AllDamageUp(.1f);
             //crystal eye mask
             thoriumPlayer.critDamage += 0.1f;
-            //abyssal shell
-            thoriumPlayer.AbyssalShell = true;
-
-            //conduit
-            mod.GetItem("ConduitEnchant").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()

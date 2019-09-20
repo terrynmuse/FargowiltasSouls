@@ -21,12 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Niflheim");
             Tooltip.SetDefault(
 @"'A world of mist, a sign of the dead...'
-10% increased inspiration regeneration
-Your symphonic empowerments will last an additional 5 seconds
-Symphonic critical strikes cause the attack's empowerment to ascend to a fourth level of intensity
-Inspiration notes that drop are twice as potent and increase your symphonic damage briefly
-Pressing the 'Special Ability' key will cycle you through four states
-It will also summon a chorus of music playing ghosts
+All armor bonuses from Crier, Noble, Cyber Punk, Ornate, and Conductor
 Effects of Ring of Unity, Mix Tape and Devil's Subwoofer
 Effects of Auto Tuner, Concert Tickets, and Metronome
 Effects of Red, Brown, and Purple Music Players");
@@ -61,20 +56,19 @@ Effects of Red, Brown, and Purple Music Players");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            //crier
-            thoriumPlayer.bardResourceRecharge += 10;
-
             //noble
             mod.GetItem("NobleEnchant").UpdateAccessory(player, hideVisual);
-
             //cyber punk
             mod.GetItem("CyberPunkEnchant").UpdateAccessory(player, hideVisual);
-
-            //ornate
-            mod.GetItem("OrnateEnchant").UpdateAccessory(player, hideVisual);
-
             //conductor
             mod.GetItem("ConductorEnchant").UpdateAccessory(player, hideVisual);
+
+            if (modPlayer.ThoriumSoul) return;
+
+            //crier
+            thoriumPlayer.bardResourceRecharge += 10;
+            //ornate
+            mod.GetItem("OrnateEnchant").UpdateAccessory(player, hideVisual);
         }
 
         public override void AddRecipes()

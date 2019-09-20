@@ -52,14 +52,16 @@ Summons a pet Holy Goat");
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            //goat pet
+            modPlayer.BinderEnchant = true;
+            modPlayer.AddPet("Holy Goat Pet", hideVisual, thorium.BuffType("HolyGoatBuff"), thorium.ProjectileType("HolyGoat"));
+
+            if (modPlayer.ThoriumSoul) return;
+
             //life binder set bonus
             thoriumPlayer.mistSet = true;
             //aloe leaf
             thoriumPlayer.aloePlant = true;
-            //goat pet
-            modPlayer.BinderEnchant = true;
-            modPlayer.AddPet("Holy Goat Pet", hideVisual, thorium.BuffType("HolyGoatBuff"), thorium.ProjectileType("HolyGoat"));
-            thoriumPlayer.goatPet = true;
 
             if (SoulConfig.Instance.GetValue("Iridescent Flash"))
             {

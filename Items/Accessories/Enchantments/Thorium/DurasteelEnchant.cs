@@ -66,6 +66,9 @@ Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
             }
             //ball n chain
             thoriumPlayer.ballnChain = true;
+
+            if (player.GetModPlayer<FargoPlayer>().ThoriumSoul) return;
+
             //spiked bracers
             player.thorns += 0.25f;
         }

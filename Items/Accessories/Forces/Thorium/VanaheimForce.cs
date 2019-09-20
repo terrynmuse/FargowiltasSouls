@@ -1,9 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
-using Microsoft.Xna.Framework;
 using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
@@ -22,14 +20,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Vanaheim");
             Tooltip.SetDefault(
 @"'Holds a glimpse of the future...'
-Projects a mystical barrier around you
-Every seventh attack will unleash damaging mana bolts
-Critical strikes engulf enemies in a long lasting void flame and unleash ivory flares
-Pressing the 'Special Ability' key will summon an incredibly powerful aura around your cursor
-Creating this aura costs 150 mana
-Each unique empowerment you have grants you:
-8% increased damage, 
-3% increased movement speed
+All armor bonuses from Malignant, Folv, and White Dwarf
+All armor bonuses from Celestial and Balladeer
 Effects of Mana-Charged Rocketeers and Ascension Statuette");
             DisplayName.AddTranslation(GameCulture.Chinese, "华纳海姆之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -67,30 +59,14 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
             modPlayer.FolvEnchant = true;
             if (SoulConfig.Instance.GetValue("Folv's Aura"))
             {
-                
                 thoriumPlayer.folvSet = true;
                 Lighting.AddLight(player.position, 0.03f, 0.3f, 0.5f);
                 thoriumPlayer.folvBonus2 = true;
             }
-
             if (SoulConfig.Instance.GetValue("Mana-Charged Rocketeers"))
             {
                 //mana charge rockets
-                player.manaRegen++;
-                player.manaRegenDelay -= 2;
-                if (player.statMana > 0)
-                {
-                    player.rocketBoots = 1;
-                    if (player.rocketFrame)
-                    {
-                        if (Main.rand.Next(2) == 0)
-                        {
-                            player.statMana -= 2;
-                            Dust.NewDust(new Vector2(player.position.X, player.position.Y + 20f), player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 100, default(Color), 1.5f);
-                        }
-                        player.rocketTime = 1;
-                    }
-                }
+                thorium.GetItem("ManaChargedRocketeers").UpdateAccessory(player, hideVisual);
             }
 
             //white dwarf
@@ -101,6 +77,8 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
                 //celestial
                 thoriumPlayer.celestialSet = true;
             }
+
+            if (modPlayer.ThoriumSoul) return;
 
             if (SoulConfig.Instance.GetValue("Ascension Statuette"))
             {

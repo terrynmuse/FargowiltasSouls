@@ -52,11 +52,14 @@ Summons a Li'l Devil to attack enemies");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
             modPlayer.WarlockEnchant = true;
+            //lil devil
+            modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);
+
+            if (modPlayer.ThoriumSoul) return;
+
             //demon tongue
             thoriumPlayer.darkAura = true;
             thoriumPlayer.radiantLifeCost = 2;
-            //lil devil
-            modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);
         }
         
         private readonly string[] items =

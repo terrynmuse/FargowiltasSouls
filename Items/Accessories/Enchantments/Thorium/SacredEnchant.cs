@@ -56,6 +56,13 @@ Summons a pet Life Spirit");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //sacred effect
             modPlayer.SacredEnchant = true;
+            //lil cherub
+            modPlayer.AddMinion("Li'l Cherub Minion", thorium.ProjectileType("Angel"), 0, 0f);
+            //twinkle pet
+            modPlayer.AddPet("Life Spirit Pet", hideVisual, thorium.BuffType("LifeSpiritBuff"), thorium.ProjectileType("LifeSpirit"));
+
+            if (modPlayer.ThoriumSoul) return;
+
             //novice cleric set bonus
             thoriumPlayer.clericSet = true;
             thoriumPlayer.orbital = true;
@@ -74,11 +81,6 @@ Summons a pet Life Spirit");
             {
                 timer = 0;
             }
-            //lil cherub
-            modPlayer.AddMinion("Li'l Cherub Minion", thorium.ProjectileType("Angel"), 0, 0f);
-            //twinkle pet
-            modPlayer.AddPet("Life Spirit Pet", hideVisual, thorium.BuffType("LifeSpiritBuff"), thorium.ProjectileType("LifeSpirit"));
-            thoriumPlayer.lifePet = true;
         }
         
         private readonly string[] items =

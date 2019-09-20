@@ -164,6 +164,7 @@ namespace FargowiltasSouls
         public bool DemonBloodEnchant;
         public bool FeralFurEnchant;
         public bool BulbEnchant;
+        public bool MixTape;
 
         public bool ThoriumSoul;
 
@@ -497,12 +498,11 @@ namespace FargowiltasSouls
             DemonBloodEnchant = false;
             FeralFurEnchant = false;
             BulbEnchant = false;
+            MixTape = false;
 
             ThoriumSoul = false;
 
             #endregion
-
-            //add missing pets to kill pets!
 
             //souls
             MagicSoul = false;
@@ -514,7 +514,6 @@ namespace FargowiltasSouls
             FishSoul1 = false;
             FishSoul2 = false;
             TerrariaSoul = false;
-            //VoidSoul = false;
             Eternity = false;
 
             //maso
@@ -2227,17 +2226,14 @@ namespace FargowiltasSouls
                 return;
             }
 
-            if (ThoriumSoul)
+            //mixtape
+            if (MixTape && SoulConfig.Instance.GetValue("Mix Tape") && crit && proj.type != thorium.ProjectileType("MixtapeNote"))
             {
-                //mixtape
-                if (SoulConfig.Instance.GetValue("Mix Tape") && crit && proj.type != thorium.ProjectileType("MixtapeNote"))
+                int num23 = Main.rand.Next(3);
+                Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 73, 1f, 0f);
+                for (int n = 0; n < 5; n++)
                 {
-                    int num23 = Main.rand.Next(3);
-                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 73, 1f, 0f);
-                    for (int n = 0; n < 5; n++)
-                    {
-                        Projectile.NewProjectile(target.Center.X, target.Center.Y, Utils.NextFloat(Main.rand, -5f, 5f), Utils.NextFloat(Main.rand, -5f, 5f), thorium.ProjectileType("MixtapeNote"), (int)((float)proj.damage * 0.25f), 2f, proj.owner, (float)num23, 0f);
-                    }
+                    Projectile.NewProjectile(target.Center.X, target.Center.Y, Utils.NextFloat(Main.rand, -5f, 5f), Utils.NextFloat(Main.rand, -5f, 5f), thorium.ProjectileType("MixtapeNote"), (int)((float)proj.damage * 0.25f), 2f, proj.owner, (float)num23, 0f);
                 }
             }
         }
@@ -2676,17 +2672,14 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (ThoriumSoul)
+            //mixtape
+            if (MixTape && SoulConfig.Instance.GetValue("Mix Tape") && crit)
             {
-                //mixtape
-                if (SoulConfig.Instance.GetValue("Mix Tape") && crit)
+                int num23 = Main.rand.Next(3);
+                Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 73, 1f, 0f);
+                for (int n = 0; n < 5; n++)
                 {
-                    int num23 = Main.rand.Next(3);
-                    Main.PlaySound(2, (int)target.position.X, (int)target.position.Y, 73, 1f, 0f);
-                    for (int n = 0; n < 5; n++)
-                    {
-                        Projectile.NewProjectile(target.Center.X, target.Center.Y, Utils.NextFloat(Main.rand, -5f, 5f), Utils.NextFloat(Main.rand, -5f, 5f), thorium.ProjectileType("MixtapeNote"), (int)((float)item.damage * 0.25f), 2f, player.whoAmI, (float)num23, 0f);
-                    }
+                    Projectile.NewProjectile(target.Center.X, target.Center.Y, Utils.NextFloat(Main.rand, -5f, 5f), Utils.NextFloat(Main.rand, -5f, 5f), thorium.ProjectileType("MixtapeNote"), (int)((float)item.damage * 0.25f), 2f, player.whoAmI, (float)num23, 0f);
                 }
             }
         }

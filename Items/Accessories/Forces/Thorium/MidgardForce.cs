@@ -25,14 +25,8 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             DisplayName.SetDefault("Force of Midgard");
             Tooltip.SetDefault(
 @"'Behold the power of Mankind...'
-Damage reduction is increased by 10% at every 25% segment of life
-Maximum damage reduction is reached at 30% while below 50% life
-Reverse gravity by pressing UP
-While reversed, all damage is increased by 12%
-Every third attack will unleash an illumite missile
-The energy of Terraria seeks to protect you
-Shortlived Divermen will occasionally spawn when hitting enemies
-Critical strikes ring a bell over your head, slowing all nearby enemies briefly
+All armor bonuses from Lodestone, Valadium, and Illumite
+All armor bonuses from Jester, Thorium, and Terrarium
 Effects of Astro-Beetle Husk and Eye of the Beholder
 Effects of Crietz and Terrarium Surround Sound
 Summons a pet Pink Slime");
@@ -72,14 +66,6 @@ Summons a pet Pink Slime");
             //lodestone
             mod.GetItem("LodestoneEnchant").UpdateAccessory(player, hideVisual);
 
-            //valadium
-            //set bonus
-            player.gravControl = true;
-            if (player.gravDir == -1f)
-            {
-                modPlayer.AllDamageUp(.12f);
-            }
-
             if (SoulConfig.Instance.GetValue("Eye of the Beholder"))
             {
                 //eye of beholder
@@ -87,7 +73,6 @@ Summons a pet Pink Slime");
             }
 
             //illumite
-            //slime pet
             modPlayer.AddPet("Pink Slime Pet", hideVisual, thorium.BuffType("PinkSlimeBuff"), thorium.ProjectileType("PinkSlime"));
             modPlayer.IllumiteEnchant = true;
 
@@ -107,7 +92,25 @@ Summons a pet Pink Slime");
                     timer = 0;
                 }
             }
-            
+            //diverman meme
+            modPlayer.ThoriumEnchant = true;
+            //jester
+            modPlayer.JesterEnchant = true;
+            if (SoulConfig.Instance.GetValue("Crietz"))
+            {
+                //crietz
+                thoriumPlayer.crietzAcc = true;
+            }
+
+            if (modPlayer.ThoriumSoul) return;
+
+            //valadium
+            player.gravControl = true;
+            if (player.gravDir == -1f)
+            {
+                modPlayer.AllDamageUp(.12f);
+            }
+
             //terrarium woofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
@@ -117,16 +120,6 @@ Summons a pet Pink Slime");
                 {
                     thoriumPlayer.empowerTerrarium = true;
                 }
-            }
-            //diverman meme
-            modPlayer.ThoriumEnchant = true;
-            //jester
-            modPlayer.JesterEnchant = true;
-
-            if (SoulConfig.Instance.GetValue("Crietz"))
-            {
-                //crietz
-                thoriumPlayer.crietzAcc = true;
             }
         }
 

@@ -69,30 +69,34 @@ Attacks have a 20% chance to unleash aquatic homing daggers all around you");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //mini crits and daggers
             modPlayer.TideTurnerEnchant = true;
-            //floating globs and defense
-            thoriumPlayer.tideHelmet = true;
-            if (thoriumPlayer.tideOrb < 8)
+
+            if (SoulConfig.Instance.GetValue("Tide Turner Globules"))
             {
-                timer++;
-                if (timer > 30)
+                //floating globs and defense
+                thoriumPlayer.tideHelmet = true;
+                if (thoriumPlayer.tideOrb < 8)
                 {
-                    float num = 30f;
-                    int num2 = 0;
-                    while (num2 < num)
+                    timer++;
+                    if (timer > 30)
                     {
-                        Vector2 vector = Vector2.UnitX * 0f;
-                        vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(25f, 25f);
-                        vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
-                        int num3 = Dust.NewDust(player.Center, 0, 0, 113, 0f, 0f, 0, default(Color), 1f);
-                        Main.dust[num3].scale = 1.6f;
-                        Main.dust[num3].noGravity = true;
-                        Main.dust[num3].position = player.Center + vector;
-                        Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
-                        int num4 = num2;
-                        num2 = num4 + 1;
+                        float num = 30f;
+                        int num2 = 0;
+                        while (num2 < num)
+                        {
+                            Vector2 vector = Vector2.UnitX * 0f;
+                            vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(25f, 25f);
+                            vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
+                            int num3 = Dust.NewDust(player.Center, 0, 0, 113, 0f, 0f, 0, default(Color), 1f);
+                            Main.dust[num3].scale = 1.6f;
+                            Main.dust[num3].noGravity = true;
+                            Main.dust[num3].position = player.Center + vector;
+                            Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
+                            int num4 = num2;
+                            num2 = num4 + 1;
+                        }
+                        thoriumPlayer.tideOrb++;
+                        timer = 0;
                     }
-                    thoriumPlayer.tideOrb++;
-                    timer = 0;
                 }
             }
             //set bonus damage to healing hot key
