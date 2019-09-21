@@ -60,6 +60,16 @@ namespace FargowiltasSouls
                 GoldKey = RegisterHotKey("Turn Gold", "O");
             }
 
+
+
+
+
+
+
+            AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue"), ItemType("MutantMusicBox"), TileType("MutantMusicBoxSheet"));
+
+
+
             #region Toggles
             #region enchants
             ModTranslation text = CreateTranslation("WoodHeader");
@@ -783,54 +793,54 @@ namespace FargowiltasSouls
             "ThoriumCoinPetConfig"};
 
             string[] thoriumTogItems = {
+            "SupersonicSoul",
+            "ConjuristSoul",
+            "ConjuristSoul",
+            "HealerSoul",
+            "CelestialEnchant",
             "GladiatorsSoul",
             "GladiatorsSoul",
+            "BronzeEnchant",
+            "IllumiteEnchant",
+            "JesterEnchant",
+            "ValadiumEnchant",
+            "TerrariumEnchant",
+            "ThoriumEnchant",
+            "YewWoodEnchant",
+            "CryoEnchant",
+            "WhiteDwarfEnchant",
+            "TideHunterEnchant",
+            "WhisperingEnchant",
+            "IcyEnchant",
+            "PlagueDoctorEnchant",
+            "TideTurnerEnchant",
+            "TideTurnerEnchant",
+            "FolvEnchant",
+            "FolvEnchant",
+            "FleshEnchant",
+            "FleshEnchant",
+            "DragonEnchant",
+            "HarbingerEnchant",
+            "AssassinEnchant",
+            "PyromancerEnchant",
+            "ConduitEnchant",
+            "DurasteelEnchant",
+            "DurasteelEnchant",
+            "CyberPunkEnchant",
+            "ConductorEnchant",
+            "GladiatorsSoul",
+            "LodestoneEnchant",
+            "BiotechEnchant",
+            "GoldEnchant",
+            "GladiatorsSoul",
+            "BeeEnchant",
+            "SpectreEnchant",
+            "SpiritTrapperEnchant",
+            "WarlockEnchant",
+            "DreadEnchant",
             "GladiatorsSoul",
             "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
+            "LivingWoodEnchant",
             "GladiatorsSoul",
             "GladiatorsSoul",
             "GladiatorsSoul",
@@ -1096,7 +1106,7 @@ namespace FargowiltasSouls
 
             #endregion
 
-
+            
         }
 
         public override void Unload()

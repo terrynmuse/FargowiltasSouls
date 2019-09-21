@@ -42,7 +42,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             NPC npc = Main.npc[ai0];
             projectile.Center = npc.Center;
             projectile.timeLeft = 2;
-            
+
             if (--projectile.ai[1] < 0)
             {
                 projectile.ai[1] = 180;
@@ -124,6 +124,14 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                         break;
 
                     default:
+                        if (!Main.dayTime)
+                        {
+                            Main.dayTime = true;
+                            Main.time = 27000;
+                            if (Main.netMode == 2)
+                                NetMessage.SendData(7); //sync world
+                        }
+                        projectile.Kill();
                         break;
                 }
             }
