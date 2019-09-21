@@ -29,15 +29,14 @@ namespace FargowiltasSouls.Items.Patreon
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            ItemID.Sets.ItemNoGravity[item.type] = true;
-            item.rare = 10;
-            item.value = 400000;
+            item.rare = 8;
+            item.value = 100000;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            modPlayer.AssassinEnchant = true;
+            PatreonPlayer modPlayer = player.GetModPlayer<PatreonPlayer>();
+            modPlayer.CompOrb = true;
         }
     }
 }

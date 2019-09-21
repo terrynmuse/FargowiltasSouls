@@ -8572,6 +8572,11 @@ namespace FargowiltasSouls.NPCs
 
             firstLoot = false;
 
+            if (npc.type == NPCID.Golem && Main.rand.Next(10) == 0)
+            {
+                Item.NewItem(npc.position, npc.Size, mod.ItemType("ComputationOrb"));
+            }
+
             if (FargoSoulsWorld.MasochistMode)
             {
                 switch (npc.type)

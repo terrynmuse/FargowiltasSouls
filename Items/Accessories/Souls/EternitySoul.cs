@@ -349,6 +349,28 @@ and most of SoT not mentioned because meme tooltip length
             if (SoulConfig.Instance.GetValue("Mining Shine Buff")) Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
             //presserator
             player.autoActuator = true;
+            //royal gel
+            player.npcTypeNoAggro[1] = true;
+            player.npcTypeNoAggro[16] = true;
+            player.npcTypeNoAggro[59] = true;
+            player.npcTypeNoAggro[71] = true;
+            player.npcTypeNoAggro[81] = true;
+            player.npcTypeNoAggro[138] = true;
+            player.npcTypeNoAggro[121] = true;
+            player.npcTypeNoAggro[122] = true;
+            player.npcTypeNoAggro[141] = true;
+            player.npcTypeNoAggro[147] = true;
+            player.npcTypeNoAggro[183] = true;
+            player.npcTypeNoAggro[184] = true;
+            player.npcTypeNoAggro[204] = true;
+            player.npcTypeNoAggro[225] = true;
+            player.npcTypeNoAggro[244] = true;
+            player.npcTypeNoAggro[302] = true;
+            player.npcTypeNoAggro[333] = true;
+            player.npcTypeNoAggro[335] = true;
+            player.npcTypeNoAggro[334] = true;
+            player.npcTypeNoAggro[336] = true;
+            player.npcTypeNoAggro[537] = true;
             //builder mode
             if (SoulConfig.Instance.GetValue("Builder Mode"))
                 modPlayer.BuilderMode = true;

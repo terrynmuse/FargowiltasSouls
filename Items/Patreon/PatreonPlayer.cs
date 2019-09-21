@@ -63,9 +63,20 @@ namespace FargowiltasSouls
             if (CompOrb && !item.magic && player.statMana >= 10)
             {
                 player.statMana -= 10;
+                player.manaRegenDelay = 60;
                 damage = (int)(damage * 1.25f);
 
                 //dust
+                int num1 = 36;
+                for (int index1 = 0; index1 < num1; ++index1)
+                {
+                    Vector2 vector2_1 = (Vector2.Normalize(target.velocity) * new Vector2((float)target.width / 2f, (float)target.height) * 0.75f).RotatedBy((double)(index1 - (num1 / 2 - 1)) * 6.28318548202515 / (double)num1, new Vector2()) + target.Center;
+                    Vector2 vector2_2 = vector2_1 - target.Center;
+                    int index2 = Dust.NewDust(vector2_1 + vector2_2, 0, 0, DustID.PlatinumCoin, vector2_2.X * 2f, vector2_2.Y * 2f, 100, Color.DeepSkyBlue, 1.4f);
+                    Main.dust[index2].noGravity = true;
+                    Main.dust[index2].noLight = true;
+                    Main.dust[index2].velocity = vector2_2;
+                }
 
             }
         }

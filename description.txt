@@ -10,6 +10,9 @@ NEW UPDATE - v 1.0.0
 
 
 -Simplified all Thorium Force and Soul tooltips
+-simplified vanilla as well and made SoE tooltip epic
+
+-Added Computation Orb
 
 
 Bug Fixes:
