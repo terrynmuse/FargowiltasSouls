@@ -25,8 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 Press [Ability (Primary)] to deploy one of 4 spells
 Press [Ability (Primary)] and Up/Down to cycle between the spells
 Deploying a spell will initiate a cooldown of 1 minute
-Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster
-Summons a memory of Anthee and the Insignia of Extinction");
+Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster");
             DisplayName.AddTranslation(GameCulture.Chinese, "阿斯德罗特魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'Asph-... Asthath-... 这玩意怎么读?'
@@ -91,7 +90,7 @@ Summons a memory of Anthee and the Insignia of Extinction");
 
             foreach (string i in items) recipe.AddIngredient(soa.ItemType(i));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

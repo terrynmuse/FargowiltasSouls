@@ -7,13 +7,11 @@ using System;
 using SacredTools;
 using Microsoft.Xna.Framework;
 
-namespace FargowiltasSouls.Items.Accessories.Forces.SoA
+namespace FargowiltasSouls.Items.Accessories.Souls
 {
     public class SoASoul : ModItem
     {
         private readonly Mod soa = ModLoader.GetMod("SacredTools");
-
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
 
         public override bool Autoload(ref string name)
         {
@@ -33,8 +31,7 @@ All armor bonuses from Void Warden, Vulcan Reaper, and Flarium
 All armor bonuses from Asthraltite
 Effects of Dreadflame Emblem, Lapis Pendant, Frigid Pendant, and Pumpkin Amulet
 Effects of Nuba's Blessing, Novaniel's Resolve, and Celestial Ring
-Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster
-Summons several pets");
+Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster");
             DisplayName.AddTranslation(GameCulture.Chinese, "两界之魂");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'两个世界, 现在显现合一'

@@ -24,8 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'Raze your enemies with Araghur's flames'
 Taking fatal damage will revive you with 1/3rd of your max health
 You will have one minute of increased strength after rebirth
-5 minute cooldown
-Summons Chibi Araghur and the Sigil of Solace");
+5 minute cooldown");
             DisplayName.AddTranslation(GameCulture.Chinese, "熔火魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'用阿拉古尔之焰焚尽你的敌人'
@@ -80,7 +79,7 @@ Summons Chibi Araghur and the Sigil of Solace");
 
             foreach (string i in items) recipe.AddIngredient(soa.ItemType(i));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

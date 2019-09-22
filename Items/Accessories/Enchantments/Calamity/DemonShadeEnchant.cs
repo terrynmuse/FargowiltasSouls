@@ -29,7 +29,8 @@ A friendly red devil follows you around
 Enemies take ungodly damage when they touch you
 Standing still lets you absorb the shadows and boost your life regen
 Press Y to enrage nearby enemies with a dark magic spell for 10 seconds
-This makes them do 1.5 times more damage but they also take five times as much damage");
+This makes them do 1.5 times more damage but they also take five times as much damage
+Summons a Levi pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "魔影魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'你身上散发着恶魔之力...'
@@ -92,7 +93,9 @@ This makes them do 1.5 times more damage but they also take five times as much d
                 }
             }
 
-            //pet soon tm
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            fargoPlayer.DemonShadeEnchant = true;
+            fargoPlayer.AddPet("Levi Pet", hideVisual, calamity.BuffType("Levi"), calamity.ProjectileType("Levi"));
         }
 
         public override void AddRecipes()

@@ -168,6 +168,17 @@ namespace FargowiltasSouls
 
         public bool ThoriumSoul;
 
+        //calamity
+        public bool AerospecEnchant;
+        public bool StatigelEnchant;
+        public bool DaedalusEnchant;
+        public bool AtaxiaEnchant;
+        public bool MolluskEnchant;
+        public bool OmegaBlueEnchant;
+        public bool GodSlayerEnchant;
+        public bool SilvaEnchant;
+        public bool DemonShadeEnchant;
+
         private int[] wetProj = { ProjectileID.Kraken, ProjectileID.Trident, ProjectileID.Flairon, ProjectileID.FlaironBubble, ProjectileID.WaterStream, ProjectileID.WaterBolt, ProjectileID.RainNimbus, ProjectileID.Bubble, ProjectileID.WaterGun };
 
         //AA
@@ -501,6 +512,17 @@ namespace FargowiltasSouls
             MixTape = false;
 
             ThoriumSoul = false;
+
+            //calamity
+            AerospecEnchant = false;
+            StatigelEnchant = false;
+            DaedalusEnchant = false;
+            AtaxiaEnchant = false;
+            MolluskEnchant = false;
+            OmegaBlueEnchant = false;
+            GodSlayerEnchant = false;
+            SilvaEnchant = false;
+            DemonShadeEnchant = false;
 
             #endregion
 
@@ -1009,7 +1031,7 @@ namespace FargowiltasSouls
         {
             if (TikiEnchant && SoulConfig.Instance.GetValue("Tiki Minions"))
             {
-                actualMinions = player.maxMinions + 1; //the free one is not counted
+                actualMinions = player.maxMinions;
                 player.maxMinions = 100;
 
                 if (player.numMinions >= actualMinions)
@@ -2310,10 +2332,10 @@ namespace FargowiltasSouls
                 gladCount = WillForce ? 30 : 60;
             }
 
-            if (ThoriumEnchant && Main.rand.Next(12) == 0)
+            if (SoulConfig.Instance.GetValue("Spawn Divers") && ThoriumEnchant && NPC.CountNPCS(thorium.NPCType("Diverman")) < 5 && Main.rand.Next(20) == 0)
             {
                 int diver = NPC.NewNPC((int)target.Center.X, (int)target.Center.Y, thorium.NPCType("Diverman"));
-                Main.npc[diver].AddBuff(BuffID.Frostburn, 3600);
+                Main.npc[diver].AddBuff(BuffID.ShadowFlame, 3600);
             }
 
             if (SolarEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
@@ -2470,7 +2492,7 @@ namespace FargowiltasSouls
 
             OnHitNPCEither(target, damage, knockback, crit);
 
-            if (SpectreEnchant)
+            if (SoulConfig.Instance.GetValue("Spectre Orbs") && SpectreEnchant)
             {
                 //forced orb spawn reeeee
                 float num = 4f;
@@ -3479,7 +3501,11 @@ namespace FargowiltasSouls
 
         public void CrimsonEffect(bool hideVisual)
         {
-            player.crimsonRegen = true;
+            if (SoulConfig.Instance.GetValue("Crimson Regen"))
+            {
+                player.crimsonRegen = true;
+            }
+            
             CrimsonEnchant = true;
             AddPet("Face Monster Pet", hideVisual, BuffID.BabyFaceMonster, ProjectileID.BabyFaceMonster);
             AddPet("Crimson Heart Pet", hideVisual, BuffID.CrimsonHeart, ProjectileID.CrimsonHeart);
@@ -3593,7 +3619,7 @@ namespace FargowiltasSouls
 
             if (SoulConfig.Instance.GetValue("Frost Icicles"))
             {
-                if (icicleCD == 0 && IcicleCount < 3)
+                if (icicleCD == 0 && IcicleCount < 3 && player.ownedProjectileCounts[mod.ProjectileType("FrostIcicle")] < 3)
                 {
                     Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(player.Center, Vector2.Zero, mod.ProjectileType("FrostIcicle"), 0, 0, player.whoAmI, 2.5f);
 

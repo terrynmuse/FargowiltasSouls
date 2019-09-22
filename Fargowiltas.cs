@@ -168,6 +168,7 @@ namespace FargowiltasSouls
             "TurtleConfig",
             //force of nature
             "ChlorophyteConfig",
+            "CrimsonConfig",
             "FrostConfig",
             "JungleConfig",
             "MoltenConfig",
@@ -202,6 +203,7 @@ namespace FargowiltasSouls
             "Turtle Shell Buff",
             //force of nature
             "Chlorophyte Leaf Crystal",
+            "Crimson Regen",
             "Frost Icicles",
             "Jungle Spores",
             "Molten Inferno Buff",
@@ -236,6 +238,7 @@ namespace FargowiltasSouls
             "f89c5c",
             //force of nature
             "248900",
+            "C8364B",
             "7abdb9",
             "71971f",
             "c12b2b",
@@ -270,6 +273,7 @@ namespace FargowiltasSouls
             "TurtleEnchant",
             //force of nature
             "ChlorophyteEnchant",
+            "CrimsonEnchant",
             "FrostEnchant",
             "JungleEnchant",
             "MoltenEnchant",
@@ -295,7 +299,7 @@ namespace FargowiltasSouls
             "VortexEnchant",
             "VortexEnchant"
             };
-            for (int x = 0; x <= 26; x++)
+            for (int x = 0; x < EnchConfig.Length; x++)
             {
                 text = CreateTranslation(EnchConfig[x]);
                 text.SetDefault("[i:" + Instance.ItemType(EnchItem[x]) + "][c/" + EnchColor[x] + ": " + EnchName[x] + "]");
@@ -701,11 +705,15 @@ namespace FargowiltasSouls
             "Biotech Probe",
             "Proof of Avarice",
             "Slag Stompers",
+            "Spring Steps",
+            "Berserker Effect",
             "Bee Booties",
             "Ghastly Carapace",
             "Spirit Trapper Wisps",
             "Warlock Wisps",
             "Dread Speed",
+            "Spawn Divers",
+            "Demon Blood Effect",
             "Li'l Devil Minion",
             "Li'l Cherub Minion",
             "Sapling Minion",
@@ -767,11 +775,15 @@ namespace FargowiltasSouls
             "ThoriumBiotechProbeConfig",
             "ThoriumProofAvariceConfig",
             "ThoriumSlagStompersConfig",
+            "ThoriumSpringStepsConfig",
+            "ThoriumBerserkerConfig",
             "ThoriumBeeBootiesConfig",
             "ThoriumGhastlyCarapaceConfig",
             "ThoriumSpiritWispsConfig",
             "ThoriumWarlockWispsConfig",
             "ThoriumDreadConfig",
+            "ThoriumDiverConfig",
+            "ThoriumDemonBloodConfig",
             "ThoriumDevilMinionConfig",
             "ThoriumCherubMinionConfig",
             "ThoriumSaplingMinionConfig",
@@ -794,12 +806,12 @@ namespace FargowiltasSouls
 
             string[] thoriumTogItems = {
             "SupersonicSoul",
-            "ConjuristSoul",
-            "ConjuristSoul",
-            "HealerSoul",
+            "ConjuristsSoul",
+            "ConjuristsSoul",
+            "GuardianAngelsSoul",
             "CelestialEnchant",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
+            "CelestialEnchant",
+            "MalignantEnchant",
             "BronzeEnchant",
             "IllumiteEnchant",
             "JesterEnchant",
@@ -807,7 +819,7 @@ namespace FargowiltasSouls
             "TerrariumEnchant",
             "ThoriumEnchant",
             "YewWoodEnchant",
-            "CryoEnchant",
+            "CryoMagusEnchant",
             "WhiteDwarfEnchant",
             "TideHunterEnchant",
             "WhisperingEnchant",
@@ -828,37 +840,45 @@ namespace FargowiltasSouls
             "DurasteelEnchant",
             "CyberPunkEnchant",
             "ConductorEnchant",
-            "GladiatorsSoul",
+            "NobleEnchant",
             "LodestoneEnchant",
             "BiotechEnchant",
             "GoldEnchant",
-            "GladiatorsSoul",
+            "MagmaEnchant",
+            "MagmaEnchant",
+            "BerserkerEnchant",
             "BeeEnchant",
             "SpectreEnchant",
             "SpiritTrapperEnchant",
             "WarlockEnchant",
             "DreadEnchant",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
+            "ThoriumEnchant",
+            "DenmonBloodEnchant",
+            "WarlockEnchant",
+            "SacredEnchant",
             "LivingWoodEnchant",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul"};
+            "ConduitEnchant",
+            "ConduitEnchant",
+            "MeteorEnchant",
+            "FleshEnchant",
+            "DragonEnchant",
+            "GeodeEnchant",
+            "GeodeEnchant",
+            "SacredEnchant",
+            "LifeBinderEnchant",
+            "CryoMagusEnchant",
+            "DepthDiverEnchant",
+            "WhiteKnightEnchant",
+            "DreamWeaverEnchant",
+            "IllumiteEnchant",
+            "PlatinumEnchant",
+            "GoldEnchant"};
 
             string[] thoriumColor = {
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
             "ffffff",
             "ffffff",
             "ffffff",
@@ -973,7 +993,20 @@ namespace FargowiltasSouls
             "Luxor's Gift",
             "Gladiator's Locket",
             "Unstable Prism",
-            "Regenator"};
+            "Regenator",
+            "Abyssal Diving Suit",
+            "Kendra Pet",
+            "Perforator Pet",
+            "Bear Pet",
+            "Third Sage Pet",
+            "Brimling Pet",
+            "Danny Pet",
+            "Siren Pet",
+            "Chibii Pet",
+            "Akato Pet",
+            "Fox Pet",
+            "Levi Pet"
+        };
 
             string[] calamityTogConfig = {
             "CalamityUrchinConfig",
@@ -1013,49 +1046,87 @@ namespace FargowiltasSouls
             "CalamityLuxorGiftConfig",
             "CalamityGladiatorLocketConfig",
             "CalamityUnstablePrismConfig",
-            "CalamityRegeneratorConfig"};
+            "CalamityRegeneratorConfig",
+            "CalamityDivingSuitConfig",
+            "CalamityKendraConfig",
+            "CalamityPerforatorConfig",
+            "CalamityBearConfig",
+            "CalamityThirdSageConfig",
+            "CalamityBrimlingConfig",
+            "CalamityDannyConfig",
+            "CalamitySirenConfig",
+            "CalamityChibiiConfig",
+            "CalamityAkatoConfig",
+            "CalamityFoxConfig",
+            "CalamityLeviConfig"
+    };
 
             string[] calamityTogItems = {
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul",
-            "GladiatorsSoul"};
+            "VictideEnchant",
+            "TarragonEnchant",
+            "StatigelEnchant",
+            "ReaverEnchant",
+            "OmegaBlueEnchant",
+            "SilvaEnchant",
+            "SilvaEnchant",
+            "GodSlayerEnchant",
+            "GodSlayerEnchant",
+            "DemonShadeEnchant",
+            "DaedalusEnchant",
+            "DaedalusEnchant",
+            "BloodflareEnchant",
+            "AtaxiaEnchant",
+            "AtaxiaEnchant",
+            "AerospecEnchant",
+            "SilvaEnchant",
+            "SilvaEnchant",
+            "AuricEnchant",
+            "MolluskEnchant",
+            "MolluskEnchant",
+            "MolluskEnchant",
+            "SilvaEnchant",
+            "DaedalusEnchant",
+            "ReaverEnchant",
+            "AstralEnchant",
+            "AtaxiaEnchant",
+            "XerocEnchant",
+            "TarragonEnchant",
+            "BloodflareEnchant",
+            "GodSlayerEnchant",
+            "SilvaEnchant",
+            "AuricEnchant",
+            "SharpshootersSoul",
+            "VictideEnchant",
+            "AerospecEnchant",
+            "AerospecEnchant",
+            "DaedalusEnchant",
+            "OmegaBlueEnchant",
+            "AerospecEnchant",
+            "StatigelEnchant",
+            "DaedalusEnchant",
+            "DaedalusEnchant",
+            "AtaxiaEnchant",
+            "MolluskEnchant",
+            "OmegaBlueEnchant",
+            "GodSlayerEnchant",
+            "SilvaEnchant",
+            "SilvaEnchant",
+            "DemonShadeEnchant"};
 
             string[] calamityColor = {
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
+            "ffffff",
             "ffffff",
             "ffffff",
             "ffffff",
@@ -1106,7 +1177,7 @@ namespace FargowiltasSouls
 
             #endregion
 
-            
+
         }
 
         public override void Unload()
@@ -1138,7 +1209,7 @@ namespace FargowiltasSouls
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
                 SOALoaded = ModLoader.GetMod("SacredTools") != null;
                 MasomodeEX = ModLoader.GetMod("MasomodeEX") != null;
-                
+
                 DebuffIDs = new List<int> { 20, 22, 23, 24, 36, 39, 44, 46, 47, 67, 68, 69, 70, 80,
                     88, 94, 103, 137, 144, 145, 148, 149, 156, 160, 163, 164, 195, 196, 197, 199 };
                 DebuffIDs.Add(BuffType("Antisocial"));
@@ -1212,6 +1283,22 @@ namespace FargowiltasSouls
                     ModProjDict.Add(thorium.ProjectileType("PinkSlime"), 16);
                     ModProjDict.Add(thorium.ProjectileType("ShinyPet"), 17);
                     ModProjDict.Add(thorium.ProjectileType("DrachmaBag"), 18);
+                }
+
+                if (CalamityLoaded)
+                {
+                    Mod calamity = ModLoader.GetMod("CalamityMod");
+                    ModProjDict.Add(calamity.ProjectileType("Kendra"), 101);
+                    ModProjDict.Add(calamity.ProjectileType("PerforaMini"), 102);
+                    ModProjDict.Add(calamity.ProjectileType("ThirdSage"), 103);
+                    ModProjDict.Add(calamity.ProjectileType("Bear"), 104);
+                    ModProjDict.Add(calamity.ProjectileType("Brimling"), 105);
+                    ModProjDict.Add(calamity.ProjectileType("DannyDevito"), 106);
+                    ModProjDict.Add(calamity.ProjectileType("SirenYoung"), 107);
+                    ModProjDict.Add(calamity.ProjectileType("ChibiiDoggo"), 108);
+                    ModProjDict.Add(calamity.ProjectileType("Akato"), 109);
+                    ModProjDict.Add(calamity.ProjectileType("Fox"), 110);
+                    ModProjDict.Add(calamity.ProjectileType("Levi"), 111);
                 }
             }
             catch (Exception e)

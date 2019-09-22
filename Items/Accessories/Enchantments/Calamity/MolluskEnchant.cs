@@ -22,7 +22,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
             Tooltip.SetDefault(
 @"'The world is your oyster'
 Two shellfishes aid you in combat
-Effects of Giant Pearl and Amidias' Pendant");
+Effects of Giant Pearl and Amidias' Pendant
+Summons a Danny Devito pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "软壳魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'世界任你驰骋'
@@ -74,6 +75,10 @@ Effects of Giant Pearl and Amidias' Pendant");
             {
                 calamity.GetItem("AmidiasPendant").UpdateAccessory(player, hideVisual);
             }
+
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            fargoPlayer.MolluskEnchant = true;
+            fargoPlayer.AddPet("Danny Pet", hideVisual, calamity.BuffType("DannyDevito"), calamity.ProjectileType("DannyDevito"));
         }
 
         public override void AddRecipes()

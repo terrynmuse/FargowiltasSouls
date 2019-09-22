@@ -22,8 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
             DisplayName.SetDefault("Vulcan Reaper Enchantment");
             Tooltip.SetDefault(
 @"'Reap the rewards of your near-endless grind'
-Provides immunity to Flarium Inferno and Obsidian Curse
-Summons a dragon spirit");
+Provides immunity to Flarium Inferno and Obsidian Curse");
             DisplayName.AddTranslation(GameCulture.Chinese, "火神收割者魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'收获你那近乎无休止的苦差事的回报'
@@ -76,7 +75,7 @@ Summons a dragon spirit");
 
             foreach (string i in items) recipe.AddIngredient(soa.ItemType(i));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

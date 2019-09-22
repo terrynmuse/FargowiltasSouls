@@ -115,6 +115,8 @@ namespace FargowiltasSouls
                 [Header("$Mods.FargowiltasSouls.NatureHeader")]
                 [Label("$Mods.FargowiltasSouls.ChlorophyteConfig")]
                 public bool chloroCrystal = true;
+                [Label("$Mods.FargowiltasSouls.CrimsonConfig")]
+                public bool crimsonRegen = true;
                 [Label("$Mods.FargowiltasSouls.FrostConfig")]
                 public bool frostIce = true;
                 [Label("$Mods.FargowiltasSouls.JungleConfig")]
@@ -193,6 +195,7 @@ namespace FargowiltasSouls
                     SoulConfig.Instance.enchantToggles["Turtle Shell Buff"] = turtShell;
                     //force of nature
                     SoulConfig.Instance.enchantToggles["Chlorophyte Leaf Crystal"] = chloroCrystal;
+                    SoulConfig.Instance.enchantToggles["Crimson Regen"] = crimsonRegen;
                     SoulConfig.Instance.enchantToggles["Frost Icicles"] = frostIce;
                     SoulConfig.Instance.enchantToggles["Jungle Spores"] = jungleSpores;
                     SoulConfig.Instance.enchantToggles["Molten Inferno Buff"] = moltInfern;
@@ -621,6 +624,10 @@ namespace FargowiltasSouls
             public bool proofAvarice = true;
             [Label("$Mods.FargowiltasSouls.ThoriumSlagStompersConfig")]
             public bool slagStompers = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumSpringStepsConfig")]
+            public bool springSteps = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumBerserkerConfig")]
+            public bool berserker = true;
             [Label("$Mods.FargowiltasSouls.ThoriumBeeBootiesConfig")]
             public bool beeBooties = true;
             [Label("$Mods.FargowiltasSouls.ThoriumGhastlyCarapaceConfig")]
@@ -631,6 +638,10 @@ namespace FargowiltasSouls
             public bool warlockWisps = true;
             [Label("$Mods.FargowiltasSouls.ThoriumDreadConfig")]
             public bool dreadSpeed = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumDiverConfig")]
+            public bool divers = true;
+            [Label("$Mods.FargowiltasSouls.ThoriumDemonBloodConfig")]
+            public bool demonBlood = true;
             [Label("$Mods.FargowiltasSouls.ThoriumDevilMinionConfig")]
             public bool devilMinion = true;
             [Label("$Mods.FargowiltasSouls.ThoriumCherubMinionConfig")]
@@ -713,11 +724,16 @@ namespace FargowiltasSouls
                 SoulConfig.Instance.thoriumToggles["Biotech Probe"] = biotechProbe;
                 SoulConfig.Instance.thoriumToggles["Proof of Avarice"] = proofAvarice;
                 SoulConfig.Instance.thoriumToggles["Slag Stompers"] = slagStompers;
+                SoulConfig.Instance.thoriumToggles["Spring Steps"] = springSteps;
+                SoulConfig.Instance.thoriumToggles["Berserker Effect"] = berserker;
                 SoulConfig.Instance.thoriumToggles["Bee Booties"] = beeBooties;
                 SoulConfig.Instance.thoriumToggles["Ghastly Carapace"] = ghastlyCarapace;
                 SoulConfig.Instance.thoriumToggles["Spirit Trapper Wisps"] = spiritWisps;
                 SoulConfig.Instance.thoriumToggles["Warlock Wisps"] = warlockWisps;
                 SoulConfig.Instance.thoriumToggles["Dread Speed"] = dreadSpeed;
+                SoulConfig.Instance.thoriumToggles["Spawn Divers"] = divers;
+                SoulConfig.Instance.thoriumToggles["Demon Blood Effect"] = demonBlood;
+
                 SoulConfig.Instance.thoriumToggles["Li'l Devil Minion"] = devilMinion;
                 SoulConfig.Instance.thoriumToggles["Li'l Cherub Minion"] = cherubMinion;
                 SoulConfig.Instance.thoriumToggles["Sapling Minion"] = saplingMinion;
@@ -820,6 +836,31 @@ namespace FargowiltasSouls
             public bool unstablePrism = true;
             [Label("$Mods.FargowiltasSouls.CalamityRegeneratorConfig")]
             public bool regenerator = true;
+            [Label("$Mods.FargowiltasSouls.CalamityDivingSuitConfig")]
+            public bool divingSuit = true;
+
+            [Label("$Mods.FargowiltasSouls.CalamityKendraConfig")]
+            public bool kendraPet = true;
+            [Label("$Mods.FargowiltasSouls.CalamityPerforatorConfig")]
+            public bool perforatorPet = true;
+            [Label("$Mods.FargowiltasSouls.CalamityBearConfig")]
+            public bool bearPet = true;
+            [Label("$Mods.FargowiltasSouls.CalamityThirdSageConfig")]
+            public bool thirdSagePet = true;
+            [Label("$Mods.FargowiltasSouls.CalamityBrimlingConfig")]
+            public bool brimlingPet = true;
+            [Label("$Mods.FargowiltasSouls.CalamityDannyConfig")]
+            public bool dannyPet = true;
+            [Label("$Mods.FargowiltasSouls.CalamitySirenConfig")]
+            public bool sirenPet = true;
+            [Label("$Mods.FargowiltasSouls.CalamityChibiiConfig")]
+            public bool chibiiPet = true;
+            [Label("$Mods.FargowiltasSouls.CalamityAkatoConfig")]
+            public bool akatoPet = true;
+            [Label("$Mods.FargowiltasSouls.CalamityFoxConfig")]
+            public bool foxPet = true;
+            [Label("$Mods.FargowiltasSouls.CalamityLeviConfig")]
+            public bool leviPet = true;
 
             public void Change()
             {
@@ -861,6 +902,19 @@ namespace FargowiltasSouls
                 SoulConfig.Instance.calamityToggles["Gladiator's Locket"] = gladiatorLocket;
                 SoulConfig.Instance.calamityToggles["Unstable Prism"] = unstablePrism;
                 SoulConfig.Instance.calamityToggles["Regenator"] = regenerator;
+                SoulConfig.Instance.calamityToggles["Abyssal Diving Suit"] = divingSuit;
+
+                SoulConfig.Instance.calamityToggles["Kendra Pet"] = kendraPet;
+                SoulConfig.Instance.calamityToggles["Perforator Pet"] = perforatorPet;
+                SoulConfig.Instance.calamityToggles["Bear Pet"] = bearPet;
+                SoulConfig.Instance.calamityToggles["Third Sage Pet"] = thirdSagePet;
+                SoulConfig.Instance.calamityToggles["Brimling Pet"] = brimlingPet;
+                SoulConfig.Instance.calamityToggles["Danny Pet"] = dannyPet;
+                SoulConfig.Instance.calamityToggles["Siren Pet"] = sirenPet;
+                SoulConfig.Instance.calamityToggles["Chibii Pet"] = chibiiPet;
+                SoulConfig.Instance.calamityToggles["Akato Pet"] = akatoPet;
+                SoulConfig.Instance.calamityToggles["Fox Pet"] = foxPet;
+                SoulConfig.Instance.calamityToggles["Levi Pet"] = leviPet;
             }
         }
 
@@ -908,6 +962,7 @@ namespace FargowiltasSouls
             enchantToggles.Add("Turtle Shell Buff", terrmenu.terenchmenu.turtShell);
 
             enchantToggles.Add("Chlorophyte Leaf Crystal", terrmenu.terenchmenu.chloroCrystal);
+            enchantToggles.Add("Crimson Regen", terrmenu.terenchmenu.crimsonRegen);
             enchantToggles.Add("Frost Icicles", terrmenu.terenchmenu.frostIce);
             enchantToggles.Add("Jungle Spores", terrmenu.terenchmenu.jungleSpores);
             enchantToggles.Add("Molten Inferno Buff", terrmenu.terenchmenu.moltInfern);
@@ -1074,11 +1129,16 @@ namespace FargowiltasSouls
             thoriumToggles.Add("Biotech Probe", thoriummenu.biotechProbe);
             thoriumToggles.Add("Proof of Avarice", thoriummenu.proofAvarice);
             thoriumToggles.Add("Slag Stompers", thoriummenu.slagStompers);
+            thoriumToggles.Add("Spring Steps", thoriummenu.springSteps);
+            thoriumToggles.Add("Berserker Effect", thoriummenu.berserker);
             thoriumToggles.Add("Bee Booties", thoriummenu.beeBooties);
             thoriumToggles.Add("Ghastly Carapace", thoriummenu.ghastlyCarapace);
             thoriumToggles.Add("Spirit Trapper Wisps", thoriummenu.spiritWisps);
             thoriumToggles.Add("Warlock Wisps", thoriummenu.warlockWisps);
             thoriumToggles.Add("Dread Speed", thoriummenu.dreadSpeed);
+            thoriumToggles.Add("Spawn Divers", thoriummenu.divers);
+            thoriumToggles.Add("Demon Blood Effect", thoriummenu.demonBlood);
+
             thoriumToggles.Add("Li'l Devil Minion", thoriummenu.devilMinion);
             thoriumToggles.Add("Li'l Cherub Minion", thoriummenu.cherubMinion);
             thoriumToggles.Add("Sapling Minion", thoriummenu.saplingMinion);
@@ -1139,6 +1199,19 @@ namespace FargowiltasSouls
             calamityToggles.Add("Gladiator's Locket", calamenu.gladiatorLocket);
             calamityToggles.Add("Unstable Prism", calamenu.unstablePrism);
             calamityToggles.Add("Regenator", calamenu.regenerator);
+            calamityToggles.Add("Abyssal Diving Suit", calamenu.divingSuit);
+
+            calamityToggles.Add("Kendra Pet", calamenu.kendraPet);
+            calamityToggles.Add("Perforator Pet", calamenu.perforatorPet);
+            calamityToggles.Add("Bear Pet", calamenu.bearPet);
+            calamityToggles.Add("Third Sage Pet", calamenu.thirdSagePet);
+            calamityToggles.Add("Brimling Pet", calamenu.brimlingPet);
+            calamityToggles.Add("Danny Pet", calamenu.dannyPet);
+            calamityToggles.Add("Siren Pet", calamenu.sirenPet);
+            calamityToggles.Add("Chibii Pet", calamenu.chibiiPet);
+            calamityToggles.Add("Akato Pet", calamenu.akatoPet);
+            calamityToggles.Add("Fox Pet", calamenu.foxPet);
+            calamityToggles.Add("Levi Pet", calamenu.leviPet);
         }
 
         public bool GetValue(string input)

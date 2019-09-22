@@ -81,6 +81,14 @@ Effects of Counter Scarf and Fungal Symbiote");
             //counter scarf
             calamityPlayer.dodgeScarf = true;
             calamityPlayer.dashMod = 1;
+
+           /* modPlayer.StatigelEnchant = true;
+            //modPlayer.AddPet("Perforator Pet", hideVisual, calamity.BuffType("BloodBound"), calamity.ProjectileType("PerforaMini"));
+
+            if (player.FindBuffIndex(calamity.BuffType("BloodBound")) == -1 && player.ownedProjectileCounts[calamity.ProjectileType("PerforaMini")] < 1)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("PerforaMini"), 0, 0f, player.whoAmI);
+            }*/
         }
 
         public override void AddRecipes()

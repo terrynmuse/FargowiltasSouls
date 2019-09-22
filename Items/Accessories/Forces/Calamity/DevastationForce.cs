@@ -27,7 +27,8 @@ All armor bonuses from Astral, Tarragon, and Demonshade
 Effects of Giant Pearl and Amidias' Pendant
 Effects of Fabled Tortoise Shell and Plague Hive
 Effects of the Astral Arcanum and Hide of Astrum Deus
-Effects of the Profaned Soul Artifact and Dark Sun Ring");
+Effects of the Profaned Soul Artifact and Dark Sun Ring
+Summons several pets");
             DisplayName.AddTranslation(GameCulture.Chinese, "毁灭之力");
             Tooltip.AddTranslation(GameCulture.Chinese,
 @"'让那些反抗你的人下地狱吧'

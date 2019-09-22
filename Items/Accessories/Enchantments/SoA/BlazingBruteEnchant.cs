@@ -73,7 +73,7 @@ Getting hit or moving resets the counter");
 
             foreach (string i in items) recipe.AddIngredient(soa.ItemType(i));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

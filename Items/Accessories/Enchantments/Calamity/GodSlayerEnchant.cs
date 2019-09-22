@@ -37,7 +37,8 @@ Hitting enemies will summon god slayer phantoms
 Summons a god-eating mechworm to fight for you
 While at full HP all of your rogue stats are boosted by 10%
 If you take over 80 damage in one hit you will be given extra immunity frames
-Effects of the Nebulous Core and Draedon's Heart");
+Effects of the Nebulous Core and Draedon's Heart
+Summons a Chibii Doggo pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "弑神者魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'足以屠神的力量存于你的体内...'
@@ -298,6 +299,11 @@ Effects of the Nebulous Core and Draedon's Heart");
             modPlayer.draedonsHeart = true;
             player.buffImmune[calamity.BuffType("Horror")] = true;
             modPlayer.draedonsStressGain = true;
+
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            fargoPlayer.GodSlayerEnchant = true;
+            fargoPlayer.AddPet("Chibii Pet", hideVisual, calamity.BuffType("ChibiiBuff"), calamity.ProjectileType("ChibiiDoggo"));
+
         }
 
         public override void AddRecipes()
@@ -313,15 +319,13 @@ Effects of the Nebulous Core and Draedon's Heart");
             recipe.AddIngredient(calamity.ItemType("DimensionalSoulArtifact"));
             recipe.AddIngredient(calamity.ItemType("DraedonsHeart"));
             recipe.AddIngredient(calamity.ItemType("ThePack"));
-            recipe.AddIngredient(calamity.ItemType("Onyxia"));
             recipe.AddIngredient(calamity.ItemType("PrimordialAncient"));
             recipe.AddIngredient(calamity.ItemType("DevilsDevastation"));
             recipe.AddIngredient(calamity.ItemType("StarfleetMK2"));
             recipe.AddIngredient(calamity.ItemType("Norfleet"));
             recipe.AddIngredient(calamity.ItemType("Skullmasher"));
             recipe.AddIngredient(calamity.ItemType("Nadir"));
-
-            //add Cosmic Plushie
+            recipe.AddIngredient(calamity.ItemType("CosmicPlushie"));
 
             recipe.AddTile(calamity, "DraedonsForge");
             recipe.SetResult(this);

@@ -25,8 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.SoA
 @"'Dragon Rage empowers you, and encourages you to go on'
 All armor bonuses from Void Warden, Vulcan Reaper, and Flarium
 All armor bonuses from Asthraltite
-Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster
-Summons several pets");
+Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster");
             DisplayName.AddTranslation(GameCulture.Chinese, "赛伦之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'胸腔中充斥着龙之怒, 激励着你继续前进'

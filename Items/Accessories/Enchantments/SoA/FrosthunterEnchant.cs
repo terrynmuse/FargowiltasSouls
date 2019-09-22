@@ -24,8 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'The hunter now hunted, the prey now predator'
 15% increased ranged damage while in the snow biome
 Ranged projectiles frostburn enemies
-Effects of Frigid Pendant
-Summons a Howling Death pup and a Tabby Slime to follow you around");
+Effects of Frigid Pendant");
             DisplayName.AddTranslation(GameCulture.Chinese, "霜冻猎人魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'现在, 猎人成了猎物, 猎物成了掠食者'

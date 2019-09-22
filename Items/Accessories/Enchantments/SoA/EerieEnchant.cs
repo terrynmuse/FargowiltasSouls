@@ -22,8 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
             DisplayName.SetDefault("Eerie Enchantment");
             Tooltip.SetDefault(
 @"'Creeper? Aw man…'
-Minion damage grants increased life regeneration
-Summons a Crimson Sigil to shine blood red light");
+Minion damage grants increased life regeneration");
             DisplayName.AddTranslation(GameCulture.Chinese, "怪诞魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'Creeper? Aw man…'

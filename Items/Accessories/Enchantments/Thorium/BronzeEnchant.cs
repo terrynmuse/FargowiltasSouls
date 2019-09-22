@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             Tooltip.SetDefault(
 @"'You have the favor of Zeus'
 Attacks have a chance to cause a lightning bolt to strike
-Effects of Olympic Torch, Champion's Rebuttal, Spartan Sadals, and Spartan's Subwoofer");
+Effects of Olympic Torch, Champion's Rebuttal, Spartan Sandals, and Spartan's Subwoofer");
             DisplayName.AddTranslation(GameCulture.Chinese, "青铜魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'宙斯的青睐'

@@ -27,7 +27,8 @@ Short-ranged tentacles heal you by sucking enemy life
 Press Y to activate abyssal madness for 5 seconds
 Abyssal madness increases damage, critical strike chance, and tentacle aggression/range
 This effect has a 30 second cooldown
-Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
+Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem
+Summons a Siren pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "蓝色欧米茄魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'深渊的黑暗淹没了你...'
@@ -82,19 +83,23 @@ Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
                     Main.dust[num2].velocity *= 3f;
                 }
             }
-            
+
             //abyssal diving suit
-            //because screw that slow speed out of water ech
-            if (!Collision.DrownCollision(player.position, player.width, player.height, player.gravDir))
+            if (SoulConfig.Instance.GetValue("Abyssal Diving Suit"))
             {
-                player.runAcceleration *= 2.5f;
-                player.maxRunSpeed *= 2.5f;
+                //because screw that slow speed out of water ech
+                if (!Collision.DrownCollision(player.position, player.width, player.height, player.gravDir))
+                {
+                    player.runAcceleration *= 2.5f;
+                    player.maxRunSpeed *= 2.5f;
+                }
+                modPlayer.abyssalDivingSuit = true;
+                if (hideVisual)
+                {
+                    modPlayer.abyssalDivingSuitHide = true;
+                }
             }
-            modPlayer.abyssalDivingSuit = true;
-            if (hideVisual)
-            {
-                modPlayer.abyssalDivingSuitHide = true;
-            }
+
             //lumenous amulet
             modPlayer.abyssalAmulet = true;
             modPlayer.lumenousAmulet = true;
@@ -103,7 +108,9 @@ Effects of the Abyssal Diving Suit, Lumenous Amulet, and Aquatic Emblem");
             //aquatic emblem
             modPlayer.aquaticEmblem = true;
 
-            //pet soon tm
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            fargoPlayer.OmegaBlueEnchant = true;
+            fargoPlayer.AddPet("Siren Pet", hideVisual, calamity.BuffType("StrangeOrb"), calamity.ProjectileType("SirenYoung"));
         }
 
         public override void AddRecipes()

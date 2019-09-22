@@ -20,6 +20,7 @@ namespace FargowiltasSouls.Projectiles
         }
 
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
         private int counter;
         public bool CanSplit = true;
         private int numSplits = 1;
@@ -466,6 +467,7 @@ namespace FargowiltasSouls.Projectiles
                         split.friendly = true;
                         split.GetGlobalProjectile<FargoGlobalProjectile>().numSplits = projectile.GetGlobalProjectile<FargoGlobalProjectile>().numSplits;
                         split.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = projectile.GetGlobalProjectile<FargoGlobalProjectile>().firstTick;
+                        split.GetGlobalProjectile<FargoGlobalProjectile>().tungstenProjectile = projectile.GetGlobalProjectile<FargoGlobalProjectile>().tungstenProjectile;
                     }
                 }
             }
@@ -991,7 +993,52 @@ namespace FargowiltasSouls.Projectiles
                     KillPet(projectile, player, thorium.BuffType("DrachmaBuff"), modPlayer.GoldEnchant, "Coin Bag Pet");
                     break;
 
-                #endregion
+                    //calamity
+                case 101:
+                    KillPet(projectile, player, calamity.BuffType("Kendra"), modPlayer.AerospecEnchant, "Kendra Pet");
+                    break;
+
+                case 102:
+                    KillPet(projectile, player, calamity.BuffType("BloodBound"), modPlayer.StatigelEnchant, "Perforator Pet");
+                    break;
+
+                case 103:
+                    KillPet(projectile, player, calamity.BuffType("ThirdSageBuff"), modPlayer.DaedalusEnchant, "Third Sage Pet");
+                    break;
+
+                case 104:
+                    KillPet(projectile, player, calamity.BuffType("BearBuff"), modPlayer.DaedalusEnchant, "Bear Pet");
+                    break;
+
+                case 105:
+                    KillPet(projectile, player, calamity.BuffType("BrimlingBuff"), modPlayer.AtaxiaEnchant, "Brimling Pet");
+                    break;
+
+                case 106:
+                    KillPet(projectile, player, calamity.BuffType("DannyDevito"), modPlayer.MolluskEnchant, "Danny Pet");
+                    break;
+
+                case 107:
+                    KillPet(projectile, player, calamity.BuffType("StrangeOrb"), modPlayer.OmegaBlueEnchant, "Siren Pet");
+                    break;
+
+                case 108:
+                    KillPet(projectile, player, calamity.BuffType("ChibiiBuff"), modPlayer.GodSlayerEnchant, "Chibii Pet");
+                    break;
+
+                case 109:
+                    KillPet(projectile, player, calamity.BuffType("AkatoYharonBuff"), modPlayer.SilvaEnchant, "Akato Pet");
+                    break;
+
+                case 110:
+                    KillPet(projectile, player, calamity.BuffType("Fox"), modPlayer.SilvaEnchant, "Fox Pet");
+                    break;
+
+                case 111:
+                    KillPet(projectile, player, calamity.BuffType("Levi"), modPlayer.DemonShadeEnchant, "Levi Pet");
+                    break;
+
+                    #endregion
             }
 
             if (stormBoosted)

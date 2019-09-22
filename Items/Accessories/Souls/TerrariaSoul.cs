@@ -127,82 +127,8 @@ Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Sh
             mod.GetItem("WillForce").UpdateAccessory(player, hideVisual);
             //COSMOS
             mod.GetItem("CosmoForce").UpdateAccessory(player, hideVisual);
-
-            if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
-
-            //if (Fargowiltas.Instance.CalamityLoaded)
-             //   mod.GetItem("CalamityForce").UpdateAccessory(player, hideVisual);
         }
 
-        private void Thorium(Player player, bool hideVisual)
-        {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-
-            //NATURE
-            //spring steps
-            player.extraFall += 10;
-            if (player.velocity.Y < 0f && allowJump)
-            {
-                allowJump = false;
-                thoriumPlayer.jumps++;
-            }
-            if (player.velocity.Y > 0f || player.sliding || player.justJumped)
-            {
-                allowJump = true;
-            }
-            if (thoriumPlayer.jumps == 0)
-            {
-                player.jumpSpeedBoost += 5f;
-            }
-            if (thoriumPlayer.jumps == 1)
-            {
-                player.jumpSpeedBoost += 1f;
-            }
-            if (thoriumPlayer.jumps == 2)
-            {
-                player.jumpSpeedBoost += 1.75f;
-            }
-            if (thoriumPlayer.jumps >= 3)
-            {
-                float num = 16f;
-                int num2 = 0;
-                while (num2 < num)
-                {
-                    Vector2 vector = Vector2.UnitX * 0f;
-                    vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(5f, 20f);
-                    vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
-                    int num3 = Dust.NewDust(player.Center, 0, 0, 127, 0f, 0f, 0, default(Color), 1f);
-                    Main.dust[num3].scale = 1.35f;
-                    Main.dust[num3].noGravity = true;
-                    Main.dust[num3].position = player.Center + vector;
-                    Dust dust = Main.dust[num3];
-                    dust.position.Y = dust.position.Y + 12f;
-                    Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
-                    int num4 = num2;
-                    num2 = num4 + 1;
-                }
-                Main.PlaySound(SoundID.Item74, player.position);
-                thoriumPlayer.jumps = 0;
-            }
-            //slag stompers
-            timer++;
-            if (timer > 20)
-            {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0.1f * Main.rand.Next(-25, 25), 2f, thorium.ProjectileType("SlagPro"), 20, 1f, Main.myPlayer, 0f, 0f);
-                timer = 0;
-            }
-
-            //WILL
-            if (SoulConfig.Instance.GetValue("Proof of Avarice"))
-            {
-                //proof of avarice
-                thoriumPlayer.avarice2 = true;
-            }
-            modPlayer.AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
-            modPlayer.AddPet("Glitter Pet", hideVisual, thorium.BuffType("ShineDust"), thorium.ProjectileType("ShinyPet"));
-            modPlayer.AddPet("Bio-Feeder Pet", hideVisual, thorium.BuffType("BioFeederBuff"), thorium.ProjectileType("BioFeederPet"));
-        }
 
         public override void AddRecipes()
         {

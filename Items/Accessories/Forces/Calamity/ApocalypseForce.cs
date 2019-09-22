@@ -27,7 +27,8 @@ Effects of the Spirit Glyph, Raider's Talisman, and Trinket of Chi
 Effects of Gladiator's Locket and Unstable Prism
 Effects of Counter Scarf and Fungal Symbiote
 Effects of Permafrost's Concoction and Regenerator
-Effects of the Core of the Blood God and Affliction");
+Effects of the Core of the Blood God and Affliction
+Summons several pets");
             DisplayName.AddTranslation(GameCulture.Chinese, "天启之力");
             Tooltip.AddTranslation(GameCulture.Chinese,
 @"'此地曾充满生命与光明, 现在只余废墟'

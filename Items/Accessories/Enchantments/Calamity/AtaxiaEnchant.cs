@@ -28,7 +28,8 @@ You have a 50% chance to fire a homing chaos flare when using ranged weapons
 Magic attacks summon damaging and healing flare orbs on hit
 Summons a chaos spirit to protect you
 Rogue weapons have a 10% chance to unleash a volley of chaos flames around the player
-Effects of the Plague Hive");
+Effects of the Plague Hive
+Summons a Brimling pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "阿塔西亚魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'别和禅心搞混了'
@@ -129,7 +130,9 @@ Effects of the Plague Hive");
                 }
             }
 
-            //pet soon tm
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            fargoPlayer.AtaxiaEnchant = true;
+            fargoPlayer.AddPet("Brimling Pet", hideVisual, calamity.BuffType("BrimlingBuff"), calamity.ProjectileType("Brimling"));
         }
 
         public override void AddRecipes()

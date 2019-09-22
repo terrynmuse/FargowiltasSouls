@@ -68,7 +68,7 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            //right click
+            /*//right click
             if (player.altFunctionUse == 2)
             {
                 mode++;
@@ -83,7 +83,7 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
                 Main.NewText("Hi " + mode);
 
                 return false;
-            }
+            }*/
 
             switch (mode)
             {

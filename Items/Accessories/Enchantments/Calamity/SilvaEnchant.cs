@@ -40,7 +40,8 @@ Increases your rate of fire with all ranged weapons
 Magic projectiles have a 10% chance to cause a massive explosion on enemy hits
 Summons an ancient leaf prism to blast your enemies with life energy
 Rogue weapons have a faster throwing rate while you are above 90% life
-Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
+Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift
+Summons an Akato and Fox pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "始源林海魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'你身上流淌出无尽的生命能量'
@@ -99,7 +100,7 @@ Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
                 //throw
                 modPlayer.silvaThrowing = true;
             }
-            
+
             if (SoulConfig.Instance.GetValue("Silva Crystal Minion"))
             {
                 //summon
@@ -184,7 +185,10 @@ Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift");
                 }
             }
 
-            //pet soon tm
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            fargoPlayer.SilvaEnchant = true;
+            fargoPlayer.AddPet("Akato Pet", hideVisual, calamity.BuffType("AkatoYharonBuff"), calamity.ProjectileType("Akato"));
+            fargoPlayer.AddPet("Fox Pet", hideVisual, calamity.BuffType("Fox"), calamity.ProjectileType("Fox"));
         }
 
         public override void AddRecipes()

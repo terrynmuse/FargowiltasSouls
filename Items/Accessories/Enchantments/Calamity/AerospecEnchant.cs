@@ -24,7 +24,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 You fall quicker and are immune to fall damage
 Taking over 25 damage in one hit causes several homing feathers to fall
 Summons a Valkyrie minion to protect you
-Effects of Gladiator's Locket and Unstable Prism");
+Effects of Gladiator's Locket and Unstable Prism
+Summons a Kendra pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "天蓝魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"天空向你施以援手...
@@ -47,6 +48,7 @@ Effects of Gladiator's Locket and Unstable Prism");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
+
 
             CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
             modPlayer.aeroSet = true;
@@ -75,7 +77,9 @@ Effects of Gladiator's Locket and Unstable Prism");
             if (SoulConfig.Instance.GetValue("Unstable Prism"))
                 calamity.GetItem("UnstablePrism").UpdateAccessory(player, hideVisual);
 
-            //spawn pet soon tm
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            fargoPlayer.AerospecEnchant = true;
+            fargoPlayer.AddPet("Kendra Pet", hideVisual, calamity.BuffType("Kendra"), calamity.ProjectileType("Kendra"));
         }
 
         public override void AddRecipes()

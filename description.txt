@@ -10,7 +10,18 @@ NEW UPDATE - v 1.0.0
 
 
 -Simplified all Thorium Force and Soul tooltips
--simplified vanilla as well and made SoE tooltip epic
+-SoE tooltip epic
+-fixed royal gel effect missing from World shaper up
+-added more toggles and added correct itempictures rto all thorium and calamity toggles
+-Haries steal potions, wraiths steal souls
+-umbrella slime does slimed now
+-fixed dark star cannon being unobtainable
+-moved boss drops from bags to boss itself, and made them more common in masomode
+-removed meme blue dust from destroyer gun
+-added extra loot to evil bosses to make up for no loot minions or whatver
+-nerfed DG meme speed in maosmode
+-fixed frost enchant spawning way too many icicles maybe
+-eater staff and destroyer gun may work a little better in mp tm
 
 -Added Computation Orb
 
@@ -18,5 +29,4 @@ NEW UPDATE - v 1.0.0
 Bug Fixes:
 
 -Fixed Top Hat Squirrels sprite sheet clipping into the ground
--Added Demon Squirrel, Golden Tophat Squirrel, and Party Squirrel (finish them)
 -Added even more Chinese translation

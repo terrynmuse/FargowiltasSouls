@@ -23,8 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
             Tooltip.SetDefault(
 @"'Gotta go fast'
 20% increased movement speed
-Effects of Lapis Pendant
-Summons a pet Nicky and Buzzy Beetle");
+Effects of Lapis Pendant");
 
             DisplayName.AddTranslation(GameCulture.Chinese, "青金魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 

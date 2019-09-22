@@ -60,51 +60,6 @@ namespace FargowiltasSouls.Items
             return true;
         }
 
-        public override void OpenVanillaBag(string context, Player player, int arg)
-        {
-            if (Main.rand.Next(10) != 0) return;
-            // ReSharper disable once SwitchStatementMissingSomeCases
-            switch (arg)
-            {
-                case ItemID.KingSlimeBossBag:
-                    player.QuickSpawnItem(mod.ItemType("SlimeKingsSlasher"));
-                    break;
-                case ItemID.EyeOfCthulhuBossBag:
-                    player.QuickSpawnItem(mod.ItemType("EyeFlail"));
-                    break;
-                case ItemID.EaterOfWorldsBossBag:
-                    player.QuickSpawnItem(mod.ItemType("EaterStaff"));
-                    break;
-                case ItemID.BrainOfCthulhuBossBag:
-                    player.QuickSpawnItem(mod.ItemType("BrainStaff"));
-                    break;
-                case ItemID.SkeletronBossBag:
-                    player.QuickSpawnItem(mod.ItemType("Bonezone"));
-                    break;
-                case ItemID.QueenBeeBossBag:
-                    player.QuickSpawnItem(mod.ItemType("HiveStaff"));
-                    break;
-                case ItemID.DestroyerBossBag:
-                    player.QuickSpawnItem(mod.ItemType("DestroyerGun"));
-                    break;
-                case ItemID.TwinsBossBag:
-                    player.QuickSpawnItem(mod.ItemType("TwinRangs"));
-                    break;
-                /*case ItemID.SkeletronPrimeBossBag:
-                    player.QuickSpawnItem(mod.ItemType("DarkStarCannon"));
-                    break;*/
-                case ItemID.PlanteraBossBag:
-                    player.QuickSpawnItem(mod.ItemType("Dicer"));
-                    break;
-                case ItemID.GolemBossBag:
-                    player.QuickSpawnItem(mod.ItemType("GolemTome"));
-                    break;
-                case ItemID.FishronBossBag:
-                    player.QuickSpawnItem(mod.ItemType("FishStick"));
-                    break;
-            }
-        }
-
         public override bool OnPickup(Item item, Player player)
         {
             FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);

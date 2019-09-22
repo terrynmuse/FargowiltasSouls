@@ -95,6 +95,7 @@ Increases flight time by 50%
 
         private void Thorium(Player player, bool hideVisual)
         {
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //bee booties
             if (SoulConfig.Instance.GetValue("Bee Booties"))
@@ -103,6 +104,8 @@ Increases flight time by 50%
                 player.moveSpeed -= 0.15f;
                 player.maxRunSpeed -= 1f;
             }
+
+            if (modPlayer.ThoriumSoul) return;
 
             //venom woofer
             for (int i = 0; i < 255; i++)

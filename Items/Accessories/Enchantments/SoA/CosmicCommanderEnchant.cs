@@ -24,8 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'Make Soran great again'
 Pressing [Ability] puts you in 'Sniper State' 
 Your damage is upped in this state however you are frozen in place and have reduced defense 
-State is toggled upon button press and has a cooldown of 5 seconds after switching
-Summons Chibi Voxa to follow you around");
+State is toggled upon button press and has a cooldown of 5 seconds after switching");
             DisplayName.AddTranslation(GameCulture.Chinese, "宇宙指挥官魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'让索兰再次伟大'
@@ -79,7 +78,7 @@ Summons Chibi Voxa to follow you around");
 
             foreach (string i in items) recipe.AddIngredient(soa.ItemType(i));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -24,7 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 Moving around generates up to 5 static rings, with each one generating life shielding
 When fully charged, a bubble of energy will protect you from one attack 
 When the bubble blocks an attack, an electrical discharge is released at nearby enemies
-Summons a pet Omega, I.F.O., and Bio-Feeder");
+Summons a pet Omega and I.F.O.");
             DisplayName.AddTranslation(GameCulture.Chinese, "电容魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'震惊世界'

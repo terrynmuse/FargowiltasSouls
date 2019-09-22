@@ -28,7 +28,8 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift
 Effects of The Community, Abyssal Diving Suit, and Lumenous Amulet
 Effects of the Aquatic Emblem, Nebulous Core, and Draedon's Heart
 Effects of the The Amalgam, Godly Soul Artifact, and Yharim's Gift
-Effects of Heart of the Elements and The Sponge");
+Effects of Heart of the Elements and The Sponge
+Summons several pets");
             DisplayName.AddTranslation(GameCulture.Chinese, "荒芜之力");
             Tooltip.AddTranslation(GameCulture.Chinese,
 @"'你将成为这个荒芜寒冷世界的最后幸存者'

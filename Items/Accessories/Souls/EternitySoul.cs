@@ -7,6 +7,8 @@ using System;
 using CalamityMod;
 using ThoriumMod.Items.Misc;
 using Terraria.Localization;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
@@ -20,174 +22,194 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public bool canHover;
         public int hoverTimer;
         public int jumpTimer;
-        
-        
-String[] tooltips = new String[] 
-{
-	"250% increased damage",
-	"250% increased attack speed",
-	"100% increased shoot speed",
-	"100% increased knockback",
-	"Increases armor penetration by 50",
-	"Crits deal 10x damage",
-	"Crit chance is set to 50%",
-	"Crit to increase it by 10%",
-	"At 100% every attack gains 10% life steal",
-	"You also gain +10% damage and +10 defense",
-	"This stacks up to 200,000 times until you get hit",
-	"Drastically increases life regeneration",
-	"Increases your maximum mana to 999",
-	"Increases your maximum minions by 30",
-	"Increases your maximum sentries by 20",
-	"Increases your maximum HP by 50%",
-	"All attacks inflict Flames of the Universe",
-	"All attacks inflict Sadism",
-	"All attacks inflict Midas",
-	"All attacks reduce enemy knockback immunity",
-	"Summons fireballs arund you",
-	"Summons icicles around you",
-	"Summons leaf crystals around you",
-	"Summons a hallowed sword and shield",
-	"Summons beetles to protect you",
-	"Summons a ton of pets",
-	"Summons all Masochist Mode bosses to your side ",
-	"Attacks may spawn lightning",
-	"Attacks may spawn flower petals",
-	"Attacks may spawn spectre orbs",
-	"Attacks may spawn a Dungeon Guardian",
-	"Attacks may spawn snowballs",
-	"Attacks may spawn spears",
-	"Attacks may spawn hearts",
-	"Attacks may spawn buff boosters",
-	"Attacks cause increased life regen",
-	"Attacks cause shadow dodge",
-	"Attacks cause Flameburst shots",
-	"Attacks cause Pumpking attacks",
-	"Attacks cause Cultist spells",
-	"Attacks cause meteor showers",
-	"Projectiles may split",
-	"Projectiles may shatter",
-	"Item and projectile size increased",
-	"You leave a trail of fire",
-	"You leave a trail of rainbows",
-	"Nearby enemies are ignited",
-	"Minions occasionally spew scythes",
-	"You may spawn temporary minions",
-	"Critters have increased defense",
-	"Critter's souls may aid you",
-	"Enemies explode into needles",
-	"Greatly enhances all DD2 sentries",
-	"Double-tap down to spawn a palm tree sentry",
-	"Double-tap down to call an ancient storm",
-	"Double-tap down to toggle stealth",
-	"Double-tap down to spawn a portal",
-	"Double-tap down to direct your empowered guardian",
-	"Right Click to Guard",
-	"Press the Gold Key to encase yourself in gold",
-	"Press the Freeze Key to freeze time for 5 seconds",
-	"Solar shield allows you to dash",
-	"Dashing into solid blocks teleports you through them",
-	"Throw a smoke bomb to teleport to it and gain the first strike buff",
-	"Getting hit reflects damage",
-	"Getting hit releases a spore explosion",
-	"Getting hit inflicts Super Bleeding",
-	"Getting hit may squeak",
-	"Getting hit causes you to erupt into spiky balls",
-	"Getting hit causes you to erupt into Ancient Visions",
-	"Grants Crimson regen",
-	"Grants immunity to fire",
-	"Grants immunity to fall damage",
-	"Grants immunity to lava",
-	"Grants immunity to knockback",
-	"Grants immunity to most debuffs", //expand?? ech
+
+        public static int tooltipIndex = 0;
+        public static int Counter = 10;
+
+        List<String> tooltipsFull = new List<String>();
+
+        String[] vanillaTooltips = new String[]
+        {
+    "250% increased damage",
+    "250% increased attack speed",
+    "100% increased shoot speed",
+    "100% increased knockback",
+    "Increases armor penetration by 50",
+    "Crits deal 10x damage",
+    "Crit chance is set to 50%",
+    "Crit to increase it by 10%",
+    "At 100% every attack gains 10% life steal",
+    "You also gain +10% damage and +10 defense",
+    "This stacks up to 200,000 times until you get hit",
+    "Drastically increases life regeneration",
+    "Increases your maximum mana to 999",
+    "Increases your maximum minions by 30",
+    "Increases your maximum sentries by 20",
+    "Increases your maximum HP by 50%",
+    "All attacks inflict Flames of the Universe",
+    "All attacks inflict Sadism",
+    "All attacks inflict Midas",
+    "All attacks reduce enemy knockback immunity",
+    "Summons fireballs arund you",
+    "Summons icicles around you",
+    "Summons leaf crystals around you",
+    "Summons a hallowed sword and shield",
+    "Summons beetles to protect you",
+    "Summons a ton of pets",
+    "Summons all Masochist Mode bosses to your side ",
+    "Attacks may spawn lightning",
+    "Attacks may spawn flower petals",
+    "Attacks may spawn spectre orbs",
+    "Attacks may spawn a Dungeon Guardian",
+    "Attacks may spawn snowballs",
+    "Attacks may spawn spears",
+    "Attacks may spawn hearts",
+    "Attacks may spawn buff boosters",
+    "Attacks cause increased life regen",
+    "Attacks cause shadow dodge",
+    "Attacks cause Flameburst shots",
+    "Attacks cause Pumpking attacks",
+    "Attacks cause Cultist spells",
+    "Attacks cause meteor showers",
+    "Projectiles may split",
+    "Projectiles may shatter",
+    "Item and projectile size increased",
+    "You leave a trail of fire",
+    "You leave a trail of rainbows",
+    "Nearby enemies are ignited",
+    "Minions occasionally spew scythes",
+    "You may spawn temporary minions",
+    "Critters have increased defense",
+    "Critter's souls may aid you",
+    "Enemies explode into needles",
+    "Greatly enhances all DD2 sentries",
+    "Double-tap down to spawn a palm tree sentry",
+    "Double-tap down to call an ancient storm",
+    "Double-tap down to toggle stealth",
+    "Double-tap down to spawn a portal",
+    "Double-tap down to direct your empowered guardian",
+    "Right Click to Guard",
+    "Press the Gold Key to encase yourself in gold",
+    "Press the Freeze Key to freeze time for 5 seconds",
+    "Solar shield allows you to dash",
+    "Dashing into solid blocks teleports you through them",
+    "Throw a smoke bomb to teleport to it and gain the first strike buff",
+    "Getting hit reflects damage",
+    "Getting hit releases a spore explosion",
+    "Getting hit inflicts Super Bleeding",
+    "Getting hit may squeak",
+    "Getting hit causes you to erupt into spiky balls",
+    "Getting hit causes you to erupt into Ancient Visions",
+    "Grants Crimson regen",
+    "Grants immunity to fire",
+    "Grants immunity to fall damage",
+    "Grants immunity to lava",
+    "Grants immunity to knockback",
+    "Grants immunity to most debuffs", //expand?? ech
 	"Grants doubled herb collection",
-	"Grants 50% chance for Mega Bees",
-	"15% chance for minion crits",
-	"20% chance for bonus loot",
-	"Allows Supersonic running and ",
-	"Allows infinite flight",
-	"Increases fishing skill substantially",
-	"All fishing rods will have 10 extra lures",
-	"You respawn 10x as fast",
-	"Prevents boss spawns",
-	"Increases spawn rates",
-	"Reduces skeletons hostility outside of the dungeon",
-	"Empowers Cute Fishron",
-	"Grants autofire",
-	"Grants modifier protection",
-	"Grants gravity control",
-	"Grants fast fall",
-	"Enhances grappling hooks",
-	"Increased block and wall placement speed by 50%",
-	"Near infinite block placement",
-	"Near infinite mining reach",
-	"Mining speed dramatically increased",
-	"You reflect all projectiles",
-	"When you die, you explode",
-	"When you die, you revive with full HP",
-	"Effects of Fire Gauntlet",
-	"Effects of Yoyo Bag",
-	"Effects of Sniper Scope",
-	"Effects of Celestial Cuffs",
-	"Effects of Mana Flower",
-	"Effects of Brain of Confusion",
-	"Effects of Star Veil",
-	"Effects of Sweetheart Necklace",
-	"Effects of Bee Cloak",
-	"Effects of Spore Sac",
-	"Effects of Paladin's Shield",
-	"Effects of Frozen Turtle Shell",
-	"Effects of Arctic Diving Gear",
-	"Effects of Frog Legs",
-	"Effects of Flying Carpet",
-	"Effects of Lava Waders",
-	"Effects of Angler Tackle Bag",
-	"Effects of Paint Sprayer",
-	"Effects of Presserator",
-	"Effects of Cell Phone",
-	"Effects of Flower Boots",
-	"Effects of Master Ninja Gear",
-	"Effects of Greedy Ring",
-	"Effects of Celestial Shell",
-	"Effects of Shiny Stone",
-	"Effects of Spelunker potion",
-	"Effects of Dangersense potion",
-	"Effects of Hunter potion",
-	"Effects of Shine potion",
-	"Effects of Builder Mode",
-	"You attract items from further away",
-}
+    "Grants 50% chance for Mega Bees",
+    "15% chance for minion crits",
+    "20% chance for bonus loot",
+    "Allows Supersonic running and ",
+    "Allows infinite flight",
+    "Increases fishing skill substantially",
+    "All fishing rods will have 10 extra lures",
+    "You respawn 10x as fast",
+    "Prevents boss spawns",
+    "Increases spawn rates",
+    "Reduces skeletons hostility outside of the dungeon",
+    "Empowers Cute Fishron",
+    "Grants autofire",
+    "Grants modifier protection",
+    "Grants gravity control",
+    "Grants fast fall",
+    "Enhances grappling hooks",
+    "You attract items from further away",
+    "Increased block and wall placement speed by 50%",
+    "Near infinite block placement",
+    "Near infinite mining reach",
+    "Mining speed dramatically increased",
+    "You reflect all projectiles",
+    "When you die, you explode",
+    "When you die, you revive with full HP",
+    "Effects of Fire Gauntlet",
+    "Effects of Yoyo Bag",
+    "Effects of Sniper Scope",
+    "Effects of Celestial Cuffs",
+    "Effects of Mana Flower",
+    "Effects of Brain of Confusion",
+    "Effects of Star Veil",
+    "Effects of Sweetheart Necklace",
+    "Effects of Bee Cloak",
+    "Effects of Spore Sac",
+    "Effects of Paladin's Shield",
+    "Effects of Frozen Turtle Shell",
+    "Effects of Arctic Diving Gear",
+    "Effects of Frog Legs",
+    "Effects of Flying Carpet",
+    "Effects of Lava Waders",
+    "Effects of Angler Tackle Bag",
+    "Effects of Paint Sprayer",
+    "Effects of Presserator",
+    "Effects of Cell Phone",
+    "Effects of Flower Boots",
+    "Effects of Master Ninja Gear",
+    "Effects of Greedy Ring",
+    "Effects of Celestial Shell",
+    "Effects of Shiny Stone",
+    "Effects of Spelunker potion",
+    "Effects of Dangersense potion",
+    "Effects of Hunter potion",
+    "Effects of Shine potion",
+    "Effects of Builder Mode"
+        };
+
+        String[] thoriumTooltips = new String[]
+        {
+            "Effects of Phylactery",
+            "Effects of Crystal Scorpion",
+            "Effects of Yuma's Pendant",
+            "Effects of Guide to Expert Throwing - Volume III",
+            "Effects of Mermaid's Canteen",
+            "Effects of Deadman's Patch",
+            "Effects of Support Sash",
+            "Effects of Saving Grace",
+            "Effects of Soul Guard",
+            "Effects of Archdemon's Curse",
+            "Effects of Archangel's Heart",
+            "Effects of Medical Bag",
+            "Effects of Epic Mouthpiece",
+            "Effects of Straight Mute",
+            "Effects of Digital Tuner",
+            "Effects of Guitar Pick Claw",
+            "Effects of Ocean's Retaliation",
+            "Effects of Cape of the Survivor",
+            "Effects of Blast Shield",
+            "Effects of Terrarium Defender",
+            "Effects of Air Walkers",
+            "Effects of Survivalist Boots",
+            "Effects of Weighted Winglets"
+        };
+
+        String[] calamityTooltips = new String[]
+        {
+            "Effects of Elemental Gauntlet",
+            "Effects of Elemental Quiver",
+            "Effects of Ethereal Talisman",
+            "Effects of Statis' Belt of Curses",
+            "Effects of Nanotech",
+            "Effects of Asgardian Aegis"
+        };
+
+        String[] dbtTooltips = new String[]
+        {
+            "Effects of Zenkai Charm",
+            "Effects of Aspera Crystallite"
+        };
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of Eternity");
-
-            String tooltip =
-@"'Mortal or Immortal, all things acknowledge your claim to divinity'
-Drastically increases life regeneration, increases your maximum mana to 999, minions by 30, sentries by 20, HP by 500%, damage reduction by 50%
-250% increased damage and attack speed; 100% increased shoot speed and knockback; Increases armor penetration by 50; Crits deal 10x damage and Crit chance is set to 50%
-Crit to increase it by 10%, At 100% every attack gains 10% life steal and you gain +10% damage and +10 defense; This stacks up to 200,000 times until you get hit
-All attacks inflict Flames of the Universe, Sadism, Midas, and reduce enemy knockback immunity
-Summons icicles, leaf crystals, hallowed sword and shield, beetles, several pets, orichalcum fireballs and all Masochist Mode bosses to your side
-Attacks may spawn lightning, flower petals, spectre orbs, a Dungeon Guardian, snowballs, spears, or buff boosters
-Attacks cause increased life regen, shadow dodge, Flameburst shots and meteor showers
-Projectiles may split or shatter, item and projectile size increased, attacks create additional attacks and spawn hearts
-You leave a trail of fire and rainbows; Nearby enemies are ignited; minions occasionally spew scythes, and you may spawn temporary minions
-Critters have increased defense and their souls will aid you; Enemies explode into needles; Greatly enhances all DD2 sentries
-Double-tap down to spawn a sentry, call an ancient storm, toggle stealth, spawn a portal, and direct your empowered guardian
-Right Click to Guard; Press the Gold Key to encase yourself in gold; Press the Freeze Key to freeze time for 5 seconds
-Solar shield allows you to dash, dashing into solid blocks teleports you through them; Throw a smoke bomb to teleport to it and gain the first strike buff
-Getting hit reflects damage, releases a spore explosion, inflicts super bleeding, may squeak and causes you to erupt into various things when injured
-Grants Crimson regen, immunity to fire, fall damage, and lava, doubled herb collection, 50% chance for Mega Bees, 15% chance for minion crits, 20% chance for bonus loot
-Grants immunity to knockback and most debuffs; Allows Supersonic running and infinite flight; Increases fishing skill substantially and all fishing rods will have 10 extra lures
-You respawn 10x as fast; Prevents boss spawns, increases spawn rates, reduces skeletons hostility outside of the dungeon and empowers Cute Fishron
-Grants autofire, modifier protection, gravity control, fast fall, and immunity to knockback, all Masochist Mode debuffs, enhances grappling hooks and more
-Increased block and wall placement speed by 50%, Near infinite block placement and mining reach, Mining speed dramatically increased
-Summons an impenatrable ring of death around you and you reflect all projectiles; When you die, you explode and revive with full HP
-Effects of the Fire Gauntlet, Yoyo Bag, Sniper Scope, Celestial Cuffs, Mana Flower, Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
-Effects of the Spore Sac, Paladin's Shield, Frozen Turtle Shell, Arctic Diving Gear, Frog Legs, Flying Carpet, Lava Waders, and Angler Tackle Bag
-Effects of Paint Sprayer, Presserator, Cell Phone, Gravity Globe, Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Shiny Stone
-Effects of Shine, Spelunker, Hunter and Dangersense potions; Effects of Builder Mode, Infinity Relic and you attract items from further away";
 
             String tooltip_ch =
 @"'不论凡人或不朽, 都承认你的神性'
@@ -244,13 +266,6 @@ Efectos de pociones de Brillo, Espeleólogo, Cazador, y Sentido del peligro; Efe
 
             if (thorium != null)
             {
-                tooltip += @"Effects of Phylactery, Crystal Scorpion, and Yuma's Pendant
-Effects of Guide to Expert Throwing - Volume III, Mermaid's Canteen, and Deadman's Patch
-Effects of Support Sash, Saving Grace, Soul Guard, Archdemon's Curse, Archangel's Heart, and Medical Bag
-Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw
-Effects of Ocean's Retaliation and Cape of the Survivor
-Effects of Blast Shield and Terrarium Defender
-Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
 
                 tooltip_ch += @"拥有魂匣, 魔晶蝎和云码垂饰的效果
                 拥有投手大师指导:卷三, 美人鱼水壶和亡者眼罩的效果
@@ -263,8 +278,6 @@ Effects of Air Walkers, Survivalist Boots, and Weighted Winglets";
 
             if (calamity != null)
             {
-                tooltip += @"Effects of Elemental Gauntlet, Elemental Quiver, Ethereal Talisman, Statis' Belt of Curses, and Nanotech
-Effects of Asgardian Aegis";
 
                 tooltip_ch += @"拥有元素之握, 元素箭袋, 空灵护符, 斯塔提斯的诅咒系带和纳米技术的效果
                 拥有阿斯加德之庇护的效果";
@@ -272,29 +285,52 @@ Effects of Asgardian Aegis";
 
             if (dbzMod != null)
             {
-                tooltip += "Effects of Zenkai Charm and Aspera Crystallite";
 
                 tooltip_ch += "拥有全开符咒和原始晶粒的效果";
             }
-
 
             DisplayName.AddTranslation(GameCulture.Chinese, "永恒之魂");
             DisplayName.AddTranslation(GameCulture.Spanish, "Alma de la Eternidad");
             Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
             Tooltip.AddTranslation(GameCulture.Spanish, tooltip_sp);
 
-            Tooltip.SetDefault(tooltip);
+            Tooltip.SetDefault("'Mortal or Immortal, all things acknowledge your claim to divinity'");
+        }
 
-            //all debuffs soon tm
-            /*
-Effects of the Yoyo Bag, Sniper Scope, Celestial Cuffs, and Mana Flower
-Effects of the Brain of Confusion, Star Veil, Sweetheart Necklace, and Bee Cloak
-Effects of Spore Sac, Paladin's Shield, Frozen Turtle Shell, and Arctic Diving Gear
-Effects of Frog Legs, Lava Waders, Angler Tackle Bag
-and most of SoT not mentioned because meme tooltip length
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltipsFull.AddRange(vanillaTooltips);
 
-            +20 inspiration
-             * */
+            if (thorium != null)
+            {
+                tooltipsFull.AddRange(thoriumTooltips);
+            }
+
+            if (calamity != null)
+            {
+                tooltipsFull.AddRange(calamityTooltips);
+            }
+
+            if (dbzMod != null)
+            {
+                tooltipsFull.AddRange(dbtTooltips);
+            }
+
+            tooltips.Add(new TooltipLine(mod, "tooltip", tooltipsFull[tooltipIndex]));
+
+            Counter--;
+
+            if (Counter <= 0)
+            {
+                tooltipIndex++;
+
+                if (tooltipIndex >= tooltipsFull.Count)
+                {
+                    tooltipIndex = 0;
+                }
+
+                Counter = 10;
+            }
         }
 
         public override void SetDefaults()
@@ -569,10 +605,6 @@ and most of SoT not mentioned because meme tooltip length
             thoriumPlayer.canteenCadet = true;
 
             //HEALER
-            thoriumPlayer.radiantBoost += 0.4f;
-            thoriumPlayer.radiantSpeed -= 0.25f;
-            thoriumPlayer.healingSpeed += 0.25f;
-            thoriumPlayer.radiantCrit += 20;
             //support stash
             thoriumPlayer.supportSash = true;
             thoriumPlayer.quickBelt = true;
@@ -623,9 +655,6 @@ and most of SoT not mentioned because meme tooltip length
                 }
             }
             //BARD
-            thoriumPlayer.symphonicDamage += 0.3f;
-            thoriumPlayer.symphonicSpeed += .2f;
-            thoriumPlayer.symphonicCrit += 15;
             thoriumPlayer.bardResourceMax2 = 20; //the max allowed in thorium
             //epic mouthpiece
             thoriumPlayer.bardHomingBool = true;
@@ -664,66 +693,6 @@ and most of SoT not mentioned because meme tooltip length
             MagmaBoundFishingLineMP magmaPlayer = player.GetModPlayer<MagmaBoundFishingLineMP>();
             magmaPlayer.magmaLine = true;
             //SUPERSONIC
-            //terrarium particle sprinters dust
-            if (Collision.SolidCollision(player.position, player.width, player.height + 4) && Math.Abs(player.velocity.X) >= 2)
-            {
-                for (int i = 0; i < 1; i++)
-                {
-                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 57, 0f, 0f, 100, default(Color), 1.4f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].noLight = true;
-                    Dust dust1 = Main.dust[dust];
-                    dust1.velocity *= 0f;
-                }
-                for (int j = 0; j < 1; j++)
-                {
-                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 61, 0f, 0f, 100, default(Color), 1.35f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].noLight = true;
-                    Dust dust2 = Main.dust[dust];
-                    dust2.velocity *= 0f;
-                }
-                for (int k = 0; k < 1; k++)
-                {
-                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 229, 0f, 0f, 100, default(Color), 1.15f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].noLight = true;
-                    Dust dust3 = Main.dust[dust];
-                    dust3.velocity *= 0f;
-                }
-                for (int l = 0; l < 1; l++)
-                {
-                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 60, 0f, 0f, 100, default(Color), 1.5f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].noLight = true;
-                    Dust dust4 = Main.dust[dust];
-                    dust4.velocity *= 0f;
-                }
-                for (int m = 0; m < 1; m++)
-                {
-                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 127, 0f, 0f, 100, default(Color), 1.75f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].noLight = true;
-                    Dust dust5 = Main.dust[dust];
-                    dust5.velocity *= 0f;
-                }
-                for (int n = 0; n < 1; n++)
-                {
-                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 59, 0f, 0f, 100, default(Color), 1.4f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].noLight = true;
-                    Dust dust6 = Main.dust[dust];
-                    dust6.velocity *= 0f;
-                }
-                for (int num7 = 0; num7 < 1; num7++)
-                {
-                    int dust = Dust.NewDust(new Vector2(player.position.X - 2f, player.position.Y + (float)player.height - 2f), player.width + 4, 4, 62, 0f, 0f, 100, default(Color), 1.35f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].noLight = true;
-                    Dust dust7 = Main.dust[dust];
-                    dust7.velocity *= 0f;
-                }
-            }
             //air walkers
             if (SoulConfig.Instance.GetValue("Air Walkers"))
             {

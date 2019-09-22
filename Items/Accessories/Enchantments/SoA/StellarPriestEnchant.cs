@@ -23,8 +23,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
             DisplayName.SetDefault("Stellar Priest Enchantment");
             Tooltip.SetDefault(
 @"'Stand proud'
-Summons a Stellar Guardian behind you that attacks enemies
-Summons a Dark Star to shine Darkness upon you");
+Summons a Stellar Guardian behind you that attacks enemies");
             DisplayName.AddTranslation(GameCulture.Chinese, "恒星牧师魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'STAND PROUD'
@@ -80,7 +79,7 @@ Summons a Dark Star to shine Darkness upon you");
 
             foreach (string i in items) recipe.AddIngredient(soa.ItemType(i));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

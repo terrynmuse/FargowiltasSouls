@@ -24,8 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.SoA
 @"'Through all this world's years, none have seen anything quite like you'
 All armor bonuses from Bismuth, Frosthunter, and Blightbone
 All armor bonuses from Dreadfire, Space Junk, and Marstech
-Effects of Dreadflame Emblem, Lapis Pendant, Frigid Pendant, and Pumpkin Amulet
-Summons several pets");
+Effects of Dreadflame Emblem, Lapis Pendant, Frigid Pendant, and Pumpkin Amulet");
             DisplayName.AddTranslation(GameCulture.Chinese, "世代之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'这么多年来, 从未出现过像你这样的人'

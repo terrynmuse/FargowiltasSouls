@@ -24,8 +24,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 @"'The ride never ends'
 Taking damage has a chance to freeze all enemies nearby
 Bosses and enemies with over 8000 HP are unaffected 
-Attacking has a 5% chance to make nearby enemies take double damage
-Summons a friendly Bullet Kin");
+Attacking has a 5% chance to make nearby enemies take double damage");
             DisplayName.AddTranslation(GameCulture.Chinese, "虚空守望魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'旅程永无止境'
@@ -80,7 +79,7 @@ Boss和8000血以上的敌人不受该效果影响
 
             foreach (string i in items) recipe.AddIngredient(soa.ItemType(i));
 
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

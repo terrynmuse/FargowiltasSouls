@@ -82,7 +82,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             }
 
             Projectile.NewProjectile(position.X, position.Y, speedX, speedY, item.shoot, damage, knockBack, item.owner, 0f, 1f);
-            Projectile.NewProjectile(position.X, position.Y, speedX * 5f, speedY * 5f, mod.ProjectileType("Dash"), damage, knockBack, item.owner);
+            Projectile.NewProjectile(position.X, position.Y, speedX * 5f, speedY * 5f, mod.ProjectileType("Dash"), damage, knockBack, player.whoAmI);
             return false;
         }
 

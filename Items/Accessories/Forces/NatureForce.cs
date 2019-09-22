@@ -120,91 +120,81 @@ Summons several pets";
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
-            //subwoofer
-            thoriumPlayer.bardRangeBoost += 450;
-            for (int i = 0; i < 255; i++)
+
+            //berserker effect
+            if (SoulConfig.Instance.GetValue("Berserker Effect"))
             {
-                Player player2 = Main.player[i];
-                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                thoriumPlayer.orbital = true;
+                thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.075000002980232239, default(Vector2));
+                //making divers code less of a meme :scuseme:
+                if (player.statLife > player.statLifeMax * 0.75)
                 {
-                    thoriumPlayer.empowerPoison = true;
-                    thoriumPlayer.empowerFrost = true;
+                    thoriumPlayer.berserkStage = 1;
+                }
+                else if (player.statLife > player.statLifeMax * 0.5)
+                {
+                    modPlayer.AttackSpeed *= 1.05f;
+                    thoriumPlayer.berserkStage = 2;
+                }
+                else if (player.statLife > player.statLifeMax * 0.25)
+                {
+                    modPlayer.AttackSpeed *= 1.1f;
+                    thoriumPlayer.berserkStage = 3;
+                }
+                else
+                {
+                    modPlayer.AttackSpeed *= 1.15f;
+                    thoriumPlayer.berserkStage = 4;
                 }
             }
-            //bulb 
-            modPlayer.BulbEnchant = true;
-            //night shade petal
-            thoriumPlayer.nightshadeBoost = true;
 
-            thoriumPlayer.orbital = true;
-            thoriumPlayer.orbitalRotation3 = Utils.RotatedBy(thoriumPlayer.orbitalRotation3, -0.075000002980232239, default(Vector2));
-            //making divers code less of a meme :scuseme:
-            if (player.statLife > player.statLifeMax * 0.75)
-            {
-                thoriumPlayer.berserkStage = 1;
-            }
-            else if (player.statLife > player.statLifeMax * 0.5)
-            {
-                modPlayer.AttackSpeed *= 1.05f;
-                thoriumPlayer.berserkStage = 2;
-            }
-            else if (player.statLife > player.statLifeMax * 0.25)
-            {
-                modPlayer.AttackSpeed *= 1.1f;
-                thoriumPlayer.berserkStage = 3;
-            }
-            else
-            {
-                modPlayer.AttackSpeed *= 1.15f;
-                thoriumPlayer.berserkStage = 4;
-            }
-
-            //magma
-            thoriumPlayer.magmaSet = true;
             //spring steps
-            player.extraFall += 10;
-            if (player.velocity.Y < 0f && allowJump)
+            if (SoulConfig.Instance.GetValue("Spring Steps"))
             {
-                allowJump = false;
-                thoriumPlayer.jumps++;
-            }
-            if (player.velocity.Y > 0f || player.sliding || player.justJumped)
-            {
-                allowJump = true;
-            }
-            if (thoriumPlayer.jumps == 0)
-            {
-                player.jumpSpeedBoost += 5f;
-            }
-            if (thoriumPlayer.jumps == 1)
-            {
-                player.jumpSpeedBoost += 1f;
-            }
-            if (thoriumPlayer.jumps == 2)
-            {
-                player.jumpSpeedBoost += 1.75f;
-            }
-            if (thoriumPlayer.jumps >= 3)
-            {
-                float num = 16f;
-                int num2 = 0;
-                while (num2 < num)
+                player.extraFall += 10;
+                if (player.velocity.Y < 0f && allowJump)
                 {
-                    Vector2 vector = Vector2.UnitX * 0f;
-                    vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(5f, 20f);
-                    vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
-                    int num3 = Dust.NewDust(player.Center, 0, 0, 127, 0f, 0f, 0, default(Color), 1f);
-                    Main.dust[num3].scale = 1.35f;
-                    Main.dust[num3].noGravity = true;
-                    Main.dust[num3].position = player.Center + vector;
-                    Dust dust = Main.dust[num3];
-                    dust.position.Y = dust.position.Y + 12f;
-                    Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
-                    int num4 = num2;
-                    num2 = num4 + 1;
+                    allowJump = false;
+                    thoriumPlayer.jumps++;
                 }
-                Main.PlaySound(SoundID.Item74, player.position);
-                thoriumPlayer.jumps = 0;
+                if (player.velocity.Y > 0f || player.sliding || player.justJumped)
+                {
+                    allowJump = true;
+                }
+                if (thoriumPlayer.jumps == 0)
+                {
+                    player.jumpSpeedBoost += 5f;
+                }
+                if (thoriumPlayer.jumps == 1)
+                {
+                    player.jumpSpeedBoost += 1f;
+                }
+                if (thoriumPlayer.jumps == 2)
+                {
+                    player.jumpSpeedBoost += 1.75f;
+                }
+                if (thoriumPlayer.jumps >= 3)
+                {
+                    float num = 16f;
+                    int num2 = 0;
+                    while (num2 < num)
+                    {
+                        Vector2 vector = Vector2.UnitX * 0f;
+                        vector += -Utils.RotatedBy(Vector2.UnitY, (num2 * (6.28318548f / num)), default(Vector2)) * new Vector2(5f, 20f);
+                        vector = Utils.RotatedBy(vector, Utils.ToRotation(player.velocity), default(Vector2));
+                        int num3 = Dust.NewDust(player.Center, 0, 0, 127, 0f, 0f, 0, default(Color), 1f);
+                        Main.dust[num3].scale = 1.35f;
+                        Main.dust[num3].noGravity = true;
+                        Main.dust[num3].position = player.Center + vector;
+                        Dust dust = Main.dust[num3];
+                        dust.position.Y = dust.position.Y + 12f;
+                        Main.dust[num3].velocity = player.velocity * 0f + Utils.SafeNormalize(vector, Vector2.UnitY) * 1f;
+                        int num4 = num2;
+                        num2 = num4 + 1;
+                    }
+                    Main.PlaySound(SoundID.Item74, player.position);
+                    thoriumPlayer.jumps = 0;
+                }
             }
             if (SoulConfig.Instance.GetValue("Slag Stompers"))
             {
@@ -216,6 +206,26 @@ Summons several pets";
                     timer = 0;
                 }
             }
+            //bulb 
+            modPlayer.BulbEnchant = true;
+
+            if (modPlayer.ThoriumSoul) return;
+
+            //magma
+            thoriumPlayer.magmaSet = true;
+            //subwoofer
+            thoriumPlayer.bardRangeBoost += 450;
+            for (int i = 0; i < 255; i++)
+            {
+                Player player2 = Main.player[i];
+                if (player2.active && !player2.dead && Vector2.Distance(player2.Center, player.Center) < 450f)
+                {
+                    thoriumPlayer.empowerPoison = true;
+                    thoriumPlayer.empowerFrost = true;
+                }
+            }
+            //night shade petal
+            thoriumPlayer.nightshadeBoost = true;
         }
 
         public override void AddRecipes()

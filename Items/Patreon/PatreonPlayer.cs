@@ -63,21 +63,19 @@ namespace FargowiltasSouls
             if (CompOrb && !item.magic && player.statMana >= 10)
             {
                 player.statMana -= 10;
-                player.manaRegenDelay = 60;
+                player.manaRegenDelay = 300;
                 damage = (int)(damage * 1.25f);
 
-                //dust
-                int num1 = 36;
-                for (int index1 = 0; index1 < num1; ++index1)
+                for (int num468 = 0; num468 < 20; num468++)
                 {
-                    Vector2 vector2_1 = (Vector2.Normalize(target.velocity) * new Vector2((float)target.width / 2f, (float)target.height) * 0.75f).RotatedBy((double)(index1 - (num1 / 2 - 1)) * 6.28318548202515 / (double)num1, new Vector2()) + target.Center;
-                    Vector2 vector2_2 = vector2_1 - target.Center;
-                    int index2 = Dust.NewDust(vector2_1 + vector2_2, 0, 0, DustID.PlatinumCoin, vector2_2.X * 2f, vector2_2.Y * 2f, 100, Color.DeepSkyBlue, 1.4f);
-                    Main.dust[index2].noGravity = true;
-                    Main.dust[index2].noLight = true;
-                    Main.dust[index2].velocity = vector2_2;
+                    int num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 60, -target.velocity.X * 0.2f,
+                        -target.velocity.Y * 0.2f, 100, default(Color), 2f);
+                    Main.dust[num469].noGravity = true;
+                    Main.dust[num469].velocity *= 2f;
+                    num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 60, -target.velocity.X * 0.2f,
+                        -target.velocity.Y * 0.2f, 100);
+                    Main.dust[num469].velocity *= 2f;
                 }
-
             }
         }
 
@@ -86,8 +84,19 @@ namespace FargowiltasSouls
             if (CompOrb && !proj.magic && player.statMana >= 10)
             {
                 player.statMana -= 10;
+                player.manaRegenDelay = 300;
                 damage = (int)(damage * 1.25f);
 
+                for (int num468 = 0; num468 < 20; num468++)
+                {
+                    int num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 60, -target.velocity.X * 0.2f,
+                        -target.velocity.Y * 0.2f, 100, Color.SkyBlue, 2f);
+                    Main.dust[num469].noGravity = true;
+                    Main.dust[num469].velocity *= 2f;
+                    num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 60, -target.velocity.X * 0.2f,
+                        -target.velocity.Y * 0.2f, 100, Color.SkyBlue);
+                    Main.dust[num469].velocity *= 2f;
+                }
             }
         }
     }

@@ -8,8 +8,6 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class DragonFang : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dragon's Fang");

@@ -25,8 +25,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.SoA
 @"'The true power of the Soraniti'
 All armor bonuses from Blazing Brute, Cosmic Commander, and Nebulous Apprentice
 All armor bonuses from Stellar Priest, Quasar, and Fallen Prince
-Effects of Nuba's Blessing, Novaniel's Resolve, and Celestial Ring
-Summons several pets");
+Effects of Nuba's Blessing, Novaniel's Resolve, and Celestial Ring");
             DisplayName.AddTranslation(GameCulture.Chinese, "索兰之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'索兰的真正力量'

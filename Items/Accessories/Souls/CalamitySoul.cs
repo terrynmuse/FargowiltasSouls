@@ -45,7 +45,8 @@ Effects of Heart of the Elements and The Sponge
 Effects of Giant Pearl and Amidias' Pendant
 Effects of Fabled Tortoise Shell and Plague Hive
 Effects of the Astral Arcanum and Hide of Astrum Deus
-Effects of the Profaned Soul Artifact and Dark Sun Ring");
+Effects of the Profaned Soul Artifact and Dark Sun Ring
+Summons several pets");
             DisplayName.AddTranslation(GameCulture.Chinese, "暴君之魂");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'于是大地再次恢复了平静...'

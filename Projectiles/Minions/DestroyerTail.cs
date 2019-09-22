@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -29,6 +30,18 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.alpha = 255;
             projectile.netImportant = true;
             projectile.hide = true;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(projectile.localAI[0]);
+            writer.Write(projectile.localAI[1]);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            projectile.localAI[0] = reader.ReadFloat();
+            projectile.localAI[1] = reader.ReadFloat();
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -93,13 +106,6 @@ namespace FargowiltasSouls.Projectiles.Minions
             }
 
             if (!flag67) return;
-            if (projectile.alpha > 0)
-                for (int num1054 = 0; num1054 < 2; num1054++)
-                {
-                    int num1055 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 100, default(Color), 2f);
-                    Main.dust[num1055].noGravity = true;
-                    Main.dust[num1055].noLight = true;
-                }
 
             projectile.alpha -= 42;
             if (projectile.alpha < 0) projectile.alpha = 0;

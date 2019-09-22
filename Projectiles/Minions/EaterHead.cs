@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -25,6 +26,18 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.tileCollide = false;
             projectile.alpha = 255;
             projectile.netImportant = true;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(projectile.localAI[0]);
+            writer.Write(projectile.localAI[1]);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            projectile.localAI[0] = reader.ReadFloat();
+            projectile.localAI[1] = reader.ReadFloat();
         }
 
         public override Color? GetAlpha(Color lightColor)
