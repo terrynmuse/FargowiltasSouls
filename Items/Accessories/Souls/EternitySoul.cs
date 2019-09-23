@@ -574,6 +574,11 @@ Efectos de pociones de Brillo, Espeleólogo, Cazador, y Sentido del peligro; Efe
             if (Fargowiltas.Instance.DBTLoaded) DBT(player);
 
             if (Fargowiltas.Instance.SOALoaded) SOA(player, hideVisual);
+
+            if (Fargowiltas.Instance.ApothLoaded)
+            {
+                ModLoader.GetMod("ApothTestMod").GetItem("Ataraxia").UpdateAccessory(player, hideVisual);
+            }
         }
 
         private void Thorium(Player player, bool hideVisual)
@@ -864,6 +869,11 @@ Efectos de pociones de Brillo, Espeleólogo, Cazador, y Sentido del peligro; Efe
             if (Fargowiltas.Instance.SOALoaded)
             {
                 recipe.AddIngredient(null, "SoASoul");
+            }
+
+            if (Fargowiltas.Instance.ApothLoaded)
+            {
+                recipe.AddIngredient(ModLoader.GetMod("ApothTestMod").ItemType("Ataraxia"));
             }
 
             recipe.AddIngredient(null, "Sadism", 30);

@@ -30,6 +30,7 @@ namespace FargowiltasSouls
         internal bool CalamityLoaded;
         internal bool DBTLoaded;
         internal bool SOALoaded;
+        internal bool ApothLoaded;
         internal bool MasomodeEX;
 
         internal bool LoadedNewSprites;
@@ -1216,6 +1217,7 @@ namespace FargowiltasSouls
                 AALoaded = ModLoader.GetMod("AAMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
                 SOALoaded = ModLoader.GetMod("SacredTools") != null;
+                ApothLoaded = ModLoader.GetMod("ApothTestMod") != null;
                 MasomodeEX = ModLoader.GetMod("MasomodeEX") != null;
 
                 DebuffIDs = new List<int> { 20, 22, 23, 24, 36, 39, 44, 46, 47, 67, 68, 69, 70, 80,
