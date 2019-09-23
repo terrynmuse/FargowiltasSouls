@@ -686,11 +686,11 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                                 const int spacing = 80;
                                 Vector2 offset = Vector2.UnitY.RotatedBy(angle) * -spacing;
                                 for (int i = 0; i < 12; i++)
-                                    Projectile.NewProjectile(npc.Center + offset * i, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, spacing * i);
-                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
-                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
-                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
-                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 4, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                                    Projectile.NewProjectile(npc.Center + offset * i, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 3, 0f, Main.myPlayer, npc.whoAmI, spacing * i);
+                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 3, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-20)) * 7, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 3, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 3, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
+                                Projectile.NewProjectile(npc.Center + offset.RotatedBy(MathHelper.ToRadians(-40)) * 28, Vector2.Zero, mod.ProjectileType("MutantSword"), npc.damage / 3, 0f, Main.myPlayer, npc.whoAmI, 60 * 4);
                             }
                             if (++npc.ai[1] > 120)
                             {
