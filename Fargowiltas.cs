@@ -32,6 +32,8 @@ namespace FargowiltasSouls
         internal bool SOALoaded;
         internal bool MasomodeEX;
 
+        internal bool LoadedNewSprites;
+
         public UserInterface CustomResources;
 
         internal static readonly Dictionary<int, int> ModProjDict = new Dictionary<int, int>();
@@ -338,7 +340,8 @@ namespace FargowiltasSouls
             "Phantasmal Ring Minion",
             //other
             "Spiky Balls On Hit",
-            "Sinister Icon"};
+            "Sinister Icon",
+            "Boss Recolors"};
             string[] masoTogNameCh = { 
             //deathbringer fairy
             "Slimy Shield Effects",
@@ -377,7 +380,8 @@ namespace FargowiltasSouls
             "Phantasmal Ring Minion",
             //other
             "Spiky Balls On Hit",
-            "Sinister Icon"};
+            "Sinister Icon",
+            "Boss Recolors"};
             string[] masoTogConfigName = {
             //deathbringer fairy
             "MasoSlimeConfig",
@@ -416,8 +420,9 @@ namespace FargowiltasSouls
             "MasoRingConfig",
             //other
             "MasoSpikeConfig",
-            "MasoIconConfig"};
-            for (int x = 0; x <= 28; x++)
+            "MasoIconConfig",
+            "MasoBossRecolors"};
+            for (int x = 0; x <= 29; x++)
             {
                 text = CreateTranslation(masoTogConfigName[x]);
                 if (Language.ActiveCulture == GameCulture.Chinese)
@@ -1178,12 +1183,15 @@ namespace FargowiltasSouls
             if (DebuffIDs != null)
                 DebuffIDs.Clear();
 
-            /*Main.npcTexture[NPCID.SkeletronPrime] = GetTexture("NPCs/Vanilla/NPC_127");
-            Main.boneArm2Texture = GetTexture("NPCs/Vanilla/Arm_Bone_2");
-            Main.npcTexture[NPCID.PrimeCannon] = GetTexture("NPCs/Vanilla/NPC_128");
-            Main.npcTexture[NPCID.PrimeSaw] = GetTexture("NPCs/Vanilla/NPC_129");
-            Main.npcTexture[NPCID.PrimeVice] = GetTexture("NPCs/Vanilla/NPC_130");
-            Main.npcTexture[NPCID.PrimeLaser] = GetTexture("NPCs/Vanilla/NPC_131");*/
+            if (LoadedNewSprites)
+            {
+                Main.npcTexture[NPCID.SkeletronPrime] = GetTexture("NPCs/Vanilla/NPC_127");
+                Main.boneArm2Texture = GetTexture("NPCs/Vanilla/Arm_Bone_2");
+                Main.npcTexture[NPCID.PrimeCannon] = GetTexture("NPCs/Vanilla/NPC_128");
+                Main.npcTexture[NPCID.PrimeSaw] = GetTexture("NPCs/Vanilla/NPC_129");
+                Main.npcTexture[NPCID.PrimeVice] = GetTexture("NPCs/Vanilla/NPC_130");
+                Main.npcTexture[NPCID.PrimeLaser] = GetTexture("NPCs/Vanilla/NPC_131");
+            }
         }
 
         public override object Call(params object[] args)

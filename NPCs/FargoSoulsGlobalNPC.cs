@@ -10738,35 +10738,39 @@ namespace FargowiltasSouls.NPCs
             return true;
         }
 
-        /*public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
+        public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
         {
-            switch (npc.type)
+            if ((SoulConfig.Instance.GetValue("Boss Recolors") && FargoSoulsWorld.MasochistMode) || Fargowiltas.Instance.LoadedNewSprites)
             {
-                case NPCID.SkeletronPrime:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_127" : "NPCs/Vanilla/NPC_127");
-                    Main.boneArm2Texture = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/Arm_Bone_2" : "NPCs/Vanilla/Arm_Bone_2");
-                    break;
+                Fargowiltas.Instance.LoadedNewSprites = true;
+                switch (npc.type)
+                {
+                    case NPCID.SkeletronPrime:
+                        Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_127" : "NPCs/Vanilla/NPC_127");
+                        Main.boneArm2Texture = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/Arm_Bone_2" : "NPCs/Vanilla/Arm_Bone_2");
+                        break;
 
-                case NPCID.PrimeCannon:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_128" : "NPCs/Vanilla/NPC_128");
-                    break;
+                    case NPCID.PrimeCannon:
+                        Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_128" : "NPCs/Vanilla/NPC_128");
+                        break;
 
-                case NPCID.PrimeSaw:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_129" : "NPCs/Vanilla/NPC_129");
-                    break;
+                    case NPCID.PrimeSaw:
+                        Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_129" : "NPCs/Vanilla/NPC_129");
+                        break;
 
-                case NPCID.PrimeVice:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_130" : "NPCs/Vanilla/NPC_130");
-                    break;
+                    case NPCID.PrimeVice:
+                        Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_130" : "NPCs/Vanilla/NPC_130");
+                        break;
 
-                case NPCID.PrimeLaser:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_131" : "NPCs/Vanilla/NPC_131");
-                    break;
+                    case NPCID.PrimeLaser:
+                        Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_131" : "NPCs/Vanilla/NPC_131");
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
             return true;
-        }*/
+        }
     }
 }
