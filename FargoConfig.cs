@@ -341,6 +341,8 @@ namespace FargowiltasSouls
             public bool spikeHit = true;
             [Label("$Mods.FargowiltasSouls.MasoIconConfig")]
             public bool sinIcon = true;
+            [Label("$Mods.FargowiltasSouls.MasoBossRecolors")]
+            public bool bossRecolors = true;
 
             [Label("Security wallet")]
             public WalletMenu wallet = new WalletMenu();
@@ -434,6 +436,7 @@ namespace FargowiltasSouls
                 //other
                 SoulConfig.Instance.masoTogDict["Spiky Balls On Hit"] = spikeHit;
                 SoulConfig.Instance.masoTogDict["Sinister Icon"] = sinIcon;
+                SoulConfig.Instance.masoTogDict["Boss Recolors (Restart to use)"] = bossRecolors;
             }
         }
 

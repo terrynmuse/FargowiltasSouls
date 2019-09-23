@@ -342,7 +342,7 @@ namespace FargowiltasSouls
             //other
             "Spiky Balls On Hit",
             "Sinister Icon",
-            "Boss Recolors"};
+            "Boss Recolors (Restart to use)"};
             string[] masoTogNameCh = { 
             //deathbringer fairy
             "Slimy Shield Effects",
@@ -382,7 +382,7 @@ namespace FargowiltasSouls
             //other
             "Spiky Balls On Hit",
             "Sinister Icon",
-            "Boss Recolors"};
+            "Boss Recolors (Restart to use)"};
             string[] masoTogConfigName = {
             //deathbringer fairy
             "MasoSlimeConfig",

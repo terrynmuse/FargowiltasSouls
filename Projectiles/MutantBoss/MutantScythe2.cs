@@ -8,8 +8,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 {
     public class MutantScythe2 : ModProjectile
     {
-        public override string Texture => "Terraria/Projectile_44";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mutant Sickle");
