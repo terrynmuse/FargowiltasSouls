@@ -3901,14 +3901,14 @@ namespace FargowiltasSouls.NPCs
                         if (!npc.dontTakeDamage)
                         {
                             Counter2++; //attack faster!
-                            npc.life += 9; //healing stuff
+                            npc.life += 7; //healing stuff
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
                             Timer++;
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 500);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 420);
                             }
                         }
                         break;
@@ -3972,7 +3972,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemHead:
                         if (!npc.dontTakeDamage)
                         {
-                            npc.life += 8;
+                            npc.life += 5;
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
 
@@ -3980,7 +3980,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 500);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 300);
                             }
                         }
                         break;
