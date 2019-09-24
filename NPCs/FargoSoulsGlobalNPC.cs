@@ -8917,6 +8917,17 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.Size, ItemID.Stinger);
                         break;
 
+                    case NPCID.FungiBulb:
+                    case NPCID.GiantFungiBulb:
+                    case NPCID.AnomuraFungus:
+                    case NPCID.MushiLadybug:
+                    case NPCID.ZombieMushroom:
+                    case NPCID.ZombieMushroomHat:
+                    case NPCID.FungoFish:
+                        if (Main.rand.Next(20) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.TruffleWorm);
+                        break;
+
                     #region boss drops
                     case NPCID.KingSlime:
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HerbBag, Main.rand.Next(3) + 1);
