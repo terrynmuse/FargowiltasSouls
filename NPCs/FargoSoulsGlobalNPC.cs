@@ -8528,7 +8528,7 @@ namespace FargowiltasSouls.NPCs
                             pool[NPCID.RaggedCasterOpenCoat] = .002f;
                         }
 
-                        if (NPC.downedGolemBoss && !sinisterIcon && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
+                        if (FargoSoulsWorld.downedBetsy && !sinisterIcon && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
                             pool[NPCID.DD2Betsy] = .01f;
                     }
                     else if (sky)
@@ -9034,6 +9034,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DD2Betsy:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("BetsysHeart"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.InfernoPotion, Main.rand.Next(10) + 1);
+                        FargoSoulsWorld.downedBetsy = true;
                         break;
 
                     case NPCID.DukeFishron:
