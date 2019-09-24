@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.GameContent.Events;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -199,6 +200,9 @@ namespace FargowiltasSouls
         public override void PostUpdate()
         {
             //Main.NewText(BuilderMode);
+
+            if (MasochistMode && DD2Event.Ongoing && DD2Event.TimeLeftBetweenWaves > 30)
+                DD2Event.TimeLeftBetweenWaves = 30;
 
             #region commented
 
