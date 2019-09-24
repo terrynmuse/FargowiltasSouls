@@ -10964,7 +10964,6 @@ namespace FargowiltasSouls.NPCs
                             Main.extraTexture[25] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_25" : "NPCs/Vanilla/Extra_25");
                             Main.extraTexture[26] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_26" : "NPCs/Vanilla/Extra_26");
                             Main.extraTexture[29] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_29" : "NPCs/Vanilla/Extra_29");
-                            Main.ninjaTexture = mod.GetTexture(recolor ? "NPCs/Resprites/Ninja" : "NPCs/Vanilla/Ninja");
                             break;
 
                         default:
