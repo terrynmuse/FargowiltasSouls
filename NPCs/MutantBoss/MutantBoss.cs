@@ -1133,7 +1133,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
                 case 27: //DEATHRAY SPAM
                     npc.velocity = Vector2.Zero;
-                    if (++npc.ai[1] > 15)
+                    if (++npc.ai[1] > 10)
                     {
                         npc.ai[1] = 0;
                         if (Main.netMode != 1)
