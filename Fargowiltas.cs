@@ -1319,10 +1319,17 @@ namespace FargowiltasSouls
 
         public override void AddRecipes()
         {
+            ModRecipe recipe = new ModRecipe(this);
+            recipe.AddIngredient(ItemID.Worm);
+            recipe.AddIngredient(ItemID.GlowingMushroom, 20);
+            recipe.AddIngredient(ItemType("VolatileEnergy"), 5);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(ItemID.TruffleWorm);
+            recipe.AddRecipe();
+
             if (ThoriumLoaded)
             {
                 Mod thorium = ModLoader.GetMod("ThoriumMod");
-                ModRecipe recipe = new ModRecipe(this);
 
                 recipe = new ModRecipe(this);
                 recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
