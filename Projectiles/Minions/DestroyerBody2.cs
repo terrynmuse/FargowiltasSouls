@@ -28,7 +28,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.friendly = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            projectile.alpha = 255;
+            projectile.alpha = 0;
             projectile.netImportant = true;
             projectile.hide = true;
         }
@@ -97,7 +97,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 int arg_2D9AD_0 = Main.projectile[byUUID].alpha;
                 if (arg_2D9AD_0 == 0)
                 {
-                    projectile.alpha -= 42;
+                    projectile.alpha -= 84;
                     if (projectile.alpha < 0)
                         projectile.alpha = 0;
                 }

@@ -57,7 +57,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.Red;
+            return Color.White;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

@@ -27,7 +27,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.friendly = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            projectile.alpha = 255;
+            projectile.alpha = 0;
             projectile.netImportant = true;
             projectile.hide = true;
         }
@@ -75,14 +75,6 @@ namespace FargowiltasSouls.Projectiles.Minions
 
             int num1038 = 30;
 
-            //dust!
-            int dustId = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f,
-                projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
-            Main.dust[dustId].noGravity = true;
-            int dustId3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height + 5, 60, projectile.velocity.X * 0.2f,
-                projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
-            Main.dust[dustId3].noGravity = true;
-
             bool flag67 = false;
             Vector2 value67 = Vector2.Zero;
             Vector2 arg_2D865_0 = Vector2.Zero;
@@ -104,7 +96,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                 int arg_2D9AD_0 = Main.projectile[byUUID].alpha;
                 if (arg_2D9AD_0 == 0)
                 {
-                    projectile.alpha -= 42;
+                    projectile.alpha -= 84;
                     if (projectile.alpha < 0)
                         projectile.alpha = 0;
                 }

@@ -26,9 +26,8 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
             item.summon = true;
             item.width = 24;
             item.height = 24;
-            item.useAnimation = 40;
-            item.useTime = 2;
-            item.reuseDelay = 20;
+            item.useAnimation = 70;
+            item.useTime = 70;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 1.5f;
