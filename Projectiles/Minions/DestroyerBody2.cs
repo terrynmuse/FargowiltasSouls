@@ -47,7 +47,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.White;
+            return Color.White * projectile.Opacity;
         }
 
         public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles,
@@ -95,14 +95,20 @@ namespace FargowiltasSouls.Projectiles.Minions
                 num1052 = Main.projectile[byUUID].rotation;
                 float num1053 = MathHelper.Clamp(Main.projectile[byUUID].scale, 0f, 50f);
                 int arg_2D9AD_0 = Main.projectile[byUUID].alpha;
+                if (arg_2D9AD_0 == 0)
+                {
+                    projectile.alpha -= 42;
+                    if (projectile.alpha < 0)
+                        projectile.alpha = 0;
+                }
                 Main.projectile[byUUID].localAI[0] = projectile.localAI[0] + 1f;
                 if (Main.projectile[byUUID].type != mod.ProjectileType("DestroyerHead2")) Main.projectile[byUUID].localAI[1] = projectile.whoAmI;
             }
 
             if (!flag67) return;
 
-            projectile.alpha -= 42;
-            if (projectile.alpha < 0) projectile.alpha = 0;
+            //projectile.alpha -= 42;
+            //if (projectile.alpha < 0) projectile.alpha = 0;
             projectile.velocity = Vector2.Zero;
             Vector2 vector134 = value67 - projectile.Center;
             if (num1052 != projectile.rotation)
