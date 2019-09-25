@@ -30,7 +30,10 @@ namespace FargowiltasSouls
         internal bool CalamityLoaded;
         internal bool DBTLoaded;
         internal bool SOALoaded;
+        internal bool ApothLoaded;
         internal bool MasomodeEX;
+
+        internal bool LoadedNewSprites;
 
         public UserInterface CustomResources;
 
@@ -338,7 +341,8 @@ namespace FargowiltasSouls
             "Phantasmal Ring Minion",
             //other
             "Spiky Balls On Hit",
-            "Sinister Icon"};
+            "Sinister Icon",
+            "Boss Recolors (Restart to use)"};
             string[] masoTogNameCh = { 
             //deathbringer fairy
             "Slimy Shield Effects",
@@ -377,7 +381,8 @@ namespace FargowiltasSouls
             "Phantasmal Ring Minion",
             //other
             "Spiky Balls On Hit",
-            "Sinister Icon"};
+            "Sinister Icon",
+            "Boss Recolors (Restart to use)"};
             string[] masoTogConfigName = {
             //deathbringer fairy
             "MasoSlimeConfig",
@@ -416,8 +421,9 @@ namespace FargowiltasSouls
             "MasoRingConfig",
             //other
             "MasoSpikeConfig",
-            "MasoIconConfig"};
-            for (int x = 0; x <= 28; x++)
+            "MasoIconConfig",
+            "MasoBossRecolors"};
+            for (int x = 0; x <= 29; x++)
             {
                 text = CreateTranslation(masoTogConfigName[x]);
                 if (Language.ActiveCulture == GameCulture.Chinese)
@@ -1178,12 +1184,15 @@ namespace FargowiltasSouls
             if (DebuffIDs != null)
                 DebuffIDs.Clear();
 
-            /*Main.npcTexture[NPCID.SkeletronPrime] = GetTexture("NPCs/Vanilla/NPC_127");
-            Main.boneArm2Texture = GetTexture("NPCs/Vanilla/Arm_Bone_2");
-            Main.npcTexture[NPCID.PrimeCannon] = GetTexture("NPCs/Vanilla/NPC_128");
-            Main.npcTexture[NPCID.PrimeSaw] = GetTexture("NPCs/Vanilla/NPC_129");
-            Main.npcTexture[NPCID.PrimeVice] = GetTexture("NPCs/Vanilla/NPC_130");
-            Main.npcTexture[NPCID.PrimeLaser] = GetTexture("NPCs/Vanilla/NPC_131");*/
+            if (LoadedNewSprites)
+            {
+                Main.npcTexture[NPCID.SkeletronPrime] = GetTexture("NPCs/Vanilla/NPC_127");
+                Main.boneArm2Texture = GetTexture("NPCs/Vanilla/Arm_Bone_2");
+                Main.npcTexture[NPCID.PrimeCannon] = GetTexture("NPCs/Vanilla/NPC_128");
+                Main.npcTexture[NPCID.PrimeSaw] = GetTexture("NPCs/Vanilla/NPC_129");
+                Main.npcTexture[NPCID.PrimeVice] = GetTexture("NPCs/Vanilla/NPC_130");
+                Main.npcTexture[NPCID.PrimeLaser] = GetTexture("NPCs/Vanilla/NPC_131");
+            }
         }
 
         public override object Call(params object[] args)
@@ -1208,6 +1217,7 @@ namespace FargowiltasSouls
                 AALoaded = ModLoader.GetMod("AAMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
                 SOALoaded = ModLoader.GetMod("SacredTools") != null;
+                ApothLoaded = ModLoader.GetMod("ApothTestMod") != null;
                 MasomodeEX = ModLoader.GetMod("MasomodeEX") != null;
 
                 DebuffIDs = new List<int> { 20, 22, 23, 24, 36, 39, 44, 46, 47, 67, 68, 69, 70, 80,
@@ -1312,9 +1322,8 @@ namespace FargowiltasSouls
             if (ThoriumLoaded)
             {
                 Mod thorium = ModLoader.GetMod("ThoriumMod");
-                ModRecipe recipe = new ModRecipe(this);
 
-                recipe = new ModRecipe(this);
+                ModRecipe recipe = new ModRecipe(this);
                 recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
                 recipe.AddTile(thorium, "ArcaneArmorFabricator");
                 recipe.SetResult(thorium.ItemType("SteelArrow"));

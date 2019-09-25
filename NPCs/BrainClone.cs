@@ -37,6 +37,12 @@ namespace FargowiltasSouls.NPCs
 
         public override void AI()
         {
+            if (!npc.GetGlobalNPC<FargoSoulsGlobalNPC>().masoBool[0])
+            {
+                npc.GetGlobalNPC<FargoSoulsGlobalNPC>().masoBool[0] = true;
+                Main.npcTexture[npc.type] = Main.npcTexture[NPCID.BrainofCthulhu];
+            }
+
             if (FargoSoulsGlobalNPC.brainBoss < 0f || FargoSoulsGlobalNPC.brainBoss >= 200f)
             {
                 npc.StrikeNPCNoInteraction(9999, 0f, 0);

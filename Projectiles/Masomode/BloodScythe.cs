@@ -7,8 +7,6 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class BloodScythe : ModProjectile
     {
-        public override string Texture => "Terraria/Projectile_44";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Blood Sickle");
@@ -28,7 +26,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.Red;
+            return Color.White;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

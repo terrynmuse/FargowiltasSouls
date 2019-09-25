@@ -8,8 +8,6 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 {
     public class MutantScythe2 : ModProjectile
     {
-        public override string Texture => "Terraria/Projectile_44";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mutant Sickle");
@@ -48,7 +46,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.Red;
+            return Color.White;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

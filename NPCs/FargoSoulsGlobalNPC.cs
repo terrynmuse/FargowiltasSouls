@@ -61,6 +61,7 @@ namespace FargowiltasSouls.NPCs
         public int Counter2 = 0;
         public int Timer = 600;
         public byte SharkCount = 0;
+        public bool DrawCheck = false;
 
         public static int boss = -1;
         public static int slimeBoss = -1;
@@ -106,6 +107,8 @@ namespace FargowiltasSouls.NPCs
 
         public override void SetDefaults(NPC npc)
         {
+            LoadSprites(npc);
+
             if (FargoSoulsWorld.MasochistMode)
             {
                 ResetRegenTimer(npc);
@@ -2289,7 +2292,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.KingSlime:
                         slimeBoss = npc.whoAmI;
-
+                        npc.color = Main.DiscoColor * 0.4f;
                         if (masoBool[1])
                         {
                             if (npc.velocity.Y == 0f) //start attack
@@ -3798,14 +3801,14 @@ namespace FargowiltasSouls.NPCs
                         if (!npc.dontTakeDamage)
                         {
                             Counter2++; //attack faster!
-                            npc.life += 9; //healing stuff
+                            npc.life += 7; //healing stuff
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
                             Timer++;
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 500);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 420);
                             }
                         }
                         break;
@@ -3869,7 +3872,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemHead:
                         if (!npc.dontTakeDamage)
                         {
-                            npc.life += 8;
+                            npc.life += 5;
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
 
@@ -3877,7 +3880,7 @@ namespace FargowiltasSouls.NPCs
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 500);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 300);
                             }
                         }
                         break;
@@ -4811,13 +4814,15 @@ namespace FargowiltasSouls.NPCs
                                 masoBool[0] = true;
                                 if (Main.netMode != 1)
                                 {
-                                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, -1, 1);
+                                    bool recolor = SoulConfig.Instance.masoTogDict.ContainsKey("Boss Recolors (Restart to use)") && !SoulConfig.Instance.masoTogDict["Boss Recolors (Restart to use)"] && FargoSoulsWorld.MasochistMode;
+                                    int type = recolor ? mod.NPCType("BrainIllusion2") : mod.NPCType("BrainIllusion");
+                                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, type, npc.whoAmI, npc.whoAmI, -1, 1);
                                     if (n != 200 && Main.netMode == 2)
                                         NetMessage.SendData(23, -1, -1, null, n);
-                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, 1, -1);
+                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, type, npc.whoAmI, npc.whoAmI, 1, -1);
                                     if (n != 200 && Main.netMode == 2)
                                         NetMessage.SendData(23, -1, -1, null, n);
-                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainIllusion"), npc.whoAmI, npc.whoAmI, 1, 1);
+                                    n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, type, npc.whoAmI, npc.whoAmI, 1, 1);
                                     if (n != 200 && Main.netMode == 2)
                                         NetMessage.SendData(23, -1, -1, null, n);
                                     n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("BrainClone"), npc.whoAmI);
@@ -5505,7 +5510,7 @@ namespace FargowiltasSouls.NPCs
                             }
                             npc.netUpdate = true;
                         }
-                        if (!DD2Event.Ongoing && npc.HasPlayerTarget && (!Main.player[npc.target].active || Main.player[npc.target].dead))
+                        if (!DD2Event.Ongoing && npc.HasPlayerTarget && (!Main.player[npc.target].active || Main.player[npc.target].dead || npc.Distance(Main.player[npc.target].Center) > 3000))
                         {
                             int p = Player.FindClosest(npc.Center, 0, 0);
                             if (p < 0 || !Main.player[p].active || Main.player[p].dead || npc.Distance(Main.player[p].Center) > 3000)
@@ -8425,7 +8430,7 @@ namespace FargowiltasSouls.NPCs
                             pool[NPCID.RaggedCasterOpenCoat] = .002f;
                         }
 
-                        if (NPC.downedGolemBoss && !sinisterIcon && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
+                        if (FargoSoulsWorld.downedBetsy && !sinisterIcon && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
                             pool[NPCID.DD2Betsy] = .01f;
                     }
                     else if (sky)
@@ -8814,11 +8819,28 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.Size, ItemID.Stinger);
                         break;
 
+                    case NPCID.FungiBulb:
+                    case NPCID.GiantFungiBulb:
+                    case NPCID.AnomuraFungus:
+                    case NPCID.MushiLadybug:
+                    case NPCID.ZombieMushroom:
+                    case NPCID.ZombieMushroomHat:
+                    case NPCID.FungoFish:
+                        if (Main.rand.Next(20) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.TruffleWorm);
+                        break;
+
                     #region boss drops
                     case NPCID.KingSlime:
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HerbBag, Main.rand.Next(3) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.WoodenCrate, Main.rand.Next(3) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("SlimyShield"));
+                        if (Main.netMode != 1 && !BossIsAlive(ref mutantBoss, mod.NPCType("MutantBoss")) && Fargowiltas.Instance.FargosLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant")))
+                        {
+                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
+                            if (n < 200 && Main.netMode == 2)
+                                NetMessage.SendData(23, -1, -1, null, n);
+                        }
                         break;
 
                     case NPCID.EyeofCthulhu:
@@ -8925,6 +8947,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DD2Betsy:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("BetsysHeart"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.InfernoPotion, Main.rand.Next(10) + 1);
+                        FargoSoulsWorld.downedBetsy = true;
                         break;
 
                     case NPCID.DukeFishron:
@@ -9065,6 +9088,8 @@ namespace FargowiltasSouls.NPCs
         {
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+
+            LoadSprites(npc);
 
             if (TimeFrozen)
             {
@@ -10738,35 +10763,173 @@ namespace FargowiltasSouls.NPCs
             return true;
         }
 
-        /*public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
+        public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
         {
-            switch (npc.type)
+            if (!DrawCheck)
             {
-                case NPCID.SkeletronPrime:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_127" : "NPCs/Vanilla/NPC_127");
-                    Main.boneArm2Texture = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/Arm_Bone_2" : "NPCs/Vanilla/Arm_Bone_2");
-                    break;
-
-                case NPCID.PrimeCannon:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_128" : "NPCs/Vanilla/NPC_128");
-                    break;
-
-                case NPCID.PrimeSaw:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_129" : "NPCs/Vanilla/NPC_129");
-                    break;
-
-                case NPCID.PrimeVice:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_130" : "NPCs/Vanilla/NPC_130");
-                    break;
-
-                case NPCID.PrimeLaser:
-                    Main.npcTexture[npc.type] = mod.GetTexture(FargoSoulsWorld.MasochistMode ? "NPCs/Resprites/NPC_131" : "NPCs/Vanilla/NPC_131");
-                    break;
-
-                default:
-                    break;
+                DrawCheck = true;
+                LoadSprites(npc);
             }
             return true;
-        }*/
+        }
+
+        private void LoadSprites(NPC npc)
+        {
+            bool recolor = SoulConfig.Instance.masoTogDict.ContainsKey("Boss Recolors (Restart to use)") && !SoulConfig.Instance.masoTogDict["Boss Recolors (Restart to use)"] && FargoSoulsWorld.MasochistMode;
+            if (recolor || Fargowiltas.Instance.LoadedNewSprites)
+            {
+                Fargowiltas.Instance.LoadedNewSprites = true;
+                switch (npc.type)
+                {
+                    case NPCID.ServantofCthulhu:
+                    case NPCID.EaterofWorldsBody:
+                    case NPCID.EaterofWorldsTail:
+                    case NPCID.Creeper:
+                    case NPCID.SkeletronHand:
+                    case NPCID.WallofFleshEye:
+                    case NPCID.TheHungry:
+                    case NPCID.TheHungryII:
+                    case NPCID.LeechHead:
+                    case NPCID.LeechBody:
+                    case NPCID.LeechTail:
+                    case NPCID.TheDestroyerBody:
+                    case NPCID.TheDestroyerTail:
+                    case NPCID.Probe:
+                    case NPCID.PrimeCannon:
+                    case NPCID.PrimeSaw:
+                    case NPCID.PrimeVice:
+                    case NPCID.PrimeLaser:
+                    case NPCID.PlanterasHook:
+                    case NPCID.PlanterasTentacle:
+                    case NPCID.Spore:
+                    case NPCID.GolemFistLeft:
+                    case NPCID.GolemFistRight:
+                    case NPCID.GolemHead:
+                    case NPCID.GolemHeadFree:
+                    case NPCID.Sharkron:
+                    case NPCID.Sharkron2:
+                    case NPCID.CultistBossClone:
+                    case NPCID.MoonLordFreeEye:
+                    case NPCID.MoonLordHand:
+                    case NPCID.MoonLordHead:
+                    case NPCID.MoonLordLeechBlob:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        break;
+
+                    case NPCID.KingSlime:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.extraTexture[39] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_39" : "NPCs/Vanilla/Extra_39");
+                        Main.ninjaTexture = mod.GetTexture(recolor ? "NPCs/Resprites/Ninja" : "NPCs/Vanilla/Ninja");
+                        Main.npcHeadBossTexture[7] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_7");
+                        break;
+
+                    case NPCID.EyeofCthulhu:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.npcHeadBossTexture[0] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_0");
+                        Main.npcHeadBossTexture[1] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_1");
+                        break;
+
+                    case NPCID.EaterofWorldsHead:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.npcHeadBossTexture[2] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_2");
+                        break;
+
+                    case NPCID.BrainofCthulhu:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.npcHeadBossTexture[23] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_23");
+                        break;
+
+                    case NPCID.QueenBee:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.npcHeadBossTexture[14] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_14");
+                        break;
+
+                    case NPCID.SkeletronHead:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.boneArmTexture = mod.GetTexture(recolor ? "NPCs/Resprites/Arm_Bone" : "NPCs/Vanilla/Arm_Bone");
+                        Main.npcHeadBossTexture[19] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_19");
+                        break;
+
+                    case NPCID.WallofFlesh:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.chain12Texture = mod.GetTexture(recolor ? "NPCs/Resprites/Chain12" : "NPCs/Vanilla/Chain12");
+                        Main.wofTexture = mod.GetTexture(recolor ? "NPCs/Resprites/WallOfFlesh" : "NPCs/Vanilla/WallOfFlesh");
+                        Main.npcHeadBossTexture[22] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_22");
+                        break;
+
+                    case NPCID.TheDestroyer:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.npcHeadBossTexture[25] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_25");
+                        break;
+
+                    case NPCID.Retinazer:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.npcHeadBossTexture[15] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_15");
+                        Main.npcHeadBossTexture[20] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_16");
+                        break;
+
+                    case NPCID.Spazmatism:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.npcHeadBossTexture[16] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_20");
+                        Main.npcHeadBossTexture[21] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_21");
+                        break;
+
+                    case NPCID.SkeletronPrime:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.boneArm2Texture = mod.GetTexture(recolor ? "NPCs/Resprites/Arm_Bone_2" : "NPCs/Vanilla/Arm_Bone_2");
+                        Main.npcHeadBossTexture[18] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_18");
+                        break;
+
+                    case NPCID.Plantera:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.chain26Texture = mod.GetTexture(recolor ? "NPCs/Resprites/Chain26" : "NPCs/Vanilla/Chain27");
+                        Main.chain27Texture = mod.GetTexture(recolor ? "NPCs/Resprites/Chain26" : "NPCs/Vanilla/Chain27");
+                        Main.npcHeadBossTexture[11] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_11");
+                        Main.npcHeadBossTexture[12] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_12");
+                        break;
+
+                    case NPCID.Golem:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.golemTexture[1] = mod.GetTexture(recolor ? "NPCs/Resprites/GolemLights1" : "NPCs/Vanilla/GolemLights1");
+                        Main.golemTexture[2] = mod.GetTexture(recolor ? "NPCs/Resprites/GolemLights2" : "NPCs/Vanilla/GolemLights2");
+                        Main.golemTexture[3] = mod.GetTexture(recolor ? "NPCs/Resprites/GolemLights3" : "NPCs/Vanilla/GolemLights3");
+                        Main.npcHeadBossTexture[5] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_5");
+                        break;
+
+                    case NPCID.DukeFishron:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.npcHeadBossTexture[4] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_4");
+                        break;
+
+                    case NPCID.CultistBoss:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.npcHeadBossTexture[24] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_24");
+                        Main.npcHeadBossTexture[31] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_31");
+                        break;
+
+                    case NPCID.MoonLordCore:
+                        Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
+                        Main.extraTexture[13] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_13" : "NPCs/Vanilla/Extra_13");
+                        Main.extraTexture[14] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_14" : "NPCs/Vanilla/Extra_14");
+                        Main.extraTexture[15] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_15" : "NPCs/Vanilla/Extra_15");
+                        Main.extraTexture[16] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_16" : "NPCs/Vanilla/Extra_16");
+                        Main.extraTexture[17] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_17" : "NPCs/Vanilla/Extra_17");
+                        Main.extraTexture[18] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_18" : "NPCs/Vanilla/Extra_18");
+                        Main.extraTexture[19] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_19" : "NPCs/Vanilla/Extra_19");
+                        Main.extraTexture[21] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_21" : "NPCs/Vanilla/Extra_21");
+                        Main.extraTexture[22] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_22" : "NPCs/Vanilla/Extra_22");
+                        Main.extraTexture[23] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_23" : "NPCs/Vanilla/Extra_23");
+                        Main.extraTexture[24] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_24" : "NPCs/Vanilla/Extra_24");
+                        Main.extraTexture[25] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_25" : "NPCs/Vanilla/Extra_25");
+                        Main.extraTexture[26] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_26" : "NPCs/Vanilla/Extra_26");
+                        Main.extraTexture[29] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_29" : "NPCs/Vanilla/Extra_29");
+                        Main.npcHeadBossTexture[8] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_8");
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }

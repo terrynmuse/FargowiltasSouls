@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.GameContent.Events;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -9,7 +10,7 @@ namespace FargowiltasSouls
     // ReSharper disable once ClassNeverInstantiated.Global
     public class FargoSoulsWorld : ModWorld
     {
-        private static bool _downedBetsy;
+        public static bool downedBetsy;
         private static bool _downedBoss;
 
         //masomode
@@ -40,7 +41,7 @@ namespace FargowiltasSouls
 
         public override void Initialize()
         {
-            _downedBetsy = false;
+            downedBetsy = false;
             _downedBoss = false;
 
             downedMM = false;
@@ -89,7 +90,7 @@ namespace FargowiltasSouls
             };
 
             List<string> downed = new List<string>();
-            if (_downedBetsy) downed.Add("betsy");
+            if (downedBetsy) downed.Add("betsy");
             if (_downedBoss) downed.Add("boss");
             if (MasochistMode) downed.Add("masochist");
             if (downedFishronEX) downed.Add("downedFishronEX");
@@ -127,7 +128,7 @@ namespace FargowiltasSouls
             }
 
             IList<string> downed = tag.GetList<string>("downed");
-            _downedBetsy = downed.Contains("betsy");
+            downedBetsy = downed.Contains("betsy");
             _downedBoss = downed.Contains("boss");
             MasochistMode = downed.Contains("masochist");
             downedFishronEX = downed.Contains("downedFishronEX");
@@ -155,7 +156,7 @@ namespace FargowiltasSouls
             MoonlordCount = reader.ReadInt32();
 
             BitsByte flags = reader.ReadByte();
-            _downedBetsy = flags[0];
+            downedBetsy = flags[0];
             _downedBoss = flags[1];
             MasochistMode = flags[2];
             downedFishronEX = flags[3];
@@ -184,7 +185,7 @@ namespace FargowiltasSouls
 
             BitsByte flags = new BitsByte
             {
-                [0] = _downedBetsy,
+                [0] = downedBetsy,
                 [1] = _downedBoss,
                 [2] = MasochistMode,
                 [3] = downedFishronEX,
@@ -199,6 +200,9 @@ namespace FargowiltasSouls
         public override void PostUpdate()
         {
             //Main.NewText(BuilderMode);
+
+            if (MasochistMode && DD2Event.Ongoing && DD2Event.TimeLeftBetweenWaves > 30)
+                DD2Event.TimeLeftBetweenWaves = 30;
 
             #region commented
 
