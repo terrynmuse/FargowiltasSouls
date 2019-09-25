@@ -10212,7 +10212,7 @@ namespace FargowiltasSouls.NPCs
                         break;
                 }
 
-                if (npc.catchItem != 0 && npc.lifeMax == 5 && !modPlayer.WoodEnchant)
+                if (npc.catchItem != 0 && npc.lifeMax == 5)
                     player.AddBuff(mod.BuffType("Guilty"), 300);
             }
         }

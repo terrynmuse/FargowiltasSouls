@@ -18,10 +18,11 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
         private readonly Mod dbzMod = ModLoader.GetMod("DBZMOD");
+        private readonly Mod soa = ModLoader.GetMod("SacredTools");
         public bool jumped;
         public bool canHover;
         public int hoverTimer;
-        public int jumpTimer;
+        //public int jumpTimer;
 
         public static int tooltipIndex = 0;
         public static int Counter = 10;
@@ -36,11 +37,6 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     "100% increased knockback",
     "Increases armor penetration by 50",
     "Crits deal 10x damage",
-    "Crit chance is set to 50%",
-    "Crit to increase it by 10%",
-    "At 100% every attack gains 10% life steal",
-    "You also gain +10% damage and +10 defense",
-    "This stacks up to 200,000 times until you get hit",
     "Drastically increases life regeneration",
     "Increases your maximum mana to 999",
     "Increases your maximum minions by 30",
@@ -166,6 +162,61 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         String[] thoriumTooltips = new String[]
         {
+            "Armor bonuses from Living Wood",
+            "Armor bonuses from Life Bloom",
+            "Armor bonuses from Yew Wood",
+            "Armor bonuses from Tide Hunter",
+            "Armor bonuses from Icy",
+            "Armor bonuses from Cryo Magus",
+            "Armor bonuses from Whispering",
+            "Armor bonuses from Sacred",
+            "Armor bonuses from Warlock",
+            "Armor bonuses from Biotech",
+            "Armor bonuses from Cyber Punk",
+            "Armor bonuses from Conductor",
+            "Armor bonuses from Bronze",
+            "Armor bonuses from Darksteel",
+            "Armor bonuses from Durasteel",
+            "Armor bonuses from Conduit",
+            "Armor bonuses from Lodestone",
+            "Armor bonuses from Illumite",
+            "Armor bonuses from Jester",
+            "Armor bonuses from Thorium",
+            "Armor bonuses from Terrarium",
+            "Armor bonuses from Malignant",
+            "Armor bonuses from Folv",
+            "Armor bonuses from White Dwarf",
+            "Armor bonuses from Celestial",
+            "Armor bonuses from Spirit Trapper",
+            "Armor bonuses from Dragon",
+            "Armor bonuses from Dread",
+            "Armor bonuses from Flesh",
+            "Armor bonuses from Demon Blood",
+            "Armor bonuses from Tide Turner",
+            "Armor bonuses from Assassin",
+            "Armor bonuses from Pyromancer",
+            "Armor bonuses from Dream Weaver",
+            "Effects of Flawless Chrysalis",
+            "Effects of Bubble Magnet",
+            "Effects of Agnor's Bowl",
+            "Effects of Ice Bound Strider Hide",
+            "Effects of Ring of Unity",
+            "Effects of Mix Tape",
+            "Effects of Eye of the Storm",
+            "Effects of Champion's Rebuttal",
+            "Effects of Incandescent Spark",
+            "Effects of Greedy Magnet",
+            "Effects of Abyssal Shell",
+            "Effects of Astro-Beetle Husk",
+            "Effects of Eye of the Beholder",
+            "Effects of Crietz",
+            "Effects of Mana-Charged Rocketeers",
+            "Effects of Inner Flame",
+            "Effects of Crash Boots",
+            "Effects of Vampire Gland",
+            "Effects of Demon Blood Badge",
+            "Effects of Lich's Gaze",
+            "Effects of Plague Lord's Flask",
             "Effects of Phylactery",
             "Effects of Crystal Scorpion",
             "Effects of Yuma's Pendant",
@@ -193,6 +244,55 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         String[] calamityTooltips = new String[]
         {
+            "Armor bonuses from Aerospec",
+            "Armor bonuses from Statigel",
+            "Armor bonuses from Daedalus",
+            "Armor bonuses from Bloodflare",
+            "Armor bonuses from Victide",
+            "Armor bonuses from Xeroc",
+            "Armor bonuses from Omega Blue",
+            "Armor bonuses from God Slayer",
+            "Armor bonuses from Silva",
+            "Armor bonuses from Auric Tesla",
+            "Armor bonuses from Mollusk",
+            "Armor bonuses from Reaver",
+            "Armor bonuses from Ataxia",
+            "Armor bonuses from Astral",
+            "Armor bonuses from Tarragon",
+            "Armor bonuses from Demonshade",
+            "Effects of Spirit Glyph",
+            "Effects of Raider's Talisman",
+            "Effects of Trinket of Chi",
+            "Effects of Gladiator's Locket",
+            "Effects of Unstable Prism",
+            "Effects of Counter Scarf",
+            "Effects of Fungal Symbiote",
+            "Effects of Permafrost's Concoction",
+            "Effects of Regenerator",
+            "Effects of Core of the Blood God",
+            "Effects of Affliction",
+            "Effects of Deep Dive",
+            "Effects of The Transformer",
+            "Effects of Luxor's Gift",
+            "Effects of The Community",
+            "Effects of Abyssal Diving Suit",
+            "Effects of Lumenous Amulet",
+            "Effects of Aquatic Emblem",
+            "Effects of Nebulous Core",
+            "Effects of Draedon's Heart",
+            "Effects of The Amalgam",
+            "Effects of Godly Soul Artifact",
+            "Effects of Yharim's Gift",
+            "Effects of Heart of the Elements",
+            "Effects of The Sponge",
+            "Effects of Giant Pearl",
+            "Effects of Amidias' Pendant",
+            "Effects of Fabled Tortoise Shell",
+            "Effects of Plague Hive",
+            "Effects of Astral Arcanum",
+            "Effects of Hide of Astrum Deus",
+            "Effects of Profaned Soul Artifact",
+            "Effects of Dark Sun Ring",
             "Effects of Elemental Gauntlet",
             "Effects of Elemental Quiver",
             "Effects of Ethereal Talisman",
@@ -207,10 +307,40 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             "Effects of Aspera Crystallite"
         };
 
+        String[] soaTooltips = new String[]
+        {
+            "Armor bonuses from Bismuth",
+            "Armor bonuses from Frosthunter",
+            "Armor bonuses from Blightbone",
+            "Armor bonuses from Dreadfire",
+            "Armor bonuses from Space Junk",
+            "Armor bonuses from Marstech",
+            "Armor bonuses from Blazing Brute",
+            "Armor bonuses from Cosmic Commander",
+            "Armor bonuses from Nebulous Apprentic",
+            "Armor bonuses from Stellar Priest",
+            "Armor bonuses from Fallen Prince",
+            "Armor bonuses from Void Warden",
+            "Armor bonuses from Vulcan Reaper",
+            "Armor bonuses from Flarium",
+            "Armor bonuses from Asthraltite",
+            "Effects of Dreadflame Emblem",
+            "Effects of Lapis Pendant",
+            "Effects of Frigid Pendant",
+            "Effects of Pumpkin Amulet",
+            "Effects of Nuba's Blessing",
+            "Effects of Novaniel's Resolve",
+            "Effects of Celestial Ring",
+            "Effects of Ring of the Fallen",
+            "Effects of Memento Mori",
+            "Effects of Arcanum of the Caster"
+        };
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of Eternity");
 
+            //oh no idk even for translate 
             String tooltip_ch =
 @"'不论凡人或不朽, 都承认你的神性'
 大幅增加生命回复, 最大法力值增至999 ,+30最大召唤栏, +20最大哨兵栏, 增加500%最大生命值 , 50%伤害减免
@@ -294,7 +424,14 @@ Efectos de pociones de Brillo, Espeleólogo, Cazador, y Sentido del peligro; Efe
             Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
             Tooltip.AddTranslation(GameCulture.Spanish, tooltip_sp);
 
-            Tooltip.SetDefault("'Mortal or Immortal, all things acknowledge your claim to divinity'");
+            Tooltip.SetDefault(
+@"'Mortal or Immortal, all things acknowledge your claim to divinity'
+Crit chance is set to 50%
+Crit to increase it by 10%
+At 100% every attack gains 10% life steal
+You also gain +10% damage and +10 defense
+This stacks up to 200,000 times until you get hit
+Additionally grants:");
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -316,18 +453,18 @@ Efectos de pociones de Brillo, Espeleólogo, Cazador, y Sentido del peligro; Efe
                 tooltipsFull.AddRange(dbtTooltips);
             }
 
+            if (soa != null)
+            {
+                tooltipsFull.AddRange(soaTooltips);
+            }
+
             tooltips.Add(new TooltipLine(mod, "tooltip", tooltipsFull[tooltipIndex]));
 
             Counter--;
 
             if (Counter <= 0)
             {
-                tooltipIndex++;
-
-                if (tooltipIndex >= tooltipsFull.Count)
-                {
-                    tooltipIndex = 0;
-                }
+                tooltipIndex = Main.rand.Next(tooltipsFull.Count);
 
                 Counter = 10;
             }

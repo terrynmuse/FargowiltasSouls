@@ -189,7 +189,7 @@ namespace FargowiltasSouls.Items
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
 
-            if (SoulConfig.Instance.GetValue("Illumite Rocket"))
+            if (SoulConfig.Instance.GetValue("Illumite Missile"))
             {
                 //illumite effect
                 if (modPlayer.IllumiteEnchant)

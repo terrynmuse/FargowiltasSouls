@@ -2164,7 +2164,7 @@ namespace FargowiltasSouls
             }
 
             //tide hunter
-            if (TideHunterEnchant && SoulConfig.Instance.GetValue("Depth Diver Foam") && crit)
+            if (TideHunterEnchant && SoulConfig.Instance.GetValue("Tide Hunter Foam") && crit)
             {
                 for (int n = 0; n < 10; n++)
                 {
@@ -2751,7 +2751,7 @@ namespace FargowiltasSouls
             {
                 int dmg = NatureForce ? 100 : 30;
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
-                Projectile[] projs2 = FargoGlobalProjectile.XWay(10, player.Center, mod.ProjectileType("SporeBoom"), 3f, dmg, 0f);
+                Projectile[] projs2 = FargoGlobalProjectile.XWay(10, player.Center, mod.ProjectileType("SporeBoom"), 3f, HighestDamageTypeScaling(dmg), 0f);
             }
 
             if (ShadeEnchant && SoulConfig.Instance.GetValue("Super Bleed On Hit"))
@@ -3430,26 +3430,7 @@ namespace FargowiltasSouls
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.MeleeHighest(player))
-            {
-                dmg = (int)(dmg * player.meleeDamage);
-            }
-            else if (modPlayer.RangedHighest(player))
-            {
-                dmg = (int)(dmg * player.rangedDamage);
-            }
-            else if (modPlayer.MagicHighest(player))
-            {
-                dmg = (int)(dmg * player.magicDamage);
-            }
-            else if (modPlayer.SummonHighest(player))
-            {
-                dmg = (int)(dmg * player.minionDamage);
-            }
-            else if (modPlayer.ThrownHighest(player))
-            {
-                dmg = (int)(dmg * player.thrownDamage);
-            }
+            dmg = HighestDamageTypeScaling(dmg);
 
             if (Main.rand.Next(chance) == 0)
             {
@@ -3690,7 +3671,7 @@ namespace FargowiltasSouls
         public void HallowEffect(bool hideVisual, int dmg)
         {
             HallowEnchant = true;
-            AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(dmg * player.minionDamage), 0f);
+            AddMinion("Hallowed Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(dmg * player.minionDamage), 0f);
 
             //reflect proj
             if (SoulConfig.Instance.GetValue("Hallowed Shield") && !noDodge)
@@ -4629,46 +4610,6 @@ namespace FargowiltasSouls
                     }
                 }
             }
-        }
-
-        public bool MeleeHighest(Player player)
-        {
-            return player.meleeDamage > player.rangedDamage &&
-                player.meleeDamage > player.magicDamage &&
-                player.meleeDamage > player.minionDamage &&
-                player.meleeDamage > player.thrownDamage;
-        }
-
-        public bool RangedHighest(Player player)
-        {
-            return player.rangedDamage > player.meleeDamage &&
-                player.rangedDamage > player.magicDamage &&
-                player.rangedDamage > player.minionDamage &&
-                player.rangedDamage > player.thrownDamage;
-        }
-
-        public bool MagicHighest(Player player)
-        {
-            return player.magicDamage > player.rangedDamage &&
-                player.magicDamage > player.meleeDamage &&
-                player.magicDamage > player.minionDamage &&
-                player.magicDamage > player.thrownDamage;
-        }
-
-        public bool SummonHighest(Player player)
-        {
-            return player.minionDamage > player.rangedDamage &&
-                player.minionDamage > player.magicDamage &&
-                player.minionDamage > player.meleeDamage &&
-                player.minionDamage > player.thrownDamage;
-        }
-
-        public bool ThrownHighest(Player player)
-        {
-            return player.thrownDamage > player.rangedDamage &&
-                player.thrownDamage > player.magicDamage &&
-                player.thrownDamage > player.minionDamage &&
-                player.thrownDamage > player.meleeDamage;
         }
     }
 }

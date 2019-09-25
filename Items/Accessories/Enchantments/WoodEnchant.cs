@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             Tooltip.SetDefault(
 @"'Humble beginnings…'
 Critters have massively increased defense
-Killing critters no longer inflicts Guilty
+Grants immunity to Guilty
 When critters die, they release their souls to aid you");
             DisplayName.AddTranslation(GameCulture.Chinese, "木魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -36,6 +36,7 @@ When critters die, they release their souls to aid you");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>().WoodEnchant = true;
+            player.buffImmune[mod.BuffType("Guilty")] = true;
         }
 
         public override void AddRecipes()

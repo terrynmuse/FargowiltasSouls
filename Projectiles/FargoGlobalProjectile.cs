@@ -110,6 +110,11 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
+            if (projectile.type == ProjectileID.StardustGuardian || projectile.type == ProjectileID.StardustGuardianExplosion)
+            {
+                TimeFreezeImmune = true;
+            }
+
             Fargowiltas.ModProjDict.TryGetValue(projectile.type, out ModProjID);
         }
 
