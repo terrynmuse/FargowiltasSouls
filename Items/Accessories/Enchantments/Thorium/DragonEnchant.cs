@@ -54,7 +54,7 @@ Summons a pet Wyvern");
             player.armorPenetration += 15;
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
-            thoriumPlayer.wyvernPet = true;
+            modPlayer.DragonEnchant = true;
         }
         
         private readonly string[] items =

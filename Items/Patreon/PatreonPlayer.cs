@@ -8,12 +8,14 @@ namespace FargowiltasSouls
     public class PatreonPlayer : ModPlayer
     {
         public bool Gittle;
+        public bool Sasha;
 
         public bool CompOrb;
 
         public override void ResetEffects()
         {
             Gittle = false;
+            Sasha = false;
             CompOrb = false;
         }
 
@@ -25,6 +27,17 @@ namespace FargowiltasSouls
                 player.pickSpeed -= .15f;
                 //shine effect
                 Lighting.AddLight(player.Center, 0.8f, 0.8f, 0f);
+            }
+
+            if (player.name == "Sasha")
+            {
+                Sasha = true;
+
+                player.lavaImmune = true;
+                player.fireWalk = true;
+                player.buffImmune[BuffID.OnFire] = true;
+                player.buffImmune[BuffID.CursedInferno] = true;
+                player.buffImmune[BuffID.Burning] = true;
             }
         }
 

@@ -84,7 +84,7 @@ Summons a Bear and Third Sage pet");
                 }
                 if (player.ownedProjectileCounts[calamity.ProjectileType("DaedalusCrystal")] < 1)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("DaedalusCrystal"), 0, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("DaedalusCrystal"), (int)(95f * player.minionDamage), 0f, Main.myPlayer, 0f, 0f);
                 }
             }
 
@@ -108,10 +108,10 @@ Summons a Bear and Third Sage pet");
             recipe.AddIngredient(calamity.ItemType("DaedalusBreastplate"));
             recipe.AddIngredient(calamity.ItemType("DaedalusLeggings"));
             recipe.AddIngredient(calamity.ItemType("PermafrostsConcoction"));
+            recipe.AddIngredient(calamity.ItemType("Regenator"));
             recipe.AddIngredient(calamity.ItemType("Cryophobia"));
             recipe.AddIngredient(calamity.ItemType("Roxcalibur"));
             recipe.AddIngredient(calamity.ItemType("CrystalBlade"));
-            recipe.AddIngredient(calamity.ItemType("CrystalFlareStaff"));
             recipe.AddIngredient(calamity.ItemType("KelvinCatalyst"));
             recipe.AddIngredient(calamity.ItemType("SlagMagnum"));
             recipe.AddIngredient(calamity.ItemType("Arbalest"));

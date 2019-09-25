@@ -165,6 +165,9 @@ namespace FargowiltasSouls
         public bool FeralFurEnchant;
         public bool BulbEnchant;
         public bool MixTape;
+        public bool ConduitEnchant;
+        public bool DragonEnchant;
+        public bool FleshEnchant;
 
         public bool ThoriumSoul;
 
@@ -510,6 +513,9 @@ namespace FargowiltasSouls
             FeralFurEnchant = false;
             BulbEnchant = false;
             MixTape = false;
+            ConduitEnchant = false;
+            DragonEnchant = false;
+            FleshEnchant = false;
 
             ThoriumSoul = false;
 
@@ -1327,7 +1333,7 @@ namespace FargowiltasSouls
 
         private void ThoriumPostUpdate()
         {
-            if (SpiritForce && player.ownedProjectileCounts[thorium.ProjectileType("SpiritTrapperSpirit")] >= 5)
+            if (SpiritTrapperEnchant && player.ownedProjectileCounts[thorium.ProjectileType("SpiritTrapperSpirit")] >= 5)
             {
                 player.statLife += 10;
                 player.HealEffect(10, true);
@@ -2151,7 +2157,7 @@ namespace FargowiltasSouls
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, proj.owner, 0f, 0f);
             }
 
-            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps") && !proj.minion)
             {
                 if (target.life < 0 && target.value > 0f)
                 {
@@ -2602,7 +2608,7 @@ namespace FargowiltasSouls
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, player.whoAmI, 0f, 0f);
             }
 
-            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps") && !item.summon)
             {
                 if (target.life < 0 && target.value > 0f)
                 {

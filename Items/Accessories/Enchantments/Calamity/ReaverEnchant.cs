@@ -82,7 +82,7 @@ Effects of Fabled Tortoise Shell");
                     }
                     if (player.ownedProjectileCounts[calamity.ProjectileType("ReaverOrb")] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ReaverOrb"), 0, 0f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("ReaverOrb"), (int)(80f * player.minionDamage), 0f, Main.myPlayer, 0f, 0f);
                     }
                 }
             }

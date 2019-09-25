@@ -88,7 +88,7 @@ Summons a Levi pet");
                     }
                     if (player.ownedProjectileCounts[calamity.ProjectileType("RedDevil")] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("RedDevil"), 0, 0f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("RedDevil"), 10000, 0f, Main.myPlayer, 0f, 0f);
                     }
                 }
             }

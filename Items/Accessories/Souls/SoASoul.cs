@@ -59,7 +59,7 @@ Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.CalamityLoaded) return;
+            if (!Fargowiltas.Instance.SOALoaded) return;
 
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();

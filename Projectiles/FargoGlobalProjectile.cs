@@ -927,7 +927,7 @@ namespace FargowiltasSouls.Projectiles
 
                 #region thorium pets
                 case 1:
-                    KillPet(projectile, player, thorium.BuffType("Identified"), modPlayer.MeteorEnchant, "I.F.O. Pet");
+                    KillPet(projectile, player, thorium.BuffType("Identified"), modPlayer.ConduitEnchant, "I.F.O. Pet");
                     break;
 
                 case 2:
@@ -935,11 +935,11 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case 3:
-                    KillPet(projectile, player, thorium.BuffType("BlisterBuff"), modPlayer.CrimsonEnchant, "Blister Pet");
+                    KillPet(projectile, player, thorium.BuffType("BlisterBuff"), modPlayer.FleshEnchant, "Blister Pet");
                     break;
 
                 case 4:
-                    KillPet(projectile, player, thorium.BuffType("WyvernPetBuff"), modPlayer.ShadowEnchant, "Wyvern Pet");
+                    KillPet(projectile, player, thorium.BuffType("WyvernPetBuff"), modPlayer.DragonEnchant, "Wyvern Pet");
                     break;
 
                 case 5:

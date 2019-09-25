@@ -54,7 +54,7 @@ Summons a pet Flying Blister");
             thoriumPlayer.vampireGland = true;
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
-            thoriumPlayer.blisterPet = true;
+            modPlayer.FleshEnchant = true;
         }
         
         private readonly string[] items =

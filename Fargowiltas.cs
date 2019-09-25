@@ -852,7 +852,7 @@ namespace FargowiltasSouls
             "WarlockEnchant",
             "DreadEnchant",
             "ThoriumEnchant",
-            "DenmonBloodEnchant",
+            "DemonBloodEnchant",
             "WarlockEnchant",
             "SacredEnchant",
             "LivingWoodEnchant",
