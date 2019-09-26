@@ -10775,7 +10775,10 @@ namespace FargowiltasSouls.NPCs
 
         private void LoadSprites(NPC npc)
         {
-            /*bool recolor = SoulConfig.Instance.masoTogDict.ContainsKey("Boss Recolors (Restart to use)") && !SoulConfig.Instance.masoTogDict["Boss Recolors (Restart to use)"] && FargoSoulsWorld.MasochistMode;
+            if (Main.dedServ || Main.netMode == 2)
+                return;
+
+            bool recolor = SoulConfig.Instance.masoTogDict.ContainsKey("Boss Recolors (Restart to use)") && !SoulConfig.Instance.masoTogDict["Boss Recolors (Restart to use)"] && FargoSoulsWorld.MasochistMode;
             if (recolor || Fargowiltas.Instance.LoadedNewSprites)
             {
                 Fargowiltas.Instance.LoadedNewSprites = true;
@@ -10929,7 +10932,7 @@ namespace FargowiltasSouls.NPCs
                     default:
                         break;
                 }
-            }*/
+            }
         }
     }
 }
