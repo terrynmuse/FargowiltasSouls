@@ -84,6 +84,8 @@ namespace FargowiltasSouls.NPCs
         public static bool spawnFishronEX;
         public static int mutantBoss = -1;
 
+        public static bool Revengeance => CalamityMod.World.CalamityWorld.revenge;
+
         public override void ResetEffects(NPC npc)
         {
             TimeFrozen = false;
@@ -3799,6 +3801,14 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
+                        if (Fargowiltas.Instance.CalamityLoaded && Revengeance)
+                        {
+                            if (masoBool[1])
+                                npc.dontTakeDamage = false;
+                            else
+                                masoBool[1] = !NPC.AnyNPCs(NPCID.GolemHead);
+                        }
+
                         if (!npc.dontTakeDamage)
                         {
                             Counter2++; //attack faster!
@@ -3871,18 +3881,16 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.GolemHead:
-                        if (!npc.dontTakeDamage)
-                        {
-                            npc.life += 5;
-                            if (npc.life > npc.lifeMax)
-                                npc.life = npc.lifeMax;
+                        npc.dontTakeDamage = false;
+                        npc.life += 5;
+                        if (npc.life > npc.lifeMax)
+                            npc.life = npc.lifeMax;
 
-                            Timer++;
-                            if (Timer >= 75)
-                            {
-                                Timer = Main.rand.Next(30);
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 300);
-                            }
+                        Timer++;
+                        if (Timer >= 75)
+                        {
+                            Timer = Main.rand.Next(30);
+                            CombatText.NewText(npc.Hitbox, CombatText.HealLife, 300);
                         }
                         break;
 
@@ -4312,11 +4320,12 @@ namespace FargowiltasSouls.NPCs
                                 npc.position += npc.velocity / 3f;
                             }
 
-                            if (npc.ai[3] >= 0f) //spawn 4 more limbs
+                            if (!masoBool[1] && npc.ai[3] >= 0f) //spawn 4 more limbs
                             {
                                 npc.ai[3]++;
                                 if (npc.ai[3] >= 180f)
                                 {
+                                    masoBool[1] = true;
                                     npc.ai[3] = -1f;
                                     npc.netUpdate = true;
                                     if (Main.netMode != 1)
@@ -4815,7 +4824,7 @@ namespace FargowiltasSouls.NPCs
                                 masoBool[0] = true;
                                 if (Main.netMode != 1)
                                 {
-                                    bool recolor = SoulConfig.Instance.masoTogDict.ContainsKey("Boss Recolors (Restart to use)") && !SoulConfig.Instance.masoTogDict["Boss Recolors (Restart to use)"] && FargoSoulsWorld.MasochistMode;
+                                    bool recolor = SoulConfig.Instance.masoTogDict.ContainsKey("Boss Recolors (Restart to use)") && SoulConfig.Instance.masoTogDict["Boss Recolors (Restart to use)"] && FargoSoulsWorld.MasochistMode;
                                     int type = recolor ? mod.NPCType("BrainIllusion2") : mod.NPCType("BrainIllusion");
                                     int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, type, npc.whoAmI, npc.whoAmI, -1, 1);
                                     if (n != 200 && Main.netMode == 2)
@@ -5037,7 +5046,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (masoBool[1])
                                 npc.position += npc.velocity / 4;
-                            npc.dontTakeDamage = true;
+                            npc.dontTakeDamage = !(Fargowiltas.Instance.CalamityLoaded && Revengeance);
                         }
                         break;
 
@@ -8846,7 +8855,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.ThornsPotion, Main.rand.Next(10) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, Main.netMode == 0 ? ItemID.TeleportationPotion : ItemID.WormholePotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.LifeCrystal, Main.rand.Next(3) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("AgitatingLens"));
                         break;
@@ -9079,7 +9088,7 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            if (Fargowiltas.Instance.CalamityLoaded && FargoSoulsWorld.MasochistMode)
+            /*if (Fargowiltas.Instance.CalamityLoaded && FargoSoulsWorld.MasochistMode)
             {
                 Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -9087,7 +9096,7 @@ namespace FargowiltasSouls.NPCs
                 {
                     Item.NewItem(npc.Hitbox, calamity.ItemType("CosmicPlushie"));
                 }
-            }
+            }*/
         }
 
         public override bool CheckDead(NPC npc)
