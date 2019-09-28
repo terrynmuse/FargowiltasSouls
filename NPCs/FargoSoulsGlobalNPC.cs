@@ -9049,7 +9049,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.WallofFlesh:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("SlimeKingsSlasher"));
+                        Item.NewItem(npc.position, npc.Size, mod.ItemType("FleshHand"));
                         break;
 
                     case NPCID.TheDestroyer:
