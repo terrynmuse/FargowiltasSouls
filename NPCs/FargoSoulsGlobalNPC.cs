@@ -1498,7 +1498,8 @@ namespace FargowiltasSouls.NPCs
                                 Counter2 = 30;
                                 masoBool[0] = false;
                                 if (Main.netMode != 1)
-                                    FargoGlobalProjectile.XWay(6, npc.Center, mod.ProjectileType("BloodScythe"), 1.5f, npc.damage / 4, 1f);
+                                    for (int i = 0; i < 8; i++)
+                                        Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 4 * i), mod.ProjectileType("BloodScythe"), npc.damage / 4, 0f, Main.myPlayer);
                             }
                             /*if (++Timer > 600)
                             {
