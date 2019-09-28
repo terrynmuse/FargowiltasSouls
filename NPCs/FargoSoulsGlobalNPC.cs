@@ -8578,6 +8578,8 @@ namespace FargowiltasSouls.NPCs
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
+            LoadSprites(npc);
+
             if (modPlayer.PlatinumEnchant && !npc.boss && firstLoot)
             {
                 bool midas = npc.HasBuff(BuffID.Midas);
@@ -10790,185 +10792,12 @@ namespace FargowiltasSouls.NPCs
 
         private void LoadSprites(NPC npc)
         {
-            
-
             if (Main.dedServ || Main.netMode == 2)
                 return;
 
             bool recolor = SoulConfig.Instance.masoTogDict.ContainsKey("Boss Recolors (Restart to use)") && SoulConfig.Instance.masoTogDict["Boss Recolors (Restart to use)"] && FargoSoulsWorld.MasochistMode;
             if (recolor || Fargowiltas.Instance.LoadedNewSprites)
             {
-
-                //doesnt work in the switch for some reason so here we go ! :ech:
-
-                //EoC
-                if (NPC.AnyNPCs(NPCID.EyeofCthulhu))
-                {
-                    Main.goreTexture[6] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_6");
-                    Main.goreTexture[7] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_7");
-                    Main.goreTexture[8] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_8");
-                    Main.goreTexture[9] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_9");
-                    Main.goreTexture[10] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_10");
-                }
-
-                //EoW
-                if (NPC.AnyNPCs(NPCID.EaterofWorldsHead))
-                {
-                    Main.goreTexture[14] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_14");
-                    Main.goreTexture[15] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_15");
-                    Main.goreTexture[24] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_24");
-                    Main.goreTexture[25] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_25");
-                    Main.goreTexture[26] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_26");
-                    Main.goreTexture[27] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_27");
-                    Main.goreTexture[28] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_28");
-                    Main.goreTexture[29] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_29");
-                }
-
-                //skeletron
-                if (NPC.AnyNPCs(NPCID.SkeletronHead))
-                {
-                    Main.goreTexture[54] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_54");
-                    Main.goreTexture[55] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_55");
-                    Main.goreTexture[56] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_56");
-                    Main.goreTexture[57] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_57");
-                }
-
-                //Wof
-                if (NPC.AnyNPCs(NPCID.WallofFlesh))
-                {
-                    Main.goreTexture[132] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_132");
-                    Main.goreTexture[133] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_133");
-                    Main.goreTexture[134] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_134");
-                    Main.goreTexture[135] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_135");
-                    Main.goreTexture[136] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_136");
-                    Main.goreTexture[137] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_137");
-                    Main.goreTexture[138] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_138");
-                    Main.goreTexture[139] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_139");
-                    Main.goreTexture[140] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_140");
-                    Main.goreTexture[141] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_141");
-                    Main.goreTexture[142] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_142");
-                }
-
-                //twins
-                if (NPC.AnyNPCs(NPCID.Retinazer) || NPC.AnyNPCs(NPCID.Spazmatism))
-                {
-                    Main.goreTexture[143] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_143");
-                    Main.goreTexture[144] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_144");
-                    Main.goreTexture[145] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_145");
-                    Main.goreTexture[146] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_146");
-                }
-
-                //prime
-                if (NPC.AnyNPCs(NPCID.SkeletronPrime))
-                {
-                    Main.goreTexture[147] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_147");
-                    Main.goreTexture[148] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_148");
-                    Main.goreTexture[149] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_149");
-                    Main.goreTexture[150] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_150");
-                }
-
-                //destroyer
-                if (NPC.AnyNPCs(NPCID.TheDestroyer))
-                {
-                    Main.goreTexture[156] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_156");
-                }
-
-                //QB
-                if (NPC.AnyNPCs(NPCID.QueenBee))
-                {
-                    Main.goreTexture[303] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_303");
-                    Main.goreTexture[304] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_304");
-                    Main.goreTexture[305] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_305");
-                    Main.goreTexture[306] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_306");
-                    Main.goreTexture[307] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_307");
-                    Main.goreTexture[308] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_308");
-                }
-
-                //Golem
-                if (NPC.AnyNPCs(NPCID.Golem))
-                {
-                    Main.goreTexture[360] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_360");
-                    Main.goreTexture[361] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_361");
-                    Main.goreTexture[362] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_362");
-                    Main.goreTexture[363] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_363");
-                    Main.goreTexture[364] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_364");
-                    Main.goreTexture[365] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_365");
-                    Main.goreTexture[366] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_366");
-                    Main.goreTexture[367] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_367");
-                    Main.goreTexture[368] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_368");
-                    Main.goreTexture[369] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_369");
-                    Main.goreTexture[370] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_370");
-                }
-
-                //plantera
-                if (NPC.AnyNPCs(NPCID.Plantera))
-                {
-                    Main.goreTexture[378] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_378");
-                    Main.goreTexture[379] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_379");
-                    Main.goreTexture[380] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_380");
-                    Main.goreTexture[381] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_381");
-                    Main.goreTexture[382] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_382");
-                    Main.goreTexture[383] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_383");
-                    Main.goreTexture[384] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_384");
-                    Main.goreTexture[385] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_385");
-                    Main.goreTexture[386] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_386");
-                    Main.goreTexture[387] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_387");
-                    Main.goreTexture[388] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_388");
-                    Main.goreTexture[389] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_389");
-                    Main.goreTexture[390] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_390");
-                    Main.goreTexture[391] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_391");
-                }
-
-                //BoC
-                if (NPC.AnyNPCs(NPCID.BrainofCthulhu))
-                {
-                    Main.goreTexture[392] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_392");
-                    Main.goreTexture[393] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_393");
-                    Main.goreTexture[394] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_394");
-                    Main.goreTexture[395] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_395");
-                    Main.goreTexture[396] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_396");
-                    Main.goreTexture[397] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_397");
-                    Main.goreTexture[398] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_398");
-                    Main.goreTexture[399] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_399");
-                    Main.goreTexture[400] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_400");
-                    Main.goreTexture[401] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_401");
-                    Main.goreTexture[402] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_402");
-                }
-
-                //duke Fishron
-                if (NPC.AnyNPCs(NPCID.DukeFishron))
-                {
-                    Main.goreTexture[573] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_573");
-                    Main.goreTexture[574] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_574");
-                    Main.goreTexture[575] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_575");
-                    Main.goreTexture[576] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_576");
-                    Main.goreTexture[577] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_577");
-                    Main.goreTexture[578] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_578");
-                    Main.goreTexture[579] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_579");
-                }
-
-                //king slime
-                if (NPC.AnyNPCs(NPCID.KingSlime))
-                {
-                    Main.goreTexture[734] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_734");
-                }
-
-                //cultist
-                if (NPC.AnyNPCs(NPCID.CultistBoss))
-                {
-                    Main.goreTexture[902] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_902");
-                    Main.goreTexture[903] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_903");
-                }
-
-                //moon lord
-                if (NPC.AnyNPCs(NPCID.MoonLordCore))
-                {
-                    Main.goreTexture[619] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_619");
-                    Main.goreTexture[620] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_620");
-                    Main.goreTexture[621] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_621");
-                    Main.goreTexture[622] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_622");
-                }
-
                 Fargowiltas.Instance.LoadedNewSprites = true;
                 switch (npc.type)
                 {
@@ -11012,33 +10841,103 @@ namespace FargowiltasSouls.NPCs
                         Main.extraTexture[39] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_39" : "NPCs/Vanilla/Extra_39");
                         Main.ninjaTexture = mod.GetTexture(recolor ? "NPCs/Resprites/Ninja" : "NPCs/Vanilla/Ninja");
                         Main.npcHeadBossTexture[7] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_7");
+                        Main.goreTexture[734] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_734");
+                        Main.goreLoaded[734] = true;
                         break;
 
                     case NPCID.EyeofCthulhu:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.npcHeadBossTexture[0] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_0");
                         Main.npcHeadBossTexture[1] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_1");
+                        Main.goreTexture[6] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_6");
+                        Main.goreTexture[7] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_7");
+                        Main.goreTexture[8] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_8");
+                        Main.goreTexture[9] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_9");
+                        Main.goreTexture[10] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_10");
+                        Main.goreLoaded[6] = true;
+                        Main.goreLoaded[7] = true;
+                        Main.goreLoaded[8] = true;
+                        Main.goreLoaded[9] = true;
+                        Main.goreLoaded[10] = true;
                         break;
 
                     case NPCID.EaterofWorldsHead:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.npcHeadBossTexture[2] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_2");
+                        //Main.goreTexture[14] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_14");
+                        //Main.goreTexture[15] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_15");
+                        Main.goreTexture[24] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_24");
+                        Main.goreTexture[25] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_25");
+                        Main.goreTexture[26] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_26");
+                        Main.goreTexture[27] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_27");
+                        Main.goreTexture[28] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_28");
+                        Main.goreTexture[29] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_29");
+                        //Main.goreLoaded[14] = true;
+                        //Main.goreLoaded[15] = true;
+                        Main.goreLoaded[24] = true;
+                        Main.goreLoaded[25] = true;
+                        Main.goreLoaded[26] = true;
+                        Main.goreLoaded[27] = true;
+                        Main.goreLoaded[28] = true;
+                        Main.goreLoaded[29] = true;
                         break;
 
                     case NPCID.BrainofCthulhu:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.npcHeadBossTexture[23] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_23");
+                        Main.goreTexture[392] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_392");
+                        Main.goreTexture[393] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_393");
+                        Main.goreTexture[394] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_394");
+                        Main.goreTexture[395] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_395");
+                        Main.goreTexture[396] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_396");
+                        Main.goreTexture[397] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_397");
+                        Main.goreTexture[398] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_398");
+                        Main.goreTexture[399] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_399");
+                        Main.goreTexture[400] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_400");
+                        Main.goreTexture[401] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_401");
+                        Main.goreTexture[402] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_402");
+                        Main.goreLoaded[392] = true;
+                        Main.goreLoaded[393] = true;
+                        Main.goreLoaded[394] = true;
+                        Main.goreLoaded[395] = true;
+                        Main.goreLoaded[396] = true;
+                        Main.goreLoaded[397] = true;
+                        Main.goreLoaded[398] = true;
+                        Main.goreLoaded[399] = true;
+                        Main.goreLoaded[400] = true;
+                        Main.goreLoaded[401] = true;
+                        Main.goreLoaded[402] = true;
                         break;
 
                     case NPCID.QueenBee:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.npcHeadBossTexture[14] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_14");
+                        Main.goreTexture[303] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_303");
+                        Main.goreTexture[304] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_304");
+                        Main.goreTexture[305] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_305");
+                        Main.goreTexture[306] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_306");
+                        Main.goreTexture[307] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_307");
+                        Main.goreTexture[308] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_308");
+                        Main.goreLoaded[303] = true;
+                        Main.goreLoaded[304] = true;
+                        Main.goreLoaded[305] = true;
+                        Main.goreLoaded[306] = true;
+                        Main.goreLoaded[307] = true;
+                        Main.goreLoaded[308] = true;
                         break;
 
                     case NPCID.SkeletronHead:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.boneArmTexture = mod.GetTexture(recolor ? "NPCs/Resprites/Arm_Bone" : "NPCs/Vanilla/Arm_Bone");
                         Main.npcHeadBossTexture[19] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_19");
+                        Main.goreTexture[54] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_54");
+                        Main.goreTexture[55] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_55");
+                        Main.goreTexture[56] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_56");
+                        Main.goreTexture[57] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_57");
+                        Main.goreLoaded[54] = true;
+                        Main.goreLoaded[55] = true;
+                        Main.goreLoaded[56] = true;
+                        Main.goreLoaded[57] = true;
                         break;
 
                     case NPCID.WallofFlesh:
@@ -11046,29 +10945,77 @@ namespace FargowiltasSouls.NPCs
                         Main.chain12Texture = mod.GetTexture(recolor ? "NPCs/Resprites/Chain12" : "NPCs/Vanilla/Chain12");
                         Main.wofTexture = mod.GetTexture(recolor ? "NPCs/Resprites/WallOfFlesh" : "NPCs/Vanilla/WallOfFlesh");
                         Main.npcHeadBossTexture[22] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_22");
+                        Main.goreTexture[132] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_132");
+                        Main.goreTexture[133] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_133");
+                        Main.goreTexture[134] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_134");
+                        Main.goreTexture[135] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_135");
+                        Main.goreTexture[136] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_136");
+                        Main.goreTexture[137] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_137");
+                        Main.goreTexture[138] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_138");
+                        Main.goreTexture[139] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_139");
+                        Main.goreTexture[140] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_140");
+                        Main.goreTexture[141] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_141");
+                        Main.goreTexture[142] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_142");
+                        Main.goreLoaded[132] = true;
+                        Main.goreLoaded[133] = true;
+                        Main.goreLoaded[134] = true;
+                        Main.goreLoaded[135] = true;
+                        Main.goreLoaded[136] = true;
+                        Main.goreLoaded[137] = true;
+                        Main.goreLoaded[138] = true;
+                        Main.goreLoaded[139] = true;
+                        Main.goreLoaded[140] = true;
+                        Main.goreLoaded[141] = true;
+                        Main.goreLoaded[142] = true;
                         break;
 
                     case NPCID.TheDestroyer:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.npcHeadBossTexture[25] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_25");
+                        Main.goreTexture[156] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_156");
+                        Main.goreLoaded[156] = true;
                         break;
 
                     case NPCID.Retinazer:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.npcHeadBossTexture[15] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_15");
                         Main.npcHeadBossTexture[20] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_16");
+                        Main.goreTexture[143] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_143");
+                        Main.goreTexture[144] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_144");
+                        Main.goreTexture[145] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_145");
+                        Main.goreTexture[146] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_146");
+                        Main.goreLoaded[142] = true;
+                        Main.goreLoaded[144] = true;
+                        Main.goreLoaded[145] = true;
+                        Main.goreLoaded[146] = true;
                         break;
 
                     case NPCID.Spazmatism:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.npcHeadBossTexture[16] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_20");
                         Main.npcHeadBossTexture[21] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_21");
+                        Main.goreTexture[143] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_143");
+                        Main.goreTexture[144] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_144");
+                        Main.goreTexture[145] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_145");
+                        Main.goreTexture[146] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_146");
+                        Main.goreLoaded[142] = true;
+                        Main.goreLoaded[144] = true;
+                        Main.goreLoaded[145] = true;
+                        Main.goreLoaded[146] = true;
                         break;
 
                     case NPCID.SkeletronPrime:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.boneArm2Texture = mod.GetTexture(recolor ? "NPCs/Resprites/Arm_Bone_2" : "NPCs/Vanilla/Arm_Bone_2");
                         Main.npcHeadBossTexture[18] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_18");
+                        Main.goreTexture[147] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_147");
+                        Main.goreTexture[148] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_148");
+                        Main.goreTexture[149] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_149");
+                        Main.goreTexture[150] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_150");
+                        Main.goreLoaded[147] = true;
+                        Main.goreLoaded[148] = true;
+                        Main.goreLoaded[149] = true;
+                        Main.goreLoaded[150] = true;
                         break;
 
                     case NPCID.Plantera:
@@ -11077,6 +11024,34 @@ namespace FargowiltasSouls.NPCs
                         Main.chain27Texture = mod.GetTexture(recolor ? "NPCs/Resprites/Chain26" : "NPCs/Vanilla/Chain27");
                         Main.npcHeadBossTexture[11] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_11");
                         Main.npcHeadBossTexture[12] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_12");
+                        Main.goreTexture[378] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_378");
+                        Main.goreTexture[379] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_379");
+                        Main.goreTexture[380] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_380");
+                        Main.goreTexture[381] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_381");
+                        Main.goreTexture[382] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_382");
+                        Main.goreTexture[383] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_383");
+                        Main.goreTexture[384] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_384");
+                        Main.goreTexture[385] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_385");
+                        Main.goreTexture[386] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_386");
+                        Main.goreTexture[387] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_387");
+                        Main.goreTexture[388] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_388");
+                        Main.goreTexture[389] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_389");
+                        Main.goreTexture[390] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_390");
+                        Main.goreTexture[391] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_391");
+                        Main.goreLoaded[378] = true;
+                        Main.goreLoaded[379] = true;
+                        Main.goreLoaded[380] = true;
+                        Main.goreLoaded[381] = true;
+                        Main.goreLoaded[382] = true;
+                        Main.goreLoaded[383] = true;
+                        Main.goreLoaded[384] = true;
+                        Main.goreLoaded[385] = true;
+                        Main.goreLoaded[386] = true;
+                        Main.goreLoaded[387] = true;
+                        Main.goreLoaded[388] = true;
+                        Main.goreLoaded[389] = true;
+                        Main.goreLoaded[390] = true;
+                        Main.goreLoaded[391] = true;
                         break;
 
                     case NPCID.Golem:
@@ -11085,17 +11060,57 @@ namespace FargowiltasSouls.NPCs
                         Main.golemTexture[2] = mod.GetTexture(recolor ? "NPCs/Resprites/GolemLights2" : "NPCs/Vanilla/GolemLights2");
                         Main.golemTexture[3] = mod.GetTexture(recolor ? "NPCs/Resprites/GolemLights3" : "NPCs/Vanilla/GolemLights3");
                         Main.npcHeadBossTexture[5] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_5");
+                        Main.goreTexture[360] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_360");
+                        Main.goreTexture[361] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_361");
+                        Main.goreTexture[362] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_362");
+                        Main.goreTexture[363] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_363");
+                        Main.goreTexture[364] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_364");
+                        Main.goreTexture[365] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_365");
+                        Main.goreTexture[366] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_366");
+                        Main.goreTexture[367] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_367");
+                        Main.goreTexture[368] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_368");
+                        Main.goreTexture[369] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_369");
+                        Main.goreTexture[370] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_370");
+                        Main.goreLoaded[360] = true;
+                        Main.goreLoaded[361] = true;
+                        Main.goreLoaded[362] = true;
+                        Main.goreLoaded[363] = true;
+                        Main.goreLoaded[364] = true;
+                        Main.goreLoaded[365] = true;
+                        Main.goreLoaded[366] = true;
+                        Main.goreLoaded[367] = true;
+                        Main.goreLoaded[368] = true;
+                        Main.goreLoaded[369] = true;
+                        Main.goreLoaded[370] = true;
                         break;
 
                     case NPCID.DukeFishron:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.npcHeadBossTexture[4] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_4");
+                        Main.goreTexture[573] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_573");
+                        Main.goreTexture[574] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_574");
+                        Main.goreTexture[575] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_575");
+                        Main.goreTexture[576] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_576");
+                        Main.goreTexture[577] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_577");
+                        Main.goreTexture[578] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_578");
+                        Main.goreTexture[579] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_579");
+                        Main.goreLoaded[573] = true;
+                        Main.goreLoaded[574] = true;
+                        Main.goreLoaded[575] = true;
+                        Main.goreLoaded[576] = true;
+                        Main.goreLoaded[577] = true;
+                        Main.goreLoaded[578] = true;
+                        Main.goreLoaded[579] = true;
                         break;
 
                     case NPCID.CultistBoss:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.npcHeadBossTexture[24] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_24");
                         Main.npcHeadBossTexture[31] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_31");
+                        Main.goreTexture[902] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_902");
+                        Main.goreTexture[903] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_903");
+                        Main.goreLoaded[902] = true;
+                        Main.goreLoaded[903] = true;
                         break;
 
                     case NPCID.MoonLordCore:
@@ -11115,6 +11130,14 @@ namespace FargowiltasSouls.NPCs
                         Main.extraTexture[26] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_26" : "NPCs/Vanilla/Extra_26");
                         Main.extraTexture[29] = mod.GetTexture(recolor ? "NPCs/Resprites/Extra_29" : "NPCs/Vanilla/Extra_29");
                         Main.npcHeadBossTexture[8] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_Head_Boss_8");
+                        /*Main.goreTexture[619] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_619");
+                        Main.goreTexture[620] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_620");
+                        Main.goreTexture[621] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_621");
+                        Main.goreTexture[622] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_622");
+                        Main.goreLoaded[619] = true;
+                        Main.goreLoaded[620] = true;
+                        Main.goreLoaded[621] = true;
+                        Main.goreLoaded[622] = true;*/
                         break;
 
                     default:

@@ -1189,16 +1189,6 @@ namespace FargowiltasSouls
         {
             if (DebuffIDs != null)
                 DebuffIDs.Clear();
-
-            if (LoadedNewSprites)
-            {
-                Main.npcTexture[NPCID.SkeletronPrime] = GetTexture("NPCs/Vanilla/NPC_127");
-                Main.boneArm2Texture = GetTexture("NPCs/Vanilla/Arm_Bone_2");
-                Main.npcTexture[NPCID.PrimeCannon] = GetTexture("NPCs/Vanilla/NPC_128");
-                Main.npcTexture[NPCID.PrimeSaw] = GetTexture("NPCs/Vanilla/NPC_129");
-                Main.npcTexture[NPCID.PrimeVice] = GetTexture("NPCs/Vanilla/NPC_130");
-                Main.npcTexture[NPCID.PrimeLaser] = GetTexture("NPCs/Vanilla/NPC_131");
-            }
         }
 
         public override object Call(params object[] args)
