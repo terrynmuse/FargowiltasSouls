@@ -71,6 +71,7 @@ Summons a pet Omega and I.F.O.");
             //pets
             //modPlayer.AddPet("Omega Pet", hideVisual, thorium.BuffType("OmegaBuff"), thorium.ProjectileType("Omega"));
             modPlayer.AddPet("I.F.O. Pet", hideVisual, thorium.BuffType("Identified"), thorium.ProjectileType("IFO"));
+            modPlayer.ConduitEnchant = true;
         }
 
         public override void AddRecipes()

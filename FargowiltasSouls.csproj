@@ -11,6 +11,9 @@
     <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define $(DefineConstants) -unsafe $(AllowUnsafeBlocks)" />
   </Target>
   <ItemGroup>
+    <Reference Include="CalamityMod">
+      <HintPath>..\folder for wip\Calamity\CalamityMod.dll</HintPath>
+    </Reference>
     <Reference Include="SacredTools">
       <HintPath>..\folder for wip\SacredTools\SacredTools.dll</HintPath>
     </Reference>

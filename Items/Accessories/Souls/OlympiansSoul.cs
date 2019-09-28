@@ -95,11 +95,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         private void Calamity(Player player)
         {
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            modPlayer.nanotech = true;
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += 0.3f;
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += 15;
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingVelocity += 0.15f;
+            player.GetCalamityPlayer().nanotech = true;
+            player.GetCalamityPlayer().throwingDamage += 0.3f;
+            player.GetCalamityPlayer().throwingCrit += 15;
+            player.GetCalamityPlayer().throwingVelocity += 0.15f;
         }
 
         public override void AddRecipes()

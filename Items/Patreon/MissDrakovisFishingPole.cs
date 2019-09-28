@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
+using FargowiltasSouls.Projectiles;
 
 namespace FargowiltasSouls.Items.Patreon
 {
@@ -21,11 +22,10 @@ namespace FargowiltasSouls.Items.Patreon
         }
 
         /*
-Melee: The Sprite of the Rod swings down whacking anyone targeted by it and in close enough range with a Puffer Fish
+Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets. Works like a shot gun.
 Magic: The Rod points outward much like a Staff and shoots a series of bubbles that explode into water like projectiles that break on collision.
 Summon: The Rod is held up and a Fish who's place holder will be the Zephyr Fish but colored differently will be summoned, this fish shoots a stream from its mouth that does damage to enemies and acts almost like golden shower does.
 Throwing: The rod is swung forward sending out multiple lures that may or may not either attach to enemies or land on the ground acting as spike balls.
-Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets. Works like a shot gun.
 */
 
 
@@ -46,29 +46,9 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
             return true;
         }
 
-        public override bool UseItem(Player player)
-        {
-            //right click
-            if (player.altFunctionUse == 2)
-            {
-                Main.NewText("Hi " + mode);
-
-                mode++;
-
-                if (mode > 5)
-                {
-                    mode = 1;
-                }
-
-                SetUpItem();
-            }
-
-            return true;
-        }
-
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            /*//right click
+            //right click
             if (player.altFunctionUse == 2)
             {
                 mode++;
@@ -83,12 +63,13 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
                 Main.NewText("Hi " + mode);
 
                 return false;
-            }*/
+            }
 
             switch (mode)
             {
                 //melee
                 case 1:
+                    return true;
                     break;
                 //range
                 case 2:
@@ -97,24 +78,21 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
                     {
                         float num131 = (float)Main.mouseX + Main.screenPosition.X - position.X;
                         float num132 = (float)Main.mouseY + Main.screenPosition.Y - position.Y;
-                        num131 += (float)Main.rand.Next(-40, 41) * 0.05f;
-                        num132 += (float)Main.rand.Next(-40, 41) * 0.05f;
+                        num131 += (float)Main.rand.Next(-40, 41) * 0.2f;
+                        num132 += (float)Main.rand.Next(-40, 41) * 0.2f;
                         Projectile.NewProjectile(position, new Vector2(num131, num132), ProjectileID.Bullet, damage, knockBack, player.whoAmI);
                     }
                     break;
                 //magic
                 case 3:
-                    for (int num178 = 0; num178 < 3; num178++)
-                    {
-                        float num179 = (float)Main.mouseX + Main.screenPosition.X - position.X;
-                        float num180 = (float)Main.mouseY + Main.screenPosition.Y - position.Y;
-                        num179 += (float)Main.rand.Next(-40, 41) * 0.1f;
-                        num180 += (float)Main.rand.Next(-40, 41) * 0.1f;
-                        Projectile.NewProjectile(position, new Vector2(num179, num180), ProjectileID.Bubble, damage, knockBack, player.whoAmI);
-                    }
+                    int p = Projectile.NewProjectile(position, new Vector2(speedX, speedY), mod.ProjectileType("Bubble"), damage, knockBack, player.whoAmI);
+
+                    FargoGlobalProjectile.SplitProj(Main.projectile[p], 5);
+
                     break;
                 //summon
                 case 4:
+                    Projectile.NewProjectile(position, new Vector2(speedX, speedY), mod.ProjectileType("FishMinion"), damage, knockBack, player.whoAmI);
                     break;
                 //throwing
                 default:
@@ -143,7 +121,8 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
                     item.UseSound = SoundID.Item1;
                     item.knockBack = 6;
                     item.noMelee = false;
-                    item.shoot = 0;
+                    item.shoot = mod.ProjectileType("PufferRang");
+                    item.shootSpeed = 4f;
                     break;
                 //range
                 case 2:
@@ -163,15 +142,18 @@ Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets.
                 case 3:
                     item.magic = true;
                     item.mana = 15;
+                    item.shoot = 10;
 
                     break;
                 //minion
                 case 4:
                     item.summon = true;
+                    item.shoot = 10;
                     break;
                 //throwing
                 case 5:
                     item.thrown = true;
+                    item.shoot = 10;
                     break;
             }
 

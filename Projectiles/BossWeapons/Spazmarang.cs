@@ -36,12 +36,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
 
                 for (int i = 0; i < 4; i++)
                 {
-                    int p = Projectile.NewProjectile(projectile.Center, velocity[i], ProjectileID.EyeFire, projectile.damage / 2, 0, projectile.owner);
-                    if (p < 1000)
-                    {
-                        Main.projectile[p].hostile = false;
-                        Main.projectile[p].friendly = true;
-                    }
+                    int p = Projectile.NewProjectile(projectile.Center, velocity[i], mod.ProjectileType("EyeFireFriendly"), projectile.damage / 2, 0, projectile.owner);
                 }
 
                 counter = 0;

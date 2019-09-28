@@ -15,7 +15,7 @@ namespace FargowiltasSouls.Items.Misc
 			DisplayName.SetDefault("Sadism");
             Tooltip.SetDefault(@"'Proof of having embraced suffering'
 Grants immunity to almost all Masochist Mode debuffs");
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 3));
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 10));
             DisplayName.AddTranslation(GameCulture.Chinese, "施虐狂");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'受苦的证明'

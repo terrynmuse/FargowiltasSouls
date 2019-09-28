@@ -14,6 +14,7 @@ using FargowiltasSouls.NPCs;
 using FargowiltasSouls.Projectiles;
 using ThoriumMod;
 using CalamityMod.Items.CalamityCustomThrowingDamage;
+using CalamityMod;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -165,6 +166,9 @@ namespace FargowiltasSouls
         public bool FeralFurEnchant;
         public bool BulbEnchant;
         public bool MixTape;
+        public bool ConduitEnchant;
+        public bool DragonEnchant;
+        public bool FleshEnchant;
 
         public bool ThoriumSoul;
 
@@ -510,6 +514,9 @@ namespace FargowiltasSouls
             FeralFurEnchant = false;
             BulbEnchant = false;
             MixTape = false;
+            ConduitEnchant = false;
+            DragonEnchant = false;
+            FleshEnchant = false;
 
             ThoriumSoul = false;
 
@@ -676,6 +683,7 @@ namespace FargowiltasSouls
 
         public override void PreUpdate()
         {
+
             if (HurtTimer > 0)
                 HurtTimer--;
 
@@ -959,8 +967,6 @@ namespace FargowiltasSouls
 
                 if (player.ownedProjectileCounts[mod.ProjectileType("GoldShellProj")] <= 0)
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("GoldShellProj"), 0, 0, Main.myPlayer);
-
-                //AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
             }
 
             if (CobaltEnchant && CobaltCD > 0)
@@ -993,6 +999,8 @@ namespace FargowiltasSouls
                             if (GroundPound > 15 && x >= 0 && x < Main.maxTilesX && y >= 0 && y < Main.maxTilesY
                                 && Main.tile[x, y] != null && Main.tile[x, y].nactive() && Main.tileSolid[Main.tile[x, y].type])
                             {
+                                GroundPound = 0;
+
                                 int baseDamage = 80;
                                 if (MasochistSoul)
                                     baseDamage *= 2;
@@ -1016,7 +1024,7 @@ namespace FargowiltasSouls
                                 }
                             }
                         }
-                        GroundPound = 0;
+                        
                     }
                     else
                     {
@@ -1327,7 +1335,7 @@ namespace FargowiltasSouls
 
         private void ThoriumPostUpdate()
         {
-            if (SpiritForce && player.ownedProjectileCounts[thorium.ProjectileType("SpiritTrapperSpirit")] >= 5)
+            if (SpiritTrapperEnchant && player.ownedProjectileCounts[thorium.ProjectileType("SpiritTrapperSpirit")] >= 5)
             {
                 player.statLife += 10;
                 player.HealEffect(10, true);
@@ -2151,7 +2159,7 @@ namespace FargowiltasSouls
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, proj.owner, 0f, 0f);
             }
 
-            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps") && !proj.minion)
             {
                 if (target.life < 0 && target.value > 0f)
                 {
@@ -2164,7 +2172,7 @@ namespace FargowiltasSouls
             }
 
             //tide hunter
-            if (TideHunterEnchant && SoulConfig.Instance.GetValue("Depth Diver Foam") && crit)
+            if (TideHunterEnchant && SoulConfig.Instance.GetValue("Tide Hunter Foam") && crit)
             {
                 for (int n = 0; n < 10; n++)
                 {
@@ -2602,7 +2610,7 @@ namespace FargowiltasSouls
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, thorium.ProjectileType("BloomCloudDamage"), (int)(10f * player.magicDamage), 0f, player.whoAmI, 0f, 0f);
             }
 
-            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps"))
+            if (SpiritTrapperEnchant && SoulConfig.Instance.GetValue("Spirit Trapper Wisps") && !item.summon)
             {
                 if (target.life < 0 && target.value > 0f)
                 {
@@ -2751,10 +2759,10 @@ namespace FargowiltasSouls
             {
                 int dmg = NatureForce ? 100 : 30;
                 Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 62);
-                Projectile[] projs2 = FargoGlobalProjectile.XWay(10, player.Center, mod.ProjectileType("SporeBoom"), 3f, dmg, 0f);
+                Projectile[] projs2 = FargoGlobalProjectile.XWay(10, player.Center, mod.ProjectileType("SporeBoom"), 3f, HighestDamageTypeScaling(dmg), 0f);
             }
 
-            if (ShadeEnchant && SoulConfig.Instance.GetValue("Super Bleed On Hit"))
+            if (ShadeEnchant && SoulConfig.Instance.GetValue("Blood Geyser On Hit"))
             {
                 if (player.ZoneCrimson || WoodForce)
                     player.AddBuff(mod.BuffType("SuperBleed"), 300);
@@ -3051,7 +3059,7 @@ namespace FargowiltasSouls
 
         private void CalamityDamage(float dmg)
         {
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += dmg;
+            player.GetCalamityPlayer().throwingDamage += dmg;
         }
 
         private void DBTDamage(float dmg)
@@ -3083,7 +3091,7 @@ namespace FargowiltasSouls
 
         private void CalamityCrit(int crit)
         {
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += crit;
+            player.GetCalamityPlayer().throwingCrit += crit;
         }
 
         private void DBTCrit(int crit)
@@ -3115,7 +3123,7 @@ namespace FargowiltasSouls
 
         private void CalamityCritEquals(int crit)
         {
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit = crit;
+            player.GetCalamityPlayer().throwingCrit = crit;
         }
 
         private void DBTCritEquals(int crit)
@@ -3330,8 +3338,6 @@ namespace FargowiltasSouls
 
         public void ChloroEffect(bool hideVisual, int dmg)
         {
-            //AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
-
             if (SoulConfig.Instance.GetValue("Chlorophyte Leaf Crystal") && player.ownedProjectileCounts[mod.ProjectileType("Chlorofuck")] == 0)
             {
                 const int max = 5;
@@ -3341,6 +3347,7 @@ namespace FargowiltasSouls
                 {
                     Vector2 spawnPos = player.Center + new Vector2(60, 0f).RotatedBy(rotation * i);
                     int p = Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("Chlorofuck"), dmg, 10f, player.whoAmI, 0, rotation * i);
+                    Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                 }
             }
 
@@ -3430,26 +3437,7 @@ namespace FargowiltasSouls
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.MeleeHighest(player))
-            {
-                dmg = (int)(dmg * player.meleeDamage);
-            }
-            else if (modPlayer.RangedHighest(player))
-            {
-                dmg = (int)(dmg * player.rangedDamage);
-            }
-            else if (modPlayer.MagicHighest(player))
-            {
-                dmg = (int)(dmg * player.magicDamage);
-            }
-            else if (modPlayer.SummonHighest(player))
-            {
-                dmg = (int)(dmg * player.minionDamage);
-            }
-            else if (modPlayer.ThrownHighest(player))
-            {
-                dmg = (int)(dmg * player.thrownDamage);
-            }
+            dmg = HighestDamageTypeScaling(dmg);
 
             if (Main.rand.Next(chance) == 0)
             {
@@ -3690,7 +3678,7 @@ namespace FargowiltasSouls
         public void HallowEffect(bool hideVisual, int dmg)
         {
             HallowEnchant = true;
-            AddMinion("Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(dmg * player.minionDamage), 0f);
+            AddMinion("Hallowed Enchanted Sword Familiar", mod.ProjectileType("HallowSword"), (int)(dmg * player.minionDamage), 0f);
 
             //reflect proj
             if (SoulConfig.Instance.GetValue("Hallowed Shield") && !noDodge)
@@ -4629,46 +4617,6 @@ namespace FargowiltasSouls
                     }
                 }
             }
-        }
-
-        public bool MeleeHighest(Player player)
-        {
-            return player.meleeDamage > player.rangedDamage &&
-                player.meleeDamage > player.magicDamage &&
-                player.meleeDamage > player.minionDamage &&
-                player.meleeDamage > player.thrownDamage;
-        }
-
-        public bool RangedHighest(Player player)
-        {
-            return player.rangedDamage > player.meleeDamage &&
-                player.rangedDamage > player.magicDamage &&
-                player.rangedDamage > player.minionDamage &&
-                player.rangedDamage > player.thrownDamage;
-        }
-
-        public bool MagicHighest(Player player)
-        {
-            return player.magicDamage > player.rangedDamage &&
-                player.magicDamage > player.meleeDamage &&
-                player.magicDamage > player.minionDamage &&
-                player.magicDamage > player.thrownDamage;
-        }
-
-        public bool SummonHighest(Player player)
-        {
-            return player.minionDamage > player.rangedDamage &&
-                player.minionDamage > player.magicDamage &&
-                player.minionDamage > player.meleeDamage &&
-                player.minionDamage > player.thrownDamage;
-        }
-
-        public bool ThrownHighest(Player player)
-        {
-            return player.thrownDamage > player.rangedDamage &&
-                player.thrownDamage > player.magicDamage &&
-                player.thrownDamage > player.minionDamage &&
-                player.thrownDamage > player.meleeDamage;
         }
     }
 }

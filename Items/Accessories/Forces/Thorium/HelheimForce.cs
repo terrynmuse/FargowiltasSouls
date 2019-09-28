@@ -69,6 +69,7 @@ Summons several pets");
 
             //spirit trapper
             modPlayer.SpiritTrapperEnchant = true;
+            thoriumPlayer.spiritTrapper = true;
             //inner flame
             thoriumPlayer.spiritFlame = true;
 
@@ -105,7 +106,7 @@ Summons several pets");
             }
             //wyvern pet
             modPlayer.AddPet("Wyvern Pet", hideVisual, thorium.BuffType("WyvernPetBuff"), thorium.ProjectileType("WyvernPet"));
-            thoriumPlayer.wyvernPet = true;
+            modPlayer.DragonEnchant = true;
 
             //demon blood effect
             modPlayer.DemonBloodEnchant = true;
@@ -123,7 +124,7 @@ Summons several pets");
             }
             //blister pet
             modPlayer.AddPet("Blister Pet", hideVisual, thorium.BuffType("BlisterBuff"), thorium.ProjectileType("BlisterPet"));
-            thoriumPlayer.blisterPet = true;
+            modPlayer.FleshEnchant = true;
             //pet
             modPlayer.AddPet("Moogle Pet", hideVisual, thorium.BuffType("LilMogBuff"), thorium.ProjectileType("LilMog"));
             modPlayer.KnightEnchant = true;

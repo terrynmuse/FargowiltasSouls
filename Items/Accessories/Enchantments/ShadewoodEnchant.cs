@@ -12,8 +12,9 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Shadewood Enchantment");
             Tooltip.SetDefault(
 @"'Surprisingly clean'
-When you take damage, blood flies everywhere
-While in the Crimson, you are instead inflicted with Super Bleeding on hit");
+When you take damage, damaging blood flies everywhere
+While in the Crimson, you are instead inflicted with Blood Geyser on hit
+Blood Geyser makes you constantly spew damaging blood");
             DisplayName.AddTranslation(GameCulture.Chinese, "阴影木魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'出奇的干净'

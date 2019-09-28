@@ -95,6 +95,9 @@ namespace FargowiltasSouls
             text = CreateTranslation("EbonConfig");
             text.SetDefault("[i:" + Instance.ItemType<EbonwoodEnchant>() + "][c/645a8d: Ebonwood Shadowflame]");
             AddTranslation(text);
+            text = CreateTranslation("ShadeConfig");
+            text.SetDefault("[i:" + Instance.ItemType<ShadewoodEnchant>() + "][c/586876: Blood Geyser On Hit]");
+            AddTranslation(text);
             text = CreateTranslation("PalmConfig");
             text.SetDefault("[i:" + Instance.ItemType<PalmWoodEnchant>() + "][c/b78d56: Palmwood Sentry]");
             AddTranslation(text);
@@ -133,6 +136,9 @@ namespace FargowiltasSouls
             AddTranslation(text);
             text = CreateTranslation("IronSConfig");
             text.SetDefault("[i:" + Instance.ItemType<IronEnchant>() + "][c/988e83: Iron Shield]");
+            AddTranslation(text);
+            text = CreateTranslation("CthulhuShield");
+            text.SetDefault("[i:" + Instance.ItemType<IronEnchant>() + "][c/988e83: Shield of Cthulhu]");
             AddTranslation(text);
             text = CreateTranslation("TinConfig");
             text.SetDefault("[i:" + Instance.ItemType<TinEnchant>() + "][c/a28b4e: Tin Crits]");
@@ -852,7 +858,7 @@ namespace FargowiltasSouls
             "WarlockEnchant",
             "DreadEnchant",
             "ThoriumEnchant",
-            "DenmonBloodEnchant",
+            "DemonBloodEnchant",
             "WarlockEnchant",
             "SacredEnchant",
             "LivingWoodEnchant",
@@ -1306,9 +1312,10 @@ namespace FargowiltasSouls
                     ModProjDict.Add(calamity.ProjectileType("DannyDevito"), 106);
                     ModProjDict.Add(calamity.ProjectileType("SirenYoung"), 107);
                     ModProjDict.Add(calamity.ProjectileType("ChibiiDoggo"), 108);
-                    ModProjDict.Add(calamity.ProjectileType("Akato"), 109);
-                    ModProjDict.Add(calamity.ProjectileType("Fox"), 110);
-                    ModProjDict.Add(calamity.ProjectileType("Levi"), 111);
+                    ModProjDict.Add(calamity.ProjectileType("ChibiiDoggoFly"), 109);
+                    ModProjDict.Add(calamity.ProjectileType("Akato"), 110);
+                    ModProjDict.Add(calamity.ProjectileType("Fox"), 111);
+                    ModProjDict.Add(calamity.ProjectileType("Levi"), 112);
                 }
             }
             catch (Exception e)
@@ -1540,6 +1547,9 @@ namespace FargowiltasSouls
             group = new RecipeGroup(() => Lang.misc[37] + " Butterfly", ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly,
                 ItemID.RedAdmiralButterfly, ItemID.SulphurButterfly, ItemID.TreeNymphButterfly, ItemID.UlyssesButterfly, ItemID.ZebraSwallowtailButterfly);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyButterfly", group);
+
+            group = new RecipeGroup(() => Lang.misc[37] + " Gold Pickaxe", ItemID.GoldPickaxe, ItemID.PlatinumPickaxe);
+            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyGoldPickaxe", group);
 
             if (ThoriumLoaded)
             {

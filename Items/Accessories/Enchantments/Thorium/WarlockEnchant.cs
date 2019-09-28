@@ -51,6 +51,7 @@ Summons a Li'l Devil to attack enemies");
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
             //set bonus
+            thoriumPlayer.warlockSet = true;
             modPlayer.WarlockEnchant = true;
             //lil devil
             modPlayer.AddMinion("Li'l Devil Minion", thorium.ProjectileType("Devil"), 20, 2f);

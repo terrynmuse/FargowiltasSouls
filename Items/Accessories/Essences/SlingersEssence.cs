@@ -59,10 +59,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         private void Calamity(Player player)
         {
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += 0.18f;
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += 5;
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingVelocity += 0.05f;
+            player.GetCalamityPlayer().throwingDamage += 0.18f;
+            player.GetCalamityPlayer().throwingCrit += 5;
+            player.GetCalamityPlayer().throwingVelocity += 0.05f;
         }
 
 

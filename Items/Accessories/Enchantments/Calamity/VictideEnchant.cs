@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using CalamityMod;
 using Terraria.Localization;
+using CalamityMod.CalPlayer;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {
@@ -66,7 +67,7 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift");
                     }
                     if (player.ownedProjectileCounts[calamity.ProjectileType("Urchin")] < 1)
                     {
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("Urchin"), 0, 0f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -1f, calamity.ProjectileType("Urchin"), (int)(7f * player.minionDamage), 0f, Main.myPlayer, 0f, 0f);
                     }
                 }
             }

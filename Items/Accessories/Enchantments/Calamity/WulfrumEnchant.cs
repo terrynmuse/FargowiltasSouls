@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using CalamityMod;
 using Terraria.Localization;
+using CalamityMod.CalPlayer;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {

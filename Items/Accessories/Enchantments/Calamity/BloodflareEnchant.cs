@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using CalamityMod;
+using CalamityMod.CalPlayer;
 using System;
 using Terraria.Localization;
 

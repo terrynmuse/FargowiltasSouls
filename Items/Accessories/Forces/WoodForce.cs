@@ -14,13 +14,13 @@ namespace FargowiltasSouls.Items.Accessories.Forces
             Tooltip.SetDefault(
 @"'Extremely rigid'
 Critters have massively increased defense
-Killing critters no longer inflicts Guilty
+Grants immunity to Guilty
 When critters die, they release their souls to aid you
 Every 5th attack will be accompanied by several snowballs
 All grappling hooks pull you in and retract twice as fast
 Any hook will periodically fire homing shots at enemies
 You have a large aura of Shadowflame
-When you take damage, you are inflicted with Super Bleeding
+When you take damage, you are inflicted with Blood Geyser
 Double tap down to spawn a palm tree sentry that throws nuts at enemies
 You leave behind a trail of rainbows that may shrink enemies");
             DisplayName.AddTranslation(GameCulture.Chinese, "森林之力");
@@ -53,6 +53,7 @@ You leave behind a trail of rainbows that may shrink enemies");
             modPlayer.WoodForce = true;
             //wood
             modPlayer.WoodEnchant = true;
+            player.buffImmune[mod.BuffType("Guilty")] = true;
             //boreal
             modPlayer.BorealEnchant = true;
             //mahogany

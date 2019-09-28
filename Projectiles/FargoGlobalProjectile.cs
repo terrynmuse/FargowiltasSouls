@@ -110,6 +110,11 @@ namespace FargowiltasSouls.Projectiles
                 }
             }
 
+            if (projectile.type == ProjectileID.StardustGuardian || projectile.type == ProjectileID.StardustGuardianExplosion)
+            {
+                TimeFreezeImmune = true;
+            }
+
             Fargowiltas.ModProjDict.TryGetValue(projectile.type, out ModProjID);
         }
 
@@ -922,7 +927,7 @@ namespace FargowiltasSouls.Projectiles
 
                 #region thorium pets
                 case 1:
-                    KillPet(projectile, player, thorium.BuffType("Identified"), modPlayer.MeteorEnchant, "I.F.O. Pet");
+                    KillPet(projectile, player, thorium.BuffType("Identified"), modPlayer.ConduitEnchant, "I.F.O. Pet");
                     break;
 
                 case 2:
@@ -930,11 +935,11 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case 3:
-                    KillPet(projectile, player, thorium.BuffType("BlisterBuff"), modPlayer.CrimsonEnchant, "Blister Pet");
+                    KillPet(projectile, player, thorium.BuffType("BlisterBuff"), modPlayer.FleshEnchant, "Blister Pet");
                     break;
 
                 case 4:
-                    KillPet(projectile, player, thorium.BuffType("WyvernPetBuff"), modPlayer.ShadowEnchant, "Wyvern Pet");
+                    KillPet(projectile, player, thorium.BuffType("WyvernPetBuff"), modPlayer.DragonEnchant, "Wyvern Pet");
                     break;
 
                 case 5:
@@ -1023,18 +1028,19 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case 108:
+                case 109:
                     KillPet(projectile, player, calamity.BuffType("ChibiiBuff"), modPlayer.GodSlayerEnchant, "Chibii Pet");
                     break;
 
-                case 109:
+                case 110:
                     KillPet(projectile, player, calamity.BuffType("AkatoYharonBuff"), modPlayer.SilvaEnchant, "Akato Pet");
                     break;
 
-                case 110:
+                case 111:
                     KillPet(projectile, player, calamity.BuffType("Fox"), modPlayer.SilvaEnchant, "Fox Pet");
                     break;
 
-                case 111:
+                case 112:
                     KillPet(projectile, player, calamity.BuffType("Levi"), modPlayer.DemonShadeEnchant, "Levi Pet");
                     break;
 
