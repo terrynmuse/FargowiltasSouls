@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using ThoriumMod;
 using System;
-using CalamityMod;
+using CalamityMod.CalPlayer;
 using ThoriumMod.Items.Misc;
 using Terraria.Localization;
 using System.Collections;
@@ -92,7 +92,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
     "Throw a smoke bomb to teleport to it and gain the first strike buff",
     "Getting hit reflects damage",
     "Getting hit releases a spore explosion",
-    "Getting hit inflicts Super Bleeding",
+    "Getting hit inflicts Blood Geyser",
     "Getting hit may squeak",
     "Getting hit causes you to erupt into spiky balls",
     "Getting hit causes you to erupt into Ancient Visions",

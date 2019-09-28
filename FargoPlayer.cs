@@ -14,6 +14,7 @@ using FargowiltasSouls.NPCs;
 using FargowiltasSouls.Projectiles;
 using ThoriumMod;
 using CalamityMod.Items.CalamityCustomThrowingDamage;
+using CalamityMod;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -682,6 +683,7 @@ namespace FargowiltasSouls
 
         public override void PreUpdate()
         {
+
             if (HurtTimer > 0)
                 HurtTimer--;
 
@@ -999,6 +1001,8 @@ namespace FargowiltasSouls
                             if (GroundPound > 15 && x >= 0 && x < Main.maxTilesX && y >= 0 && y < Main.maxTilesY
                                 && Main.tile[x, y] != null && Main.tile[x, y].nactive() && Main.tileSolid[Main.tile[x, y].type])
                             {
+                                GroundPound = 0;
+
                                 int baseDamage = 80;
                                 if (MasochistSoul)
                                     baseDamage *= 2;
@@ -1022,7 +1026,7 @@ namespace FargowiltasSouls
                                 }
                             }
                         }
-                        GroundPound = 0;
+                        
                     }
                     else
                     {
@@ -3057,7 +3061,7 @@ namespace FargowiltasSouls
 
         private void CalamityDamage(float dmg)
         {
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingDamage += dmg;
+            player.GetCalamityPlayer().throwingDamage += dmg;
         }
 
         private void DBTDamage(float dmg)
@@ -3089,7 +3093,7 @@ namespace FargowiltasSouls
 
         private void CalamityCrit(int crit)
         {
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit += crit;
+            player.GetCalamityPlayer().throwingCrit += crit;
         }
 
         private void DBTCrit(int crit)
@@ -3121,7 +3125,7 @@ namespace FargowiltasSouls
 
         private void CalamityCritEquals(int crit)
         {
-            CalamityCustomThrowingDamagePlayer.ModPlayer(player).throwingCrit = crit;
+            player.GetCalamityPlayer().throwingCrit = crit;
         }
 
         private void DBTCritEquals(int crit)

@@ -9,7 +9,7 @@ namespace FargowiltasSouls.Buffs.Souls
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Super Bleed");
+            DisplayName.SetDefault("Blood Geyser");
             Description.SetDefault("Spewing blood in self defense");
             Main.buffNoSave[Type] = true;
             DisplayName.AddTranslation(GameCulture.Chinese, "大出血");

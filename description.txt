@@ -8,7 +8,12 @@ NEW UPDATE - v 1.0.0
 
 *See wiki for complete changelog
 
-
+-recolorss
+-fixed treasyre bug softlock at the edge of the world
+-updated shadewood enchant toolitp to make it more obvious what it does
+-fixed many calmaity enchant bugs
+-mining enchant takes either gold or plat pick
+-mechs drop iron crates in masomode
 -Simplified all Thorium Force and Soul tooltips
 -SoE tooltip epic
 -fixed royal gel effect missing from World shaper up

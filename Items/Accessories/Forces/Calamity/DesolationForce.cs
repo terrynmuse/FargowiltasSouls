@@ -57,9 +57,6 @@ Summons several pets");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-
             //VICTIDE
             mod.GetItem("VictideEnchant").UpdateAccessory(player, hideVisual);
             //XEROC

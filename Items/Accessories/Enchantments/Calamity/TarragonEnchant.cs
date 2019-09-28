@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using CalamityMod;
 using Terraria.Localization;
+using CalamityMod.CalPlayer;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Calamity
 {

@@ -55,9 +55,6 @@ Summons several pets");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-
             //MOLLUSK
             mod.GetItem("MolluskEnchant").UpdateAccessory(player, hideVisual);
             //REAVER

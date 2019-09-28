@@ -5,8 +5,7 @@ using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using CalamityMod;
-using CalamityMod.Items.CalamityCustomThrowingDamage;
+using CalamityMod.CalPlayer;
 using System;
 using Terraria.Localization;
 
@@ -251,9 +250,7 @@ Effects of Heart of the Elements and The Sponge");
 
             if (SoulConfig.Instance.GetValue("Elemental Waifus"))
             {
-                //calamity.GetItem("HeartoftheElements").UpdateAccessory(player, hideVisual);
-                modPlayer.allWaifus = !hideVisual;
-                modPlayer.elementalHeart = true;
+                calamity.GetItem("HeartoftheElements").UpdateAccessory(player, hideVisual);
             }
 
             //the sponge

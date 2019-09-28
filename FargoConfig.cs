@@ -9,7 +9,7 @@ namespace FargowiltasSouls
 {
     class SoulConfig : ModConfig
     {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
+        public override ConfigScope Mode => ConfigScope.ClientSide;
         public static SoulConfig Instance;
 
         [Label("Terraria")]

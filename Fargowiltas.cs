@@ -1306,9 +1306,10 @@ namespace FargowiltasSouls
                     ModProjDict.Add(calamity.ProjectileType("DannyDevito"), 106);
                     ModProjDict.Add(calamity.ProjectileType("SirenYoung"), 107);
                     ModProjDict.Add(calamity.ProjectileType("ChibiiDoggo"), 108);
-                    ModProjDict.Add(calamity.ProjectileType("Akato"), 109);
-                    ModProjDict.Add(calamity.ProjectileType("Fox"), 110);
-                    ModProjDict.Add(calamity.ProjectileType("Levi"), 111);
+                    ModProjDict.Add(calamity.ProjectileType("ChibiiDoggoFly"), 109);
+                    ModProjDict.Add(calamity.ProjectileType("Akato"), 110);
+                    ModProjDict.Add(calamity.ProjectileType("Fox"), 111);
+                    ModProjDict.Add(calamity.ProjectileType("Levi"), 112);
                 }
             }
             catch (Exception e)
@@ -1540,6 +1541,9 @@ namespace FargowiltasSouls
             group = new RecipeGroup(() => Lang.misc[37] + " Butterfly", ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly,
                 ItemID.RedAdmiralButterfly, ItemID.SulphurButterfly, ItemID.TreeNymphButterfly, ItemID.UlyssesButterfly, ItemID.ZebraSwallowtailButterfly);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyButterfly", group);
+
+            group = new RecipeGroup(() => Lang.misc[37] + " Gold Pickaxe", ItemID.GoldPickaxe, ItemID.PlatinumPickaxe);
+            RecipeGroup.RegisterGroup("FargowiltasSouls:AnyGoldPickaxe", group);
 
             if (ThoriumLoaded)
             {

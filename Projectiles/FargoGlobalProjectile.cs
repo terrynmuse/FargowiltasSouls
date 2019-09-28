@@ -1028,18 +1028,19 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case 108:
+                case 109:
                     KillPet(projectile, player, calamity.BuffType("ChibiiBuff"), modPlayer.GodSlayerEnchant, "Chibii Pet");
                     break;
 
-                case 109:
+                case 110:
                     KillPet(projectile, player, calamity.BuffType("AkatoYharonBuff"), modPlayer.SilvaEnchant, "Akato Pet");
                     break;
 
-                case 110:
+                case 111:
                     KillPet(projectile, player, calamity.BuffType("Fox"), modPlayer.SilvaEnchant, "Fox Pet");
                     break;
 
-                case 111:
+                case 112:
                     KillPet(projectile, player, calamity.BuffType("Levi"), modPlayer.DemonShadeEnchant, "Levi Pet");
                     break;
 

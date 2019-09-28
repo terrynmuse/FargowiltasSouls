@@ -86,8 +86,6 @@ Summons several pets");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
-
             //Apocalypse
             mod.GetItem("ApocalypseForce").UpdateAccessory(player, hideVisual);
             //Desolation

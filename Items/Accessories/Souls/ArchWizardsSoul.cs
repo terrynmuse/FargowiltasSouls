@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using CalamityMod;
 using Terraria.Localization;
+using CalamityMod.CalPlayer;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
