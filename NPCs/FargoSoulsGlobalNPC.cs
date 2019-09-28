@@ -8578,8 +8578,6 @@ namespace FargowiltasSouls.NPCs
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            LoadSprites(npc);
-
             if (modPlayer.PlatinumEnchant && !npc.boss && firstLoot)
             {
                 bool midas = npc.HasBuff(BuffID.Midas);
@@ -9105,8 +9103,6 @@ namespace FargowiltasSouls.NPCs
         {
             Player player = Main.player[Main.myPlayer];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-
-            LoadSprites(npc);
 
             if (TimeFrozen)
             {
