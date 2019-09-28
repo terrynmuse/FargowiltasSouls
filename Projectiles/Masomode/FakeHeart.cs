@@ -64,7 +64,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 float endurance = target.endurance;
                 target.statDefense = 0;
                 target.endurance = 0;
-                target.Hurt(PlayerDeathReason.ByProjectile(target.whoAmI, projectile.whoAmI), projectile.damage, 0, false, false, false, 0);
+                target.Hurt(PlayerDeathReason.ByCustomReason(target.name + " felt heartbroken."), projectile.damage, 0, false, false, false, 0);
                 target.statDefense = defense;
                 target.endurance = endurance;
                 projectile.timeLeft = 0;

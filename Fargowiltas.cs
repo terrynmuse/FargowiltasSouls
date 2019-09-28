@@ -95,6 +95,9 @@ namespace FargowiltasSouls
             text = CreateTranslation("EbonConfig");
             text.SetDefault("[i:" + Instance.ItemType<EbonwoodEnchant>() + "][c/645a8d: Ebonwood Shadowflame]");
             AddTranslation(text);
+            text = CreateTranslation("ShadeConfig");
+            text.SetDefault("[i:" + Instance.ItemType<ShadewoodEnchant>() + "][c/586876: Blood Geyser On Hit]");
+            AddTranslation(text);
             text = CreateTranslation("PalmConfig");
             text.SetDefault("[i:" + Instance.ItemType<PalmWoodEnchant>() + "][c/b78d56: Palmwood Sentry]");
             AddTranslation(text);
@@ -133,6 +136,9 @@ namespace FargowiltasSouls
             AddTranslation(text);
             text = CreateTranslation("IronSConfig");
             text.SetDefault("[i:" + Instance.ItemType<IronEnchant>() + "][c/988e83: Iron Shield]");
+            AddTranslation(text);
+            text = CreateTranslation("CthulhuShield");
+            text.SetDefault("[i:" + Instance.ItemType<IronEnchant>() + "][c/988e83: Shield of Cthulhu]");
             AddTranslation(text);
             text = CreateTranslation("TinConfig");
             text.SetDefault("[i:" + Instance.ItemType<TinEnchant>() + "][c/a28b4e: Tin Crits]");

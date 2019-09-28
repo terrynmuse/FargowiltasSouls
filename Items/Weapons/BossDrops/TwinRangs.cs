@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Weapons.BossDrops
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Twins");
-            Tooltip.SetDefault("The compressed forms of defeated foes..");
+            Tooltip.SetDefault("'The compressed forms of defeated foes..'");
             DisplayName.AddTranslation(GameCulture.Chinese, "双子");
             Tooltip.AddTranslation(GameCulture.Chinese, "被打败的敌人的压缩形态..");
         }

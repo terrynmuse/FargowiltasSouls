@@ -28,7 +28,7 @@ You have a 10% chance to absorb physical attacks and projectiles when hit
 If you absorb an attack you are healed for 1/2 of that attack's damage
 A daedalus crystal floats above you to protect you
 Rogue projectiles throw out crystal shards as they travel
-Effects of Permafrost's Concoction and Regenerator
+Effects of Permafrost's Concoction and Regenator
 Summons a Bear and Third Sage pet");
             DisplayName.AddTranslation(GameCulture.Chinese, "代达罗斯魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 

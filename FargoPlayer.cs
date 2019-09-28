@@ -967,8 +967,6 @@ namespace FargowiltasSouls
 
                 if (player.ownedProjectileCounts[mod.ProjectileType("GoldShellProj")] <= 0)
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("GoldShellProj"), 0, 0, Main.myPlayer);
-
-                //AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
             }
 
             if (CobaltEnchant && CobaltCD > 0)
@@ -2764,7 +2762,7 @@ namespace FargowiltasSouls
                 Projectile[] projs2 = FargoGlobalProjectile.XWay(10, player.Center, mod.ProjectileType("SporeBoom"), 3f, HighestDamageTypeScaling(dmg), 0f);
             }
 
-            if (ShadeEnchant && SoulConfig.Instance.GetValue("Super Bleed On Hit"))
+            if (ShadeEnchant && SoulConfig.Instance.GetValue("Blood Geyser On Hit"))
             {
                 if (player.ZoneCrimson || WoodForce)
                     player.AddBuff(mod.BuffType("SuperBleed"), 300);
@@ -3340,8 +3338,6 @@ namespace FargowiltasSouls
 
         public void ChloroEffect(bool hideVisual, int dmg)
         {
-            //AddMinion("Chlorophyte Leaf Crystal", mod.ProjectileType("Chlorofuck"), dmg, 10f);
-
             if (SoulConfig.Instance.GetValue("Chlorophyte Leaf Crystal") && player.ownedProjectileCounts[mod.ProjectileType("Chlorofuck")] == 0)
             {
                 const int max = 5;
@@ -3351,6 +3347,7 @@ namespace FargowiltasSouls
                 {
                     Vector2 spawnPos = player.Center + new Vector2(60, 0f).RotatedBy(rotation * i);
                     int p = Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("Chlorofuck"), dmg, 10f, player.whoAmI, 0, rotation * i);
+                    Main.projectile[p].GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
                 }
             }
 

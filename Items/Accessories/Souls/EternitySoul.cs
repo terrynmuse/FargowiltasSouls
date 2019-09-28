@@ -268,7 +268,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             "Effects of Counter Scarf",
             "Effects of Fungal Symbiote",
             "Effects of Permafrost's Concoction",
-            "Effects of Regenerator",
+            "Effects of Regenator",
             "Effects of Core of the Blood God",
             "Effects of Affliction",
             "Effects of Deep Dive",

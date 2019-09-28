@@ -8,6 +8,8 @@ NEW UPDATE - v 1.0.0
 
 *See wiki for complete changelog
 
+-twins boomerang fire will no longer sometimes hurt you
+--added custom death message to fake hearts
 -recolorss
 -fixed treasyre bug softlock at the edge of the world
 -updated shadewood enchant toolitp to make it more obvious what it does

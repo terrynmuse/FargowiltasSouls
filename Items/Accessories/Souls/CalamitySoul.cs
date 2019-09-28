@@ -35,7 +35,7 @@ All armor bonuses from Astral, Tarragon, and Demonshade
 Effects of the Spirit Glyph, Raider's Talisman, and Trinket of Chi
 Effects of Gladiator's Locket and Unstable Prism
 Effects of Counter Scarf and Fungal Symbiote
-Effects of Permafrost's Concoction and Regenerator
+Effects of Permafrost's Concoction and Regenator
 Effects of the Core of the Blood God and Affliction
 Effects of Deep Diver, The Transformer, and Luxor's Gift
 Effects of The Community, Abyssal Diving Suit, and Lumenous Amulet

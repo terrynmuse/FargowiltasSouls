@@ -81,11 +81,11 @@ namespace FargowiltasSouls
 
                 for (int num468 = 0; num468 < 20; num468++)
                 {
-                    int num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 60, -target.velocity.X * 0.2f,
+                    int num469 = Dust.NewDust(new Vector2(target.position.X, target.position.Y), target.width, target.height, 15, -target.velocity.X * 0.2f,
                         -target.velocity.Y * 0.2f, 100, default(Color), 2f);
                     Main.dust[num469].noGravity = true;
                     Main.dust[num469].velocity *= 2f;
-                    num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 60, -target.velocity.X * 0.2f,
+                    num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 15, -target.velocity.X * 0.2f,
                         -target.velocity.Y * 0.2f, 100);
                     Main.dust[num469].velocity *= 2f;
                 }
@@ -102,12 +102,12 @@ namespace FargowiltasSouls
 
                 for (int num468 = 0; num468 < 20; num468++)
                 {
-                    int num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 60, -target.velocity.X * 0.2f,
-                        -target.velocity.Y * 0.2f, 100, Color.SkyBlue, 2f);
+                    int num469 = Dust.NewDust(new Vector2(target.position.X, target.position.Y), target.width, target.height, 15, -target.velocity.X * 0.2f,
+                        -target.velocity.Y * 0.2f, 100, default(Color), 2f);
                     Main.dust[num469].noGravity = true;
                     Main.dust[num469].velocity *= 2f;
-                    num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 60, -target.velocity.X * 0.2f,
-                        -target.velocity.Y * 0.2f, 100, Color.SkyBlue);
+                    num469 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), target.width, target.height, 15, -target.velocity.X * 0.2f,
+                        -target.velocity.Y * 0.2f, 100);
                     Main.dust[num469].velocity *= 2f;
                 }
             }

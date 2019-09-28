@@ -7390,7 +7390,8 @@ namespace FargowiltasSouls.NPCs
 
                                 if (item.healLife > 0)
                                 {
-                                    StealFromInventory(target, ref item);
+                                    StealFromInventory(target, ref target.inventory[j]);
+                                    break;
                                 }
                             }
                         }
@@ -7407,7 +7408,7 @@ namespace FargowiltasSouls.NPCs
 
                                 if (item.type == ItemID.SoulofFlight || item.type == ItemID.SoulofFright || item.type == ItemID.SoulofLight || item.type == ItemID.SoulofMight || item.type == ItemID.SoulofNight || item.type == ItemID.SoulofSight)
                                 {
-                                    StealFromInventory(target, ref item);
+                                    StealFromInventory(target, ref target.inventory[j]);
                                 }
                             }
                         }
@@ -10957,8 +10958,6 @@ namespace FargowiltasSouls.NPCs
                     Main.goreTexture[621] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_621");
                     Main.goreTexture[622] = mod.GetTexture((recolor ? "NPCs/Resprites/Gores/" : "NPCs/Vanilla/Gores/") + "Gore_622");
                 }
-
-
 
                 Fargowiltas.Instance.LoadedNewSprites = true;
                 switch (npc.type)

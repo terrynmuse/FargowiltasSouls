@@ -57,6 +57,8 @@ namespace FargowiltasSouls
                 public bool borealSnow = true;
                 [Label("$Mods.FargowiltasSouls.EbonConfig")]
                 public bool ebonFlame = true;
+                [Label("$Mods.FargowiltasSouls.ShadeConfig")]
+                public bool shadeBlood = true;
                 [Label("$Mods.FargowiltasSouls.MahoganyConfig")]
                 public bool mahoganyHook = true;
                 [Label("$Mods.FargowiltasSouls.PalmConfig")]
@@ -85,6 +87,8 @@ namespace FargowiltasSouls
                 public bool ironMag = true;
                 [Label("$Mods.FargowiltasSouls.IronSConfig")]
                 public bool ironShield = true;
+                [Label("$Mods.FargowiltasSouls.CthulhuShield")]
+                public bool cthulhuShield = true;
                 [Label("$Mods.FargowiltasSouls.TinConfig")]
                 public bool tinCrit = true;
                 [Label("$Mods.FargowiltasSouls.TungstenConfig")]
@@ -170,6 +174,7 @@ namespace FargowiltasSouls
                 {
                     SoulConfig.Instance.enchantToggles["Boreal Snowballs"] = borealSnow;
                     SoulConfig.Instance.enchantToggles["Ebonwood Shadowflame"] = ebonFlame;
+                    SoulConfig.Instance.enchantToggles["Blood Geyser On Hit"] = shadeBlood;
                     SoulConfig.Instance.enchantToggles["Mahogany Hook Speed"] = mahoganyHook;
                     SoulConfig.Instance.enchantToggles["Palmwood Sentry"] = palmSentry;
                     SoulConfig.Instance.enchantToggles["Pearlwood Rainbow"] = pearlTrail;
@@ -182,6 +187,7 @@ namespace FargowiltasSouls
                     SoulConfig.Instance.enchantToggles["Copper Lightning"] = copLight;
                     SoulConfig.Instance.enchantToggles["Iron Magnet"] = ironMag;
                     SoulConfig.Instance.enchantToggles["Iron Shield"] = ironShield;
+                    SoulConfig.Instance.enchantToggles["Shield of Cthulhu"] = cthulhuShield;
                     SoulConfig.Instance.enchantToggles["Tin Crits"] = tinCrit;
                     SoulConfig.Instance.enchantToggles["Tungsten Effect"] = tung;
                     SoulConfig.Instance.enchantToggles["Gladiator Rain"] = gladRain;
@@ -936,6 +942,7 @@ namespace FargowiltasSouls
             SoulConfig.Instance = this;
             enchantToggles.Add("Boreal Snowballs", terrmenu.terenchmenu.borealSnow);
             enchantToggles.Add("Ebonwood Shadowflame", terrmenu.terenchmenu.ebonFlame);
+            enchantToggles.Add("Blood Geyser On Hit", terrmenu.terenchmenu.shadeBlood);
             enchantToggles.Add("Mahogany Hook Speed", terrmenu.terenchmenu.mahoganyHook);
             enchantToggles.Add("Palmwood Sentry", terrmenu.terenchmenu.palmSentry);
             enchantToggles.Add("Pearlwood Rainbow", terrmenu.terenchmenu.pearlTrail);
@@ -950,6 +957,7 @@ namespace FargowiltasSouls
             enchantToggles.Add("Copper Lightning", terrmenu.terenchmenu.copLight);
             enchantToggles.Add("Iron Magnet", terrmenu.terenchmenu.ironMag);
             enchantToggles.Add("Iron Shield", terrmenu.terenchmenu.ironShield);
+            enchantToggles.Add("Shield of Cthulhu", terrmenu.terenchmenu.cthulhuShield);
             enchantToggles.Add("Tin Crits", terrmenu.terenchmenu.tinCrit);
             enchantToggles.Add("Tungsten Effect", terrmenu.terenchmenu.tung);
 
