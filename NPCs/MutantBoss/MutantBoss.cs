@@ -110,7 +110,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         if (Fargowiltas.Instance.MasomodeEX)
                             Projectile.NewProjectile(npc.Center, Vector2.Zero, ModLoader.GetMod("MasomodeEX").ProjectileType("MutantText"), 0, 0f, Main.myPlayer, npc.whoAmI);
 
-                        if (Fargowiltas.Instance.MasomodeEX || FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
+                        if (FargoSoulsWorld.downedFishronEX && (Fargowiltas.Instance.MasomodeEX || FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded))
                             Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("BossRush"), 0, 0f, Main.myPlayer, npc.whoAmI);
 
                         int number = 0;
