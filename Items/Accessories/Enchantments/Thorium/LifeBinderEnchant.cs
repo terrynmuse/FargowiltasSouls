@@ -63,12 +63,9 @@ Summons a pet Holy Goat");
             //aloe leaf
             thoriumPlayer.aloePlant = true;
 
-            if (SoulConfig.Instance.GetValue("Iridescent Flash"))
-            {
-                //iridescent set bonus
-                thoriumPlayer.iridescentSet = true;
-            }
-            
+            //iridescent set bonus
+            thoriumPlayer.iridescentSet = true;
+
             //equalizer 
             thoriumPlayer.equilibrium = true;
         }

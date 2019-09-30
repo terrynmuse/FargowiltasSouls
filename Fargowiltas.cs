@@ -18,6 +18,7 @@ namespace FargowiltasSouls
     {
         internal static ModHotKey FreezeKey;
         internal static ModHotKey GoldKey;
+        internal static ModHotKey SmokeBombKey;
 
         internal static List<int> DebuffIDs;
 
@@ -57,11 +58,13 @@ namespace FargowiltasSouls
             {
                 FreezeKey = RegisterHotKey("冻结时间", "P");
                 GoldKey = RegisterHotKey("金身", "O");
+                SmokeBombKey = RegisterHotKey("Throw Smoke Bomb", "I");
             }
             else
             {
                 FreezeKey = RegisterHotKey("Freeze Time", "P");
                 GoldKey = RegisterHotKey("Turn Gold", "O");
+                SmokeBombKey = RegisterHotKey("Throw Smoke Bomb", "I");
             }
             
             AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue"), ItemType("MutantMusicBox"), TileType("MutantMusicBoxSheet"));

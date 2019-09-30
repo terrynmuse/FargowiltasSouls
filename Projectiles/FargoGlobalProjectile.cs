@@ -21,6 +21,8 @@ namespace FargowiltasSouls.Projectiles
 
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
+
+        private bool townNPCProj = false;
         private int counter;
         public bool CanSplit = true;
         private int numSplits = 1;
@@ -147,7 +149,19 @@ namespace FargowiltasSouls.Projectiles
                 {
                     firstTick = false;
 
-                    if (modPlayer.FirstStrike && projectile.friendly && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99 && CanSplit && Array.IndexOf(noSplit, projectile.type) <= -1)
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        NPC npc = Main.npc[i];
+
+                        if (npc.active && npc.townNPC && projectile.Hitbox.Intersects(npc.Hitbox))
+                        {
+                            townNPCProj = true;
+                        }
+                    }
+
+
+
+                    if (!townNPCProj && modPlayer.FirstStrike && projectile.friendly && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99 && CanSplit && Array.IndexOf(noSplit, projectile.type) <= -1)
                     {
                         Projectile p = NewProjectileDirectSafe(projectile.position + projectile.velocity * 2, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
                         p.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = false;
@@ -160,7 +174,7 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
-                    if (modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect"))
+                    if (!townNPCProj && modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect"))
                     {
                         projectile.position = projectile.Center;
                         projectile.scale *= 2f;
@@ -193,7 +207,7 @@ namespace FargowiltasSouls.Projectiles
                         projectile.damage *= 5;
                     }
 
-                    if ((modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
+                    if (!townNPCProj && (modPlayer.AdamantiteEnchant || modPlayer.TerrariaSoul) && CanSplit && projectile.friendly && !projectile.hostile
                         && !Rotate && projectile.damage > 0 && !projectile.minion && projectile.aiStyle != 19 && projectile.aiStyle != 99
                         && SoulConfig.Instance.GetValue("Adamantite Projectile Splitting") && Array.IndexOf(noSplit, projectile.type) <= -1)
                     {
@@ -1611,7 +1625,7 @@ namespace FargowiltasSouls.Projectiles
             Player player = Main.player[projectile.owner];
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
 
-            if (modPlayer.CobaltEnchant && SoulConfig.Instance.GetValue("Cobalt Shards") && modPlayer.CobaltCD == 0 && CanSplit && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
+            if (!townNPCProj && modPlayer.CobaltEnchant && SoulConfig.Instance.GetValue("Cobalt Shards") && modPlayer.CobaltCD == 0 && CanSplit && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
             {
                 int damage = 40;
                 if(modPlayer.EarthForce)

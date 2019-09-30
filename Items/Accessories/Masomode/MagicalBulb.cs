@@ -7,8 +7,6 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
 {
     public class MagicalBulb : ModItem
     {
-        public override string Texture => "FargowiltasSouls/Items/Placeholder";
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magical Bulb");

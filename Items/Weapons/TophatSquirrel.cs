@@ -2,6 +2,7 @@ using FargowiltasSouls.Projectiles;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.ID;
 
 namespace FargowiltasSouls.Items.Weapons
 {
@@ -31,7 +32,7 @@ namespace FargowiltasSouls.Items.Weapons
             item.noMelee = true;
             item.noUseGraphic = true;
             item.useStyle = 1;
-            item.knockBack = 3f; //Ranges from 1 to 9.
+            item.knockBack = 3f;
 
             item.autoReuse = true;
 
@@ -44,6 +45,18 @@ namespace FargowiltasSouls.Items.Weapons
             Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType<Squirrel1>(), 0, 0,
                 Main.myPlayer);
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Squirrel);
+            recipe.AddIngredient(ItemID.TopHat);
+
+            recipe.AddTile(TileID.CrystalBall);
+
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

@@ -21,17 +21,9 @@ namespace FargowiltasSouls.Items.Patreon
             Tooltip.AddTranslation(GameCulture.Chinese, "右键循环切换攻击模式 \n每种伤害类型对应一种模式");
         }
 
-        /*
-Ranged: Makes a shot gun sound as multiple lures are shot out acting as Bullets. Works like a shot gun.
-Magic: The Rod points outward much like a Staff and shoots a series of bubbles that explode into water like projectiles that break on collision.
-Summon: The Rod is held up and a Fish who's place holder will be the Zephyr Fish but colored differently will be summoned, this fish shoots a stream from its mouth that does damage to enemies and acts almost like golden shower does.
-Throwing: The rod is swung forward sending out multiple lures that may or may not either attach to enemies or land on the ground acting as spike balls.
-*/
-
-
         public override void SetDefaults()
         {
-            item.damage = 100;
+            item.damage = 200;
             item.width = 24;
             item.height = 28;
             item.value = 100000;
@@ -60,8 +52,6 @@ Throwing: The rod is swung forward sending out multiple lures that may or may no
 
                 SetUpItem();
 
-                Main.NewText("Hi " + mode);
-
                 return false;
             }
 
@@ -69,7 +59,7 @@ Throwing: The rod is swung forward sending out multiple lures that may or may no
             {
                 //melee
                 case 1:
-                    return true;
+                    Projectile.NewProjectile(position, new Vector2(speedX, speedY), mod.ProjectileType("PufferRang"), damage, knockBack, player.whoAmI);
                     break;
                 //range
                 case 2:
@@ -78,14 +68,14 @@ Throwing: The rod is swung forward sending out multiple lures that may or may no
                     {
                         float num131 = (float)Main.mouseX + Main.screenPosition.X - position.X;
                         float num132 = (float)Main.mouseY + Main.screenPosition.Y - position.Y;
-                        num131 += (float)Main.rand.Next(-40, 41) * 0.2f;
-                        num132 += (float)Main.rand.Next(-40, 41) * 0.2f;
-                        Projectile.NewProjectile(position, new Vector2(num131, num132), ProjectileID.Bullet, damage, knockBack, player.whoAmI);
+                        num131 += (float)Main.rand.Next(-40, 41) * 0.4f;
+                        num132 += (float)Main.rand.Next(-40, 41) * 0.4f;
+                        Projectile.NewProjectile(position, new Vector2(num131, num132), type, damage, knockBack, player.whoAmI);
                     }
                     break;
                 //magic
                 case 3:
-                    int p = Projectile.NewProjectile(position, new Vector2(speedX, speedY), mod.ProjectileType("Bubble"), damage, knockBack, player.whoAmI);
+                    int p = Projectile.NewProjectile(position, new Vector2(speedX, speedY), item.shoot = mod.ProjectileType("Bubble"), damage, knockBack, player.whoAmI);
 
                     FargoGlobalProjectile.SplitProj(Main.projectile[p], 5);
 
@@ -96,9 +86,9 @@ Throwing: The rod is swung forward sending out multiple lures that may or may no
                     break;
                 //throwing
                 default:
-                    for (int i = 0; i < 0; i++)
+                    for (int i = 0; i < 10; i++)
                     {
-                        Projectile.NewProjectile(position, new Vector2(speedX + Main.rand.Next(-2, 2), speedY + Main.rand.Next(-2, 2)), ProjectileID.SpikyBall, damage, knockBack, player.whoAmI);
+                        Projectile.NewProjectile(position, new Vector2(speedX + Main.rand.Next(-2, 2), speedY + Main.rand.Next(-2, 2)), mod.ProjectileType("SpikyLure"), damage, knockBack, player.whoAmI);
                     }
                     break;
             }
@@ -115,24 +105,25 @@ Throwing: The rod is swung forward sending out multiple lures that may or may no
                 //melee
                 case 1:
                     item.melee = true;
+                    item.shoot = mod.ProjectileType("PufferRang");
+
                     item.useStyle = 1;
                     item.useTime = 15;
                     item.useAnimation = 15;
                     item.UseSound = SoundID.Item1;
                     item.knockBack = 6;
                     item.noMelee = false;
-                    item.shoot = mod.ProjectileType("PufferRang");
-                    item.shootSpeed = 4f;
+                    item.shootSpeed = 2f;
                     break;
                 //range
                 case 2:
                     item.ranged = true;
-                    //item.shoot = ProjectileID.Bullet;
+                    item.shoot = ProjectileID.Bullet;
+
                     item.knockBack = 6.5f;
                     item.useStyle = 5;
                     item.useAnimation = 45;
                     item.useTime = 45;
-                    item.shoot = 10;
                     item.useAmmo = AmmoID.Bullet;
                     item.UseSound = SoundID.Item36;
                     item.shootSpeed = 7f;
@@ -142,31 +133,48 @@ Throwing: The rod is swung forward sending out multiple lures that may or may no
                 case 3:
                     item.magic = true;
                     item.mana = 15;
-                    item.shoot = 10;
+                    item.shoot = mod.ProjectileType("Bubble");
+
+                    item.knockBack = 3f;
+                    item.useStyle = 5;
+                    item.useAnimation = 25;
+                    item.useTime = 25;
+                    item.UseSound = SoundID.Item85;
+                    item.shootSpeed = 11f;
+                    item.noMelee = true;
 
                     break;
                 //minion
                 case 4:
                     item.summon = true;
-                    item.shoot = 10;
+                    item.mana = 10;
+                    item.shoot = mod.ProjectileType("FishMinion");
+
+                    item.useTime = 36;
+                    item.useAnimation = 36;
+                    item.useStyle = 1;
+                    item.noMelee = true;
+                    item.knockBack = 3;
+                    item.UseSound = SoundID.Item44;
+                    item.shootSpeed = 10f;
+                    item.buffType = mod.BuffType("FishMinionBuff");
+                    item.buffTime = 3600;
+                    item.autoReuse = true;
                     break;
                 //throwing
                 case 5:
                     item.thrown = true;
-                    item.shoot = 10;
+                    item.shoot = mod.ProjectileType("SpikyLure");
+
+                    item.useStyle = 1;
+                    item.shootSpeed = 5f;
+                    item.knockBack = 1f;
+                    item.UseSound = SoundID.Item1;
+                    item.useAnimation = 15;
+                    item.useTime = 15;
+                    item.noMelee = true;
                     break;
             }
-
-            /*item.UseSound = SoundID.Item21;
-            item.magic = true;
-            item.useTime = 5;
-            item.useAnimation = 10;
-            item.useStyle = 5;
-            item.noMelee = true;
-            item.knockBack = 2;
-            item.mana = 12;
-            item.shoot = 1;
-            item.shootSpeed = 18f;*/
         }
 
         private void ResetDamageType()
@@ -177,6 +185,7 @@ Throwing: The rod is swung forward sending out multiple lures that may or may no
             item.summon = false;
             item.ranged = false;
             item.mana = 0;
+            item.useAmmo = AmmoID.None;
         }
 
         public override void AddRecipes()
