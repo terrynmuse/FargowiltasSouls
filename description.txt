@@ -1,39 +1,8 @@
 NEW UPDATE - v 1.0.0
-
 *Added MUTANT BOSS
-*Reworked Soul Toggles into Mod configurations, also added several new toggles
+*Reworked Soul Toggles into Mod Configurations, also added several new toggles
 *Several Enchantments have been reworked and rebalanced
-*Several changes to Masochist Mode
+*Several changes to Masochist Mode including boss recolors
 *Added Shadows of Abaddon Enchantments
 
-*See wiki for complete changelog
-
--twins boomerang fire will no longer sometimes hurt you
---added custom death message to fake hearts
--recolorss
--fixed treasyre bug softlock at the edge of the world
--updated shadewood enchant toolitp to make it more obvious what it does
--fixed many calmaity enchant bugs
--mining enchant takes either gold or plat pick
--mechs drop iron crates in masomode
--Simplified all Thorium Force and Soul tooltips
--SoE tooltip epic
--fixed royal gel effect missing from World shaper up
--added more toggles and added correct itempictures rto all thorium and calamity toggles
--Haries steal potions, wraiths steal souls
--umbrella slime does slimed now
--fixed dark star cannon being unobtainable
--moved boss drops from bags to boss itself, and made them more common in masomode
--removed meme blue dust from destroyer gun
--added extra loot to evil bosses to make up for no loot minions or whatver
--nerfed DG meme speed in maosmode
--fixed frost enchant spawning way too many icicles maybe
--eater staff and destroyer gun may work a little better in mp tm
-
--Added Computation Orb
-
-
-Bug Fixes:
-
--Fixed Top Hat Squirrels sprite sheet clipping into the ground
--Added even more Chinese translation
+*See the wiki for a complete changelog

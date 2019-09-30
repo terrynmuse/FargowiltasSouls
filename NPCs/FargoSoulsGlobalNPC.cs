@@ -690,11 +690,6 @@ namespace FargowiltasSouls.NPCs
                 Stop--;
                 npc.position = npc.oldPosition;
                 npc.frameCounter = 0;
-
-                if (npc.type == NPCID.EyeofCthulhu)
-                {
-                    return false;
-                }
             }
 
             return true;
@@ -1499,8 +1494,7 @@ namespace FargowiltasSouls.NPCs
                                 Counter2 = 30;
                                 masoBool[0] = false;
                                 if (Main.netMode != 1)
-                                    for (int i = 0; i < 8; i++)
-                                        Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(Math.PI / 4 * i), mod.ProjectileType("BloodScythe"), npc.damage / 4, 0f, Main.myPlayer);
+                                    FargoGlobalProjectile.XWay(8, npc.Center, mod.ProjectileType("BloodScythe"), 2, npc.damage / 4, 0);
                             }
                             /*if (++Timer > 600)
                             {
@@ -9087,7 +9081,7 @@ namespace FargowiltasSouls.NPCs
                 }
             }
 
-            /*if (Fargowiltas.Instance.CalamityLoaded && FargoSoulsWorld.MasochistMode)
+            if (Fargowiltas.Instance.CalamityLoaded && Revengeance && FargoSoulsWorld.MasochistMode && Main.bloodMoon && Main.moonPhase == 0 && Main.raining && Main.rand.Next(10) == 0)
             {
                 Mod calamity = ModLoader.GetMod("CalamityMod");
 
@@ -9095,7 +9089,7 @@ namespace FargowiltasSouls.NPCs
                 {
                     Item.NewItem(npc.Hitbox, calamity.ItemType("CosmicPlushie"));
                 }
-            }*/
+            }
         }
 
         public override bool CheckDead(NPC npc)

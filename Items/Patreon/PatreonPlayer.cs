@@ -8,7 +8,9 @@ namespace FargowiltasSouls
     public class PatreonPlayer : ModPlayer
     {
         public bool Gittle;
+
         public bool Sasha;
+        public bool FishMinion;
 
         public bool CompOrb;
 
@@ -16,6 +18,7 @@ namespace FargowiltasSouls
         {
             Gittle = false;
             Sasha = false;
+            FishMinion = false;
             CompOrb = false;
         }
 

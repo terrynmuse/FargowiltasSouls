@@ -10,12 +10,13 @@ namespace FargowiltasSouls.Items.Misc
 {
 	public class Sadism : ModItem
 	{
+        public override string Texture => "FargowiltasSouls/Items/Placeholder";
+
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sadism");
             Tooltip.SetDefault(@"'Proof of having embraced suffering'
 Grants immunity to almost all Masochist Mode debuffs");
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 10));
             DisplayName.AddTranslation(GameCulture.Chinese, "施虐狂");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'受苦的证明'
@@ -47,6 +48,11 @@ Grants immunity to almost all Masochist Mode debuffs");
                     line2.overrideColor = new Color(Main.DiscoR, 51, 255 - (int)(Main.DiscoR * 0.4));
                 }
             }
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
         }
     }
 }

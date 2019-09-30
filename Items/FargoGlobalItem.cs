@@ -197,7 +197,7 @@ namespace FargowiltasSouls.Items
                     thoriumPlayer.rocketsFired++;
                     if (thoriumPlayer.rocketsFired >= 3)
                     {
-                        Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed * 1.5f;
+                        Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * (item.shootSpeed > 0 ? item.shootSpeed : 10) * 1.5f;
 
                         Projectile.NewProjectile(player.Center, velocity, thorium.ProjectileType("IllumiteMissile"), item.damage, item.knockBack, player.whoAmI, 0f, 0f);
                         thoriumPlayer.rocketsFired = 0;
@@ -211,7 +211,7 @@ namespace FargowiltasSouls.Items
             {
                 if (item.damage >= 1 && Main.rand.Next(5) == 0)
                 {
-                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed;
+                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * (item.shootSpeed > 0 ? item.shootSpeed : 10);
 
                     float num9 = 0.25f;
                     float num10 = (float)Math.Sqrt((velocity.X * velocity.X + velocity.Y * velocity.Y));
@@ -230,7 +230,7 @@ namespace FargowiltasSouls.Items
                 thoriumPlayer.magicCast++;
                 if (thoriumPlayer.magicCast >= 7)
                 {
-                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * item.shootSpeed;
+                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * (item.shootSpeed > 0 ? item.shootSpeed : 10);
 
                     Vector2 value;
                     value.X = Main.MouseWorld.X;

@@ -5,20 +5,20 @@ using Terraria.ModLoader;
 
 namespace FargowiltasSouls.Items.Patreon
 {
-    public class WaterStream : ModProjectile
+    public class SpikyLure : ModProjectile
     {
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Water Stream");
+            DisplayName.SetDefault("Spiky Lure");
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.WaterStream);
-            aiType = ProjectileID.WaterStream;
+            projectile.CloneDefaults(ProjectileID.SpikyBall);
+            aiType = ProjectileID.SpikyBall;
 
-            
+
             //projectile.penetrate = 4;
         }
 

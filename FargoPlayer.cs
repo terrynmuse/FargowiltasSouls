@@ -82,6 +82,8 @@ namespace FargowiltasSouls
         public bool NinjaEnchant;
         public bool FirstStrike;
         public bool NearSmoke;
+        private bool hasSmokeBomb;
+        private int smokeBombCD;
         public bool IronEnchant;
         public bool IronGuard;
         public bool TurtleEnchant;
@@ -259,7 +261,6 @@ namespace FargowiltasSouls
         public bool Abominationn;
 
         //debuffs
-        private int webCounter = 0;
         public bool Hexed;
         public bool Unstable;
         private int unstableCD = 0;
@@ -300,6 +301,7 @@ namespace FargowiltasSouls
         public bool Midas;
         public bool MutantPresence;
         public bool Swarming;
+        public int lightningCounter = 0;
 
         public int MasomodeCrystalTimer = 0;
         public int MasomodeFreezeTimer = 0;
@@ -391,6 +393,15 @@ namespace FargowiltasSouls
                 goldHP = player.statLife;
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Zhonyas").WithVolume(1f), player.Center);
             }
+
+            if (Fargowiltas.SmokeBombKey.JustPressed && NinjaEnchant && hasSmokeBomb && smokeBombCD == 0)
+            {
+                Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * 6;
+
+                Projectile.NewProjectile(player.Center, velocity, ProjectileID.SmokeBomb, 0, 0, player.whoAmI);
+
+                smokeBombCD = 15;
+            }
         }
 
         public override void ResetEffects()
@@ -442,6 +453,7 @@ namespace FargowiltasSouls
             NinjaEnchant = false;
             FirstStrike = false;
             NearSmoke = false;
+            hasSmokeBomb = false;
             IronEnchant = false;
             IronGuard = false;
             TurtleEnchant = false;
@@ -807,11 +819,34 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
-                if (!PureHeart && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight))
+                if (!PureHeart && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight) && player.HeldItem.type != ItemID.Umbrella)
                 {
                     Tile currentTile = Framing.GetTileSafely(player.Center);
                     if (currentTile.wall == WallID.None)
+                    {
                         player.AddBuff(BuffID.Wet, 2);
+
+                        if (Main.hardMode)
+                        {
+                            lightningCounter++;
+
+                            if (lightningCounter >= 600)
+                            {
+                                //tends to spawn in ceilings if the player goes indoors/underground
+                                Point tileCoordinates = player.Top.ToTileCoordinates();
+
+                                tileCoordinates.X += Main.rand.Next(-25, 25);
+                                tileCoordinates.Y -= 15 + Main.rand.Next(-5, 5);
+
+                                for (int index = 0; index < 10 && !WorldGen.SolidTile(tileCoordinates.X, tileCoordinates.Y) && tileCoordinates.Y > 10; ++index) tileCoordinates.Y -= 1;
+
+                                Projectile.NewProjectile(tileCoordinates.X * 16 + 8, tileCoordinates.Y * 16 + 17, 0f, 0f, ProjectileID.VortexVortexLightning, 0, 2f, Main.myPlayer,
+                                    0f, 0f);
+
+                                lightningCounter = 0;
+                            }
+                        }
+                    } 
                 }
 
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
@@ -845,7 +880,7 @@ namespace FargowiltasSouls
                     {
                         player.AddBuff(BuffID.Webbed, 30);
                         player.stickyBreak = 0;
-                        //player.stickyBreak = 1000;
+
                         Vector2 vector = Collision.StickyTiles(player.position, player.velocity, player.width, player.height);
                         if (vector.X != -1 && vector.Y != -1)
                         {
@@ -856,13 +891,6 @@ namespace FargowiltasSouls
                                 NetMessage.SendData(17, -1, -1, null, 0, num3, num4, 0f, 0, 0, 0);
                         }
                     }
-                    /*webCounter++;
-                    if (webCounter >= 30 && player.HasBuff(BuffID.Webbed))
-                    {
-                        player.DelBuff(player.FindBuffIndex(BuffID.Webbed));
-                        player.stickyBreak = 0;
-                        webCounter = 0;
-                    }*/
                 }
 
                 if (!PureHeart && Main.bloodMoon)
@@ -1044,6 +1072,29 @@ namespace FargowiltasSouls
 
                 if (player.numMinions >= actualMinions)
                     TikiMinion = true;
+            }
+
+            if (NinjaEnchant)
+            {
+                for (int j = 0; j < player.inventory.Length; j++)
+                {
+                    if (hasSmokeBomb)
+                    {
+                        break;
+                    }
+
+                    Item item = player.inventory[j];
+
+                    if (item.type == ItemID.SmokeBomb)
+                    {
+                        hasSmokeBomb = true;
+                    }
+                }
+
+                if (smokeBombCD != 0)
+                {
+                    smokeBombCD--;
+                }
             }
 
             if (Atrophied)
@@ -1277,19 +1328,19 @@ namespace FargowiltasSouls
             else if (UniverseEffect)
                 player.statManaMax2 += 300;
 
-            Item item = player.HeldItem;
+            Item heldItem = player.HeldItem;
             //fix your toggles terry
             if (TungstenEnchant && SoulConfig.Instance.GetValue("Tungsten Effect"))
             {
-                if (item.damage > 0 && item.scale < 2.5f)
+                if (heldItem.damage > 0 && heldItem.scale < 2.5f)
                 {
-                    tungstenPrevSizeSave = item.scale;
-                    item.scale = 2.5f;
+                    tungstenPrevSizeSave = heldItem.scale;
+                    heldItem.scale = 2.5f;
                 }
             }
             else if ((!SoulConfig.Instance.GetValue("Tungsten Effect") || !TungstenEnchant) && tungstenPrevSizeSave != -1)
             {
-                item.scale = tungstenPrevSizeSave;
+                heldItem.scale = tungstenPrevSizeSave;
             }
 
             if (AdditionalAttacks && AdditionalAttacksTimer > 0)
@@ -2623,7 +2674,7 @@ namespace FargowiltasSouls
             }
 
             //tide hunter
-            if (TideHunterEnchant && SoulConfig.Instance.GetValue("Depth Diver Foam") && crit)
+            if (TideHunterEnchant && SoulConfig.Instance.GetValue("Tide Hunter Foam") && crit)
             {
                 for (int n = 0; n < 10; n++)
                 {
