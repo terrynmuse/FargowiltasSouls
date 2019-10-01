@@ -1673,16 +1673,9 @@ namespace FargowiltasSouls.Projectiles
         public static Projectile[] XWay(int num, Vector2 pos, int type, float speed, int damage, float knockback)
         {
             Projectile[] projs = new Projectile[16];
-
-            double spread = (2 * Math.PI) / num;
-
+            double spread = 2 * Math.PI / num;
             for (int i = 0; i < num; i++)
-            {
-                projs[i] = NewProjectileDirectSafe(pos, new Vector2(speed, speed), type, damage, knockback, Main.myPlayer);
-                projs[i].velocity = projs[i].velocity.RotatedBy(spread * i);
-            }
-                
-
+                projs[i] = NewProjectileDirectSafe(pos, new Vector2(speed, speed).RotatedBy(spread * i), type, damage, knockback, Main.myPlayer);
             return projs;
         }
 
