@@ -1489,6 +1489,13 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
 
+                            if (Counter2 > 0)
+                            {
+                                if (Counter2 % 6 == 0 && Main.netMode != 1)
+                                    Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y), npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 1f, Main.myPlayer);
+                                Counter2--;
+                                
+                            }
                             if (npc.ai[1] == 3f) //during dashes in phase 2
                             {
                                 Counter2 = 30;
@@ -1524,11 +1531,6 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }*/
                         }
-
-                        if (Counter2 > 0 && Counter2 % 6 == 0 && Main.netMode != 1)
-                            Projectile.NewProjectile(new Vector2(npc.Center.X + Main.rand.Next(-15, 15), npc.Center.Y),
-                                npc.velocity / 10, mod.ProjectileType("BloodScythe"), npc.damage / 4, 1f, Main.myPlayer);
-                        Counter2--;
                         break;
 
                     case NPCID.Retinazer:
