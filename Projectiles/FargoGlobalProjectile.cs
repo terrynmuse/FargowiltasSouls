@@ -1283,6 +1283,12 @@ namespace FargowiltasSouls.Projectiles
                             target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 240));
                             target.AddBuff(mod.BuffType("Crippled"), 60);
                         }
+                        if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
+                        {
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+                            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+                            target.AddBuff(mod.BuffType("MutantFang"), 300);
+                        }
                         break;
 
                     case ProjectileID.DeathSickle:
@@ -1548,6 +1554,12 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.DeathLaser:
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.retiBoss, NPCID.Retinazer))
                             target.AddBuff(BuffID.Ichor, Main.rand.Next(300, 600));
+                        if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
+                        {
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+                            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+                            target.AddBuff(mod.BuffType("MutantFang"), 300);
+                        }
                         break;
 
                     case ProjectileID.CannonballHostile:

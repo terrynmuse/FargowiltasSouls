@@ -1,5 +1,6 @@
 ﻿fixed 8ways borking in mp
 slightly adjusted eoc's scythe trail
+mutant rangs fire extra attacks
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
