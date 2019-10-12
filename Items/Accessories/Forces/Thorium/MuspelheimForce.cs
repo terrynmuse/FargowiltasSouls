@@ -49,7 +49,7 @@ Effects of Flawless Chrysalis and Guide to Plant Fiber Cordage");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             
             //life bloom effect
             modPlayer.LifeBloomEnchant = true;

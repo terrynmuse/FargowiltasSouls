@@ -53,7 +53,7 @@ Summons a Moogle pet");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //set bonus
             player.statManaMax2 += (int)(player.statManaMax2 * 0.5);
             if (player.statMana > (int)(player.statManaMax2 * 0.75) || player.statMana > 300)

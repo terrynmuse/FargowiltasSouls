@@ -50,8 +50,8 @@ Summons a pet Jellyfish");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //depth diver set
             for (int i = 0; i < 255; i++)
             {

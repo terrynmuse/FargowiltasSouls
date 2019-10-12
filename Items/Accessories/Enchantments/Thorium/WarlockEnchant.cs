@@ -49,7 +49,7 @@ Summons a Li'l Devil to attack enemies");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //set bonus
             thoriumPlayer.warlockSet = true;
             modPlayer.WarlockEnchant = true;

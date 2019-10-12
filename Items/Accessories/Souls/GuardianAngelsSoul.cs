@@ -76,7 +76,7 @@ Nearby allies that die drop a wisp of spirit energy");
         private void Thorium(Player player)
         {
             //general
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.radiantBoost += 0.3f;
             thoriumPlayer.radiantSpeed -= 0.2f;
             thoriumPlayer.healingSpeed += 0.2f;

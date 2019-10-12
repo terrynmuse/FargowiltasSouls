@@ -56,7 +56,7 @@ Summons a Brimling pet");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
 
             if (SoulConfig.Instance.GetValue("Ataxia Effects"))
             {
@@ -130,7 +130,7 @@ Summons a Brimling pet");
                 }
             }
 
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.AtaxiaEnchant = true;
             fargoPlayer.AddPet("Brimling Pet", hideVisual, calamity.BuffType("BrimlingBuff"), calamity.ProjectileType("Brimling"));
         }

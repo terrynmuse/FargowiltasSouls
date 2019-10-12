@@ -70,7 +70,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             //attack speed
-            player.GetModPlayer<FargoPlayer>(mod).RangedSoul = true;
+            player.GetModPlayer<FargoPlayer>().RangedSoul = true;
             player.rangedDamage += .3f;
             player.rangedCrit += 15;
 
@@ -84,7 +84,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         private void Calamity(Player player)
         {
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             modPlayer.eQuiver = true;
         }
 

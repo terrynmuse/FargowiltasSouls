@@ -49,8 +49,8 @@ Effects of Counter Scarf and Fungal Symbiote");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityPlayer>();
             calamityPlayer.statigelSet = true;
             player.doubleJumpSail = true;
             player.jumpBoost = true;

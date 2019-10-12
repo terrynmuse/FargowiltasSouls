@@ -720,8 +720,8 @@ Additionally grants:");
 
         private void Thorium(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //phylactery
             if (!thoriumPlayer.lichPrevent)
             {
@@ -903,7 +903,7 @@ Additionally grants:");
 
         private void Calamity(Player player, bool hideVisual)
         {
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             //UNIVERSE
             //melee
             modPlayer.eGauntlet = true;
@@ -948,7 +948,7 @@ Additionally grants:");
 
         private void DBT(Player player)
         {
-            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>();
 
             dbtPlayer.chargeMoveSpeed = Math.Max(dbtPlayer.chargeMoveSpeed, 2f);
             dbtPlayer.kiKbAddition += 0.4f;

@@ -83,7 +83,7 @@ Effects of the Core of the Blood God and Affliction");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
 
             if (SoulConfig.Instance.GetValue("Bloodflare Effects"))
             {

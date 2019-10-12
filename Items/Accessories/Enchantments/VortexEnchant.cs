@@ -37,7 +37,7 @@ Summons a pet Companion Cube");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).VortexEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().VortexEffect(hideVisual);
         }
 
         public override void AddRecipes()

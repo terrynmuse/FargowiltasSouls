@@ -49,7 +49,7 @@ Effects of Deep Diver, The Transformer, and Luxor's Gift");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             //all
             modPlayer.victideSet = true;
 

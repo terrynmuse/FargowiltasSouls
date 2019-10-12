@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Buffs.Souls
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<FargoSoulsGlobalNPC>(mod).Shock = true;
+            npc.GetGlobalNPC<FargoSoulsGlobalNPC>().Shock = true;
         }
     }
 }

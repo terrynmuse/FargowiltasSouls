@@ -49,8 +49,8 @@ Summons a pet Penguin and Owl");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //cryo set bonus, dmg duplicate
             modPlayer.CryoEnchant = true;
             //strider hide

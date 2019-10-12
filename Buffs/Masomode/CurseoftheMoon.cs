@@ -27,12 +27,12 @@ namespace FargowiltasSouls.Buffs.Masomode
         {
             player.statDefense -= 10;
             player.endurance -= 0.1f;
-            player.GetModPlayer<FargoPlayer>(mod).CurseoftheMoon = true;
+            player.GetModPlayer<FargoPlayer>().CurseoftheMoon = true;
         }
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>(mod).CurseoftheMoon = true;
+            npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().CurseoftheMoon = true;
         }
     }
 }

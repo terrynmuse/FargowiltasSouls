@@ -35,7 +35,7 @@ Summons a pet Minotaur");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).GladiatorEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().GladiatorEffect(hideVisual);
         }
 
         public override void AddRecipes()

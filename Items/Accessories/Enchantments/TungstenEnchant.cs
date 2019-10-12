@@ -58,7 +58,7 @@ Projectiles still have the same tile collision hitbox";
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             timer++;
             if (timer >= 30)
             {

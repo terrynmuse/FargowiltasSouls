@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<FargoPlayer>(mod).noDodge = true;
+            player.GetModPlayer<FargoPlayer>().noDodge = true;
         }
     }
 }

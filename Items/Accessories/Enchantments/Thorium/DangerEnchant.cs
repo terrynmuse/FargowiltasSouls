@@ -44,7 +44,7 @@ You are immune to most damage-inflicting debuffs");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             if (!thoriumPlayer.outOfCombat)
             {
                 thoriumPlayer.lifeRecovery += 2;

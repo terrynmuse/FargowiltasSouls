@@ -45,7 +45,7 @@ Effects of Fan Letter");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             modPlayer.JesterEnchant = true;
             //fan letter
             thoriumPlayer.bardResourceMax2 += 2;

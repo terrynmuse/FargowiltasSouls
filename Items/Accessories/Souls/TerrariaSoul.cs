@@ -105,7 +105,7 @@ Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Sh
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //includes revive, both spectres, adamantite, and star heal
             modPlayer.TerrariaSoul = true;
 

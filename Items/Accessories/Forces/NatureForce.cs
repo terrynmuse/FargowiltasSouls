@@ -96,7 +96,7 @@ Summons several pets";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //bulb, cryo effect
             modPlayer.NatureForce = true;
             //regen, pets
@@ -118,8 +118,8 @@ Summons several pets";
 
         private void Thorium(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             //berserker effect
             if (SoulConfig.Instance.GetValue("Berserker Effect"))

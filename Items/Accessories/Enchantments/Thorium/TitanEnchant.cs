@@ -44,7 +44,7 @@ Effects of Mask of the Crystal Eye, Abyssal Shell, and Cyan Music Player");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //set bonus
             player.GetModPlayer<FargoPlayer>().AllDamageUp(.15f);
             //crystal eye mask

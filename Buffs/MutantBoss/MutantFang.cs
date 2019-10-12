@@ -28,7 +28,7 @@ namespace FargowiltasSouls.Buffs.MutantBoss
 
         public override void Update(Player player, ref int buffIndex)
         {
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             player.poisoned = true;
             player.venom = true;
             player.ichor = true;

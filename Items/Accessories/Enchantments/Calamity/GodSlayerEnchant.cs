@@ -84,7 +84,7 @@ Summons a Chibii Doggo pet");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
 
             if (SoulConfig.Instance.GetValue("God Slayer Effects"))
             {
@@ -300,7 +300,7 @@ Summons a Chibii Doggo pet");
             player.buffImmune[calamity.BuffType("Horror")] = true;
             modPlayer.draedonsStressGain = true;
 
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.GodSlayerEnchant = true;
             fargoPlayer.AddPet("Chibii Pet", hideVisual, calamity.BuffType("ChibiiBuff"), calamity.ProjectileType("ChibiiDoggo"));
 

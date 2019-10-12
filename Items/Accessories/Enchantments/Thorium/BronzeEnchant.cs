@@ -46,8 +46,8 @@ Effects of Olympic Torch, Champion's Rebuttal, Spartan Sandals, and Spartan's Su
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //lightning
             modPlayer.BronzeEnchant = true;
             //rebuttal

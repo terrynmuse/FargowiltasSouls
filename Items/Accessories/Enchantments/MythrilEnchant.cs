@@ -33,8 +33,8 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (SoulConfig.Instance.GetValue("Mythril Weapon Speed") && !player.GetModPlayer<FargoPlayer>(mod).TerrariaSoul)
-                player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= 1.2f;
+            if (SoulConfig.Instance.GetValue("Mythril Weapon Speed") && !player.GetModPlayer<FargoPlayer>().TerrariaSoul)
+                player.GetModPlayer<FargoPlayer>().AttackSpeed *= 1.2f;
         }
 
         public override void AddRecipes()

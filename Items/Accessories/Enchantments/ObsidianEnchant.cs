@@ -35,7 +35,7 @@ While standing in lava, you gain 20 armor penetration, 15% attack speed, and you
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).ObsidianEffect();
+            player.GetModPlayer<FargoPlayer>().ObsidianEffect();
         }
 
         public override void AddRecipes()

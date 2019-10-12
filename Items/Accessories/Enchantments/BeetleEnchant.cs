@@ -39,7 +39,7 @@ Increases flight time by 50%";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //defense beetle bois
             modPlayer.BeetleEffect();
             modPlayer.wingTimeModifier += .5f;

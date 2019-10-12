@@ -62,7 +62,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             
 
             if (SoulConfig.Instance.GetValue("Eye of the Storm"))

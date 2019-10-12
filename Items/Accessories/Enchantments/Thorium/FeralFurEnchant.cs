@@ -43,7 +43,7 @@ Critical strikes grant Alpha's Roar, briefly increasing the damage of your summo
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //feral set bonus
             modPlayer.FeralFurEnchant = true;
         }

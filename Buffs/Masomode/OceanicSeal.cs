@@ -31,8 +31,8 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<FargoPlayer>(mod).noDodge = true;
-            player.GetModPlayer<FargoPlayer>(mod).noSupersonic = true;
+            player.GetModPlayer<FargoPlayer>().noDodge = true;
+            player.GetModPlayer<FargoPlayer>().noSupersonic = true;
             player.moonLeech = true;
 
             if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBoss, NPCID.DukeFishron))

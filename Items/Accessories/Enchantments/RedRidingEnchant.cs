@@ -51,7 +51,7 @@ Summons a pet Puppy");
                 player.hideWolf = true;
             }
 
-            player.GetModPlayer<FargoPlayer>(mod).RedRidingEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().RedRidingEffect(hideVisual);
         }
 
         public override void AddRecipes()

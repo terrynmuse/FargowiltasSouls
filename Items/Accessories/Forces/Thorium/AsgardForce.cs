@@ -60,7 +60,7 @@ Summons a pet Maid");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             //tide turner
             mod.GetItem("TideTurnerEnchant").UpdateAccessory(player, hideVisual);

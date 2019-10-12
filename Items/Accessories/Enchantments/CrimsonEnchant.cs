@@ -35,7 +35,7 @@ Summons a pet Face Monster and Crimson Heart");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).CrimsonEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().CrimsonEffect(hideVisual);
         }
 
         public override void AddRecipes()

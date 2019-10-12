@@ -37,7 +37,7 @@ When you die, you violently explode dealing massive damage");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MoltenEffect(20);
+            player.GetModPlayer<FargoPlayer>().MoltenEffect(20);
         }
 
         public override void AddRecipes()

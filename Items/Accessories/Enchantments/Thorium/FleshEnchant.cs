@@ -46,8 +46,8 @@ Summons a pet Flying Blister");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //flesh set bonus
             thoriumPlayer.Symbiotic = true;
             //vampire gland

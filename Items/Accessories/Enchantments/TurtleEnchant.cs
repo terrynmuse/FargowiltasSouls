@@ -41,7 +41,7 @@ Summons a pet Lizard and Turtle"); //shell hide no happen with SoE
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             modPlayer.CactusEffect();
             modPlayer.TurtleEffect(hideVisual);
             player.thorns = 1f;

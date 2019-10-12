@@ -50,7 +50,7 @@ Attacks that cause Wet cannot proc the lightning";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).CopperEnchant = true;
+            player.GetModPlayer<FargoPlayer>().CopperEnchant = true;
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
@@ -115,7 +115,7 @@ Attacks that cause Wet cannot proc the lightning";
                 int maxAccessoryIndex = 5 + player.extraAccessorySlots;
                 for (int i = 3; i < 3 + maxAccessoryIndex; i++)
                 {
-                    if (slot != i && player.armor[i].type == mod.ItemType<AA.TrueCopperEnchant>())
+                    if (slot != i && player.armor[i].type == mod.ItemType("TrueCopperEnchant"))
                     {
                         return false;
                     }

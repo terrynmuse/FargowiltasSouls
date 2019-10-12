@@ -70,7 +70,7 @@ Increases flight time by 50%
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //tide hunter, yew wood, iridescent effects
             modPlayer.LifeForce = true;
             //bees ignore defense, super bees, pet
@@ -95,8 +95,8 @@ Increases flight time by 50%
 
         private void Thorium(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //bee booties
             if (SoulConfig.Instance.GetValue("Bee Booties"))
             {

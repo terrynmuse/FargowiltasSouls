@@ -16,7 +16,7 @@ namespace FargowiltasSouls.Items.Patreon
 
         public override void Update(Player player, ref int buffIndex)
         {
-            PatreonPlayer modPlayer = player.GetModPlayer<PatreonPlayer>(mod);
+            PatreonPlayer modPlayer = player.GetModPlayer<PatreonPlayer>();
             if (player.ownedProjectileCounts[mod.ProjectileType("FishMinion")] > 0) modPlayer.FishMinion = true;
             if (!modPlayer.FishMinion)
             {

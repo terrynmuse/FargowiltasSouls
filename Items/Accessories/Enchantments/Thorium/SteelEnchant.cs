@@ -47,7 +47,7 @@ Effects of Spiked Bracers");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //steel effect
             if (player.statLife == player.statLifeMax2)
             {

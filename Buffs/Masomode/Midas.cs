@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<FargoPlayer>(mod).Midas = true;
+            player.GetModPlayer<FargoPlayer>().Midas = true;
         }
     }
 }

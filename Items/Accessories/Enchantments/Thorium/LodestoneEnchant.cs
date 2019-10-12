@@ -47,7 +47,7 @@ Effects of Astro-Beetle Husk");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             if (SoulConfig.Instance.GetValue("Lodestone Resistance"))
             {
                 //set bonus

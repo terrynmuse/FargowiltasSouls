@@ -22,10 +22,10 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             //mana cost also damages
-            player.GetModPlayer<FargoPlayer>(mod).ReverseManaFlow = true;
+            player.GetModPlayer<FargoPlayer>().ReverseManaFlow = true;
             player.magicDamage -= 1.5f;
             if (player.HeldItem.magic)
-                player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= 0.5f;
+                player.GetModPlayer<FargoPlayer>().AttackSpeed *= 0.5f;
         }
     }
 }

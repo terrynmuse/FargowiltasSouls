@@ -88,7 +88,7 @@ Increased melee knockback
 
         private void Calamity(Player player)
         {
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             modPlayer.eGauntlet = true;
             //removing the extra boosts it adds because meme calamity
             player.meleeDamage -= .15f;

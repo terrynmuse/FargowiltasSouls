@@ -66,7 +66,7 @@ Effects of Greedy Ring, Celestial Shell, and Shiny Stone
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //super bleed on all, knockback remove for all
             modPlayer.WillForce = true; 
             //midas, greedy ring, pet, zhonyas
@@ -94,8 +94,8 @@ Effects of Greedy Ring, Celestial Shell, and Shiny Stone
 
         public void Thorium(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             if (SoulConfig.Instance.GetValue("Proof of Avarice"))
             {

@@ -49,7 +49,7 @@ Effects of Spring Steps, Slag Stompers, and Molten Spear Tip");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //set bonus
             player.magmaStone = true;
             thoriumPlayer.magmaSet = true;

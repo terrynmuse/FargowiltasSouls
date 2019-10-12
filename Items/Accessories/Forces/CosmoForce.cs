@@ -63,7 +63,7 @@ Summons a pet Companion Cube";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //meme speed, solar flare, white dwarf flames, tide turner daggers, pyro bursts, assassin insta kill
             modPlayer.CosmoForce = true;
 

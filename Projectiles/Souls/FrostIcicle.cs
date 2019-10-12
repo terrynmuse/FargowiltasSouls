@@ -29,7 +29,7 @@ namespace FargowiltasSouls.Projectiles.Souls
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             projectile.timeLeft++;
 

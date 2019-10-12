@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Buffs.Souls
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex]++;
-            player.GetModPlayer<FargoPlayer>(mod).FirstStrike = true;
+            player.GetModPlayer<FargoPlayer>().FirstStrike = true;
         }
     }
 }

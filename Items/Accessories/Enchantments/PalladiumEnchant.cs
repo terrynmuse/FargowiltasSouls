@@ -35,7 +35,7 @@ One attack gains 10% life steal every 4 seconds, capped at 8 HP");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).PalladiumEffect();
+            player.GetModPlayer<FargoPlayer>().PalladiumEffect();
         }
 
         public override void AddRecipes()

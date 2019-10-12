@@ -55,7 +55,7 @@ Effects of The Community");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
 
             if (SoulConfig.Instance.GetValue("Xeroc Effects"))
             {

@@ -50,7 +50,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         
         private void BardEffect(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.symphonicDamage += 0.18f;
             thoriumPlayer.symphonicSpeed += .05f;
             thoriumPlayer.symphonicCrit += 5;

@@ -68,7 +68,7 @@ Drastically increased ki regen
             if (!Fargowiltas.Instance.DBTLoaded) return;
 
             //general
-            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>();
 
             dbtPlayer.KiDamage += 0.35f;
             dbtPlayer.kiCrit += 20;

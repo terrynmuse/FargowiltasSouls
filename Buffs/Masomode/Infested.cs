@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer p = player.GetModPlayer<FargoPlayer>();
 
             //weak DOT that grows exponentially stronger
             if (p.FirstInfection)

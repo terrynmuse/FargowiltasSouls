@@ -47,7 +47,7 @@ Summons a pet Penguin");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //set bonus
             thoriumPlayer.icySet = true;
             if (player.ownedProjectileCounts[thorium.ProjectileType("IcyAura")] < 1)

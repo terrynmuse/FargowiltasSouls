@@ -37,7 +37,7 @@ Summons a pet Squashling");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).PumpkinEffect(12, hideVisual);
+            player.GetModPlayer<FargoPlayer>().PumpkinEffect(12, hideVisual);
         }
 
         public override void AddRecipes()

@@ -82,7 +82,7 @@ Increased minion knockback";
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //phylactery
             if (!thoriumPlayer.lichPrevent)
             {
@@ -102,7 +102,7 @@ Increased minion knockback";
 
         private void Calamity(Player player)
         {
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             modPlayer.statisBeltOfCurses = true;
             modPlayer.shadowMinions = true;
             modPlayer.tearMinions = true;

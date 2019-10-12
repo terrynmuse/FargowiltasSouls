@@ -48,7 +48,7 @@ Effects of Dreadflame Emblem, Lapis Pendant, Frigid Pendant, and Pumpkin Amulet"
         {
             if (!Fargowiltas.Instance.SOALoaded) return;
 
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();
 
             //bismuth

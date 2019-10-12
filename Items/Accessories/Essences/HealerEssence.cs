@@ -52,7 +52,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         
         private void HealEffect(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.radiantBoost += 0.18f;
             thoriumPlayer.radiantSpeed -= 0.05f;
             thoriumPlayer.healingSpeed += 0.05f;

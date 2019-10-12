@@ -42,7 +42,7 @@ Inspiration notes that drop are twice as potent and increase your symphonic dama
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //marching band set 
             thoriumPlayer.empoweredNotes = true;
         }

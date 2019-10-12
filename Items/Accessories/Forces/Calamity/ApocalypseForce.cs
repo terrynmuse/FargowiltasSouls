@@ -55,8 +55,8 @@ Summons several pets");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            CalamityPlayer calamityPlayer = player.GetModPlayer<CalamityPlayer>();
 
             if (!modPlayer.TerrariaSoul)
             {

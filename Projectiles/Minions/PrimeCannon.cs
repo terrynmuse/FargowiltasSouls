@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Projectiles.Minions
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-            /*PumpkingPlayer modPlayer = player.GetModPlayer<PumpkingPlayer>(mod);
+            /*PumpkingPlayer modPlayer = player.GetModPlayer<PumpkingPlayer>();
             if (player.dead)
             {
                 modPlayer.Mecharaven = false;

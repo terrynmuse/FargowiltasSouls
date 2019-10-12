@@ -231,5 +231,52 @@ namespace FargowiltasSouls
                 return false;
             return true;
         }
+
+        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            switch(type)
+            {
+                case TileID.ShadowOrbs:
+                    if (FargoSoulsWorld.MasochistMode && Main.invasionType == 0 && !NPC.downedGoblins)
+                    {
+                        int p = Player.FindClosest(new Vector2(i * 16, j * 16), 0, 0);
+                        if (p != -1 && Main.player[p].statLifeMax2 >= 200)
+                        {
+                            if (Main.netMode != 1)
+                            {
+                                Main.invasionDelay = 0;
+                                Main.StartInvasion(1);
+                            }
+                            else
+                            {
+                                NetMessage.SendData(61, -1, -1, null, p, -1f);
+                            }
+                        }
+                    }
+                    break;
+
+                case TileID.DemonAltar:
+                    if (FargoSoulsWorld.MasochistMode && Main.invasionType == 0 && !NPC.downedPirates)
+                    {
+                        int p = Player.FindClosest(new Vector2(i * 16, j * 16), 0, 0);
+                        if (p != -1 && Main.player[p].statLifeMax2 >= 200)
+                        {
+                            if (Main.netMode != 1)
+                            {
+                                Main.invasionDelay = 0;
+                                Main.StartInvasion(3);
+                            }
+                            else
+                            {
+                                NetMessage.SendData(61, -1, -1, null, p, -1f);
+                            }
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }

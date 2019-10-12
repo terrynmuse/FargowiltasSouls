@@ -46,7 +46,7 @@ When casting healing spells, a cross is used instead of mana");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //set bonus
             thoriumPlayer.clericSet = true;
             thoriumPlayer.orbital = true;

@@ -48,14 +48,14 @@ Lead Poisoning deals damage over time and spreads to nearby enemies";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).LeadEnchant = true;
+            player.GetModPlayer<FargoPlayer>().LeadEnchant = true;
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             timer++;
             if (timer >= 30)
             {

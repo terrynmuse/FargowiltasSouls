@@ -68,7 +68,7 @@ Summons a Levi pet");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             //body
             modPlayer.shadeRegen = true;
             player.thorns = 100f;
@@ -93,7 +93,7 @@ Summons a Levi pet");
                 }
             }
 
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.DemonShadeEnchant = true;
             fargoPlayer.AddPet("Levi Pet", hideVisual, calamity.BuffType("Levi"), calamity.ProjectileType("Levi"));
         }

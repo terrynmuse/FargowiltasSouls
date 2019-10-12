@@ -86,7 +86,7 @@ Increases your maximum mana by 200
 
         private void Calamity(Player player)
         {
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             modPlayer.eTalisman = true;
         }
 

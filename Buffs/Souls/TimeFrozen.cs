@@ -45,7 +45,7 @@ namespace FargowiltasSouls.Buffs.Souls
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<FargoSoulsGlobalNPC>(mod).TimeFrozen = true;
+            npc.GetGlobalNPC<FargoSoulsGlobalNPC>().TimeFrozen = true;
         }
     }
 }

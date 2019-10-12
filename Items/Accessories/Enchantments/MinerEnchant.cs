@@ -39,7 +39,7 @@ Summons a pet Magic Lantern");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).MinerEffect(hideVisual, .5f);
+            player.GetModPlayer<FargoPlayer>().MinerEffect(hideVisual, .5f);
         }
 
         public override void AddRecipes()

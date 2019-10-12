@@ -66,7 +66,7 @@ Attacks have a 20% chance to unleash aquatic homing daggers all around you");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //mini crits and daggers
             modPlayer.TideTurnerEnchant = true;
 

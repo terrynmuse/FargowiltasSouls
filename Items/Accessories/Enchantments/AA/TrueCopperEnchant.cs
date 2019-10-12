@@ -59,7 +59,7 @@ Cannot be equipped with the copper enchantment";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).TrueCopper = true;
+            player.GetModPlayer<FargoPlayer>().TrueCopper = true;
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
@@ -133,7 +133,7 @@ Cannot be equipped with the copper enchantment";
                 int maxAccessoryIndex = 5 + player.extraAccessorySlots;
                 for (int i = 3; i < 3 + maxAccessoryIndex; i++)
                 {
-                    if (slot != i && player.armor[i].type == mod.ItemType<CopperEnchant>())
+                    if (slot != i && player.armor[i].type == mod.ItemType("CopperEnchant"))
                     {
                         return false;
                     }

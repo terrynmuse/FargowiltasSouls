@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             //all ranged weapons shoot confetti 
-            player.GetModPlayer<FargoPlayer>(mod).Jammed = true;
+            player.GetModPlayer<FargoPlayer>().Jammed = true;
         }
     }
 }
