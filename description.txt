@@ -1,8 +1,4 @@
 NEW UPDATE - v 1.0.0
-*Added MUTANT BOSS
-*Reworked Soul Toggles into Mod Configurations, also added several new toggles
-*Several Enchantments have been reworked and rebalanced
-*Several changes to Masochist Mode including boss recolors
-*Added Shadows of Abaddon Enchantments
 
-*See the wiki for a complete changelog
+-demon eyes dont have double speed
+-lime kelp to PurpleMucos
