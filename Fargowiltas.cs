@@ -72,97 +72,97 @@ namespace FargowiltasSouls
             #region Toggles
             #region enchants
             ModTranslation text = CreateTranslation("WoodHeader");
-            text.SetDefault("[i:" + Instance.ItemType<WoodForce>() + "] Force of Wood");
+            text.SetDefault("[i:" + Instance.ItemType("WoodForce") + "] Force of Wood");
             AddTranslation(text);
             text = CreateTranslation("LifeHeader");
-            text.SetDefault("[i:" + Instance.ItemType<LifeForce>() + "] Force of Life");
+            text.SetDefault("[i:" + Instance.ItemType("LifeForce") + "] Force of Life");
             AddTranslation(text);
             text = CreateTranslation("NatureHeader");
-            text.SetDefault("[i:" + Instance.ItemType<NatureForce>() + "] Force of Nature");
+            text.SetDefault("[i:" + Instance.ItemType("NatureForce") + "] Force of Nature");
             AddTranslation(text);
             text = CreateTranslation("ShadowHeader");
-            text.SetDefault("[i:" + Instance.ItemType<ShadowForce>() + "] Shadow Force");
+            text.SetDefault("[i:" + Instance.ItemType("ShadowForce") + "] Shadow Force");
             AddTranslation(text);
             text = CreateTranslation("SpiritHeader");
-            text.SetDefault("[i:" + Instance.ItemType<SpiritForce>() + "] Force of Spirit");
+            text.SetDefault("[i:" + Instance.ItemType("SpiritForce") + "] Force of Spirit");
             AddTranslation(text);
             text = CreateTranslation("CosmoHeader");
-            text.SetDefault("[i:" + Instance.ItemType<CosmoForce>() + "] Force of Cosmos");
+            text.SetDefault("[i:" + Instance.ItemType("CosmoForce") + "] Force of Cosmos");
             AddTranslation(text);
             ModTranslation borealtrans = CreateTranslation("BorealConfig");
-            borealtrans.SetDefault("[i:" + Instance.ItemType<BorealWoodEnchant>() + "][c/8B7464: Boreal Snowballs]");
+            borealtrans.SetDefault("[i:" + Instance.ItemType("BorealWoodEnchant") + "][c/8B7464: Boreal Snowballs]");
             AddTranslation(borealtrans);
             text = CreateTranslation("MahoganyConfig");
-            text.SetDefault("[i:" + Instance.ItemType<RichMahoganyEnchant>() + "][c/b56c64: Mahogany Hook Speed]");
+            text.SetDefault("[i:" + Instance.ItemType("RichMahoganyEnchant") + "][c/b56c64: Mahogany Hook Speed]");
             AddTranslation(text);
             text = CreateTranslation("EbonConfig");
-            text.SetDefault("[i:" + Instance.ItemType<EbonwoodEnchant>() + "][c/645a8d: Ebonwood Shadowflame]");
+            text.SetDefault("[i:" + Instance.ItemType("EbonwoodEnchant") + "][c/645a8d: Ebonwood Shadowflame]");
             AddTranslation(text);
             text = CreateTranslation("ShadeConfig");
-            text.SetDefault("[i:" + Instance.ItemType<ShadewoodEnchant>() + "][c/586876: Blood Geyser On Hit]");
+            text.SetDefault("[i:" + Instance.ItemType("ShadewoodEnchant") + "][c/586876: Blood Geyser On Hit]");
             AddTranslation(text);
             text = CreateTranslation("PalmConfig");
-            text.SetDefault("[i:" + Instance.ItemType<PalmWoodEnchant>() + "][c/b78d56: Palmwood Sentry]");
+            text.SetDefault("[i:" + Instance.ItemType("PalmWoodEnchant") + "][c/b78d56: Palmwood Sentry]");
             AddTranslation(text);
             text = CreateTranslation("PearlConfig");
-            text.SetDefault("[i:" + Instance.ItemType<PearlwoodEnchant>() + "][c/ad9a5f: Pearlwood Rainbow]");
+            text.SetDefault("[i:" + Instance.ItemType("PearlwoodEnchant") + "][c/ad9a5f: Pearlwood Rainbow]");
             AddTranslation(text);
             text = CreateTranslation("EarthHeader");
-            text.SetDefault("[i:" + Instance.ItemType<EarthForce>() + "] Force of Earth");
+            text.SetDefault("[i:" + Instance.ItemType("EarthForce") + "] Force of Earth");
             AddTranslation(text);
             text = CreateTranslation("AdamantiteConfig");
-            text.SetDefault("[i:" + Instance.ItemType<AdamantiteEnchant>() + "][c/dd557d: Adamantite Projectile Splitting]");
+            text.SetDefault("[i:" + Instance.ItemType("AdamantiteEnchant") + "][c/dd557d: Adamantite Projectile Splitting]");
             AddTranslation(text);
             text = CreateTranslation("CobaltConfig");
-            text.SetDefault("[i:" + Instance.ItemType<CobaltEnchant>() + "][c/3da4c4: Cobalt Shards]");
+            text.SetDefault("[i:" + Instance.ItemType("CobaltEnchant") + "][c/3da4c4: Cobalt Shards]");
             AddTranslation(text);
             text = CreateTranslation("MythrilConfig");
-            text.SetDefault("[i:" + Instance.ItemType<MythrilEnchant>() + "][c/9dd290: Mythril Weapon Speed]");
+            text.SetDefault("[i:" + Instance.ItemType("MythrilEnchant") + "][c/9dd290: Mythril Weapon Speed]");
             AddTranslation(text);
             text = CreateTranslation("OrichalcumConfig");
-            text.SetDefault("[i:" + Instance.ItemType<OrichalcumEnchant>() + "][c/eb3291: Orichalcum Fireballs]");
+            text.SetDefault("[i:" + Instance.ItemType("OrichalcumEnchant") + "][c/eb3291: Orichalcum Fireballs]");
             AddTranslation(text);
             text = CreateTranslation("PalladiumConfig");
-            text.SetDefault("[i:" + Instance.ItemType<PalladiumEnchant>() + "][c/f5ac28: Palladium Healing]");
+            text.SetDefault("[i:" + Instance.ItemType("PalladiumEnchant") + "][c/f5ac28: Palladium Healing]");
             AddTranslation(text);
             text = CreateTranslation("TitaniumConfig");
-            text.SetDefault("[i:" + Instance.ItemType<TitaniumEnchant>() + "][c/828c88: Titanium Shadow Dodge]");
+            text.SetDefault("[i:" + Instance.ItemType("TitaniumEnchant") + "][c/828c88: Titanium Shadow Dodge]");
             AddTranslation(text);
             text = CreateTranslation("TerraHeader");
-            text.SetDefault("[i:" + Instance.ItemType<TerraForce>() + "] Terra Force");
+            text.SetDefault("[i:" + Instance.ItemType("TerraForce") + "] Terra Force");
             AddTranslation(text);
             text = CreateTranslation("CopperConfig");
-            text.SetDefault("[i:" + Instance.ItemType<CopperEnchant>() + "][c/d56617: Copper Lightning]");
+            text.SetDefault("[i:" + Instance.ItemType("CopperEnchant") + "][c/d56617: Copper Lightning]");
             AddTranslation(text);
             text = CreateTranslation("IronMConfig");
-            text.SetDefault("[i:" + Instance.ItemType<IronEnchant>() + "][c/988e83: Iron Magnet]");
+            text.SetDefault("[i:" + Instance.ItemType("IronEnchant") + "][c/988e83: Iron Magnet]");
             AddTranslation(text);
             text = CreateTranslation("IronSConfig");
-            text.SetDefault("[i:" + Instance.ItemType<IronEnchant>() + "][c/988e83: Iron Shield]");
+            text.SetDefault("[i:" + Instance.ItemType("IronEnchant") + "][c/988e83: Iron Shield]");
             AddTranslation(text);
             text = CreateTranslation("CthulhuShield");
-            text.SetDefault("[i:" + Instance.ItemType<IronEnchant>() + "][c/988e83: Shield of Cthulhu]");
+            text.SetDefault("[i:" + Instance.ItemType("IronEnchant") + "][c/988e83: Shield of Cthulhu]");
             AddTranslation(text);
             text = CreateTranslation("TinConfig");
-            text.SetDefault("[i:" + Instance.ItemType<TinEnchant>() + "][c/a28b4e: Tin Crits]");
+            text.SetDefault("[i:" + Instance.ItemType("TinEnchant") + "][c/a28b4e: Tin Crits]");
             AddTranslation(text);
             text = CreateTranslation("TungstenConfig");
-            text.SetDefault("[i:" + Instance.ItemType<TungstenEnchant>() + "][c/b0d2b2: Tungsten Effect]");
+            text.SetDefault("[i:" + Instance.ItemType("TungstenEnchant") + "][c/b0d2b2: Tungsten Effect]");
             AddTranslation(text);
             text = CreateTranslation("WillHeader");
-            text.SetDefault("[i:" + Instance.ItemType<WillForce>() + "] Force of Will");
+            text.SetDefault("[i:" + Instance.ItemType("WillForce") + "] Force of Will");
             AddTranslation(text);
             text = CreateTranslation("GladiatorConfig");
-            text.SetDefault("[i:" + Instance.ItemType<GladiatorEnchant>() + "][c/9c924e: Gladiator Rain]");
+            text.SetDefault("[i:" + Instance.ItemType("GladiatorEnchant") + "][c/9c924e: Gladiator Rain]");
             AddTranslation(text);
             text = CreateTranslation("GoldConfig");
-            text.SetDefault("[i:" + Instance.ItemType<GoldEnchant>() + "][c/e7b21c: Gold Lucky Coin]");
+            text.SetDefault("[i:" + Instance.ItemType("GoldEnchant") + "][c/e7b21c: Gold Lucky Coin]");
             AddTranslation(text);
             text = CreateTranslation("RedRidingConfig");
-            text.SetDefault("[i:" + Instance.ItemType<RedRidingEnchant>() + "][c/c01b3c: Red Riding Super Bleed]");
+            text.SetDefault("[i:" + Instance.ItemType("RedRidingEnchant") + "][c/c01b3c: Red Riding Super Bleed]");
             AddTranslation(text);
             text = CreateTranslation("ValhallaConfig");
-            text.SetDefault("[i:" + Instance.ItemType<ValhallaKnightEnchant>() + "][c/93651e: Valhalla Knockback]");
+            text.SetDefault("[i:" + Instance.ItemType("ValhallaKnightEnchant") + "][c/93651e: Valhalla Knockback]");
             AddTranslation(text);
             string[] EnchConfig = {
             //force of life
@@ -1775,12 +1775,6 @@ namespace FargowiltasSouls
                 {
                     music = GetSoundSlot(SoundType.Music, "Sounds/Music/MonsterMadhouse");
                     priority = MusicPriority.Event;
-                }
-
-                if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, NPCType("MutantBoss")))
-                {
-                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue");
-                    priority = MusicPriority.BossHigh;
                 }
             }
         }

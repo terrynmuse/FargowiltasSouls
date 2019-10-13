@@ -1,5 +1,20 @@
 ﻿fixed 8ways borking in mp
 slightly adjusted eoc's scythe trail
+mutant rangs fire extra attacks
+changed how copper ench works
+nerfed royal subject speed, replaced venom in fight with infested and reduced duration
+maso DG is also recolored
+all pillars are invulnerable until you're in range
+mutant stats scale freely properly
+reworked boreal snowballs to not be spammable
+adjusted sadism sprite
+reduced brain flipped duration
+destroyer resists jester arrow 50%
+only falling stars with exactly 1000 damage are hostile now
+added mutant's discount card and mutant's pact
+breaking shadow orb triggers goblin invasion if possible and havent beat goblins yet
+breaking altars triggers pirates if possible and havent beat pirates yet
+true mutant armor's phantasmal ring now disappears when toggled off
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

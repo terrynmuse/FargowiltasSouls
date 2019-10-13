@@ -45,7 +45,7 @@ Effects of Auto Tuner and Red Music Player");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             if (SoulConfig.Instance.GetValue("Cyber Punk States"))
             {
                 //cyber set bonus, good lord

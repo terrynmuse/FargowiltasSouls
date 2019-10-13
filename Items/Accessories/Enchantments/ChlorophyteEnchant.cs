@@ -66,7 +66,7 @@ Effects of Night Shade Petal, Petal Shield, Toxic Subwoofer, and Flower Boots
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //crystal and pet
             modPlayer.ChloroEffect(hideVisual, 100);
             //herb double and bulb effect with thorium
@@ -79,8 +79,8 @@ Effects of Night Shade Petal, Petal Shield, Toxic Subwoofer, and Flower Boots
 
         private void Thorium(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //subwoofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)

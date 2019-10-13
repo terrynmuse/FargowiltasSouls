@@ -54,14 +54,14 @@ All herb collection is doubled
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).JungleEffect();
+            player.GetModPlayer<FargoPlayer>().JungleEffect();
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {

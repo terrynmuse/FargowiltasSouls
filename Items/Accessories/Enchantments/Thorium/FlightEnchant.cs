@@ -42,7 +42,7 @@ Increases flight time by 100%");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             modPlayer.wingTimeModifier += 1f;
         }
         

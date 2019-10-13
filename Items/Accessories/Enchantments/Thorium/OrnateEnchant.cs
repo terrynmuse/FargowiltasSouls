@@ -45,7 +45,7 @@ Effects of Concert Tickets and Brown Music Player");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.ornateSet = true;
             //concert tickets
             for (int i = 0; i < 255; i++)

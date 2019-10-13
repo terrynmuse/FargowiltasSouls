@@ -34,8 +34,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.timeLeft = 120 * (projectile.extraUpdates + 1);
             projectile.penetrate = -1;
 
-            projectile.usesLocalNPCImmunity = true;
-            projectile.localNPCHitCooldown = 60;
+            projectile.usesIDStaticNPCImmunity = true;
+            projectile.idStaticNPCHitCooldown = 10;
         }
 
         public override void AI()

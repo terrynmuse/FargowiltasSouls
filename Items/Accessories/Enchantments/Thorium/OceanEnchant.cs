@@ -46,7 +46,7 @@ Effects of Sea Breeze Pendant and Bubble Magnet");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //set bonus, breath underwater
             if (player.breath <= player.breathMax + 2)
             {

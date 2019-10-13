@@ -68,7 +68,7 @@ Summons a pet Parrot";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             modPlayer.GoldEffect(hideVisual);
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
@@ -101,7 +101,7 @@ Summons a pet Parrot";
                 timer = 0;
             }
 
-            player.GetModPlayer<FargoPlayer>(mod).AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
+            player.GetModPlayer<FargoPlayer>().AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));
         }
 
         public override void AddRecipes()

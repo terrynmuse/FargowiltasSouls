@@ -49,7 +49,7 @@ Summons a pet Magic Lantern, Inspiring Lantern, and Lock Box");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             thoriumPlayer.geodeShine = true;
             Lighting.AddLight(player.position, 1.2f, 0.8f, 1.2f);

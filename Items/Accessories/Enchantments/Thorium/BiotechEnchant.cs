@@ -46,7 +46,7 @@ Heals ally life equal to your bonus healing");
 
             if (SoulConfig.Instance.GetValue("Biotech Probe"))
             {
-                ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+                ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
                 thoriumPlayer.essenceSet = true;
                 if (player.ownedProjectileCounts[thorium.ProjectileType("LifeEssence")] < 1)
                 {

@@ -49,7 +49,7 @@ Any projectiles shot through your storm gain 50% damage
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).ForbiddenEffect();
+            player.GetModPlayer<FargoPlayer>().ForbiddenEffect();
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }

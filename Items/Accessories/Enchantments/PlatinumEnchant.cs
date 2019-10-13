@@ -52,7 +52,7 @@ Summons a pet Glitter";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).PlatinumEnchant = true;
+            player.GetModPlayer<FargoPlayer>().PlatinumEnchant = true;
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
         }

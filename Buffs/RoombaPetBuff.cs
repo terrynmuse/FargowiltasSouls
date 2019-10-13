@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<FargoPlayer>(mod).RoombaPet = true;
+            player.GetModPlayer<FargoPlayer>().RoombaPet = true;
             bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("RoombaPetProj")] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {

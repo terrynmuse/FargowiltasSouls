@@ -45,7 +45,7 @@ Effects of Eye of the Storm and Energized Subwoofer");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //set bonus
             player.fireWalk = true;
             player.lavaImmune = true;

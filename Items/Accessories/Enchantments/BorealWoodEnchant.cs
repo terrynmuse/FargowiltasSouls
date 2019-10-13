@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments
             DisplayName.SetDefault("Boreal Wood Enchantment");
             Tooltip.SetDefault(
 @"'The cooler wood'
-Every 5th attack will be accompanied by a snowball
+Attack will be periodically accompanied by a snowball
 While in the Snow Biome, you shoot 5 snowballs instead");
             DisplayName.AddTranslation(GameCulture.Chinese, "针叶木魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -34,6 +34,7 @@ While in the Snow Biome, you shoot 5 snowballs instead");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<FargoPlayer>().BorealEnchant = true;
+            player.GetModPlayer<FargoPlayer>().AdditionalAttacks = true;
         }
 
         public override void AddRecipes()

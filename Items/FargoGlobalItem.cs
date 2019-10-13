@@ -54,7 +54,7 @@ namespace FargowiltasSouls.Items
 
         public override bool ConsumeItem(Item item, Player player)
         {
-            FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer p = player.GetModPlayer<FargoPlayer>();
 
             if (p.BuilderMode && (item.createTile != -1 || item.createWall != -1)) return false;
             return true;
@@ -62,7 +62,7 @@ namespace FargowiltasSouls.Items
 
         public override bool OnPickup(Item item, Player player)
         {
-            FargoPlayer p = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer p = player.GetModPlayer<FargoPlayer>();
 
             if (p.JungleEnchant && item.stack == 1 && (item.type == ItemID.Daybloom || item.type == ItemID.Blinkroot || item.type == ItemID.Deathweed || item.type == ItemID.Fireblossom ||
                                                        item.type == ItemID.Moonglow || item.type == ItemID.Shiverthorn || item.type == ItemID.Waterleaf || item.type == ItemID.Mushroom ||
@@ -94,24 +94,20 @@ namespace FargowiltasSouls.Items
             //non weapons and weapons with no ammo begone
             if (item.damage <= 0 || !player.HasAmmo(item, true) || (item.mana > 0 && player.statMana < item.mana)) return true;
 
-            if (modPlayer.BorealEnchant && ++modPlayer.BorealCount >= 4)
-            {
-                modPlayer.BorealCount = 0;
-                if (SoulConfig.Instance.enchantToggles["Boreal Snowballs"])
-                {
-                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * (item.shootSpeed > 0 ? item.shootSpeed : 10) * .75f;
-                    int p = Projectile.NewProjectile(player.Center, velocity, ProjectileID.SnowBallFriendly, (int)(item.damage * .5f), 1, Main.myPlayer);
-                    if (p != 1000 && (player.ZoneSnow || modPlayer.WoodForce))
-                        FargoGlobalProjectile.SplitProj(Main.projectile[p], 5);
-                }
-            }
-
             if (modPlayer.AdditionalAttacks && modPlayer.AdditionalAttacksTimer <= 0)
             {
                 modPlayer.AdditionalAttacksTimer = 60;
 
                 Vector2 position = player.Center;
                 Vector2 velocity = Vector2.Normalize(Main.MouseWorld - position);
+
+                if (modPlayer.BorealEnchant && SoulConfig.Instance.GetValue("Boreal Snowballs"))
+                {
+                    Vector2 vel = Vector2.Normalize(Main.MouseWorld - player.Center) * (item.shootSpeed > 0 ? item.shootSpeed : 10) * .75f;
+                    int p = Projectile.NewProjectile(player.Center, vel, ProjectileID.SnowBallFriendly, (int)(item.damage * .5f), 1, Main.myPlayer);
+                    if (p != 1000 && (player.ZoneSnow || modPlayer.WoodForce))
+                        FargoGlobalProjectile.SplitProj(Main.projectile[p], 5);
+                }
 
                 if (modPlayer.CelestialRune && SoulConfig.Instance.GetValue("Celestial Rune Support"))
                 {
@@ -187,7 +183,7 @@ namespace FargowiltasSouls.Items
         private void ThoriumCanUse(Player player, Item item)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             if (SoulConfig.Instance.GetValue("Illumite Missile"))
             {

@@ -60,19 +60,14 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             }
             npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
             //music = MusicID.TheTowers;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue");
-            musicPriority = MusicPriority.BossHigh;
+            music = (Fargowiltas.Instance.MasomodeEX ? ModLoader.GetMod("MasomodeEX") : mod).GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue");
+            musicPriority = (MusicPriority)12;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.damage = 360;
-            npc.lifeMax = (int)(7700000 * bossLifeScale);
-            if (FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded)
-            {
-                npc.lifeMax = (int)(377000000 * bossLifeScale);
-                npc.damage *= 2;
-            }
+            npc.damage = (int)(npc.damage * 0.5f);
+            npc.lifeMax = (int)(npc.lifeMax * 0.5f * bossLifeScale);
         }
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)

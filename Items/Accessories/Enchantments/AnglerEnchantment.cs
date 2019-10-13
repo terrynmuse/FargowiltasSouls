@@ -32,7 +32,7 @@ All fishing rods will have 4 extra lures");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).FishSoul1 = true;
+            player.GetModPlayer<FargoPlayer>().FishSoul1 = true;
             player.fishingSkill += 10;
         }
 

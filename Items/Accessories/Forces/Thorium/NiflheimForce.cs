@@ -54,7 +54,7 @@ Effects of Red, Brown, and Purple Music Players");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             //noble
             mod.GetItem("NobleEnchant").UpdateAccessory(player, hideVisual);

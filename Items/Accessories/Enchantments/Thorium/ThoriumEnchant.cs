@@ -49,7 +49,7 @@ Effects of Crietz, Band of Replenishment, and Fan Letter");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //diverman meme
             modPlayer.ThoriumEnchant = true;
             //crietz

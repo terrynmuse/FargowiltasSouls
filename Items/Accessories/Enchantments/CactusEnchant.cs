@@ -35,7 +35,7 @@ Enemies may explode into needles on death");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).CactusEffect();
+            player.GetModPlayer<FargoPlayer>().CactusEffect();
             player.thorns = .25f;
         }
 

@@ -63,7 +63,7 @@ These effects needs to recharge for 1 minute");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //notes heal more and give random empowerments
             thoriumPlayer.inspirator = true;
             //hotkey buff allies 

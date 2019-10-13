@@ -53,7 +53,7 @@ Greatly enhances Flameburst effectiveness
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).DarkArtistEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().DarkArtistEffect(hideVisual);
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
@@ -61,7 +61,7 @@ Greatly enhances Flameburst effectiveness
         private void Thorium(Player player)
         {
             //dark effigy
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             for (int i = 0; i < 200; i++)
             {

@@ -49,14 +49,14 @@ Your minions can now crit with a 20% chance
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).SpiderEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().SpiderEffect(hideVisual);
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {

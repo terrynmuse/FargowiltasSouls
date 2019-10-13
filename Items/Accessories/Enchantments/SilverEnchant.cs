@@ -46,7 +46,7 @@ Summons a sword familiar that scales with minion damage";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             modPlayer.SilverEnchant = true;
             modPlayer.AddMinion("Silver Sword Familiar", mod.ProjectileType("SilverSword"), (int) (30 * player.minionDamage), 0f);
 
@@ -55,7 +55,7 @@ Summons a sword familiar that scales with minion damage";
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             timer++;
             if (timer >= 30)
             {

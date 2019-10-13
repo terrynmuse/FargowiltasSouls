@@ -46,7 +46,7 @@ Effects of the Spirit Glyph, Raider's Talisman, and Trinket of Chi");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             if (player.statLife <= (int)(player.statLifeMax2 * 0.5))
             {
                 player.statDefense += 5;

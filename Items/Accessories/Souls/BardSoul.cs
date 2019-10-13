@@ -77,7 +77,7 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
         private void Thorium(Player player)
         {
             //general
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.symphonicDamage += 0.3f;
             thoriumPlayer.symphonicSpeed += .2f;
             thoriumPlayer.symphonicCrit += 15;

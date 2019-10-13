@@ -44,7 +44,7 @@ Effects of Music Notes");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.bardResourceRecharge += 10;
             //music notes
             thoriumPlayer.bardBuffDuration += 120;

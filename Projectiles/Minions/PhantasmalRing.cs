@@ -35,7 +35,7 @@ namespace FargowiltasSouls.Projectiles.Minions
 
         public override void AI()
         {
-            if (Main.player[projectile.owner].active && !Main.player[projectile.owner].dead && Main.player[projectile.owner].GetModPlayer<FargoPlayer>().MutantSetBonus)
+            if (Main.player[projectile.owner].active && !Main.player[projectile.owner].dead && Main.player[projectile.owner].GetModPlayer<FargoPlayer>().PhantasmalRing)
             {
                 projectile.alpha = 0;
             }

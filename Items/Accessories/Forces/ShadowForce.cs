@@ -74,7 +74,7 @@ Summons several pets";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //warlock, shade, plague accessory effect for all
             modPlayer.ShadowForce = true;
             //shoot from where you were meme, pet
@@ -103,7 +103,7 @@ Summons several pets";
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //shade
             thoriumPlayer.shadeSet = true;
         }

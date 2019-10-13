@@ -44,7 +44,7 @@ Dealing damage to enemies infected with mycelium briefly increases throwing spee
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.fungusSet = true;
         }
 

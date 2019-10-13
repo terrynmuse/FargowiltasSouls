@@ -39,7 +39,7 @@ Summons a pet Dragon");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).ValhallaEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().ValhallaEffect(hideVisual);
         }
 
         public override void AddRecipes()

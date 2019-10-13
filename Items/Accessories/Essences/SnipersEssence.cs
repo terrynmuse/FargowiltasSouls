@@ -38,7 +38,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             player.rangedDamage += .18f;
             player.rangedCrit += 5;
-            player.GetModPlayer<FargoPlayer>(mod).RangedEssence = true;
+            player.GetModPlayer<FargoPlayer>().RangedEssence = true;
         }
 
         public override void AddRecipes()

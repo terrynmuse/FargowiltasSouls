@@ -51,7 +51,7 @@ Bees and weak Hornets become friendly");
             player.npcTypeNoAggro[235] = true;
 
             //stinger immmune
-            player.GetModPlayer<FargoPlayer>(mod).QueenStinger = true;
+            player.GetModPlayer<FargoPlayer>().QueenStinger = true;
         }
     }
 }

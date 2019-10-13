@@ -66,14 +66,16 @@ namespace FargowiltasSouls.NPCs
                 npc.ai[0] = 0f;
                 npc.netUpdate = true;
             }
+
+            npc.position -= npc.velocity / 3;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 180));
-            target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
-            target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(300, 600));
-            target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300, 600));
+            target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(30, 300));
+            target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(120, 1200));
+            target.AddBuff(mod.BuffType("Swarming"), Main.rand.Next(120, 600));
         }
 
         public override bool PreNPCLoot()

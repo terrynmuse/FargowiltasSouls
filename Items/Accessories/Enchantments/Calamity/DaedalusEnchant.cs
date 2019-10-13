@@ -57,7 +57,7 @@ Summons a Bear and Third Sage pet");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
 
             if (SoulConfig.Instance.GetValue("Daedalus Effects"))
             {
@@ -92,7 +92,7 @@ Summons a Bear and Third Sage pet");
             if (SoulConfig.Instance.GetValue("Regenator"))
                 modPlayer.regenator = true;
 
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.DaedalusEnchant = true;
             fargoPlayer.AddPet("Third Sage Pet", hideVisual, calamity.BuffType("ThirdSageBuff"), calamity.ProjectileType("ThirdSage"));
             fargoPlayer.AddPet("Bear Pet", hideVisual, calamity.BuffType("BearBuff"), calamity.ProjectileType("Bear"));

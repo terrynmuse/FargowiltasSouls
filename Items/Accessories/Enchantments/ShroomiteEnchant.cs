@@ -50,7 +50,7 @@ While in stealth, crits deal 3x damage
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).ShroomiteEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().ShroomiteEffect(hideVisual);
         }
 
         public override void AddRecipes()

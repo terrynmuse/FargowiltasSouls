@@ -53,7 +53,7 @@ Briefly become invulnerable after striking an enemy");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //mythril
             if (SoulConfig.Instance.GetValue("Mythril Weapon Speed") && !modPlayer.TerrariaSoul)
                 modPlayer.AttackSpeed *= 1.2f;

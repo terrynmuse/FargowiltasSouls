@@ -172,7 +172,7 @@ Effects of Bee Cloak, Spore Sac, Paladin's Shield, and Frozen Turtle Shell";
 
         private void Calamity(Player player)
         {
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             //rampart of dieties
             modPlayer.dAmulet = true;
             if ((double)player.statLife <= (double)player.statLifeMax2 * 0.15)

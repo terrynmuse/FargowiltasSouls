@@ -52,7 +52,7 @@ Summons a Siren pet");
         {
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             player.ignoreWater = true;
 
             if (SoulConfig.Instance.GetValue("Omega Blue Tentacles"))
@@ -108,7 +108,7 @@ Summons a Siren pet");
             //aquatic emblem
             modPlayer.aquaticEmblem = true;
 
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.OmegaBlueEnchant = true;
             fargoPlayer.AddPet("Siren Pet", hideVisual, calamity.BuffType("StrangeOrb"), calamity.ProjectileType("SirenYoung"));
         }

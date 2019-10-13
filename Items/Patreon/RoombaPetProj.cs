@@ -29,7 +29,7 @@ namespace FargowiltasSouls.Items.Patreon
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             if (player.dead)
             {
                 modPlayer.RoombaPet = false;

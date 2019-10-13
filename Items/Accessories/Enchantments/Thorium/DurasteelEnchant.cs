@@ -48,7 +48,7 @@ Effects of the Incandescent Spark, Spiked Bracers, and Greedy Magnet");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //durasteel effect
             if (player.statLife == player.statLifeMax2)
             {

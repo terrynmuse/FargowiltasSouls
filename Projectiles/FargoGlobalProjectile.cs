@@ -66,10 +66,6 @@ namespace FargowiltasSouls.Projectiles
                         projectile.tileCollide = false;
                         break;
 
-                    case ProjectileID.FallingStar:
-                        projectile.hostile = true;
-                        break;
-
                     case ProjectileID.CultistBossFireBallClone:
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.cultBoss, NPCID.CultistBoss))
                             projectile.timeLeft = 1;
@@ -494,7 +490,7 @@ namespace FargowiltasSouls.Projectiles
 
         private void KillPet(Projectile projectile, Player player, int buff, bool enchant, string toggle, bool minion = false)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (player.FindBuffIndex(buff) == -1)
             {
@@ -506,7 +502,7 @@ namespace FargowiltasSouls.Projectiles
         public override void AI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             switch (projectile.type)
             {
@@ -652,6 +648,15 @@ namespace FargowiltasSouls.Projectiles
                     break;*/
 
                 #endregion
+
+                case ProjectileID.FallingStar:
+                    if (FargoSoulsWorld.MasochistMode && !masobool)
+                    {
+                        masobool = true;
+                        if (projectile.damage == 1000)
+                            projectile.hostile = true;
+                    }
+                    break;
 
                 case ProjectileID.JavelinHostile:
                 case ProjectileID.FlamingWood:
@@ -1112,7 +1117,7 @@ namespace FargowiltasSouls.Projectiles
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
             /*Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (modPlayer.SqueakyToy)
                 return;*/
@@ -1123,7 +1128,7 @@ namespace FargowiltasSouls.Projectiles
         private void ThoriumOnHit(Projectile projectile, bool crit)
         {
             Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (SoulConfig.Instance.GetValue("Jester Bell"))
             {
@@ -1148,7 +1153,7 @@ namespace FargowiltasSouls.Projectiles
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
             Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (modPlayer.NinjaEnchant && projectile.type == ProjectileID.SmokeBomb && !ninjaTele)
             {
@@ -1203,7 +1208,7 @@ namespace FargowiltasSouls.Projectiles
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref int damage, ref bool crit)
         {
-            //FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>(mod);
+            //FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>();
 
             /*if (FargoSoulsWorld.MasochistMode)
             {
@@ -1256,7 +1261,7 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.Stinger:
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.beeBoss, NPCID.QueenBee))
-                            target.AddBuff(BuffID.Venom, Main.rand.Next(30, 300));
+                            target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(30, 300));
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(120, 1200));
                         target.AddBuff(mod.BuffType("Swarming"), Main.rand.Next(120, 600));
                         break;
@@ -1282,6 +1287,12 @@ namespace FargowiltasSouls.Projectiles
                             target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 300));
                             target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 240));
                             target.AddBuff(mod.BuffType("Crippled"), 60);
+                        }
+                        if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
+                        {
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+                            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+                            target.AddBuff(mod.BuffType("MutantFang"), 300);
                         }
                         break;
 
@@ -1517,7 +1528,7 @@ namespace FargowiltasSouls.Projectiles
                         target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(600, 900));
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
                         {
-                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
                             target.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(1800, 3600));
                         }
                         break;
@@ -1548,6 +1559,12 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.DeathLaser:
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.retiBoss, NPCID.Retinazer))
                             target.AddBuff(BuffID.Ichor, Main.rand.Next(300, 600));
+                        if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
+                        {
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
+                            target.AddBuff(mod.BuffType("OceanicMaul"), 5400);
+                            target.AddBuff(mod.BuffType("MutantFang"), 300);
+                        }
                         break;
 
                     case ProjectileID.CannonballHostile:
@@ -1623,7 +1640,7 @@ namespace FargowiltasSouls.Projectiles
         public override void Kill(Projectile projectile, int timeLeft)
         {
             Player player = Main.player[projectile.owner];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (!townNPCProj && modPlayer.CobaltEnchant && SoulConfig.Instance.GetValue("Cobalt Shards") && modPlayer.CobaltCD == 0 && CanSplit && projectile.friendly && projectile.damage > 0  && !projectile.minion && projectile.aiStyle != 19 && !Rotate && Main.rand.Next(4) == 0)
             {
@@ -1651,7 +1668,7 @@ namespace FargowiltasSouls.Projectiles
 
         public override void GrapplePullSpeed(Projectile projectile, Player player, ref float speed)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (modPlayer.MahoganyEnchant)
             {
@@ -1662,7 +1679,7 @@ namespace FargowiltasSouls.Projectiles
 
         public override void GrappleRetreatSpeed(Projectile projectile, Player player, ref float speed)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (modPlayer.MahoganyEnchant)
             {

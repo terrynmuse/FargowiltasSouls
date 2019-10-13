@@ -46,7 +46,7 @@ Effects of Metronome and Purple Music Player");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.conductorSet = true;
 
             if (player.GetModPlayer<FargoPlayer>().ThoriumSoul) return;

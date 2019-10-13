@@ -19,7 +19,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<FargoPlayer>(mod).Swarming = true;
+            player.GetModPlayer<FargoPlayer>().Swarming = true;
         }
     }
 }

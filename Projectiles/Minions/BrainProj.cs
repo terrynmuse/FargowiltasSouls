@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Projectiles.Minions
         public override void CheckActive()
         {
             Player player = Main.player[projectile.owner];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             if (player.dead) modPlayer.BrainMinion = false;
             if (modPlayer.BrainMinion) projectile.timeLeft = 2;
         }

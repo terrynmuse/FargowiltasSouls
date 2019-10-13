@@ -167,7 +167,7 @@ namespace FargowiltasSouls.NPCs
         {
             target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300));
             target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(300));
-            target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(90));
+            target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(30));
             target.AddBuff(BuffID.Rabies, Main.rand.Next(900, 1800));
         }
 

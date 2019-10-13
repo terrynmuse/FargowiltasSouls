@@ -32,7 +32,7 @@ namespace FargowiltasSouls.Projectiles.Minions
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (!modPlayer.HallowEnchant || !SoulConfig.Instance.GetValue("Hallowed Enchanted Sword Familiar"))
             {

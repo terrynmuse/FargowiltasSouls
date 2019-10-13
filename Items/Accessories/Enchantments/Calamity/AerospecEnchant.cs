@@ -51,7 +51,7 @@ Summons a Kendra pet");
             if (!Fargowiltas.Instance.CalamityLoaded) return;
 
 
-            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>(calamity);
+            CalamityPlayer modPlayer = player.GetModPlayer<CalamityPlayer>();
             modPlayer.aeroSet = true;
             player.noFallDmg = true;
 
@@ -78,7 +78,7 @@ Summons a Kendra pet");
             if (SoulConfig.Instance.GetValue("Unstable Prism"))
                 calamity.GetItem("UnstablePrism").UpdateAccessory(player, hideVisual);
 
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.AerospecEnchant = true;
             fargoPlayer.AddPet("Kendra Pet", hideVisual, calamity.BuffType("Kendra"), calamity.ProjectileType("Kendra"));
         }

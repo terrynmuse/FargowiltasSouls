@@ -42,7 +42,7 @@ namespace FargowiltasSouls.Items.Weapons
 
         public override bool UseItem(Player player)
         {
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType<Squirrel1>(), 0, 0,
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType("Squirrel1"), 0, 0,
                 Main.myPlayer);
             return true;
         }

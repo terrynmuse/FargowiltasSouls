@@ -35,7 +35,7 @@ This can only happen every 2 seconds");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).CobaltEnchant = true;
+            player.GetModPlayer<FargoPlayer>().CobaltEnchant = true;
         }
 
         public override void AddRecipes()

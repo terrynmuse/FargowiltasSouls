@@ -35,7 +35,7 @@ Summons a pet Skeletron Head");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).NecroEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().NecroEffect(hideVisual);
         }
 
         public override void AddRecipes()

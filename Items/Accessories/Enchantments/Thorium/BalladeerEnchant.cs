@@ -50,7 +50,7 @@ Each unique empowerment you have grants you:
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //dmg, regen
             thoriumPlayer.BalladeerSet = true;
             //move speed, play speed

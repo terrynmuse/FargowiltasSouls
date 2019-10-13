@@ -52,7 +52,7 @@ Effects of Mana-Charged Rocketeers and Gray Music Player");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.folvSet = true;
             Lighting.AddLight(player.position, 0.03f, 0.3f, 0.5f);
             if (player.statLife >= player.statLifeMax * 0.5)

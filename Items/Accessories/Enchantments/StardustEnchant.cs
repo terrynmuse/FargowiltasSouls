@@ -39,7 +39,7 @@ There is a 60 second cooldown for this effect, a sound effect plays when it's ba
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).StardustEffect();
+            player.GetModPlayer<FargoPlayer>().StardustEffect();
         }
 
         public override void AddRecipes()

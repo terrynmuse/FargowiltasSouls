@@ -62,7 +62,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
                         int hitDirection = projectile.Center.X > player.Center.X ? 1 : -1;
                         player.Hurt(PlayerDeathReason.ByProjectile(player.whoAmI, projectile.whoAmI),
                             Main.npc[ai1].damage / 3, hitDirection, false, false, false, 0);
-                        player.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += ai1 == FargoSoulsGlobalNPC.fishBossEX ? 50 : 25;
+                        player.GetModPlayer<FargoPlayer>().MaxLifeReduction += ai1 == FargoSoulsGlobalNPC.fishBossEX ? 50 : 25;
                         player.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(300, 600));
                     }
                     if (distance > threshold && distance < threshold * 3f)

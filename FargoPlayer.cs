@@ -122,7 +122,6 @@ namespace FargowiltasSouls
 
         public bool MahoganyEnchant;
         public bool BorealEnchant;
-        public int BorealCount = 0;
         public bool WoodEnchant;
         public bool ShadeEnchant;
         private int pearlCounter = 0;
@@ -259,6 +258,9 @@ namespace FargowiltasSouls
         public bool GodEaterImbue;
         public bool MutantSetBonus;
         public bool Abominationn;
+        public bool PhantasmalRing;
+        public bool MutantsDiscountCard;
+        public bool MutantsPact;
 
         //debuffs
         public bool Hexed;
@@ -318,14 +320,13 @@ namespace FargowiltasSouls
             string name = "FargoDisabledSouls" + player.name;
             var FargoDisabledSouls = new List<string>();
 
-            if (CelestialSeal)
-                FargoDisabledSouls.Add("CelestialSeal");
+            if (CelestialSeal) FargoDisabledSouls.Add("CelestialSeal");
+            if (MutantsDiscountCard) FargoDisabledSouls.Add("MutantsDiscountCard");
+            if (MutantsPact) FargoDisabledSouls.Add("MutantsPact");
 
             return new TagCompound {
                     {name, FargoDisabledSouls}
                 }; ;
-
-            return null;
         }
 
         public override void Load(TagCompound tag)
@@ -336,16 +337,8 @@ namespace FargowiltasSouls
             disabledSouls = tag.GetList<string>(name);
 
             CelestialSeal = disabledSouls.Contains("CelestialSeal");
-
-            //var FargoDisabledSouls = tag.GetList<string>(name);
-            //foreach (string disabledSoul in FargoDisabledSouls)
-            //{
-            //    disabledSouls.Add(disabledSoul);
-
-            //    log += disabledSoul + ". ";
-            //}
-
-            //ErrorLogger.Log(log);
+            MutantsDiscountCard = disabledSouls.Contains("MutantsDiscountCard");
+            MutantsPact = disabledSouls.Contains("MutantsPact");
         }
 
         public override void OnEnterWorld(Player player)
@@ -598,6 +591,7 @@ namespace FargowiltasSouls
             GodEaterImbue = false;
             MutantSetBonus = false;
             Abominationn = false;
+            PhantasmalRing = false;
 
             //debuffs
             Hexed = false;
@@ -1719,7 +1713,7 @@ namespace FargowiltasSouls
 
         private void ThoriumModifyProj(Projectile proj, NPC target, int damage, bool crit)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             if (ShroomEnchant && !TerrariaSoul && Main.rand.Next(5) == 0)
                 target.AddBuff(thorium.BuffType("Mycelium"), 120);
@@ -1907,7 +1901,7 @@ namespace FargowiltasSouls
 
         private void ThoriumModifyNPC(NPC target, Item item, int damage, bool crit)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             if (ShroomEnchant && !TerrariaSoul && Main.rand.Next(5) == 0)
                 target.AddBuff(thorium.BuffType("Mycelium"), 120);
@@ -2201,7 +2195,7 @@ namespace FargowiltasSouls
 
         private void ThoriumHitProj(Projectile proj, NPC target, int damage, bool crit)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             if (BulbEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
             {
@@ -2652,7 +2646,7 @@ namespace FargowiltasSouls
 
         private void ThoriumHitNPC(NPC target, Item item, bool crit)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
 
             if (BulbEnchant && !TerrariaSoul && Main.rand.Next(4) == 0)
             {
@@ -3103,7 +3097,7 @@ namespace FargowiltasSouls
 
         private void ThoriumDamage(float dmg)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.radiantBoost += dmg;
             thoriumPlayer.symphonicDamage += dmg;
         }
@@ -3115,7 +3109,7 @@ namespace FargowiltasSouls
 
         private void DBTDamage(float dmg)
         {
-            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>();
             dbtPlayer.KiDamage += dmg;
         }
 
@@ -3135,7 +3129,7 @@ namespace FargowiltasSouls
 
         private void ThoriumCrit(int crit)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.radiantCrit += crit;
             thoriumPlayer.symphonicCrit += crit;
         }
@@ -3147,7 +3141,7 @@ namespace FargowiltasSouls
 
         private void DBTCrit(int crit)
         {
-            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>();
             dbtPlayer.kiCrit += crit;
         }
 
@@ -3167,7 +3161,7 @@ namespace FargowiltasSouls
 
         private void ThoriumCritEquals(int crit)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.radiantCrit = crit;
             thoriumPlayer.symphonicCrit = crit;
         }
@@ -3179,7 +3173,7 @@ namespace FargowiltasSouls
 
         private void DBTCritEquals(int crit)
         {
-            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>(dbzMod);
+            DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>();
             dbtPlayer.kiCrit = crit;
         }
 
@@ -3446,15 +3440,7 @@ namespace FargowiltasSouls
                         float ai2 = Main.rand.Next(100);
                         Vector2 velocity = Vector2.Normalize(ai) * 20;
 
-                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, ProjectileID.CultistBossLightningOrbArc, HighestDamageTypeScaling(dmg), 0f, player.whoAmI, ai.ToRotation(), ai2);
-                        if (p != null)
-                        {
-                            p.friendly = true;
-                            p.hostile = false;
-                            p.penetrate = -1;
-                            p.timeLeft = 60;
-                            p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
-                        }
+                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, mod.ProjectileType("LightningArc"), HighestDamageTypeScaling(dmg), 0f, player.whoAmI, ai.ToRotation(), ai2);
                         target.AddBuff(mod.BuffType("Shock"), 60);
                     }
                     else
@@ -3486,7 +3472,7 @@ namespace FargowiltasSouls
                 dmg *= 2;
             }
 
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             dmg = HighestDamageTypeScaling(dmg);
 
@@ -3515,7 +3501,7 @@ namespace FargowiltasSouls
                         float ai2 = Main.rand.Next(100);
                         Vector2 velocity = Vector2.Normalize(ai) * 20;
 
-                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, mod.ProjectileType< Projectiles.Souls.AA.TrueCopperShock>(), (int)(dmg), 0f, player.whoAmI, ai.ToRotation(), ai2);
+                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, mod.ProjectileType("TrueCopperShock"), (int)(dmg), 0f, player.whoAmI, ai.ToRotation(), ai2);
                         if (p != null)
                         {
                             p.friendly = true;

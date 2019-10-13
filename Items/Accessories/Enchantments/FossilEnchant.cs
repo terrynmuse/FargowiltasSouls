@@ -37,7 +37,7 @@ Summons a pet Baby Dino");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).FossilEffect(10, hideVisual);
+            player.GetModPlayer<FargoPlayer>().FossilEffect(10, hideVisual);
         }
 
         public override void AddRecipes()

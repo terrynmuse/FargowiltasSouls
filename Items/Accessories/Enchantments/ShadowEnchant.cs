@@ -37,7 +37,7 @@ Summons a pet Eater of Souls and Shadow Orb");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).ShadowEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().ShadowEffect(hideVisual);
         }
 
         public override void AddRecipes()

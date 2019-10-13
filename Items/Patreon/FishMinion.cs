@@ -40,7 +40,7 @@ namespace FargowiltasSouls.Items.Patreon
         public override void CheckActive()
         {
             Player player = Main.player[projectile.owner];
-            PatreonPlayer modPlayer = player.GetModPlayer<PatreonPlayer>(mod);
+            PatreonPlayer modPlayer = player.GetModPlayer<PatreonPlayer>();
             if (player.dead) modPlayer.FishMinion = false;
             if (modPlayer.FishMinion) projectile.timeLeft = 2;
         }

@@ -49,7 +49,7 @@ Effects of Nuba's Blessing, Novaniel's Resolve, and Celestial Ring");
         {
             if (!Fargowiltas.Instance.SOALoaded) return;
 
-            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();
 
             //blazing brute

@@ -46,7 +46,7 @@ Effects of Ascension Statuette");
         {
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.celestialSet = true;
             //ascension statue
             thoriumPlayer.ascension = true;

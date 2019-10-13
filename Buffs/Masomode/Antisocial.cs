@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             //disables minions, disables pets, -50% minion dmg
-            player.GetModPlayer<FargoPlayer>(mod).Asocial = true;
+            player.GetModPlayer<FargoPlayer>().Asocial = true;
         }
     }
 }

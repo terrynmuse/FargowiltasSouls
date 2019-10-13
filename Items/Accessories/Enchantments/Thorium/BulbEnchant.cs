@@ -46,7 +46,7 @@ Effects of Night Shade Petal and Petal Shield");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //bulb set bonus
             modPlayer.BulbEnchant = true;
             //petal shield

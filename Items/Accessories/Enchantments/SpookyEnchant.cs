@@ -35,7 +35,7 @@ Summons a pet Cursed Sapling and Eyeball Spring");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).SpookyEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().SpookyEffect(hideVisual);
         }
 
         public override void AddRecipes()

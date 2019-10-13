@@ -33,7 +33,7 @@ Briefly become invulnerable after striking an enemy");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).TitaniumEffect();
+            player.GetModPlayer<FargoPlayer>().TitaniumEffect();
         }
 
         public override void AddRecipes()

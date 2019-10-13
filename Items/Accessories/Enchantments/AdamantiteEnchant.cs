@@ -36,7 +36,7 @@ Any secondary projectiles may also split");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).AdamantiteEnchant = true;
+            player.GetModPlayer<FargoPlayer>().AdamantiteEnchant = true;
         }
 
         public override void AddRecipes()

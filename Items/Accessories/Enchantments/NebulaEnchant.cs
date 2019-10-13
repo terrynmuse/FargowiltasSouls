@@ -33,7 +33,7 @@ Hurting enemies has a chance to spawn buff boosters");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).NebulaEffect();
+            player.GetModPlayer<FargoPlayer>().NebulaEffect();
         }
 
         public override void AddRecipes()

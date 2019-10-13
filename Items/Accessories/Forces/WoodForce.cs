@@ -49,7 +49,7 @@ You leave behind a trail of rainbows that may shrink enemies");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             modPlayer.WoodForce = true;
             //wood
             modPlayer.WoodEnchant = true;

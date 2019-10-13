@@ -60,7 +60,7 @@ Summons several pets
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //spectre works for all, spirit trapper works for all
             modPlayer.SpiritForce = true;
             //revive, bone zone, pet

@@ -51,14 +51,14 @@ If you crit, you might also get a healing orb
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).SpectreEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().SpectreEffect(hideVisual);
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             if (SoulConfig.Instance.GetValue("Ghastly Carapace"))
             {
                 //ghastly carapace

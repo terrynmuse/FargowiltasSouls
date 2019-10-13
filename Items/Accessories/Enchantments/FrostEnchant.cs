@@ -60,14 +60,14 @@ Summons a pet Snowman";
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).FrostEffect(50, hideVisual);
+            player.GetModPlayer<FargoPlayer>().FrostEffect(50, hideVisual);
 
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>(thorium);
+            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //subwoofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)

@@ -43,7 +43,7 @@ Summons a pet Black Cat");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).NinjaEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().NinjaEffect(hideVisual);
         }
 
         public override void AddRecipes()

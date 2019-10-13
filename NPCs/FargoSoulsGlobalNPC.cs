@@ -1993,7 +1993,11 @@ namespace FargowiltasSouls.NPCs
                                     }
                                 }
                             }
+
+                            masoBool[1] = true;
                         }
+                        if (masoBool[1])
+                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.LunarTowerSolar:
@@ -2024,7 +2028,10 @@ namespace FargowiltasSouls.NPCs
                                         Projectile.NewProjectile(npc.Center, speed.RotatedBy(i * rotate), ProjectileID.CultistBossFireBall, 40, 0f, Main.myPlayer);
                                 }
                             }
+                            masoBool[1] = true;
                         }
+                        if (masoBool[1])
+                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.LunarTowerStardust:
@@ -2066,7 +2073,10 @@ namespace FargowiltasSouls.NPCs
                                     }
                                 }
                             }
+                            masoBool[1] = true;
                         }
+                        if (masoBool[1])
+                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.LunarTowerVortex:
@@ -2119,7 +2129,10 @@ namespace FargowiltasSouls.NPCs
                                     Projectile.NewProjectile(npc.Center, speed, ProjectileID.CultistBossLightningOrb, 30, 0f, Main.myPlayer);
                                 }
                             }
+                            masoBool[1] = true;
                         }
+                        if (masoBool[1])
+                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.CultistBoss:
@@ -6686,6 +6699,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.QueenBee:
+                        target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(30, 300));
                         target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType("Crippled"), Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300, 600));
@@ -6893,7 +6907,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PigronCrimson:
                     case NPCID.PigronHallow:
                         target.AddBuff(mod.BuffType("SqueakyToy"), Main.rand.Next(180));
-                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
+                        target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 50;
                         target.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(1800, 3600));
                         break;
 
@@ -6918,7 +6932,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.BrainofCthulhu:
                         target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300));
                         target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(300));
-                        target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(90));
+                        target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(30));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(900, 1800));
                         break;
 
@@ -7037,7 +7051,7 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(600, 900));
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
-                        target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += (npc.whoAmI == fishBossEX) ? 150 : 100;
+                        target.GetModPlayer<FargoPlayer>().MaxLifeReduction += (npc.whoAmI == fishBossEX) ? 150 : 100;
                         target.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(3600, 7200));
                         break;
 
@@ -7048,7 +7062,7 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(BuffID.Rabies, Main.rand.Next(3600, 7200));
                         if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
-                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 100;
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 100;
                             target.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(1800, 3600));
                         }
                         break;
@@ -7058,7 +7072,7 @@ namespace FargowiltasSouls.NPCs
                         if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
                             target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(600, 900));
-                            target.GetModPlayer<FargoPlayer>(mod).MaxLifeReduction += 50;
+                            target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 50;
                             target.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(1800, 3600));
                         }
                         break;
@@ -7748,7 +7762,7 @@ namespace FargowiltasSouls.NPCs
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             int dmg;
 
             if (FargoSoulsWorld.MasochistMode)
@@ -7954,7 +7968,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (FargoSoulsWorld.MasochistMode)
             {
@@ -8571,7 +8585,7 @@ namespace FargowiltasSouls.NPCs
         public override void NPCLoot(NPC npc)
         {
             Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (modPlayer.PlatinumEnchant && !npc.boss && firstLoot)
             {
@@ -8906,7 +8920,11 @@ namespace FargowiltasSouls.NPCs
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.ObsidianSkinPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HallowedFishingCrate, Main.rand.Next(3) + 1);
                         if (Fargowiltas.Instance.FargosLoaded)
+                        {
                             npc.DropItemInstanced(npc.position, npc.Size, ModLoader.GetMod("Fargowiltas").ItemType("ShadowCrate"), Main.rand.Next(3) + 1);
+                            if (!Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().MutantsDiscountCard)
+                                npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantsDiscountCard"));
+                        }
                         break;
 
                     case NPCID.Retinazer:
@@ -8971,6 +8989,8 @@ namespace FargowiltasSouls.NPCs
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantAntibodies"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.Bacon, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(3) + 1);
+                        if (Fargowiltas.Instance.FargosLoaded && !Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().MutantsPact)
+                            npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantsPact"));
                         //}
                         break;
 
@@ -9097,7 +9117,7 @@ namespace FargowiltasSouls.NPCs
         public override bool CheckDead(NPC npc)
         {
             Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (TimeFrozen)
             {
@@ -10254,7 +10274,7 @@ namespace FargowiltasSouls.NPCs
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             Player player = Main.player[projectile.owner];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (modPlayer.CactusEnchant)
                 Needles = true;
@@ -10355,6 +10375,8 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Probe:
                         if (projectile.type == ProjectileID.HallowStar)
                             damage /= 4;
+                        else if (projectile.type == ProjectileID.JestersArrow)
+                            damage /= 2;
                         break;
 
                     case NPCID.GolemFistLeft:
@@ -10531,7 +10553,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
         {
-            FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = target.GetModPlayer<FargoPlayer>();
 
             if (target.HasBuff(mod.BuffType("ShellHide")))
                 damage *= 2;
@@ -10574,7 +10596,7 @@ namespace FargowiltasSouls.NPCs
             bool retValue = true;
 
             Player player = Main.player[Main.myPlayer];
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (FargoSoulsWorld.MasochistMode)
             {
@@ -10638,7 +10660,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void OnHitByItem(NPC npc, Player player, Item item, int damage, float knockback, bool crit)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             if (modPlayer.ValhallaEnchant && SoulConfig.Instance.GetValue("Valhalla Knockback")
                 && !npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune && npc.knockBackResist < 1)
@@ -10651,7 +10673,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
         {
-            FargoPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<FargoPlayer>();
 
             //spears
             if (modPlayer.ValhallaEnchant && SoulConfig.Instance.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce)
@@ -10672,7 +10694,7 @@ namespace FargowiltasSouls.NPCs
 
         public override void OnHitNPC(NPC npc, NPC target, int damage, float knockback, bool crit)
         {
-            FargoPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>();
 
             if (!modPlayer.ThoriumSoul && modPlayer.KnightEnchant && !npc.friendly && target.townNPC)
             {
@@ -10914,6 +10936,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SkeletronHead:
+                    case NPCID.DungeonGuardian:
                         Main.npcTexture[npc.type] = mod.GetTexture((recolor ? "NPCs/Resprites/" : "NPCs/Vanilla/") + "NPC_" + npc.type.ToString());
                         Main.NPCLoaded[npc.type] = true;
                         Main.boneArmTexture = mod.GetTexture(recolor ? "NPCs/Resprites/Arm_Bone" : "NPCs/Vanilla/Arm_Bone");

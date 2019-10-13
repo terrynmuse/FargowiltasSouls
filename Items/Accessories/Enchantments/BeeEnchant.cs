@@ -50,7 +50,7 @@ Mega Bees ignore most enemy defense, immune frames, and last twice as long
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).BeeEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().BeeEffect(hideVisual);
             
             if(Fargowiltas.Instance.ThoriumLoaded) Thorium(player, hideVisual);
         }

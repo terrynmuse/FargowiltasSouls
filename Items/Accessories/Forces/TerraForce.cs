@@ -71,7 +71,7 @@ While standing in lava, you gain 20 armor penetration, 15% attack speed, and you
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //lightning
             modPlayer.CopperEnchant = true;
             //crit effect improved

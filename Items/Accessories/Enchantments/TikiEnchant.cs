@@ -37,7 +37,7 @@ Summons a pet Tiki Spirit");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<FargoPlayer>(mod).TikiEffect(hideVisual);
+            player.GetModPlayer<FargoPlayer>().TikiEffect(hideVisual);
         }
 
         public override void AddRecipes()

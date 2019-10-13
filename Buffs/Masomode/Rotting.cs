@@ -22,8 +22,8 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             //inflicts DOT (8 per second) and almost every stat reduced (move speed by 25%, use time by 10%)
-            player.GetModPlayer<FargoPlayer>(mod).Rotting = true;
-            player.GetModPlayer<FargoPlayer>(mod).AttackSpeed *= .9f;
+            player.GetModPlayer<FargoPlayer>().Rotting = true;
+            player.GetModPlayer<FargoPlayer>().AttackSpeed *= .9f;
 
             player.statLifeMax2 -= player.statLifeMax / 5;
             player.statDefense -= 10;
@@ -40,7 +40,7 @@ namespace FargowiltasSouls.Buffs.Masomode
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<FargoSoulsGlobalNPC>(mod).Rotting = true;
+            npc.GetGlobalNPC<FargoSoulsGlobalNPC>().Rotting = true;
         }
     }
 }

@@ -21,9 +21,9 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             //defense removed, endurance removed, colossal DOT (45 per second)
-            player.GetModPlayer<FargoPlayer>(mod).GodEater = true;
-            player.GetModPlayer<FargoPlayer>(mod).noDodge = true;
-            player.GetModPlayer<FargoPlayer>(mod).MutantPresence = true;
+            player.GetModPlayer<FargoPlayer>().GodEater = true;
+            player.GetModPlayer<FargoPlayer>().noDodge = true;
+            player.GetModPlayer<FargoPlayer>().MutantPresence = true;
             player.moonLeech = true;
         }
 

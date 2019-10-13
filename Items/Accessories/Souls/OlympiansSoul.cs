@@ -72,7 +72,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             //throw speed
-            player.GetModPlayer<FargoPlayer>(mod).ThrowSoul = true;
+            player.GetModPlayer<FargoPlayer>().ThrowSoul = true;
             player.thrownDamage += 0.3f;
             player.thrownCrit += 15;
             player.thrownVelocity += 0.15f;

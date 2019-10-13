@@ -35,7 +35,7 @@ Melee attacks may inflict the Solar Flare debuff");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>(mod);
+            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
             //solar shields
             modPlayer.SolarEffect();
             //flare debuff
