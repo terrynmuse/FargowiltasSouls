@@ -1,4 +1,5 @@
-﻿vored
+﻿fixed 8ways borking in mp
+slightly adjusted eoc's scythe trail
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
