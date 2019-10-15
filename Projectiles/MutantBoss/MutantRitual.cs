@@ -57,7 +57,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                         player.GetModPlayer<FargoPlayer>().MaxLifeReduction += 200;
                         player.AddBuff(mod.BuffType("OceanicMaul"), 5400);
                         player.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
-                        player.AddBuff(mod.BuffType("MutantFang"), 300);
+                        player.AddBuff(mod.BuffType("MutantFang"), 180);
                     }
                     if (distance > threshold && distance < threshold * 5f)
                     {

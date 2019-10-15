@@ -47,7 +47,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 420);
             target.AddBuff(mod.BuffType("MarkedforDeath"), 420);
             target.AddBuff(mod.BuffType("Defenseless"), 480);
-            target.AddBuff(mod.BuffType("MutantFang"), 300);
+            target.AddBuff(mod.BuffType("MutantFang"), 180);
         }
 
         public override void Kill(int timeLeft)
