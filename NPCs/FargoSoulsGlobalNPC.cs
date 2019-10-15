@@ -5279,7 +5279,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DemonEye:
                     case NPCID.DemonEyeOwl:
                     case NPCID.DemonEyeSpaceship:
-                        npc.position += npc.velocity;
+                        //npc.position += npc.velocity;
                         Counter++;
                         if (Counter >= 420 && Main.rand.Next(60) == 0)
                         {

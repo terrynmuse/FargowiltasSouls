@@ -46,7 +46,7 @@ While in the Ocean or Desert, it attacks twice as fast");
             recipe.AddIngredient(ItemID.BreathingReed);
             recipe.AddIngredient(ItemID.Tuna);
             recipe.AddIngredient(ItemID.Seashell);
-            recipe.AddIngredient(ItemID.LimeKelp);
+            recipe.AddIngredient(ItemID.PurpleMucos);
 
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
