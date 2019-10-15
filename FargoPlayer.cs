@@ -4527,7 +4527,7 @@ namespace FargowiltasSouls
                         }
                     }
 
-                    Projectile.NewProjectile(mouse.X, mouse.Y - 10, 0f, 0f, mod.ProjectileType("PalmTreeSentry"), WoodForce ? 15 : 45, 0f, player.whoAmI);
+                    Projectile.NewProjectile(mouse.X, mouse.Y - 10, 0f, 0f, mod.ProjectileType("PalmTreeSentry"), WoodForce ? 45 : 15, 0f, player.whoAmI);
                 }
             }
         }

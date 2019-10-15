@@ -146,7 +146,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Salamander7:
                     case NPCID.Salamander8:
                     case NPCID.Salamander9:
-                        npc.Opacity /= 25;
+                        npc.Opacity /= 5;
                         break;
 
                     case NPCID.Mothron:
@@ -5947,7 +5947,7 @@ namespace FargowiltasSouls.NPCs
                         if (--Counter < 0)
                         {
                             Counter = 300;
-                            if (Main.netMode != 1 && npc.HasPlayerTarget)
+                            if (Main.netMode != 1 && npc.HasPlayerTarget && npc.Distance(Main.player[npc.target].Center) < 1000)
                             {
                                 Vector2 spawnVel = npc.DirectionFrom(Main.player[npc.target].Center) * 10f;
                                 for (int i = -3; i < 3; i++)
@@ -8106,7 +8106,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (marble && NPC.downedBoss2)
                         {
-                            pool[NPCID.Medusa] = .1f;
+                            pool[NPCID.Medusa] = .05f;
                         }
 
                         if (granite)
@@ -10072,7 +10072,7 @@ namespace FargowiltasSouls.NPCs
                         if (!masoBool[0])
                         {
                             masoBool[0] = true;
-                            npc.Opacity *= 25;
+                            npc.Opacity *= 5;
                         }
                         break;
 
@@ -10302,7 +10302,7 @@ namespace FargowiltasSouls.NPCs
                         if (!masoBool[0])
                         {
                             masoBool[0] = true;
-                            npc.Opacity *= 25;
+                            npc.Opacity *= 5;
                         }
                         break;
 
