@@ -15,6 +15,8 @@ added mutant's discount card and mutant's pact
 breaking shadow orb triggers goblin invasion if possible and havent beat goblins yet
 breaking altars triggers pirates if possible and havent beat pirates yet
 true mutant armor's phantasmal ring now disappears when toggled off
+nerfed mutant fang duration from 5s to 3s
+removed mutant rang extra projs again
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
