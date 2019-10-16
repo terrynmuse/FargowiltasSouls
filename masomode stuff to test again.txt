@@ -23,6 +23,9 @@ nymphs now only use ranged attack if you're within 1000 units
 hallowed flipped can be cleared at nurse
 fixed palm wood sentry doing 45 WITHOUT wood force and 15 WITH wood force
 nerfed leash of cthulhu damage 16 -> 12
+adjustment to eater of souls/crimera so they no longer slow down on platforms or intangible tiles
+face monster aura range reduced
+mutant has pink afterimage
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

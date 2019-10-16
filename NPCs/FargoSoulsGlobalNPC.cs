@@ -1056,7 +1056,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Crimera:
                         npc.noTileCollide = true;
-                        if (Framing.GetTileSafely(npc.Center).nactive())
+                        if (npc.noTileCollide && Framing.GetTileSafely(npc.Center).nactive() && Main.tileSolid[Framing.GetTileSafely(npc.Center).type])
                         {
                             int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, npc.velocity.X, npc.velocity.Y);
                             Main.dust[d].noGravity = true;
@@ -1065,7 +1065,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.FaceMonster:
-                        Aura(npc, 400, BuffID.Obstructed, false, 199);
+                        Aura(npc, 300, BuffID.Obstructed, false, 199);
                         break;
 
                     case NPCID.IlluminantBat:
@@ -5742,7 +5742,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.EaterofSouls:
                         if (++Counter >= 300)
                             Shoot(npc, 30, 600, 12, ProjectileID.CursedFlameHostile, npc.damage / 4, 0);
-                        if (Framing.GetTileSafely(npc.Center).nactive())
+                        if (npc.noTileCollide && Framing.GetTileSafely(npc.Center).nactive() && Main.tileSolid[Framing.GetTileSafely(npc.Center).type])
                         {
                             int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, npc.velocity.X, npc.velocity.Y);
                             Main.dust[d].noGravity = true;
