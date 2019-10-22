@@ -1822,7 +1822,9 @@ namespace FargowiltasSouls.NPCs
                             {
                                 if (retiAlive && Main.npc[retiBoss].ai[0] >= 4f && Main.npc[retiBoss].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter == 0) //reti is in normal AI
                                 {
-                                    npc.ai[1] = 0; //switch to dashing
+                                    npc.ai[1] = 1; //switch to dashing
+                                    npc.ai[2] = 0;
+                                    npc.ai[3] = 0;
                                     npc.netUpdate = true;
                                 }
 
@@ -1862,7 +1864,7 @@ namespace FargowiltasSouls.NPCs
                                     Projectile.NewProjectile(npc.Center, npc.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-6f, 6f))) * 0.5f, ProjectileID.EyeFire, npc.damage / 4, 0f, Main.myPlayer);
                                 }
                             }
-
+                            PrintAI(npc);
                             /*if (Counter2++ > 180)
                             {
                                 Counter2 = 0;
@@ -2651,34 +2653,31 @@ namespace FargowiltasSouls.NPCs
                             }
                         }
 
-                        if (npc.realLife != -1)
+                        if (Main.npc[(int)npc.ai[1]].ai[1] == 1f || Main.npc[(int)npc.ai[1]].ai[1] == 2f) //spinning or DG mode
                         {
-                            if (Main.npc[npc.realLife].ai[1] == 1f || Main.npc[npc.realLife].ai[1] == 2f) //spinning or DG mode
+                            if (!masoBool[0])
                             {
-                                if (!masoBool[0])
+                                masoBool[0] = true;
+                                if (Main.netMode != 1 && npc.HasPlayerTarget) //throw undead miner
                                 {
-                                    masoBool[0] = true;
-                                    if (Main.netMode != 1 && npc.HasPlayerTarget) //throw undead miner
+                                    float gravity = 0.4f; //shoot down
+                                    const float time = 60f;
+                                    Vector2 distance = Main.player[npc.target].Center - npc.Center;
+                                    distance.X = distance.X / time;
+                                    distance.Y = distance.Y / time - 0.5f * gravity * time;
+                                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.UndeadMiner);
+                                    if (n != 200)
                                     {
-                                        float gravity = 0.4f; //shoot down
-                                        const float time = 60f;
-                                        Vector2 distance = Main.player[npc.target].Center - npc.Center;
-                                        distance.X = distance.X / time;
-                                        distance.Y = distance.Y / time - 0.5f * gravity * time;
-                                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.UndeadMiner);
-                                        if (n != 200)
-                                        {
-                                            Main.npc[n].velocity = distance;
-                                            if (Main.netMode == 2)
-                                                NetMessage.SendData(23, -1, -1, null, n);
-                                        }
+                                        Main.npc[n].velocity = distance;
+                                        if (Main.netMode == 2)
+                                            NetMessage.SendData(23, -1, -1, null, n);
                                     }
                                 }
                             }
-                            else
-                            {
-                                masoBool[0] = false;
-                            }
+                        }
+                        else
+                        {
+                            masoBool[0] = false;
                         }
                         break;
 
@@ -2714,7 +2713,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 if (masoBool[1]) //cursed inferno attack
                                 {
-                                    if (++Counter2 > 30)
+                                    if (++Counter2 > 6)
                                     {
                                         Counter2 = 0;
                                         if (!masoBool[2])
@@ -2722,14 +2721,20 @@ namespace FargowiltasSouls.NPCs
                                             masoBool[2] = true;
                                             Timer = (int)(npc.Center.X + Math.Sign(npc.velocity.X) * 2500);
                                         }
-                                        if (Main.netMode != 1)
+                                        if (Math.Abs(npc.Center.X - Timer) > 1000)
                                         {
                                             Vector2 spawnPos = new Vector2(Timer, npc.Center.Y);
-                                            Timer += Math.Sign(npc.velocity.X) * -30; //wall of flame advances closer
-                                            const int offsetY = 600;
-                                            const int speed = 10;
-                                            Projectile.NewProjectile(spawnPos + Vector2.UnitY * offsetY, Vector2.UnitY * -speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
-                                            Projectile.NewProjectile(spawnPos + Vector2.UnitY * -offsetY, Vector2.UnitY * speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
+                                            Main.PlaySound(SoundID.Item34, spawnPos);
+                                            Timer += Math.Sign(npc.velocity.X) * -24; //wall of flame advances closer
+                                            const int offsetY = 800;
+                                            const int speed = 14;
+                                            if (Main.netMode != 1)
+                                            {
+                                                Projectile.NewProjectile(spawnPos + Vector2.UnitY * offsetY, Vector2.UnitY * -speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(spawnPos + Vector2.UnitY * offsetY, Vector2.UnitY * speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(spawnPos + Vector2.UnitY * -offsetY, Vector2.UnitY * -speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(spawnPos + Vector2.UnitY * -offsetY, Vector2.UnitY * speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
+                                            }
                                         }
                                     }
                                 }
@@ -2747,7 +2752,7 @@ namespace FargowiltasSouls.NPCs
                                                 Vector2 speed = target - npc.Center;
                                                 speed.Y -= Math.Abs(speed.X) * 0.2f; //account for gravity
                                                 //speed.Normalize(); speed *= 8f;
-                                                speed /= 30f * 3f; //ichor has 3 updates per tick
+                                                speed /= 45f * 3f; //ichor has 3 updates per tick
                                                 speed += npc.velocity / 3f;
                                                 speed.X += Main.rand.Next(-20, 21) * 0.08f;
                                                 speed.Y += Main.rand.Next(-20, 21) * 0.08f;
@@ -5162,6 +5167,10 @@ namespace FargowiltasSouls.NPCs
                             {
                                 npc.localAI[1] = 0f;
                                 npc.rotation = npc.ai[3];
+                            }
+                            else
+                            {
+                                npc.ai[2] = 1;
                             }
                         }
                         else
