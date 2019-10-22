@@ -898,14 +898,12 @@ namespace FargowiltasSouls
                     Tile currentTile = Framing.GetTileSafely((int)tileCenter.X, (int)tileCenter.Y);
                     if (currentTile != null && currentTile.type == TileID.Cactus && currentTile.nactive())
                     {
-                        int damage = 10;
-
+                        int damage = 20;
                         if (player.ZoneCorrupt || player.ZoneCrimson || player.ZoneHoly)
                         {
-                            damage = 25;
+                            damage = 40;
                             player.AddBuff(BuffID.Poisoned, 300);
                         }
-
                         if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles
                             player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), damage, 0, false, false, false, 0);
                     }

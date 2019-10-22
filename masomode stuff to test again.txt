@@ -39,6 +39,12 @@ when reti and spaz are both in p2
 p2 spaz shoots cursed fireballs much more aggressively and accurately
 buffed spaz's charging flamethrower damage to match contact damage, but nerfed range slightly
 mutant town npc's attacks always crit
+destroyer gun functions like destroyer gun EX now
+cacti now deal 20 damage (40 when in spreading biome)
+splinterling drops no loot pre-plant
+sadism now has rainbow name
+eaters of souls no longer shoot fireballs while in walls
+mushroom enemies only explode into spores in hardmode
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

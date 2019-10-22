@@ -5774,13 +5774,16 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EaterofSouls:
-                        if (++Counter >= 300)
-                            Shoot(npc, 30, 600, 12, ProjectileID.CursedFlameHostile, npc.damage / 4, 0);
-                        if (npc.noTileCollide && Framing.GetTileSafely(npc.Center).nactive() && Main.tileSolid[Framing.GetTileSafely(npc.Center).type])
+                        if (npc.noTileCollide && Framing.GetTileSafely(npc.Center).nactive() && Main.tileSolid[Framing.GetTileSafely(npc.Center).type]) //in a wall
                         {
                             int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, npc.velocity.X, npc.velocity.Y);
                             Main.dust[d].noGravity = true;
                             npc.position -= npc.velocity / 2f;
+                        }
+                        else //not in a wall
+                        {
+                            if (++Counter >= 300)
+                                Shoot(npc, 30, 600, 12, ProjectileID.CursedFlameHostile, npc.damage / 4, 0);
                         }
                         goto case NPCID.Harpy;
 
@@ -9407,6 +9410,15 @@ namespace FargowiltasSouls.NPCs
                             FargoSoulsWorld.SlimeCount++;
                         break;
 
+                    case NPCID.Splinterling:
+                        if (!NPC.downedPlantBoss)
+                        {
+                            npc.active = false;
+                            Main.PlaySound(npc.DeathSound, npc.Center);
+                            return false;
+                        }
+                        break;
+
                     case NPCID.EaterofWorldsHead:
                     case NPCID.EaterofWorldsBody:
                     case NPCID.EaterofWorldsTail:
@@ -9803,7 +9815,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.AnomuraFungus:
                     case NPCID.MushiLadybug:
                     case NPCID.FungoFish:
-                        if (Main.netMode != 1)
+                        if (Main.netMode != 1 && Main.hardMode)
                         {
                             for (int i = 0; i < 10; i++)
                             {
