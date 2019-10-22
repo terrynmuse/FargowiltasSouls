@@ -52,10 +52,10 @@ namespace FargowiltasSouls.Projectiles.Masomode
             {
                 projectile.velocity = -Vector2.UnitY;
             }
-            if (projectile.localAI[0] == 0f)
+            /*if (projectile.localAI[0] == 0f)
             {
                 Main.PlaySound(29, (int)projectile.position.X, (int)projectile.position.Y, 104, 1f, 0f);
-            }
+            }*/
             float num801 = 0.3f;
             projectile.localAI[0] += 1f;
             if (projectile.localAI[0] >= maxTime)

@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class PhantasmalDeathrayML : ModProjectile
     {
-        private const float maxTime = 240;
+        private const float maxTime = 120;
 
         public override void SetStaticDefaults()
 		{
@@ -56,7 +56,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             {
                 Main.PlaySound(29, (int)projectile.position.X, (int)projectile.position.Y, 104, 1f, 0f);
             }
-            float num801 = 3f;
+            float num801 = 1f;
             projectile.localAI[0] += 1f;
             if (projectile.localAI[0] >= maxTime)
             {
@@ -67,6 +67,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             if (projectile.scale > num801)
                 projectile.scale = num801;
             float num804 = projectile.velocity.ToRotation();
+            num804 += projectile.ai[0];
             projectile.rotation = num804 - 1.57079637f;
             projectile.velocity = num804.ToRotationVector2();
             float num805 = 3f;

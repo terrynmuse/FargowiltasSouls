@@ -5254,7 +5254,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHand:
                     case NPCID.MoonLordHead:
                         RegenTimer = 2;
-                        /*if (npc.ai[0] == -2f) //eye socket is empty
+                        if (npc.ai[0] == -2f) //eye socket is empty
                         {
                             if (npc.ai[1] == 0f //happens every 32 ticks
                                 && Main.npc[(int)npc.ai[3]].ai[0] != 2f) //will stop when ML dies
@@ -5267,13 +5267,14 @@ namespace FargowiltasSouls.NPCs
                                     if (t != -1)
                                     {
                                         npc.localAI[0] = (Main.player[t].Center - npc.Center).ToRotation();
-                                        Vector2 offset = Vector2.UnitX.RotatedBy(npc.localAI[0]) * 10f;
+                                        /*Vector2 offset = Vector2.UnitX.RotatedBy(npc.localAI[0]) * 10f;
                                         for (int i = 0; i < 300; i++) //dust warning line for laser
                                         {
                                             int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 111, 0f, 0f, 0, default(Color), 1.5f);
                                             Main.dust[d].noGravity = true;
                                             Main.dust[d].velocity *= 0.5f;
-                                        }
+                                        }*/
+                                        Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.localAI[0]), mod.ProjectileType("PhantasmalDeathrayMLSmall"), 0, 0f, Main.myPlayer, 0, npc.whoAmI);
                                     }
                                 }
                                 if (Timer == 2) //FIRE LASER
@@ -5286,7 +5287,7 @@ namespace FargowiltasSouls.NPCs
                                             float newRotation = (Main.player[t].Center - npc.Center).ToRotation();
                                             float difference = newRotation - npc.localAI[0];
                                             const float PI = (float)Math.PI;
-                                            float rotationDirection = PI / 3f / 120f; //positive is CW, negative is CCW
+                                            float rotationDirection = PI / 4f / 120f; //positive is CW, negative is CCW
                                             if (difference < -PI)
                                                 difference += 2f * PI;
                                             if (difference > PI)
@@ -5295,15 +5296,34 @@ namespace FargowiltasSouls.NPCs
                                                 rotationDirection *= -1f;
                                             Vector2 speed = Vector2.UnitX.RotatedBy(npc.localAI[0]);
                                             int damage = (int)(60 * (1 + FargoSoulsWorld.MoonlordCount * .0125));
-                                            if (Main.netMode != 1)
-                                                Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayML"),
-                                                    damage, 0f, Main.myPlayer, rotationDirection, npc.whoAmI);
+                                            Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayML"), damage, 0f, Main.myPlayer, rotationDirection, npc.whoAmI);
                                         }
                                     }
                                 }
                                 npc.netUpdate = true;
                             }
-                        }*/
+                        }
+                        break;
+
+                    case NPCID.MoonLordFreeEye:
+                        if (!masoBool[0])
+                        {
+                            masoBool[0] = true;
+                            for (int i = 0; i < Main.maxNPCs; i++)
+                                if (Main.npc[i].active && Main.npc[i].type == NPCID.MoonLordFreeEye && Main.npc[i].ai[3] == npc.ai[3])
+                                {
+                                    npc.ai[0] = Main.npc[i].ai[0];
+                                    npc.ai[1] = Main.npc[i].ai[1];
+                                    npc.ai[2] = Main.npc[i].ai[2];
+                                    npc.ai[3] = Main.npc[i].ai[3];
+                                    npc.localAI[0] = Main.npc[i].localAI[0];
+                                    npc.localAI[1] = Main.npc[i].localAI[1];
+                                    npc.localAI[2] = Main.npc[i].localAI[2];
+                                    npc.localAI[3] = Main.npc[i].localAI[3];
+                                    break;
+                                }
+                            npc.netUpdate = true;
+                        }
                         break;
 
                     case NPCID.AncientLight:
