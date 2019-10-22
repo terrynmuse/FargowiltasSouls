@@ -38,6 +38,7 @@ when reti and spaz are both in p2
 	spaz always breathes fire while reti is deathray spinning
 p2 spaz shoots cursed fireballs much more aggressively and accurately
 buffed spaz's charging flamethrower damage to match contact damage, but nerfed range slightly
+mutant town npc's attacks always crit
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

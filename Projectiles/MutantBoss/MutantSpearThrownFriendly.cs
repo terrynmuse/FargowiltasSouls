@@ -53,7 +53,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
                 projectile.localAI[0] = 4;
                 if (Main.netMode != 1)
                 {
-                    int p = Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("PhantasmalSphere"), projectile.damage, projectile.knockBack / 2, projectile.owner);
+                    int p = Projectile.NewProjectile(projectile.Center, Vector2.Zero, mod.ProjectileType("PhantasmalSphere"), projectile.damage, projectile.knockBack / 2, projectile.owner, 0, 1);
                     Main.projectile[p].melee = false;
                 }
             }
@@ -65,6 +65,11 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             }
 
             projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
+        }
+
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            crit = true;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

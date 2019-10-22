@@ -80,6 +80,12 @@ namespace FargowiltasSouls.Projectiles
             }
         }
 
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (projectile.ai[1] == 1)
+                crit = true;
+        }
+
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(mod.BuffType("CurseoftheMoon"), 600);
