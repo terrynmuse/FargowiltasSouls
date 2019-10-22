@@ -15,6 +15,17 @@ added mutant's discount card and mutant's pact
 breaking shadow orb triggers goblin invasion if possible and havent beat goblins yet
 breaking altars triggers pirates if possible and havent beat pirates yet
 true mutant armor's phantasmal ring now disappears when toggled off
+nerfed mutant fang duration from 5s to 3s
+removed mutant rang extra projs again
+halved pre-hm medusa spawn rate
+reduced salamander stealth
+nymphs now only use ranged attack if you're within 1000 units
+hallowed flipped can be cleared at nurse
+fixed palm wood sentry doing 45 WITHOUT wood force and 15 WITH wood force
+nerfed leash of cthulhu damage 16 -> 12
+adjustment to eater of souls/crimera so they no longer slow down on platforms or intangible tiles
+face monster aura range reduced
+mutant has pink afterimage
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

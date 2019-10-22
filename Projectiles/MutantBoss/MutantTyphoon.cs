@@ -88,7 +88,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             player.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
             player.GetModPlayer<FargoPlayer>().MaxLifeReduction += 200;
             player.AddBuff(mod.BuffType("OceanicMaul"), 5400);
-            player.AddBuff(mod.BuffType("MutantFang"), 300);
+            player.AddBuff(mod.BuffType("MutantFang"), 180);
         }
 
         public override void Kill(int timeLeft)

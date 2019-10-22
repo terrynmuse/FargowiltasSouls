@@ -37,11 +37,11 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             if (++projectile.localAI[0] > projectile.ai[1])
                 projectile.Kill();
 
-            if (projectile.localAI[0] == (int)projectile.ai[1] / 2 && Main.netMode != 1)
+            /*if (projectile.localAI[0] == (int)projectile.ai[1] / 2 && Main.netMode != 1)
             {
                 Projectile.NewProjectile(projectile.Center, Vector2.Normalize(projectile.velocity).RotatedBy(Math.PI / 2) * 14, ProjectileID.CursedFlameHostile, projectile.damage, 0, Main.myPlayer);
                 Projectile.NewProjectile(projectile.Center, Vector2.Normalize(projectile.velocity).RotatedBy(Math.PI / 2) * -14, ProjectileID.CursedFlameHostile, projectile.damage, 0, Main.myPlayer);
-            }
+            }*/
 
             Vector2 acceleration = Vector2.Normalize(projectile.velocity).RotatedBy(Math.PI / 2) * projectile.ai[0];
             projectile.velocity += acceleration;
@@ -56,7 +56,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(BuffID.CursedInferno, 120);
-            target.AddBuff(mod.BuffType("MutantFang"), 300);
+            target.AddBuff(mod.BuffType("MutantFang"), 180);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
