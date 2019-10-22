@@ -209,7 +209,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.PirateShipCannon:
-                        Counter = Main.rand.Next(10);
+                        Counter = Main.rand.Next(60);
                         npc.noTileCollide = true;
                         break;
 
@@ -1077,6 +1077,10 @@ namespace FargowiltasSouls.NPCs
                                 NetUpdateMaso(npc.whoAmI);
                             }
                             npc.alpha = 200;
+                            if (npc.lifeMax > 100)
+                                npc.lifeMax = 100;
+                            if (npc.life > npc.lifeMax)
+                                npc.life = npc.lifeMax;
                         }
                         if (npc.HasPlayerTarget && npc.Distance(Main.player[npc.target].Center) < 1000)
                         {
@@ -1816,50 +1820,46 @@ namespace FargowiltasSouls.NPCs
 
                             if (npc.ai[1] == 0f) //not dashing
                             {
-                                int ai2 = (int)npc.ai[2]; //timer, counts up to 400
-                                switch (ai2)
+                                if (retiAlive && Main.npc[retiBoss].ai[0] >= 4f && Main.npc[retiBoss].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter == 0) //reti is in normal AI
                                 {
-                                    case 5:
-                                    case 55:
-                                    case 105:
-                                    case 155:
-                                    case 205:
-                                    case 255:
-                                    case 305:
-                                    case 355:
-                                        if (Main.netMode != 1 && npc.HasPlayerTarget) //vanilla spaz p1 shoot fireball code
-                                        {
-                                            Vector2 Speed = Main.player[npc.target].Center - npc.Center;
-                                            Speed.Normalize();
-                                            int Damage;
-                                            if (Main.expertMode)
-                                            {
-                                                Speed *= 14f;
-                                                Damage = 22;
-                                            }
-                                            else
-                                            {
-                                                Speed *= 12f;
-                                                Damage = 25;
-                                            }
-                                            Damage = (int)(Damage * (1 + FargoSoulsWorld.TwinsCount * .0125));
-                                            Speed.X += Main.rand.Next(-40, 41) * 0.05f;
-                                            Speed.Y += Main.rand.Next(-40, 41) * 0.05f;
-                                            Projectile.NewProjectile(npc.Center + Speed * 4f, Speed, ProjectileID.CursedFlameHostile, Damage, 0f, Main.myPlayer);
-                                        }
-                                        break;
-
-                                    default:
-                                        break;
+                                    npc.ai[1] = 0; //switch to dashing
+                                    npc.netUpdate = true;
                                 }
-                            }
-                            else if (npc.HasPlayerTarget && Main.player[npc.target].active) //cursed flamethrower when dashing
-                            {
-                                Counter++;
-                                if (Counter == 4)
+
+                                if (++Counter > 40)
                                 {
                                     Counter = 0;
-                                    Projectile.NewProjectile(npc.Center, npc.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-6f, 6f))) * 0.66f, ProjectileID.EyeFire, npc.damage / 5, 0f, Main.myPlayer);
+                                    if (Main.netMode != 1 && npc.HasPlayerTarget) //vanilla spaz p1 shoot fireball code
+                                    {
+                                        Vector2 Speed = Main.player[npc.target].Center - npc.Center;
+                                        Speed.Normalize();
+                                        int Damage;
+                                        if (Main.expertMode)
+                                        {
+                                            Speed *= 14f;
+                                            Damage = 22;
+                                        }
+                                        else
+                                        {
+                                            Speed *= 12f;
+                                            Damage = 25;
+                                        }
+                                        Damage = (int)(Damage * (1 + FargoSoulsWorld.TwinsCount * .0125));
+                                        Projectile.NewProjectile(npc.Center + Speed * 4f, Speed, ProjectileID.CursedFlameHostile, Damage, 0f, Main.myPlayer);
+                                    }
+                                }
+                            }
+                            else //dashing
+                            {
+                                if (retiAlive && Main.npc[retiBoss].ai[0] >= 4f && Main.npc[retiBoss].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter != 0) //reti is doing the spin
+                                {
+                                    npc.ai[1] = 0; //switch to not dashing
+                                    npc.netUpdate = true;
+                                }
+                                if (npc.HasPlayerTarget && Main.player[npc.target].active && ++Counter > 3) //cursed flamethrower when dashing
+                                {
+                                    Counter = 0;
+                                    Projectile.NewProjectile(npc.Center, npc.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-6f, 6f))) * 0.5f, ProjectileID.EyeFire, npc.damage / 4, 0f, Main.myPlayer);
                                 }
                             }
 
@@ -2669,28 +2669,73 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-                        else if (npc.ai[3] == 1f)
+                        
+                        if (masoBool[0]) //phase 2
                         {
-                            if (npc.life < npc.lifeMax / 2) //enter phase 2
+                            if (++Counter > 600)
                             {
-                                npc.ai[3] = 2f;
+                                Counter = 0;
+                                Counter2 = 0;
+                                masoBool[1] = !masoBool[1];
+                                masoBool[2] = false;
                                 npc.netUpdate = true;
-                                for (int i = 0; i < 200; i++)
+                            }
+                            else if (Counter < 300) //special attacks
+                            {
+                                if (masoBool[1]) //cursed inferno attack
                                 {
-                                    if (Main.npc[i].active && Main.npc[i].type == NPCID.WallofFleshEye && Main.npc[i].realLife == npc.whoAmI)
+                                    if (++Counter2 > 30)
                                     {
-                                        if (Main.npc[i].ai[0] <= 0f)
-                                            Main.npc[i].ai[0] = -2f;
-                                        else
-                                            Main.npc[i].ai[0] = 2f;
-                                        Main.npc[i].netUpdate = true;
+                                        Counter2 = 0;
+                                        if (!masoBool[2])
+                                        {
+                                            masoBool[2] = true;
+                                            Timer = (int)(npc.Center.X + Math.Sign(npc.velocity.X) * 2500);
+                                        }
+                                        if (Main.netMode != 1)
+                                        {
+                                            Vector2 spawnPos = new Vector2(Timer, npc.Center.Y);
+                                            Timer += Math.Sign(npc.velocity.X) * -30; //wall of flame advances closer
+                                            const int offsetY = 600;
+                                            const int speed = 10;
+                                            Projectile.NewProjectile(spawnPos + Vector2.UnitY * offsetY, Vector2.UnitY * -speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
+                                            Projectile.NewProjectile(spawnPos + Vector2.UnitY * -offsetY, Vector2.UnitY * speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
+                                        }
                                     }
                                 }
-                                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                                else //ichor attack
+                                {
+                                    if (++Counter2 > 10)
+                                    {
+                                        Counter2 = 0;
+                                        if (Main.netMode != 1)
+                                        {
+                                            Vector2 target = npc.Center;
+                                            target.X += Math.Sign(npc.velocity.X) * 1800f * Counter / 300f; //gradually targets further and further
+                                            for (int i = 0; i < 4; i++)
+                                            {
+                                                Vector2 speed = target - npc.Center;
+                                                speed.Y -= Math.Abs(speed.X) * 0.2f; //account for gravity
+                                                //speed.Normalize(); speed *= 8f;
+                                                speed /= 30f * 3f; //ichor has 3 updates per tick
+                                                speed += npc.velocity / 3f;
+                                                speed.X += Main.rand.Next(-20, 21) * 0.08f;
+                                                speed.Y += Main.rand.Next(-20, 21) * 0.08f;
+                                                Projectile.NewProjectile(npc.Center, speed, ProjectileID.GoldenShowerHostile, npc.damage / 5, 0f, Main.myPlayer);
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
+                        else if (npc.life < npc.lifeMax / 2) //enter phase 2
+                        {
+                            masoBool[0] = true;
+                            npc.netUpdate = true;
+                            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                        }
 
-                        if (--Counter < 0)
+                        /*if (--Counter < 0)
                         {
                             Counter = 60 + (int)(120f * npc.life / npc.lifeMax);
                             if (Main.netMode != 1 && npc.HasPlayerTarget && Main.player[npc.target].active) //vanilla spaz p1 shoot fireball code
@@ -2727,16 +2772,13 @@ namespace FargowiltasSouls.NPCs
                                     Projectile.NewProjectile(npc.Center, speed, ProjectileID.GoldenShowerHostile, npc.damage / 25, 0f, Main.myPlayer);
                                 }
                             }
-                        }
+                        }*/
 
                         if (npc.HasPlayerTarget && (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 3000))
                         {
                             npc.TargetClosest(true);
-                            if (Counter2++ > 120)
-                            {
-                                Counter2 = 120;
+                            if (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 3000)
                                 npc.velocity *= 20;
-                            }
                         }
 
                         if (Main.player[Main.myPlayer].active & !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].ZoneUnderworldHeight)
@@ -5059,24 +5101,25 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.WallofFleshEye:
-                        npc.ai[1]++;
+                        if (npc.realLife != -1 && Main.npc[npc.realLife].GetGlobalNPC<FargoSoulsGlobalNPC>().masoBool[0]
+                            && Main.npc[npc.realLife].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter < 240)
+                            npc.localAI[1] = 0; //dont fire during mouth's special attacks
+
                         const float maxTime = 540f;
-                        if (npc.ai[1] >= maxTime)
+                        if (++npc.ai[1] >= maxTime)
                         {
                             npc.ai[1] = 0f;
                             if (npc.ai[2] == 0f)
                                 npc.ai[2] = 1f;
                             else
                                 npc.ai[2] *= -1f;
-                            if (npc.ai[2] == 2f) //FIRE LASER
+                            
+                            if (npc.ai[2] > 0 && Main.netMode != 1) //FIRE LASER
                             {
+                                Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
+                                float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
                                 if (Main.netMode != 1)
-                                {
-                                    Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
-                                    float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
-                                    if (Main.netMode != 1)
-                                        Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayWOF"), npc.damage / 4, 0f, Main.myPlayer, ai0, npc.whoAmI);
-                                }
+                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayWOF"), npc.damage / 4, 0f, Main.myPlayer, ai0, npc.whoAmI);
                             }
                             npc.netUpdate = true;
                         }
@@ -5085,14 +5128,10 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.alpha = 175;
                             npc.dontTakeDamage = true;
-                            if (npc.ai[1] <= 90 && npc.ai[2] == 2f)
+                            if (npc.ai[1] <= 90)
                             {
                                 npc.localAI[1] = 0f;
                                 npc.rotation = npc.ai[3];
-                            }
-                            else
-                            {
-                                npc.ai[2] = 1f;
                             }
                         }
                         else
@@ -5117,33 +5156,23 @@ namespace FargowiltasSouls.NPCs
                                 const float stopTime = maxTime - 90f;
                                 if (npc.ai[1] == stopTime) //shoot warning dust in phase 2
                                 {
-                                    if (npc.ai[0] == 2f || npc.ai[0] == -2f)
+                                    int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                    if (t != -1)
                                     {
-                                        int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                                        if (t != -1)
-                                        {
-                                            Main.PlaySound(15, (int)Main.player[t].position.X, (int)Main.player[t].position.Y, 0);
-                                            npc.ai[2] = -2f;
-                                            npc.ai[3] = (npc.Center - Main.player[t].Center).ToRotation();
-                                            /*Vector2 offset = Vector2.UnitX.RotatedBy(npc.ai[3] + Math.PI) * 10f;
-                                            for (int i = 0; i < 240; i++) //dust warning line for laser
-                                            {
-                                                int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 112, 0f, 0f, 0, default(Color), 1.5f);
-                                                Main.dust[d].noGravity = true;
-                                                Main.dust[d].velocity *= 0.5f;
-                                            }*/
-                                            if (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0)
-                                                npc.ai[3] += (float)Math.PI;
+                                        Main.PlaySound(15, (int)Main.player[t].position.X, (int)Main.player[t].position.Y, 0);
+                                        npc.ai[2] = -2f;
+                                        npc.ai[3] = (npc.Center - Main.player[t].Center).ToRotation();
+                                        if (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0)
+                                            npc.ai[3] += (float)Math.PI;
 
-                                            float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
-                                            Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
-                                            if (Main.netMode != 1)
-                                                Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayWOFS"), 0, 0f, Main.myPlayer, ai0, npc.whoAmI);
-                                        }
+                                        float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
+                                        Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
+                                        if (Main.netMode != 1)
+                                            Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayWOFS"), 0, 0f, Main.myPlayer, ai0, npc.whoAmI);
                                     }
                                     npc.netUpdate = true;
                                 }
-                                else if (npc.ai[1] > stopTime && npc.ai[2] == -2f)
+                                else if (npc.ai[1] > stopTime)
                                 {
                                     npc.localAI[1] = 0f;
                                     npc.rotation = npc.ai[3];
@@ -5681,9 +5710,14 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.PirateShipCannon:
-                        if (++Counter > 10)
+                        if (++Counter > 300)
                         {
                             Counter = 0;
+                            masoBool[0] = !masoBool[0];
+                        }
+                        if (masoBool[0] && ++Counter2 > 10)
+                        {
+                            Counter2 = 0;
                             if (npc.HasPlayerTarget)
                             {
                                 Vector2 speed = Main.player[npc.target].Center - npc.Center;

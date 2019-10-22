@@ -80,7 +80,7 @@ namespace FargowiltasSouls.NPCs
             float num5 = num2 * num3;
             npc.velocity.X = (npc.velocity.X * 50 + num4) / 51f;
             npc.velocity.Y = (npc.velocity.Y * 50 + num5) / 51f;
-            if (npc.ai[0] == -2)
+            /*if (npc.ai[0] == -2)
             {
                 npc.velocity *= 0.9f;
                 if (Main.netMode != 0)
@@ -150,7 +150,7 @@ namespace FargowiltasSouls.NPCs
                         while (num7 <= 100);
                     }
                 }
-            }
+            }*/
         }
 
         public override void FindFrame(int frameHeight)

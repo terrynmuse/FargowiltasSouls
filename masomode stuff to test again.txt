@@ -26,6 +26,18 @@ nerfed leash of cthulhu damage 16 -> 12
 adjustment to eater of souls/crimera so they no longer slow down on platforms or intangible tiles
 face monster aura range reduced
 mutant has pink afterimage
+brain clone no longer teleports
+illum bat clones have reduced health
+pirate ship only shoots bullets every five seconds
+wof eyes always shoot lasers
+wof has a new p2 where it alternates between:
+	spewing ichor down the arena
+	firing jets of cursed inferno back up the arena
+when reti and spaz are both in p2
+	spaz always dashes while reti is in normal AI
+	spaz always breathes fire while reti is deathray spinning
+p2 spaz shoots cursed fireballs much more aggressively and accurately
+buffed spaz's charging flamethrower damage to match contact damage, but nerfed range slightly
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
