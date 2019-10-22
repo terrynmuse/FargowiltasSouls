@@ -2650,6 +2650,36 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
+
+                        if (npc.realLife != -1)
+                        {
+                            if (Main.npc[npc.realLife].ai[1] == 1f || Main.npc[npc.realLife].ai[1] == 2f) //spinning or DG mode
+                            {
+                                if (!masoBool[0])
+                                {
+                                    masoBool[0] = true;
+                                    if (Main.netMode != 1 && npc.HasPlayerTarget) //throw undead miner
+                                    {
+                                        float gravity = 0.4f; //shoot down
+                                        const float time = 60f;
+                                        Vector2 distance = Main.player[npc.target].Center - npc.Center;
+                                        distance.X = distance.X / time;
+                                        distance.Y = distance.Y / time - 0.5f * gravity * time;
+                                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.UndeadMiner);
+                                        if (n != 200)
+                                        {
+                                            Main.npc[n].velocity = distance;
+                                            if (Main.netMode == 2)
+                                                NetMessage.SendData(23, -1, -1, null, n);
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                masoBool[0] = false;
+                            }
+                        }
                         break;
 
                     case NPCID.WallofFlesh:
@@ -3862,14 +3892,14 @@ namespace FargowiltasSouls.NPCs
                         if (!npc.dontTakeDamage)
                         {
                             Counter2++; //attack faster!
-                            npc.life += 7; //healing stuff
+                            npc.life += 5; //healing stuff
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
                             Timer++;
                             if (Timer >= 75)
                             {
                                 Timer = Main.rand.Next(30);
-                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 420);
+                                CombatText.NewText(npc.Hitbox, CombatText.HealLife, 300);
                             }
                         }
                         break;

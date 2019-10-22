@@ -45,6 +45,8 @@ splinterling drops no loot pre-plant
 sadism now has rainbow name
 eaters of souls no longer shoot fireballs while in walls
 mushroom enemies only explode into spores in hardmode
+golem body regen nerfed to 300
+skeletron throws undead miners whenever he spins
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
