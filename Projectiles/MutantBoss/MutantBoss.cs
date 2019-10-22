@@ -63,7 +63,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Texture2D texture2D13 = Main.projectileTexture[projectile.type];
-            Texture2D texture2D14 = mod.GetTexture("NPCs/MutantBoss/MutantBossTrail");
+            Texture2D texture2D14 = mod.GetTexture("NPCs/MutantSoul/MutantSoul");
             int num156 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]; //ypos of lower right corner of sprite to draw
             int y3 = num156 * projectile.frame; //ypos of upper left corner of sprite to draw
             Rectangle rectangle = new Rectangle(0, y3, texture2D13.Width, num156);
@@ -76,7 +76,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i += 2)
             {
-                Color color27 = color26;
+                Color color27 = Color.White;
                 color27 *= (float)(ProjectileID.Sets.TrailCacheLength[projectile.type] - i) / ProjectileID.Sets.TrailCacheLength[projectile.type];
                 Vector2 value4 = projectile.oldPos[i];
                 float num165 = projectile.oldRot[i];
