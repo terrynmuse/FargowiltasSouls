@@ -4302,18 +4302,6 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.PrimeSaw:
-                        Counter++;
-                        if (Counter >= 3) //flamethrower in same direction that saw is pointing
-                        {
-                            Counter = 0;
-                            Vector2 velocity = new Vector2(7f, 0f).RotatedBy(npc.rotation + Math.PI / 2.0);
-                            if (Main.netMode != 1)
-                                Projectile.NewProjectile(npc.Center, velocity, ProjectileID.FlamesTrap, npc.damage / 4, 0f, Main.myPlayer);
-                            Main.PlaySound(SoundID.Item34, npc.Center);
-                        }
-                        goto case NPCID.PrimeLaser;
-
                     case NPCID.IceQueen:
                         Counter++;
 
@@ -4493,11 +4481,8 @@ namespace FargowiltasSouls.NPCs
 
                             if (npc.ai[1] == 1f && npc.ai[2] > 2f) //spinning
                             {
-                                if (npc.velocity.Length() < 10f)
-                                {
-                                    npc.velocity.Normalize();
-                                    npc.velocity *= 10f;
-                                }
+                                if (npc.HasValidTarget)
+                                    npc.position += npc.DirectionTo(Main.player[npc.target].Center) * 5;
                             }
                             else if (npc.ai[1] != 2f) //not spinning
                             {
@@ -5186,6 +5171,17 @@ namespace FargowiltasSouls.NPCs
                             npc.dontTakeDamage = true;
                         }
                         break;
+                        
+                    case NPCID.PrimeSaw:
+                        if (!masoBool[1] && ++Counter >= 3) //flamethrower in same direction that saw is pointing
+                        {
+                            Counter = 0;
+                            Vector2 velocity = new Vector2(7f, 0f).RotatedBy(npc.rotation + Math.PI / 2.0);
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center, velocity, ProjectileID.FlamesTrap, npc.damage / 4, 0f, Main.myPlayer);
+                            Main.PlaySound(SoundID.Item34, npc.Center);
+                        }
+                        goto case NPCID.PrimeLaser;
 
                     case NPCID.PrimeCannon:
                         if (npc.ai[2] != 0f)
@@ -5206,6 +5202,7 @@ namespace FargowiltasSouls.NPCs
                             npc.ai[3]++;
                         }
                         goto case NPCID.PrimeLaser;
+
                     case NPCID.PrimeLaser:
                     case NPCID.PrimeVice:
                         if (!masoBool[0])
@@ -5234,31 +5231,44 @@ namespace FargowiltasSouls.NPCs
                             }
                             if (masoBool[1]) //swipe AI
                             {
+                                if (!masoBool[3])
+                                {
+                                    masoBool[3] = true;
+                                    switch (npc.type)
+                                    {
+                                        case NPCID.PrimeCannon: Counter = -1; Counter2 = -1; break;
+                                        case NPCID.PrimeLaser: Counter = 1; Counter2 = -1; break;
+                                        case NPCID.PrimeSaw: Counter = -1; Counter2 = 1; break;
+                                        case NPCID.PrimeVice: Counter = 1; Counter2 = 1; break;
+                                        default: break;
+                                    }
+                                }
                                 if (++npc.ai[2] < 180)
                                 {
                                     if (!npc.HasValidTarget)
                                         npc.TargetClosest(false);
                                     Vector2 target = Main.player[npc.target].Center;
-                                    target.X += 500 * Math.Sign(npc.ai[0]);
-                                    target.Y += npc.Center.Y > target.Y ? 300 : -300;
+                                    target.X += 500 * Counter;
+                                    target.Y += 500 * Counter2;
                                     npc.velocity = (target - npc.Center) / 30;
-                                    npc.rotation = Main.npc[ai1].DirectionTo(npc.Center).ToRotation() - (float)Math.PI / 2;
                                 }
                                 else if (npc.ai[2] == 180)
                                 {
                                     npc.velocity = npc.DirectionTo(Main.player[npc.target].Center) * 20;
                                     npc.netUpdate = true;
+                                    Counter *= -1;
+                                    Counter2 *= -1;
                                 }
                                 else if (npc.ai[2] < 240)
                                 {
-                                    npc.velocity *= 0.99f;
-                                    npc.rotation = npc.velocity.ToRotation() - (float)Math.PI / 2;
+                                    npc.velocity *= 0.996f;
                                 }
                                 else
                                 {
                                     npc.ai[2] = 0;
                                     npc.netUpdate = true;
                                 }
+                                npc.rotation = Main.npc[ai1].DirectionTo(npc.Center).ToRotation() - (float)Math.PI / 2;
                                 return false;
                             }
                             else if (Main.npc[ai1].ai[1] == 1 || Main.npc[ai1].ai[1] == 2) //other limbs while prime spinning
@@ -5275,7 +5285,7 @@ namespace FargowiltasSouls.NPCs
                                         default: break;
                                     }
                                     Vector2 offset = Main.player[Main.npc[ai1].target].Center - Main.npc[ai1].Center;
-                                    offset = offset.RotatedBy(Math.PI / 2 * rotation);
+                                    offset = offset.RotatedBy(Math.PI / 2 * rotation + Math.PI / 4);
                                     offset = Vector2.Normalize(offset) * (offset.Length() + 200);
                                     if (offset.Length() < 600)
                                         offset = Vector2.Normalize(offset) * 600;
@@ -5304,7 +5314,7 @@ namespace FargowiltasSouls.NPCs
                                 else //spinning
                                 {
                                     npc.Center = Main.npc[ai1].Center + new Vector2(Counter, 0f).RotatedBy(npc.localAI[3]);
-                                    const float rotation = 0.07f;
+                                    const float rotation = 0.1f;
                                     npc.localAI[3] += rotation;
                                     if (npc.localAI[3] > (float)Math.PI)
                                     {
@@ -5319,6 +5329,7 @@ namespace FargowiltasSouls.NPCs
                             if (masoBool[2])
                             {
                                 masoBool[2] = false;
+                                Counter = 0;
                                 if (Main.netMode == 2) //MP sync
                                 {
                                     var netMessage = mod.GetPacket();
