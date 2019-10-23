@@ -1559,6 +1559,13 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     npc.ai[2]--;
                                     npc.alpha += 8;
+                                    for (int i = 0; i < 3; i++)
+                                    {
+                                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
+                                        Main.dust[d].noGravity = true;
+                                        Main.dust[d].noLight = true;
+                                        Main.dust[d].velocity *= 4f;
+                                    }
                                     if (npc.alpha > 255)
                                     {
                                         npc.alpha = 255;
@@ -1587,6 +1594,13 @@ namespace FargowiltasSouls.NPCs
                                     {
                                         npc.ai[2]--;
                                         npc.position -= npc.velocity / 2;
+                                        for (int i = 0; i < 3; i++)
+                                        {
+                                            int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
+                                            Main.dust[d].noGravity = true;
+                                            Main.dust[d].noLight = true;
+                                            Main.dust[d].velocity *= 4f;
+                                        }
                                     }
                                 }
                             }
@@ -6774,6 +6788,9 @@ namespace FargowiltasSouls.NPCs
 
                 Lighting.AddLight((int)(npc.position.X / 16f), (int)(npc.position.Y / 16f + 1f), 1f, 0.3f, 0.1f);
             }*/
+
+            if (Suffocation)
+                drawColor = Colors.RarityPurple;
 
             if (Villain)
             {

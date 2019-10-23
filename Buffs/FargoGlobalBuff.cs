@@ -61,7 +61,6 @@ namespace FargowiltasSouls.Buffs
                     break;
 
                 case BuffID.Suffocation:
-                    npc.color = Colors.RarityPurple;
                     npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().Suffocation = true;
                     break;
 
