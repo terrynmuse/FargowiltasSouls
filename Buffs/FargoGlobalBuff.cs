@@ -60,6 +60,11 @@ namespace FargowiltasSouls.Buffs
                     npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().Electrified = true;
                     break;
 
+                case BuffID.Suffocation:
+                    npc.color = Colors.RarityPurple;
+                    npc.GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().Suffocation = true;
+                    break;
+
                 default:
                     break;
             }

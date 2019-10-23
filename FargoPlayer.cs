@@ -303,7 +303,6 @@ namespace FargowiltasSouls
         public bool Midas;
         public bool MutantPresence;
         public bool Swarming;
-        public int lightningCounter = 0;
 
         public int MasomodeCrystalTimer = 0;
         //public int MasomodeFreezeTimer = 0;
@@ -699,8 +698,8 @@ namespace FargowiltasSouls
 
             if (FargoSoulsWorld.MasochistMode)
             {
-                //falling gives you dazed even with protection. wings save you
-                if (player.velocity.Y == 0f && player.wings == 0)
+                //falling gives you dazed. wings save you
+                if (player.velocity.Y == 0f && player.wings == 0 & !player.noFallDmg)
                 {
                     int num21 = 25;
                     num21 += player.extraFall;
@@ -724,18 +723,10 @@ namespace FargowiltasSouls
                         player.immune = false;
                         int dmg = (int)(num22 * player.gravDir - num21) * 10;
                         if (player.mount.Active)
-                        {
                             dmg = (int)(dmg * player.mount.FallDamage);
-                        }
 
-                        if (!player.noFallDmg)
-                        {
-                            player.Hurt(PlayerDeathReason.ByOther(0), dmg, 0);
-                        }
-
-                        int buffTime = (int)(dmg * (player.noFallDmg ? .5 : 2));
-                        
-                        player.AddBuff(BuffID.Dazed, buffTime);
+                        player.Hurt(PlayerDeathReason.ByOther(0), dmg, 0);
+                        player.AddBuff(BuffID.Dazed, 120);
                     }
                     player.fallStart = (int)(player.position.Y / 16f);
                 }
@@ -744,19 +735,17 @@ namespace FargowiltasSouls
                 {
                     if (!(player.fireWalk || PureHeart))
                         player.AddBuff(BuffID.OnFire, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
-                    if (player.lavaWet && !MutantAntibodies)
-                        player.AddBuff(mod.BuffType("Shadowflame"), 2);
                 }
 
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
-                    player.AddBuff(Main.hardMode ? BuffID.Venom : BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                    player.AddBuff(BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
-                if (player.ZoneSnow)
+                /*if (player.ZoneSnow)
                 {
                     if (!PureHeart && !Main.dayTime && Framing.GetTileSafely(player.Center).wall == WallID.None)
                         player.AddBuff(BuffID.Chilled, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
-                    /*if (player.wet && !MutantAntibodies)
+                    if (player.wet && !MutantAntibodies)
                     {
                         player.AddBuff(BuffID.Frostburn, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                         MasomodeFreezeTimer++;
@@ -769,14 +758,14 @@ namespace FargowiltasSouls
                     else
                     {
                         MasomodeFreezeTimer = 0;
-                    }*/
+                    }
                 }
-                /*else
+                else
                 {
                     MasomodeFreezeTimer = 0;
                 }*/
 
-                if (player.wet && !MutantAntibodies)
+                /*if (player.wet && !MutantAntibodies)
                 {
                     if (player.ZoneDesert)
                         player.AddBuff(BuffID.Slow, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
@@ -787,7 +776,7 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Weak, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                     if (currentTile.wall == WallID.MarbleUnsafe)
                         player.AddBuff(BuffID.BrokenArmor, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
-                }
+                }*/
 
                 if (player.ZoneCorrupt)
                 {
@@ -813,7 +802,7 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
-                if (!PureHeart && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight) && player.HeldItem.type != ItemID.Umbrella)
+                /*if (!PureHeart && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight) && player.HeldItem.type != ItemID.Umbrella)
                 {
                     Tile currentTile = Framing.GetTileSafely(player.Center);
                     if (currentTile.wall == WallID.None)
@@ -841,7 +830,7 @@ namespace FargowiltasSouls
                             }
                         }
                     } 
-                }
+                }*/
 
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                     player.AddBuff(mod.BuffType("Lethargic"), 2);
@@ -887,10 +876,9 @@ namespace FargowiltasSouls
                     }
                 }
 
-                if (!PureHeart && Main.bloodMoon)
-                    player.AddBuff(BuffID.WaterCandle, 2);
+                //if (!PureHeart && Main.bloodMoon) player.AddBuff(BuffID.WaterCandle, 2);
 
-                if (!SandsofTime)
+                /*if (!SandsofTime)
                 {
                     Vector2 tileCenter = player.Center;
                     tileCenter.X /= 16;
@@ -907,7 +895,7 @@ namespace FargowiltasSouls
                         if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles
                             player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), damage, 0, false, false, false, 0);
                     }
-                }
+                }*/
 
                 if (MasomodeCrystalTimer > 0)
                     MasomodeCrystalTimer--;

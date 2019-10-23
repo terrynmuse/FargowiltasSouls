@@ -21,7 +21,12 @@ namespace FargowiltasSouls.Buffs.Masomode
         public override void Update(Player player, ref int buffIndex)
         {
             //all item speed reduced to 50%
-            player.GetModPlayer<FargoPlayer>().AttackSpeed *= .5f;
+            player.GetModPlayer<FargoPlayer>().AttackSpeed *= .75f;
+        }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.position -= npc.velocity * .25f;
         }
     }
 }

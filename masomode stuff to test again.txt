@@ -52,6 +52,33 @@ true eyes now synchronize to each other no matter when they're released
 
 removed extra debuffs in snow water
 copper ench can be stacked
+all hell native enemies are immune to on fire
+all space native enemies are immune to suffocation
+all water native enemies have mutant antibodies protection against water debuffs
+enemies in hell are ignited
+enemies in space are suffocated
+enemies in biome waters are affected
+removed cactus pricking
+removed blood moon water candle
+removed hostile falling stars
+removed spreading biome enemies converting blocks
+removed lightning in rain
+removed snow biome debuffs
+removed shadowflame in hell lava
+removed desert, dungeon, marble, granite water debuffs
+removed water sphere flip
+removed beetle lethargic aura
+removed basilisk inflicting poisoned/venom
+removed pumpking inflicting slow
+removed eow's guaranteed forever weak
+removed fishron squeaky toy, broken armor, withered armor
+fall damage immunity now blocks dazed
+fall damage dazed is always two seconds
+corrupt critter spawns are now post eoc
+lethargic slowdown now from -50% to -25%
+lethargic reduces enemy movement speed by 25%
+jungle water only inflicts poisoned (no more venom)
+lihzahrd balls on death now only 1 and straight up
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
