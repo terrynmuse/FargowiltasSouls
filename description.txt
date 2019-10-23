@@ -1,4 +1,15 @@
 NEW UPDATE - v 1.0.0
 
 -demon eyes dont have double speed
--lime kelp to PurpleMucos
+-lime kelp to PurpleMucos in palm wood
+-boreal enchant use ssnowballs instead of snowball cannon
+-rename Force of Syran to Syrus
+-fixed SoT new line error
+-removed bone pick from miner enchant and added candy cane pick
+-fixed thorium essence tooltips
+-changed flesh hand and fish stick to summon damage
+-updated comp orb sprite
+-added several buff sprites
+-renamed sharpshooterssoul to snipers soul
+-renamed snipers essence to sharpshhoters essence
+-renamed force of wood to force of Timber

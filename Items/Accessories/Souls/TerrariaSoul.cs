@@ -67,7 +67,8 @@ Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Sh
             if (thorium != null)
             {
                 tooltip +=
-@"Effects of Spring Steps, Slag Stompers, and Proof of Avarice";
+@"
+Effects of Spring Steps, Slag Stompers, and Proof of Avarice";
                 tooltip_ch +=
 @"拥有弹簧鞋, 熔渣重踏和贪婪之证的效果";
             }
@@ -133,7 +134,7 @@ Effects of Flower Boots, Master Ninja Gear, Greedy Ring, Celestial Shell, and Sh
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "WoodForce");
+            recipe.AddIngredient(null, "TimberForce");
             recipe.AddIngredient(null, "TerraForce");
             recipe.AddIngredient(null, "EarthForce");
             recipe.AddIngredient(null, "NatureForce");

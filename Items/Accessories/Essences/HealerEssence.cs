@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Items.Accessories.Essences
         {
             DisplayName.SetDefault("Crusader's Essence");
             Tooltip.SetDefault(
-@"''This is only the beginning..''
+@"'This is only the beginning..'
 18% increased radiant damage
 5% increased healing and radiant casting speed
 5% increased radiant critical strike chance");

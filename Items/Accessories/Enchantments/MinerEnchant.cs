@@ -60,8 +60,8 @@ Summons a pet Magic Lantern");
             }
             else
             {
+                recipe.AddIngredient(ItemID.CnadyCanePickaxe);
                 recipe.AddIngredient(ItemID.GoldPickaxe);
-                recipe.AddIngredient(ItemID.BonePickaxe);
                 recipe.AddIngredient(ItemID.MoltenPickaxe);
             }
             

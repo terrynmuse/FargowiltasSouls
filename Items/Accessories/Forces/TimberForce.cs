@@ -5,11 +5,11 @@ using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Forces
 {
-    public class WoodForce : ModItem
+    public class TimberForce : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Force of Wood");
+            DisplayName.SetDefault("Force of Timber");
 
             Tooltip.SetDefault(
 @"'Extremely rigid'

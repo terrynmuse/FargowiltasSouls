@@ -16,12 +16,12 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
         {
             projectile.width = 20;
             projectile.height = 24;
-            projectile.aiStyle = 1; //
+            projectile.aiStyle = 1; 
             projectile.friendly = true;
-            projectile.thrown = true; //
-            projectile.penetrate = 4; //
+            projectile.minion = true; 
+            projectile.penetrate = 4; 
             projectile.timeLeft = 300;
-            aiType = ProjectileID.Bullet; //
+            aiType = ProjectileID.Bullet; 
         }
 
         public override void AI()
