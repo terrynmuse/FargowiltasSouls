@@ -1198,8 +1198,8 @@ namespace FargowiltasSouls
         {
             if ((string)args[0] == "FargoSoulsAI")
             {
-                int n = (int)args[1];
-                Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>().AI(Main.npc[n]);
+                /*int n = (int)args[1];
+                Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>().AI(Main.npc[n]);*/
             }
             return base.Call(args);
         }

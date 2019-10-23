@@ -1727,8 +1727,7 @@ namespace FargowiltasSouls.NPCs
                                 case 1: //slowing down, beginning rotation
                                     npc.velocity *= 1f - (npc.ai[0] - 4f) / 120f;
                                     npc.localAI[1] = 0f;
-                                    if (--npc.ai[2] > 295f) //negate vanilla counting up
-                                        npc.ai[2] = 295f;
+                                    //if (--npc.ai[2] > 295f) npc.ai[2] = 295f;
                                     npc.ai[3] -= (npc.ai[0] - 4f) / 120f * rotationInterval * (masoBool[2] ? 1f : -1f);
                                     npc.rotation = -npc.ai[3];
 
@@ -1752,13 +1751,12 @@ namespace FargowiltasSouls.NPCs
                                             netMessage.Send();
                                         }
                                     }
-                                    break;
+                                    return false;
 
                                 case 2: //spinning full speed
                                     npc.velocity = Vector2.Zero;
                                     npc.localAI[1] = 0f;
-                                    if (--npc.ai[2] > 295f)
-                                        npc.ai[2] = 295f;
+                                    //if (--npc.ai[2] > 295f) npc.ai[2] = 295f;
                                     npc.ai[3] -= rotationInterval * (masoBool[2] ? 1f : -1f);
                                     npc.rotation = -npc.ai[3];
 
@@ -1777,13 +1775,12 @@ namespace FargowiltasSouls.NPCs
                                             netMessage.Send();
                                         }
                                     }
-                                    break;
+                                    return false;
 
                                 case 3: //laser done, slowing down spin, moving again
                                     npc.velocity *= (npc.ai[0] - 4f) / 60f;
                                     npc.localAI[1] = 0f;
-                                    if (--npc.ai[2] > 295f)
-                                        npc.ai[2] = 295f;
+                                    //if (--npc.ai[2] > 295f) npc.ai[2] = 295f;
                                     npc.ai[3] -= (1f - (npc.ai[0] - 4f) / 60f) * rotationInterval * (masoBool[2] ? 1f : -1f);
                                     npc.rotation = -npc.ai[3];
 
@@ -1802,7 +1799,7 @@ namespace FargowiltasSouls.NPCs
                                             netMessage.Send();
                                         }
                                     }
-                                    break;
+                                    return false;
 
                                 default:
                                     Counter = 0;
@@ -2925,8 +2922,12 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.TargetClosest(true);
                             if (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 3000)
-                                npc.velocity *= 20;
+                                npc.position.X += 20 * Math.Sign(npc.velocity.X);
+                            else if (Math.Abs(npc.velocity.X) > 5)
+                                npc.position.X -= (Math.Abs(npc.velocity.X) - 5) * Math.Sign(npc.velocity.X);
                         }
+                        else if (Math.Abs(npc.velocity.X) > 5)
+                            npc.position.X -= (Math.Abs(npc.velocity.X) - 5) * Math.Sign(npc.velocity.X);
 
                         if (Main.player[Main.myPlayer].active & !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].ZoneUnderworldHeight)
                         {
@@ -2951,8 +2952,103 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
+                        break;
 
-                        Main.NewText(npc.velocity.X.ToString());
+                    case NPCID.WallofFleshEye:
+                        if (masoBool[3])
+                            break;
+
+                        if (npc.realLife != -1 && Main.npc[npc.realLife].GetGlobalNPC<FargoSoulsGlobalNPC>().masoBool[0]
+                            && Main.npc[npc.realLife].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter < 240)
+                            npc.localAI[1] = 0; //dont fire during mouth's special attacks
+
+                        const float maxTime = 540f;
+                        if (++npc.ai[1] >= maxTime)
+                        {
+                            npc.ai[1] = 0f;
+                            if (npc.ai[2] == 0f)
+                                npc.ai[2] = 1f;
+                            else
+                                npc.ai[2] *= -1f;
+
+                            if (npc.ai[2] > 0 && Main.netMode != 1) //FIRE LASER
+                            {
+                                Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
+                                float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
+                                if (Main.netMode != 1)
+                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayWOF"), npc.damage / 4, 0f, Main.myPlayer, ai0, npc.whoAmI);
+                            }
+                            npc.netUpdate = true;
+                        }
+
+                        if (npc.ai[2] >= 0f)
+                        {
+                            npc.alpha = 175;
+                            npc.dontTakeDamage = true;
+                            if (npc.ai[1] <= 90)
+                            {
+                                masoBool[3] = true;
+                                npc.AI();
+                                masoBool[3] = false;
+                                npc.localAI[1] = 0f;
+                                npc.rotation = npc.ai[3];
+                                return false;
+                            }
+                            else
+                            {
+                                npc.ai[2] = 1;
+                            }
+                        }
+                        else
+                        {
+                            npc.alpha = 0;
+                            npc.dontTakeDamage = false;
+                            if (npc.ai[1] > maxTime - 180f)
+                            {
+                                if (Main.rand.Next(4) < 3) //dust telegraphs switch
+                                {
+                                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 90, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 114, default(Color), 3.5f);
+                                    Main.dust[dust].noGravity = true;
+                                    Main.dust[dust].velocity *= 1.8f;
+                                    Main.dust[dust].velocity.Y -= 0.5f;
+                                    if (Main.rand.Next(4) == 0)
+                                    {
+                                        Main.dust[dust].noGravity = false;
+                                        Main.dust[dust].scale *= 0.5f;
+                                    }
+                                }
+
+                                const float stopTime = maxTime - 90f;
+                                if (npc.ai[1] == stopTime) //shoot warning dust in phase 2
+                                {
+                                    int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                    if (t != -1)
+                                    {
+                                        if (npc.Distance(Main.player[t].Center) < 3000)
+                                            Main.PlaySound(15, (int)Main.player[t].position.X, (int)Main.player[t].position.Y, 0);
+                                        npc.ai[2] = -2f;
+                                        npc.ai[3] = (npc.Center - Main.player[t].Center).ToRotation();
+                                        if (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0)
+                                            npc.ai[3] += (float)Math.PI;
+
+                                        float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
+                                        Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
+                                        if (Main.netMode != 1)
+                                            Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayWOFS"), 0, 0f, Main.myPlayer, ai0, npc.whoAmI);
+                                    }
+                                    npc.netUpdate = true;
+                                }
+                                else if (npc.ai[1] > stopTime)
+                                {
+                                    masoBool[3] = true;
+                                    npc.AI();
+                                    masoBool[3] = false;
+                                    npc.localAI[1] = 0f;
+                                    npc.rotation = npc.ai[3];
+                                    return false;
+                                }
+                            }
+                        }
                         break;
 
                     case NPCID.TheDestroyer:
@@ -3148,8 +3244,9 @@ namespace FargowiltasSouls.NPCs
                             switch ((int)npc.ai[0])
                             {
                                 case -1: //just spawned
-                                    if (npc.ai[2] == 1 && Main.netMode != 1) //create spell circle
+                                    if (npc.ai[2] == 2 && Main.netMode != 1) //create spell circle
                                     {
+                                        Main.NewText("spawn");
                                         int ritual1 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
                                             mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax, npc.whoAmI);
                                         if (ritual1 == 1000) //failed to spawn projectile, abort spawn
@@ -4042,7 +4139,7 @@ namespace FargowiltasSouls.NPCs
                         if (Counter-- <= 0)
                         {
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer(); //shoot lasers
-                            if (t != -1 && NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
+                            if (t != -1 && NPC.golemBoss > -1 && NPC.golemBoss < 200 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                             {
                                 Counter = (int)(300f * Main.npc[NPC.golemBoss].life / Main.npc[NPC.golemBoss].lifeMax);
                                 bool inTemple = Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16] != null &&
@@ -5372,91 +5469,6 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.WallofFleshEye:
-                        if (npc.realLife != -1 && Main.npc[npc.realLife].GetGlobalNPC<FargoSoulsGlobalNPC>().masoBool[0]
-                            && Main.npc[npc.realLife].GetGlobalNPC<FargoSoulsGlobalNPC>().Counter < 240)
-                            npc.localAI[1] = 0; //dont fire during mouth's special attacks
-
-                        const float maxTime = 540f;
-                        if (++npc.ai[1] >= maxTime)
-                        {
-                            npc.ai[1] = 0f;
-                            if (npc.ai[2] == 0f)
-                                npc.ai[2] = 1f;
-                            else
-                                npc.ai[2] *= -1f;
-                            
-                            if (npc.ai[2] > 0 && Main.netMode != 1) //FIRE LASER
-                            {
-                                Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
-                                float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
-                                if (Main.netMode != 1)
-                                    Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayWOF"), npc.damage / 4, 0f, Main.myPlayer, ai0, npc.whoAmI);
-                            }
-                            npc.netUpdate = true;
-                        }
-
-                        if (npc.ai[2] >= 0f)
-                        {
-                            npc.alpha = 175;
-                            npc.dontTakeDamage = true;
-                            if (npc.ai[1] <= 90)
-                            {
-                                npc.localAI[1] = 0f;
-                                npc.rotation = npc.ai[3];
-                            }
-                            else
-                            {
-                                npc.ai[2] = 1;
-                            }
-                        }
-                        else
-                        {
-                            npc.alpha = 0;
-                            npc.dontTakeDamage = false;
-                            if (npc.ai[1] > maxTime - 180f)
-                            {
-                                if (Main.rand.Next(4) < 3) //dust telegraphs switch
-                                {
-                                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 90, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 114, default(Color), 3.5f);
-                                    Main.dust[dust].noGravity = true;
-                                    Main.dust[dust].velocity *= 1.8f;
-                                    Main.dust[dust].velocity.Y -= 0.5f;
-                                    if (Main.rand.Next(4) == 0)
-                                    {
-                                        Main.dust[dust].noGravity = false;
-                                        Main.dust[dust].scale *= 0.5f;
-                                    }
-                                }
-
-                                const float stopTime = maxTime - 90f;
-                                if (npc.ai[1] == stopTime) //shoot warning dust in phase 2
-                                {
-                                    int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                                    if (t != -1)
-                                    {
-                                        Main.PlaySound(15, (int)Main.player[t].position.X, (int)Main.player[t].position.Y, 0);
-                                        npc.ai[2] = -2f;
-                                        npc.ai[3] = (npc.Center - Main.player[t].Center).ToRotation();
-                                        if (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0)
-                                            npc.ai[3] += (float)Math.PI;
-
-                                        float ai0 = (npc.realLife != -1 && Main.npc[npc.realLife].velocity.X > 0) ? 1f : 0f;
-                                        Vector2 speed = Vector2.UnitX.RotatedBy(npc.ai[3]);
-                                        if (Main.netMode != 1)
-                                            Projectile.NewProjectile(npc.Center, speed, mod.ProjectileType("PhantasmalDeathrayWOFS"), 0, 0f, Main.myPlayer, ai0, npc.whoAmI);
-                                    }
-                                    npc.netUpdate = true;
-                                }
-                                else if (npc.ai[1] > stopTime)
-                                {
-                                    npc.localAI[1] = 0f;
-                                    npc.rotation = npc.ai[3];
-                                }
-                            }
-                        }
-                        break;
-
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight:
                         if (npc.buffType[0] != 0)
@@ -5472,7 +5484,7 @@ namespace FargowiltasSouls.NPCs
                                 Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FuseBomb"), npc.damage / 4, 0f, Main.myPlayer);
                         }
                         masoBool[0] = npc.ai[0] != 0f;
-                        if (npc.life < npc.lifeMax / 2 && NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
+                        if (npc.life < npc.lifeMax / 2 && NPC.golemBoss > -1 && NPC.golemBoss < 200 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                         {
                             npc.life = npc.lifeMax; //fully heal when below half health and golem still alive
                             Timer = 75; //immediately display heal
@@ -5565,6 +5577,10 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.AncientLight:
                         npc.dontTakeDamage = true;
+                        npc.immortal = true;
+                        npc.chaseable = false;
+                        if (npc.buffType[0] != 0)
+                            npc.DelBuff(0);
                         if (masoBool[0])
                         {
                             if (npc.HasPlayerTarget)
