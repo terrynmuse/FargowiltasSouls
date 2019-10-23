@@ -79,6 +79,9 @@ lethargic slowdown now from -50% to -25%
 lethargic reduces enemy movement speed by 25%
 jungle water only inflicts poisoned (no more venom)
 lihzahrd balls on death now only 1 and straight up
+prime wont shoot rockets while spinning in p2
+prime has swipe arms and spin arms now (this is spaghetti)
+MOVED ALL MASO AI TO PRE AI (EXTREMELY DANGEROUS FORBIDDEN TECHNIQUE, PROBABLY BROKE LOTS OF SHIT)
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

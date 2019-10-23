@@ -1704,6 +1704,17 @@ namespace FargowiltasSouls
                     }
                     break;
 
+                case 12: //prime limbs
+                    if (Main.netMode == 1)
+                    {
+                        int n = reader.ReadByte();
+                        FargoSoulsGlobalNPC limb = Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>();
+                        limb.masoBool[2] = reader.ReadBool();
+                        limb.Counter = reader.ReadInt();
+                        Main.npc[n].localAI[3] = reader.ReadFloat();
+                    }
+                    break;
+
                 case 77: //server side spawning fishron EX
                     if (Main.netMode == 2)
                     {
