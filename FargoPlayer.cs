@@ -306,7 +306,7 @@ namespace FargowiltasSouls
         public int lightningCounter = 0;
 
         public int MasomodeCrystalTimer = 0;
-        public int MasomodeFreezeTimer = 0;
+        //public int MasomodeFreezeTimer = 0;
         public int MasomodeSpaceBreathTimer = 0;
 
         public IList<string> disabledSouls = new List<string>();
@@ -756,7 +756,7 @@ namespace FargowiltasSouls
                     if (!PureHeart && !Main.dayTime && Framing.GetTileSafely(player.Center).wall == WallID.None)
                         player.AddBuff(BuffID.Chilled, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
-                    if (player.wet && !MutantAntibodies)
+                    /*if (player.wet && !MutantAntibodies)
                     {
                         player.AddBuff(BuffID.Frostburn, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                         MasomodeFreezeTimer++;
@@ -769,12 +769,12 @@ namespace FargowiltasSouls
                     else
                     {
                         MasomodeFreezeTimer = 0;
-                    }
+                    }*/
                 }
-                else
+                /*else
                 {
                     MasomodeFreezeTimer = 0;
-                }
+                }*/
 
                 if (player.wet && !MutantAntibodies)
                 {

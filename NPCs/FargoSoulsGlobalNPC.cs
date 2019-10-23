@@ -1864,7 +1864,7 @@ namespace FargowiltasSouls.NPCs
                                     Projectile.NewProjectile(npc.Center, npc.velocity.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-6f, 6f))) * 0.5f, ProjectileID.EyeFire, npc.damage / 4, 0f, Main.myPlayer);
                                 }
                             }
-                            PrintAI(npc);
+                            
                             /*if (Counter2++ > 180)
                             {
                                 Counter2 = 0;
@@ -2839,6 +2839,8 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
+
+                        Main.NewText(npc.velocity.X.ToString());
                         break;
 
                     case NPCID.TheDestroyer:

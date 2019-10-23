@@ -50,6 +50,9 @@ skeletron throws undead miners whenever he spins
 moon lord socket rays restored
 true eyes now synchronize to each other no matter when they're released
 
+removed extra debuffs in snow water
+copper ench can be stacked
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)
