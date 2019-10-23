@@ -876,9 +876,10 @@ namespace FargowiltasSouls
                     }
                 }
 
-                //if (!PureHeart && Main.bloodMoon) player.AddBuff(BuffID.WaterCandle, 2);
+                if (!PureHeart && Main.bloodMoon)
+                    player.AddBuff(BuffID.WaterCandle, 2);
 
-                /*if (!SandsofTime)
+                if (!SandsofTime)
                 {
                     Vector2 tileCenter = player.Center;
                     tileCenter.X /= 16;
@@ -895,7 +896,7 @@ namespace FargowiltasSouls
                         if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles
                             player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), damage, 0, false, false, false, 0);
                     }
-                }*/
+                }
 
                 if (MasomodeCrystalTimer > 0)
                     MasomodeCrystalTimer--;

@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             DisplayName.SetDefault("Sands of Time");
             Tooltip.SetDefault(@"'Whatever you do, don't drop it'
 Works in your inventory
-Grants immunity to Mighty Wind
+Grants immunity to Mighty Wind and cactus damage
 You respawn twice as fast when no boss is alive");
             DisplayName.AddTranslation(GameCulture.Chinese, "时之沙");
             Tooltip.AddTranslation(GameCulture.Chinese, @"'无论你做什么,都不要丢下它'

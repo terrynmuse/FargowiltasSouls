@@ -1704,7 +1704,7 @@ namespace FargowiltasSouls
                     }
                     break;
 
-                case 12: //prime limbs
+                case 12: //prime limbs spin
                     if (Main.netMode == 1)
                     {
                         int n = reader.ReadByte();
@@ -1712,6 +1712,16 @@ namespace FargowiltasSouls
                         limb.masoBool[2] = reader.ReadBool();
                         limb.Counter = reader.ReadInt();
                         Main.npc[n].localAI[3] = reader.ReadFloat();
+                    }
+                    break;
+
+                case 13: //prime limbs swipe
+                    if (Main.netMode == 1)
+                    {
+                        int n = reader.ReadByte();
+                        FargoSoulsGlobalNPC limb = Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>();
+                        limb.Counter = reader.ReadInt();
+                        limb.Counter2 = reader.ReadInt();
                     }
                     break;
 

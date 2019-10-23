@@ -58,8 +58,6 @@ all water native enemies have mutant antibodies protection against water debuffs
 enemies in hell are ignited
 enemies in space are suffocated
 enemies in biome waters are affected
-removed cactus pricking
-removed blood moon water candle
 removed hostile falling stars
 removed spreading biome enemies converting blocks
 removed lightning in rain

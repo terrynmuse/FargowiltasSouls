@@ -5248,8 +5248,8 @@ namespace FargowiltasSouls.NPCs
                                     if (!npc.HasValidTarget)
                                         npc.TargetClosest(false);
                                     Vector2 target = Main.player[npc.target].Center;
-                                    target.X += 500 * Counter;
-                                    target.Y += 500 * Counter2;
+                                    target.X += 400 * Counter;
+                                    target.Y += 400 * Counter2;
                                     npc.velocity = (target - npc.Center) / 30;
                                 }
                                 else if (npc.ai[2] == 180)
@@ -5269,6 +5269,20 @@ namespace FargowiltasSouls.NPCs
                                     npc.netUpdate = true;
                                 }
                                 npc.rotation = Main.npc[ai1].DirectionTo(npc.Center).ToRotation() - (float)Math.PI / 2;
+                                if (npc.netUpdate)
+                                {
+                                    if (Main.netMode == 2)
+                                    {
+                                        NetMessage.SendData(23, -1, -1, null, npc.whoAmI);
+                                        var netMessage = mod.GetPacket();
+                                        netMessage.Write((byte)13);
+                                        netMessage.Write((byte)npc.whoAmI);
+                                        netMessage.Write(Counter);
+                                        netMessage.Write(Counter2);
+                                        netMessage.Send();
+                                    }
+                                    npc.netUpdate = false;
+                                }
                                 return false;
                             }
                             else if (Main.npc[ai1].ai[1] == 1 || Main.npc[ai1].ai[1] == 2) //other limbs while prime spinning

@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'The amalgamate born of a thousand common enemies'
 Grants immunity to Frostburn, Shadowflame, Squeaky Toy, Guilty, Mighty Wind, and Suffocation
 Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and Purified
-Grants immunity to Lovestruck, Stinky, Midas, and enemies that steal items
+Grants immunity to Lovestruck, Stinky, Midas, cactus damage, and enemies that steal items
 Your attacks can inflict Clipped Wings, spawn Frostfireballs, and produce hearts
 You have autofire, improved night vision, and faster respawn when no boss is alive
 Automatically use mana potions when needed and gives modifier protection
