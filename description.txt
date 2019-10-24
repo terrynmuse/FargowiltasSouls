@@ -1,4 +1,22 @@
 NEW UPDATE - v 1.0.0
 
 -demon eyes dont have double speed
--lime kelp to PurpleMucos
+-lime kelp to PurpleMucos in palm wood
+-boreal enchant use ssnowballs instead of snowball cannon
+-rename Force of Syran to Syrus
+-fixed SoT new line error
+-removed bone pick from miner enchant and added candy cane pick
+-fixed thorium essence tooltips
+-changed flesh hand and fish stick to summon damage
+-updated comp orb sprite
+-added several buff sprites
+-renamed sharpshooterssoul to snipers soul
+-renamed snipers essence to sharpshhoters essence
+-renamed force of wood to force of Timber
+-destroyer gun and lanslide EX will actually use swarm drops in their recipe now
+-tungsten enchant no longer affects traps or yoyos
+-palm tree sentry no longer disappears when you place any other sentry after it
+-palm tree actually deals summon damage
+-valhalla knockback works for all damage types, but is less effective from projectiles compared to swords
+-platinum enchant proc will now count for several kills towards a banner and will no longer award several banners at once
+-spider enchant and tin enchant now synergize

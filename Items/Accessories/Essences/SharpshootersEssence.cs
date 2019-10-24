@@ -5,13 +5,13 @@ using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {
-    public class SnipersEssence : ModItem
+    public class SharpshootersEssence : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sniper's Essence");
+            DisplayName.SetDefault("Sharpshooter's Essence");
             Tooltip.SetDefault(
 @"'This is only the beginning..'
 18% increased ranged damage

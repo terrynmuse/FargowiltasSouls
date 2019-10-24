@@ -43,7 +43,7 @@ While in the Snow Biome, you shoot 5 snowballs instead");
             recipe.AddIngredient(ItemID.BorealWoodHelmet);
             recipe.AddIngredient(ItemID.BorealWoodBreastplate);
             recipe.AddIngredient(ItemID.BorealWoodGreaves);
-            recipe.AddIngredient(ItemID.SnowballCannon);
+            recipe.AddIngredient(ItemID.Snowball, 300);
             recipe.AddIngredient(ItemID.Penguin);
             recipe.AddIngredient(ItemID.ColdWatersintheWhiteLand);
             recipe.AddIngredient(ItemID.Shiverthorn);

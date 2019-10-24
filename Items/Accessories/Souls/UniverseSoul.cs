@@ -288,7 +288,7 @@ Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw";
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "GladiatorsSoul");
-            recipe.AddIngredient(null, "SharpshootersSoul");
+            recipe.AddIngredient(null, "SnipersSoul");
             recipe.AddIngredient(null, "ArchWizardsSoul");
             recipe.AddIngredient(null, "ConjuristsSoul");
             recipe.AddIngredient(null, "OlympiansSoul");

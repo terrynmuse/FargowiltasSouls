@@ -22,7 +22,7 @@ namespace FargowiltasSouls.Projectiles.BossWeapons
             aiType = ProjectileID.JavelinFriendly;
             projectile.friendly = true;
             projectile.penetrate = 1;
-            projectile.thrown = true;
+            projectile.minion = true;
         }
 
         public override void AI()

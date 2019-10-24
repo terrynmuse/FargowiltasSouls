@@ -9,14 +9,14 @@ using Terraria.Localization;
 namespace FargowiltasSouls.Items.Accessories.Souls
 {
     //[AutoloadEquip(EquipType.Neck)]
-    public class SharpshootersSoul : ModItem
+    public class SnipersSoul : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sharpshooter's Soul");
+            DisplayName.SetDefault("Sniper's Soul");
 
             string tooltip = 
 @"'Ready, aim, fire'
@@ -92,7 +92,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
         {
             ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(null, "SnipersEssence");
+            recipe.AddIngredient(null, "SharpshootersEssence");
             recipe.AddIngredient(Fargowiltas.Instance.CalamityLoaded ? calamity.ItemType("ElementalQuiver") : ItemID.MagicQuiver);
 
             if (Fargowiltas.Instance.ThoriumLoaded)

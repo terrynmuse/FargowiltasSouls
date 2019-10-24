@@ -17,12 +17,6 @@ namespace FargowiltasSouls.Buffs.Minions
             Description.AddTranslation(GameCulture.Chinese, "迷你飞碟将会保护你");
         }
 
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "FargowiltasSouls/Buffs/PlaceholderBuff";
-            return true;
-        }
-
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetModPlayer<FargoPlayer>().MiniSaucer = true;

@@ -8932,7 +8932,6 @@ namespace FargowiltasSouls.NPCs
                     for (int i = 1; i < bonus; i++)
                     {
                         npc.NPCLoot();
-                        NPC.killCount[Item.NPCtoBanner(npc.BannerID())]--;
                     }
 
                     int num1 = 36;
@@ -10615,8 +10614,11 @@ namespace FargowiltasSouls.NPCs
             if (modPlayer.BeeEnchant && !modPlayer.TerrariaSoul && projectile.type == ProjectileID.GiantBee)
                 damage = (int)(damage + npc.defense * .5);
 
-            if (modPlayer.SpiderEnchant && projectile.minion && Main.rand.Next(5) == 0)
+            if (modPlayer.SpiderEnchant && projectile.minion && Main.rand.Next(101) <= modPlayer.SummonCrit)
+            {
                 crit = true;
+            }
+                
 
             if (FargoSoulsWorld.MasochistMode)
             {
@@ -11008,10 +11010,10 @@ namespace FargowiltasSouls.NPCs
             FargoPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<FargoPlayer>();
 
             //spears
-            if (modPlayer.ValhallaEnchant && SoulConfig.Instance.GetValue("Valhalla Knockback") && (projectile.aiStyle == 19 || modPlayer.WillForce)
+            if (modPlayer.ValhallaEnchant && SoulConfig.Instance.GetValue("Valhalla Knockback") 
                 && !npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune && npc.knockBackResist < 1)
             {
-                npc.knockBackResist += .02f;
+                npc.knockBackResist += .01f;
                 if (npc.knockBackResist > .5f)
                     npc.knockBackResist = .5f;
             }

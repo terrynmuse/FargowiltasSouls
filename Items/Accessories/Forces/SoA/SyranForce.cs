@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.SoA
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Force of Syran");
+            DisplayName.SetDefault("Force of Syrus");
             Tooltip.SetDefault(
 @"'Dragon Rage empowers you, and encourages you to go on'
 All armor bonuses from Void Warden, Vulcan Reaper, and Flarium
