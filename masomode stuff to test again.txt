@@ -96,6 +96,7 @@ in temple, golem's stomps now do the following in order:
 golem head periodically returns to body, fires a deathray down, and does an accelerating dash over you
 	is cancelled upon reaching a lihzahrd brick wall
 	doesnt do other attacks during this
+removed reti's p3 speed buff
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

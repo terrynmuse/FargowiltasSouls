@@ -1817,7 +1817,7 @@ namespace FargowiltasSouls.NPCs
                                     break;
                             }
 
-                            npc.position += npc.velocity / 4f;
+                            //npc.position += npc.velocity / 4f;
 
                             //if (Counter == 600 && Main.netMode != 1 && npc.HasPlayerTarget)
                             //{
