@@ -83,6 +83,19 @@ MOVED ALL MASO AI TO PRE AI (EXTREMELY DANGEROUS FORBIDDEN TECHNIQUE, PROBABLY B
 
 added optic staff EX
 queen bee debug...
+golem fists only explode outside temple
+golem fist speed debug...
+removed golem shotguns
+removed golem spiky ball spray
+removed faster golem jump in p2
+removed golem laser spam/flamethrower
+in temple, golem's stomps now do the following in order:
+	harmless indicator flames across the ground
+	flames erupt into damaging geysers
+	boulders fall from ceiling on the player
+golem head periodically returns to body, fires a deathray down, and does an accelerating dash over you
+	is cancelled upon reaching a lihzahrd brick wall
+	doesnt do other attacks during this
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
