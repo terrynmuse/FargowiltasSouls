@@ -2572,7 +2572,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.QueenBee:
                         beeBoss = npc.whoAmI;
-
+                        PrintAI(npc);
                         if (!masoBool[0] && npc.life < npc.lifeMax / 3 * 2 && npc.HasPlayerTarget)
                         {
                             masoBool[0] = true;

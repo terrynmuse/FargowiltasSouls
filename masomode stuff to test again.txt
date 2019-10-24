@@ -81,6 +81,9 @@ prime wont shoot rockets while spinning in p2
 prime has swipe arms and spin arms now (this is spaghetti)
 MOVED ALL MASO AI TO PRE AI (EXTREMELY DANGEROUS FORBIDDEN TECHNIQUE, PROBABLY BROKE LOTS OF SHIT)
 
+added optic staff EX
+queen bee debug...
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)
