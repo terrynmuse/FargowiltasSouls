@@ -44,6 +44,7 @@ namespace FargowiltasSouls
         public bool SpectreEnchant;
         public bool BeeEnchant;
         public bool SpiderEnchant;
+        public int SummonCrit = 20;
         public bool StardustEnchant;
         public bool FreezeTime = false;
         private int freezeLength = 300;
@@ -188,7 +189,7 @@ namespace FargowiltasSouls
 
         //AA
 
-        public bool TrueCopper;
+
         #endregion
 
         //soul effects
@@ -949,7 +950,7 @@ namespace FargowiltasSouls
                     0f + Main.rand.Next(-5, 5),  Main.rand.Next(-6, -2), mod.ProjectileType("SuperBlood"), 5, 0f, Main.myPlayer);
             }
 
-            if ((CopperEnchant || TrueCopper) && copperCD > 0)
+            if (CopperEnchant && copperCD > 0)
                 copperCD--;
 
             if (GoldEnchant && goldCD > 0)
@@ -2302,16 +2303,9 @@ namespace FargowiltasSouls
 
         public void OnHitNPCEither(NPC target, int damage, float knockback, bool crit, int projectile = -1)
         {
-            if (SoulConfig.Instance.GetValue("Copper Lightning") && copperCD == 0)
+            if (SoulConfig.Instance.GetValue("Copper Lightning") && CopperEnchant && copperCD == 0)
             {
-                if (TrueCopper)
-                {
-                    TrueCopperEffect(target);
-                }
-                else if (CopperEnchant)
-                {
-                    CopperEffect(target);
-                }
+                CopperEffect(target);
             }
 
             if (GodEaterImbue)
@@ -3138,6 +3132,7 @@ namespace FargowiltasSouls
             player.rangedCrit = crit;
             player.magicCrit = crit;
             player.thrownCrit = crit;
+            SummonCrit = crit;
 
             if (Fargowiltas.Instance.ThoriumLoaded) ThoriumCritEquals(crit);
 
@@ -3428,75 +3423,6 @@ namespace FargowiltasSouls
                         Vector2 velocity = Vector2.Normalize(ai) * 20;
 
                         Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, mod.ProjectileType("LightningArc"), HighestDamageTypeScaling(dmg), 0f, player.whoAmI, ai.ToRotation(), ai2);
-                        target.AddBuff(mod.BuffType("Shock"), 60);
-                    }
-                    else
-                    {
-                        break;
-                    }
-
-                    target = closestNPC;
-                }
-
-                copperCD = 300;
-            }
-        }
-
-
-        public void TrueCopperEffect(NPC target)
-        {
-            int dmg = 80;
-            int chance = 20;
-
-            if (target.FindBuffIndex(BuffID.Wet) != -1 || target.wet)
-            {
-                dmg *= 3;
-                chance /= 5;
-            }
-
-            if (TerraForce)
-            {
-                dmg *= 2;
-            }
-
-            FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-
-            dmg = HighestDamageTypeScaling(dmg);
-
-            if (Main.rand.Next(chance) == 0)
-            {
-                float closestDist = 500f;
-                NPC closestNPC;
-
-                for (int i = 0; i < 5; i++)
-                {
-                    closestNPC = null;
-
-                    for (int j = 0; j < 200; j++)
-                    {
-                        NPC npc = Main.npc[j];
-                        if (npc.active && npc != target && !npc.HasBuff(mod.BuffType("Shock")) && npc.Distance(target.Center) < closestDist && npc.Distance(target.Center) >= 50)
-                        {
-                            closestNPC = npc;
-                            break;
-                        }
-                    }
-
-                    if (closestNPC != null)
-                    {
-                        Vector2 ai = closestNPC.Center - target.Center;
-                        float ai2 = Main.rand.Next(100);
-                        Vector2 velocity = Vector2.Normalize(ai) * 20;
-
-                        Projectile p = FargoGlobalProjectile.NewProjectileDirectSafe(target.Center, velocity, mod.ProjectileType("TrueCopperShock"), (int)(dmg), 0f, player.whoAmI, ai.ToRotation(), ai2);
-                        if (p != null)
-                        {
-                            p.friendly = true;
-                            p.hostile = false;
-                            p.penetrate = -1;
-                            p.timeLeft = 60;
-                            p.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
-                        }
                         target.AddBuff(mod.BuffType("Shock"), 60);
                     }
                     else
@@ -4310,8 +4236,17 @@ namespace FargowiltasSouls
 
         public void SpiderEffect(bool hideVisual)
         {
-            //half price spiders
+            //minion crits
             SpiderEnchant = true;
+
+
+            if (!TinEnchant)
+            {
+                SummonCrit = 20;
+            }
+
+           
+
             AddPet("Spider Pet", hideVisual, BuffID.PetSpider, ProjectileID.Spider);
         }
 
@@ -4385,6 +4320,8 @@ namespace FargowiltasSouls
 
             TinEnchant = true;
             AllCritEquals(TinCrit);
+
+            Main.NewText(SummonCrit);
 
             if (Eternity)
             {

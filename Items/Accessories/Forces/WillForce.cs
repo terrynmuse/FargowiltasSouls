@@ -67,7 +67,7 @@ Effects of Greedy Ring, Celestial Shell, and Shiny Stone
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
-            //super bleed on all, knockback remove for all
+            //super bleed on all
             modPlayer.WillForce = true; 
             //midas, greedy ring, pet, zhonyas
             modPlayer.GoldEffect(hideVisual);
