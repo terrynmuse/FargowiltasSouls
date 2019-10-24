@@ -649,15 +649,6 @@ namespace FargowiltasSouls.Projectiles
 
                 #endregion
 
-                case ProjectileID.FallingStar:
-                    if (FargoSoulsWorld.MasochistMode && !masobool)
-                    {
-                        masobool = true;
-                        if (projectile.damage == 1000)
-                            projectile.hostile = true;
-                    }
-                    break;
-
                 case ProjectileID.JavelinHostile:
                 case ProjectileID.FlamingWood:
                     if (FargoSoulsWorld.MasochistMode)
@@ -765,13 +756,13 @@ namespace FargowiltasSouls.Projectiles
                     break;
 
                 case ProjectileID.GoldenShowerHostile:
-                    if (FargoSoulsWorld.MasochistMode && Main.netMode != 1 && Main.rand.Next(6) == 0
+                    /*if (FargoSoulsWorld.MasochistMode && Main.netMode != 1 && Main.rand.Next(6) == 0
                         && !(projectile.position.Y / 16 > Main.maxTilesY - 200 && FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.wallBoss, NPCID.WallofFlesh)))
                     {
                         int p = Projectile.NewProjectile(projectile.Center, projectile.velocity, ProjectileID.CrimsonSpray, 0, 0f, Main.myPlayer, 8f);
                         if (p != 1000)
                             Main.projectile[p].timeLeft = 6;
-                    }
+                    }*/
                     break;
 
                 case ProjectileID.RuneBlast:

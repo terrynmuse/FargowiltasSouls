@@ -108,7 +108,7 @@ Attacks that cause Wet cannot proc the lightning";
             recipe.AddRecipe();
         }
 
-        public override bool CanEquipAccessory(Player player, int slot)
+        /*public override bool CanEquipAccessory(Player player, int slot)
         {
             if (slot < 10)
             {
@@ -122,6 +122,6 @@ Attacks that cause Wet cannot proc the lightning";
                 }
             }
             return true;
-        }
+        }*/
     }
 }

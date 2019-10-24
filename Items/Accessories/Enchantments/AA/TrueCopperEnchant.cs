@@ -10,7 +10,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.AA
 {
     public class TrueCopperEnchant : ModItem
     {
-        private readonly Mod thorium = ModLoader.GetMod("ThoriumMody");
+        private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
         public int timer;
 
         public override bool Autoload(ref string name)
@@ -126,7 +126,7 @@ Cannot be equipped with the copper enchantment";
             return false;
         }
 
-        public override bool CanEquipAccessory(Player player, int slot)
+        /*public override bool CanEquipAccessory(Player player, int slot)
         {
             if (slot < 10)
             {
@@ -140,6 +140,6 @@ Cannot be equipped with the copper enchantment";
                 }
             }
             return true;
-        }
+        }*/
     }
 }

@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Music Box (Mutant)");
-            Tooltip.SetDefault("'rePrologue'");
+            Tooltip.SetDefault("'Steel Red'");
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

@@ -67,7 +67,7 @@ namespace FargowiltasSouls
                 SmokeBombKey = RegisterHotKey("Throw Smoke Bomb", "I");
             }
             
-            AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue"), ItemType("MutantMusicBox"), TileType("MutantMusicBoxSheet"));
+            AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteelRed"), ItemType("MutantMusicBox"), TileType("MutantMusicBoxSheet"));
 
             #region Toggles
             #region enchants
@@ -1198,8 +1198,8 @@ namespace FargowiltasSouls
         {
             if ((string)args[0] == "FargoSoulsAI")
             {
-                int n = (int)args[1];
-                Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>().AI(Main.npc[n]);
+                /*int n = (int)args[1];
+                Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>().AI(Main.npc[n]);*/
             }
             return base.Call(args);
         }
@@ -1701,6 +1701,27 @@ namespace FargowiltasSouls
                             if (Main.netMode == 2)
                                 creeper.netUpdate = true;
                         }
+                    }
+                    break;
+
+                case 12: //prime limbs spin
+                    if (Main.netMode == 1)
+                    {
+                        int n = reader.ReadByte();
+                        FargoSoulsGlobalNPC limb = Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>();
+                        limb.masoBool[2] = reader.ReadBool();
+                        limb.Counter = reader.ReadInt();
+                        Main.npc[n].localAI[3] = reader.ReadFloat();
+                    }
+                    break;
+
+                case 13: //prime limbs swipe
+                    if (Main.netMode == 1)
+                    {
+                        int n = reader.ReadByte();
+                        FargoSoulsGlobalNPC limb = Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>();
+                        limb.Counter = reader.ReadInt();
+                        limb.Counter2 = reader.ReadInt();
                     }
                     break;
 
