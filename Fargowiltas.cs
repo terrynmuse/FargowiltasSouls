@@ -67,7 +67,7 @@ namespace FargowiltasSouls
                 SmokeBombKey = RegisterHotKey("Throw Smoke Bomb", "I");
             }
             
-            AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue"), ItemType("MutantMusicBox"), TileType("MutantMusicBoxSheet"));
+            AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteelRed"), ItemType("MutantMusicBox"), TileType("MutantMusicBoxSheet"));
 
             #region Toggles
             #region enchants
