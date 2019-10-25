@@ -5942,6 +5942,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.GiantTortoise:
                     case NPCID.IceTortoise:
+                        PrintAI(npc);
                         if (npc.ai[0] == 6f) //while shell spinning
                             CustomReflect(npc, DustID.Sandstorm);
                         break;
@@ -6700,6 +6701,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.ArmedZombieTwiggy:
                     case NPCID.ArmedZombieCenx:
                     case NPCID.ArmedZombieEskimo:
+                        PrintAI(npc);
                         if (npc.ai[2] >= 45f && npc.ai[3] == 0f && Main.netMode != 1)
                         {
                             int tileX = (int)(npc.position.X + npc.width / 2 + 15 * npc.direction) / 16;
