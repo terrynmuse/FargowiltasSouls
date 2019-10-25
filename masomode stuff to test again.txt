@@ -81,6 +81,25 @@ prime wont shoot rockets while spinning in p2
 prime has swipe arms and spin arms now (this is spaghetti)
 MOVED ALL MASO AI TO PRE AI (EXTREMELY DANGEROUS FORBIDDEN TECHNIQUE, PROBABLY BROKE LOTS OF SHIT)
 
+added optic staff EX
+queen bee only shoots stingers while royal subjects are alive
+golem fists only explode outside temple
+golem fist max speed reduced drastically
+removed golem shotguns
+removed faster golem jump in p2
+removed golem laser spam/flamethrower
+in temple, golem's stomps now do the following in order:
+	harmless indicator flames across the ground
+	flames erupt into damaging geysers
+	boulders fall from ceiling on the player
+golem head periodically returns to body, fires a deathray down, and does an accelerating dash over you
+	is cancelled upon reaching a lihzahrd brick wall
+	doesnt do other attacks during this
+removed reti's p3 speed buff
+mutant boss will turn back into normal mutant if you die to him
+mutant nuke safespot also has a ritual around it
+more immunities for mutant
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)

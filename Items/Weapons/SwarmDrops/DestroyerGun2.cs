@@ -59,7 +59,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(null, "DestroyerGun");
                 recipe.AddIngredient(null, "MutantScale", 10);
-                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerDestroyer"));
+                recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("EnergizerDestroy"));
                 recipe.AddTile(mod, "CrucibleCosmosSheet");
                 recipe.SetResult(this);
                 recipe.AddRecipe();
