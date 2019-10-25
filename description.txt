@@ -20,3 +20,11 @@ NEW UPDATE - v 1.0.0
 -valhalla knockback works for all damage types, but is less effective from projectiles compared to swords
 -platinum enchant proc will now count for several kills towards a banner and will no longer award several banners at once
 -spider enchant and tin enchant now synergize
+-reduced eoc scythe spread speed 
+-ori should not spawn too many fireballs now
+-all demon eye now get their maso effects correctly
+-added custom death message for mutant
+-updated calmaity version needed HAHAH
+-added back freezing in snow water :Echceasebegone:, but made you have to stand there for 10 seconds
+-demons have a 6-way instead of 8 way and it happens right after their normal scythe barrages instead of being kinda random
+-changed meteorite to be bombable post boss2 instead of skele :tm:
