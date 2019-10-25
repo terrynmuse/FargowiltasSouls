@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.DataStructures;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {

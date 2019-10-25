@@ -56,6 +56,11 @@ All herb collection is doubled
         {
             player.GetModPlayer<FargoPlayer>().JungleEffect();
 
+            /*if (player.jump)
+            {
+
+            }*/
+
             if (Fargowiltas.Instance.ThoriumLoaded) Thorium(player);
         }
 

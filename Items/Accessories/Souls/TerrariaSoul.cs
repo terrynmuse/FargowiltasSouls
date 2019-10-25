@@ -111,7 +111,7 @@ Effects of Spring Steps, Slag Stompers, and Proof of Avarice";
             modPlayer.TerrariaSoul = true;
 
             //WOOD
-            mod.GetItem("WoodForce").UpdateAccessory(player, hideVisual);
+            mod.GetItem("TimberForce").UpdateAccessory(player, hideVisual);
             //TERRA
             mod.GetItem("TerraForce").UpdateAccessory(player, hideVisual);
             //EARTH

@@ -984,6 +984,11 @@ namespace FargowiltasSouls.NPCs
                         case NPCID.DemonEye:
                         case NPCID.DemonEyeOwl:
                         case NPCID.DemonEyeSpaceship:
+                        case NPCID.CataractEye:
+                        case NPCID.SleepyEye:
+                        case NPCID.DialatedEye:
+                        case NPCID.GreenEye:
+                        case NPCID.PurpleEye:
                             if (Main.hardMode && Main.rand.Next(4) == 0)
                                 npc.Transform(NPCID.WanderingEye);
                             break;
@@ -1311,13 +1316,15 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Demon:
-                        Counter++;
-                        if (Counter >= 600)
+                        //Counter++;
+
+
+                        if (npc.ai[0] == 100f)
                         {
-                            Counter = 0;
+                            //Counter = 0;
                             int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
                             if (t != -1 && npc.Distance(Main.player[t].Center) < 800 && Main.netMode != 1)
-                                FargoGlobalProjectile.XWay(8, npc.Center, ProjectileID.DemonSickle, 1, npc.damage / 4, .5f);
+                                FargoGlobalProjectile.XWay(6, npc.Center, ProjectileID.DemonSickle, 1, npc.damage / 4, .5f);
                         }
                         break;
 
@@ -1617,7 +1624,7 @@ namespace FargowiltasSouls.NPCs
                                 Counter2 = 30;
                                 masoBool[0] = false;
                                 if (Main.netMode != 1)
-                                    FargoGlobalProjectile.XWay(8, npc.Center, mod.ProjectileType("BloodScythe"), 2, npc.damage / 4, 0);
+                                    FargoGlobalProjectile.XWay(8, npc.Center, mod.ProjectileType("BloodScythe"), 1.5f, npc.damage / 4, 0);
                             }
                             /*if (++Timer > 600)
                             {
@@ -5753,6 +5760,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DemonEye:
                     case NPCID.DemonEyeOwl:
                     case NPCID.DemonEyeSpaceship:
+                    case NPCID.CataractEye:
+                    case NPCID.SleepyEye:
+                    case NPCID.DialatedEye:
+                    case NPCID.GreenEye:
+                    case NPCID.PurpleEye:
                         //npc.position += npc.velocity;
                         Counter++;
                         if (Counter >= 420 && Main.rand.Next(60) == 0)
@@ -7129,6 +7141,11 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DemonEye:
                     case NPCID.DemonEyeOwl:
                     case NPCID.DemonEyeSpaceship:
+                    case NPCID.CataractEye:
+                    case NPCID.SleepyEye:
+                    case NPCID.DialatedEye:
+                    case NPCID.GreenEye:
+                    case NPCID.PurpleEye:
                         if (Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5)
                             target.AddBuff(BuffID.Obstructed, Main.rand.Next(60));
                         break;

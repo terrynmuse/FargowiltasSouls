@@ -307,7 +307,7 @@ namespace FargowiltasSouls
         public bool Swarming;
 
         public int MasomodeCrystalTimer = 0;
-        //public int MasomodeFreezeTimer = 0;
+        public int MasomodeFreezeTimer = 0;
         public int MasomodeSpaceBreathTimer = 0;
 
         public IList<string> disabledSouls = new List<string>();
@@ -743,18 +743,18 @@ namespace FargowiltasSouls
                 if (player.ZoneJungle && player.wet && !MutantAntibodies)
                     player.AddBuff(BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
-                /*if (player.ZoneSnow)
+                if (player.ZoneSnow)
                 {
-                    if (!PureHeart && !Main.dayTime && Framing.GetTileSafely(player.Center).wall == WallID.None)
-                        player.AddBuff(BuffID.Chilled, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                    //if (!PureHeart && !Main.dayTime && Framing.GetTileSafely(player.Center).wall == WallID.None)
+                    //    player.AddBuff(BuffID.Chilled, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
 
                     if (player.wet && !MutantAntibodies)
                     {
-                        player.AddBuff(BuffID.Frostburn, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                        //player.AddBuff(BuffID.Frostburn, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                         MasomodeFreezeTimer++;
-                        if (MasomodeFreezeTimer >= 300)
+                        if (MasomodeFreezeTimer >= 600)
                         {
-                            player.AddBuff(BuffID.Frozen, Main.expertMode && Main.expertDebuffTime > 1 ? 60 : 120);
+                            player.AddBuff(BuffID.Frozen, 120);
                             MasomodeFreezeTimer = -300;
                         }
                     }
@@ -766,7 +766,7 @@ namespace FargowiltasSouls
                 else
                 {
                     MasomodeFreezeTimer = 0;
-                }*/
+                }
 
                 /*if (player.wet && !MutantAntibodies)
                 {
@@ -2753,9 +2753,6 @@ namespace FargowiltasSouls
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            //no work
-            //lava
-
             if (damageSource == PlayerDeathReason.ByOther(2))
                 player.Hurt(PlayerDeathReason.ByOther(2), 999, 1);
 
@@ -2956,6 +2953,11 @@ namespace FargowiltasSouls
             if (DeathMarked)
             {
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " was reaped by the cold hand of death.");
+            }
+
+            if (MutantPresence)
+            {
+                damageSource = PlayerDeathReason.ByCustomReason(player.name + " was penetrated.");
             }
 
             return retVal;
@@ -3953,6 +3955,11 @@ namespace FargowiltasSouls
 
                 if(Eternity)
                     ballAmt = 30;
+
+                int ballsOwned = player.ownedProjectileCounts[ProjectileID.BallofFire] + player.ownedProjectileCounts[ProjectileID.BallofFrost] + player.ownedProjectileCounts[ProjectileID.CursedFlameFriendly];
+
+                if (ballsOwned >= ballAmt)
+                    return;
 
                 if (player.whoAmI == Main.myPlayer)
                 {
