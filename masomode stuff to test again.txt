@@ -109,6 +109,7 @@ ice slime inflicts slimed/frostburn
 jungle slime inflicts slimed/poisoned
 spiked jungle slime no longer inflicts venom
 fixed present slimes not inflicting slimed
+removed frost legion natural spawn because why do i hear boss music
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

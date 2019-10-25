@@ -8828,9 +8828,9 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (!Main.raining)
                                 pool[NPCID.IceGolem] = .01f;
-                            pool[NPCID.SnowBalla] = .04f;
+                            /*pool[NPCID.SnowBalla] = .04f;
                             pool[NPCID.MisterStabby] = .04f;
-                            pool[NPCID.SnowmanGangsta] = .04f;
+                            pool[NPCID.SnowmanGangsta] = .04f;*/
                         }
 
                         if (ocean)
