@@ -4328,7 +4328,7 @@ namespace FargowiltasSouls
 
         public void TinEffect()
         {
-            if (!SoulConfig.Instance.GetValue("Tin Crits")) return;
+            if (!SoulConfig.Instance.enchantToggles["Tin Crits"]) return;
 
             TinEnchant = true;
             AllCritEquals(TinCrit);

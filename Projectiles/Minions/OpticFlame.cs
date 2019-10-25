@@ -28,7 +28,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.ignoreWater = true;
 
             projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 6;
+            projectile.idStaticNPCHitCooldown = 10;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

@@ -690,6 +690,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.BoneSerpentTail:
                     case NPCID.Lavabat:
                     case NPCID.RedDevil:
+                    case NPCID.BurningSphere:
                         npc.buffImmune[BuffID.OnFire] = true;
                         break;
 
@@ -720,6 +721,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Goldfish:
                     case NPCID.CorruptGoldfish:
                     case NPCID.CrimsonGoldfish:
+                    case NPCID.WaterSphere:
                         isWaterEnemy = true;
                         break;
 
@@ -5943,9 +5945,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.GiantTortoise:
                     case NPCID.IceTortoise:
-                        PrintAI(npc);
-                        if (npc.ai[0] == 6f) //while shell spinning
-                            CustomReflect(npc, DustID.Sandstorm);
+                        npc.reflectingProjectiles = npc.ai[0] == 3f; //while shell spinning 
                         break;
 
                     case NPCID.SpikeBall:
@@ -6695,14 +6695,21 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.ArmedZombie:
-                    case NPCID.ArmedZombiePincussion:
-                    case NPCID.ArmedZombieSlimed:
-                    case NPCID.ArmedZombieSwamp:
-                    case NPCID.ArmedZombieTwiggy:
-                    case NPCID.ArmedZombieCenx:
-                    case NPCID.ArmedZombieEskimo:
-                        PrintAI(npc);
+                    case NPCID.Zombie:
+                    case NPCID.BaldZombie:
+                    case NPCID.FemaleZombie:
+                    case NPCID.PincushionZombie:
+                    case NPCID.SlimedZombie:
+                    case NPCID.TwiggyZombie:
+                    case NPCID.ZombiePixie:
+                    case NPCID.ZombieRaincoat:
+                    case NPCID.ZombieSuperman:
+                    case NPCID.ZombieSweater:
+                    case NPCID.ZombieXmas:
+                    case NPCID.SwampZombie:
+                    case NPCID.SmallSwampZombie:
+                    case NPCID.BigSwampZombie:
+                    case NPCID.ZombieDoctor:
                         if (npc.ai[2] >= 45f && npc.ai[3] == 0f && Main.netMode != 1)
                         {
                             int tileX = (int)(npc.position.X + npc.width / 2 + 15 * npc.direction) / 16;
@@ -7278,6 +7285,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.IlluminantBat:
                         target.AddBuff(mod.BuffType("MutantNibble"), Main.rand.Next(1800, 3600));
+                        target.AddBuff(BuffID.Rabies, Main.rand.Next(7200));
                         break;
 
                     case NPCID.GiantFlyingFox:
@@ -7664,6 +7672,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GoblinWarrior:
                     case NPCID.GoblinArcher:
                     case NPCID.GoblinSummoner:
+                    case NPCID.GoblinScout:
                         if (Main.hardMode)
                             target.AddBuff(mod.BuffType("LivingWasteland"), Main.rand.Next(300, 900));
                         break;

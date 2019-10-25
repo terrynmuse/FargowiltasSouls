@@ -29,7 +29,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.timeLeft = 120 * (projectile.extraUpdates + 1);
 
             projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 6;
+            projectile.idStaticNPCHitCooldown = 10;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

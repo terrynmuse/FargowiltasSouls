@@ -110,8 +110,13 @@ jungle slime inflicts slimed/poisoned
 spiked jungle slime no longer inflicts venom
 fixed present slimes not inflicting slimed
 removed frost legion natural spawn because why do i hear boss music
-armed zombie ai debug...
-tortoise ai debug...
+fixed red devil not inflicting MFD
+fixed illum bat not also inflicting feral bite always
+fixed goblin scout not inflicting living wasteland in hm
+zombies can break doors now
+fixed tortoises not reflecting projs while in shell
+rebalanced mutant scale tier
+tin crit now goes through mutant presence (you have all crits in p2)
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
