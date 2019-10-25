@@ -3396,12 +3396,13 @@ namespace FargowiltasSouls.NPCs
                                             npc.buffImmune[i] = true;
                                         while (npc.buffTime[0] != 0)
                                             npc.DelBuff(0);
+                                        npc.defDamage = (int)(npc.defDamage * 1.2f);
                                     }
                                     goto case 4;
 
                                 case 10: //phase 3
                                          //vanilla fishron has x1.1 damage in p3. p2 has x1.2 damage...
-                                    npc.damage = (int)(npc.defDamage * 1.2f * (Main.expertMode ? 0.6f * Main.damageMultiplier : 1f));
+                                        //npc.damage = (int)(npc.defDamage * 1.2f * (Main.expertMode ? 0.6f * Main.damageMultiplier : 1f));
                                     masoBool[2] = false;
                                     Timer++;
                                     //if (Timer >= 60 + (int)(540.0 * npc.life / npc.lifeMax)) //yes that needs to be a double
