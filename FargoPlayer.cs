@@ -4239,13 +4239,10 @@ namespace FargowiltasSouls
             //minion crits
             SpiderEnchant = true;
 
-
             if (!TinEnchant)
             {
                 SummonCrit = 20;
             }
-
-           
 
             AddPet("Spider Pet", hideVisual, BuffID.PetSpider, ProjectileID.Spider);
         }
@@ -4320,8 +4317,6 @@ namespace FargowiltasSouls
 
             TinEnchant = true;
             AllCritEquals(TinCrit);
-
-            Main.NewText(SummonCrit);
 
             if (Eternity)
             {
