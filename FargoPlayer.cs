@@ -262,6 +262,7 @@ namespace FargowiltasSouls
         public bool PhantasmalRing;
         public bool MutantsDiscountCard;
         public bool MutantsPact;
+        public bool TwinsEX;
 
         //debuffs
         public bool Hexed;
@@ -592,6 +593,7 @@ namespace FargowiltasSouls
             MutantSetBonus = false;
             Abominationn = false;
             PhantasmalRing = false;
+            TwinsEX = false;
 
             //debuffs
             Hexed = false;

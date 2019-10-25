@@ -36,6 +36,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             npc.aiStyle = -1;
             npc.netAlways = true;
             npc.hide = true;
+            npc.buffImmune[BuffID.Chilled] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.Suffocation] = true;
+            npc.buffImmune[mod.BuffType("Lethargic")] = true;
             npc.buffImmune[mod.BuffType("Sadism")] = true;
             npc.buffImmune[mod.BuffType("GodEater")] = true;
             npc.buffImmune[mod.BuffType("ClippedWings")] = true;
@@ -1256,6 +1260,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                             distance.X = distance.X / time;
                             distance.Y = distance.Y / time - 0.5f * gravity * time;
                             Projectile.NewProjectile(npc.Center, distance, mod.ProjectileType("MutantNuke"), npc.damage / 3, 0f, Main.myPlayer, gravity);
+                            Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("MutantFishronRitual"), 0, 0f, Main.myPlayer, npc.whoAmI);
                         }
                         npc.ai[0]++;
                         npc.ai[1] = 0;
@@ -1532,6 +1537,17 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (npc.timeLeft > 60)
                         npc.timeLeft = 60;
                     npc.velocity.Y -= 1f;
+                    if (npc.timeLeft == 1 && Fargowiltas.Instance.FargosLoaded)
+                    {
+                        if (npc.position.Y < 0)
+                            npc.position.Y = 0;
+                        if (Main.netMode != 1 && Fargowiltas.Instance.FargosLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant")))
+                        {
+                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
+                            if (n != 200 && Main.netMode == 2)
+                                NetMessage.SendData(23, -1, -1, null, n);
+                        }
+                    }
                     return false;
                 }
             }

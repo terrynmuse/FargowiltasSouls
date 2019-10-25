@@ -1725,6 +1725,18 @@ namespace FargowiltasSouls
                     }
                     break;
 
+                case 14: //golem free head resync
+                    if (Main.netMode == 1)
+                    {
+                        int n = reader.ReadByte();
+                        FargoSoulsGlobalNPC head = Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>();
+                        head.masoBool[0] = reader.ReadBool();
+                        head.masoBool[1] = reader.ReadBool();
+                        head.Counter = reader.ReadInt();
+                        head.Counter2 = reader.ReadInt();
+                    }
+                    break;
+
                 case 77: //server side spawning fishron EX
                     if (Main.netMode == 2)
                     {

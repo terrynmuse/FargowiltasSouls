@@ -27,7 +27,6 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.ignoreWater = true;
             projectile.hide = true;
             projectile.extraUpdates = 1;
-            cooldownSlot = 1;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
