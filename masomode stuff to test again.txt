@@ -100,6 +100,16 @@ mutant boss will turn back into normal mutant if you die to him
 mutant nuke safespot also has a ritual around it
 more immunities for mutant
 
+reverted meteorite to explodable post-skelly
+removed "was penetrated" death text ech
+tried fixing fall damage dazed not working (confirm other types of damage dont cause dazed)
+restored wet in rain (chilled in snow)
+umbrella slimes inflict wet
+ice slime inflicts slimed/frostburn
+jungle slime inflicts slimed/poisoned
+spiked jungle slime no longer inflicts venom
+fixed present slimes not inflicting slimed
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)

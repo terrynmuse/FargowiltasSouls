@@ -7071,18 +7071,28 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
 
-                    case NPCID.UmbrellaSlime:
+                    case NPCID.SlimeRibbonGreen:
+                    case NPCID.SlimeRibbonRed:
+                    case NPCID.SlimeRibbonWhite:
+                    case NPCID.SlimeRibbonYellow:
                         target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
                         break;
 
+                    case NPCID.UmbrellaSlime:
+                        target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
+                        target.AddBuff(BuffID.Wet, Main.rand.Next(30, 300));
+                        break;
+
+                    case NPCID.IceSlime:
                     case NPCID.SpikedIceSlime:
                         target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
                         target.AddBuff(BuffID.Frostburn, Main.rand.Next(15, 150));
                         break;
 
+                    case NPCID.JungleSlime:
                     case NPCID.SpikedJungleSlime:
                         target.AddBuff(BuffID.Slimed, Main.rand.Next(30, 300));
-                        target.AddBuff(BuffID.Venom, Main.rand.Next(15, 150));
+                        target.AddBuff(BuffID.Poisoned, 300);
                         break;
 
                     case NPCID.MotherSlime:

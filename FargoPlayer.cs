@@ -702,7 +702,7 @@ namespace FargowiltasSouls
             if (FargoSoulsWorld.MasochistMode)
             {
                 //falling gives you dazed. wings save you
-                if (player.velocity.Y == 0f && player.wings == 0 & !player.noFallDmg)
+                /*if (player.velocity.Y == 0f && player.wings == 0 & !player.noFallDmg)
                 {
                     int num21 = 25;
                     num21 += player.extraFall;
@@ -732,7 +732,7 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Dazed, 120);
                     }
                     player.fallStart = (int)(player.position.Y / 16f);
-                }
+                }*/
 
                 if (player.ZoneUnderworldHeight)
                 {
@@ -754,7 +754,7 @@ namespace FargowiltasSouls
                         MasomodeFreezeTimer++;
                         if (MasomodeFreezeTimer >= 600)
                         {
-                            player.AddBuff(BuffID.Frozen, 120);
+                            player.AddBuff(BuffID.Frozen, Main.expertMode && Main.expertDebuffTime > 1 ? 60 : 120);
                             MasomodeFreezeTimer = -300;
                         }
                     }
@@ -805,14 +805,16 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Confused, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
                 }
 
-                /*if (!PureHeart && Main.raining && !player.ZoneSnow && (player.ZoneOverworldHeight || player.ZoneSkyHeight) && player.HeldItem.type != ItemID.Umbrella)
+                if (!PureHeart && Main.raining && (player.ZoneOverworldHeight || player.ZoneSkyHeight) && player.HeldItem.type != ItemID.Umbrella)
                 {
                     Tile currentTile = Framing.GetTileSafely(player.Center);
                     if (currentTile.wall == WallID.None)
                     {
-                        player.AddBuff(BuffID.Wet, 2);
-
-                        if (Main.hardMode)
+                        if (player.ZoneSnow)
+                            player.AddBuff(BuffID.Chilled, Main.expertMode && Main.expertDebuffTime > 1 ? 1 : 2);
+                        else
+                            player.AddBuff(BuffID.Wet, 2);
+                        /*if (Main.hardMode)
                         {
                             lightningCounter++;
 
@@ -831,9 +833,9 @@ namespace FargowiltasSouls
 
                                 lightningCounter = 0;
                             }
-                        }
+                        }*/
                     } 
-                }*/
+                }
 
                 if (player.wet && !(player.accFlipper || player.gills || MutantAntibodies))
                     player.AddBuff(mod.BuffType("Lethargic"), 2);
@@ -894,7 +896,7 @@ namespace FargowiltasSouls
                         if (player.ZoneCorrupt || player.ZoneCrimson || player.ZoneHoly)
                         {
                             damage = 40;
-                            player.AddBuff(BuffID.Poisoned, 300);
+                            player.AddBuff(BuffID.Poisoned, Main.expertMode && Main.expertDebuffTime > 1 ? 150 : 300);
                         }
                         if (player.hurtCooldowns[0] <= 0) //same i-frames as spike tiles
                             player.Hurt(PlayerDeathReason.ByCustomReason(player.name + " was pricked by a Cactus."), damage, 0, false, false, false, 0);
@@ -2753,8 +2755,12 @@ namespace FargowiltasSouls
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if (damageSource == PlayerDeathReason.ByOther(2))
-                player.Hurt(PlayerDeathReason.ByOther(2), 999, 1);
+            //fall damage?
+            if (FargoSoulsWorld.MasochistMode && damageSource == PlayerDeathReason.ByOther(0))
+                player.AddBuff(BuffID.Dazed, 120);
+
+            //lava?
+            //if (damageSource == PlayerDeathReason.ByOther(2)) player.Hurt(PlayerDeathReason.ByOther(2), 999, 1);
 
             if (IronGuard && internalTimer > 0 && !player.immune)
             {
@@ -2955,10 +2961,10 @@ namespace FargowiltasSouls
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " was reaped by the cold hand of death.");
             }
 
-            if (MutantPresence)
+            /*if (MutantPresence)
             {
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " was penetrated.");
-            }
+            }*/
 
             return retVal;
         }
