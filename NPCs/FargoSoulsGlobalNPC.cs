@@ -5446,9 +5446,9 @@ namespace FargowiltasSouls.NPCs
                         break;
                         
                     case NPCID.PrimeSaw:
-                        if (!masoBool[1] && ++Counter >= 3) //flamethrower in same direction that saw is pointing
+                        if (!masoBool[1] && ++Counter2 >= 2) //flamethrower in same direction that saw is pointing
                         {
-                            Counter = 0;
+                            Counter2 = 0;
                             Vector2 velocity = new Vector2(7f, 0f).RotatedBy(npc.rotation + Math.PI / 2.0);
                             if (Main.netMode != 1)
                                 Projectile.NewProjectile(npc.Center, velocity, ProjectileID.FlamesTrap, npc.damage / 4, 0f, Main.myPlayer);
