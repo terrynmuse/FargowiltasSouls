@@ -2572,7 +2572,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.QueenBee:
                         beeBoss = npc.whoAmI;
-                        PrintAI(npc);
+                        
                         if (!masoBool[0] && npc.life < npc.lifeMax / 3 * 2 && npc.HasPlayerTarget)
                         {
                             masoBool[0] = true;
@@ -2614,14 +2614,7 @@ namespace FargowiltasSouls.NPCs
 
                         if (NPC.AnyNPCs(mod.NPCType("RoyalSubject")))
                         {
-                            //tries to charge, force back to bee spawn or stingers
-                            if (npc.ai[0] == 2 || npc.ai[0] == 0)
-                            {
-                                npc.ai[0] = Main.rand.Next(2) == 0 ? 1 : 3;
-                                npc.ai[1] = 0f;
-                                npc.ai[2] = 0f;
-                                npc.netUpdate = true;
-                            }
+                            npc.ai[0] = 3; //always shoot stingers mode
                         }
 
                         //only while stationary mode
@@ -3989,25 +3982,26 @@ namespace FargowiltasSouls.NPCs
                                         }
                                         else if (Counter == 3) //2 = geysers erupt, 3 = boulders fall
                                         {
+                                            Counter = 0;
                                             if (npc.HasPlayerTarget)
                                             {
-                                                int tilePosX = (int)Main.player[npc.target].Center.X;
-                                                int tilePosY = (int)Main.player[npc.target].Center.Y;// + 1;
-
-                                                if (Main.tile[tilePosX, tilePosY] == null)
-                                                    Main.tile[tilePosX, tilePosY] = new Tile();
-
-                                                while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[(int)Main.tile[tilePosX, tilePosY].type]))
-                                                {
-                                                    tilePosY++;
-                                                    if (Main.tile[tilePosX, tilePosY] == null)
-                                                        Main.tile[tilePosX, tilePosY] = new Tile();
-                                                }
-
                                                 for (int i = -2; i <= 2; i++)
                                                 {
+                                                    int tilePosX = (int)Main.player[npc.target].Center.X / 16;
+                                                    int tilePosY = (int)Main.player[npc.target].Center.Y / 16;// + 1;
+                                                    tilePosX += 4 * i;
+
+                                                    if (Main.tile[tilePosX, tilePosY] == null)
+                                                        Main.tile[tilePosX, tilePosY] = new Tile();
+
+                                                    while (!(Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[Main.tile[tilePosX, tilePosY].type]))
+                                                    {
+                                                        tilePosY--;
+                                                        if (Main.tile[tilePosX, tilePosY] == null)
+                                                            Main.tile[tilePosX, tilePosY] = new Tile();
+                                                    }
+
                                                     Vector2 spawn = new Vector2(tilePosX * 16 + 8, tilePosY * 16 + 8);
-                                                    spawn.X += 60 * i;
                                                     Projectile.NewProjectile(spawn, Vector2.Zero, mod.ProjectileType("GolemBoulder"), npc.damage / 5, 0f, Main.myPlayer);
                                                 }
                                             }
@@ -4041,6 +4035,30 @@ namespace FargowiltasSouls.NPCs
 
                                             Projectile.NewProjectile(tilePosX * 16 + 8, tilePosY * 16 + 8, 0f, -8f, ProjectileID.GeyserTrap, npc.damage / 5, 0f, Main.myPlayer);
                                         }
+                                        if (npc.HasPlayerTarget)
+                                        {
+                                            for (int i = -2; i <= 2; i++)
+                                            {
+                                                int tilePosX = (int)Main.player[npc.target].Center.X / 16;
+                                                int tilePosY = (int)Main.player[npc.target].Center.Y / 16;// + 1;
+                                                tilePosX += 4 * i;
+
+                                                if (Main.tile[tilePosX, tilePosY] == null)
+                                                    Main.tile[tilePosX, tilePosY] = new Tile();
+
+                                                for (int j = 0; j < 30; j++)
+                                                {
+                                                    if (Main.tile[tilePosX, tilePosY].nactive() && Main.tileSolid[Main.tile[tilePosX, tilePosY].type])
+                                                        break;
+                                                    tilePosY--;
+                                                    if (Main.tile[tilePosX, tilePosY] == null)
+                                                        Main.tile[tilePosX, tilePosY] = new Tile();
+                                                }
+
+                                                Vector2 spawn = new Vector2(tilePosX * 16 + 8, tilePosY * 16 + 8);
+                                                Projectile.NewProjectile(spawn, Vector2.Zero, mod.ProjectileType("GolemBoulder"), npc.damage / 5, 0f, Main.myPlayer);
+                                            }
+                                        }
                                     }
 
                                     //golem's anti-air fireball spray (whenever he lands while player is below)
@@ -4069,15 +4087,15 @@ namespace FargowiltasSouls.NPCs
                             masoBool[0] = true;
                         }
 
-                        /*if (++Counter >= 540)
+                        if (++Counter2 >= 540)
                         {
-                            Counter = 0; //spray spiky balls
+                            Counter2 = 0; //spray spiky balls
                             if (Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16] != null && //in temple
                                 Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].wall == WallID.LihzahrdBrickUnsafe)
                             {
                                 for (int i = 0; i < 8; i++)
                                     Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height),
-                                        0, Main.rand.Next(-15, -4), ProjectileID.SpikyBallTrap, npc.damage / 5, 0f, Main.myPlayer);
+                                        0, Main.rand.Next(-10, -4), ProjectileID.SpikyBallTrap, npc.damage / 5, 0f, Main.myPlayer);
                             }
                             else //outside temple
                             {
@@ -4085,7 +4103,7 @@ namespace FargowiltasSouls.NPCs
                                     Projectile.NewProjectile(npc.position.X + Main.rand.Next(npc.width), npc.position.Y + Main.rand.Next(npc.height),
                                         Main.rand.NextFloat(-1f, 1f), Main.rand.Next(-20, -9), ProjectileID.SpikyBallTrap, npc.damage / 4, 0f, Main.myPlayer);
                             }
-                        }*/
+                        }
 
                         /*Counter2++;
                         if (Counter2 > 240) //golem's anti-air fireball spray (when player is above)
@@ -4125,7 +4143,6 @@ namespace FargowiltasSouls.NPCs
 
                         if (!npc.dontTakeDamage)
                         {
-                            Counter2++; //attack faster!
                             npc.life += 5; //healing stuff
                             if (npc.life > npc.lifeMax)
                                 npc.life = npc.lifeMax;
@@ -4146,15 +4163,16 @@ namespace FargowiltasSouls.NPCs
                             npc.DelBuff(0);
                         }
 
-                        if (npc.ai[0] == 0f && masoBool[0] && Framing.GetTileSafely(npc.Center).wall != WallID.LihzahrdBrickUnsafe)
+                        if (npc.ai[0] == 0f && masoBool[0]) //&& Framing.GetTileSafely(npc.Center).wall != WallID.LihzahrdBrickUnsafe)
                         {
-                            masoBool[0] = false; //explode when outside temple
+                            masoBool[0] = false;
                             if (Main.netMode != 1)
                                 Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("FuseBomb"), npc.damage / 4, 0f, Main.myPlayer);
                         }
                         masoBool[0] = npc.ai[0] != 0f;
 
-                        Main.NewText(npc.velocity.Length().ToString());
+                        if (npc.velocity.Length() > 16)
+                            npc.position -= Vector2.Normalize(npc.velocity) * (npc.velocity.Length() - 16);
 
                         if (npc.life < npc.lifeMax / 2 && NPC.golemBoss > -1 && NPC.golemBoss < 200 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                         {
@@ -4173,8 +4191,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.GolemHeadFree:
-                        PrintAI(npc);
-
                         if (!masoBool[0]) //default mode
                         {
                             npc.position += npc.velocity * 0.25f;
@@ -4212,7 +4228,7 @@ namespace FargowiltasSouls.NPCs
                             if (++Counter < fireTime) //move to above golem
                             {
                                 Vector2 target = Main.npc[NPC.golemBoss].Center;
-                                target.Y -= 300;
+                                target.Y -= 250;
                                 if (target.Y > Counter2) //counter2 stores lowest remembered golem position
                                     Counter2 = (int)target.Y;
                                 target.Y = Counter2;
@@ -4227,13 +4243,15 @@ namespace FargowiltasSouls.NPCs
                                 if (Main.netMode != 1)
                                     Projectile.NewProjectile(npc.Center, Vector2.UnitY, mod.ProjectileType("PhantasmalDeathrayGolem"), npc.damage / 4, 0f, Main.myPlayer, 0f, npc.whoAmI);
                             }
-                            else if (Counter < fireTime + 240)
+                            else if (Counter < fireTime + 150)
                             {
-                                npc.velocity.X += masoBool[1] ? -.3f : .3f;
+                                npc.velocity.X += masoBool[1] ? -.17f : .17f;
 
+                                npc.noTileCollide = true;
                                 Tile tile = Framing.GetTileSafely(npc.Center); //stop if reached a wall, but only 1sec after started firing
-                                if (Counter > fireTime + 60 & tile.nactive() && tile.type == TileID.LihzahrdBrick && tile.wall == WallID.LihzahrdBrick)
+                                if (Counter > fireTime + 60 & tile.nactive() && tile.type == TileID.LihzahrdBrick && tile.wall == WallID.LihzahrdBrickUnsafe)
                                 {
+                                    npc.velocity = Vector2.Zero;
                                     npc.netUpdate = true;
                                     Counter = 0;
                                     Counter2 = 0;
@@ -4242,6 +4260,7 @@ namespace FargowiltasSouls.NPCs
                             }
                             else
                             {
+                                npc.velocity = Vector2.Zero;
                                 npc.netUpdate = true;
                                 Counter = 0;
                                 Counter2 = 0;

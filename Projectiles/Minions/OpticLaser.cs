@@ -26,6 +26,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.tileCollide = false;
             projectile.penetrate = -1;
             projectile.ignoreWater = true;
+            projectile.timeLeft = 120 * (projectile.extraUpdates + 1);
 
             projectile.usesIDStaticNPCImmunity = true;
             projectile.idStaticNPCHitCooldown = 6;

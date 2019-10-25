@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 {
     public class PhantasmalDeathrayGolem : ModProjectile
     {
-        private const float maxTime = 240;
+        private const float maxTime = 150;
 
         public override void SetStaticDefaults()
 		{
@@ -38,9 +38,10 @@ namespace FargowiltasSouls.Projectiles.Masomode
             {
                 projectile.velocity = -Vector2.UnitY;
             }
-            if (Main.npc[(int)projectile.ai[1]].active && Main.npc[(int)projectile.ai[1]].type == NPCID.GolemHeadFree)
+            if (Main.npc[(int)projectile.ai[1]].active && Main.npc[(int)projectile.ai[1]].type == NPCID.GolemHeadFree
+                && Main.npc[(int)projectile.ai[1]].GetGlobalNPC<NPCs.FargoSoulsGlobalNPC>().masoBool[0])
             {
-                projectile.Center = Main.npc[(int)projectile.ai[1]].Center + Vector2.UnitY * Main.npc[(int)projectile.ai[1]].height / 4;
+                projectile.Center = Main.npc[(int)projectile.ai[1]].Center;
             }
             else
             {

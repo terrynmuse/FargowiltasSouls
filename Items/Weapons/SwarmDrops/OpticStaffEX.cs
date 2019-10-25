@@ -20,7 +20,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override void SetDefaults()
         {
-            item.damage = 300;
+            item.damage = 400;
             item.mana = 10;
             item.summon = true;
             item.width = 24;
@@ -40,6 +40,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
+            player.AddBuff(item.buffType, 2);
             Vector2 spawnPos = Main.MouseWorld;
             Vector2 speed = new Vector2(speedX, speedY).RotatedBy(Math.PI / 2);
             Projectile.NewProjectile(spawnPos, speed, mod.ProjectileType("OpticRetinazer"), damage, knockBack, player.whoAmI, -1);
