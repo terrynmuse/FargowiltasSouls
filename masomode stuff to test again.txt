@@ -100,6 +100,27 @@ mutant boss will turn back into normal mutant if you die to him
 mutant nuke safespot also has a ritual around it
 more immunities for mutant
 
+reverted meteorite to explodable post-skelly
+removed "was penetrated" death text ech
+tried fixing fall damage dazed not working (confirm other types of damage dont cause dazed)
+restored wet in rain (chilled in snow)
+umbrella slimes inflict wet
+ice slime inflicts slimed/frostburn
+jungle slime inflicts slimed/poisoned
+spiked jungle slime no longer inflicts venom
+fixed present slimes not inflicting slimed
+removed frost legion natural spawn because why do i hear boss music
+fixed red devil not inflicting MFD
+fixed illum bat not also inflicting feral bite always
+fixed goblin scout not inflicting living wasteland in hm
+zombies can break doors now
+fixed tortoises not reflecting projs while in shell
+rebalanced mutant scale tier
+tin crit now goes through mutant presence (you have all crits in p2)
+fixed invisible drakanian daybreaks
+corrected fall damage in maso
+fixed calamity making cultist's support attacks harmless
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)

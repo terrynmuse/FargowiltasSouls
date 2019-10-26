@@ -1541,6 +1541,7 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.UnholyTridentHostile:
                         target.AddBuff(BuffID.Blackout, Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType("Shadowflame"), Main.rand.Next(300, 600));
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), Main.rand.Next(60, 180));
                         break;
 
                     case ProjectileID.BombSkeletronPrime:

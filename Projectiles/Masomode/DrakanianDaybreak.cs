@@ -22,6 +22,17 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.hostile = true;
         }
 
+        public override void AI()
+        {
+            projectile.alpha = 0;
+            projectile.hide = false;
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
+        }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(BuffID.OnFire, Main.rand.Next(300, 600));
