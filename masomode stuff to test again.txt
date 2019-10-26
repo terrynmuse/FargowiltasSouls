@@ -117,6 +117,9 @@ zombies can break doors now
 fixed tortoises not reflecting projs while in shell
 rebalanced mutant scale tier
 tin crit now goes through mutant presence (you have all crits in p2)
+fixed invisible drakanian daybreaks
+corrected fall damage in maso
+fixed calamity making cultist's support attacks harmless
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

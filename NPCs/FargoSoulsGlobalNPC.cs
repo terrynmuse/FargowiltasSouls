@@ -2288,6 +2288,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         else
                         {
+                            int damage = (int)(75 * (1 + FargoSoulsWorld.CultistCount * .0125)); //necessary because calameme
                             switch ((int)npc.ai[0])
                             {
                                 case -1:
@@ -2315,7 +2316,7 @@ namespace FargowiltasSouls.NPCs
                                                     distance = distance.RotatedByRandom(Math.PI / 12);
                                                     distance *= Main.rand.NextFloat(6f, 9f);
                                                     Projectile.NewProjectile(Main.npc[i].Center, distance,
-                                                        ProjectileID.FrostWave, npc.damage / 3, 0f, Main.myPlayer);
+                                                        ProjectileID.FrostWave, damage / 3, 0f, Main.myPlayer);
                                                 }
                                             }
                                         }
@@ -2353,7 +2354,7 @@ namespace FargowiltasSouls.NPCs
                                                 float ai1New = Main.rand.Next(100);
                                                 Vector2 vel = Vector2.Normalize(dir.RotatedByRandom(Math.PI / 4)) * 7f;
                                                 Projectile.NewProjectile(Main.npc[i].Center, vel, ProjectileID.CultistBossLightningOrbArc,
-                                                    npc.damage / 15 * 6, 0, Main.myPlayer, dir.ToRotation(), ai1New);
+                                                    damage / 15 * 6, 0, Main.myPlayer, dir.ToRotation(), ai1New);
                                             }
                                         }
                                     }
@@ -2369,11 +2370,11 @@ namespace FargowiltasSouls.NPCs
                                                 Vector2 speed = Vector2.UnitX.RotatedByRandom(Math.PI);
                                                 speed *= 6f;
                                                 Projectile.NewProjectile(Main.npc[i].Center, speed,
-                                                    ProjectileID.PhantasmalEye, npc.damage / 3, 0f, Main.myPlayer);
+                                                    ProjectileID.PhantasmalEye, damage / 3, 0f, Main.myPlayer);
                                                 Projectile.NewProjectile(Main.npc[i].Center, speed.RotatedBy(Math.PI * 2 / 3),
-                                                    ProjectileID.PhantasmalEye, npc.damage / 3, 0f, Main.myPlayer);
+                                                    ProjectileID.PhantasmalEye, damage / 3, 0f, Main.myPlayer);
                                                 Projectile.NewProjectile(Main.npc[i].Center, speed.RotatedBy(-Math.PI * 2 / 3),
-                                                    ProjectileID.PhantasmalEye, npc.damage / 3, 0f, Main.myPlayer);
+                                                    ProjectileID.PhantasmalEye, damage / 3, 0f, Main.myPlayer);
                                             }
                                         }
                                     }
@@ -2389,7 +2390,7 @@ namespace FargowiltasSouls.NPCs
                                             {
                                                 if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone)
                                                     Projectile.NewProjectile(Main.npc[i].Center, Vector2.Zero,
-                                                        ProjectileID.NebulaSphere, npc.damage / 15 * 6, 0f, Main.myPlayer);
+                                                        ProjectileID.NebulaSphere, damage / 15 * 6, 0f, Main.myPlayer);
                                             }
                                         }
                                     }
@@ -3248,7 +3249,6 @@ namespace FargowiltasSouls.NPCs
                                 case -1: //just spawned
                                     if (npc.ai[2] == 2 && Main.netMode != 1) //create spell circle
                                     {
-                                        Main.NewText("spawn");
                                         int ritual1 = Projectile.NewProjectile(npc.Center, Vector2.Zero,
                                             mod.ProjectileType("FishronRitual"), 0, 0f, Main.myPlayer, npc.lifeMax, npc.whoAmI);
                                         if (ritual1 == 1000) //failed to spawn projectile, abort spawn

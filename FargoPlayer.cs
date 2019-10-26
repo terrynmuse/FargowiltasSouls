@@ -702,7 +702,7 @@ namespace FargowiltasSouls
             if (FargoSoulsWorld.MasochistMode)
             {
                 //falling gives you dazed. wings save you
-                /*if (player.velocity.Y == 0f && player.wings == 0 & !player.noFallDmg)
+                if (player.velocity.Y == 0f && player.wingsLogic == 0 && !player.noFallDmg)
                 {
                     int num21 = 25;
                     num21 += player.extraFall;
@@ -732,7 +732,7 @@ namespace FargowiltasSouls
                         player.AddBuff(BuffID.Dazed, 120);
                     }
                     player.fallStart = (int)(player.position.Y / 16f);
-                }*/
+                }
 
                 if (player.ZoneUnderworldHeight)
                 {
@@ -2755,10 +2755,6 @@ namespace FargowiltasSouls
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            //fall damage?
-            if (FargoSoulsWorld.MasochistMode && damageSource == PlayerDeathReason.ByOther(0))
-                player.AddBuff(BuffID.Dazed, 120);
-
             //lava?
             //if (damageSource == PlayerDeathReason.ByOther(2)) player.Hurt(PlayerDeathReason.ByOther(2), 999, 1);
 
