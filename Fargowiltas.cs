@@ -1809,6 +1809,12 @@ namespace FargowiltasSouls
                     music = GetSoundSlot(SoundType.Music, "Sounds/Music/MonsterMadhouse");
                     priority = MusicPriority.Event;
                 }
+                if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, ModContent.NPCType<NPCs.MutantBoss.MutantBoss>())
+                    && Main.player[Main.myPlayer].Distance(Main.npc[FargoSoulsGlobalNPC.mutantBoss].Center) < 3000)
+                {
+                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/SteelRed");
+                    priority = (MusicPriority)12;
+                }
             }
         }
 

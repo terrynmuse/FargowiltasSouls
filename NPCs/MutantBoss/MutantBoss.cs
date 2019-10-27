@@ -97,8 +97,8 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             if (npc.localAI[3] == 0)
             {
                 npc.TargetClosest();
-                if (npc.timeLeft < 60)
-                    npc.timeLeft = 60;
+                if (npc.timeLeft < 30)
+                    npc.timeLeft = 30;
                 if (npc.Distance(Main.player[npc.target].Center) < 2000)
                 {
                     npc.localAI[3] = 1;
@@ -1534,15 +1534,21 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                 npc.TargetClosest();
                 if (!player.active || player.dead || Vector2.Distance(npc.Center, player.Center) > 5000f)
                 {
-                    if (npc.timeLeft > 60)
-                        npc.timeLeft = 60;
+                    if (npc.timeLeft > 30)
+                        npc.timeLeft = 30;
                     npc.velocity.Y -= 1f;
                     if (npc.timeLeft == 1 && Fargowiltas.Instance.FargosLoaded)
                     {
                         if (npc.position.Y < 0)
                             npc.position.Y = 0;
-                        if (Main.netMode != 1 && Fargowiltas.Instance.FargosLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant")))
+                        if (Main.netMode != 1 && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant")))
                         {
+                            for (int i = 0; i < 1000; i++)
+                                if (Main.projectile[i].active && Main.projectile[i].hostile)
+                                    Main.projectile[i].Kill();
+                            for (int i = 0; i < 1000; i++)
+                                if (Main.projectile[i].active && Main.projectile[i].hostile)
+                                    Main.projectile[i].Kill();
                             int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
                             if (n != 200 && Main.netMode == 2)
                                 NetMessage.SendData(23, -1, -1, null, n);
