@@ -9344,6 +9344,9 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.ZombieMushroom:
                     case NPCID.ZombieMushroomHat:
                     case NPCID.FungoFish:
+                        Item.NewItem(npc.Hitbox, ItemID.GlowingMushroom, Main.rand.Next(5) + 1);
+                        if (Main.rand.Next(5) == 0)
+                            Item.NewItem(npc.Hitbox, ItemID.MushroomGrassSeeds);
                         if (Main.rand.Next(20) == 0)
                             Item.NewItem(npc.position, npc.Size, ItemID.TruffleWorm);
                         break;
