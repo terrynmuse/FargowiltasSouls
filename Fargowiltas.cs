@@ -1732,6 +1732,7 @@ namespace FargowiltasSouls
                         FargoSoulsGlobalNPC head = Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>();
                         head.masoBool[0] = reader.ReadBool();
                         head.masoBool[1] = reader.ReadBool();
+                        head.masoBool[2] = reader.ReadBool();
                         head.Counter = reader.ReadInt();
                         head.Counter2 = reader.ReadInt();
                     }
