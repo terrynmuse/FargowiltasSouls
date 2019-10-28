@@ -4211,6 +4211,7 @@ namespace FargowiltasSouls.NPCs
                                 Counter = 0;
                                 Counter2 = 0;
                                 masoBool[0] = true;
+                                masoBool[2] = Framing.GetTileSafely(npc.Center).wall == WallID.LihzahrdBrickUnsafe;
                                 npc.netUpdate = true;
                                 if (Main.netMode == 2)
                                 {
@@ -4219,6 +4220,7 @@ namespace FargowiltasSouls.NPCs
                                     netMessage.Write((byte)npc.whoAmI);
                                     netMessage.Write(masoBool[0]);
                                     netMessage.Write(masoBool[1]);
+                                    netMessage.Write(masoBool[2]);
                                     netMessage.Write(Counter);
                                     netMessage.Write(Counter2);
                                     netMessage.Send();
@@ -4234,14 +4236,23 @@ namespace FargowiltasSouls.NPCs
                                 return false;
                             }
 
+                            npc.noTileCollide = true;
+
                             const int fireTime = 120;
                             if (++Counter < fireTime) //move to above golem
                             {
                                 Vector2 target = Main.npc[NPC.golemBoss].Center;
-                                target.Y -= 250;
-                                if (target.Y > Counter2) //counter2 stores lowest remembered golem position
-                                    Counter2 = (int)target.Y;
-                                target.Y = Counter2;
+                                if (masoBool[2]) //in temple
+                                {
+                                    target.Y -= 250;
+                                    if (target.Y > Counter2) //counter2 stores lowest remembered golem position
+                                        Counter2 = (int)target.Y;
+                                    target.Y = Counter2;
+                                }
+                                else if (npc.HasPlayerTarget)
+                                {
+                                    target.Y = Main.player[npc.target].Center.Y;
+                                }
                                 npc.velocity = (target - npc.Center) / 30;
                             }
                             else if (Counter == fireTime) //fire deathray
@@ -4256,8 +4267,7 @@ namespace FargowiltasSouls.NPCs
                             else if (Counter < fireTime + 150)
                             {
                                 npc.velocity.X += masoBool[1] ? -.17f : .17f;
-
-                                npc.noTileCollide = true;
+                                
                                 Tile tile = Framing.GetTileSafely(npc.Center); //stop if reached a wall, but only 1sec after started firing
                                 if (Counter > fireTime + 60 & tile.nactive() && tile.type == TileID.LihzahrdBrick && tile.wall == WallID.LihzahrdBrickUnsafe)
                                 {
@@ -4287,6 +4297,7 @@ namespace FargowiltasSouls.NPCs
                                     netMessage.Write((byte)npc.whoAmI);
                                     netMessage.Write(masoBool[0]);
                                     netMessage.Write(masoBool[1]);
+                                    netMessage.Write(masoBool[2]);
                                     netMessage.Write(Counter);
                                     netMessage.Write(Counter2);
                                     netMessage.Send();
@@ -9350,6 +9361,9 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.ZombieMushroom:
                     case NPCID.ZombieMushroomHat:
                     case NPCID.FungoFish:
+                        Item.NewItem(npc.Hitbox, ItemID.GlowingMushroom, Main.rand.Next(5) + 1);
+                        if (Main.rand.Next(5) == 0)
+                            Item.NewItem(npc.Hitbox, ItemID.MushroomGrassSeeds);
                         if (Main.rand.Next(20) == 0)
                             Item.NewItem(npc.position, npc.Size, ItemID.TruffleWorm);
                         break;

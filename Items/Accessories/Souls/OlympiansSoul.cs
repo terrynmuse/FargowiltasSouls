@@ -1,5 +1,4 @@
 using CalamityMod;
-using CalamityMod.Items.CalamityCustomThrowingDamage;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -95,10 +94,10 @@ namespace FargowiltasSouls.Items.Accessories.Souls
 
         private void Calamity(Player player)
         {
-            player.GetCalamityPlayer().nanotech = true;
-            player.GetCalamityPlayer().throwingDamage += 0.3f;
-            player.GetCalamityPlayer().throwingCrit += 15;
-            player.GetCalamityPlayer().throwingVelocity += 0.15f;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().nanotech = true;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingDamage += 0.3f;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingCrit += 15;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingVelocity += 0.15f;
         }
 
         public override void AddRecipes()

@@ -1,5 +1,4 @@
 using CalamityMod;
-using CalamityMod.Items.CalamityCustomThrowingDamage;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -72,9 +71,9 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 
         private void Calamity(Player player)
         {
-            player.GetCalamityPlayer().throwingDamage += 0.18f;
-            player.GetCalamityPlayer().throwingCrit += 5;
-            player.GetCalamityPlayer().throwingVelocity += 0.05f;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingDamage += 0.18f;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingCrit += 5;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingVelocity += 0.05f;
         }
 
 

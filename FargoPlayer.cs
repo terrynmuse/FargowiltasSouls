@@ -13,7 +13,6 @@ using Terraria.Graphics.Capture;
 using FargowiltasSouls.NPCs;
 using FargowiltasSouls.Projectiles;
 using ThoriumMod;
-using CalamityMod.Items.CalamityCustomThrowingDamage;
 using CalamityMod;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
@@ -3091,7 +3090,7 @@ namespace FargowiltasSouls
 
         private void CalamityDamage(float dmg)
         {
-            player.GetCalamityPlayer().throwingDamage += dmg;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingDamage += dmg;
         }
 
         private void DBTDamage(float dmg)
@@ -3123,7 +3122,7 @@ namespace FargowiltasSouls
 
         private void CalamityCrit(int crit)
         {
-            player.GetCalamityPlayer().throwingCrit += crit;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingCrit += crit;
         }
 
         private void DBTCrit(int crit)
@@ -3156,7 +3155,7 @@ namespace FargowiltasSouls
 
         private void CalamityCritEquals(int crit)
         {
-            player.GetCalamityPlayer().throwingCrit = crit;
+            player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingCrit = crit;
         }
 
         private void DBTCritEquals(int crit)

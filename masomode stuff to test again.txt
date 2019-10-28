@@ -120,6 +120,8 @@ tin crit now goes through mutant presence (you have all crits in p2)
 fixed invisible drakanian daybreaks
 corrected fall damage in maso
 fixed calamity making cultist's support attacks harmless
+mushroom enemies drop 1-5 glowing shrooms, 20% chance to drop mushroom grass seeds
+golem head targets player for ray when outside temple
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

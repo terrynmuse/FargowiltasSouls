@@ -75,7 +75,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             SpriteEffects effects = projectile.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             
             float scale = (Main.mouseTextColor / 200f - 0.35f) * 0.4f + 0.8f;
-            Main.spriteBatch.Draw(texture2D14, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Color.White, projectile.rotation, origin2, scale, effects, 0f);
+            Main.spriteBatch.Draw(texture2D14, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Color.White * projectile.Opacity, projectile.rotation, origin2, scale, effects, 0f);
 
             for (int i = 1; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
             {
