@@ -24,6 +24,11 @@ namespace FargowiltasSouls.Projectiles.Souls
             projectile.ignoreWater = true;
         }
 
+        public override bool CanDamage()
+        {
+            return false;
+        }
+
         public override void AI()
         {
             Player player = Main.player[projectile.owner];

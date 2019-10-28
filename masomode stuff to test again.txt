@@ -126,6 +126,7 @@ golem has EX movement outside temple
 moon lord sockets will delay their deathrays if true eyes are firing theirs
 asocial now forcibly kills minions/sentries
 made pillars immortal when outside range
+buffed gold ench a LOT
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

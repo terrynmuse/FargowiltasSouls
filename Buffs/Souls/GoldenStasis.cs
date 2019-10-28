@@ -19,6 +19,17 @@ namespace FargowiltasSouls.Buffs.Souls
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetModPlayer<FargoPlayer>().GoldShell = true;
+            player.controlJump = false;
+            player.controlDown = false;
+            player.controlLeft = false;
+            player.controlRight = false;
+            player.controlUp = false;
+            player.controlUseItem = false;
+            player.controlUseTile = false;
+            player.controlThrow = false;
+            player.controlMount = false;
+            player.velocity = player.oldVelocity;
+            player.position = player.oldPosition;
         }
     }
 }

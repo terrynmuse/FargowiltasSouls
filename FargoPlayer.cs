@@ -381,8 +381,8 @@ namespace FargowiltasSouls
 
             if (Fargowiltas.GoldKey.JustPressed && GoldEnchant && goldCD == 0)
             {
-                player.AddBuff(mod.BuffType("GoldenStasis"), 150);
-                goldCD = 7350;
+                player.AddBuff(mod.BuffType("GoldenStasis"), 600);
+                goldCD = 3600;
                 goldHP = player.statLife;
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Zhonyas").WithVolume(1f), player.Center);
             }
@@ -961,18 +961,10 @@ namespace FargowiltasSouls
 
             if (GoldShell)
             {
-                player.controlJump = false;
-                player.controlDown = false;
-                player.controlLeft = false;
-                player.controlRight = false;
-                player.controlUp = false;
-                player.controlUseItem = false;
-                player.controlUseTile = false;
-                player.controlThrow = false;
-                player.gravDir = 1f;
-
                 player.immune = true;
                 player.immuneTime = 2;
+                player.hurtCooldowns[0] = 2;
+                player.hurtCooldowns[1] = 2;
 
                 //immune to DoT
                 if (player.statLife < goldHP)
