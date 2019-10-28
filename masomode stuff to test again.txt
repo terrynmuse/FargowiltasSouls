@@ -124,7 +124,6 @@ mushroom enemies drop 1-5 glowing shrooms, 20% chance to drop mushroom grass see
 golem head targets player for ray when outside temple
 golem has EX movement outside temple
 moon lord sockets will delay their deathrays if true eyes are firing theirs
-moon lord eye debug...
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

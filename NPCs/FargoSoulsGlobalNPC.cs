@@ -4223,7 +4223,7 @@ namespace FargowiltasSouls.NPCs
                             npc.position += npc.velocity * 0.25f;
                             npc.position.Y += npc.velocity.Y * 0.25f;
 
-                            if (++Counter > 600)
+                            if (++Counter > 540)
                             {
                                 Counter = 0;
                                 Counter2 = 0;
@@ -4268,7 +4268,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                                 else if (npc.HasPlayerTarget)
                                 {
-                                    target.Y = Main.player[npc.target].Center.Y;
+                                    target.Y = Main.player[npc.target].Center.Y - 250;
                                 }
                                 npc.velocity = (target - npc.Center) / 30;
                             }
@@ -5684,11 +5684,10 @@ namespace FargowiltasSouls.NPCs
                                 {
                                     bool fireLaser = true;
                                     for (int i = 0; i < Main.maxNPCs; i++) //find this ML's true eye (they're synced, so any is fine)
-                                        if (Main.npc[i].active && Main.npc[i].type == NPCID.MoonLordFreeEye && Main.npc[i].ai[(int)Math.Abs(Main.npc[i].ai[0]) - 1] == npc.ai[3]) 
+                                        if (Main.npc[i].active && Main.npc[i].type == NPCID.MoonLordFreeEye && Main.npc[i].ai[3] == npc.ai[3]) 
                                         {
-                                            if (Main.npc[i].ai[0] == 77) //if free eyes are firing deathray, delay own ray
+                                            if (Main.npc[i].ai[0] == 4 && Main.npc[i].ai[1] > 800) //if free eyes are firing deathray, delay own ray
                                             {
-                                                Main.NewText("delay ray");
                                                 fireLaser = false;
                                                 Timer = 28;
                                             }
@@ -5741,13 +5740,11 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MoonLordFreeEye:
-                        PrintAI(npc);
                         if (!masoBool[0]) //sync to other eyes of same core when spawned
                         {
                             masoBool[0] = true;
-                            int ai = (int)Math.Abs(npc.ai[0]) - 1;
                             for (int i = 0; i < Main.maxNPCs; i++)
-                                if (Main.npc[i].active && Main.npc[i].type == NPCID.MoonLordFreeEye && Main.npc[i].ai[(int)Math.Abs(Main.npc[i].ai[0]) - 1] == npc.ai[ai])
+                                if (Main.npc[i].active && Main.npc[i].type == NPCID.MoonLordFreeEye && Main.npc[i].ai[3] == npc.ai[3])
                                 {
                                     npc.ai[0] = Main.npc[i].ai[0];
                                     npc.ai[1] = Main.npc[i].ai[1];
