@@ -35,6 +35,7 @@ namespace FargowiltasSouls.NPCs
             npc.aiStyle = -1;
             npc.chaseable = false;
             npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
+            npc.buffImmune[BuffID.Suffocation] = true;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

@@ -34,18 +34,12 @@ You may periodically fire additional attacks depending on weapon type");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeDamage += 0.05f;
-            player.rangedDamage += 0.05f;
-            player.magicDamage += 0.05f;
-            player.thrownDamage += 0.05f;
-            player.minionDamage += 0.05f;
-            player.meleeCrit += 5;
-            player.rangedCrit += 5;
-            player.magicCrit += 5;
-            player.thrownCrit += 5;
+            FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
+            fargoPlayer.AllDamageUp(0.05f);
+            fargoPlayer.AllCritUp(5);
+            fargoPlayer.PumpkingsCape = true;
+            fargoPlayer.AdditionalAttacks = true;
             player.buffImmune[mod.BuffType("LivingWasteland")] = true;
-            player.GetModPlayer<FargoPlayer>().PumpkingsCape = true;
-            player.GetModPlayer<FargoPlayer>().AdditionalAttacks = true;
         }
     }
 }

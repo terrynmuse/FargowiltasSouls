@@ -381,8 +381,8 @@ namespace FargowiltasSouls
 
             if (Fargowiltas.GoldKey.JustPressed && GoldEnchant && goldCD == 0)
             {
-                player.AddBuff(mod.BuffType("GoldenStasis"), 150);
-                goldCD = 7350;
+                player.AddBuff(mod.BuffType("GoldenStasis"), 600);
+                goldCD = 3600;
                 goldHP = player.statLife;
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Zhonyas").WithVolume(1f), player.Center);
             }
@@ -961,18 +961,10 @@ namespace FargowiltasSouls
 
             if (GoldShell)
             {
-                player.controlJump = false;
-                player.controlDown = false;
-                player.controlLeft = false;
-                player.controlRight = false;
-                player.controlUp = false;
-                player.controlUseItem = false;
-                player.controlUseTile = false;
-                player.controlThrow = false;
-                player.gravDir = 1f;
-
                 player.immune = true;
                 player.immuneTime = 2;
+                player.hurtCooldowns[0] = 2;
+                player.hurtCooldowns[1] = 2;
 
                 //immune to DoT
                 if (player.statLife < goldHP)
@@ -3020,6 +3012,13 @@ namespace FargowiltasSouls
             {
                 HidePetToggle0 = player.hideMisc[0];
                 HidePetToggle1 = player.hideMisc[1];
+
+                if (Asocial)
+                {
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].minion)
+                            Main.projectile[i].Kill();
+                }
 
                 WasAsocial = true;
             }

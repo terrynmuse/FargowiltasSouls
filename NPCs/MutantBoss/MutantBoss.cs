@@ -730,15 +730,15 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     npc.dontTakeDamage = true;
                     if (npc.buffType[0] != 0)
                         npc.DelBuff(0);
-                    for (int i = 0; i < 5; i++)
-                    {
-                        int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
-                        Main.dust[d].noGravity = true;
-                        Main.dust[d].noLight = true;
-                        Main.dust[d].velocity *= 4f;
-                    }
                     if (++npc.ai[1] > 120)
                     {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
+                            Main.dust[d].noGravity = true;
+                            Main.dust[d].noLight = true;
+                            Main.dust[d].velocity *= 4f;
+                        }
                         npc.localAI[3] = 2;
                         if (++npc.ai[2] > 15)
                         {

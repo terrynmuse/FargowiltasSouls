@@ -32,6 +32,7 @@ namespace FargowiltasSouls.NPCs
             npc.alpha = 255;
             npc.lavaImmune = true;
             npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.Suffocation] = true;
             npc.aiStyle = -1;
             npc.chaseable = false;
         }

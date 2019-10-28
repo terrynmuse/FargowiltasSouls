@@ -541,6 +541,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.QueenBee:
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.BeeCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.BeeCount * .0125));
+                        npc.buffImmune[BuffID.Poisoned] = true;
                         break;
                     case NPCID.Hornet:
                     case NPCID.HornetFatty:
@@ -555,6 +556,7 @@ namespace FargowiltasSouls.NPCs
                             npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.BeeCount * .025));
                             npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.BeeCount * .0125));
                         }
+                        npc.buffImmune[BuffID.Poisoned] = true;
                         break;
 
                     case NPCID.SkeletronHead:
@@ -613,6 +615,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PlanterasTentacle:
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.PlanteraCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.PlanteraCount * .0125));
+                        npc.buffImmune[BuffID.Poisoned] = true;
                         break;
 
                     case NPCID.Golem:
@@ -622,6 +625,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemHeadFree:
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.GolemCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.GolemCount * .0125));
+                        npc.buffImmune[BuffID.Poisoned] = true;
                         break;
 
                     case NPCID.CultistBoss:
@@ -641,6 +645,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.AncientLight:
                     case NPCID.SolarGoop:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         if (BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
                             npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                         else if (BossIsAlive(ref cultBoss, NPCID.CultistBoss))
@@ -648,6 +653,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         if (FargoSoulsWorld.downedFishronEX || !spawnFishronEX)
                         {
                             npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.FishronCount * .025));
@@ -656,6 +662,7 @@ namespace FargowiltasSouls.NPCs
                         break;
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         if (FargoSoulsWorld.downedFishronEX || !BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
                             npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.FishronCount * .025));
@@ -663,6 +670,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
                     case NPCID.DetonatingBubble:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         if (FargoSoulsWorld.downedFishronEX || !BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                             npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
                         break;
@@ -672,6 +680,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHead:
                     case NPCID.MoonLordFreeEye:
                     case NPCID.MoonLordLeechBlob:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.MoonlordCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                         break;
@@ -2117,7 +2126,7 @@ namespace FargowiltasSouls.NPCs
                             masoBool[1] = true;
                         }
                         if (masoBool[1])
-                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
+                            npc.immortal = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.LunarTowerSolar:
@@ -2151,7 +2160,7 @@ namespace FargowiltasSouls.NPCs
                             masoBool[1] = true;
                         }
                         if (masoBool[1])
-                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
+                            npc.immortal = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.LunarTowerStardust:
@@ -2196,7 +2205,7 @@ namespace FargowiltasSouls.NPCs
                             masoBool[1] = true;
                         }
                         if (masoBool[1])
-                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
+                            npc.immortal = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.LunarTowerVortex:
@@ -2252,7 +2261,7 @@ namespace FargowiltasSouls.NPCs
                             masoBool[1] = true;
                         }
                         if (masoBool[1])
-                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
+                            npc.immortal = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.CultistBoss:
@@ -3953,7 +3962,15 @@ namespace FargowiltasSouls.NPCs
                         }*/
 
                         if (!masoBool[3])
+                        {
                             npc.position.X += npc.velocity.X / 2f;
+                            if (npc.velocity.Y < 0)
+                            {
+                                npc.position.Y += npc.velocity.Y * 0.5f;
+                                if (npc.velocity.Y > -2)
+                                    npc.velocity.Y = 20;
+                            }
+                        }
 
                         if (masoBool[0])
                         {
@@ -4206,7 +4223,7 @@ namespace FargowiltasSouls.NPCs
                             npc.position += npc.velocity * 0.25f;
                             npc.position.Y += npc.velocity.Y * 0.25f;
 
-                            if (++Counter > 600)
+                            if (++Counter > 540)
                             {
                                 Counter = 0;
                                 Counter2 = 0;
@@ -4238,7 +4255,7 @@ namespace FargowiltasSouls.NPCs
 
                             npc.noTileCollide = true;
 
-                            const int fireTime = 120;
+                            const int fireTime = 90;
                             if (++Counter < fireTime) //move to above golem
                             {
                                 Vector2 target = Main.npc[NPC.golemBoss].Center;
@@ -4251,7 +4268,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                                 else if (npc.HasPlayerTarget)
                                 {
-                                    target.Y = Main.player[npc.target].Center.Y;
+                                    target.Y = Main.player[npc.target].Center.Y - 250;
                                 }
                                 npc.velocity = (target - npc.Center) / 30;
                             }
@@ -5665,19 +5682,33 @@ namespace FargowiltasSouls.NPCs
                                 Timer++;
                                 if (Timer >= 29) //warning dust, reset timer
                                 {
-                                    Timer = 0;
-                                    int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                                    if (t != -1)
-                                    {
-                                        npc.localAI[0] = (Main.player[t].Center - npc.Center).ToRotation();
-                                        /*Vector2 offset = Vector2.UnitX.RotatedBy(npc.localAI[0]) * 10f;
-                                        for (int i = 0; i < 300; i++) //dust warning line for laser
+                                    bool fireLaser = true;
+                                    for (int i = 0; i < Main.maxNPCs; i++) //find this ML's true eye (they're synced, so any is fine)
+                                        if (Main.npc[i].active && Main.npc[i].type == NPCID.MoonLordFreeEye && Main.npc[i].ai[3] == npc.ai[3]) 
                                         {
-                                            int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 111, 0f, 0f, 0, default(Color), 1.5f);
-                                            Main.dust[d].noGravity = true;
-                                            Main.dust[d].velocity *= 0.5f;
-                                        }*/
-                                        Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.localAI[0]), mod.ProjectileType("PhantasmalDeathrayMLSmall"), 0, 0f, Main.myPlayer, 0, npc.whoAmI);
+                                            if (Main.npc[i].ai[0] == 4 && Main.npc[i].ai[1] > 800) //if free eyes are firing deathray, delay own ray
+                                            {
+                                                fireLaser = false;
+                                                Timer = 28;
+                                            }
+                                            break;
+                                        }
+                                    if (fireLaser)
+                                    {
+                                        Timer = 0;
+                                        int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                        if (t != -1)
+                                        {
+                                            npc.localAI[0] = (Main.player[t].Center - npc.Center).ToRotation();
+                                            /*Vector2 offset = Vector2.UnitX.RotatedBy(npc.localAI[0]) * 10f;
+                                            for (int i = 0; i < 300; i++) //dust warning line for laser
+                                            {
+                                                int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 111, 0f, 0f, 0, default(Color), 1.5f);
+                                                Main.dust[d].noGravity = true;
+                                                Main.dust[d].velocity *= 0.5f;
+                                            }*/
+                                            Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.localAI[0]), mod.ProjectileType("PhantasmalDeathrayMLSmall"), 0, 0f, Main.myPlayer, 0, npc.whoAmI);
+                                        }
                                     }
                                 }
                                 if (Timer == 2) //FIRE LASER
@@ -5709,7 +5740,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MoonLordFreeEye:
-                        if (!masoBool[0])
+                        if (!masoBool[0]) //sync to other eyes of same core when spawned
                         {
                             masoBool[0] = true;
                             for (int i = 0; i < Main.maxNPCs; i++)
