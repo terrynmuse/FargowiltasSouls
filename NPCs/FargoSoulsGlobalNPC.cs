@@ -5673,19 +5673,34 @@ namespace FargowiltasSouls.NPCs
                                 Timer++;
                                 if (Timer >= 29) //warning dust, reset timer
                                 {
-                                    Timer = 0;
-                                    int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
-                                    if (t != -1)
-                                    {
-                                        npc.localAI[0] = (Main.player[t].Center - npc.Center).ToRotation();
-                                        /*Vector2 offset = Vector2.UnitX.RotatedBy(npc.localAI[0]) * 10f;
-                                        for (int i = 0; i < 300; i++) //dust warning line for laser
+                                    bool fireLaser = true;
+                                    for (int i = 0; i < Main.maxNPCs; i++) //find this ML's true eye (they're synced, so any is fine)
+                                        if (Main.npc[i].active && Main.npc[i].type == NPCID.MoonLordFreeEye && Main.npc[i].ai[(int)Math.Abs(Main.npc[i].ai[0]) - 1] == npc.ai[3]) 
                                         {
-                                            int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 111, 0f, 0f, 0, default(Color), 1.5f);
-                                            Main.dust[d].noGravity = true;
-                                            Main.dust[d].velocity *= 0.5f;
-                                        }*/
-                                        Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.localAI[0]), mod.ProjectileType("PhantasmalDeathrayMLSmall"), 0, 0f, Main.myPlayer, 0, npc.whoAmI);
+                                            if (Main.npc[i].ai[0] == 77) //if free eyes are firing deathray, delay own ray
+                                            {
+                                                Main.NewText("delay ray");
+                                                fireLaser = false;
+                                                Timer = 28;
+                                            }
+                                            break;
+                                        }
+                                    if (fireLaser)
+                                    {
+                                        Timer = 0;
+                                        int t = npc.HasPlayerTarget ? npc.target : npc.FindClosestPlayer();
+                                        if (t != -1)
+                                        {
+                                            npc.localAI[0] = (Main.player[t].Center - npc.Center).ToRotation();
+                                            /*Vector2 offset = Vector2.UnitX.RotatedBy(npc.localAI[0]) * 10f;
+                                            for (int i = 0; i < 300; i++) //dust warning line for laser
+                                            {
+                                                int d = Dust.NewDust(npc.Center + offset * i, 1, 1, 111, 0f, 0f, 0, default(Color), 1.5f);
+                                                Main.dust[d].noGravity = true;
+                                                Main.dust[d].velocity *= 0.5f;
+                                            }*/
+                                            Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.localAI[0]), mod.ProjectileType("PhantasmalDeathrayMLSmall"), 0, 0f, Main.myPlayer, 0, npc.whoAmI);
+                                        }
                                     }
                                 }
                                 if (Timer == 2) //FIRE LASER
@@ -5717,11 +5732,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MoonLordFreeEye:
-                        if (!masoBool[0])
+                        PrintAI(npc);
+                        if (!masoBool[0]) //sync to other eyes of same core when spawned
                         {
                             masoBool[0] = true;
+                            int ai = (int)Math.Abs(npc.ai[0]) - 1;
                             for (int i = 0; i < Main.maxNPCs; i++)
-                                if (Main.npc[i].active && Main.npc[i].type == NPCID.MoonLordFreeEye && Main.npc[i].ai[3] == npc.ai[3])
+                                if (Main.npc[i].active && Main.npc[i].type == NPCID.MoonLordFreeEye && Main.npc[i].ai[(int)Math.Abs(Main.npc[i].ai[0]) - 1] == npc.ai[ai])
                                 {
                                     npc.ai[0] = Main.npc[i].ai[0];
                                     npc.ai[1] = Main.npc[i].ai[1];
