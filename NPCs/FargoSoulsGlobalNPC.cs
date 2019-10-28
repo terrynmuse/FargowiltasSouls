@@ -2126,7 +2126,7 @@ namespace FargowiltasSouls.NPCs
                             masoBool[1] = true;
                         }
                         if (masoBool[1])
-                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
+                            npc.immortal = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.LunarTowerSolar:
@@ -2160,7 +2160,7 @@ namespace FargowiltasSouls.NPCs
                             masoBool[1] = true;
                         }
                         if (masoBool[1])
-                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
+                            npc.immortal = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.LunarTowerStardust:
@@ -2205,7 +2205,7 @@ namespace FargowiltasSouls.NPCs
                             masoBool[1] = true;
                         }
                         if (masoBool[1])
-                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
+                            npc.immortal = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.LunarTowerVortex:
@@ -2261,7 +2261,7 @@ namespace FargowiltasSouls.NPCs
                             masoBool[1] = true;
                         }
                         if (masoBool[1])
-                            npc.dontTakeDamage = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
+                            npc.immortal = npc.Distance(Main.player[Main.myPlayer].Center) > 3000;
                         break;
 
                     case NPCID.CultistBoss:

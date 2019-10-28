@@ -3021,6 +3021,13 @@ namespace FargowiltasSouls
                 HidePetToggle0 = player.hideMisc[0];
                 HidePetToggle1 = player.hideMisc[1];
 
+                if (Asocial)
+                {
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].minion)
+                            Main.projectile[i].Kill();
+                }
+
                 WasAsocial = true;
             }
 
