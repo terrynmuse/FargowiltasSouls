@@ -3953,7 +3953,15 @@ namespace FargowiltasSouls.NPCs
                         }*/
 
                         if (!masoBool[3])
+                        {
                             npc.position.X += npc.velocity.X / 2f;
+                            if (npc.velocity.Y < 0)
+                            {
+                                npc.position.Y += npc.velocity.Y * 0.5f;
+                                if (npc.velocity.Y > -2)
+                                    npc.velocity.Y = 20;
+                            }
+                        }
 
                         if (masoBool[0])
                         {
@@ -4238,7 +4246,7 @@ namespace FargowiltasSouls.NPCs
 
                             npc.noTileCollide = true;
 
-                            const int fireTime = 120;
+                            const int fireTime = 90;
                             if (++Counter < fireTime) //move to above golem
                             {
                                 Vector2 target = Main.npc[NPC.golemBoss].Center;
