@@ -35,11 +35,7 @@ Makes armed and magic skeletons less hostile outside the Dungeon");
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[BuffID.Dazed] = true;
-            player.meleeDamage += 0.1f;
-            player.rangedDamage += 0.1f;
-            player.magicDamage += 0.1f;
-            player.minionDamage += 0.1f;
-            player.thrownDamage += 0.1f;
+            player.GetModPlayer<FargoPlayer>().AllDamageUp(0.1f);
             player.endurance -= 0.1f;
             player.aggro -= 400;
             player.GetModPlayer<FargoPlayer>().SkullCharm = true;

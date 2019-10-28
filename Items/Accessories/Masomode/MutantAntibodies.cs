@@ -40,11 +40,7 @@ Increases damage by 20%");
             player.buffImmune[BuffID.Rabies] = true;
             player.buffImmune[mod.BuffType("MutantNibble")] = true;
             player.GetModPlayer<FargoPlayer>().MutantAntibodies = true;
-            player.meleeDamage += 0.2f;
-            player.rangedDamage += 0.2f;
-            player.magicDamage += 0.2f;
-            player.minionDamage += 0.2f;
-            player.thrownDamage += 0.2f;
+            player.GetModPlayer<FargoPlayer>().AllDamageUp(0.2f);
             if (player.mount.Active && player.mount.Type == MountID.CuteFishron)
                 player.dripping = true;
         }
