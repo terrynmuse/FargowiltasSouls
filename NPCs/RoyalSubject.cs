@@ -35,6 +35,7 @@ namespace FargowiltasSouls.NPCs
             npc.timeLeft = NPC.activeTime * 30;
             npc.npcSlots = 7f;
             npc.scale = 0.5f;
+            npc.buffImmune[BuffID.Poisoned] = true;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

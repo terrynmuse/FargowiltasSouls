@@ -541,6 +541,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.QueenBee:
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.BeeCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.BeeCount * .0125));
+                        npc.buffImmune[BuffID.Poisoned] = true;
                         break;
                     case NPCID.Hornet:
                     case NPCID.HornetFatty:
@@ -555,6 +556,7 @@ namespace FargowiltasSouls.NPCs
                             npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.BeeCount * .025));
                             npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.BeeCount * .0125));
                         }
+                        npc.buffImmune[BuffID.Poisoned] = true;
                         break;
 
                     case NPCID.SkeletronHead:
@@ -613,6 +615,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PlanterasTentacle:
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.PlanteraCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.PlanteraCount * .0125));
+                        npc.buffImmune[BuffID.Poisoned] = true;
                         break;
 
                     case NPCID.Golem:
@@ -622,6 +625,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.GolemHeadFree:
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.GolemCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.GolemCount * .0125));
+                        npc.buffImmune[BuffID.Poisoned] = true;
                         break;
 
                     case NPCID.CultistBoss:
@@ -641,6 +645,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.AncientLight:
                     case NPCID.SolarGoop:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         if (BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
                             npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                         else if (BossIsAlive(ref cultBoss, NPCID.CultistBoss))
@@ -648,6 +653,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DukeFishron:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         if (FargoSoulsWorld.downedFishronEX || !spawnFishronEX)
                         {
                             npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.FishronCount * .025));
@@ -656,6 +662,7 @@ namespace FargowiltasSouls.NPCs
                         break;
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         if (FargoSoulsWorld.downedFishronEX || !BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
                             npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.FishronCount * .025));
@@ -663,6 +670,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         break;
                     case NPCID.DetonatingBubble:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         if (FargoSoulsWorld.downedFishronEX || !BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                             npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.FishronCount * .0125));
                         break;
@@ -672,6 +680,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MoonLordHead:
                     case NPCID.MoonLordFreeEye:
                     case NPCID.MoonLordLeechBlob:
+                        npc.buffImmune[BuffID.Suffocation] = true;
                         npc.lifeMax = (int)(npc.lifeMax * (1 + FargoSoulsWorld.MoonlordCount * .025));
                         npc.damage = (int)(npc.damage * (1 + FargoSoulsWorld.MoonlordCount * .0125));
                         break;
