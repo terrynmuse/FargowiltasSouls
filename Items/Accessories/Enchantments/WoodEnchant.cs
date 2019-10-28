@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -21,6 +23,17 @@ When critters die, they release their souls to aid you");
 大幅增加动物防御力
 杀死动物不会再获得内疚Debuff
 动物死后,释放它们的灵魂来帮助你");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(151, 107, 75);
+                }
+            }
         }
 
         public override void SetDefaults()

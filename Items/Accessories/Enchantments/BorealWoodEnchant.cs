@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -19,6 +21,17 @@ While in the Snow Biome, you shoot 5 snowballs instead");
 @"'冷木'
 每5次攻击附带着一个雪球
 在冰雪地形时, 发射5个雪球");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(139, 116, 100);
+                }
+            }
         }
 
         public override void SetDefaults()

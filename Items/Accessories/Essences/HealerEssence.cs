@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using System.Linq;
 using ThoriumMod;
 using Terraria.Localization;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {
@@ -32,6 +34,17 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 增加18%光辉伤害
 增加5%治疗和光辉施法速度
 增加5%光辉暴击率");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(255, 30, 247));
+                }
+            }
         }
 
         public override void SetDefaults()

@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -21,6 +23,17 @@ Summons a pet Minotaur");
 @"'你难道不高兴吗?'
 长矛将倾泄在被攻击的敌人身上
 召唤一个小牛头人");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(156, 146, 78);
+                }
+            }
         }
 
         public override void SetDefaults()

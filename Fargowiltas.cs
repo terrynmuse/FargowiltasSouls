@@ -236,7 +236,7 @@ namespace FargowiltasSouls
             };
             string[] EnchColor = {
             //force of life
-            "3357e4",
+            "6D5C85",
             "799e1d",
             "e3651c",
             "6d4e45",

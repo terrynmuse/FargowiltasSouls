@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -21,6 +23,17 @@ Melee attacks may inflict the Solar Flare debuff");
 @"'太烫了'
 日耀护盾允许你向敌人冲刺
 近战攻击概率造成耀斑效果");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(254, 158, 35);
+                }
+            }
         }
 
         public override void SetDefaults()

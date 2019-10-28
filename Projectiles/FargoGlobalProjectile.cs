@@ -170,7 +170,7 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
-                    if (!townNPCProj && !projectile.trap && projectile.aiStyle != 99 &&  modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect"))
+                    if (!townNPCProj && !projectile.trap && projectile.aiStyle != 99 && modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect"))
                     {
                         projectile.position = projectile.Center;
                         projectile.scale *= 2f;

@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -19,6 +21,17 @@ Hurting enemies has a chance to spawn buff boosters");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'创造之柱照耀着你'
 杀死敌人有概率产生增益效果");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(254, 126, 229);
+                }
+            }
         }
 
         public override void SetDefaults()

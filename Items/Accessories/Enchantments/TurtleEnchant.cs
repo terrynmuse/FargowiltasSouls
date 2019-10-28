@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -27,6 +29,17 @@ Summons a pet Lizard and Turtle"); //shell hide no happen with SoE
 反弹100%接触伤害
 敌人死亡时爆成针
 召唤一只宠物蜥蜴和宠物海龟");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(248, 156, 92);
+                }
+            }
         }
 
         public override void SetDefaults()

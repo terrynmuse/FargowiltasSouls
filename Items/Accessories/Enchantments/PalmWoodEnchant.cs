@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -19,6 +21,17 @@ While in the Ocean or Desert, it attacks twice as fast");
 @"'出奇的平静'
 双击'下'键生成一个向敌人投掷坚果的棕榈树哨兵
 在海洋或沙漠中,它的攻击速度翻倍");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(183, 141, 86);
+                }
+            }
         }
 
         public override void SetDefaults()

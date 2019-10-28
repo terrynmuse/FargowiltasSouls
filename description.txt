@@ -27,4 +27,8 @@ NEW UPDATE - v 1.0.0
 -updated calmaity version needed HAHAH
 -added back freezing in snow water :Echceasebegone:, but made you have to stand there for 10 seconds
 -demons have a 6-way instead of 8 way and it happens right after their normal scythe barrages instead of being kinda random
--changed meteorite to be bombable post boss2 instead of skele :tm:
+
+-all essences and vanilla enchants now have custom tooltip colors
+-king slime enrage text now appears right in single player
+-reduced king slimes emrage stats severely
+-demon eyes have more variability in time between dashes, they also flash before they do dash

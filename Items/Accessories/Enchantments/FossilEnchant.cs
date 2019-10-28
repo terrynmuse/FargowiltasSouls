@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -23,6 +25,17 @@ Summons a pet Baby Dino");
 血量为0时避免死亡, 以20点生命值重生
 在复活后的几秒钟内, 免疫所有伤害, 并且可以产生骨头
 召唤一只小恐龙");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(140, 92, 59);
+                }
+            }
         }
 
         public override void SetDefaults()

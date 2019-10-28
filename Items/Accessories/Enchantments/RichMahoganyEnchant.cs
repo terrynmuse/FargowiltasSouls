@@ -2,6 +2,10 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -19,6 +23,17 @@ While in the Jungle, any hook will periodically fire homing shots at enemies");
 @"'保证能勾住你'
 所有抓钩速度翻倍
 在丛林时,所有抓钩会定期向敌人发射追踪射击");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(181, 108, 100);
+                }
+            }
         }
 
         public override void SetDefaults()

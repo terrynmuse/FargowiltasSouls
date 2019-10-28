@@ -2500,10 +2500,10 @@ namespace FargowiltasSouls.NPCs
                                         masoBool[0] = true;
                                         npc.netUpdate = true;
                                         NetUpdateMaso(npc.whoAmI);
-                                        if (Main.netMode == 0)
-                                            Main.NewText("King Slime has enraged!", 175, 75, 255);
-                                        else if (Main.netMode == 2)
+                                        if (Main.netMode == 2)
                                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("King Slime has enraged!"), new Color(175, 75, 255));
+                                        else
+                                            Main.NewText("King Slime has enraged!", 175, 75, 255);
                                     }
                                 }
                                 else
@@ -2521,15 +2521,15 @@ namespace FargowiltasSouls.NPCs
                             }
 
                             SharkCount = 1;
-                            npc.damage = npc.defDamage * 20;
-                            npc.defense = npc.defDefense * 999;
+                            npc.damage = npc.defDamage * 5;
+                            npc.defense = npc.defDefense * 2;
 
                             if (npc.HasPlayerTarget)
                             {
                                 Player p = Main.player[npc.target];
 
                                 Counter2++;
-                                if (Counter2 >= 3) //spray random slime spikes
+                                if (Counter2 >= 4) //spray random slime spikes
                                 {
                                     Counter2 = 0;
                                     if (Main.netMode != 1)
@@ -5770,12 +5770,18 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PurpleEye:
                         //npc.position += npc.velocity;
                         Counter++;
-                        if (Counter >= 420 && Main.rand.Next(60) == 0)
+
+                        if (Counter >= 380 && Counter <= 420)
+                        {
+                            Lighting.AddLight(npc.Center, 1f, 0f, 0f);
+                        }
+
+                        if (Counter >= 420)
                         {
                             npc.TargetClosest();
                             Vector2 velocity = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 12;
                             npc.velocity = velocity;
-                            Counter = 0;
+                            Counter = Main.rand.Next(-300, 0);
                         }
                         if (Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5)
                         {

@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Essences
 {
@@ -23,6 +25,17 @@ namespace FargowiltasSouls.Items.Accessories.Essences
 增加18%远程伤害
 增加5%远程暴击率
 增加5%开火速度");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color?(new Color(188, 253, 68));
+                }
+            }
         }
 
         public override void SetDefaults()

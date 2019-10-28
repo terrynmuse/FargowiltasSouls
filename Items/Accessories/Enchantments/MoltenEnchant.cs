@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -23,6 +25,17 @@ When you die, you violently explode dealing massive damage");
 点燃附近敌人
 敌人距离越近, 收到的伤害越多
 死亡时剧烈爆炸, 造成大量伤害");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(193, 43, 43);
+                }
+            }
         }
 
         public override void SetDefaults()

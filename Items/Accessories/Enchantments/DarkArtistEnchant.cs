@@ -5,6 +5,8 @@ using Terraria.ModLoader;
 using ThoriumMod;
 using ThoriumMod.NPCs;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -39,6 +41,17 @@ Greatly enhances Flameburst effectiveness
             Tooltip.SetDefault(tooltip); 
             DisplayName.AddTranslation(GameCulture.Chinese, "暗黑艺术家魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, tooltip_ch);
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(155, 92, 176);
+                }
+            }
         }
 
         public override void SetDefaults()

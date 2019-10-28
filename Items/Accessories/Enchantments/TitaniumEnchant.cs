@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -19,6 +21,17 @@ Briefly become invulnerable after striking an enemy");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'Hit Me With Your Best Shot(歌名)'
 在攻击敌人后的瞬间无敌");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(130, 140, 136);
+                }
+            }
         }
 
         public override void SetDefaults()
