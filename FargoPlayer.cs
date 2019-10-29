@@ -4083,7 +4083,7 @@ namespace FargowiltasSouls
 
         public void SolarEffect()
         {  
-            if (!SoulConfig.Instance.enchantToggles["Solar Shield"]) return;
+            if (!SoulConfig.Instance.GetValue("Solar Shield")) return;
 
             player.AddBuff(BuffID.SolarShield3, 5, false);
             player.setSolar = true;
