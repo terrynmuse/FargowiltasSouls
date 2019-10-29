@@ -7993,12 +7993,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Golem:
-                        target.AddBuff(mod.BuffType("MarkedforDeath"), 180);
-                        goto case NPCID.GolemFistLeft;
+                    case NPCID.GolemHead:
+                    case NPCID.GolemHeadFree:
                     case NPCID.GolemFistLeft:
                     case NPCID.GolemFistRight:
                         target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
-                        target.AddBuff(BuffID.BrokenArmor, Main.rand.Next(60, 300));
+                        target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(600, 1200));
                         break;
 
                     case NPCID.DD2Betsy:

@@ -1466,9 +1466,12 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.FlamesTrap:
                     case ProjectileID.GeyserTrap:
                     case ProjectileID.Fireball:
+                    case ProjectileID.EyeBeam:
                         target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
                         if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
                         {
+                            target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
+                            target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(300, 600));
                             if (Main.tile[(int)Main.npc[NPC.golemBoss].Center.X / 16, (int)Main.npc[NPC.golemBoss].Center.Y / 16] == null || //outside temple
                                 Main.tile[(int)Main.npc[NPC.golemBoss].Center.X / 16, (int)Main.npc[NPC.golemBoss].Center.Y / 16].wall != WallID.LihzahrdBrickUnsafe)
                             {
@@ -1479,7 +1482,10 @@ namespace FargowiltasSouls.Projectiles
 
                     case ProjectileID.SpikyBallTrap:
                         if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
-                            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 600));
+                        {
+                            target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
+                            target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(600, 1200));
+                        }
                         break;
 
                     case ProjectileID.DD2BetsyFireball:

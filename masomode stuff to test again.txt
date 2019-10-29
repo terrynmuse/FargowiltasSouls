@@ -132,6 +132,11 @@ gravity globe now grants same gravity in space and liquids
 stabilized gravity is allowed in mutant fight
 added a tabi dash toggle (allowed in mutant fight)
 wof projs inflict longer crippled
+tweaked wof p2 attacks
+removed golem's venom on spiky ball
+all of golem's attacks inflict withered armor instead of broken armor
+fixed golem head/flying head not inflicting debuffs on touch
+golem body no longer inflicts MFD
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

@@ -33,6 +33,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
             target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(300, 600));
+            target.AddBuff(BuffID.WitheredArmor, Main.rand.Next(600, 1200));
         }
 
         public override void Kill(int timeLeft)
