@@ -313,6 +313,8 @@ namespace FargowiltasSouls
             //heart of the masochist
             [Label("$Mods.FargowiltasSouls.MasoGravConfig")]
             public bool gravGlobe = true;
+            [Label("$Mods.FargowiltasSouls.MasoGrav2Config")]
+            public bool gravGlobe2 = true;
             [Label("$Mods.FargowiltasSouls.MasoPump")]
             public bool pumpCape = true;
             [Label("$Mods.FargowiltasSouls.MasoFlockoConfig")]
@@ -423,6 +425,7 @@ namespace FargowiltasSouls
                 SoulConfig.Instance.masoTogDict["Probes Minion"] = destroyProbe;
                 //heart of the masochist
                 SoulConfig.Instance.masoTogDict["Gravity Control"] = gravGlobe;
+                SoulConfig.Instance.masoTogDict["Stabilized Gravity"] = gravGlobe2;
                 SoulConfig.Instance.masoTogDict["Pumpking's Cape Support"] = pumpCape;
                 SoulConfig.Instance.masoTogDict["Flocko Minion"] = flockoMinion;
                 SoulConfig.Instance.masoTogDict["Saucer Minion"] = ufoMinion;
@@ -1017,6 +1020,7 @@ namespace FargowiltasSouls
             masoTogDict.Add("Probes Minion", masomenu.destroyProbe);
             //heart of the masochist
             masoTogDict.Add("Gravity Control", masomenu.gravGlobe);
+            masoTogDict.Add("Stabilized Gravity", masomenu.gravGlobe2);
             masoTogDict.Add("Pumpking's Cape Support", masomenu.pumpCape);
             masoTogDict.Add("Flocko Minion", masomenu.flockoMinion);
             masoTogDict.Add("Saucer Minion", masomenu.ufoMinion);

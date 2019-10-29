@@ -332,6 +332,7 @@ namespace FargowiltasSouls
             "Probes Minion",
             //heart of the masochist
             "Gravity Control",
+            "Stabilized Gravity",
             "Pumpking's Cape Support",
             "Flocko Minion",
             "Saucer Minion",
@@ -372,6 +373,7 @@ namespace FargowiltasSouls
             "Probes Minion",
             //heart of the masochist
             "Gravity Control",
+            "Stabilized Gravity",
             "Pumpking's Cape Support",
             "Flocko Minion",
             "Saucer Minion",
@@ -412,6 +414,7 @@ namespace FargowiltasSouls
             "MasoProbeConfig",
             //heart of the masochist
             "MasoGravConfig",
+            "MasoGrav2Config",
             "MasoPump",
             "MasoFlockoConfig",
             "MasoUfoConfig",

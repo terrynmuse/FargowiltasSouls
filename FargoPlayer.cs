@@ -1042,6 +1042,9 @@ namespace FargowiltasSouls
 
         public override void PostUpdateMiscEffects()
         {
+            if (GravityGlobeEX && SoulConfig.Instance.GetValue("Stabilized Gravity"))
+                player.gravity = Player.defaultGravity;
+
             if (TikiEnchant && SoulConfig.Instance.GetValue("Tiki Minions"))
             {
                 actualMinions = player.maxMinions;

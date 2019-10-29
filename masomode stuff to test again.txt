@@ -128,6 +128,7 @@ asocial now forcibly kills minions/sentries
 made pillars immortal when outside range
 buffed gold ench a LOT
 using abom doll summons abom if there isnt one
+gravity globe now grants same gravity in space and liquids
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
