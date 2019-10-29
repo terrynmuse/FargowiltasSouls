@@ -130,6 +130,7 @@ buffed gold ench a LOT
 using abom doll summons abom if there isnt one
 gravity globe now grants same gravity in space and liquids
 stabilized gravity is allowed in mutant fight
+added a tabi dash toggle (allowed in mutant fight)
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

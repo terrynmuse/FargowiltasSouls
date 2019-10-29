@@ -86,11 +86,8 @@ Summons several pets";
             //ninja gear
             player.blackBelt = true;
             player.spikedBoots = 2;
-            //since SoT has shield of cthu
-            if (!modPlayer.TerrariaSoul)
-            {
+            if (SoulConfig.Instance.enchantToggles["Tabi Dash"])
                 player.dash = 1;
-            }
             //tele thru walls, pet
             modPlayer.ShinobiEffect(hideVisual);
             //smoke bomb nonsense, pet

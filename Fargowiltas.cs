@@ -183,6 +183,7 @@ namespace FargowiltasSouls
             "NecroConfig",
             "ShadowConfig",
             "ShinobiConfig",
+            "ShinobiTabiConfig",
             "SpookyConfig",
             //force of spirit
             "ForbiddenConfig",
@@ -218,6 +219,7 @@ namespace FargowiltasSouls
             "Necro Guardian",
             "Shadow Darkness",
             "Shinobi Through Walls",
+            "Tabi Dash",
             "Spooky Scythes",
             //force of spirit
             "Forbidden Storm",
@@ -253,6 +255,7 @@ namespace FargowiltasSouls
             "565643",
             "42356f",
             "935b18",
+            "935b18",
             "644e74",
             //force of spirit
             "e7b21c",
@@ -287,6 +290,7 @@ namespace FargowiltasSouls
             "DarkArtistEnchant",
             "NecroEnchant",
             "ShadowEnchant",
+            "ShinobiEnchant",
             "ShinobiEnchant",
             "SpookyEnchant",
             //force of spirit

@@ -139,6 +139,8 @@ namespace FargowiltasSouls
                 public bool shadowDark = true;
                 [Label("$Mods.FargowiltasSouls.ShinobiConfig")]
                 public bool shinWalls = true;
+                [Label("$Mods.FargowiltasSouls.ShinobiTabiConfig")]
+                public bool shinTabi = true;
                 [Label("$Mods.FargowiltasSouls.SpookyConfig")]
                 public bool spookScythe = true;
 
@@ -211,6 +213,7 @@ namespace FargowiltasSouls
                     SoulConfig.Instance.enchantToggles["Necro Guardian"] = necroGuard;
                     SoulConfig.Instance.enchantToggles["Shadow Darkness"] = shadowDark;
                     SoulConfig.Instance.enchantToggles["Shinobi Through Walls"] = shinWalls;
+                    SoulConfig.Instance.enchantToggles["Tabi Dash"] = shinTabi;
                     SoulConfig.Instance.enchantToggles["Spooky Scythes"] = spookScythe;
                     //force of spirit
                     SoulConfig.Instance.enchantToggles["Forbidden Storm"] = forbidStorm;
@@ -986,6 +989,7 @@ namespace FargowiltasSouls
             enchantToggles.Add("Necro Guardian", terrmenu.terenchmenu.necroGuard);
             enchantToggles.Add("Shadow Darkness", terrmenu.terenchmenu.shadowDark);
             enchantToggles.Add("Shinobi Through Walls", terrmenu.terenchmenu.shinWalls);
+            enchantToggles.Add("Tabi Dash", terrmenu.terenchmenu.shinTabi);
             enchantToggles.Add("Spooky Scythes", terrmenu.terenchmenu.spookScythe);
 
             enchantToggles.Add("Forbidden Storm", terrmenu.terenchmenu.forbidStorm);
