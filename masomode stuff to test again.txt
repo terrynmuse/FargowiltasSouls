@@ -137,6 +137,7 @@ removed golem's venom on spiky ball
 all of golem's attacks inflict withered armor instead of broken armor
 fixed golem head/flying head not inflicting debuffs on touch
 golem body no longer inflicts MFD
+BUFFED BETSY'S HEART: now gives a fireball dash
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

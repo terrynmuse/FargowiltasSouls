@@ -20,6 +20,7 @@ Increases damage, critical strike chance, and damage reduction by 10%,
 Increases flight time by 100%
 You may periodically fire additional attacks depending on weapon type
 Your critical strikes inflict Rotting and Betsy's Curse
+Press C to become a fireball and perform a short invincible dash
 Grants effects of Wet debuff while riding Cute Fishron and gravity control
 Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
             DisplayName.AddTranslation(GameCulture.Chinese, "受虐者之心");
