@@ -131,7 +131,6 @@ using abom doll summons abom if there isnt one
 gravity globe now grants same gravity in space and liquids
 stabilized gravity is allowed in mutant fight
 added a tabi dash toggle (allowed in mutant fight)
-increased wof's speed cap slightly (a bit faster)
 wof projs inflict longer crippled
 
 -------------------------------------------------------------------------------------------------------------------
