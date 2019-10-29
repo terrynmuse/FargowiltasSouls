@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Misc
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Abominationn Voodoo Doll");
-            Tooltip.SetDefault("'You are a terrible person'");
+            Tooltip.SetDefault("Summons Abominationn to your town\n'You are a terrible person'");
             DisplayName.AddTranslation(GameCulture.Chinese, "憎恶巫毒娃娃");
             Tooltip.AddTranslation(GameCulture.Chinese, "你可真是个坏东西");
 		}
@@ -23,7 +23,24 @@ namespace FargowiltasSouls.Items.Misc
             item.width = 20;
             item.height = 20;
             item.rare = 11;
+            item.useAnimation = 30;
+            item.useTime = 30;
+            item.useStyle = 4;
             item.value = Item.sellPrice(0, 1);
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            return Fargowiltas.Instance.FargosLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Abominationn"));
+        }
+
+        public override bool UseItem(Player player)
+        {
+            if (Fargowiltas.Instance.FargosLoaded)
+            {
+                NPC.SpawnOnPlayer(player.whoAmI, ModLoader.GetMod("Fargowiltas").NPCType("Abominationn"));
+            }
+            return true;
         }
 
         public override void Update(ref float gravity, ref float maxFallSpeed)

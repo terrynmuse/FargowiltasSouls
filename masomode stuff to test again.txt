@@ -127,6 +127,7 @@ moon lord sockets will delay their deathrays if true eyes are firing theirs
 asocial now forcibly kills minions/sentries
 made pillars immortal when outside range
 buffed gold ench a LOT
+using abom doll summons abom if there isnt one
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
