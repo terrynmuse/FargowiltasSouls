@@ -2831,7 +2831,7 @@ namespace FargowiltasSouls.NPCs
                                 masoBool[2] = false;
                                 npc.netUpdate = true;
                             }
-                            else if (Counter < 300) //special attacks
+                            else if (Counter < 240) //special attacks
                             {
                                 if (masoBool[1]) //cursed inferno attack
                                 {
@@ -2860,7 +2860,7 @@ namespace FargowiltasSouls.NPCs
                                         }
                                         else
                                         {
-                                            Counter = 300; //immediately end
+                                            Counter = 240; //immediately end
                                         }
                                     }
                                 }
@@ -2872,7 +2872,7 @@ namespace FargowiltasSouls.NPCs
                                         if (Main.netMode != 1)
                                         {
                                             Vector2 target = npc.Center;
-                                            target.X += Math.Sign(npc.velocity.X) * 1800f * Counter / 300f; //gradually targets further and further
+                                            target.X += Math.Sign(npc.velocity.X) * 1800f * Counter / 240f; //gradually targets further and further
                                             for (int i = 0; i < 4; i++)
                                             {
                                                 Vector2 speed = target - npc.Center;
@@ -2940,20 +2940,27 @@ namespace FargowiltasSouls.NPCs
                             npc.TargetClosest(true);
                             if (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 3000)
                                 npc.position.X += 20 * Math.Sign(npc.velocity.X);
-                            else if (Math.Abs(npc.velocity.X) > 6)
-                                npc.position.X -= (Math.Abs(npc.velocity.X) - 6) * Math.Sign(npc.velocity.X);
+                            else if (Math.Abs(npc.velocity.X) > 5f)
+                                npc.position.X -= (Math.Abs(npc.velocity.X) - 5f) * Math.Sign(npc.velocity.X);
                         }
-                        else if (Math.Abs(npc.velocity.X) > 6)
-                            npc.position.X -= (Math.Abs(npc.velocity.X) - 6) * Math.Sign(npc.velocity.X);
+                        else if (Math.Abs(npc.velocity.X) > 5f)
+                            npc.position.X -= (Math.Abs(npc.velocity.X) - 5f) * Math.Sign(npc.velocity.X);
 
                         if (Main.player[Main.myPlayer].active & !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].ZoneUnderworldHeight)
                         {
+                            float velX = npc.velocity.X;
+                            if (velX > 5f)
+                                velX = 5f;
+                            else if (velX < -5f)
+                                velX = -5f;
+
                             for (int i = 0; i < 10; i++) //dust
                             {
                                 Vector2 dustPos = new Vector2(2000 * npc.direction, 0f).RotatedBy(Math.PI / 3 * (-0.5 + Main.rand.NextDouble()));
                                 int d = Dust.NewDust(npc.Center + dustPos, 0, 0, DustID.Fire);
                                 Main.dust[d].scale += 1f;
-                                Main.dust[d].velocity = npc.velocity;
+                                Main.dust[d].velocity.X = velX;
+                                Main.dust[d].velocity.Y = npc.velocity.Y;
                                 Main.dust[d].noGravity = true;
                                 Main.dust[d].noLight = true;
                             }
