@@ -375,6 +375,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.WallofFlesh:
                         npc.defense *= 10;
                         Timer = 0;
+                        Counter = 600;
                         break;
                     case NPCID.WallofFleshEye:
                         npc.buffImmune[mod.BuffType("ClippedWings")] = true;
@@ -2834,7 +2835,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 if (masoBool[1]) //cursed inferno attack
                                 {
-                                    if (++Counter2 > 6)
+                                    if (++Counter2 > 5)
                                     {
                                         Counter2 = 0;
                                         if (!masoBool[2])
@@ -2842,7 +2843,7 @@ namespace FargowiltasSouls.NPCs
                                             masoBool[2] = true;
                                             Timer = (int)(npc.Center.X + Math.Sign(npc.velocity.X) * 2500);
                                         }
-                                        if (Math.Abs(npc.Center.X - Timer) > 1000)
+                                        if (Math.Abs(npc.Center.X - Timer) > 800)
                                         {
                                             Vector2 spawnPos = new Vector2(Timer, npc.Center.Y);
                                             Main.PlaySound(SoundID.Item34, spawnPos);
@@ -2852,10 +2853,14 @@ namespace FargowiltasSouls.NPCs
                                             if (Main.netMode != 1)
                                             {
                                                 Projectile.NewProjectile(spawnPos + Vector2.UnitY * offsetY, Vector2.UnitY * -speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
-                                                Projectile.NewProjectile(spawnPos + Vector2.UnitY * offsetY, Vector2.UnitY * speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
-                                                Projectile.NewProjectile(spawnPos + Vector2.UnitY * -offsetY, Vector2.UnitY * -speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(spawnPos + Vector2.UnitY * offsetY / 2, Vector2.UnitY * speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
+                                                Projectile.NewProjectile(spawnPos + Vector2.UnitY * -offsetY / 2, Vector2.UnitY * -speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
                                                 Projectile.NewProjectile(spawnPos + Vector2.UnitY * -offsetY, Vector2.UnitY * speed, mod.ProjectileType("CursedFlamethrower"), npc.damage / 5, 0f, Main.myPlayer);
                                             }
+                                        }
+                                        else
+                                        {
+                                            Counter = 300; //immediately end
                                         }
                                     }
                                 }
