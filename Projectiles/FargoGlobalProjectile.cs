@@ -1277,7 +1277,7 @@ namespace FargowiltasSouls.Projectiles
                         {
                             target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 300));
                             target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 240));
-                            target.AddBuff(mod.BuffType("Crippled"), 60);
+                            target.AddBuff(mod.BuffType("Crippled"), 120);
                         }
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
                         {
