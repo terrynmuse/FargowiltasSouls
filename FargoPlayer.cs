@@ -1042,7 +1042,7 @@ namespace FargowiltasSouls
 
         public override void PostUpdateMiscEffects()
         {
-            if (GravityGlobeEX && SoulConfig.Instance.GetValue("Stabilized Gravity"))
+            if (GravityGlobeEX && SoulConfig.Instance.masoTogDict["Stabilized Gravity"])
                 player.gravity = Player.defaultGravity;
 
             if (TikiEnchant && SoulConfig.Instance.GetValue("Tiki Minions"))
@@ -4083,7 +4083,7 @@ namespace FargowiltasSouls
 
         public void SolarEffect()
         {  
-            if (!SoulConfig.Instance.GetValue("Solar Shield")) return;
+            if (!SoulConfig.Instance.enchantToggles["Solar Shield"]) return;
 
             player.AddBuff(BuffID.SolarShield3, 5, false);
             player.setSolar = true;

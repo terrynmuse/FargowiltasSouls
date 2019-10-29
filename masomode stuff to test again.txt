@@ -129,6 +129,7 @@ made pillars immortal when outside range
 buffed gold ench a LOT
 using abom doll summons abom if there isnt one
 gravity globe now grants same gravity in space and liquids
+stabilized gravity and solar shield are allowed in mutant fight
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
