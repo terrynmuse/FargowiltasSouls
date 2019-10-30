@@ -2788,9 +2788,16 @@ namespace FargowiltasSouls
             }
         }
 
+        public override bool CanBeHitByNPC(NPC npc, ref int cooldownSlot)
+        {
+            if (BetsyDashing)
+                return false;
+            return true;
+        }
+
         public override bool CanBeHitByProjectile(Projectile proj)
         {
-            if (ShellHide)
+            if (BetsyDashing || ShellHide)
                 return false;
             if (QueenStinger && !Main.hardMode && proj.type == ProjectileID.Stinger && !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.beeBoss, NPCID.QueenBee))
                 return false;
