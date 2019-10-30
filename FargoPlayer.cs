@@ -418,7 +418,7 @@ namespace FargowiltasSouls
                     player.hurtCooldowns[0] = 2;
                     player.hurtCooldowns[1] = 2;
 
-                    Vector2 vel = player.DirectionTo(Main.MouseWorld) * 14;
+                    Vector2 vel = player.DirectionTo(Main.MouseWorld) * 28;
                     Projectile.NewProjectile(player.Center, vel, mod.ProjectileType("BetsyDash"), (int)(100 * player.meleeDamage), 0f, player.whoAmI);
                 }
             }
@@ -1072,7 +1072,18 @@ namespace FargowiltasSouls
         public override void PostUpdateMiscEffects()
         {
             if (BetsysHeart && BetsyDashCD > 0)
+            {
                 BetsyDashCD--;
+                if (BetsyDashCD == 0)
+                {
+                    for (int i = 0; i < 30; i++)
+                    {
+                        int d = Dust.NewDust(player.position, player.width, player.height, 87, 0, 0, 0, default, 2.5f);
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].velocity *= 4f;
+                    }
+                }
+            }
 
             if (GravityGlobeEX && SoulConfig.Instance.masoTogDict["Stabilized Gravity"])
                 player.gravity = Player.defaultGravity;

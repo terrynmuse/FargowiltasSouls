@@ -4320,7 +4320,7 @@ namespace FargowiltasSouls.NPCs
                             {
                                 const int max = 10;
                                 for (int i = -max; i <= max; i++)
-                                    Projectile.NewProjectile(npc.Center, -11 * Vector2.UnitY.RotatedBy(Math.PI / 4 / max * i), ProjectileID.EyeBeam, npc.damage / 5, 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(npc.Center, -11 * Vector2.UnitY.RotatedBy(Math.PI / 2 / max * i), ProjectileID.EyeBeam, npc.damage / 5, 0f, Main.myPlayer);
                             }
 
                             if (npc.netUpdate)

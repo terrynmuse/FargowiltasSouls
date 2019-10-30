@@ -14,17 +14,19 @@ namespace FargowiltasSouls.Projectiles.Masomode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dash");
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 6;
+            ProjectileID.Sets.TrailingMode[projectile.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 30;
-            projectile.height = 30;
+            projectile.width = Player.defaultHeight;
+            projectile.height = Player.defaultHeight;
             projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.melee = true;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 20;
+            projectile.timeLeft = 15;
             projectile.penetrate = -1;
         }
 
@@ -37,32 +39,45 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 return;
             }
 
-            player.GetModPlayer<FargoPlayer>().BetsyDashing = true;
+            if (projectile.timeLeft > 1)
+            {
+                player.GetModPlayer<FargoPlayer>().BetsyDashing = true;
 
-            player.Center = projectile.Center;
-            player.velocity = projectile.velocity;
+                player.Center = projectile.Center;
+                player.velocity = projectile.velocity;
+                player.direction = projectile.velocity.X > 0 ? 1 : -1;
 
-            player.controlLeft = false;
-            player.controlRight = false;
-            player.controlJump = false;
-            player.controlDown = false;
-            player.controlUseItem = false;
-            player.controlUseTile = false;
-            player.controlHook = false;
-            player.controlMount = false;
+                player.controlLeft = false;
+                player.controlRight = false;
+                player.controlJump = false;
+                player.controlDown = false;
+                player.controlUseItem = false;
+                player.controlUseTile = false;
+                player.controlHook = false;
+                player.controlMount = false;
 
-            player.immune = true;
-            player.immuneTime = 2;
-            player.hurtCooldowns[0] = 2;
-            player.hurtCooldowns[1] = 2;
-
+                player.immune = true;
+                player.immuneTime = 2;
+                player.hurtCooldowns[0] = 2;
+                player.hurtCooldowns[1] = 2;
+            }
+            else
+            {
+                player.velocity *= 0.5f;
+            }
 
             projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
 
             if (projectile.localAI[0] == 0)
             {
                 projectile.localAI[0] = 1;
-                //dust and explosion sound
+                Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 14);
+                for (int i = 0; i < 30; i++)
+                {
+                    int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 87, 0, 0, 0, default, 2.5f);
+                    Main.dust[d].noGravity = true;
+                    Main.dust[d].velocity *= 4f;
+                }
             }
         }
 
@@ -73,7 +88,13 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void Kill(int timeLeft)
         {
-            //dust and explosion sound
+            Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 14);
+            for (int i = 0; i < 30; i++)
+            {
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 87, 0, 0, 0, default, 2.5f);
+                Main.dust[d].noGravity = true;
+                Main.dust[d].velocity *= 4f;
+            }
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
@@ -90,7 +111,19 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 int y3 = num156 * projectile.frame; //ypos of upper left corner of sprite to draw
                 Rectangle rectangle = new Rectangle(0, y3, texture2D13.Width, num156);
                 Vector2 origin2 = rectangle.Size() / 2f;
-                Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Color.White, projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+
+                Color color26 = Color.White;
+
+                for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
+                {
+                    Color color27 = color26;
+                    color27 *= (float)(ProjectileID.Sets.TrailCacheLength[projectile.type] - i) / ProjectileID.Sets.TrailCacheLength[projectile.type];
+                    Vector2 value4 = projectile.oldPos[i];
+                    float num165 = projectile.oldRot[i];
+                    Main.spriteBatch.Draw(texture2D13, value4 + projectile.Size / 2f - Main.screenPosition + new Vector2(0, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color27, num165, origin2, projectile.scale, SpriteEffects.None, 0f);
+                }
+
+                Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), projectile.GetAlpha(lightColor), projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
             }
             return false;
         }
