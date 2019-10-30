@@ -28,7 +28,55 @@ NEW UPDATE - v 1.0.0
 -added back freezing in snow water :Echceasebegone:, but made you have to stand there for 10 seconds
 -demons have a 6-way instead of 8 way and it happens right after their normal scythe barrages instead of being kinda random
 
+
+-smoke bomb hotkey now actually removes smoke bombs from your inventory and cannot be used while attacking
 -all essences and vanilla enchants now have custom tooltip colors
 -king slime enrage text now appears right in single player
--reduced king slimes emrage stats severely
+-reduced king slimes enrage stats severely
 -demon eyes have more variability in time between dashes, they also flash before they do dash
+
+-removed added potion drops to bosses
+
+-every potion now drops in masomode from common enemies
+-pirate captain drops ammo reservation potions
+-goblin archers drop archery
+-goblin scouts drop battle
+-antlions drop builder
+-bunnies drop calming
+-arapaima drop crate
+-wall creepers drop dangersense
+-granite golem drop endurance
+-harpies drop featherfall
+-piranhas drop fishing
+-sharks drop flipper
+-goldfish drop gils
+-wyverns drop gravitation
+-dripplers drop heartreach
+-ducks drop hunter
+-fire imps drop inferno
+-salamanders drop invisibility
+-hoplites drop ironskin
+-biome mimics drop lifeforce
+-nymph drops love
+-rune mage drops magic power
+-tim drops mana regen
+-undead miners drop mining
+-ravens drop night owl
+-bone serpents drop obsidian skin
+-blood zombie drops rage
+-rainbow slime drops regeneration
+-jellyfish drop shine
+-bats drop sonar
+-mimics drop spelunker
+-toxic sludge drop stink
+-goblin summoner drops summoner
+-angry tumbler drops swiftness
+-chaos elemental drops teleportation
+-spiked jungle slime drops thorn
+-ice golem drops titan
+-lava slime drops warmth
+-ice slime drops water walking
+-sand elemental drops wrath
+-yellow slimes drop recall
+-giant worms drop wormhole
+

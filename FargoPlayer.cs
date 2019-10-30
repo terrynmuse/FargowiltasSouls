@@ -84,6 +84,7 @@ namespace FargowiltasSouls
         public bool NearSmoke;
         private bool hasSmokeBomb;
         private int smokeBombCD;
+        private int smokeBombSlot;
         public bool IronEnchant;
         public bool IronGuard;
         public bool TurtleEnchant;
@@ -387,13 +388,14 @@ namespace FargowiltasSouls
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Zhonyas").WithVolume(1f), player.Center);
             }
 
-            if (Fargowiltas.SmokeBombKey.JustPressed && NinjaEnchant && hasSmokeBomb && smokeBombCD == 0)
+            if (Fargowiltas.SmokeBombKey.JustPressed && NinjaEnchant && hasSmokeBomb && smokeBombCD == 0 && player.controlUseItem == false && player.itemAnimation == 0 && player.itemTime == 0)
             {
                 Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.Center) * 6;
 
                 Projectile.NewProjectile(player.Center, velocity, ProjectileID.SmokeBomb, 0, 0, player.whoAmI);
 
                 smokeBombCD = 15;
+                player.inventory[smokeBombSlot].stack--;
             }
         }
 
@@ -1065,6 +1067,7 @@ namespace FargowiltasSouls
                     if (item.type == ItemID.SmokeBomb)
                     {
                         hasSmokeBomb = true;
+                        smokeBombSlot = j;
                     }
                 }
 

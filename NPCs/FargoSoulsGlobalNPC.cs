@@ -9178,10 +9178,8 @@ namespace FargowiltasSouls.NPCs
             {
                 switch (npc.type)
                 {
-                    case NPCID.CaveBat:
-                    case NPCID.GiantBat:
-                    case NPCID.IceBat:
                     case NPCID.JungleBat:
+                    case NPCID.GiantBat:
                     case NPCID.Vampire:
                     case NPCID.VampireBat:
                     case NPCID.GiantFlyingFox:
@@ -9204,6 +9202,9 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ChaosElemental:
                         Item.NewItem(npc.position, npc.Size, mod.ItemType("VolatileEnergy"), Main.rand.Next(3, 7));
+
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.TeleportationPotion, Main.rand.Next(1, 2) + 1);
                         break;
 
                     case NPCID.CorruptBunny:
@@ -9269,11 +9270,14 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.BigMimicJungle:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("TribalCharm"));
-                        break;
+                        goto case NPCID.BigMimicCrimson;
 
                     case NPCID.IceGolem:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("FrigidGemstone"));
+
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.TitanPotion, Main.rand.Next(2, 3) + 1);
                         break;
 
                     case NPCID.WyvernHead:
@@ -9281,26 +9285,40 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("DragonFang"));
                         if (Main.rand.Next(3) == 0)
                             Item.NewItem(npc.position, npc.Size, ItemID.FloatingIslandFishingCrate);
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.GravitationPotion, Main.rand.Next(2, 3) + 1);
                         break;
 
                     case NPCID.RainbowSlime:
                         if (masoBool[0] && Main.rand.Next(20) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("ConcentratedRainbowMatter"));
+
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.RegenerationPotion, Main.rand.Next(2, 3) + 1);
                         break;
 
                     case NPCID.SandElemental:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("SandsofTime"));
+
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.WrathPotion, Main.rand.Next(2, 3) + 1);
                         break;
 
                     case NPCID.GoblinSummoner:
                         if (Main.rand.Next(10) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("WretchedPouch"));
+
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.SummoningPotion, Main.rand.Next(3, 5) + 1);
                         break;
 
                     case NPCID.PirateCaptain:
                         if (Main.rand.Next(15) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("GoldenDippingVat"));
+
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.AmmoReservationPotion, Main.rand.Next(2, 3) + 1);
                         break;
 
                     case NPCID.PirateShip:
@@ -9311,6 +9329,9 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Nymph:
                         if (Main.rand.Next(2) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("NymphsPerfume"));
+
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.LovePotion, Main.rand.Next(3, 5) + 1);
                         break;
 
                     case NPCID.MourningWood:
@@ -9346,6 +9367,9 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.LavaSlime:
                         if (Main.rand.Next(100) == 0)
                             Item.NewItem(npc.position, npc.Size, ItemID.LavaCharm);
+
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.WarmthPotion, Main.rand.Next(1, 2) + 1);
                         break;
 
                     case NPCID.BlackRecluse:
@@ -9367,6 +9391,9 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.RuneWizard:
                         if (Main.rand.Next(2) == 0)
                             Item.NewItem(npc.position, npc.Size, mod.ItemType("MysticSkull"));
+
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.MagicPowerPotion, Main.rand.Next(3, 5) + 1);
                         break;
 
                     case NPCID.SnowBalla:
@@ -9399,6 +9426,178 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.Size, ItemID.TruffleWorm);
                         break;
 
+                    //potion drops
+                    case NPCID.GoblinArcher:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.ArcheryPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Antlion:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.BuilderPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Mimic:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.SpelunkerPotion, Main.rand.Next(2, 3) + 1);
+                        break;
+
+                    case NPCID.WallCreeperWall:
+                    case NPCID.WallCreeper:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.TrapsightPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Salamander:
+                    case NPCID.Salamander2:
+                    case NPCID.Salamander3:
+                    case NPCID.Salamander4:
+                    case NPCID.Salamander5:
+                    case NPCID.Salamander6:
+                    case NPCID.Salamander7:
+                    case NPCID.Salamander8:
+                    case NPCID.Salamander9:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.InvisibilityPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.GreekSkeleton:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.IronskinPotion, Main.rand.Next(2, 3) + 1);
+                        break;
+
+                    case NPCID.Harpy:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.FeatherfallPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Shark:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.FlipperPotion, Main.rand.Next(2, 3) + 1);
+                        break;
+
+                    case NPCID.GraniteGolem:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.EndurancePotion, Main.rand.Next(2, 3) + 1);
+                        break;
+
+                    case NPCID.Tim:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.ManaRegenerationPotion, Main.rand.Next(4, 6) + 1);
+                        break;
+
+                    case NPCID.UndeadMiner:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.MiningPotion, Main.rand.Next(3, 4) + 1);
+                        break;
+
+                    case NPCID.Raven:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.NightOwlPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.BloodZombie:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.RagePotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.PinkJellyfish:
+                    case NPCID.BlueJellyfish:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.ShinePotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.CaveBat:
+                    case NPCID.IceBat:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.SonarPotion, Main.rand.Next(1, 2) + 1);
+                        goto case NPCID.JungleBat;
+
+                    case NPCID.BoneSerpentHead:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.ObsidianSkinPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.FireImp:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.InfernoPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Drippler:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.HeartreachPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.GoblinScout:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.BattlePotion, Main.rand.Next(2, 3) + 1);
+                        break;
+
+                    case NPCID.Bunny:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.CalmingPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Arapaima:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.CratePotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Piranha:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.FishingPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.ToxicSludge:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.StinkPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Tumbleweed:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.SwiftnessPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.SpikedJungleSlime:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.ThornsPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.YellowSlime:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.RecallPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.GiantWormHead:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.WormholePotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.IceSlime:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.WaterWalkingPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Goldfish:
+                    case NPCID.GoldfishWalker:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.GillsPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.Duck:
+                    case NPCID.Duck2:
+                    case NPCID.DuckWhite:
+                    case NPCID.DuckWhite2:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.HunterPotion, Main.rand.Next(1, 2) + 1);
+                        break;
+
+                    case NPCID.BigMimicCorruption:
+                    case NPCID.BigMimicCrimson:
+                        if (Main.rand.Next(1) == 0)
+                            Item.NewItem(npc.position, npc.Size, ItemID.LifeforcePotion, Main.rand.Next(2, 3) + 1);
+                        break;
+
                     #region boss drops
                     case NPCID.KingSlime:
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HerbBag, Main.rand.Next(3) + 1);
@@ -9413,7 +9612,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        npc.DropItemInstanced(npc.position, npc.Size, Main.netMode == 0 ? ItemID.TeleportationPotion : ItemID.WormholePotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.LifeCrystal, Main.rand.Next(3) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("AgitatingLens"));
                         break;
@@ -9432,7 +9630,6 @@ namespace FargowiltasSouls.NPCs
                         }
                         if (dropItems)
                         {
-                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.RagePotion, Main.rand.Next(10) + 1);
                             npc.DropItemInstanced(npc.position, npc.Size, ItemID.CorruptFishingCrate, Main.rand.Next(3) + 1);
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CorruptHeart"));
 
@@ -9443,7 +9640,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.WrathPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.CrimsonFishingCrate, Main.rand.Next(3) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("GuttedHeart"));
 
@@ -9453,20 +9649,17 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SkeletronHead:
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.TitanPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.DungeonFishingCrate, Main.rand.Next(3) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("NecromanticBrew"));
                         break;
 
                     case NPCID.QueenBee:
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.SummoningPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.JungleFishingCrate, Main.rand.Next(3) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("QueenStinger"));
                         break;
 
                     case NPCID.WallofFlesh:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("PungentEyeball"));
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.ObsidianSkinPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HallowedFishingCrate, Main.rand.Next(3) + 1);
                         if (Fargowiltas.Instance.FargosLoaded)
                         {
@@ -9480,7 +9673,6 @@ namespace FargowiltasSouls.NPCs
                         if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
                         {
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("FusedLens"));
-                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.MagicPowerPotion, Main.rand.Next(10) + 1);
                             npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
                             npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(3) + 1);
                         }
@@ -9490,7 +9682,6 @@ namespace FargowiltasSouls.NPCs
                         if (!BossIsAlive(ref retiBoss, NPCID.Retinazer))
                         {
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("FusedLens"));
-                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.MagicPowerPotion, Main.rand.Next(10) + 1);
                             npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
                             npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(3) + 1);
                         }
@@ -9498,32 +9689,27 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.TheDestroyer:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("GroundStick"));
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.GravitationPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(3) + 1);
                         break;
 
                     case NPCID.SkeletronPrime:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("ReinforcedPlating"));
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.EndurancePotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(3) + 1);
                         break;
 
                     case NPCID.Plantera:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MagicalBulb"));
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.CalmingPotion, Main.rand.Next(10) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.LifeFruit, Main.rand.Next(3) + 1);
                         break;
 
                     case NPCID.Golem:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("LihzahrdTreasureBox"));
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.LifeforcePotion, Main.rand.Next(10) + 1);
                         break;
 
                     case NPCID.DD2Betsy:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("BetsysHeart"));
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.InfernoPotion, Main.rand.Next(10) + 1);
                         FargoSoulsWorld.downedBetsy = true;
                         break;
 
