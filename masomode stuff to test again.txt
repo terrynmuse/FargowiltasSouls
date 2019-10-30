@@ -140,6 +140,10 @@ golem body no longer inflicts MFD
 golem head sprays overhead lasers when it finishes a deathray rush
 BUFFED BETSY'S HEART: now gives a fireball dash
 
+demon can drop blindfold 2%
+piranha drop bandage
+derpling drop trifold map
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)

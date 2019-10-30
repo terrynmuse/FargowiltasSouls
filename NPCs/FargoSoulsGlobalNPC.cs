@@ -9412,6 +9412,19 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.position, npc.Size, ItemID.TruffleWorm);
                         break;
 
+                    case NPCID.Piranha:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.Hitbox, ItemID.AdhesiveBandage);
+                        break;
+                    case NPCID.Demon:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.Hitbox, ItemID.Blindfold);
+                        break;
+                    case NPCID.Derpling:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.Hitbox, ItemID.TrifoldMap);
+                        break;
+
                     #region boss drops
                     case NPCID.KingSlime:
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HerbBag, Main.rand.Next(3) + 1);
