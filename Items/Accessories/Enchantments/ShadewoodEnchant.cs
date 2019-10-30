@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.DataStructures;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -21,6 +23,17 @@ Blood Geyser makes you constantly spew damaging blood");
 @"'出奇的干净'
 受到伤害时会鲜血四溅
 在血腥地形时,被击中会使敌人造成大出血");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(88, 104, 118);
+                }
+            }
         }
 
         public override void SetDefaults()

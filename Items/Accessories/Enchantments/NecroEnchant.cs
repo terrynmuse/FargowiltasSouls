@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -21,6 +23,17 @@ Summons a pet Skeletron Head");
 @"'欢迎来到骸骨领域'
 地牢守卫者偶尔会在你受到攻击时消灭敌人
 召唤一个小骷髅头");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(86, 86, 67);
+                }
+            }
         }
 
         public override void SetDefaults()

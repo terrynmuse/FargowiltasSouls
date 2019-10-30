@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -19,6 +21,17 @@ All fishing rods will have 4 extra lures");
 @"'只要不全是鞋子, 你可以高高兴兴地回家'
 增加钓鱼技能
 所有鱼竿将会增加4个额外的鱼饵");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(113, 125, 109);
+                }
+            }
         }
 
         public override void SetDefaults()

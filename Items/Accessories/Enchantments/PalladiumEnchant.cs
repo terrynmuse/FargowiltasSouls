@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -21,6 +23,17 @@ One attack gains 10% life steal every 4 seconds, capped at 8 HP");
 @"'你感到你的伤口在慢慢愈合'
 攻击敌人后大大增加生命回复
 一次攻击获得每秒5%的生命窃取,上限为5点");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine tooltipLine in list)
+            {
+                if (tooltipLine.mod == "Terraria" && tooltipLine.Name == "ItemName")
+                {
+                    tooltipLine.overrideColor = new Color(245, 172, 40);
+                }
+            }
         }
 
         public override void SetDefaults()
