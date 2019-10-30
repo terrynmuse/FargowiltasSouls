@@ -39,34 +39,27 @@ namespace FargowiltasSouls.Projectiles.Masomode
                 projectile.Kill();
                 return;
             }
+            
+            player.GetModPlayer<FargoPlayer>().BetsyDashing = true;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = player.GetModPlayer<FargoPlayer>().StardustEnchant;
 
-            if (projectile.timeLeft > 1)
-            {
-                player.GetModPlayer<FargoPlayer>().BetsyDashing = true;
-                projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = player.GetModPlayer<FargoPlayer>().StardustEnchant;
+            player.Center = projectile.Center + projectile.velocity;
+            player.velocity = projectile.velocity * .5f;
+            player.direction = projectile.velocity.X > 0 ? 1 : -1;
 
-                player.Center = projectile.Center;
-                player.velocity = projectile.velocity;
-                player.direction = projectile.velocity.X > 0 ? 1 : -1;
+            player.controlLeft = false;
+            player.controlRight = false;
+            player.controlJump = false;
+            player.controlDown = false;
+            player.controlUseItem = false;
+            player.controlUseTile = false;
+            player.controlHook = false;
+            player.controlMount = false;
 
-                player.controlLeft = false;
-                player.controlRight = false;
-                player.controlJump = false;
-                player.controlDown = false;
-                player.controlUseItem = false;
-                player.controlUseTile = false;
-                player.controlHook = false;
-                player.controlMount = false;
-
-                player.immune = true;
-                player.immuneTime = 2;
-                player.hurtCooldowns[0] = 2;
-                player.hurtCooldowns[1] = 2;
-            }
-            else
-            {
-                player.velocity *= 0.5f;
-            }
+            player.immune = true;
+            player.immuneTime = 2;
+            player.hurtCooldowns[0] = 2;
+            player.hurtCooldowns[1] = 2;
 
             projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
 
@@ -108,6 +101,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             if (projectile.localAI[0] != 0)
             {
+                Vector2 offset = Vector2.Normalize(projectile.velocity) * 25f;
+
                 Texture2D texture2D13 = Main.projectileTexture[projectile.type];
                 int num156 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]; //ypos of lower right corner of sprite to draw
                 int y3 = num156 * projectile.frame; //ypos of upper left corner of sprite to draw
@@ -122,10 +117,10 @@ namespace FargowiltasSouls.Projectiles.Masomode
                     color27 *= (float)(ProjectileID.Sets.TrailCacheLength[projectile.type] - i) / ProjectileID.Sets.TrailCacheLength[projectile.type];
                     Vector2 value4 = projectile.oldPos[i];
                     float num165 = projectile.oldRot[i];
-                    Main.spriteBatch.Draw(texture2D13, value4 + projectile.Size / 2f - Main.screenPosition + new Vector2(0, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color27, num165, origin2, projectile.scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture2D13, value4 - offset + projectile.Size / 2f - Main.screenPosition + new Vector2(0, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color27, num165, origin2, projectile.scale, SpriteEffects.None, 0f);
                 }
 
-                Main.spriteBatch.Draw(texture2D13, projectile.Center - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), projectile.GetAlpha(lightColor), projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture2D13, projectile.Center - offset - Main.screenPosition + new Vector2(0f, projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), projectile.GetAlpha(lightColor), projectile.rotation, origin2, projectile.scale, SpriteEffects.None, 0f);
             }
             return false;
         }

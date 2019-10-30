@@ -398,8 +398,7 @@ namespace FargowiltasSouls
                 smokeBombCD = 15;
             }
 
-            if (Fargowiltas.BetsyDashKey.JustPressed && BetsysHeart && BetsyDashCD <= 0
-                && player.controlUseItem == false && player.itemAnimation == 0 && player.itemTime == 0)
+            if (Fargowiltas.BetsyDashKey.JustPressed && BetsysHeart && BetsyDashCD <= 0)
             {
                 BetsyDashCD = 120;
                 if (player.whoAmI == Main.myPlayer)
@@ -417,6 +416,9 @@ namespace FargowiltasSouls
                     player.immuneTime = 2;
                     player.hurtCooldowns[0] = 2;
                     player.hurtCooldowns[1] = 2;
+
+                    player.itemAnimation = 0;
+                    player.itemTime = 0;
 
                     Vector2 vel = player.DirectionTo(Main.MouseWorld) * 28;
                     Projectile.NewProjectile(player.Center, vel, mod.ProjectileType("BetsyDash"), (int)(100 * player.meleeDamage), 0f, player.whoAmI);
