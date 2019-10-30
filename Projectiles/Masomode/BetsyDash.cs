@@ -28,6 +28,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.ignoreWater = true;
             projectile.timeLeft = 15;
             projectile.penetrate = -1;
+            projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
         }
 
         public override void AI()
@@ -42,6 +43,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             if (projectile.timeLeft > 1)
             {
                 player.GetModPlayer<FargoPlayer>().BetsyDashing = true;
+                projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = player.GetModPlayer<FargoPlayer>().StardustEnchant;
 
                 player.Center = projectile.Center;
                 player.velocity = projectile.velocity;
