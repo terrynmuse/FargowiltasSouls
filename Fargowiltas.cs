@@ -67,7 +67,7 @@ namespace FargowiltasSouls
                 FreezeKey = RegisterHotKey("Freeze Time", "P");
                 GoldKey = RegisterHotKey("Turn Gold", "O");
                 SmokeBombKey = RegisterHotKey("Throw Smoke Bomb", "I");
-                BetsyDashKey = RegisterHotKey("Betsy Dash", "C");
+                BetsyDashKey = RegisterHotKey("Fireball Dash", "C");
             }
             
             AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteelRed"), ItemType("MutantMusicBox"), TileType("MutantMusicBoxSheet"));

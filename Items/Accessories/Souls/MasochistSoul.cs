@@ -22,7 +22,7 @@ Grants gravity control, fastfall, and immunity to knockback, almost all Masochis
 Grants autofire to all weapons, modifier protection, and you automatically use mana potions when needed
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks, hearts, and inflict a cocktail of Masochist Mode debuffs
-Press C to become a fireball and perform a short invincible dash
+Press the Fireball Dash key to perform a short invincible dash
 You respawn twice as fast, have improved night vision, and erupt into various attacks when injured
 Prevents boss spawns, increases spawn rate, and attacks may squeak and deal 1 damage to you
 Summons the aid of all Masochist Mode bosses to your side");

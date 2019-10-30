@@ -13,7 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Lightly roasted, medium rare'
 Grants immunity to Oozed, Withered Weapon, and Withered Armor
 Your critical strikes inflict Betsy's Curse
-Press C to become a fireball and perform a short invincible dash");
+Press the Fireball Dash key to perform a short invincible dash");
             DisplayName.AddTranslation(GameCulture.Chinese, "贝特希之心");
             Tooltip.AddTranslation(GameCulture.Chinese, @"'微烤,五分熟'
 免疫渗出,枯萎武器和枯萎盔甲
