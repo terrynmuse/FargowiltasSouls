@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.friendly = true;
             projectile.melee = true;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 15;
+            projectile.timeLeft = 20;
             projectile.penetrate = -1;
             projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
         }

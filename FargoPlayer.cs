@@ -423,7 +423,7 @@ namespace FargowiltasSouls
                     player.itemAnimation = 0;
                     player.itemTime = 0;
 
-                    Vector2 vel = player.DirectionTo(Main.MouseWorld) * 28;
+                    Vector2 vel = player.DirectionTo(Main.MouseWorld) * 20;
                     Projectile.NewProjectile(player.Center, vel, mod.ProjectileType("BetsyDash"), (int)(100 * player.meleeDamage), 0f, player.whoAmI);
                 }
             }
