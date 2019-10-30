@@ -139,6 +139,8 @@ namespace FargowiltasSouls
                 public bool shadowDark = true;
                 [Label("$Mods.FargowiltasSouls.ShinobiConfig")]
                 public bool shinWalls = true;
+                [Label("$Mods.FargowiltasSouls.ShinobiTabiConfig")]
+                public bool shinTabi = true;
                 [Label("$Mods.FargowiltasSouls.SpookyConfig")]
                 public bool spookScythe = true;
 
@@ -211,6 +213,7 @@ namespace FargowiltasSouls
                     SoulConfig.Instance.enchantToggles["Necro Guardian"] = necroGuard;
                     SoulConfig.Instance.enchantToggles["Shadow Darkness"] = shadowDark;
                     SoulConfig.Instance.enchantToggles["Shinobi Through Walls"] = shinWalls;
+                    SoulConfig.Instance.enchantToggles["Tabi Dash"] = shinTabi;
                     SoulConfig.Instance.enchantToggles["Spooky Scythes"] = spookScythe;
                     //force of spirit
                     SoulConfig.Instance.enchantToggles["Forbidden Storm"] = forbidStorm;
@@ -313,6 +316,8 @@ namespace FargowiltasSouls
             //heart of the masochist
             [Label("$Mods.FargowiltasSouls.MasoGravConfig")]
             public bool gravGlobe = true;
+            [Label("$Mods.FargowiltasSouls.MasoGrav2Config")]
+            public bool gravGlobe2 = true;
             [Label("$Mods.FargowiltasSouls.MasoPump")]
             public bool pumpCape = true;
             [Label("$Mods.FargowiltasSouls.MasoFlockoConfig")]
@@ -423,6 +428,7 @@ namespace FargowiltasSouls
                 SoulConfig.Instance.masoTogDict["Probes Minion"] = destroyProbe;
                 //heart of the masochist
                 SoulConfig.Instance.masoTogDict["Gravity Control"] = gravGlobe;
+                SoulConfig.Instance.masoTogDict["Stabilized Gravity"] = gravGlobe2;
                 SoulConfig.Instance.masoTogDict["Pumpking's Cape Support"] = pumpCape;
                 SoulConfig.Instance.masoTogDict["Flocko Minion"] = flockoMinion;
                 SoulConfig.Instance.masoTogDict["Saucer Minion"] = ufoMinion;
@@ -983,6 +989,7 @@ namespace FargowiltasSouls
             enchantToggles.Add("Necro Guardian", terrmenu.terenchmenu.necroGuard);
             enchantToggles.Add("Shadow Darkness", terrmenu.terenchmenu.shadowDark);
             enchantToggles.Add("Shinobi Through Walls", terrmenu.terenchmenu.shinWalls);
+            enchantToggles.Add("Tabi Dash", terrmenu.terenchmenu.shinTabi);
             enchantToggles.Add("Spooky Scythes", terrmenu.terenchmenu.spookScythe);
 
             enchantToggles.Add("Forbidden Storm", terrmenu.terenchmenu.forbidStorm);
@@ -1017,6 +1024,7 @@ namespace FargowiltasSouls
             masoTogDict.Add("Probes Minion", masomenu.destroyProbe);
             //heart of the masochist
             masoTogDict.Add("Gravity Control", masomenu.gravGlobe);
+            masoTogDict.Add("Stabilized Gravity", masomenu.gravGlobe2);
             masoTogDict.Add("Pumpking's Cape Support", masomenu.pumpCape);
             masoTogDict.Add("Flocko Minion", masomenu.flockoMinion);
             masoTogDict.Add("Saucer Minion", masomenu.ufoMinion);

@@ -13,6 +13,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'Always watching'
 Grants immunity to Flipped, Unstable, Distorted, and Chaos State
 Allows the holder to control gravity
+Stabilizes gravity in space and in liquids
 Summons the true eyes of Cthulhu to protect you
 Increases flight time by 100%");
             DisplayName.AddTranslation(GameCulture.Chinese, "银河球");

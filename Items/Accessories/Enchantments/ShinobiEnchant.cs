@@ -75,7 +75,8 @@ Summons a pet Gato and Black Cat";
             //ninja gear
             player.blackBelt = true;
             player.spikedBoots = 2;
-            player.dash = 1;
+            if (SoulConfig.Instance.enchantToggles["Tabi Dash"])
+                player.dash = 1;
             //tele thru wall
             modPlayer.ShinobiEffect(hideVisual);
             //ninja, smoke bombs, pet

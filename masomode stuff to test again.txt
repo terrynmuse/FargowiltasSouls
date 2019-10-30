@@ -127,6 +127,18 @@ moon lord sockets will delay their deathrays if true eyes are firing theirs
 asocial now forcibly kills minions/sentries
 made pillars immortal when outside range
 buffed gold ench a LOT
+using abom doll summons abom if there isnt one
+gravity globe now grants same gravity in space and liquids
+stabilized gravity is allowed in mutant fight
+added a tabi dash toggle (allowed in mutant fight)
+wof projs inflict longer crippled
+tweaked wof p2 attacks
+removed golem's venom on spiky ball
+all of golem's attacks inflict withered armor instead of broken armor
+fixed golem head/flying head not inflicting debuffs on touch
+golem body no longer inflicts MFD
+golem head sprays overhead lasers when it finishes a deathray rush
+BUFFED BETSY'S HEART: now gives a fireball dash
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

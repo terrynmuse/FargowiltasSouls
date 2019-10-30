@@ -19,6 +19,7 @@ namespace FargowiltasSouls
         internal static ModHotKey FreezeKey;
         internal static ModHotKey GoldKey;
         internal static ModHotKey SmokeBombKey;
+        internal static ModHotKey BetsyDashKey;
 
         internal static List<int> DebuffIDs;
 
@@ -59,12 +60,14 @@ namespace FargowiltasSouls
                 FreezeKey = RegisterHotKey("冻结时间", "P");
                 GoldKey = RegisterHotKey("金身", "O");
                 SmokeBombKey = RegisterHotKey("Throw Smoke Bomb", "I");
+                BetsyDashKey = RegisterHotKey("Betsy Dash", "C");
             }
             else
             {
                 FreezeKey = RegisterHotKey("Freeze Time", "P");
                 GoldKey = RegisterHotKey("Turn Gold", "O");
                 SmokeBombKey = RegisterHotKey("Throw Smoke Bomb", "I");
+                BetsyDashKey = RegisterHotKey("Fireball Dash", "C");
             }
             
             AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteelRed"), ItemType("MutantMusicBox"), TileType("MutantMusicBoxSheet"));
@@ -183,6 +186,7 @@ namespace FargowiltasSouls
             "NecroConfig",
             "ShadowConfig",
             "ShinobiConfig",
+            "ShinobiTabiConfig",
             "SpookyConfig",
             //force of spirit
             "ForbiddenConfig",
@@ -218,6 +222,7 @@ namespace FargowiltasSouls
             "Necro Guardian",
             "Shadow Darkness",
             "Shinobi Through Walls",
+            "Tabi Dash",
             "Spooky Scythes",
             //force of spirit
             "Forbidden Storm",
@@ -253,6 +258,7 @@ namespace FargowiltasSouls
             "565643",
             "42356f",
             "935b18",
+            "935b18",
             "644e74",
             //force of spirit
             "e7b21c",
@@ -287,6 +293,7 @@ namespace FargowiltasSouls
             "DarkArtistEnchant",
             "NecroEnchant",
             "ShadowEnchant",
+            "ShinobiEnchant",
             "ShinobiEnchant",
             "SpookyEnchant",
             //force of spirit
@@ -332,6 +339,7 @@ namespace FargowiltasSouls
             "Probes Minion",
             //heart of the masochist
             "Gravity Control",
+            "Stabilized Gravity",
             "Pumpking's Cape Support",
             "Flocko Minion",
             "Saucer Minion",
@@ -372,6 +380,7 @@ namespace FargowiltasSouls
             "Probes Minion",
             //heart of the masochist
             "Gravity Control",
+            "Stabilized Gravity",
             "Pumpking's Cape Support",
             "Flocko Minion",
             "Saucer Minion",
@@ -412,6 +421,7 @@ namespace FargowiltasSouls
             "MasoProbeConfig",
             //heart of the masochist
             "MasoGravConfig",
+            "MasoGrav2Config",
             "MasoPump",
             "MasoFlockoConfig",
             "MasoUfoConfig",

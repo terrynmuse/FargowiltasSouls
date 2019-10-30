@@ -228,6 +228,8 @@ namespace FargowiltasSouls
         public bool LihzahrdTreasureBox;
         public int GroundPound;
         public bool BetsysHeart;
+        public bool BetsyDashing;
+        public int BetsyDashCD = 0;
         public bool MutantAntibodies;
         public bool GravityGlobeEX;
         public bool CelestialRune;
@@ -396,6 +398,31 @@ namespace FargowiltasSouls
 
                 smokeBombCD = 15;
                 player.inventory[smokeBombSlot].stack--;
+            }
+
+            if (Fargowiltas.BetsyDashKey.JustPressed && BetsysHeart && BetsyDashCD <= 0
+                && player.controlUseItem == false && player.itemAnimation == 0 && player.itemTime == 0)
+            {
+                BetsyDashCD = 120;
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    player.controlLeft = false;
+                    player.controlRight = false;
+                    player.controlJump = false;
+                    player.controlDown = false;
+                    player.controlUseItem = false;
+                    player.controlUseTile = false;
+                    player.controlHook = false;
+                    player.controlMount = false;
+
+                    player.immune = true;
+                    player.immuneTime = 2;
+                    player.hurtCooldowns[0] = 2;
+                    player.hurtCooldowns[1] = 2;
+
+                    Vector2 vel = player.DirectionTo(Main.MouseWorld) * 28;
+                    Projectile.NewProjectile(player.Center, vel, mod.ProjectileType("BetsyDash"), (int)(100 * player.meleeDamage), 0f, player.whoAmI);
+                }
             }
         }
 
@@ -568,6 +595,7 @@ namespace FargowiltasSouls
             PumpkingsCape = false;
             LihzahrdTreasureBox = false;
             BetsysHeart = false;
+            BetsyDashing = false;
             MutantAntibodies = false;
             GravityGlobeEX = false;
             CelestialRune = false;
@@ -666,6 +694,7 @@ namespace FargowiltasSouls
             MagicalBulb = false;
             LunarCultist = false;
             TrueEyes = false;
+            BetsyDashing = false;
 
             GodEater = false;
             FlamesoftheUniverse = false;
@@ -1044,6 +1073,23 @@ namespace FargowiltasSouls
 
         public override void PostUpdateMiscEffects()
         {
+            if (BetsysHeart && BetsyDashCD > 0)
+            {
+                BetsyDashCD--;
+                if (BetsyDashCD == 0)
+                {
+                    for (int i = 0; i < 30; i++)
+                    {
+                        int d = Dust.NewDust(player.position, player.width, player.height, 87, 0, 0, 0, default, 2.5f);
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].velocity *= 4f;
+                    }
+                }
+            }
+
+            if (GravityGlobeEX && SoulConfig.Instance.masoTogDict["Stabilized Gravity"])
+                player.gravity = Player.defaultGravity;
+
             if (TikiEnchant && SoulConfig.Instance.GetValue("Tiki Minions"))
             {
                 actualMinions = player.maxMinions;
@@ -4585,6 +4631,13 @@ namespace FargowiltasSouls
                     }
                 }
             }
+        }
+
+        public override void ModifyDrawLayers(List<PlayerLayer> layers)
+        {
+            if (BetsyDashing) //dont draw player during betsy dash
+                while (layers.Count > 0)
+                    layers.RemoveAt(0);
         }
     }
 }
