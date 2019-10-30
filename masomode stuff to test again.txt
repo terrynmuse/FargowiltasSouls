@@ -143,6 +143,8 @@ BUFFED BETSY'S HEART: now gives a fireball dash
 demon can drop blindfold 2%
 piranha drop bandage
 derpling drop trifold map
+added tim's concoction, equipping enables common potion drops
+made water bolt more rare from dark casters (2%)
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends

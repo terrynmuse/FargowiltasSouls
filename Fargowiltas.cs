@@ -328,6 +328,7 @@ namespace FargowiltasSouls
             "Tiny Eaters",
             "Creeper Shield",
             //bionomic cluster
+            "Tim's Concoction",
             "Rainbow Slime Minion",
             "Frostfireballs",
             "Attacks Spawn Hearts",
@@ -369,6 +370,7 @@ namespace FargowiltasSouls
             "Tiny Eaters",
             "Creeper Shield",
             //bionomic cluster
+            "Tim's Concoction",
             "Rainbow Slime Minion",
             "Frostfireballs",
             "Attacks Spawn Hearts",
