@@ -3701,7 +3701,7 @@ namespace FargowiltasSouls.NPCs
                             if (masoStateML == 3 && RegenTimer < 2)
                                 RegenTimer = 2;
 
-                            if (Main.player[Main.myPlayer].active && !Main.player[Main.myPlayer].dead)
+                            /*if (Main.player[Main.myPlayer].active && !Main.player[Main.myPlayer].dead)
                             {
                                 Player player = Main.player[Main.myPlayer];
                                 if (player.moonLeech && !player.buffImmune[mod.BuffType("MutantNibble")]) //replace moon bite with mutant nibble
@@ -3716,7 +3716,7 @@ namespace FargowiltasSouls.NPCs
                                 //player.AddBuff(BuffID.WaterCandle, 2);
                                 //player.AddBuff(BuffID.Battle, 2);
                                 player.AddBuff(mod.BuffType("NullificationCurse"), 2);
-                            }
+                            }*/
 
                             Timer++;
                             if (Timer >= 240)

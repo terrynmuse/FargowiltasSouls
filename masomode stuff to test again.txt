@@ -145,6 +145,7 @@ piranha drop bandage
 derpling drop trifold map
 added tim's concoction, equipping enables common potion drops
 made water bolt more rare from dark casters (2%)
+moon lord p2 no longer inflicts mutant nibble
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
