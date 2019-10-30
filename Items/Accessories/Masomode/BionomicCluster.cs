@@ -134,6 +134,7 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(mod.ItemType("OrdinaryCarrot"));
             recipe.AddIngredient(mod.ItemType("WretchedPouch"));
             recipe.AddIngredient(mod.ItemType("NymphsPerfume"));
+            recipe.AddIngredient(mod.ItemType("TimsConcoction"));
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 20);
 
