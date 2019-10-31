@@ -147,6 +147,13 @@ added tim's concoction, equipping enables common potion drops
 made water bolt more rare from dark casters (2%)
 moon lord p2 no longer inflicts mutant nibble
 
+evil bunnies drop calming too
+fixed hallow mimic not dropping pots
+blue/pink/green jellies drop pots
+giant bats drop sonar pot (replacing ice bat)
+fixed yellow slimes not dropping recall
+tried something to prevent betsy dash wallclipping
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)

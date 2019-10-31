@@ -26,7 +26,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.friendly = true;
             projectile.melee = true;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 20;
+            projectile.timeLeft = 15;
             projectile.penetrate = -1;
             projectile.GetGlobalProjectile<FargoGlobalProjectile>().CanSplit = false;
         }
@@ -43,9 +43,25 @@ namespace FargowiltasSouls.Projectiles.Masomode
             player.GetModPlayer<FargoPlayer>().BetsyDashing = true;
             projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = player.GetModPlayer<FargoPlayer>().StardustEnchant;
 
-            player.Center = projectile.Center + projectile.velocity;
-            player.velocity = Vector2.Normalize(projectile.velocity) * 10f;
+            player.Center = projectile.Center;
+            if (projectile.timeLeft > 1) //trying to avoid wallclipping
+                player.position += projectile.velocity;
+            player.velocity = projectile.velocity * .5f;
             player.direction = projectile.velocity.X > 0 ? 1 : -1;
+
+            player.controlLeft = false;
+            player.controlRight = false;
+            player.controlJump = false;
+            player.controlDown = false;
+            player.controlUseItem = false;
+            player.controlUseTile = false;
+            player.controlHook = false;
+            player.controlMount = false;
+
+            player.immune = true;
+            player.immuneTime = 2;
+            player.hurtCooldowns[0] = 2;
+            player.hurtCooldowns[1] = 2;
 
             projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
 

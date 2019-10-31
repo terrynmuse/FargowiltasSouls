@@ -9198,7 +9198,7 @@ namespace FargowiltasSouls.NPCs
                 switch (npc.type)
                 {
                     case NPCID.JungleBat:
-                    case NPCID.GiantBat:
+                    case NPCID.IceBat:
                     case NPCID.Vampire:
                     case NPCID.VampireBat:
                     case NPCID.GiantFlyingFox:
@@ -9228,6 +9228,10 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.CorruptBunny:
                     case NPCID.CrimsonBunny:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.Hitbox, mod.ItemType("SqueakyToy"));
+                        goto case NPCID.Bunny;
+
                     case NPCID.CorruptGoldfish:
                     case NPCID.CrimsonGoldfish:
                     case NPCID.CorruptPenguin:
@@ -9463,6 +9467,11 @@ namespace FargowiltasSouls.NPCs
 
                     #region potion drops
 
+                    case NPCID.BlueSlime:
+                        if (npc.netID == NPCID.YellowSlime && Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.RecallPotion, Main.rand.Next(0, 2) + 1);
+                        break;
+
                     case NPCID.GoblinArcher:
                         if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
                             Item.NewItem(npc.Hitbox, ItemID.ArcheryPotion, Main.rand.Next(0, 2) + 1);
@@ -9534,12 +9543,13 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.PinkJellyfish:
                     case NPCID.BlueJellyfish:
+                    case NPCID.GreenJellyfish:
                         if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
                             Item.NewItem(npc.Hitbox, ItemID.ShinePotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.CaveBat:
-                    case NPCID.IceBat:
+                    case NPCID.GiantBat:
                         if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
                             Item.NewItem(npc.Hitbox, ItemID.SonarPotion, Main.rand.Next(0, 2) + 1);
                         goto case NPCID.JungleBat;
@@ -9589,17 +9599,13 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.Hitbox, ItemID.ThornsPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
-                    case NPCID.YellowSlime:
-                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
-                            Item.NewItem(npc.Hitbox, ItemID.RecallPotion, Main.rand.Next(0, 2) + 1);
-                        break;
-
                     case NPCID.GiantWormHead:
                         if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
                             Item.NewItem(npc.Hitbox, ItemID.WormholePotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.IceSlime:
+                    case NPCID.SpikedIceSlime:
                         if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
                             Item.NewItem(npc.Hitbox, ItemID.WaterWalkingPotion, Main.rand.Next(0, 2) + 1);
                         break;
@@ -9620,6 +9626,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.BigMimicCorruption:
                     case NPCID.BigMimicCrimson:
+                    case NPCID.BigMimicHallow:
                         if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
                             Item.NewItem(npc.Hitbox, ItemID.LifeforcePotion, Main.rand.Next(2, 5) + 1);
                         break;
