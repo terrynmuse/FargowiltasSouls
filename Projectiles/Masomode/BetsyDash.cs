@@ -62,8 +62,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
             player.immuneTime = 2;
             player.hurtCooldowns[0] = 2;
             player.hurtCooldowns[1] = 2;
-
-            projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
+            
+            if (projectile.velocity != Vector2.Zero)
+                projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
 
             if (projectile.localAI[0] == 0)
             {
@@ -103,7 +104,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             if (projectile.localAI[0] != 0)
             {
-                Vector2 offset = Vector2.Normalize(projectile.velocity) * 25f;
+                Vector2 offset = projectile.velocity == Vector2.Zero ? Vector2.Zero : Vector2.Normalize(projectile.velocity) * 25f;
 
                 Texture2D texture2D13 = Main.projectileTexture[projectile.type];
                 int num156 = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]; //ypos of lower right corner of sprite to draw
