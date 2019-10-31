@@ -44,22 +44,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.GetGlobalProjectile<FargoGlobalProjectile>().TimeFreezeImmune = player.GetModPlayer<FargoPlayer>().StardustEnchant;
 
             player.Center = projectile.Center + projectile.velocity;
-            player.velocity = projectile.velocity * .5f;
+            player.velocity = Vector2.Normalize(projectile.velocity) * 10f;
             player.direction = projectile.velocity.X > 0 ? 1 : -1;
-
-            player.controlLeft = false;
-            player.controlRight = false;
-            player.controlJump = false;
-            player.controlDown = false;
-            player.controlUseItem = false;
-            player.controlUseTile = false;
-            player.controlHook = false;
-            player.controlMount = false;
-
-            player.immune = true;
-            player.immuneTime = 2;
-            player.hurtCooldowns[0] = 2;
-            player.hurtCooldowns[1] = 2;
 
             projectile.rotation = projectile.velocity.ToRotation() + (float)Math.PI / 2;
 

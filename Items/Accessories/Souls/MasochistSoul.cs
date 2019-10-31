@@ -248,6 +248,7 @@ Summons the aid of all Masochist Mode bosses to your side");
                 player.gravControl = true;
 
             //heart of maso
+            fargoPlayer.MasochistHeart = true;
             player.buffImmune[BuffID.MoonLeech] = true;
 
             //cyclonic fin
