@@ -296,6 +296,8 @@ namespace FargowiltasSouls
             [Label("$Mods.FargowiltasSouls.MasoBrainConfig")]
             public bool awwMan = true;
             //bionomic cluster
+            [Label("$Mods.FargowiltasSouls.MasoConcoctionConfig")]
+            public bool concoction = true;
             [Label("$Mods.FargowiltasSouls.MasoRainbowConfig")]
             public bool rainSlime = true;
             [Label("$Mods.FargowiltasSouls.MasoFrigidConfig")]
@@ -417,6 +419,7 @@ namespace FargowiltasSouls
                 SoulConfig.Instance.masoTogDict["Tiny Eaters"] = tinyEaters;
                 SoulConfig.Instance.masoTogDict["Creeper Shield"] = awwMan;
                 //bionomic cluster
+                SoulConfig.Instance.masoTogDict["Tim's Concoction"] = concoction;
                 SoulConfig.Instance.masoTogDict["Rainbow Slime Minion"] = rainSlime;
                 SoulConfig.Instance.masoTogDict["Frostfireballs"] = frostFire;
                 SoulConfig.Instance.masoTogDict["Attacks Spawn Hearts"] = heartAttacks;
@@ -1013,6 +1016,7 @@ namespace FargowiltasSouls
             masoTogDict.Add("Tiny Eaters", masomenu.tinyEaters);
             masoTogDict.Add("Creeper Shield", masomenu.awwMan);
             //bionomic cluster
+            masoTogDict.Add("Tim's Concoction", masomenu.concoction);
             masoTogDict.Add("Rainbow Slime Minion", masomenu.rainSlime);
             masoTogDict.Add("Frostfireballs", masomenu.frostFire);
             masoTogDict.Add("Attacks Spawn Hearts", masomenu.heartAttacks);

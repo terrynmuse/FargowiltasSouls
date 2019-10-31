@@ -328,6 +328,7 @@ namespace FargowiltasSouls
             "Tiny Eaters",
             "Creeper Shield",
             //bionomic cluster
+            "Tim's Concoction",
             "Rainbow Slime Minion",
             "Frostfireballs",
             "Attacks Spawn Hearts",
@@ -369,6 +370,7 @@ namespace FargowiltasSouls
             "Tiny Eaters",
             "Creeper Shield",
             //bionomic cluster
+            "Tim's Concoction",
             "Rainbow Slime Minion",
             "Frostfireballs",
             "Attacks Spawn Hearts",
@@ -410,6 +412,7 @@ namespace FargowiltasSouls
             "MasoEaterConfig",
             "MasoBrainConfig",
             //bionomic cluster
+            "MasoConcoctionConfig",
             "MasoRainbowConfig",
             "MasoFrigidConfig",
             "MasoNymphConfig",
@@ -442,7 +445,7 @@ namespace FargowiltasSouls
             "MasoSpikeConfig",
             "MasoIconConfig",
             "MasoBossRecolors"};
-            for (int x = 0; x <= 29; x++)
+            for (int x = 0; x < masoTogName.Length; x++)
             {
                 text = CreateTranslation(masoTogConfigName[x]);
                 if (Language.ActiveCulture == GameCulture.Chinese)

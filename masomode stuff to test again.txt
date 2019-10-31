@@ -140,6 +140,13 @@ golem body no longer inflicts MFD
 golem head sprays overhead lasers when it finishes a deathray rush
 BUFFED BETSY'S HEART: now gives a fireball dash
 
+demon can drop blindfold 2%
+piranha drop bandage
+derpling drop trifold map
+added tim's concoction, equipping enables common potion drops
+made water bolt more rare from dark casters (2%)
+moon lord p2 no longer inflicts mutant nibble
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)

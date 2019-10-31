@@ -242,7 +242,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     }
                     else if (npc.ai[2] == 420 && Main.netMode != 1)
                     {
-                        npc.ai[3] = npc.DirectionFrom(player.Center).ToRotation();
+                        npc.ai[3] = npc.DirectionFrom(player.Center).ToRotation() - 0.001f;
                         Projectile.NewProjectile(npc.Center, Vector2.UnitX.RotatedBy(npc.ai[3]), mod.ProjectileType("MutantGiantDeathray2"), npc.defDamage / 2, 0f, Main.myPlayer, 0, npc.whoAmI);
                     }
                     for (int i = 0; i < 5; i++)
@@ -252,7 +252,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         Main.dust[d].noLight = true;
                         Main.dust[d].velocity *= 4f;
                     }
-                    npc.ai[3] -= 2f * (float)Math.PI * 1f / 6f / 60f;
+                    npc.ai[3] -= GetSpinOffset();
                     break;
 
                 case -4: //true boundary
@@ -1487,6 +1487,21 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     npc.ai[0] = 11;
                     goto case 11;
             }
+        }
+
+        private float GetSpinOffset()
+        {
+            const float PI = (float)Math.PI;
+            float newRotation = (Main.player[npc.target].Center - npc.Center).ToRotation();
+            float difference = newRotation - npc.ai[3];
+            float rotationDirection = 2f * (float)Math.PI * 1f / 6f / 60f;
+            if (difference < -PI)
+                difference += 2f * PI;
+            if (difference > PI)
+                difference -= 2f * PI;
+            if (difference > 0f)
+                rotationDirection *= -1f;
+            return rotationDirection;
         }
 
         private void SpawnSphereRing(int max, float speed, int damage, float rotationModifier)

@@ -241,6 +241,7 @@ namespace FargowiltasSouls
         public bool CyclonicFin;
         public int CyclonicFinCD;
         public bool MasochistSoul;
+        public bool MasochistHeart;
         public bool CelestialSeal;
         public bool SandsofTime;
         public bool DragonFang;
@@ -265,6 +266,7 @@ namespace FargowiltasSouls
         public bool MutantsDiscountCard;
         public bool MutantsPact;
         public bool TwinsEX;
+        public bool TimsConcoction;
 
         //debuffs
         public bool Hexed;
@@ -400,8 +402,7 @@ namespace FargowiltasSouls
                 player.inventory[smokeBombSlot].stack--;
             }
 
-            if (Fargowiltas.BetsyDashKey.JustPressed && BetsysHeart && BetsyDashCD <= 0
-                && player.controlUseItem == false && player.itemAnimation == 0 && player.itemTime == 0)
+            if (Fargowiltas.BetsyDashKey.JustPressed && BetsysHeart && BetsyDashCD <= 0)
             {
                 BetsyDashCD = 120;
                 if (player.whoAmI == Main.myPlayer)
@@ -420,8 +421,12 @@ namespace FargowiltasSouls
                     player.hurtCooldowns[0] = 2;
                     player.hurtCooldowns[1] = 2;
 
-                    Vector2 vel = player.DirectionTo(Main.MouseWorld) * 28;
+                    player.itemAnimation = 0;
+                    player.itemTime = 0;
+
+                    Vector2 vel = player.DirectionTo(Main.MouseWorld) * (MasochistHeart ? 25 : 20);
                     Projectile.NewProjectile(player.Center, vel, mod.ProjectileType("BetsyDash"), (int)(100 * player.meleeDamage), 0f, player.whoAmI);
+                    player.AddBuff(mod.BuffType("BetsyDash"), 20);
                 }
             }
         }
@@ -605,6 +610,7 @@ namespace FargowiltasSouls
             TrueEyes = false;
             CyclonicFin = false;
             MasochistSoul = false;
+            MasochistHeart = false;
             SandsofTime = false;
             DragonFang = false;
             SecurityWallet = false;
@@ -623,6 +629,7 @@ namespace FargowiltasSouls
             Abominationn = false;
             PhantasmalRing = false;
             TwinsEX = false;
+            TimsConcoction = false;
 
             //debuffs
             Hexed = false;
@@ -2782,15 +2789,6 @@ namespace FargowiltasSouls
                     Projectile.NewProjectile(target.Center.X, target.Center.Y, Utils.NextFloat(Main.rand, -5f, 5f), Utils.NextFloat(Main.rand, -5f, 5f), thorium.ProjectileType("MixtapeNote"), (int)((float)item.damage * 0.25f), 2f, player.whoAmI, (float)num23, 0f);
                 }
             }
-        }
-
-        public override bool CanBeHitByProjectile(Projectile proj)
-        {
-            if (ShellHide)
-                return false;
-            if (QueenStinger && !Main.hardMode && proj.type == ProjectileID.Stinger && !FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.beeBoss, NPCID.QueenBee))
-                return false;
-            return true;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)

@@ -23,6 +23,7 @@ Grants autofire to all weapons, modifier protection, and you automatically use m
 Empowers Cute Fishron and makes armed and magic skeletons less hostile outside the Dungeon
 Your attacks create additional attacks, hearts, and inflict a cocktail of Masochist Mode debuffs
 Press the Fireball Dash key to perform a short invincible dash
+Certain enemies will drop potions when defeated
 You respawn twice as fast, have improved night vision, and erupt into various attacks when injured
 Prevents boss spawns, increases spawn rate, and attacks may squeak and deal 1 damage to you
 Summons the aid of all Masochist Mode bosses to your side");
@@ -199,6 +200,10 @@ Summons the aid of all Masochist Mode bosses to your side");
                     fargoPlayer.NymphsPerfumeCD -= 10;
             }
 
+            //tim's concoction
+            if (SoulConfig.Instance.GetValue("Tim's Concoction"))
+                player.GetModPlayer<FargoPlayer>().TimsConcoction = true;
+
             //dubious circuitry
             player.buffImmune[BuffID.CursedInferno] = true;
             player.buffImmune[BuffID.Ichor] = true;
@@ -243,6 +248,7 @@ Summons the aid of all Masochist Mode bosses to your side");
                 player.gravControl = true;
 
             //heart of maso
+            fargoPlayer.MasochistHeart = true;
             player.buffImmune[BuffID.MoonLeech] = true;
 
             //cyclonic fin

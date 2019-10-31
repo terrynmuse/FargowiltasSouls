@@ -2272,7 +2272,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             masoBool[0] = true;
                             if (Main.netMode != 1 && !NPC.downedAncientCultist)
-                                Item.NewItem(npc.position, npc.Size, mod.ItemType("LunaticSigil"));
+                                Item.NewItem(npc.Hitbox, mod.ItemType("LunaticSigil"));
                         }
 
                         Timer++;
@@ -2666,7 +2666,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             masoBool[0] = true;
                             if (Main.netMode != 1 && !NPC.downedBoss3)
-                                Item.NewItem(npc.position, npc.Size, mod.ItemType("BloodiedSkull"));
+                                Item.NewItem(npc.Hitbox, mod.ItemType("BloodiedSkull"));
                         }
                         if (Counter != 0)
                         {
@@ -3701,7 +3701,7 @@ namespace FargowiltasSouls.NPCs
                             if (masoStateML == 3 && RegenTimer < 2)
                                 RegenTimer = 2;
 
-                            if (Main.player[Main.myPlayer].active && !Main.player[Main.myPlayer].dead)
+                            /*if (Main.player[Main.myPlayer].active && !Main.player[Main.myPlayer].dead)
                             {
                                 Player player = Main.player[Main.myPlayer];
                                 if (player.moonLeech && !player.buffImmune[mod.BuffType("MutantNibble")]) //replace moon bite with mutant nibble
@@ -3716,7 +3716,7 @@ namespace FargowiltasSouls.NPCs
                                 //player.AddBuff(BuffID.WaterCandle, 2);
                                 //player.AddBuff(BuffID.Battle, 2);
                                 player.AddBuff(mod.BuffType("NullificationCurse"), 2);
-                            }
+                            }*/
 
                             Timer++;
                             if (Timer >= 240)
@@ -4523,7 +4523,7 @@ namespace FargowiltasSouls.NPCs
                             && Collision.CanHit(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0))
                         {
                             masoBool[1] = true;
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("PlanterasFruit"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("PlanterasFruit"));
                         }
 
                         if (npc.life <= npc.lifeMax / 2) //phase 2
@@ -9190,7 +9190,7 @@ namespace FargowiltasSouls.NPCs
 
             if (npc.type == NPCID.Golem && Main.rand.Next(10) == 0)
             {
-                Item.NewItem(npc.position, npc.Size, mod.ItemType("ComputationOrb"));
+                Item.NewItem(npc.Hitbox, mod.ItemType("ComputationOrb"));
             }
 
             if (FargoSoulsWorld.MasochistMode)
@@ -9205,25 +9205,25 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Hellbat:
                     case NPCID.Lavabat:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("RabiesShot"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("RabiesShot"));
                         break;
 
                     case NPCID.IlluminantBat:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("RabiesShot"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("RabiesShot"));
                         goto case NPCID.IlluminantSlime;
 
                     case NPCID.IlluminantSlime:
                     case NPCID.EnchantedSword:
                         if (Main.rand.Next(3) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("VolatileEnergy"), Main.rand.Next(3) + 1);
+                            Item.NewItem(npc.Hitbox, mod.ItemType("VolatileEnergy"), Main.rand.Next(3) + 1);
                         break;
 
                     case NPCID.ChaosElemental:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("VolatileEnergy"), Main.rand.Next(3, 7));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("VolatileEnergy"), Main.rand.Next(3, 7));
 
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.TeleportationPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.TeleportationPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.CorruptBunny:
@@ -9233,7 +9233,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CorruptPenguin:
                     case NPCID.CrimsonPenguin:
                         if (Main.rand.Next(50) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SqueakyToy"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("SqueakyToy"));
                         break;
 
                     case NPCID.DesertBeast:
@@ -9246,7 +9246,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DesertGhoulCrimson:
                     case NPCID.DesertGhoulHallow:
                         if (Main.rand.Next(3) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.DesertFossil, Main.rand.Next(6) + 1);
+                            Item.NewItem(npc.Hitbox, ItemID.DesertFossil, Main.rand.Next(6) + 1);
                         break;
 
                     case NPCID.Crab:
@@ -9269,7 +9269,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.RustyArmoredBonesFlail:
                     case NPCID.RustyArmoredBonesSword:
                     case NPCID.RustyArmoredBonesSwordNoArmor:
-                        Item.NewItem(npc.position, npc.Size, ItemID.Bone);
+                        Item.NewItem(npc.Hitbox, ItemID.Bone);
                         break;
 
                     case NPCID.SkeletonSniper:
@@ -9281,145 +9281,144 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.NecromancerArmored:
                     case NPCID.RaggedCaster:
                     case NPCID.RaggedCasterOpenCoat:
-                        Item.NewItem(npc.position, npc.Size, ItemID.Bone);
+                        Item.NewItem(npc.Hitbox, ItemID.Bone);
                         if (Main.rand.Next(100) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SkullCharm"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("SkullCharm"));
                         break;
 
                     case NPCID.BigMimicJungle:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("TribalCharm"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("TribalCharm"));
                         goto case NPCID.BigMimicCrimson;
 
                     case NPCID.IceGolem:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("FrigidGemstone"));
-
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.TitanPotion, Main.rand.Next(2, 3) + 1);
+                            Item.NewItem(npc.Hitbox, mod.ItemType("FrigidGemstone"));
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.TitanPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.WyvernHead:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("DragonFang"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("DragonFang"));
                         if (Main.rand.Next(3) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.FloatingIslandFishingCrate);
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.GravitationPotion, Main.rand.Next(2, 3) + 1);
+                            Item.NewItem(npc.Hitbox, ItemID.FloatingIslandFishingCrate);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.GravitationPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.RainbowSlime:
                         if (masoBool[0] && Main.rand.Next(20) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("ConcentratedRainbowMatter"));
-
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.RegenerationPotion, Main.rand.Next(2, 3) + 1);
+                            Item.NewItem(npc.Hitbox, mod.ItemType("ConcentratedRainbowMatter"));
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.RegenerationPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.SandElemental:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SandsofTime"));
-
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.WrathPotion, Main.rand.Next(2, 3) + 1);
+                            Item.NewItem(npc.Hitbox, mod.ItemType("SandsofTime"));
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.WrathPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.GoblinSummoner:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("WretchedPouch"));
-
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.SummoningPotion, Main.rand.Next(3, 5) + 1);
+                            Item.NewItem(npc.Hitbox, mod.ItemType("WretchedPouch"));
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.SummoningPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.PirateCaptain:
                         if (Main.rand.Next(15) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("GoldenDippingVat"));
-
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.AmmoReservationPotion, Main.rand.Next(2, 3) + 1);
+                            Item.NewItem(npc.Hitbox, mod.ItemType("GoldenDippingVat"));
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.AmmoReservationPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.PirateShip:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SecurityWallet"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("SecurityWallet"));
                         break;
 
                     case NPCID.Nymph:
                         if (Main.rand.Next(2) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("NymphsPerfume"));
-
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.LovePotion, Main.rand.Next(3, 5) + 1);
+                            Item.NewItem(npc.Hitbox, mod.ItemType("NymphsPerfume"));
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.LovePotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.MourningWood:
-                        Item.NewItem(npc.position, npc.Size, ItemID.GoodieBag);
+                        Item.NewItem(npc.Hitbox, ItemID.GoodieBag);
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.BloodyMachete);
+                            Item.NewItem(npc.Hitbox, ItemID.BloodyMachete);
                         break;
 
                     case NPCID.Pumpking:
-                        Item.NewItem(npc.position, npc.Size, ItemID.GoodieBag);
+                        Item.NewItem(npc.Hitbox, ItemID.GoodieBag);
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.BladedGlove);
+                            Item.NewItem(npc.Hitbox, ItemID.BladedGlove);
                         if (Main.pumpkinMoon && Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("PumpkingsCape"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("PumpkingsCape"));
                         break;
 
                     case NPCID.Everscream:
                     case NPCID.SantaNK1:
-                        Item.NewItem(npc.position, npc.Size, ItemID.Present);
+                        Item.NewItem(npc.Hitbox, ItemID.Present);
                         break;
 
                     case NPCID.IceQueen:
                         Item.NewItem(npc.Hitbox, ItemID.Present);
                         if (Main.snowMoon && Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("IceQueensCrown"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("IceQueensCrown"));
                         break;
 
                     case NPCID.MartianSaucerCore:
                         if (Main.rand.Next(10) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("SaucerControlConsole"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("SaucerControlConsole"));
                         break;
 
                     case NPCID.LavaSlime:
                         if (Main.rand.Next(100) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.LavaCharm);
-
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.WarmthPotion, Main.rand.Next(1, 2) + 1);
+                            Item.NewItem(npc.Hitbox, ItemID.LavaCharm);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.WarmthPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.BlackRecluse:
                     case NPCID.BlackRecluseWall:
                         if (Main.rand.Next(50) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.SpiderEgg);
+                            Item.NewItem(npc.Hitbox, ItemID.SpiderEgg);
                         break;
 
                     case NPCID.DesertDjinn:
                         if (Main.rand.Next(50) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.FlyingCarpet);
+                            Item.NewItem(npc.Hitbox, ItemID.FlyingCarpet);
                         break;
 
                     case NPCID.DarkCaster:
-                        if (Main.rand.Next(25) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.WaterBolt);
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.Hitbox, ItemID.WaterBolt);
+                        break;
+
+                    case NPCID.Tim:
+                        if (Main.rand.Next(2) == 0)
+                            Item.NewItem(npc.Hitbox, mod.ItemType("TimsConcoction"));
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.ManaRegenerationPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.RuneWizard:
                         if (Main.rand.Next(2) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("MysticSkull"));
-
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.MagicPowerPotion, Main.rand.Next(3, 5) + 1);
+                            Item.NewItem(npc.Hitbox, mod.ItemType("MysticSkull"));
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.MagicPowerPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.SnowBalla:
                     case NPCID.SnowmanGangsta:
                     case NPCID.MisterStabby:
                         if (Main.rand.Next(100) == 0)
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("OrdinaryCarrot"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("OrdinaryCarrot"));
                         break;
 
                     case NPCID.BigMossHornet:
@@ -9428,7 +9427,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.MossHornet:
                     case NPCID.TinyMossHornet:
                         if (Main.rand.Next(2) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.Stinger);
+                            Item.NewItem(npc.Hitbox, ItemID.Stinger);
                         break;
 
                     case NPCID.FungiBulb:
@@ -9442,29 +9441,47 @@ namespace FargowiltasSouls.NPCs
                         if (Main.rand.Next(5) == 0)
                             Item.NewItem(npc.Hitbox, ItemID.MushroomGrassSeeds);
                         if (Main.rand.Next(20) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.TruffleWorm);
+                            Item.NewItem(npc.Hitbox, ItemID.TruffleWorm);
                         break;
 
-                    //potion drops
+                    case NPCID.Demon:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.Hitbox, ItemID.Blindfold);
+                        break;
+
+                    case NPCID.Piranha:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.Hitbox, ItemID.AdhesiveBandage);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.FishingPotion, Main.rand.Next(0, 2) + 1);
+                        break;
+
+                    case NPCID.Derpling:
+                        if (Main.rand.Next(50) == 0)
+                            Item.NewItem(npc.Hitbox, ItemID.TrifoldMap);
+                        break;
+
+                    #region potion drops
+
                     case NPCID.GoblinArcher:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.ArcheryPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.ArcheryPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Antlion:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.BuilderPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.BuilderPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Mimic:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.SpelunkerPotion, Main.rand.Next(2, 3) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.SpelunkerPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.WallCreeperWall:
                     case NPCID.WallCreeper:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.TrapsightPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.TrapsightPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Salamander:
@@ -9476,146 +9493,138 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Salamander7:
                     case NPCID.Salamander8:
                     case NPCID.Salamander9:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.InvisibilityPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.InvisibilityPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.GreekSkeleton:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.IronskinPotion, Main.rand.Next(2, 3) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.IronskinPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Harpy:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.FeatherfallPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.FeatherfallPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Shark:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.FlipperPotion, Main.rand.Next(2, 3) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.FlipperPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.GraniteGolem:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.EndurancePotion, Main.rand.Next(2, 3) + 1);
-                        break;
-
-                    case NPCID.Tim:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.ManaRegenerationPotion, Main.rand.Next(4, 6) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.EndurancePotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.UndeadMiner:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.MiningPotion, Main.rand.Next(3, 4) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.MiningPotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.Raven:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.NightOwlPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.NightOwlPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.BloodZombie:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.RagePotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.RagePotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.PinkJellyfish:
                     case NPCID.BlueJellyfish:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.ShinePotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.ShinePotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.CaveBat:
                     case NPCID.IceBat:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.SonarPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.SonarPotion, Main.rand.Next(0, 2) + 1);
                         goto case NPCID.JungleBat;
 
                     case NPCID.BoneSerpentHead:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.ObsidianSkinPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.ObsidianSkinPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.FireImp:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.InfernoPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.InfernoPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Drippler:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.HeartreachPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.HeartreachPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.GoblinScout:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.BattlePotion, Main.rand.Next(2, 3) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.BattlePotion, Main.rand.Next(2, 5) + 1);
                         break;
 
                     case NPCID.Bunny:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.CalmingPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.CalmingPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Arapaima:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.CratePotion, Main.rand.Next(1, 2) + 1);
-                        break;
-
-                    case NPCID.Piranha:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.FishingPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.CratePotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.ToxicSludge:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.StinkPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.StinkPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Tumbleweed:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.SwiftnessPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.SwiftnessPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.SpikedJungleSlime:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.ThornsPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.ThornsPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.YellowSlime:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.RecallPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.RecallPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.GiantWormHead:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.WormholePotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.WormholePotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.IceSlime:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.WaterWalkingPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.WaterWalkingPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Goldfish:
                     case NPCID.GoldfishWalker:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.GillsPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.GillsPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.Duck:
                     case NPCID.Duck2:
                     case NPCID.DuckWhite:
                     case NPCID.DuckWhite2:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.HunterPotion, Main.rand.Next(1, 2) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.HunterPotion, Main.rand.Next(0, 2) + 1);
                         break;
 
                     case NPCID.BigMimicCorruption:
                     case NPCID.BigMimicCrimson:
-                        if (Main.rand.Next(1) == 0)
-                            Item.NewItem(npc.position, npc.Size, ItemID.LifeforcePotion, Main.rand.Next(2, 3) + 1);
+                        if (Main.player[npc.lastInteraction].GetModPlayer<FargoPlayer>().TimsConcoction)
+                            Item.NewItem(npc.Hitbox, ItemID.LifeforcePotion, Main.rand.Next(2, 5) + 1);
                         break;
+
+                    #endregion
 
                     #region boss drops
                     case NPCID.KingSlime:
@@ -9653,8 +9662,8 @@ namespace FargowiltasSouls.NPCs
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CorruptHeart"));
 
                             //to make up for no loot until dead (lowest possible amount dropped ECH)
-                            Item.NewItem(npc.position, npc.Size, ItemID.ShadowScale, 60);
-                            Item.NewItem(npc.position, npc.Size, ItemID.DemoniteOre, 150);
+                            Item.NewItem(npc.Hitbox, ItemID.ShadowScale, 60);
+                            Item.NewItem(npc.Hitbox, ItemID.DemoniteOre, 150);
                         }
                         break;
 
@@ -9663,8 +9672,8 @@ namespace FargowiltasSouls.NPCs
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("GuttedHeart"));
 
                         //to make up for no loot creepers (lowest possible amount dropped ECH)
-                        Item.NewItem(npc.position, npc.Size, ItemID.TissueSample, 60);
-                        Item.NewItem(npc.position, npc.Size, ItemID.CrimtaneOre, 150);
+                        Item.NewItem(npc.Hitbox, ItemID.TissueSample, 60);
+                        Item.NewItem(npc.Hitbox, ItemID.CrimtaneOre, 150);
                         break;
 
                     case NPCID.SkeletronHead:
@@ -9780,11 +9789,11 @@ namespace FargowiltasSouls.NPCs
                 switch (npc.type)
                 {
                     case NPCID.KingSlime:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("SlimeKingsSlasher"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("SlimeKingsSlasher"));
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("EyeFlail"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("EyeFlail"));
                         break;
 
                     case NPCID.EaterofWorldsHead:
@@ -9801,58 +9810,58 @@ namespace FargowiltasSouls.NPCs
                         }
                         if (dropItems)
                         {
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("EaterStaff"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("EaterStaff"));
                         }
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("BrainStaff"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("BrainStaff"));
                         break;
 
                     case NPCID.QueenBee:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("HiveStaff"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("HiveStaff"));
                         break;
 
                     case NPCID.SkeletronHead:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("Bonezone"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("Bonezone"));
                         break;
 
                     case NPCID.WallofFlesh:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("FleshHand"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("FleshHand"));
                         break;
 
                     case NPCID.TheDestroyer:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("DestroyerGun"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("DestroyerGun"));
                         break;
 
                     case NPCID.SkeletronPrime:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("DarkStarCannon"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("DarkStarCannon"));
                         break;
 
                     case NPCID.Retinazer:
                         if (!BossIsAlive(ref spazBoss, NPCID.Spazmatism))
                         {
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("TwinRangs"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("TwinRangs"));
                         }
                         break;
 
                     case NPCID.Spazmatism:
                         if (!BossIsAlive(ref retiBoss, NPCID.Retinazer))
                         {
-                            Item.NewItem(npc.position, npc.Size, mod.ItemType("TwinRangs"));
+                            Item.NewItem(npc.Hitbox, mod.ItemType("TwinRangs"));
                         }
                         break;
 
                     case NPCID.Plantera:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("Dicer"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("Dicer"));
                         break;
 
                     case NPCID.Golem:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("GolemTome"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("GolemTome"));
                         break;
 
                     case NPCID.DukeFishron:
-                        Item.NewItem(npc.position, npc.Size, mod.ItemType("FishStick"));
+                        Item.NewItem(npc.Hitbox, mod.ItemType("FishStick"));
                         break;
                 }
             }
@@ -10343,7 +10352,7 @@ namespace FargowiltasSouls.NPCs
 
                                 int max = Main.rand.Next(5) + 5;
                                 for (int i = 0; i < max; i++)
-                                    Item.NewItem(npc.position, npc.Size, ItemID.Heart);
+                                    Item.NewItem(npc.Hitbox, ItemID.Heart);
                                 return false;
                             }
                         }
@@ -10598,7 +10607,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PigronHallow:
                         if (!Main.hardMode) //in pre-hm, fake death
                         {
-                            Item.NewItem(npc.position, npc.Size, ItemID.GoldCoin, 1 + Main.rand.Next(2));
+                            Item.NewItem(npc.Hitbox, ItemID.GoldCoin, 1 + Main.rand.Next(2));
 
                             npc.active = false;
                             Main.PlaySound(npc.DeathSound, npc.Center);
@@ -10607,7 +10616,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.Mimic:
-                        Item.NewItem(npc.position, npc.Size, ItemID.GoldCoin, 1 + Main.rand.Next(2));
+                        Item.NewItem(npc.Hitbox, ItemID.GoldCoin, 1 + Main.rand.Next(2));
 
                         if (Main.netMode != 1)
                         {

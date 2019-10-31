@@ -51,6 +51,7 @@ Summons a friendly super Flocko, Mini Saucer, and true eyes of Cthulhu");
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.AllDamageUp(.1f);
             fargoPlayer.AllCritUp(10);
+            fargoPlayer.MasochistHeart = true;
             player.endurance += 0.1f;
 
             //pumpking's cape

@@ -23,6 +23,7 @@ You have autofire, improved night vision, and faster respawn when no boss is ali
 Automatically use mana potions when needed and gives modifier protection
 Attacks have a chance to squeak and deal 1 damage to you
 You erupt into Shadowflame tentacles when injured
+Certain enemies will drop potions when defeated
 Summons a friendly rainbow slime");
             DisplayName.AddTranslation(GameCulture.Chinese, "生态集群");
             Tooltip.AddTranslation(GameCulture.Chinese, @"'由上千普通敌人融合而成'
@@ -112,6 +113,10 @@ Summons a friendly rainbow slime");
                 if (fargoPlayer.NymphsPerfumeCD > 0)
                     fargoPlayer.NymphsPerfumeCD--;
             }
+
+            //tim's concoction
+            if (SoulConfig.Instance.GetValue("Tim's Concoction"))
+                player.GetModPlayer<FargoPlayer>().TimsConcoction = true;
         }
 
         public override void AddRecipes()
@@ -129,6 +134,7 @@ Summons a friendly rainbow slime");
             recipe.AddIngredient(mod.ItemType("OrdinaryCarrot"));
             recipe.AddIngredient(mod.ItemType("WretchedPouch"));
             recipe.AddIngredient(mod.ItemType("NymphsPerfume"));
+            recipe.AddIngredient(mod.ItemType("TimsConcoction"));
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 20);
 
