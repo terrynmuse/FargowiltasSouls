@@ -50,13 +50,13 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 600));
+            target.AddBuff(BuffID.OnFire, 600);
             if (NPC.golemBoss != -1 && Main.npc[NPC.golemBoss].active && Main.npc[NPC.golemBoss].type == NPCID.Golem)
             {
                 if (Main.tile[(int)Main.npc[NPC.golemBoss].Center.X / 16, (int)Main.npc[NPC.golemBoss].Center.Y / 16] == null || //outside temple
                     Main.tile[(int)Main.npc[NPC.golemBoss].Center.X / 16, (int)Main.npc[NPC.golemBoss].Center.Y / 16].wall != WallID.LihzahrdBrickUnsafe)
                 {
-                    target.AddBuff(BuffID.Burning, Main.rand.Next(60, 300));
+                    target.AddBuff(BuffID.Burning, 300);
                 }
             }
         }

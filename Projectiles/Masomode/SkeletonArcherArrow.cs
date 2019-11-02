@@ -25,7 +25,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.Venom, Main.rand.Next(60, 480));
+            target.AddBuff(BuffID.Venom, 480);
         }
     }
 }

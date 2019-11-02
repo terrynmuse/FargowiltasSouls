@@ -31,8 +31,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
             else if (Main.rand.Next(2) == 0)
                 target.AddBuff(39, 180, true);
 
-            target.AddBuff(BuffID.OnFire, Main.rand.Next(60, 300));
-            target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 240));
+            target.AddBuff(BuffID.OnFire, 300);
+            target.AddBuff(mod.BuffType("ClippedWings"), 180);
             target.AddBuff(mod.BuffType("Crippled"), 60);
         }
     }
