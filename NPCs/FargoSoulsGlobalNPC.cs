@@ -9503,6 +9503,16 @@ namespace FargowiltasSouls.NPCs
                             Item.NewItem(npc.Hitbox, ItemID.TrifoldMap);
                         break;
 
+                    case NPCID.DD2DarkMageT1:
+                    case NPCID.DD2DarkMageT3:
+                        Item.NewItem(npc.Hitbox, ItemID.DefenderMedal, 5);
+                        break;
+
+                    case NPCID.DD2OgreT2:
+                    case NPCID.DD2OgreT3:
+                        Item.NewItem(npc.Hitbox, ItemID.DefenderMedal, 10);
+                        break;
+
                     #region potion drops
 
                     case NPCID.BlueSlime:
@@ -9673,7 +9683,7 @@ namespace FargowiltasSouls.NPCs
 
                     #region boss drops
                     case NPCID.KingSlime:
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.HerbBag, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.HerbBag, Main.rand.Next(5) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.WoodenCrate, Main.rand.Next(5) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("SlimyShield"));
                         if (Main.netMode != 1 && !BossIsAlive(ref mutantBoss, mod.NPCType("MutantBoss")) && Fargowiltas.Instance.FargosLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant")))
@@ -10397,7 +10407,6 @@ namespace FargowiltasSouls.NPCs
                                 maxEX = Main.rand.Next(5) + 5;
                                 for (int i = 0; i < maxEX; i++)
                                     npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantScale"));
-                                npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(3) + 1);
 
                                 int max = Main.rand.Next(5) + 5;
                                 for (int i = 0; i < max; i++)

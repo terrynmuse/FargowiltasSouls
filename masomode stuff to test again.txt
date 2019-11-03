@@ -168,6 +168,8 @@ brain clone can tp again
 brain and clone will NEVER telefrag you ever
 brain/creeper/clone now do poisoned, darkness, bleeding, slow, weak, broken armor on hit instead of maso debuffs
 lunatic cultist does MFD on touch (was hexed)
+dark mages drop 5 defender medals
+ogres drop 10 defender medals
 
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
