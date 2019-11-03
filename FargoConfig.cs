@@ -1237,12 +1237,10 @@ namespace FargowiltasSouls
             calamityToggles.Add("Levi Pet", calamenu.leviPet);
         }
 
-        public bool GetValue(string input)
+        public bool GetValue(string input, bool checkForMutantPresence = true)
         {
-            if (Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().MutantPresence)
-            {
+            if (checkForMutantPresence && Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().MutantPresence)
                 return false;
-            }
 
             if (enchantToggles.ContainsKey(input))
             {

@@ -92,11 +92,10 @@ namespace FargowiltasSouls.NPCs
         {
             if (target.hurtCooldowns[1] == 0)
             {
-                target.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(600, 900));
                 target.AddBuff(BuffID.Wet, 420);
-                //target.AddBuff(mod.BuffType("SqueakyToy"), Main.rand.Next(60, 180));
+                target.AddBuff(mod.BuffType("Defenseless"), 600);
                 target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 50;
-                target.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(1800, 3600));
+                target.AddBuff(mod.BuffType("OceanicMaul"), 1800);
             }
         }
 
