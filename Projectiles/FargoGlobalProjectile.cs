@@ -170,7 +170,7 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
-                    if (!townNPCProj && !projectile.trap && projectile.aiStyle != 99 && modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect"))
+                    if (!townNPCProj && !projectile.trap && projectile.aiStyle != 99 && modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect", false))
                     {
                         projectile.position = projectile.Center;
                         projectile.scale *= 2f;
@@ -247,7 +247,7 @@ namespace FargowiltasSouls.Projectiles
                     }
                 }
 
-                if (tungstenProjectile && (!modPlayer.TungstenEnchant || !SoulConfig.Instance.GetValue("Tungsten Effect")))
+                if (tungstenProjectile && (!modPlayer.TungstenEnchant || !SoulConfig.Instance.GetValue("Tungsten Effect", false)))
                 {
                     projectile.position = projectile.Center;
                     projectile.scale /= 2f;

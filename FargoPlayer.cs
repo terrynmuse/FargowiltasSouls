@@ -1094,7 +1094,7 @@ namespace FargowiltasSouls
                 }
             }
 
-            if (GravityGlobeEX && SoulConfig.Instance.masoTogDict["Stabilized Gravity"])
+            if (GravityGlobeEX && SoulConfig.Instance.GetValue("Stabilized Gravity", false))
                 player.gravity = Player.defaultGravity;
 
             if (TikiEnchant && SoulConfig.Instance.GetValue("Tiki Minions"))
@@ -1363,7 +1363,7 @@ namespace FargowiltasSouls
 
             Item heldItem = player.HeldItem;
             //fix your toggles terry
-            if (TungstenEnchant && SoulConfig.Instance.GetValue("Tungsten Effect"))
+            if (TungstenEnchant && SoulConfig.Instance.GetValue("Tungsten Effect", false))
             {
                 if (heldItem.damage > 0 && heldItem.scale < 2.5f)
                 {
@@ -4369,7 +4369,7 @@ namespace FargowiltasSouls
 
         public void TinEffect()
         {
-            if (!SoulConfig.Instance.enchantToggles["Tin Crits"]) return;
+            if (!SoulConfig.Instance.GetValue("Tin Crits", false)) return;
 
             TinEnchant = true;
             AllCritEquals(TinCrit);
