@@ -30,7 +30,6 @@ namespace FargowiltasSouls
         internal bool AALoaded;
         internal bool BlueMagicLoaded;
         internal bool DBTLoaded;
-        internal bool SOALoaded;
         internal bool ApothLoaded;
         internal bool MasomodeEX;
 
@@ -1223,12 +1222,12 @@ namespace FargowiltasSouls
             {
                 CalamityCompatibility = new CalamityCompatibility(this).TryLoad() as CalamityCompatibility;
                 ThoriumCompatibility = new ThoriumCompatibility(this).TryLoad() as ThoriumCompatibility;
+                SoACompatibility = new SoACompatibility(this).TryLoad() as SoACompatibility;
 
                 FargosLoaded = ModLoader.GetMod("Fargowiltas") != null;
                 BlueMagicLoaded = ModLoader.GetMod("Bluemagic") != null;
                 AALoaded = ModLoader.GetMod("AAMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
-                SOALoaded = ModLoader.GetMod("SacredTools") != null;
                 ApothLoaded = ModLoader.GetMod("ApothTestMod") != null;
                 MasomodeEX = ModLoader.GetMod("MasomodeEX") != null;
 
@@ -1355,18 +1354,7 @@ namespace FargowiltasSouls
 
             CalamityCompatibility?.AddRecipeGroups();
             ThoriumCompatibility?.AddRecipeGroups();
-
-            if (Instance.SOALoaded)
-            {
-                Mod soa = ModLoader.GetMod("SacredTools");
-
-                //flarium
-                group = new RecipeGroup(() => Lang.misc[37] + " Flarium Helmet", soa.ItemType("FlariumCowl"), soa.ItemType("FlariumHelmet"), soa.ItemType("FlariumHood"), soa.ItemType("FlariumCrown"), soa.ItemType("FlariumMask"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyFlariumHelmet", group);
-                //asthraltite
-                group = new RecipeGroup(() => Lang.misc[37] + " Asthraltite Helmet", soa.ItemType("AsthralMelee"), soa.ItemType("AsthralRanged"), soa.ItemType("AsthralMage"), soa.ItemType("AsthralSummon"), soa.ItemType("AsthralThrown"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAstralHelmet", group);
-            }
+            SoACompatibility?.AddRecipeGroups();
 
             //evil wood
             group = new RecipeGroup(() => Lang.misc[37] + " Evil Wood", ItemID.Ebonwood, ItemID.Shadewood);
@@ -1769,6 +1757,9 @@ namespace FargowiltasSouls
 
         internal ThoriumCompatibility ThoriumCompatibility { get; private set; }
         internal bool ThoriumLoaded => ThoriumCompatibility != null;
+
+        internal SoACompatibility SoACompatibility { get; private set; }
+        internal bool SoALoaded => SoACompatibility != null;
     }
 
     enum MsgType : byte

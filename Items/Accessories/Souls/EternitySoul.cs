@@ -710,7 +710,7 @@ Additionally grants:");
 
             if (Fargowiltas.Instance.DBTLoaded) DBT(player);
 
-            if (Fargowiltas.Instance.SOALoaded) SOA(player, hideVisual);
+            if (Fargowiltas.Instance.SoALoaded) SOA(player, hideVisual);
 
             if (Fargowiltas.Instance.ApothLoaded)
             {
@@ -1003,7 +1003,7 @@ Additionally grants:");
                 recipe.AddIngredient(calamity.ItemType("Rock"));
             }
 
-            if (Fargowiltas.Instance.SOALoaded)
+            if (Fargowiltas.Instance.SoALoaded)
             {
                 recipe.AddIngredient(null, "SoASoul");
             }

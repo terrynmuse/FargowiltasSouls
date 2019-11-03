@@ -46,7 +46,7 @@ Effects of Dreadflame Emblem, Lapis Pendant, Frigid Pendant, and Pumpkin Amulet"
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();
@@ -81,7 +81,7 @@ Effects of Dreadflame Emblem, Lapis Pendant, Frigid Pendant, and Pumpkin Amulet"
 
         public override void AddRecipes()
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             ModRecipe recipe = new ModRecipe(mod);
 

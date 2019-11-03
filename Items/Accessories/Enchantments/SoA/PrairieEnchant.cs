@@ -42,7 +42,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             player.thrownDamage += 0.05f;
             player.rangedDamage += 0.05f;
@@ -51,7 +51,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.SoA
 
         public override void AddRecipes()
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             ModRecipe recipe = new ModRecipe(mod);
 

@@ -17,6 +17,9 @@
     <Reference Include="CalamityMod">
       <HintPath>bin\Debug\net45\CalamityMod.FNA.dll</HintPath>
     </Reference>
+    <Reference Include="DBZMOD">
+      <HintPath>bin\Debug\net45\DBZMOD.dll</HintPath>
+    </Reference>
     <Reference Include="SacredTools">
       <HintPath>bin\Debug\net45\SacredTools.FNA.dll</HintPath>
     </Reference>
