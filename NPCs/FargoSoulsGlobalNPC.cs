@@ -1578,7 +1578,7 @@ namespace FargowiltasSouls.NPCs
                                 if (npc.ai[2] < 2)
                                 {
                                     npc.ai[2]--;
-                                    npc.alpha += 8;
+                                    npc.alpha += 6;
                                     for (int i = 0; i < 3; i++)
                                     {
                                         int d = Dust.NewDust(npc.position, npc.width, npc.height, 229, 0f, 0f, 0, default(Color), 1.5f);
@@ -1605,7 +1605,7 @@ namespace FargowiltasSouls.NPCs
                                 }
                                 else
                                 {
-                                    npc.alpha -= 8;
+                                    npc.alpha -= 6;
                                     if (npc.alpha < 0)
                                     {
                                         npc.alpha = 0;
@@ -1624,6 +1624,8 @@ namespace FargowiltasSouls.NPCs
                                     }
                                 }
                             }
+
+                            npc.dontTakeDamage = npc.alpha > 50;
 
                             if (Counter2 > 0)
                             {
@@ -1666,6 +1668,11 @@ namespace FargowiltasSouls.NPCs
                                     }
                                 }
                             }*/
+                        }
+                        else
+                        {
+                            npc.alpha = 0;
+                            npc.dontTakeDamage = false;
                         }
                         break;
 
@@ -5309,6 +5316,19 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.BrainofCthulhu:
                         brainBoss = npc.whoAmI;
+                        if (npc.alpha == 0)
+                        {
+                            npc.damage = npc.defDamage;
+                        }
+                        else
+                        {
+                            npc.damage = 0;
+                            if (npc.ai[0] != -2 && npc.HasPlayerTarget && npc.Distance(Main.player[npc.target].Center) < 500) //stay at a minimum distance
+                            {
+                                npc.Center = Main.player[npc.target].Center + Main.player[npc.target].DirectionTo(npc.Center) * 500;
+                            }
+                        }
+
                         if (!npc.dontTakeDamage) //vulnerable
                         {
                             if (npc.buffType[0] != 0) //constant debuff cleanse
@@ -7249,12 +7269,13 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.EyeofCthulhu:
                     case NPCID.WanderingEye:
-                        target.AddBuff(BuffID.Obstructed, 120);
+                        target.AddBuff(BuffID.Obstructed, 60);
                         target.AddBuff(mod.BuffType("Berserked"), 300);
                         break;
 
                     case NPCID.ServantofCthulhu:
-                        target.AddBuff(mod.BuffType("Hexed"), 180);
+                        target.AddBuff(BuffID.Obstructed, 30);
+                        target.AddBuff(mod.BuffType("Berserked"), 150);
                         break;
 
                     case NPCID.QueenBee:
@@ -8734,12 +8755,12 @@ namespace FargowiltasSouls.NPCs
                                 if (jungle)
                                     pool[NPCID.DoctorBones] = .05f;
 
-                                if (NPC.downedBoss3 && !sinisterIcon && !BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
+                                if (NPC.downedBoss3 && !sinisterIcon && !AnyBossAlive())
                                     pool[NPCID.EyeofCthulhu] = Main.bloodMoon ? .004f : .002f;
                             }
                         }
 
-                        if (Main.slimeRain && NPC.downedBoss2 && !sinisterIcon && !BossIsAlive(ref slimeBoss, NPCID.KingSlime))
+                        if (Main.slimeRain && NPC.downedBoss2 && !sinisterIcon && !AnyBossAlive())
                             pool[NPCID.KingSlime] = 0.04f;
                     }
                     else if (wideUnderground)
@@ -8789,7 +8810,7 @@ namespace FargowiltasSouls.NPCs
                         if (NPC.downedBoss2)
                         {
                             pool[NPCID.SeekerHead] = .01f;
-                            if (normalSpawn && NPC.downedBoss3 && !underworld && !sinisterIcon && !BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
+                            if (normalSpawn && NPC.downedBoss3 && !underworld && !sinisterIcon && !AnyBossAlive())
                                 pool[NPCID.EaterofWorldsHead] = .002f;
                         }
                     }
@@ -8799,7 +8820,7 @@ namespace FargowiltasSouls.NPCs
                         if (NPC.downedBoss2)
                         {
                             pool[NPCID.IchorSticker] = .01f;
-                            if (normalSpawn && NPC.downedBoss3 && !underworld && !sinisterIcon && !BossIsAlive(ref brainBoss, NPCID.BrainofCthulhu))
+                            if (normalSpawn && NPC.downedBoss3 && !underworld && !sinisterIcon && !AnyBossAlive())
                                 pool[NPCID.BrainofCthulhu] = .002f;
                         }
                     }
@@ -8836,7 +8857,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             if (normalSpawn)
                             {
-                                if (noBiome && !sinisterIcon && !BossIsAlive(ref slimeBoss, NPCID.KingSlime))
+                                if (noBiome && !sinisterIcon && !AnyBossAlive())
                                     pool[NPCID.KingSlime] = Main.slimeRain ? .004f : .002f;
 
                                 if (NPC.downedMechBossAny && (noBiome || dungeon))
@@ -8848,12 +8869,12 @@ namespace FargowiltasSouls.NPCs
                             if (Main.bloodMoon)
                             {
                                 pool[NPCID.ChatteringTeethBomb] = .1f;
-                                if (!sinisterIcon && !BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
+                                if (!sinisterIcon && !AnyBossAlive())
                                     pool[NPCID.EyeofCthulhu] = .04f;
 
                                 if (NPC.downedPlantBoss)
                                 {
-                                    if (!sinisterIcon && !BossIsAlive(ref retiBoss, NPCID.Retinazer) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref destroyBoss, NPCID.TheDestroyer))
+                                    if (!sinisterIcon && !AnyBossAlive())
                                     {
                                         pool[NPCID.Retinazer] = .02f;
                                         pool[NPCID.Spazmatism] = .02f;
@@ -8890,7 +8911,7 @@ namespace FargowiltasSouls.NPCs
                                         }
                                     }
 
-                                    if (!sinisterIcon && !BossIsAlive(ref eyeBoss, NPCID.EyeofCthulhu))
+                                    if (!sinisterIcon && !AnyBossAlive())
                                         pool[NPCID.EyeofCthulhu] = .02f;
 
                                     if (NPC.downedMechBossAny)
@@ -8898,7 +8919,7 @@ namespace FargowiltasSouls.NPCs
 
                                     if (NPC.downedPlantBoss) //GODLUL
                                     {
-                                        if (!sinisterIcon && !BossIsAlive(ref retiBoss, NPCID.Retinazer) && !BossIsAlive(ref spazBoss, NPCID.Spazmatism) && !BossIsAlive(ref primeBoss, NPCID.SkeletronPrime) && !BossIsAlive(ref destroyBoss, NPCID.TheDestroyer))
+                                        if (!sinisterIcon && !AnyBossAlive())
                                         {
                                             pool[NPCID.Retinazer] = .005f;
                                             pool[NPCID.Spazmatism] = .005f;
@@ -9000,7 +9021,7 @@ namespace FargowiltasSouls.NPCs
                             pool[NPCID.PigronCorruption] = .01f;
                             pool[NPCID.PigronCrimson] = .01f;
                             pool[NPCID.PigronHallow] = .01f;
-                            if (NPC.downedFishron && !sinisterIcon && !BossIsAlive(ref fishBoss, NPCID.DukeFishron))
+                            if (NPC.downedFishron && !sinisterIcon && !AnyBossAlive())
                                 pool[NPCID.DukeFishron] = .004f;
                         }
                         else if (desert)
@@ -9032,7 +9053,7 @@ namespace FargowiltasSouls.NPCs
                                 pool[NPCID.DarkCaster] = .05f;
                         }
 
-                        if (dungeon && night && normalSpawn && !sinisterIcon && !BossIsAlive(ref skeleBoss, NPCID.SkeletronHead))
+                        if (dungeon && night && normalSpawn && !sinisterIcon && !AnyBossAlive())
                             pool[NPCID.SkeletronHead] = .005f;
 
                         if (NPC.downedMechBossAny)
@@ -9061,7 +9082,7 @@ namespace FargowiltasSouls.NPCs
                             pool[NPCID.RaggedCasterOpenCoat] = .002f;
                         }
 
-                        if (NPC.downedAncientCultist && dungeon && !sinisterIcon && !BossIsAlive(ref cultBoss, NPCID.CultistBoss))
+                        if (NPC.downedAncientCultist && dungeon && !sinisterIcon && !AnyBossAlive())
                             pool[NPCID.CultistBoss] = 0.002f;
 
                         if (spawnInfo.player.ZoneUndergroundDesert)
@@ -9099,7 +9120,7 @@ namespace FargowiltasSouls.NPCs
                             pool[NPCID.RaggedCasterOpenCoat] = .002f;
                         }
 
-                        if (FargoSoulsWorld.downedBetsy && !sinisterIcon && !BossIsAlive(ref betsyBoss, NPCID.DD2Betsy))
+                        if (FargoSoulsWorld.downedBetsy && !sinisterIcon && !AnyBossAlive())
                             pool[NPCID.DD2Betsy] = .01f;
                     }
                     else if (sky)
@@ -9124,7 +9145,7 @@ namespace FargowiltasSouls.NPCs
                                 pool[NPCID.NebulaBrain] = .01f;
                                 pool[NPCID.StardustJellyfishBig] = .01f;
                             }
-                            if (NPC.downedMoonlord && !sinisterIcon && !BossIsAlive(ref moonBoss, NPCID.MoonLordCore))
+                            if (NPC.downedMoonlord && !sinisterIcon && !AnyBossAlive())
                             {
                                 pool[NPCID.MoonLordCore] = 0.002f;
                             }
@@ -9134,26 +9155,26 @@ namespace FargowiltasSouls.NPCs
                     //height-independent biomes
                     if (corruption)
                     {
-                        if (normalSpawn && !sinisterIcon && !BossIsAlive(ref eaterBoss, NPCID.EaterofWorldsHead))
+                        if (normalSpawn && !sinisterIcon && !AnyBossAlive())
                             pool[NPCID.EaterofWorldsHead] = .004f;
                     }
 
                     if (crimson)
                     {
-                        if (normalSpawn && !sinisterIcon && !BossIsAlive(ref brainBoss, NPCID.BrainofCthulhu))
+                        if (normalSpawn && !sinisterIcon && !AnyBossAlive())
                             pool[NPCID.BrainofCthulhu] = .004f;
                     }
 
                     if (jungle)
                     {
-                        if (normalSpawn && !sinisterIcon && !BossIsAlive(ref beeBoss, NPCID.QueenBee))
+                        if (normalSpawn && !sinisterIcon && !AnyBossAlive())
                             pool[NPCID.QueenBee] = .001f;
 
                         if (!surface)
                         {
                             pool[NPCID.BigMimicJungle] = .0025f;
 
-                            if (NPC.downedGolemBoss && !sinisterIcon && !BossIsAlive(ref NPC.plantBoss, NPCID.Plantera))
+                            if (NPC.downedGolemBoss && !sinisterIcon && !AnyBossAlive())
                                 pool[NPCID.Plantera] = .0005f;
                         }
                     }
@@ -9719,7 +9740,7 @@ namespace FargowiltasSouls.NPCs
                     #region boss drops
                     case NPCID.KingSlime:
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.HerbBag, Main.rand.Next(3) + 1);
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.WoodenCrate, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.WoodenCrate, Main.rand.Next(5) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("SlimyShield"));
                         if (Main.netMode != 1 && !BossIsAlive(ref mutantBoss, mod.NPCType("MutantBoss")) && Fargowiltas.Instance.FargosLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant")))
                         {
@@ -9731,6 +9752,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.EyeofCthulhu:
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.LifeCrystal, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.WoodenCrate, Main.rand.Next(5) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("AgitatingLens"));
                         break;
 
@@ -9748,7 +9770,7 @@ namespace FargowiltasSouls.NPCs
                         }
                         if (dropItems)
                         {
-                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.CorruptFishingCrate, Main.rand.Next(3) + 1);
+                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.CorruptFishingCrate, Main.rand.Next(5) + 1);
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("CorruptHeart"));
 
                             //to make up for no loot until dead (lowest possible amount dropped ECH)
@@ -9758,7 +9780,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.CrimsonFishingCrate, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.CrimsonFishingCrate, Main.rand.Next(5) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("GuttedHeart"));
 
                         //to make up for no loot creepers (lowest possible amount dropped ECH)
@@ -9767,21 +9789,21 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.SkeletronHead:
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.DungeonFishingCrate, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.DungeonFishingCrate, Main.rand.Next(5) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("NecromanticBrew"));
                         break;
 
                     case NPCID.QueenBee:
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.JungleFishingCrate, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.JungleFishingCrate, Main.rand.Next(5) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("QueenStinger"));
                         break;
 
                     case NPCID.WallofFlesh:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("PungentEyeball"));
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.HallowedFishingCrate, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.HallowedFishingCrate, Main.rand.Next(5) + 1);
                         if (Fargowiltas.Instance.FargosLoaded)
                         {
-                            npc.DropItemInstanced(npc.position, npc.Size, ModLoader.GetMod("Fargowiltas").ItemType("ShadowCrate"), Main.rand.Next(3) + 1);
+                            npc.DropItemInstanced(npc.position, npc.Size, ModLoader.GetMod("Fargowiltas").ItemType("ShadowCrate"), Main.rand.Next(5) + 1);
                             if (!Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().MutantsDiscountCard)
                                 npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantsDiscountCard"));
                         }
@@ -9792,7 +9814,7 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("FusedLens"));
                             npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
-                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(3) + 1);
+                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(5) + 1);
                         }
                         break;
 
@@ -9801,33 +9823,36 @@ namespace FargowiltasSouls.NPCs
                         {
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("FusedLens"));
                             npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
-                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(3) + 1);
+                            npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(5) + 1);
                         }
                         break;
 
                     case NPCID.TheDestroyer:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("GroundStick"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(5) + 1);
                         break;
 
                     case NPCID.SkeletronPrime:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("ReinforcedPlating"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.FallenStar, Main.rand.Next(10) + 1);
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.IronCrate, Main.rand.Next(5) + 1);
                         break;
 
                     case NPCID.Plantera:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MagicalBulb"));
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.JungleFishingCrate, Main.rand.Next(5) + 1);
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.LifeFruit, Main.rand.Next(3) + 1);
                         break;
 
                     case NPCID.Golem:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("LihzahrdTreasureBox"));
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(5) + 1);
                         break;
 
                     case NPCID.DD2Betsy:
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("BetsysHeart"));
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(5) + 1);
                         FargoSoulsWorld.downedBetsy = true;
                         break;
 
@@ -9841,7 +9866,7 @@ namespace FargowiltasSouls.NPCs
                         {*/
                         npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantAntibodies"));
                         npc.DropItemInstanced(npc.position, npc.Size, ItemID.Bacon, Main.rand.Next(10) + 1);
-                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(3) + 1);
+                        npc.DropItemInstanced(npc.position, npc.Size, ItemID.GoldenCrate, Main.rand.Next(5) + 1);
                         if (Fargowiltas.Instance.FargosLoaded && !Main.player[Main.myPlayer].GetModPlayer<FargoPlayer>().MutantsPact)
                             npc.DropItemInstanced(npc.position, npc.Size, mod.ItemType("MutantsPact"));
                         //}

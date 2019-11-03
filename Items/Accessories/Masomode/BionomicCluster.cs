@@ -17,7 +17,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
             Tooltip.SetDefault(@"'The amalgamate born of a thousand common enemies'
 Grants immunity to Frostburn, Shadowflame, Squeaky Toy, Guilty, Mighty Wind, and Suffocation
 Grants immunity to Flames of the Universe, Clipped Wings, Crippled, Webbed, and Purified
-Grants immunity to Lovestruck, Stinky, Midas, cactus damage, and enemies that steal items
+Grants immunity to Lovestruck, Stinky, Midas, Hexed, cactus damage, and enemies that steal items
 Your attacks can inflict Clipped Wings, spawn Frostfireballs, and produce hearts
 You have autofire, improved night vision, and faster respawn when no boss is alive
 Automatically use mana potions when needed and gives modifier protection
@@ -106,6 +106,7 @@ Summons a friendly rainbow slime");
             //nymph's perfume
             player.buffImmune[BuffID.Lovestruck] = true;
             player.buffImmune[mod.BuffType("Lovestruck")] = true;
+            player.buffImmune[mod.BuffType("Hexed")] = true;
             player.buffImmune[BuffID.Stinky] = true;
             if (SoulConfig.Instance.GetValue("Attacks Spawn Hearts"))
             {

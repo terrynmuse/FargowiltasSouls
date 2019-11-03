@@ -1240,8 +1240,8 @@ namespace FargowiltasSouls.Projectiles
                         break;
 
                     case ProjectileID.Skull:
-                        if (Main.rand.Next(4) == 0)
-                            target.AddBuff(BuffID.Cursed, 300);
+                        if (Main.rand.Next(2) == 0)
+                            target.AddBuff(BuffID.Cursed, 60);
                         if (FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.guardBoss, NPCID.DungeonGuardian))
                         {
                             target.AddBuff(mod.BuffType("GodEater"), 420);
@@ -1353,8 +1353,8 @@ namespace FargowiltasSouls.Projectiles
                     case ProjectileID.PoisonSeedPlantera:
                     case ProjectileID.SeedPlantera:
                         target.AddBuff(BuffID.Poisoned, 300);
-                        target.AddBuff(mod.BuffType("Infested"), 300);
-                        target.AddBuff(mod.BuffType("IvyVenom"), 300);
+                        target.AddBuff(mod.BuffType("Infested"), 180);
+                        target.AddBuff(mod.BuffType("IvyVenom"), 180);
                         break;
 
                     case ProjectileID.DesertDjinnCurse:

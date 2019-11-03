@@ -154,6 +154,19 @@ giant bats drop sonar pot (replacing ice bat)
 fixed yellow slimes not dropping recall
 tried something to prevent betsy dash wallclipping
 
+mothdust now inflicts 5 debuffs on hit, no longer inflicts per tick
+eoc servants/scythes now inflict brief obstructed/berserked instead of previous debuffs
+eoc teleport is slower, but eoc is now invul during tp
+nerfed skeletron's skull proj cursed duration, but increased chance
+removed hexed immune from celestial rune/chalice of moon
+nymph's perfume/biocluster now gives hexed immune
+no bosses will naturally spawn if any other boss is alive
+bosses can drop more crates
+eoc drops wood crates
+golem and betsy also drop gold crates now
+brain clone can tp again
+brain and clone will NEVER telefrag you ever
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)
