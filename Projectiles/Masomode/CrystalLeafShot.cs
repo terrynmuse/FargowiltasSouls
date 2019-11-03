@@ -31,9 +31,9 @@ namespace FargowiltasSouls.Projectiles.Masomode
         {
             if (target.hurtCooldowns[1] == 0)
             {
-                target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
-                target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
-                target.AddBuff(mod.BuffType("IvyVenom"), Main.rand.Next(60, 300));
+                target.AddBuff(BuffID.Poisoned, 300);
+                target.AddBuff(mod.BuffType("Infested"), 300);
+                target.AddBuff(mod.BuffType("IvyVenom"), 300);
             }
         }
     }

@@ -24,8 +24,8 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(mod.BuffType("LightningRod"), Main.rand.Next(60, 600));
-            target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(120, 180));
+            target.AddBuff(mod.BuffType("LightningRod"), 300);
+            target.AddBuff(mod.BuffType("ClippedWings"), 120);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             int d = Main.rand.Next(Fargowiltas.DebuffIDs.Count);
-            target.AddBuff(Fargowiltas.DebuffIDs[d], Main.rand.Next(60, 600));
+            target.AddBuff(Fargowiltas.DebuffIDs[d], 240);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

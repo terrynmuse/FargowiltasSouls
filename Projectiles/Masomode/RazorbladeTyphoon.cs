@@ -84,12 +84,12 @@ namespace FargowiltasSouls.Projectiles.Masomode
 
         public override void OnHitPlayer(Player player, int damage, bool crit)
         {
-            player.AddBuff(mod.BuffType("Defenseless"), Main.rand.Next(600, 900));
-            player.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
+            player.AddBuff(mod.BuffType("Defenseless"), 600);
+            player.AddBuff(BuffID.WitheredWeapon, 600);
             if (NPCs.FargoSoulsGlobalNPC.BossIsAlive(ref NPCs.FargoSoulsGlobalNPC.fishBossEX, NPCID.DukeFishron))
             {
                 player.GetModPlayer<FargoPlayer>().MaxLifeReduction += 50;
-                player.AddBuff(mod.BuffType("OceanicMaul"), Main.rand.Next(1800, 3600));
+                player.AddBuff(mod.BuffType("OceanicMaul"), 1800);
             }
         }
 
