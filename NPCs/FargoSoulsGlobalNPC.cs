@@ -7148,12 +7148,12 @@ namespace FargowiltasSouls.NPCs
                         switch (npc.netID)
                         {
                             case NPCID.BlackSlime:
-                                target.AddBuff(BuffID.Slimed, 300);
+                                target.AddBuff(BuffID.Slimed, 120);
                                 target.AddBuff(BuffID.Darkness, 600);
                                 break;
 
                             case NPCID.Pinky:
-                                target.AddBuff(BuffID.Slimed, 300);
+                                target.AddBuff(BuffID.Slimed, 120);
                                 target.AddBuff(mod.BuffType("Stunned"), 120);
                                 Vector2 velocity = Vector2.Normalize(target.Center - npc.Center) * 30;
                                 target.velocity = velocity;
@@ -7173,24 +7173,24 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.UmbrellaSlime:
-                        target.AddBuff(BuffID.Slimed, 300);
+                        target.AddBuff(BuffID.Slimed, 120);
                         target.AddBuff(BuffID.Wet, 600);
                         break;
 
                     case NPCID.IceSlime:
                     case NPCID.SpikedIceSlime:
-                        target.AddBuff(BuffID.Slimed, 300);
+                        target.AddBuff(BuffID.Slimed, 120);
                         target.AddBuff(BuffID.Frostburn, 120);
                         break;
 
                     case NPCID.JungleSlime:
                     case NPCID.SpikedJungleSlime:
-                        target.AddBuff(BuffID.Slimed, 300);
+                        target.AddBuff(BuffID.Slimed, 120);
                         target.AddBuff(BuffID.Poisoned, 180);
                         break;
 
                     case NPCID.MotherSlime:
-                        target.AddBuff(BuffID.Slimed, 300);
+                        target.AddBuff(BuffID.Slimed, 120);
                         target.AddBuff(mod.BuffType("Antisocial"), 1200);
                         break;
 
@@ -7200,14 +7200,12 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DungeonSlime:
-                        target.AddBuff(BuffID.Slimed, 300);
-                        target.AddBuff(BuffID.Blackout, 600);
+                        target.AddBuff(BuffID.Slimed, 120);
+                        target.AddBuff(BuffID.Blackout, 300);
                         break;
 
                     case NPCID.KingSlime:
-                        target.AddBuff(BuffID.Slimed, 300);
-                        //target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(300, 600));
-
+                        target.AddBuff(BuffID.Slimed, 120);
                         if (npc.velocity.Length() > 0 && !target.HasBuff(mod.BuffType("Stunned")) && !debuffOnCD)
                         {
                             target.AddBuff(mod.BuffType("Stunned"), 60);
@@ -7217,37 +7215,36 @@ namespace FargowiltasSouls.NPCs
                         {
                             debuffOnCD = false;
                         }
-                            
                         break;
                         
                     case NPCID.ToxicSludge:
-                        target.AddBuff(BuffID.Slimed, 600);
-                        target.AddBuff(mod.BuffType("Infested"), 600);
+                        target.AddBuff(BuffID.Slimed, 120);
+                        target.AddBuff(mod.BuffType("Infested"), 360);
                         break;
 
                     case NPCID.CorruptSlime:
-                        target.AddBuff(BuffID.Slimed, 600);
-                        target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(300, 1200));
+                        target.AddBuff(BuffID.Slimed, 120);
+                        target.AddBuff(mod.BuffType("Rotting"), 1200);
                         break;
 
                     case NPCID.Crimslime:
-                        target.AddBuff(BuffID.Slimed, 600);
+                        target.AddBuff(BuffID.Slimed, 120);
                         target.AddBuff(mod.BuffType("Bloodthirsty"), 300);
                         break;
 
                     case NPCID.Gastropod:
-                        target.AddBuff(BuffID.Slimed, 600);
+                        target.AddBuff(BuffID.Slimed, 120);
                         target.AddBuff(mod.BuffType("Fused"), 1800);
                         break;
 
                     case NPCID.IlluminantSlime:
-                        target.AddBuff(BuffID.Slimed, 600);
+                        target.AddBuff(BuffID.Slimed, 120);
                         target.AddBuff(mod.BuffType("Purified"), 300);
                         break;
 
                     case NPCID.RainbowSlime:
-                        target.AddBuff(BuffID.Slimed, 600);
-                        target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 300);
+                        target.AddBuff(BuffID.Slimed, 120);
+                        target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 240);
                         break;
 
                     case NPCID.DemonEye:
@@ -7258,8 +7255,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.DialatedEye:
                     case NPCID.GreenEye:
                     case NPCID.PurpleEye:
-                        if (Math.Abs(npc.velocity.Y) > 5 || Math.Abs(npc.velocity.X) > 5)
-                            target.AddBuff(BuffID.Obstructed, 60);
+                        target.AddBuff(BuffID.Obstructed, 60);
                         break;
 
                     case NPCID.EaterofSouls:
@@ -7279,7 +7275,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.QueenBee:
-                        //target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(30, 300));
+                        target.AddBuff(mod.BuffType("Infested"), 300);
                         target.AddBuff(mod.BuffType("Defenseless"), 300);
                         target.AddBuff(mod.BuffType("Crippled"), 120);
                         target.AddBuff(mod.BuffType("ClippedWings"), 300);
@@ -7287,21 +7283,15 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.WallofFlesh:
                     case NPCID.WallofFleshEye:
-                        target.AddBuff(BuffID.Burning, 180);
-                        if (!target.HasBuff(mod.BuffType("Unstable")))
-                            target.AddBuff(mod.BuffType("Unstable"), 120);
+                        target.AddBuff(BuffID.Burning, 300);
+                        target.AddBuff(mod.BuffType("Unstable"), 300);
                         break;
 
                     case NPCID.TheHungry:
                     case NPCID.TheHungryII:
                         target.AddBuff(BuffID.OnFire, 300);
-                        target.AddBuff(mod.BuffType("ClippedWings"), 600);
-                        target.AddBuff(mod.BuffType("Crippled"), 240);
-                        /*if (!BossIsAlive(ref wallBoss, NPCID.WallofFlesh))
-                        {
-                            NPC.SpawnWOF(target.Center);
-                            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
-                        }*/
+                        target.AddBuff(mod.BuffType("ClippedWings"), 360);
+                        target.AddBuff(mod.BuffType("Crippled"), 180);
                         break;
 
                     case NPCID.EaterofWorldsHead:
@@ -7312,12 +7302,12 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.CursedSkull:
                         if (Main.rand.Next(2) == 0)
-                            target.AddBuff(BuffID.Cursed, 120);
+                            target.AddBuff(BuffID.Cursed, 60);
                         break;
 
                     case NPCID.Snatcher:
                     case NPCID.ManEater:
-                        target.AddBuff(BuffID.Bleeding, 600);
+                        target.AddBuff(BuffID.Bleeding, 300);
                         if (target.statLife + damage < 100)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by a Man Eater."), 999, 0);
                         break;
@@ -7327,7 +7317,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.AngryTrapper:
-                        target.AddBuff(BuffID.Bleeding, 900);
+                        target.AddBuff(BuffID.Bleeding, 300);
                         if (target.statLife + damage < 180)
                             target.KillMe(PlayerDeathReason.ByCustomReason(target.name + " was eaten alive by an Angry Trapper."), 999, 0);
                         break;
@@ -7342,17 +7332,17 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.CaveBat:
-                        target.AddBuff(BuffID.Bleeding, 600);
+                        target.AddBuff(BuffID.Bleeding, 300);
                         target.AddBuff(BuffID.Rabies, 3600);
                         break;
 
                     case NPCID.Hellbat:
-                        target.AddBuff(BuffID.OnFire, 600);
+                        target.AddBuff(BuffID.OnFire, 240);
                         target.AddBuff(BuffID.Rabies, 3600);
                         break;
 
                     case NPCID.JungleBat:
-                        target.AddBuff(BuffID.Poisoned, 300);
+                        target.AddBuff(BuffID.Poisoned, 240);
                         target.AddBuff(BuffID.Rabies, 3600);
                         break;
 
@@ -7367,19 +7357,16 @@ namespace FargowiltasSouls.NPCs
                         {
                             debuffOnCD = false;
                         }
-                            
                         break;
 
                     case NPCID.Lavabat:
-                        int duration = 600;
-                        target.AddBuff(BuffID.OnFire, duration);
-                        target.AddBuff(BuffID.Burning, duration);
-
+                        target.AddBuff(BuffID.OnFire, 240);
+                        target.AddBuff(BuffID.Burning, 240);
                         target.AddBuff(BuffID.Rabies, 3600);
                         break;
 
                     case NPCID.GiantBat:
-                        target.AddBuff(BuffID.Confused, 300);
+                        target.AddBuff(BuffID.Confused, 240);
                         target.AddBuff(BuffID.Rabies, 3600);
                         break;
 
@@ -7389,19 +7376,18 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.GiantFlyingFox:
-                        //target.AddBuff(mod.BuffType("MutantNibble"), Main.rand.Next(600, 1200));
                         target.AddBuff(mod.BuffType("Bloodthirsty"), 300);
                         target.AddBuff(BuffID.Rabies, 3600);
                         break;
 
                     case NPCID.VampireBat:
                     case NPCID.Vampire:
-                        //target.AddBuff(BuffID.Darkness, Main.rand.Next(900, 1800));
                         target.AddBuff(BuffID.Weak, 600);
                         target.AddBuff(BuffID.Rabies, 3600);
                         npc.life += damage;
                         CombatText.NewText(npc.Hitbox, CombatText.HealLife, damage);
                         npc.damage = (int)(npc.damage * 1.1f);
+                        npc.defDamage = (int)(npc.defDamage * 1.1f);
                         npc.netUpdate = true;
                         break;
 
@@ -7411,7 +7397,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Medusa:
                         target.AddBuff(mod.BuffType("Flipped"), 120);
-
                         if (!target.HasBuff(BuffID.Stoned) && !debuffOnCD)
                         {
                             target.AddBuff(BuffID.Stoned, 60);
@@ -7421,21 +7406,18 @@ namespace FargowiltasSouls.NPCs
                         {
                             debuffOnCD = false;
                         }
-
                         break;
 
                     case NPCID.SpikeBall:
+                        target.AddBuff(BuffID.BrokenArmor, 1200);
                         if (masoBool[0])
                             target.AddBuff(mod.BuffType("Defenseless"),1200);
-                        else
-                            target.AddBuff(BuffID.BrokenArmor, 1200);
                         break;
 
                     case NPCID.BlazingWheel:
+                        target.AddBuff(BuffID.OnFire, 180);
                         if (masoBool[0])
                             target.AddBuff(mod.BuffType("FlamesoftheUniverse"), 300);
-                        else
-                            target.AddBuff(BuffID.OnFire, 300);
                         break;
 
                     case NPCID.Shark:
@@ -7444,7 +7426,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.SandsharkCrimson:
                     case NPCID.SandsharkHallow:
                     case NPCID.Piranha:
-                        target.AddBuff(BuffID.Bleeding, 600);
+                        target.AddBuff(BuffID.Bleeding, 300);
                         break;
 
                     case NPCID.GraniteFlyer:
@@ -7458,41 +7440,39 @@ namespace FargowiltasSouls.NPCs
                         {
                             debuffOnCD = false;
                         }
-
                         break;
 
                     case NPCID.LeechHead:
-                        target.AddBuff(mod.BuffType("Crippled"), 240);
-                        target.AddBuff(BuffID.Bleeding, 600);
+                        target.AddBuff(mod.BuffType("Crippled"), 180);
+                        target.AddBuff(BuffID.Bleeding, 300);
                         target.AddBuff(BuffID.Rabies, 600);
                         break;
 
                     case NPCID.AnomuraFungus:
                     case NPCID.FungiSpore:
-                        target.AddBuff(BuffID.Poisoned, 450);
+                        target.AddBuff(BuffID.Poisoned, 300);
                         break;
 
                     case NPCID.MushiLadybug:
-                        target.AddBuff(BuffID.Darkness, 600);
-                        target.AddBuff(BuffID.Blackout, 600);
+                        target.AddBuff(BuffID.Darkness, 300);
+                        target.AddBuff(BuffID.Blackout, 300);
                         break;
 
                     case NPCID.WaterSphere:
                         target.AddBuff(BuffID.Wet, 1200);
-                        target.AddBuff(BuffID.Silenced, 600);
+                        target.AddBuff(BuffID.Silenced, 120);
                         break;
 
                     case NPCID.GiantShelly:
                     case NPCID.GiantShelly2:
-                        target.AddBuff(BuffID.Slow, 300);
+                        target.AddBuff(BuffID.Slow, 120);
                         break;
 
                     case NPCID.Squid:
-                        target.AddBuff(BuffID.Obstructed, 300);
+                        target.AddBuff(BuffID.Obstructed, 120);
                         break;
 
                     case NPCID.BloodZombie:
-                        //target.AddBuff(BuffID.Cursed, 90);
                         target.AddBuff(mod.BuffType("Bloodthirsty"), 240);
                         break;
 
@@ -7512,7 +7492,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.PigronCorruption:
                     case NPCID.PigronCrimson:
                     case NPCID.PigronHallow:
-                        target.AddBuff(mod.BuffType("SqueakyToy"), 240);
+                        target.AddBuff(mod.BuffType("SqueakyToy"), 120);
                         target.GetModPlayer<FargoPlayer>().MaxLifeReduction += 50;
                         target.AddBuff(mod.BuffType("OceanicMaul"), 1800);
                         break;
@@ -7524,7 +7504,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.CorruptPenguin:
                     case NPCID.CrimsonPenguin:
                     case NPCID.GingerbreadMan:
-                        target.AddBuff(mod.BuffType("SqueakyToy"), 180);
+                        target.AddBuff(mod.BuffType("SqueakyToy"), 120);
                         break;
 
                     case NPCID.FaceMonster:
@@ -7536,39 +7516,13 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        target.AddBuff(mod.BuffType("ClippedWings"), 300);
-                        target.AddBuff(mod.BuffType("Infested"), 300);
-                        target.AddBuff(mod.BuffType("Flipped"), 300);
-                        //target.AddBuff(BuffID.Rabies, Main.rand.Next(900, 1800));
-                        break;
-
                     case NPCID.Creeper:
-                        switch (Main.rand.Next(5))
-                        {
-                            case 0:
-                                target.AddBuff(mod.BuffType("Berserked"), Main.rand.Next(240));
-                                break;
-
-                            case 1:
-                                target.AddBuff(mod.BuffType("Lethargic"), Main.rand.Next(240));
-                                break;
-
-                            case 2:
-                                target.AddBuff(mod.BuffType("Flipped"), Main.rand.Next(240));
-                                break;
-
-                            case 3:
-                                target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(240));
-                                break;
-
-                            case 4:
-                                target.AddBuff(mod.BuffType("Rotting"), Main.rand.Next(240));
-                                break;
-
-                            /*case 5:
-                                target.AddBuff(BuffID.Rabies, Main.rand.Next(900));
-                                break;*/
-                        }
+                        target.AddBuff(BuffID.Poisoned, 120);
+                        target.AddBuff(BuffID.Darkness, 120);
+                        target.AddBuff(BuffID.Bleeding, 120);
+                        target.AddBuff(BuffID.Slow, 120);
+                        target.AddBuff(BuffID.Weak, 120);
+                        target.AddBuff(BuffID.BrokenArmor, 120);
                         break;
 
                     case NPCID.SwampThing:
@@ -7581,11 +7535,11 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Butcher:
                         target.AddBuff(mod.BuffType("Berserked"), 600);
-                        target.AddBuff(BuffID.Bleeding, 1200);
+                        target.AddBuff(BuffID.Bleeding, 600);
                         break;
 
                     case NPCID.ThePossessed:
-                        target.AddBuff(mod.BuffType("Hexed"), 300);
+                        target.AddBuff(mod.BuffType("Hexed"), 240);
                         break;
 
                     case NPCID.Wolf:
@@ -7631,7 +7585,7 @@ namespace FargowiltasSouls.NPCs
                         target.AddBuff(mod.BuffType("Purified"), 300);
                         break;
                     case NPCID.CultistBossClone:
-                        target.AddBuff(mod.BuffType("Hexed"), 120);
+                        target.AddBuff(mod.BuffType("MarkedforDeath"), 180);
                         target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
                         break;
                     case NPCID.CultistBoss:
@@ -7663,7 +7617,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Sharkron:
                     case NPCID.Sharkron2:
                         target.AddBuff(mod.BuffType("Defenseless"), 600);
-                        target.AddBuff(mod.BuffType("MutantNibble"), 480);
+                        target.AddBuff(mod.BuffType("MutantNibble"), 300);
                         target.AddBuff(BuffID.Rabies, 3600);
                         if (BossIsAlive(ref fishBossEX, NPCID.DukeFishron))
                         {
@@ -7692,22 +7646,22 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.BigMimicCorruption:
-                        target.AddBuff(BuffID.CursedInferno, 300);
+                        target.AddBuff(BuffID.CursedInferno, 180);
                         target.AddBuff(mod.BuffType("Berserked"), 300);
                         goto case NPCID.Mimic;
 
                     case NPCID.BigMimicCrimson:
-                        target.AddBuff(BuffID.Ichor, 300);
+                        target.AddBuff(BuffID.Ichor, 180);
                         target.AddBuff(mod.BuffType("Berserked"), 300);
                         goto case NPCID.Mimic;
 
                     case NPCID.BigMimicHallow:
-                        target.AddBuff(BuffID.Confused, 300);
+                        target.AddBuff(BuffID.Confused, 180);
                         target.AddBuff(mod.BuffType("Berserked"), 300);
                         goto case NPCID.Mimic;
 
                     case NPCID.BigMimicJungle:
-                        target.AddBuff(BuffID.Suffocation, 120);
+                        target.AddBuff(BuffID.Suffocation, 180);
                         target.AddBuff(mod.BuffType("Berserked"), 300);
                         goto case NPCID.Mimic;
 
@@ -7725,15 +7679,13 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.Plantera:
                         target.AddBuff(mod.BuffType("MutantNibble"), 600);
-                        target.AddBuff(BuffID.Poisoned, 600);
                         target.AddBuff(mod.BuffType("Infested"), 300);
-                        target.AddBuff(mod.BuffType("IvyVenom"), 600);
+                        target.AddBuff(mod.BuffType("IvyVenom"), 300);
                         break;
 
                     case NPCID.PlanterasHook:
                     case NPCID.PlanterasTentacle:
                     case NPCID.Spore:
-                        target.AddBuff(BuffID.Poisoned, 600);
                         target.AddBuff(mod.BuffType("Infested"), 300);
                         target.AddBuff(mod.BuffType("IvyVenom"), 300);
                         break;
@@ -7842,7 +7794,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.ZombieEskimo:
                     case NPCID.ArmedZombieEskimo:
-                        target.AddBuff(BuffID.Chilled, 300);
+                        target.AddBuff(BuffID.Chilled, 240);
                         goto case NPCID.Zombie;
 
                     case NPCID.Corruptor:
@@ -7853,7 +7805,6 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Mummy:
                     case NPCID.LightMummy:
                     case NPCID.DarkMummy:
-
                         if (!target.HasBuff(BuffID.Webbed) && !debuffOnCD)
                         {
                             target.AddBuff(BuffID.Webbed, 60);
@@ -7863,7 +7814,6 @@ namespace FargowiltasSouls.NPCs
                         {
                             debuffOnCD = false;
                         }
-
                         break;
 
                     case NPCID.Derpling:
@@ -7886,16 +7836,21 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.PrimeVice:
-                        if (target.mount.Active)
-                            target.mount.Dismount(target);
-                        target.AddBuff(mod.BuffType("Stunned"), 60);
+                        if (!target.HasBuff(mod.BuffType("Stunned")) && !debuffOnCD)
+                        {
+                            target.AddBuff(mod.BuffType("Stunned"), 60);
+                            if (target.mount.Active)
+                                target.mount.Dismount(target);
+                            debuffOnCD = true;
+                        }
+                        else if (debuffOnCD)
+                        {
+                            debuffOnCD = false;
+                        }
                         break;
 
                     case NPCID.DesertBeast:
-                        //target.AddBuff(BuffID.Poisoned, Main.rand.Next(600, 1200));
-                        //target.AddBuff(BuffID.Venom, Main.rand.Next(300, 600));
                         target.AddBuff(mod.BuffType("Infested"), 600);
-
                         if (!target.HasBuff(BuffID.Stoned) && Main.rand.Next(2) == 0 && !debuffOnCD)
                         {
                             target.AddBuff(BuffID.Stoned, 60);
@@ -7905,12 +7860,11 @@ namespace FargowiltasSouls.NPCs
                         {
                             debuffOnCD = false;
                         }
-
                         break;
 
                     case NPCID.FlyingSnake:
-                        target.AddBuff(mod.BuffType("Infested"), 600);
-                        target.AddBuff(mod.BuffType("ClippedWings"), 900);
+                        target.AddBuff(mod.BuffType("Infested"), 300);
+                        target.AddBuff(mod.BuffType("ClippedWings"), 600);
                         break;
 
                     case NPCID.Lihzahrd:
@@ -7921,13 +7875,10 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.CultistDragonHead:
                         target.AddBuff(mod.BuffType("CurseoftheMoon"), 300);
-                        //target.AddBuff(mod.BuffType("ClippedWings"), Main.rand.Next(180));
-                        target.AddBuff(mod.BuffType("MutantNibble"), 600);
+                        target.AddBuff(mod.BuffType("MutantNibble"), 300);
                         break;
-                    //goto case NPCID.CultistDragonTail;
 
                     case NPCID.AncientCultistSquidhead:
-                        target.AddBuff(mod.BuffType("Defenseless"), 300);
                         if (Main.rand.Next(2) == 0)
                             target.AddBuff(mod.BuffType("Flipped"), 240);
                         else
@@ -7945,43 +7896,39 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.MourningWood:
-                        int duration1 = 240;
-                        target.AddBuff(BuffID.OnFire, duration1);
-                        target.AddBuff(BuffID.CursedInferno, duration1);
-                        target.AddBuff(mod.BuffType("Shadowflame"), duration1);
+                        target.AddBuff(BuffID.OnFire, 180);
+                        target.AddBuff(BuffID.CursedInferno, 180);
+                        target.AddBuff(mod.BuffType("Shadowflame"), 180);
                         break;
 
                     case NPCID.Poltergeist:
-                        target.AddBuff(BuffID.Silenced, 600);
+                        target.AddBuff(BuffID.Silenced, 180);
                         break;
 
                     case NPCID.Pumpking:
                     case NPCID.PumpkingBlade:
-                        //target.AddBuff(BuffID.Slow, Main.rand.Next(900, 1800));
                         target.AddBuff(BuffID.Weak, 900);
                         target.AddBuff(mod.BuffType("Rotting"), 900);
                         target.AddBuff(mod.BuffType("LivingWasteland"), 900);
                         break;
 
                     case NPCID.Flocko:
-                        target.AddBuff(BuffID.Chilled, 300);
-                        target.AddBuff(BuffID.Frostburn, 300);
+                        target.AddBuff(BuffID.Chilled, 180);
+                        target.AddBuff(BuffID.Frostburn, 180);
                         break;
 
                     case NPCID.IceQueen:
-                        target.AddBuff(BuffID.Chilled, 300);
-                        target.AddBuff(BuffID.Frostburn, 600);
-
+                        target.AddBuff(BuffID.Chilled, 180);
+                        target.AddBuff(BuffID.Frostburn, 180);
                         if (!target.HasBuff(BuffID.Frozen) && Main.rand.Next(2) == 0 && !debuffOnCD)
                         {
-                            target.AddBuff(BuffID.Frozen, 120);
+                            target.AddBuff(BuffID.Frozen, 60);
                             debuffOnCD = true;
                         }
                         else if (debuffOnCD)
                         {
                             debuffOnCD = false;
                         }
-
                         break;
 
                     case NPCID.VortexLarva:
@@ -8006,31 +7953,23 @@ namespace FargowiltasSouls.NPCs
                             if (!StealFromInventory(target, ref Main.mouseItem))
                                 StealFromInventory(target, ref target.inventory[target.selectedItem]);
 
-                            //StealFromInventory(target, ref target.armor[Main.rand.Next(3)]);
-
-                            byte maxAttempts = 15;
-                            int toss = Main.rand.Next(3, 8 + target.extraAccessorySlots); //pick random accessory slot
-                            if (Main.rand.Next(3) == 0 && target.armor[toss + 10].stack > 0) //chance to pick vanity slot if accessory is there
-                                toss += 10;
-                            while (maxAttempts > 0)
+                            for (int i = 0; i < 15; i++)
                             {
-                                bool successfulSteal = StealFromInventory(target, ref target.armor[toss]);
-                                if (successfulSteal)
+                                int toss = Main.rand.Next(3, 8 + target.extraAccessorySlots); //pick random accessory slot
+                                if (Main.rand.Next(3) == 0 && target.armor[toss + 10].stack > 0) //chance to pick vanity slot if accessory is there
+                                    toss += 10;
+                                if (StealFromInventory(target, ref target.armor[toss]))
                                     break;
-                                maxAttempts--;
                             }
                         }
                         break;
 
                     case NPCID.Harpy:
-                        //target.AddBuff(mod.BuffType("ClippedWings"), 300);
-
                         if (target.whoAmI == Main.myPlayer && !target.GetModPlayer<FargoPlayer>().SecurityWallet)
                         {
                             for (int j = 0; j < target.inventory.Length; j++)
                             {
                                 Item item = target.inventory[j];
-
                                 if (item.healLife > 0)
                                 {
                                     StealFromInventory(target, ref target.inventory[j]);
@@ -8038,11 +7977,9 @@ namespace FargowiltasSouls.NPCs
                                 }
                             }
                         }
-
                         break;
                     case NPCID.Wraith:
                         target.AddBuff(mod.BuffType("LivingWasteland"), 600);
-
                         if (target.whoAmI == Main.myPlayer && !target.GetModPlayer<FargoPlayer>().SecurityWallet)
                         {
                             for (int j = 0; j < target.inventory.Length; j++)
@@ -8063,10 +8000,9 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.UndeadMiner:
-                        int length = 1800;
-                        target.AddBuff(mod.BuffType("Lethargic"), length * 2);
-                        target.AddBuff(BuffID.Blackout, length);
-                        target.AddBuff(BuffID.NoBuilding, length);
+                        target.AddBuff(mod.BuffType("Lethargic"), 600);
+                        target.AddBuff(BuffID.Blackout, 300);
+                        target.AddBuff(BuffID.NoBuilding, 300);
                         if (target.whoAmI == Main.myPlayer && !target.GetModPlayer<FargoPlayer>().SecurityWallet)
                             for (int i = 0; i < 59; i++)
                                 if (target.inventory[i].pick != 0 || target.inventory[i].hammer != 0 || target.inventory[i].axe != 0)
@@ -8115,7 +8051,6 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.DD2LightningBugT3:
                         target.AddBuff(BuffID.Electrified, 300);
-
                         if (!target.HasBuff(BuffID.Webbed) && !debuffOnCD)
                         {
                             target.AddBuff(BuffID.Webbed, 60);
@@ -8125,7 +8060,6 @@ namespace FargowiltasSouls.NPCs
                         {
                             debuffOnCD = false;
                         }
-
                         break;
 
                     case NPCID.DD2SkeletonT1:
@@ -8171,13 +8105,13 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.MisterStabby:
                         target.AddBuff(mod.BuffType("MarkedforDeath"), 180);
-                        target.AddBuff(BuffID.Chilled, 600);
+                        target.AddBuff(BuffID.Chilled, 180);
                         break;
 
                     case NPCID.SnowBalla:
                     case NPCID.SnowmanGangsta:
-                        target.AddBuff(BuffID.Chilled, 300);
-                        target.AddBuff(BuffID.Frostburn, 600);
+                        target.AddBuff(BuffID.Chilled, 180);
+                        target.AddBuff(BuffID.Frostburn, 300);
                         break;
 
                     case NPCID.NebulaHeadcrab:
@@ -8197,17 +8131,19 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.StardustCellBig:
                     case NPCID.StardustCellSmall:
                         target.AddBuff(mod.BuffType("SqueakyToy"), 120);
+                        target.AddBuff(BuffID.Frostburn, 180);
                         break;
 
                     case NPCID.StardustWormHead:
                     case NPCID.StardustWormBody:
                     case NPCID.StardustWormTail:
                         target.AddBuff(mod.BuffType("Berserked"), 300);
+                        target.AddBuff(BuffID.Frostburn, 180);
                         break;
 
                     case NPCID.StardustSpiderBig:
                     case NPCID.StardustSpiderSmall:
-                        target.AddBuff(BuffID.Frostburn, 600);
+                        target.AddBuff(BuffID.Frostburn, 180);
                         break;
 
                     case NPCID.MoonLordFreeEye:
@@ -8233,7 +8169,7 @@ namespace FargowiltasSouls.NPCs
                     case NPCID.Salamander7:
                     case NPCID.Salamander8:
                     case NPCID.Salamander9:
-                        target.AddBuff(BuffID.Poisoned, 600);
+                        target.AddBuff(BuffID.Poisoned, 300);
                         break;
 
                     case NPCID.VileSpit:
@@ -8261,7 +8197,6 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.WalkingAntlion:
-
                         if (!target.HasBuff(BuffID.Dazed) && !debuffOnCD)
                         {
                             target.AddBuff(BuffID.Dazed, 60);
@@ -8274,28 +8209,29 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.AnglerFish:
-                        target.AddBuff(BuffID.Bleeding, 600);
+                        target.AddBuff(BuffID.Bleeding, 300);
                         break;
 
                     case NPCID.BloodFeeder:
-                        target.AddBuff(BuffID.Bleeding, 600);
+                        target.AddBuff(BuffID.Bleeding, 300);
                         npc.life += damage * 2;
                         if (npc.life > npc.lifeMax)
                             npc.life = npc.lifeMax;
                         CombatText.NewText(npc.Hitbox, CombatText.HealLife, damage * 2);
                         npc.damage = (int)(npc.damage * 1.1f);
+                        npc.defDamage = (int)(npc.defDamage * 1.1f);
                         npc.netUpdate = true;
                         break;
 
                     case NPCID.Psycho:
-                        target.AddBuff(BuffID.Obstructed, 180);
+                        target.AddBuff(BuffID.Obstructed, 120);
                         break;
 
                     case NPCID.LostGirl:
                     case NPCID.Nymph:
                         target.AddBuff(BuffID.Slow, 240);
                         target.AddBuff(BuffID.Weak, 480);
-                        target.AddBuff(mod.BuffType("Lovestruck"), 300);
+                        target.AddBuff(mod.BuffType("Lovestruck"), 240);
                         npc.life += damage * 2;
                         if (npc.life > npc.lifeMax)
                             npc.life = npc.lifeMax;
@@ -8304,7 +8240,7 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.FloatyGross:
-                        target.AddBuff(BuffID.OgreSpit, 300);
+                        target.AddBuff(BuffID.OgreSpit, 240);
                         break;
 
                     case NPCID.WyvernHead:
@@ -8335,7 +8271,7 @@ namespace FargowiltasSouls.NPCs
 
                     case NPCID.BlackRecluse:
                     case NPCID.BlackRecluseWall:
-                        target.AddBuff(BuffID.Poisoned, 600);
+                        target.AddBuff(BuffID.Poisoned, 300);
                         target.AddBuff(mod.BuffType("Rotting"), 600);
                         target.AddBuff(mod.BuffType("Infested"), 300);
                         break;
@@ -8365,17 +8301,16 @@ namespace FargowiltasSouls.NPCs
                         break;
 
                     case NPCID.DeadlySphere:
-                        target.AddBuff(BuffID.Darkness, 600);
-                        target.AddBuff(BuffID.Blackout, 600);
+                        target.AddBuff(BuffID.Darkness, 300);
+                        target.AddBuff(BuffID.Blackout, 300);
                         break;
 
                     case NPCID.HeadlessHorseman:
-                        target.AddBuff(BuffID.Cursed, 240);
+                        target.AddBuff(BuffID.Cursed, 60);
                         target.AddBuff(mod.BuffType("LivingWasteland"), 600);
                         break;
 
                     case NPCID.Yeti:
-
                         if (!target.HasBuff(BuffID.Frozen) && !debuffOnCD)
                         {
                             target.AddBuff(BuffID.Frozen, 60);
@@ -8385,7 +8320,6 @@ namespace FargowiltasSouls.NPCs
                         {
                             debuffOnCD = false;
                         }
-
                         break;
 
                     default:

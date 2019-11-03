@@ -178,10 +178,12 @@ namespace FargowiltasSouls.NPCs
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(mod.BuffType("ClippedWings"), 300);
-            target.AddBuff(mod.BuffType("Infested"), 300);
-            target.AddBuff(mod.BuffType("Flipped"), 300);
-            //target.AddBuff(BuffID.Rabies, Main.rand.Next(900, 1800));
+            target.AddBuff(BuffID.Poisoned, 120);
+            target.AddBuff(BuffID.Darkness, 120);
+            target.AddBuff(BuffID.Bleeding, 120);
+            target.AddBuff(BuffID.Slow, 120);
+            target.AddBuff(BuffID.Weak, 120);
+            target.AddBuff(BuffID.BrokenArmor, 120);
         }
 
         public override void HitEffect(int hitDirection, double damage)
