@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using FargowiltasSouls.ModCompatibilities;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -26,10 +27,8 @@ namespace FargowiltasSouls
         internal static Fargowiltas Instance;
         //loaded
         internal bool FargosLoaded;
-        internal bool ThoriumLoaded;
         internal bool AALoaded;
         internal bool BlueMagicLoaded;
-        internal bool CalamityLoaded;
         internal bool DBTLoaded;
         internal bool SOALoaded;
         internal bool ApothLoaded;
@@ -1222,10 +1221,11 @@ namespace FargowiltasSouls
         {
             try
             {
+                CalamityCompatibility = new CalamityCompatibility(this).TryLoad() as CalamityCompatibility;
+                ThoriumCompatibility = new ThoriumCompatibility(this).TryLoad() as ThoriumCompatibility;
+
                 FargosLoaded = ModLoader.GetMod("Fargowiltas") != null;
                 BlueMagicLoaded = ModLoader.GetMod("Bluemagic") != null;
-                CalamityLoaded = ModLoader.GetMod("CalamityMod") != null;
-                ThoriumLoaded = ModLoader.GetMod("ThoriumMod") != null;
                 AALoaded = ModLoader.GetMod("AAMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
                 SOALoaded = ModLoader.GetMod("SacredTools") != null;
@@ -1332,70 +1332,7 @@ namespace FargowiltasSouls
 
         public override void AddRecipes()
         {
-            if (ThoriumLoaded)
-            {
-                Mod thorium = ModLoader.GetMod("ThoriumMod");
-
-                ModRecipe recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelArrow"));
-                recipe.AddRecipe();
-
-                recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelAxe"));
-                recipe.AddRecipe();
-
-                recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelBattleAxe"), 10);
-                recipe.AddRecipe();
-
-                recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelBlade"));
-                recipe.AddRecipe();
-
-                recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelBow"));
-                recipe.AddRecipe();
-
-                recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelChestplate"));
-                recipe.AddRecipe();
-
-                recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelGreaves"));
-                recipe.AddRecipe();
-
-                recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelHelmet"));
-                recipe.AddRecipe();
-
-                recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelMallet"));
-                recipe.AddRecipe();
-
-                recipe = new ModRecipe(this);
-                recipe.AddIngredient(thorium.ItemType("FoldedMetal"));
-                recipe.AddTile(thorium, "ArcaneArmorFabricator");
-                recipe.SetResult(thorium.ItemType("SteelPickaxe"));
-                recipe.AddRecipe();
-            }
+            ThoriumCompatibility?.AddRecipes();
         }
 
         public override void AddRecipeGroups()
@@ -1416,56 +1353,8 @@ namespace FargowiltasSouls
             group = new RecipeGroup(() => Lang.misc[37] + " Adamantite Repeater", ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
 
-            if (Instance.ThoriumLoaded)
-            {
-                Mod thorium = ModLoader.GetMod("ThoriumMod");
-
-                //combo yoyos
-                group = new RecipeGroup(() => Lang.misc[37] + " Combination Yoyo", thorium.ItemType("Nocturnal"), thorium.ItemType("Sanguine"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyThoriumYoyo", group);
-            }
-
-            if (Instance.CalamityLoaded)
-            {
-                Mod calamity = ModLoader.GetMod("CalamityMod");
-
-                //aerospec
-                group = new RecipeGroup(() => Lang.misc[37] + " Aerospec Helmet", calamity.ItemType("AerospecHat"), calamity.ItemType("AerospecHeadgear"), calamity.ItemType("AerospecHelm"), calamity.ItemType("AerospecHood"), calamity.ItemType("AerospecHelmet"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAerospecHelmet", group);
-                //ataxia
-                group = new RecipeGroup(() => Lang.misc[37] + " Ataxia Helmet", calamity.ItemType("AtaxiaHeadgear"), calamity.ItemType("AtaxiaHelm"), calamity.ItemType("AtaxiaHood"), calamity.ItemType("AtaxiaHelmet"), calamity.ItemType("AtaxiaMask"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAtaxiaHelmet", group);
-                //auric
-                group = new RecipeGroup(() => Lang.misc[37] + " Auric Helmet", calamity.ItemType("AuricTeslaHelm"), calamity.ItemType("AuricTeslaPlumedHelm"), calamity.ItemType("AuricTeslaHoodedFacemask"), calamity.ItemType("AuricTeslaSpaceHelmet"), calamity.ItemType("AuricTeslaWireHemmedVisage"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAuricHelmet", group);
-                //bloodflare
-                group = new RecipeGroup(() => Lang.misc[37] + " Bloodflare Helmet", calamity.ItemType("BloodflareHelm"), calamity.ItemType("BloodflareHelmet"), calamity.ItemType("BloodflareHornedHelm"), calamity.ItemType("BloodflareHornedMask"), calamity.ItemType("BloodflareMask"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyBloodflareHelmet", group);
-                //daedalus
-                group = new RecipeGroup(() => Lang.misc[37] + " Daedalus Helmet", calamity.ItemType("DaedalusHelm"), calamity.ItemType("DaedalusHelmet"), calamity.ItemType("DaedalusHat"), calamity.ItemType("DaedalusHeadgear"), calamity.ItemType("DaedalusVisor"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyDaedalusHelmet", group);
-                //godslayer
-                group = new RecipeGroup(() => Lang.misc[37] + " Godslayer Helmet", calamity.ItemType("GodSlayerHelm"), calamity.ItemType("GodSlayerHelmet"), calamity.ItemType("GodSlayerVisage"), calamity.ItemType("GodSlayerHornedHelm"), calamity.ItemType("GodSlayerMask"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyGodslayerHelmet", group);
-                //reaver
-                group = new RecipeGroup(() => Lang.misc[37] + " Reaver Helmet", calamity.ItemType("ReaverHelm"), calamity.ItemType("ReaverVisage"), calamity.ItemType("ReaverMask"), calamity.ItemType("ReaverHelmet"), calamity.ItemType("ReaverCap"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyReaverHelmet", group);
-                //silva
-                group = new RecipeGroup(() => Lang.misc[37] + " Silva Helmet", calamity.ItemType("SilvaHelm"), calamity.ItemType("SilvaHornedHelm"), calamity.ItemType("SilvaMaskedCap"), calamity.ItemType("SilvaHelmet"), calamity.ItemType("SilvaMask"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnySilvaHelmet", group);
-                //statigel
-                group = new RecipeGroup(() => Lang.misc[37] + " Statigel Helmet", calamity.ItemType("StatigelHelm"), calamity.ItemType("StatigelHeadgear"), calamity.ItemType("StatigelCap"), calamity.ItemType("StatigelHood"), calamity.ItemType("StatigelMask"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyStatigelHelmet", group);
-                //tarragon
-                group = new RecipeGroup(() => Lang.misc[37] + " Tarragon Helmet", calamity.ItemType("TarragonHelm"), calamity.ItemType("TarragonVisage"), calamity.ItemType("TarragonMask"), calamity.ItemType("TarragonHornedHelm"), calamity.ItemType("TarragonHelmet"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyTarragonHelmet", group);
-                //victide
-                group = new RecipeGroup(() => Lang.misc[37] + " Victide Helmet", calamity.ItemType("VictideHelm"), calamity.ItemType("VictideVisage"), calamity.ItemType("VictideMask"), calamity.ItemType("VictideHelmet"), calamity.ItemType("VictideHeadgear"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyVictideHelmet", group);
-                //wulfrum
-                group = new RecipeGroup(() => Lang.misc[37] + " Wulfrum Helmet", calamity.ItemType("WulfrumHelm"), calamity.ItemType("WulfrumHeadgear"), calamity.ItemType("WulfrumHood"), calamity.ItemType("WulfrumHelmet"), calamity.ItemType("WulfrumMask"));
-                RecipeGroup.RegisterGroup("FargowiltasSouls:AnyWulfrumHelmet", group);
-            }
+            CalamityCompatibility?.AddRecipeGroups();
+            ThoriumCompatibility?.AddRecipeGroups();
 
             if (Instance.SOALoaded)
             {
@@ -1873,6 +1762,13 @@ namespace FargowiltasSouls
         {
             return NormalSpawn(spawnInfo) && NoBiome(spawnInfo) && NoZone(spawnInfo);
         }
+
+
+        internal CalamityCompatibility CalamityCompatibility { get; private set; }
+        internal bool CalamityLoaded => CalamityCompatibility != null;
+
+        internal ThoriumCompatibility ThoriumCompatibility { get; private set; }
+        internal bool ThoriumLoaded => ThoriumCompatibility != null;
     }
 
     enum MsgType : byte
