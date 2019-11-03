@@ -11,7 +11,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Chalice of the Moon");
             Tooltip.SetDefault(@"'The moon smiles'
-Grants immunity to Venom, Ivy Venom, Burning, Fused, Marked for Death, and Hexed
+Grants immunity to Venom, Ivy Venom, Burning, Fused, and Marked for Death
 Grants immunity to Swarming, Atrophied, Jammed, Reverse Mana Flow, and Antisocial
 Increases life regeneration
 Press down in the air to fastfall
@@ -61,7 +61,6 @@ Summons a friendly Cultist and plant to fight at your side");
 
             //celestial rune
             player.buffImmune[mod.BuffType("MarkedforDeath")] = true;
-            player.buffImmune[mod.BuffType("Hexed")] = true;
             fargoPlayer.CelestialRune = true;
             fargoPlayer.AdditionalAttacks = true;
 

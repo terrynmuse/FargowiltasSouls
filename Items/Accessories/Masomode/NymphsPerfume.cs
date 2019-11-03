@@ -12,7 +12,7 @@ namespace FargowiltasSouls.Items.Accessories.Masomode
         {
             DisplayName.SetDefault("Nymph's Perfume");
             Tooltip.SetDefault(@"'The scent is somewhat overpowering'
-Grants immunity to Lovestruck and Stinky
+Grants immunity to Lovestruck, Stinky, and Hexed
 Your attacks occasionally produce hearts");
             DisplayName.AddTranslation(GameCulture.Chinese, "染血女神的香水");
             Tooltip.AddTranslation(GameCulture.Chinese, @"'气味有点太浓了'
@@ -33,6 +33,7 @@ Your attacks occasionally produce hearts");
         {
             player.buffImmune[BuffID.Lovestruck] = true;
             player.buffImmune[mod.BuffType("Lovestruck")] = true;
+            player.buffImmune[mod.BuffType("Hexed")] = true;
             player.buffImmune[BuffID.Stinky] = true;
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             fargoPlayer.NymphsPerfume = true;

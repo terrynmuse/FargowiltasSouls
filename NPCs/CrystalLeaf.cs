@@ -124,9 +124,9 @@ namespace FargowiltasSouls.NPCs
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.Poisoned, Main.rand.Next(120, 600));
-            target.AddBuff(mod.BuffType("Infested"), Main.rand.Next(60, 300));
-            target.AddBuff(mod.BuffType("IvyVenom"), Main.rand.Next(60, 300));
+            //target.AddBuff(BuffID.Poisoned, 300);
+            target.AddBuff(mod.BuffType("Infested"), 180);
+            target.AddBuff(mod.BuffType("IvyVenom"), 180);
         }
 
         public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)

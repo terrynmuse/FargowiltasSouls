@@ -1495,9 +1495,9 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             float newRotation = (Main.player[npc.target].Center - npc.Center).ToRotation();
             float difference = newRotation - npc.ai[3];
             float rotationDirection = 2f * (float)Math.PI * 1f / 6f / 60f;
-            if (difference < -PI)
+            while (difference < -PI)
                 difference += 2f * PI;
-            if (difference > PI)
+            while (difference > PI)
                 difference -= 2f * PI;
             if (difference > 0f)
                 rotationDirection *= -1f;
