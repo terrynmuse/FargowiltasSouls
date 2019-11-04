@@ -171,6 +171,10 @@ lunatic cultist does MFD on touch (was hexed)
 dark mages drop 5 defender medals
 ogres drop 10 defender medals
 
+moved code for OOA delay skip from world update to eternia crystal ai
+tried something that might fix mutant chloros not spawning sometimes?
+optic staff EX spaz dashes
+
 -------------------------------------------------------------------------------------------------------------------
 ai notes: skeleton archer and friends
 //if (npc.ai[2] > 0f)

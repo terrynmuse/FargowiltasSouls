@@ -34,7 +34,7 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.scale = .5f;
 
             projectile.usesLocalNPCImmunity = true;
-            projectile.localNPCHitCooldown = 6;
+            projectile.localNPCHitCooldown = 10;
         }
 
         public override void AI()
@@ -52,17 +52,33 @@ namespace FargowiltasSouls.Projectiles.Minions
                 NPC npc = Main.npc[(int)projectile.ai[0]];
                 if (npc.CanBeChasedBy(projectile))
                 {
-                    Vector2 targetPos = npc.Center + projectile.DirectionFrom(npc.Center) * 300;
-                    if (projectile.Distance(targetPos) > 50)
-                        Movement(targetPos, 0.5f);
-                    projectile.rotation = projectile.DirectionTo(npc.Center).ToRotation() - (float)Math.PI / 2;
-                    
+                    if (projectile.ai[1] <= 0)
+                    {
+                        Vector2 targetPos = npc.Center + projectile.DirectionFrom(npc.Center) * 300;
+                        if (projectile.Distance(targetPos) > 50)
+                        {
+                            Movement(targetPos, 0.5f);
+                        }
+                        else //in target range, initiate dash
+                        {
+                            projectile.velocity = projectile.DirectionTo(npc.Center + npc.velocity * 15) * 30;
+                            projectile.ai[1] = 30;
+                            projectile.netUpdate = true;
+                        }
+                        projectile.rotation = projectile.DirectionTo(npc.Center).ToRotation() - (float)Math.PI / 2;
+                    }
+                    else //is dashing
+                    {
+                        projectile.ai[1]--;
+                        projectile.rotation = projectile.velocity.ToRotation() - (float)Math.PI / 2;
+                    }
+
                     if (++projectile.localAI[0] > 6)
                     {
                         projectile.localAI[0] = 0;
                         Main.PlaySound(SoundID.Item34, projectile.Center);
                         if (projectile.owner == Main.myPlayer)
-                            Projectile.NewProjectile(projectile.Center - projectile.DirectionTo(npc.Center) * 60, projectile.DirectionTo(npc.Center) * 8, mod.ProjectileType("OpticFlame"), projectile.damage, projectile.knockBack, projectile.owner);
+                            Projectile.NewProjectile(projectile.Center - (projectile.rotation + (float)Math.PI / 2).ToRotationVector2() * 60, projectile.DirectionTo(npc.Center) * 8, mod.ProjectileType("OpticFlame"), projectile.damage, projectile.knockBack, projectile.owner);
                     }
                 }
                 else //forget target
