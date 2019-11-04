@@ -33,8 +33,8 @@ namespace FargowiltasSouls.Projectiles.Minions
             projectile.netImportant = true;
             projectile.scale = .5f;
 
-            projectile.usesLocalNPCImmunity = true;
-            projectile.localNPCHitCooldown = 10;
+            projectile.usesIDStaticNPCImmunity = true;
+            projectile.idStaticNPCHitCooldown = 10;
         }
 
         public override void AI()
@@ -59,31 +59,32 @@ namespace FargowiltasSouls.Projectiles.Minions
                         {
                             Movement(targetPos, 0.5f);
                         }
-                        else //in target range, initiate dash
+                        else if (--projectile.ai[1] < -30) //in target range for 1 second, initiate dash
                         {
-                            projectile.velocity = projectile.DirectionTo(npc.Center + npc.velocity * 15) * 30;
-                            projectile.ai[1] = 30;
+                            projectile.velocity = projectile.DirectionTo(npc.Center + npc.velocity * 10) * 20;
+                            projectile.ai[1] = 20;
                             projectile.netUpdate = true;
                         }
                         projectile.rotation = projectile.DirectionTo(npc.Center).ToRotation() - (float)Math.PI / 2;
+
+                        if (++projectile.localAI[0] > 6)
+                        {
+                            projectile.localAI[0] = 0;
+                            Main.PlaySound(SoundID.Item34, projectile.Center);
+                            if (projectile.owner == Main.myPlayer)
+                                Projectile.NewProjectile(projectile.Center - (projectile.rotation + (float)Math.PI / 2).ToRotationVector2() * 60, projectile.DirectionTo(npc.Center) * 8, mod.ProjectileType("OpticFlame"), projectile.damage, projectile.knockBack, projectile.owner);
+                        }
                     }
                     else //is dashing
                     {
                         projectile.ai[1]--;
                         projectile.rotation = projectile.velocity.ToRotation() - (float)Math.PI / 2;
                     }
-
-                    if (++projectile.localAI[0] > 6)
-                    {
-                        projectile.localAI[0] = 0;
-                        Main.PlaySound(SoundID.Item34, projectile.Center);
-                        if (projectile.owner == Main.myPlayer)
-                            Projectile.NewProjectile(projectile.Center - (projectile.rotation + (float)Math.PI / 2).ToRotationVector2() * 60, projectile.DirectionTo(npc.Center) * 8, mod.ProjectileType("OpticFlame"), projectile.damage, projectile.knockBack, projectile.owner);
-                    }
                 }
                 else //forget target
                 {
                     projectile.ai[0] = HomeOnTarget();
+                    projectile.ai[1] = 0;
                     projectile.netUpdate = true;
                 }
             }
@@ -98,6 +99,7 @@ namespace FargowiltasSouls.Projectiles.Minions
                     Movement(targetPos, 0.5f);
 
                 projectile.rotation = projectile.velocity.ToRotation() - (float)Math.PI / 2;
+                projectile.ai[1] = 0;
 
                 if (++projectile.localAI[1] > 6)
                 {

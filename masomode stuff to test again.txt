@@ -171,6 +171,7 @@ lunatic cultist does MFD on touch (was hexed)
 dark mages drop 5 defender medals
 ogres drop 10 defender medals
 
+mutant statue generates near spawn in new worlds
 moved code for OOA delay skip from world update to eternia crystal ai
 tried something that might fix mutant chloros not spawning sometimes?
 optic staff EX spaz dashes
