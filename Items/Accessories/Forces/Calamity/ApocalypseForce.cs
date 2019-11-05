@@ -1,10 +1,8 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using CalamityMod.CalPlayer;
 using Terraria.Localization;
-using System;
 
 namespace FargowiltasSouls.Items.Accessories.Forces.Calamity
 {

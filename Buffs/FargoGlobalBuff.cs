@@ -2,7 +2,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using FargowiltasSouls.Projectiles;
 
 namespace FargowiltasSouls.Buffs
 {

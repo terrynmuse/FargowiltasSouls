@@ -1,9 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using Terraria.Localization;
-using System;
 using SacredTools;
 using Microsoft.Xna.Framework;
 

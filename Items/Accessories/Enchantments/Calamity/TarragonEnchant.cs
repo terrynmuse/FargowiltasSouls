@@ -1,10 +1,8 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using CalamityMod;
 using Terraria.Localization;
 using CalamityMod.CalPlayer;
 
