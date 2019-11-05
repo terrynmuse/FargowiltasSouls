@@ -12,7 +12,7 @@ namespace FargowiltasSouls.ModCompatibilities
         }
 
 
-        public override void AddRecipeGroups()
+        protected override void AddRecipeGroups()
         {
             // Flarium
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyFlariumHelmet", 

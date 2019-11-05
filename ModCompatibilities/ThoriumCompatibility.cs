@@ -14,7 +14,7 @@ namespace FargowiltasSouls.ModCompatibilities
         }
 
 
-        public override void AddRecipes()
+        protected override void AddRecipes()
         {
             int 
                 foldedMetal = ModContent.ItemType<FoldedMetal>(),
@@ -120,7 +120,7 @@ namespace FargowiltasSouls.ModCompatibilities
             recipe.AddRecipe();
         }
 
-        public override void AddRecipeGroups()
+        protected override void AddRecipeGroups()
         {
             RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Combination Yoyo", ModContent.ItemType<Nocturnal>(), ModContent.ItemType<Sanguine>());
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyThoriumYoyo", group);

@@ -28,7 +28,6 @@ namespace FargowiltasSouls
         //loaded
         internal bool FargosLoaded;
         internal bool AALoaded;
-        internal bool BlueMagicLoaded;
         internal bool DBTLoaded;
         internal bool ApothLoaded;
         internal bool MasomodeEX;
@@ -1225,7 +1224,6 @@ namespace FargowiltasSouls
                 SoACompatibility = new SoACompatibility(this).TryLoad() as SoACompatibility;
 
                 FargosLoaded = ModLoader.GetMod("Fargowiltas") != null;
-                BlueMagicLoaded = ModLoader.GetMod("Bluemagic") != null;
                 AALoaded = ModLoader.GetMod("AAMod") != null;
                 DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
                 ApothLoaded = ModLoader.GetMod("ApothTestMod") != null;
@@ -1331,7 +1329,7 @@ namespace FargowiltasSouls
 
         public override void AddRecipes()
         {
-            ThoriumCompatibility?.AddRecipes();
+            ThoriumCompatibility?.TryAddRecipes();
         }
 
         public override void AddRecipeGroups()
@@ -1352,9 +1350,9 @@ namespace FargowiltasSouls
             group = new RecipeGroup(() => Lang.misc[37] + " Adamantite Repeater", ItemID.AdamantiteRepeater, ItemID.TitaniumRepeater);
             RecipeGroup.RegisterGroup("FargowiltasSouls:AnyAdamantiteRepeater", group);
 
-            CalamityCompatibility?.AddRecipeGroups();
-            ThoriumCompatibility?.AddRecipeGroups();
-            SoACompatibility?.AddRecipeGroups();
+            CalamityCompatibility?.TryAddRecipeGroups();
+            ThoriumCompatibility?.TryAddRecipeGroups();
+            SoACompatibility?.TryAddRecipeGroups();
 
             //evil wood
             group = new RecipeGroup(() => Lang.misc[37] + " Evil Wood", ItemID.Ebonwood, ItemID.Shadewood);
@@ -1752,6 +1750,8 @@ namespace FargowiltasSouls
         }
 
 
+        #region Compatibilities
+
         internal CalamityCompatibility CalamityCompatibility { get; private set; }
         internal bool CalamityLoaded => CalamityCompatibility != null;
 
@@ -1760,6 +1760,8 @@ namespace FargowiltasSouls
 
         internal SoACompatibility SoACompatibility { get; private set; }
         internal bool SoALoaded => SoACompatibility != null;
+
+        #endregion
     }
 
     enum MsgType : byte

@@ -11,7 +11,7 @@ namespace FargowiltasSouls.ModCompatibilities
         }
 
 
-        public override void AddRecipeGroups()
+        protected override void AddRecipeGroups()
         {
             //Aerospec
             RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Aerospec Helmet", ModContent.ItemType<AerospecHat>(), ModContent.ItemType<AerospecHeadgear>(), ModContent.ItemType<AerospecHelm>(), ModContent.ItemType<AerospecHood>(), ModContent.ItemType<AerospecHelmet>());

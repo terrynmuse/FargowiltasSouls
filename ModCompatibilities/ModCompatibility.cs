@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿using System;
+using Terraria.ModLoader;
 
 namespace FargowiltasSouls.ModCompatibilities
 {
@@ -14,10 +15,35 @@ namespace FargowiltasSouls.ModCompatibilities
 
         public virtual ModCompatibility TryLoad() => (ModInstance = ModLoader.GetMod(ModName)) == null ? null : this;
 
-        
-        public virtual void AddRecipes() { }
 
-        public virtual void AddRecipeGroups() { }
+        public void TryAddRecipes()
+        {
+            try
+            {
+                AddRecipes();
+            }
+            catch (Exception e)
+            {
+                CallerMod.Logger.Error($"Error while adding recipes from `{ModInstance.Name}` for mod `{CallerMod.Name}`.", e);
+            }
+        }
+
+        protected virtual void AddRecipes() { }
+
+
+        public void TryAddRecipeGroups()
+        {
+            try
+            {
+                AddRecipeGroups();
+            }
+            catch (Exception e)
+            {
+                CallerMod.Logger.Error($"Error while adding recipe groups from `{ModInstance.Name}` for mod `{CallerMod.Name}`.", e);
+            }
+        }
+
+        protected virtual void AddRecipeGroups() { }
 
 
         public Mod CallerMod { get; }
