@@ -31,12 +31,12 @@ namespace FargowiltasSouls.Items.Misc
 
         public override bool CanUseItem(Player player)
         {
-            return Fargowiltas.Instance.FargosLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Abominationn"));
+            return Fargowiltas.Instance.FargowiltasLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Abominationn"));
         }
 
         public override bool UseItem(Player player)
         {
-            if (Fargowiltas.Instance.FargosLoaded)
+            if (Fargowiltas.Instance.FargowiltasLoaded)
             {
                 NPC.SpawnOnPlayer(player.whoAmI, ModLoader.GetMod("Fargowiltas").NPCType("Abominationn"));
             }
@@ -48,7 +48,7 @@ namespace FargowiltasSouls.Items.Misc
             if (item.lavaWet)
             {
                 item.active = false;
-                if (Fargowiltas.Instance.FargosLoaded)
+                if (Fargowiltas.Instance.FargowiltasLoaded)
                 {
                     if (Main.netMode != 1)
                     {

@@ -69,7 +69,7 @@ namespace FargowiltasSouls.NPCs
                 npc.Center = brain.Center;
             }
 
-            if (Fargowiltas.Instance.MasomodeEX)
+            if (Fargowiltas.Instance.MasomodeEXLoaded)
             {
                 npc.damage = brain.damage;
                 npc.defDamage = brain.defDamage;

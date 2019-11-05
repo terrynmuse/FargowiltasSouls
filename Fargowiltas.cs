@@ -25,12 +25,6 @@ namespace FargowiltasSouls
         internal static List<int> DebuffIDs;
 
         internal static Fargowiltas Instance;
-        //loaded
-        internal bool FargosLoaded;
-        internal bool AALoaded;
-        internal bool DBTLoaded;
-        internal bool ApothLoaded;
-        internal bool MasomodeEX;
 
         internal bool LoadedNewSprites;
 
@@ -1223,11 +1217,11 @@ namespace FargowiltasSouls
                 ThoriumCompatibility = new ThoriumCompatibility(this).TryLoad() as ThoriumCompatibility;
                 SoACompatibility = new SoACompatibility(this).TryLoad() as SoACompatibility;
 
-                FargosLoaded = ModLoader.GetMod("Fargowiltas") != null;
-                AALoaded = ModLoader.GetMod("AAMod") != null;
-                DBTLoaded = ModLoader.GetMod("DBZMOD") != null;
-                ApothLoaded = ModLoader.GetMod("ApothTestMod") != null;
-                MasomodeEX = ModLoader.GetMod("MasomodeEX") != null;
+                FargowiltasCompatibility = new FargowiltasCompatibility(this).TryLoad() as FargowiltasCompatibility;
+                MasomodeEXCompatibility = new MasomodeEXCompatibility(this).TryLoad() as MasomodeEXCompatibility;
+
+                DBZMODCompatibility = new DBZMODCompatibility(this).TryLoad() as DBZMODCompatibility;
+                ApothCompatibility = new ApothTestModCompatibility(this).TryLoad() as ApothTestModCompatibility;
 
                 DebuffIDs = new List<int> { 20, 22, 23, 24, 36, 39, 44, 46, 47, 67, 68, 69, 70, 80,
                     88, 94, 103, 137, 144, 145, 148, 149, 156, 160, 163, 164, 195, 196, 197, 199 };
@@ -1760,6 +1754,20 @@ namespace FargowiltasSouls
 
         internal SoACompatibility SoACompatibility { get; private set; }
         internal bool SoALoaded => SoACompatibility != null;
+
+
+        internal FargowiltasCompatibility FargowiltasCompatibility { get; private set; }
+        internal bool FargowiltasLoaded => FargowiltasCompatibility != null;
+
+        internal MasomodeEXCompatibility MasomodeEXCompatibility { get; private set; }
+        internal bool MasomodeEXLoaded => MasomodeEXCompatibility != null;
+
+
+        internal DBZMODCompatibility DBZMODCompatibility { get; private set; }
+        internal bool DBZMODLoaded => DBZMODCompatibility != null;
+
+        internal ApothTestModCompatibility ApothCompatibility { get; private set; }
+        internal bool ApothLoaded => ApothCompatibility != null;
 
         #endregion
     }

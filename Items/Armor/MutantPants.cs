@@ -72,7 +72,7 @@ Hold DOWN and JUMP to hover");
 
         public override void AddRecipes()
         {
-            if (Fargowiltas.Instance.FargosLoaded)
+            if (Fargowiltas.Instance.FargowiltasLoaded)
             {
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(ModLoader.GetMod("Fargowiltas").ItemType("MutantPants"));

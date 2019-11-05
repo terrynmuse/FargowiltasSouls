@@ -197,7 +197,7 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             target.immuneTime = 0;
             target.hurtCooldowns[0] = 0;
             target.hurtCooldowns[1] = 0;
-            if (Fargowiltas.Instance.MasomodeEX)
+            if (Fargowiltas.Instance.MasomodeEXLoaded)
                 target.AddBuff(ModLoader.GetMod("MasomodeEX").BuffType("MutantJudgement"), 3600);
         }
     }

@@ -708,7 +708,7 @@ Additionally grants:");
 
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player, hideVisual);
 
-            if (Fargowiltas.Instance.DBTLoaded) DBT(player);
+            if (Fargowiltas.Instance.DBZMODLoaded) DBT(player);
 
             if (Fargowiltas.Instance.SoALoaded) SOA(player, hideVisual);
 

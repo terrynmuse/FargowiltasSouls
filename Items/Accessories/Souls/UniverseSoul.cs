@@ -141,7 +141,7 @@ Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw";
 
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player);
 
-            if (Fargowiltas.Instance.DBTLoaded) DBT(player);
+            if (Fargowiltas.Instance.DBZMODLoaded) DBT(player);
         }
 
         private void Thorium(Player player)
@@ -300,7 +300,7 @@ Effects of Epic Mouthpiece, Straight Mute, Digital Tuner, and Guitar Pick Claw";
                 recipe.AddIngredient(thorium.ItemType("TheRing"));              
             }
 
-            if (Fargowiltas.Instance.DBTLoaded)
+            if (Fargowiltas.Instance.DBZMODLoaded)
             {
                 recipe.AddIngredient(null, "KiSoul");
             }

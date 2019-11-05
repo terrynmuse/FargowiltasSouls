@@ -3124,7 +3124,7 @@ namespace FargowiltasSouls
 
             if (Fargowiltas.Instance.CalamityLoaded) CalamityDamage(dmg);
 
-            if (Fargowiltas.Instance.DBTLoaded) DBTDamage(dmg);
+            if (Fargowiltas.Instance.DBZMODLoaded) DBTDamage(dmg);
         }
 
         private void ThoriumDamage(float dmg)
@@ -3156,7 +3156,7 @@ namespace FargowiltasSouls
 
             if (Fargowiltas.Instance.CalamityLoaded) CalamityCrit(crit);
 
-            if (Fargowiltas.Instance.DBTLoaded) DBTCrit(crit);
+            if (Fargowiltas.Instance.DBZMODLoaded) DBTCrit(crit);
         }
 
         private void ThoriumCrit(int crit)
@@ -3189,7 +3189,7 @@ namespace FargowiltasSouls
 
             if (Fargowiltas.Instance.CalamityLoaded) CalamityCritEquals(crit);
 
-            if (Fargowiltas.Instance.DBTLoaded) DBTCritEquals(crit);
+            if (Fargowiltas.Instance.DBZMODLoaded) DBTCritEquals(crit);
         }
 
         private void ThoriumCritEquals(int crit)
