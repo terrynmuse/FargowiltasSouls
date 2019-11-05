@@ -1442,8 +1442,30 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     Main.PlaySound(SoundID.Item84, npc.Center);
                     if (Main.netMode != 1)
                     {
-                        Projectile.NewProjectile(npc.Center, Vector2.UnitY * 10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 120);
-                        Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 240);
+                        int p = Projectile.NewProjectile(npc.Center, Vector2.UnitY * 10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 120);
+                        if (p != 1000)
+                        {
+                            const int max = 5;
+                            const float distance = 125f;
+                            float rotation = 2f * (float)Math.PI / max;
+                            for (int i = 0; i < max; i++)
+                            {
+                                Vector2 spawnPos = npc.Center + new Vector2(distance, 0f).RotatedBy(rotation * i);
+                                Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("MutantCrystalLeaf"), npc.damage / 4, 0f, Main.myPlayer, p, rotation * i);
+                            }
+                        }
+                        p = Projectile.NewProjectile(npc.Center, Vector2.UnitY * -10f, mod.ProjectileType("MutantMark2"), npc.damage / 4, 0f, Main.myPlayer, 30, 30 + 240);
+                        if (p != 1000)
+                        {
+                            const int max = 5;
+                            const float distance = 125f;
+                            float rotation = 2f * (float)Math.PI / max;
+                            for (int i = 0; i < max; i++)
+                            {
+                                Vector2 spawnPos = npc.Center + new Vector2(distance, 0f).RotatedBy(rotation * i);
+                                Projectile.NewProjectile(spawnPos, Vector2.Zero, mod.ProjectileType("MutantCrystalLeaf"), npc.damage / 4, 0f, Main.myPlayer, p, rotation * i);
+                            }
+                        }
                     }
                     npc.ai[0]++;
                     break;

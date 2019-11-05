@@ -1072,6 +1072,11 @@ namespace FargowiltasSouls.NPCs
                 
                 switch (npc.type)
                 {
+                    case NPCID.DD2EterniaCrystal:
+                        if (DD2Event.Ongoing && DD2Event.TimeLeftBetweenWaves > 30)
+                            DD2Event.TimeLeftBetweenWaves = 30;
+                        break;
+
                     case NPCID.DesertBeast:
                         Aura(npc, 250, mod.BuffType("Infested"), false, 188);
                         break;
