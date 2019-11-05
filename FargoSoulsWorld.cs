@@ -203,9 +203,6 @@ namespace FargowiltasSouls
         {
             //Main.NewText(BuilderMode);
 
-            if (MasochistMode && DD2Event.Ongoing && DD2Event.TimeLeftBetweenWaves > 30)
-                DD2Event.TimeLeftBetweenWaves = 30;
-
             #region commented
 
             //right when day starts
