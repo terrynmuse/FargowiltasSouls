@@ -4,7 +4,7 @@ namespace FargowiltasSouls.ModCompatibilities
 {
     public class MasomodeEXCompatibility : ModCompatibility
     {
-        public MasomodeEXCompatibility(Mod callerMod) : base(callerMod, nameof(MasomodeEX))
+        public MasomodeEXCompatibility(Mod callerMod) : base(callerMod, "MasomodeEX")
         {
         }
     }

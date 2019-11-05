@@ -17,20 +17,11 @@
     <Reference Include="CalamityMod">
       <HintPath>bin\Debug\net45\CalamityMod.FNA.dll</HintPath>
     </Reference>
-    <Reference Include="DBZMOD">
-      <HintPath>bin\Debug\net45\DBZMOD.dll</HintPath>
-    </Reference>
-    <Reference Include="Fargowiltas">
-      <HintPath>bin\Debug\net45\Fargowiltas.FNA.dll</HintPath>
-    </Reference>
-    <Reference Include="MasomodeEX">
-      <HintPath>bin\Debug\net45\MasomodeEX.FNA.dll</HintPath>
-    </Reference>
     <Reference Include="SacredTools">
       <HintPath>bin\Debug\net45\SacredTools.FNA.dll</HintPath>
     </Reference>
     <Reference Include="ThoriumMod">
-      <HintPath>bin\Debug\net45\ThoriumMod.dll</HintPath>
+      <HintPath>bin\Debug\net45\ThoriumMod.FNA.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

@@ -63,7 +63,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             }
             npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
             //music = MusicID.TheTowers;
-            music = Fargowiltas.Instance.MasomodeEXLoaded ? ModLoader.GetMod("MasomodeEX").GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue") : mod.GetSoundSlot(SoundType.Music, "Sounds/Music/SteelRed");
+            music = Fargowiltas.Instance.MasomodeEXLoaded ? Fargowiltas.Instance.MasomodeEXCompatibility.ModInstance.GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue") : mod.GetSoundSlot(SoundType.Music, "Sounds/Music/SteelRed");
             musicPriority = (MusicPriority)12;
         }
 
