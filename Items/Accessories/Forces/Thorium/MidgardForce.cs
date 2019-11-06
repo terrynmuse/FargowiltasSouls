@@ -109,7 +109,7 @@ Summons a pet Pink Slime");
                 modPlayer.AllDamageUp(.12f);
             }
 
-            //terrarium woofer
+            /*//terrarium woofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
@@ -118,7 +118,7 @@ Summons a pet Pink Slime");
                 {
                     thoriumPlayer.empowerTerrarium = true;
                 }
-            }
+            }*/
         }
 
         public override void AddRecipes()

@@ -79,7 +79,7 @@ Effects of Fan Letter and Terrarium Surround Sound");
                 timer = 0;
             }
             //terrarium woofer
-            thoriumPlayer.bardRangeBoost += 450;
+            /*thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];
@@ -87,7 +87,7 @@ Effects of Fan Letter and Terrarium Surround Sound");
                 {
                     thoriumPlayer.empowerTerrarium = true;
                 }
-            }
+            }*/
             //diverman meme
             modPlayer.ThoriumEnchant = true;
             //crietz

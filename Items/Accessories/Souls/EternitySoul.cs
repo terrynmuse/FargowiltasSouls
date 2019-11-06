@@ -172,7 +172,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             "Armor bonuses from Warlock",
             "Armor bonuses from Biotech",
             "Armor bonuses from Cyber Punk",
-            "Armor bonuses from Conductor",
+            "Armor bonuses from Maestro",
             "Armor bonuses from Bronze",
             "Armor bonuses from Darksteel",
             "Armor bonuses from Durasteel",
@@ -742,7 +742,7 @@ Additionally grants:");
             //dead mans patch
             thoriumPlayer.deadEyeBool = true;
             //mermaid canteen
-            thoriumPlayer.canteenEffect += 750;
+            thoriumPlayer.throwerExhaustionMax += 1125;
             thoriumPlayer.canteenCadet = true;
 
             //HEALER
@@ -798,12 +798,12 @@ Additionally grants:");
             //BARD
             thoriumPlayer.bardResourceMax2 = 20; //the max allowed in thorium
             //epic mouthpiece
-            thoriumPlayer.bardHomingBool = true;
+            thoriumPlayer.accWindHoming = true;
             thoriumPlayer.bardHomingBonus = 5f;
             //straight mute
-            thoriumPlayer.bardMute2 = true;
+            thoriumPlayer.accBrassMute2 = true;
             //digital tuner
-            thoriumPlayer.tuner2 = true;
+            thoriumPlayer.accPercussionTuner2 = true;
             //guitar pick claw
             thoriumPlayer.bardBounceBonus = 5;
             //COLOSSUS
@@ -875,11 +875,13 @@ Additionally grants:");
             //survivalist boots
             if (Math.Abs(player.velocity.X) > 2f)
             {
+                thoriumPlayer.lifeRegenPenaltyReduction += 0.1f;
                 player.lifeRegen += 2;
                 player.lifeRegenTime++;
+                thoriumPlayer.manaRegenPenaltyReduction += 0.1f;
                 player.manaRegenBonus += 2;
                 player.manaRegenDelayBonus++;
-                thoriumPlayer.bardResourceRecharge += 2;
+                thoriumPlayer.inspirationRegenBonus += 0.03f;
             }
             //weighted winglets
             if (player.controlDown && !player.controlUp)

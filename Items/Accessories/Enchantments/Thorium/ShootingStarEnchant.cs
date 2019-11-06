@@ -6,7 +6,7 @@ using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
-    public class BalladeerEnchant : ModItem
+    public class ShootingStarEnchant : ModItem
     {
         private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
 
@@ -17,12 +17,12 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
         
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Balladeer Enchantment");
+            DisplayName.SetDefault("Shooting Star Enchantment");
             Tooltip.SetDefault(
 @"'Echoes of the cosmic ballad dance in your head'
 Each unique empowerment you have grants you:
-8% increased symphonic damage,
-3% increased movement speed,
+5% increased symphonic damage,
+2% increased movement speed,
 2% increased inspiration regeneration,
 1% increased playing speed");
             DisplayName.AddTranslation(GameCulture.Chinese, "民谣歌手魔石");
@@ -51,9 +51,9 @@ Each unique empowerment you have grants you:
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //dmg, regen
-            thoriumPlayer.BalladeerSet = true;
+            thoriumPlayer.setBalladeer = true;
             //move speed, play speed
-            thoriumPlayer.headphones = true;
+            thoriumPlayer.accHeadset = true;
         }
         
         private readonly string[] items =

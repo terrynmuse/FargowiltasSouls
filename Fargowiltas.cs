@@ -29,6 +29,8 @@ namespace FargowiltasSouls
 
         internal static readonly Dictionary<int, int> ModProjDict = new Dictionary<int, int>();
 
+        internal bool FargowiltasLoaded;
+
         public Fargowiltas()
         {
             Properties = new ModProperties
@@ -1210,11 +1212,13 @@ namespace FargowiltasSouls
         {
             try
             {
+                FargowiltasLoaded = ModLoader.GetMod("Fargowiltas") != null;
+
                 CalamityCompatibility = new CalamityCompatibility(this).TryLoad() as CalamityCompatibility;
                 ThoriumCompatibility = new ThoriumCompatibility(this).TryLoad() as ThoriumCompatibility;
                 SoACompatibility = new SoACompatibility(this).TryLoad() as SoACompatibility;
 
-                FargowiltasCompatibility = new FargowiltasCompatibility(this).TryLoad() as FargowiltasCompatibility;
+                //FargowiltasCompatibility = new FargowiltasCompatibility(this).TryLoad() as FargowiltasCompatibility;
                 MasomodeEXCompatibility = new MasomodeEXCompatibility(this).TryLoad() as MasomodeEXCompatibility;
 
                 DBZMODCompatibility = new DBZMODCompatibility(this).TryLoad() as DBZMODCompatibility;
@@ -1588,9 +1592,9 @@ namespace FargowiltasSouls
                     {
                         int n = reader.ReadByte();
                         FargoSoulsGlobalNPC limb = Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>();
-                        limb.masoBool[2] = reader.ReadBool();
-                        limb.Counter = reader.ReadInt();
-                        Main.npc[n].localAI[3] = reader.ReadFloat();
+                        limb.masoBool[2] = reader.ReadBoolean();
+                        limb.Counter = reader.ReadInt32();
+                        Main.npc[n].localAI[3] = reader.ReadSingle();
                     }
                     break;
 
@@ -1599,8 +1603,8 @@ namespace FargowiltasSouls
                     {
                         int n = reader.ReadByte();
                         FargoSoulsGlobalNPC limb = Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>();
-                        limb.Counter = reader.ReadInt();
-                        limb.Counter2 = reader.ReadInt();
+                        limb.Counter = reader.ReadInt32();
+                        limb.Counter2 = reader.ReadInt32();
                     }
                     break;
 
@@ -1609,11 +1613,11 @@ namespace FargowiltasSouls
                     {
                         int n = reader.ReadByte();
                         FargoSoulsGlobalNPC head = Main.npc[n].GetGlobalNPC<FargoSoulsGlobalNPC>();
-                        head.masoBool[0] = reader.ReadBool();
-                        head.masoBool[1] = reader.ReadBool();
-                        head.masoBool[2] = reader.ReadBool();
-                        head.Counter = reader.ReadInt();
-                        head.Counter2 = reader.ReadInt();
+                        head.masoBool[0] = reader.ReadBoolean();
+                        head.masoBool[1] = reader.ReadBoolean();
+                        head.masoBool[2] = reader.ReadBoolean();
+                        head.Counter = reader.ReadInt32();
+                        head.Counter2 = reader.ReadInt32();
                     }
                     break;
 
@@ -1753,8 +1757,8 @@ namespace FargowiltasSouls
         internal bool SoALoaded => SoACompatibility != null;
 
 
-        internal FargowiltasCompatibility FargowiltasCompatibility { get; private set; }
-        internal bool FargowiltasLoaded => FargowiltasCompatibility != null;
+        //internal FargowiltasCompatibility FargowiltasCompatibility { get; private set; }
+        //internal bool FargowiltasLoaded => FargowiltasCompatibility != null;
 
         internal MasomodeEXCompatibility MasomodeEXCompatibility { get; private set; }
         internal bool MasomodeEXLoaded => MasomodeEXCompatibility != null;

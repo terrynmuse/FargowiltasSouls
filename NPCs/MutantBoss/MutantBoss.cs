@@ -86,7 +86,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            npc.localAI[2] = reader.ReadFloat();
+            npc.localAI[2] = reader.ReadSingle();
         }
 
         public override void AI()

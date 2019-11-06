@@ -54,8 +54,8 @@ Summons a pet Penguin and Owl");
             //strider hide
             thoriumPlayer.frostBonusDamage = true;
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3ManaRegen = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3ManaRegen = 2;
             //pets
             modPlayer.IcyEnchant = true;
             modPlayer.AddPet("Penguin Pet", hideVisual, BuffID.BabyPenguin, ProjectileID.Penguin);

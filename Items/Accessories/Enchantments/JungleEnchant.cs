@@ -78,7 +78,7 @@ All herb collection is doubled
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
+            /*ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
@@ -87,7 +87,7 @@ All herb collection is doubled
                 {
                     thoriumPlayer.empowerPoison = true;
                 }
-            }
+            }*/
         }
 
         public override void AddRecipes()

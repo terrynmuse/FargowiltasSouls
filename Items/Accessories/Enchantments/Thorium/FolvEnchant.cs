@@ -65,8 +65,8 @@ Effects of Mana-Charged Rocketeers and Gray Music Player");
                 player.noKnockback = true;
             }
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3Defense = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3Defense = 2;
             //malignant
             modPlayer.MalignantEnchant = true;
             //mana charge rockets

@@ -83,7 +83,7 @@ Summons a pet Wyvern");
             player.maxRunSpeed -= 1f;
             //cursed core
             thoriumPlayer.cursedCore = true;
-            //corrupt woofer
+            /*//corrupt woofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
@@ -95,7 +95,7 @@ Summons a pet Wyvern");
             }
             //music player
             thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3MovementSpeed = 2;
+            thoriumPlayer.MP3MovementSpeed = 2;*/
             //dragon 
             thoriumPlayer.dragonSet = true;
             //dragon tooth necklace

@@ -91,18 +91,6 @@ namespace FargowiltasSouls
             }
         }
 
-        /*
-         * Reads a vector2 array from a binary reader.
-         */
-        public static Vector2[] ReadVector2Array(BinaryReader reader)
-        {
-            int arrayLength = reader.ReadInt();
-            Vector2[] array = new Vector2[arrayLength];
-            for (int m = 0; m < arrayLength; m++)
-            {
-                array[m] = new Vector2(reader.ReadFloat(), reader.ReadFloat());
-            }
-            return array;
-        }
+
     }
 }

@@ -68,7 +68,7 @@ Your minions can now crit with a 20% chance
 
         private void Thorium(Player player)
         {
-            ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
+            /*ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
@@ -77,7 +77,7 @@ Your minions can now crit with a 20% chance
                 {
                     thoriumPlayer.empowerVenom = true;
                 }
-            }
+            }*/
         }
 
         public override void AddRecipes()

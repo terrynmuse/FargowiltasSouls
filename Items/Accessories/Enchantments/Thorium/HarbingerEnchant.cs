@@ -62,8 +62,8 @@ Summons a Moogle pet");
                 player.magicCrit += 26;
             }
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3MaxLife = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3MaxLife = 2;
             //shade band
             thoriumPlayer.shadeBand = true;
             //pet

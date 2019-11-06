@@ -107,7 +107,7 @@ Increases flight time by 50%
 
             if (modPlayer.ThoriumSoul) return;
 
-            //venom woofer
+            /*//venom woofer
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];
@@ -115,7 +115,7 @@ Increases flight time by 50%
                 {
                     thoriumPlayer.empowerVenom = true;
                 }
-            }
+            }*/
         }
 
         public override void AddRecipes()

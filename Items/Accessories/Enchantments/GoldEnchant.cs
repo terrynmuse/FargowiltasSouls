@@ -91,7 +91,7 @@ Summons a pet Parrot";
             if (SoulConfig.Instance.GetValue("Proof of Avarice"))
             {
                 //proof of avarice
-                thoriumPlayer.avarice2 = true;
+                thoriumPlayer.avarice = true;
             }
             
             //shield

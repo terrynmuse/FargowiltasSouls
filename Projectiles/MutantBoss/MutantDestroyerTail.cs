@@ -39,8 +39,8 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            projectile.localAI[0] = reader.ReadFloat();
-            projectile.localAI[1] = reader.ReadFloat();
+            projectile.localAI[0] = reader.ReadSingle();
+            projectile.localAI[1] = reader.ReadSingle();
         }
 
         public override Color? GetAlpha(Color lightColor)

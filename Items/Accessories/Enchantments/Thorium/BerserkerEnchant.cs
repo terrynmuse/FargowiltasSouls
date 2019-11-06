@@ -79,8 +79,8 @@ Effects of Molten Spear Tip and Orange Music Player");
                 thoriumPlayer.berserkStage = 4;
             }
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3AttackSpeed = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3AttackSpeed = 2;
             //magma
             mod.GetItem("MagmaEnchant").UpdateAccessory(player, hideVisual);
             //molten

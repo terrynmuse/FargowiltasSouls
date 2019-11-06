@@ -77,9 +77,9 @@ Summons a pet Maid");
 
             //rhapsodist
             //hotkey buff allies 
-            thoriumPlayer.rallySet = true;
+            thoriumPlayer.setInspirator = true;
             //hotkey buff self
-            thoriumPlayer.soloistSet = true;
+            thoriumPlayer.setSoloist = true;
         }
 
         public override void AddRecipes()

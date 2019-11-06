@@ -17,11 +17,11 @@ namespace FargowiltasSouls.ModCompatibilities
         protected override void AddRecipes()
         {
             int 
-                foldedMetal = ModContent.ItemType<FoldedMetal>(),
+                //foldedMetal = ModContent.ItemType<FoldedMetal>(),
                 arcaneArmorFabricator = ModContent.TileType<ArcaneArmorFabricator>();
 
 
-            ModRecipe recipe = new ModRecipe(CallerMod);
+            /*ModRecipe recipe = new ModRecipe(CallerMod);
 
             recipe.AddIngredient(foldedMetal);
             recipe.AddTile(arcaneArmorFabricator);
@@ -117,7 +117,7 @@ namespace FargowiltasSouls.ModCompatibilities
             recipe.AddTile(arcaneArmorFabricator);
 
             recipe.SetResult(ModContent.ItemType<SteelPickaxe>());
-            recipe.AddRecipe();
+            recipe.AddRecipe();*/
         }
 
         protected override void AddRecipeGroups()

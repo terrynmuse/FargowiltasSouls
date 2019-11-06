@@ -150,18 +150,7 @@ namespace FargowiltasSouls
 			Chat(newText, (overrideColor != null ? (Color)overrideColor : new Color(255, 240, 20)), sync);
 		}
 
-        public static int CheckForGore(Mod mod, string goreName, IDictionary<string, int> gores = null)
-        {
-			if(mod == null) return -1; //only for mod gores!
-			if (mod.GetGoreSlot("Gores/" + goreName) > 0) return mod.GetGoreSlot("Gores/" + goreName);
-			if(gores == null && mod is GoreInfo) gores = ((GoreInfo)mod).GetGoreArray();
-			if(gores == null) gores = (IDictionary<string, int>)typeof(ModGore).GetField("gores", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-			foreach (string key in gores.Keys)
-			{
-				if (key.Contains(mod.Name) && key.Contains(goreName)) return ModGore.GetGoreSlot(key);
-			}
-            return -1;
-        }
+       
 
         public static int CalcValue(int plat, int gold, int silver, int copper, bool sellPrice = false)
         {

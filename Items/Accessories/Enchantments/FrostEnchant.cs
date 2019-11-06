@@ -81,7 +81,7 @@ Summons a pet Snowman";
         {
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //subwoofer
-            thoriumPlayer.bardRangeBoost += 450;
+            /*thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];
@@ -89,7 +89,7 @@ Summons a pet Snowman";
                 {
                     thoriumPlayer.empowerFrost = true;
                 }
-            }
+            }*/
         }
 
         public override void AddRecipes()

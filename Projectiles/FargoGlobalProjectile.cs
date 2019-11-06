@@ -170,7 +170,7 @@ namespace FargowiltasSouls.Projectiles
                         player.ClearBuff(mod.BuffType("FirstStrike"));
                     }
 
-                    if (!townNPCProj && !projectile.trap && projectile.aiStyle != 99 && modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect", false))
+                    if (!townNPCProj && !projectile.trap && projectile.aiStyle != 99 && projectile.type != ProjectileID.Arkhalis && modPlayer.TungstenEnchant && projectile.friendly && SoulConfig.Instance.GetValue("Tungsten Effect", false))
                     {
                         projectile.position = projectile.Center;
                         projectile.scale *= 2f;
@@ -460,6 +460,11 @@ namespace FargowiltasSouls.Projectiles
 
         public static void SplitProj(Projectile projectile, int number)
         {
+            if (Fargowiltas.Instance.FargowiltasLoaded && projectile.type == ModLoader.GetMod("Fargowiltas").ProjectileType("SpawnProj"))
+            {
+                return;
+            }
+
             //if its odd, we just keep the original 
             if (number % 2 != 0)
             {

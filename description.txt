@@ -103,4 +103,17 @@ NEW UPDATE - v 1.0.0
 
 -player no longer starts with mutants gift
 -tungsten no longer affects arkhalis
+-admanatite will never multiply boss spawning projectiles from mutant mod
+
+
+
+
+-fixed all thorium memes, 
+-renamed balladeer to shooting star, conductor to Maestro
+-updated crier enchant effects to match armor
+-updated marching band to new effect
+
+-yeeted a bunch of base mod
+
+
 

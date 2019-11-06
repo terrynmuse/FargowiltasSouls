@@ -12,6 +12,7 @@ using Terraria.Graphics.Capture;
 using FargowiltasSouls.NPCs;
 using FargowiltasSouls.Projectiles;
 using ThoriumMod;
+using ThoriumMod.Projectiles;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -3135,6 +3136,7 @@ namespace FargowiltasSouls
         private void CalamityDamage(float dmg)
         {
             player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingDamage += dmg;
+            
         }
 
         private void DBTDamage(float dmg)
