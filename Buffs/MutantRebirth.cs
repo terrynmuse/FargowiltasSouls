@@ -1,9 +1,5 @@
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
-using FargowiltasSouls.NPCs;
 using Terraria.Localization;
 
 namespace FargowiltasSouls.Buffs

@@ -7,7 +7,6 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
-using ThoriumMod.Items;
 
 namespace FargowiltasSouls.Items
 {

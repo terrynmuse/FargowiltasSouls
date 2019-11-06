@@ -7,7 +7,6 @@ using System;
 using CalamityMod.CalPlayer;
 using ThoriumMod.Items.Misc;
 using Terraria.Localization;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace FargowiltasSouls.Items.Accessories.Souls
@@ -708,9 +707,9 @@ Additionally grants:");
 
             if (Fargowiltas.Instance.CalamityLoaded) Calamity(player, hideVisual);
 
-            if (Fargowiltas.Instance.DBTLoaded) DBT(player);
+            if (Fargowiltas.Instance.DBZMODLoaded) DBT(player);
 
-            if (Fargowiltas.Instance.SOALoaded) SOA(player, hideVisual);
+            if (Fargowiltas.Instance.SoALoaded) SOA(player, hideVisual);
 
             if (Fargowiltas.Instance.ApothLoaded)
             {
@@ -1003,7 +1002,7 @@ Additionally grants:");
                 recipe.AddIngredient(calamity.ItemType("Rock"));
             }
 
-            if (Fargowiltas.Instance.SOALoaded)
+            if (Fargowiltas.Instance.SoALoaded)
             {
                 recipe.AddIngredient(null, "SoASoul");
             }

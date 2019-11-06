@@ -4,12 +4,9 @@ using Microsoft.Xna.Framework;
 
 using Terraria;
 using Terraria.ObjectData;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.Utilities;
 using Terraria.ModLoader;
-using FargowiltasSouls;
 
 namespace FargowiltasSouls
 {

@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -64,7 +63,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
             }
             npc.GetGlobalNPC<FargoSoulsGlobalNPC>().SpecialEnchantImmune = true;
             //music = MusicID.TheTowers;
-            music = Fargowiltas.Instance.MasomodeEX ? ModLoader.GetMod("MasomodeEX").GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue") : mod.GetSoundSlot(SoundType.Music, "Sounds/Music/SteelRed");
+            music = Fargowiltas.Instance.MasomodeEXLoaded ? Fargowiltas.Instance.MasomodeEXCompatibility.ModInstance.GetSoundSlot(SoundType.Music, "Sounds/Music/rePrologue") : mod.GetSoundSlot(SoundType.Music, "Sounds/Music/SteelRed");
             musicPriority = (MusicPriority)12;
         }
 
@@ -106,10 +105,10 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     EdgyBossText("I hope you're ready to embrace suffering.");
                     if (Main.netMode != 1)
                     {
-                        if (Fargowiltas.Instance.MasomodeEX)
+                        if (Fargowiltas.Instance.MasomodeEXLoaded)
                             Projectile.NewProjectile(npc.Center, Vector2.Zero, ModLoader.GetMod("MasomodeEX").ProjectileType("MutantText"), 0, 0f, Main.myPlayer, npc.whoAmI);
 
-                        if (FargoSoulsWorld.downedFishronEX && (Fargowiltas.Instance.MasomodeEX || FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded))
+                        if (FargoSoulsWorld.downedFishronEX && (Fargowiltas.Instance.MasomodeEXLoaded || FargoSoulsWorld.AngryMutant || Fargowiltas.Instance.CalamityLoaded))
                             Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("BossRush"), 0, 0f, Main.myPlayer, npc.whoAmI);
 
                         int number = 0;
@@ -182,7 +181,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                         npc.NPCLoot();
                         npc.life = 0;
                         npc.active = false;
-                        if (Main.netMode != 1 && Fargowiltas.Instance.FargosLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant")))
+                        if (Main.netMode != 1 && Fargowiltas.Instance.FargowiltasLoaded && !NPC.AnyNPCs(ModLoader.GetMod("Fargowiltas").NPCType("Mutant")))
                         {
                             int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
                             if (n != 200 && Main.netMode == 2)
@@ -1574,7 +1573,7 @@ namespace FargowiltasSouls.NPCs.MutantBoss
                     if (npc.timeLeft > 30)
                         npc.timeLeft = 30;
                     npc.velocity.Y -= 1f;
-                    if (npc.timeLeft == 1 && Fargowiltas.Instance.FargosLoaded)
+                    if (npc.timeLeft == 1 && Fargowiltas.Instance.FargowiltasLoaded)
                     {
                         if (npc.position.Y < 0)
                             npc.position.Y = 0;
