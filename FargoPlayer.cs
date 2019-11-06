@@ -1438,12 +1438,12 @@ namespace FargowiltasSouls
             }
         }
 
-        public override void SetupStartInventory(IList<Item> items)
+       /* public override void SetupStartInventory(IList<Item> items)
         {
             Item item = new Item();
             item.SetDefaults(mod.ItemType("Masochist"));
             items.Add(item);
-        }
+        }*/
 
         public override float UseTimeMultiplier(Item item)
         {

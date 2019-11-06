@@ -88,7 +88,6 @@ NEW UPDATE - v 1.0.0
 -made all debuff inflictions always for the same amount of time, no randomness
 -King Slime will only stun you while moving
 -king slme no longer inflicts clipped wings
--QB contact no longer does infested, stingers still do
 -being hit by a hungry no longer spawns WoF
 -reduced stun lock by only allowing enemies to inflict stunning debuffs every other hit
 -flying fox no longer inflict mutant nibble
@@ -101,4 +100,7 @@ NEW UPDATE - v 1.0.0
 -clowns inflict hexed for less time and fused for more
 -betsy contact no longer inflicts on fire, burning, ichor, or feral bite, betsy flames no longer do withered weapon or armor 
 -harpies no longer inflict clipped wings, their feathers always do and for longer
+
+-player no longer starts with mutants gift
+-tungsten no longer affects arkhalis
 
