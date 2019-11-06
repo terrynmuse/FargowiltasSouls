@@ -1,13 +1,8 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
-using FargowiltasSouls;
 
 namespace FargowiltasSouls
 {

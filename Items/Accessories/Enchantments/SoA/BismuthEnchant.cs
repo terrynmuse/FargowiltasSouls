@@ -1,8 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using ThoriumMod;
 using Terraria.Localization;
 using SacredTools;
 
@@ -41,7 +39,7 @@ Hitting enemies has a chance to summon a bismuth hammer for extra damage");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();
 
@@ -64,7 +62,7 @@ Hitting enemies has a chance to summon a bismuth hammer for extra damage");
 
         public override void AddRecipes()
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             ModRecipe recipe = new ModRecipe(mod);
 

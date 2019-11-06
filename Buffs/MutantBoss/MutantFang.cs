@@ -1,10 +1,6 @@
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 using FargowiltasSouls.NPCs;
-using Terraria.Localization;
 
 namespace FargowiltasSouls.Buffs.MutantBoss
 {
@@ -49,7 +45,7 @@ namespace FargowiltasSouls.Buffs.MutantBoss
             fargoPlayer.MutantPresence = true;
             player.moonLeech = true;
             player.potionDelay = player.buffTime[buffIndex];
-            if (Fargowiltas.Instance.MasomodeEX && !FargoSoulsWorld.downedFishronEX && player.buffTime[buffIndex] > 1
+            if (Fargowiltas.Instance.MasomodeEXLoaded && !FargoSoulsWorld.downedFishronEX && player.buffTime[buffIndex] > 1
                 && FargoSoulsGlobalNPC.BossIsAlive(ref FargoSoulsGlobalNPC.mutantBoss, mod.NPCType("MutantBoss")))
             {
                 player.AddBuff(ModLoader.GetMod("MasomodeEX").BuffType("MutantJudgement"), player.buffTime[buffIndex]);

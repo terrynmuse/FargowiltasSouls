@@ -40,7 +40,7 @@ namespace FargowiltasSouls.Items.Ammos
 
         public override void AddRecipes()
         {
-            if (!Fargowiltas.Instance.FargosLoaded) return;
+            if (!Fargowiltas.Instance.FargowiltasLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
             //recipe.AddIngredient(ItemID.EndlessQuiver);

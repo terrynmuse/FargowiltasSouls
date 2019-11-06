@@ -6,7 +6,6 @@ using ThoriumMod;
 using ThoriumMod.NPCs;
 using Terraria.Localization;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {

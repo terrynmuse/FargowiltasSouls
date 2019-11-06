@@ -1,11 +1,8 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using Terraria.Localization;
-using System;
 using SacredTools;
-using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Forces.SoA
 {
@@ -47,7 +44,7 @@ Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             FargoPlayer fargoPlayer = player.GetModPlayer<FargoPlayer>();
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();
@@ -81,7 +78,7 @@ Effects of Ring of the Fallen, Memento Mori, and Arcanum of the Caster");
 
         public override void AddRecipes()
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             ModRecipe recipe = new ModRecipe(mod);
 
