@@ -1,7 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -91,7 +90,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
             player.fireWalk = true;
             player.lavaImmune = true;
             player.buffImmune[24] = true;
-            //woofers
+            /*//woofers
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
@@ -101,7 +100,7 @@ Summons a pet Omega, I.F.O., and Bio-Feeder");
                     thoriumPlayer.empowerGranite = true;
                     thoriumPlayer.empowerMarble = true;
                 }
-            }
+            }*/
             //titan
             modPlayer.AllDamageUp(.1f);
             //crystal eye mask

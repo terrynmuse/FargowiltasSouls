@@ -5,8 +5,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
 using Terraria.Localization;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments
 {
@@ -93,7 +91,7 @@ Summons a pet Parrot";
             if (SoulConfig.Instance.GetValue("Proof of Avarice"))
             {
                 //proof of avarice
-                thoriumPlayer.avarice2 = true;
+                thoriumPlayer.avarice = true;
             }
             
             //shield

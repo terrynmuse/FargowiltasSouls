@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -46,19 +45,20 @@ Effects of Concert Tickets and Brown Music Player");
             if (!Fargowiltas.Instance.ThoriumLoaded) return;
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
-            thoriumPlayer.ornateSet = true;
+            thoriumPlayer.setOrnate = true;
             //concert tickets
-            for (int i = 0; i < 255; i++)
+            thoriumPlayer.bardResourceMax2 += 2;
+            for (int i = 0; i < Main.myPlayer; i++)
             {
                 Player player2 = Main.player[i];
-                if (player2.active && player2 != player && Vector2.Distance(player2.Center, player.Center) < 450f)
+                if (player2.active && !player2.dead && i != player.whoAmI && (!player2.hostile || (player2.team == player.team && player2.team != 0)) && player2.DistanceSQ(player.Center) < 202500f)
                 {
-                    thoriumPlayer.bardResourceRecharge++;
+                    thoriumPlayer.inspirationRegenBonus += 0.02f;
                 }
             }
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3AmmoConsumption = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3AmmoConsumption = 2;
         }
         
         private readonly string[] items =

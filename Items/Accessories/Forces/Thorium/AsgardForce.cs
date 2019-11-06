@@ -1,10 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
@@ -80,9 +77,9 @@ Summons a pet Maid");
 
             //rhapsodist
             //hotkey buff allies 
-            thoriumPlayer.rallySet = true;
+            thoriumPlayer.setInspirator = true;
             //hotkey buff self
-            thoriumPlayer.soloistSet = true;
+            thoriumPlayer.setSoloist = true;
         }
 
         public override void AddRecipes()

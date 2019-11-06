@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
@@ -35,7 +33,7 @@ namespace FargowiltasSouls.Items.Misc
 
         public override bool UseItem(Player player)
         {
-            if (Fargowiltas.Instance.FargosLoaded)
+            if (Fargowiltas.Instance.FargowiltasLoaded)
             {
                 int mutant = NPC.FindFirstNPC(ModLoader.GetMod("Fargowiltas").NPCType("Mutant"));
                 if (mutant > -1 && Main.npc[mutant].active)

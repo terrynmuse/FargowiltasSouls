@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Terraria.Localization;
 
@@ -63,8 +62,8 @@ Summons a Moogle pet");
                 player.magicCrit += 26;
             }
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3MaxLife = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3MaxLife = 2;
             //shade band
             thoriumPlayer.shadeBand = true;
             //pet

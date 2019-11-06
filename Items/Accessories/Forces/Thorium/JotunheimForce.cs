@@ -119,7 +119,7 @@ Summons several pets");
             }
 
             //depth woofer
-            thoriumPlayer.bardRangeBoost += 450;
+            /*thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];
@@ -127,7 +127,7 @@ Summons several pets");
                 {
                     thoriumPlayer.empowerGouge = true;
                 }
-            }
+            }*/
 
             //goblin war shield
             thorium.GetItem("GoblinWarshield").UpdateAccessory(player, hideVisual);

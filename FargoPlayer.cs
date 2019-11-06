@@ -6,14 +6,13 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Graphics.Capture;
 using FargowiltasSouls.NPCs;
 using FargowiltasSouls.Projectiles;
 using ThoriumMod;
-using CalamityMod;
+using ThoriumMod.Projectiles;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -1438,12 +1437,12 @@ namespace FargowiltasSouls
             }
         }
 
-        public override void SetupStartInventory(IList<Item> items)
+       /* public override void SetupStartInventory(IList<Item> items)
         {
             Item item = new Item();
             item.SetDefaults(mod.ItemType("Masochist"));
             items.Add(item);
-        }
+        }*/
 
         public override float UseTimeMultiplier(Item item)
         {
@@ -3124,7 +3123,7 @@ namespace FargowiltasSouls
 
             if (Fargowiltas.Instance.CalamityLoaded) CalamityDamage(dmg);
 
-            if (Fargowiltas.Instance.DBTLoaded) DBTDamage(dmg);
+            if (Fargowiltas.Instance.DBZMODLoaded) DBTDamage(dmg);
         }
 
         private void ThoriumDamage(float dmg)
@@ -3137,6 +3136,7 @@ namespace FargowiltasSouls
         private void CalamityDamage(float dmg)
         {
             player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>().throwingDamage += dmg;
+            
         }
 
         private void DBTDamage(float dmg)
@@ -3156,7 +3156,7 @@ namespace FargowiltasSouls
 
             if (Fargowiltas.Instance.CalamityLoaded) CalamityCrit(crit);
 
-            if (Fargowiltas.Instance.DBTLoaded) DBTCrit(crit);
+            if (Fargowiltas.Instance.DBZMODLoaded) DBTCrit(crit);
         }
 
         private void ThoriumCrit(int crit)
@@ -3189,7 +3189,7 @@ namespace FargowiltasSouls
 
             if (Fargowiltas.Instance.CalamityLoaded) CalamityCritEquals(crit);
 
-            if (Fargowiltas.Instance.DBTLoaded) DBTCritEquals(crit);
+            if (Fargowiltas.Instance.DBZMODLoaded) DBTCritEquals(crit);
         }
 
         private void ThoriumCritEquals(int crit)

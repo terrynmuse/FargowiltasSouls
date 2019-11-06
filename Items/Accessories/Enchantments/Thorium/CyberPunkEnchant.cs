@@ -1,10 +1,11 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
+using ThoriumMod.Empowerments;
+using ThoriumMod.Items;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
 {
@@ -52,107 +53,89 @@ Effects of Auto Tuner and Red Music Player");
                 thoriumPlayer.cyberHeadAllowed = false;
                 thoriumPlayer.cyberBodyAllowed = false;
                 thoriumPlayer.cyberLegsAllowed = false;
-                thoriumPlayer.cyberBard = true;
-                for (int i = 0; i < 255; i++)
+
+
+
+
+                thoriumPlayer.setCyberPunk = true;
+                //BardItem.ApplyEmpowerments(player);
+                switch (thoriumPlayer.setCyberPunkValue)
                 {
-                    Player player2 = Main.player[i];
-                    if (player2.active && Vector2.Distance(player2.Center, player.Center) < 400f)
-                    {
-                        if (thoriumPlayer.cyberBardValue == 0)
+                    case 0:
                         {
-                            if (thoriumPlayer.empowerDamage < 2)
+                            Lighting.AddLight(player.position, 0.45f, 0.1f, 0.1f);
+                            EmpowermentTimer empTimer = thoriumPlayer.GetEmpTimer<FlatDamage>();
+                            if (empTimer.level == 2)
                             {
-                                CombatText.NewText(new Rectangle((int)player2.position.X, (int)player2.position.Y - 10, player2.width, player2.height), new Color(255, 0, 0), "+8% damage", false, false);
-                                thoriumPlayer.empowerDamage = 2;
+                                empTimer.fade = false;
                             }
-                            if (thoriumPlayer.empowerCriticalStrike < 2)
+                            empTimer = thoriumPlayer.GetEmpTimer<Damage>();
+                            if (empTimer.level == 2)
                             {
-                                CombatText.NewText(new Rectangle((int)player2.position.X, (int)player2.position.Y - 10, player2.width, player2.height), new Color(255, 215, 75), "+8% critical strike chance", false, false);
-                                thoriumPlayer.empowerCriticalStrike = 2;
+                                empTimer.fade = false;
+                                return;
                             }
-                            if (thoriumPlayer.empowerDamage == 2)
-                            {
-                                thoriumPlayer.empowerTimerDamage = 60;
-                            }
-                            if (thoriumPlayer.empowerCriticalStrike == 2)
-                            {
-                                thoriumPlayer.empowerTimerCriticalStrike = 60;
-                            }
+                            break;
                         }
-                        if (thoriumPlayer.cyberBardValue == 1)
+                    case 1:
                         {
-                            if (thoriumPlayer.empowerAttackSpeed < 2)
+                            Lighting.AddLight(player.position, 0.15f, 0.45f, 0.15f);
+                            EmpowermentTimer empTimer = thoriumPlayer.GetEmpTimer<MovementSpeed>();
+                            if (empTimer.level == 2)
                             {
-                                CombatText.NewText(new Rectangle((int)player2.position.X, (int)player2.position.Y, player2.width, player2.height), new Color(225, 150, 50), "+8% attack speed", false, false);
-                                thoriumPlayer.empowerAttackSpeed = 2;
+                                empTimer.fade = false;
                             }
-                            if (thoriumPlayer.empowerMovementSpeed < 2)
+                            empTimer = thoriumPlayer.GetEmpTimer<FlightTime>();
+                            if (empTimer.level == 2)
                             {
-                                CombatText.NewText(new Rectangle((int)player2.position.X, (int)player2.position.Y, player2.width, player2.height), new Color(102, 255, 0), "+15% movement speed", false, false);
-                                thoriumPlayer.empowerMovementSpeed = 2;
+                                empTimer.fade = false;
+                                return;
                             }
-                            if (thoriumPlayer.empowerAttackSpeed == 2)
-                            {
-                                thoriumPlayer.empowerTimerAttackSpeed = 60;
-                            }
-                            if (thoriumPlayer.empowerMovementSpeed == 2)
-                            {
-                                thoriumPlayer.empowerTimerMovementSpeed = 60;
-                            }
+                            break;
                         }
-                        if (thoriumPlayer.cyberBardValue == 2)
+                    case 2:
                         {
-                            if (thoriumPlayer.empowerLifeRegen < 2)
+                            Lighting.AddLight(player.position, 0.35f, 0.1f, 0.45f);
+                            EmpowermentTimer empTimer = thoriumPlayer.GetEmpTimer<ResourceMaximum>();
+                            if (empTimer.level == 2)
                             {
-                                CombatText.NewText(new Rectangle((int)player2.position.X, (int)player2.position.Y - 10, player2.width, player2.height), new Color(255, 100, 175), "+2 life/sec", false, false);
-                                thoriumPlayer.empowerLifeRegen = 2;
+                                empTimer.fade = false;
                             }
-                            if (thoriumPlayer.empowerManaRegen < 2)
+                            empTimer = thoriumPlayer.GetEmpTimer<ResourceRegen>();
+                            if (empTimer.level == 2)
                             {
-                                CombatText.NewText(new Rectangle((int)player2.position.X, (int)player2.position.Y, player2.width, player2.height), new Color(102, 102, 255), "+4 mana/sec", false, false);
-                                thoriumPlayer.empowerManaRegen = 2;
+                                empTimer.fade = false;
+                                return;
                             }
-                            if (thoriumPlayer.empowerLifeRegen == 2)
-                            {
-                                thoriumPlayer.empowerTimerLifeRegen = 60;
-                            }
-                            if (thoriumPlayer.empowerManaRegen == 2)
-                            {
-                                thoriumPlayer.empowerTimerManaRegen = 60;
-                            }
+                            break;
                         }
-                        if (thoriumPlayer.cyberBardValue == 3)
+                    case 3:
                         {
-                            if (thoriumPlayer.empowerDamageReduction < 2)
+                            Lighting.AddLight(player.position, 0.1f, 0.2f, 0.65f);
+                            EmpowermentTimer empTimer = thoriumPlayer.GetEmpTimer<Defense>();
+                            if (empTimer.level == 2)
                             {
-                                CombatText.NewText(new Rectangle((int)player2.position.X, (int)player2.position.Y - 10, player2.width, player2.height), new Color(100, 175, 255), "+8% damage reduction", false, false);
-                                thoriumPlayer.empowerDamageReduction = 2;
+                                empTimer.fade = false;
                             }
-                            if (thoriumPlayer.empowerDefense < 2)
+                            empTimer = thoriumPlayer.GetEmpTimer<DamageReduction>();
+                            if (empTimer.level == 2)
                             {
-                                CombatText.NewText(new Rectangle((int)player2.position.X, (int)player2.position.Y, player2.width, player2.height), new Color(160, 160, 160), "+8 defense", false, false);
-                                thoriumPlayer.empowerDefense = 2;
+                                empTimer.fade = false;
                             }
-                            if (thoriumPlayer.empowerDamageReduction == 2)
-                            {
-                                thoriumPlayer.empowerTimerDamageReduction = 60;
-                            }
-                            if (thoriumPlayer.empowerDefense == 2)
-                            {
-                                thoriumPlayer.empowerTimerDefense = 60;
-                            }
+                            break;
                         }
-                    }
+                    default:
+                        return;
                 }
             }
 
             if (player.GetModPlayer<FargoPlayer>().ThoriumSoul) return;
 
             //auto tuner
-            thoriumPlayer.autoTunerBool = true;
+            thoriumPlayer.accAutoTuner = true;
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3Damage = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3Damage = 2;
         }
        
         private readonly string[] items =

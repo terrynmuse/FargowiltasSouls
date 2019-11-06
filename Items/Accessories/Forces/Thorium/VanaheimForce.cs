@@ -21,7 +21,7 @@ namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
             Tooltip.SetDefault(
 @"'Holds a glimpse of the future...'
 All armor bonuses from Malignant, Folv, and White Dwarf
-All armor bonuses from Celestial and Balladeer
+All armor bonuses from Celestial and Shooting Star
 Effects of Mana-Charged Rocketeers and Ascension Statuette");
             DisplayName.AddTranslation(GameCulture.Chinese, "华纳海姆之力");
             Tooltip.AddTranslation(GameCulture.Chinese, 
@@ -86,7 +86,7 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
                 thoriumPlayer.ascension = true;
             }
             
-            //balladeer meme hell
+            /*//balladeer meme hell
             if (thoriumPlayer.empowerDamage > 0)
             {
                 modPlayer.AllDamageUp(.08f);
@@ -146,7 +146,7 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
             {
                 modPlayer.AllDamageUp(.08f);
                 player.moveSpeed += 0.03f;
-            }
+            }*/
         }
 
         public override void AddRecipes()
@@ -158,7 +158,7 @@ Effects of Mana-Charged Rocketeers and Ascension Statuette");
             recipe.AddIngredient(null, "FolvEnchant");
             recipe.AddIngredient(null, "WhiteDwarfEnchant");
             recipe.AddIngredient(null, "CelestialEnchant");
-            recipe.AddIngredient(null, "BalladeerEnchant");
+            recipe.AddIngredient(null, "ShootingStarEnchant");
 
             recipe.AddTile(mod, "CrucibleCosmosSheet");
 

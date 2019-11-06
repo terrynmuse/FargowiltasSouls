@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Terraria.Localization;
 
@@ -21,7 +20,7 @@ namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
             DisplayName.SetDefault("Marching Band Enchantment");
             Tooltip.SetDefault(
 @"'Step to the beat'
-Inspiration notes that drop are twice as potent and increase your symphonic damage briefly");
+While in combat, a rainbow of damaging symphonic symbols will follow your movement and stun enemies");
             DisplayName.AddTranslation(GameCulture.Chinese, "仪仗队魔石");
             Tooltip.AddTranslation(GameCulture.Chinese, 
 @"'脚步合拍'
@@ -44,7 +43,7 @@ Inspiration notes that drop are twice as potent and increase your symphonic dama
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //marching band set 
-            thoriumPlayer.empoweredNotes = true;
+            thoriumPlayer.setMarchingBand = true;
         }
         
         private readonly string[] items =

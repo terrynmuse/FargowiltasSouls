@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Terraria.Localization;
 
@@ -52,8 +51,8 @@ Effects of Mask of the Crystal Eye, Abyssal Shell, and Cyan Music Player");
             //abyssal shell
             thoriumPlayer.AbyssalShell = true;
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3DamageReduction = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3DamageReduction = 2;
         }
 
         public override void AddRecipes()

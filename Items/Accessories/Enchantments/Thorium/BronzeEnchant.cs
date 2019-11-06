@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -56,7 +55,7 @@ Effects of Olympic Torch, Champion's Rebuttal, Spartan Sandals, and Spartan's Su
             thorium.GetItem("SpartanSandles").UpdateAccessory(player, hideVisual);
             player.moveSpeed -= 0.15f;
             player.maxRunSpeed -= 1f;
-            //subwoofer
+            /*//subwoofer
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];
@@ -65,7 +64,7 @@ Effects of Olympic Torch, Champion's Rebuttal, Spartan Sandals, and Spartan's Su
                     thoriumPlayer.empowerMarble = true;
                 }
             }
-            thoriumPlayer.bardRangeBoost += 450;
+            thoriumPlayer.bardRangeBoost += 450;*/
 
             //olympic torch
             thoriumPlayer.olympicTorch = true;

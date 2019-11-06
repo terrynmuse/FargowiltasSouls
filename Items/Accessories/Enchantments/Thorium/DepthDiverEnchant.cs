@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -64,7 +63,7 @@ Summons a pet Jellyfish");
                 }
             }
             //depth woofer
-            thoriumPlayer.bardRangeBoost += 450;
+            /*thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];
@@ -72,7 +71,7 @@ Summons a pet Jellyfish");
                 {
                     thoriumPlayer.empowerGouge = true;
                 }
-            }
+            }*/
 
             //sea breeze pendant
             player.accFlipper = true;

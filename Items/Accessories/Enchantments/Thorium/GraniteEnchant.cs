@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -58,7 +57,7 @@ Effects of Eye of the Storm and Energized Subwoofer");
             thorium.GetItem("EyeoftheStorm").UpdateAccessory(player, hideVisual);
             
             //granite woofer
-            thoriumPlayer.bardRangeBoost += 450;
+            /*thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];
@@ -66,7 +65,7 @@ Effects of Eye of the Storm and Energized Subwoofer");
                 {
                     thoriumPlayer.empowerGranite = true;
                 }
-            }
+            }*/
         }
         
         private readonly string[] items =

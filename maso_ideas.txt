@@ -4,65 +4,35 @@ obsidian post skele
 eater immune to clipped wings
 pirate stealing money not working right?
 
-valadium gravity toggles
 carpet toggle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Antlion Swarmers drop sand when above the player
 
 Spawns
 -HM Headless Horsemen????
 -Parrots spawn in the sky
 -mummies spawn in pyramids always 
+-hellhound in hell?
 
 AI
--also not all demon eyes dashing?
 -icy merman shoots twice as fast if he’s in water (also dust ofc)
 -Paladins can throw hammers without having to not be currently attacked
--clowns throw exploding bananas and explode into snow and sand balls instead of dynamite
 
 MISC
 -1/20 every night for either moon, post plant or sooner? message displays one minute before they start. 
--add back lightning rain reeeeee, make it much less often 
 -fire imp - explosion of burning spheres when they teleport?
--wraiths steal your souls on hit
--mimics dont reveal themself until you are extremely close
--hellhound in hell?
+
+
 
 NOT THIS UPDATE
-thorium force with negative regen?
 can you move with gold enchant?
-cultist no drop maso drop when summoned with fargo summon
-all echant values/raritys at some point tbh based on highest rarity item in recipe or one less
 crucible accept fossils?
 penetrator glow mask and crucible glow mask
 top hat squirrel terrarium
-add fishing rod, one form for now lol
 add deaths meme idea from doc
 add cats king slime minion
 -add dust to wings
--statigel to phm?
 -world shaper makes block use time 1
--bugle recipe group
 -soe stacking rework
-shield of cth dash
 
 FOr MUtANT mod
 

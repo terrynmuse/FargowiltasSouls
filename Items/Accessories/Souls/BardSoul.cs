@@ -1,8 +1,6 @@
-using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
-using Terraria.ID;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -83,12 +81,12 @@ Critical strikes caused by brass instrument attacks release a spread of energy")
             thoriumPlayer.symphonicCrit += 15;
             thoriumPlayer.bardResourceMax2 += 20;
             //epic mouthpiece
-            thoriumPlayer.bardHomingBool = true;
+            thoriumPlayer.accWindHoming = true;
             thoriumPlayer.bardHomingBonus = 5f;
             //straight mute
-            thoriumPlayer.bardMute2 = true;
+            thoriumPlayer.accBrassMute2 = true;
             //digital tuner
-            thoriumPlayer.tuner2 = true;
+            thoriumPlayer.accPercussionTuner2 = true;
             //guitar pick claw
             thoriumPlayer.bardBounceBonus = 5;
         }

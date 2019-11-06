@@ -225,11 +225,13 @@ Effects of Flying Carpet";
             //survivalist boots
             if (Math.Abs(player.velocity.X) > 2f)
             {
+                thoriumPlayer.lifeRegenPenaltyReduction += 0.1f;
                 player.lifeRegen += 2;
                 player.lifeRegenTime++;
+                thoriumPlayer.manaRegenPenaltyReduction += 0.1f;
                 player.manaRegenBonus += 2;
                 player.manaRegenDelayBonus++;
-                thoriumPlayer.bardResourceRecharge += 2;
+                thoriumPlayer.inspirationRegenBonus += 0.03f;
             }
             //weighted winglets
             if (player.controlDown && !player.controlUp)

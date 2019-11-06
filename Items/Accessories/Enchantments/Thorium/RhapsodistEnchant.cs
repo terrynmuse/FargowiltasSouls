@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -65,11 +64,11 @@ These effects needs to recharge for 1 minute");
 
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             //notes heal more and give random empowerments
-            thoriumPlayer.inspirator = true;
+            thoriumPlayer.armInspirator = true;
             //hotkey buff allies 
-            thoriumPlayer.rallySet = true;
+            thoriumPlayer.setInspirator = true;
             //hotkey buff self
-            thoriumPlayer.soloistSet = true;
+            thoriumPlayer.setSoloist = true;
         }
         
         private readonly string[] items =

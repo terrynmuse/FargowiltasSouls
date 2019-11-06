@@ -1,9 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
-using ThoriumMod.NPCs;
 using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Forces

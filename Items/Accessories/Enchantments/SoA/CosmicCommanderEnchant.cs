@@ -1,8 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using ThoriumMod;
 using Terraria.Localization;
 using SacredTools;
 
@@ -46,7 +44,7 @@ State is toggled upon button press and has a cooldown of 5 seconds after switchi
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();
 
@@ -72,7 +70,7 @@ State is toggled upon button press and has a cooldown of 5 seconds after switchi
 
         public override void AddRecipes()
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             ModRecipe recipe = new ModRecipe(mod);
 

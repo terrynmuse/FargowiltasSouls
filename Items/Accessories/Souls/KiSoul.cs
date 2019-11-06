@@ -1,8 +1,5 @@
 using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using System.Collections.Generic;
@@ -78,7 +75,7 @@ Drastically increased ki regen
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.DBTLoaded) return;
+            if (!Fargowiltas.Instance.DBZMODLoaded) return;
 
             //general
             DBZMOD.MyPlayer dbtPlayer = player.GetModPlayer<DBZMOD.MyPlayer>();
@@ -118,7 +115,7 @@ Drastically increased ki regen
 
         public override void AddRecipes()
         {
-            if (!Fargowiltas.Instance.DBTLoaded) return;
+            if (!Fargowiltas.Instance.DBZMODLoaded) return;
             
             ModRecipe recipe = new ModRecipe(mod);
 

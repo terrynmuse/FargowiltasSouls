@@ -1,4 +1,3 @@
-using CalamityMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -88,7 +87,7 @@ namespace FargowiltasSouls.Items.Accessories.Souls
             //dead mans patch
             thoriumPlayer.deadEyeBool = true;
             //mermaid canteen
-            thoriumPlayer.canteenEffect += 750;
+            thoriumPlayer.throwerExhaustionMax += 1125;
             thoriumPlayer.canteenCadet = true;
         }
 

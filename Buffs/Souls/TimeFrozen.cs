@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using FargowiltasSouls.NPCs;
+﻿using FargowiltasSouls.NPCs;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;

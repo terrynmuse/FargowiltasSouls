@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -62,7 +61,7 @@ Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
             //noble set bonus
             thoriumPlayer.bardBuffDuration += 300;
             //molten woofer
-            thoriumPlayer.bardRangeBoost += 450;
+            /*thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];
@@ -70,7 +69,7 @@ Effects of Ring of Unity, Mix Tape and Devil's Subwoofer");
                 {
                     thoriumPlayer.empowerFire = true;
                 }
-            }
+            }*/
         }
         
         private readonly string[] items =

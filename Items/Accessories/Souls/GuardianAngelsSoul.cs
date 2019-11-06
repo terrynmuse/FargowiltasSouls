@@ -1,9 +1,7 @@
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
-using Terraria.ID;
 using System.Collections.Generic;
 using Terraria.Localization;
 

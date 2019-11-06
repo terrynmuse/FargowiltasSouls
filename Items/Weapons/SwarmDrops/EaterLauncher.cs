@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -54,7 +52,7 @@ namespace FargowiltasSouls.Items.Weapons.SwarmDrops
 
         public override void AddRecipes()
         {
-            if (Fargowiltas.Instance.FargosLoaded)
+            if (Fargowiltas.Instance.FargowiltasLoaded)
             {
                 ModRecipe recipe = new ModRecipe(mod);
 

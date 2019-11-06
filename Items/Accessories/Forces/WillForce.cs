@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
@@ -100,7 +99,7 @@ Effects of Greedy Ring, Celestial Shell, and Shiny Stone
             if (SoulConfig.Instance.GetValue("Proof of Avarice"))
             {
                 //proof of avarice
-                thoriumPlayer.avarice2 = true;
+                thoriumPlayer.avarice = true;
             }
 
             modPlayer.AddPet("Coin Bag Pet", hideVisual, thorium.BuffType("DrachmaBuff"), thorium.ProjectileType("DrachmaBag"));

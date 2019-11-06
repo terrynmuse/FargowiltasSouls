@@ -2,10 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using FargowiltasSouls.NPCs;
 
 namespace FargowiltasSouls.Projectiles.MutantBoss
 {
@@ -50,17 +48,10 @@ namespace FargowiltasSouls.Projectiles.MutantBoss
             projectile.scale *= 2;
 
             int ai0 = (int)projectile.ai[0];
-            if (ai0 > -1 && ai0 < 200 && Main.projectile[ai0].active && Main.projectile[ai0].type == mod.ProjectileType("MutantMark2"))
-            {
-                Vector2 offset = new Vector2(125, 0).RotatedBy(projectile.ai[1]);
-                projectile.Center = Main.projectile[ai0].Center + offset;
-                projectile.ai[1] += 0.09f;
-                projectile.rotation = projectile.ai[1] + (float)Math.PI / 2f;
-            }
-            else
-            {
-                projectile.Kill();
-            }
+            Vector2 offset = new Vector2(125, 0).RotatedBy(projectile.ai[1]);
+            projectile.Center = Main.projectile[ai0].Center + offset;
+            projectile.ai[1] += 0.09f;
+            projectile.rotation = projectile.ai[1] + (float)Math.PI / 2f;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

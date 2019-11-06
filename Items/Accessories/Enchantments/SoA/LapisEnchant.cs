@@ -1,8 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using ThoriumMod;
 using Terraria.Localization;
 using SacredTools;
 
@@ -45,7 +43,7 @@ Effects of Lapis Pendant");
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             ModdedPlayer modPlayer = player.GetModPlayer<ModdedPlayer>();
 
@@ -75,7 +73,7 @@ Effects of Lapis Pendant");
 
         public override void AddRecipes()
         {
-            if (!Fargowiltas.Instance.SOALoaded) return;
+            if (!Fargowiltas.Instance.SoALoaded) return;
 
             ModRecipe recipe = new ModRecipe(mod);
 

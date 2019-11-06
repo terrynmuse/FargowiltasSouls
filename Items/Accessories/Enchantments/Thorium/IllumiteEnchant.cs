@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Terraria.Localization;
 
@@ -50,8 +49,8 @@ Summons a pet Pink Slime");
             ThoriumPlayer thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             modPlayer.IllumiteEnchant = true;
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3LifeRegen = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3LifeRegen = 2;
             //slime pet
             modPlayer.AddPet("Pink Slime Pet", hideVisual, thorium.BuffType("PinkSlimeBuff"), thorium.ProjectileType("PinkSlime"));
         }

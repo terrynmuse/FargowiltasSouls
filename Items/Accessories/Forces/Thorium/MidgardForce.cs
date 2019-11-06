@@ -1,10 +1,8 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Forces.Thorium
@@ -111,7 +109,7 @@ Summons a pet Pink Slime");
                 modPlayer.AllDamageUp(.12f);
             }
 
-            //terrarium woofer
+            /*//terrarium woofer
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
@@ -120,7 +118,7 @@ Summons a pet Pink Slime");
                 {
                     thoriumPlayer.empowerTerrarium = true;
                 }
-            }
+            }*/
         }
 
         public override void AddRecipes()

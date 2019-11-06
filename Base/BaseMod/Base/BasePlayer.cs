@@ -1,11 +1,6 @@
-using System;
-using Microsoft.Xna.Framework;
-
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using FargowiltasSouls;
 
 namespace FargowiltasSouls
 {
@@ -41,37 +36,8 @@ namespace FargowiltasSouls
                 player.inventory[slot] = new Item();
             }   
         }
-        public static bool HasEmptySlots(Player player, int slotCount, bool includeInventory = true, bool includeCoins = false, bool includeAmmo = false)
-        {
-            int count = 0;
-            for (int m = includeInventory ? 0 : includeCoins ? 50 : 54; m < (includeAmmo ? 58 : includeCoins ? 54 : 50); m++)
-            {
-                Item item = player.inventory[m]; if (item == null || item.IsBlank()) { count++; if (count >= slotCount) { return true; } }
-            }
-            return false;
-        }
 
-        public static int GetEmptySlot(Player player, bool includeInventory = true, bool includeCoins = false, bool includeAmmo = false)
-        {
-			for (int m = includeInventory ? 0 : includeCoins ? 50 : 54; m < (includeAmmo ? 58 : includeCoins ? 54 : 50); m++)
-            { 
-                Item item = player.inventory[m]; if (item == null || item.IsBlank()) { return m; } 
-            }
-            return -1;
-        }
 
-        public static bool DowngradeMoney(Player player, int moneySlot, ref int splitSlot)
-        {
-            Item item = player.inventory[moneySlot];
-            if(item == null || item.type <= 71 || item.type >= 75){ return false; } //can't downgrade copper coins or non-coin items
-            int typeToBecome = item.type - 1;
-            splitSlot = GetEmptySlot(player, false, true, false);
-            if (splitSlot == -1){ splitSlot = GetEmptySlot(player, true, false, false); }
-            if (splitSlot == -1){ return false; } //no space
-            player.inventory[splitSlot].SetDefaults(typeToBecome); player.inventory[splitSlot].stack = 100;
-            player.inventory[moneySlot].stack--; if(player.inventory[moneySlot].stack <= 0){ player.inventory[moneySlot] = new Item(); }
-            return true;
-        }
 
         /*
          * A manual way for the player to use the current held item they have.
@@ -362,133 +328,15 @@ namespace FargowiltasSouls
             return false;
         }
 
-        /**
-         * Returns true if the given items all contain a phrase within thier names.
-         * setName : The phrase in the set's name (ie "Copper", "Iron", "Hallowed" etc.)
-		 * items : Array of items to check.
-         */
-        public static bool IsInSet(string setName, params Item[] items)
-        {
-            return IsInSet(null, setName, items);
-        }
 		
-        /**
-         * Returns true if the given items all contain a phrase within thier names.
-		 * mod : The mod the items in question are from. Use as a filter to ensure the items you wish to check are applied.
-         * setName : The phrase in the set's name (ie "Copper", "Iron", "Hallowed" etc.)
-		 * items : Array of items to check.
-         */
-        public static bool IsInSet(Mod mod, string setName, params Item[] items)
-        {
-            foreach (Item item in items)
-            {
-                if (item == null || item.IsBlank()) return false; //items in the list cannot be null!
-				if(!item.Name.StartsWith(setName)) return false;	
-				if(mod != null && item.modItem != null && !(item.modItem.mod.Name.ToLower().Equals(mod.Name.ToLower()))) return false;
-			}
-            return true;
-        }
 
-		/**
-         * Returns true if the given player has the given armor set equipped.	 
-         * armorName : First word in the armor's name (ie "Copper", "Iron", "Hallowed" etc.)
-         * vanity : true if your checking vanity slots, else normal armor slots.
-         */
-        public static bool HasArmorSet(Player player, string armorName, bool vanity = false)
-        {
-			return HasArmorSet(null, player, armorName, vanity);
-        }	
-		
-        /**
-         * Returns true if the given player has the given armor set equipped.
-		 * mod : The mod the items in question are from. Use as a filter to ensure the items you wish to check are applied.		 
-         * armorName : First word in the armor's name (ie "Copper", "Iron", "Hallowed" etc.)
-         * vanity : true if your checking vanity slots, else normal armor slots.
-         */
-        public static bool HasArmorSet(Mod mod, Player player, string armorName, bool vanity = false)
-        {
-            Item itemHelm = player.armor[vanity ? 10 : 0], itemBody = player.armor[vanity ? 11 : 1], itemLegs = player.armor[vanity ? 12 : 2];        
-            return IsInSet(mod, armorName, itemHelm, itemBody, itemLegs);
-        }
+
 
 
         public static bool IsVanitySlot(int slot, bool acc = true) { return (acc ? slot >= 13 && slot <= 18 : slot >= 10 && slot <= 12); }
 
 
-        public static bool HasAccessories(Player player, int[] types, bool normal, bool vanity, bool oneOf)
-        {
-			int dummy = 0; bool dummeh = false;
-            return HasAccessories(player, types, normal, vanity, oneOf, ref dummeh, ref dummy);
-        }  
- 
-        /**
-         * Returns true if the given player has the given accessories equipped.
-         * oneOf : If true, checks if you have any of the types instead of all of them.
-         */
-		public static bool HasAccessories(Player player, int[] types, bool normal, bool vanity, bool oneOf, ref bool social, ref int index)
-        {
-            int trueCount = 0;
-
-			if (vanity)
-			{
-                for (int m = 13; m < 18 + player.extraAccessorySlots; m++)
-				{
-					Item item = player.armor[m];
-					if (item != null && !item.IsBlank())
-					{
-						foreach (int type in types)
-						{
-							if (item.type == type) { index = m; social = true; if (oneOf) { return true; } else { trueCount++; } }
-						}
-					}
-				}
-			}
-			if (normal)
-			{
-                for (int m = 3; m < 8 + player.extraAccessorySlots; m++)
-				{
-					Item item = player.armor[m];
-					if (item != null && !item.IsBlank())
-					{
-						foreach (int type in types)
-						{
-							if (item.type == type) { index = m; social = false; if (oneOf) { return true; } else { trueCount++; } }
-						}
-					}
-				}
-			}
-            return trueCount >= types.Length;
-        }
-
-		public static bool HasAccessory(Player player, int type, bool normal, bool vanity)
-        {
-			int dummy = 0; bool dummeh = false;
-            return HasAccessory(player, type, normal, vanity, ref dummeh, ref dummy);
-        }
-
-        /**
-         * Returns true if the given player has the given accessory equipped.
-         */
-        public static bool HasAccessory(Player player, int type, bool normal, bool vanity, ref bool social, ref int index)
-        {
-            if (vanity)
-            {
-                for (int m = 13; m < 18 + player.extraAccessorySlots; m++)
-                {
-                    Item item = player.armor[m];
-                    if (item != null && !item.IsBlank() && item.type == type) { index = m; social = true; return true; }
-                }
-            }
-            if (normal)
-            {
-                for (int m = 3; m < 8 + player.extraAccessorySlots; m++)
-                {
-                    Item item = player.armor[m];
-                    if (item != null && !item.IsBlank() && item.type == type) { index = m; social = false; return true; }
-                }
-            }
-            return false;
-        }
+        
     }
 }
 

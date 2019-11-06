@@ -23,7 +23,7 @@ namespace FargowiltasSouls.Projectiles.Masomode
             projectile.tileCollide = false;
             projectile.timeLeft = 300;
             projectile.alpha = 255;
-            if (Fargowiltas.Instance.MasomodeEX)
+            if (Fargowiltas.Instance.MasomodeEXLoaded)
                 projectile.extraUpdates = 1;
         }
 

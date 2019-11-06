@@ -1,9 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
-using Microsoft.Xna.Framework;
 using Terraria.Localization;
 
 namespace FargowiltasSouls.Items.Accessories.Enchantments.Thorium
@@ -67,8 +65,8 @@ Effects of Mana-Charged Rocketeers and Gray Music Player");
                 player.noKnockback = true;
             }
             //music player
-            thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3Defense = 2;
+            //thoriumPlayer.musicPlayer = true;
+            //thoriumPlayer.MP3Defense = 2;
             //malignant
             modPlayer.MalignantEnchant = true;
             //mana charge rockets

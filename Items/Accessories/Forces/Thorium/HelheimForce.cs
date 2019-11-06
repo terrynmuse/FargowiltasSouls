@@ -1,7 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -134,7 +133,7 @@ Summons several pets");
 
             if (modPlayer.ThoriumSoul) return;
 
-            //woofers
+            /*//woofers
             thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
@@ -144,7 +143,7 @@ Summons several pets");
                     thoriumPlayer.empowerCursed = true;
                     thoriumPlayer.empowerIchor = true;
                 }
-            }
+            }*/
             //dragon tooth necklace
             player.armorPenetration += 15;
 

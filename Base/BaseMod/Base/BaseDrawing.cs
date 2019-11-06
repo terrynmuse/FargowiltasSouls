@@ -7,13 +7,9 @@ using Terraria;
 using Terraria.UI.Chat;
 using Terraria.ObjectData;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.UI;
 using Terraria.ModLoader;
 using Terraria.Graphics.Shaders;
-using Terraria.Localization;
-using Terraria.GameContent.UI;
-using FargowiltasSouls;
 
 namespace FargowiltasSouls
 {
@@ -673,26 +669,8 @@ namespace FargowiltasSouls
             return lightColor;
         }
 
-        public static bool ShouldDrawHelmet(Player drawPlayer, int itemType = -1){ return drawPlayer.head > 0 && ShouldDrawArmor(drawPlayer, 0, itemType); }
-        public static bool ShouldDrawChestplate(Player drawPlayer, int itemType = -1) { return drawPlayer.body > 0 && ShouldDrawArmor(drawPlayer, 1, itemType); }
-        public static bool ShouldDrawLeggings(Player drawPlayer, int itemType = -1) { return drawPlayer.legs > 0 && ShouldDrawArmor(drawPlayer, 2, itemType); }
 
-        public static bool ShouldDrawArmor(Player drawPlayer, int armorType, int itemType = -1)
-        {
-			if (drawPlayer.merman || drawPlayer.wereWolf) { return false; }
-            if (itemType == -1) { return (drawPlayer.armor[10 + armorType].type > 0) || (drawPlayer.armor[10 + armorType].IsBlank() && drawPlayer.armor[0 + armorType].type > 0); }
-            return (drawPlayer.armor[10 + armorType].type == itemType) || (drawPlayer.armor[10 + armorType].IsBlank() && drawPlayer.armor[0 + armorType].type == itemType);
-        }
 
-		public static bool ShouldDrawAccessory(Player drawPlayer, int itemType)
-		{
-			for (int m = 3; m < 8 + drawPlayer.extraAccessorySlots; m++)
-			{
-				if (drawPlayer.armor[m + 10].type == itemType) return true;				
-				if (drawPlayer.armor[m + 10].IsBlank() && !drawPlayer.hideVisual[m] && (drawPlayer.armor[m].type == itemType)) return true;				
-			}				
-			return false;
-		}
 
 		/*
 		 * Returns true if the requirements for drawing the player's held item are satisfied.
@@ -1909,66 +1887,7 @@ namespace FargowiltasSouls
 			return this;
 		}
 
-		public override void Apply(Entity entity, DrawData? drawData = null)
-		{
-			try
-			{
-				base.Shader.Parameters["uState"].SetValue(_uState);	
-				if(_uExtraTex != null) base.Shader.Parameters["uExtraTex"].SetValue(_uExtraTex);
-				Entity ent = entity;
-				if(lastShaderDrawObject != null) ent = lastShaderDrawObject;
-				if(ent != null)
-				{
-					Color color = BaseDrawing.GetLightColor(ent.Center);
-					if(ent is NPC) color = ((NPC)ent).GetAlpha(color);
-					if(ent is Projectile) color = ((Projectile)ent).GetAlpha(color);				
-					if(ent is Player) color = ((Player)ent).GetImmuneAlpha(color, ((Player)ent).shadow);					
-					base.Shader.Parameters["uLightColor"].SetValue(color.ToVector4());			
-					if(ent is NPC)
-					{
-						Vector4 v4 = new Vector4(0, 0, Main.npcTexture[((NPC)ent).type].Width, Main.npcTexture[((NPC)ent).type].Height);
-						Vector4 v4_2 = new Vector4(0, 0, ((NPC)ent).frame.Width, ((NPC)ent).frame.Height);
-						base.Shader.Parameters["uTexSize"].SetValue(v4);			
-						if(((NPC)ent).modNPC is ParentNPC){ base.Shader.Parameters["uFrame"].SetValue(((ParentNPC)((NPC)ent).modNPC).GetFrameV4()); }else
-						{
-							base.Shader.Parameters["uFrame"].SetValue(v4_2);
-						}
-					}else
-					if(ent is Projectile)
-					{					
-						Projectile proj = (Projectile)ent;
-						Vector4 v4 = new Vector4(0, 0, Main.projectileTexture[proj.type].Width, Main.projectileTexture[proj.type].Height);	
-						Vector4 v4_2 = new Vector4(0, 0, Main.projectileTexture[proj.type].Width, Main.projectileTexture[proj.type].Height / Main.projFrames[proj.type]);							
-						base.Shader.Parameters["uTexSize"].SetValue(v4);
-						if(proj.modProjectile is ParentProjectile){ base.Shader.Parameters["uFrame"].SetValue(((ParentProjectile)proj.modProjectile).GetFrameV4()); }else
-						{
-							base.Shader.Parameters["uFrame"].SetValue(v4_2);
-						}
-					}else
-					if(ent is Player)
-					{
-						Vector4 v4 = new Vector4(0, 0, Main.playerTextures[0, 0].Width, Main.playerTextures[0, 0].Height);								
-						Vector4 v4_2 = new Vector4(0, 0, BaseConstants.FRAME_PLAYER.Width, BaseConstants.FRAME_PLAYER.Height + 2);					
-						base.Shader.Parameters["uTexSize"].SetValue(v4);
-						base.Shader.Parameters["uFrame"].SetValue(v4_2);						
-					}else
-					{
-						Vector4 v4 = new Vector4(0, 0, ent.width, ent.height);
-						base.Shader.Parameters["uFrame"].SetValue(v4);					
-					}
-				}else
-				{
-					Color color = BaseDrawing.GetLightColor(Main.screenPosition);
-					base.Shader.Parameters["uLightColor"].SetValue(color.ToVector4());	
-					base.Shader.Parameters["uFrame"].SetValue(new Vector4(0, 0, 4, 4));					
-				}
-				base.Apply(entity, drawData);
-				secondaryApply = false;
-			}catch(Exception e)
-			{
-				BaseUtility.LogFancy("Fargowiltas~ BASE ARMOR ERROR:", e);
-			}
-		}
+		
 		
 		public override ArmorShaderData GetSecondaryShader(Entity entity)
 		{

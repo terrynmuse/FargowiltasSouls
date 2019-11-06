@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
@@ -62,7 +61,7 @@ Summons a pet Flying Blister");
             //vile core
             thoriumPlayer.vileCore = true;
             //subwoofer
-            thoriumPlayer.bardRangeBoost += 450;
+            /*thoriumPlayer.bardRangeBoost += 450;
             for (int i = 0; i < 255; i++)
             {
                 Player player2 = Main.player[i];
@@ -73,7 +72,7 @@ Summons a pet Flying Blister");
             }
             //music player
             thoriumPlayer.musicPlayer = true;
-            thoriumPlayer.MP3CriticalStrike = 2;
+            thoriumPlayer.MP3CriticalStrike = 2;*/
             //flesh set bonus
             thoriumPlayer.Symbiotic = true;
             //vampire gland
